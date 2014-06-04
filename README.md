@@ -3,6 +3,18 @@ Calamares
 
 Distribution-independent installer framework
 
+### Dependencies
+* CMake >= 2.8.12
+* Qt >= 5.3
+
+### Building
+```
+$ mkdir build
+$ cd build
+$ cmake ..
+$ make
+```
+
 ### Design notes
 * Backend
  * lib should only depend on QtCore >=5.3, possibly boost::python
