@@ -1,0 +1,4 @@
+set(CALAMARES_INCLUDE_DIRS
+  "@PROJECT_SOURCE_DIR@/src/libcalamares"
+  "@PROJECT_BINARY_DIR@/src/libcalamares"
+)
