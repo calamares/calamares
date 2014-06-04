@@ -16,29 +16,17 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
+#ifndef DLLMACRO_H
+#define DLLMACRO_H
 
-#include "CalamaresApplication.h"
+#include <QtCore/qglobal.h>
 
-#include "kdsingleapplicationguard/kdsingleapplicationguard.h"
+#ifndef DLLEXPORT
+# if defined (DLLEXPORT_PRO)
+#  define DLLEXPORT Q_DECL_EXPORT
+# else
+#  define DLLEXPORT Q_DECL_IMPORT
+# endif
+#endif
 
-#include <QDebug>
-
-int
-main( int argc, char *argv[] )
-{
-    CalamaresApplication a( argc, argv );
-
-    KDSingleApplicationGuard guard( KDSingleApplicationGuard::AutoKillOtherInstances );
-    QObject::connect( &guard, SIGNAL( instanceStarted( KDSingleApplicationGuard::Instance ) ), &a, SLOT( instanceStarted( KDSingleApplicationGuard::Instance ) ) );
-
-    int returnCode = 0;
-    if ( guard.isPrimaryInstance() )
-    {
-        a.init();
-        returnCode = a.exec();
-    }
-    else
-        qDebug() << "Calamares is already running, shutting down.";
-
-    return returnCode;
-}
+#endif

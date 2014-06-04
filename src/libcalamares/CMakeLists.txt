@@ -4,13 +4,18 @@ add_definitions( ${QT_DEFINITIONS} )
 add_definitions( -DQT_SHARED )
 add_definitions( -DQT_SHAREDPOINTER_TRACK_POINTERS )
 
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/../calamares/Config.h.in
-               ${CMAKE_CURRENT_BINARY_DIR}/config.h)
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/../calamares/CalamaresVersion.h.in
-               ${CMAKE_CURRENT_BINARY_DIR}/CalamaresVersion.h)
+configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/../calamares/Config.h.in
+                ${CMAKE_CURRENT_BINARY_DIR}/config.h )
+configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/../calamares/CalamaresVersion.h.in
+                ${CMAKE_CURRENT_BINARY_DIR}/CalamaresVersion.h )
 
 set( libSources
     JobQueue.cpp
+
+    kdsingleapplicationguard/kdsingleapplicationguard.cpp
+    kdsingleapplicationguard/kdsharedmemorylocker.cpp
+    kdsingleapplicationguard/kdtoolsglobal.cpp
+    kdsingleapplicationguard/kdlockedsharedmemorypointer.cpp
 )
 
 include_directories(
@@ -20,14 +25,13 @@ include_directories(
     ${QT_INCLUDE_DIR}
 )
 
-add_library( calamareslib SHARED ${libSources})
-set_target_properties(
-    calamareslib
-        PROPERTIES
-            AUTOMOC TRUE
-            VERSION ${CALAMARES_VERSION_SHORT}
-            SOVERSION ${CALAMARES_VERSION_SHORT}
-            OUTPUT_NAME "calamares"
+add_library( calamareslib SHARED ${libSources} )
+set_target_properties( calamareslib
+    PROPERTIES
+        AUTOMOC TRUE
+        VERSION ${CALAMARES_VERSION_SHORT}
+        SOVERSION ${CALAMARES_VERSION_SHORT}
+        OUTPUT_NAME "calamares"
 )
 
 qt5_use_modules( calamareslib Widgets )
@@ -50,6 +54,8 @@ install( TARGETS calamareslib
 
 # Install header files
 file( GLOB rootHeaders "*.h" )
+file( GLOB kdsingleapplicationguardHeaders "kdsingleapplicationguard/*.h" )
 
 install( FILES ${CMAKE_CURRENT_BINARY_DIR}/config.h DESTINATION include/libcalamares )
 install( FILES ${rootHeaders}                       DESTINATION include/libcalamares )
+install( FILES ${kdsingleapplicationguardHeaders}   DESTINATION include/libcalamares/kdsingleapplicationguard )
