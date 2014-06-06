@@ -19,10 +19,16 @@
 #ifndef CALAMARESWINDOW_H
 #define CALAMARESWINDOW_H
 
-#include <QMainWindow>
+#include "ui_CalamaresWindow.h"
 
-class CalamaresWindow : public QMainWindow
+#include <QWidget>
+
+class CalamaresWindow : public QWidget, private Ui::Base
 {
+    Q_OBJECT
+public:
+    CalamaresWindow( QWidget* parent = 0 );
+    virtual ~CalamaresWindow() {}
 
 };
 
