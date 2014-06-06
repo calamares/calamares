@@ -16,33 +16,14 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef CALAMARESAPPLICATION_H
-#define CALAMARESAPPLICATION_H
+#ifndef CALAMARESWINDOW_H
+#define CALAMARESWINDOW_H
 
-#include <QApplication>
+#include <QMainWindow>
 
-#define APP CalamaresApplication::instance()
-
-class CalamaresWindow;
-
-class CalamaresApplication : public QApplication
+class CalamaresWindow : public QMainWindow
 {
-    Q_OBJECT
-public:
-    CalamaresApplication( int& argc, char *argv[] );
-    virtual ~CalamaresApplication();
 
-    void init();
-    static CalamaresApplication* instance();
-
-    void initBranding();
-    void initPlugins();
-    void initJobQueue();
-
-private:
-    CalamaresWindow* m_mainwindow;
-
-    //QPointer< Calamares::JobQueue > m_jobQueue;
 };
 
-#endif //CALAMARESAPPLICATION_H
+#endif //CALAMARESWINDOW_H

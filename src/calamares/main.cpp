@@ -20,13 +20,25 @@
 #include "CalamaresApplication.h"
 
 #include "kdsingleapplicationguard/kdsingleapplicationguard.h"
+#include "utils/Logger.h"
 
+#include <QCommandLineParser>
 #include <QDebug>
 
 int
 main( int argc, char *argv[] )
 {
     CalamaresApplication a( argc, argv );
+
+    QCommandLineParser parser;
+    parser.setApplicationDescription( "Distribution-independent installer framework" );
+    parser.addHelpOption();
+    parser.addVersionOption();
+    QCommandLineOption verboseOption( QStringList() << "v" << "verbose",
+                                      "Verbose output for debugging purposes." );
+    parser.addOption( verboseOption );
+
+    parser.process( a );
 
     KDSingleApplicationGuard guard( KDSingleApplicationGuard::AutoKillOtherInstances );
     QObject::connect( &guard, SIGNAL( instanceStarted( KDSingleApplicationGuard::Instance ) ), &a, SLOT( instanceStarted( KDSingleApplicationGuard::Instance ) ) );

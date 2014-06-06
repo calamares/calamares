@@ -16,6 +16,9 @@ set( libSources
     kdsingleapplicationguard/kdsharedmemorylocker.cpp
     kdsingleapplicationguard/kdtoolsglobal.cpp
     kdsingleapplicationguard/kdlockedsharedmemorypointer.cpp
+
+    utils/Logger.cpp
+    utils/CalamaresUtils.cpp
 )
 
 include_directories(
@@ -34,7 +37,7 @@ set_target_properties( calamareslib
         OUTPUT_NAME "calamares"
 )
 
-qt5_use_modules( calamareslib Widgets )
+qt5_use_modules( calamareslib Core )
 
 target_link_libraries( calamareslib
     #LINK_PRIVATE
@@ -55,7 +58,9 @@ install( TARGETS calamareslib
 # Install header files
 file( GLOB rootHeaders "*.h" )
 file( GLOB kdsingleapplicationguardHeaders "kdsingleapplicationguard/*.h" )
+file( GLOB utilsHeaders "utils/*.h" )
 
 install( FILES ${CMAKE_CURRENT_BINARY_DIR}/config.h DESTINATION include/libcalamares )
 install( FILES ${rootHeaders}                       DESTINATION include/libcalamares )
 install( FILES ${kdsingleapplicationguardHeaders}   DESTINATION include/libcalamares/kdsingleapplicationguard )
+install( FILES ${utilsHeaders}                      DESTINATION include/libcalamares/utils )

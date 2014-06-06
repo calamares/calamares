@@ -7,7 +7,7 @@ endif()
 set( calamaresSources
     main.cpp
     CalamaresApplication.cpp
-    MainWindow.cpp
+    CalamaresWindow.cpp
 )
 
 set( calamaresUi
@@ -27,6 +27,10 @@ include( GNUInstallDirs )
 qt5_wrap_ui( calamaresUi_H ${calamaresUi} )
 
 #qt_add_resources( calamaresRc "../../resources.qrc" )
+
+# Translations
+include( ${CMAKE_SOURCE_DIR}/lang/translations.cmake )
+add_calamares_translations( ${CALAMARES_TRANSLATION_LANGUAGES} )
 
 set( final_src ${calamaresUi_H} ${calamaresSources} ${calamaresRc} )
 

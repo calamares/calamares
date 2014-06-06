@@ -1,6 +1,11 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2013-2014, Teo Mrnjavac <teo@kde.org>
+ *
+ *   Originally from Tomahawk, portions:
+ *   Copyright 2010-2011, Christian Muehlhaeuser <muesli@tomahawk-player.org>
+ *   Copyright 2010-2011, Leo Franchi <lfranchi@kde.org>
+ *   Copyright 2010-2012, Jeff Mitchell <jeff@tomahawk-player.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -16,33 +21,20 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef CALAMARESAPPLICATION_H
-#define CALAMARESAPPLICATION_H
+#ifndef CALAMARESUTILS_H
+#define CALAMARESUTILS_H
 
-#include <QApplication>
+#include "DllMacro.h"
 
-#define APP CalamaresApplication::instance()
+class QDir;
+class QObject;
 
-class CalamaresWindow;
-
-class CalamaresApplication : public QApplication
+namespace CalamaresUtils
 {
-    Q_OBJECT
-public:
-    CalamaresApplication( int& argc, char *argv[] );
-    virtual ~CalamaresApplication();
+    DLLEXPORT QDir appDataDir();
+    DLLEXPORT QDir appLogDir();
+    DLLEXPORT void installTranslator( QObject* parent );
 
-    void init();
-    static CalamaresApplication* instance();
+}
 
-    void initBranding();
-    void initPlugins();
-    void initJobQueue();
-
-private:
-    CalamaresWindow* m_mainwindow;
-
-    //QPointer< Calamares::JobQueue > m_jobQueue;
-};
-
-#endif //CALAMARESAPPLICATION_H
+#endif // CALAMARESUTILS_H

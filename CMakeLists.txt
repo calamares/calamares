@@ -4,15 +4,16 @@ set( CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/CMakeModules" )
 
 cmake_policy( SET CMP0023 OLD )
 
-find_package( Qt5 5.3.0 CONFIG REQUIRED Core Gui Widgets )
+find_package( Qt5 5.3.0 CONFIG REQUIRED Core Gui Widgets LinguistTools )
 
 ###
 ### Calamares application info
 ###
-SET( CALAMARES_ORGANIZATION_NAME "The Calamares Team" )
-SET( CALAMARES_ORGANIZATION_DOMAIN "github.com/calamares" )
-SET( CALAMARES_APPLICATION_NAME  "Calamares" )
-SET( CALAMARES_DESCRIPTION_SUMMARY "The distribution-independent installer framework" )
+set( CALAMARES_ORGANIZATION_NAME "The Calamares Team" )
+set( CALAMARES_ORGANIZATION_DOMAIN "github.com/calamares" )
+set( CALAMARES_APPLICATION_NAME  "Calamares" )
+set( CALAMARES_DESCRIPTION_SUMMARY "The distribution-independent installer framework" )
+set( CALAMARES_TRANSLATION_LANGUAGES de en )
 
 set( CALAMARES_VERSION_MAJOR 0 )
 set( CALAMARES_VERSION_MINOR 1 )
