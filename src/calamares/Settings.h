@@ -16,20 +16,24 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "CalamaresWindow.h"
+#ifndef SETTINGS_H
+#define SETTINGS_H
 
-#include "ViewManager.h"
+#include <QObject>
 
-#include "QBoxLayout"
 
-CalamaresWindow::CalamaresWindow( QWidget* parent )
-    : QWidget( parent )
+// Settings::instance() ?
+
+class Settings : public QObject
 {
-    setupUi( this );
+    Q_OBJECT
+public:
+    explicit Settings( QObject *parent = 0 );
+    //TODO: load from JSON then emit ready
+signals:
 
-    //This should create a PageManager or ViewManager or whatever, which
-    //should control the sidebar, next/back buttons and QSW.
-    Calamares::ViewManager* vm = new Calamares::ViewManager( this );
+public slots:
 
-    layout()->addWidget( vm->widget() );
-}
+};
+
+#endif // SETTINGS_H

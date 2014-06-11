@@ -58,6 +58,11 @@ configure_file(
     IMMEDIATE @ONLY
 )
 
+# Early configure these files as we need them later on
+configure_file( CalamaresUse.cmake.in "${PROJECT_BINARY_DIR}/CalamaresUse.cmake" @ONLY )
+file( COPY CalamaresAddPlugin.cmake DESTINATION "${PROJECT_BINARY_DIR}" )
+file( COPY CalamaresAddLibrary.cmake DESTINATION "${PROJECT_BINARY_DIR}" )
+
 set( CALAMARES_LIBRARIES calamareslib )
 
 add_subdirectory( src )

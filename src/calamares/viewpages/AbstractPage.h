@@ -16,20 +16,28 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "CalamaresWindow.h"
+#ifndef ABSTRACTPAGE_H
+#define ABSTRACTPAGE_H
 
-#include "ViewManager.h"
+#include <QWidget>
 
-#include "QBoxLayout"
+#include "../DllMacro.h"
 
-CalamaresWindow::CalamaresWindow( QWidget* parent )
-    : QWidget( parent )
+namespace Calamares
 {
-    setupUi( this );
 
-    //This should create a PageManager or ViewManager or whatever, which
-    //should control the sidebar, next/back buttons and QSW.
-    Calamares::ViewManager* vm = new Calamares::ViewManager( this );
+class UIDLLEXPORT AbstractPage : public QWidget
+{
+    Q_OBJECT
+public:
+    explicit AbstractPage(QWidget *parent = 0);
 
-    layout()->addWidget( vm->widget() );
+signals:
+
+public slots:
+
+};
+
 }
+
+#endif // ABSTRACTPAGE_H

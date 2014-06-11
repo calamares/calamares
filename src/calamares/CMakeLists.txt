@@ -8,6 +8,11 @@ set( calamaresSources
     main.cpp
     CalamaresApplication.cpp
     CalamaresWindow.cpp
+    ViewManager.cpp
+    Settings.cpp
+
+    viewpages/PagePlugin.cpp
+    viewpages/AbstractPage.cpp
 )
 
 set( calamaresUi

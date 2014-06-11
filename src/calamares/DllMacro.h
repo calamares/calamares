@@ -16,20 +16,17 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "CalamaresWindow.h"
+#ifndef UIDLLMACRO_H
+#define UIDLLMACRO_H
 
-#include "ViewManager.h"
+#include <QtCore/qglobal.h>
 
-#include "QBoxLayout"
+#ifndef UIDLLEXPORT
+# if defined (UIDLLEXPORT_PRO)
+#  define UIDLLEXPORT Q_DECL_EXPORT
+# else
+#  define UIDLLEXPORT Q_DECL_IMPORT
+# endif
+#endif
 
-CalamaresWindow::CalamaresWindow( QWidget* parent )
-    : QWidget( parent )
-{
-    setupUi( this );
-
-    //This should create a PageManager or ViewManager or whatever, which
-    //should control the sidebar, next/back buttons and QSW.
-    Calamares::ViewManager* vm = new Calamares::ViewManager( this );
-
-    layout()->addWidget( vm->widget() );
-}
+#endif

@@ -16,20 +16,14 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "CalamaresWindow.h"
+#include "PagePlugin.h"
 
-#include "ViewManager.h"
-
-#include "QBoxLayout"
-
-CalamaresWindow::CalamaresWindow( QWidget* parent )
-    : QWidget( parent )
+namespace Calamares
 {
-    setupUi( this );
 
-    //This should create a PageManager or ViewManager or whatever, which
-    //should control the sidebar, next/back buttons and QSW.
-    Calamares::ViewManager* vm = new Calamares::ViewManager( this );
+PagePlugin::PagePlugin( QObject* parent )
+    : QObject( parent )
+{
+}
 
-    layout()->addWidget( vm->widget() );
 }

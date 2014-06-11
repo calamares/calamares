@@ -16,20 +16,48 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "CalamaresWindow.h"
+#ifndef VIEWMANAGER_H
+#define VIEWMANAGER_H
 
-#include "ViewManager.h"
+#include "DllMacro.h"
+#include "viewpages/PagePlugin.h"
 
-#include "QBoxLayout"
+#include <QPushButton>
+#include <QStackedWidget>
 
-CalamaresWindow::CalamaresWindow( QWidget* parent )
-    : QWidget( parent )
+namespace Calamares
 {
-    setupUi( this );
 
-    //This should create a PageManager or ViewManager or whatever, which
-    //should control the sidebar, next/back buttons and QSW.
-    Calamares::ViewManager* vm = new Calamares::ViewManager( this );
+class UIDLLEXPORT ViewManager : public QObject
+{
+    Q_OBJECT
+public:
+    static ViewManager* instance();
 
-    layout()->addWidget( vm->widget() );
+    explicit ViewManager( QObject* parent = 0 );
+    virtual ~ViewManager();
+
+    QWidget* widget();
+
+    void addPagePlugin( PagePlugin* plugin );
+
+    void insertPage( AbstractPage* page );
+    void setNext( AbstractPage* page );
+    void removePage( AbstractPage* page );
+
+public slots:
+    void next();
+    void back();
+
+private:
+    static ViewManager* s_instance;
+
+    QWidget* m_widget;
+    QStackedWidget* m_stack;
+    QPushButton* m_back;
+    QPushButton* m_next;
+};
+
 }
+
+#endif // VIEWMANAGER_H
