@@ -20,7 +20,7 @@
 
 #include "ViewManager.h"
 
-#include "QBoxLayout"
+#include <QBoxLayout>
 
 CalamaresWindow::CalamaresWindow( QWidget* parent )
     : QWidget( parent )

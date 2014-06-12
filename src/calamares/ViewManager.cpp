@@ -37,9 +37,14 @@ ViewManager::ViewManager( QObject* parent )
 {
     s_instance = this;
     QBoxLayout* mainLayout = new QVBoxLayout;
+    mainLayout->setContentsMargins( 0, 0, 0, 0 );
+    m_widget->setContentsMargins( 0, 0, 0, 0 );
+    mainLayout->setMargin( 0 );
+    mainLayout->setSpacing( 0 );
     m_widget->setLayout( mainLayout );
 
     m_stack = new QStackedWidget( m_widget );
+    m_stack->setContentsMargins( 0, 0, 0, 0 );
     mainLayout->addWidget( m_stack );
 
     m_back = new QPushButton( tr( "&Back" ), m_widget );
@@ -63,6 +68,34 @@ QWidget*
 ViewManager::widget()
 {
     return m_widget;
+}
+
+
+void
+ViewManager::addPagePlugin( PagePlugin* plugin )
+{
+
+}
+
+
+void
+ViewManager::insertPage( AbstractPage* page )
+{
+
+}
+
+
+void
+ViewManager::setNext( AbstractPage* page )
+{
+
+}
+
+
+void
+ViewManager::removePage( AbstractPage* page )
+{
+
 }
 
 
