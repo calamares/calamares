@@ -55,7 +55,7 @@ namespace Logger
     DLLEXPORT QString logFile();
 }
 
-#define tLog Logger::CLog
-#define tDebug Logger::CDebug
+#define cLog Logger::CLog
+#define cDebug Logger::CDebug
 
 #endif // CALAMARES_LOGGER_H
