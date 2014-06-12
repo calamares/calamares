@@ -20,20 +20,36 @@
 #define SETTINGS_H
 
 #include <QObject>
+#include <QStringList>
 
 
-// Settings::instance() ?
+namespace Calamares
+{
 
 class Settings : public QObject
 {
     Q_OBJECT
 public:
     explicit Settings( QObject *parent = 0 );
+
+    static Settings* instance();
     //TODO: load from JSON then emit ready
-signals:
 
-public slots:
+    QStringList modulesSearchPaths();
 
+    QStringList viewModulesPrepare();
+
+    QStringList viewModulesPostInstall();
+
+
+private:
+    static Settings* s_instance;
+
+    QStringList m_modulesSearchPaths;
+    QStringList m_viewModulesPrepareList;
+    QStringList m_viewModulesPostInstallList;
 };
+
+}
 
 #endif // SETTINGS_H

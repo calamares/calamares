@@ -20,7 +20,7 @@
 
 #include "CalamaresWindow.h"
 #include "CalamaresVersion.h"
-
+#include "Settings.h"
 #include "utils/CalamaresUtils.h"
 #include "utils/Logger.h"
 
@@ -48,6 +48,8 @@ CalamaresApplication::init()
 
     setQuitOnLastWindowClosed( false );
 
+    initSettings();
+
     initBranding();
 
     setWindowIcon( QIcon( "from branding" ) );
@@ -63,7 +65,7 @@ CalamaresApplication::init()
 
 CalamaresApplication::~CalamaresApplication()
 {
-    tDebug( LOGVERBOSE ) << "Shutting down Calamares...";
+    cDebug( LOGVERBOSE ) << "Shutting down Calamares...";
 
 //    if ( JobQueue::instance() )
 //        JobQueue::instance()->stop();
@@ -72,7 +74,7 @@ CalamaresApplication::~CalamaresApplication()
 
 //    delete JobQueue::instance();
 
-    tDebug( LOGVERBOSE ) << "Finished shutdown.";
+    cDebug( LOGVERBOSE ) << "Finished shutdown.";
 }
 
 
@@ -80,6 +82,13 @@ CalamaresApplication*
 CalamaresApplication::instance()
 {
     return qobject_cast< CalamaresApplication* >( QApplication::instance() );
+}
+
+
+void
+CalamaresApplication::initSettings()
+{
+    new Calamares::Settings( this );
 }
 
 

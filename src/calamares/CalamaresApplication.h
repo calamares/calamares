@@ -35,6 +35,7 @@ public:
     void init();
     static CalamaresApplication* instance();
 
+    void initSettings();
     void initBranding();
     void initPlugins();
     void initJobQueue();
