@@ -43,7 +43,7 @@ add_executable( calamares_bin ${final_src} )
 SET_TARGET_PROPERTIES(calamares_bin
     PROPERTIES
         AUTOMOC TRUE
-        RUNTIME_OUTPUT_NAME calamares_bin
+        RUNTIME_OUTPUT_NAME calamares
 )
 
 
