@@ -40,9 +40,13 @@ public:
     void initPlugins();
     void initJobQueue();
 
+    void setDebug( bool enabled );
+    bool isDebug();
+
 private:
     CalamaresWindow* m_mainwindow;
 
+    bool m_debugMode;
     //QPointer< Calamares::JobQueue > m_jobQueue;
 };
 

@@ -113,3 +113,17 @@ CalamaresApplication::initJobQueue()
 }
 
 
+void
+CalamaresApplication::setDebug( bool enabled )
+{
+    m_debugMode = enabled;
+}
+
+
+bool
+CalamaresApplication::isDebug()
+{
+    return m_debugMode;
+}
+
+

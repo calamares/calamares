@@ -34,14 +34,15 @@ main( int argc, char *argv[] )
     parser.setApplicationDescription( "Distribution-independent installer framework" );
     parser.addHelpOption();
     parser.addVersionOption();
-    QCommandLineOption verboseOption( QStringList() << "v" << "verbose",
+    QCommandLineOption debugOption( QStringList() << "d" << "debug",
                                       "Verbose output for debugging purposes." );
-    parser.addOption( verboseOption );
+    parser.addOption( debugOption );
 
     parser.process( a );
 
+    a.setDebug( parser.isSet( debugOption ) );
+
     KDSingleApplicationGuard guard( KDSingleApplicationGuard::AutoKillOtherInstances );
-    QObject::connect( &guard, SIGNAL( instanceStarted( KDSingleApplicationGuard::Instance ) ), &a, SLOT( instanceStarted( KDSingleApplicationGuard::Instance ) ) );
 
     int returnCode = 0;
     if ( guard.isPrimaryInstance() )
