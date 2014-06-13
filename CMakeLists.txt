@@ -5,6 +5,7 @@ set( CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/CMakeModules" )
 cmake_policy( SET CMP0023 OLD )
 
 find_package( Qt5 5.3.0 CONFIG REQUIRED Core Gui Widgets LinguistTools )
+find_package( YamlCpp 0.5.1 REQUIRED )
 
 ###
 ### Calamares application info

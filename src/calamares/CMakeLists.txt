@@ -53,6 +53,7 @@ target_link_libraries( calamares_bin
     ${CALAMARES_LIBRARIES}
     Qt5Core
     Qt5Widgets
+    yaml-cpp
 )
 
 install( TARGETS calamares_bin

@@ -17,14 +17,26 @@
  */
 
 #include "Settings.h"
+
+#include "CalamaresApplication.h"
 #include "utils/CalamaresUtils.h"
 #include "utils/Logger.h"
 
 #include <QDir>
 #include <QFile>
-#include <QJsonArray>
-#include <QJsonDocument>
-#include <QJsonObject>
+
+#include <yaml-cpp/yaml.h>
+
+
+void
+operator>>( const YAML::Node& node, QStringList& v )
+{
+    for ( int i = 0; i < node.size(); ++i )
+    {
+        v.append( QString::fromStdString( node[ i ].as< std::string >() ) );
+    }
+}
+
 
 namespace Calamares
 {
@@ -41,55 +53,45 @@ Settings::instance()
 Settings::Settings( QObject* parent )
     : QObject( parent )
 {
-    QFile file( CalamaresUtils::appDataDir().absoluteFilePath( "settings.json" ) );
-    if ( file.exists() && file.canReadLine() )
+    QFileInfo settingsFile( CalamaresUtils::appDataDir().absoluteFilePath( "settings.conf" ) );
+    if ( APP->isDebug() )
+    {
+        QFileInfo localFile( QDir( QDir::currentPath() ).absoluteFilePath( "settings.conf" ) );
+        if ( localFile.exists() && localFile.isReadable() )
+            settingsFile.setFile( localFile.absoluteFilePath() );
+    }
+    QFile file( settingsFile.absoluteFilePath() );
+
+    if ( file.exists() && file.open( QFile::ReadOnly | QFile::Text ) )
     {
         QByteArray ba = file.readAll();
-        QJsonParseError* err = 0;
-        QJsonDocument document = QJsonDocument::fromJson( ba, err );
-        if ( !err && !document.isNull() && !document.isEmpty() )
+        cDebug() << ba;
+
+        try
         {
-            QJsonObject json = document.object();
+            YAML::Node config = YAML::Load( ba.constData() );
+            Q_ASSERT( config.IsMap() );
 
-            foreach ( const QJsonValue& val, json[ "modules-search" ].toArray() )
+            QStringList rawPaths;
+            config[ "modules-search" ] >> rawPaths;
+            for ( int i = 0; i < rawPaths.length(); ++i )
             {
-                if ( !val.isString() || val.toString().isEmpty() )
-                    continue;
-
-                QString entry = val.toString();
-
-                if ( entry == "local" )
-                {
+                if ( rawPaths[ i ] == "local" )
                     m_modulesSearchPaths.append( CalamaresUtils::appDataDir().absolutePath() + QDir::separator() + "modules" );
-                }
                 else
                 {
-                    QDir path( entry );
+                    QDir path( rawPaths[ i ] );
                     if ( path.exists() && path.isReadable() )
                         m_modulesSearchPaths.append( path.absolutePath() );
                 }
             }
 
-            foreach ( const QJsonValue& val, json[ "modules-prepare" ].toArray() )
-            {
-                if ( !val.isString() || val.toString().isEmpty() )
-                    continue;
-
-                m_viewModulesPrepareList.append( val.toString() );
-            }
-
-            foreach ( const QJsonValue& val, json[ "modules-postinstall" ].toArray() )
-            {
-                if ( !val.isString() || val.toString().isEmpty() )
-                    continue;
-
-                m_viewModulesPostInstallList.append( val.toString() );
-            }
+            config[ "modules-prepare" ] >> m_viewModulesPrepareList;
+            config[ "modules-postinstall" ] >> m_viewModulesPostInstallList;
         }
-        else
+        catch( YAML::Exception& e )
         {
-            cDebug() << "WARNING: Invalid document " << file.fileName()
-                     << " error: " << err->errorString();
+            cDebug() << "WARNING: YAML parser error " << e.what();
         }
     }
     else

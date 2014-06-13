@@ -23,6 +23,8 @@
 
 #include "CalamaresUtils.h"
 
+#include "config.h"
+
 #include <QCoreApplication>
 #include <QDebug>
 #include <QDir>
@@ -35,14 +37,11 @@ namespace CalamaresUtils
 QDir
 appDataDir()
 {
-    QString path;
-    path = QDir::home().filePath( ".local/share" );
+    QDir path( CMAKE_INSTALL_FULL_DATADIR );
+    if ( !path.exists() || !path.isReadable() )
+        path.mkpath( path.absolutePath() );
 
-    path += "/" + QCoreApplication::organizationName();
-    QDir d( path );
-    d.mkpath( path );
-
-    return d;
+    return path;
 }
 
 
