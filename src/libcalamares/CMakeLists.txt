@@ -45,7 +45,7 @@ target_link_libraries( calamareslib
 
     LINK_PUBLIC
     # External deps
-    Qt5Core
+    Qt5::Core
 )
 
 install( TARGETS calamareslib

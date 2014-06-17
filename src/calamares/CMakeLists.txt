@@ -51,8 +51,8 @@ qt5_use_modules( calamares_bin Core Widgets )
 target_link_libraries( calamares_bin
     ${LINK_LIBRARIES}
     ${CALAMARES_LIBRARIES}
-    Qt5Core
-    Qt5Widgets
+    Qt5::Core
+    Qt5::Widgets
     yaml-cpp
 )
 
