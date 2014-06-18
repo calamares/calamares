@@ -31,10 +31,8 @@ class UIDLLEXPORT AbstractPage : public QWidget
     Q_OBJECT
 public:
     explicit AbstractPage(QWidget *parent = 0);
+    virtual ~AbstractPage() {}
 
-signals:
-
-public slots:
 
 };
 

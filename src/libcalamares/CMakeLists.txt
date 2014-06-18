@@ -17,8 +17,8 @@ set( libSources
     kdsingleapplicationguard/kdtoolsglobal.cpp
     kdsingleapplicationguard/kdlockedsharedmemorypointer.cpp
 
-    utils/Logger.cpp
     utils/CalamaresUtils.cpp
+    utils/Logger.cpp
 )
 
 include_directories(

@@ -16,32 +16,57 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef PAGEPLUGIN_H
-#define PAGEPLUGIN_H
+#ifndef CALAMARESMODULE_H
+#define CALAMARESMODULE_H
 
-#include <QObject>
+#include "DllMacro.h"
 
-#include "../DllMacro.h"
+#include <QStringList>
+
+
+namespace YAML
+{
+class Node;
+}
+
+namespace Calamares
+{
+class Module;
+}
+
+void operator>>( const YAML::Node& node, Calamares::Module& m );
 
 namespace Calamares
 {
 
-class AbstractPage;
-
-class UIDLLEXPORT PagePlugin : public QObject
+class UIDLLEXPORT Module
 {
-    Q_OBJECT
 public:
-    explicit PagePlugin( QObject *parent = 0 );
-    virtual ~PagePlugin() {}
+    static Module* loadFromFile( const QString& path );
 
-signals:
-    void done();
+    QString name();
 
+    enum Type
+    {
+        Core,
+        View
+    };
+
+    enum Interface
+    {
+        QtPlugin,
+        Python,
+        Process
+    };
+private:
+    QString m_name;
+    Type m_type;
+    Interface m_interface;
+    QStringList m_requiredModules;
+
+    friend void ::operator>>( const YAML::Node& node, Calamares::Module& m );
 };
 
 }
 
-Q_DECLARE_INTERFACE( Calamares::PagePlugin, "calamares.PagePlugin/1.0" )
-
-#endif // PAGEPLUGIN_H
+#endif // CALAMARESMODULE_H

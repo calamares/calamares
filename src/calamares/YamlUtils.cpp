@@ -15,33 +15,16 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
+#include "YamlUtils.h"
 
-#ifndef PAGEPLUGIN_H
-#define PAGEPLUGIN_H
+#include <yaml-cpp/yaml.h>
 
-#include <QObject>
-
-#include "../DllMacro.h"
-
-namespace Calamares
+void
+operator>>( const YAML::Node& node, QStringList& v )
 {
-
-class AbstractPage;
-
-class UIDLLEXPORT PagePlugin : public QObject
-{
-    Q_OBJECT
-public:
-    explicit PagePlugin( QObject *parent = 0 );
-    virtual ~PagePlugin() {}
-
-signals:
-    void done();
-
-};
-
+    for ( int i = 0; i < node.size(); ++i )
+    {
+        v.append( QString::fromStdString( node[ i ].as< std::string >() ) );
+    }
 }
 
-Q_DECLARE_INTERFACE( Calamares::PagePlugin, "calamares.PagePlugin/1.0" )
-
-#endif // PAGEPLUGIN_H

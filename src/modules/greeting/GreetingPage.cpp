@@ -20,6 +20,6 @@
 
 
 GreetingPage::GreetingPage( QWidget* parent )
-    : AbstractPage( parent )
+    : Calamares::AbstractPage( parent )
 {
 }

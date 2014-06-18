@@ -19,6 +19,6 @@
 #include "GreetingPagePlugin.h"
 
 GreetingPagePlugin::GreetingPagePlugin( QObject *parent )
-    : PagePlugin( parent )
+    : Calamares::PagePlugin( parent )
 {
 }

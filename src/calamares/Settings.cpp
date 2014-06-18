@@ -21,21 +21,12 @@
 #include "CalamaresApplication.h"
 #include "utils/CalamaresUtils.h"
 #include "utils/Logger.h"
+#include "YamlUtils.h"
 
 #include <QDir>
 #include <QFile>
 
 #include <yaml-cpp/yaml.h>
-
-
-void
-operator>>( const YAML::Node& node, QStringList& v )
-{
-    for ( int i = 0; i < node.size(); ++i )
-    {
-        v.append( QString::fromStdString( node[ i ].as< std::string >() ) );
-    }
-}
 
 
 namespace Calamares
@@ -89,7 +80,7 @@ Settings::Settings( QObject* parent )
             config[ "modules-prepare" ] >> m_viewModulesPrepareList;
             config[ "modules-postinstall" ] >> m_viewModulesPostInstallList;
         }
-        catch( YAML::Exception& e )
+        catch ( YAML::Exception& e )
         {
             cDebug() << "WARNING: YAML parser error " << e.what();
         }

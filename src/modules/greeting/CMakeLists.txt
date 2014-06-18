@@ -8,5 +8,6 @@ calamares_add_plugin( greeting
     UI
     LINK_LIBRARIES
         ${CALAMARES_LIBRARIES}
+        calamares_bin
     SHARED_LIB
 )

@@ -16,32 +16,39 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef PAGEPLUGIN_H
-#define PAGEPLUGIN_H
+#ifndef MODULELOADER_H
+#define MODULELOADER_H
 
+#include "Module.h"
+
+#include <QMap>
 #include <QObject>
-
-#include "../DllMacro.h"
+#include <QStringList>
 
 namespace Calamares
 {
 
-class AbstractPage;
+class Module;
 
-class UIDLLEXPORT PagePlugin : public QObject
+class ModuleLoader : public QObject
 {
     Q_OBJECT
 public:
-    explicit PagePlugin( QObject *parent = 0 );
-    virtual ~PagePlugin() {}
+    explicit ModuleLoader( const QStringList& paths, QObject* parent = 0 );
+    virtual ~ModuleLoader();
+
+    void exec();
 
 signals:
     void done();
+
+private:
+    QMap< QString, Module* > m_availableModules;
+
+    QStringList m_paths;
 
 };
 
 }
 
-Q_DECLARE_INTERFACE( Calamares::PagePlugin, "calamares.PagePlugin/1.0" )
-
-#endif // PAGEPLUGIN_H
+#endif // MODULELOADER_H

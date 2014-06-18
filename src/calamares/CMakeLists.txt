@@ -8,8 +8,11 @@ set( calamaresSources
     main.cpp
     CalamaresApplication.cpp
     CalamaresWindow.cpp
+    Module.cpp
+    ModuleLoader.cpp
     ViewManager.cpp
     Settings.cpp
+    YamlUtils.cpp
 
     viewpages/PagePlugin.cpp
     viewpages/AbstractPage.cpp
@@ -43,6 +46,7 @@ add_executable( calamares_bin ${final_src} )
 SET_TARGET_PROPERTIES(calamares_bin
     PROPERTIES
         AUTOMOC TRUE
+        ENABLE_EXPORTS TRUE
         RUNTIME_OUTPUT_NAME calamares
 )
 
