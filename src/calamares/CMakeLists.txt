@@ -1,5 +1,7 @@
 project( calamares )
 
+add_definitions( -DUIDLLEXPORT_PRO )
+
 if( NOT CMAKE_BUILD_TYPE STREQUAL "Release" )
     message( "Building in debug mode, enabling all debug updates" )
 endif()

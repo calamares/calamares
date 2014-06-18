@@ -3,6 +3,7 @@ project( calamareslib )
 add_definitions( ${QT_DEFINITIONS} )
 add_definitions( -DQT_SHARED )
 add_definitions( -DQT_SHAREDPOINTER_TRACK_POINTERS )
+add_definitions( -DDLLEXPORT_PRO )
 
 configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/../calamares/Config.h.in
                 ${CMAKE_CURRENT_BINARY_DIR}/config.h )
