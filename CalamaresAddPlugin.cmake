@@ -5,18 +5,22 @@ function(calamares_add_plugin)
     # parse arguments (name needs to be saved before passing ARGN into the macro)
     set(NAME ${ARGV0})
     set(options NO_INSTALL SHARED_LIB)
-    set(oneValueArgs NAME TYPE EXPORT_MACRO)
+    set(oneValueArgs NAME TYPE EXPORT_MACRO CONFIG_FILE)
     set(multiValueArgs SOURCES UI LINK_LIBRARIES COMPILE_DEFINITIONS)
     cmake_parse_arguments(PLUGIN "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
     set(PLUGIN_NAME ${NAME})
+    set(PLUGIN_DESTINATION ${CMAKE_INSTALL_LIBDIR}/calamares/modules/${PLUGIN_NAME})
 
-    message("*** Arguments for ${PLUGIN_NAME}")
-    message("Sources: ${PLUGIN_SOURCES}")
-    message("Link libraries: ${PLUGIN_LINK_LIBRARIES}")
-    message("UI: ${PLUGIN_UI}")
-    message("TYPE: ${PLUGIN_TYPE}")
-    message("EXPORT_MACRO: ${PLUGIN_EXPORT_MACRO}")
-    message("NO_INSTALL: ${PLUGIN_NO_INSTALL}")
+    include(CMakeColors)
+    message("${BoldYellow}*** Found ${CALAMARES_APPLICATION_NAME} module: ${BoldRed}${PLUGIN_NAME}${ColorReset}${BoldYellow} ***${ColorReset}")
+    message("    ${Green}SOURCES:${ColorReset} ${PLUGIN_SOURCES}")
+    message("    ${Green}LINK_LIBRARIES:${ColorReset} ${PLUGIN_LINK_LIBRARIES}")
+    message("    ${Green}UI:${ColorReset} ${PLUGIN_UI}")
+    message("    ${Green}TYPE:${ColorReset} ${PLUGIN_TYPE}")
+    message("    ${Green}EXPORT_MACRO:${ColorReset} ${PLUGIN_EXPORT_MACRO}")
+    message("    ${Green}NO_INSTALL:${ColorReset} ${PLUGIN_NO_INSTALL}")
+    message("    ${Green}CONFIG_FILE:${ColorReset} ${PLUGIN_CONFIG_FILE}")
+    message("    ${Green}PLUGIN_DESTINATION:${ColorReset} ${PLUGIN_DESTINATION}")
 
     # create target name once for convenience
     set(target "calamares_${PLUGIN_TYPE}_${PLUGIN_NAME}")
@@ -49,7 +53,14 @@ function(calamares_add_plugin)
 
     list(APPEND calamares_add_library_args "NO_VERSION")
 
-    list(APPEND calamares_add_library_args "INSTALL_BINDIR" "${CMAKE_INSTALL_LIBDIR}")
+    list(APPEND calamares_add_library_args "INSTALL_BINDIR" "${PLUGIN_DESTINATION}")
+
+    #message("    ${Green}CalamaresAddLibrary arguments:${ColorReset} ${calamares_add_library_args}")
+    message("")
 
     calamares_add_library(${calamares_add_library_args})
+
+    configure_file(${PLUGIN_CONFIG_FILE} ${PLUGIN_CONFIG_FILE} COPYONLY)
+    install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${PLUGIN_CONFIG_FILE}
+            DESTINATION ${PLUGIN_DESTINATION})
 endfunction()
