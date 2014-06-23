@@ -45,6 +45,7 @@ public:
     static Module* loadFromFile( const QString& path );
 
     QString name();
+    QStringList requiredModules();
 
     enum Type
     {

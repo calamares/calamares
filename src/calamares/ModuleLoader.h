@@ -37,12 +37,17 @@ public:
     explicit ModuleLoader( const QStringList& paths, QObject* parent = 0 );
     virtual ~ModuleLoader();
 
-    void exec();
+    void start();
 
 signals:
     void done();
 
+private slots:
+    void doWork();
+
 private:
+    void checkDependencies();
+
     QMap< QString, Module* > m_availableModules;
 
     QStringList m_paths;

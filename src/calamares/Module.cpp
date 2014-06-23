@@ -118,3 +118,10 @@ Calamares::Module::name()
 {
     return m_name;
 }
+
+
+QStringList
+Calamares::Module::requiredModules()
+{
+    return m_requiredModules;
+}

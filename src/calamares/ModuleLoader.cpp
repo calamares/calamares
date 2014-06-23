@@ -23,6 +23,7 @@
 #include <yaml-cpp/yaml.h>
 
 #include <QDir>
+#include <QTimer>
 
 #define MODULE_CONFIG_FILENAME "module.conf"
 
@@ -45,7 +46,14 @@ ModuleLoader::~ModuleLoader()
 
 
 void
-ModuleLoader::exec()
+ModuleLoader::start()
+{
+    QTimer::singleShot( 0, this, SLOT( doWork() ) );
+}
+
+
+void
+ModuleLoader::doWork()
 {
     // We start from a list of paths in m_paths. Each of those is a directory that
     // might (should) contain Calamares modules of any type/interface.
@@ -98,6 +106,37 @@ ModuleLoader::exec()
     }
     // At this point m_availableModules is filled with whatever was found in the
     // search paths.
+    checkDependencies();
+    emit done();
+}
+
+
+void
+ModuleLoader::checkDependencies()
+{
+    // This goes through the map of available modules, and deletes those whose
+    // dependencies are not met, if any.
+    bool somethingWasRemovedBecauseOfUnmetDependencies = false;
+    forever
+    {
+        for ( auto it = m_availableModules.begin();
+              it != m_availableModules.end(); ++it )
+        {
+            foreach ( QString depName, (*it)->requiredModules() )
+            {
+                if ( !m_availableModules.contains( depName ) )
+                {
+                    somethingWasRemovedBecauseOfUnmetDependencies = true;
+                    m_availableModules.erase( it );
+                    break;
+                }
+            }
+            if ( somethingWasRemovedBecauseOfUnmetDependencies )
+                break;
+        }
+        if ( !somethingWasRemovedBecauseOfUnmetDependencies )
+            break;
+    }
 }
 
 }
