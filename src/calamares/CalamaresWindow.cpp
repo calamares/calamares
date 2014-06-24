@@ -26,6 +26,8 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
     : QWidget( parent )
 {
     setupUi( this );
+    // Hide close button
+    setWindowFlags( Qt::Window | Qt::WindowTitleHint | Qt::CustomizeWindowHint );
 
     //This should create a PageManager or ViewManager or whatever, which
     //should control the sidebar, next/back buttons and QSW.
