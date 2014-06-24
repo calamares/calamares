@@ -33,6 +33,7 @@ namespace CalamaresUtils
 {
     DLLEXPORT QDir appDataDir();
     DLLEXPORT QDir appLogDir();
+    DLLEXPORT QDir systemLibDir();
     DLLEXPORT void installTranslator( QObject* parent );
 
 }

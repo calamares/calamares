@@ -5,7 +5,7 @@ add_definitions( -DQT_SHARED )
 add_definitions( -DQT_SHAREDPOINTER_TRACK_POINTERS )
 add_definitions( -DDLLEXPORT_PRO )
 
-configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/../calamares/Config.h.in
+configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/Config.h.in
                 ${CMAKE_CURRENT_BINARY_DIR}/config.h )
 configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/../calamares/CalamaresVersion.h.in
                 ${CMAKE_CURRENT_BINARY_DIR}/CalamaresVersion.h )

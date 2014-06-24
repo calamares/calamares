@@ -68,7 +68,24 @@ Settings::Settings( QObject* parent )
             for ( int i = 0; i < rawPaths.length(); ++i )
             {
                 if ( rawPaths[ i ] == "local" )
-                    m_modulesSearchPaths.append( CalamaresUtils::appDataDir().absolutePath() + QDir::separator() + "modules" );
+                {
+                    // If we're running in debug mode, we assume we might also be
+                    // running from the build dir, so we add a maximum priority
+                    // module search path in the build dir.
+                    if ( APP->isDebug() )
+                    {
+                        QString buildDirModules = QDir::current().absolutePath() +
+                                                  QDir::separator() + "src" +
+                                                  QDir::separator() + "modules";
+                        if ( QDir( buildDirModules ).exists() )
+                            m_modulesSearchPaths.append( buildDirModules );
+                    }
+
+                    // Install path is set in CalamaresAddPlugin.cmake
+                    m_modulesSearchPaths.append( CalamaresUtils::systemLibDir().absolutePath() +
+                                                 QDir::separator() + "calamares" +
+                                                 QDir::separator() + "modules" );
+                }
                 else
                 {
                     QDir path( rawPaths[ i ] );
