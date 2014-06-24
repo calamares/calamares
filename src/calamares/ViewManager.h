@@ -56,6 +56,7 @@ private:
     QStackedWidget* m_stack;
     QPushButton* m_back;
     QPushButton* m_next;
+    QPushButton* m_quit;
 };
 
 }

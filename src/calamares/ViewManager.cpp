@@ -18,6 +18,7 @@
 
 #include "ViewManager.h"
 
+#include <QApplication>
 #include <QBoxLayout>
 
 namespace Calamares
@@ -49,12 +50,16 @@ ViewManager::ViewManager( QObject* parent )
 
     m_back = new QPushButton( tr( "&Back" ), m_widget );
     m_next = new QPushButton( tr( "&Next" ), m_widget );
+    m_quit = new QPushButton( tr( "&Quit" ), m_widget );
 
     QBoxLayout* bottomLayout = new QHBoxLayout;
     mainLayout->addLayout( bottomLayout );
     bottomLayout->addStretch();
     bottomLayout->addWidget( m_back );
     bottomLayout->addWidget( m_next );
+    bottomLayout->addSpacing( 12 );
+    bottomLayout->addWidget( m_quit );
+    connect( m_quit, &QPushButton::clicked, qApp, &QApplication::quit );
 }
 
 
