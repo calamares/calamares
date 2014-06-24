@@ -30,17 +30,20 @@ namespace Calamares
 
 class Module;
 
-class ModuleLoader : public QObject
+class ModuleManager : public QObject
 {
     Q_OBJECT
 public:
-    explicit ModuleLoader( const QStringList& paths, QObject* parent = 0 );
-    virtual ~ModuleLoader();
+    explicit ModuleManager( const QStringList& paths, QObject* parent = 0 );
+    virtual ~ModuleManager();
 
     void start();
 
+    QStringList availableModules();
+    Module* module( const QString& name );
+
 signals:
-    void done();
+    void ready();
 
 private slots:
     void doWork();

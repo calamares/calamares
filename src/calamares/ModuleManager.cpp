@@ -16,7 +16,7 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "ModuleLoader.h"
+#include "ModuleManager.h"
 
 #include "utils/Logger.h"
 
@@ -30,13 +30,13 @@
 namespace Calamares
 {
 
-ModuleLoader::ModuleLoader( const QStringList& paths, QObject* parent )
+ModuleManager::ModuleManager( const QStringList& paths, QObject* parent )
     : QObject( parent )
     , m_paths( paths )
 {
 }
 
-ModuleLoader::~ModuleLoader()
+ModuleManager::~ModuleManager()
 {
     foreach ( Module* m, m_availableModules )
     {
@@ -46,14 +46,28 @@ ModuleLoader::~ModuleLoader()
 
 
 void
-ModuleLoader::start()
+ModuleManager::start()
 {
     QTimer::singleShot( 0, this, SLOT( doWork() ) );
 }
 
 
+QStringList
+ModuleManager::availableModules()
+{
+    return m_availableModules.keys();
+}
+
+
+Module*
+ModuleManager::module( const QString& name )
+{
+    return m_availableModules.value( name );
+}
+
+
 void
-ModuleLoader::doWork()
+ModuleManager::doWork()
 {
     // We start from a list of paths in m_paths. Each of those is a directory that
     // might (should) contain Calamares modules of any type/interface.
@@ -82,7 +96,7 @@ ModuleLoader::doWork()
                         continue;
                     }
 
-                    Module* moduleInfo = Module::loadFromFile( metadataFileInfo.absoluteFilePath() );
+                    Module* moduleInfo = Module::fromConfigFile( metadataFileInfo.absoluteFilePath() );
 
                     if ( moduleInfo &&
                          ( moduleInfo->name() == currentDir.dirName() ) &&
@@ -106,12 +120,12 @@ ModuleLoader::doWork()
     // At this point m_availableModules is filled with whatever was found in the
     // search paths.
     checkDependencies();
-    emit done();
+    emit ready();
 }
 
 
 void
-ModuleLoader::checkDependencies()
+ModuleManager::checkDependencies()
 {
     // This goes through the map of available modules, and deletes those whose
     // dependencies are not met, if any.

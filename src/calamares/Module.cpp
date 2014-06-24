@@ -81,7 +81,7 @@ operator>>( const YAML::Node& node, Calamares::Module& m )
 
 
 Calamares::Module*
-Calamares::Module::loadFromFile( const QString& path )
+Calamares::Module::fromConfigFile( const QString& path )
 {
     QFile metadataFile( path );
     if ( metadataFile.exists() && metadataFile.open( QFile::ReadOnly | QFile::Text ) )

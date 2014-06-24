@@ -27,7 +27,7 @@ class CalamaresWindow;
 
 namespace Calamares
 {
-class ModuleLoader;
+class ModuleManager;
 }
 
 class CalamaresApplication : public QApplication
@@ -53,7 +53,7 @@ private:
     void initJobQueue();
 
     CalamaresWindow* m_mainwindow;
-    Calamares::ModuleLoader* m_moduleLoader;
+    Calamares::ModuleManager* m_moduleManager;
 
     bool m_debugMode;
     //QPointer< Calamares::JobQueue > m_jobQueue;

@@ -11,7 +11,7 @@ set( calamaresSources
     CalamaresApplication.cpp
     CalamaresWindow.cpp
     Module.cpp
-    ModuleLoader.cpp
+    ModuleManager.cpp
     ViewManager.cpp
     Settings.cpp
     YamlUtils.cpp

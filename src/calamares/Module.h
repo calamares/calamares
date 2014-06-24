@@ -42,7 +42,7 @@ namespace Calamares
 class UIDLLEXPORT Module
 {
 public:
-    static Module* loadFromFile( const QString& path );
+    static Module* fromConfigFile( const QString& path );
 
     QString name();
     QStringList requiredModules();
