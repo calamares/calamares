@@ -49,9 +49,6 @@ QDir
 systemLibDir()
 {
     QDir path( CMAKE_INSTALL_FULL_LIBDIR );
-    if ( !path.exists() || !path.isReadable() )
-        path.mkpath( path.absolutePath() );
-
     return path;
 }
 
