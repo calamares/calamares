@@ -70,8 +70,9 @@ ModuleLoader::doWork()
             QStringList subdirs = currentDir.entryList( QDir::AllDirs | QDir::NoDotAndDotDot );
             foreach ( const QString& subdir, subdirs )
             {
+                currentDir.setPath( path );
                 bool success = currentDir.cd( subdir );
-                if ( success && currentDir.isReadable() )
+                if ( success )
                 {
                     QFileInfo metadataFileInfo( currentDir.absoluteFilePath( MODULE_CONFIG_FILENAME ) );
                     if ( ! ( metadataFileInfo.exists() && metadataFileInfo.isReadable() ) )
@@ -89,8 +90,6 @@ ModuleLoader::doWork()
                     {
                         m_availableModules.insert( moduleInfo->name(), moduleInfo );
                     }
-
-                    currentDir.cdUp();
                 }
                 else
                 {
