@@ -10,17 +10,20 @@ function(calamares_add_plugin)
     cmake_parse_arguments(PLUGIN "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
     set(PLUGIN_NAME ${NAME})
     set(PLUGIN_DESTINATION ${CMAKE_INSTALL_LIBDIR}/calamares/modules/${PLUGIN_NAME})
+    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}")
+    set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}")
+    set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}")
 
     include(CMakeColors)
-    message("${BoldYellow}*** Found ${CALAMARES_APPLICATION_NAME} module: ${BoldRed}${PLUGIN_NAME}${ColorReset}${BoldYellow} ***${ColorReset}")
-    message("    ${Green}SOURCES:${ColorReset} ${PLUGIN_SOURCES}")
-    message("    ${Green}LINK_LIBRARIES:${ColorReset} ${PLUGIN_LINK_LIBRARIES}")
-    message("    ${Green}UI:${ColorReset} ${PLUGIN_UI}")
-    message("    ${Green}TYPE:${ColorReset} ${PLUGIN_TYPE}")
-    message("    ${Green}EXPORT_MACRO:${ColorReset} ${PLUGIN_EXPORT_MACRO}")
-    message("    ${Green}NO_INSTALL:${ColorReset} ${PLUGIN_NO_INSTALL}")
-    message("    ${Green}CONFIG_FILE:${ColorReset} ${PLUGIN_CONFIG_FILE}")
-    message("    ${Green}PLUGIN_DESTINATION:${ColorReset} ${PLUGIN_DESTINATION}")
+    message("${BoldYellow}Found ${CALAMARES_APPLICATION_NAME} module: ${BoldRed}${PLUGIN_NAME}${ColorReset}")
+    message(" ${BoldYellow}*${ColorReset} ${Green}SOURCES:${ColorReset} ${PLUGIN_SOURCES}")
+    message(" ${BoldYellow}*${ColorReset} ${Green}LINK_LIBRARIES:${ColorReset} ${PLUGIN_LINK_LIBRARIES}")
+    message(" ${BoldYellow}*${ColorReset} ${Green}UI:${ColorReset} ${PLUGIN_UI}")
+    message(" ${BoldYellow}*${ColorReset} ${Green}TYPE:${ColorReset} ${PLUGIN_TYPE}")
+    message(" ${BoldYellow}*${ColorReset} ${Green}EXPORT_MACRO:${ColorReset} ${PLUGIN_EXPORT_MACRO}")
+    message(" ${BoldYellow}*${ColorReset} ${Green}NO_INSTALL:${ColorReset} ${PLUGIN_NO_INSTALL}")
+    message(" ${BoldYellow}*${ColorReset} ${Green}CONFIG_FILE:${ColorReset} ${PLUGIN_CONFIG_FILE}")
+    message(" ${BoldYellow}*${ColorReset} ${Green}PLUGIN_DESTINATION:${ColorReset} ${PLUGIN_DESTINATION}")
 
     # create target name once for convenience
     set(target "calamares_${PLUGIN_TYPE}_${PLUGIN_NAME}")
@@ -33,10 +36,10 @@ function(calamares_add_plugin)
     endif()
 
     list(APPEND calamares_add_library_args
-      "${target}"
-      "EXPORT_MACRO" "${PLUGIN_EXPORT_MACRO}"
-      "TARGET_TYPE" "${target_type}"
-      "SOURCES" "${PLUGIN_SOURCES}"
+        "${target}"
+        "EXPORT_MACRO" "${PLUGIN_EXPORT_MACRO}"
+        "TARGET_TYPE" "${target_type}"
+        "SOURCES" "${PLUGIN_SOURCES}"
     )
 
     if(PLUGIN_UI)
