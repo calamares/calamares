@@ -16,9 +16,9 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "GreetingPagePlugin.h"
+#include "GreetingViewPlugin.h"
 
-GreetingPagePlugin::GreetingPagePlugin( QObject *parent )
-    : Calamares::PagePlugin( parent )
+GreetingViewPlugin::GreetingViewPlugin( QObject *parent )
+    : Calamares::ViewPlugin( parent )
 {
 }

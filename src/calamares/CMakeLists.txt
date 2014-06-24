@@ -16,7 +16,7 @@ set( calamaresSources
     Settings.cpp
     YamlUtils.cpp
 
-    viewpages/PagePlugin.cpp
+    viewpages/ViewPlugin.cpp
     viewpages/AbstractPage.cpp
 )
 

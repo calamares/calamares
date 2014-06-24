@@ -72,7 +72,7 @@ ViewManager::widget()
 
 
 void
-ViewManager::addPagePlugin( PagePlugin* plugin )
+ViewManager::addViewPlugin( ViewPlugin* plugin )
 {
 
 }

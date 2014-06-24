@@ -16,12 +16,12 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "PagePlugin.h"
+#include "ViewPlugin.h"
 
 namespace Calamares
 {
 
-PagePlugin::PagePlugin( QObject* parent )
+ViewPlugin::ViewPlugin( QObject* parent )
     : QObject( parent )
 {
 }

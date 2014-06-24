@@ -16,24 +16,32 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GREETINGPAGEPLUGIN_H
-#define GREETINGPAGEPLUGIN_H
+#ifndef PAGEPLUGIN_H
+#define PAGEPLUGIN_H
 
 #include <QObject>
 
-#include "viewpages/PagePlugin.h"
-#include "PluginDllMacro.h"
+#include "../DllMacro.h"
 
-class PLUGINDLLEXPORT GreetingPagePlugin : public Calamares::PagePlugin
+namespace Calamares
+{
+
+class AbstractPage;
+
+class UIDLLEXPORT ViewPlugin : public QObject
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA( IID "calamares.PagePlugin/1.0" )
-                       //FILE "module.json" )
-    Q_INTERFACES( Calamares::PagePlugin )
 public:
-    explicit GreetingPagePlugin(QObject *parent = 0);
+    explicit ViewPlugin( QObject *parent = 0 );
+    virtual ~ViewPlugin() {}
 
+signals:
+    void done();
 
 };
 
-#endif // GREETINGPAGEPLUGIN_H
+}
+
+Q_DECLARE_INTERFACE( Calamares::ViewPlugin, "calamares.ViewPlugin/1.0" )
+
+#endif // PAGEPLUGIN_H

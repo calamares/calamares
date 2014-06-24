@@ -1,10 +1,10 @@
 include_directories( ${PROJECT_BINARY_DIR}/src/calamares )
 calamares_add_plugin( greeting
-    TYPE pageplugin
+    TYPE viewmodule
     EXPORT_MACRO PLUGINDLLEXPORT_PRO
     CONFIG_FILE module.conf
     SOURCES
-        GreetingPagePlugin.cpp
+        GreetingViewPlugin.cpp
         GreetingPage.cpp
     UI
     LINK_LIBRARIES

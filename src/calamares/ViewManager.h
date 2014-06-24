@@ -20,7 +20,7 @@
 #define VIEWMANAGER_H
 
 #include "DllMacro.h"
-#include "viewpages/PagePlugin.h"
+#include "viewpages/ViewPlugin.h"
 
 #include <QPushButton>
 #include <QStackedWidget>
@@ -39,7 +39,7 @@ public:
 
     QWidget* widget();
 
-    void addPagePlugin( PagePlugin* plugin );
+    void addViewPlugin( ViewPlugin* plugin );
 
     void insertPage( AbstractPage* page );
     void setNext( AbstractPage* page );
