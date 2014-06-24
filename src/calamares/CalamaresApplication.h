@@ -25,6 +25,11 @@
 
 class CalamaresWindow;
 
+namespace Calamares
+{
+class ModuleLoader;
+}
+
 class CalamaresApplication : public QApplication
 {
     Q_OBJECT
@@ -35,16 +40,20 @@ public:
     void init();
     static CalamaresApplication* instance();
 
+    void setDebug( bool enabled );
+    bool isDebug();
+
+private slots:
+    void onPluginsReady();
+
+private:
     void initSettings();
     void initBranding();
     void initPlugins();
     void initJobQueue();
 
-    void setDebug( bool enabled );
-    bool isDebug();
-
-private:
     CalamaresWindow* m_mainwindow;
+    Calamares::ModuleLoader* m_moduleLoader;
 
     bool m_debugMode;
     //QPointer< Calamares::JobQueue > m_jobQueue;

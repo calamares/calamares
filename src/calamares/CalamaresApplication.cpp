@@ -20,6 +20,7 @@
 
 #include "CalamaresWindow.h"
 #include "CalamaresVersion.h"
+#include "ModuleLoader.h"
 #include "Settings.h"
 #include "utils/CalamaresUtils.h"
 #include "utils/Logger.h"
@@ -55,11 +56,6 @@ CalamaresApplication::init()
     setWindowIcon( QIcon( "from branding" ) );
 
     initPlugins();
-
-    initJobQueue();
-
-    m_mainwindow = new CalamaresWindow();
-    m_mainwindow->show();
 }
 
 
@@ -86,6 +82,20 @@ CalamaresApplication::instance()
 
 
 void
+CalamaresApplication::setDebug( bool enabled )
+{
+    m_debugMode = enabled;
+}
+
+
+bool
+CalamaresApplication::isDebug()
+{
+    return m_debugMode;
+}
+
+
+void
 CalamaresApplication::initSettings()
 {
     new Calamares::Settings( this );
@@ -102,7 +112,21 @@ CalamaresApplication::initBranding()
 void
 CalamaresApplication::initPlugins()
 {
+    m_moduleLoader = new Calamares::ModuleLoader(
+        Calamares::Settings::instance()->modulesSearchPaths(), this );
+    connect( m_moduleLoader, &Calamares::ModuleLoader::done,
+             this,           &CalamaresApplication::onPluginsReady );
+    m_moduleLoader->start();
+}
 
+
+void
+CalamaresApplication::onPluginsReady()
+{
+    initJobQueue();
+
+    m_mainwindow = new CalamaresWindow();
+    m_mainwindow->show();
 }
 
 
@@ -111,19 +135,3 @@ CalamaresApplication::initJobQueue()
 {
 
 }
-
-
-void
-CalamaresApplication::setDebug( bool enabled )
-{
-    m_debugMode = enabled;
-}
-
-
-bool
-CalamaresApplication::isDebug()
-{
-    return m_debugMode;
-}
-
-
