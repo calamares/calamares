@@ -5,15 +5,12 @@ set( CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/CMakeModules" )
 set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11" )
 
 if( CMAKE_COMPILER_IS_GNUCXX )
-    execute_process( COMMAND ${CMAKE_C_COMPILER} -dumpversion
-                     OUTPUT_VARIABLE GCC_VERSION )
-    string( REGEX REPLACE "(\r?\n)+$" "" GCC_VERSION "${GCC_VERSION}" )
-    if( GCC_VERSION VERSION_GREATER 4.9 OR GCC_VERSION VERSION_EQUAL 4.9 )
-        message( STATUS "Found GNU g++ ${GCC_VERSION}, enabling colorized error messages." )
+    if( CMAKE_CXX_COMPILER_VERSION VERSION_GREATER 4.9 OR
+        CMAKE_CXX_COMPILER_VERSION VERSION_EQUAL 4.9 )
+        message( STATUS "Found GNU g++ ${CMAKE_CXX_COMPILER_VERSION}, enabling colorized error messages." )
         set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fdiagnostics-color=always" )
     endif()
 endif()
-
 
 cmake_policy( SET CMP0023 OLD )
 
