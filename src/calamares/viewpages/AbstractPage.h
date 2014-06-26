@@ -21,7 +21,7 @@
 
 #include <QWidget>
 
-#include "../DllMacro.h"
+#include "../UiDllMacro.h"
 
 namespace Calamares
 {

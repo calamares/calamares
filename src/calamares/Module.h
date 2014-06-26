@@ -19,7 +19,7 @@
 #ifndef CALAMARESMODULE_H
 #define CALAMARESMODULE_H
 
-#include "DllMacro.h"
+#include "UiDllMacro.h"
 
 #include <QStringList>
 

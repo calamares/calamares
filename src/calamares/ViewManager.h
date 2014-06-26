@@ -19,7 +19,7 @@
 #ifndef VIEWMANAGER_H
 #define VIEWMANAGER_H
 
-#include "DllMacro.h"
+#include "UiDllMacro.h"
 #include "viewpages/ViewPlugin.h"
 
 #include <QPushButton>
