@@ -1,5 +1,5 @@
-#ifndef CONFIG_H_IN
-#define CONFIG_H_IN
+#ifndef CALAMARESCONFIG_H
+#define CALAMARESCONFIG_H
 
 #define CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}"
 #define CMAKE_INSTALL_FULL_LIBEXECDIR "${CMAKE_INSTALL_FULL_LIBEXECDIR}"
@@ -9,4 +9,4 @@
 
 //cmakedefines for CMake variables (e.g. for optdepends) go here
 
-#endif // CONFIG_H_IN
+#endif // CALAMARESCONFIG_H

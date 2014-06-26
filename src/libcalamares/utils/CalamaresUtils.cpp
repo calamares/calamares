@@ -23,7 +23,7 @@
 
 #include "CalamaresUtils.h"
 
-#include "config.h"
+#include "CalamaresConfig.h"
 
 #include <QCoreApplication>
 #include <QDebug>

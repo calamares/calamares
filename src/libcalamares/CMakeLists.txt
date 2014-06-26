@@ -5,8 +5,8 @@ add_definitions( -DQT_SHARED )
 add_definitions( -DQT_SHAREDPOINTER_TRACK_POINTERS )
 add_definitions( -DDLLEXPORT_PRO )
 
-configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/Config.h.in
-                ${CMAKE_CURRENT_BINARY_DIR}/config.h )
+configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/CalamaresConfig.h.in
+                ${CMAKE_CURRENT_BINARY_DIR}/CalamaresConfig.h )
 configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/../calamares/CalamaresVersion.h.in
                 ${CMAKE_CURRENT_BINARY_DIR}/CalamaresVersion.h )
 
@@ -61,7 +61,7 @@ file( GLOB rootHeaders "*.h" )
 file( GLOB kdsingleapplicationguardHeaders "kdsingleapplicationguard/*.h" )
 file( GLOB utilsHeaders "utils/*.h" )
 
-install( FILES ${CMAKE_CURRENT_BINARY_DIR}/config.h DESTINATION include/libcalamares )
+install( FILES ${CMAKE_CURRENT_BINARY_DIR}/CalamaresConfig.h DESTINATION include/libcalamares )
 install( FILES ${rootHeaders}                       DESTINATION include/libcalamares )
 install( FILES ${kdsingleapplicationguardHeaders}   DESTINATION include/libcalamares/kdsingleapplicationguard )
 install( FILES ${utilsHeaders}                      DESTINATION include/libcalamares/utils )
