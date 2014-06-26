@@ -77,6 +77,7 @@ file( COPY CalamaresAddLibrary.cmake DESTINATION "${PROJECT_BINARY_DIR}" )
 set( CALAMARES_LIBRARIES calamareslib )
 
 add_subdirectory( src )
+add_subdirectory( tests )
 
 # Add all targets to the build-tree export set
 set( CMAKE_INSTALL_CMAKEDIR "${CMAKE_INSTALL_LIBDIR}/cmake/Calamares" CACHE PATH  "Installation directory for CMake files" )
