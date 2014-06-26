@@ -162,7 +162,7 @@ void createPartitions( CoreBackend* backend )
     qint64 rootStart = table->firstUsable();
     qint64 rootEnd = table->lastUsable() - SWAP_SIZE / device->logicalSectorSize();
     cout << "sectors for /: " << rootStart << " - " << rootEnd << endl;
-    FileSystem* fs = new FS::ext4::ext4( rootStart, rootEnd, 0, "Calamares" );
+    FileSystem* fs = new FS::ext4( rootStart, rootEnd, 0, "Calamares" );
 
     if ( !createPartition( backend, &report, device.data(), table, fs, PartitionTable::FlagBoot ) )
     {
@@ -173,7 +173,7 @@ void createPartitions( CoreBackend* backend )
     qint64 swapStart = rootEnd + 1;
     qint64 swapEnd = table->lastUsable();
     cout << "sectors for swap: " << swapStart << " - " << swapEnd << endl;
-    fs = new FS::linuxswap::linuxswap( swapStart, swapEnd, 0, "swap" );
+    fs = new FS::linuxswap( swapStart, swapEnd, 0, "swap" );
     if ( !createPartition( backend, &report, device.data(), table, fs ) )
     {
         cerr << report.toText() << endl;
