@@ -32,7 +32,7 @@ class PLUGINDLLEXPORT GreetingViewPlugin : public Calamares::ViewPlugin
     Q_INTERFACES( Calamares::ViewPlugin )
 
 public:
-    explicit GreetingViewPlugin(QObject *parent = 0);
+    explicit GreetingViewPlugin( QObject* parent = nullptr );
 
     QString prettyName() override;
 };

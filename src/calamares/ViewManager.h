@@ -36,7 +36,7 @@ class UIDLLEXPORT ViewManager : public QObject
 public:
     static ViewManager* instance();
 
-    explicit ViewManager( QObject* parent = 0 );
+    explicit ViewManager( QObject* parent = nullptr );
     virtual ~ViewManager();
 
     QWidget* widget();

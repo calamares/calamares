@@ -25,7 +25,7 @@
 namespace Calamares
 {
 
-ViewManager* ViewManager::s_instance = 0;
+ViewManager* ViewManager::s_instance = nullptr;
 
 ViewManager*
 ViewManager::instance()

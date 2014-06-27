@@ -30,7 +30,7 @@ class UIDLLEXPORT AbstractPage : public QWidget
 {
     Q_OBJECT
 public:
-    explicit AbstractPage(QWidget *parent = 0);
+    explicit AbstractPage(QWidget *parent = nullptr);
     virtual ~AbstractPage() {}
 
 

@@ -32,7 +32,7 @@ class UIDLLEXPORT ViewPlugin : public QObject
 {
     Q_OBJECT
 public:
-    explicit ViewPlugin( QObject *parent = 0 );
+    explicit ViewPlugin( QObject *parent = nullptr );
     virtual ~ViewPlugin() {}
 
     virtual QString prettyName() = 0;

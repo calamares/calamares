@@ -25,7 +25,7 @@ class GreetingPage : public Calamares::AbstractPage
 {
     Q_OBJECT
 public:
-    explicit GreetingPage( QWidget* parent = 0 );
+    explicit GreetingPage( QWidget* parent = nullptr );
 
 signals:
 

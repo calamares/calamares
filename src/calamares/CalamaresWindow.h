@@ -27,7 +27,7 @@ class CalamaresWindow : public QWidget, private Ui::Base
 {
     Q_OBJECT
 public:
-    CalamaresWindow( QWidget* parent = 0 );
+    CalamaresWindow( QWidget* parent = nullptr );
     virtual ~CalamaresWindow() {}
 
 };

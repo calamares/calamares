@@ -34,7 +34,7 @@ class ModuleManager : public QObject
 {
     Q_OBJECT
 public:
-    explicit ModuleManager( const QStringList& paths, QObject* parent = 0 );
+    explicit ModuleManager( const QStringList& paths, QObject* parent = nullptr );
     virtual ~ModuleManager();
 
     void init();

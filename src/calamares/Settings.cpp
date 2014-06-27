@@ -32,7 +32,7 @@
 namespace Calamares
 {
 
-Settings* Settings::s_instance = 0;
+Settings* Settings::s_instance = nullptr;
 
 Settings*
 Settings::instance()
