@@ -1,6 +1,8 @@
 project( calamareslib )
 
+if( WITH_PARTITIONMANAGER )
 add_subdirectory( partitionmanager/calamares )
+endif()
 
 add_definitions( ${QT_DEFINITIONS} )
 add_definitions( -DQT_SHARED )

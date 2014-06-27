@@ -1,3 +1,5 @@
+if( WITH_PARTITIONMANAGER )
 add_executable(calapmtest calapmtest.cpp)
 add_definitions(-DCALAMARES)
 target_link_libraries(calapmtest calapm Qt5::Core)
+endif()
