@@ -1,3 +1,5 @@
+if( WITH_PARTITIONMANAGER )
+
 add_definitions( -DCALAMARES )
 
 include_directories( ${PROJECT_BINARY_DIR}/src/calamares )
@@ -40,3 +42,5 @@ target_link_libraries( partview
     Qt5::Core
 )
 set_target_properties( partview PROPERTIES AUTOMOC TRUE )
+
+endif( WITH_PARTITIONMANAGER )
