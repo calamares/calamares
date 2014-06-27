@@ -16,6 +16,7 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <QCommandLineParser>
 #include <QCoreApplication>
 #include <QDebug>
 #include <QScopedPointer>
@@ -36,8 +37,6 @@
 
 #include <iostream>
 using namespace std;
-
-static const char* SCRATCH_DEVICE_NAME = "/dev/sdb";
 
 static ostream& operator<<( ostream& out, const QString& s )
 {
@@ -72,11 +71,11 @@ void showInfo( CoreBackend* backend )
     qDeleteAll( devices );
 }
 
-void wipe( CoreBackend* backend )
+void wipe( CoreBackend* backend, const QString devicePath )
 {
     Report report( 0 );
 
-    QScopedPointer<Device> device( backend->scanDevice( SCRATCH_DEVICE_NAME ) );
+    QScopedPointer<Device> device( backend->scanDevice( devicePath ) );
     Q_ASSERT( device.data() );
 
     QScopedPointer<CoreBackendDevice> backendDevice( backend->openDevice( device->deviceNode() ) );
@@ -147,11 +146,11 @@ bool createPartition( CoreBackend* backend, Report* report, Device* device, Part
     return true;
 }
 
-void createPartitions( CoreBackend* backend )
+void createPartitions( CoreBackend* backend, const QString& devicePath )
 {
     Report report( 0 );
 
-    QScopedPointer<Device> device( backend->scanDevice( SCRATCH_DEVICE_NAME ) );
+    QScopedPointer<Device> device( backend->scanDevice( devicePath ) );
     Q_ASSERT( device.data() );
 
     PartitionTable* table = device->partitionTable();
@@ -181,10 +180,34 @@ void createPartitions( CoreBackend* backend )
     }
 }
 
+bool confirm( const QString& devicePath )
+{
+    cout << "WARNING: This operation will destruct any data on device " << devicePath << "!\n";
+    cout << "Continue? [yn]: ";
+    string answer;
+    cin >> answer;
+    return answer == "y";
+}
+
 int main( int argc, char** argv )
 {
     QCoreApplication app( argc, argv );
 
+    // Parse arguments
+    QCommandLineParser parser;
+    parser.addHelpOption();
+    parser.addPositionalArgument( "action", "Must be one of 'info', 'wipe', 'partitions'" );
+    parser.addPositionalArgument( "device", "Device to work on. Must be a disk, not a partition (not required for 'info')" );
+    parser.process( app );
+
+    QStringList args = parser.positionalArguments();
+    if ( args.empty() )
+    {
+        cerr << "Missing arguments. Try --help\n";
+        return 1;
+    }
+
+    // Starts
     if ( !CalaPM::init() )
     {
         return 1;
@@ -192,18 +215,38 @@ int main( int argc, char** argv )
     CoreBackend* backend = CoreBackendManager::self()->backend();
     Q_ASSERT( backend );
 
-    QString cmd( argv[1] );
+    QString cmd = args[ 0 ];
     if ( cmd == "info" )
     {
         showInfo( backend );
     }
     else if ( cmd == "wipe" )
     {
-        wipe( backend );
+        if ( args.length() < 2 )
+        {
+            cerr << "Missing device argument. Try --help\n";
+            return 1;
+        }
+        QString device = args[1];
+        if ( !confirm( device ) )
+        {
+            return 1;
+        }
+        wipe( backend, device );
     }
     else if ( cmd == "partitions" )
     {
-        createPartitions( backend );
+        if ( args.length() < 2 )
+        {
+            cerr << "Missing device argument. Try --help\n";
+            return 1;
+        }
+        QString device = args[1];
+        if ( !confirm( device ) )
+        {
+            return 1;
+        }
+        createPartitions( backend, device );
     }
     else
     {
