@@ -28,7 +28,7 @@ class PLUGINDLLEXPORT GreetingViewPlugin : public Calamares::ViewPlugin
 {
     Q_OBJECT
     Q_PLUGIN_METADATA( IID "calamares.ViewPlugin/1.0" )
-                       //FILE "module.json" )
+
     Q_INTERFACES( Calamares::ViewPlugin )
 
 public:
