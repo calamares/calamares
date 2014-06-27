@@ -16,34 +16,68 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef PAGEPLUGIN_H
-#define PAGEPLUGIN_H
+#include "GreetingViewStep.h"
 
-#include <QObject>
+#include "GreetingPage.h"
 
-#include "../UiDllMacro.h"
-
-namespace Calamares
+GreetingViewStep::GreetingViewStep( QObject* parent )
+    : Calamares::ViewStep( parent )
+    , m_widget( new GreetingPage() )
 {
-
-class AbstractPage;
-
-class UIDLLEXPORT ViewPlugin : public QObject
-{
-    Q_OBJECT
-public:
-    explicit ViewPlugin( QObject *parent = nullptr );
-    virtual ~ViewPlugin() {}
-
-    virtual QString prettyName() = 0;
-
-signals:
-    void done();
-
-};
-
+    emit nextStatusChanged( true );
 }
 
-Q_DECLARE_INTERFACE( Calamares::ViewPlugin, "calamares.ViewPlugin/1.0" )
 
-#endif // PAGEPLUGIN_H
+GreetingViewStep::~GreetingViewStep()
+{
+    if ( m_widget && m_widget->parent() == nullptr )
+        m_widget->deleteLater();
+}
+
+
+QString
+GreetingViewStep::prettyName()
+{
+    return tr( "Welcome" );
+}
+
+
+QWidget*
+GreetingViewStep::widget()
+{
+    return m_widget;
+}
+
+
+void
+GreetingViewStep::next()
+{
+    emit done();
+}
+
+
+void
+GreetingViewStep::back()
+{}
+
+
+bool
+GreetingViewStep::isNextEnabled()
+{
+    return true;
+}
+
+
+bool
+GreetingViewStep::isAtBeginning()
+{
+    return true;
+}
+
+
+bool
+GreetingViewStep::isAtEnd()
+{
+    return true;
+}
+

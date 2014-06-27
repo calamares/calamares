@@ -16,14 +16,16 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "ViewPlugin.h"
+#include "ViewStep.h"
 
 namespace Calamares
 {
 
-ViewPlugin::ViewPlugin( QObject* parent )
+ViewStep::ViewStep( QObject* parent )
     : QObject( parent )
-{
-}
+{}
+
+ViewStep::~ViewStep()
+{}
 
 }

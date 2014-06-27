@@ -33,5 +33,5 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
     //should control the sidebar, next/back buttons and QSW.
     Calamares::ViewManager* vm = new Calamares::ViewManager( this );
 
-    layout()->addWidget( vm->widget() );
+    layout()->addWidget( vm->centralWidget() );
 }

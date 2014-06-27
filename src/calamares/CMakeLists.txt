@@ -18,7 +18,7 @@ set( calamaresSources
     modulesystem/ModuleManager.cpp
     modulesystem/ViewModule.cpp
 
-    viewpages/ViewPlugin.cpp
+    viewpages/ViewStep.cpp
     viewpages/AbstractPage.cpp
 )
 

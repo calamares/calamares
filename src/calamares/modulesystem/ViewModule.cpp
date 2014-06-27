@@ -19,7 +19,7 @@
 #include "ViewModule.h"
 
 #include "utils/Logger.h"
-#include "viewpages/ViewPlugin.h"
+#include "viewpages/ViewStep.h"
 #include "ViewManager.h"
 
 #include <yaml-cpp/yaml.h>
@@ -50,10 +50,10 @@ ViewModule::loadSelf()
     cDebug() << Q_FUNC_INFO << "for module" << name();
     if ( m_loader )
     {
-        ViewPlugin *vp = qobject_cast< ViewPlugin* >( m_loader->instance() );
-        if ( vp )
+        ViewStep *vs = qobject_cast< ViewStep* >( m_loader->instance() );
+        if ( vs )
         {
-            ViewManager::instance()->addViewPlugin( vp );
+            ViewManager::instance()->addViewStep( vs );
             m_loaded = true;
         }
     }

@@ -36,6 +36,7 @@ ViewManager::instance()
 ViewManager::ViewManager( QObject* parent )
     : QObject( parent )
     , m_widget( new QWidget() )
+    , m_currentStep( 0 )
 {
     s_instance = this;
     QBoxLayout* mainLayout = new QVBoxLayout;
@@ -60,7 +61,11 @@ ViewManager::ViewManager( QObject* parent )
     bottomLayout->addWidget( m_next );
     bottomLayout->addSpacing( 12 );
     bottomLayout->addWidget( m_quit );
+
     connect( m_quit, &QPushButton::clicked, qApp, &QApplication::quit );
+    connect( m_next, &QPushButton::clicked, this, &ViewManager::next );
+    connect( m_back, &QPushButton::clicked, this, &ViewManager::back );
+    m_back->setEnabled( false );
 }
 
 
@@ -71,53 +76,62 @@ ViewManager::~ViewManager()
 
 
 QWidget*
-ViewManager::widget()
+ViewManager::centralWidget()
 {
     return m_widget;
 }
 
 
 void
-ViewManager::addViewPlugin( ViewPlugin* plugin )
+ViewManager::addViewStep( ViewStep* step )
 {
-    plugin->setParent( this );
-    m_steps.append( plugin );
-    m_stack->addWidget( new QLabel( plugin->prettyName(), m_stack ) );
-}
+    step->setParent( this );
+    m_steps.append( step );
+    m_stack->addWidget( step->widget() );
 
-
-void
-ViewManager::insertPage( AbstractPage* page )
-{
-
-}
-
-
-void
-ViewManager::setNext( AbstractPage* page )
-{
-
-}
-
-
-void
-ViewManager::removePage( AbstractPage* page )
-{
-
+    connect( step, &ViewStep::nextStatusChanged,
+             m_next, &QPushButton::setEnabled );
 }
 
 
 void
 ViewManager::next()
 {
-    Q_ASSERT( 0 );
+    ViewStep* step = m_steps.at( m_currentStep );
+    if ( step->isAtEnd() && m_currentStep < m_steps.length() -1 )
+    {
+        m_currentStep++;
+        m_stack->setCurrentIndex( m_currentStep );
+    }
+    else if ( !step->isAtEnd() )
+    {
+        step->next();
+    }
+    else return;
+
+    m_next->setEnabled( step->isNextEnabled() );
+    m_back->setEnabled( true );
 }
 
 
 void
 ViewManager::back()
 {
-    Q_ASSERT( 0 );
+    ViewStep* step = m_steps.at( m_currentStep );
+    if ( step->isAtBeginning() && m_currentStep > 0 )
+    {
+        m_currentStep--;
+        m_stack->setCurrentIndex( m_currentStep );
+    }
+    else if ( !step->isAtBeginning() )
+    {
+        step->back();
+    }
+    else return;
+
+    m_next->setEnabled( step->isNextEnabled() );
+    if ( m_currentStep == 0 && m_steps.first()->isAtBeginning() )
+        m_back->setEnabled( false );
 }
 
 }

@@ -4,7 +4,7 @@ calamares_add_plugin( greeting
     EXPORT_MACRO PLUGINDLLEXPORT_PRO
     CONFIG_FILE module.conf
     SOURCES
-        GreetingViewPlugin.cpp
+        GreetingViewStep.cpp
         GreetingPage.cpp
     UI
     LINK_LIBRARIES

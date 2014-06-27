@@ -21,20 +21,36 @@
 
 #include <QObject>
 
-#include "viewpages/ViewPlugin.h"
+#include "viewpages/ViewStep.h"
 #include "PluginDllMacro.h"
 
-class PLUGINDLLEXPORT GreetingViewPlugin : public Calamares::ViewPlugin
+class GreetingPage;
+
+class PLUGINDLLEXPORT GreetingViewStep : public Calamares::ViewStep
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA( IID "calamares.ViewPlugin/1.0" )
+    Q_PLUGIN_METADATA( IID "calamares.ViewModule/1.0" )
 
-    Q_INTERFACES( Calamares::ViewPlugin )
+    Q_INTERFACES( Calamares::ViewStep )
 
 public:
-    explicit GreetingViewPlugin( QObject* parent = nullptr );
+    explicit GreetingViewStep( QObject* parent = nullptr );
+    virtual ~GreetingViewStep();
 
     QString prettyName() override;
+
+    QWidget* widget() override;
+
+    void next() override;
+    void back() override;
+
+    bool isNextEnabled() override;
+
+    bool isAtBeginning() override;
+    bool isAtEnd() override;
+
+private:
+    GreetingPage* m_widget;
 };
 
 #endif // GREETINGPAGEPLUGIN_H

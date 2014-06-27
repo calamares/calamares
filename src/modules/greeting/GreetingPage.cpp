@@ -18,8 +18,22 @@
 
 #include "GreetingPage.h"
 
+#include <QBoxLayout>
+#include <QLabel>
+
 
 GreetingPage::GreetingPage( QWidget* parent )
-    : Calamares::AbstractPage( parent )
+    : QWidget()
 {
+    QBoxLayout *mainLayout = new QHBoxLayout;
+    setLayout( mainLayout );
+
+    QLabel* text = new QLabel( tr( "<h1>Welcome to Calamares.</h1><br/>"
+                                   "This is some random welcome text. "
+                                   "It should change depending on the branding config." ), this );
+    text->setAlignment( Qt::AlignCenter );
+
+    mainLayout->addStretch();
+    mainLayout->addWidget( text );
+    mainLayout->addStretch();
 }

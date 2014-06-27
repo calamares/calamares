@@ -20,7 +20,7 @@
 #define VIEWMANAGER_H
 
 #include "UiDllMacro.h"
-#include "viewpages/ViewPlugin.h"
+#include "viewpages/ViewStep.h"
 
 #include <QPushButton>
 #include <QQueue>
@@ -39,13 +39,10 @@ public:
     explicit ViewManager( QObject* parent = nullptr );
     virtual ~ViewManager();
 
-    QWidget* widget();
+    QWidget* centralWidget();
 
-    void addViewPlugin( ViewPlugin* plugin );
+    void addViewStep( ViewStep* step );
 
-    void insertPage( AbstractPage* page );
-    void setNext( AbstractPage* page );
-    void removePage( AbstractPage* page );
 
 public slots:
     void next();
@@ -54,7 +51,8 @@ public slots:
 private:
     static ViewManager* s_instance;
 
-    QQueue< ViewPlugin* > m_steps;
+    QQueue< ViewStep* > m_steps;
+    int m_currentStep;
 
     QWidget* m_widget;
     QStackedWidget* m_stack;

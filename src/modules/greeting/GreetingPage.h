@@ -19,17 +19,13 @@
 #ifndef GREETINGPAGE_H
 #define GREETINGPAGE_H
 
-#include "viewpages/AbstractPage.h"
+#include <QWidget>
 
-class GreetingPage : public Calamares::AbstractPage
+class GreetingPage : public QWidget
 {
     Q_OBJECT
 public:
     explicit GreetingPage( QWidget* parent = nullptr );
-
-signals:
-
-public slots:
 
 };
 
