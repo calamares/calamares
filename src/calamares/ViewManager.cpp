@@ -109,7 +109,7 @@ ViewManager::next()
     }
     else return;
 
-    m_next->setEnabled( step->isNextEnabled() );
+    m_next->setEnabled( m_steps.at( m_currentStep )->isNextEnabled() );
     m_back->setEnabled( true );
 }
 
@@ -129,7 +129,7 @@ ViewManager::back()
     }
     else return;
 
-    m_next->setEnabled( step->isNextEnabled() );
+    m_next->setEnabled( m_steps.at( m_currentStep )->isNextEnabled() );
     if ( m_currentStep == 0 && m_steps.first()->isAtBeginning() )
         m_back->setEnabled( false );
 }
