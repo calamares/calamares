@@ -30,6 +30,7 @@
 
 // Qt
 #include <QDebug>
+#include <QItemSelectionModel>
 
 PartitionPage::PartitionPage( QWidget* parent )
     : Calamares::AbstractPage( parent )
@@ -49,11 +50,12 @@ PartitionPage::PartitionPage( QWidget* parent )
 
     m_deviceModel->init( m_backend->scanDevices() );
 
-    connect( m_ui->deviceListView, &QListView::clicked, [ this ]( const QModelIndex & index )
-    {
-        Device* device = m_deviceModel->deviceForIndex( index );
-        m_partitionModel->init( device );
-    } );
+    connect( m_ui->deviceListView->selectionModel(), &QItemSelectionModel::currentChanged,
+        [ this ]( const QModelIndex& index, const QModelIndex& oldIndex )
+        {
+            Device* device = m_deviceModel->deviceForIndex( index );
+            m_partitionModel->init( device );
+        } );
 }
 
 PartitionPage::~PartitionPage()
