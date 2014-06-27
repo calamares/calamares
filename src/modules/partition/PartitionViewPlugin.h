@@ -21,19 +21,34 @@
 
 #include <QObject>
 
-#include "viewpages/ViewPlugin.h"
+#include "viewpages/ViewStep.h"
 #include "PluginDllMacro.h"
 
-class PLUGINDLLEXPORT PartitionViewPlugin : public Calamares::ViewPlugin
+class PartitionPage;
+
+class PLUGINDLLEXPORT PartitionViewPlugin : public Calamares::ViewStep
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA( IID "calamares.ViewPlugin/1.0" )
-    Q_INTERFACES( Calamares::ViewPlugin )
+    Q_PLUGIN_METADATA( IID "calamares.ViewModule/1.0" )
+    Q_INTERFACES( Calamares::ViewStep )
 
 public:
     explicit PartitionViewPlugin( QObject* parent = 0 );
 
     QString prettyName() override;
+
+    QWidget* widget() override;
+
+    void next() override;
+    void back() override;
+
+    bool isNextEnabled() override;
+
+    bool isAtBeginning() override;
+    bool isAtEnd() override;
+
+private:
+    PartitionPage* m_widget;
 };
 
 #endif // PARTITIONPAGEPLUGIN_H

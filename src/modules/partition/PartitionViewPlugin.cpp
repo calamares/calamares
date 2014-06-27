@@ -18,9 +18,12 @@
 
 #include "PartitionViewPlugin.h"
 
+#include "PartitionPage.h"
+
 
 PartitionViewPlugin::PartitionViewPlugin( QObject* parent )
-    : Calamares::ViewPlugin( parent )
+    : Calamares::ViewStep( parent )
+    , m_widget( new PartitionPage() )
 {
 }
 
@@ -28,5 +31,45 @@ PartitionViewPlugin::PartitionViewPlugin( QObject* parent )
 QString
 PartitionViewPlugin::prettyName()
 {
-    return tr( "Welcome" );
+    return tr( "Partitions" );
+}
+
+
+QWidget*
+PartitionViewPlugin::widget()
+{
+    return m_widget;
+}
+
+
+void
+PartitionViewPlugin::next()
+{
+    emit done();
+}
+
+
+void
+PartitionViewPlugin::back()
+{}
+
+
+bool
+PartitionViewPlugin::isNextEnabled()
+{
+    return false;
+}
+
+
+bool
+PartitionViewPlugin::isAtBeginning()
+{
+    return true;
+}
+
+
+bool
+PartitionViewPlugin::isAtEnd()
+{
+    return true;
 }
