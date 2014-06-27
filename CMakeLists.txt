@@ -14,6 +14,9 @@ endif()
 
 cmake_policy( SET CMP0023 OLD )
 
+# Keep cmake 3.0 quiet
+cmake_policy( SET CMP0043 OLD )
+
 find_package( Qt5 5.3.0 CONFIG REQUIRED Core Gui Widgets LinguistTools )
 find_package( YamlCpp 0.5.1 REQUIRED )
 
