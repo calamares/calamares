@@ -25,13 +25,13 @@ function(calamares_add_library)
     include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
     if(LIBRARY_UI)
-        qt_wrap_ui(LIBRARY_UI_SOURCES ${LIBRARY_UI})
+        qt5_wrap_ui(LIBRARY_UI_SOURCES ${LIBRARY_UI})
         list(APPEND LIBRARY_SOURCES ${LIBRARY_UI_SOURCES})
     endif()
 
     # add resources from current dir
     if(EXISTS "${CMAKE_CURRENT_LIST_DIR}/resources.qrc")
-        qt_add_resources(LIBRARY_RC_SOURCES "resources.qrc")
+        qt5_add_resources(LIBRARY_RC_SOURCES "resources.qrc")
         list(APPEND LIBRARY_SOURCES ${LIBRARY_RC_SOURCES})
         unset(LIBRARY_RC_SOURCES)
     endif()
