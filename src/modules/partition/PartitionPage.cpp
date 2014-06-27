@@ -36,7 +36,6 @@ PartitionPage::PartitionPage( QWidget* parent )
     : Calamares::AbstractPage( parent )
     , m_ui( new Ui_PartitionPage )
     , m_deviceModel( new DeviceModel( this ) )
-    , m_partitionModel( new PartitionModel( this ) )
 {
     // FIXME: Should be done at startup
     if ( !CalaPM::init() )
@@ -46,16 +45,15 @@ PartitionPage::PartitionPage( QWidget* parent )
     m_backend = CoreBackendManager::self()->backend();
     m_ui->setupUi( this );
     m_ui->deviceListView->setModel( m_deviceModel );
-    m_ui->partitionListView->setModel( m_partitionModel );
 
     m_deviceModel->init( m_backend->scanDevices() );
 
     connect( m_ui->deviceListView->selectionModel(), &QItemSelectionModel::currentChanged,
-        [ this ]( const QModelIndex& index, const QModelIndex& oldIndex )
-        {
-            Device* device = m_deviceModel->deviceForIndex( index );
-            m_partitionModel->init( device );
-        } );
+             [ this ]( const QModelIndex& index, const QModelIndex& oldIndex )
+    {
+        PartitionModel* model = m_deviceModel->partitionModelForIndex( index );
+        m_ui->partitionListView->setModel( model );
+    } );
 }
 
 PartitionPage::~PartitionPage()

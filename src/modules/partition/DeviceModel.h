@@ -19,23 +19,38 @@
 #define DEVICEMODEL_H
 
 #include <QAbstractListModel>
+#include <QScopedPointer>
 #include <QList>
 
 class Device;
+class PartitionModel;
 
 class DeviceModel : public QAbstractListModel
 {
 public:
     DeviceModel( QObject* parent = 0 );
+    ~DeviceModel();
+
+    /**
+     * Init the model with the list of devices.
+     * Takes ownership of the devices.
+     */
     void init( const QList< Device* >& devices );
 
     int rowCount( const QModelIndex& parent = QModelIndex() ) const Q_DECL_OVERRIDE;
     QVariant data( const QModelIndex& index, int role = Qt::DisplayRole ) const Q_DECL_OVERRIDE;
 
-    Device* deviceForIndex( const QModelIndex& index ) const;
+    PartitionModel* partitionModelForIndex( const QModelIndex& index ) const;
 
 private:
-    QList< Device* > m_devices;
+    struct DeviceInfo
+    {
+        DeviceInfo( Device* dev );
+        ~DeviceInfo();
+        Device* device;
+        PartitionModel* partitionModel;
+    };
+    QList< DeviceInfo* > m_devices;
 };
 
 #endif /* DEVICEMODEL_H */

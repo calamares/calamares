@@ -27,7 +27,6 @@ class CoreBackend;
 class Ui_PartitionPage;
 
 class DeviceModel;
-class PartitionModel;
 
 class PartitionPage : public Calamares::AbstractPage
 {
@@ -43,7 +42,6 @@ public Q_SLOTS:
 private:
     QScopedPointer< Ui_PartitionPage > m_ui;
     DeviceModel* m_deviceModel;
-    PartitionModel* m_partitionModel;
     CoreBackend* m_backend;
 };
 

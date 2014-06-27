@@ -16,20 +16,43 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 #include <DeviceModel.h>
+#include <PartitionModel.h>
 
 // CalaPM
 #include <core/device.h>
+
+DeviceModel::DeviceInfo::DeviceInfo( Device* dev )
+    : device( dev )
+    , partitionModel( new PartitionModel )
+{
+    partitionModel->init( dev );
+}
+
+DeviceModel::DeviceInfo::~DeviceInfo()
+{
+    delete device;
+    delete partitionModel;
+}
 
 DeviceModel::DeviceModel( QObject* parent )
     : QAbstractListModel( parent )
 {
 }
 
+DeviceModel::~DeviceModel()
+{
+    qDeleteAll( m_devices );
+}
+
 void
 DeviceModel::init( const QList< Device* >& devices )
 {
     beginResetModel();
-    m_devices = devices;
+    m_devices.clear();
+    for ( auto device : devices )
+    {
+        m_devices << new DeviceInfo( device );
+    }
     endResetModel();
 }
 
@@ -48,7 +71,7 @@ DeviceModel::data( const QModelIndex& index, int role ) const
         return QVariant();
     }
 
-    Device* device = m_devices.at( row );
+    Device* device = m_devices.at( row )->device;
 
     switch ( role )
     {
@@ -66,13 +89,13 @@ DeviceModel::data( const QModelIndex& index, int role ) const
     }
 }
 
-Device*
-DeviceModel::deviceForIndex( const QModelIndex& index ) const
+PartitionModel*
+DeviceModel::partitionModelForIndex( const QModelIndex& index ) const
 {
     int row = index.row();
     if ( row < 0 || row >= m_devices.count() )
     {
         return nullptr;
     }
-    return m_devices.at( row );
+    return m_devices.at( row )->partitionModel;
 }
