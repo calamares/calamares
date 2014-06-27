@@ -13,6 +13,7 @@ configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/../calamares/CalamaresVersion.h.in
                 ${CMAKE_CURRENT_BINARY_DIR}/CalamaresVersion.h )
 
 set( libSources
+    Job.cpp
     JobQueue.cpp
 
     kdsingleapplicationguard/kdsingleapplicationguard.cpp

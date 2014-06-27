@@ -16,11 +16,12 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "JobQueue.h"
+#include "Job.h"
+
 namespace Calamares
 {
 
-JobQueue::JobQueue( QObject* parent )
+Job::Job( QObject* parent )
     : QObject( parent )
 {
 }

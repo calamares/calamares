@@ -16,13 +16,22 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "JobQueue.h"
-namespace Calamares
-{
+#ifndef CALAMARES_JOB_H
+#define CALAMARES_JOB_H
 
-JobQueue::JobQueue( QObject* parent )
-    : QObject( parent )
+#include "DllMacro.h"
+
+#include <QObject>
+
+namespace Calamares {
+
+class DLLEXPORT Job : public QObject
 {
-}
+    Q_OBJECT
+public:
+    explicit Job( QObject* parent = nullptr );
+};
 
 } // namespace Calamares
+
+#endif // CALAMARES_JOB_H
