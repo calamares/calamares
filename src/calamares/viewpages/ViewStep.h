@@ -16,8 +16,8 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef PAGEPLUGIN_H
-#define PAGEPLUGIN_H
+#ifndef VIEWSTEP_H
+#define VIEWSTEP_H
 
 #include <QObject>
 
@@ -56,4 +56,4 @@ signals:
 
 Q_DECLARE_INTERFACE( Calamares::ViewStep, "calamares.ViewModule/1.0" )
 
-#endif // PAGEPLUGIN_H
+#endif // VIEWSTEP_H
