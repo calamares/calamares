@@ -16,58 +16,52 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef CALAMARESMODULE_H
-#define CALAMARESMODULE_H
+#ifndef MODULELOADER_H
+#define MODULELOADER_H
 
-#include "UiDllMacro.h"
+#include "Module.h"
 
+#include <QMap>
+#include <QObject>
 #include <QStringList>
 
-
-namespace YAML
-{
-class Node;
-}
-
 namespace Calamares
 {
+
 class Module;
-}
 
-void operator>>( const YAML::Node& node, Calamares::Module& m );
-
-namespace Calamares
+class ModuleManager : public QObject
 {
-
-class UIDLLEXPORT Module
-{
+    Q_OBJECT
 public:
-    static Module* fromConfigFile( const QString& path );
+    explicit ModuleManager( const QStringList& paths, QObject* parent = 0 );
+    virtual ~ModuleManager();
 
-    QString name();
-    QStringList requiredModules();
+    void init();
 
-    enum Type
-    {
-        Core,
-        View
-    };
+    QStringList availableModules();
+    Module* module( const QString& name );
 
-    enum Interface
-    {
-        QtPlugin,
-        Python,
-        Process
-    };
+    void loadRequiredModules();
+
+signals:
+    void initDone();
+    void modulesLoaded();
+
+private slots:
+    void doInit();
+    void doLoadModules();
+
 private:
-    QString m_name;
-    Type m_type;
-    Interface m_interface;
-    QStringList m_requiredModules;
+    void recursiveLoad( const QString& moduleName );
+    void checkDependencies();
 
-    friend void ::operator>>( const YAML::Node& node, Calamares::Module& m );
+    QMap< QString, Module* > m_availableModules;
+
+    QStringList m_paths;
+
 };
 
 }
 
-#endif // CALAMARESMODULE_H
+#endif // MODULELOADER_H

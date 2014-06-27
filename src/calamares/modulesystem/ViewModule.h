@@ -16,47 +16,35 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef MODULELOADER_H
-#define MODULELOADER_H
+#ifndef CALAMARES_VIEWMODULE_H
+#define CALAMARES_VIEWMODULE_H
 
+#include "UiDllMacro.h"
 #include "Module.h"
 
-#include <QMap>
-#include <QObject>
-#include <QStringList>
+class QPluginLoader;
 
-namespace Calamares
+namespace Calamares {
+
+class UIDLLEXPORT ViewModule : public Module
 {
-
-class Module;
-
-class ModuleManager : public QObject
-{
-    Q_OBJECT
 public:
-    explicit ModuleManager( const QStringList& paths, QObject* parent = 0 );
-    virtual ~ModuleManager();
+    Type type() override;
+    Interface interface() override;
 
-    void start();
+    void loadSelf() override;
 
-    QStringList availableModules();
-    Module* module( const QString& name );
-
-signals:
-    void ready();
-
-private slots:
-    void doWork();
+protected:
+    void initFrom( const YAML::Node &node ) override;
 
 private:
-    void checkDependencies();
+    friend class Module; //so only the superclass can instantiate
+    explicit ViewModule();
+    virtual ~ViewModule();
 
-    QMap< QString, Module* > m_availableModules;
-
-    QStringList m_paths;
-
+    QPluginLoader *m_loader;
 };
 
-}
+} // namespace Calamares
 
-#endif // MODULELOADER_H
+#endif // CALAMARES_VIEWMODULE_H

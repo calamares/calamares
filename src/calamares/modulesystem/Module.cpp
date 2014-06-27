@@ -18,13 +18,15 @@
 
 #include "Module.h"
 
+#include "ViewModule.h"
 #include "YamlUtils.h"
-
 #include "utils/Logger.h"
 
 #include <yaml-cpp/yaml.h>
 
+#include <QDir>
 #include <QFile>
+#include <QFileInfo>
 #include <QString>
 
 
@@ -40,49 +42,55 @@ requires:  []         #list of module names that must also be loaded. only appli
 */
 
 void
-operator>>( const YAML::Node& node, Calamares::Module& m )
+operator>>( const YAML::Node& node, Calamares::Module* m )
 {
-    m.m_name = QString::fromStdString( node[ "name" ].as< std::string >() );
+    m->m_name = QString::fromStdString( node[ "name" ].as< std::string >() );
 
     QString typeString = QString::fromStdString( node[ "type" ].as< std::string >() );
     if ( typeString == "core" )
     {
-        m.m_type = Calamares::Module::Core;
+        m->m_type = Calamares::Module::Core;
     }
     else if ( typeString == "view" )
     {
-        m.m_type = Calamares::Module::View;
-        m.m_interface = Calamares::Module::QtPlugin;
+        m->m_type = Calamares::Module::View;
+        m->m_interface = Calamares::Module::QtPlugin;
     }
 
-    if ( m.m_type != Calamares::Module::View )
+    if ( m->m_type != Calamares::Module::View )
     {
         QString interfaceString = QString::fromStdString( node[ "interface" ].as< std::string >() );
         if ( interfaceString == "qtplugin" )
         {
-            m.m_interface = Calamares::Module::QtPlugin;
+            m->m_interface = Calamares::Module::QtPlugin;
         }
         else if ( interfaceString == "python" )
         {
-            m.m_interface = Calamares::Module::Python;
+            m->m_interface = Calamares::Module::Python;
         }
         else if ( interfaceString == "process" )
         {
-            m.m_interface = Calamares::Module::Process;
+            m->m_interface = Calamares::Module::Process;
         }
     }
 
     if ( node[ "requires" ] && node[ "requires" ].IsSequence() )
     {
-        node[ "requires" ] >> m.m_requiredModules;
+        node[ "requires" ] >> m->m_requiredModules;
     }
 
 }
 
-
-Calamares::Module*
-Calamares::Module::fromConfigFile( const QString& path )
+namespace Calamares
 {
+
+Module::~Module()
+{}
+
+Module*
+Module::fromConfigFile( const QString& path )
+{
+    Module* m = nullptr;
     QFile metadataFile( path );
     if ( metadataFile.exists() && metadataFile.open( QFile::ReadOnly | QFile::Text ) )
     {
@@ -99,13 +107,18 @@ Calamares::Module::fromConfigFile( const QString& path )
                 return nullptr;
             }
 
-            Module* m = new Module();
-            moduleDocument >> *m;
+            m = new ViewModule();
+
+            QFileInfo mfi( path );
+            m->m_directory = mfi.absoluteDir().absolutePath();
+
+            m->initFrom( moduleDocument );
             return m;
         }
         catch ( YAML::Exception& e )
         {
             cDebug() << "WARNING: YAML parser error " << e.what();
+            delete m;
             return nullptr;
         }
     }
@@ -114,14 +127,42 @@ Calamares::Module::fromConfigFile( const QString& path )
 }
 
 QString
-Calamares::Module::name()
+Module::name()
 {
     return m_name;
 }
 
 
 QStringList
-Calamares::Module::requiredModules()
+Module::requiredModules()
 {
     return m_requiredModules;
 }
+
+
+QString
+Module::location()
+{
+    return m_directory;
+}
+
+
+bool
+Module::isLoaded()
+{
+    return m_loaded;
+}
+
+
+Module::Module()
+    : m_loaded( false )
+{}
+
+
+void
+Module::initFrom( const YAML::Node& node )
+{
+    node >> this;
+}
+
+} //ns

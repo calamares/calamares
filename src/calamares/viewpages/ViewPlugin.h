@@ -35,6 +35,8 @@ public:
     explicit ViewPlugin( QObject *parent = 0 );
     virtual ~ViewPlugin() {}
 
+    virtual QString prettyName() = 0;
+
 signals:
     void done();
 

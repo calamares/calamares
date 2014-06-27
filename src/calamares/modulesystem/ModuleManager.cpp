@@ -19,9 +19,11 @@
 #include "ModuleManager.h"
 
 #include "utils/Logger.h"
+#include "Settings.h"
 
 #include <yaml-cpp/yaml.h>
 
+#include <QApplication>
 #include <QDir>
 #include <QTimer>
 
@@ -46,9 +48,9 @@ ModuleManager::~ModuleManager()
 
 
 void
-ModuleManager::start()
+ModuleManager::init()
 {
-    QTimer::singleShot( 0, this, SLOT( doWork() ) );
+    QTimer::singleShot( 0, this, SLOT( doInit() ) );
 }
 
 
@@ -67,7 +69,14 @@ ModuleManager::module( const QString& name )
 
 
 void
-ModuleManager::doWork()
+ModuleManager::loadRequiredModules()
+{
+    QTimer::singleShot( 0, this, SLOT( doLoadModules() ) );
+}
+
+
+void
+ModuleManager::doInit()
 {
     // We start from a list of paths in m_paths. Each of those is a directory that
     // might (should) contain Calamares modules of any type/interface.
@@ -120,7 +129,46 @@ ModuleManager::doWork()
     // At this point m_availableModules is filled with whatever was found in the
     // search paths.
     checkDependencies();
-    emit ready();
+    emit initDone();
+}
+
+
+void
+ModuleManager::doLoadModules()
+{
+    foreach ( const QString& moduleName, Settings::instance()->viewModulesPrepare() )
+    {
+        if ( !m_availableModules.contains( moduleName ) )
+        {
+            cDebug() << "Module" << moduleName << "not found in module search paths."
+                     << "\nCalamares will now quit.";
+            qApp->quit();
+        }
+        recursiveLoad( moduleName );
+    }
+    emit modulesLoaded();
+
+    //IDEA:
+    // 1) deps are already fine. check if we have all the modules needed by the roster
+    // 2) ask MM to load them from the list provided by Settings
+    // 3) MM must load them asyncly but one at a time, by calling Module::loadSelf
+    // 4) Module must have subclasses that reimplement loadSelf for various module types
+}
+
+
+void
+ModuleManager::recursiveLoad( const QString& moduleName )
+{
+    Module* thisModule = m_availableModules.value( moduleName );
+    foreach ( const QString& module, thisModule->requiredModules() )
+    {
+        if ( !m_availableModules.value( module )->isLoaded() )
+        {
+            recursiveLoad( module );
+        }
+    }
+    thisModule->loadSelf();
+    cDebug() << ( thisModule->isLoaded() ? "SUCCESS" : "FAILURE" );
 }
 
 
@@ -151,5 +199,6 @@ ModuleManager::checkDependencies()
             break;
     }
 }
+
 
 }

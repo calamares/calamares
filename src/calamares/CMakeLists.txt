@@ -10,11 +10,13 @@ set( calamaresSources
     main.cpp
     CalamaresApplication.cpp
     CalamaresWindow.cpp
-    Module.cpp
-    ModuleManager.cpp
     ViewManager.cpp
     Settings.cpp
     YamlUtils.cpp
+
+    modulesystem/Module.cpp
+    modulesystem/ModuleManager.cpp
+    modulesystem/ViewModule.cpp
 
     viewpages/ViewPlugin.cpp
     viewpages/AbstractPage.cpp

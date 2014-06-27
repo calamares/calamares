@@ -18,7 +18,15 @@
 
 #include "GreetingViewPlugin.h"
 
+
 GreetingViewPlugin::GreetingViewPlugin( QObject *parent )
     : Calamares::ViewPlugin( parent )
 {
+}
+
+
+QString
+GreetingViewPlugin::prettyName()
+{
+    return tr( "Welcome" );
 }

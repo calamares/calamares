@@ -23,7 +23,9 @@
 #include "viewpages/ViewPlugin.h"
 
 #include <QPushButton>
+#include <QQueue>
 #include <QStackedWidget>
+
 
 namespace Calamares
 {
@@ -51,6 +53,8 @@ public slots:
 
 private:
     static ViewManager* s_instance;
+
+    QQueue< ViewPlugin* > m_steps;
 
     QWidget* m_widget;
     QStackedWidget* m_stack;

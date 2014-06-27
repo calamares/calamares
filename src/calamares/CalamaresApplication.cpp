@@ -20,7 +20,7 @@
 
 #include "CalamaresWindow.h"
 #include "CalamaresVersion.h"
-#include "ModuleManager.h"
+#include "modulesystem/ModuleManager.h"
 #include "Settings.h"
 #include "utils/CalamaresUtils.h"
 #include "utils/Logger.h"
@@ -115,9 +115,9 @@ CalamaresApplication::initPlugins()
 {
     m_moduleManager = new Calamares::ModuleManager(
         Calamares::Settings::instance()->modulesSearchPaths(), this );
-    connect( m_moduleManager, &Calamares::ModuleManager::ready,
+    connect( m_moduleManager, &Calamares::ModuleManager::initDone,
              this,            &CalamaresApplication::onPluginsReady );
-    m_moduleManager->start();
+    m_moduleManager->init();
 }
 
 
@@ -128,13 +128,11 @@ CalamaresApplication::onPluginsReady()
 
     m_mainwindow = new CalamaresWindow();
 
-//    foreach ( QString moduleName, Calamares::Settings::instance()->viewModulesPrepare() )
-//    {
-//        Q_ASSERT( m_moduleManager->availableModules().contains( moduleName ) );
-//        m_moduleManager->module( moduleName )->loadSelf();
-//    }
-
-    m_mainwindow->show();
+    m_moduleManager->loadRequiredModules();
+    connect( m_moduleManager, &Calamares::ModuleManager::modulesLoaded, [this]
+    {
+        m_mainwindow->show();
+    });
 }
 
 

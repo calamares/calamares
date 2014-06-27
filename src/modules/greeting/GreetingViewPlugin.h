@@ -30,10 +30,11 @@ class PLUGINDLLEXPORT GreetingViewPlugin : public Calamares::ViewPlugin
     Q_PLUGIN_METADATA( IID "calamares.ViewPlugin/1.0" )
                        //FILE "module.json" )
     Q_INTERFACES( Calamares::ViewPlugin )
+
 public:
     explicit GreetingViewPlugin(QObject *parent = 0);
 
-
+    QString prettyName() override;
 };
 
 #endif // GREETINGPAGEPLUGIN_H

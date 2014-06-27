@@ -19,6 +19,7 @@
 #include "ViewManager.h"
 
 #include <QApplication>
+#include <QLabel>
 #include <QBoxLayout>
 
 namespace Calamares
@@ -79,7 +80,9 @@ ViewManager::widget()
 void
 ViewManager::addViewPlugin( ViewPlugin* plugin )
 {
-
+    plugin->setParent( this );
+    m_steps.append( plugin );
+    m_stack->addWidget( new QLabel( plugin->prettyName(), m_stack ) );
 }
 
 
