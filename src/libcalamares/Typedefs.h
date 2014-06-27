@@ -16,21 +16,17 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "JobQueue.h"
+#ifndef TYPEDEFS_H
+#define TYPEDEFS_H
+
+#include <QSharedPointer>
+
 namespace Calamares
 {
+class Job;
 
-JobQueue* JobQueue::s_instance = nullptr;
+typedef QSharedPointer< Job > job_ptr;
 
-JobQueue*
-JobQueue::instance()
-{
-    return s_instance;
-}
+} //ns
 
-JobQueue::JobQueue( QObject* parent )
-    : QObject( parent )
-{
-}
-
-} // namespace Calamares
+#endif // TYPEDEFS_H

@@ -20,6 +20,7 @@
 #define CALAMARES_JOBQUEUE_H
 
 #include "DllMacro.h"
+#include "Typedefs.h"
 
 #include <QObject>
 
@@ -31,6 +32,18 @@ class DLLEXPORT JobQueue : public QObject
     Q_OBJECT
 public:
     explicit JobQueue( QObject* parent = nullptr );
+
+    static JobQueue* instance();
+
+    void enqueue( const Calamares::job_ptr& job );
+    void enqueue( const QList< Calamares::job_ptr >& jobs );
+
+signals:
+    void jobRunning( const Calamares::job_ptr& );
+    void jobFinished( const Calamares::job_ptr& );
+
+private:
+    static JobQueue* s_instance;
 };
 
 }

@@ -20,6 +20,7 @@
 #define CALAMARES_JOB_H
 
 #include "DllMacro.h"
+#include "Typedefs.h"
 
 #include <QObject>
 
@@ -29,7 +30,21 @@ class DLLEXPORT Job : public QObject
 {
     Q_OBJECT
 public:
+    enum State
+    {
+        Pending = 0,
+        Running,
+        Finished
+    };
+
     explicit Job( QObject* parent = nullptr );
+    virtual ~Job();
+
+    virtual QString prettyName() = 0;
+    virtual void exec() = 0;
+signals:
+    void running( const Calamares::job_ptr& );
+    void finished( const Calamares::job_ptr& );
 };
 
 } // namespace Calamares

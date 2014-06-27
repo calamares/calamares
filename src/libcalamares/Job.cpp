@@ -26,4 +26,7 @@ Job::Job( QObject* parent )
 {
 }
 
+Job::~Job()
+{}
+
 } // namespace Calamares
