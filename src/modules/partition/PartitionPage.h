@@ -42,6 +42,7 @@ public Q_SLOTS:
 private:
     QScopedPointer< Ui_PartitionPage > m_ui;
     PartitionCoreModule* m_core;
+    void updateButtons();
 };
 
 #endif // PARTITIONPAGE_H

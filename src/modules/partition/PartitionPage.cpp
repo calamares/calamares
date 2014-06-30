@@ -22,6 +22,7 @@
 #include <DeviceModel.h>
 #include <PartitionCoreModule.h>
 #include <PartitionModel.h>
+#include <PMUtils.h>
 #include <ui_PartitionPage.h>
 
 // Qt
@@ -35,6 +36,7 @@ PartitionPage::PartitionPage( QWidget* parent )
 {
     m_ui->setupUi( this );
     m_ui->deviceListView->setModel( m_core->deviceModel() );
+    updateButtons();
 
     connect( m_ui->deviceListView->selectionModel(), &QItemSelectionModel::currentChanged,
              [ this ]( const QModelIndex& index, const QModelIndex& oldIndex )
@@ -42,9 +44,37 @@ PartitionPage::PartitionPage( QWidget* parent )
         Device* device = m_core->deviceModel()->deviceForIndex( index );
         PartitionModel* model = m_core->partitionModelForDevice( device );
         m_ui->partitionListView->setModel( model );
+        updateButtons();
+        // Establish connection here because selection model is destroyed when
+        // model changes
+        connect( m_ui->partitionListView->selectionModel(), &QItemSelectionModel::currentChanged,
+                 [ this ]( const QModelIndex& index, const QModelIndex& oldIndex )
+        {
+            updateButtons();
+        } );
     } );
 }
 
 PartitionPage::~PartitionPage()
 {
+}
+
+void PartitionPage::updateButtons()
+{
+    bool create = false, edit = false, del = false;
+
+    QModelIndex index = m_ui->partitionListView->currentIndex();
+    if ( index.isValid() )
+    {
+        const PartitionModel* model = static_cast< const PartitionModel* >( index.model() );
+        Q_ASSERT( model );
+        Partition* partition = model->partitionForIndex( index );
+        Q_ASSERT( partition );
+        bool isFree = PMUtils::isPartitionFreeSpace( partition );
+        create = isFree;
+        edit = del = !isFree;
+    }
+    m_ui->createButton->setEnabled( create );
+    m_ui->editButton->setEnabled( edit );
+    m_ui->deleteButton->setEnabled( del );
 }
