@@ -16,60 +16,39 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "PartitionViewPlugin.h"
+#ifndef PARTITIONVIEWSTEP_H
+#define PARTITIONVIEWSTEP_H
 
-#include "PartitionPage.h"
+#include <QObject>
 
+#include "viewpages/ViewStep.h"
+#include "PluginDllMacro.h"
 
-PartitionViewPlugin::PartitionViewPlugin( QObject* parent )
-    : Calamares::ViewStep( parent )
-    , m_widget( new PartitionPage() )
+class PartitionPage;
+
+class PLUGINDLLEXPORT PartitionViewStep : public Calamares::ViewStep
 {
-}
+    Q_OBJECT
+    Q_PLUGIN_METADATA( IID "calamares.ViewModule/1.0" )
+    Q_INTERFACES( Calamares::ViewStep )
 
+public:
+    explicit PartitionViewStep( QObject* parent = 0 );
 
-QString
-PartitionViewPlugin::prettyName()
-{
-    return tr( "Partitions" );
-}
+    QString prettyName() override;
 
+    QWidget* widget() override;
 
-QWidget*
-PartitionViewPlugin::widget()
-{
-    return m_widget;
-}
+    void next() override;
+    void back() override;
 
+    bool isNextEnabled() override;
 
-void
-PartitionViewPlugin::next()
-{
-    emit done();
-}
+    bool isAtBeginning() override;
+    bool isAtEnd() override;
 
+private:
+    PartitionPage* m_widget;
+};
 
-void
-PartitionViewPlugin::back()
-{}
-
-
-bool
-PartitionViewPlugin::isNextEnabled()
-{
-    return false;
-}
-
-
-bool
-PartitionViewPlugin::isAtBeginning()
-{
-    return true;
-}
-
-
-bool
-PartitionViewPlugin::isAtEnd()
-{
-    return true;
-}
+#endif // PARTITIONVIEWSTEP_H

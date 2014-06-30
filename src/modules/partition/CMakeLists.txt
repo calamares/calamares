@@ -11,7 +11,7 @@ calamares_add_plugin( partition
         DeviceModel.cpp
         PartitionModel.cpp
         PartitionPage.cpp
-        PartitionViewPlugin.cpp
+        PartitionViewStep.cpp
     UI
         PartitionPage.ui
     LINK_LIBRARIES
