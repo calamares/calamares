@@ -39,7 +39,8 @@ PartitionPage::PartitionPage( QWidget* parent )
     connect( m_ui->deviceListView->selectionModel(), &QItemSelectionModel::currentChanged,
              [ this ]( const QModelIndex& index, const QModelIndex& oldIndex )
     {
-        PartitionModel* model = m_core->deviceModel()->partitionModelForIndex( index );
+        Device* device = m_core->deviceModel()->deviceForIndex( index );
+        PartitionModel* model = m_core->partitionModelForDevice( device );
         m_ui->partitionListView->setModel( model );
     } );
 }

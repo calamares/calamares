@@ -19,12 +19,28 @@
 #include <PartitionCoreModule.h>
 
 #include <DeviceModel.h>
+#include <PartitionModel.h>
 
 // CalaPM
 #include <CalaPM.h>
 #include <backend/corebackend.h>
 #include <backend/corebackendmanager.h>
 
+
+//- DeviceInfo --------------------------------------------
+PartitionCoreModule::DeviceInfo::DeviceInfo( Device* dev )
+    : device( dev )
+    , partitionModel( new PartitionModel )
+{
+    partitionModel->init( dev );
+}
+
+PartitionCoreModule::DeviceInfo::~DeviceInfo()
+{
+    delete partitionModel;
+}
+
+//- PartitionCoreModule -----------------------------------
 PartitionCoreModule::PartitionCoreModule( QObject* parent )
     : QObject( parent )
     , m_deviceModel( new DeviceModel( this ) )
@@ -34,20 +50,37 @@ PartitionCoreModule::PartitionCoreModule( QObject* parent )
     {
         qFatal( "Failed to init CalaPM" );
     }
-    CoreBackend* backend = CoreBackendManager::self()->backend();
-    m_devices = backend->scanDevices();
 
-    m_deviceModel->init( m_devices );
+    CoreBackend* backend = CoreBackendManager::self()->backend();
+    QList< Device* > lst = backend->scanDevices();
+    m_deviceModel->init( lst );
+    for ( auto device : lst )
+    {
+        m_devices << new DeviceInfo( device );
+    }
+
 }
 
-QList< Device* >
-PartitionCoreModule::devices() const
+PartitionCoreModule::~PartitionCoreModule()
 {
-    return m_devices;
+    qDeleteAll( m_devices );
 }
 
 DeviceModel*
 PartitionCoreModule::deviceModel() const
 {
     return m_deviceModel;
+}
+
+PartitionModel*
+PartitionCoreModule::partitionModelForDevice( Device* device ) const
+{
+    for ( auto it : m_devices )
+    {
+        if ( it->device == device )
+        {
+            return it->partitionModel;
+        }
+    }
+    return nullptr;
 }

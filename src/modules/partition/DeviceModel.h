@@ -40,17 +40,10 @@ public:
     int rowCount( const QModelIndex& parent = QModelIndex() ) const Q_DECL_OVERRIDE;
     QVariant data( const QModelIndex& index, int role = Qt::DisplayRole ) const Q_DECL_OVERRIDE;
 
-    PartitionModel* partitionModelForIndex( const QModelIndex& index ) const;
+    Device* deviceForIndex( const QModelIndex& index ) const;
 
 private:
-    struct DeviceInfo
-    {
-        DeviceInfo( Device* dev );
-        ~DeviceInfo();
-        Device* device;
-        PartitionModel* partitionModel;
-    };
-    QList< DeviceInfo* > m_devices;
+    QList< Device* > m_devices;
 };
 
 #endif /* DEVICEMODEL_H */

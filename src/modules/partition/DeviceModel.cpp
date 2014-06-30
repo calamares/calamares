@@ -21,18 +21,6 @@
 // CalaPM
 #include <core/device.h>
 
-DeviceModel::DeviceInfo::DeviceInfo( Device* dev )
-    : device( dev )
-    , partitionModel( new PartitionModel )
-{
-    partitionModel->init( dev );
-}
-
-DeviceModel::DeviceInfo::~DeviceInfo()
-{
-    delete partitionModel;
-}
-
 DeviceModel::DeviceModel( QObject* parent )
     : QAbstractListModel( parent )
 {
@@ -46,11 +34,7 @@ void
 DeviceModel::init( const QList< Device* >& devices )
 {
     beginResetModel();
-    m_devices.clear();
-    for ( auto device : devices )
-    {
-        m_devices << new DeviceInfo( device );
-    }
+    m_devices = devices;
     endResetModel();
 }
 
@@ -69,7 +53,7 @@ DeviceModel::data( const QModelIndex& index, int role ) const
         return QVariant();
     }
 
-    Device* device = m_devices.at( row )->device;
+    Device* device = m_devices.at( row );
 
     switch ( role )
     {
@@ -87,13 +71,13 @@ DeviceModel::data( const QModelIndex& index, int role ) const
     }
 }
 
-PartitionModel*
-DeviceModel::partitionModelForIndex( const QModelIndex& index ) const
+Device*
+DeviceModel::deviceForIndex( const QModelIndex& index ) const
 {
     int row = index.row();
     if ( row < 0 || row >= m_devices.count() )
     {
         return nullptr;
     }
-    return m_devices.at( row )->partitionModel;
+    return m_devices.at( row );
 }

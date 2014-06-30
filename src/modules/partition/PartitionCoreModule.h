@@ -24,6 +24,7 @@
 
 class Device;
 class DeviceModel;
+class PartitionModel;
 
 /**
  * Owns the Qt models and the PM devices
@@ -32,13 +33,21 @@ class PartitionCoreModule : public QObject
 {
 public:
     PartitionCoreModule( QObject* parent = nullptr );
-
-    QList< Device* > devices() const;
+    ~PartitionCoreModule();
 
     DeviceModel* deviceModel() const;
 
+    PartitionModel* partitionModelForDevice( Device* device ) const;
+
 private:
-    QList< Device* > m_devices;
+    struct DeviceInfo
+    {
+        DeviceInfo( Device* dev );
+        ~DeviceInfo();
+        Device* device;
+        PartitionModel* partitionModel;
+    };
+    QList< DeviceInfo* > m_devices;
     DeviceModel* m_deviceModel;
 
     void listDevices();
