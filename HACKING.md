@@ -97,6 +97,8 @@ The use of `nullptr` is preferred over the use of `0` or `NULL`.
 For Qt containers it is better to use Qt's own `foreach`. For all other containers, the
 range-based `for` syntax introduced with C++11 is preferred ([see this blog post][1]).
 
+When reimplementing a virtual method, always add the `override` keyword.
+
 Try to keep your code const correct. Declare methods const if they don't mutate the 
 object, and use const variables. It improves safety, and also makes it easier to 
 understand the code.
