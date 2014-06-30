@@ -17,6 +17,8 @@
  */
 #include <PartitionModel.h>
 
+#include <PMUtils.h>
+
 // CalaPM
 #include <core/device.h>
 #include <core/partition.h>
@@ -61,7 +63,7 @@ PartitionModel::data( const QModelIndex& index, int role ) const
     switch ( role )
     {
     case Qt::DisplayRole:
-        if ( partition->partitionPath().isEmpty() )
+        if ( PMUtils::isPartitionFreeSpace( partition ) )
         {
             return tr( "Free Space" );
         }

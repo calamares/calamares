@@ -12,6 +12,7 @@ calamares_add_plugin( partition
         PartitionModel.cpp
         PartitionPage.cpp
         PartitionViewStep.cpp
+        PMUtils.cpp
     UI
         PartitionPage.ui
     LINK_LIBRARIES
@@ -27,6 +28,7 @@ set( partview_SRCS
     PartitionCoreModule.cpp
     PartitionModel.cpp
     PartitionPage.cpp
+    PMUtils.cpp
     ${calamares_SOURCE_DIR}/viewpages/AbstractPage.cpp
     main.cpp
 )
