@@ -120,7 +120,7 @@ connect( m_moduleManager, &Calamares::ModuleManager::modulesLoaded, [this]
 
 Debugging
 ---------
-Use `cDebug()` and `cLog` from `utils/Logger.h`.
+Use `cDebug()` and `cLog()` from `utils/Logger.h`.
 
 
 [1]: http://blog.qt.digia.com/blog/2011/05/26/cpp0x-in-qt/
