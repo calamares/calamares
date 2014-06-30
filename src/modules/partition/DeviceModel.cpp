@@ -30,7 +30,6 @@ DeviceModel::DeviceInfo::DeviceInfo( Device* dev )
 
 DeviceModel::DeviceInfo::~DeviceInfo()
 {
-    delete device;
     delete partitionModel;
 }
 
@@ -41,7 +40,6 @@ DeviceModel::DeviceModel( QObject* parent )
 
 DeviceModel::~DeviceModel()
 {
-    qDeleteAll( m_devices );
 }
 
 void

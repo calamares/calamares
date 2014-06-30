@@ -32,8 +32,8 @@ public:
     ~DeviceModel();
 
     /**
-     * Init the model with the list of devices.
-     * Takes ownership of the devices.
+     * Init the model with the list of devices. Does *not* take ownership of the
+     * devices.
      */
     void init( const QList< Device* >& devices );
 

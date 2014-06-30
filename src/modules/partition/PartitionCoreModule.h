@@ -16,33 +16,28 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef PARTITIONPAGE_H
-#define PARTITIONPAGE_H
+#ifndef PARTITIONCOREMODULE_H
+#define PARTITIONCOREMODULE_H
 
-#include "viewpages/AbstractPage.h"
+#include <QList>
+#include <QObject>
 
-#include <QScopedPointer>
+class Device;
 
-class PartitionCoreModule;
-class Ui_PartitionPage;
-
-class DeviceModel;
-
-class PartitionPage : public Calamares::AbstractPage
+/**
+ * Owns the Qt models and the PM devices
+ */
+class PartitionCoreModule : public QObject
 {
-    Q_OBJECT
 public:
-    explicit PartitionPage( QWidget* parent = 0 );
-    ~PartitionPage();
+    PartitionCoreModule( QObject* parent = nullptr );
 
-Q_SIGNALS:
-
-public Q_SLOTS:
+    QList< Device* > devices() const;
 
 private:
-    QScopedPointer< Ui_PartitionPage > m_ui;
-    PartitionCoreModule* m_core;
-    DeviceModel* m_deviceModel;
+    QList< Device* > m_devices;
+
+    void listDevices();
 };
 
-#endif // PARTITIONPAGE_H
+#endif /* PARTITIONCOREMODULE_H */

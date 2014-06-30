@@ -24,6 +24,7 @@ calamares_add_plugin( partition
 # Temporary, until views are integrated
 set( partview_SRCS
     DeviceModel.cpp
+    PartitionCoreModule.cpp
     PartitionModel.cpp
     PartitionPage.cpp
     ${calamares_SOURCE_DIR}/viewpages/AbstractPage.cpp

@@ -20,13 +20,9 @@
 
 // Local
 #include <DeviceModel.h>
+#include <PartitionCoreModule.h>
 #include <PartitionModel.h>
 #include <ui_PartitionPage.h>
-
-// CalaPM
-#include <CalaPM.h>
-#include <backend/corebackend.h>
-#include <backend/corebackendmanager.h>
 
 // Qt
 #include <QDebug>
@@ -35,18 +31,13 @@
 PartitionPage::PartitionPage( QWidget* parent )
     : Calamares::AbstractPage( parent )
     , m_ui( new Ui_PartitionPage )
+    , m_core( new PartitionCoreModule( this ) )
     , m_deviceModel( new DeviceModel( this ) )
 {
-    // FIXME: Should be done at startup
-    if ( !CalaPM::init() )
-    {
-        qFatal( "Failed to init CalaPM" );
-    }
-    m_backend = CoreBackendManager::self()->backend();
     m_ui->setupUi( this );
     m_ui->deviceListView->setModel( m_deviceModel );
 
-    m_deviceModel->init( m_backend->scanDevices() );
+    m_deviceModel->init( m_core->devices() );
 
     connect( m_ui->deviceListView->selectionModel(), &QItemSelectionModel::currentChanged,
              [ this ]( const QModelIndex& index, const QModelIndex& oldIndex )

@@ -16,33 +16,27 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef PARTITIONPAGE_H
-#define PARTITIONPAGE_H
+#include <PartitionCoreModule.h>
 
-#include "viewpages/AbstractPage.h"
+// CalaPM
+#include <CalaPM.h>
+#include <backend/corebackend.h>
+#include <backend/corebackendmanager.h>
 
-#include <QScopedPointer>
-
-class PartitionCoreModule;
-class Ui_PartitionPage;
-
-class DeviceModel;
-
-class PartitionPage : public Calamares::AbstractPage
+PartitionCoreModule::PartitionCoreModule( QObject* parent )
+    : QObject( parent )
 {
-    Q_OBJECT
-public:
-    explicit PartitionPage( QWidget* parent = 0 );
-    ~PartitionPage();
+    // FIXME: Should be done at startup
+    if ( !CalaPM::init() )
+    {
+        qFatal( "Failed to init CalaPM" );
+    }
+    CoreBackend* backend = CoreBackendManager::self()->backend();
+    m_devices = backend->scanDevices();
+}
 
-Q_SIGNALS:
-
-public Q_SLOTS:
-
-private:
-    QScopedPointer< Ui_PartitionPage > m_ui;
-    PartitionCoreModule* m_core;
-    DeviceModel* m_deviceModel;
-};
-
-#endif // PARTITIONPAGE_H
+QList< Device* >
+PartitionCoreModule::devices() const
+{
+    return m_devices;
+}
