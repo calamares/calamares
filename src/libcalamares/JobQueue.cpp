@@ -33,4 +33,9 @@ JobQueue::JobQueue( QObject* parent )
 {
 }
 
+void
+JobQueue::enqueue( const Calamares::job_ptr& job )
+{
+}
+
 } // namespace Calamares
