@@ -23,6 +23,7 @@
 #include <QObject>
 
 class Device;
+class DeviceModel;
 
 /**
  * Owns the Qt models and the PM devices
@@ -34,8 +35,11 @@ public:
 
     QList< Device* > devices() const;
 
+    DeviceModel* deviceModel() const;
+
 private:
     QList< Device* > m_devices;
+    DeviceModel* m_deviceModel;
 
     void listDevices();
 };

@@ -32,17 +32,14 @@ PartitionPage::PartitionPage( QWidget* parent )
     : Calamares::AbstractPage( parent )
     , m_ui( new Ui_PartitionPage )
     , m_core( new PartitionCoreModule( this ) )
-    , m_deviceModel( new DeviceModel( this ) )
 {
     m_ui->setupUi( this );
-    m_ui->deviceListView->setModel( m_deviceModel );
-
-    m_deviceModel->init( m_core->devices() );
+    m_ui->deviceListView->setModel( m_core->deviceModel() );
 
     connect( m_ui->deviceListView->selectionModel(), &QItemSelectionModel::currentChanged,
              [ this ]( const QModelIndex& index, const QModelIndex& oldIndex )
     {
-        PartitionModel* model = m_deviceModel->partitionModelForIndex( index );
+        PartitionModel* model = m_core->deviceModel()->partitionModelForIndex( index );
         m_ui->partitionListView->setModel( model );
     } );
 }

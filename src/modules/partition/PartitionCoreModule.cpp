@@ -18,6 +18,8 @@
 
 #include <PartitionCoreModule.h>
 
+#include <DeviceModel.h>
+
 // CalaPM
 #include <CalaPM.h>
 #include <backend/corebackend.h>
@@ -25,6 +27,7 @@
 
 PartitionCoreModule::PartitionCoreModule( QObject* parent )
     : QObject( parent )
+    , m_deviceModel( new DeviceModel( this ) )
 {
     // FIXME: Should be done at startup
     if ( !CalaPM::init() )
@@ -33,10 +36,18 @@ PartitionCoreModule::PartitionCoreModule( QObject* parent )
     }
     CoreBackend* backend = CoreBackendManager::self()->backend();
     m_devices = backend->scanDevices();
+
+    m_deviceModel->init( m_devices );
 }
 
 QList< Device* >
 PartitionCoreModule::devices() const
 {
     return m_devices;
+}
+
+DeviceModel*
+PartitionCoreModule::deviceModel() const
+{
+    return m_deviceModel;
 }
