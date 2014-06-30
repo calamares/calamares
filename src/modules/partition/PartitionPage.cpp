@@ -19,16 +19,12 @@
 #include "PartitionPage.h"
 
 // Local
+#include <CreatePartitionDialog.h>
 #include <DeviceModel.h>
 #include <PartitionCoreModule.h>
 #include <PartitionModel.h>
 #include <PMUtils.h>
 #include <ui_PartitionPage.h>
-
-// CalaPM
-#include <core/partition.h>
-#include <core/partitiontable.h>
-#include <fs/ext4.h>
 
 // Qt
 #include <QDebug>
@@ -97,12 +93,10 @@ void PartitionPage::onCreateClicked()
     Partition* partition = model->partitionForIndex( index );
     Q_ASSERT( partition );
 
-    // FIXME: Ask user partition details here
-    qint64 start = partition->firstSector();
-    qint64 end = partition->lastSector();
-    FileSystem* fs = new FS::ext4( start, end, 0, "Calamares" );
-    PartitionTable::Flags flags = PartitionTable::FlagNone;
-    QString mountPoint;
-
-    m_core->createPartition( partition, fs, mountPoint, flags );
+    CreatePartitionDialog dlg( model->device(), partition, this );
+    if ( !dlg.exec() )
+    {
+        return;
+    }
+    m_core->createPartition( dlg.createJob() );
 }

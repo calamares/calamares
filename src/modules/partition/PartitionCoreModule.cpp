@@ -18,16 +18,16 @@
 
 #include <PartitionCoreModule.h>
 
+#include <CreatePartitionJob.h>
 #include <DeviceModel.h>
+#include <JobQueue.h>
 #include <PartitionModel.h>
+#include <Typedefs.h>
 
 // CalaPM
 #include <CalaPM.h>
 #include <backend/corebackend.h>
 #include <backend/corebackendmanager.h>
-#include <core/device.h>
-#include <core/partition.h>
-#include <fs/filesystem.h>
 
 
 //- DeviceInfo --------------------------------------------
@@ -89,40 +89,21 @@ PartitionCoreModule::partitionModelForDevice( Device* device ) const
 }
 
 void
-PartitionCoreModule::createPartition( Partition* freeSpacePartition, FileSystem* fs, const QString& mountPoint, PartitionTable::Flags flags )
+PartitionCoreModule::createPartition( CreatePartitionJob* job )
 {
-    DeviceInfo* info = deviceInfoForPath( freeSpacePartition->devicePath() );
+    DeviceInfo* info = deviceInfoForDevice( job->device() );
     Q_ASSERT( info );
-
-    PartitionNode* parent = freeSpacePartition->parent();
-
-    // Create a Partition object
-    Partition* partition = new Partition(
-        parent,
-        *info->device,
-        PartitionRole( PartitionRole::Primary ), // FIXME: Support extended partitions
-        fs, fs->firstSector(), fs->lastSector(),
-        QString() /* path */
-    );
-
-    // Add Partition object
-    info->device->partitionTable()->removeUnallocated();
-    parent->insert( partition );
-    info->device->partitionTable()->updateUnallocated( *info->device );
-
-    // Update model
+    job->createPreview();
     info->partitionModel->reload();
-
-    // Create a CreatePartitionJob
-    // Enqueue job
+    Calamares::JobQueue::instance()->enqueue( Calamares::job_ptr( job ) );
 }
 
 PartitionCoreModule::DeviceInfo*
-PartitionCoreModule::deviceInfoForPath( const QString& path ) const
+PartitionCoreModule::deviceInfoForDevice( Device* device ) const
 {
     for ( auto info : m_devices )
     {
-        if ( info->device->deviceNode() == path )
+        if ( info->device == device )
         {
             return info;
         }

@@ -15,41 +15,30 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef PARTITIONMODEL_H
-#define PARTITIONMODEL_H
 
-#include <QAbstractListModel>
+#ifndef CREATEPARTITIONDIALOG_H
+#define CREATEPARTITIONDIALOG_H
 
+#include <QDialog>
+#include <QScopedPointer>
+
+class CreatePartitionJob;
 class Device;
 class Partition;
-class PartitionNode;
+class Ui_CreatePartitionDialog;
 
-class PartitionModel : public QAbstractListModel
+class CreatePartitionDialog : public QDialog
 {
 public:
-    PartitionModel( QObject* parent = 0 );
-    void init( Device* device );
+    CreatePartitionDialog( Device* device, Partition* freePartition, QWidget* parent = nullptr );
+    ~CreatePartitionDialog();
 
-    int rowCount( const QModelIndex& parent = QModelIndex() ) const Q_DECL_OVERRIDE;
-    QVariant data( const QModelIndex& index, int role = Qt::DisplayRole ) const Q_DECL_OVERRIDE;
-
-    Partition* partitionForIndex( const QModelIndex& index ) const;
-
-    Device* device() const
-    {
-        return m_device;
-    }
-
-    /**
-     * Reload model from m_device new content
-     */
-    void reload();
+    CreatePartitionJob* createJob();
 
 private:
+    QScopedPointer< Ui_CreatePartitionDialog > m_ui;
     Device* m_device;
-    QList< Partition* > m_partitionList;
-
-    void fillPartitionList( PartitionNode* parent );
+    Partition* m_freePartition;
 };
 
-#endif /* PARTITIONMODEL_H */
+#endif /* CREATEPARTITIONDIALOG_H */

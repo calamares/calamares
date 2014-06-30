@@ -25,6 +25,7 @@
 // CalaPM
 #include <core/partitiontable.h>
 
+class CreatePartitionJob;
 class Device;
 class DeviceModel;
 class FileSystem;
@@ -44,7 +45,7 @@ public:
 
     PartitionModel* partitionModelForDevice( Device* device ) const;
 
-    void createPartition( Partition* freeSpacePartition, FileSystem* fs, const QString& mountPoint, PartitionTable::Flags flags );
+    void createPartition( CreatePartitionJob* job );
 
 private:
     struct DeviceInfo
@@ -59,7 +60,7 @@ private:
 
     void listDevices();
 
-    DeviceInfo* deviceInfoForPath( const QString& path ) const;
+    DeviceInfo* deviceInfoForDevice( Device* device ) const;
 };
 
 #endif /* PARTITIONCOREMODULE_H */

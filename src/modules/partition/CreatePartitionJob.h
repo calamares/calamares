@@ -15,41 +15,33 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef PARTITIONMODEL_H
-#define PARTITIONMODEL_H
 
-#include <QAbstractListModel>
+#ifndef CREATEPARTITIONJOB_H
+#define CREATEPARTITIONJOB_H
+
+#include <Job.h>
 
 class Device;
 class Partition;
-class PartitionNode;
+class FileSystem;
 
-class PartitionModel : public QAbstractListModel
+class CreatePartitionJob : public Calamares::Job
 {
 public:
-    PartitionModel( QObject* parent = 0 );
-    void init( Device* device );
+    CreatePartitionJob( Device* device, Partition* freePartition, FileSystem* fs );
+    QString prettyName() override;
+    void exec() override;
 
-    int rowCount( const QModelIndex& parent = QModelIndex() ) const Q_DECL_OVERRIDE;
-    QVariant data( const QModelIndex& index, int role = Qt::DisplayRole ) const Q_DECL_OVERRIDE;
-
-    Partition* partitionForIndex( const QModelIndex& index ) const;
-
+    void createPreview();
     Device* device() const
     {
         return m_device;
     }
 
-    /**
-     * Reload model from m_device new content
-     */
-    void reload();
-
 private:
     Device* m_device;
-    QList< Partition* > m_partitionList;
-
-    void fillPartitionList( PartitionNode* parent );
+    Partition* m_freePartition;
+    FileSystem* m_fs;
 };
 
-#endif /* PARTITIONMODEL_H */
+#endif /* CREATEPARTITIONJOB_H */

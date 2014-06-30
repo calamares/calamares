@@ -8,12 +8,15 @@ calamares_add_plugin( partition
     EXPORT_MACRO PLUGINDLLEXPORT_PRO
     CONFIG_FILE module.conf
     SOURCES
+        CreatePartitionDialog.cpp
+        CreatePartitionJob.cpp
         DeviceModel.cpp
         PartitionModel.cpp
         PartitionPage.cpp
         PartitionViewStep.cpp
         PMUtils.cpp
     UI
+        CreatePartitionDialog.ui
         PartitionPage.ui
     LINK_LIBRARIES
         calapm
@@ -24,6 +27,8 @@ calamares_add_plugin( partition
 
 # Temporary, until views are integrated
 set( partview_SRCS
+    CreatePartitionDialog.cpp
+    CreatePartitionJob.cpp
     DeviceModel.cpp
     PartitionCoreModule.cpp
     PartitionModel.cpp
@@ -32,7 +37,10 @@ set( partview_SRCS
     ${calamares_SOURCE_DIR}/viewpages/AbstractPage.cpp
     main.cpp
 )
-qt5_wrap_ui( partview_SRCS PartitionPage.ui )
+qt5_wrap_ui( partview_SRCS
+    CreatePartitionDialog.ui
+    PartitionPage.ui
+)
 
 include_directories( ${CMAKE_CURRENT_BINARY_DIR} )
 
