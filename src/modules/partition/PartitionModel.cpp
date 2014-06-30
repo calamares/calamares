@@ -82,3 +82,14 @@ PartitionModel::fillPartitionList( PartitionNode* parent )
         fillPartitionList( partition );
     }
 }
+
+Partition*
+PartitionModel::partitionForIndex( const QModelIndex& index ) const
+{
+    int row = index.row();
+    if ( row < 0 || row >= m_partitionList.count() )
+    {
+        return nullptr;
+    }
+    return m_partitionList.at( row );
+}
