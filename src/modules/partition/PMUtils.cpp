@@ -20,14 +20,14 @@
 
 // CalaPM
 #include <core/partition.h>
+#include <fs/filesystem.h>
 
 namespace PMUtils
 {
 
 bool isPartitionFreeSpace( Partition* partition )
 {
-    // FIXME: Check FS type instead
-    return partition->partitionPath().isEmpty();
+    return partition->fileSystem().type() == FileSystem::Unknown;
 }
 
 } // namespace
