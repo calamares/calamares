@@ -33,10 +33,16 @@ PartitionModel::PartitionModel( QObject* parent )
 void
 PartitionModel::init( Device* device )
 {
-    beginResetModel();
     m_device = device;
+    reload();
+}
+
+void
+PartitionModel::reload()
+{
+    beginResetModel();
     m_partitionList.clear();
-    if ( device )
+    if ( m_device )
     {
         fillPartitionList( m_device->partitionTable() );
     }

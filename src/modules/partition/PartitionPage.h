@@ -43,6 +43,7 @@ private:
     QScopedPointer< Ui_PartitionPage > m_ui;
     PartitionCoreModule* m_core;
     void updateButtons();
+    void onCreateClicked();
 };
 
 #endif // PARTITIONPAGE_H

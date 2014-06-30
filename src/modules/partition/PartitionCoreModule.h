@@ -22,8 +22,13 @@
 #include <QList>
 #include <QObject>
 
+// CalaPM
+#include <core/partitiontable.h>
+
 class Device;
 class DeviceModel;
+class FileSystem;
+class Partition;
 class PartitionModel;
 
 /**
@@ -39,6 +44,8 @@ public:
 
     PartitionModel* partitionModelForDevice( Device* device ) const;
 
+    void createPartition( Partition* freeSpacePartition, FileSystem* fs, const QString& mountPoint, PartitionTable::Flags flags );
+
 private:
     struct DeviceInfo
     {
@@ -51,6 +58,8 @@ private:
     DeviceModel* m_deviceModel;
 
     void listDevices();
+
+    DeviceInfo* deviceInfoForPath( const QString& path ) const;
 };
 
 #endif /* PARTITIONCOREMODULE_H */

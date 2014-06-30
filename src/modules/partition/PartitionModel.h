@@ -35,6 +35,11 @@ public:
 
     Partition* partitionForIndex( const QModelIndex& index ) const;
 
+    /**
+     * Reload model from m_device new content
+     */
+    void reload();
+
 private:
     Device* m_device;
     QList< Partition* > m_partitionList;

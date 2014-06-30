@@ -25,6 +25,11 @@
 #include <PMUtils.h>
 #include <ui_PartitionPage.h>
 
+// CalaPM
+#include <core/partition.h>
+#include <core/partitiontable.h>
+#include <fs/ext4.h>
+
 // Qt
 #include <QDebug>
 #include <QItemSelectionModel>
@@ -52,7 +57,10 @@ PartitionPage::PartitionPage( QWidget* parent )
         {
             updateButtons();
         } );
+        connect( model, &QAbstractItemModel::modelReset, this, &PartitionPage::updateButtons );
     } );
+
+    connect( m_ui->createButton, &QAbstractButton::clicked, this, &PartitionPage::onCreateClicked );
 }
 
 PartitionPage::~PartitionPage()
@@ -77,4 +85,24 @@ void PartitionPage::updateButtons()
     m_ui->createButton->setEnabled( create );
     m_ui->editButton->setEnabled( edit );
     m_ui->deleteButton->setEnabled( del );
+}
+
+void PartitionPage::onCreateClicked()
+{
+    QModelIndex index = m_ui->partitionListView->currentIndex();
+    Q_ASSERT( index.isValid() );
+
+    const PartitionModel* model = static_cast< const PartitionModel* >( index.model() );
+    Q_ASSERT( model );
+    Partition* partition = model->partitionForIndex( index );
+    Q_ASSERT( partition );
+
+    // FIXME: Ask user partition details here
+    qint64 start = partition->firstSector();
+    qint64 end = partition->lastSector();
+    FileSystem* fs = new FS::ext4( start, end, 0, "Calamares" );
+    PartitionTable::Flags flags = PartitionTable::FlagNone;
+    QString mountPoint;
+
+    m_core->createPartition( partition, fs, mountPoint, flags );
 }
