@@ -21,6 +21,8 @@
 
 #include <QTreeView>
 
+class ProgressTreeDelegate;
+
 class ProgressTreeView : public QTreeView
 {
     Q_OBJECT
@@ -34,6 +36,7 @@ public:
 
 private:
     static ProgressTreeView* s_instance;
+    ProgressTreeDelegate* m_delegate;
 };
 
 #endif // PROGRESSTREEVIEW_H

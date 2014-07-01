@@ -49,7 +49,6 @@ public:
 signals:
     void nextStatusChanged( bool status );
     void done();
-
 };
 
 }

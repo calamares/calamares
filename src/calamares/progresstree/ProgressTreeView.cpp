@@ -18,6 +18,9 @@
 
 #include "ProgressTreeView.h"
 
+#include "ProgressTreeDelegate.h"
+#include "ViewManager.h"
+
 ProgressTreeView* ProgressTreeView::s_instance = nullptr;
 
 ProgressTreeView*
@@ -43,7 +46,15 @@ ProgressTreeView::ProgressTreeView( QWidget* parent )
     setAcceptDrops( false );
     setUniformRowHeights( false );
 
+    setIndentation( 0 );
     setSortingEnabled( false );
+
+    m_delegate = new ProgressTreeDelegate( this );
+    setItemDelegate( m_delegate );
+
+    QPalette plt = palette();
+    plt.setColor( QPalette::Base, QColor( "#292F34" ) );
+    setPalette( plt );
 }
 
 
@@ -56,6 +67,17 @@ ProgressTreeView::~ProgressTreeView()
 void
 ProgressTreeView::setModel( QAbstractItemModel* model )
 {
+    if ( ProgressTreeView::model() )
+        return;
+
     QTreeView::setModel( model );
     expandAll();
+
+    connect( Calamares::ViewManager::instance(),
+             &Calamares::ViewManager::currentStepChanged,
+             this, [this]()
+    {
+        viewport()->update();
+    },
+    Qt::UniqueConnection );
 }

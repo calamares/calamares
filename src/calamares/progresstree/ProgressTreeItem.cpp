@@ -18,6 +18,8 @@
 
 #include "ProgressTreeItem.h"
 
+#include "ProgressTreeModel.h"
+
 
 ProgressTreeItem::ProgressTreeItem( ProgressTreeItem* parent )
 {
@@ -82,8 +84,11 @@ ProgressTreeRoot::ProgressTreeRoot()
 
 
 QVariant
-ProgressTreeRoot::data( int column ) const
+ProgressTreeRoot::data( int role ) const
 {
-    Q_UNUSED( column );
+    if ( role == ProgressTreeModel::ProgressTreeItemTypeRole )
+        return ProgressTreeModel::Invalid;
+    if ( role == ProgressTreeModel::ProgressTreeItemRole )
+        return this;
     return QVariant();
 }

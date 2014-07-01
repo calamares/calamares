@@ -33,7 +33,7 @@ public:
 
     void appendChild( ProgressTreeItem* item ) override;
 
-    QVariant data( int column ) const override;
+    QVariant data( int role ) const override;
 
 private:
     const Calamares::ViewStep* m_step;

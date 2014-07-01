@@ -34,7 +34,7 @@ public:
     virtual ProgressTreeItem* child( int row );
     virtual int childCount() const;
     virtual int columnCount() const;
-    virtual QVariant data( int column ) const = 0;
+    virtual QVariant data( int role ) const = 0;
     virtual int row() const;
     virtual ProgressTreeItem* parent();
 
@@ -48,7 +48,7 @@ class ProgressTreeRoot : public ProgressTreeItem
 public:
     explicit ProgressTreeRoot();
 
-    virtual QVariant data( int column ) const;
+    virtual QVariant data( int role ) const;
 };
 
 #endif // PROGRESSTREEITEM_H

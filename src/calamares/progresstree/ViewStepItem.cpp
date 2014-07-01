@@ -18,6 +18,8 @@
 
 #include "ViewStepItem.h"
 
+#include "ProgressTreeModel.h"
+#include "ViewManager.h"
 #include "viewpages/ViewStep.h"
 
 
@@ -36,8 +38,15 @@ ViewStepItem::appendChild( ProgressTreeItem* item )
 
 
 QVariant
-ViewStepItem::data( int column ) const
+ViewStepItem::data( int role ) const
 {
-    Q_UNUSED( column );
-    return m_step->prettyName();
+    if ( role == ProgressTreeModel::ProgressTreeItemTypeRole )
+        return ProgressTreeModel::ViewStep;
+    if ( role == ProgressTreeModel::ProgressTreeItemRole )
+        return this;
+    if ( role == Qt::DisplayRole )
+        return m_step->prettyName();
+    if ( role == ProgressTreeModel::ProgressTreeItemCurrentRole )
+        return Calamares::ViewManager::instance()->currentStep() == m_step;
+    return QVariant();
 }

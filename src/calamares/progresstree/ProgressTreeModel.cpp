@@ -88,12 +88,9 @@ ProgressTreeModel::data( const QModelIndex& index, int role ) const
     if ( !index.isValid() )
         return QVariant();
 
-    if ( role != Qt::DisplayRole )
-        return QVariant();
-
     ProgressTreeItem *item = static_cast< ProgressTreeItem* >( index.internalPointer() );
 
-    return item->data( index.column() );
+    return item->data( role );
 }
 
 
@@ -146,4 +143,50 @@ ProgressTreeModel::setupModelData()
 
     m_rootItem->appendChild( new CategoryItem( tr( "Install" ), m_rootItem ) );
     m_rootItem->appendChild( new CategoryItem( tr( "Finish" ), m_rootItem ) );
+}
+
+
+QModelIndex
+ProgressTreeModel::indexFromItem( ProgressTreeItem* item )
+{
+    if ( !item || !item->parent() )
+        return QModelIndex();
+
+
+    // Reconstructs a QModelIndex from a ProgressTreeItem that is somewhere in the tree.
+    // Traverses the item to the root node, then rebuilds the qmodeindices from there
+    // back down; each int is the row of that item in the parent.
+    /**
+     * In this diagram, if the \param item is G, childIndexList will contain [0, 2, 0]
+     *
+     *    A
+     *      D
+     *      E
+     *      F
+     *        G
+     *        H
+     *    B
+     *    C
+     *
+     **/
+    QList< int > childIndexList;
+    ProgressTreeItem* curItem = item;
+    while ( curItem != m_rootItem ) {
+        int row  = curItem->row(); //relative to its parent
+        if ( row < 0 ) // something went wrong, bail
+            return QModelIndex();
+
+        childIndexList << row;
+
+        curItem = curItem->parent();
+    }
+
+    // Now we rebuild the QModelIndex we need
+    QModelIndex idx;
+    for ( int i = childIndexList.size() - 1; i >= 0 ; i-- )
+    {
+        idx = index( childIndexList[ i ], 0, idx );
+    }
+
+    return idx;
 }

@@ -18,6 +18,7 @@
 
 #include "CategoryItem.h"
 
+#include "ProgressTreeModel.h"
 
 CategoryItem::CategoryItem( const QString& text, ProgressTreeItem* parent )
     : ProgressTreeItem( parent )
@@ -26,8 +27,13 @@ CategoryItem::CategoryItem( const QString& text, ProgressTreeItem* parent )
 
 
 QVariant
-CategoryItem::data( int column ) const
+CategoryItem::data( int role ) const
 {
-    Q_UNUSED( column );
-    return m_text;
+    if ( role == ProgressTreeModel::ProgressTreeItemTypeRole )
+        return ProgressTreeModel::Category;
+    if ( role == ProgressTreeModel::ProgressTreeItemRole )
+        return this;
+    if ( role == Qt::DisplayRole )
+        return m_text;
+    return QVariant();
 }

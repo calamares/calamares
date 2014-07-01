@@ -22,14 +22,30 @@
 #include <QAbstractItemModel>
 
 class ProgressTreeRoot;
+class ProgressTreeItem;
 
 class ProgressTreeModel : public QAbstractItemModel
 {
     Q_OBJECT
 public:
+    enum RowType
+    {
+        Invalid = -1,
+        Category = 0,
+        ViewStep = 1
+    };
+
+    enum Role
+    {
+        ProgressTreeItemRole        = Qt::UserRole + 10,
+        ProgressTreeItemTypeRole    = Qt::UserRole + 11,
+        ProgressTreeItemCurrentRole = Qt::UserRole + 12
+    };
+
     explicit ProgressTreeModel( QObject* parent = nullptr );
     virtual ~ProgressTreeModel();
 
+    // Reimplemented from QAbstractItemModel
     Qt::ItemFlags flags( const QModelIndex& index ) const override;
     QModelIndex index( int row, int column, const QModelIndex &parent = QModelIndex() ) const override;
     QModelIndex parent( const QModelIndex& index ) const override;
@@ -40,6 +56,7 @@ public:
 
 private:
     void setupModelData();
+    QModelIndex indexFromItem( ProgressTreeItem* item );
 
     ProgressTreeRoot* m_rootItem;
 };

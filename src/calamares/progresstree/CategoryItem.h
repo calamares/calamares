@@ -27,7 +27,7 @@ class CategoryItem : public ProgressTreeItem
 public:
     explicit CategoryItem( const QString& text, ProgressTreeItem* parent = nullptr );
 
-    virtual QVariant data( int column ) const override;
+    virtual QVariant data( int role ) const override;
 
 private:
     QString m_text;

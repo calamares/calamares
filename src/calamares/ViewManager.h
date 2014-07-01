@@ -44,11 +44,16 @@ public:
 
     void addViewStep( ViewStep* step );
 
-    QList< ViewStep* > steps() const { return m_steps; }
+    QList< ViewStep* > steps() const;
+    ViewStep* currentStep() const;
+    int currentStepIndex() const;
 
 public slots:
     void next();
     void back();
+
+signals:
+    void currentStepChanged();
 
 private:
     static ViewManager* s_instance;

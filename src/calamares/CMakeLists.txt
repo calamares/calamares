@@ -19,6 +19,7 @@ set( calamaresSources
     modulesystem/ViewModule.cpp
 
     progresstree/CategoryItem.cpp
+    progresstree/ProgressTreeDelegate.cpp
     progresstree/ProgressTreeItem.cpp
     progresstree/ProgressTreeModel.cpp
     progresstree/ProgressTreeView.cpp

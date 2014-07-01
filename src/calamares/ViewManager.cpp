@@ -89,6 +89,29 @@ ViewManager::addViewStep( ViewStep* step )
 
     connect( step, &ViewStep::nextStatusChanged,
              m_next, &QPushButton::setEnabled );
+
+    emit currentStepChanged();
+}
+
+
+QList< ViewStep* >
+ViewManager::steps() const
+{
+    return m_steps;
+}
+
+
+ViewStep*
+ViewManager::currentStep() const
+{
+    return m_steps.value( m_currentStep );
+}
+
+
+int
+ViewManager::currentStepIndex() const
+{
+    return m_currentStep;
 }
 
 
@@ -100,6 +123,7 @@ ViewManager::next()
     {
         m_currentStep++;
         m_stack->setCurrentIndex( m_currentStep );
+        emit currentStepChanged();
     }
     else if ( !step->isAtEnd() )
     {
@@ -120,6 +144,7 @@ ViewManager::back()
     {
         m_currentStep--;
         m_stack->setCurrentIndex( m_currentStep );
+        emit currentStepChanged();
     }
     else if ( !step->isAtBeginning() )
     {
