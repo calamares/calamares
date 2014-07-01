@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
+ *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -16,39 +16,28 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef PARTITIONVIEWSTEP_H
-#define PARTITIONVIEWSTEP_H
-
-#include <QObject>
+#include "ViewStepItem.h"
 
 #include "viewpages/ViewStep.h"
-#include "PluginDllMacro.h"
 
-class PartitionPage;
 
-class PLUGINDLLEXPORT PartitionViewStep : public Calamares::ViewStep
+ViewStepItem::ViewStepItem( const Calamares::ViewStep* step, ProgressTreeItem* parent )
+    : ProgressTreeItem( parent )
 {
-    Q_OBJECT
-    Q_PLUGIN_METADATA( IID "calamares.ViewModule/1.0" )
-    Q_INTERFACES( Calamares::ViewStep )
+    m_step = step;
+}
 
-public:
-    explicit PartitionViewStep( QObject* parent = 0 );
 
-    QString prettyName() const override;
+void
+ViewStepItem::appendChild( ProgressTreeItem* item )
+{
+    Q_ASSERT( false );
+}
 
-    QWidget* widget() override;
 
-    void next() override;
-    void back() override;
-
-    bool isNextEnabled() const override;
-
-    bool isAtBeginning() const override;
-    bool isAtEnd() const override;
-
-private:
-    PartitionPage* m_widget;
-};
-
-#endif // PARTITIONVIEWSTEP_H
+QVariant
+ViewStepItem::data( int column ) const
+{
+    Q_UNUSED( column );
+    return m_step->prettyName();
+}

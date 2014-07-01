@@ -16,44 +16,38 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef VIEWSTEP_H
-#define VIEWSTEP_H
+#include "ProgressTreeView.h"
 
-#include <QObject>
+ProgressTreeView* ProgressTreeView::s_instance = nullptr;
 
-#include "../UiDllMacro.h"
-
-namespace Calamares
+ProgressTreeView*
+ProgressTreeView::instance()
 {
-
-class UIDLLEXPORT ViewStep : public QObject
-{
-    Q_OBJECT
-public:
-    explicit ViewStep( QObject *parent = nullptr );
-    virtual ~ViewStep();
-
-    virtual QString prettyName() const = 0;
-
-    //TODO: we might want to make this a QSharedPointer
-    virtual QWidget* widget() = 0;
-
-    virtual void next() = 0;
-    virtual void back() = 0;
-
-    virtual bool isNextEnabled() const = 0;
-
-    virtual bool isAtBeginning() const = 0;
-    virtual bool isAtEnd() const = 0;
-
-signals:
-    void nextStatusChanged( bool status );
-    void done();
-
-};
-
+    return s_instance;
 }
 
-Q_DECLARE_INTERFACE( Calamares::ViewStep, "calamares.ViewModule/1.0" )
+ProgressTreeView::ProgressTreeView( QWidget* parent )
+    : QTreeView( parent )
+{
+    s_instance = this; //FIXME: should assert when s_instance gets written and it wasn't nullptr
 
-#endif // VIEWSTEP_H
+    setFrameShape( QFrame::NoFrame );
+    setContentsMargins( 0, 0, 0, 0 );
+
+    setHeaderHidden( true );
+    setRootIsDecorated( true );
+    setExpandsOnDoubleClick( true );
+
+    setSelectionMode( QAbstractItemView::NoSelection );
+    setDragDropMode( QAbstractItemView::NoDragDrop );
+    setAcceptDrops( false );
+    setUniformRowHeights( false );
+
+    setSortingEnabled( false );
+}
+
+
+ProgressTreeView::~ProgressTreeView()
+{
+
+}

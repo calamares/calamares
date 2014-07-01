@@ -21,6 +21,8 @@
 #include "CalamaresWindow.h"
 #include "CalamaresVersion.h"
 #include "modulesystem/ModuleManager.h"
+#include "progresstree/ProgressTreeView.h"
+#include "progresstree/ProgressTreeModel.h"
 #include "Settings.h"
 #include "utils/CalamaresUtils.h"
 #include "utils/Logger.h"
@@ -132,6 +134,11 @@ CalamaresApplication::onPluginsReady()
     connect( m_moduleManager, &Calamares::ModuleManager::modulesLoaded, [this]
     {
         m_mainwindow->show();
+
+        //TODO: move somewhere
+        ProgressTreeModel* m = new ProgressTreeModel( this );
+        ProgressTreeView::instance()->setModel( m );
+        ProgressTreeView::instance()->expandAll();
     });
 }
 

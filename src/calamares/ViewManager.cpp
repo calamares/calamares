@@ -18,6 +18,8 @@
 
 #include "ViewManager.h"
 
+#include "viewpages/ViewStep.h"
+
 #include <QApplication>
 #include <QLabel>
 #include <QBoxLayout>
@@ -40,10 +42,6 @@ ViewManager::ViewManager( QObject* parent )
 {
     s_instance = this;
     QBoxLayout* mainLayout = new QVBoxLayout;
-    mainLayout->setContentsMargins( 0, 0, 0, 0 );
-    m_widget->setContentsMargins( 0, 0, 0, 0 );
-    mainLayout->setMargin( 0 );
-    mainLayout->setSpacing( 0 );
     m_widget->setLayout( mainLayout );
 
     m_stack = new QStackedWidget( m_widget );

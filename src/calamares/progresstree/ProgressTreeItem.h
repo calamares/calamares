@@ -16,44 +16,39 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef VIEWSTEP_H
-#define VIEWSTEP_H
+#ifndef PROGRESSTREEITEM_H
+#define PROGRESSTREEITEM_H
 
-#include <QObject>
+#include <QList>
+#include <QVariant>
 
-#include "../UiDllMacro.h"
-
-namespace Calamares
+class ProgressTreeItem
 {
-
-class UIDLLEXPORT ViewStep : public QObject
-{
-    Q_OBJECT
 public:
-    explicit ViewStep( QObject *parent = nullptr );
-    virtual ~ViewStep();
+    explicit ProgressTreeItem( ProgressTreeItem* parent = nullptr );
 
-    virtual QString prettyName() const = 0;
+    virtual ~ProgressTreeItem();
 
-    //TODO: we might want to make this a QSharedPointer
-    virtual QWidget* widget() = 0;
+    virtual void appendChild( ProgressTreeItem* item );
 
-    virtual void next() = 0;
-    virtual void back() = 0;
+    virtual ProgressTreeItem* child( int row );
+    virtual int childCount() const;
+    virtual int columnCount() const;
+    virtual QVariant data( int column ) const = 0;
+    virtual int row() const;
+    virtual ProgressTreeItem* parent();
 
-    virtual bool isNextEnabled() const = 0;
-
-    virtual bool isAtBeginning() const = 0;
-    virtual bool isAtEnd() const = 0;
-
-signals:
-    void nextStatusChanged( bool status );
-    void done();
-
+private:
+    QList< ProgressTreeItem* > m_childItems;
+    ProgressTreeItem* m_parentItem;
 };
 
-}
+class ProgressTreeRoot : public ProgressTreeItem
+{
+public:
+    explicit ProgressTreeRoot();
 
-Q_DECLARE_INTERFACE( Calamares::ViewStep, "calamares.ViewModule/1.0" )
+    virtual QVariant data( int column ) const;
+};
 
-#endif // VIEWSTEP_H
+#endif // PROGRESSTREEITEM_H

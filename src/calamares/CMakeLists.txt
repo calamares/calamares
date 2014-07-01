@@ -10,13 +10,21 @@ set( calamaresSources
     main.cpp
     CalamaresApplication.cpp
     CalamaresWindow.cpp
-    ViewManager.cpp
     Settings.cpp
+    ViewManager.cpp
     YamlUtils.cpp
 
     modulesystem/Module.cpp
     modulesystem/ModuleManager.cpp
     modulesystem/ViewModule.cpp
+
+    progresstree/CategoryItem.cpp
+    progresstree/ProgressTreeItem.cpp
+    progresstree/ProgressTreeModel.cpp
+    progresstree/ProgressTreeView.cpp
+    progresstree/ViewStepItem.cpp
+
+    utils/CalamaresUtilsGui.cpp
 
     viewpages/ViewStep.cpp
     viewpages/AbstractPage.cpp

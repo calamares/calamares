@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
+ *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -16,39 +16,22 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef PARTITIONVIEWSTEP_H
-#define PARTITIONVIEWSTEP_H
+#ifndef PROGRESSTREEVIEW_H
+#define PROGRESSTREEVIEW_H
 
-#include <QObject>
+#include <QTreeView>
 
-#include "viewpages/ViewStep.h"
-#include "PluginDllMacro.h"
-
-class PartitionPage;
-
-class PLUGINDLLEXPORT PartitionViewStep : public Calamares::ViewStep
+class ProgressTreeView : public QTreeView
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA( IID "calamares.ViewModule/1.0" )
-    Q_INTERFACES( Calamares::ViewStep )
-
 public:
-    explicit PartitionViewStep( QObject* parent = 0 );
+    static ProgressTreeView* instance();
 
-    QString prettyName() const override;
-
-    QWidget* widget() override;
-
-    void next() override;
-    void back() override;
-
-    bool isNextEnabled() const override;
-
-    bool isAtBeginning() const override;
-    bool isAtEnd() const override;
+    explicit ProgressTreeView( QWidget* parent = 0 );
+    virtual ~ProgressTreeView();
 
 private:
-    PartitionPage* m_widget;
+    static ProgressTreeView* s_instance;
 };
 
-#endif // PARTITIONVIEWSTEP_H
+#endif // PROGRESSTREEVIEW_H

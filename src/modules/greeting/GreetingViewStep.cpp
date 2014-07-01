@@ -36,7 +36,7 @@ GreetingViewStep::~GreetingViewStep()
 
 
 QString
-GreetingViewStep::prettyName()
+GreetingViewStep::prettyName() const
 {
     return tr( "Welcome" );
 }
@@ -62,21 +62,21 @@ GreetingViewStep::back()
 
 
 bool
-GreetingViewStep::isNextEnabled()
+GreetingViewStep::isNextEnabled() const
 {
     return true;
 }
 
 
 bool
-GreetingViewStep::isAtBeginning()
+GreetingViewStep::isAtBeginning() const
 {
     return true;
 }
 
 
 bool
-GreetingViewStep::isAtEnd()
+GreetingViewStep::isAtEnd() const
 {
     return true;
 }

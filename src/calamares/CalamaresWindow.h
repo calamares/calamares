@@ -19,11 +19,9 @@
 #ifndef CALAMARESWINDOW_H
 #define CALAMARESWINDOW_H
 
-#include "ui_CalamaresWindow.h"
-
 #include <QWidget>
 
-class CalamaresWindow : public QWidget, private Ui::Base
+class CalamaresWindow : public QWidget
 {
     Q_OBJECT
 public:

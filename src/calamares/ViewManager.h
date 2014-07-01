@@ -20,15 +20,16 @@
 #define VIEWMANAGER_H
 
 #include "UiDllMacro.h"
-#include "viewpages/ViewStep.h"
 
+#include <QList>
 #include <QPushButton>
-#include <QQueue>
 #include <QStackedWidget>
 
 
 namespace Calamares
 {
+
+class ViewStep;
 
 class UIDLLEXPORT ViewManager : public QObject
 {
@@ -43,6 +44,7 @@ public:
 
     void addViewStep( ViewStep* step );
 
+    QList< ViewStep* > steps() const { return m_steps; }
 
 public slots:
     void next();
@@ -51,7 +53,7 @@ public slots:
 private:
     static ViewManager* s_instance;
 
-    QQueue< ViewStep* > m_steps;
+    QList< ViewStep* > m_steps;
     int m_currentStep;
 
     QWidget* m_widget;

@@ -37,17 +37,17 @@ public:
     explicit GreetingViewStep( QObject* parent = nullptr );
     virtual ~GreetingViewStep();
 
-    QString prettyName() override;
+    QString prettyName() const override;
 
     QWidget* widget() override;
 
     void next() override;
     void back() override;
 
-    bool isNextEnabled() override;
+    bool isNextEnabled() const override;
 
-    bool isAtBeginning() override;
-    bool isAtEnd() override;
+    bool isAtBeginning() const override;
+    bool isAtEnd() const override;
 
 private:
     GreetingPage* m_widget;

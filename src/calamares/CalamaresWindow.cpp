@@ -18,20 +18,47 @@
 
 #include "CalamaresWindow.h"
 
+#include "progresstree/ProgressTreeView.h"
+#include "utils/CalamaresUtilsGui.h"
 #include "ViewManager.h"
 
 #include <QBoxLayout>
+#include <QLabel>
+#include <QTreeView>
 
 CalamaresWindow::CalamaresWindow( QWidget* parent )
     : QWidget( parent )
 {
-    setupUi( this );
     // Hide close button
     setWindowFlags( Qt::Window | Qt::WindowTitleHint | Qt::CustomizeWindowHint );
+
+    QBoxLayout* mainLayout = new QHBoxLayout;
+    setLayout( mainLayout );
+
+    QWidget* sideBox = new QWidget( this );
+    mainLayout->addWidget( sideBox );
+
+    QBoxLayout* sideLayout = new QVBoxLayout;
+    sideBox->setLayout( sideLayout );
+    sideBox->setFixedWidth( 190 ); //FIXME
+    sideBox->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
+
+    QHBoxLayout* logoLayout = new QHBoxLayout;
+    sideLayout->addLayout( logoLayout );
+    logoLayout->addStretch();
+    QLabel* logoLabel = new QLabel( "branding\ngoes\nhere", sideBox );
+    logoLabel->setFixedSize( 80, 80 );
+    logoLayout->addWidget( logoLabel );
+    logoLayout->addStretch();
+
+    ProgressTreeView* tv = new ProgressTreeView( sideBox );
+    sideLayout->addWidget( tv );
+    CalamaresUtils::unmarginLayout( sideLayout );
+    CalamaresUtils::unmarginLayout( mainLayout );
 
     //This should create a PageManager or ViewManager or whatever, which
     //should control the sidebar, next/back buttons and QSW.
     Calamares::ViewManager* vm = new Calamares::ViewManager( this );
 
-    layout()->addWidget( vm->centralWidget() );
+    mainLayout->addWidget( vm->centralWidget() );
 }

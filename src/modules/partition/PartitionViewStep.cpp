@@ -29,7 +29,7 @@ PartitionViewStep::PartitionViewStep( QObject* parent )
 
 
 QString
-PartitionViewStep::prettyName()
+PartitionViewStep::prettyName() const
 {
     return tr( "Partitions" );
 }
@@ -55,21 +55,21 @@ PartitionViewStep::back()
 
 
 bool
-PartitionViewStep::isNextEnabled()
+PartitionViewStep::isNextEnabled() const
 {
     return false;
 }
 
 
 bool
-PartitionViewStep::isAtBeginning()
+PartitionViewStep::isAtBeginning() const
 {
     return true;
 }
 
 
 bool
-PartitionViewStep::isAtEnd()
+PartitionViewStep::isAtEnd() const
 {
     return true;
 }
