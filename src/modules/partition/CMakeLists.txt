@@ -11,6 +11,7 @@ calamares_add_plugin( partition
         CreatePartitionDialog.cpp
         CreatePartitionJob.cpp
         DeviceModel.cpp
+        PartitionCoreModule.cpp
         PartitionModel.cpp
         PartitionPage.cpp
         PartitionViewStep.cpp
