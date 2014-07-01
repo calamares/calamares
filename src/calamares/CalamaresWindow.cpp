@@ -31,6 +31,7 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
 {
     // Hide close button
     setWindowFlags( Qt::Window | Qt::WindowTitleHint | Qt::CustomizeWindowHint );
+    setMinimumSize( 800, 600 );
 
     QBoxLayout* mainLayout = new QHBoxLayout;
     setLayout( mainLayout );
