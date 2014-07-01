@@ -69,11 +69,21 @@ PartitionModel::data( const QModelIndex& index, int role ) const
     switch ( role )
     {
     case Qt::DisplayRole:
+    {
+        QString text = partition->roles().has( PartitionRole::Logical )
+                       ? QStringLiteral( "    " ) : QStringLiteral();
         if ( PMUtils::isPartitionFreeSpace( partition ) )
         {
-            return tr( "Free Space" );
+            text += tr( "Free Space" );
         }
-        return partition->partitionPath() + " " + partition->fileSystem().name() + " " + partition->mountPoint();
+        else
+        {
+            text += partition->partitionPath() + " " + partition->fileSystem().name() + " " + partition->mountPoint();
+        }
+        qint64 size = ( partition->lastSector() - partition->firstSector() + 1 ) * m_device->logicalSectorSize();
+        text += tr( " (%1 MB)" ).arg( size / 1024 / 1024 );
+        return text;
+    }
     default:
         return QVariant();
     }
