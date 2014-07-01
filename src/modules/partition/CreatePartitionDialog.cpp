@@ -64,5 +64,14 @@ CreatePartitionDialog::createJob()
 
     FileSystem::Type type = FileSystem::typeForName( m_ui->fsComboBox->currentText() );
     FileSystem* fs = FileSystemFactory::create( type, first, last );
-    return new CreatePartitionJob( m_device, m_freePartition, fs );
+
+    PartitionNode* parent = m_freePartition->parent();
+    Partition* partition = new Partition(
+        parent,
+        *m_device,
+        PartitionRole( PartitionRole::Primary ), // FIXME: Support extended partitions
+        fs, first, last,
+        QString() /* path */
+    );
+    return new CreatePartitionJob( m_device, partition );
 }

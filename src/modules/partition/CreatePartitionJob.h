@@ -28,11 +28,11 @@ class FileSystem;
 class CreatePartitionJob : public Calamares::Job
 {
 public:
-    CreatePartitionJob( Device* device, Partition* freePartition, FileSystem* fs );
+    CreatePartitionJob( Device* device, Partition* partition );
     QString prettyName() override;
     void exec() override;
 
-    void createPreview();
+    void updatePreview();
     Device* device() const
     {
         return m_device;
@@ -40,7 +40,7 @@ public:
 
 private:
     Device* m_device;
-    Partition* m_freePartition;
+    Partition* m_partition;
     FileSystem* m_fs;
 };
 

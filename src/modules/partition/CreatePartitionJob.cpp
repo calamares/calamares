@@ -24,10 +24,9 @@
 #include <core/partitiontable.h>
 #include <fs/filesystem.h>
 
-CreatePartitionJob::CreatePartitionJob( Device* device, Partition* freePartition, FileSystem* fs )
+CreatePartitionJob::CreatePartitionJob( Device* device, Partition* partition )
     : m_device( device )
-    , m_freePartition( freePartition )
-    , m_fs( fs )
+    , m_partition( partition )
 {
 }
 
@@ -43,18 +42,9 @@ CreatePartitionJob::exec()
 }
 
 void
-CreatePartitionJob::createPreview()
+CreatePartitionJob::updatePreview()
 {
-    PartitionNode* parent = m_freePartition->parent();
-    Partition* partition = new Partition(
-        parent,
-        *m_device,
-        PartitionRole( PartitionRole::Primary ), // FIXME: Support extended partitions
-        m_fs, m_fs->firstSector(), m_fs->lastSector(),
-        QString() /* path */
-    );
-
     m_device->partitionTable()->removeUnallocated();
-    parent->insert( partition );
+    m_partition->parent()->insert( m_partition );
     m_device->partitionTable()->updateUnallocated( *m_device );
 }

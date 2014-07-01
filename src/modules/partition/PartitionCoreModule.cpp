@@ -93,7 +93,7 @@ PartitionCoreModule::createPartition( CreatePartitionJob* job )
 {
     DeviceInfo* info = deviceInfoForDevice( job->device() );
     Q_ASSERT( info );
-    job->createPreview();
+    job->updatePreview();
     info->partitionModel->reload();
     Calamares::JobQueue::instance()->enqueue( Calamares::job_ptr( job ) );
 }
