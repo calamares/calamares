@@ -27,7 +27,7 @@ namespace PMUtils
 
 bool isPartitionFreeSpace( Partition* partition )
 {
-    return partition->fileSystem().type() == FileSystem::Unknown;
+    return partition->roles().has( PartitionRole::Unallocated );
 }
 
 } // namespace
