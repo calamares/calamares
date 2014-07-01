@@ -22,6 +22,9 @@
 #include <QDialog>
 #include <QScopedPointer>
 
+// CalaPM
+#include <core/partitionrole.h>
+
 class CreatePartitionJob;
 class Device;
 class Partition;
@@ -39,6 +42,7 @@ private:
     QScopedPointer< Ui_CreatePartitionDialog > m_ui;
     Device* m_device;
     Partition* m_freePartition;
+    PartitionRole m_role = PartitionRole( PartitionRole::None );
 };
 
 #endif /* CREATEPARTITIONDIALOG_H */

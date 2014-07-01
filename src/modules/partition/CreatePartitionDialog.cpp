@@ -36,6 +36,26 @@ CreatePartitionDialog::CreatePartitionDialog( Device* device, Partition* freePar
     m_ui->setupUi( this );
 
     FileSystemFactory::init();
+
+    bool hidePartitionType = false;
+    if ( freePartition->roles().has( PartitionRole::Logical ) )
+    {
+        m_role = PartitionRole( PartitionRole::Logical );
+        hidePartitionType = true;
+    }
+    else if ( m_device->partitionTable()->hasExtended() )
+    {
+        m_role = PartitionRole( PartitionRole::Primary );
+        hidePartitionType = true;
+    }
+
+    if ( hidePartitionType )
+    {
+        m_ui->partitionTypeLabel->hide();
+        m_ui->primaryRadioButton->hide();
+        m_ui->extendedRadioButton->hide();
+    }
+
     QStringList fsNames;
     for ( auto fs : FileSystemFactory::map() )
     {
@@ -58,18 +78,29 @@ CreatePartitionDialog::~CreatePartitionDialog()
 CreatePartitionJob*
 CreatePartitionDialog::createJob()
 {
+    if ( m_role.roles() == PartitionRole::None )
+    {
+        m_role = PartitionRole(
+            m_ui->extendedRadioButton->isChecked()
+            ? PartitionRole::Extended
+            : PartitionRole::Primary
+        );
+    }
+
     qint64 first = m_freePartition->firstSector();
     // FIXME: Check rounding errors here
     qint64 last = first + qint64( m_ui->sizeSpinBox->value() ) * 1024 * 1024 / m_device->logicalSectorSize();
 
-    FileSystem::Type type = FileSystem::typeForName( m_ui->fsComboBox->currentText() );
+    FileSystem::Type type = m_role.has( PartitionRole::Extended )
+        ? FileSystem::Extended
+        : FileSystem::typeForName( m_ui->fsComboBox->currentText() );
     FileSystem* fs = FileSystemFactory::create( type, first, last );
 
     PartitionNode* parent = m_freePartition->parent();
     Partition* partition = new Partition(
         parent,
         *m_device,
-        PartitionRole( PartitionRole::Primary ), // FIXME: Support extended partitions
+        m_role,
         fs, first, last,
         QString() /* path */
     );
