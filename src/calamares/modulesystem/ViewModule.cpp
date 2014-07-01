@@ -56,6 +56,10 @@ ViewModule::loadSelf()
             ViewManager::instance()->addViewStep( vs );
             m_loaded = true;
         }
+        else
+        {
+            cDebug() << Q_FUNC_INFO << m_loader->errorString();
+        }
     }
 }
 
