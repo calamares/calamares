@@ -43,6 +43,8 @@ public:
     void setDebug( bool enabled );
     bool isDebug();
 
+    CalamaresWindow* mainWindow();
+
 private slots:
     void onPluginsReady();
 

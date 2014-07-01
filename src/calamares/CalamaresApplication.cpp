@@ -98,6 +98,13 @@ CalamaresApplication::isDebug()
 }
 
 
+CalamaresWindow*
+CalamaresApplication::mainWindow()
+{
+    return m_mainwindow;
+}
+
+
 void
 CalamaresApplication::initSettings()
 {
