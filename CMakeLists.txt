@@ -120,3 +120,10 @@ install(
     DESTINATION
         "${CMAKE_INSTALL_CMAKEDIR}"
 )
+
+install(
+    FILES
+        settings.conf
+    DESTINATION
+        share/calamares
+)
