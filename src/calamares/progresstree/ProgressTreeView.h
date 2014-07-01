@@ -30,6 +30,8 @@ public:
     explicit ProgressTreeView( QWidget* parent = 0 );
     virtual ~ProgressTreeView();
 
+    void setModel( QAbstractItemModel* model ) override;
+
 private:
     static ProgressTreeView* s_instance;
 };

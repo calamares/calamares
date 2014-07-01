@@ -138,7 +138,6 @@ CalamaresApplication::onPluginsReady()
         //TODO: move somewhere
         ProgressTreeModel* m = new ProgressTreeModel( this );
         ProgressTreeView::instance()->setModel( m );
-        ProgressTreeView::instance()->expandAll();
     });
 }
 

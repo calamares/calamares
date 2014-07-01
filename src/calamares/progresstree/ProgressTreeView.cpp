@@ -51,3 +51,11 @@ ProgressTreeView::~ProgressTreeView()
 {
 
 }
+
+
+void
+ProgressTreeView::setModel( QAbstractItemModel* model )
+{
+    QTreeView::setModel( model );
+    expandAll();
+}
