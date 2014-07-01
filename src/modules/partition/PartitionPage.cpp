@@ -29,6 +29,7 @@
 // Qt
 #include <QDebug>
 #include <QItemSelectionModel>
+#include <QPointer>
 
 PartitionPage::PartitionPage( QWidget* parent )
     : Calamares::AbstractPage( parent )
@@ -93,10 +94,10 @@ void PartitionPage::onCreateClicked()
     Partition* partition = model->partitionForIndex( index );
     Q_ASSERT( partition );
 
-    CreatePartitionDialog dlg( model->device(), partition, this );
-    if ( !dlg.exec() )
+    QPointer<CreatePartitionDialog> dlg = new CreatePartitionDialog( model->device(), partition, this );
+    if ( dlg->exec() == QDialog::Accepted )
     {
-        return;
+        m_core->createPartition( dlg->createJob() );
     }
-    m_core->createPartition( dlg.createJob() );
+    delete dlg;
 }
