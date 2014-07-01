@@ -10,13 +10,13 @@ function(calamares_add_library)
     set(LIBRARY_NAME ${NAME})
 
 
-#     message("*** Arguments for ${LIBRARY_NAME}")
-#     message("Sources: ${LIBRARY_SOURCES}")
-#     message("Link libraries: ${LIBRARY_LINK_LIBRARIES}")
-#     message("UI: ${LIBRARY_UI}")
-#     message("TARGET_TYPE: ${LIBRARY_TARGET_TYPE}")
-#     message("EXPORT_MACRO: ${LIBRARY_EXPORT_MACRO}")
-#     message("NO_INSTALL: ${LIBRARY_NO_INSTALL}")
+#    message("*** Arguments for ${LIBRARY_NAME}")
+#    message("Sources: ${LIBRARY_SOURCES}")
+#    message("Link libraries: ${LIBRARY_LINK_LIBRARIES}")
+#    message("UI: ${LIBRARY_UI}")
+#    message("TARGET_TYPE: ${LIBRARY_TARGET_TYPE}")
+#    message("EXPORT_MACRO: ${LIBRARY_EXPORT_MACRO}")
+#    message("NO_INSTALL: ${LIBRARY_NO_INSTALL}")
 
     set(target ${LIBRARY_NAME})
 
@@ -89,7 +89,13 @@ function(calamares_add_library)
 
     if(NOT LIBRARY_INSTALL_BINDIR)
         set(LIBRARY_INSTALL_BINDIR "${CMAKE_INSTALL_BINDIR}")
+        set(LIBRARY_INSTALL_LIBDIR "${CMAKE_INSTALL_LIBDIR}")
+    else()
+        set(LIBRARY_INSTALL_LIBDIR "${LIBRARY_INSTALL_BINDIR}")
     endif()
+
+    message("INSTALL_BINDIR: ${LIBRARY_INSTALL_BINDIR}")
+    message("INSTALL_LIBDIR: ${LIBRARY_INSTALL_LIBDIR}")
 
     # make installation optional, maybe useful for dummy plugins one day
     if(NOT LIBRARY_NO_INSTALL)
@@ -97,15 +103,15 @@ function(calamares_add_library)
         if(NOT LIBRARY_EXPORT)
             install( TARGETS ${target}
                 RUNTIME DESTINATION ${LIBRARY_INSTALL_BINDIR}
-                LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-                ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+                LIBRARY DESTINATION ${LIBRARY_INSTALL_LIBDIR}
+                ARCHIVE DESTINATION ${LIBRARY_INSTALL_LIBDIR}
             )
         else()
             install( TARGETS ${target}
                 EXPORT ${LIBRARY_EXPORT}
                 RUNTIME DESTINATION ${LIBRARY_INSTALL_BINDIR}
-                LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-                ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+                LIBRARY DESTINATION ${LIBRARY_INSTALL_LIBDIR}
+                ARCHIVE DESTINATION ${LIBRARY_INSTALL_LIBDIR}
             )
         endif()
     endif()
