@@ -85,6 +85,11 @@ ViewManager::addViewStep( ViewStep* step )
 {
     step->setParent( this );
     m_steps.append( step );
+    QLayout* layout = step->widget()->layout();
+    if ( layout )
+    {
+        layout->setContentsMargins( 0, 0, 0, 0 );
+    }
     m_stack->addWidget( step->widget() );
 
     connect( step, &ViewStep::nextStatusChanged,
