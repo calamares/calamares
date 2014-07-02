@@ -48,6 +48,15 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
     sideLayout->addLayout( logoLayout );
     logoLayout->addStretch();
     QLabel* logoLabel = new QLabel( "branding\ngoes\nhere", sideBox );
+    {
+        QPalette plt = sideBox->palette();
+        sideBox->setAutoFillBackground( true );
+        plt.setColor( sideBox->backgroundRole(), QColor( "#292F34" ) );
+        plt.setColor( sideBox->foregroundRole(), Qt::white );
+        sideBox->setPalette( plt );
+        logoLabel->setPalette( plt );
+    }
+    logoLabel->setAlignment( Qt::AlignCenter );
     logoLabel->setFixedSize( 80, 80 );
     logoLayout->addWidget( logoLabel );
     logoLayout->addStretch();
