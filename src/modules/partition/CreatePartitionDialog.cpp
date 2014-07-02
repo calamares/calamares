@@ -102,7 +102,12 @@ CreatePartitionDialog::createJob()
         *m_device,
         m_role,
         fs, first, last,
-        QString() /* path */
+        QString() /* path */,
+        PartitionTable::FlagNone /* availableFlags */,
+        QString() /* mountPoint */,
+        false /* mounted */,
+        PartitionTable::FlagNone /* activeFlags */,
+        Partition::StateNew
     );
     return new CreatePartitionJob( m_device, partition );
 }
