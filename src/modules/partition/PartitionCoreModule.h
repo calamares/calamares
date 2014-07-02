@@ -52,6 +52,11 @@ public:
 
     void deletePartition( Device* device, Partition* partition );
 
+    QList< Calamares::job_ptr > jobs() const
+    {
+        return m_jobs;
+    }
+
 private:
     struct DeviceInfo
     {

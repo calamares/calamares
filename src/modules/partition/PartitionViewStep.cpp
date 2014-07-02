@@ -16,14 +16,16 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "PartitionViewStep.h"
+#include <PartitionViewStep.h>
 
-#include "PartitionPage.h"
-
+#include <PartitionPage.h>
+#include <PartitionCoreModule.h>
+#include <JobQueue.h>
 
 PartitionViewStep::PartitionViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
-    , m_widget( new PartitionPage() )
+    , m_core( new PartitionCoreModule( this ) )
+    , m_widget( new PartitionPage( m_core ) )
 {
 }
 
@@ -45,6 +47,7 @@ PartitionViewStep::widget()
 void
 PartitionViewStep::next()
 {
+    Calamares::JobQueue::instance()->enqueue( m_core->jobs() );
     emit done();
 }
 

@@ -31,10 +31,10 @@
 #include <QItemSelectionModel>
 #include <QPointer>
 
-PartitionPage::PartitionPage( QWidget* parent )
+PartitionPage::PartitionPage( PartitionCoreModule* core, QWidget* parent )
     : Calamares::AbstractPage( parent )
     , m_ui( new Ui_PartitionPage )
-    , m_core( new PartitionCoreModule( this ) )
+    , m_core( core )
 {
     m_ui->setupUi( this );
     m_ui->deviceListView->setModel( m_core->deviceModel() );

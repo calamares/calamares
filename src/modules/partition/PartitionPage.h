@@ -32,7 +32,7 @@ class PartitionPage : public Calamares::AbstractPage
 {
     Q_OBJECT
 public:
-    explicit PartitionPage( QWidget* parent = 0 );
+    explicit PartitionPage( PartitionCoreModule* core, QWidget* parent = 0 );
     ~PartitionPage();
 
 Q_SIGNALS:

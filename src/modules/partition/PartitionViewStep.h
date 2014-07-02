@@ -25,6 +25,7 @@
 #include "PluginDllMacro.h"
 
 class PartitionPage;
+class PartitionCoreModule;
 
 class PLUGINDLLEXPORT PartitionViewStep : public Calamares::ViewStep
 {
@@ -48,6 +49,7 @@ public:
     bool isAtEnd() const override;
 
 private:
+    PartitionCoreModule* m_core;
     PartitionPage* m_widget;
 };
 

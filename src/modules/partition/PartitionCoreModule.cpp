@@ -21,7 +21,6 @@
 #include <CreatePartitionJob.h>
 #include <DeletePartitionJob.h>
 #include <DeviceModel.h>
-#include <JobQueue.h>
 #include <PartitionModel.h>
 #include <Typedefs.h>
 #include <utils/Logger.h>
