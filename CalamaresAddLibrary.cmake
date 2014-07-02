@@ -94,8 +94,8 @@ function(calamares_add_library)
         set(LIBRARY_INSTALL_LIBDIR "${LIBRARY_INSTALL_BINDIR}")
     endif()
 
-    message("INSTALL_BINDIR: ${LIBRARY_INSTALL_BINDIR}")
-    message("INSTALL_LIBDIR: ${LIBRARY_INSTALL_LIBDIR}")
+    #message("INSTALL_BINDIR: ${LIBRARY_INSTALL_BINDIR}")
+    #message("INSTALL_LIBDIR: ${LIBRARY_INSTALL_LIBDIR}")
 
     # make installation optional, maybe useful for dummy plugins one day
     if(NOT LIBRARY_NO_INSTALL)
