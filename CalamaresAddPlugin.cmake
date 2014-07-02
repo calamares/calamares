@@ -16,15 +16,17 @@ function(calamares_add_plugin)
 
     include(CMakeColors)
     message("-- ${BoldYellow}Found ${CALAMARES_APPLICATION_NAME} module: ${BoldRed}${PLUGIN_NAME}${ColorReset}")
-    message("   ${Green}SOURCES:${ColorReset} ${PLUGIN_SOURCES}")
-    message("   ${Green}LINK_LIBRARIES:${ColorReset} ${PLUGIN_LINK_LIBRARIES}")
-    message("   ${Green}UI:${ColorReset} ${PLUGIN_UI}")
-    message("   ${Green}TYPE:${ColorReset} ${PLUGIN_TYPE}")
-    message("   ${Green}EXPORT_MACRO:${ColorReset} ${PLUGIN_EXPORT_MACRO}")
-    message("   ${Green}NO_INSTALL:${ColorReset} ${PLUGIN_NO_INSTALL}")
-    message("   ${Green}CONFIG_FILE:${ColorReset} ${PLUGIN_CONFIG_FILE}")
-    message("   ${Green}PLUGIN_DESTINATION:${ColorReset} ${PLUGIN_DESTINATION}")
-
+    if( NOT CMAKE_BUILD_TYPE STREQUAL "Release" )
+        message("   ${Green}SOURCES:${ColorReset} ${PLUGIN_SOURCES}")
+        message("   ${Green}LINK_LIBRARIES:${ColorReset} ${PLUGIN_LINK_LIBRARIES}")
+        message("   ${Green}UI:${ColorReset} ${PLUGIN_UI}")
+        message("   ${Green}TYPE:${ColorReset} ${PLUGIN_TYPE}")
+        message("   ${Green}EXPORT_MACRO:${ColorReset} ${PLUGIN_EXPORT_MACRO}")
+        message("   ${Green}NO_INSTALL:${ColorReset} ${PLUGIN_NO_INSTALL}")
+        message("   ${Green}CONFIG_FILE:${ColorReset} ${PLUGIN_CONFIG_FILE}")
+        message("   ${Green}PLUGIN_DESTINATION:${ColorReset} ${PLUGIN_DESTINATION}")
+        message("")
+    endif()
     # create target name once for convenience
     set(target "calamares_${PLUGIN_TYPE}_${PLUGIN_NAME}")
 
@@ -57,9 +59,6 @@ function(calamares_add_plugin)
     list(APPEND calamares_add_library_args "NO_VERSION")
 
     list(APPEND calamares_add_library_args "INSTALL_BINDIR" "${PLUGIN_DESTINATION}")
-
-    #message("    ${Green}CalamaresAddLibrary arguments:${ColorReset} ${calamares_add_library_args}")
-    message("")
 
     calamares_add_library(${calamares_add_library_args})
 
