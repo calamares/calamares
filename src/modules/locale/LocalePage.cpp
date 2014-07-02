@@ -29,12 +29,17 @@ LocalePage::LocalePage( QWidget* parent )
     : QWidget()
     , m_blockTzWidgetSet( false )
 {
-    QBoxLayout *mainLayout = new QVBoxLayout;
+    QBoxLayout* mainLayout = new QVBoxLayout;
 
+    QBoxLayout* tzwLayout = new QHBoxLayout;
+    mainLayout->addLayout( tzwLayout );
     m_tzWidget = new TimeZoneWidget( this );
-    mainLayout->addWidget( m_tzWidget );
+    tzwLayout->addStretch();
+    tzwLayout->addWidget( m_tzWidget );
+    tzwLayout->addStretch();
+    setMinimumWidth( m_tzWidget->width() );
 
-    QBoxLayout *bottomLayout = new QHBoxLayout;
+    QBoxLayout* bottomLayout = new QHBoxLayout;
     mainLayout->addLayout( bottomLayout );
 
     QLabel* cityLabel = new QLabel( tr( "Region:" ), this );
@@ -137,5 +142,10 @@ LocalePage::init()
     m_timezoneCombo->blockSignals( false );
 
     m_regionCombo->currentIndexChanged( m_regionCombo->currentText() );
+
+    // Default location
+    // TODO: make configurable from module.conf
+    m_tzWidget->setCurrentLocation( "Europe", "Berlin" );
+    emit m_tzWidget->locationChanged( m_tzWidget->getCurrentLocation() );
 }
 
