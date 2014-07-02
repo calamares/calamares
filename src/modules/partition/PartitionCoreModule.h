@@ -19,11 +19,14 @@
 #ifndef PARTITIONCOREMODULE_H
 #define PARTITIONCOREMODULE_H
 
-#include <QList>
-#include <QObject>
+#include <Typedefs.h>
 
 // CalaPM
 #include <core/partitiontable.h>
+
+// Qt
+#include <QList>
+#include <QObject>
 
 class CreatePartitionJob;
 class Device;
@@ -47,6 +50,8 @@ public:
 
     void createPartition( CreatePartitionJob* job );
 
+    void deletePartition( Device* device, Partition* partition );
+
 private:
     struct DeviceInfo
     {
@@ -58,9 +63,13 @@ private:
     QList< DeviceInfo* > m_devices;
     DeviceModel* m_deviceModel;
 
+    QList< Calamares::job_ptr > m_jobs;
+
     void listDevices();
 
     DeviceInfo* deviceInfoForDevice( Device* device ) const;
+
+    void dumpQueue() const;
 };
 
 #endif /* PARTITIONCOREMODULE_H */

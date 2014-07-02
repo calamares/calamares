@@ -27,6 +27,7 @@ class FileSystem;
 
 class CreatePartitionJob : public Calamares::Job
 {
+    Q_OBJECT
 public:
     CreatePartitionJob( Device* device, Partition* partition );
     QString prettyName() override;
@@ -36,6 +37,11 @@ public:
     Device* device() const
     {
         return m_device;
+    }
+
+    Partition* partition() const
+    {
+        return m_partition;
     }
 
 private:

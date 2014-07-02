@@ -44,6 +44,7 @@ private:
     PartitionCoreModule* m_core;
     void updateButtons();
     void onCreateClicked();
+    void onDeleteClicked();
 };
 
 #endif // PARTITIONPAGE_H

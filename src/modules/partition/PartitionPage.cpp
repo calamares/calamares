@@ -58,6 +58,7 @@ PartitionPage::PartitionPage( QWidget* parent )
     } );
 
     connect( m_ui->createButton, &QAbstractButton::clicked, this, &PartitionPage::onCreateClicked );
+    connect( m_ui->deleteButton, &QAbstractButton::clicked, this, &PartitionPage::onDeleteClicked );
 }
 
 PartitionPage::~PartitionPage()
@@ -92,7 +93,6 @@ PartitionPage::onCreateClicked()
     Q_ASSERT( index.isValid() );
 
     const PartitionModel* model = static_cast< const PartitionModel* >( index.model() );
-    Q_ASSERT( model );
     Partition* partition = model->partitionForIndex( index );
     Q_ASSERT( partition );
 
@@ -102,4 +102,17 @@ PartitionPage::onCreateClicked()
         m_core->createPartition( dlg->createJob() );
     }
     delete dlg;
+}
+
+void
+PartitionPage::onDeleteClicked()
+{
+    QModelIndex index = m_ui->partitionListView->currentIndex();
+    Q_ASSERT( index.isValid() );
+
+    const PartitionModel* model = static_cast< const PartitionModel* >( index.model() );
+    Partition* partition = model->partitionForIndex( index );
+    Q_ASSERT( partition );
+
+    m_core->deletePartition( model->device(), partition );
 }
