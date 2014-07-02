@@ -149,7 +149,6 @@ PartitionCoreModule::deletePartition( Device* device, Partition* partition )
     {
         DeletePartitionJob* job = new DeletePartitionJob( device, partition );
         job->updatePreview();
-        Calamares::JobQueue::instance()->enqueue( Calamares::job_ptr( job ) );
         m_jobs << Calamares::job_ptr( job );
     }
 
