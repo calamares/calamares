@@ -27,11 +27,21 @@ class PartitionNode;
 class PartitionModel : public QAbstractListModel
 {
 public:
+    enum Column
+    {
+        NameColumn,
+        FileSystemColumn,
+        MountPointColumn,
+        SizeColumn,
+        LastColumn = SizeColumn + 1
+    };
+
     PartitionModel( QObject* parent = 0 );
     void init( Device* device );
 
-    int rowCount( const QModelIndex& parent = QModelIndex() ) const Q_DECL_OVERRIDE;
-    QVariant data( const QModelIndex& index, int role = Qt::DisplayRole ) const Q_DECL_OVERRIDE;
+    int columnCount( const QModelIndex& parent = QModelIndex() ) const override;
+    int rowCount( const QModelIndex& parent = QModelIndex() ) const override;
+    QVariant data( const QModelIndex& index, int role = Qt::DisplayRole ) const override;
 
     Partition* partitionForIndex( const QModelIndex& index ) const;
 

@@ -18,6 +18,7 @@
 #include <PartitionModel.h>
 
 #include <PMUtils.h>
+#include <utils/Logger.h>
 
 // CalaPM
 #include <core/device.h>
@@ -53,6 +54,12 @@ PartitionModel::reload()
 }
 
 int
+PartitionModel::columnCount( const QModelIndex& parent ) const
+{
+    return LastColumn;
+}
+
+int
 PartitionModel::rowCount( const QModelIndex& parent ) const
 {
     return parent.isValid() ? 0 : m_partitionList.count();
@@ -73,19 +80,47 @@ PartitionModel::data( const QModelIndex& index, int role ) const
     {
     case Qt::DisplayRole:
     {
-        QString text = partition->roles().has( PartitionRole::Logical )
-                       ? QStringLiteral( "    " ) : QStringLiteral();
-        if ( PMUtils::isPartitionFreeSpace( partition ) )
+        int col = index.column();
+        if ( col == NameColumn )
         {
-            text += tr( "Free Space" );
+            // FIXME: Turn model into a tree model, will make implementing the
+            // preview easier
+            QString prefix = partition->roles().has( PartitionRole::Logical )
+                             ? QStringLiteral( "    " ) : QStringLiteral();
+            if ( PMUtils::isPartitionFreeSpace( partition ) )
+            {
+                return prefix + tr( "Free Space" );
+            }
+            else
+            {
+                return prefix + ( partition->partitionPath().isEmpty()
+                                  ? tr( "New partition" )
+                                  : partition->partitionPath() );
+            }
         }
-        else
+        if ( col == FileSystemColumn )
         {
-            text += partition->partitionPath() + " " + partition->fileSystem().name() + " " + partition->mountPoint();
+            return partition->fileSystem().name();
         }
-        qint64 size = ( partition->lastSector() - partition->firstSector() + 1 ) * m_device->logicalSectorSize();
-        text += tr( " (%1)" ).arg( KFormat().formatByteSize( size ) );
-        return text;
+        if ( col == MountPointColumn )
+        {
+            QString mountPoint = partition->mountPoint();
+            if ( mountPoint.isEmpty() || mountPoint == "none" )
+            {
+                return QString();
+            }
+            else
+            {
+                return mountPoint;
+            }
+        }
+        if ( col == SizeColumn )
+        {
+            qint64 size = ( partition->lastSector() - partition->firstSector() + 1 ) * m_device->logicalSectorSize();
+            return KFormat().formatByteSize( size );
+        }
+        cDebug() << "Unknown column" << col;
+        return QVariant();
     }
     default:
         return QVariant();

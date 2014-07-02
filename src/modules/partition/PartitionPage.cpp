@@ -28,6 +28,7 @@
 
 // Qt
 #include <QDebug>
+#include <QHeaderView>
 #include <QItemSelectionModel>
 #include <QPointer>
 
@@ -45,11 +46,18 @@ PartitionPage::PartitionPage( PartitionCoreModule* core, QWidget* parent )
     {
         Device* device = m_core->deviceModel()->deviceForIndex( index );
         PartitionModel* model = m_core->partitionModelForDevice( device );
-        m_ui->partitionListView->setModel( model );
+        m_ui->partitionTreeView->setModel( model );
+
+        // Must be done here because we need to have a model set to define
+        // individual column resize mode
+        QHeaderView* header = m_ui->partitionTreeView->header();
+        header->setSectionResizeMode( QHeaderView::ResizeToContents );
+        header->setSectionResizeMode( 0, QHeaderView::Stretch );
+
         updateButtons();
         // Establish connection here because selection model is destroyed when
         // model changes
-        connect( m_ui->partitionListView->selectionModel(), &QItemSelectionModel::currentChanged,
+        connect( m_ui->partitionTreeView->selectionModel(), &QItemSelectionModel::currentChanged,
                  [ this ]( const QModelIndex& index, const QModelIndex& oldIndex )
         {
             updateButtons();
@@ -70,7 +78,7 @@ PartitionPage::updateButtons()
 {
     bool create = false, edit = false, del = false;
 
-    QModelIndex index = m_ui->partitionListView->currentIndex();
+    QModelIndex index = m_ui->partitionTreeView->currentIndex();
     if ( index.isValid() )
     {
         const PartitionModel* model = static_cast< const PartitionModel* >( index.model() );
@@ -89,7 +97,7 @@ PartitionPage::updateButtons()
 void
 PartitionPage::onCreateClicked()
 {
-    QModelIndex index = m_ui->partitionListView->currentIndex();
+    QModelIndex index = m_ui->partitionTreeView->currentIndex();
     Q_ASSERT( index.isValid() );
 
     const PartitionModel* model = static_cast< const PartitionModel* >( index.model() );
@@ -107,7 +115,7 @@ PartitionPage::onCreateClicked()
 void
 PartitionPage::onDeleteClicked()
 {
-    QModelIndex index = m_ui->partitionListView->currentIndex();
+    QModelIndex index = m_ui->partitionTreeView->currentIndex();
     Q_ASSERT( index.isValid() );
 
     const PartitionModel* model = static_cast< const PartitionModel* >( index.model() );
