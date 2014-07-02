@@ -24,6 +24,7 @@ calamares_add_plugin( partition
         calapm
         ${CALAMARES_LIBRARIES}
         calamares_bin
+        KF5::CoreAddons
     SHARED_LIB
 )
 
@@ -54,6 +55,7 @@ target_link_libraries( partview
     Qt5::Widgets
     Qt5::Gui
     Qt5::Core
+    KF5::CoreAddons
 )
 set_target_properties( partview PROPERTIES AUTOMOC TRUE )
 

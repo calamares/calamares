@@ -19,6 +19,7 @@ cmake_policy( SET CMP0043 OLD )
 
 find_package( Qt5 5.3.0 CONFIG REQUIRED Core Gui Widgets LinguistTools )
 find_package( YamlCpp 0.5.1 REQUIRED )
+find_package( KF5 CONFIG REQUIRED CoreAddons )
 
 ###
 ### Calamares application info

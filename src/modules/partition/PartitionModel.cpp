@@ -25,6 +25,9 @@
 #include <core/partitiontable.h>
 #include <fs/filesystem.h>
 
+// KF5
+#include <KFormat>
+
 PartitionModel::PartitionModel( QObject* parent )
     : QAbstractListModel( parent )
 {
@@ -81,7 +84,7 @@ PartitionModel::data( const QModelIndex& index, int role ) const
             text += partition->partitionPath() + " " + partition->fileSystem().name() + " " + partition->mountPoint();
         }
         qint64 size = ( partition->lastSector() - partition->firstSector() + 1 ) * m_device->logicalSectorSize();
-        text += tr( " (%1 MB)" ).arg( size / 1024 / 1024 );
+        text += tr( " (%1)" ).arg( KFormat().formatByteSize( size ) );
         return text;
     }
     default:
