@@ -81,10 +81,10 @@ CreatePartitionDialog::createJob()
     if ( m_role.roles() == PartitionRole::None )
     {
         m_role = PartitionRole(
-            m_ui->extendedRadioButton->isChecked()
-            ? PartitionRole::Extended
-            : PartitionRole::Primary
-        );
+                     m_ui->extendedRadioButton->isChecked()
+                     ? PartitionRole::Extended
+                     : PartitionRole::Primary
+                 );
     }
 
     qint64 first = m_freePartition->firstSector();
@@ -92,8 +92,8 @@ CreatePartitionDialog::createJob()
     qint64 last = first + qint64( m_ui->sizeSpinBox->value() ) * 1024 * 1024 / m_device->logicalSectorSize();
 
     FileSystem::Type type = m_role.has( PartitionRole::Extended )
-        ? FileSystem::Extended
-        : FileSystem::typeForName( m_ui->fsComboBox->currentText() );
+                            ? FileSystem::Extended
+                            : FileSystem::typeForName( m_ui->fsComboBox->currentText() );
     FileSystem* fs = FileSystemFactory::create( type, first, last );
 
     PartitionNode* parent = m_freePartition->parent();

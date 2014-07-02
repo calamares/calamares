@@ -64,7 +64,8 @@ PartitionPage::~PartitionPage()
 {
 }
 
-void PartitionPage::updateButtons()
+void
+PartitionPage::updateButtons()
 {
     bool create = false, edit = false, del = false;
 
@@ -84,7 +85,8 @@ void PartitionPage::updateButtons()
     m_ui->deleteButton->setEnabled( del );
 }
 
-void PartitionPage::onCreateClicked()
+void
+PartitionPage::onCreateClicked()
 {
     QModelIndex index = m_ui->partitionListView->currentIndex();
     Q_ASSERT( index.isValid() );
