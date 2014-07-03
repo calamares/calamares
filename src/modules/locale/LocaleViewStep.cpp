@@ -19,6 +19,7 @@
 #include "LocaleViewStep.h"
 
 #include "LocalePage.h"
+#include "QtWaitingSpinner.h"
 #include "timezonewidget/localeglobal.h"
 
 #include "utils/CalamaresUtilsGui.h"
@@ -37,16 +38,45 @@ LocaleViewStep::LocaleViewStep( QObject* parent )
     m_widget->setLayout( mainLayout );
     CalamaresUtils::unmarginLayout( mainLayout );
 
-    QLabel* waitingLabel = new QLabel( "Loading location data..." );
-    waitingLabel->setAlignment( Qt::AlignCenter );
-    mainLayout->addWidget( waitingLabel );
+    QWidget* waitingWidget = new QWidget;
+    {
+        QBoxLayout* waitingLayout = new QVBoxLayout;
+        waitingWidget->setLayout( waitingLayout );
+        waitingLayout->addStretch();
+        QBoxLayout* pbLayout = new QHBoxLayout;
+        waitingLayout->addLayout( pbLayout );
+        pbLayout->addStretch();
+
+        QtWaitingSpinner* spnr = new QtWaitingSpinner();
+        pbLayout->addWidget( spnr );
+
+        pbLayout->addStretch();
+
+        QLabel* waitingLabel = new QLabel( "Loading location data..." );
+
+        int spnrSize = waitingLabel->fontMetrics().height() * 4;
+        spnr->setFixedSize( spnrSize, spnrSize );
+        spnr->setRadius( spnrSize / 2 );
+        spnr->setLength( spnrSize / 2 );
+        spnr->setWidth( spnrSize / 8 );
+        spnr->start();
+
+        waitingLabel->setAlignment( Qt::AlignCenter);
+        waitingLayout->addSpacing( spnrSize / 2 );
+        waitingLayout->addWidget( waitingLabel );
+        waitingLayout->addStretch();
+
+        mainLayout->addWidget( waitingWidget );
+
+        CalamaresUtils::unmarginLayout( waitingLayout );
+    }
 
     connect( &m_initWatcher, &QFutureWatcher< void >::finished,
              [=]
     {
         m_actualWidget->init();
-        m_widget->layout()->removeWidget( waitingLabel );
-        waitingLabel->deleteLater();
+        m_widget->layout()->removeWidget( waitingWidget );
+        waitingWidget->deleteLater();
         m_widget->layout()->addWidget( m_actualWidget );
         m_nextEnabled = true;
         emit nextStatusChanged( m_nextEnabled );

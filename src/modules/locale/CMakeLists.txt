@@ -6,6 +6,7 @@ calamares_add_plugin( locale
     SOURCES
         LocaleViewStep.cpp
         LocalePage.cpp
+        QtWaitingSpinner.cpp
         timezonewidget/timezonewidget.cpp
         timezonewidget/localeglobal.cpp
     UI
