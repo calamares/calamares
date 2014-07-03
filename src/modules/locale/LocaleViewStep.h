@@ -24,6 +24,8 @@
 #include "viewpages/ViewStep.h"
 #include "PluginDllMacro.h"
 
+#include <QFutureWatcher>
+
 class LocalePage;
 
 class PLUGINDLLEXPORT LocaleViewStep : public Calamares::ViewStep
@@ -50,7 +52,10 @@ public:
     bool isAtEnd() const override;
 
 private:
-    LocalePage* m_widget;
+    QWidget* m_widget;
+    QFutureWatcher< void > m_initWatcher;
+
+    LocalePage* m_actualWidget;
 };
 
 #endif // LOCALEVIEWSTEP_H

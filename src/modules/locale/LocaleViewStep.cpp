@@ -19,15 +19,39 @@
 #include "LocaleViewStep.h"
 
 #include "LocalePage.h"
-
 #include "timezonewidget/localeglobal.h"
+
+#include "utils/CalamaresUtilsGui.h"
+
+#include <QBoxLayout>
+#include <QLabel>
+#include <QtConcurrent/QtConcurrentRun>
 
 LocaleViewStep::LocaleViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
-    , m_widget( new LocalePage() )
+    , m_widget( new QWidget() )
+    , m_actualWidget( new LocalePage() )
 {
-    LocaleGlobal::init(); //this takes a long time
-    m_widget->init();
+    QBoxLayout* mainLayout = new QHBoxLayout;
+    m_widget->setLayout( mainLayout );
+    CalamaresUtils::unmarginLayout( mainLayout );
+
+    QLabel* waitingLabel = new QLabel( "Loading location data..." );
+    waitingLabel->setAlignment( Qt::AlignCenter );
+    mainLayout->addWidget( waitingLabel );
+
+    connect( &m_initWatcher, &QFutureWatcher< void >::finished,
+             [=]
+    {
+        m_actualWidget->init();
+        m_widget->layout()->removeWidget( waitingLabel );
+        waitingLabel->deleteLater();
+        m_widget->layout()->addWidget( m_actualWidget );
+    });
+
+    QFuture< void > initFuture = QtConcurrent::run( LocaleGlobal::init );
+    m_initWatcher.setFuture( initFuture );
+
     emit nextStatusChanged( true );
 }
 
@@ -85,4 +109,3 @@ LocaleViewStep::isAtEnd() const
 {
     return true;
 }
-
