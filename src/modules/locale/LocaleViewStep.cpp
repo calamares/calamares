@@ -31,6 +31,7 @@ LocaleViewStep::LocaleViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
     , m_widget( new QWidget() )
     , m_actualWidget( new LocalePage() )
+    , m_nextEnabled( false )
 {
     QBoxLayout* mainLayout = new QHBoxLayout;
     m_widget->setLayout( mainLayout );
@@ -47,12 +48,14 @@ LocaleViewStep::LocaleViewStep( QObject* parent )
         m_widget->layout()->removeWidget( waitingLabel );
         waitingLabel->deleteLater();
         m_widget->layout()->addWidget( m_actualWidget );
+        m_nextEnabled = true;
+        emit nextStatusChanged( m_nextEnabled );
     });
 
     QFuture< void > initFuture = QtConcurrent::run( LocaleGlobal::init );
     m_initWatcher.setFuture( initFuture );
 
-    emit nextStatusChanged( true );
+    emit nextStatusChanged( m_nextEnabled );
 }
 
 
@@ -93,7 +96,7 @@ LocaleViewStep::back()
 bool
 LocaleViewStep::isNextEnabled() const
 {
-    return true;
+    return m_nextEnabled;
 }
 
 

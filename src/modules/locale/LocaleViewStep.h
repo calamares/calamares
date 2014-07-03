@@ -56,6 +56,7 @@ private:
     QFutureWatcher< void > m_initWatcher;
 
     LocalePage* m_actualWidget;
+    bool m_nextEnabled;
 };
 
 #endif // LOCALEVIEWSTEP_H
