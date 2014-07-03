@@ -20,12 +20,13 @@
 
 #include "CalamaresWindow.h"
 #include "CalamaresVersion.h"
-#include "modulesystem/ModuleManager.h"
 #include "progresstree/ProgressTreeView.h"
 #include "progresstree/ProgressTreeModel.h"
-#include "Settings.h"
+
+#include "modulesystem/ModuleManager.h"
 #include "utils/CalamaresUtils.h"
 #include "utils/Logger.h"
+#include "Settings.h"
 #include "ViewManager.h"
 
 
@@ -108,7 +109,7 @@ CalamaresApplication::mainWindow()
 void
 CalamaresApplication::initSettings()
 {
-    new Calamares::Settings( this );
+    new Calamares::Settings( isDebug(), this );
 }
 
 

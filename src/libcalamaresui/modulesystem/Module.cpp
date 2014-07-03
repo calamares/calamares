@@ -19,7 +19,7 @@
 #include "Module.h"
 
 #include "ViewModule.h"
-#include "YamlUtils.h"
+#include "utils/YamlUtils.h"
 #include "utils/Logger.h"
 
 #include <yaml-cpp/yaml.h>

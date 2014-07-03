@@ -19,8 +19,7 @@
 #ifndef PARTITIONPAGE_H
 #define PARTITIONPAGE_H
 
-#include "viewpages/AbstractPage.h"
-
+#include <QWidget>
 #include <QScopedPointer>
 
 class PartitionCoreModule;
@@ -28,7 +27,7 @@ class Ui_PartitionPage;
 
 class DeviceModel;
 
-class PartitionPage : public Calamares::AbstractPage
+class PartitionPage : public QWidget
 {
     Q_OBJECT
 public:

@@ -10,13 +10,13 @@ function(calamares_add_library)
     set(LIBRARY_NAME ${NAME})
 
 
-#    message("*** Arguments for ${LIBRARY_NAME}")
-#    message("Sources: ${LIBRARY_SOURCES}")
-#    message("Link libraries: ${LIBRARY_LINK_LIBRARIES}")
-#    message("UI: ${LIBRARY_UI}")
-#    message("TARGET_TYPE: ${LIBRARY_TARGET_TYPE}")
-#    message("EXPORT_MACRO: ${LIBRARY_EXPORT_MACRO}")
-#    message("NO_INSTALL: ${LIBRARY_NO_INSTALL}")
+    message("*** Arguments for ${LIBRARY_NAME}")
+    message("Sources: ${LIBRARY_SOURCES}")
+    message("Link libraries: ${LIBRARY_LINK_LIBRARIES}")
+    message("UI: ${LIBRARY_UI}")
+    message("TARGET_TYPE: ${LIBRARY_TARGET_TYPE}")
+    message("EXPORT_MACRO: ${LIBRARY_EXPORT_MACRO}")
+    message("NO_INSTALL: ${LIBRARY_NO_INSTALL}")
 
     set(target ${LIBRARY_NAME})
 

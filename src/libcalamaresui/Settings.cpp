@@ -18,10 +18,9 @@
 
 #include "Settings.h"
 
-#include "CalamaresApplication.h"
 #include "utils/CalamaresUtils.h"
 #include "utils/Logger.h"
-#include "YamlUtils.h"
+#include "utils/YamlUtils.h"
 
 #include <QDir>
 #include <QFile>
@@ -41,11 +40,11 @@ Settings::instance()
 }
 
 
-Settings::Settings( QObject* parent )
+Settings::Settings( bool debugMode, QObject* parent )
     : QObject( parent )
 {
     QFileInfo settingsFile( CalamaresUtils::appDataDir().absoluteFilePath( "settings.conf" ) );
-    if ( APP->isDebug() )
+    if ( debugMode )
     {
         QFileInfo localFile( QDir( QDir::currentPath() ).absoluteFilePath( "settings.conf" ) );
         if ( localFile.exists() && localFile.isReadable() )
@@ -72,7 +71,7 @@ Settings::Settings( QObject* parent )
                     // If we're running in debug mode, we assume we might also be
                     // running from the build dir, so we add a maximum priority
                     // module search path in the build dir.
-                    if ( APP->isDebug() )
+                    if ( debugMode )
                     {
                         QString buildDirModules = QDir::current().absolutePath() +
                                                   QDir::separator() + "src" +

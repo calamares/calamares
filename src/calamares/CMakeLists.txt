@@ -10,13 +10,6 @@ set( calamaresSources
     main.cpp
     CalamaresApplication.cpp
     CalamaresWindow.cpp
-    Settings.cpp
-    ViewManager.cpp
-    YamlUtils.cpp
-
-    modulesystem/Module.cpp
-    modulesystem/ModuleManager.cpp
-    modulesystem/ViewModule.cpp
 
     progresstree/CategoryItem.cpp
     progresstree/ProgressTreeDelegate.cpp
@@ -24,11 +17,6 @@ set( calamaresSources
     progresstree/ProgressTreeModel.cpp
     progresstree/ProgressTreeView.cpp
     progresstree/ViewStepItem.cpp
-
-    utils/CalamaresUtilsGui.cpp
-
-    viewpages/ViewStep.cpp
-    viewpages/AbstractPage.cpp
 )
 
 set( calamaresUi
@@ -41,6 +29,7 @@ include_directories(
     ${CMAKE_CURRENT_BINARY_DIR}/../libcalamares
 
     ../libcalamares
+    ../libcalamaresui
 )
 
 include( GNUInstallDirs )
@@ -68,6 +57,7 @@ qt5_use_modules( calamares_bin Core Widgets )
 target_link_libraries( calamares_bin
     ${LINK_LIBRARIES}
     ${CALAMARES_LIBRARIES}
+    calamaresui
     Qt5::Core
     Qt5::Widgets
     yaml-cpp

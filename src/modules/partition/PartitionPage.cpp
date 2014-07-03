@@ -33,7 +33,7 @@
 #include <QPointer>
 
 PartitionPage::PartitionPage( PartitionCoreModule* core, QWidget* parent )
-    : Calamares::AbstractPage( parent )
+    : QWidget( parent )
     , m_ui( new Ui_PartitionPage )
     , m_core( core )
 {

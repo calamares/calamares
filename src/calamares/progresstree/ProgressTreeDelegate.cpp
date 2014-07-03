@@ -22,7 +22,7 @@
 #include "../CalamaresWindow.h"
 #include "ViewStepItem.h"
 #include "ProgressTreeModel.h"
-#include "../ViewManager.h"
+#include "ViewManager.h"
 
 #include <QAbstractItemView>
 #include <QPainter>

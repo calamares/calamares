@@ -1,4 +1,5 @@
-include_directories( ${PROJECT_BINARY_DIR}/src/calamares )
+include_directories( ${PROJECT_BINARY_DIR}/src/libcalamaresui )
+
 calamares_add_plugin( locale
     TYPE viewmodule
     EXPORT_MACRO PLUGINDLLEXPORT_PRO
@@ -11,6 +12,6 @@ calamares_add_plugin( locale
         timezonewidget/localeglobal.cpp
     UI
     LINK_LIBRARIES
-        ${CALAMARES_LIBRARIES}
+        calamaresui
     SHARED_LIB
 )

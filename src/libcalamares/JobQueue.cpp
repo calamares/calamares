@@ -20,7 +20,9 @@
 namespace Calamares
 {
 
+
 JobQueue* JobQueue::s_instance = nullptr;
+
 
 JobQueue*
 JobQueue::instance()
@@ -28,14 +30,23 @@ JobQueue::instance()
     return s_instance;
 }
 
+
 JobQueue::JobQueue( QObject* parent )
     : QObject( parent )
 {
 }
 
+
 void
 JobQueue::enqueue( const Calamares::job_ptr& job )
 {
+}
+
+
+void
+JobQueue::enqueue( const QList< job_ptr >& jobs )
+{
+
 }
 
 } // namespace Calamares

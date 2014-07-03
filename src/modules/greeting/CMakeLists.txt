@@ -1,4 +1,4 @@
-include_directories( ${PROJECT_BINARY_DIR}/src/calamares )
+include_directories( ${PROJECT_BINARY_DIR}/src/libcalamaresui )
 calamares_add_plugin( greeting
     TYPE viewmodule
     EXPORT_MACRO PLUGINDLLEXPORT_PRO
@@ -9,5 +9,7 @@ calamares_add_plugin( greeting
     UI
     LINK_LIBRARIES
         ${CALAMARES_LIBRARIES}
+        calamaresui
+        ${CALAMARESUI_LIBRARIES}
     SHARED_LIB
 )

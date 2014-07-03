@@ -1,8 +1,10 @@
 if( WITH_PARTITIONMANAGER )
 
+find_package( KF5 CONFIG REQUIRED CoreAddons )
+
 add_definitions( -DCALAMARES )
 
-include_directories( ${PROJECT_BINARY_DIR}/src/calamares )
+include_directories( ${PROJECT_BINARY_DIR}/src/libcalamaresui )
 calamares_add_plugin( partition
     TYPE viewmodule
     EXPORT_MACRO PLUGINDLLEXPORT_PRO
@@ -22,7 +24,7 @@ calamares_add_plugin( partition
         PartitionPage.ui
     LINK_LIBRARIES
         calapm
-        ${CALAMARES_LIBRARIES}
+        calamaresui
         KF5::CoreAddons
     SHARED_LIB
 )
@@ -37,7 +39,6 @@ set( partview_SRCS
     PartitionModel.cpp
     PartitionPage.cpp
     PMUtils.cpp
-    ${calamares_SOURCE_DIR}/viewpages/AbstractPage.cpp
     main.cpp
 )
 qt5_wrap_ui( partview_SRCS

@@ -1,7 +1,7 @@
 project( calamares )
 cmake_minimum_required( VERSION 2.8.12 )
 set( CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/CMakeModules" )
-#set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wl,--no-undefined" )
+set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wl,--no-undefined" )
 set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wl,--fatal-warnings -Wnon-virtual-dtor -Woverloaded-virtual -Werror=return-type" )
 
 if( CMAKE_COMPILER_IS_GNUCXX )
@@ -19,7 +19,6 @@ cmake_policy( SET CMP0043 OLD )
 
 find_package( Qt5 5.3.0 CONFIG REQUIRED Core Gui Widgets LinguistTools )
 find_package( YamlCpp 0.5.1 REQUIRED )
-find_package( KF5 CONFIG REQUIRED CoreAddons )
 
 ###
 ### Calamares application info
