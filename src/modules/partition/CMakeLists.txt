@@ -23,7 +23,6 @@ calamares_add_plugin( partition
     LINK_LIBRARIES
         calapm
         ${CALAMARES_LIBRARIES}
-        calamares_bin
         KF5::CoreAddons
     SHARED_LIB
 )
