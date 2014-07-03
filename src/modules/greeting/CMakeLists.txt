@@ -8,8 +8,6 @@ calamares_add_plugin( greeting
         GreetingPage.cpp
     UI
     LINK_LIBRARIES
-        ${CALAMARES_LIBRARIES}
         calamaresui
-        ${CALAMARESUI_LIBRARIES}
     SHARED_LIB
 )
