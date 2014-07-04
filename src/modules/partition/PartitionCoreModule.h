@@ -19,6 +19,7 @@
 #ifndef PARTITIONCOREMODULE_H
 #define PARTITIONCOREMODULE_H
 
+#include <PartitionInfo.h>
 #include <Typedefs.h>
 
 // CalaPM
@@ -66,6 +67,7 @@ private:
         PartitionModel* partitionModel;
     };
     QList< DeviceInfo* > m_devices;
+    InfoForPartitionHash m_infoForPartitionHash;
     DeviceModel* m_deviceModel;
 
     QList< Calamares::job_ptr > m_jobs;

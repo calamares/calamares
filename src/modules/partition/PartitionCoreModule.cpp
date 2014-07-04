@@ -38,7 +38,6 @@ PartitionCoreModule::DeviceInfo::DeviceInfo( Device* dev )
     : device( dev )
     , partitionModel( new PartitionModel )
 {
-    partitionModel->init( dev );
 }
 
 PartitionCoreModule::DeviceInfo::~DeviceInfo()
@@ -62,13 +61,16 @@ PartitionCoreModule::PartitionCoreModule( QObject* parent )
     m_deviceModel->init( lst );
     for ( auto device : lst )
     {
-        m_devices << new DeviceInfo( device );
+        DeviceInfo* info = new DeviceInfo( device );
+        info->partitionModel->init( device, &m_infoForPartitionHash );
+        m_devices << info;
     }
 
 }
 
 PartitionCoreModule::~PartitionCoreModule()
 {
+    qDeleteAll( m_infoForPartitionHash );
     qDeleteAll( m_devices );
 }
 
@@ -96,6 +98,10 @@ PartitionCoreModule::createPartition( CreatePartitionJob* job )
 {
     DeviceInfo* info = deviceInfoForDevice( job->device() );
     Q_ASSERT( info );
+    Q_ASSERT( !m_infoForPartitionHash.contains( job->partition() ) );
+    PartitionInfo* partitionInfo = new PartitionInfo( job->partition() );
+    partitionInfo->mountPoint = job->mountPoint();
+    m_infoForPartitionHash[ job->partition() ] = partitionInfo;
     job->updatePreview();
     info->partitionModel->reload();
     m_jobs << Calamares::job_ptr( job );

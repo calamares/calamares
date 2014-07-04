@@ -15,6 +15,7 @@ calamares_add_plugin( partition
         DeletePartitionJob.cpp
         DeviceModel.cpp
         PartitionCoreModule.cpp
+        PartitionInfo.cpp
         PartitionModel.cpp
         PartitionPage.cpp
         PartitionViewStep.cpp
@@ -36,6 +37,7 @@ set( partview_SRCS
     DeletePartitionJob.cpp
     DeviceModel.cpp
     PartitionCoreModule.cpp
+    PartitionInfo.cpp
     PartitionModel.cpp
     PartitionPage.cpp
     PMUtils.cpp

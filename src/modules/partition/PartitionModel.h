@@ -18,6 +18,9 @@
 #ifndef PARTITIONMODEL_H
 #define PARTITIONMODEL_H
 
+#include <PartitionInfo.h>
+
+// Qt
 #include <QAbstractListModel>
 
 class Device;
@@ -37,7 +40,11 @@ public:
     };
 
     PartitionModel( QObject* parent = 0 );
-    void init( Device* device );
+    /**
+     * device and infoForPartitions must remain alive for the life of
+     * PartitionModel
+     */
+    void init( Device* device, InfoForPartitionHash* infoForPartitionHash );
 
     int columnCount( const QModelIndex& parent = QModelIndex() ) const override;
     int rowCount( const QModelIndex& parent = QModelIndex() ) const override;
@@ -57,6 +64,7 @@ public:
 
 private:
     Device* m_device;
+    InfoForPartitionHash* m_infoForPartitionHash;
     QList< Partition* > m_partitionList;
 
     void fillPartitionList( PartitionNode* parent );

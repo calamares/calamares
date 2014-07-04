@@ -17,6 +17,7 @@
  */
 #include <PartitionModel.h>
 
+#include <PartitionInfo.h>
 #include <PMUtils.h>
 #include <utils/Logger.h>
 
@@ -35,9 +36,10 @@ PartitionModel::PartitionModel( QObject* parent )
 }
 
 void
-PartitionModel::init( Device* device )
+PartitionModel::init( Device* device, InfoForPartitionHash* infoForPartitionHash )
 {
     m_device = device;
+    m_infoForPartitionHash = infoForPartitionHash;
     reload();
 }
 
@@ -104,15 +106,8 @@ PartitionModel::data( const QModelIndex& index, int role ) const
         }
         if ( col == MountPointColumn )
         {
-            QString mountPoint = partition->mountPoint();
-            if ( mountPoint.isEmpty() || mountPoint == "none" )
-            {
-                return QString();
-            }
-            else
-            {
-                return mountPoint;
-            }
+            PartitionInfo* info = m_infoForPartitionHash->value( partition );
+            return info ? info->mountPoint : QString();
         }
         if ( col == SizeColumn )
         {
