@@ -47,17 +47,9 @@ public:
         double latitude, longitude;
     };
 
-    struct KeyboardInfo {
-        QString description;
-        QMap< QString, QString > variants;
-    };
-
-
     static void init();
     static QHash<QString, QHash<QString, QList<LocaleGlobal::Locale> > > getLocales();
     static QHash<QString, QList<LocaleGlobal::Location> > getLocations();
-    static QMap< QString, KeyboardInfo > getKeyboardLayouts();
-    static QMap<QString, QString> getKeyboardModels();
 
 private:
     static QHash<QString, QHash<QString, QList<LocaleGlobal::Locale> > > locales;
@@ -66,9 +58,6 @@ private:
     static void initLocales();
     static void initLocations();
     static double getRightGeoLocation(QString str);
-
-    static QMap<QString, QString> parseKeyboardModels(QString filepath);
-    static QMap< QString, KeyboardInfo > parseKeyboardLayouts(QString filepath);
 };
 
 #endif // LOCALEGLOBAL_H
