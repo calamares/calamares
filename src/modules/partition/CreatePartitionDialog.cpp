@@ -115,5 +115,6 @@ CreatePartitionDialog::createPartitionInfo()
 
     auto info = new PartitionInfo( partition );
     info->mountPoint = m_ui->mountPointComboBox->currentText();
+    info->format = true;
     return info;
 }
