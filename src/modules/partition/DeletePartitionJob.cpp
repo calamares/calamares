@@ -46,4 +46,17 @@ DeletePartitionJob::updatePreview()
 {
     m_partition->parent()->remove( m_partition );
     m_device->partitionTable()->updateUnallocated( *m_device );
+
+    // Copied from PM DeleteOperation::checkAdjustLogicalNumbers():
+    //
+    // If the deleted partition is a logical one, we need to adjust the numbers
+    // of the other logical partitions in the extended one, if there are any,
+    // because the OS will do that, too: Logicals must be numbered without gaps,
+    // i.e., a numbering like sda5, sda6, sda8 (after sda7 is deleted) will
+    // become sda5, sda6, sda7
+    Partition* parentPartition = dynamic_cast< Partition* >( m_partition->parent() );
+    if ( parentPartition && parentPartition->roles().has( PartitionRole::Extended ) )
+    {
+        parentPartition->adjustLogicalNumbers( m_partition->number(), -1 );
+    }
 }
