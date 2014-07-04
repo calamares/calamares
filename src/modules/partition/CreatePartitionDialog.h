@@ -32,11 +32,15 @@ class Ui_CreatePartitionDialog;
 
 class CreatePartitionDialog : public QDialog
 {
+    Q_OBJECT
 public:
     CreatePartitionDialog( Device* device, Partition* freePartition, QWidget* parent = nullptr );
     ~CreatePartitionDialog();
 
     PartitionInfo* createPartitionInfo();
+
+private Q_SLOTS:
+    void updateMountPointUi();
 
 private:
     QScopedPointer< Ui_CreatePartitionDialog > m_ui;

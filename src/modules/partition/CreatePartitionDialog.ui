@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>425</width>
-    <height>321</height>
+    <height>208</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,6 +16,57 @@
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <layout class="QFormLayout" name="formLayout">
+     <item row="0" column="0">
+      <widget class="QLabel" name="partitionTypeLabel">
+       <property name="text">
+        <string>Partition &amp;Type:</string>
+       </property>
+       <property name="buddy">
+        <cstring>primaryRadioButton</cstring>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QRadioButton" name="primaryRadioButton">
+         <property name="text">
+          <string>&amp;Primary</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="extendedRadioButton">
+         <property name="text">
+          <string>E&amp;xtended</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="fixedPartitionLabel">
+         <property name="text">
+          <string>TextLabel</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </item>
      <item row="2" column="0">
       <widget class="QLabel" name="label_2">
        <property name="text">
@@ -39,19 +90,6 @@
        </property>
       </widget>
      </item>
-     <item row="5" column="0">
-      <spacer name="verticalSpacer">
-       <property name="orientation">
-        <enum>Qt::Vertical</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>20</width>
-         <height>40</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
      <item row="3" column="1">
       <widget class="QSpinBox" name="sizeSpinBox">
        <property name="suffix">
@@ -59,35 +97,24 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="1">
-      <widget class="QRadioButton" name="primaryRadioButton">
-       <property name="text">
-        <string>&amp;Primary</string>
+     <item row="4" column="1">
+      <spacer name="verticalSpacer_2">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
        </property>
-       <property name="checked">
-        <bool>true</bool>
+       <property name="sizeType">
+        <enum>QSizePolicy::Fixed</enum>
        </property>
-      </widget>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>20</width>
+         <height>13</height>
+        </size>
+       </property>
+      </spacer>
      </item>
-     <item row="1" column="1">
-      <widget class="QRadioButton" name="extendedRadioButton">
-       <property name="text">
-        <string>E&amp;xtended</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="0">
-      <widget class="QLabel" name="partitionTypeLabel">
-       <property name="text">
-        <string>Partition &amp;Type:</string>
-       </property>
-       <property name="buddy">
-        <cstring>primaryRadioButton</cstring>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="0">
-      <widget class="QLabel" name="label_3">
+     <item row="5" column="0">
+      <widget class="QLabel" name="mountPointLabel">
        <property name="text">
         <string>&amp;Mount Point:</string>
        </property>
@@ -96,7 +123,7 @@
        </property>
       </widget>
      </item>
-     <item row="4" column="1">
+     <item row="5" column="1">
       <widget class="QComboBox" name="mountPointComboBox">
        <property name="editable">
         <bool>true</bool>
@@ -136,6 +163,32 @@
        </item>
       </widget>
      </item>
+     <item row="6" column="0">
+      <spacer name="verticalSpacer">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>17</width>
+         <height>13</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="1" column="1">
+      <spacer name="verticalSpacer_3">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>20</width>
+         <height>12</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
     </layout>
    </item>
    <item>
@@ -152,7 +205,6 @@
  </widget>
  <tabstops>
   <tabstop>primaryRadioButton</tabstop>
-  <tabstop>extendedRadioButton</tabstop>
   <tabstop>fsComboBox</tabstop>
   <tabstop>sizeSpinBox</tabstop>
  </tabstops>
@@ -165,8 +217,8 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>181</x>
-     <y>165</y>
+     <x>185</x>
+     <y>203</y>
     </hint>
     <hint type="destinationlabel">
      <x>157</x>
@@ -181,11 +233,11 @@
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>181</x>
-     <y>165</y>
+     <x>185</x>
+     <y>203</y>
     </hint>
     <hint type="destinationlabel">
-     <x>262</x>
+     <x>243</x>
      <y>178</y>
     </hint>
    </hints>
@@ -203,6 +255,22 @@
     <hint type="destinationlabel">
      <x>134</x>
      <y>66</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>extendedRadioButton</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>label_2</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>109</x>
+     <y>43</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>79</x>
+     <y>64</y>
     </hint>
    </hints>
   </connection>

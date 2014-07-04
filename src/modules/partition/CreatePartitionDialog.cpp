@@ -29,6 +29,7 @@
 
 // Qt
 #include <QComboBox>
+#include <QSet>
 
 CreatePartitionDialog::CreatePartitionDialog( Device* device, Partition* freePartition, QWidget* parent )
     : QDialog( parent )
@@ -40,25 +41,31 @@ CreatePartitionDialog::CreatePartitionDialog( Device* device, Partition* freePar
 
     FileSystemFactory::init();
 
-    bool hidePartitionType = false;
+    // Partition types
+    QString fixedPartitionType;
     if ( freePartition->roles().has( PartitionRole::Logical ) )
     {
         m_role = PartitionRole( PartitionRole::Logical );
-        hidePartitionType = true;
+        fixedPartitionType = tr( "Logical" );
     }
     else if ( m_device->partitionTable()->hasExtended() )
     {
         m_role = PartitionRole( PartitionRole::Primary );
-        hidePartitionType = true;
+        fixedPartitionType = tr( "Primary" );
     }
 
-    if ( hidePartitionType )
+    if ( fixedPartitionType.isEmpty() )
     {
-        m_ui->partitionTypeLabel->hide();
+        m_ui->fixedPartitionLabel->hide();
+    }
+    else
+    {
+        m_ui->fixedPartitionLabel->setText( fixedPartitionType );
         m_ui->primaryRadioButton->hide();
         m_ui->extendedRadioButton->hide();
     }
 
+    // File system
     QStringList fsNames;
     for ( auto fs : FileSystemFactory::map() )
     {
@@ -69,10 +76,15 @@ CreatePartitionDialog::CreatePartitionDialog( Device* device, Partition* freePar
     }
     m_ui->fsComboBox->addItems( fsNames );
 
+    // Size
     qint64 maxSize = ( freePartition->lastSector() - freePartition->firstSector() + 1 ) * device->logicalSectorSize();
 
     m_ui->sizeSpinBox->setMaximum( maxSize / 1024 / 1024 );
     m_ui->sizeSpinBox->setValue( m_ui->sizeSpinBox->maximum() );
+
+    // Connections
+    connect( m_ui->fsComboBox, SIGNAL( activated( int ) ), SLOT( updateMountPointUi() ) );
+    connect( m_ui->extendedRadioButton, SIGNAL( toggled( bool ) ), SLOT( updateMountPointUi() ) );
 }
 
 CreatePartitionDialog::~CreatePartitionDialog()
@@ -117,4 +129,19 @@ CreatePartitionDialog::createPartitionInfo()
     info->mountPoint = m_ui->mountPointComboBox->currentText();
     info->format = true;
     return info;
+}
+
+void
+CreatePartitionDialog::updateMountPointUi()
+{
+    static QSet< FileSystem::Type > unmountableFS( { FileSystem::Unformatted, FileSystem::LinuxSwap } );
+
+    bool enabled = m_ui->primaryRadioButton->isChecked();
+    if ( enabled )
+    {
+        FileSystem::Type type = FileSystem::typeForName( m_ui->fsComboBox->currentText() );
+        enabled = !unmountableFS.contains( type );
+    }
+    m_ui->mountPointLabel->setEnabled( enabled );
+    m_ui->mountPointComboBox->setEnabled( enabled );
 }
