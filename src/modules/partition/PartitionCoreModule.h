@@ -59,22 +59,15 @@ public:
     }
 
 private:
-    struct DeviceInfo
-    {
-        DeviceInfo( Device* dev );
-        ~DeviceInfo();
-        Device* device;
-        PartitionModel* partitionModel;
-    };
-    QList< DeviceInfo* > m_devices;
-    InfoForPartitionHash m_infoForPartitionHash;
+    QList< Device* > m_devices;
+    QHash< Device*, PartitionModel* > m_partitionModelForDeviceHash;
     DeviceModel* m_deviceModel;
+
+    InfoForPartitionHash m_infoForPartitionHash;
 
     QList< Calamares::job_ptr > m_jobs;
 
     void listDevices();
-
-    DeviceInfo* deviceInfoForDevice( Device* device ) const;
 
     void dumpQueue() const;
 };

@@ -33,19 +33,6 @@
 #include <backend/corebackendmanager.h>
 
 
-//- DeviceInfo --------------------------------------------
-PartitionCoreModule::DeviceInfo::DeviceInfo( Device* dev )
-    : device( dev )
-    , partitionModel( new PartitionModel )
-{
-}
-
-PartitionCoreModule::DeviceInfo::~DeviceInfo()
-{
-    delete partitionModel;
-}
-
-//- PartitionCoreModule -----------------------------------
 PartitionCoreModule::PartitionCoreModule( QObject* parent )
     : QObject( parent )
     , m_deviceModel( new DeviceModel( this ) )
@@ -57,14 +44,14 @@ PartitionCoreModule::PartitionCoreModule( QObject* parent )
     }
 
     CoreBackend* backend = CoreBackendManager::self()->backend();
-    QList< Device* > lst = backend->scanDevices();
-    m_deviceModel->init( lst );
-    for ( auto device : lst )
+    m_devices = backend->scanDevices();
+    for ( auto device : m_devices )
     {
-        DeviceInfo* info = new DeviceInfo( device );
-        info->partitionModel->init( device, &m_infoForPartitionHash );
-        m_devices << info;
+        PartitionModel* model = new PartitionModel;
+        model->init( device, &m_infoForPartitionHash );
+        m_partitionModelForDeviceHash[ device ] = model;
     }
+    m_deviceModel->init( m_devices );
 
 }
 
@@ -83,43 +70,23 @@ PartitionCoreModule::deviceModel() const
 PartitionModel*
 PartitionCoreModule::partitionModelForDevice( Device* device ) const
 {
-    for ( auto it : m_devices )
-    {
-        if ( it->device == device )
-        {
-            return it->partitionModel;
-        }
-    }
-    return nullptr;
+    return m_partitionModelForDeviceHash[ device ];
 }
 
 void
 PartitionCoreModule::createPartition( CreatePartitionJob* job )
 {
-    DeviceInfo* info = deviceInfoForDevice( job->device() );
-    Q_ASSERT( info );
     Q_ASSERT( !m_infoForPartitionHash.contains( job->partition() ) );
     PartitionInfo* partitionInfo = new PartitionInfo( job->partition() );
     partitionInfo->mountPoint = job->mountPoint();
     m_infoForPartitionHash[ job->partition() ] = partitionInfo;
     job->updatePreview();
-    info->partitionModel->reload();
+    auto partitionModel = m_partitionModelForDeviceHash.value( job->device() );
+    Q_ASSERT( partitionModel );
+    partitionModel->reload();
     m_jobs << Calamares::job_ptr( job );
 
     dumpQueue();
-}
-
-PartitionCoreModule::DeviceInfo*
-PartitionCoreModule::deviceInfoForDevice( Device* device ) const
-{
-    for ( auto info : m_devices )
-    {
-        if ( info->device == device )
-        {
-            return info;
-        }
-    }
-    return nullptr;
 }
 
 void
@@ -157,8 +124,9 @@ PartitionCoreModule::deletePartition( Device* device, Partition* partition )
         m_jobs << Calamares::job_ptr( job );
     }
 
-    DeviceInfo* info = deviceInfoForDevice( device );
-    info->partitionModel->reload();
+    auto partitionModel = m_partitionModelForDeviceHash.value( device );
+    Q_ASSERT( partitionModel );
+    partitionModel->reload();
 
     dumpQueue();
 }
