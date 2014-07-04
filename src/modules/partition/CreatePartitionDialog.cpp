@@ -18,7 +18,7 @@
 
 #include <CreatePartitionDialog.h>
 
-#include <CreatePartitionJob.h>
+#include <PartitionInfo.h>
 #include <ui_CreatePartitionDialog.h>
 
 // CalaPM
@@ -78,8 +78,8 @@ CreatePartitionDialog::CreatePartitionDialog( Device* device, Partition* freePar
 CreatePartitionDialog::~CreatePartitionDialog()
 {}
 
-CreatePartitionJob*
-CreatePartitionDialog::createJob()
+PartitionInfo*
+CreatePartitionDialog::createPartitionInfo()
 {
     if ( m_role.roles() == PartitionRole::None )
     {
@@ -100,7 +100,7 @@ CreatePartitionDialog::createJob()
     FileSystem* fs = FileSystemFactory::create( type, first, last );
 
     PartitionNode* parent = m_freePartition->parent();
-    Partition* partition = new Partition(
+    auto partition = new Partition(
         parent,
         *m_device,
         m_role,
@@ -112,7 +112,8 @@ CreatePartitionDialog::createJob()
         PartitionTable::FlagNone /* activeFlags */,
         Partition::StateNew
     );
-    return new CreatePartitionJob( m_device, partition,
-        m_ui->mountPointComboBox->currentText()
-        );
+
+    auto info = new PartitionInfo( partition );
+    info->mountPoint = m_ui->mountPointComboBox->currentText();
+    return info;
 }

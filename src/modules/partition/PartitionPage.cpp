@@ -107,7 +107,7 @@ PartitionPage::onCreateClicked()
     QPointer<CreatePartitionDialog> dlg = new CreatePartitionDialog( model->device(), partition, this );
     if ( dlg->exec() == QDialog::Accepted )
     {
-        m_core->createPartition( dlg->createJob() );
+        m_core->createPartition( model->device(), dlg->createPartitionInfo() );
     }
     delete dlg;
 }

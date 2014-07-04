@@ -49,7 +49,7 @@ public:
 
     PartitionModel* partitionModelForDevice( Device* device ) const;
 
-    void createPartition( CreatePartitionJob* job );
+    void createPartition( Device* device, PartitionInfo* partitionInfo );
 
     void deletePartition( Device* device, Partition* partition );
 

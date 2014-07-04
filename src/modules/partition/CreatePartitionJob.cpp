@@ -24,10 +24,9 @@
 #include <core/partitiontable.h>
 #include <fs/filesystem.h>
 
-CreatePartitionJob::CreatePartitionJob( Device* device, Partition* partition, const QString& mountPoint )
+CreatePartitionJob::CreatePartitionJob( Device* device, Partition* partition )
     : m_device( device )
     , m_partition( partition )
-    , m_mountPoint( mountPoint )
 {
 }
 

@@ -29,7 +29,7 @@ class CreatePartitionJob : public Calamares::Job
 {
     Q_OBJECT
 public:
-    CreatePartitionJob( Device* device, Partition* partition, const QString& mountPoint );
+    CreatePartitionJob( Device* device, Partition* partition );
     QString prettyName() override;
     void exec() override;
 
@@ -44,15 +44,9 @@ public:
         return m_partition;
     }
 
-    QString mountPoint() const
-    {
-        return m_mountPoint;
-    }
-
 private:
     Device* m_device;
     Partition* m_partition;
-    QString m_mountPoint;
 };
 
 #endif /* CREATEPARTITIONJOB_H */

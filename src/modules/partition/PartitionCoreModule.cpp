@@ -74,13 +74,15 @@ PartitionCoreModule::partitionModelForDevice( Device* device ) const
 }
 
 void
-PartitionCoreModule::createPartition( CreatePartitionJob* job )
+PartitionCoreModule::createPartition( Device* device, PartitionInfo* partitionInfo )
 {
-    Q_ASSERT( !m_infoForPartitionHash.contains( job->partition() ) );
-    PartitionInfo* partitionInfo = new PartitionInfo( job->partition() );
-    partitionInfo->mountPoint = job->mountPoint();
-    m_infoForPartitionHash[ job->partition() ] = partitionInfo;
+    auto partition = partitionInfo->partition;
+    Q_ASSERT( !m_infoForPartitionHash.contains( partition ) );
+    m_infoForPartitionHash[ partition ] = partitionInfo;
+
+    CreatePartitionJob* job = new CreatePartitionJob( device, partition );
     job->updatePreview();
+
     auto partitionModel = m_partitionModelForDeviceHash.value( job->device() );
     Q_ASSERT( partitionModel );
     partitionModel->reload();
