@@ -27,6 +27,9 @@
 #include <fs/filesystem.h>
 #include <fs/filesystemfactory.h>
 
+// Qt
+#include <QComboBox>
+
 CreatePartitionDialog::CreatePartitionDialog( Device* device, Partition* freePartition, QWidget* parent )
     : QDialog( parent )
     , m_ui( new Ui_CreatePartitionDialog )
@@ -104,7 +107,7 @@ CreatePartitionDialog::createJob()
         fs, first, last,
         QString() /* path */,
         PartitionTable::FlagNone /* availableFlags */,
-        QString() /* mountPoint */,
+        m_ui->mountPointComboBox->currentText(),
         false /* mounted */,
         PartitionTable::FlagNone /* activeFlags */,
         Partition::StateNew
