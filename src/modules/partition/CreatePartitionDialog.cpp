@@ -107,10 +107,12 @@ CreatePartitionDialog::createJob()
         fs, first, last,
         QString() /* path */,
         PartitionTable::FlagNone /* availableFlags */,
-        m_ui->mountPointComboBox->currentText(),
+        QString() /* mountPoint */,
         false /* mounted */,
         PartitionTable::FlagNone /* activeFlags */,
         Partition::StateNew
     );
-    return new CreatePartitionJob( m_device, partition );
+    return new CreatePartitionJob( m_device, partition,
+        m_ui->mountPointComboBox->currentText()
+        );
 }
