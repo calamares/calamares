@@ -94,6 +94,8 @@ PartitionCoreModule::createPartition( Device* device, PartitionInfo* partitionIn
 void
 PartitionCoreModule::deletePartition( Device* device, Partition* partition )
 {
+    m_infoForPartitionHash.remove( partition );
+
     if ( partition->state() == Partition::StateNew )
     {
         // Find matching CreatePartitionJob
