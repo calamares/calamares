@@ -1,6 +1,12 @@
 if( WITH_PARTITIONMANAGER )
 
-find_package( KF5 CONFIG REQUIRED CoreAddons )
+## ECM
+find_package(ECM 0.0.13 REQUIRED NO_MODULE)
+set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${CMAKE_MODULE_PATH})
+include(KDEInstallDirs)
+include(GenerateExportHeader)
+
+find_package( KF5 REQUIRED CoreAddons )
 
 add_definitions( -DCALAMARES )
 
