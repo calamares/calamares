@@ -27,6 +27,8 @@ PartitionViewStep::PartitionViewStep( QObject* parent )
     , m_core( new PartitionCoreModule( this ) )
     , m_widget( new PartitionPage( m_core ) )
 {
+    connect( m_core, SIGNAL( hasRootMountPointChanged( bool ) ),
+             SIGNAL( nextStatusChanged( bool ) ) );
 }
 
 
@@ -60,7 +62,7 @@ PartitionViewStep::back()
 bool
 PartitionViewStep::isNextEnabled() const
 {
-    return false;
+    return m_core->hasRootMountPoint();
 }
 
 

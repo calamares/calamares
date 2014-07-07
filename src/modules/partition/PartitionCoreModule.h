@@ -41,6 +41,7 @@ class PartitionModel;
  */
 class PartitionCoreModule : public QObject
 {
+    Q_OBJECT
 public:
     PartitionCoreModule( QObject* parent = nullptr );
     ~PartitionCoreModule();
@@ -58,10 +59,19 @@ public:
         return m_jobs;
     }
 
+    bool hasRootMountPoint() const
+    {
+        return m_hasRootMountPoint;
+    }
+
+Q_SIGNALS:
+    void hasRootMountPointChanged( bool value );
+
 private:
     QList< Device* > m_devices;
     QHash< Device*, PartitionModel* > m_partitionModelForDeviceHash;
     DeviceModel* m_deviceModel;
+    bool m_hasRootMountPoint = false;
 
     InfoForPartitionHash m_infoForPartitionHash;
 

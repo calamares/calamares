@@ -88,13 +88,28 @@ PartitionCoreModule::createPartition( Device* device, PartitionInfo* partitionIn
     partitionModel->reload();
     m_jobs << Calamares::job_ptr( job );
 
+    if ( partitionInfo->mountPoint == "/" && !m_hasRootMountPoint )
+    {
+        m_hasRootMountPoint = true;
+        hasRootMountPointChanged( m_hasRootMountPoint );
+    }
+
     dumpQueue();
 }
 
 void
 PartitionCoreModule::deletePartition( Device* device, Partition* partition )
 {
-    m_infoForPartitionHash.remove( partition );
+    auto it = m_infoForPartitionHash.find( partition );
+    if ( it != m_infoForPartitionHash.end() )
+    {
+        if ( it.value()->mountPoint == "/" )
+        {
+            m_hasRootMountPoint = false;
+            hasRootMountPointChanged( m_hasRootMountPoint );
+        }
+        m_infoForPartitionHash.erase( it );
+    }
 
     if ( partition->state() == Partition::StateNew )
     {
