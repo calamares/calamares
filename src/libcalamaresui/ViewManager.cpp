@@ -19,6 +19,7 @@
 #include "ViewManager.h"
 
 #include "viewpages/ViewStep.h"
+#include "InstallationViewStep.h"
 
 #include <QApplication>
 #include <QLabel>
@@ -64,6 +65,9 @@ ViewManager::ViewManager( QObject* parent )
     connect( m_next, &QPushButton::clicked, this, &ViewManager::next );
     connect( m_back, &QPushButton::clicked, this, &ViewManager::back );
     m_back->setEnabled( false );
+
+    m_installationViewStep = new InstallationViewStep( this );
+    insertViewStep( 0, m_installationViewStep );
 }
 
 
@@ -83,26 +87,41 @@ ViewManager::centralWidget()
 void
 ViewManager::addViewStep( ViewStep* step )
 {
-    step->setParent( this );
-    m_steps.append( step );
+    m_prepareSteps.append( step );
+
+    insertViewStep( m_steps.size() - 1, step );
+}
+
+
+void
+ViewManager::insertViewStep( int before, ViewStep* step)
+{
+    m_steps.insert( before, step );
     QLayout* layout = step->widget()->layout();
     if ( layout )
     {
         layout->setContentsMargins( 0, 0, 0, 0 );
     }
-    m_stack->addWidget( step->widget() );
+    m_stack->insertWidget( before, step->widget() );
 
     connect( step, &ViewStep::nextStatusChanged,
              m_next, &QPushButton::setEnabled );
 
-    emit currentStepChanged();
+    m_stack->setCurrentIndex( 0 );
 }
 
 
 QList< ViewStep* >
-ViewManager::steps() const
+ViewManager::prepareSteps() const
 {
-    return m_steps;
+    return m_prepareSteps;
+}
+
+
+ViewStep*
+ViewManager::installationStep() const
+{
+    return m_installationViewStep;
 }
 
 
@@ -124,20 +143,21 @@ void
 ViewManager::next()
 {
     ViewStep* step = m_steps.at( m_currentStep );
-    if ( step->isAtEnd() && m_currentStep < m_steps.length() -1 )
+    bool installing = false;
+    if ( step->isAtEnd() )
     {
         m_currentStep++;
         m_stack->setCurrentIndex( m_currentStep );
+        installing = m_steps.at( m_currentStep ) == m_installationViewStep;
         emit currentStepChanged();
     }
-    else if ( !step->isAtEnd() )
+    else
     {
         step->next();
     }
-    else return;
 
-    m_next->setEnabled( m_steps.at( m_currentStep )->isNextEnabled() );
-    m_back->setEnabled( true );
+    m_next->setEnabled( !installing && m_steps.at( m_currentStep )->isNextEnabled() );
+    m_back->setEnabled( !installing );
 }
 
 
