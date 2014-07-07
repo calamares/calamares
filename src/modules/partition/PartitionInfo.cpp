@@ -18,5 +18,5 @@
 #include <PartitionInfo.h>
 
 PartitionInfo::PartitionInfo( Partition* p )
-: partition( p )
+    : partition( p )
 {}
