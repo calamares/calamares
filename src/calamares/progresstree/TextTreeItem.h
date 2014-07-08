@@ -16,16 +16,16 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef CATEGORYITEM_H
-#define CATEGORYITEM_H
+#ifndef TEXTTREEITEM_H
+#define TEXTTREEITEM_H
 
 #include "ProgressTreeItem.h"
 
 
-class CategoryItem : public ProgressTreeItem
+class TextTreeItem : public ProgressTreeItem
 {
 public:
-    explicit CategoryItem( const QString& text, ProgressTreeItem* parent = nullptr );
+    explicit TextTreeItem( const QString& text, ProgressTreeItem* parent = nullptr );
 
     virtual QVariant data( int role ) const override;
 
@@ -33,4 +33,4 @@ private:
     QString m_text;
 };
 
-#endif // CATEGORYITEM_H
+#endif // TEXTTREEITEM_H

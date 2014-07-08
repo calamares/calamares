@@ -16,18 +16,18 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "CategoryItem.h"
+#include "TextTreeItem.h"
 
 #include "ProgressTreeModel.h"
 
-CategoryItem::CategoryItem( const QString& text, ProgressTreeItem* parent )
+TextTreeItem::TextTreeItem( const QString& text, ProgressTreeItem* parent )
     : ProgressTreeItem( parent )
     , m_text( text )
 {}
 
 
 QVariant
-CategoryItem::data( int role ) const
+TextTreeItem::data( int role ) const
 {
     if ( role == ProgressTreeModel::ProgressTreeItemTypeRole )
         return ProgressTreeModel::Category;
