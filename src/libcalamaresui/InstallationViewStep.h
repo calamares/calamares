@@ -21,6 +21,9 @@
 
 #include <viewpages/ViewStep.h>
 
+class QLabel;
+class QProgressBar;
+
 namespace Calamares
 {
 
@@ -45,6 +48,10 @@ public:
 
 private:
     QWidget* m_widget;
+    QProgressBar* m_progressBar;
+    QLabel* m_label;
+
+    void updateFromJobQueue( int current, int total, const QString& message );
 };
 
 }

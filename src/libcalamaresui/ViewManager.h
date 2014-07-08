@@ -72,6 +72,7 @@ private:
     QPushButton* m_quit;
 
     void insertViewStep( int before, ViewStep* step );
+    void startInstallation();
 };
 
 }

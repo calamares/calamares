@@ -20,6 +20,7 @@
 
 #include "viewpages/ViewStep.h"
 #include "InstallationViewStep.h"
+#include "JobQueue.h"
 
 #include <QApplication>
 #include <QLabel>
@@ -150,6 +151,10 @@ ViewManager::next()
         m_stack->setCurrentIndex( m_currentStep );
         installing = m_steps.at( m_currentStep ) == m_installationViewStep;
         emit currentStepChanged();
+        if ( installing )
+        {
+            startInstallation();
+        }
     }
     else
     {
@@ -180,6 +185,16 @@ ViewManager::back()
     m_next->setEnabled( m_steps.at( m_currentStep )->isNextEnabled() );
     if ( m_currentStep == 0 && m_steps.first()->isAtBeginning() )
         m_back->setEnabled( false );
+}
+
+void
+ViewManager::startInstallation()
+{
+    for( ViewStep* step : m_prepareSteps )
+    {
+        JobQueue::instance()->enqueue( step->jobs() );
+    }
+    JobQueue::instance()->start();
 }
 
 }
