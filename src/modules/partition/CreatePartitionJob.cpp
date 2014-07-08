@@ -18,14 +18,22 @@
 
 #include <CreatePartitionJob.h>
 
+#include <utils/Logger.h>
+
 // CalaPM
+#include <backend/corebackend.h>
+#include <backend/corebackendmanager.h>
+#include <backend/corebackenddevice.h>
+#include <backend/corebackendpartition.h>
+#include <backend/corebackendpartitiontable.h>
 #include <core/device.h>
 #include <core/partition.h>
 #include <core/partitiontable.h>
 #include <fs/filesystem.h>
+#include <util/report.h>
 
 // Qt
-#include <QThread>
+#include <QScopedPointer>
 
 CreatePartitionJob::CreatePartitionJob( Device* device, Partition* partition )
     : m_device( device )
@@ -42,7 +50,45 @@ CreatePartitionJob::prettyName()
 void
 CreatePartitionJob::exec()
 {
-    QThread::sleep(2);
+    Report report( 0 );
+
+    CoreBackend* backend = CoreBackendManager::self()->backend();
+    QScopedPointer<CoreBackendDevice> backendDevice( backend->openDevice( m_device->deviceNode() ) );
+    Q_ASSERT( backendDevice.data() );
+
+    QScopedPointer<CoreBackendPartitionTable> backendPartitionTable( backendDevice->openPartitionTable() );
+    Q_ASSERT( backendPartitionTable );
+
+    QString partitionPath = backendPartitionTable->createPartition( report, *m_partition );
+    if ( partitionPath.isEmpty() )
+    {
+        cLog( LOGINFO ) << "Failed to create partition";
+        cLog( LOGINFO ) << report.toText();
+        return;
+    }
+    backendPartitionTable->commit();
+
+    FileSystem& fs = m_partition->fileSystem();
+    if ( fs.type() == FileSystem::Unformatted )
+    {
+        return;
+    }
+
+    if ( !fs.create( report, partitionPath ) )
+    {
+        cLog( LOGINFO ) << "Failed to create filesystem";
+        cLog( LOGINFO ) << report.toText();
+        return;
+    }
+
+    if ( !backendPartitionTable->setPartitionSystemType( report, *m_partition ) )
+    {
+        cLog( LOGINFO ) << "Failed to update partition table";
+        cLog( LOGINFO ) << report.toText();
+        return;
+    }
+
+    backendPartitionTable->commit();
 }
 
 void
