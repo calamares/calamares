@@ -20,6 +20,9 @@
 
 #include "ProgressTreeModel.h"
 
+#include "ViewManager.h"
+#include "viewpages/ViewStep.h"
+
 
 ProgressTreeItem::ProgressTreeItem( ProgressTreeItem* parent )
 {
@@ -76,6 +79,32 @@ ProgressTreeItem::parent()
 {
     return m_parentItem;
 }
+
+
+void
+ProgressTreeItem::setViewStep( Calamares::ViewStep* step )
+{
+    m_step = step;
+}
+
+
+QVariant
+ProgressTreeItem::data( int role ) const
+{
+    if ( role == ProgressTreeModel::ProgressTreeItemCurrentRole )
+    {
+        if ( m_step )
+        {
+            return Calamares::ViewManager::instance()->currentStep() == m_step;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    return QVariant();
+}
+
 
 
 ProgressTreeRoot::ProgressTreeRoot()

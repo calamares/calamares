@@ -30,6 +30,7 @@ namespace Calamares
 {
 
 class ViewStep;
+class InstallationViewStep;
 
 class UIDLLEXPORT ViewManager : public QObject
 {
@@ -44,7 +45,8 @@ public:
 
     void addViewStep( ViewStep* step );
 
-    QList< ViewStep* > steps() const;
+    QList< ViewStep* > prepareSteps() const;
+    ViewStep* installationStep() const;
     ViewStep* currentStep() const;
     int currentStepIndex() const;
 
@@ -59,6 +61,8 @@ private:
     static ViewManager* s_instance;
 
     QList< ViewStep* > m_steps;
+    QList< ViewStep* > m_prepareSteps;
+    InstallationViewStep* m_installationViewStep;
     int m_currentStep;
 
     QWidget* m_widget;
@@ -66,6 +70,8 @@ private:
     QPushButton* m_back;
     QPushButton* m_next;
     QPushButton* m_quit;
+
+    void insertViewStep( int before, ViewStep* step );
 };
 
 }

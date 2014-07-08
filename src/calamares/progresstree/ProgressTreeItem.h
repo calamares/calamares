@@ -22,6 +22,11 @@
 #include <QList>
 #include <QVariant>
 
+namespace Calamares
+{
+class ViewStep;
+}
+
 class ProgressTreeItem
 {
 public:
@@ -34,9 +39,14 @@ public:
     virtual ProgressTreeItem* child( int row );
     virtual int childCount() const;
     virtual int columnCount() const;
-    virtual QVariant data( int role ) const = 0;
+    virtual QVariant data( int role ) const;
     virtual int row() const;
     virtual ProgressTreeItem* parent();
+
+    void setViewStep( Calamares::ViewStep* );
+
+protected:
+    const Calamares::ViewStep* m_step = nullptr;
 
 private:
     QList< ProgressTreeItem* > m_childItems;

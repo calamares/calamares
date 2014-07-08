@@ -35,5 +35,5 @@ CategoryItem::data( int role ) const
         return this;
     if ( role == Qt::DisplayRole )
         return m_text;
-    return QVariant();
+    return ProgressTreeItem::data( role );
 }

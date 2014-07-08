@@ -109,9 +109,12 @@ ProgressTreeDelegate::paintCategory( QPainter* painter,
                                            ITEM_MARGIN,
                                            ITEM_MARGIN );
 
+    bool isCurrent = index.data( ProgressTreeModel::ProgressTreeItemCurrentRole ).toBool();
+
     QFont font = qApp->font();
     font.setPointSize( CAT_FONTSIZE );
     font.setBold( false );
+    font.setUnderline( isCurrent ); // FIXME: Figure out a nicer way to highlight the current category step
     painter->setFont( font );
 
     painter->drawText( textRect, index.data().toString() );

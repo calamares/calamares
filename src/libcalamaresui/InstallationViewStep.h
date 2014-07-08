@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -16,34 +16,35 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "ViewStepItem.h"
+#ifndef INSTALLATIONVIEWSTEP_H
+#define INSTALLATIONVIEWSTEP_H
 
-#include "ProgressTreeModel.h"
-#include "viewpages/ViewStep.h"
+#include <viewpages/ViewStep.h>
 
-
-ViewStepItem::ViewStepItem( const Calamares::ViewStep* step, ProgressTreeItem* parent )
-    : ProgressTreeItem( parent )
+namespace Calamares
 {
-    m_step = step;
+
+class InstallationViewStep : public ViewStep
+{
+public:
+    explicit InstallationViewStep( QObject* parent = nullptr );
+
+    QString prettyName() const override;
+
+    QWidget* widget() override;
+
+    void next() override;
+    void back() override;
+
+    bool isNextEnabled() const override;
+
+    bool isAtBeginning() const override;
+    bool isAtEnd() const override;
+
+private:
+    QWidget* m_widget;
+};
+
 }
 
-
-void
-ViewStepItem::appendChild( ProgressTreeItem* item )
-{
-    Q_ASSERT( false );
-}
-
-
-QVariant
-ViewStepItem::data( int role ) const
-{
-    if ( role == ProgressTreeModel::ProgressTreeItemTypeRole )
-        return ProgressTreeModel::ViewStep;
-    if ( role == ProgressTreeModel::ProgressTreeItemRole )
-        return this;
-    if ( role == Qt::DisplayRole )
-        return m_step->prettyName();
-    return ProgressTreeItem::data( role );
-}
+#endif /* INSTALLATIONVIEWSTEP_H */
