@@ -32,6 +32,8 @@ public:
 
     void init();
 
+    QString prettyStatus() const;
+
 private:
     TimeZoneWidget* m_tzWidget;
     QComboBox* m_regionCombo;

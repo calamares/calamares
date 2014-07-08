@@ -103,6 +103,13 @@ LocaleViewStep::prettyName() const
 }
 
 
+QString
+LocaleViewStep::prettyStatus() const
+{
+    return m_prettyStatus;
+}
+
+
 QWidget*
 LocaleViewStep::widget()
 {
@@ -148,4 +155,11 @@ QList< Calamares::job_ptr >
 LocaleViewStep::jobs() const
 {
     return QList< Calamares::job_ptr >();
+}
+
+
+void
+LocaleViewStep::onLeave()
+{
+    m_prettyStatus = m_actualWidget->prettyStatus();
 }

@@ -149,3 +149,15 @@ LocalePage::init()
     emit m_tzWidget->locationChanged( m_tzWidget->getCurrentLocation() );
 }
 
+
+QString
+LocalePage::prettyStatus() const
+{
+    QString status;
+    status += tr( "Set timezone to %1/%2.<br/>" )
+              .arg( m_regionCombo->currentText() )
+              .arg( m_timezoneCombo->currentText() );
+
+    return status;
+}
+

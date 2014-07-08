@@ -40,6 +40,7 @@ public:
     virtual ~LocaleViewStep();
 
     QString prettyName() const override;
+    QString prettyStatus() const override;
 
     QWidget* widget() override;
 
@@ -53,12 +54,15 @@ public:
 
     QList< Calamares::job_ptr > jobs() const override;
 
+    void onLeave() override;
+
 private:
     QWidget* m_widget;
     QFutureWatcher< void > m_initWatcher;
 
     LocalePage* m_actualWidget;
     bool m_nextEnabled;
+    QString m_prettyStatus;
 };
 
 #endif // LOCALEVIEWSTEP_H
