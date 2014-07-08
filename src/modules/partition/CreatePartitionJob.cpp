@@ -24,6 +24,9 @@
 #include <core/partitiontable.h>
 #include <fs/filesystem.h>
 
+// Qt
+#include <QThread>
+
 CreatePartitionJob::CreatePartitionJob( Device* device, Partition* partition )
     : m_device( device )
     , m_partition( partition )
@@ -39,6 +42,7 @@ CreatePartitionJob::prettyName()
 void
 CreatePartitionJob::exec()
 {
+    QThread::sleep(2);
 }
 
 void
