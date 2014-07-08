@@ -136,12 +136,12 @@ ProgressTreeModel::setupModelData()
     CategoryItem* prepare = new CategoryItem( tr( "Prepare" ), m_rootItem );
     m_rootItem->appendChild( prepare );
 
-    foreach ( const Calamares::ViewStep* step, vm->steps() )
+    foreach ( const Calamares::ViewStep* step, vm->prepareSteps() )
     {
         prepare->appendChild( new ViewStepItem( step, prepare ) );
     }
 
-    m_rootItem->appendChild( new CategoryItem( tr( "Install" ), m_rootItem ) );
+    m_rootItem->appendChild( new ViewStepItem( vm->installationStep(), m_rootItem ) );
     m_rootItem->appendChild( new CategoryItem( tr( "Finish" ), m_rootItem ) );
 }
 
