@@ -22,6 +22,7 @@
 #include <QObject>
 
 #include "../UiDllMacro.h"
+#include "Typedefs.h"
 
 namespace Calamares
 {
@@ -45,6 +46,8 @@ public:
 
     virtual bool isAtBeginning() const = 0;
     virtual bool isAtEnd() const = 0;
+
+    virtual QList< Calamares::job_ptr > jobs() const = 0;
 
 signals:
     void nextStatusChanged( bool status );

@@ -48,6 +48,8 @@ public:
     bool isAtBeginning() const override;
     bool isAtEnd() const override;
 
+    QList< Calamares::job_ptr > jobs() const override;
+
 private:
     PartitionCoreModule* m_core;
     PartitionPage* m_widget;

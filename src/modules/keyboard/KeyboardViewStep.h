@@ -49,6 +49,8 @@ public:
     bool isAtBeginning() const override;
     bool isAtEnd() const override;
 
+    QList< Calamares::job_ptr > jobs() const override;
+
 private:
     KeyboardPage* m_widget;
     bool m_nextEnabled;
