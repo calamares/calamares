@@ -16,26 +16,19 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef CALAMARESUTILSGUI_H
-#define CALAMARESUTILSGUI_H
+#ifndef CALAMARESSTYLE_H
+#define CALAMARESSTYLE_H
 
-#include "utils/CalamaresUtils.h"
-#include "UiDllMacro.h"
+#include "../UiDllMacro.h"
 
-#include <QSize>
+#include <QColor>
 
-class QLayout;
 
-namespace CalamaresUtils
-{
+namespace CalamaresStyle {
 
-UIDLLEXPORT void unmarginLayout( QLayout* layout );
+static const QColor SIDEBAR_BACKGROUND =  "#292F34";
+static const QColor SIDEBAR_TEXT =        "#FFFFFF";
 
-DLLEXPORT void setDefaultFontSize( int points );
-DLLEXPORT int defaultFontSize();
-DLLEXPORT int defaultFontHeight();
-DLLEXPORT QSize defaultIconSize();
+} // namespace CalamaresStyle
 
-}
-
-#endif // CALAMARESUTILSGUI_H
+#endif // CALAMARESSTYLE_H

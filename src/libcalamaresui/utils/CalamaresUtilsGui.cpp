@@ -18,10 +18,16 @@
 
 #include "CalamaresUtilsGui.h"
 
+#include <QFont>
+#include <QFontMetrics>
 #include <QLayout>
 
 namespace CalamaresUtils
 {
+
+static int s_defaultFontSize   = 0;
+static int s_defaultFontHeight = 0;
+
 
 void
 unmarginLayout( QLayout* layout )
@@ -37,5 +43,42 @@ unmarginLayout( QLayout* layout )
             unmarginLayout( childLayout );
     }
 }
+
+
+int
+defaultFontSize()
+{
+    return s_defaultFontSize;
+}
+
+
+int
+defaultFontHeight()
+{
+    if ( s_defaultFontHeight <= 0 )
+    {
+        QFont f;
+        f.setPointSize( defaultFontSize() );
+        s_defaultFontHeight = QFontMetrics( f ).height();
+    }
+
+    return s_defaultFontHeight;
+}
+
+
+void
+setDefaultFontSize( int points )
+{
+    s_defaultFontSize = points;
+}
+
+
+QSize
+defaultIconSize()
+{
+    const int w = defaultFontHeight() * 1.6;
+    return QSize( w, w );
+}
+
 
 }

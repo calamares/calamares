@@ -24,7 +24,7 @@
 #include "progresstree/ProgressTreeModel.h"
 
 #include "modulesystem/ModuleManager.h"
-#include "utils/CalamaresUtils.h"
+#include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
 #include "Settings.h"
 #include "ViewManager.h"
@@ -40,6 +40,18 @@ CalamaresApplication::CalamaresApplication( int& argc, char *argv[] )
     setApplicationVersion( QLatin1String( CALAMARES_VERSION ) );
 
     CalamaresUtils::installTranslator( this );
+
+    QFont f = font();
+
+    cDebug() << "Default font ====="
+             << "\nPixel size:   " << f.pixelSize()
+             << "\nPoint size:   " << f.pointSize()
+             << "\nPoint sizeF:  " << f.pointSizeF()
+             << "\nFont family:  " << f.family()
+             << "\nMetric height:" << QFontMetrics( f ).height();
+    // The following line blocks for 15s on Qt 5.1.0
+    cDebug() << "Font height:" << QFontMetrics( f ).height();
+    CalamaresUtils::setDefaultFontSize( f.pointSize() );
 }
 
 

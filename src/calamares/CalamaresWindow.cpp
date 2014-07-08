@@ -18,9 +18,10 @@
 
 #include "CalamaresWindow.h"
 
+#include "ViewManager.h"
 #include "progresstree/ProgressTreeView.h"
 #include "utils/CalamaresUtilsGui.h"
-#include "ViewManager.h"
+#include "utils/CalamaresStyle.h"
 
 #include <QBoxLayout>
 #include <QLabel>
@@ -51,8 +52,8 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
     {
         QPalette plt = sideBox->palette();
         sideBox->setAutoFillBackground( true );
-        plt.setColor( sideBox->backgroundRole(), QColor( "#292F34" ) );
-        plt.setColor( sideBox->foregroundRole(), Qt::white );
+        plt.setColor( sideBox->backgroundRole(), CalamaresStyle::SIDEBAR_BACKGROUND );
+        plt.setColor( sideBox->foregroundRole(), CalamaresStyle::SIDEBAR_TEXT );
         sideBox->setPalette( plt );
         logoLabel->setPalette( plt );
     }

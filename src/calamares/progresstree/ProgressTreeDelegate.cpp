@@ -23,9 +23,15 @@
 #include "ViewStepItem.h"
 #include "ProgressTreeModel.h"
 #include "ViewManager.h"
+#include "utils/CalamaresStyle.h"
+#include "utils/CalamaresUtilsGui.h"
 
 #include <QAbstractItemView>
 #include <QPainter>
+
+#define ITEM_MARGIN 12
+#define VS_FONTSIZE CalamaresUtils::defaultFontSize() + 2
+#define CAT_FONTSIZE CalamaresUtils::defaultFontSize() + 5
 
 ProgressTreeDelegate::ProgressTreeDelegate( QAbstractItemView* parent )
     : QStyledItemDelegate( parent )
@@ -48,16 +54,16 @@ ProgressTreeDelegate::sizeHint( const QStyleOptionViewItem& option,
 
     if ( type == ProgressTreeModel::Category )
     {
-        font.setPointSize( font.pointSize() + 5 );
+        font.setPointSize( CAT_FONTSIZE );
     }
     else if ( type == ProgressTreeModel::ViewStep )
     {
-        font.setPointSize( font.pointSize() + 2 );
+        font.setPointSize( VS_FONTSIZE );
     }
     QFontMetrics fm( font );
     int height = fm.height();
 
-    height += 2*12; //margin
+    height += 2*ITEM_MARGIN; //margin
 
     return QSize( option.rect.width(), height );
 }
@@ -81,8 +87,8 @@ ProgressTreeDelegate::paint( QPainter* painter,
     initStyleOption( &opt, index );
     opt.text.clear();
 
-    painter->setBrush( QColor( "#292F34" ) );
-    painter->setPen( QColor( "#FFFFFF" ) );
+    painter->setBrush( CalamaresStyle::SIDEBAR_BACKGROUND );
+    painter->setPen( CalamaresStyle::SIDEBAR_TEXT );
 
     if ( type == ProgressTreeModel::Category )
         paintCategory( painter, opt, index );
@@ -98,10 +104,13 @@ ProgressTreeDelegate::paintCategory( QPainter* painter,
                                      const QStyleOptionViewItem& option,
                                      const QModelIndex& index ) const
 {
-    QRect textRect = option.rect.adjusted( 12, 12, 12, 12 );
+    QRect textRect = option.rect.adjusted( ITEM_MARGIN,
+                                           ITEM_MARGIN,
+                                           ITEM_MARGIN,
+                                           ITEM_MARGIN );
 
     QFont font = qApp->font();
-    font.setPointSize( font.pointSize() + 5 );
+    font.setPointSize( CAT_FONTSIZE );
     font.setBold( false );
     painter->setFont( font );
 
@@ -114,9 +123,12 @@ ProgressTreeDelegate::paintViewStep( QPainter* painter,
                                      const QStyleOptionViewItem& option,
                                      const QModelIndex& index ) const
 {
-    QRect textRect = option.rect.adjusted( 12 + 32 /*indentation*/, 12, 12, 12 );
+    QRect textRect = option.rect.adjusted( ITEM_MARGIN + 32 /*indentation*/,
+                                           ITEM_MARGIN,
+                                           ITEM_MARGIN,
+                                           ITEM_MARGIN );
     QFont font = qApp->font();
-    font.setPointSize( font.pointSize() + 2 );
+    font.setPointSize( VS_FONTSIZE );
     font.setBold( false );
     painter->setFont( font );
 
@@ -125,7 +137,7 @@ ProgressTreeDelegate::paintViewStep( QPainter* painter,
 
     if ( isCurrent )
     {
-        painter->setPen( QColor( "#292F34" ) );
+        painter->setPen( CalamaresStyle::SIDEBAR_BACKGROUND );
         painter->setBrush( APP->mainWindow()->palette().background() );
     }
 
