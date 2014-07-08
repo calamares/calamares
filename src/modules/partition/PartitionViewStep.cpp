@@ -20,7 +20,6 @@
 
 #include <PartitionPage.h>
 #include <PartitionCoreModule.h>
-#include <JobQueue.h>
 
 PartitionViewStep::PartitionViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
@@ -49,7 +48,6 @@ PartitionViewStep::widget()
 void
 PartitionViewStep::next()
 {
-    Calamares::JobQueue::instance()->enqueue( m_core->jobs() );
     emit done();
 }
 
@@ -83,5 +81,5 @@ PartitionViewStep::isAtEnd() const
 QList< Calamares::job_ptr >
 PartitionViewStep::jobs() const
 {
-    return QList< Calamares::job_ptr >();
+    return m_core->jobs();
 }
