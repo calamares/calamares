@@ -70,4 +70,10 @@ InstallationViewStep::isAtEnd() const
     return false;
 }
 
+QList< Calamares::job_ptr >
+InstallationViewStep::jobs() const
+{
+    return QList< Calamares::job_ptr >();
+}
+
 } // namespace
