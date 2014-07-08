@@ -47,7 +47,7 @@ CreatePartitionJob::prettyName()
     return tr( "Create partition" ); // FIXME
 }
 
-void
+Calamares::JobResult
 CreatePartitionJob::exec()
 {
     Report report( 0 );
@@ -62,33 +62,37 @@ CreatePartitionJob::exec()
     QString partitionPath = backendPartitionTable->createPartition( report, *m_partition );
     if ( partitionPath.isEmpty() )
     {
-        cLog( LOGINFO ) << "Failed to create partition";
-        cLog( LOGINFO ) << report.toText();
-        return;
+        return Calamares::JobResult::error(
+            tr( "Failed to create partition" ),
+            report.toText()
+        );
     }
     backendPartitionTable->commit();
 
     FileSystem& fs = m_partition->fileSystem();
     if ( fs.type() == FileSystem::Unformatted )
     {
-        return;
+        return Calamares::JobResult::ok();
     }
 
     if ( !fs.create( report, partitionPath ) )
     {
-        cLog( LOGINFO ) << "Failed to create filesystem";
-        cLog( LOGINFO ) << report.toText();
-        return;
+        return Calamares::JobResult::error(
+            tr( "Failed to create system" ),
+            report.toText()
+        );
     }
 
     if ( !backendPartitionTable->setPartitionSystemType( report, *m_partition ) )
     {
-        cLog( LOGINFO ) << "Failed to update partition table";
-        cLog( LOGINFO ) << report.toText();
-        return;
+        return Calamares::JobResult::error(
+            tr( "Failed to update partition table" ),
+            report.toText()
+        );
     }
 
     backendPartitionTable->commit();
+    return Calamares::JobResult::ok();
 }
 
 void

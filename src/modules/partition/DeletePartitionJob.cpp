@@ -36,9 +36,10 @@ DeletePartitionJob::prettyName()
     return tr( "Delete partition %1" ).arg( m_partition->partitionPath() );
 }
 
-void
+Calamares::JobResult
 DeletePartitionJob::exec()
 {
+    return Calamares::JobResult::ok();
 }
 
 void

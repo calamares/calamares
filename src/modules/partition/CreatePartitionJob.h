@@ -31,7 +31,7 @@ class CreatePartitionJob : public Calamares::Job
 public:
     CreatePartitionJob( Device* device, Partition* partition );
     QString prettyName() override;
-    void exec() override;
+    Calamares::JobResult exec() override;
 
     void updatePreview();
     Device* device() const

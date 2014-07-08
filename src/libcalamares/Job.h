@@ -26,6 +26,46 @@
 
 namespace Calamares {
 
+class DLLEXPORT JobResult
+{
+public:
+    operator bool() const
+    {
+        return m_ok;
+    }
+
+    QString message() const
+    {
+        return m_message;
+    }
+
+    QString details() const
+    {
+        return m_details;
+    }
+
+    static JobResult ok()
+    {
+        return JobResult( true, QString(), QString() );
+    }
+
+    static JobResult error( const QString& message, const QString& details = QString() )
+    {
+        return JobResult( false, message, details );
+    }
+
+private:
+    bool m_ok;
+    QString m_message;
+    QString m_details;
+
+    JobResult( bool ok, const QString& message, const QString& details )
+    : m_ok( ok )
+    , m_message( message )
+    , m_details( details )
+    {}
+};
+
 class DLLEXPORT Job : public QObject
 {
     Q_OBJECT
@@ -41,7 +81,7 @@ public:
     virtual ~Job();
 
     virtual QString prettyName() = 0;
-    virtual void exec() = 0;
+    virtual JobResult exec() = 0;
 signals:
     void running( const Calamares::job_ptr& );
     void finished( const Calamares::job_ptr& );
