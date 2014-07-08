@@ -38,6 +38,7 @@ public:
     virtual ~KeyboardViewStep();
 
     QString prettyName() const override;
+    QString prettyStatus() const override;
 
     QWidget* widget() override;
 
@@ -51,9 +52,12 @@ public:
 
     QList< Calamares::job_ptr > jobs() const override;
 
+    void onLeave() override;
+
 private:
     KeyboardPage* m_widget;
     bool m_nextEnabled;
+    QString m_prettyStatus;
 };
 
 #endif // KEYBOARDVIEWSTEP_H

@@ -44,6 +44,8 @@ public:
 
     void init();
 
+    QString prettyStatus() const;
+
 protected slots:
     void onListLayoutCurrentItemChanged( QListWidgetItem* current,
                                          QListWidgetItem* previous );

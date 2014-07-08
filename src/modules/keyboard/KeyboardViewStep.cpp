@@ -46,6 +46,13 @@ KeyboardViewStep::prettyName() const
 }
 
 
+QString
+KeyboardViewStep::prettyStatus() const
+{
+    return m_prettyStatus;
+}
+
+
 QWidget*
 KeyboardViewStep::widget()
 {
@@ -91,4 +98,11 @@ QList< Calamares::job_ptr >
 KeyboardViewStep::jobs() const
 {
     return QList< Calamares::job_ptr >();
+}
+
+
+void
+KeyboardViewStep::onLeave()
+{
+    m_prettyStatus = m_widget->prettyStatus();
 }

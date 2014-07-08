@@ -170,6 +170,20 @@ KeyboardPage::init()
 }
 
 
+QString
+KeyboardPage::prettyStatus() const
+{
+    QString status;
+    status += tr( "Set keyboard model to %1.<br/>" )
+              .arg( ui->comboBoxModel->currentText() );
+    status += tr( "Set keyboard layout to %1/%2." )
+              .arg( ui->listLayout->currentItem()->text() )
+              .arg( ui->listVariant->currentItem()->text() );
+
+    return status;
+}
+
+
 void
 KeyboardPage::onListLayoutCurrentItemChanged( QListWidgetItem* current, QListWidgetItem* previous )
 {
