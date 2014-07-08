@@ -81,3 +81,10 @@ GreetingViewStep::isAtEnd() const
     return true;
 }
 
+
+QList< Calamares::job_ptr >
+GreetingViewStep::jobs() const
+{
+    return QList< Calamares::job_ptr >();
+}
+

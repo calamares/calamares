@@ -78,3 +78,10 @@ PartitionViewStep::isAtEnd() const
 {
     return true;
 }
+
+
+QList< Calamares::job_ptr >
+PartitionViewStep::jobs() const
+{
+    return QList< Calamares::job_ptr >();
+}

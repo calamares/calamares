@@ -142,3 +142,10 @@ LocaleViewStep::isAtEnd() const
 {
     return true;
 }
+
+
+QList< Calamares::job_ptr >
+LocaleViewStep::jobs() const
+{
+    return QList< Calamares::job_ptr >();
+}

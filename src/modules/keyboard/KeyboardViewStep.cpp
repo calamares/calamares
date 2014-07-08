@@ -85,3 +85,10 @@ KeyboardViewStep::isAtEnd() const
 {
     return true;
 }
+
+
+QList< Calamares::job_ptr >
+KeyboardViewStep::jobs() const
+{
+    return QList< Calamares::job_ptr >();
+}
