@@ -26,6 +26,7 @@
 #include "modulesystem/ModuleManager.h"
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
+#include "JobQueue.h"
 #include "Settings.h"
 #include "ViewManager.h"
 
@@ -165,5 +166,5 @@ CalamaresApplication::onPluginsReady()
 void
 CalamaresApplication::initJobQueue()
 {
-
+    new Calamares::JobQueue( this );
 }

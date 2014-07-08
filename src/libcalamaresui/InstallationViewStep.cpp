@@ -18,15 +18,26 @@
 
 #include <InstallationViewStep.h>
 
+#include <JobQueue.h>
+
 #include <QLabel>
+#include <QProgressBar>
+#include <QVBoxLayout>
 
 namespace Calamares
 {
 
 InstallationViewStep::InstallationViewStep( QObject* parent )
     : ViewStep( parent )
-    , m_widget( new QLabel( "[Installation Progress]" ) )
+    , m_widget( new QWidget )
 {
+    m_progressBar = new QProgressBar;
+    m_label = new QLabel;
+    QVBoxLayout* layout = new QVBoxLayout( m_widget );
+    layout->addWidget(m_progressBar);
+    layout->addWidget(m_label);
+
+    connect( JobQueue::instance(), &JobQueue::progress, this, &InstallationViewStep::updateFromJobQueue );
 }
 
 QString
@@ -74,6 +85,14 @@ QList< Calamares::job_ptr >
 InstallationViewStep::jobs() const
 {
     return QList< Calamares::job_ptr >();
+}
+
+void
+InstallationViewStep::updateFromJobQueue( int current, int total, const QString& message )
+{
+    m_progressBar->setMaximum( total );
+    m_progressBar->setValue( current );
+    m_label->setText( message );
 }
 
 } // namespace

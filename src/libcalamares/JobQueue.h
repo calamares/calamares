@@ -27,6 +27,8 @@
 namespace Calamares
 {
 
+class JobThread;
+
 class DLLEXPORT JobQueue : public QObject
 {
     Q_OBJECT
@@ -37,13 +39,16 @@ public:
 
     void enqueue( const Calamares::job_ptr& job );
     void enqueue( const QList< Calamares::job_ptr >& jobs );
+    void start();
 
 signals:
-    void jobRunning( const Calamares::job_ptr& );
-    void jobFinished( const Calamares::job_ptr& );
+    void progress( int current, int total, const QString& prettyName );
 
 private:
     static JobQueue* s_instance;
+
+    QList< Calamares::job_ptr > m_jobs;
+    JobThread* m_thread;
 };
 
 }
