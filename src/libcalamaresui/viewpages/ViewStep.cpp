@@ -25,7 +25,25 @@ ViewStep::ViewStep( QObject* parent )
     : QObject( parent )
 {}
 
+
 ViewStep::~ViewStep()
+{}
+
+
+QString
+ViewStep::prettyStatus() const
+{
+    return QString();
+}
+
+
+void
+ViewStep::onActivate()
+{}
+
+
+void
+ViewStep::onLeave()
 {}
 
 }

@@ -148,6 +148,8 @@ ViewManager::next()
     {
         m_currentStep++;
         m_stack->setCurrentIndex( m_currentStep );
+        step->onLeave();
+        m_steps.at( m_currentStep )->onActivate();
         installing = m_steps.at( m_currentStep ) == m_installationViewStep;
         emit currentStepChanged();
     }
@@ -169,6 +171,8 @@ ViewManager::back()
     {
         m_currentStep--;
         m_stack->setCurrentIndex( m_currentStep );
+        step->onLeave();
+        m_steps.at( m_currentStep )->onActivate();
         emit currentStepChanged();
     }
     else if ( !step->isAtBeginning() )

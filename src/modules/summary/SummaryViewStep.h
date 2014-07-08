@@ -51,6 +51,8 @@ public:
 
     QList< Calamares::job_ptr > jobs() const override;
 
+    void onActivate() override;
+
 private:
     SummaryPage* m_widget;
 };

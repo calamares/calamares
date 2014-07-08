@@ -18,6 +18,9 @@
 
 #include "SummaryPage.h"
 
+#include "ViewManager.h"
+#include "viewpages/ViewStep.h"
+
 #include <QBoxLayout>
 #include <QLabel>
 
@@ -25,8 +28,36 @@
 SummaryPage::SummaryPage( QWidget* parent )
     : QWidget()
 {
-    QBoxLayout *mainLayout = new QHBoxLayout;
+    QBoxLayout *mainLayout = new QVBoxLayout;
     setLayout( mainLayout );
 
+    mainLayout->addStretch();
 
+    m_label = new QLabel( this );
+    mainLayout->addWidget( m_label );
+    m_label->setWordWrap( true );
+
+    mainLayout->addStretch();
+}
+
+
+void
+SummaryPage::onActivate()
+{
+    QString text;
+    foreach ( Calamares::ViewStep* step,
+              Calamares::ViewManager::instance()->prepareSteps() )
+    {
+        //TODO: make it nice!
+        if ( !step->prettyStatus().isEmpty() )
+        {
+            if ( !text.isEmpty() )
+                text += "<br/><br/>";
+
+            text += "<h3>" + step->prettyName() +
+                    "</h3><br/>" + step->prettyStatus();
+        }
+    }
+
+    m_label->setText( text );
 }

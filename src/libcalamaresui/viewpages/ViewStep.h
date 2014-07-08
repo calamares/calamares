@@ -35,6 +35,7 @@ public:
     virtual ~ViewStep();
 
     virtual QString prettyName() const = 0;
+    virtual QString prettyStatus() const;
 
     //TODO: we might want to make this a QSharedPointer
     virtual QWidget* widget() = 0;
@@ -46,6 +47,20 @@ public:
 
     virtual bool isAtBeginning() const = 0;
     virtual bool isAtEnd() const = 0;
+
+    /**
+     * @brief onActivate called every time a ViewStep is shown, either by going forward
+     * or backward.
+     * The default implementation does nothing.
+     */
+    virtual void onActivate();
+
+    /**
+     * @brief onLeave called every time a ViewStep is hidden and control passes to
+     * another ViewStep, either by going forward or backward.
+     * The default implementation does nothing.
+     */
+    virtual void onLeave();
 
     virtual QList< Calamares::job_ptr > jobs() const = 0;
 

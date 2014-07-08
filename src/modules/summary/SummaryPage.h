@@ -21,12 +21,18 @@
 
 #include <QWidget>
 
+class QLabel;
+
 class SummaryPage : public QWidget
 {
     Q_OBJECT
 public:
     explicit SummaryPage( QWidget* parent = nullptr );
 
+    void onActivate();
+
+private:
+    QLabel* m_label;
 };
 
 #endif // SUMMARYPAGE_H

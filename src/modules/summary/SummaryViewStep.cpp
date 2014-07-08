@@ -88,3 +88,10 @@ SummaryViewStep::jobs() const
     return QList< Calamares::job_ptr >();
 }
 
+
+void
+SummaryViewStep::onActivate()
+{
+    m_widget->onActivate();
+}
+
