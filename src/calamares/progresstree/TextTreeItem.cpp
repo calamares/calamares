@@ -29,8 +29,6 @@ TextTreeItem::TextTreeItem( const QString& text, ProgressTreeItem* parent )
 QVariant
 TextTreeItem::data( int role ) const
 {
-    if ( role == ProgressTreeModel::ProgressTreeItemTypeRole )
-        return ProgressTreeModel::Category;
     if ( role == ProgressTreeModel::ProgressTreeItemRole )
         return this;
     if ( role == Qt::DisplayRole )

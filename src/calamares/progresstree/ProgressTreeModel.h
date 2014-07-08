@@ -28,18 +28,10 @@ class ProgressTreeModel : public QAbstractItemModel
 {
     Q_OBJECT
 public:
-    enum RowType
-    {
-        Invalid = -1,
-        Category = 0,
-        ViewStep = 1
-    };
-
     enum Role
     {
         ProgressTreeItemRole        = Qt::UserRole + 10,
-        ProgressTreeItemTypeRole    = Qt::UserRole + 11,
-        ProgressTreeItemCurrentRole = Qt::UserRole + 12
+        ProgressTreeItemCurrentRole = Qt::UserRole + 11
     };
 
     explicit ProgressTreeModel( QObject* parent = nullptr );
