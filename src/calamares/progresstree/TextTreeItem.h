@@ -16,35 +16,21 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "ViewStepItem.h"
+#ifndef TEXTTREEITEM_H
+#define TEXTTREEITEM_H
 
-#include "ProgressTreeModel.h"
-#include "ViewManager.h"
-#include "viewpages/ViewStep.h"
+#include "ProgressTreeItem.h"
 
 
-ViewStepItem::ViewStepItem( const Calamares::ViewStep* step, ProgressTreeItem* parent )
-    : ProgressTreeItem( parent )
+class TextTreeItem : public ProgressTreeItem
 {
-    m_step = step;
-}
+public:
+    explicit TextTreeItem( const QString& text, ProgressTreeItem* parent = nullptr );
 
+    virtual QVariant data( int role ) const override;
 
-void
-ViewStepItem::appendChild( ProgressTreeItem* item )
-{
-    Q_ASSERT( false );
-}
+private:
+    QString m_text;
+};
 
-
-QVariant
-ViewStepItem::data( int role ) const
-{
-    if ( role == ProgressTreeModel::ProgressTreeItemRole )
-        return this;
-    if ( role == Qt::DisplayRole )
-        return m_step->prettyName();
-    if ( role == ProgressTreeModel::ProgressTreeItemCurrentRole )
-        return Calamares::ViewManager::instance()->currentStep() == m_step;
-    return QVariant();
-}
+#endif // TEXTTREEITEM_H

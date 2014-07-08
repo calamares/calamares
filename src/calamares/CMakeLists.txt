@@ -11,11 +11,11 @@ set( calamaresSources
     CalamaresApplication.cpp
     CalamaresWindow.cpp
 
-    progresstree/CategoryItem.cpp
     progresstree/ProgressTreeDelegate.cpp
     progresstree/ProgressTreeItem.cpp
     progresstree/ProgressTreeModel.cpp
     progresstree/ProgressTreeView.cpp
+    progresstree/TextTreeItem.cpp
     progresstree/ViewStepItem.cpp
 )
 

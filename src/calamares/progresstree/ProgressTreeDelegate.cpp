@@ -44,19 +44,18 @@ QSize
 ProgressTreeDelegate::sizeHint( const QStyleOptionViewItem& option,
                                 const QModelIndex& index ) const
 {
-    ProgressTreeModel::RowType type =
-            static_cast< ProgressTreeModel::RowType >(
-                index.data( ProgressTreeModel::ProgressTreeItemTypeRole ).toInt() );
-    if ( type == ProgressTreeModel::Invalid )
+    if ( !index.isValid() )
         return option.rect.size();
+
+    bool isFirstLevel = !index.parent().isValid();
 
     QFont font = qApp->font();
 
-    if ( type == ProgressTreeModel::Category )
+    if ( isFirstLevel )
     {
         font.setPointSize( CAT_FONTSIZE );
     }
-    else if ( type == ProgressTreeModel::ViewStep )
+    else
     {
         font.setPointSize( VS_FONTSIZE );
     }
@@ -74,15 +73,11 @@ ProgressTreeDelegate::paint( QPainter* painter,
                              const QStyleOptionViewItem& option,
                              const QModelIndex& index) const
 {
+    bool isFirstLevel = !index.parent().isValid();
+
     QStyleOptionViewItemV4 opt = option;
 
     painter->save();
-
-    ProgressTreeModel::RowType type =
-            static_cast< ProgressTreeModel::RowType >(
-                index.data( ProgressTreeModel::ProgressTreeItemTypeRole ).toInt() );
-    if ( type == ProgressTreeModel::Invalid )
-        return;
 
     initStyleOption( &opt, index );
     opt.text.clear();
@@ -90,9 +85,9 @@ ProgressTreeDelegate::paint( QPainter* painter,
     painter->setBrush( CalamaresStyle::SIDEBAR_BACKGROUND );
     painter->setPen( CalamaresStyle::SIDEBAR_TEXT );
 
-    if ( type == ProgressTreeModel::Category )
+    if ( isFirstLevel )
         paintCategory( painter, opt, index );
-    else if ( type == ProgressTreeModel::ViewStep )
+    else
         paintViewStep( painter, opt, index );
 
     painter->restore();
@@ -109,9 +104,12 @@ ProgressTreeDelegate::paintCategory( QPainter* painter,
                                            ITEM_MARGIN,
                                            ITEM_MARGIN );
 
+    bool isCurrent = index.data( ProgressTreeModel::ProgressTreeItemCurrentRole ).toBool();
+
     QFont font = qApp->font();
     font.setPointSize( CAT_FONTSIZE );
     font.setBold( false );
+    font.setUnderline( isCurrent ); // FIXME: Figure out a nicer way to highlight the current category step
     painter->setFont( font );
 
     painter->drawText( textRect, index.data().toString() );
