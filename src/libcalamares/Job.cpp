@@ -21,12 +21,56 @@
 namespace Calamares
 {
 
+
+Calamares::JobResult::operator bool() const
+{
+    return m_ok;
+}
+
+
+QString
+JobResult::message() const
+{
+    return m_message;
+}
+
+
+QString
+JobResult::details() const
+{
+    return m_details;
+}
+
+
+JobResult
+JobResult::ok()
+{
+    return JobResult( true, QString(), QString() );
+}
+
+
+JobResult
+JobResult::error( const QString& message, const QString& details )
+{
+    return JobResult( false, message, details );
+}
+
+
+JobResult::JobResult( bool ok, const QString& message, const QString& details )
+    : m_ok( ok )
+    , m_message( message )
+    , m_details( details )
+{}
+
+
 Job::Job( QObject* parent )
     : QObject( parent )
 {
 }
 
+
 Job::~Job()
 {}
+
 
 } // namespace Calamares
