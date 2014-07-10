@@ -83,9 +83,8 @@ PartitionCoreModule::createPartition( Device* device, PartitionInfo* partitionIn
     CreatePartitionJob* job = new CreatePartitionJob( device, partition );
     job->updatePreview();
 
-    auto partitionModel = m_partitionModelForDeviceHash.value( job->device() );
-    Q_ASSERT( partitionModel );
-    partitionModel->reload();
+    refreshPartitionModel( device );
+
     m_jobs << Calamares::job_ptr( job );
 
     if ( partitionInfo->mountPoint == "/" && !m_hasRootMountPoint )
@@ -93,8 +92,6 @@ PartitionCoreModule::createPartition( Device* device, PartitionInfo* partitionIn
         m_hasRootMountPoint = true;
         hasRootMountPointChanged( m_hasRootMountPoint );
     }
-
-    dumpQueue();
 }
 
 void
@@ -143,11 +140,7 @@ PartitionCoreModule::deletePartition( Device* device, Partition* partition )
         m_jobs << Calamares::job_ptr( job );
     }
 
-    auto partitionModel = m_partitionModelForDeviceHash.value( device );
-    Q_ASSERT( partitionModel );
-    partitionModel->reload();
-
-    dumpQueue();
+    refreshPartitionModel( device );
 }
 
 void
@@ -158,4 +151,12 @@ PartitionCoreModule::dumpQueue() const
     {
         cDebug() << job->prettyName();
     }
+}
+
+void
+PartitionCoreModule::refreshPartitionModel( Device* device )
+{
+    auto model = m_partitionModelForDeviceHash.value( device );
+    Q_ASSERT( model );
+    model->reload();
 }

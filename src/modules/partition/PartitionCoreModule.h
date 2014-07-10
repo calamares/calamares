@@ -79,6 +79,8 @@ private:
 
     void listDevices();
 
+    void refreshPartitionModel( Device* device );
+
     void dumpQueue() const;
 };
 
