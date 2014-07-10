@@ -125,6 +125,10 @@ PartitionModel::data( const QModelIndex& index, int role ) const
 void
 PartitionModel::fillPartitionList( PartitionNode* parent )
 {
+    if ( !parent )
+    {
+        return;
+    }
     for ( auto partition : parent->children() )
     {
         m_partitionList << partition;
