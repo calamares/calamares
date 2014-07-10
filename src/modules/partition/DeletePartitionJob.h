@@ -30,7 +30,7 @@ class DeletePartitionJob : public Calamares::Job
     Q_OBJECT
 public:
     DeletePartitionJob( Device* device, Partition* partition );
-    QString prettyName() override;
+    QString prettyName() const override;
     Calamares::JobResult exec() override;
 
     void updatePreview();

@@ -42,7 +42,7 @@ CreatePartitionJob::CreatePartitionJob( Device* device, Partition* partition )
 }
 
 QString
-CreatePartitionJob::prettyName()
+CreatePartitionJob::prettyName() const
 {
     return tr( "Create partition" ); // FIXME
 }

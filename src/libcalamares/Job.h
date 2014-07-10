@@ -61,7 +61,7 @@ public:
     explicit Job( QObject* parent = nullptr );
     virtual ~Job();
 
-    virtual QString prettyName() = 0;
+    virtual QString prettyName() const = 0;
     virtual JobResult exec() = 0;
 signals:
     void running( const Calamares::job_ptr& );

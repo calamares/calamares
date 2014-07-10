@@ -31,7 +31,7 @@ DeletePartitionJob::DeletePartitionJob( Device* device, Partition* partition )
 }
 
 QString
-DeletePartitionJob::prettyName()
+DeletePartitionJob::prettyName() const
 {
     return tr( "Delete partition %1" ).arg( m_partition->partitionPath() );
 }
