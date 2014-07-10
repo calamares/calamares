@@ -44,7 +44,7 @@ class UIDLLEXPORT Module
 public:
     enum Type
     {
-        Core,
+        Job,
         View
     };
 
@@ -58,13 +58,13 @@ public:
 
     static Module* fromConfigFile( const QString& path );
 
-    virtual QString name();
-    virtual QStringList requiredModules();
-    virtual QString location();
-    virtual Type type() = 0;
-    virtual Interface interface() = 0;
+    virtual QString name() const;
+    virtual QStringList requiredModules() const;
+    virtual QString location() const;
+    virtual Type type() const = 0;
+    virtual Interface interface() const = 0;
 
-    virtual bool isLoaded();
+    virtual bool isLoaded() const;
 
     virtual void loadSelf() = 0;
 

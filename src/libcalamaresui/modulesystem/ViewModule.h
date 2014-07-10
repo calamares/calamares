@@ -29,8 +29,8 @@ namespace Calamares {
 class UIDLLEXPORT ViewModule : public Module
 {
 public:
-    Type type() override;
-    Interface interface() override;
+    Type type() const override;
+    Interface interface() const override;
 
     void loadSelf() override;
 

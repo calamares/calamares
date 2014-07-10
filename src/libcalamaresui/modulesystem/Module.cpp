@@ -47,9 +47,9 @@ operator>>( const YAML::Node& node, Calamares::Module* m )
     m->m_name = QString::fromStdString( node[ "name" ].as< std::string >() );
 
     QString typeString = QString::fromStdString( node[ "type" ].as< std::string >() );
-    if ( typeString == "core" )
+    if ( typeString == "job" )
     {
-        m->m_type = Calamares::Module::Core;
+        m->m_type = Calamares::Module::Job;
     }
     else if ( typeString == "view" )
     {
@@ -127,28 +127,28 @@ Module::fromConfigFile( const QString& path )
 }
 
 QString
-Module::name()
+Module::name() const
 {
     return m_name;
 }
 
 
 QStringList
-Module::requiredModules()
+Module::requiredModules() const
 {
     return m_requiredModules;
 }
 
 
 QString
-Module::location()
+Module::location() const
 {
     return m_directory;
 }
 
 
 bool
-Module::isLoaded()
+Module::isLoaded() const
 {
     return m_loaded;
 }
