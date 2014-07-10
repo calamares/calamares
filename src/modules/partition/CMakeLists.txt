@@ -18,6 +18,7 @@ calamares_add_plugin( partition
     SOURCES
         CreatePartitionDialog.cpp
         CreatePartitionJob.cpp
+        CreatePartitionTableJob.cpp
         DeletePartitionJob.cpp
         DeviceModel.cpp
         PartitionCoreModule.cpp
@@ -40,6 +41,7 @@ calamares_add_plugin( partition
 set( partview_SRCS
     CreatePartitionDialog.cpp
     CreatePartitionJob.cpp
+    CreatePartitionTableJob.cpp
     DeletePartitionJob.cpp
     DeviceModel.cpp
     PartitionCoreModule.cpp

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>568</width>
+    <width>655</width>
     <height>304</height>
    </rect>
   </property>
@@ -23,6 +23,13 @@
    </item>
    <item row="2" column="1">
     <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QPushButton" name="newPartitionTableButton">
+       <property name="text">
+        <string>New Partition Table</string>
+       </property>
+      </widget>
+     </item>
      <item>
       <spacer name="horizontalSpacer">
        <property name="orientation">

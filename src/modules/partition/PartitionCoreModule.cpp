@@ -19,6 +19,7 @@
 #include <PartitionCoreModule.h>
 
 #include <CreatePartitionJob.h>
+#include <CreatePartitionTableJob.h>
 #include <DeletePartitionJob.h>
 #include <DeviceModel.h>
 #include <PartitionModel.h>
@@ -71,6 +72,19 @@ PartitionModel*
 PartitionCoreModule::partitionModelForDevice( Device* device ) const
 {
     return m_partitionModelForDeviceHash[ device ];
+}
+
+void
+PartitionCoreModule::createPartitionTable( Device* device )
+{
+    CreatePartitionTableJob* job = new CreatePartitionTableJob( device );
+    job->updatePreview();
+    refreshPartitionModel( device );
+
+    // FIXME: Remove all jobs queued for this device, as well as all partition
+    // info
+    m_jobs << Calamares::job_ptr( job );
+    updateHasRootMountPoint();
 }
 
 void

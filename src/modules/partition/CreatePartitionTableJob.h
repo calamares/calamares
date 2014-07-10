@@ -16,35 +16,31 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef PARTITIONPAGE_H
-#define PARTITIONPAGE_H
+#ifndef CREATEPARTITIONTABLEJOB_H
+#define CREATEPARTITIONTABLEJOB_H
 
-#include <QWidget>
-#include <QScopedPointer>
+#include <Job.h>
 
-class PartitionCoreModule;
-class Ui_PartitionPage;
+class Device;
+class PartitionTable;
 
-class DeviceModel;
-
-class PartitionPage : public QWidget
+class CreatePartitionTableJob : public Calamares::Job
 {
     Q_OBJECT
 public:
-    explicit PartitionPage( PartitionCoreModule* core, QWidget* parent = 0 );
-    ~PartitionPage();
+    CreatePartitionTableJob( Device* device );
+    QString prettyName() const override;
+    Calamares::JobResult exec() override;
 
-Q_SIGNALS:
-
-public Q_SLOTS:
+    void updatePreview();
+    Device* device() const
+    {
+        return m_device;
+    }
 
 private:
-    QScopedPointer< Ui_PartitionPage > m_ui;
-    PartitionCoreModule* m_core;
-    void updateButtons();
-    void onNewPartitionTableClicked();
-    void onCreateClicked();
-    void onDeleteClicked();
+    Device* m_device;
+    PartitionTable* createTable();
 };
 
-#endif // PARTITIONPAGE_H
+#endif /* CREATEPARTITIONTABLEJOB_H */

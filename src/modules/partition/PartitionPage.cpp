@@ -26,10 +26,14 @@
 #include <PMUtils.h>
 #include <ui_PartitionPage.h>
 
+// CalaPM
+#include <core/device.h>
+
 // Qt
 #include <QDebug>
 #include <QHeaderView>
 #include <QItemSelectionModel>
+#include <QMessageBox>
 #include <QPointer>
 
 PartitionPage::PartitionPage( PartitionCoreModule* core, QWidget* parent )
@@ -65,6 +69,7 @@ PartitionPage::PartitionPage( PartitionCoreModule* core, QWidget* parent )
         connect( model, &QAbstractItemModel::modelReset, this, &PartitionPage::updateButtons );
     } );
 
+    connect( m_ui->newPartitionTableButton, &QAbstractButton::clicked, this, &PartitionPage::onNewPartitionTableClicked );
     connect( m_ui->createButton, &QAbstractButton::clicked, this, &PartitionPage::onCreateClicked );
     connect( m_ui->deleteButton, &QAbstractButton::clicked, this, &PartitionPage::onDeleteClicked );
 }
@@ -92,6 +97,31 @@ PartitionPage::updateButtons()
     m_ui->createButton->setEnabled( create );
     m_ui->editButton->setEnabled( edit );
     m_ui->deleteButton->setEnabled( del );
+
+    m_ui->newPartitionTableButton->setEnabled( m_ui->deviceListView->currentIndex().isValid() );
+}
+
+void
+PartitionPage::onNewPartitionTableClicked()
+{
+    QModelIndex index = m_ui->deviceListView->currentIndex();
+    Q_ASSERT( index.isValid() );
+    Device* device = m_core->deviceModel()->deviceForIndex( index );
+
+    auto answer = QMessageBox::warning( this,
+        tr( "New Partition Table" ),
+        tr( "Are you sure you want to create a new partition table on %1?\n"
+            "Creating a new partition table will delete all existing data on the disk.")
+        .arg( device->name() ),
+        QMessageBox::Ok | QMessageBox::Cancel,
+        QMessageBox::Cancel
+        );
+
+    if (answer != QMessageBox::Ok )
+    {
+        return;
+    }
+    m_core->createPartitionTable( device );
 }
 
 void

@@ -50,6 +50,8 @@ public:
 
     PartitionModel* partitionModelForDevice( Device* device ) const;
 
+    void createPartitionTable( Device* device );
+
     void createPartition( Device* device, PartitionInfo* partitionInfo );
 
     void deletePartition( Device* device, Partition* partition );
