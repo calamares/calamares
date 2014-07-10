@@ -23,8 +23,8 @@
 #include "JobQueue.h"
 
 #include <QApplication>
-#include <QLabel>
 #include <QBoxLayout>
+#include <QMessageBox>
 
 namespace Calamares
 {
@@ -194,11 +194,37 @@ ViewManager::back()
 void
 ViewManager::startInstallation()
 {
+    JobQueue* queue = JobQueue::instance();
     for( ViewStep* step : m_prepareSteps )
     {
-        JobQueue::instance()->enqueue( step->jobs() );
+        queue->enqueue( step->jobs() );
     }
-    JobQueue::instance()->start();
+    connect( queue, &JobQueue::failed, this, &ViewManager::onInstallationFailed );
+    queue->start();
+}
+
+void
+ViewManager::onInstallationFailed( const QString& message, const QString& details )
+{
+    QString text = tr(
+        "<p><b>Installation Failed</b></p>"
+        "<p>%1</p>"
+        ).arg( message );
+
+    if ( !details.isEmpty() )
+    {
+        text += tr(
+            "<p>%1</p>"
+            ).arg( details );
+    }
+
+    QMessageBox::critical(
+        QApplication::activeWindow(),
+        tr( "Error" ),
+        text,
+        QMessageBox::Close
+    );
+    QApplication::quit();
 }
 
 }

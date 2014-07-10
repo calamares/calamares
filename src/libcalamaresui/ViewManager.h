@@ -73,6 +73,7 @@ private:
 
     void insertViewStep( int before, ViewStep* step );
     void startInstallation();
+    void onInstallationFailed( const QString& message, const QString& details );
 };
 
 }

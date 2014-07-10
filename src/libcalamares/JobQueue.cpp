@@ -46,7 +46,12 @@ public:
         for( auto job : m_jobs )
         {
             emitProgress( current, total, job->prettyName() );
-            job->exec();
+            JobResult result = job->exec();
+            if ( !result )
+            {
+                emitFailed( result.message(), result.details() );
+                return;
+            }
             ++current;
         }
         emitProgress( total, total, QString() );
@@ -62,6 +67,14 @@ private:
             Q_ARG( int, current ),
             Q_ARG( int, total ),
             Q_ARG( QString, prettyName )
+        );
+    }
+
+    void emitFailed( const QString& message, const QString& details )
+    {
+        QMetaObject::invokeMethod( m_queue, "failed", Qt::QueuedConnection,
+            Q_ARG( QString, message ),
+            Q_ARG( QString, details )
         );
     }
 };

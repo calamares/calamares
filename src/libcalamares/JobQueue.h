@@ -43,6 +43,7 @@ public:
 
 signals:
     void progress( int current, int total, const QString& prettyName );
+    void failed( const QString& message, const QString& details );
 
 private:
     static JobQueue* s_instance;
