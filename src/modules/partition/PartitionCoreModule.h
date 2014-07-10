@@ -78,7 +78,7 @@ private:
     QList< Calamares::job_ptr > m_jobs;
 
     void listDevices();
-
+    void updateHasRootMountPoint();
     void refreshPartitionModel( Device* device );
 
     void dumpQueue() const;

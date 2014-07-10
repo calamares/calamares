@@ -87,11 +87,7 @@ PartitionCoreModule::createPartition( Device* device, PartitionInfo* partitionIn
 
     m_jobs << Calamares::job_ptr( job );
 
-    if ( partitionInfo->mountPoint == "/" && !m_hasRootMountPoint )
-    {
-        m_hasRootMountPoint = true;
-        hasRootMountPointChanged( m_hasRootMountPoint );
-    }
+    updateHasRootMountPoint();
 }
 
 void
@@ -100,11 +96,6 @@ PartitionCoreModule::deletePartition( Device* device, Partition* partition )
     auto it = m_infoForPartitionHash.find( partition );
     if ( it != m_infoForPartitionHash.end() )
     {
-        if ( it.value()->mountPoint == "/" )
-        {
-            m_hasRootMountPoint = false;
-            hasRootMountPointChanged( m_hasRootMountPoint );
-        }
         m_infoForPartitionHash.erase( it );
     }
 
@@ -141,6 +132,7 @@ PartitionCoreModule::deletePartition( Device* device, Partition* partition )
     }
 
     refreshPartitionModel( device );
+    updateHasRootMountPoint();
 }
 
 void
@@ -159,4 +151,23 @@ PartitionCoreModule::refreshPartitionModel( Device* device )
     auto model = m_partitionModelForDeviceHash.value( device );
     Q_ASSERT( model );
     model->reload();
+}
+
+void PartitionCoreModule::updateHasRootMountPoint()
+{
+    bool oldValue = m_hasRootMountPoint;
+
+    m_hasRootMountPoint = false;
+    for ( auto it : m_infoForPartitionHash )
+    {
+        if ( it->mountPoint == "/" )
+        {
+            m_hasRootMountPoint = true;
+        }
+    }
+
+    if ( oldValue != m_hasRootMountPoint )
+    {
+        hasRootMountPointChanged( m_hasRootMountPoint );
+    }
 }
