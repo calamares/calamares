@@ -63,7 +63,7 @@ CreatePartitionJob::exec()
     if ( partitionPath.isEmpty() )
     {
         return Calamares::JobResult::error(
-            tr( "Failed to create partition" ),
+            tr( "The installer failed to create partition on %1." ).arg( m_device->name() ),
             report.toText()
         );
     }
@@ -78,7 +78,7 @@ CreatePartitionJob::exec()
     if ( !fs.create( report, partitionPath ) )
     {
         return Calamares::JobResult::error(
-            tr( "Failed to create system" ),
+            tr( "The installer failed to create file system on partition %1." ).arg( partitionPath ),
             report.toText()
         );
     }
@@ -86,7 +86,7 @@ CreatePartitionJob::exec()
     if ( !backendPartitionTable->setPartitionSystemType( report, *m_partition ) )
     {
         return Calamares::JobResult::error(
-            tr( "Failed to update partition table" ),
+            tr( "The installer failed to update partition table on %1." ).arg( m_device->name() ),
             report.toText()
         );
     }
