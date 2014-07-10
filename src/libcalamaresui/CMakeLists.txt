@@ -3,6 +3,7 @@ set( CALAMARESUI_LIBRARY_TARGET calamaresui )
 list( APPEND ${CALAMARESUI_LIBRARY_TARGET}_SOURCES
     modulesystem/Module.cpp
     modulesystem/ModuleManager.cpp
+    modulesystem/ProcessJobModule.cpp
     modulesystem/ViewModule.cpp
 
     utils/CalamaresUtilsGui.cpp
