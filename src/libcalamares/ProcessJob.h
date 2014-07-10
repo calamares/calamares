@@ -27,7 +27,10 @@ class ProcessJob : public Job
 {
     Q_OBJECT
 public:
-    explicit ProcessJob( const QString& command, int secondsTimeout, QObject* parent = nullptr );
+    explicit ProcessJob( const QString& command,
+                         const QString& workingPath,
+                         int secondsTimeout = 30,
+                         QObject* parent = nullptr );
     virtual ~ProcessJob();
 
     QString prettyName() const override;
@@ -35,6 +38,7 @@ public:
 
 private:
     QString m_command;
+    QString m_workingPath;
     int m_timeoutSec;
 };
 

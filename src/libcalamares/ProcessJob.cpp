@@ -23,9 +23,13 @@
 namespace Calamares {
 
 
-ProcessJob::ProcessJob( const QString& command, int secondsTimeout, QObject* parent )
+ProcessJob::ProcessJob( const QString& command,
+                        const QString& workingPath,
+                        int secondsTimeout,
+                        QObject* parent )
     : Job( parent )
     , m_command( command )
+    , m_workingPath( workingPath )
     , m_timeoutSec( secondsTimeout )
 {}
 
@@ -47,6 +51,7 @@ ProcessJob::exec()
 {
     QProcess p;
     p.setProcessChannelMode( QProcess::MergedChannels );
+    p.setWorkingDirectory( m_workingPath );
     p.start( m_command );
 
     // It's ok to block here because JobQueue runs this method in a separate thread.
