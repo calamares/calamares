@@ -42,7 +42,7 @@ public:
     QStringList availableModules();
     Module* module( const QString& name );
 
-    void loadRequiredModules();
+    void loadModulesPrepare();
 
 signals:
     void initDone();
@@ -50,7 +50,7 @@ signals:
 
 private slots:
     void doInit();
-    void doLoadModules();
+    void doLoadModulesPrepare();
 
 private:
     void recursiveLoad( const QString& moduleName );

@@ -39,17 +39,20 @@ public:
 
     QStringList modulesSearchPaths();
 
-    QStringList viewModulesPrepare();
+    QStringList modulesPrepare();
 
-    QStringList viewModulesPostInstall();
+    QStringList modulesInstall();
+
+    QStringList modulesPostInstall();
 
 
 private:
     static Settings* s_instance;
 
     QStringList m_modulesSearchPaths;
-    QStringList m_viewModulesPrepareList;
-    QStringList m_viewModulesPostInstallList;
+    QStringList m_modulesPrepareList;
+    QStringList m_modulesInstallList;
+    QStringList m_modulesPostInstallList;
 };
 
 }

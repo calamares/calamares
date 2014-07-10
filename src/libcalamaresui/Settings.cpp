@@ -93,8 +93,9 @@ Settings::Settings( bool debugMode, QObject* parent )
                 }
             }
 
-            config[ "modules-prepare" ] >> m_viewModulesPrepareList;
-            config[ "modules-postinstall" ] >> m_viewModulesPostInstallList;
+            config[ "prepare" ] >> m_modulesPrepareList;
+            config[ "install" ] >> m_modulesInstallList;
+            config[ "postinstall" ] >> m_modulesPostInstallList;
         }
         catch ( YAML::Exception& e )
         {
@@ -118,16 +119,23 @@ Settings::modulesSearchPaths()
 
 
 QStringList
-Settings::viewModulesPrepare()
+Settings::modulesPrepare()
 {
-    return m_viewModulesPrepareList;
+    return m_modulesPrepareList;
 }
 
 
 QStringList
-Settings::viewModulesPostInstall()
+Settings::modulesInstall()
 {
-    return m_viewModulesPostInstallList;
+    return m_modulesInstallList;
+}
+
+
+QStringList
+Settings::modulesPostInstall()
+{
+    return m_modulesPostInstallList;
 }
 
 

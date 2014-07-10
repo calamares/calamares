@@ -69,9 +69,9 @@ ModuleManager::module( const QString& name )
 
 
 void
-ModuleManager::loadRequiredModules()
+ModuleManager::loadModulesPrepare()
 {
-    QTimer::singleShot( 0, this, SLOT( doLoadModules() ) );
+    QTimer::singleShot( 0, this, SLOT( doLoadModulesPrepare() ) );
 }
 
 
@@ -134,9 +134,9 @@ ModuleManager::doInit()
 
 
 void
-ModuleManager::doLoadModules()
+ModuleManager::doLoadModulesPrepare()
 {
-    foreach ( const QString& moduleName, Settings::instance()->viewModulesPrepare() )
+    foreach ( const QString& moduleName, Settings::instance()->modulesPrepare() )
     {
         if ( !m_availableModules.contains( moduleName ) )
         {
