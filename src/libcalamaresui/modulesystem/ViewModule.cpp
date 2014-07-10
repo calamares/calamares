@@ -72,7 +72,7 @@ ViewModule::initFrom( const YAML::Node& node )
     QString load;
     if ( node[ "load" ] )
     {
-        load = QString::fromStdString( node[ "load" ].as<std::string>() );
+        load = QString::fromStdString( node[ "load" ].as< std::string >() );
         load = directory.absoluteFilePath( load );
     }
     // If a load path is not specified, we look for a plugin to load in the directory.
