@@ -34,6 +34,13 @@
 #include <backend/corebackendmanager.h>
 
 
+//- DeviceInfo ---------------------------------------------
+PartitionCoreModule::DeviceInfo::DeviceInfo( Device* _device )
+    : device( _device )
+    , partitionModel( new PartitionModel )
+{}
+
+//- PartitionCoreModule ------------------------------------
 PartitionCoreModule::PartitionCoreModule( QObject* parent )
     : QObject( parent )
     , m_deviceModel( new DeviceModel( this ) )
@@ -45,21 +52,22 @@ PartitionCoreModule::PartitionCoreModule( QObject* parent )
     }
 
     CoreBackend* backend = CoreBackendManager::self()->backend();
-    m_devices = backend->scanDevices();
-    for ( auto device : m_devices )
+    auto devices = backend->scanDevices();
+    for ( auto device : devices )
     {
-        PartitionModel* model = new PartitionModel;
-        model->init( device, &m_infoForPartitionHash );
-        m_partitionModelForDeviceHash[ device ] = model;
+        auto deviceInfo = new DeviceInfo( device );
+        m_deviceInfos << deviceInfo;
+
+        deviceInfo->partitionModel->init( device, &m_infoForPartitionHash );
     }
-    m_deviceModel->init( m_devices );
+    m_deviceModel->init( devices );
 
 }
 
 PartitionCoreModule::~PartitionCoreModule()
 {
     qDeleteAll( m_infoForPartitionHash );
-    qDeleteAll( m_devices );
+    qDeleteAll( m_deviceInfos );
 }
 
 DeviceModel*
@@ -71,7 +79,9 @@ PartitionCoreModule::deviceModel() const
 PartitionModel*
 PartitionCoreModule::partitionModelForDevice( Device* device ) const
 {
-    return m_partitionModelForDeviceHash[ device ];
+    DeviceInfo* info = infoForDevice( device );
+    Q_ASSERT( info );
+    return info->partitionModel.data();
 }
 
 void
@@ -83,13 +93,15 @@ PartitionCoreModule::createPartitionTable( Device* device )
 
     // FIXME: Remove all jobs queued for this device, as well as all partition
     // info
-    m_jobs << Calamares::job_ptr( job );
+    infoForDevice( device )->jobs << Calamares::job_ptr( job );
     updateHasRootMountPoint();
 }
 
 void
 PartitionCoreModule::createPartition( Device* device, PartitionInfo* partitionInfo )
 {
+    auto deviceInfo = infoForDevice( device );
+    Q_ASSERT( deviceInfo );
     auto partition = partitionInfo->partition;
     Q_ASSERT( !m_infoForPartitionHash.contains( partition ) );
     m_infoForPartitionHash[ partition ] = partitionInfo;
@@ -99,7 +111,7 @@ PartitionCoreModule::createPartition( Device* device, PartitionInfo* partitionIn
 
     refreshPartitionModel( device );
 
-    m_jobs << Calamares::job_ptr( job );
+    deviceInfo->jobs << Calamares::job_ptr( job );
 
     updateHasRootMountPoint();
 }
@@ -107,21 +119,25 @@ PartitionCoreModule::createPartition( Device* device, PartitionInfo* partitionIn
 void
 PartitionCoreModule::deletePartition( Device* device, Partition* partition )
 {
+    auto deviceInfo = infoForDevice( device );
+    Q_ASSERT( deviceInfo );
     auto it = m_infoForPartitionHash.find( partition );
     if ( it != m_infoForPartitionHash.end() )
     {
         m_infoForPartitionHash.erase( it );
     }
 
+    QList< Calamares::job_ptr >& jobs = deviceInfo->jobs;
+
     if ( partition->state() == Partition::StateNew )
     {
         // Find matching CreatePartitionJob
-        auto it = std::find_if( m_jobs.begin(), m_jobs.end(), [ partition ]( Calamares::job_ptr job )
+        auto it = std::find_if( jobs.begin(), jobs.end(), [ partition ]( Calamares::job_ptr job )
         {
             CreatePartitionJob* createJob = qobject_cast< CreatePartitionJob* >( job.data() );
             return createJob && createJob->partition() == partition;
         } );
-        if ( it == m_jobs.end() )
+        if ( it == jobs.end() )
         {
             cDebug() << "Failed to find a CreatePartitionJob matching the partition to remove";
             return;
@@ -133,7 +149,7 @@ PartitionCoreModule::deletePartition( Device* device, Partition* partition )
             return;
         }
         device->partitionTable()->updateUnallocated( *device );
-        m_jobs.erase( it );
+        jobs.erase( it );
         // The partition is no longer referenced by either a job or the device
         // partition list, so we have to delete it
         delete partition;
@@ -142,27 +158,42 @@ PartitionCoreModule::deletePartition( Device* device, Partition* partition )
     {
         DeletePartitionJob* job = new DeletePartitionJob( device, partition );
         job->updatePreview();
-        m_jobs << Calamares::job_ptr( job );
+        jobs << Calamares::job_ptr( job );
     }
 
     refreshPartitionModel( device );
     updateHasRootMountPoint();
 }
 
+QList< Calamares::job_ptr >
+PartitionCoreModule::jobs() const
+{
+    QList< Calamares::job_ptr > lst;
+    for ( auto info : m_deviceInfos )
+    {
+        lst << info->jobs;
+    }
+    return lst;
+}
+
 void
 PartitionCoreModule::dumpQueue() const
 {
     cDebug() << "Queue:";
-    for ( auto job : m_jobs )
+    for ( auto info : m_deviceInfos )
     {
-        cDebug() << job->prettyName();
+        cDebug() << "Device:" << info->device->name();
+        for ( auto job : info->jobs )
+        {
+            cDebug() << job->prettyName();
+        }
     }
 }
 
 void
 PartitionCoreModule::refreshPartitionModel( Device* device )
 {
-    auto model = m_partitionModelForDeviceHash.value( device );
+    auto model = partitionModelForDevice( device );
     Q_ASSERT( model );
     model->reload();
 }
@@ -184,4 +215,17 @@ void PartitionCoreModule::updateHasRootMountPoint()
     {
         hasRootMountPointChanged( m_hasRootMountPoint );
     }
+}
+
+PartitionCoreModule::DeviceInfo*
+PartitionCoreModule::infoForDevice( Device* device ) const
+{
+    for ( auto deviceInfo : m_deviceInfos )
+    {
+        if ( deviceInfo->device.data() == device )
+        {
+            return deviceInfo;
+        }
+    }
+    return nullptr;
 }

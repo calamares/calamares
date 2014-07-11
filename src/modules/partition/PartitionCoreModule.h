@@ -56,10 +56,7 @@ public:
 
     void deletePartition( Device* device, Partition* partition );
 
-    QList< Calamares::job_ptr > jobs() const
-    {
-        return m_jobs;
-    }
+    QList< Calamares::job_ptr > jobs() const;
 
     bool hasRootMountPoint() const
     {
@@ -70,20 +67,27 @@ Q_SIGNALS:
     void hasRootMountPointChanged( bool value );
 
 private:
-    QList< Device* > m_devices;
-    QHash< Device*, PartitionModel* > m_partitionModelForDeviceHash;
+    struct DeviceInfo
+    {
+        DeviceInfo( Device* );
+        QScopedPointer< Device > device;
+        QScopedPointer< PartitionModel > partitionModel;
+        QList< Calamares::job_ptr > jobs;
+    };
+    QList< DeviceInfo* > m_deviceInfos;
+
     DeviceModel* m_deviceModel;
     bool m_hasRootMountPoint = false;
 
     InfoForPartitionHash m_infoForPartitionHash;
-
-    QList< Calamares::job_ptr > m_jobs;
 
     void listDevices();
     void updateHasRootMountPoint();
     void refreshPartitionModel( Device* device );
 
     void dumpQueue() const;
+
+    DeviceInfo* infoForDevice( Device* ) const;
 };
 
 #endif /* PARTITIONCOREMODULE_H */
