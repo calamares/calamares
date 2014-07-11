@@ -49,7 +49,6 @@ public:
     Module* module( const QString& name );
 
     void loadModules( Phase phase );
-    void loadModulesPrepare() { loadModules( Prepare ); }
 
 signals:
     void initDone();

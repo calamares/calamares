@@ -151,7 +151,7 @@ CalamaresApplication::onPluginsReady()
 
     m_mainwindow = new CalamaresWindow();
 
-    m_moduleManager->loadModulesPrepare();
+    m_moduleManager->loadModules( Calamares::Prepare );
     connect( m_moduleManager, &Calamares::ModuleManager::modulesLoaded, [this]
     {
         m_mainwindow->show();
