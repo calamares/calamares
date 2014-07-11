@@ -20,6 +20,7 @@
 #define MODULELOADER_H
 
 #include "Module.h"
+#include "Typedefs.h"
 
 #include <QMap>
 #include <QObject>
@@ -37,12 +38,18 @@ public:
     explicit ModuleManager( const QStringList& paths, QObject* parent = nullptr );
     virtual ~ModuleManager();
 
+    /**
+     * @brief init goes through the module search directories and gets a list of
+     * modules available for loading, along with their metadata.
+     * This information is stored as a map of Module* objects, indexed by name.
+     */
     void init();
 
     QStringList availableModules();
     Module* module( const QString& name );
 
-    void loadModulesPrepare();
+    void loadModules( Phase phase );
+    void loadModulesPrepare() { loadModules( Prepare ); }
 
 signals:
     void initDone();
@@ -50,7 +57,6 @@ signals:
 
 private slots:
     void doInit();
-    void doLoadModulesPrepare();
 
 private:
     void recursiveLoad( const QString& moduleName );

@@ -20,6 +20,7 @@
 #define SETTINGS_H
 
 #include "UiDllMacro.h"
+#include "Typedefs.h"
 
 #include <QObject>
 #include <QStringList>
@@ -37,19 +38,15 @@ public:
     static Settings* instance();
     //TODO: load from JSON then emit ready
 
-    QStringList modulesSearchPaths();
+    QStringList modulesSearchPaths() const;
 
-    QStringList modulesPrepare();
-
-    QStringList modulesInstall();
-
-    QStringList modulesPostInstall();
-
+    QStringList modules( Phase phase ) const;
 
 private:
     static Settings* s_instance;
 
     QStringList m_modulesSearchPaths;
+
     QStringList m_modulesPrepareList;
     QStringList m_modulesInstallList;
     QStringList m_modulesPostInstallList;

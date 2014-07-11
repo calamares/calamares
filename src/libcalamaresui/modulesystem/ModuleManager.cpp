@@ -69,9 +69,35 @@ ModuleManager::module( const QString& name )
 
 
 void
-ModuleManager::loadModulesPrepare()
+ModuleManager::loadModules( Phase phase )
 {
-    QTimer::singleShot( 0, this, SLOT( doLoadModulesPrepare() ) );
+    //FIXME: When we depend on Qt 5.4 this ugly hack should be replaced with
+    //       QTimer::singleShot.
+    QTimer* timer = new QTimer();
+    timer->setSingleShot( true );
+    connect( timer, &QTimer::timeout,
+             this, [ this, timer, phase ]()
+    {
+        foreach ( const QString& moduleName, Settings::instance()->modules( phase ) )
+        {
+            if ( !m_availableModules.contains( moduleName ) )
+            {
+                cDebug() << "Module" << moduleName << "not found in module search paths."
+                         << "\nCalamares will now quit.";
+                qApp->quit();
+            }
+            recursiveLoad( moduleName );
+        }
+        emit modulesLoaded();
+        // Loading sequence:
+        // 1) deps are already fine. check if we have all the modules needed by the roster
+        // 2) ask ModuleManager to load them from the list provided by Settings
+        // 3) MM must load them asyncly but one at a time, by calling Module::loadSelf
+        // 4) Module must have subclasses that reimplement loadSelf for various module types
+
+        timer->deleteLater();
+    });
+    timer->start( 0 );
 }
 
 
@@ -130,29 +156,6 @@ ModuleManager::doInit()
     // search paths.
     checkDependencies();
     emit initDone();
-}
-
-
-void
-ModuleManager::doLoadModulesPrepare()
-{
-    foreach ( const QString& moduleName, Settings::instance()->modulesPrepare() )
-    {
-        if ( !m_availableModules.contains( moduleName ) )
-        {
-            cDebug() << "Module" << moduleName << "not found in module search paths."
-                     << "\nCalamares will now quit.";
-            qApp->quit();
-        }
-        recursiveLoad( moduleName );
-    }
-    emit modulesLoaded();
-
-    //IDEA:
-    // 1) deps are already fine. check if we have all the modules needed by the roster
-    // 2) ask MM to load them from the list provided by Settings
-    // 3) MM must load them asyncly but one at a time, by calling Module::loadSelf
-    // 4) Module must have subclasses that reimplement loadSelf for various module types
 }
 
 

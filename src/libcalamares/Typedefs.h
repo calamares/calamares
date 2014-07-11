@@ -27,6 +27,14 @@ class Job;
 
 typedef QSharedPointer< Job > job_ptr;
 
+enum Phase
+{
+    Phase_NULL = 0,
+    Prepare,
+    Install,
+    PostInstall
+};
+
 } //ns
 
 #endif // TYPEDEFS_H

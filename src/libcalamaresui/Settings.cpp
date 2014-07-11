@@ -112,30 +112,26 @@ Settings::Settings( bool debugMode, QObject* parent )
 
 
 QStringList
-Settings::modulesSearchPaths()
+Settings::modulesSearchPaths() const
 {
     return m_modulesSearchPaths;
 }
 
 
 QStringList
-Settings::modulesPrepare()
+Settings::modules( Phase phase ) const
 {
-    return m_modulesPrepareList;
-}
-
-
-QStringList
-Settings::modulesInstall()
-{
-    return m_modulesInstallList;
-}
-
-
-QStringList
-Settings::modulesPostInstall()
-{
-    return m_modulesPostInstallList;
+    switch ( phase )
+    {
+    case Prepare:
+        return m_modulesPrepareList;
+    case Install:
+        return m_modulesInstallList;
+    case PostInstall:
+        return m_modulesPostInstallList;
+    default:
+        return QStringList();
+    }
 }
 
 
