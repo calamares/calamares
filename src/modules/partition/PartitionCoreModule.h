@@ -92,6 +92,8 @@ private:
         void removeInfoForPartition( Partition* partition );
 
         bool hasRootMountPoint() const;
+
+        void forgetChanges();
     private:
         QHash< Partition*, PartitionInfo* > m_partitionInfoHash;
     };

@@ -82,6 +82,14 @@ PartitionCoreModule::DeviceInfo::hasRootMountPoint() const
     return false;
 }
 
+void
+PartitionCoreModule::DeviceInfo::forgetChanges()
+{
+    jobs.clear();
+    qDeleteAll( m_partitionInfoHash );
+    m_partitionInfoHash.clear();
+}
+
 //- PartitionCoreModule ------------------------------------
 PartitionCoreModule::PartitionCoreModule( QObject* parent )
     : QObject( parent )
@@ -128,13 +136,16 @@ PartitionCoreModule::partitionModelForDevice( Device* device ) const
 void
 PartitionCoreModule::createPartitionTable( Device* device )
 {
+    DeviceInfo* info = infoForDevice( device );
+    // Creating a partition table wipes all the disk, so there is no need to
+    // keep previous changes
+    info->forgetChanges();
+
     CreatePartitionTableJob* job = new CreatePartitionTableJob( device );
     job->updatePreview();
-    refreshPartitionModel( device );
+    info->jobs << Calamares::job_ptr( job );
 
-    // FIXME: Remove all jobs queued for this device, as well as all partition
-    // info
-    infoForDevice( device )->jobs << Calamares::job_ptr( job );
+    refreshPartitionModel( device );
     updateHasRootMountPoint();
 }
 
