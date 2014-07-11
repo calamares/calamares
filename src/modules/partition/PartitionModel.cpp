@@ -30,16 +30,19 @@
 // KF5
 #include <KFormat>
 
+PartitionInfoProvider::~PartitionInfoProvider()
+{}
+
 PartitionModel::PartitionModel( QObject* parent )
     : QAbstractListModel( parent )
 {
 }
 
 void
-PartitionModel::init( Device* device, InfoForPartitionHash* infoForPartitionHash )
+PartitionModel::init( Device* device, PartitionInfoProvider* infoProvider )
 {
     m_device = device;
-    m_infoForPartitionHash = infoForPartitionHash;
+    m_infoProvider = infoProvider;
     reload();
 }
 
@@ -106,7 +109,7 @@ PartitionModel::data( const QModelIndex& index, int role ) const
         }
         if ( col == MountPointColumn )
         {
-            PartitionInfo* info = m_infoForPartitionHash->value( partition );
+            PartitionInfo* info = m_infoProvider->infoForPartition( partition );
             return info ? info->mountPoint : QString();
         }
         if ( col == SizeColumn )

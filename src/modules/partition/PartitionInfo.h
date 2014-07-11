@@ -35,6 +35,4 @@ struct PartitionInfo
     bool format = false;
 };
 
-typedef QHash< Partition*, PartitionInfo* > InfoForPartitionHash;
-
 #endif /* PARTITIONINFO_H */

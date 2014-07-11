@@ -40,6 +40,48 @@ PartitionCoreModule::DeviceInfo::DeviceInfo( Device* _device )
     , partitionModel( new PartitionModel )
 {}
 
+PartitionCoreModule::DeviceInfo::~DeviceInfo()
+{
+    qDeleteAll( m_partitionInfoHash );
+}
+
+PartitionInfo*
+PartitionCoreModule::DeviceInfo::infoForPartition( Partition* partition ) const
+{
+    return m_partitionInfoHash.value( partition );
+}
+
+bool
+PartitionCoreModule::DeviceInfo::addInfoForPartition( PartitionInfo* partitionInfo )
+{
+    Q_ASSERT( partitionInfo );
+    if ( infoForPartition( partitionInfo->partition ) )
+    {
+        return false;
+    }
+    m_partitionInfoHash.insert( partitionInfo->partition, partitionInfo );
+    return true;
+}
+
+void
+PartitionCoreModule::DeviceInfo::removeInfoForPartition( Partition* partition )
+{
+    m_partitionInfoHash.remove( partition );
+}
+
+bool
+PartitionCoreModule::DeviceInfo::hasRootMountPoint() const
+{
+    for ( auto info : m_partitionInfoHash )
+    {
+        if ( info->mountPoint == "/" )
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
 //- PartitionCoreModule ------------------------------------
 PartitionCoreModule::PartitionCoreModule( QObject* parent )
     : QObject( parent )
@@ -58,7 +100,7 @@ PartitionCoreModule::PartitionCoreModule( QObject* parent )
         auto deviceInfo = new DeviceInfo( device );
         m_deviceInfos << deviceInfo;
 
-        deviceInfo->partitionModel->init( device, &m_infoForPartitionHash );
+        deviceInfo->partitionModel->init( device, deviceInfo );
     }
     m_deviceModel->init( devices );
 
@@ -66,7 +108,6 @@ PartitionCoreModule::PartitionCoreModule( QObject* parent )
 
 PartitionCoreModule::~PartitionCoreModule()
 {
-    qDeleteAll( m_infoForPartitionHash );
     qDeleteAll( m_deviceInfos );
 }
 
@@ -102,10 +143,13 @@ PartitionCoreModule::createPartition( Device* device, PartitionInfo* partitionIn
 {
     auto deviceInfo = infoForDevice( device );
     Q_ASSERT( deviceInfo );
-    auto partition = partitionInfo->partition;
-    Q_ASSERT( !m_infoForPartitionHash.contains( partition ) );
-    m_infoForPartitionHash[ partition ] = partitionInfo;
+    if ( !deviceInfo->addInfoForPartition( partitionInfo ) )
+    {
+        cDebug() << "Adding partition failed, there is already a PartitionInfo instance for it";
+        return;
+    }
 
+    auto partition = partitionInfo->partition;
     CreatePartitionJob* job = new CreatePartitionJob( device, partition );
     job->updatePreview();
 
@@ -121,11 +165,7 @@ PartitionCoreModule::deletePartition( Device* device, Partition* partition )
 {
     auto deviceInfo = infoForDevice( device );
     Q_ASSERT( deviceInfo );
-    auto it = m_infoForPartitionHash.find( partition );
-    if ( it != m_infoForPartitionHash.end() )
-    {
-        m_infoForPartitionHash.erase( it );
-    }
+    deviceInfo->removeInfoForPartition( partition );
 
     QList< Calamares::job_ptr >& jobs = deviceInfo->jobs;
 
@@ -203,11 +243,12 @@ void PartitionCoreModule::updateHasRootMountPoint()
     bool oldValue = m_hasRootMountPoint;
 
     m_hasRootMountPoint = false;
-    for ( auto it : m_infoForPartitionHash )
+    for ( auto deviceInfo : m_deviceInfos )
     {
-        if ( it->mountPoint == "/" )
+        if ( deviceInfo->hasRootMountPoint() )
         {
             m_hasRootMountPoint = true;
+            break;
         }
     }
 

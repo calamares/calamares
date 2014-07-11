@@ -20,6 +20,7 @@
 #define PARTITIONCOREMODULE_H
 
 #include <PartitionInfo.h>
+#include <PartitionModel.h>
 #include <Typedefs.h>
 
 // CalaPM
@@ -34,7 +35,6 @@ class Device;
 class DeviceModel;
 class FileSystem;
 class Partition;
-class PartitionModel;
 
 /**
  * Owns the Qt models and the PM devices
@@ -52,6 +52,9 @@ public:
 
     void createPartitionTable( Device* device );
 
+    /**
+     * Takes ownership of partitionInfo
+     */
     void createPartition( Device* device, PartitionInfo* partitionInfo );
 
     void deletePartition( Device* device, Partition* partition );
@@ -67,19 +70,35 @@ Q_SIGNALS:
     void hasRootMountPointChanged( bool value );
 
 private:
-    struct DeviceInfo
+    /**
+     * Owns the Device, PartitionModel and all attached PartitionInfo instances.
+     * Implements the PartitionInfoProvider interface.
+     */
+    struct DeviceInfo : public PartitionInfoProvider
     {
         DeviceInfo( Device* );
+        ~DeviceInfo();
         QScopedPointer< Device > device;
         QScopedPointer< PartitionModel > partitionModel;
         QList< Calamares::job_ptr > jobs;
+
+        PartitionInfo* infoForPartition( Partition* partition ) const override;
+
+        /**
+         * Returns false if there was already a PartitionInfo for this partition
+         */
+        bool addInfoForPartition( PartitionInfo* partitionInfo );
+
+        void removeInfoForPartition( Partition* partition );
+
+        bool hasRootMountPoint() const;
+    private:
+        QHash< Partition*, PartitionInfo* > m_partitionInfoHash;
     };
     QList< DeviceInfo* > m_deviceInfos;
 
     DeviceModel* m_deviceModel;
     bool m_hasRootMountPoint = false;
-
-    InfoForPartitionHash m_infoForPartitionHash;
 
     void listDevices();
     void updateHasRootMountPoint();

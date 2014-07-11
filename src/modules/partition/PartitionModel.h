@@ -27,6 +27,13 @@ class Device;
 class Partition;
 class PartitionNode;
 
+class PartitionInfoProvider
+{
+public:
+    virtual ~PartitionInfoProvider();
+    virtual PartitionInfo* infoForPartition( Partition* partition ) const = 0;
+};
+
 class PartitionModel : public QAbstractListModel
 {
 public:
@@ -44,7 +51,7 @@ public:
      * device and infoForPartitions must remain alive for the life of
      * PartitionModel
      */
-    void init( Device* device, InfoForPartitionHash* infoForPartitionHash );
+    void init( Device* device, PartitionInfoProvider* infoProvider );
 
     int columnCount( const QModelIndex& parent = QModelIndex() ) const override;
     int rowCount( const QModelIndex& parent = QModelIndex() ) const override;
@@ -64,7 +71,7 @@ public:
 
 private:
     Device* m_device;
-    InfoForPartitionHash* m_infoForPartitionHash;
+    PartitionInfoProvider* m_infoProvider;
     QList< Partition* > m_partitionList;
 
     void fillPartitionList( PartitionNode* parent );
