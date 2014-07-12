@@ -86,6 +86,12 @@ ModuleManager::loadModules( Phase phase )
                          << "\nCalamares will now quit.";
                 qApp->quit();
             }
+            if ( m_availableModules.value( moduleName )->isLoaded() )
+            {
+                cDebug() << "Module" << moduleName << "already loaded.";
+                continue;
+            }
+
             recursiveLoad( moduleName );
         }
         emit modulesLoaded( phase );

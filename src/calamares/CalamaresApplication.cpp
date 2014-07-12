@@ -28,6 +28,8 @@
 #include "utils/Logger.h"
 #include "JobQueue.h"
 #include "Settings.h"
+#include "viewpages/ViewStep.h"
+#include "ViewManager.h"
 
 
 CalamaresApplication::CalamaresApplication( int& argc, char *argv[] )
@@ -119,6 +121,13 @@ CalamaresApplication::mainWindow()
 
 
 void
+CalamaresApplication::startPhase( Calamares::Phase phase )
+{
+    m_moduleManager->loadModules( phase );
+}
+
+
+void
 CalamaresApplication::initSettings()
 {
     new Calamares::Settings( isDebug(), this );
@@ -140,6 +149,37 @@ CalamaresApplication::initPlugins()
     connect( m_moduleManager, &Calamares::ModuleManager::initDone,
              this,            &CalamaresApplication::onPluginsReady );
     m_moduleManager->init();
+
+    connect( m_moduleManager, &Calamares::ModuleManager::modulesLoaded,
+             this, [this]( Calamares::Phase phase )
+    {
+        if ( phase == Calamares::Prepare )
+        {
+            m_mainwindow->show();
+
+            ProgressTreeModel* m = new ProgressTreeModel( this );
+            ProgressTreeView::instance()->setModel( m );
+        }
+        else if ( phase == Calamares::Install )
+        {
+            Calamares::ViewManager* vm = Calamares::ViewManager::instance();
+            Calamares::JobQueue* queue = Calamares::JobQueue::instance();
+
+            //FIXME: we should enqueue viewmodule jobs in the order from settings.conf,
+            //       not in the order they show up in the UI
+            //       Ideally, if a module is a viewmodule and isLoaded we should ask
+            //       for jobs, else if it's a viewmodule and not isLoaded we bail with
+            //       error, else if jobmodule and not isLoaded, just loadSelf.
+            for( Calamares::ViewStep* step : vm->prepareSteps() )
+            {
+                queue->enqueue( step->jobs() );
+            }
+            connect( queue, &Calamares::JobQueue::failed,
+                     vm, &Calamares::ViewManager::onInstallationFailed );
+
+            queue->start();
+        }
+    });
 }
 
 
@@ -149,19 +189,10 @@ CalamaresApplication::onPluginsReady()
     initJobQueue();
 
     m_mainwindow = new CalamaresWindow(); //also creates ViewManager
+    connect( Calamares::ViewManager::instance(), &Calamares::ViewManager::phaseChangeRequested,
+             this, &CalamaresApplication::startPhase );
 
-    m_moduleManager->loadModules( Calamares::Prepare );
-    connect( m_moduleManager, &Calamares::ModuleManager::modulesLoaded,
-             [this]( Calamares::Phase phase )
-    {
-        if ( phase == Calamares::Prepare )
-        {
-            m_mainwindow->show();
-
-            ProgressTreeModel* m = new ProgressTreeModel( this );
-            ProgressTreeView::instance()->setModel( m );
-        }
-    });
+    startPhase( Calamares::Prepare );
 }
 
 

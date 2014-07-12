@@ -20,6 +20,7 @@
 #define VIEWMANAGER_H
 
 #include "UiDllMacro.h"
+#include "Typedefs.h"
 
 #include <QList>
 #include <QPushButton>
@@ -54,10 +55,15 @@ public slots:
     void next();
     void back();
 
+    void onInstallationFailed( const QString& message, const QString& details );
+
 signals:
     void currentStepChanged();
+    void phaseChangeRequested( Calamares::Phase );
 
 private:
+    void insertViewStep( int before, ViewStep* step );
+
     static ViewManager* s_instance;
 
     QList< ViewStep* > m_steps;
@@ -70,10 +76,6 @@ private:
     QPushButton* m_back;
     QPushButton* m_next;
     QPushButton* m_quit;
-
-    void insertViewStep( int before, ViewStep* step );
-    void startInstallation();
-    void onInstallationFailed( const QString& message, const QString& details );
 };
 
 }

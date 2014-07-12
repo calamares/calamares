@@ -19,6 +19,8 @@
 #ifndef CALAMARESAPPLICATION_H
 #define CALAMARESAPPLICATION_H
 
+#include "Typedefs.h"
+
 #include <QApplication>
 
 #define APP CalamaresApplication::instance()
@@ -44,6 +46,8 @@ public:
     bool isDebug();
 
     CalamaresWindow* mainWindow();
+
+    void startPhase( Calamares::Phase phase );
 
 private slots:
     void onPluginsReady();

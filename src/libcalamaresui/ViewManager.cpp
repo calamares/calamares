@@ -21,6 +21,7 @@
 #include "viewpages/ViewStep.h"
 #include "InstallationViewStep.h"
 #include "JobQueue.h"
+#include "modulesystem/ModuleManager.h"
 
 #include <QApplication>
 #include <QBoxLayout>
@@ -112,6 +113,31 @@ ViewManager::insertViewStep( int before, ViewStep* step)
 }
 
 
+void
+ViewManager::onInstallationFailed( const QString& message, const QString& details )
+{
+    QString text = tr(
+        "<p><b>Installation Failed</b></p>"
+        "<p>%1</p>"
+        ).arg( message );
+
+    if ( !details.isEmpty() )
+    {
+        text += tr(
+            "<p>%1</p>"
+            ).arg( details );
+    }
+
+    QMessageBox::critical(
+        QApplication::activeWindow(),
+        tr( "Error" ),
+        text,
+        QMessageBox::Close
+    );
+    QApplication::quit();
+}
+
+
 QList< ViewStep* >
 ViewManager::prepareSteps() const
 {
@@ -155,7 +181,7 @@ ViewManager::next()
         emit currentStepChanged();
         if ( installing )
         {
-            startInstallation();
+            emit phaseChangeRequested( Calamares::Install );
         }
     }
     else
@@ -189,42 +215,6 @@ ViewManager::back()
     m_next->setEnabled( m_steps.at( m_currentStep )->isNextEnabled() );
     if ( m_currentStep == 0 && m_steps.first()->isAtBeginning() )
         m_back->setEnabled( false );
-}
-
-void
-ViewManager::startInstallation()
-{
-    JobQueue* queue = JobQueue::instance();
-    for( ViewStep* step : m_prepareSteps )
-    {
-        queue->enqueue( step->jobs() );
-    }
-    connect( queue, &JobQueue::failed, this, &ViewManager::onInstallationFailed );
-    queue->start();
-}
-
-void
-ViewManager::onInstallationFailed( const QString& message, const QString& details )
-{
-    QString text = tr(
-        "<p><b>Installation Failed</b></p>"
-        "<p>%1</p>"
-        ).arg( message );
-
-    if ( !details.isEmpty() )
-    {
-        text += tr(
-            "<p>%1</p>"
-            ).arg( details );
-    }
-
-    QMessageBox::critical(
-        QApplication::activeWindow(),
-        tr( "Error" ),
-        text,
-        QMessageBox::Close
-    );
-    QApplication::quit();
 }
 
 }
