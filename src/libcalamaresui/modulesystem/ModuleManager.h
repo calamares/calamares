@@ -52,7 +52,7 @@ public:
 
 signals:
     void initDone();
-    void modulesLoaded();
+    void modulesLoaded( Phase );
 
 private slots:
     void doInit();

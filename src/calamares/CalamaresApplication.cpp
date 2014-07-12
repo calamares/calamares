@@ -28,7 +28,6 @@
 #include "utils/Logger.h"
 #include "JobQueue.h"
 #include "Settings.h"
-#include "ViewManager.h"
 
 
 CalamaresApplication::CalamaresApplication( int& argc, char *argv[] )
@@ -149,16 +148,19 @@ CalamaresApplication::onPluginsReady()
 {
     initJobQueue();
 
-    m_mainwindow = new CalamaresWindow();
+    m_mainwindow = new CalamaresWindow(); //also creates ViewManager
 
     m_moduleManager->loadModules( Calamares::Prepare );
-    connect( m_moduleManager, &Calamares::ModuleManager::modulesLoaded, [this]
+    connect( m_moduleManager, &Calamares::ModuleManager::modulesLoaded,
+             [this]( Calamares::Phase phase )
     {
-        m_mainwindow->show();
+        if ( phase == Calamares::Prepare )
+        {
+            m_mainwindow->show();
 
-        //TODO: move somewhere
-        ProgressTreeModel* m = new ProgressTreeModel( this );
-        ProgressTreeView::instance()->setModel( m );
+            ProgressTreeModel* m = new ProgressTreeModel( this );
+            ProgressTreeView::instance()->setModel( m );
+        }
     });
 }
 

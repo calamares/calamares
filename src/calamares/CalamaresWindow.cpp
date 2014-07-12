@@ -67,8 +67,6 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
     CalamaresUtils::unmarginLayout( sideLayout );
     CalamaresUtils::unmarginLayout( mainLayout );
 
-    //This should create a PageManager or ViewManager or whatever, which
-    //should control the sidebar, next/back buttons and QSW.
     Calamares::ViewManager* vm = new Calamares::ViewManager( this );
 
     mainLayout->addWidget( vm->centralWidget() );

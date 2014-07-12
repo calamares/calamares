@@ -88,7 +88,7 @@ ModuleManager::loadModules( Phase phase )
             }
             recursiveLoad( moduleName );
         }
-        emit modulesLoaded();
+        emit modulesLoaded( phase );
         // Loading sequence:
         // 1) deps are already fine. check if we have all the modules needed by the roster
         // 2) ask ModuleManager to load them from the list provided by Settings
