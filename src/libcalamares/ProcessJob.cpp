@@ -57,7 +57,7 @@ ProcessJob::exec()
     // It's ok to block here because JobQueue runs this method in a separate thread.
     if ( !p.waitForStarted() )
         return JobResult::error( tr( "External command failed to start" ),
-                                 tr( "Command %1 failed to start in 30s." )
+                                 tr( "Command %1 failed to start." )
                                     .arg( m_command ) );
 
     if ( !p.waitForFinished( m_timeoutSec * 1000/*msec*/ ) )
