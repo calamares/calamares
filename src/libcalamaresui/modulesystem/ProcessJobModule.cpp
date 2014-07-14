@@ -45,10 +45,14 @@ ProcessJobModule::interface() const
 void
 ProcessJobModule::loadSelf()
 {
+    if ( m_loaded )
+        return;
+
     Calamares::job_ptr j = Calamares::job_ptr( new ProcessJob( m_command,
                                                                m_workingPath,
                                                                m_secondsTimeout ) );
     JobQueue::instance()->enqueue( j );
+    m_loaded = true;
 }
 
 
