@@ -16,6 +16,8 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <QStyle>
+#include <QDesktopWidget>
 #include "CalamaresApplication.h"
 
 #include "CalamaresWindow.h"
@@ -193,6 +195,13 @@ CalamaresApplication::onPluginsReady()
              this, &CalamaresApplication::startPhase );
 
     startPhase( Calamares::Prepare );
+    m_mainwindow->setGeometry(
+    QStyle::alignedRect(
+        Qt::LeftToRight,
+        Qt::AlignCenter,
+        m_mainwindow->size(),
+        this->desktop()->availableGeometry()
+    ));
 }
 
 
