@@ -7,4 +7,5 @@ if(NOT CALAMARES_CMAKE_DIR)
 endif()
 
 include( "${CALAMARES_CMAKE_DIR}/CalamaresAddLibrary.cmake" )
+include( "${CALAMARES_CMAKE_DIR}/CalamaresAddModuleSubdirectory.cmake" )
 include( "${CALAMARES_CMAKE_DIR}/CalamaresAddPlugin.cmake" )
