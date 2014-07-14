@@ -18,6 +18,7 @@
 
 #include "Module.h"
 
+#include "ProcessJobModule.h"
 #include "ViewModule.h"
 #include "utils/YamlUtils.h"
 #include "utils/Logger.h"
@@ -46,39 +47,10 @@ operator>>( const YAML::Node& node, Calamares::Module* m )
 {
     m->m_name = QString::fromStdString( node[ "name" ].as< std::string >() );
 
-    QString typeString = QString::fromStdString( node[ "type" ].as< std::string >() );
-    if ( typeString == "job" )
-    {
-        m->m_type = Calamares::Module::Job;
-    }
-    else if ( typeString == "view" )
-    {
-        m->m_type = Calamares::Module::View;
-        m->m_interface = Calamares::Module::QtPlugin;
-    }
-
-    if ( m->m_type != Calamares::Module::View )
-    {
-        QString interfaceString = QString::fromStdString( node[ "interface" ].as< std::string >() );
-        if ( interfaceString == "qtplugin" )
-        {
-            m->m_interface = Calamares::Module::QtPlugin;
-        }
-        else if ( interfaceString == "python" )
-        {
-            m->m_interface = Calamares::Module::Python;
-        }
-        else if ( interfaceString == "process" )
-        {
-            m->m_interface = Calamares::Module::Process;
-        }
-    }
-
     if ( node[ "requires" ] && node[ "requires" ].IsSequence() )
     {
         node[ "requires" ] >> m->m_requiredModules;
     }
-
 }
 
 namespace Calamares
@@ -99,20 +71,52 @@ Module::fromConfigFile( const QString& path )
 
         try
         {
-            YAML::Node moduleDocument = YAML::Load( ba.constData() );
-            if ( !moduleDocument.IsMap() )
+            YAML::Node doc = YAML::Load( ba.constData() );
+            if ( !doc.IsMap() )
             {
                 cDebug() << Q_FUNC_INFO << "bad module metadata format"
                          << path;
                 return nullptr;
             }
 
-            m = new ViewModule();
+            if ( !doc[ "type" ] ||
+                 !doc[ "interface" ] )
+            {
+                cDebug() << Q_FUNC_INFO << "bad module metadata format"
+                         << path;
+                return nullptr;
+            }
+
+            QString typeString = QString::fromStdString( doc[ "type" ].as< std::string >() );
+            QString intfString = QString::fromStdString( doc[ "interface" ].as< std::string >() );
+
+            if ( typeString == "view" && intfString == "qtplugin" )
+            {
+                m = new ViewModule();
+            }
+            else if ( typeString == "job" )
+            {
+                if ( intfString == "process" )
+                {
+                    m = new ProcessJobModule();
+                }
+                else if ( intfString == "python" )
+                {
+                    m = nullptr; //TODO: add Python module here
+                }
+            }
+
+            if ( !m )
+            {
+                cDebug() << Q_FUNC_INFO << "bad module type or interface string"
+                         << path << typeString << intfString;
+                return nullptr;
+            }
 
             QFileInfo mfi( path );
             m->m_directory = mfi.absoluteDir().absolutePath();
 
-            m->initFrom( moduleDocument );
+            m->initFrom( doc );
             return m;
         }
         catch ( YAML::Exception& e )
