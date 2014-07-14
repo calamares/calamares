@@ -28,4 +28,14 @@ class Node;
 
 void operator>>( const YAML::Node& node, QStringList& v );
 
+namespace CalamaresUtils
+{
+
+QVariant yamlToVariant( const YAML::Node& node );
+QVariant yamlScalarToVariant( const YAML::Node& scalarNode );
+QVariant yamlSequenceToVariant( const YAML::Node& sequenceNode );
+QVariant yamlMapToVariant( const YAML::Node& mapNode );
+
+} //ns
+
 #endif // YAMLUTILS_H
