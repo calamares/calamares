@@ -15,7 +15,7 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
-
+#include <QDesktopWidget>
 #include "CalamaresApplication.h"
 
 #include "CalamaresWindow.h"
@@ -193,6 +193,9 @@ CalamaresApplication::onPluginsReady()
              this, &CalamaresApplication::startPhase );
 
     startPhase( Calamares::Prepare );
+    m_mainwindow->move(
+        this->desktop()->availableGeometry().center() - m_mainwindow->rect().center()
+    );
 }
 
 
