@@ -22,6 +22,7 @@
 #include "UiDllMacro.h"
 
 #include <QStringList>
+#include <QVariant>
 
 
 namespace YAML
@@ -79,6 +80,7 @@ private:
     Interface m_interface;
     QStringList m_requiredModules;
     QString m_directory;
+    QVariantMap m_configurationMap;
 
     friend void ::operator>>( const YAML::Node& node, Calamares::Module* m );
 };

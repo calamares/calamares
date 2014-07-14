@@ -51,6 +51,12 @@ operator>>( const YAML::Node& node, Calamares::Module* m )
     {
         node[ "requires" ] >> m->m_requiredModules;
     }
+
+    // Module-specific configuration
+    if ( node[ "configuration" ] && node[ "configuration" ].IsMap() )
+    {
+        m->m_configurationMap = CalamaresUtils::yamlMapToVariant( node[ "configuration" ] ).toMap();
+    }
 }
 
 namespace Calamares
