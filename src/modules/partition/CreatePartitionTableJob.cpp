@@ -35,8 +35,9 @@
 // Qt
 #include <QScopedPointer>
 
-CreatePartitionTableJob::CreatePartitionTableJob( Device* device )
+CreatePartitionTableJob::CreatePartitionTableJob( Device* device, PartitionTable::TableType type )
     : m_device( device )
+    , m_type( type )
 {
 }
 
@@ -88,9 +89,8 @@ CreatePartitionTableJob::updatePreview()
 PartitionTable*
 CreatePartitionTableJob::createTable()
 {
-    PartitionTable::TableType type = PartitionTable::msdos;
-    return new PartitionTable( type,
-                               PartitionTable::defaultFirstUsable( *m_device, type ),
-                               PartitionTable::defaultLastUsable( *m_device, type )
+    return new PartitionTable( m_type,
+                               PartitionTable::defaultFirstUsable( *m_device, m_type ),
+                               PartitionTable::defaultLastUsable( *m_device, m_type )
                              );
 }

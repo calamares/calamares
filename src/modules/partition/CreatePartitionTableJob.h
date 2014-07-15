@@ -21,14 +21,16 @@
 
 #include <Job.h>
 
+// CalaPM
+#include <core/partitiontable.h>
+
 class Device;
-class PartitionTable;
 
 class CreatePartitionTableJob : public Calamares::Job
 {
     Q_OBJECT
 public:
-    CreatePartitionTableJob( Device* device );
+    CreatePartitionTableJob( Device* device, PartitionTable::TableType type );
     QString prettyName() const override;
     Calamares::JobResult exec() override;
 
@@ -40,6 +42,7 @@ public:
 
 private:
     Device* m_device;
+    PartitionTable::TableType m_type;
     PartitionTable* createTable();
 };
 

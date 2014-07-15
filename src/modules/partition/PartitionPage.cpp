@@ -25,6 +25,7 @@
 #include <PartitionModel.h>
 #include <PMUtils.h>
 #include <ui_PartitionPage.h>
+#include <ui_CreatePartitionTableDialog.h>
 
 // CalaPM
 #include <core/device.h>
@@ -108,18 +109,17 @@ PartitionPage::onNewPartitionTableClicked()
     Q_ASSERT( index.isValid() );
     Device* device = m_core->deviceModel()->deviceForIndex( index );
 
-    auto answer = QMessageBox::warning( this,
-                                        tr( "New Partition Table" ),
-                                        tr( "Are you sure you want to create a new partition table on %1?\n"
-                                            "Creating a new partition table will delete all existing data on the disk." )
-                                        .arg( device->name() ),
-                                        QMessageBox::Ok | QMessageBox::Cancel,
-                                        QMessageBox::Cancel
-                                      );
-
-    if ( answer != QMessageBox::Ok )
-        return;
-    m_core->createPartitionTable( device );
+    QPointer<QDialog> dlg = new QDialog( this );
+    Ui_CreatePartitionTableDialog ui;
+    ui.setupUi( dlg.data() );
+    QString areYouSure = tr( "Are you sure you want to create a new partition table on %1?" ).arg( device->name() );
+    ui.areYouSureLabel->setText( areYouSure );
+    if ( dlg->exec() == QDialog::Accepted )
+    {
+        PartitionTable::TableType type = ui.mbrRadioButton->isChecked() ? PartitionTable::msdos : PartitionTable::gpt;
+        m_core->createPartitionTable( device, type );
+    }
+    delete dlg;
 }
 
 void

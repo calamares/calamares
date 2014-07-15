@@ -128,14 +128,14 @@ PartitionCoreModule::partitionModelForDevice( Device* device ) const
 }
 
 void
-PartitionCoreModule::createPartitionTable( Device* device )
+PartitionCoreModule::createPartitionTable( Device* device, PartitionTable::TableType type )
 {
     DeviceInfo* info = infoForDevice( device );
     // Creating a partition table wipes all the disk, so there is no need to
     // keep previous changes
     info->forgetChanges();
 
-    CreatePartitionTableJob* job = new CreatePartitionTableJob( device );
+    CreatePartitionTableJob* job = new CreatePartitionTableJob( device, type );
     job->updatePreview();
     info->jobs << Calamares::job_ptr( job );
 

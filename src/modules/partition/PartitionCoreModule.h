@@ -50,7 +50,7 @@ public:
 
     PartitionModel* partitionModelForDevice( Device* device ) const;
 
-    void createPartitionTable( Device* device );
+    void createPartitionTable( Device* device, PartitionTable::TableType type );
 
     /**
      * Takes ownership of partitionInfo

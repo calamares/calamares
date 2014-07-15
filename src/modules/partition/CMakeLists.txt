@@ -31,6 +31,7 @@ calamares_add_plugin( partition
         PMUtils.cpp
     UI
         CreatePartitionDialog.ui
+        CreatePartitionTableDialog.ui
         PartitionPage.ui
     LINK_LIBRARIES
         calapm
@@ -55,6 +56,7 @@ set( partview_SRCS
 )
 qt5_wrap_ui( partview_SRCS
     CreatePartitionDialog.ui
+    CreatePartitionTableDialog.ui
     PartitionPage.ui
 )
 
