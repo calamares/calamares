@@ -1,0 +1,13 @@
+# Do not create a backup file
+suffix=none
+
+indent=spaces=4
+
+# Brackets
+style=break
+remove-brackets # Remove brackets on single-line `if` and `for` (requires astyle 2.04)
+
+# Spaces
+pad-paren-in
+pad-header
+align-pointer=type

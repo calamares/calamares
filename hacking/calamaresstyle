@@ -1,0 +1,6 @@
+#!/bin/sh
+# Calls astyle with settings matching Calamares coding style
+# Requires astyle >= 2.04
+set -e
+
+astyle --options=$(dirname $0)/astylerc "$@"

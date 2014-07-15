@@ -43,6 +43,10 @@ MyClass::myMethod( QStringList list, const QString& name )
 }
 ```
 
+You can use the `hacking/calamaresstyle` script to run
+[astyle](http://astyle.sf.net) on your code and have it formatted the right
+way.
+
 Naming
 ------
 * Use CamelCase for everything.
