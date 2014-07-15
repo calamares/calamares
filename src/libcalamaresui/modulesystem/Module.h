@@ -73,6 +73,7 @@ protected:
     explicit Module();
     virtual void initFrom( const YAML::Node& node );
     bool m_loaded;
+    QVariantMap m_configurationMap;
 
 private:
     QString m_name;
@@ -80,7 +81,6 @@ private:
     Interface m_interface;
     QStringList m_requiredModules;
     QString m_directory;
-    QVariantMap m_configurationMap;
 
     friend void ::operator>>( const YAML::Node& node, Calamares::Module* m );
 };
