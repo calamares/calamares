@@ -58,50 +58,48 @@ CreatePartitionJob::exec()
     if ( !backendDevice.data() )
     {
         return Calamares::JobResult::error(
-            message,
-            tr( "Could not open device %1." ).arg( m_device->deviceNode() )
-        );
+                   message,
+                   tr( "Could not open device %1." ).arg( m_device->deviceNode() )
+               );
     }
 
     QScopedPointer<CoreBackendPartitionTable> backendPartitionTable( backendDevice->openPartitionTable() );
     if ( !backendPartitionTable.data() )
     {
         return Calamares::JobResult::error(
-            message,
-            tr( "Could not open partition table." )
-        );
+                   message,
+                   tr( "Could not open partition table." )
+               );
     }
 
     QString partitionPath = backendPartitionTable->createPartition( report, *m_partition );
     if ( partitionPath.isEmpty() )
     {
         return Calamares::JobResult::error(
-            message,
-            report.toText()
-        );
+                   message,
+                   report.toText()
+               );
     }
     backendPartitionTable->commit();
 
     FileSystem& fs = m_partition->fileSystem();
     if ( fs.type() == FileSystem::Unformatted )
-    {
         return Calamares::JobResult::ok();
-    }
 
     if ( !fs.create( report, partitionPath ) )
     {
         return Calamares::JobResult::error(
-            tr( "The installer failed to create file system on partition %1." ).arg( partitionPath ),
-            report.toText()
-        );
+                   tr( "The installer failed to create file system on partition %1." ).arg( partitionPath ),
+                   report.toText()
+               );
     }
 
     if ( !backendPartitionTable->setPartitionSystemType( report, *m_partition ) )
     {
         return Calamares::JobResult::error(
-            tr( "The installer failed to update partition table on %1." ).arg( m_device->name() ),
-            report.toText()
-        );
+                   tr( "The installer failed to update partition table on %1." ).arg( m_device->name() ),
+                   report.toText()
+               );
     }
 
     backendPartitionTable->commit();

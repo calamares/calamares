@@ -50,11 +50,11 @@ DeletePartitionJob::exec()
     if ( m_device->deviceNode() != m_partition->devicePath() )
     {
         return Calamares::JobResult::error(
-            message,
-            tr( "Partition (%1) and device (%2) do not match." )
-                .arg( m_partition->devicePath() )
-                .arg( m_device->deviceNode() )
-        );
+                   message,
+                   tr( "Partition (%1) and device (%2) do not match." )
+                   .arg( m_partition->devicePath() )
+                   .arg( m_device->deviceNode() )
+               );
     }
 
     CoreBackend* backend = CoreBackendManager::self()->backend();
@@ -62,27 +62,27 @@ DeletePartitionJob::exec()
     if ( !backendDevice.data() )
     {
         return Calamares::JobResult::error(
-            message,
-            tr( "Could not open device %1." ).arg( m_device->deviceNode() )
-        );
+                   message,
+                   tr( "Could not open device %1." ).arg( m_device->deviceNode() )
+               );
     }
 
     QScopedPointer<CoreBackendPartitionTable> backendPartitionTable( backendDevice->openPartitionTable() );
     if ( !backendPartitionTable.data() )
     {
         return Calamares::JobResult::error(
-            message,
-            tr( "Could not open partition table." )
-        );
+                   message,
+                   tr( "Could not open partition table." )
+               );
     }
 
     bool ok = backendPartitionTable->deletePartition( report, *m_partition );
     if ( !ok )
     {
         return Calamares::JobResult::error(
-            message,
-            report.toText()
-        );
+                   message,
+                   report.toText()
+               );
     }
 
     backendPartitionTable->commit();
@@ -104,7 +104,5 @@ DeletePartitionJob::updatePreview()
     // become sda5, sda6, sda7
     Partition* parentPartition = dynamic_cast< Partition* >( m_partition->parent() );
     if ( parentPartition && parentPartition->roles().has( PartitionRole::Extended ) )
-    {
         parentPartition->adjustLogicalNumbers( m_partition->number(), -1 );
-    }
 }

@@ -55,9 +55,7 @@ CreatePartitionDialog::CreatePartitionDialog( Device* device, Partition* freePar
     }
 
     if ( fixedPartitionType.isEmpty() )
-    {
         m_ui->fixedPartitionLabel->hide();
-    }
     else
     {
         m_ui->fixedPartitionLabel->setText( fixedPartitionType );
@@ -70,9 +68,7 @@ CreatePartitionDialog::CreatePartitionDialog( Device* device, Partition* freePar
     for ( auto fs : FileSystemFactory::map() )
     {
         if ( fs->supportCreate() != FileSystem::cmdSupportNone && fs->type() != FileSystem::Extended )
-        {
             fsNames << fs->name();
-        }
     }
     m_ui->fsComboBox->addItems( fsNames );
 

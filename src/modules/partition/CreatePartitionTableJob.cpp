@@ -57,9 +57,9 @@ CreatePartitionTableJob::exec()
     if ( !backendDevice.data() )
     {
         return Calamares::JobResult::error(
-            message,
-            tr( "Could not open device %1." ).arg( m_device->deviceNode() )
-        );
+                   message,
+                   tr( "Could not open device %1." ).arg( m_device->deviceNode() )
+               );
     }
 
     QScopedPointer< PartitionTable > table( createTable() );
@@ -67,9 +67,9 @@ CreatePartitionTableJob::exec()
     if ( !ok )
     {
         return Calamares::JobResult::error(
-            message,
-            report.toText()
-        );
+                   message,
+                   report.toText()
+               );
     }
 
     return Calamares::JobResult::ok();
@@ -89,8 +89,8 @@ PartitionTable*
 CreatePartitionTableJob::createTable()
 {
     PartitionTable::TableType type = PartitionTable::msdos;
-    return new PartitionTable(type,
-        PartitionTable::defaultFirstUsable( *m_device, type ),
-        PartitionTable::defaultLastUsable( *m_device, type )
-    );
+    return new PartitionTable( type,
+                               PartitionTable::defaultFirstUsable( *m_device, type ),
+                               PartitionTable::defaultLastUsable( *m_device, type )
+                             );
 }

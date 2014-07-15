@@ -56,9 +56,7 @@ PartitionCoreModule::DeviceInfo::addInfoForPartition( PartitionInfo* partitionIn
 {
     Q_ASSERT( partitionInfo );
     if ( infoForPartition( partitionInfo->partition ) )
-    {
         return false;
-    }
     m_partitionInfoHash.insert( partitionInfo->partition, partitionInfo );
     return true;
 }
@@ -75,9 +73,7 @@ PartitionCoreModule::DeviceInfo::hasRootMountPoint() const
     for ( auto info : m_partitionInfoHash )
     {
         if ( info->mountPoint == "/" )
-        {
             return true;
-        }
     }
     return false;
 }
@@ -97,9 +93,7 @@ PartitionCoreModule::PartitionCoreModule( QObject* parent )
 {
     // FIXME: Should be done at startup
     if ( !CalaPM::init() )
-    {
         qFatal( "Failed to init CalaPM" );
-    }
 
     CoreBackend* backend = CoreBackendManager::self()->backend();
     auto devices = backend->scanDevices();
@@ -221,9 +215,7 @@ PartitionCoreModule::jobs() const
 {
     QList< Calamares::job_ptr > lst;
     for ( auto info : m_deviceInfos )
-    {
         lst << info->jobs;
-    }
     return lst;
 }
 
@@ -235,9 +227,7 @@ PartitionCoreModule::dumpQueue() const
     {
         cDebug() << "Device:" << info->device->name();
         for ( auto job : info->jobs )
-        {
             cDebug() << job->prettyName();
-        }
     }
 }
 
@@ -264,9 +254,7 @@ void PartitionCoreModule::updateHasRootMountPoint()
     }
 
     if ( oldValue != m_hasRootMountPoint )
-    {
         hasRootMountPointChanged( m_hasRootMountPoint );
-    }
 }
 
 PartitionCoreModule::DeviceInfo*
@@ -275,9 +263,7 @@ PartitionCoreModule::infoForDevice( Device* device ) const
     for ( auto deviceInfo : m_deviceInfos )
     {
         if ( deviceInfo->device.data() == device )
-        {
             return deviceInfo;
-        }
     }
     return nullptr;
 }

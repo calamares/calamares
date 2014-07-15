@@ -49,9 +49,7 @@ DeviceModel::data( const QModelIndex& index, int role ) const
 {
     int row = index.row();
     if ( row < 0 || row >= m_devices.count() )
-    {
         return QVariant();
-    }
 
     Device* device = m_devices.at( row );
 
@@ -59,13 +57,9 @@ DeviceModel::data( const QModelIndex& index, int role ) const
     {
     case Qt::DisplayRole:
         if ( device->name().isEmpty() )
-        {
             return device->deviceNode();
-        }
         else
-        {
             return device->name() + " " + device->deviceNode();
-        }
     default:
         return QVariant();
     }
@@ -76,8 +70,6 @@ DeviceModel::deviceForIndex( const QModelIndex& index ) const
 {
     int row = index.row();
     if ( row < 0 || row >= m_devices.count() )
-    {
         return nullptr;
-    }
     return m_devices.at( row );
 }

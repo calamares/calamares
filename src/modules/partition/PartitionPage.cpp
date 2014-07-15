@@ -109,18 +109,16 @@ PartitionPage::onNewPartitionTableClicked()
     Device* device = m_core->deviceModel()->deviceForIndex( index );
 
     auto answer = QMessageBox::warning( this,
-        tr( "New Partition Table" ),
-        tr( "Are you sure you want to create a new partition table on %1?\n"
-            "Creating a new partition table will delete all existing data on the disk.")
-        .arg( device->name() ),
-        QMessageBox::Ok | QMessageBox::Cancel,
-        QMessageBox::Cancel
-        );
+                                        tr( "New Partition Table" ),
+                                        tr( "Are you sure you want to create a new partition table on %1?\n"
+                                            "Creating a new partition table will delete all existing data on the disk." )
+                                        .arg( device->name() ),
+                                        QMessageBox::Ok | QMessageBox::Cancel,
+                                        QMessageBox::Cancel
+                                      );
 
-    if (answer != QMessageBox::Ok )
-    {
+    if ( answer != QMessageBox::Ok )
         return;
-    }
     m_core->createPartitionTable( device );
 }
 
@@ -136,9 +134,7 @@ PartitionPage::onCreateClicked()
 
     QPointer<CreatePartitionDialog> dlg = new CreatePartitionDialog( model->device(), partition, this );
     if ( dlg->exec() == QDialog::Accepted )
-    {
         m_core->createPartition( model->device(), dlg->createPartitionInfo() );
-    }
     delete dlg;
 }
 

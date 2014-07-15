@@ -52,9 +52,7 @@ PartitionModel::reload()
     beginResetModel();
     m_partitionList.clear();
     if ( m_device )
-    {
         fillPartitionList( m_device->partitionTable() );
-    }
     endResetModel();
 }
 
@@ -75,9 +73,7 @@ PartitionModel::data( const QModelIndex& index, int role ) const
 {
     int row = index.row();
     if ( row < 0 || row >= m_partitionList.count() )
-    {
         return QVariant();
-    }
 
     Partition* partition = m_partitionList.at( row );
 
@@ -93,9 +89,7 @@ PartitionModel::data( const QModelIndex& index, int role ) const
             QString prefix = partition->roles().has( PartitionRole::Logical )
                              ? QStringLiteral( "    " ) : QStringLiteral();
             if ( PMUtils::isPartitionFreeSpace( partition ) )
-            {
                 return prefix + tr( "Free Space" );
-            }
             else
             {
                 return prefix + ( partition->partitionPath().isEmpty()
@@ -104,9 +98,7 @@ PartitionModel::data( const QModelIndex& index, int role ) const
             }
         }
         if ( col == FileSystemColumn )
-        {
             return partition->fileSystem().name();
-        }
         if ( col == MountPointColumn )
         {
             PartitionInfo* info = m_infoProvider->infoForPartition( partition );
@@ -129,9 +121,7 @@ void
 PartitionModel::fillPartitionList( PartitionNode* parent )
 {
     if ( !parent )
-    {
         return;
-    }
     for ( auto partition : parent->children() )
     {
         m_partitionList << partition;
@@ -144,8 +134,6 @@ PartitionModel::partitionForIndex( const QModelIndex& index ) const
 {
     int row = index.row();
     if ( row < 0 || row >= m_partitionList.count() )
-    {
         return nullptr;
-    }
     return m_partitionList.at( row );
 }
