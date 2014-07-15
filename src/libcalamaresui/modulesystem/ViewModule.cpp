@@ -51,6 +51,7 @@ ViewModule::loadSelf()
     if ( m_loader )
     {
         ViewStep *vs = qobject_cast< ViewStep* >( m_loader->instance() );
+        vs->setConfigurationMap( m_configurationMap );
         if ( vs )
         {
             ViewManager::instance()->addViewStep( vs );
