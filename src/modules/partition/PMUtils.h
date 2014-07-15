@@ -25,6 +25,8 @@ namespace PMUtils
 
 bool isPartitionFreeSpace( Partition* );
 
+bool isPartitionNew( Partition* );
+
 }
 
 #endif /* PMUTILS_H */

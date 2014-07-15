@@ -30,4 +30,9 @@ bool isPartitionFreeSpace( Partition* partition )
     return partition->roles().has( PartitionRole::Unallocated );
 }
 
+bool isPartitionNew( Partition* partition )
+{
+    return partition->state() == Partition::StateNew;
+}
+
 } // namespace
