@@ -56,6 +56,8 @@ public:
 
     void onLeave() override;
 
+    void setConfigurationMap( const QVariantMap& configurationMap ) override;
+
 private:
     QWidget* m_widget;
     QFutureWatcher< void > m_initWatcher;
@@ -63,6 +65,8 @@ private:
     LocalePage* m_actualWidget;
     bool m_nextEnabled;
     QString m_prettyStatus;
+
+    QPair< QString, QString > m_startingTimezone;
 };
 
 #endif // LOCALEVIEWSTEP_H

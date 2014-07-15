@@ -122,7 +122,7 @@ LocalePage::LocalePage( QWidget* parent )
 
 
 void
-LocalePage::init()
+LocalePage::init( const QString& initialRegion, const QString& initialZone )
 {
     m_regionCombo->blockSignals( true );
     m_timezoneCombo->blockSignals( true );
@@ -144,8 +144,26 @@ LocalePage::init()
     m_regionCombo->currentIndexChanged( m_regionCombo->currentText() );
 
     // Default location
-    // TODO: make configurable from module.conf
-    m_tzWidget->setCurrentLocation( "Europe", "Berlin" );
+    auto containsLocation = []( const QList< LocaleGlobal::Location >& locations,
+                                const QString& zone ) -> bool
+    {
+        foreach ( const LocaleGlobal::Location& location, locations )
+        {
+            if ( location.zone == zone )
+                return true;
+        }
+        return false;
+    };
+
+    if ( keys.contains( initialRegion ) &&
+         containsLocation( regions.value( initialRegion ), initialZone ) )
+    {
+        m_tzWidget->setCurrentLocation( initialRegion, initialZone );
+    }
+    else
+    {
+        m_tzWidget->setCurrentLocation( "Europe", "Berlin" );
+    }
     emit m_tzWidget->locationChanged( m_tzWidget->getCurrentLocation() );
 }
 

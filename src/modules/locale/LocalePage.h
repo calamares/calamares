@@ -30,7 +30,7 @@ class LocalePage : public QWidget
 public:
     explicit LocalePage( QWidget* parent = nullptr );
 
-    void init();
+    void init( const QString& initialRegion, const QString& initialZone );
 
     QString prettyStatus() const;
 

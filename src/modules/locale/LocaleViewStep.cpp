@@ -74,7 +74,7 @@ LocaleViewStep::LocaleViewStep( QObject* parent )
     connect( &m_initWatcher, &QFutureWatcher< void >::finished,
              [=]
     {
-        m_actualWidget->init();
+        m_actualWidget->init( m_startingTimezone.first, m_startingTimezone.second );
         m_widget->layout()->removeWidget( waitingWidget );
         waitingWidget->deleteLater();
         m_widget->layout()->addWidget( m_actualWidget );
@@ -162,4 +162,25 @@ void
 LocaleViewStep::onLeave()
 {
     m_prettyStatus = m_actualWidget->prettyStatus();
+}
+
+
+void
+LocaleViewStep::setConfigurationMap( const QVariantMap& configurationMap )
+{
+    if ( configurationMap.contains( "region" ) &&
+         configurationMap.value( "region" ).type() == QVariant::String &&
+         !configurationMap.value( "region" ).toString().isEmpty() &&
+         configurationMap.contains( "zone" ) &&
+         configurationMap.value( "zone" ).type() == QVariant::String &&
+         !configurationMap.value( "zone" ).toString().isEmpty() )
+    {
+        m_startingTimezone = qMakePair( configurationMap.value( "region" ).toString(),
+                                        configurationMap.value( "zone" ).toString() );
+    }
+    else
+    {
+        m_startingTimezone = qMakePair( QStringLiteral( "Europe" ),
+                                        QStringLiteral( "Berlin" ) );
+    }
 }
