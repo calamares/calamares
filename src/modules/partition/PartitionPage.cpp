@@ -29,6 +29,7 @@
 
 // CalaPM
 #include <core/device.h>
+#include <core/partition.h>
 
 // Qt
 #include <QDebug>
@@ -72,6 +73,7 @@ PartitionPage::PartitionPage( PartitionCoreModule* core, QWidget* parent )
 
     connect( m_ui->newPartitionTableButton, &QAbstractButton::clicked, this, &PartitionPage::onNewPartitionTableClicked );
     connect( m_ui->createButton, &QAbstractButton::clicked, this, &PartitionPage::onCreateClicked );
+    connect( m_ui->editButton, &QAbstractButton::clicked, this, &PartitionPage::onEditClicked );
     connect( m_ui->deleteButton, &QAbstractButton::clicked, this, &PartitionPage::onDeleteClicked );
 }
 
@@ -132,10 +134,27 @@ PartitionPage::onCreateClicked()
     Partition* partition = model->partitionForIndex( index );
     Q_ASSERT( partition );
 
-    QPointer<CreatePartitionDialog> dlg = new CreatePartitionDialog( model->device(), partition, this );
+    QPointer<CreatePartitionDialog> dlg = new CreatePartitionDialog( model->device(), partition->parent(), this );
+    dlg->setSectorRange( partition->firstSector(), partition->lastSector() );
     if ( dlg->exec() == QDialog::Accepted )
         m_core->createPartition( model->device(), dlg->createPartitionInfo() );
     delete dlg;
+}
+
+void
+PartitionPage::onEditClicked()
+{
+    QModelIndex index = m_ui->partitionTreeView->currentIndex();
+    Q_ASSERT( index.isValid() );
+
+    const PartitionModel* model = static_cast< const PartitionModel* >( index.model() );
+    Partition* partition = model->partitionForIndex( index );
+    Q_ASSERT( partition );
+
+    if ( index.data( PartitionModel::IsNewPartitionRole ).toBool() )
+        updatePartitionToCreate( model->device(), partition );
+    else
+        editExistingPartition( partition );
 }
 
 void
@@ -149,4 +168,24 @@ PartitionPage::onDeleteClicked()
     Q_ASSERT( partition );
 
     m_core->deletePartition( model->device(), partition );
+}
+
+void
+PartitionPage::updatePartitionToCreate( Device* device, Partition* partition )
+{
+    QPointer<CreatePartitionDialog> dlg = new CreatePartitionDialog( device, partition->parent(), this );
+    qint64 extraSectors = device->partitionTable()->freeSectorsAfter( *partition );
+    dlg->setSectorRange( partition->firstSector(), partition->lastSector() + extraSectors );
+    dlg->initFromPartition( partition );
+    if ( dlg->exec() == QDialog::Accepted )
+    {
+        m_core->deletePartition( device, partition );
+        m_core->createPartition( device, dlg->createPartitionInfo() );
+    }
+    delete dlg;
+}
+
+void
+PartitionPage::editExistingPartition( Partition* partition )
+{
 }

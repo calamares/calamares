@@ -31,19 +31,20 @@
 #include <QComboBox>
 #include <QSet>
 
-CreatePartitionDialog::CreatePartitionDialog( Device* device, Partition* freePartition, QWidget* parent )
-    : QDialog( parent )
+CreatePartitionDialog::CreatePartitionDialog( Device* device, PartitionNode* parentPartition, QWidget* parentWidget )
+    : QDialog( parentWidget )
     , m_ui( new Ui_CreatePartitionDialog )
     , m_device( device )
-    , m_freePartition( freePartition )
+    , m_parent( parentPartition )
 {
     m_ui->setupUi( this );
 
     FileSystemFactory::init();
 
+    bool parentIsPartitionTable = parentPartition->isRoot();
     // Partition types
     QString fixedPartitionType;
-    if ( freePartition->roles().has( PartitionRole::Logical ) )
+    if ( !parentIsPartitionTable )
     {
         m_role = PartitionRole( PartitionRole::Logical );
         fixedPartitionType = tr( "Logical" );
@@ -72,12 +73,6 @@ CreatePartitionDialog::CreatePartitionDialog( Device* device, Partition* freePar
     }
     m_ui->fsComboBox->addItems( fsNames );
 
-    // Size
-    qint64 maxSize = ( freePartition->lastSector() - freePartition->firstSector() + 1 ) * device->logicalSectorSize();
-
-    m_ui->sizeSpinBox->setMaximum( maxSize / 1024 / 1024 );
-    m_ui->sizeSpinBox->setValue( m_ui->sizeSpinBox->maximum() );
-
     // Connections
     connect( m_ui->fsComboBox, SIGNAL( activated( int ) ), SLOT( updateMountPointUi() ) );
     connect( m_ui->extendedRadioButton, SIGNAL( toggled( bool ) ), SLOT( updateMountPointUi() ) );
@@ -85,6 +80,19 @@ CreatePartitionDialog::CreatePartitionDialog( Device* device, Partition* freePar
 
 CreatePartitionDialog::~CreatePartitionDialog()
 {}
+
+void
+CreatePartitionDialog::setSectorRange( qint64 minSector, qint64 maxSector )
+{
+    Q_ASSERT( minSector <= maxSector );
+    m_minSector = minSector;
+    m_maxSector = maxSector;
+
+    qint64 maxSize = ( m_maxSector - m_minSector + 1 ) * m_device->logicalSectorSize();
+
+    m_ui->sizeSpinBox->setMaximum( maxSize / 1024 / 1024 );
+    m_ui->sizeSpinBox->setValue( m_ui->sizeSpinBox->maximum() );
+}
 
 PartitionInfo*
 CreatePartitionDialog::createPartitionInfo()
@@ -98,21 +106,19 @@ CreatePartitionDialog::createPartitionInfo()
                  );
     }
 
-    qint64 first = m_freePartition->firstSector();
     // FIXME: Check rounding errors here
-    qint64 last = first + qint64( m_ui->sizeSpinBox->value() ) * 1024 * 1024 / m_device->logicalSectorSize();
+    qint64 last = m_minSector + qint64( m_ui->sizeSpinBox->value() ) * 1024 * 1024 / m_device->logicalSectorSize();
 
     FileSystem::Type type = m_role.has( PartitionRole::Extended )
                             ? FileSystem::Extended
                             : FileSystem::typeForName( m_ui->fsComboBox->currentText() );
-    FileSystem* fs = FileSystemFactory::create( type, first, last );
+    FileSystem* fs = FileSystemFactory::create( type, m_minSector, last );
 
-    PartitionNode* parent = m_freePartition->parent();
     auto partition = new Partition(
-        parent,
+        m_parent,
         *m_device,
         m_role,
-        fs, first, last,
+        fs, m_minSector, last,
         QString() /* path */,
         PartitionTable::FlagNone /* availableFlags */,
         QString() /* mountPoint */,
@@ -140,4 +146,14 @@ CreatePartitionDialog::updateMountPointUi()
     }
     m_ui->mountPointLabel->setEnabled( enabled );
     m_ui->mountPointComboBox->setEnabled( enabled );
+}
+
+void
+CreatePartitionDialog::initFromPartition( Partition* partition )
+{
+    Q_ASSERT( partition );
+    qint64 maxSize = ( partition->lastSector() - partition->firstSector() + 1 ) * m_device->logicalSectorSize();
+    m_ui->sizeSpinBox->setValue( maxSize / 1024 / 1024 );
+
+    // FIXME: Update other fields
 }

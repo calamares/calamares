@@ -27,6 +27,7 @@
 
 class Device;
 class Partition;
+class PartitionNode;
 class PartitionInfo;
 class Ui_CreatePartitionDialog;
 
@@ -34,9 +35,11 @@ class CreatePartitionDialog : public QDialog
 {
     Q_OBJECT
 public:
-    CreatePartitionDialog( Device* device, Partition* freePartition, QWidget* parent = nullptr );
+    CreatePartitionDialog( Device* device, PartitionNode* parentPartition, QWidget* parentWidget = nullptr );
     ~CreatePartitionDialog();
 
+    void setSectorRange( qint64 minSector, qint64 maxSector );
+    void initFromPartition( Partition* partition );
     PartitionInfo* createPartitionInfo();
 
 private Q_SLOTS:
@@ -45,7 +48,9 @@ private Q_SLOTS:
 private:
     QScopedPointer< Ui_CreatePartitionDialog > m_ui;
     Device* m_device;
-    Partition* m_freePartition;
+    qint64 m_minSector = 0;
+    qint64 m_maxSector = 0;
+    PartitionNode* m_parent;
     PartitionRole m_role = PartitionRole( PartitionRole::None );
 };
 
