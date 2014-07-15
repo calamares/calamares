@@ -46,6 +46,11 @@ public:
         LastColumn = SizeColumn + 1
     };
 
+    enum
+    {
+        IsNewPartitionRole = Qt::UserRole
+    };
+
     PartitionModel( QObject* parent = 0 );
     /**
      * device and infoForPartitions must remain alive for the life of
