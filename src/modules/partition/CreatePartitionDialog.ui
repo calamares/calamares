@@ -48,7 +48,7 @@
        <item>
         <widget class="QLabel" name="fixedPartitionLabel">
          <property name="text">
-          <string>TextLabel</string>
+          <string notr="true">[fixed-partition-label]</string>
          </property>
         </widget>
        </item>
