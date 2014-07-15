@@ -64,6 +64,8 @@ public:
 
     virtual QList< Calamares::job_ptr > jobs() const = 0;
 
+    virtual void setConfigurationMap( const QVariantMap& configurationMap );
+
 signals:
     void nextStatusChanged( bool status );
     void done();

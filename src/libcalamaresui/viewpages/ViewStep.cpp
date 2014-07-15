@@ -46,4 +46,9 @@ void
 ViewStep::onLeave()
 {}
 
+
+void
+ViewStep::setConfigurationMap( const QVariantMap& configurationMap )
+{}
+
 }
