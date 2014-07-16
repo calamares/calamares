@@ -183,9 +183,9 @@ PartitionCoreModule::deletePartition( Device* device, Partition* partition )
             // I am not sure if we can iterate on Partition::children() while
             // deleting them, so let's play it safe and keep our own list.
             QList< Partition* > lst;
-            for ( auto partition : partition->children() )
-                if ( !PMUtils::isPartitionFreeSpace( partition ) )
-                    lst << partition;
+            for ( auto childPartition : partition->children() )
+                if ( !PMUtils::isPartitionFreeSpace( childPartition ) )
+                    lst << childPartition;
 
             for ( auto partition : lst )
                 deletePartition( device, partition );
