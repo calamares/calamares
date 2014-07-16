@@ -42,7 +42,7 @@ QString
 ProcessJob::prettyName() const
 {
     //TODO: show something more meaningful
-    return tr( "Run %1" ).arg( m_command );
+    return tr( "Run command %1" ).arg( m_command );
 }
 
 
