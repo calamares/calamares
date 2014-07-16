@@ -6,6 +6,9 @@ Distribution-independent installer framework
 ### Dependencies
 * CMake >= 2.8.12
 * Qt >= 5.3
+* yaml-cpp >= 0.5.1
+* Python >= 3.3
+* Boost.Python >= 1.55.0
 
 ### Building
 ```
@@ -18,12 +21,17 @@ $ make
 ```
 
 ### Design notes
-* Backend
- * lib should only depend on QtCore >=5.3, possibly boost::python
- * common functions like partitioning
- * works as job queue and executor
- * plugin based to let distro-specific tasks be done in a distro-specific order
-* Frontend
- * QtWidgets >=5.3, other deps as needed
- * themeable so branding can be done easily (plugin-based)
- * presents a bunch of pages in a scripted order, enqueues jobs in the backend lib
+Calamares is currently split as follows:
+* libcalamares - the backend library,
+ * only depends on QtCore, yaml-cpp, Python and Boost.Python,
+ * provides a job queue and generic jobs,
+ * comes with 3 job interfaces: C++, Python and process (the latter is very limited);
+* libcalamaresui - the frontend library,
+ * same dependencies as libcalamares, plus QtWidgets and other Qt modules,
+ * comes with a module loading system, for different kinds of plugins,
+ * themeable so branding can be done easily (plugin-based, TBD),
+ * presents a bunch of pages in a scripted order, enqueues jobs in the backend library;
+* calamares - the main executable,
+ * a thin wrapper around libcalamaresui, starts up and plugs together all the parts.
+
+Some modules require additional dependencies: for example the partition viewmodule pulls in partitionmanager, which in turn requires a few KF5 libraries.
