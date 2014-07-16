@@ -32,6 +32,12 @@
 #include <QComboBox>
 #include <QSet>
 
+static QSet< FileSystem::Type > s_unmountableFS(
+{
+    FileSystem::Unformatted,
+    FileSystem::LinuxSwap
+} );
+
 CreatePartitionDialog::CreatePartitionDialog( Device* device, PartitionNode* parentPartition, QWidget* parentWidget )
     : QDialog( parentWidget )
     , m_ui( new Ui_CreatePartitionDialog )
@@ -141,13 +147,11 @@ CreatePartitionDialog::createPartitionInfo()
 void
 CreatePartitionDialog::updateMountPointUi()
 {
-    static QSet< FileSystem::Type > unmountableFS( { FileSystem::Unformatted, FileSystem::LinuxSwap } );
-
     bool enabled = m_ui->primaryRadioButton->isChecked();
     if ( enabled )
     {
         FileSystem::Type type = FileSystem::typeForName( m_ui->fsComboBox->currentText() );
-        enabled = !unmountableFS.contains( type );
+        enabled = !s_unmountableFS.contains( type );
     }
     m_ui->mountPointLabel->setEnabled( enabled );
     m_ui->mountPointComboBox->setEnabled( enabled );
@@ -176,11 +180,30 @@ CreatePartitionDialog::initFromPartitionInfo( PartitionInfo* partitionInfo )
     Q_ASSERT( partitionInfo );
     Partition* partition = partitionInfo->partition;
 
+    bool isExtended = partition->roles().has( PartitionRole::Extended );
+    Q_ASSERT( !isExtended );
+    if ( isExtended )
+    {
+        cDebug() << "Editing extended partitions is not supported for now";
+        return;
+    }
+
     initSectorRange( partition );
 
+    if ( isExtended )
+        m_ui->extendedRadioButton->setChecked( true );
+
+    // Size
     m_ui->sizeSpinBox->setValue( mbSizeForSectorRange( partition->firstSector(), partition->lastSector() ) );
 
+    // File System
+    FileSystem::Type fsType = partition->fileSystem().type();
+    m_ui->fsComboBox->setCurrentText( FileSystem::nameForType( fsType ) );
+
+    // Mount point
     m_ui->mountPointComboBox->setCurrentText( partitionInfo->mountPoint );
+
+    updateMountPointUi();
 }
 
 qint64

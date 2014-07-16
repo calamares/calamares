@@ -94,8 +94,17 @@ PartitionPage::updateButtons()
         Partition* partition = model->partitionForIndex( index );
         Q_ASSERT( partition );
         bool isFree = PMUtils::isPartitionFreeSpace( partition );
+        bool isExtended = partition->roles().has( PartitionRole::Extended );
+
         create = isFree;
-        edit = del = !isFree;
+        // Keep it simple for now: do not support editing extended partitions as
+        // it does not work with our current edit implementation which is
+        // actually remove + add. This would not work with extended partitions
+        // because they need to be created *before* creating logical partitions
+        // inside them, so an edit must be applied without altering the job
+        // order.
+        edit = !isFree && !isExtended;
+        del = !isFree;
     }
     m_ui->createButton->setEnabled( create );
     m_ui->editButton->setEnabled( edit );
