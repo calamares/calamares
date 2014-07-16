@@ -22,6 +22,11 @@
 #include "ViewModule.h"
 #include "utils/YamlUtils.h"
 #include "utils/Logger.h"
+#include "CalamaresConfig.h"
+
+#ifdef WITH_PYTHON
+#include "PythonJobModule.h"
+#endif
 
 #include <yaml-cpp/yaml.h>
 
@@ -106,10 +111,12 @@ Module::fromConfigFile( const QString& path )
                 {
                     m = new ProcessJobModule();
                 }
+#ifdef WITH_PYTHON
                 else if ( intfString == "python" )
                 {
-                    m = nullptr; //TODO: add Python module here
+                    m = new PythonJobModule();
                 }
+#endif
             }
 
             if ( !m )

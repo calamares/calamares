@@ -21,6 +21,12 @@ list( APPEND ${CALAMARESUI_LIBRARY_TARGET}_UI
 
 )
 
+if( WITH_PYTHON )
+    list( APPEND ${CALAMARESUI_LIBRARY_TARGET}_SOURCES
+        modulesystem/PythonJobModule.cpp
+    )
+endif()
+
 calamares_add_library( ${CALAMARESUI_LIBRARY_TARGET}
     SOURCES ${${CALAMARESUI_LIBRARY_TARGET}_SOURCES}
     UI ${${CALAMARESUI_LIBRARY_TARGET}_UI}
