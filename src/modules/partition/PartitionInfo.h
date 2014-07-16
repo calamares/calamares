@@ -24,19 +24,20 @@
 class Partition;
 
 /**
- * Stores Calamares-specific info about a partition.
- * Does not own anything.
+ * Functions to store Calamares-specific info in the Qt properties of a
+ * Partition object.
  */
-struct PartitionInfo
+namespace PartitionInfo
 {
-    explicit PartitionInfo( Partition* );
-    Partition* partition;
 
-    static QString mountPoint( Partition* partition );
-    static void setMountPoint( Partition* partition, const QString& value );
+QString mountPoint( Partition* partition );
+void setMountPoint( Partition* partition, const QString& value );
 
-    static bool format( Partition* partition );
-    static void setFormat( Partition* partition, bool value );
+bool format( Partition* partition );
+void setFormat( Partition* partition, bool value );
+
+void reset( Partition* partition );
+
 };
 
 #endif /* PARTITIONINFO_H */

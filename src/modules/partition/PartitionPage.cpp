@@ -146,7 +146,7 @@ PartitionPage::onCreateClicked()
     QPointer<CreatePartitionDialog> dlg = new CreatePartitionDialog( model->device(), partition->parent(), this );
     dlg->initFromFreeSpace( partition );
     if ( dlg->exec() == QDialog::Accepted )
-        m_core->createPartition( model->device(), dlg->createPartitionInfo() );
+        m_core->createPartition( model->device(), dlg->createPartition() );
     delete dlg;
 }
 
@@ -158,11 +158,10 @@ PartitionPage::onEditClicked()
 
     const PartitionModel* model = static_cast< const PartitionModel* >( index.model() );
     Partition* partition = model->partitionForIndex( index );
-    PartitionInfo* partitionInfo = model->partitionInfoForIndex( index );
     Q_ASSERT( partition );
 
-    if ( PMUtils::isPartitionNew( partitionInfo->partition ) )
-        updatePartitionToCreate( model->device(), partitionInfo );
+    if ( PMUtils::isPartitionNew( partition ) )
+        updatePartitionToCreate( model->device(), partition );
     else
         editExistingPartition( partition );
 }
@@ -181,15 +180,14 @@ PartitionPage::onDeleteClicked()
 }
 
 void
-PartitionPage::updatePartitionToCreate( Device* device, PartitionInfo* partitionInfo )
+PartitionPage::updatePartitionToCreate( Device* device, Partition* partition )
 {
-    Partition* partition = partitionInfo->partition;
     QPointer<CreatePartitionDialog> dlg = new CreatePartitionDialog( device, partition->parent(), this );
-    dlg->initFromPartitionInfo( partitionInfo );
+    dlg->initFromPartitionToCreate( partition );
     if ( dlg->exec() == QDialog::Accepted )
     {
         m_core->deletePartition( device, partition );
-        m_core->createPartition( device, dlg->createPartitionInfo() );
+        m_core->createPartition( device, dlg->createPartition() );
     }
     delete dlg;
 }

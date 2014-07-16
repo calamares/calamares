@@ -22,6 +22,7 @@
 #include <CreatePartitionTableJob.h>
 #include <DeletePartitionJob.h>
 #include <DeviceModel.h>
+#include <PartitionInfo.h>
 #include <PartitionModel.h>
 #include <PMUtils.h>
 #include <Typedefs.h>
@@ -34,6 +35,80 @@
 #include <backend/corebackend.h>
 #include <backend/corebackendmanager.h>
 
+class PartitionIterator
+{
+public:
+    Partition* operator*() const
+    {
+        return m_current;
+    }
+
+    void operator++()
+    {
+        if ( !m_current )
+            return;
+        if ( m_current->hasChildren() )
+        {
+            // Go to the first child
+            m_current = static_cast< Partition* >( m_current->children().first() );
+            return;
+        }
+        PartitionNode* parent = m_current->parent();
+        Partition* successor = parent->successor( *m_current );
+        if ( successor )
+        {
+            // Go to the next sibling
+            m_current = successor;
+            return;
+        }
+        if ( parent->isRoot() )
+        {
+            // We reached the end
+            m_current = nullptr;
+            return;
+        }
+        // Try to go to the next sibling of our parent
+
+        PartitionNode* grandParent = parent->parent();
+        Q_ASSERT( grandParent );
+        // If parent is not root, then it's not a PartitionTable but a
+        // Partition, we can static_cast it.
+        m_current = grandParent->successor( *static_cast< Partition* >( parent ) );
+    }
+
+    bool operator==( const PartitionIterator& other ) const
+    {
+        return m_device == other.m_device && m_current == other.m_current;
+    }
+
+    bool operator!=( const PartitionIterator& other ) const
+    {
+        return ! ( *this == other );
+    }
+
+    static PartitionIterator begin( Device* device )
+    {
+        auto it = PartitionIterator( device );
+        PartitionTable* table = device->partitionTable();
+        if ( !table )
+            return it;
+        it.m_current = table->children().first();
+        return it;
+    }
+
+    static PartitionIterator end( Device* device )
+    {
+        return PartitionIterator( device );
+    }
+
+private:
+    PartitionIterator( Device* device )
+        : m_device( device )
+    {}
+
+    Device* m_device;
+    Partition* m_current = nullptr;
+};
 
 //- DeviceInfo ---------------------------------------------
 PartitionCoreModule::DeviceInfo::DeviceInfo( Device* _device )
@@ -43,37 +118,14 @@ PartitionCoreModule::DeviceInfo::DeviceInfo( Device* _device )
 
 PartitionCoreModule::DeviceInfo::~DeviceInfo()
 {
-    qDeleteAll( m_partitionInfoHash );
-}
-
-PartitionInfo*
-PartitionCoreModule::DeviceInfo::infoForPartition( Partition* partition ) const
-{
-    return m_partitionInfoHash.value( partition );
-}
-
-bool
-PartitionCoreModule::DeviceInfo::addInfoForPartition( PartitionInfo* partitionInfo )
-{
-    Q_ASSERT( partitionInfo );
-    if ( infoForPartition( partitionInfo->partition ) )
-        return false;
-    m_partitionInfoHash.insert( partitionInfo->partition, partitionInfo );
-    return true;
-}
-
-void
-PartitionCoreModule::DeviceInfo::removeInfoForPartition( Partition* partition )
-{
-    m_partitionInfoHash.remove( partition );
 }
 
 bool
 PartitionCoreModule::DeviceInfo::hasRootMountPoint() const
 {
-    for ( auto info : m_partitionInfoHash )
+    for ( auto it = PartitionIterator::begin( device.data() ); it != PartitionIterator::end( device.data() ); ++it)
     {
-        if ( PartitionInfo::mountPoint( info->partition ) == "/" )
+        if ( PartitionInfo::mountPoint( *it ) == "/" )
             return true;
     }
     return false;
@@ -83,8 +135,10 @@ void
 PartitionCoreModule::DeviceInfo::forgetChanges()
 {
     jobs.clear();
-    qDeleteAll( m_partitionInfoHash );
-    m_partitionInfoHash.clear();
+    for ( auto it = PartitionIterator::begin( device.data() ); it != PartitionIterator::end( device.data() ); ++it)
+    {
+        PartitionInfo::reset( *it );
+    }
 }
 
 //- PartitionCoreModule ------------------------------------
@@ -103,7 +157,7 @@ PartitionCoreModule::PartitionCoreModule( QObject* parent )
         auto deviceInfo = new DeviceInfo( device );
         m_deviceInfos << deviceInfo;
 
-        deviceInfo->partitionModel->init( device, deviceInfo );
+        deviceInfo->partitionModel->init( device );
     }
     m_deviceModel->init( devices );
 
@@ -145,17 +199,11 @@ PartitionCoreModule::createPartitionTable( Device* device, PartitionTable::Table
 }
 
 void
-PartitionCoreModule::createPartition( Device* device, PartitionInfo* partitionInfo )
+PartitionCoreModule::createPartition( Device* device, Partition* partition )
 {
     auto deviceInfo = infoForDevice( device );
     Q_ASSERT( deviceInfo );
-    if ( !deviceInfo->addInfoForPartition( partitionInfo ) )
-    {
-        cDebug() << "Adding partition failed, there is already a PartitionInfo instance for it";
-        return;
-    }
 
-    auto partition = partitionInfo->partition;
     CreatePartitionJob* job = new CreatePartitionJob( device, partition );
     job->updatePreview();
 
@@ -171,7 +219,6 @@ PartitionCoreModule::deletePartition( Device* device, Partition* partition )
 {
     auto deviceInfo = infoForDevice( device );
     Q_ASSERT( deviceInfo );
-    deviceInfo->removeInfoForPartition( partition );
 
     QList< Calamares::job_ptr >& jobs = deviceInfo->jobs;
 

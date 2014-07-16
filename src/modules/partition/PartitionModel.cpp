@@ -30,19 +30,15 @@
 // KF5
 #include <KFormat>
 
-PartitionInfoProvider::~PartitionInfoProvider()
-{}
-
 PartitionModel::PartitionModel( QObject* parent )
     : QAbstractListModel( parent )
 {
 }
 
 void
-PartitionModel::init( Device* device, PartitionInfoProvider* infoProvider )
+PartitionModel::init( Device* device )
 {
     m_device = device;
-    m_infoProvider = infoProvider;
     reload();
 }
 
@@ -133,13 +129,4 @@ PartitionModel::partitionForIndex( const QModelIndex& index ) const
     if ( row < 0 || row >= m_partitionList.count() )
         return nullptr;
     return m_partitionList.at( row );
-}
-
-PartitionInfo*
-PartitionModel::partitionInfoForIndex( const QModelIndex& index ) const
-{
-    Partition* partition = partitionForIndex( index );
-    if ( !partition )
-        return nullptr;
-    return m_infoProvider->infoForPartition( partition );
 }

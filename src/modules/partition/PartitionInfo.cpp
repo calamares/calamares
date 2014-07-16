@@ -23,33 +23,41 @@
 // Qt
 #include <QVariant>
 
+namespace PartitionInfo
+{
+
 static const char* MOUNT_POINT_PROPERTY = "_calamares_mountPoint";
 static const char* FORMAT_PROPERTY = "_calamares_format";
 
-PartitionInfo::PartitionInfo( Partition* p )
-    : partition( p )
-{}
-
 QString
-PartitionInfo::mountPoint( Partition* partition )
+mountPoint( Partition* partition )
 {
     return partition->property( MOUNT_POINT_PROPERTY ).toString();
 }
 
 void
-PartitionInfo::setMountPoint( Partition* partition, const QString& value )
+setMountPoint( Partition* partition, const QString& value )
 {
     partition->setProperty( MOUNT_POINT_PROPERTY, value );
 }
 
 bool
-PartitionInfo::format( Partition* partition )
+format( Partition* partition )
 {
     return partition->property( FORMAT_PROPERTY ).toBool();
 }
 
 void
-PartitionInfo::setFormat( Partition* partition, bool value )
+setFormat( Partition* partition, bool value )
 {
     partition->setProperty( FORMAT_PROPERTY, value );
 }
+
+void
+reset( Partition* partition )
+{
+    partition->setProperty( MOUNT_POINT_PROPERTY, QVariant() );
+    partition->setProperty( FORMAT_PROPERTY, QVariant() );
+}
+
+} // namespace

@@ -28,7 +28,6 @@
 class Device;
 class Partition;
 class PartitionNode;
-class PartitionInfo;
 class Ui_CreatePartitionDialog;
 
 class CreatePartitionDialog : public QDialog
@@ -39,8 +38,8 @@ public:
     ~CreatePartitionDialog();
 
     void initFromFreeSpace( Partition* partition );
-    void initFromPartitionInfo( PartitionInfo* partitionInfo );
-    PartitionInfo* createPartitionInfo();
+    void initFromPartitionToCreate( Partition* partition );
+    Partition* createPartition();
 
 private Q_SLOTS:
     void updateMountPointUi();

@@ -19,7 +19,6 @@
 #ifndef PARTITIONCOREMODULE_H
 #define PARTITIONCOREMODULE_H
 
-#include <PartitionInfo.h>
 #include <PartitionModel.h>
 #include <Typedefs.h>
 
@@ -55,7 +54,7 @@ public:
     /**
      * Takes ownership of partitionInfo
      */
-    void createPartition( Device* device, PartitionInfo* partitionInfo );
+    void createPartition( Device* device, Partition* partition );
 
     void deletePartition( Device* device, Partition* partition );
 
@@ -71,10 +70,9 @@ Q_SIGNALS:
 
 private:
     /**
-     * Owns the Device, PartitionModel and all attached PartitionInfo instances.
-     * Implements the PartitionInfoProvider interface.
+     * Owns the Device, PartitionModel and the jobs
      */
-    struct DeviceInfo : public PartitionInfoProvider
+    struct DeviceInfo
     {
         DeviceInfo( Device* );
         ~DeviceInfo();
@@ -82,20 +80,9 @@ private:
         QScopedPointer< PartitionModel > partitionModel;
         QList< Calamares::job_ptr > jobs;
 
-        PartitionInfo* infoForPartition( Partition* partition ) const override;
-
-        /**
-         * Returns false if there was already a PartitionInfo for this partition
-         */
-        bool addInfoForPartition( PartitionInfo* partitionInfo );
-
-        void removeInfoForPartition( Partition* partition );
-
         bool hasRootMountPoint() const;
 
         void forgetChanges();
-    private:
-        QHash< Partition*, PartitionInfo* > m_partitionInfoHash;
     };
     QList< DeviceInfo* > m_deviceInfos;
 

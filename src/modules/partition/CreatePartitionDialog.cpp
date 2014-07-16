@@ -88,8 +88,8 @@ CreatePartitionDialog::CreatePartitionDialog( Device* device, PartitionNode* par
 CreatePartitionDialog::~CreatePartitionDialog()
 {}
 
-PartitionInfo*
-CreatePartitionDialog::createPartitionInfo()
+Partition*
+CreatePartitionDialog::createPartition()
 {
     if ( m_role.roles() == PartitionRole::None )
     {
@@ -138,10 +138,9 @@ CreatePartitionDialog::createPartitionInfo()
         Partition::StateNew
     );
 
-    auto info = new PartitionInfo( partition );
     PartitionInfo::setMountPoint( partition, m_ui->mountPointComboBox->currentText() );
     PartitionInfo::setFormat( partition, true );
-    return info;
+    return partition;
 }
 
 void
@@ -175,10 +174,9 @@ CreatePartitionDialog::initFromFreeSpace( Partition* freeSpacePartition )
 }
 
 void
-CreatePartitionDialog::initFromPartitionInfo( PartitionInfo* partitionInfo )
+CreatePartitionDialog::initFromPartitionToCreate( Partition* partition )
 {
-    Q_ASSERT( partitionInfo );
-    Partition* partition = partitionInfo->partition;
+    Q_ASSERT( partition );
 
     bool isExtended = partition->roles().has( PartitionRole::Extended );
     Q_ASSERT( !isExtended );
