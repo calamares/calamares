@@ -227,6 +227,8 @@ PartitionCoreModule::deletePartition( Device* device, Partition* partition )
 QList< Calamares::job_ptr >
 PartitionCoreModule::jobs() const
 {
+    dumpQueue();
+
     QList< Calamares::job_ptr > lst;
     for ( auto info : m_deviceInfos )
         lst << info->jobs;
@@ -236,12 +238,12 @@ PartitionCoreModule::jobs() const
 void
 PartitionCoreModule::dumpQueue() const
 {
-    cDebug() << "Queue:";
+    cDebug() << "# Queue:";
     for ( auto info : m_deviceInfos )
     {
-        cDebug() << "Device:" << info->device->name();
+        cDebug() << "## Device:" << info->device->name();
         for ( auto job : info->jobs )
-            cDebug() << job->prettyName();
+            cDebug() << "-" << job->prettyName();
     }
 }
 
