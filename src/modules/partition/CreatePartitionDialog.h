@@ -39,7 +39,7 @@ public:
     ~CreatePartitionDialog();
 
     void setSectorRange( qint64 minSector, qint64 maxSector );
-    void initFromPartition( Partition* partition );
+    void initFromPartitionInfo( PartitionInfo* partitionInfo );
     PartitionInfo* createPartitionInfo();
 
 private Q_SLOTS:

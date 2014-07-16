@@ -28,6 +28,7 @@ class Ui_PartitionPage;
 class Device;
 class DeviceModel;
 class Partition;
+class PartitionInfo;
 
 class PartitionPage : public QWidget
 {
@@ -49,7 +50,7 @@ private:
     void onEditClicked();
     void onDeleteClicked();
 
-    void updatePartitionToCreate( Device*, Partition* );
+    void updatePartitionToCreate( Device*, PartitionInfo* );
     void editExistingPartition( Partition* );
 };
 

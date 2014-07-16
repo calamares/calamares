@@ -149,10 +149,11 @@ PartitionPage::onEditClicked()
 
     const PartitionModel* model = static_cast< const PartitionModel* >( index.model() );
     Partition* partition = model->partitionForIndex( index );
+    PartitionInfo* partitionInfo = model->partitionInfoForIndex( index );
     Q_ASSERT( partition );
 
-    if ( index.data( PartitionModel::IsNewPartitionRole ).toBool() )
-        updatePartitionToCreate( model->device(), partition );
+    if ( PMUtils::isPartitionNew( partitionInfo->partition ) )
+        updatePartitionToCreate( model->device(), partitionInfo );
     else
         editExistingPartition( partition );
 }
@@ -171,12 +172,13 @@ PartitionPage::onDeleteClicked()
 }
 
 void
-PartitionPage::updatePartitionToCreate( Device* device, Partition* partition )
+PartitionPage::updatePartitionToCreate( Device* device, PartitionInfo* partitionInfo )
 {
+    Partition* partition = partitionInfo->partition;
     QPointer<CreatePartitionDialog> dlg = new CreatePartitionDialog( device, partition->parent(), this );
     qint64 extraSectors = device->partitionTable()->freeSectorsAfter( *partition );
     dlg->setSectorRange( partition->firstSector(), partition->lastSector() + extraSectors );
-    dlg->initFromPartition( partition );
+    dlg->initFromPartitionInfo( partitionInfo );
     if ( dlg->exec() == QDialog::Accepted )
     {
         m_core->deletePartition( device, partition );

@@ -149,11 +149,12 @@ CreatePartitionDialog::updateMountPointUi()
 }
 
 void
-CreatePartitionDialog::initFromPartition( Partition* partition )
+CreatePartitionDialog::initFromPartitionInfo( PartitionInfo* partitionInfo )
 {
-    Q_ASSERT( partition );
+    Q_ASSERT( partitionInfo );
+    Partition* partition = partitionInfo->partition;
     qint64 maxSize = ( partition->lastSector() - partition->firstSector() + 1 ) * m_device->logicalSectorSize();
     m_ui->sizeSpinBox->setValue( maxSize / 1024 / 1024 );
 
-    // FIXME: Update other fields
+    m_ui->mountPointComboBox->setCurrentText( partitionInfo->mountPoint );
 }

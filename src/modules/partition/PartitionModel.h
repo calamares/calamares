@@ -25,6 +25,7 @@
 
 class Device;
 class Partition;
+class PartitionInfo;
 class PartitionNode;
 
 class PartitionInfoProvider
@@ -63,6 +64,7 @@ public:
     QVariant data( const QModelIndex& index, int role = Qt::DisplayRole ) const override;
 
     Partition* partitionForIndex( const QModelIndex& index ) const;
+    PartitionInfo* partitionInfoForIndex( const QModelIndex& index ) const;
 
     Device* device() const
     {

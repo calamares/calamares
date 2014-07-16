@@ -139,3 +139,12 @@ PartitionModel::partitionForIndex( const QModelIndex& index ) const
         return nullptr;
     return m_partitionList.at( row );
 }
+
+PartitionInfo*
+PartitionModel::partitionInfoForIndex( const QModelIndex& index ) const
+{
+    Partition* partition = partitionForIndex( index );
+    if (!partition )
+        return nullptr;
+    return m_infoProvider->infoForPartition( partition );
+}
