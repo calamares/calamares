@@ -23,6 +23,7 @@
 #include <DeletePartitionJob.h>
 #include <DeviceModel.h>
 #include <PartitionModel.h>
+#include <PMUtils.h>
 #include <Typedefs.h>
 #include <utils/Logger.h>
 
@@ -176,6 +177,19 @@ PartitionCoreModule::deletePartition( Device* device, Partition* partition )
 
     if ( partition->state() == Partition::StateNew )
     {
+        if ( partition->roles().has( PartitionRole::Extended ) )
+        {
+            // Delete all logical partitions first
+            // I am not sure if we can iterate on Partition::children() while
+            // deleting them, so let's play it safe and keep our own list.
+            QList< Partition* > lst;
+            for ( auto partition : partition->children() )
+                if ( !PMUtils::isPartitionFreeSpace( partition ) )
+                    lst << partition;
+
+            for ( auto partition : lst )
+                deletePartition( device, partition );
+        }
         // Find matching CreatePartitionJob
         auto it = std::find_if( jobs.begin(), jobs.end(), [ partition ]( Calamares::job_ptr job )
         {
