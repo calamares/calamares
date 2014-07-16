@@ -31,6 +31,28 @@ include_directories(
     ${QT_INCLUDE_DIR}
 )
 
+
+if( WITH_PYTHON )
+    set( libSources
+        ${libSources}
+        PythonJob.cpp
+        PythonJobHelper.cpp
+    )
+
+    include_directories(${PYTHON_INCLUDE_DIRS})
+    link_directories(${PYTHON_LIBRARIES})
+
+    include_directories(${Boost_INCLUDE_DIRS})
+    link_directories(${Boost_LIBRARY_DIRS})
+
+    set( OPTIONAL_PRIVATE_LIBRARIES
+        ${OPTIONAL_PRIVATE_LIBRARIES}
+        ${PYTHON_LIBRARIES}
+        ${Boost_LIBRARIES}
+    )
+endif()
+
+
 add_library( calamareslib SHARED ${libSources} )
 set_target_properties( calamareslib
     PROPERTIES
@@ -42,9 +64,11 @@ set_target_properties( calamareslib
 
 qt5_use_modules( calamareslib Core )
 
+
 target_link_libraries( calamareslib
-    #LINK_PRIVATE
+    LINK_PRIVATE
     # internal deps, if any
+    ${OPTIONAL_PRIVATE_LIBRARIES}
 
     LINK_PUBLIC
     # External deps

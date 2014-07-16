@@ -8,5 +8,6 @@
 #define CMAKE_INSTALL_FULL_DATADIR "${CMAKE_INSTALL_FULL_DATADIR}/calamares"
 
 //cmakedefines for CMake variables (e.g. for optdepends) go here
+#cmakedefine WITH_PYTHON
 
 #endif // CALAMARESCONFIG_H

@@ -20,6 +20,11 @@
 
 #include "Job.h"
 
+#include "CalamaresConfig.h"
+#ifdef WITH_PYTHON
+#include "PythonJobHelper.h"
+#endif
+
 #include <QThread>
 
 namespace Calamares
@@ -32,6 +37,9 @@ public:
     : QThread( queue )
     , m_queue( queue )
     {
+#ifdef WITH_PYTHON
+        new PythonJobHelper( this );
+#endif
     }
 
     void setJobs( const QList< Calamares::job_ptr >& jobs )
