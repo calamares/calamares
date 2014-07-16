@@ -190,9 +190,6 @@ CreatePartitionDialog::initFromPartitionInfo( PartitionInfo* partitionInfo )
 
     initSectorRange( partition );
 
-    if ( isExtended )
-        m_ui->extendedRadioButton->setChecked( true );
-
     // Size
     m_ui->sizeSpinBox->setValue( mbSizeForSectorRange( partition->firstSector(), partition->lastSector() ) );
 
