@@ -112,8 +112,6 @@ PartitionModel::data( const QModelIndex& index, int role ) const
         cDebug() << "Unknown column" << col;
         return QVariant();
     }
-    case IsNewPartitionRole:
-        return PMUtils::isPartitionNew( partition );
     default:
         return QVariant();
     }
