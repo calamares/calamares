@@ -142,7 +142,7 @@ PartitionInfo*
 PartitionModel::partitionInfoForIndex( const QModelIndex& index ) const
 {
     Partition* partition = partitionForIndex( index );
-    if (!partition )
+    if ( !partition )
         return nullptr;
     return m_infoProvider->infoForPartition( partition );
 }

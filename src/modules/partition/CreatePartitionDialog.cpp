@@ -96,12 +96,15 @@ CreatePartitionDialog::createPartitionInfo()
 
     qint64 lastSector;
     int mbSize = m_ui->sizeSpinBox->value();
-    if ( mbSize == m_ui->sizeSpinBox->maximum() ) {
+    if ( mbSize == m_ui->sizeSpinBox->maximum() )
+    {
         // If we are at the maximum value, select the last sector to avoid
         // potential rounding errors which could leave a few sectors at the end
         // unused
         lastSector = m_maxSector;
-    } else {
+    }
+    else
+    {
         lastSector = m_minSector + qint64( mbSize ) * 1024 * 1024 / m_device->logicalSectorSize();
         Q_ASSERT( lastSector <= m_maxSector );
         if ( lastSector > m_maxSector )
