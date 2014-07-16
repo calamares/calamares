@@ -100,10 +100,7 @@ PartitionModel::data( const QModelIndex& index, int role ) const
         if ( col == FileSystemColumn )
             return partition->fileSystem().name();
         if ( col == MountPointColumn )
-        {
-            PartitionInfo* info = m_infoProvider->infoForPartition( partition );
-            return info ? info->mountPoint : QString();
-        }
+            return PartitionInfo::mountPoint( partition );
         if ( col == SizeColumn )
         {
             qint64 size = ( partition->lastSector() - partition->firstSector() + 1 ) * m_device->logicalSectorSize();

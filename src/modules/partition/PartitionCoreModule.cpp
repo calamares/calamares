@@ -73,7 +73,7 @@ PartitionCoreModule::DeviceInfo::hasRootMountPoint() const
 {
     for ( auto info : m_partitionInfoHash )
     {
-        if ( info->mountPoint == "/" )
+        if ( PartitionInfo::mountPoint( info->partition ) == "/" )
             return true;
     }
     return false;

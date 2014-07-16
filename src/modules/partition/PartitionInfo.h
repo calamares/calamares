@@ -31,8 +31,12 @@ struct PartitionInfo
 {
     explicit PartitionInfo( Partition* );
     Partition* partition;
-    QString mountPoint;
-    bool format = false;
+
+    static QString mountPoint( Partition* partition );
+    static void setMountPoint( Partition* partition, const QString& value );
+
+    static bool format( Partition* partition );
+    static void setFormat( Partition* partition, bool value );
 };
 
 #endif /* PARTITIONINFO_H */
