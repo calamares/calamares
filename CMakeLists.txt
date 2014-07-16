@@ -17,8 +17,36 @@ cmake_policy( SET CMP0023 OLD )
 # Keep cmake 3.0 quiet
 cmake_policy( SET CMP0043 OLD )
 
+include( MacroOptionalFindPackage )
+include( MacroLogFeature )
+
 find_package( Qt5 5.3.0 CONFIG REQUIRED Core Gui Widgets LinguistTools )
 find_package( YamlCpp 0.5.1 REQUIRED )
+
+option( WITH_PYTHON "Enable Python modules support." ON )
+
+macro_optional_find_package( PythonLibs 3.3 REQUIRED )
+macro_log_feature(
+    PYTHONLIBS_FOUND
+    "Python"
+    "C interface libraries for the Python interpreter."
+    "http://python.org"
+    TRUE ""
+    "Python is used for some Calamares job modules."
+)
+macro_optional_find_package( Boost 1.55.0 COMPONENTS python3 REQUIRED )
+macro_log_feature(
+    Boost_PYTHON3_FOUND
+    "Boost.Python"
+    "A C++ library which enables seamless interoperability between C++ and Python."
+    "http://www.boost.org"
+    TRUE ""
+    "Boost.Python is used for interfacing with Calamares job modules written in Python."
+)
+if( Boost_PYTHON3_NOTFOUND OR PYTHONLIBS_NOTFOUND )
+    set( WITH_PYTHON OFF )
+endif()
+
 
 ###
 ### Calamares application info
@@ -82,6 +110,8 @@ set( CALAMARES_LIBRARIES calamareslib )
 
 add_subdirectory( src )
 add_subdirectory( tests )
+
+macro_display_feature_log()
 
 # Add all targets to the build-tree export set
 set( CMAKE_INSTALL_CMAKEDIR "${CMAKE_INSTALL_LIBDIR}/cmake/Calamares" CACHE PATH  "Installation directory for CMake files" )
