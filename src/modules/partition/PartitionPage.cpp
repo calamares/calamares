@@ -135,7 +135,7 @@ PartitionPage::onCreateClicked()
     Q_ASSERT( partition );
 
     QPointer<CreatePartitionDialog> dlg = new CreatePartitionDialog( model->device(), partition->parent(), this );
-    dlg->setSectorRange( partition->firstSector(), partition->lastSector() );
+    dlg->initFromFreeSpace( partition );
     if ( dlg->exec() == QDialog::Accepted )
         m_core->createPartition( model->device(), dlg->createPartitionInfo() );
     delete dlg;
@@ -176,8 +176,6 @@ PartitionPage::updatePartitionToCreate( Device* device, PartitionInfo* partition
 {
     Partition* partition = partitionInfo->partition;
     QPointer<CreatePartitionDialog> dlg = new CreatePartitionDialog( device, partition->parent(), this );
-    qint64 extraSectors = device->partitionTable()->freeSectorsAfter( *partition );
-    dlg->setSectorRange( partition->firstSector(), partition->lastSector() + extraSectors );
     dlg->initFromPartitionInfo( partitionInfo );
     if ( dlg->exec() == QDialog::Accepted )
     {

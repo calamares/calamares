@@ -38,7 +38,7 @@ public:
     CreatePartitionDialog( Device* device, PartitionNode* parentPartition, QWidget* parentWidget = nullptr );
     ~CreatePartitionDialog();
 
-    void setSectorRange( qint64 minSector, qint64 maxSector );
+    void initFromFreeSpace( Partition* partition );
     void initFromPartitionInfo( PartitionInfo* partitionInfo );
     PartitionInfo* createPartitionInfo();
 
@@ -52,6 +52,8 @@ private:
     qint64 m_maxSector = 0;
     PartitionNode* m_parent;
     PartitionRole m_role = PartitionRole( PartitionRole::None );
+
+    void initSectorRange( Partition* );
 };
 
 #endif /* CREATEPARTITIONDIALOG_H */

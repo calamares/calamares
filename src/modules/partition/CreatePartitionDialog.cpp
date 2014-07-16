@@ -81,19 +81,6 @@ CreatePartitionDialog::CreatePartitionDialog( Device* device, PartitionNode* par
 CreatePartitionDialog::~CreatePartitionDialog()
 {}
 
-void
-CreatePartitionDialog::setSectorRange( qint64 minSector, qint64 maxSector )
-{
-    Q_ASSERT( minSector <= maxSector );
-    m_minSector = minSector;
-    m_maxSector = maxSector;
-
-    qint64 maxSize = ( m_maxSector - m_minSector + 1 ) * m_device->logicalSectorSize();
-
-    m_ui->sizeSpinBox->setMaximum( maxSize / 1024 / 1024 );
-    m_ui->sizeSpinBox->setValue( m_ui->sizeSpinBox->maximum() );
-}
-
 PartitionInfo*
 CreatePartitionDialog::createPartitionInfo()
 {
@@ -149,10 +136,32 @@ CreatePartitionDialog::updateMountPointUi()
 }
 
 void
+CreatePartitionDialog::initSectorRange( Partition* partition )
+{
+    PartitionTable* table = m_device->partitionTable();
+    m_minSector = partition->firstSector() - table->freeSectorsBefore( *partition );
+    m_maxSector = partition->lastSector() + table->freeSectorsAfter( *partition );
+
+    qint64 maxSize = ( m_maxSector - m_minSector + 1 ) * m_device->logicalSectorSize();
+
+    m_ui->sizeSpinBox->setMaximum( maxSize / 1024 / 1024 );
+    m_ui->sizeSpinBox->setValue( m_ui->sizeSpinBox->maximum() );
+}
+
+void
+CreatePartitionDialog::initFromFreeSpace( Partition* freeSpacePartition )
+{
+    initSectorRange( freeSpacePartition );
+}
+
+void
 CreatePartitionDialog::initFromPartitionInfo( PartitionInfo* partitionInfo )
 {
     Q_ASSERT( partitionInfo );
     Partition* partition = partitionInfo->partition;
+
+    initSectorRange( partition );
+
     qint64 maxSize = ( partition->lastSector() - partition->firstSector() + 1 ) * m_device->logicalSectorSize();
     m_ui->sizeSpinBox->setValue( maxSize / 1024 / 1024 );
 
