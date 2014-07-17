@@ -16,39 +16,27 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef CALAMARES_PYTHONJOB_H
-#define CALAMARES_PYTHONJOB_H
+#include "PythonJobApi.h"
 
-#include "Job.h"
 
 namespace CalamaresPrivate
 {
-class PythonJobInterface;
-class PythonJobHelper;
+
+PythonJobInterface::PythonJobInterface( const Calamares::PythonJob* parent )
+    : m_parent( parent )
+{}
+
+
+std::string
+PythonJobInterface::prettyName() const
+{
+    return m_parent->prettyName().toStdString();
 }
 
-namespace Calamares {
-
-class PythonJob : public Job
+std::string
+PythonJobInterface::workingPath() const
 {
-    Q_OBJECT
-public:
-    explicit PythonJob( const QString& scriptFile,
-                        const QString& workingPath,
-                        QObject* parent = nullptr );
-    virtual ~PythonJob();
+    return m_parent->m_workingPath.toStdString();
+}
 
-    QString prettyName() const override;
-    JobResult exec() override;
-
-private:
-    friend class CalamaresPrivate::PythonJobHelper;
-    friend class CalamaresPrivate::PythonJobInterface;
-    CalamaresPrivate::PythonJobHelper* helper();
-    QString m_scriptFile;
-    QString m_workingPath;
-};
-
-} // namespace Calamares
-
-#endif // CALAMARES_PYTHONJOB_H
+}

@@ -53,7 +53,7 @@ endif()
 ###
 ### Calamares application info
 ###
-set( CALAMARES_ORGANIZATION_NAME "The Calamares Team" )
+set( CALAMARES_ORGANIZATION_NAME "Calamares" )
 set( CALAMARES_ORGANIZATION_DOMAIN "github.com/calamares" )
 set( CALAMARES_APPLICATION_NAME  "Calamares" )
 set( CALAMARES_DESCRIPTION_SUMMARY "The distribution-independent installer framework" )
@@ -108,7 +108,7 @@ file( COPY CalamaresAddLibrary.cmake DESTINATION "${PROJECT_BINARY_DIR}" )
 file( COPY CalamaresAddModuleSubdirectory.cmake DESTINATION "${PROJECT_BINARY_DIR}" )
 file( COPY CalamaresAddPlugin.cmake DESTINATION "${PROJECT_BINARY_DIR}" )
 
-set( CALAMARES_LIBRARIES calamareslib )
+set( CALAMARES_LIBRARIES calamares )
 
 add_subdirectory( src )
 add_subdirectory( tests )
@@ -118,8 +118,8 @@ macro_display_feature_log()
 # Add all targets to the build-tree export set
 set( CMAKE_INSTALL_CMAKEDIR "${CMAKE_INSTALL_LIBDIR}/cmake/Calamares" CACHE PATH  "Installation directory for CMake files" )
 set( CMAKE_INSTALL_FULL_CMAKEDIR "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_CMAKEDIR}" )
-export(TARGETS calamareslib
-    FILE "${PROJECT_BINARY_DIR}/CalamaresLibraryDepends.cmake")
+export( TARGETS calamares
+    FILE "${PROJECT_BINARY_DIR}/CalamaresLibraryDepends.cmake" )
     
 # Export the package for use from the build-tree
 # (this registers the build-tree with a global CMake-registry)

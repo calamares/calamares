@@ -1,4 +1,4 @@
-project( calamareslib )
+project( libcalamares )
 
 add_definitions( ${QT_DEFINITIONS} )
 add_definitions( -DQT_SHARED )
@@ -36,6 +36,7 @@ if( WITH_PYTHON )
     set( libSources
         ${libSources}
         PythonJob.cpp
+        PythonJobApi.cpp
         PythonJobHelper.cpp
     )
 
@@ -53,19 +54,18 @@ if( WITH_PYTHON )
 endif()
 
 
-add_library( calamareslib SHARED ${libSources} )
-set_target_properties( calamareslib
+add_library( calamares SHARED ${libSources} )
+set_target_properties( calamares
     PROPERTIES
         AUTOMOC TRUE
         VERSION ${CALAMARES_VERSION_SHORT}
         SOVERSION ${CALAMARES_VERSION_SHORT}
-        OUTPUT_NAME "calamares"
 )
 
-qt5_use_modules( calamareslib Core )
+qt5_use_modules( calamares Core )
 
 
-target_link_libraries( calamareslib
+target_link_libraries( calamares
     LINK_PRIVATE
     # internal deps, if any
     ${OPTIONAL_PRIVATE_LIBRARIES}
@@ -75,7 +75,7 @@ target_link_libraries( calamareslib
     Qt5::Core
 )
 
-install( TARGETS calamareslib
+install( TARGETS calamares
     EXPORT CalamaresLibraryDepends
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}

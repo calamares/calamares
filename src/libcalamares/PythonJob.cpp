@@ -26,8 +26,26 @@
 #undef slots
 #include <boost/python.hpp>
 
+#include "PythonJobApi.h"
+
 
 namespace bp = boost::python;
+
+
+BOOST_PYTHON_MODULE( libcalamares )
+{
+    bp::scope().attr( "ORGANIZATION_NAME" ) = CALAMARES_ORGANIZATION_NAME;
+    bp::scope().attr( "ORGANIZATION_DOMAIN" ) = CALAMARES_ORGANIZATION_DOMAIN;
+    bp::scope().attr( "APPLICATION_NAME" ) = CALAMARES_APPLICATION_NAME;
+    bp::scope().attr( "VERSION" ) = CALAMARES_VERSION;
+    bp::scope().attr( "VERSION_SHORT" ) = CALAMARES_VERSION_SHORT;
+
+    bp::class_< CalamaresPrivate::PythonJobInterface >( "job", bp::init< const Calamares::PythonJob* >() )
+        .def( "prettyName", &CalamaresPrivate::PythonJobInterface::prettyName )
+        .def( "workingPath", &CalamaresPrivate::PythonJobInterface::workingPath );
+}
+
+
 namespace Calamares {
 
 
@@ -84,6 +102,11 @@ PythonJob::exec()
     {
         bp::object scriptNamespace = helper()->createCleanNamespace();
 
+        bp::object calamaresModule = bp::import( "libcalamares" );
+        bp::dict calamaresNamespace = bp::extract< bp::dict >( calamaresModule.attr( "__dict__" ) );
+
+        calamaresNamespace[ "job" ] = CalamaresPrivate::PythonJobInterface( this );
+
         bp::object result = bp::exec_file( scriptFI.absoluteFilePath().toLocal8Bit().data(),
                                            scriptNamespace,
                                            scriptNamespace );
@@ -94,19 +117,28 @@ PythonJob::exec()
 
         cDebug() << "Python job" << prettyName() << "finished with message" << message;
     }
-    catch ( bp::error_already_set e )
+    catch ( bp::error_already_set )
     {
-        return JobResult::error( tr( "Boost.Python error" ) );
+        QString msg;
+        if ( PyErr_Occurred() )
+        {
+            msg = helper()->handleLastError();
+        }
+        bp::handle_exception();
+        PyErr_Clear();
+        return JobResult::error( tr( "Boost.Python error" ),
+                                 msg );
     }
 
     return JobResult::ok();
 }
 
 
-PythonJobHelper*
+CalamaresPrivate::PythonJobHelper*
 PythonJob::helper()
 {
-    return PythonJobHelper::s_instance;
+    return CalamaresPrivate::PythonJobHelper::s_instance;
+
 }
 
 

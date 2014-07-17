@@ -17,5 +17,5 @@ endif()
 include("${CALAMARES_CMAKE_DIR}/CalamaresLibraryDepends.cmake")
 
 # These are IMPORTED targets created by CalamaresLibraryDepends.cmake
-set(CALAMARES_LIBRARIES calamareslib)
+set(CALAMARES_LIBRARIES calamares)
 set(CALAMARES_USE_FILE "${CALAMARES_CMAKE_DIR}/CalamaresUse.cmake")

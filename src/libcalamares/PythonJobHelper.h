@@ -21,10 +21,12 @@
 
 #include "PythonJob.h"
 
+#include <QStringList>
+
 #undef slots
 #include <boost/python/object.hpp>
 
-namespace Calamares {
+namespace CalamaresPrivate {
 
 class PythonJobHelper : public QObject
 {
@@ -35,12 +37,16 @@ public:
 
     boost::python::object createCleanNamespace();
 
+    QString handleLastError();
+
 private:
-    friend PythonJobHelper* PythonJob::helper();
+    friend PythonJobHelper* Calamares::PythonJob::helper();
     static PythonJobHelper* s_instance;
 
     boost::python::object m_mainModule;
     boost::python::object m_mainNamespace;
+
+    QStringList m_pythonPaths;
 };
 
 } // namespace Calamares
