@@ -192,8 +192,7 @@ PartitionCoreModule::createPartitionTable( Device* device, PartitionTable::Table
     job->updatePreview();
     info->jobs << Calamares::job_ptr( job );
 
-    refreshPartitionModel( device );
-    updateHasRootMountPoint();
+    refresh( device );
 }
 
 void
@@ -205,11 +204,9 @@ PartitionCoreModule::createPartition( Device* device, Partition* partition )
     CreatePartitionJob* job = new CreatePartitionJob( device, partition );
     job->updatePreview();
 
-    refreshPartitionModel( device );
-
     deviceInfo->jobs << Calamares::job_ptr( job );
 
-    updateHasRootMountPoint();
+    refresh( device );
 }
 
 void
@@ -265,8 +262,7 @@ PartitionCoreModule::deletePartition( Device* device, Partition* partition )
         jobs << Calamares::job_ptr( job );
     }
 
-    refreshPartitionModel( device );
-    updateHasRootMountPoint();
+    refresh( device );
 }
 
 QList< Calamares::job_ptr >
@@ -293,11 +289,12 @@ PartitionCoreModule::dumpQueue() const
 }
 
 void
-PartitionCoreModule::refreshPartitionModel( Device* device )
+PartitionCoreModule::refresh( Device* device )
 {
     auto model = partitionModelForDevice( device );
     Q_ASSERT( model );
     model->reload();
+    updateHasRootMountPoint();
 }
 
 void PartitionCoreModule::updateHasRootMountPoint()

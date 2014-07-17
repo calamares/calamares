@@ -62,6 +62,8 @@ public:
         return m_hasRootMountPoint;
     }
 
+    void refresh( Device* device );
+
 Q_SIGNALS:
     void hasRootMountPointChanged( bool value );
 
@@ -88,7 +90,6 @@ private:
 
     void listDevices();
     void updateHasRootMountPoint();
-    void refreshPartitionModel( Device* device );
 
     void dumpQueue() const;
 
