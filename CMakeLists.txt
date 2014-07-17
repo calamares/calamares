@@ -139,9 +139,9 @@ install(
     FILES
         "${PROJECT_BINARY_DIR}/CalamaresConfig.cmake"
         "${PROJECT_BINARY_DIR}/CalamaresConfigVersion.cmake"
-#        "${PROJECT_BINARY_DIR}/CalamaresUse.cmake"
-#        "${PROJECT_BINARY_DIR}/CalamaresAddPlugin.cmake"
-#        "${PROJECT_BINARY_DIR}/CalamaresAddLibrary.cmake"
+        "${PROJECT_BINARY_DIR}/CalamaresUse.cmake"
+        "${PROJECT_BINARY_DIR}/CalamaresAddPlugin.cmake"
+        "${PROJECT_BINARY_DIR}/CalamaresAddLibrary.cmake"
     DESTINATION
         "${CMAKE_INSTALL_CMAKEDIR}"
 )
