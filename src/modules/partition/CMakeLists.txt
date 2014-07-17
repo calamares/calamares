@@ -42,39 +42,4 @@ calamares_add_plugin( partition
     SHARED_LIB
 )
 
-# Temporary, until views are integrated
-set( partview_SRCS
-    CreatePartitionDialog.cpp
-    CreatePartitionJob.cpp
-    CreatePartitionTableJob.cpp
-    DeletePartitionJob.cpp
-    DeviceModel.cpp
-    EditExistingPartitionDialog.cpp
-    PartitionCoreModule.cpp
-    PartitionInfo.cpp
-    PartitionModel.cpp
-    PartitionPage.cpp
-    PMUtils.cpp
-    main.cpp
-)
-qt5_wrap_ui( partview_SRCS
-    CreatePartitionDialog.ui
-    CreatePartitionTableDialog.ui
-    EditExistingPartitionDialog.ui
-    PartitionPage.ui
-)
-
-include_directories( ${CMAKE_CURRENT_BINARY_DIR} )
-
-add_executable( partview ${partview_SRCS} )
-target_link_libraries( partview
-    calapm
-    ${CALAMARES_LIBRARIES}
-    Qt5::Widgets
-    Qt5::Gui
-    Qt5::Core
-    KF5::CoreAddons
-)
-set_target_properties( partview PROPERTIES AUTOMOC TRUE )
-
 endif( WITH_PARTITIONMANAGER )
