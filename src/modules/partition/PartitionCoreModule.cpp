@@ -215,23 +215,23 @@ PartitionCoreModule::deletePartition( Device* device, Partition* partition )
     auto deviceInfo = infoForDevice( device );
     Q_ASSERT( deviceInfo );
 
-    QList< Calamares::job_ptr >& jobs = deviceInfo->jobs;
+    if ( partition->roles().has( PartitionRole::Extended ) )
+    {
+        // Delete all logical partitions first
+        // I am not sure if we can iterate on Partition::children() while
+        // deleting them, so let's play it safe and keep our own list.
+        QList< Partition* > lst;
+        for ( auto childPartition : partition->children() )
+            if ( !PMUtils::isPartitionFreeSpace( childPartition ) )
+                lst << childPartition;
 
+        for ( auto partition : lst )
+            deletePartition( device, partition );
+    }
+
+    QList< Calamares::job_ptr >& jobs = deviceInfo->jobs;
     if ( partition->state() == Partition::StateNew )
     {
-        if ( partition->roles().has( PartitionRole::Extended ) )
-        {
-            // Delete all logical partitions first
-            // I am not sure if we can iterate on Partition::children() while
-            // deleting them, so let's play it safe and keep our own list.
-            QList< Partition* > lst;
-            for ( auto childPartition : partition->children() )
-                if ( !PMUtils::isPartitionFreeSpace( childPartition ) )
-                    lst << childPartition;
-
-            for ( auto partition : lst )
-                deletePartition( device, partition );
-        }
         // Find matching CreatePartitionJob
         auto it = std::find_if( jobs.begin(), jobs.end(), [ partition ]( Calamares::job_ptr job )
         {
