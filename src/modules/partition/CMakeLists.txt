@@ -1,3 +1,5 @@
+project( PartitionModule )
+
 if( WITH_PARTITIONMANAGER )
 
 add_subdirectory( partitionmanager/calamares )
@@ -11,6 +13,8 @@ include(GenerateExportHeader)
 find_package( KF5 REQUIRED CoreAddons )
 
 add_definitions( -DCALAMARES )
+
+add_subdirectory( tests )
 
 include_directories( ${PROJECT_BINARY_DIR}/src/libcalamaresui )
 calamares_add_plugin( partition

@@ -112,6 +112,7 @@ JobQueue::start()
 {
     Q_ASSERT( !m_thread->isRunning() );
     m_thread->setJobs( m_jobs );
+    m_jobs.clear();
     m_thread->start();
 }
 
