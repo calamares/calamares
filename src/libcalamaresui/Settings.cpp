@@ -42,6 +42,7 @@ Settings::instance()
 
 Settings::Settings( bool debugMode, QObject* parent )
     : QObject( parent )
+    , m_debug( debugMode )
 {
     QFileInfo settingsFile( CalamaresUtils::appDataDir().absoluteFilePath( "settings.conf" ) );
     if ( debugMode )
@@ -132,6 +133,13 @@ Settings::modules( Phase phase ) const
     default:
         return QStringList();
     }
+}
+
+
+bool
+Settings::debugMode() const
+{
+    return m_debug;
 }
 
 

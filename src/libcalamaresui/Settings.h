@@ -42,8 +42,12 @@ public:
 
     QStringList modules( Phase phase ) const;
 
+    bool debugMode() const;
+
 private:
     static Settings* s_instance;
+
+    bool m_debug;
 
     QStringList m_modulesSearchPaths;
 
