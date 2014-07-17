@@ -123,7 +123,7 @@ PartitionCoreModule::DeviceInfo::~DeviceInfo()
 bool
 PartitionCoreModule::DeviceInfo::hasRootMountPoint() const
 {
-    for ( auto it = PartitionIterator::begin( device.data() ); it != PartitionIterator::end( device.data() ); ++it)
+    for ( auto it = PartitionIterator::begin( device.data() ); it != PartitionIterator::end( device.data() ); ++it )
     {
         if ( PartitionInfo::mountPoint( *it ) == "/" )
             return true;
@@ -135,10 +135,8 @@ void
 PartitionCoreModule::DeviceInfo::forgetChanges()
 {
     jobs.clear();
-    for ( auto it = PartitionIterator::begin( device.data() ); it != PartitionIterator::end( device.data() ); ++it)
-    {
+    for ( auto it = PartitionIterator::begin( device.data() ); it != PartitionIterator::end( device.data() ); ++it )
         PartitionInfo::reset( *it );
-    }
 }
 
 //- PartitionCoreModule ------------------------------------

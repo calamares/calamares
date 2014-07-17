@@ -198,8 +198,6 @@ PartitionPage::editExistingPartition( Device* device, Partition* partition )
 {
     QPointer<EditExistingPartitionDialog> dlg = new EditExistingPartitionDialog( device, partition, this );
     if ( dlg->exec() == QDialog::Accepted )
-    {
         dlg->applyChanges( m_core );
-    }
     delete dlg;
 }
