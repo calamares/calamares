@@ -265,6 +265,11 @@ PartitionCoreModule::deletePartition( Device* device, Partition* partition )
     refresh( device );
 }
 
+void
+PartitionCoreModule::formatPartition( Device* device, Partition* partition )
+{
+}
+
 QList< Calamares::job_ptr >
 PartitionCoreModule::jobs() const
 {

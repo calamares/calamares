@@ -18,6 +18,7 @@
 
 #include <EditExistingPartitionDialog.h>
 
+#include <PartitionCoreModule.h>
 #include <PartitionInfo.h>
 #include <ui_EditExistingPartitionDialog.h>
 #include <utils/Logger.h>
@@ -58,7 +59,11 @@ EditExistingPartitionDialog::mbSizeForSectorRange( qint64 first, qint64 last ) c
 }
 
 void
-EditExistingPartitionDialog::applyChanges( PartitionCoreModule* module )
+EditExistingPartitionDialog::applyChanges( PartitionCoreModule* core )
 {
     PartitionInfo::setMountPoint( m_partition, m_ui->mountPointComboBox->currentText() );
+    if ( m_ui->formatRadioButton->isChecked() )
+        core->formatPartition( m_device, m_partition );
+    else
+        core->refresh( m_device );
 }

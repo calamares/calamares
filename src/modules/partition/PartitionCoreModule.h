@@ -55,6 +55,8 @@ public:
 
     void deletePartition( Device* device, Partition* partition );
 
+    void formatPartition( Device* device, Partition* partition );
+
     QList< Calamares::job_ptr > jobs() const;
 
     bool hasRootMountPoint() const
