@@ -29,24 +29,26 @@ macro_optional_find_package( PythonLibs 3.3 REQUIRED )
 macro_log_feature(
     PYTHONLIBS_FOUND
     "Python"
-    "C interface libraries for the Python interpreter."
+    "C interface libraries for the Python 3 interpreter."
     "http://python.org"
-    TRUE ""
-    "Python is used for some Calamares job modules."
+    FALSE "3.3"
+    "Python 3 is used for some Calamares job modules."
 )
-macro_optional_find_package( Boost 1.55.0 COMPONENTS python3 REQUIRED )
+
+include( BoostPython3 )
+find_boost_python3( 1.54.0 ${PYTHONLIBS_VERSION_STRING} CALAMARES_BOOST_PYTHON3_FOUND )
 macro_log_feature(
-    Boost_PYTHON3_FOUND
+    CALAMARES_BOOST_PYTHON3_FOUND
     "Boost.Python"
-    "A C++ library which enables seamless interoperability between C++ and Python."
+    "A C++ library which enables seamless interoperability between C++ and Python 3."
     "http://www.boost.org"
-    TRUE ""
-    "Boost.Python is used for interfacing with Calamares job modules written in Python."
+    FALSE "1.54.0"
+    "Boost.Python is used for interfacing with Calamares job modules written in Python 3."
 )
-if( Boost_PYTHON3_NOTFOUND OR PYTHONLIBS_NOTFOUND )
+
+if ( PYTHONLIBS_NOTFOUND OR NOT CALAMARES_BOOST_PYTHON3_FOUND )
     set( WITH_PYTHON OFF )
 endif()
-
 
 ###
 ### Calamares application info
