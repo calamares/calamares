@@ -51,9 +51,6 @@ public:
 
     void createPartitionTable( Device* device, PartitionTable::TableType type );
 
-    /**
-     * Takes ownership of partitionInfo
-     */
     void createPartition( Device* device, Partition* partition );
 
     void deletePartition( Device* device, Partition* partition );
