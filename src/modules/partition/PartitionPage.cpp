@@ -20,6 +20,7 @@
 
 // Local
 #include <CreatePartitionDialog.h>
+#include <EditExistingPartitionDialog.h>
 #include <DeviceModel.h>
 #include <PartitionCoreModule.h>
 #include <PartitionModel.h>
@@ -163,7 +164,7 @@ PartitionPage::onEditClicked()
     if ( PMUtils::isPartitionNew( partition ) )
         updatePartitionToCreate( model->device(), partition );
     else
-        editExistingPartition( partition );
+        editExistingPartition( model->device(), partition );
 }
 
 void
@@ -193,6 +194,12 @@ PartitionPage::updatePartitionToCreate( Device* device, Partition* partition )
 }
 
 void
-PartitionPage::editExistingPartition( Partition* partition )
+PartitionPage::editExistingPartition( Device* device, Partition* partition )
 {
+    QPointer<EditExistingPartitionDialog> dlg = new EditExistingPartitionDialog( device, partition, this );
+    if ( dlg->exec() == QDialog::Accepted )
+    {
+        dlg->applyChanges( m_core );
+    }
+    delete dlg;
 }

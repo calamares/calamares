@@ -22,6 +22,7 @@ calamares_add_plugin( partition
         CreatePartitionJob.cpp
         CreatePartitionTableJob.cpp
         DeletePartitionJob.cpp
+        EditExistingPartitionDialog.cpp
         DeviceModel.cpp
         PartitionCoreModule.cpp
         PartitionInfo.cpp
@@ -32,6 +33,7 @@ calamares_add_plugin( partition
     UI
         CreatePartitionDialog.ui
         CreatePartitionTableDialog.ui
+        EditExistingPartitionDialog.ui
         PartitionPage.ui
     LINK_LIBRARIES
         calapm
@@ -47,6 +49,7 @@ set( partview_SRCS
     CreatePartitionTableJob.cpp
     DeletePartitionJob.cpp
     DeviceModel.cpp
+    EditExistingPartitionDialog.cpp
     PartitionCoreModule.cpp
     PartitionInfo.cpp
     PartitionModel.cpp
@@ -57,6 +60,7 @@ set( partview_SRCS
 qt5_wrap_ui( partview_SRCS
     CreatePartitionDialog.ui
     CreatePartitionTableDialog.ui
+    EditExistingPartitionDialog.ui
     PartitionPage.ui
 )
 

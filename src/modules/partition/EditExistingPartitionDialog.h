@@ -16,41 +16,32 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef PARTITIONPAGE_H
-#define PARTITIONPAGE_H
+#ifndef EDITEXISTINGPARTITIONDIALOG_H
+#define EDITEXISTINGPARTITIONDIALOG_H
 
-#include <QWidget>
+#include <QDialog>
 #include <QScopedPointer>
 
 class PartitionCoreModule;
-class Ui_PartitionPage;
-
 class Device;
-class DeviceModel;
 class Partition;
+class Ui_EditExistingPartitionDialog;
 
-class PartitionPage : public QWidget
+class EditExistingPartitionDialog : public QDialog
 {
     Q_OBJECT
 public:
-    explicit PartitionPage( PartitionCoreModule* core, QWidget* parent = 0 );
-    ~PartitionPage();
+    EditExistingPartitionDialog( Device* device, Partition* partition, QWidget* parentWidget = nullptr );
+    ~EditExistingPartitionDialog();
 
-Q_SIGNALS:
-
-public Q_SLOTS:
+    void applyChanges( PartitionCoreModule* module );
 
 private:
-    QScopedPointer< Ui_PartitionPage > m_ui;
-    PartitionCoreModule* m_core;
-    void updateButtons();
-    void onNewPartitionTableClicked();
-    void onCreateClicked();
-    void onEditClicked();
-    void onDeleteClicked();
+    QScopedPointer< Ui_EditExistingPartitionDialog > m_ui;
+    Device* m_device;
+    Partition* m_partition;
 
-    void updatePartitionToCreate( Device*, Partition* );
-    void editExistingPartition( Device*, Partition* );
+    qint64 mbSizeForSectorRange( qint64 first, qint64 last ) const;
 };
 
-#endif // PARTITIONPAGE_H
+#endif /* EDITEXISTINGPARTITIONDIALOG_H */
