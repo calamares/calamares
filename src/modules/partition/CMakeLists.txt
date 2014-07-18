@@ -26,8 +26,9 @@ calamares_add_plugin( partition
         CreatePartitionJob.cpp
         CreatePartitionTableJob.cpp
         DeletePartitionJob.cpp
-        EditExistingPartitionDialog.cpp
         DeviceModel.cpp
+        EditExistingPartitionDialog.cpp
+        FormatPartitionJob.cpp
         PartitionCoreModule.cpp
         PartitionInfo.cpp
         PartitionJob.cpp

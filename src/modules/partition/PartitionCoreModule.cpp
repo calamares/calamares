@@ -21,6 +21,7 @@
 #include <CreatePartitionJob.h>
 #include <CreatePartitionTableJob.h>
 #include <DeletePartitionJob.h>
+#include <FormatPartitionJob.h>
 #include <DeviceModel.h>
 #include <PartitionInfo.h>
 #include <PartitionModel.h>
@@ -277,6 +278,13 @@ PartitionCoreModule::deletePartition( Device* device, Partition* partition )
 void
 PartitionCoreModule::formatPartition( Device* device, Partition* partition )
 {
+    auto deviceInfo = infoForDevice( device );
+    Q_ASSERT( deviceInfo );
+
+    FormatPartitionJob* job = new FormatPartitionJob( device, partition );
+    deviceInfo->jobs << Calamares::job_ptr( job );
+
+    refresh( device );
 }
 
 QList< Calamares::job_ptr >
