@@ -17,7 +17,6 @@
  */
 
 #include <CreatePartitionJob.h>
-#include <PartitionInfo.h>
 
 #include <utils/Logger.h>
 
@@ -45,7 +44,10 @@ CreatePartitionJob::CreatePartitionJob( Device* device, Partition* partition )
 QString
 CreatePartitionJob::prettyName() const
 {
-    return tr( "Create partition" ); // FIXME
+    return tr( "Create partition (file system: %1, size: %2 MB) on %3." )
+        .arg( m_partition->fileSystem().name() )
+        .arg( m_partition->capacity() / 1024 / 1024 )
+        .arg( m_device->name() );
 }
 
 Calamares::JobResult
