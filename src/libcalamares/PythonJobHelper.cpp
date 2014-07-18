@@ -29,11 +29,11 @@
 
 namespace bp = boost::python;
 
-namespace CalamaresPrivate {
+namespace CalamaresPython {
 
-PythonJobHelper* PythonJobHelper::s_instance = nullptr;
+Helper* Helper::s_instance = nullptr;
 
-PythonJobHelper::PythonJobHelper( QObject* parent )
+Helper::Helper( QObject* parent )
     : QObject( parent )
 {
     // Let's make extra sure we only call Py_Initialize once
@@ -81,12 +81,12 @@ PythonJobHelper::PythonJobHelper( QObject* parent )
     s_instance = this;
 }
 
-PythonJobHelper::~PythonJobHelper()
+Helper::~Helper()
 {}
 
 
 boost::python::object
-PythonJobHelper::createCleanNamespace()
+Helper::createCleanNamespace()
 {
     // To make sure we run each script with a clean namespace, we only fetch the
     // builtin namespace from the interpreter as it was when freshly initialized.
@@ -98,7 +98,7 @@ PythonJobHelper::createCleanNamespace()
 
 
 QString
-PythonJobHelper::handleLastError()
+Helper::handleLastError()
 {
     using namespace boost::python;
     using namespace boost;

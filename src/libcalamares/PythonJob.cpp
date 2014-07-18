@@ -40,9 +40,9 @@ BOOST_PYTHON_MODULE( libcalamares )
     bp::scope().attr( "VERSION" ) = CALAMARES_VERSION;
     bp::scope().attr( "VERSION_SHORT" ) = CALAMARES_VERSION_SHORT;
 
-    bp::class_< CalamaresPrivate::PythonJobInterface >( "job", bp::init< const Calamares::PythonJob* >() )
-        .def( "prettyName", &CalamaresPrivate::PythonJobInterface::prettyName )
-        .def( "workingPath", &CalamaresPrivate::PythonJobInterface::workingPath );
+    bp::class_< CalamaresPython::PythonJobInterface >( "job", bp::init< const Calamares::PythonJob* >() )
+        .def( "prettyName", &CalamaresPython::PythonJobInterface::prettyName )
+        .def( "workingPath", &CalamaresPython::PythonJobInterface::workingPath );
 }
 
 
@@ -105,7 +105,7 @@ PythonJob::exec()
         bp::object calamaresModule = bp::import( "libcalamares" );
         bp::dict calamaresNamespace = bp::extract< bp::dict >( calamaresModule.attr( "__dict__" ) );
 
-        calamaresNamespace[ "job" ] = CalamaresPrivate::PythonJobInterface( this );
+        calamaresNamespace[ "job" ] = CalamaresPython::PythonJobInterface( this );
 
         bp::object result = bp::exec_file( scriptFI.absoluteFilePath().toLocal8Bit().data(),
                                            scriptNamespace,
@@ -134,10 +134,10 @@ PythonJob::exec()
 }
 
 
-CalamaresPrivate::PythonJobHelper*
+CalamaresPython::Helper*
 PythonJob::helper()
 {
-    return CalamaresPrivate::PythonJobHelper::s_instance;
+    return CalamaresPython::Helper::s_instance;
 
 }
 

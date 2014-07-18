@@ -39,12 +39,10 @@
 // Example module.conf
 /*
 ---
-type:      "core"     #core or view
+type:      "view"      #job or view
 name:      "foo"      #the module name. must be unique and same as the parent directory
 interface: "qtplugin" #can be: qtplugin, python, process, ...
-requires:  []         #list of module names that must also be loaded. only applies to
-                      #binary plugins! these are actual link-time dependencies, not
-                      #conceptual dependencies for the setup procedure
+requires:  []         #list of module names that must also be loaded before this one
 */
 
 void

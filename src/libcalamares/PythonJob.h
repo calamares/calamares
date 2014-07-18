@@ -21,10 +21,10 @@
 
 #include "Job.h"
 
-namespace CalamaresPrivate
+namespace CalamaresPython
 {
 class PythonJobInterface;
-class PythonJobHelper;
+class Helper;
 }
 
 namespace Calamares {
@@ -42,9 +42,9 @@ public:
     JobResult exec() override;
 
 private:
-    friend class CalamaresPrivate::PythonJobHelper;
-    friend class CalamaresPrivate::PythonJobInterface;
-    CalamaresPrivate::PythonJobHelper* helper();
+    friend class CalamaresPython::Helper;
+    friend class CalamaresPython::PythonJobInterface;
+    CalamaresPython::Helper* helper();
     QString m_scriptFile;
     QString m_workingPath;
 };

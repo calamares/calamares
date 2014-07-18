@@ -23,7 +23,7 @@
 
 #include "PythonJob.h"
 
-namespace CalamaresPrivate
+namespace CalamaresPython
 {
 
 class PythonJobInterface

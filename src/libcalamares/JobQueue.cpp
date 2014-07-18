@@ -38,7 +38,7 @@ public:
     , m_queue( queue )
     {
 #ifdef WITH_PYTHON
-        new CalamaresPrivate::PythonJobHelper( this );
+        new CalamaresPython::Helper( this );
 #endif
     }
 

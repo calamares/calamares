@@ -26,22 +26,22 @@
 #undef slots
 #include <boost/python/object.hpp>
 
-namespace CalamaresPrivate {
+namespace CalamaresPython {
 
-class PythonJobHelper : public QObject
+class Helper : public QObject
 {
     Q_OBJECT
 public:
-    explicit PythonJobHelper( QObject* parent = nullptr );
-    virtual ~PythonJobHelper();
+    explicit Helper( QObject* parent = nullptr );
+    virtual ~Helper();
 
     boost::python::object createCleanNamespace();
 
     QString handleLastError();
 
 private:
-    friend PythonJobHelper* Calamares::PythonJob::helper();
-    static PythonJobHelper* s_instance;
+    friend Helper* Calamares::PythonJob::helper();
+    static Helper* s_instance;
 
     boost::python::object m_mainModule;
     boost::python::object m_mainNamespace;

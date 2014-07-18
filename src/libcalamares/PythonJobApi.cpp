@@ -19,7 +19,7 @@
 #include "PythonJobApi.h"
 
 
-namespace CalamaresPrivate
+namespace CalamaresPython
 {
 
 PythonJobInterface::PythonJobInterface( const Calamares::PythonJob* parent )
