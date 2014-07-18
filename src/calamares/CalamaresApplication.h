@@ -62,7 +62,6 @@ private:
     Calamares::ModuleManager* m_moduleManager;
 
     bool m_debugMode;
-    //QPointer< Calamares::JobQueue > m_jobQueue;
 };
 
 #endif //CALAMARESAPPLICATION_H
