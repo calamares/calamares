@@ -51,7 +51,7 @@ Calamares::JobResult
 CreatePartitionJob::exec()
 {
     Report report( 0 );
-    QString message = tr( "The installer failed to create partition on %1." ).arg( m_device->name() );
+    QString message = tr( "The installer failed to create partition on disk '%1'." ).arg( m_device->name() );
 
     CoreBackend* backend = CoreBackendManager::self()->backend();
     QScopedPointer<CoreBackendDevice> backendDevice( backend->openDevice( m_device->deviceNode() ) );
@@ -59,7 +59,7 @@ CreatePartitionJob::exec()
     {
         return Calamares::JobResult::error(
                    message,
-                   tr( "Could not open device %1." ).arg( m_device->deviceNode() )
+                   tr( "Could not open device '%1'." ).arg( m_device->deviceNode() )
                );
     }
 
@@ -97,7 +97,7 @@ CreatePartitionJob::exec()
     if ( !backendPartitionTable->setPartitionSystemType( report, *m_partition ) )
     {
         return Calamares::JobResult::error(
-                   tr( "The installer failed to update partition table on %1." ).arg( m_device->name() ),
+                   tr( "The installer failed to update partition table on disk '%1'." ).arg( m_device->name() ),
                    report.toText()
                );
     }
