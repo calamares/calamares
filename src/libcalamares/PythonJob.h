@@ -21,6 +21,8 @@
 
 #include "Job.h"
 
+#include <QVariant>
+
 namespace CalamaresPython
 {
 class PythonJobInterface;
@@ -35,6 +37,7 @@ class PythonJob : public Job
 public:
     explicit PythonJob( const QString& scriptFile,
                         const QString& workingPath,
+                        const QVariantMap& moduleConfiguration = QVariantMap(),
                         QObject* parent = nullptr );
     virtual ~PythonJob();
 
@@ -47,6 +50,7 @@ private:
     CalamaresPython::Helper* helper();
     QString m_scriptFile;
     QString m_workingPath;
+    QVariantMap m_configurationMap;
 };
 
 } // namespace Calamares

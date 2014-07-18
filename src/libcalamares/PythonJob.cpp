@@ -18,7 +18,7 @@
 
 #include "PythonJob.h"
 
-#include "PythonJobHelper.h"
+#include "PythonHelper.h"
 #include "utils/Logger.h"
 
 #include <QDir>
@@ -34,15 +34,16 @@ namespace bp = boost::python;
 
 BOOST_PYTHON_MODULE( libcalamares )
 {
-    bp::scope().attr( "ORGANIZATION_NAME" ) = CALAMARES_ORGANIZATION_NAME;
-    bp::scope().attr( "ORGANIZATION_DOMAIN" ) = CALAMARES_ORGANIZATION_DOMAIN;
-    bp::scope().attr( "APPLICATION_NAME" ) = CALAMARES_APPLICATION_NAME;
-    bp::scope().attr( "VERSION" ) = CALAMARES_VERSION;
-    bp::scope().attr( "VERSION_SHORT" ) = CALAMARES_VERSION_SHORT;
+    bp::scope().attr( "organizationName" ) = CALAMARES_ORGANIZATION_NAME;
+    bp::scope().attr( "organizationDomain" ) = CALAMARES_ORGANIZATION_DOMAIN;
+    bp::scope().attr( "applicationName" ) = CALAMARES_APPLICATION_NAME;
+    bp::scope().attr( "version" ) = CALAMARES_VERSION;
+    bp::scope().attr( "shortVersion" ) = CALAMARES_VERSION_SHORT;
 
     bp::class_< CalamaresPython::PythonJobInterface >( "job", bp::init< const Calamares::PythonJob* >() )
-        .def( "prettyName", &CalamaresPython::PythonJobInterface::prettyName )
-        .def( "workingPath", &CalamaresPython::PythonJobInterface::workingPath );
+        .def_readonly( "prettyName", &CalamaresPython::PythonJobInterface::prettyName )
+        .def_readonly( "workingPath", &CalamaresPython::PythonJobInterface::workingPath )
+        .def_readonly( "configuration", &CalamaresPython::PythonJobInterface::configuration );
 }
 
 
@@ -51,10 +52,12 @@ namespace Calamares {
 
 PythonJob::PythonJob( const QString& scriptFile,
                       const QString& workingPath,
+                      const QVariantMap& moduleConfiguration,
                       QObject* parent )
     : Job( parent )
     , m_scriptFile( scriptFile )
     , m_workingPath( workingPath )
+    , m_configurationMap( moduleConfiguration )
 {
 }
 

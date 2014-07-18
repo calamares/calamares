@@ -50,7 +50,8 @@ PythonJobModule::loadSelf()
         return;
 
     Calamares::job_ptr j = Calamares::job_ptr( new PythonJob( m_scriptFileName,
-                                                              m_workingPath ) );
+                                                              m_workingPath,
+                                                              m_configurationMap ) );
     JobQueue::instance()->enqueue( j );
     m_loaded = true;
 }

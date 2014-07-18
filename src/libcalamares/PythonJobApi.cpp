@@ -18,25 +18,17 @@
 
 #include "PythonJobApi.h"
 
+#include "PythonHelper.h"
 
 namespace CalamaresPython
 {
 
 PythonJobInterface::PythonJobInterface( const Calamares::PythonJob* parent )
     : m_parent( parent )
-{}
-
-
-std::string
-PythonJobInterface::prettyName() const
 {
-    return m_parent->prettyName().toStdString();
-}
-
-std::string
-PythonJobInterface::workingPath() const
-{
-    return m_parent->m_workingPath.toStdString();
+    prettyName = m_parent->prettyName().toStdString();
+    workingPath = m_parent->m_workingPath.toStdString();
+    configuration = CalamaresPython::variantMapToPyDict( m_parent->m_configurationMap );
 }
 
 }

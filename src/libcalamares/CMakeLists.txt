@@ -35,9 +35,9 @@ include_directories(
 if( WITH_PYTHON )
     set( libSources
         ${libSources}
+        PythonHelper.cpp
         PythonJob.cpp
         PythonJobApi.cpp
-        PythonJobHelper.cpp
     )
 
     include_directories(${PYTHON_INCLUDE_DIRS})

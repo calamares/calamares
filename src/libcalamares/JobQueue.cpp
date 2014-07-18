@@ -22,7 +22,7 @@
 
 #include "CalamaresConfig.h"
 #ifdef WITH_PYTHON
-#include "PythonJobHelper.h"
+#include "PythonHelper.h"
 #endif
 
 #include <QThread>

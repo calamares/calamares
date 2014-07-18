@@ -16,7 +16,7 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "PythonJobHelper.h"
+#include "PythonHelper.h"
 
 #include "utils/CalamaresUtils.h"
 #include "utils/Logger.h"
@@ -30,6 +30,59 @@
 namespace bp = boost::python;
 
 namespace CalamaresPython {
+
+
+boost::python::object
+variantToPyObject( const QVariant& variant )
+{
+    switch ( variant.type() )
+    {
+    case QVariant::List:
+    case QVariant::StringList:
+        return variantListToPyList( variant.toList() );
+
+    case QVariant::Map:
+        return variantMapToPyDict( variant.toMap() );
+
+    case QVariant::Int:
+        return bp::object( variant.toInt() );
+
+    case QVariant::Double:
+        return bp::object( variant.toDouble() );
+
+    case QVariant::String:
+    case QVariant::Char:
+        return bp::object( variant.toString().toStdString() );
+
+    default:
+        return bp::object();
+    }
+}
+
+
+boost::python::list
+variantListToPyList( const QVariantList& variantList )
+{
+    bp::list pyList;
+    foreach ( const QVariant& variant, variantList )
+    {
+        pyList.append( variantToPyObject( variant ) );
+    }
+    return pyList;
+}
+
+
+boost::python::dict
+variantMapToPyDict( const QVariantMap& variantMap )
+{
+    bp::dict pyDict;
+    for ( auto it = variantMap.constBegin(); it != variantMap.constEnd(); ++it )
+    {
+        pyDict[ it.key().toStdString() ] = variantToPyObject( it.value() );
+    }
+    return pyDict;
+}
+
 
 Helper* Helper::s_instance = nullptr;
 
@@ -74,7 +127,7 @@ Helper::Helper( QObject* parent )
     }
     else
     {
-        cDebug() << "WARNING: creating PythonJobHelper more than once. This is very bad.";
+        cDebug() << "WARNING: creating PythonHelper more than once. This is very bad.";
         return;
     }
 

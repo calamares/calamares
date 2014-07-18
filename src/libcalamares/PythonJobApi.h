@@ -23,6 +23,9 @@
 
 #include "PythonJob.h"
 
+#undef slots
+#include <boost/python/dict.hpp>
+
 namespace CalamaresPython
 {
 
@@ -31,9 +34,10 @@ class PythonJobInterface
 public:
     explicit PythonJobInterface( const Calamares::PythonJob* parent );
 
-    std::string prettyName() const;
+    std::string prettyName;
+    std::string workingPath;
 
-    std::string workingPath() const;
+    boost::python::dict configuration;
 
 private:
     const Calamares::PythonJob* m_parent;

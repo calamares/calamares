@@ -24,9 +24,16 @@
 #include <QStringList>
 
 #undef slots
+#include <boost/python/dict.hpp>
+#include <boost/python/list.hpp>
 #include <boost/python/object.hpp>
 
 namespace CalamaresPython {
+
+boost::python::object variantToPyObject( const QVariant& variant );
+boost::python::list   variantListToPyList( const QVariantList& variantList );
+boost::python::dict   variantMapToPyDict( const QVariantMap& variantMap );
+
 
 class Helper : public QObject
 {
