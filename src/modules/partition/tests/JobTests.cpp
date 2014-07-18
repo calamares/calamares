@@ -101,7 +101,12 @@ JobTests::newCreatePartitionJob( Partition* freeSpacePartition, PartitionRole ro
     Q_ASSERT( freeSpacePartition );
 
     qint64 firstSector = freeSpacePartition->firstSector();
-    qint64 lastSector = firstSector + size / m_device->logicalSectorSize();
+    qint64 lastSector;
+
+    if ( size > 0 )
+        lastSector = firstSector + size / m_device->logicalSectorSize();
+    else
+        lastSector = freeSpacePartition->lastSector();
     FileSystem* fs = FileSystemFactory::create( type, firstSector, lastSector );
 
     Partition* partition = new Partition(
@@ -171,7 +176,8 @@ JobTests::testCreatePartitionExtended()
     m_queue.enqueue( job_ptr( job ) );
     Partition* extendedPartition = job->partition();
 
-    job = newCreatePartitionJob( firstFreePartition( extendedPartition ), PartitionRole( PartitionRole::Logical ), FileSystem::Ext4, 10 * MB);
+    partition = firstFreePartition( extendedPartition );
+    job = newCreatePartitionJob( partition, PartitionRole( PartitionRole::Logical ), FileSystem::Ext4, 0);
     job->updatePreview();
     m_queue.enqueue( job_ptr( job ) );
 
