@@ -19,7 +19,6 @@ ecm_add_test( ${jobtests_SRCS}
     LINK_LIBRARIES
         calapm
         ${CALAMARES_LIBRARIES}
-        calamareslib
         Qt5::Core
         Qt5::Test
 )
