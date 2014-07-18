@@ -171,7 +171,7 @@ JobTests::testCreatePartitionExtended()
     m_queue.enqueue( job_ptr( job ) );
 
     partition = firstFreePartition( m_device->partitionTable() );
-    job = newCreatePartitionJob( partition, PartitionRole( PartitionRole::Extended ), FileSystem::Unformatted, 10 * MB);
+    job = newCreatePartitionJob( partition, PartitionRole( PartitionRole::Extended ), FileSystem::Extended, 10 * MB);
     job->updatePreview();
     m_queue.enqueue( job_ptr( job ) );
     Partition* extendedPartition = job->partition();

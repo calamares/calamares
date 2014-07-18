@@ -83,7 +83,7 @@ CreatePartitionJob::exec()
     backendPartitionTable->commit();
 
     FileSystem& fs = m_partition->fileSystem();
-    if ( fs.type() == FileSystem::Unformatted )
+    if ( fs.type() == FileSystem::Unformatted || fs.type() == FileSystem::Extended )
         return Calamares::JobResult::ok();
 
     if ( !fs.create( report, partitionPath ) )
