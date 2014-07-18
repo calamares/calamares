@@ -20,6 +20,15 @@ static const qint64 MB = 1024 * 1024;
 
 using namespace Calamares;
 
+static
+Partition* firstFreePartition( PartitionNode* parent )
+{
+    for( auto child : parent->children() )
+        if ( PMUtils::isPartitionFreeSpace( child ) )
+            return child;
+    return nullptr;
+}
+
 QueueRunner::QueueRunner( JobQueue* queue )
     : m_queue( queue )
 {
@@ -83,8 +92,15 @@ JobTests::initTestCase()
 void
 JobTests::testPartitionTable()
 {
+    queuePartitionTableCreation( PartitionTable::msdos );
+    QVERIFY( m_runner.run() );
+    QVERIFY( m_device->partitionTable() );
+    QVERIFY( firstFreePartition( m_device->partitionTable() ) );
+
     queuePartitionTableCreation( PartitionTable::gpt );
-    m_runner.run();
+    QVERIFY( m_runner.run() );
+    QVERIFY( m_device->partitionTable() );
+    QVERIFY( firstFreePartition( m_device->partitionTable() ) );
 }
 
 void
@@ -124,15 +140,6 @@ JobTests::newCreatePartitionJob( Partition* freeSpacePartition, PartitionRole ro
     return new CreatePartitionJob( m_device.data(), partition );
 }
 
-static
-Partition* firstFreePartition( PartitionNode* parent )
-{
-    for( auto child : parent->children() )
-        if ( PMUtils::isPartitionFreeSpace( child ) )
-            return child;
-    return nullptr;
-}
-
 void
 JobTests::testCreatePartition()
 {
@@ -140,18 +147,20 @@ JobTests::testCreatePartition()
     CreatePartitionJob* job;
 
     Partition* partition = firstFreePartition( m_device->partitionTable() );
-    job = newCreatePartitionJob( partition, PartitionRole( PartitionRole::Primary ), FileSystem::Ext4, 10 * MB);
+    job = newCreatePartitionJob( partition, PartitionRole( PartitionRole::Primary ), FileSystem::Ext4, 1 * MB);
     QVERIFY( job );
     job->updatePreview();
     m_queue.enqueue( job_ptr( job ) );
 
     partition = firstFreePartition( m_device->partitionTable() );
-    job = newCreatePartitionJob( partition, PartitionRole( PartitionRole::Primary ), FileSystem::LinuxSwap, 10 * MB);
+    QVERIFY( partition );
+    job = newCreatePartitionJob( partition, PartitionRole( PartitionRole::Primary ), FileSystem::LinuxSwap, 1 * MB);
     job->updatePreview();
     m_queue.enqueue( job_ptr( job ) );
 
     partition = firstFreePartition( m_device->partitionTable() );
-    job = newCreatePartitionJob( partition, PartitionRole( PartitionRole::Primary ), FileSystem::Btrfs, 10 * MB);
+    QVERIFY( partition );
+    job = newCreatePartitionJob( partition, PartitionRole( PartitionRole::Primary ), FileSystem::Fat32, 1 * MB);
     job->updatePreview();
     m_queue.enqueue( job_ptr( job ) );
 
@@ -171,12 +180,14 @@ JobTests::testCreatePartitionExtended()
     m_queue.enqueue( job_ptr( job ) );
 
     partition = firstFreePartition( m_device->partitionTable() );
+    QVERIFY( partition );
     job = newCreatePartitionJob( partition, PartitionRole( PartitionRole::Extended ), FileSystem::Extended, 10 * MB);
     job->updatePreview();
     m_queue.enqueue( job_ptr( job ) );
     Partition* extendedPartition = job->partition();
 
     partition = firstFreePartition( extendedPartition );
+    QVERIFY( partition );
     job = newCreatePartitionJob( partition, PartitionRole( PartitionRole::Logical ), FileSystem::Ext4, 0);
     job->updatePreview();
     m_queue.enqueue( job_ptr( job ) );

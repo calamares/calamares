@@ -93,7 +93,12 @@ public:
         PartitionTable* table = device->partitionTable();
         if ( !table )
             return it;
-        it.m_current = table->children().first();
+        QList< Partition* > children = table->children();
+        // Does not usually happen, but it did happen on a 10MB disk with an MBR
+        // partition table.
+        if ( children.isEmpty() )
+            return it;
+        it.m_current = children.first();
         return it;
     }
 
