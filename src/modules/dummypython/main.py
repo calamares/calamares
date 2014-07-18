@@ -24,8 +24,9 @@ from time import gmtime, strftime
 def calamares_main():
     os.system( "/bin/sh -c \"touch ~/calamares-dummypython\"" )
     accumulator = strftime( "%Y-%m-%d %H:%M:%S", gmtime() ) + "\n"
-    accumulator += "Calamares version: " + libcalamares.VERSION_SHORT + "\n"
-    accumulator += "This job's name: " + libcalamares.job.prettyName() + "\n"
-    accumulator += "This job's path: " + libcalamares.job.workingPath() + "\n"
+    accumulator += "Calamares version: " + libcalamares.shortVersion + "\n"
+    accumulator += "This job's name: " + libcalamares.job.prettyName + "\n"
+    accumulator += "This job's path: " + libcalamares.job.workingPath + "\n"
+    accumulator += str( libcalamares.job.configuration )
     return accumulator
 
