@@ -16,31 +16,8 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef CREATEPARTITIONJOB_H
-#define CREATEPARTITIONJOB_H
-
 #include <PartitionJob.h>
 
-class Device;
-class Partition;
-class FileSystem;
-
-class CreatePartitionJob : public PartitionJob
-{
-    Q_OBJECT
-public:
-    CreatePartitionJob( Device* device, Partition* partition );
-    QString prettyName() const override;
-    Calamares::JobResult exec() override;
-
-    void updatePreview();
-    Device* device() const
-    {
-        return m_device;
-    }
-
-private:
-    Device* m_device;
-};
-
-#endif /* CREATEPARTITIONJOB_H */
+PartitionJob::PartitionJob( Partition* partition )
+    : m_partition( partition )
+{}

@@ -30,8 +30,8 @@
 #include <util/report.h>
 
 DeletePartitionJob::DeletePartitionJob( Device* device, Partition* partition )
-    : m_device( device )
-    , m_partition( partition )
+    : PartitionJob( partition )
+    , m_device( device )
 {
 }
 

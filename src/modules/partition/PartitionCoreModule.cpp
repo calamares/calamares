@@ -257,6 +257,15 @@ PartitionCoreModule::deletePartition( Device* device, Partition* partition )
     }
     else
     {
+        // Remove any PartitionJob on this partition
+        for ( auto it = jobs.begin(); it != jobs.end(); )
+        {
+            PartitionJob* job = qobject_cast< PartitionJob* >( it->data() );
+            if ( job && job->partition() == partition )
+                it = jobs.erase( it );
+            else
+                ++it;
+        }
         DeletePartitionJob* job = new DeletePartitionJob( device, partition );
         job->updatePreview();
         jobs << Calamares::job_ptr( job );

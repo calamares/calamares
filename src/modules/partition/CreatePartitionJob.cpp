@@ -17,6 +17,7 @@
  */
 
 #include <CreatePartitionJob.h>
+#include <PartitionInfo.h>
 
 #include <utils/Logger.h>
 
@@ -36,8 +37,8 @@
 #include <QScopedPointer>
 
 CreatePartitionJob::CreatePartitionJob( Device* device, Partition* partition )
-    : m_device( device )
-    , m_partition( partition )
+    : PartitionJob( partition )
+    , m_device( device )
 {
 }
 

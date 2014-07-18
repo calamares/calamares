@@ -30,6 +30,7 @@ calamares_add_plugin( partition
         DeviceModel.cpp
         PartitionCoreModule.cpp
         PartitionInfo.cpp
+        PartitionJob.cpp
         PartitionModel.cpp
         PartitionPage.cpp
         PartitionViewStep.cpp

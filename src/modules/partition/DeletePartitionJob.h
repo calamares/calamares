@@ -19,13 +19,13 @@
 #ifndef DELETEPARTITIONJOB_H
 #define DELETEPARTITIONJOB_H
 
-#include <Job.h>
+#include <PartitionJob.h>
 
 class Device;
 class Partition;
 class FileSystem;
 
-class DeletePartitionJob : public Calamares::Job
+class DeletePartitionJob : public PartitionJob
 {
     Q_OBJECT
 public:
@@ -39,14 +39,8 @@ public:
         return m_device;
     }
 
-    Partition* partition() const
-    {
-        return m_partition;
-    }
-
 private:
     Device* m_device;
-    Partition* m_partition;
     FileSystem* m_fs;
 };
 
