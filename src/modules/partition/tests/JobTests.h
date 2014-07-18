@@ -19,13 +19,17 @@ class QueueRunner : public QObject
 public:
     QueueRunner( Calamares::JobQueue* queue );
 
-    void run();
+    /**
+     * Synchronously runs the queue. Returns true on success
+     */
+    bool run();
 
 private:
     void onProgress( int current, int total, const QString& prettyName );
     void onFailed( const QString& message, const QString& details );
     Calamares::JobQueue* m_queue;
     bool m_done;
+    bool m_success;
 };
 
 class JobTests : public QObject

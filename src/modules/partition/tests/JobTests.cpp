@@ -27,14 +27,16 @@ QueueRunner::QueueRunner( JobQueue* queue )
     connect( m_queue, &JobQueue::failed, this, &QueueRunner::onFailed );
 }
 
-void
+bool
 QueueRunner::run()
 {
     m_done = false;
+    m_success = false;
     m_queue->start();
     QEventLoop loop;
     while ( !m_done )
         loop.processEvents();
+    return m_success;
 }
 
 void
@@ -43,6 +45,7 @@ QueueRunner::onProgress( int current, int total, const QString& prettyName )
     QVERIFY( current <= total );
     if ( current < total )
         return;
+    m_success = true;
     m_done = true;
 }
 
@@ -147,7 +150,7 @@ JobTests::testCreatePartition()
     job->updatePreview();
     m_queue.enqueue( job_ptr( job ) );
 
-    m_runner.run();
+    QVERIFY( m_runner.run() );
 }
 
 void
@@ -172,5 +175,5 @@ JobTests::testCreatePartitionExtended()
     job->updatePreview();
     m_queue.enqueue( job_ptr( job ) );
 
-    m_runner.run();
+    QVERIFY( m_runner.run() );
 }
