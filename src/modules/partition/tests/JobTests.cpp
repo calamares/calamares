@@ -80,14 +80,14 @@ JobTests::initTestCase()
 void
 JobTests::testPartitionTable()
 {
-    queuePartitionTableCreation();
+    queuePartitionTableCreation( PartitionTable::gpt );
     m_runner.run();
 }
 
 void
-JobTests::queuePartitionTableCreation()
+JobTests::queuePartitionTableCreation( PartitionTable::TableType type)
 {
-    auto job = new CreatePartitionTableJob( m_device.data(), PartitionTable::gpt );
+    auto job = new CreatePartitionTableJob( m_device.data(), type );
     job->updatePreview();
     m_queue.enqueue( job_ptr( job ) );
 }
@@ -128,7 +128,7 @@ Partition* firstFreePartition( PartitionNode* parent )
 void
 JobTests::testCreatePartition()
 {
-    queuePartitionTableCreation();
+    queuePartitionTableCreation( PartitionTable::gpt );
     CreatePartitionJob* job;
 
     Partition* partition = firstFreePartition( m_device->partitionTable() );
@@ -137,11 +137,38 @@ JobTests::testCreatePartition()
     job->updatePreview();
     m_queue.enqueue( job_ptr( job ) );
 
+    partition = firstFreePartition( m_device->partitionTable() );
     job = newCreatePartitionJob( partition, PartitionRole( PartitionRole::Primary ), FileSystem::LinuxSwap, 10 * MB);
     job->updatePreview();
     m_queue.enqueue( job_ptr( job ) );
 
+    partition = firstFreePartition( m_device->partitionTable() );
     job = newCreatePartitionJob( partition, PartitionRole( PartitionRole::Primary ), FileSystem::Btrfs, 10 * MB);
+    job->updatePreview();
+    m_queue.enqueue( job_ptr( job ) );
+
+    m_runner.run();
+}
+
+void
+JobTests::testCreatePartitionExtended()
+{
+    queuePartitionTableCreation( PartitionTable::msdos );
+    CreatePartitionJob* job;
+
+    Partition* partition = firstFreePartition( m_device->partitionTable() );
+    job = newCreatePartitionJob( partition, PartitionRole( PartitionRole::Primary ), FileSystem::Ext4, 10 * MB);
+    QVERIFY( job );
+    job->updatePreview();
+    m_queue.enqueue( job_ptr( job ) );
+
+    partition = firstFreePartition( m_device->partitionTable() );
+    job = newCreatePartitionJob( partition, PartitionRole( PartitionRole::Extended ), FileSystem::Unformatted, 10 * MB);
+    job->updatePreview();
+    m_queue.enqueue( job_ptr( job ) );
+    Partition* extendedPartition = job->partition();
+
+    job = newCreatePartitionJob( firstFreePartition( extendedPartition ), PartitionRole( PartitionRole::Logical ), FileSystem::Ext4, 10 * MB);
     job->updatePreview();
     m_queue.enqueue( job_ptr( job ) );
 

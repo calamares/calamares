@@ -7,6 +7,7 @@
 #include <core/device.h>
 #include <core/partition.h>
 #include <core/partitionrole.h>
+#include <core/partitiontable.h>
 #include <fs/filesystem.h>
 
 // Qt
@@ -37,13 +38,14 @@ private Q_SLOTS:
     void initTestCase();
     void testPartitionTable();
     void testCreatePartition();
+    void testCreatePartitionExtended();
 
 private:
     QScopedPointer< Device > m_device;
     Calamares::JobQueue m_queue;
     QueueRunner m_runner;
 
-    void queuePartitionTableCreation();
+    void queuePartitionTableCreation( PartitionTable::TableType type );
     CreatePartitionJob* newCreatePartitionJob( Partition* freeSpacePartition, PartitionRole, FileSystem::Type type, qint64 size );
 };
 
