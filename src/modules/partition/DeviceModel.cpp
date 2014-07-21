@@ -21,6 +21,9 @@
 // CalaPM
 #include <core/device.h>
 
+// KF5
+#include <KFormat>
+
 DeviceModel::DeviceModel( QObject* parent )
     : QAbstractListModel( parent )
 {
@@ -59,7 +62,10 @@ DeviceModel::data( const QModelIndex& index, int role ) const
         if ( device->name().isEmpty() )
             return device->deviceNode();
         else
-            return device->name() + " " + device->deviceNode();
+            return tr( "%1 - %2 (%3)" )
+                .arg( device->name() )
+                .arg( KFormat().formatByteSize( device->capacity() ) )
+                .arg( device->deviceNode() );
     default:
         return QVariant();
     }

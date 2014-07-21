@@ -45,12 +45,13 @@ PartitionPage::PartitionPage( PartitionCoreModule* core, QWidget* parent )
     , m_core( core )
 {
     m_ui->setupUi( this );
-    m_ui->deviceListView->setModel( m_core->deviceModel() );
+    m_ui->deviceComboBox->setModel( m_core->deviceModel() );
     updateButtons();
 
-    connect( m_ui->deviceListView->selectionModel(), &QItemSelectionModel::currentChanged,
-             [ this ]( const QModelIndex& index, const QModelIndex& oldIndex )
+    connect( m_ui->deviceComboBox, &QComboBox::currentTextChanged,
+             [ this ]( const QString& /* text */ )
     {
+        QModelIndex index = m_ui->deviceComboBox->view()->currentIndex();
         Device* device = m_core->deviceModel()->deviceForIndex( index );
         PartitionModel* model = m_core->partitionModelForDevice( device );
         m_ui->partitionTreeView->setModel( model );
@@ -111,13 +112,13 @@ PartitionPage::updateButtons()
     m_ui->editButton->setEnabled( edit );
     m_ui->deleteButton->setEnabled( del );
 
-    m_ui->newPartitionTableButton->setEnabled( m_ui->deviceListView->currentIndex().isValid() );
+    m_ui->newPartitionTableButton->setEnabled( m_ui->deviceComboBox->currentIndex() >= 0 );
 }
 
 void
 PartitionPage::onNewPartitionTableClicked()
 {
-    QModelIndex index = m_ui->deviceListView->currentIndex();
+    QModelIndex index = m_ui->deviceComboBox->view()->currentIndex();
     Q_ASSERT( index.isValid() );
     Device* device = m_core->deviceModel()->deviceForIndex( index );
 
