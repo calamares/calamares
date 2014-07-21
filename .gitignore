@@ -28,3 +28,6 @@ Makefile*
 *.autosave
 qtcreator-build
 CMakeLists.txt.user
+
+# PyCharm
+.idea
