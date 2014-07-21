@@ -19,6 +19,7 @@
 #include "JobQueue.h"
 
 #include "Job.h"
+#include "GlobalStorage.h"
 
 #include "CalamaresConfig.h"
 #ifdef WITH_PYTHON
@@ -98,12 +99,26 @@ JobQueue::instance()
 }
 
 
+GlobalStorage*
+JobQueue::globalStorage() const
+{
+    return m_storage;
+}
+
+
 JobQueue::JobQueue( QObject* parent )
     : QObject( parent )
     , m_thread( new JobThread( this ) )
+    , m_storage( new GlobalStorage() )
 {
     Q_ASSERT( !s_instance );
     s_instance = this;
+}
+
+
+JobQueue::~JobQueue()
+{
+    delete m_storage;
 }
 
 

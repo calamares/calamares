@@ -27,6 +27,7 @@
 namespace Calamares
 {
 
+class GlobalStorage;
 class JobThread;
 
 class DLLEXPORT JobQueue : public QObject
@@ -34,8 +35,11 @@ class DLLEXPORT JobQueue : public QObject
     Q_OBJECT
 public:
     explicit JobQueue( QObject* parent = nullptr );
+    virtual ~JobQueue();
 
     static JobQueue* instance();
+
+    GlobalStorage* globalStorage() const;
 
     void enqueue( const Calamares::job_ptr& job );
     void enqueue( const QList< Calamares::job_ptr >& jobs );
@@ -50,6 +54,7 @@ private:
 
     QList< Calamares::job_ptr > m_jobs;
     JobThread* m_thread;
+    GlobalStorage* m_storage;
 };
 
 }

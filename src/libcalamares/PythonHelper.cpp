@@ -37,12 +37,12 @@ variantToPyObject( const QVariant& variant )
 {
     switch ( variant.type() )
     {
+    case QVariant::Map:
+        return variantMapToPyDict( variant.toMap() );
+
     case QVariant::List:
     case QVariant::StringList:
         return variantListToPyList( variant.toList() );
-
-    case QVariant::Map:
-        return variantMapToPyDict( variant.toMap() );
 
     case QVariant::Int:
         return bp::object( variant.toInt() );
@@ -51,12 +51,35 @@ variantToPyObject( const QVariant& variant )
         return bp::object( variant.toDouble() );
 
     case QVariant::String:
-    case QVariant::Char:
         return bp::object( variant.toString().toStdString() );
 
     default:
         return bp::object();
     }
+}
+
+
+QVariant
+variantFromPyObject( const boost::python::object& pyObject )
+{
+    std::string pyType = bp::extract< std::string >( pyObject.attr( "__class__" ).attr( "__name__" ) );
+    if ( pyType == "dict" )
+        return variantMapFromPyDict( bp::extract< bp::dict >( pyObject ) );
+
+    else if ( pyType == "list" )
+        return variantListFromPyList( bp::extract< bp::list >( pyObject ) );
+
+    else if ( pyType == "int" )
+        return QVariant( bp::extract< int >( pyObject ) );
+
+    else if ( pyType == "float" )
+        return QVariant( bp::extract< double >( pyObject ) );
+
+    else if ( pyType == "str" )
+        return QVariant( QString::fromStdString( bp::extract< std::string >( pyObject ) ) );
+
+    else
+        return QVariant();
 }
 
 
@@ -72,6 +95,18 @@ variantListToPyList( const QVariantList& variantList )
 }
 
 
+QVariantList
+variantListFromPyList( const boost::python::list& pyList )
+{
+    QVariantList list;
+    for ( int i = 0; i < bp::len( pyList ); ++i )
+    {
+        list.append( variantFromPyObject( pyList[ i ] ) );
+    }
+    return list;
+}
+
+
 boost::python::dict
 variantMapToPyDict( const QVariantMap& variantMap )
 {
@@ -81,6 +116,30 @@ variantMapToPyDict( const QVariantMap& variantMap )
         pyDict[ it.key().toStdString() ] = variantToPyObject( it.value() );
     }
     return pyDict;
+}
+
+
+QVariantMap
+variantMapFromPyDict( const boost::python::dict& pyDict )
+{
+    QVariantMap map;
+    bp::list keys = pyDict.keys();
+    for ( int i = 0; i < bp::len( keys ); ++i )
+    {
+        bp::extract< std::string > extracted_key( keys[ i ] );
+        if ( !extracted_key.check() )
+        {
+            cDebug() << "Key invalid, map might be incomplete.";
+            continue;
+        }
+
+        std::string key = extracted_key;
+
+        bp::object obj = pyDict[ key ];
+
+        map.insert( QString::fromStdString( key ), variantFromPyObject( obj ) );
+    }
+    return map;
 }
 
 

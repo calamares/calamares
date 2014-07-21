@@ -20,6 +20,8 @@
 
 #include "PythonHelper.h"
 #include "utils/Logger.h"
+#include "GlobalStorage.h"
+#include "JobQueue.h"
 
 #include <QDir>
 
@@ -44,6 +46,14 @@ BOOST_PYTHON_MODULE( libcalamares )
         .def_readonly( "prettyName", &CalamaresPython::PythonJobInterface::prettyName )
         .def_readonly( "workingPath", &CalamaresPython::PythonJobInterface::workingPath )
         .def_readonly( "configuration", &CalamaresPython::PythonJobInterface::configuration );
+
+    bp::class_< Calamares::GlobalStorage >( "GlobalStorage", bp::init<>() )
+        .def( "contains",   &Calamares::GlobalStorage::python_contains )
+        .def( "count",      &Calamares::GlobalStorage::count )
+        .def( "insert",     &Calamares::GlobalStorage::python_insert )
+        .def( "keys",       &Calamares::GlobalStorage::python_keys )
+        .def( "remove",     &Calamares::GlobalStorage::python_remove )
+        .def( "value",      &Calamares::GlobalStorage::python_value );
 }
 
 
@@ -109,6 +119,7 @@ PythonJob::exec()
         bp::dict calamaresNamespace = bp::extract< bp::dict >( calamaresModule.attr( "__dict__" ) );
 
         calamaresNamespace[ "job" ] = CalamaresPython::PythonJobInterface( this );
+        calamaresNamespace[ "global_storage" ] = JobQueue::instance()->globalStorage();
 
         bp::object result = bp::exec_file( scriptFI.absoluteFilePath().toLocal8Bit().data(),
                                            scriptNamespace,
