@@ -18,7 +18,6 @@
 
 #include "PythonJobModule.h"
 
-#include "JobQueue.h"
 #include "PythonJob.h"
 
 #include <yaml-cpp/yaml.h>
@@ -49,11 +48,17 @@ PythonJobModule::loadSelf()
     if ( m_loaded )
         return;
 
-    Calamares::job_ptr j = Calamares::job_ptr( new PythonJob( m_scriptFileName,
-                                                              m_workingPath,
-                                                              m_configurationMap ) );
-    JobQueue::instance()->enqueue( j );
+    m_job = Calamares::job_ptr( new PythonJob( m_scriptFileName,
+                                               m_workingPath,
+                                               m_configurationMap ) );
     m_loaded = true;
+}
+
+
+QList< job_ptr >
+PythonJobModule::jobs() const
+{
+    return QList< job_ptr >() << m_job;
 }
 
 

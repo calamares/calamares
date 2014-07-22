@@ -165,14 +165,10 @@ CalamaresApplication::initPlugins()
             Calamares::ViewManager* vm = Calamares::ViewManager::instance();
             Calamares::JobQueue* queue = Calamares::JobQueue::instance();
 
-            //FIXME: we should enqueue viewmodule jobs in the order from settings.conf,
-            //       not in the order they show up in the UI
-            //       Ideally, if a module is a viewmodule and isLoaded we should ask
-            //       for jobs, else if it's a viewmodule and not isLoaded we bail with
-            //       error, else if jobmodule and not isLoaded, just loadSelf.
-            for( Calamares::ViewStep* step : vm->prepareSteps() )
+            for( const QString& name : Calamares::Settings::instance()->modules( Calamares::Install ) )
             {
-                queue->enqueue( step->jobs() );
+                Calamares::Module* module = m_moduleManager->module( name );
+                queue->enqueue( module->jobs() );
             }
             connect( queue, &Calamares::JobQueue::failed,
                      vm, &Calamares::ViewManager::onInstallationFailed );
