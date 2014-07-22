@@ -29,7 +29,7 @@ class Job:
         self.workingPath = workingPath
         self.configuration = doc[ "configuration" ]
 
-# Usage: ./testmodule.py <libcalamares.so dir> <python module dir>
+# Usage: ./testmodule.py <libcalamares.so dir> <python module dir> [global_storage yaml file]
 def main( args ):
     moduledirpath = os.path.abspath( sys.argv[ 2 ] )
     print( "Importing libcalamares from: " + libcalamares.__file__ )
@@ -46,6 +46,12 @@ def main( args ):
 
     libcalamares.__dict__[ "job" ] = Job( moduledirpath, doc )
     libcalamares.__dict__[ "global_storage" ] = libcalamares.GlobalStorage()
+
+    # if a file for simulating global_storage contents is provided, load it
+    if len( sys.argv ) > 3:
+        doc = yaml.load( open( os.path.abspath( sys.argv[ 3 ] ), 'r' ) )
+        for key, value in doc.items():
+            libcalamares.global_storage.insert( key, value )
 
     scriptpath = os.path.abspath( moduledirpath )
     sys.path.append( scriptpath )
