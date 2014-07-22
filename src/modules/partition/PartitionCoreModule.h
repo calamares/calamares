@@ -35,6 +35,8 @@ class DeviceModel;
 class FileSystem;
 class Partition;
 
+class QStandardItemModel;
+
 /**
  * Owns the Qt models and the PM devices
  */
@@ -42,12 +44,19 @@ class PartitionCoreModule : public QObject
 {
     Q_OBJECT
 public:
+    enum
+    {
+        BootLoaderPathRole = Qt::UserRole + 1
+    };
+
     PartitionCoreModule( QObject* parent = nullptr );
     ~PartitionCoreModule();
 
     DeviceModel* deviceModel() const;
 
     PartitionModel* partitionModelForDevice( Device* device ) const;
+
+    QAbstractItemModel* bootLoaderModel() const;
 
     void createPartitionTable( Device* device, PartitionTable::TableType type );
 
@@ -88,6 +97,7 @@ private:
     QList< DeviceInfo* > m_deviceInfos;
 
     DeviceModel* m_deviceModel;
+    QStandardItemModel* m_bootLoaderModel;
     bool m_hasRootMountPoint = false;
 
     void listDevices();
@@ -96,6 +106,10 @@ private:
     void dumpQueue() const;
 
     DeviceInfo* infoForDevice( Device* ) const;
+
+    void updateBootLoaderModel();
+
+    Partition* findPartitionByMountPoint( const QString& mountPoint ) const;
 };
 
 #endif /* PARTITIONCOREMODULE_H */
