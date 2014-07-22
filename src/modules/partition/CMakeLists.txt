@@ -28,6 +28,7 @@ calamares_add_plugin( partition
         DeletePartitionJob.cpp
         DeviceModel.cpp
         EditExistingPartitionDialog.cpp
+        FillGlobalStorageJob.cpp
         FormatPartitionJob.cpp
         PartitionCoreModule.cpp
         PartitionInfo.cpp

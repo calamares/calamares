@@ -21,6 +21,7 @@
 #include <CreatePartitionJob.h>
 #include <CreatePartitionTableJob.h>
 #include <DeletePartitionJob.h>
+#include <FillGlobalStorageJob.h>
 #include <FormatPartitionJob.h>
 #include <DeviceModel.h>
 #include <PartitionInfo.h>
@@ -218,8 +219,13 @@ PartitionCoreModule::jobs() const
     dumpQueue();
 
     QList< Calamares::job_ptr > lst;
+    QList< Device* > devices;
     for ( auto info : m_deviceInfos )
+    {
         lst << info->jobs;
+        devices << info->device.data();
+    }
+    lst << Calamares::job_ptr( new FillGlobalStorageJob( devices ) );
     return lst;
 }
 
