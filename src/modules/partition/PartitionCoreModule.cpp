@@ -24,6 +24,7 @@
 #include <FormatPartitionJob.h>
 #include <DeviceModel.h>
 #include <PartitionInfo.h>
+#include <PartitionIterator.h>
 #include <PartitionModel.h>
 #include <PMUtils.h>
 #include <Typedefs.h>
@@ -38,86 +39,6 @@
 
 // Qt
 #include <QStandardItemModel>
-
-class PartitionIterator
-{
-public:
-    Partition* operator*() const
-    {
-        return m_current;
-    }
-
-    void operator++()
-    {
-        if ( !m_current )
-            return;
-        if ( m_current->hasChildren() )
-        {
-            // Go to the first child
-            m_current = static_cast< Partition* >( m_current->children().first() );
-            return;
-        }
-        PartitionNode* parent = m_current->parent();
-        Partition* successor = parent->successor( *m_current );
-        if ( successor )
-        {
-            // Go to the next sibling
-            m_current = successor;
-            return;
-        }
-        if ( parent->isRoot() )
-        {
-            // We reached the end
-            m_current = nullptr;
-            return;
-        }
-        // Try to go to the next sibling of our parent
-
-        PartitionNode* grandParent = parent->parent();
-        Q_ASSERT( grandParent );
-        // If parent is not root, then it's not a PartitionTable but a
-        // Partition, we can static_cast it.
-        m_current = grandParent->successor( *static_cast< Partition* >( parent ) );
-    }
-
-    bool operator==( const PartitionIterator& other ) const
-    {
-        return m_device == other.m_device && m_current == other.m_current;
-    }
-
-    bool operator!=( const PartitionIterator& other ) const
-    {
-        return ! ( *this == other );
-    }
-
-    static PartitionIterator begin( Device* device )
-    {
-        auto it = PartitionIterator( device );
-        PartitionTable* table = device->partitionTable();
-        if ( !table )
-            return it;
-        QList< Partition* > children = table->children();
-        // Does not usually happen, but it did happen on a 10MB disk with an MBR
-        // partition table.
-        if ( children.isEmpty() )
-            return it;
-        it.m_current = children.first();
-        return it;
-    }
-
-    static PartitionIterator end( Device* device )
-    {
-        return PartitionIterator( device );
-    }
-
-private:
-    PartitionIterator( Device* device )
-        : m_device( device )
-    {}
-
-    Device* m_device;
-    Partition* m_current = nullptr;
-};
 
 //- DeviceInfo ---------------------------------------------
 PartitionCoreModule::DeviceInfo::DeviceInfo( Device* _device )

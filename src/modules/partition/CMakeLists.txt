@@ -31,6 +31,7 @@ calamares_add_plugin( partition
         FormatPartitionJob.cpp
         PartitionCoreModule.cpp
         PartitionInfo.cpp
+        PartitionIterator.cpp
         PartitionJob.cpp
         PartitionModel.cpp
         PartitionPage.cpp
