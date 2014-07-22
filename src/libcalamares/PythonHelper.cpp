@@ -212,23 +212,67 @@ Helper::createCleanNamespace()
 QString
 Helper::handleLastError()
 {
-    using namespace boost::python;
-    using namespace boost;
+    PyObject *type = nullptr, *val = nullptr, *tb = nullptr;
+    PyErr_Fetch( &type, &val, &tb );
 
-    PyObject *exc,*val,*tb;
-    object formatted_list, formatted;
-    PyErr_Fetch(&exc,&val,&tb);
-    handle<> hexc(exc),hval(allow_null(val)),htb(allow_null(tb));
-    object traceback(import("traceback"));
-    if (!tb) {
-        object format_exception_only(traceback.attr("format_exception_only"));
-        formatted_list = format_exception_only(hexc,hval);
-    } else {
-        object format_exception(traceback.attr("format_exception"));
-        formatted_list = format_exception(hexc,hval,htb);
+    QString typeMsg;
+    if ( type != nullptr )
+    {
+        bp::handle<> h_type( type );
+        bp::str pystr( h_type );
+        bp::extract< std::string > extracted( pystr );
+        if ( extracted.check() )
+            typeMsg = QString::fromStdString( extracted() ).toHtmlEscaped();
+
+        if ( typeMsg.trimmed().isEmpty() )
+            typeMsg = tr( "Unknown exception type" );
     }
-    formatted = str("\n").join(formatted_list);
-    return QString::fromStdString( extract<std::string>(formatted) );
+
+    QString valMsg;
+    if ( val != nullptr )
+    {
+        bp::handle<> h_val( val );
+        bp::str pystr( h_val );
+        bp::extract< std::string > extracted( pystr );
+        if ( extracted.check() )
+            valMsg = QString::fromStdString( extracted() ).toHtmlEscaped();
+
+        if ( valMsg.trimmed().isEmpty() )
+            valMsg = tr( "unparseable Python error" );
+    }
+
+    QString tbMsg;
+    if ( tb != nullptr )
+    {
+        bp::handle<> h_tb( tb );
+        bp::object tb( bp::import( "traceback" ) );
+        bp::object format_tb( tb.attr( "format_tb" ) );
+        bp::object tb_list( format_tb( h_tb ) );
+        bp::object pystr( bp::str( "\n" ).join( tb_list ) );
+        bp::extract< std::string > extracted( pystr );
+        if ( extracted.check() )
+            tbMsg = QString::fromStdString( extracted() ).toHtmlEscaped();
+
+        if ( tbMsg.trimmed().isEmpty() )
+            tbMsg = tr( "unparseable Python traceback" );
+    }
+
+    if ( typeMsg.isEmpty() && valMsg.isEmpty() && tbMsg.isEmpty() )
+        return tr( "Unfetchable Python error." );
+
+
+    QStringList msgList;
+
+    if ( !typeMsg.isEmpty() )
+        msgList.append( QString( "<strong>%1</strong>" ).arg( typeMsg ) );
+
+    if ( !valMsg.isEmpty() )
+        msgList.append( valMsg );
+
+    if ( !tbMsg.isEmpty() )
+        msgList.append( QString( "</code>Traceback:<code><br/>%1" ).arg( tbMsg ) );
+
+    return QString( "<code>%1</code>" ).arg( msgList.join( "<br/>" ) );
 }
 
 
