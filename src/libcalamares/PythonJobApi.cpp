@@ -31,4 +31,12 @@ PythonJobInterface::PythonJobInterface( const Calamares::PythonJob* parent )
     configuration = CalamaresPython::variantMapToPyDict( m_parent->m_configurationMap );
 }
 
+
+void
+PythonJobInterface::setprogress( double progress )
+{
+    if ( progress >= 0 && progress <= 1 )
+        m_parent->emitProgress( progress );
+}
+
 }

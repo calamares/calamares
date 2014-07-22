@@ -45,7 +45,8 @@ BOOST_PYTHON_MODULE( libcalamares )
     bp::class_< CalamaresPython::PythonJobInterface >( "job", bp::init< const Calamares::PythonJob* >() )
         .def_readonly( "prettyName", &CalamaresPython::PythonJobInterface::prettyName )
         .def_readonly( "workingPath", &CalamaresPython::PythonJobInterface::workingPath )
-        .def_readonly( "configuration", &CalamaresPython::PythonJobInterface::configuration );
+        .def_readonly( "configuration", &CalamaresPython::PythonJobInterface::configuration )
+        .def( "setprogress", &CalamaresPython::PythonJobInterface::setprogress );
 
     bp::class_< Calamares::GlobalStorage >( "GlobalStorage", bp::init<>() )
         .def( "contains",   &Calamares::GlobalStorage::python_contains )
@@ -145,6 +146,13 @@ PythonJob::exec()
     }
 
     return JobResult::ok();
+}
+
+
+void
+PythonJob::emitProgress( double progressValue ) const
+{
+    //emit progress( progressValue );
 }
 
 

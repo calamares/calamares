@@ -39,6 +39,8 @@ public:
 
     boost::python::dict configuration;
 
+    void setprogress( double progress );
+
 private:
     const Calamares::PythonJob* m_parent;
 };
