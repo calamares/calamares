@@ -129,17 +129,6 @@ PartitionCoreModule::DeviceInfo::~DeviceInfo()
 {
 }
 
-bool
-PartitionCoreModule::DeviceInfo::hasRootMountPoint() const
-{
-    for ( auto it = PartitionIterator::begin( device.data() ); it != PartitionIterator::end( device.data() ); ++it )
-    {
-        if ( PartitionInfo::mountPoint( *it ) == "/" )
-            return true;
-    }
-    return false;
-}
-
 void
 PartitionCoreModule::DeviceInfo::forgetChanges()
 {
@@ -338,16 +327,7 @@ PartitionCoreModule::refresh( Device* device )
 void PartitionCoreModule::updateHasRootMountPoint()
 {
     bool oldValue = m_hasRootMountPoint;
-
-    m_hasRootMountPoint = false;
-    for ( auto deviceInfo : m_deviceInfos )
-    {
-        if ( deviceInfo->hasRootMountPoint() )
-        {
-            m_hasRootMountPoint = true;
-            break;
-        }
-    }
+    m_hasRootMountPoint = findPartitionByMountPoint( "/" );
 
     if ( oldValue != m_hasRootMountPoint )
         hasRootMountPointChanged( m_hasRootMountPoint );

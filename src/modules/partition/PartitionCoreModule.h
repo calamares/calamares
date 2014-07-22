@@ -90,8 +90,6 @@ private:
         QScopedPointer< PartitionModel > partitionModel;
         QList< Calamares::job_ptr > jobs;
 
-        bool hasRootMountPoint() const;
-
         void forgetChanges();
     };
     QList< DeviceInfo* > m_deviceInfos;
