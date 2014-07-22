@@ -18,7 +18,6 @@
 
 #include "ProcessJobModule.h"
 
-#include "JobQueue.h"
 #include "ProcessJob.h"
 
 #include <QDir>
@@ -48,11 +47,17 @@ ProcessJobModule::loadSelf()
     if ( m_loaded )
         return;
 
-    Calamares::job_ptr j = Calamares::job_ptr( new ProcessJob( m_command,
-                                                               m_workingPath,
-                                                               m_secondsTimeout ) );
-    JobQueue::instance()->enqueue( j );
+    m_job = Calamares::job_ptr( new ProcessJob( m_command,
+                                                m_workingPath,
+                                                m_secondsTimeout ) );
     m_loaded = true;
+}
+
+
+QList< job_ptr >
+ProcessJobModule::jobs() const
+{
+    return QList< job_ptr >() << m_job;
 }
 
 

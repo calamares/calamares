@@ -21,6 +21,8 @@
 
 #include "UiDllMacro.h"
 
+#include <Typedefs.h>
+
 #include <QStringList>
 #include <QVariant>
 
@@ -68,6 +70,8 @@ public:
     virtual bool isLoaded() const;
 
     virtual void loadSelf() = 0;
+
+    virtual QList< job_ptr > jobs() const = 0;
 
 protected:
     explicit Module();

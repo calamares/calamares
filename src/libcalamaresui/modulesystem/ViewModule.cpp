@@ -50,11 +50,11 @@ ViewModule::loadSelf()
     cDebug() << Q_FUNC_INFO << "for module" << name();
     if ( m_loader )
     {
-        ViewStep *vs = qobject_cast< ViewStep* >( m_loader->instance() );
-        vs->setConfigurationMap( m_configurationMap );
-        if ( vs )
+        m_viewStep = qobject_cast< ViewStep* >( m_loader->instance() );
+        m_viewStep->setConfigurationMap( m_configurationMap );
+        if ( m_viewStep )
         {
-            ViewManager::instance()->addViewStep( vs );
+            ViewManager::instance()->addViewStep( m_viewStep );
             m_loaded = true;
         }
         else
@@ -62,6 +62,13 @@ ViewModule::loadSelf()
             cDebug() << Q_FUNC_INFO << m_loader->errorString();
         }
     }
+}
+
+
+QList< job_ptr >
+ViewModule::jobs() const
+{
+    return m_viewStep->jobs();
 }
 
 

@@ -32,6 +32,7 @@ public:
     Interface interface() const override;
 
     void loadSelf() override;
+    QList< job_ptr > jobs() const override;
 
 protected:
     void initFrom( const YAML::Node &node ) override;
@@ -43,6 +44,7 @@ private:
 
     QString m_scriptFileName;
     QString m_workingPath;
+    job_ptr m_job;
 };
 
 } // namespace Calamares

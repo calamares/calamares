@@ -26,6 +26,8 @@ class QPluginLoader;
 
 namespace Calamares {
 
+class ViewStep;
+
 class UIDLLEXPORT ViewModule : public Module
 {
 public:
@@ -33,6 +35,7 @@ public:
     Interface interface() const override;
 
     void loadSelf() override;
+    QList< job_ptr > jobs() const override;
 
 protected:
     void initFrom( const YAML::Node &node ) override;
@@ -43,6 +46,7 @@ private:
     virtual ~ViewModule();
 
     QPluginLoader *m_loader;
+    ViewStep* m_viewStep = nullptr;
 };
 
 } // namespace Calamares
