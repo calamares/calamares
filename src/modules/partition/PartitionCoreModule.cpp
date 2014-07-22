@@ -368,8 +368,8 @@ static QStandardItem*
 createBootLoaderItem( const QString& description, const QString& path )
 {
     QString text = PartitionCoreModule::tr( "%1 (%2)" )
-        .arg( description )
-        .arg( path );
+                   .arg( description )
+                   .arg( path );
     QStandardItem* item = new QStandardItem( text );
     item->setData( path, PartitionCoreModule::BootLoaderPathRole );
     return item;

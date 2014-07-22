@@ -63,9 +63,9 @@ DeviceModel::data( const QModelIndex& index, int role ) const
             return device->deviceNode();
         else
             return tr( "%1 - %2 (%3)" )
-                .arg( device->name() )
-                .arg( KFormat().formatByteSize( device->capacity() ) )
-                .arg( device->deviceNode() );
+                   .arg( device->name() )
+                   .arg( KFormat().formatByteSize( device->capacity() ) )
+                   .arg( device->deviceNode() );
     default:
         return QVariant();
     }

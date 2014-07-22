@@ -45,10 +45,10 @@ QString
 FormatPartitionJob::prettyName() const
 {
     return tr( "Format partition %1 (file system: %2, size: %3 MB) on %4." )
-        .arg( m_partition->partitionPath() )
-        .arg( m_partition->fileSystem().name() )
-        .arg( m_partition->capacity() / 1024 / 1024 )
-        .arg( m_device->name() );
+           .arg( m_partition->partitionPath() )
+           .arg( m_partition->fileSystem().name() )
+           .arg( m_partition->capacity() / 1024 / 1024 )
+           .arg( m_device->name() );
 }
 
 Calamares::JobResult
