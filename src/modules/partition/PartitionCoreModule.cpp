@@ -216,8 +216,6 @@ PartitionCoreModule::formatPartition( Device* device, Partition* partition )
 QList< Calamares::job_ptr >
 PartitionCoreModule::jobs() const
 {
-    dumpQueue();
-
     QList< Calamares::job_ptr > lst;
     QList< Device* > devices;
     for ( auto info : m_deviceInfos )
