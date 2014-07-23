@@ -22,14 +22,28 @@
 #include <JobQueue.h>
 #include <PartitionInfo.h>
 #include <PartitionIterator.h>
+#include <PMUtils.h>
 
 // CalaPM
 #include <core/device.h>
 #include <core/partition.h>
 #include <fs/filesystem.h>
 
-FillGlobalStorageJob::FillGlobalStorageJob( QList< Device* > devices )
+#include <QDebug>
+
+static QVariant
+mapForPartition( Partition* partition )
+{
+    QVariantMap map;
+    map[ "device" ] = partition->partitionPath();
+    map[ "mountPoint" ] = PartitionInfo::mountPoint( partition );
+    map[ "fs" ] = partition->fileSystem().name();
+    return map;
+}
+
+FillGlobalStorageJob::FillGlobalStorageJob( QList< Device* > devices, const QString& bootLoaderPath )
     : m_devices( devices )
+    , m_bootLoaderPath( bootLoaderPath )
 {
 }
 
@@ -42,20 +56,37 @@ FillGlobalStorageJob::prettyName() const
 Calamares::JobResult
 FillGlobalStorageJob::exec()
 {
-    QVariantList lst;
-    for( auto device : m_devices )
-        for( auto it = PartitionIterator::begin( device ); it != PartitionIterator::end( device ); ++it)
-            lst << mapForPartition( *it );
-    Calamares::JobQueue::instance()->globalStorage()->insert( "partitions", lst );
+    Calamares::GlobalStorage* storage = Calamares::JobQueue::instance()->globalStorage();
+    storage->insert( "partitions", createPartitionList() );
+    QVariant var = createBootLoaderMap();
+    if ( !var.isValid() )
+        return Calamares::JobResult::error( tr( "Failed to find path for boot loader" ) );
+    storage->insert( "bootLoader", var );
     return Calamares::JobResult::ok();
 }
 
 QVariant
-FillGlobalStorageJob::mapForPartition( Partition* partition )
+FillGlobalStorageJob::createPartitionList()
+{
+    QVariantList lst;
+    for( auto device : m_devices )
+        for( auto it = PartitionIterator::begin( device ); it != PartitionIterator::end( device ); ++it)
+            lst << mapForPartition( *it );
+    return lst;
+}
+
+QVariant
+FillGlobalStorageJob::createBootLoaderMap()
 {
     QVariantMap map;
-    map[ "device" ] = partition->partitionPath();
-    map[ "mountPoint" ] = PartitionInfo::mountPoint( partition );
-    map[ "fs" ] = partition->fileSystem().name();
+    QString path = m_bootLoaderPath;
+    if ( !path.startsWith( "/dev/" ) )
+    {
+        Partition* partition = PMUtils::findPartitionByMountPoint( m_devices, path );
+        if ( !partition )
+            return QVariant();
+        path = partition->partitionPath();
+    }
+    map[ "installPath" ] = path;
     return map;
 }

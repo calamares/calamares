@@ -28,20 +28,23 @@ class Device;
 class Partition;
 
 /**
- * Fills the "partitions" key of GlobalStorage. Doing it after partitioning
- * makes it possible to access information such as the partition UUID.
+ * Fills the partitioning-related keys of GlobalStorage. Doing it after
+ * partitioning makes it possible to access information such as the partition
+ * device path.
  */
 class FillGlobalStorageJob : public Calamares::Job
 {
     Q_OBJECT
 public:
-    FillGlobalStorageJob( QList< Device* > devices );
+    FillGlobalStorageJob( QList< Device* > devices, const QString& bootLoaderPath );
     QString prettyName() const override;
     Calamares::JobResult exec() override;
 private:
     QList< Device* > m_devices;
+    QString m_bootLoaderPath;
 
-    QVariant mapForPartition( Partition* );
+    QVariant createPartitionList();
+    QVariant createBootLoaderMap();
 };
 
 #endif /* FILLGLOBALSTORAGEJOB_H */

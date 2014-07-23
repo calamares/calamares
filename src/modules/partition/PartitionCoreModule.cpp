@@ -225,7 +225,7 @@ PartitionCoreModule::jobs() const
         lst << info->jobs;
         devices << info->device.data();
     }
-    lst << Calamares::job_ptr( new FillGlobalStorageJob( devices ) );
+    lst << Calamares::job_ptr( new FillGlobalStorageJob( devices, m_bootLoaderInstallPath ) );
     return lst;
 }
 
