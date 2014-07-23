@@ -27,6 +27,9 @@ import sys
 def mount( devicePath, mountPoint, fs ):
     if not os.path.exists( mountPoint ):
         os.makedirs( mountPoint )
+    assert devicePath
+    assert mountPoint
+    assert fs
     subprocess.check_call( [ "mount", "-t", fs, devicePath, mountPoint ] )
 
 

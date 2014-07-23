@@ -89,6 +89,7 @@ CreatePartitionJob::exec()
                    report.toText()
                );
     }
+    m_partition->setPartitionPath( partitionPath );
     backendPartitionTable->commit();
 
     progress( step++ / stepCount );

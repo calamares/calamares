@@ -70,8 +70,8 @@ JobTests::JobTests()
 void
 JobTests::initTestCase()
 {
-    QString deviceName = qgetenv( "CALAMARES_TEST_DISK" );
-    if ( deviceName.isEmpty() )
+    QString devicePath = qgetenv( "CALAMARES_TEST_DISK" );
+    if ( devicePath.isEmpty() )
     {
         QSKIP( "Skipping test, CALAMARES_TEST_DISK is not set. It should point to a disk which can be safely formatted" );
     }
@@ -79,7 +79,7 @@ JobTests::initTestCase()
     QVERIFY( CalaPM::init() );
 
     CoreBackend* backend = CoreBackendManager::self()->backend();
-    m_device.reset( backend->scanDevice( deviceName ) );
+    m_device.reset( backend->scanDevice( devicePath ) );
     QVERIFY( !m_device.isNull() );
 
     FileSystemFactory::init();
@@ -141,26 +141,40 @@ JobTests::testCreatePartition()
 {
     queuePartitionTableCreation( PartitionTable::gpt );
     CreatePartitionJob* job;
+    Partition* freePartition;
 
-    Partition* partition = firstFreePartition( m_device->partitionTable() );
-    job = newCreatePartitionJob( partition, PartitionRole( PartitionRole::Primary ), FileSystem::Ext4, 1 * MB);
-    QVERIFY( job );
+    freePartition = firstFreePartition( m_device->partitionTable() );
+    QVERIFY( freePartition );
+    job = newCreatePartitionJob( freePartition, PartitionRole( PartitionRole::Primary ), FileSystem::Ext4, 1 * MB);
+    Partition* partition1 = job->partition();
+    QVERIFY( partition1 );
     job->updatePreview();
     m_queue.enqueue( job_ptr( job ) );
 
-    partition = firstFreePartition( m_device->partitionTable() );
-    QVERIFY( partition );
-    job = newCreatePartitionJob( partition, PartitionRole( PartitionRole::Primary ), FileSystem::LinuxSwap, 1 * MB);
+    freePartition = firstFreePartition( m_device->partitionTable() );
+    QVERIFY( freePartition );
+    job = newCreatePartitionJob( freePartition, PartitionRole( PartitionRole::Primary ), FileSystem::LinuxSwap, 1 * MB);
+    Partition* partition2 = job->partition();
+    QVERIFY( partition2 );
     job->updatePreview();
     m_queue.enqueue( job_ptr( job ) );
 
-    partition = firstFreePartition( m_device->partitionTable() );
-    QVERIFY( partition );
-    job = newCreatePartitionJob( partition, PartitionRole( PartitionRole::Primary ), FileSystem::Fat32, 1 * MB);
+    freePartition = firstFreePartition( m_device->partitionTable() );
+    QVERIFY( freePartition );
+    job = newCreatePartitionJob( freePartition, PartitionRole( PartitionRole::Primary ), FileSystem::Fat32, 1 * MB);
+    Partition* partition3 = job->partition();
+    QVERIFY( partition3 );
     job->updatePreview();
     m_queue.enqueue( job_ptr( job ) );
 
     QVERIFY( m_runner.run() );
+
+    // Check partitionPath has been set. It is not known until the job has
+    // executed.
+    QString devicePath = m_device->deviceNode();
+    QCOMPARE( partition1->partitionPath(), devicePath + "1" );
+    QCOMPARE( partition2->partitionPath(), devicePath + "2" );
+    QCOMPARE( partition3->partitionPath(), devicePath + "3" );
 }
 
 void
@@ -168,25 +182,37 @@ JobTests::testCreatePartitionExtended()
 {
     queuePartitionTableCreation( PartitionTable::msdos );
     CreatePartitionJob* job;
+    Partition* freePartition;
 
-    Partition* partition = firstFreePartition( m_device->partitionTable() );
-    job = newCreatePartitionJob( partition, PartitionRole( PartitionRole::Primary ), FileSystem::Ext4, 10 * MB);
-    QVERIFY( job );
+    freePartition = firstFreePartition( m_device->partitionTable() );
+    QVERIFY( freePartition );
+    job = newCreatePartitionJob( freePartition, PartitionRole( PartitionRole::Primary ), FileSystem::Ext4, 10 * MB);
+    Partition* partition1 = job->partition();
+    QVERIFY( partition1 );
     job->updatePreview();
     m_queue.enqueue( job_ptr( job ) );
 
-    partition = firstFreePartition( m_device->partitionTable() );
-    QVERIFY( partition );
-    job = newCreatePartitionJob( partition, PartitionRole( PartitionRole::Extended ), FileSystem::Extended, 10 * MB);
+    freePartition = firstFreePartition( m_device->partitionTable() );
+    QVERIFY( freePartition );
+    job = newCreatePartitionJob( freePartition, PartitionRole( PartitionRole::Extended ), FileSystem::Extended, 10 * MB);
     job->updatePreview();
     m_queue.enqueue( job_ptr( job ) );
     Partition* extendedPartition = job->partition();
 
-    partition = firstFreePartition( extendedPartition );
-    QVERIFY( partition );
-    job = newCreatePartitionJob( partition, PartitionRole( PartitionRole::Logical ), FileSystem::Ext4, 0);
+    freePartition = firstFreePartition( extendedPartition );
+    QVERIFY( freePartition );
+    job = newCreatePartitionJob( freePartition, PartitionRole( PartitionRole::Logical ), FileSystem::Ext4, 0);
+    Partition* partition2 = job->partition();
+    QVERIFY( partition2 );
     job->updatePreview();
     m_queue.enqueue( job_ptr( job ) );
 
     QVERIFY( m_runner.run() );
+
+    // Check partitionPath has been set. It is not known until the job has
+    // executed.
+    QString devicePath = m_device->deviceNode();
+    QCOMPARE( partition1->partitionPath(), devicePath + "1" );
+    QCOMPARE( extendedPartition->partitionPath(), devicePath + "2" );
+    QCOMPARE( partition2->partitionPath(), devicePath + "5" );
 }
