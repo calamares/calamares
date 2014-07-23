@@ -45,11 +45,7 @@ FillGlobalStorageJob::exec()
     QVariantList lst;
     for( auto device : m_devices )
         for( auto it = PartitionIterator::begin( device ); it != PartitionIterator::end( device ); ++it)
-        {
-            QVariant var = mapForPartition( *it );
-            if ( var.isValid() )
-                lst << var;
-        }
+            lst << mapForPartition( *it );
     Calamares::JobQueue::instance()->globalStorage()->insert( "partitions", lst );
     return Calamares::JobResult::ok();
 }
