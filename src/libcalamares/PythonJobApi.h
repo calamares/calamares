@@ -32,17 +32,17 @@ namespace CalamaresPython
 class PythonJobInterface
 {
 public:
-    explicit PythonJobInterface( const Calamares::PythonJob* parent );
+    explicit PythonJobInterface( Calamares::PythonJob* parent );
 
     std::string prettyName;
     std::string workingPath;
 
     boost::python::dict configuration;
 
-    void setprogress( double progress );
+    void setprogress( qreal progress );
 
 private:
-    const Calamares::PythonJob* m_parent;
+    Calamares::PythonJob* m_parent;
 };
 
 }

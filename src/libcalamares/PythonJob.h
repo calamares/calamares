@@ -47,7 +47,7 @@ public:
 private:
     friend class CalamaresPython::Helper;
     friend class CalamaresPython::PythonJobInterface;
-    void emitProgress( double progressValue ) const;
+    void emitProgress( double progressValue );
 
     CalamaresPython::Helper* helper();
     QString m_scriptFile;

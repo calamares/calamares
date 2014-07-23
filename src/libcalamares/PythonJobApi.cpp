@@ -23,7 +23,7 @@
 namespace CalamaresPython
 {
 
-PythonJobInterface::PythonJobInterface( const Calamares::PythonJob* parent )
+PythonJobInterface::PythonJobInterface( Calamares::PythonJob* parent )
     : m_parent( parent )
 {
     prettyName = m_parent->prettyName().toStdString();
@@ -33,7 +33,7 @@ PythonJobInterface::PythonJobInterface( const Calamares::PythonJob* parent )
 
 
 void
-PythonJobInterface::setprogress( double progress )
+PythonJobInterface::setprogress( qreal progress )
 {
     if ( progress >= 0 && progress <= 1 )
         m_parent->emitProgress( progress );
