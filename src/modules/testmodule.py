@@ -29,6 +29,9 @@ class Job:
         self.workingPath = workingPath
         self.configuration = doc[ "configuration" ]
 
+    def setprogress( self, progress ):
+        print ( "Job set progress to {}%.".format( progress * 100 ) )
+
 # Usage: ./testmodule.py <libcalamares.so dir> <python module dir> [global_storage yaml file]
 def main( args ):
     moduledirpath = os.path.abspath( sys.argv[ 2 ] )
