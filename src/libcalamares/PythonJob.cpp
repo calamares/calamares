@@ -42,7 +42,7 @@ BOOST_PYTHON_MODULE( libcalamares )
     bp::scope().attr( "version" ) = CALAMARES_VERSION;
     bp::scope().attr( "shortVersion" ) = CALAMARES_VERSION_SHORT;
 
-    bp::class_< CalamaresPython::PythonJobInterface >( "job", bp::init< Calamares::PythonJob* >() )
+    bp::class_< CalamaresPython::PythonJobInterface >( "Job", bp::init< Calamares::PythonJob* >() )
         .def_readonly( "prettyName", &CalamaresPython::PythonJobInterface::prettyName )
         .def_readonly( "workingPath", &CalamaresPython::PythonJobInterface::workingPath )
         .def_readonly( "configuration", &CalamaresPython::PythonJobInterface::configuration )

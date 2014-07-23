@@ -28,5 +28,18 @@ def calamares_main():
     accumulator += "This job's name: " + libcalamares.job.prettyName + "\n"
     accumulator += "This job's path: " + libcalamares.job.workingPath + "\n"
     accumulator += str( libcalamares.job.configuration )
+    accumulator += "   *** GlobalStorage test ***\n"
+    accumulator += "lala: " + str( libcalamares.global_storage.contains( "lala" ) ) + "\n"
+    accumulator += "foo: " + str( libcalamares.global_storage.contains( "foo" ) ) + "\n"
+    accumulator += "count: " + str( libcalamares.global_storage.count() ) + "\n"
+    libcalamares.global_storage.insert( "item2", "value2" )
+    libcalamares.global_storage.insert( "item3", 3 )
+    accumulator += "keys: " + str( libcalamares.global_storage.keys() ) + "\n"
+    accumulator += "remove: " + str( libcalamares.global_storage.remove( "item2" ) ) + "\n"
+    accumulator += "values: " + str( libcalamares.global_storage.value( "foo" ) )+ " "\
+                               + str( libcalamares.global_storage.value( "item2" ) ) + " "\
+                               + str( libcalamares.global_storage.value( "item3" ) ) + "\n"
+
+    libcalamares.job.setprogress( 0.1 )
     return accumulator
 
