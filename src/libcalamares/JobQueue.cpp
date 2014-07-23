@@ -20,6 +20,7 @@
 
 #include "Job.h"
 #include "GlobalStorage.h"
+#include "utils/Logger.h"
 
 #include "CalamaresConfig.h"
 #ifdef WITH_PYTHON
@@ -50,12 +51,11 @@ public:
 
     void run() override
     {
-        qreal total = m_jobs.size();
-        int current = 0;
+        m_jobIndex = 0;
         for( auto job : m_jobs )
         {
-            qreal percent = current / total;
-            emitProgress( percent, job->prettyName() );
+            emitProgress();
+            connect( job.data(), &Job::progress, this, &JobThread::emitProgress );
             JobResult result = job->exec();
             if ( !result )
             {
@@ -63,21 +63,34 @@ public:
                 emitFinished();
                 return;
             }
-            ++current;
+            ++m_jobIndex;
         }
-        emitProgress( 1, QString() );
+        emitProgress();
         emitFinished();
     }
 
 private:
     QList< Calamares::job_ptr > m_jobs;
     JobQueue* m_queue;
+    int m_jobIndex;
 
-    void emitProgress( qreal percent, const QString& prettyName )
+    void emitProgress( qreal jobPercent = 0 )
     {
+        // Make sure jobPercent is reasonable, in case a job messed up its
+        // percentage computations.
+        jobPercent = qBound( qreal( 0 ), jobPercent, qreal( 1 ) );
+
+        int jobCount = m_jobs.size();
+        QString message = m_jobIndex < jobCount
+            ? m_jobs.at( m_jobIndex )->prettyName()
+            : tr( "Done" );
+
+        qreal percent = ( m_jobIndex + jobPercent ) / qreal( jobCount );
+        cLog() << Q_FUNC_INFO << "percent=" << percent * 100 << message;
+
         QMetaObject::invokeMethod( m_queue, "progress", Qt::QueuedConnection,
             Q_ARG( qreal, percent ),
-            Q_ARG( QString, prettyName )
+            Q_ARG( QString, message )
         );
     }
 

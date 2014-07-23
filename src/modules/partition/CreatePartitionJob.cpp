@@ -53,9 +53,13 @@ CreatePartitionJob::prettyName() const
 Calamares::JobResult
 CreatePartitionJob::exec()
 {
+    int step = 0;
+    const qreal stepCount = 4;
+
     Report report( 0 );
     QString message = tr( "The installer failed to create partition on disk '%1'." ).arg( m_device->name() );
 
+    progress( step++ / stepCount );
     CoreBackend* backend = CoreBackendManager::self()->backend();
     QScopedPointer<CoreBackendDevice> backendDevice( backend->openDevice( m_device->deviceNode() ) );
     if ( !backendDevice.data() )
@@ -66,6 +70,7 @@ CreatePartitionJob::exec()
                );
     }
 
+    progress( step++ / stepCount );
     QScopedPointer<CoreBackendPartitionTable> backendPartitionTable( backendDevice->openPartitionTable() );
     if ( !backendPartitionTable.data() )
     {
@@ -75,6 +80,7 @@ CreatePartitionJob::exec()
                );
     }
 
+    progress( step++ / stepCount );
     QString partitionPath = backendPartitionTable->createPartition( report, *m_partition );
     if ( partitionPath.isEmpty() )
     {
@@ -85,6 +91,7 @@ CreatePartitionJob::exec()
     }
     backendPartitionTable->commit();
 
+    progress( step++ / stepCount );
     FileSystem& fs = m_partition->fileSystem();
     if ( fs.type() == FileSystem::Unformatted || fs.type() == FileSystem::Extended )
         return Calamares::JobResult::ok();

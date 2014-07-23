@@ -64,8 +64,7 @@ public:
     virtual QString prettyName() const = 0;
     virtual JobResult exec() = 0;
 signals:
-    void running( const Calamares::job_ptr& );
-    void finished( const Calamares::job_ptr& );
+    void progress( qreal percent );
 };
 
 } // namespace Calamares
