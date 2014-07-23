@@ -32,36 +32,32 @@ Partition* firstFreePartition( PartitionNode* parent )
 QueueRunner::QueueRunner( JobQueue* queue )
     : m_queue( queue )
 {
-    connect( m_queue, &JobQueue::progress, this, &QueueRunner::onProgress );
+    connect( m_queue, &JobQueue::finished, this, &QueueRunner::onFinished );
     connect( m_queue, &JobQueue::failed, this, &QueueRunner::onFailed );
 }
 
 bool
 QueueRunner::run()
 {
-    m_done = false;
-    m_success = false;
+    m_finished = false;
+    m_success = true;
     m_queue->start();
     QEventLoop loop;
-    while ( !m_done )
+    while ( !m_finished )
         loop.processEvents();
     return m_success;
 }
 
 void
-QueueRunner::onProgress( int current, int total, const QString& prettyName )
+QueueRunner::onFinished()
 {
-    QVERIFY( current <= total );
-    if ( current < total )
-        return;
-    m_success = true;
-    m_done = true;
+    m_finished = true;
 }
 
 void
 QueueRunner::onFailed( const QString& message, const QString& details )
 {
-    m_done = true;
+    m_success = false;
     QString msg = message + "\ndetails: " + details;
     QFAIL( qPrintable( msg ) );
 }

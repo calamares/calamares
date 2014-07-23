@@ -51,7 +51,7 @@ private:
     QProgressBar* m_progressBar;
     QLabel* m_label;
 
-    void updateFromJobQueue( int current, int total, const QString& message );
+    void updateFromJobQueue( qreal percent, const QString& message );
 };
 
 }

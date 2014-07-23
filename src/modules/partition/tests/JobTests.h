@@ -25,10 +25,10 @@ public:
     bool run();
 
 private:
-    void onProgress( int current, int total, const QString& prettyName );
     void onFailed( const QString& message, const QString& details );
+    void onFinished();
     Calamares::JobQueue* m_queue;
-    bool m_done;
+    bool m_finished;
     bool m_success;
 };
 

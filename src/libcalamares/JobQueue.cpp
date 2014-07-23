@@ -50,31 +50,33 @@ public:
 
     void run() override
     {
-        int total = m_jobs.size();
+        qreal total = m_jobs.size();
         int current = 0;
         for( auto job : m_jobs )
         {
-            emitProgress( current, total, job->prettyName() );
+            qreal percent = current / total;
+            emitProgress( percent, job->prettyName() );
             JobResult result = job->exec();
             if ( !result )
             {
                 emitFailed( result.message(), result.details() );
+                emitFinished();
                 return;
             }
             ++current;
         }
-        emitProgress( total, total, QString() );
+        emitProgress( 1, QString() );
+        emitFinished();
     }
 
 private:
     QList< Calamares::job_ptr > m_jobs;
     JobQueue* m_queue;
 
-    void emitProgress( int current, int total, const QString& prettyName )
+    void emitProgress( qreal percent, const QString& prettyName )
     {
         QMetaObject::invokeMethod( m_queue, "progress", Qt::QueuedConnection,
-            Q_ARG( int, current ),
-            Q_ARG( int, total ),
+            Q_ARG( qreal, percent ),
             Q_ARG( QString, prettyName )
         );
     }
@@ -85,6 +87,11 @@ private:
             Q_ARG( QString, message ),
             Q_ARG( QString, details )
         );
+    }
+
+    void emitFinished()
+    {
+        QMetaObject::invokeMethod( m_queue, "finished", Qt::QueuedConnection );
     }
 };
 

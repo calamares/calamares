@@ -32,6 +32,7 @@ InstallationViewStep::InstallationViewStep( QObject* parent )
     , m_widget( new QWidget )
 {
     m_progressBar = new QProgressBar;
+    m_progressBar->setMaximum( 10000 );
     m_label = new QLabel;
     QVBoxLayout* layout = new QVBoxLayout( m_widget );
     layout->addWidget(m_progressBar);
@@ -88,10 +89,9 @@ InstallationViewStep::jobs() const
 }
 
 void
-InstallationViewStep::updateFromJobQueue( int current, int total, const QString& message )
+InstallationViewStep::updateFromJobQueue( qreal percent, const QString& message )
 {
-    m_progressBar->setMaximum( total );
-    m_progressBar->setValue( current );
+    m_progressBar->setValue( percent * m_progressBar->maximum() );
     m_label->setText( message );
 }
 

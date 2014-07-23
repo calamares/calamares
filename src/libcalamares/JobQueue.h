@@ -46,7 +46,8 @@ public:
     void start();
 
 signals:
-    void progress( int current, int total, const QString& prettyName );
+    void progress( qreal percent, const QString& prettyName );
+    void finished();
     void failed( const QString& message, const QString& details );
 
 private:
