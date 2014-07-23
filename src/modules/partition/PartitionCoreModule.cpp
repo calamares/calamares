@@ -283,3 +283,9 @@ PartitionCoreModule::findPartitionByMountPoint( const QString& mountPoint ) cons
     }
     return nullptr;
 }
+
+void
+PartitionCoreModule::setBootLoaderInstallPath( const QString& path )
+{
+    m_bootLoaderInstallPath = path;
+}

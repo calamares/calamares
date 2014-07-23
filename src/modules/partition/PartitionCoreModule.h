@@ -62,6 +62,8 @@ public:
 
     void formatPartition( Device* device, Partition* partition );
 
+    void setBootLoaderInstallPath( const QString& path );
+
     QList< Calamares::job_ptr > jobs() const;
 
     bool hasRootMountPoint() const
@@ -93,6 +95,7 @@ private:
     DeviceModel* m_deviceModel;
     BootLoaderModel* m_bootLoaderModel;
     bool m_hasRootMountPoint = false;
+    QString m_bootLoaderInstallPath;
 
     void listDevices();
     void updateHasRootMountPoint();

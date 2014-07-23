@@ -19,6 +19,7 @@
 #include "PartitionPage.h"
 
 // Local
+#include <BootLoaderModel.h>
 #include <CreatePartitionDialog.h>
 #include <EditExistingPartitionDialog.h>
 #include <DeviceModel.h>
@@ -48,6 +49,7 @@ PartitionPage::PartitionPage( PartitionCoreModule* core, QWidget* parent )
     m_ui->deviceComboBox->setModel( m_core->deviceModel() );
     m_ui->bootLoaderComboBox->setModel( m_core->bootLoaderModel() );
     updateButtons();
+    updateBootLoaderInstallPath();
 
     connect( m_ui->deviceComboBox, &QComboBox::currentTextChanged,
              [ this ]( const QString& /* text */ )
@@ -73,6 +75,13 @@ PartitionPage::PartitionPage( PartitionCoreModule* core, QWidget* parent )
         } );
         connect( model, &QAbstractItemModel::modelReset, this, &PartitionPage::updateButtons );
     } );
+
+    connect( m_ui->bootLoaderComboBox, &QComboBox::currentTextChanged,
+             [ this ]( const QString& /* text */ )
+    {
+        updateBootLoaderInstallPath();
+    } );
+
 
     connect( m_ui->newPartitionTableButton, &QAbstractButton::clicked, this, &PartitionPage::onNewPartitionTableClicked );
     connect( m_ui->createButton, &QAbstractButton::clicked, this, &PartitionPage::onCreateClicked );
@@ -202,4 +211,13 @@ PartitionPage::editExistingPartition( Device* device, Partition* partition )
     if ( dlg->exec() == QDialog::Accepted )
         dlg->applyChanges( m_core );
     delete dlg;
+}
+
+void
+PartitionPage::updateBootLoaderInstallPath()
+{
+    QVariant var = m_ui->bootLoaderComboBox->currentData( BootLoaderModel::BootLoaderPathRole );
+    if ( !var.isValid() )
+        return;
+    m_core->setBootLoaderInstallPath( var.toString() );
 }
