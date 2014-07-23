@@ -18,6 +18,9 @@
 
 #include <PMUtils.h>
 
+#include <PartitionInfo.h>
+#include <PartitionIterator.h>
+
 // CalaPM
 #include <core/partition.h>
 #include <fs/filesystem.h>
@@ -33,6 +36,16 @@ bool isPartitionFreeSpace( Partition* partition )
 bool isPartitionNew( Partition* partition )
 {
     return partition->state() == Partition::StateNew;
+}
+
+Partition*
+findPartitionByMountPoint( const QList< Device* >& devices, const QString& mountPoint )
+{
+    for ( auto device : devices )
+        for ( auto it = PartitionIterator::begin( device ); it != PartitionIterator::end( device ); ++it )
+            if ( PartitionInfo::mountPoint( *it ) == mountPoint )
+                return *it;
+    return nullptr;
 }
 
 } // namespace

@@ -29,6 +29,7 @@
 #include <QList>
 #include <QObject>
 
+class BootLoaderModel;
 class CreatePartitionJob;
 class Device;
 class DeviceModel;
@@ -44,11 +45,6 @@ class PartitionCoreModule : public QObject
 {
     Q_OBJECT
 public:
-    enum
-    {
-        BootLoaderPathRole = Qt::UserRole + 1
-    };
-
     PartitionCoreModule( QObject* parent = nullptr );
     ~PartitionCoreModule();
 
@@ -95,7 +91,7 @@ private:
     QList< DeviceInfo* > m_deviceInfos;
 
     DeviceModel* m_deviceModel;
-    QStandardItemModel* m_bootLoaderModel;
+    BootLoaderModel* m_bootLoaderModel;
     bool m_hasRootMountPoint = false;
 
     void listDevices();

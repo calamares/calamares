@@ -18,6 +18,7 @@
 
 #include <PartitionCoreModule.h>
 
+#include <BootLoaderModel.h>
 #include <CreatePartitionJob.h>
 #include <CreatePartitionTableJob.h>
 #include <DeletePartitionJob.h>
@@ -63,7 +64,7 @@ PartitionCoreModule::DeviceInfo::forgetChanges()
 PartitionCoreModule::PartitionCoreModule( QObject* parent )
     : QObject( parent )
     , m_deviceModel( new DeviceModel( this ) )
-    , m_bootLoaderModel( new QStandardItemModel( this ) )
+    , m_bootLoaderModel( new BootLoaderModel( this ) )
 {
     // FIXME: Should be done at startup
     if ( !CalaPM::init() )
@@ -80,6 +81,7 @@ PartitionCoreModule::PartitionCoreModule( QObject* parent )
     }
     m_deviceModel->init( devices );
 
+    m_bootLoaderModel->init( devices );
 }
 
 PartitionCoreModule::~PartitionCoreModule()
@@ -246,7 +248,7 @@ PartitionCoreModule::refresh( Device* device )
     Q_ASSERT( model );
     model->reload();
     updateHasRootMountPoint();
-    updateBootLoaderModel();
+    m_bootLoaderModel->update();
 }
 
 void PartitionCoreModule::updateHasRootMountPoint()
@@ -267,44 +269,6 @@ PartitionCoreModule::infoForDevice( Device* device ) const
             return deviceInfo;
     }
     return nullptr;
-}
-
-static QStandardItem*
-createBootLoaderItem( const QString& description, const QString& path )
-{
-    QString text = PartitionCoreModule::tr( "%1 (%2)" )
-                   .arg( description )
-                   .arg( path );
-    QStandardItem* item = new QStandardItem( text );
-    item->setData( path, PartitionCoreModule::BootLoaderPathRole );
-    return item;
-}
-
-void
-PartitionCoreModule::updateBootLoaderModel()
-{
-    m_bootLoaderModel->clear();
-    // Can contain up to 2 entries:
-    // - MBR of disk which contains /boot or /
-    // - /boot or / partition
-    QString partitionText;
-    Partition* partition = findPartitionByMountPoint( "/boot" );
-    if ( partition )
-        partitionText = tr( "Boot Partition" );
-    else
-    {
-        partition = findPartitionByMountPoint( "/" );
-        if ( partition )
-            partitionText = tr( "System Partition" );
-        else
-            return;
-    }
-    m_bootLoaderModel->appendRow(
-        createBootLoaderItem( tr( "Master Boot Record" ), partition->devicePath() )
-    );
-    m_bootLoaderModel->appendRow(
-        createBootLoaderItem( partitionText, partition->partitionPath() )
-    );
 }
 
 Partition*

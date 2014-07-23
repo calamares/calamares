@@ -22,6 +22,7 @@ calamares_add_plugin( partition
     EXPORT_MACRO PLUGINDLLEXPORT_PRO
     CONFIG_FILE module.conf
     SOURCES
+        BootLoaderModel.cpp
         CreatePartitionDialog.cpp
         CreatePartitionJob.cpp
         CreatePartitionTableJob.cpp

@@ -15,24 +15,42 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef PMUTILS_H
-#define PMUTILS_H
+#ifndef BOOTLOADERMODEL_H
+#define BOOTLOADERMODEL_H
 
-// Qt
+#include <QStandardItemModel>
 #include <QList>
 
 class Device;
-class Partition;
 
-namespace PMUtils
+/**
+ * This model contains one entry for each device MBR plus one entry for the
+ * /boot or / partition
+ */
+class BootLoaderModel : public QStandardItemModel
 {
+public:
+    enum
+    {
+        BootLoaderPathRole = Qt::UserRole + 1,
+        IsPartitionRole
+    };
 
-bool isPartitionFreeSpace( Partition* );
+    BootLoaderModel( QObject* parent = 0 );
+    ~BootLoaderModel();
 
-bool isPartitionNew( Partition* );
+    /**
+     * Init the model with the list of devices. Does *not* take ownership of the
+     * devices.
+     */
+    void init( const QList< Device* >& devices );
 
-Partition* findPartitionByMountPoint( const QList< Device* >& devices, const QString& mountPoint );
+    void update();
 
-}
+private:
+    QList< Device* > m_devices;
 
-#endif /* PMUTILS_H */
+    void createMbrItems();
+};
+
+#endif /* BOOTLOADERMODEL_H */
