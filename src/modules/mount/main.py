@@ -24,31 +24,41 @@ import tempfile
 
 import libcalamares
 
-def mount( devicePath, mountPoint, fs ):
-    if not os.path.exists( mountPoint ):
-        os.makedirs( mountPoint )
+
+# FIXME: Duplicated between mount and grub
+def mount( devicePath, mountPoint, fs = None, options = None ):
     assert devicePath
     assert mountPoint
-    assert fs
-    subprocess.check_call( [ "mount", "-t", fs, devicePath, mountPoint ] )
+    if not os.path.exists( mountPoint ):
+        os.makedirs( mountPoint )
+    cmd = [ "mount", devicePath, mountPoint ]
+    if fs:
+        cmd += ( "-t", fs )
+    if options:
+        cmd += ( "-o", options )
+    subprocess.check_call( cmd )
 
 
 def mountPartitions( rootMountPoint, partitions ):
-    lst = [ x for x in partitions if x[ "mountPoint" ] == "/" ]
-    assert lst, "No root partition found"
-    root = lst[ 0 ]
-
-    mount( root[ "device" ], rootMountPoint, root[ "fs" ] )
-
     for partition in partitions:
-        # Skip / and partitions which have no mount points
-        if partition[ "mountPoint" ] in ( "/", "" ):
+        if not partition[ "mountPoint" ]:
             continue
-        mount( partition[ "device" ], rootMountPoint + partition[ "mountPoint" ], partition[ "fs" ])
+        # Create mount point with `+` rather than `os.path.join()` because
+        # `mountPoint` starts with a '/'.
+        mountPoint = rootMountPoint + partition[ "mountPoint" ]
+        mount( partition[ "device" ], mountPoint,
+            fs = partition.get( "fs" ),
+            options = partition.get( "options" )
+        )
 
 
 def calamares_main():
     rootMountPoint = tempfile.mkdtemp( prefix="calamares-root-" )
+    partitions = libcalamares.global_storage.value( "partitions" )
+
+    # Sort by mount points to ensure / is mounted before the rest
+    partitions.sort( key = lambda x: x[ "mountPoint" ] )
     mountPartitions( rootMountPoint, libcalamares.global_storage.value( "partitions" ) )
+
     libcalamares.global_storage.insert( "rootMountPoint", rootMountPoint )
-    return "all done, mounted at {}".format( rootMountPoint )
+    return "All done, mounted at {}".format( rootMountPoint )
