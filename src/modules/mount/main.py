@@ -44,7 +44,7 @@ def mountPartitions( rootMountPoint, partitions ):
         if not partition[ "mountPoint" ]:
             continue
         # Create mount point with `+` rather than `os.path.join()` because
-        # `mountPoint` starts with a '/'.
+        # `partition["mountPoint"]` starts with a '/'.
         mountPoint = rootMountPoint + partition[ "mountPoint" ]
         mount( partition[ "device" ], mountPoint,
             fs = partition.get( "fs" ),
