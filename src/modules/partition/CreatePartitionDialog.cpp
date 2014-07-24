@@ -31,6 +31,7 @@
 // Qt
 #include <QComboBox>
 #include <QSet>
+#include <QMessageBox>
 
 static QSet< FileSystem::Type > s_unmountableFS(
 {
@@ -83,6 +84,16 @@ CreatePartitionDialog::CreatePartitionDialog( Device* device, PartitionNode* par
     // Connections
     connect( m_ui->fsComboBox, SIGNAL( activated( int ) ), SLOT( updateMountPointUi() ) );
     connect( m_ui->extendedRadioButton, SIGNAL( toggled( bool ) ), SLOT( updateMountPointUi() ) );
+
+    PartitionPage* parentPage = (PartitionPage*)parentWidget;
+    // save the used mountpoints so that we can validate the dialog against them.
+    m_used_mountpoints = parentPage->getUsedMountPoints();
+    // If there are any used mountpoints, remove them from combo box so that the user
+    // would not be able to re-select them.
+    foreach (QString usedMountPoint, m_used_mountpoints)
+    {
+        m_ui->mountPointComboBox->removeItem(m_ui->mountPointComboBox->findText(usedMountPoint));
+    }
 }
 
 CreatePartitionDialog::~CreatePartitionDialog()
@@ -205,4 +216,35 @@ qint64
 CreatePartitionDialog::mbSizeForSectorRange( qint64 first, qint64 last ) const
 {
     return ( last - first + 1 ) * m_device->logicalSectorSize() / 1024 / 1024;
+}
+
+int
+CreatePartitionDialog::exec()
+{
+    //override the exec method so that we're able to validate the dialog.
+    while (true)
+    {
+        if (QDialog::exec() == QDialog::Rejected)
+        {
+            return QDialog::Rejected;
+        }
+        if (validate())
+        {
+            return QDialog::Accepted;
+        }
+    }
+}
+
+bool
+CreatePartitionDialog::validate()
+{
+    // if the user specified an mountpoint which is already used,
+    // reject the dialog and display an error message
+    if (m_used_mountpoints.contains(m_ui->mountPointComboBox->currentText()))
+    {
+        QMessageBox::critical(this, "Error", "This mountpoint is already used");
+        return false;
+    }
+    // if no errors were present, accept the dialog
+    return true;
 }

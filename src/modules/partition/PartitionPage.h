@@ -35,6 +35,7 @@ class PartitionPage : public QWidget
 public:
     explicit PartitionPage( PartitionCoreModule* core, QWidget* parent = 0 );
     ~PartitionPage();
+    QList<QString> getUsedMountPoints();
 
 Q_SIGNALS:
 

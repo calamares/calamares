@@ -244,3 +244,34 @@ PartitionPage::updateFromCurrentDevice()
     } );
     connect( model, &QAbstractItemModel::modelReset, this, &PartitionPage::updateButtons );
 }
+
+
+QList<QString>
+PartitionPage::getUsedMountPoints()
+{
+    //list of used mountpoints
+    QList<QString> out;
+    QString mountPoint;
+
+    QModelIndex index = m_core->deviceModel()->index( m_ui->deviceComboBox->currentIndex(), 0 );
+    if ( !index.isValid() )
+        return out;
+
+    Device* device = m_core->deviceModel()->deviceForIndex( index );
+
+    PartitionModel* model = m_core->partitionModelForDevice( device );
+
+    // iterate over all partitions and get used mountpoints
+    for (int row = 0; row < model->rowCount(); row++)
+    {
+        // get the index for this partition
+        index = model->index(row, model->MountPointColumn);
+        mountPoint = model->data(index).toString();
+        if (mountPoint != "")
+        {
+            out.append(mountPoint);
+        }
+    }
+
+    return out;
+}

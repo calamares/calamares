@@ -24,6 +24,7 @@
 
 // CalaPM
 #include <core/partitionrole.h>
+#include "PartitionPage.h"
 
 class Device;
 class Partition;
@@ -40,6 +41,7 @@ public:
     void initFromFreeSpace( Partition* partition );
     void initFromPartitionToCreate( Partition* partition );
     Partition* createPartition();
+    virtual int exec();
 
 private Q_SLOTS:
     void updateMountPointUi();
@@ -49,12 +51,15 @@ private:
     Device* m_device;
     qint64 m_minSector = 0;
     qint64 m_maxSector = 0;
+    QList<QString> m_used_mountpoints;
     PartitionNode* m_parent;
     PartitionRole m_role = PartitionRole( PartitionRole::None );
 
     void initSectorRange( Partition* );
 
     qint64 mbSizeForSectorRange( qint64 first, qint64 last ) const;
+
+    bool validate();
 };
 
 #endif /* CREATEPARTITIONDIALOG_H */
