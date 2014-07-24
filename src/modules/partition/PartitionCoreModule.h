@@ -97,14 +97,11 @@ private:
     bool m_hasRootMountPoint = false;
     QString m_bootLoaderInstallPath;
 
-    void listDevices();
     void updateHasRootMountPoint();
 
     void dumpQueue() const;
 
     DeviceInfo* infoForDevice( Device* ) const;
-
-    void updateBootLoaderModel();
 
     Partition* findPartitionByMountPoint( const QString& mountPoint ) const;
 };
