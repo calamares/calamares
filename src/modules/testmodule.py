@@ -16,12 +16,19 @@
 #   You should have received a copy of the GNU General Public License
 #   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
 
+import argparse
 import os
 import sys
+
 import yaml
-libcalamarespath = os.path.abspath( sys.argv[ 1 ] )
-sys.path.append( libcalamarespath )
-import libcalamares
+
+try:
+    import libcalamares
+except ImportError:
+    print( "Failed to import libcalamares. Make sure then PYTHONPATH environment variable includes the dir where libcalamares.so is installed." )
+    print()
+    raise
+
 
 class Job:
     def __init__( self, workingPath, doc ):
@@ -32,31 +39,36 @@ class Job:
     def setprogress( self, progress ):
         print ( "Job set progress to {}%.".format( progress * 100 ) )
 
-# Usage: ./testmodule.py <libcalamares.so dir> <python module dir> [global_storage yaml file]
-def main( args ):
-    moduledirpath = os.path.abspath( sys.argv[ 2 ] )
-    print( "Importing libcalamares from: " + libcalamares.__file__ )
-    print( "Testing module in: " + moduledirpath )
 
-    confpath = os.path.join( moduledirpath, "module.conf" )
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument( "moduledir",
+                         help = "Dir containing the Python module" )
+    parser.add_argument( "globalstorage_yaml", nargs = "?",
+                         help = "A yaml file to initialize GlobalStorage" )
+    args = parser.parse_args()
 
-    conffile = open( confpath, 'r' )
-    doc = yaml.load( conffile )
+    print( "Testing module in: " + args.moduledir )
 
-    if not doc[ "type" ] == "job" or not doc[ "interface" ] == "python":
+    confpath = os.path.join( args.moduledir, "module.conf" )
+    with open( confpath ) as f:
+        doc = yaml.load( f )
+
+    if doc[ "type" ] != "job" or doc[ "interface" ] != "python":
         print( "Only Python jobs can be tested." )
         return 1
 
-    libcalamares.__dict__[ "job" ] = Job( moduledirpath, doc )
-    libcalamares.__dict__[ "global_storage" ] = libcalamares.GlobalStorage()
+    libcalamares.job = Job( args.moduledir, doc )
+    libcalamares.global_storage = libcalamares.GlobalStorage()
 
     # if a file for simulating global_storage contents is provided, load it
-    if len( sys.argv ) > 3:
-        doc = yaml.load( open( os.path.abspath( sys.argv[ 3 ] ), 'r' ) )
+    if args.globalstorage_yaml:
+        with open( args.globalstorage_yaml ) as f:
+            doc = yaml.load( f )
         for key, value in doc.items():
             libcalamares.global_storage.insert( key, value )
 
-    scriptpath = os.path.abspath( moduledirpath )
+    scriptpath = os.path.abspath( args.moduledir )
     sys.path.append( scriptpath )
     import main
 
@@ -67,4 +79,4 @@ def main( args ):
 
 
 if __name__ == "__main__":
-    sys.exit( main( sys.argv ) )
+    sys.exit( main() )
