@@ -24,6 +24,9 @@
 // KF5
 #include <KFormat>
 
+// STL
+#include <algorithm>
+
 DeviceModel::DeviceModel( QObject* parent )
     : QAbstractListModel( parent )
 {
@@ -38,6 +41,10 @@ DeviceModel::init( const QList< Device* >& devices )
 {
     beginResetModel();
     m_devices = devices;
+    std::sort( m_devices.begin(), m_devices.end(), []( const Device* dev1, const Device* dev2 )
+    {
+        return dev1->deviceNode() < dev2->deviceNode();
+    } );
     endResetModel();
 }
 
