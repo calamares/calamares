@@ -9,6 +9,11 @@ Distribution-independent installer framework
 * yaml-cpp >= 0.5.1
 * Python >= 3.3
 * Boost.Python >= 1.55.0
+* extra-cmake-modules
+* kconfig (part of kf5)
+* solid (part of kf5)
+* kcoreaddons (part of kf5)
+* ki18n (part of kf5)
 
 ### Building
 ```
