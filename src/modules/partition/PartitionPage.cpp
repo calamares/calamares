@@ -51,29 +51,12 @@ PartitionPage::PartitionPage( PartitionCoreModule* core, QWidget* parent )
     updateButtons();
     updateBootLoaderInstallPath();
 
+    updateFromCurrentDevice();
+
     connect( m_ui->deviceComboBox, &QComboBox::currentTextChanged,
              [ this ]( const QString& /* text */ )
     {
-        QModelIndex index = m_ui->deviceComboBox->view()->currentIndex();
-        Device* device = m_core->deviceModel()->deviceForIndex( index );
-        PartitionModel* model = m_core->partitionModelForDevice( device );
-        m_ui->partitionTreeView->setModel( model );
-
-        // Must be done here because we need to have a model set to define
-        // individual column resize mode
-        QHeaderView* header = m_ui->partitionTreeView->header();
-        header->setSectionResizeMode( QHeaderView::ResizeToContents );
-        header->setSectionResizeMode( 0, QHeaderView::Stretch );
-
-        updateButtons();
-        // Establish connection here because selection model is destroyed when
-        // model changes
-        connect( m_ui->partitionTreeView->selectionModel(), &QItemSelectionModel::currentChanged,
-                 [ this ]( const QModelIndex& index, const QModelIndex& oldIndex )
-        {
-            updateButtons();
-        } );
-        connect( model, &QAbstractItemModel::modelReset, this, &PartitionPage::updateButtons );
+        updateFromCurrentDevice();
     } );
 
     connect( m_ui->bootLoaderComboBox, &QComboBox::currentTextChanged,
@@ -220,4 +203,33 @@ PartitionPage::updateBootLoaderInstallPath()
     if ( !var.isValid() )
         return;
     m_core->setBootLoaderInstallPath( var.toString() );
+}
+
+void
+PartitionPage::updateFromCurrentDevice()
+{
+    QModelIndex index = m_core->deviceModel()->index( m_ui->deviceComboBox->currentIndex(), 0 );
+    if ( !index.isValid() )
+        return;
+
+    Device* device = m_core->deviceModel()->deviceForIndex( index );
+
+    PartitionModel* model = m_core->partitionModelForDevice( device );
+    m_ui->partitionTreeView->setModel( model );
+
+    // Must be done here because we need to have a model set to define
+    // individual column resize mode
+    QHeaderView* header = m_ui->partitionTreeView->header();
+    header->setSectionResizeMode( QHeaderView::ResizeToContents );
+    header->setSectionResizeMode( 0, QHeaderView::Stretch );
+
+    updateButtons();
+    // Establish connection here because selection model is destroyed when
+    // model changes
+    connect( m_ui->partitionTreeView->selectionModel(), &QItemSelectionModel::currentChanged,
+             [ this ]( const QModelIndex& index, const QModelIndex& oldIndex )
+    {
+        updateButtons();
+    } );
+    connect( model, &QAbstractItemModel::modelReset, this, &PartitionPage::updateButtons );
 }

@@ -52,6 +52,7 @@ private:
     void updatePartitionToCreate( Device*, Partition* );
     void editExistingPartition( Device*, Partition* );
     void updateBootLoaderInstallPath();
+    void updateFromCurrentDevice();
 };
 
 #endif // PARTITIONPAGE_H
