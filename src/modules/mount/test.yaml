@@ -1,0 +1,10 @@
+partitions:
+    - device: "/dev/sdb1"
+      mountPoint: "/"
+      fs: "ext4"
+    - device: "/dev/sdb2"
+      mountPoint: "/home"
+      fs: "ext4"
+    - device: "/dev/sdb3"
+      mountPoint: ""
+      fs: "linuxswap"

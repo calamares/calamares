@@ -17,12 +17,12 @@
 #   You should have received a copy of the GNU General Public License
 #   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
 
-import libcalamares
-import tempfile
 import os
 import subprocess
 import sys
+import tempfile
 
+import libcalamares
 
 def mount( devicePath, mountPoint, fs ):
     if not os.path.exists( mountPoint ):
@@ -52,30 +52,3 @@ def calamares_main():
     mountPartitions( rootMountPoint, libcalamares.global_storage.value( "partitions" ) )
     libcalamares.global_storage.insert( "rootMountPoint", rootMountPoint )
     return "all done, mounted at {}".format( rootMountPoint )
-
-
-def main( args ):
-    partitions = (
-        {
-            "device": "/dev/sdb1",
-            "mountPoint": "/",
-            "fs": "ext4",
-        },
-        {
-            "device": "/dev/sdb2",
-            "mountPoint": "/home",
-            "fs": "ext4",
-        },
-        {
-            "device": "/dev/sdb3",
-            "mountPoint": "",
-            "fs": "linuxswap",
-        },
-    )
-    rootMountPoint = "/tmp/mount"
-    mountPartitions( rootMountPoint, partitions )
-    return 0
-
-
-if __name__ == "__main__":
-    sys.exit( main( sys.argv ) )
