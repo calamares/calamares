@@ -60,4 +60,11 @@ reset( Partition* partition )
     partition->setProperty( FORMAT_PROPERTY, QVariant() );
 }
 
+bool
+isDirty( Partition* partition )
+{
+    return !mountPoint( partition ).isEmpty()
+        || format( partition );
+}
+
 } // namespace

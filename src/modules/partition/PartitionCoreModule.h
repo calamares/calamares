@@ -73,8 +73,11 @@ public:
 
     void refresh( Device* device );
 
+    void revert();
+
 Q_SIGNALS:
     void hasRootMountPointChanged( bool value );
+    void isDirtyChanged( bool value );
 
 private:
     /**
@@ -89,15 +92,19 @@ private:
         QList< Calamares::job_ptr > jobs;
 
         void forgetChanges();
+        bool isDirty() const;
     };
     QList< DeviceInfo* > m_deviceInfos;
 
     DeviceModel* m_deviceModel;
     BootLoaderModel* m_bootLoaderModel;
     bool m_hasRootMountPoint = false;
+    bool m_isDirty = false;
     QString m_bootLoaderInstallPath;
 
+    void init();
     void updateHasRootMountPoint();
+    void updateIsDirty();
 
     void dumpQueue() const;
 

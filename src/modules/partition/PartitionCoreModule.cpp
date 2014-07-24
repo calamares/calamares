@@ -60,6 +60,20 @@ PartitionCoreModule::DeviceInfo::forgetChanges()
         PartitionInfo::reset( *it );
 }
 
+
+bool
+PartitionCoreModule::DeviceInfo::isDirty() const
+{
+    if ( !jobs.isEmpty() )
+        return true;
+
+    for ( auto it = PartitionIterator::begin( device.data() ); it != PartitionIterator::end( device.data() ); ++it )
+        if ( PartitionInfo::isDirty( *it ) )
+            return true;
+
+    return false;
+}
+
 //- PartitionCoreModule ------------------------------------
 PartitionCoreModule::PartitionCoreModule( QObject* parent )
     : QObject( parent )
@@ -70,6 +84,12 @@ PartitionCoreModule::PartitionCoreModule( QObject* parent )
     if ( !CalaPM::init() )
         qFatal( "Failed to init CalaPM" );
 
+    init();
+}
+
+void
+PartitionCoreModule::init()
+{
     CoreBackend* backend = CoreBackendManager::self()->backend();
     auto devices = backend->scanDevices();
     for ( auto device : devices )
@@ -248,6 +268,7 @@ PartitionCoreModule::refresh( Device* device )
     Q_ASSERT( model );
     model->reload();
     updateHasRootMountPoint();
+    updateIsDirty();
     m_bootLoaderModel->update();
 }
 
@@ -258,6 +279,21 @@ void PartitionCoreModule::updateHasRootMountPoint()
 
     if ( oldValue != m_hasRootMountPoint )
         hasRootMountPointChanged( m_hasRootMountPoint );
+}
+
+void
+PartitionCoreModule::updateIsDirty()
+{
+    bool oldValue = m_isDirty;
+    m_isDirty = false;
+    for ( auto info : m_deviceInfos )
+        if ( info->isDirty() )
+        {
+            m_isDirty = true;
+            break;
+        }
+    if ( oldValue != m_isDirty )
+        isDirtyChanged( m_isDirty );
 }
 
 PartitionCoreModule::DeviceInfo*
@@ -288,4 +324,13 @@ void
 PartitionCoreModule::setBootLoaderInstallPath( const QString& path )
 {
     m_bootLoaderInstallPath = path;
+}
+
+void
+PartitionCoreModule::revert()
+{
+    qDeleteAll( m_deviceInfos );
+    m_deviceInfos.clear();
+    init();
+    updateIsDirty();
 }

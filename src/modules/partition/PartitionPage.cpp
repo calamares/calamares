@@ -65,7 +65,9 @@ PartitionPage::PartitionPage( PartitionCoreModule* core, QWidget* parent )
         updateBootLoaderInstallPath();
     } );
 
+    connect( m_core, &PartitionCoreModule::isDirtyChanged, m_ui->revertButton, &QWidget::setEnabled );
 
+    connect( m_ui->revertButton, &QAbstractButton::clicked, this, &PartitionPage::onRevertClicked );
     connect( m_ui->newPartitionTableButton, &QAbstractButton::clicked, this, &PartitionPage::onNewPartitionTableClicked );
     connect( m_ui->createButton, &QAbstractButton::clicked, this, &PartitionPage::onCreateClicked );
     connect( m_ui->editButton, &QAbstractButton::clicked, this, &PartitionPage::onEditClicked );
@@ -172,6 +174,15 @@ PartitionPage::onDeleteClicked()
     Q_ASSERT( partition );
 
     m_core->deletePartition( model->device(), partition );
+}
+
+void
+PartitionPage::onRevertClicked()
+{
+    int oldIndex = m_ui->deviceComboBox->currentIndex();
+    m_core->revert();
+    m_ui->deviceComboBox->setCurrentIndex( oldIndex );
+    updateFromCurrentDevice();
 }
 
 void

@@ -42,6 +42,16 @@
        </property>
       </spacer>
      </item>
+     <item>
+      <widget class="QPushButton" name="revertButton">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string>Revert All Changes</string>
+       </property>
+      </widget>
+     </item>
     </layout>
    </item>
    <item>

@@ -38,6 +38,8 @@ void setFormat( Partition* partition, bool value );
 
 void reset( Partition* partition );
 
+bool isDirty( Partition* partition );
+
 };
 
 #endif /* PARTITIONINFO_H */
