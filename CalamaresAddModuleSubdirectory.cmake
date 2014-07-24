@@ -15,7 +15,7 @@ function( calamares_add_module_subdirectory )
         # synced with the bindir structure and installed.
         file( GLOB MODULE_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}/${SUBDIRECTORY} "${SUBDIRECTORY}/*" )
         foreach( MODULE_FILE ${MODULE_FILES} )
-            if( NOT IS_DIRECTORY( ${MODULE_FILE} ) )
+            if( NOT IS_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/${SUBDIRECTORY}/${MODULE_FILE} )
                 configure_file( ${SUBDIRECTORY}/${MODULE_FILE} ${SUBDIRECTORY}/${MODULE_FILE} COPYONLY )
                 install( FILES ${CMAKE_CURRENT_BINARY_DIR}/${SUBDIRECTORY}/${MODULE_FILE}
                          DESTINATION ${MODULE_DESTINATION} )
