@@ -19,7 +19,7 @@
      <item>
       <widget class="QLabel" name="label_2">
        <property name="text">
-        <string>Disk:</string>
+        <string>&amp;Disk:</string>
        </property>
        <property name="buddy">
         <cstring>deviceComboBox</cstring>
@@ -48,7 +48,7 @@
         <bool>false</bool>
        </property>
        <property name="text">
-        <string>Revert All Changes</string>
+        <string>&amp;Revert All Changes</string>
        </property>
       </widget>
      </item>
@@ -82,7 +82,7 @@
      <item>
       <widget class="QPushButton" name="newPartitionTableButton">
        <property name="text">
-        <string>New Partition Table</string>
+        <string>New Partition &amp;Table</string>
        </property>
       </widget>
      </item>
@@ -102,21 +102,21 @@
      <item>
       <widget class="QPushButton" name="createButton">
        <property name="text">
-        <string>Create</string>
+        <string>&amp;Create</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="editButton">
        <property name="text">
-        <string>Edit</string>
+        <string>&amp;Edit</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="deleteButton">
        <property name="text">
-        <string>Delete</string>
+        <string>&amp;Delete</string>
        </property>
       </widget>
      </item>
@@ -143,7 +143,7 @@
      <item>
       <widget class="QLabel" name="label_3">
        <property name="text">
-        <string>Install boot loader on:</string>
+        <string>&amp;Install boot loader on:</string>
        </property>
        <property name="buddy">
         <cstring>bootLoaderComboBox</cstring>
@@ -176,11 +176,13 @@
  </widget>
  <tabstops>
   <tabstop>deviceComboBox</tabstop>
+  <tabstop>revertButton</tabstop>
   <tabstop>partitionTreeView</tabstop>
   <tabstop>newPartitionTableButton</tabstop>
   <tabstop>createButton</tabstop>
   <tabstop>editButton</tabstop>
   <tabstop>deleteButton</tabstop>
+  <tabstop>bootLoaderComboBox</tabstop>
  </tabstops>
  <resources/>
  <connections/>
