@@ -63,6 +63,9 @@
    </item>
    <item>
     <widget class="QTreeView" name="partitionTreeView">
+     <property name="editTriggers">
+      <set>QAbstractItemView::NoEditTriggers</set>
+     </property>
      <property name="rootIsDecorated">
       <bool>false</bool>
      </property>

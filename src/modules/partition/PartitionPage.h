@@ -49,6 +49,7 @@ private:
     void onCreateClicked();
     void onEditClicked();
     void onDeleteClicked();
+    void onPartitionViewActivated();
 
     void updatePartitionToCreate( Device*, Partition* );
     void editExistingPartition( Device*, Partition* );

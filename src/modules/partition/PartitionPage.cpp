@@ -67,6 +67,7 @@ PartitionPage::PartitionPage( PartitionCoreModule* core, QWidget* parent )
 
     connect( m_core, &PartitionCoreModule::isDirtyChanged, m_ui->revertButton, &QWidget::setEnabled );
 
+    connect( m_ui->partitionTreeView, &QAbstractItemView::activated, this, &PartitionPage::onPartitionViewActivated );
     connect( m_ui->revertButton, &QAbstractButton::clicked, this, &PartitionPage::onRevertClicked );
     connect( m_ui->newPartitionTableButton, &QAbstractButton::clicked, this, &PartitionPage::onNewPartitionTableClicked );
     connect( m_ui->createButton, &QAbstractButton::clicked, this, &PartitionPage::onCreateClicked );
@@ -183,6 +184,29 @@ PartitionPage::onRevertClicked()
     m_core->revert();
     m_ui->deviceComboBox->setCurrentIndex( oldIndex );
     updateFromCurrentDevice();
+}
+
+void
+PartitionPage::onPartitionViewActivated()
+{
+    QModelIndex index = m_ui->partitionTreeView->currentIndex();
+    if ( !index.isValid() )
+        return;
+
+    const PartitionModel* model = static_cast< const PartitionModel* >( index.model() );
+    Q_ASSERT( model );
+    Partition* partition = model->partitionForIndex( index );
+    Q_ASSERT( partition );
+
+    // Use the buttons to trigger the actions so that they do nothing if they
+    // are disabled. Alternatively, the code could use QAction to centralize,
+    // but I don't expect there will be other occurences of triggering the same
+    // action from multiple UI elements in this page, so it does not feel worth
+    // the price.
+    if ( PMUtils::isPartitionFreeSpace( partition ) )
+        m_ui->createButton->click();
+    else
+        m_ui->editButton->click();
 }
 
 void
