@@ -110,6 +110,28 @@ PartitionModel::data( const QModelIndex& index, int role ) const
     }
 }
 
+QVariant
+PartitionModel::headerData( int section, Qt::Orientation orientation, int role ) const
+{
+    if ( role != Qt::DisplayRole )
+        return QVariant();
+
+    switch ( section )
+    {
+    case NameColumn:
+        return tr( "Name" );
+    case FileSystemColumn:
+        return tr( "File System" );
+    case MountPointColumn:
+        return tr(" Mount Point" );
+    case SizeColumn:
+        return tr(" Size" );
+    default:
+        cDebug() << "Unknown column" << section;
+        return QVariant();
+    }
+}
+
 void
 PartitionModel::fillPartitionList( PartitionNode* parent )
 {

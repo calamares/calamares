@@ -72,9 +72,6 @@
      <property name="allColumnsShowFocus">
       <bool>true</bool>
      </property>
-     <attribute name="headerVisible">
-      <bool>false</bool>
-     </attribute>
      <attribute name="headerStretchLastSection">
       <bool>false</bool>
      </attribute>
