@@ -68,9 +68,9 @@ def installGrub( rootMountPoint, bootLoader ):
     chroot_call( rootMountPoint, [ "grub-mkconfig", "-o", "/boot/grub/grub.cfg" ] )
 
 
-def calamares_main():
-    rootMountPoint = libcalamares.global_storage.value( "rootMountPoint" )
-    bootLoader = libcalamares.global_storage.value( "bootLoader" )
+def run():
+    rootMountPoint = libcalamares.globalStorage.value( "rootMountPoint" )
+    bootLoader = libcalamares.globalStorage.value( "bootLoader" )
     extraMounts = libcalamares.job.configuration[ "extraMounts" ]
     mountPartitions( rootMountPoint, extraMounts )
     try:

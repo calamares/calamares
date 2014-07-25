@@ -21,7 +21,7 @@ import libcalamares
 import os
 from time import gmtime, strftime
 
-def calamares_main():
+def run():
     os.system( "/bin/sh -c \"touch ~/calamares-dummypython\"" )
     accumulator = strftime( "%Y-%m-%d %H:%M:%S", gmtime() ) + "\n"
     accumulator += "Calamares version: " + libcalamares.shortVersion + "\n"
@@ -29,16 +29,16 @@ def calamares_main():
     accumulator += "This job's path: " + libcalamares.job.workingPath + "\n"
     accumulator += str( libcalamares.job.configuration )
     accumulator += "   *** GlobalStorage test ***\n"
-    accumulator += "lala: " + str( libcalamares.global_storage.contains( "lala" ) ) + "\n"
-    accumulator += "foo: " + str( libcalamares.global_storage.contains( "foo" ) ) + "\n"
-    accumulator += "count: " + str( libcalamares.global_storage.count() ) + "\n"
-    libcalamares.global_storage.insert( "item2", "value2" )
-    libcalamares.global_storage.insert( "item3", 3 )
-    accumulator += "keys: " + str( libcalamares.global_storage.keys() ) + "\n"
-    accumulator += "remove: " + str( libcalamares.global_storage.remove( "item2" ) ) + "\n"
-    accumulator += "values: " + str( libcalamares.global_storage.value( "foo" ) )+ " "\
-                               + str( libcalamares.global_storage.value( "item2" ) ) + " "\
-                               + str( libcalamares.global_storage.value( "item3" ) ) + "\n"
+    accumulator += "lala: " + str( libcalamares.globalStorage.contains( "lala" ) ) + "\n"
+    accumulator += "foo: " + str( libcalamares.globalStorage.contains( "foo" ) ) + "\n"
+    accumulator += "count: " + str( libcalamares.globalStorage.count() ) + "\n"
+    libcalamares.globalStorage.insert( "item2", "value2" )
+    libcalamares.globalStorage.insert( "item3", 3 )
+    accumulator += "keys: " + str( libcalamares.globalStorage.keys() ) + "\n"
+    accumulator += "remove: " + str( libcalamares.globalStorage.remove( "item2" ) ) + "\n"
+    accumulator += "values: " + str( libcalamares.globalStorage.value( "foo" ) )+ " "\
+                               + str( libcalamares.globalStorage.value( "item2" ) ) + " "\
+                               + str( libcalamares.globalStorage.value( "item3" ) ) + "\n"
 
     libcalamares.job.setprogress( 0.1 )
     return accumulator

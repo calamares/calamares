@@ -52,13 +52,13 @@ def mountPartitions( rootMountPoint, partitions ):
         )
 
 
-def calamares_main():
+def run():
     rootMountPoint = tempfile.mkdtemp( prefix="calamares-root-" )
-    partitions = libcalamares.global_storage.value( "partitions" )
+    partitions = libcalamares.globalStorage.value( "partitions" )
 
     # Sort by mount points to ensure / is mounted before the rest
     partitions.sort( key = lambda x: x[ "mountPoint" ] )
-    mountPartitions( rootMountPoint, libcalamares.global_storage.value( "partitions" ) )
+    mountPartitions( rootMountPoint, libcalamares.globalStorage.value( "partitions" ) )
 
-    libcalamares.global_storage.insert( "rootMountPoint", rootMountPoint )
+    libcalamares.globalStorage.insert( "rootMountPoint", rootMountPoint )
     return "All done, mounted at {}".format( rootMountPoint )

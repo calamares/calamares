@@ -120,13 +120,13 @@ PythonJob::exec()
         bp::dict calamaresNamespace = bp::extract< bp::dict >( calamaresModule.attr( "__dict__" ) );
 
         calamaresNamespace[ "job" ] = CalamaresPython::PythonJobInterface( this );
-        calamaresNamespace[ "global_storage" ] = bp::ptr( JobQueue::instance()->globalStorage() );
+        calamaresNamespace[ "globalStorage" ] = bp::ptr( JobQueue::instance()->globalStorage() );
 
         bp::object result = bp::exec_file( scriptFI.absoluteFilePath().toLocal8Bit().data(),
                                            scriptNamespace,
                                            scriptNamespace );
 
-        bp::object entryPoint = scriptNamespace[ "calamares_main" ];
+        bp::object entryPoint = scriptNamespace[ "run" ];
 
         QString message = QString::fromStdString( bp::extract< std::string >( entryPoint() ) );
 

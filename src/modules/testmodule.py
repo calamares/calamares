@@ -30,6 +30,7 @@ except ImportError:
     raise
 
 
+
 class Job:
     def __init__( self, workingPath, doc ):
         self.prettyName = "Testing job " + doc[ "name" ]
@@ -37,7 +38,8 @@ class Job:
         self.configuration = doc[ "configuration" ]
 
     def setprogress( self, progress ):
-        print ( "Job set progress to {}%.".format( progress * 100 ) )
+        print( "Job set progress to {}%.".format( progress * 100 ) )
+
 
 
 def main():
@@ -59,21 +61,21 @@ def main():
         return 1
 
     libcalamares.job = Job( args.moduledir, doc )
-    libcalamares.global_storage = libcalamares.GlobalStorage()
+    libcalamares.globalStorage = libcalamares.GlobalStorage()
 
-    # if a file for simulating global_storage contents is provided, load it
+    # if a file for simulating globalStorage contents is provided, load it
     if args.globalstorage_yaml:
         with open( args.globalstorage_yaml ) as f:
             doc = yaml.load( f )
         for key, value in doc.items():
-            libcalamares.global_storage.insert( key, value )
+            libcalamares.globalStorage.insert( key, value )
 
     scriptpath = os.path.abspath( args.moduledir )
     sys.path.append( scriptpath )
     import main
 
     print( "Output from module:" )
-    print( main.calamares_main() )
+    print( main.run() )
 
     return 0
 

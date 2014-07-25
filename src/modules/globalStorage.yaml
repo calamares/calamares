@@ -2,7 +2,7 @@
 syntax: "YAML map of anything"
 example:
     whats_this: "fake global storage contents"
-    from_where: "global_storage.yaml"
+    from_where: "globalStorage.yaml"
 a_list:
     - "item1"
     - "item2"

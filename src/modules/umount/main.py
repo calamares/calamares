@@ -32,8 +32,8 @@ def listMounts( rootMountPoint ):
     return lst
 
 
-def calamares_main():
-    rootMountPoint = libcalamares.global_storage.value( "rootMountPoint" )
+def run():
+    rootMountPoint = libcalamares.globalStorage.value( "rootMountPoint" )
     if not rootMountPoint:
         return "GlobalStorage does not contain a \"rootMountPoint\" key, doing nothing"
     if not os.path.exists( rootMountPoint ):
