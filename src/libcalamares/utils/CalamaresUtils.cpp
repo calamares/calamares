@@ -34,14 +34,26 @@
 namespace CalamaresUtils
 {
 
+static QDir s_appDataDir;
+
+void
+setAppDataDir( const QDir& dir )
+{
+    s_appDataDir = dir;
+}
+
+
 QDir
 appDataDir()
 {
-    QDir path( CMAKE_INSTALL_FULL_DATADIR );
-    if ( !path.exists() || !path.isReadable() )
-        path.mkpath( path.absolutePath() );
+    if ( s_appDataDir.path().isEmpty() )
+    {
+        s_appDataDir = QDir( CMAKE_INSTALL_FULL_DATADIR );
+        if ( !s_appDataDir.exists() || !s_appDataDir.isReadable() )
+            s_appDataDir.mkpath( s_appDataDir.absolutePath() );
+    }
 
-    return path;
+    return s_appDataDir;
 }
 
 

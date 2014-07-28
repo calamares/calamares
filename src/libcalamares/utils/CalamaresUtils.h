@@ -36,6 +36,10 @@ namespace CalamaresUtils
     DLLEXPORT QDir systemLibDir();
     DLLEXPORT void installTranslator( QObject* parent );
 
+    /**
+     * Override app data dir. Only for testing purposes.
+     */
+    DLLEXPORT void setAppDataDir( const QDir& dir );
 }
 
 #endif // CALAMARESUTILS_H
