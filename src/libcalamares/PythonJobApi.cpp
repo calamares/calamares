@@ -19,9 +19,18 @@
 #include "PythonJobApi.h"
 
 #include "PythonHelper.h"
+#include "utils/Logger.h"
 
 namespace CalamaresPython
 {
+
+
+void
+debug( const std::string& s )
+{
+    cDebug() << "[PYTHON JOB]: " << QString::fromStdString( s );
+}
+
 
 PythonJobInterface::PythonJobInterface( Calamares::PythonJob* parent )
     : m_parent( parent )

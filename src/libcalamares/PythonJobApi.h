@@ -29,6 +29,8 @@
 namespace CalamaresPython
 {
 
+void debug( const std::string& s );
+
 class PythonJobInterface
 {
 public:
