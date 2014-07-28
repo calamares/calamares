@@ -35,9 +35,9 @@ def listMounts( rootMountPoint ):
 def run():
     rootMountPoint = libcalamares.globalStorage.value( "rootMountPoint" )
     if not rootMountPoint:
-        return "GlobalStorage does not contain a \"rootMountPoint\" key, doing nothing"
+        return ( "No mount point for root partition in GlobalStorage", "GlobalStorage does not contain a \"rootMountPoint\" key, doing nothing" )
     if not os.path.exists( rootMountPoint ):
-        return "GlobalStorage[\"rootMountPoint\"] is \"{}\", which does not exist, doing nothing".format( rootMountPoint )
+        return ( "Bad mount point for root partition in GlobalStorage", "GlobalStorage[\"rootMountPoint\"] is \"{}\", which does not exist, doing nothing".format( rootMountPoint ) )
 
     lst = listMounts( rootMountPoint )
     # Sort the list by mount point in decreasing order. This way we can be sure
@@ -48,4 +48,4 @@ def run():
         subprocess.check_call( [ "umount", mountPoint ] )
 
     os.rmdir( rootMountPoint )
-    return "All done"
+    return None

@@ -106,7 +106,12 @@ def run():
     #           destination: ""
 
     rootMountPoint = globalStorage.value( "rootMountPoint" )
-
+    if not rootMountPoint:
+        return ( "No mount point for root partition in GlobalStorage",
+                 "GlobalStorage does not contain a \"rootMountPoint\" key, doing nothing" )
+    if not os.path.exists( rootMountPoint ):
+        return ( "Bad mount point for root partition in GlobalStorage",
+                 "GlobalStorage[\"rootMountPoint\"] is \"{}\", which does not exist, doing nothing".format( rootMountPoint ) )
     unpack = list()
 
     for entry in job.configuration[ "unpack" ]:
@@ -114,7 +119,8 @@ def run():
         destination = os.path.abspath( os.path.join( rootMountPoint, entry[ "destination" ] ) )
 
         if not os.path.isfile( source ) or not os.path.isdir( destination ):
-            return "Error: bad source or destination"
+            return ( "Bad source or destination",
+                     "source=\"{}\"\ndestination=\"{}\"".format( source, destination ) )
 
         unpack.append( UnpackEntry( source, destination ) )
 

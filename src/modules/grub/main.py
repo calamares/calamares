@@ -77,4 +77,4 @@ def run():
         installGrub( rootMountPoint, bootLoader )
     finally:
         umountPartitions( rootMountPoint, extraMounts )
-    return "All done"
+    return None

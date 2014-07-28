@@ -61,4 +61,4 @@ def run():
     mountPartitions( rootMountPoint, libcalamares.globalStorage.value( "partitions" ) )
 
     libcalamares.globalStorage.insert( "rootMountPoint", rootMountPoint )
-    return "All done, mounted at {}".format( rootMountPoint )
+    return None
