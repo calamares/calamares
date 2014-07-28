@@ -64,7 +64,7 @@ bool
 isDirty( Partition* partition )
 {
     return !mountPoint( partition ).isEmpty()
-        || format( partition );
+           || format( partition );
 }
 
 } // namespace

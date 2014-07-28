@@ -52,10 +52,10 @@ BootLoaderModel::init( const QList< Device* >& devices )
 void
 BootLoaderModel::createMbrItems()
 {
-    for( auto device : m_devices )
+    for ( auto device : m_devices )
     {
         QString text = tr( "Master Boot Record of %1" )
-            .arg( device->name() );
+                       .arg( device->name() );
         appendRow(
             createBootLoaderItem( text, device->deviceNode(), false )
         );
