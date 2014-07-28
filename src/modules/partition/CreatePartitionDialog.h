@@ -52,6 +52,8 @@ private:
     PartitionNode* m_parent;
     PartitionRole m_role = PartitionRole( PartitionRole::None );
 
+    void initGptPartitionTypeUi();
+    void initMbrPartitionTypeUi();
     void initSectorRange( Partition* );
 
     qint64 mbSizeForSectorRange( qint64 first, qint64 last ) const;

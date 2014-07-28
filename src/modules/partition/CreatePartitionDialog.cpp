@@ -48,28 +48,10 @@ CreatePartitionDialog::CreatePartitionDialog( Device* device, PartitionNode* par
 
     FileSystemFactory::init();
 
-    bool parentIsPartitionTable = parentPartition->isRoot();
-    // Partition types
-    QString fixedPartitionType;
-    if ( !parentIsPartitionTable )
-    {
-        m_role = PartitionRole( PartitionRole::Logical );
-        fixedPartitionType = tr( "Logical" );
-    }
-    else if ( m_device->partitionTable()->hasExtended() )
-    {
-        m_role = PartitionRole( PartitionRole::Primary );
-        fixedPartitionType = tr( "Primary" );
-    }
-
-    if ( fixedPartitionType.isEmpty() )
-        m_ui->fixedPartitionLabel->hide();
+    if ( device->partitionTable()->type() == PartitionTable::msdos )
+        initMbrPartitionTypeUi();
     else
-    {
-        m_ui->fixedPartitionLabel->setText( fixedPartitionType );
-        m_ui->primaryRadioButton->hide();
-        m_ui->extendedRadioButton->hide();
-    }
+        initGptPartitionTypeUi();
 
     // File system
     QStringList fsNames;
@@ -87,6 +69,41 @@ CreatePartitionDialog::CreatePartitionDialog( Device* device, PartitionNode* par
 
 CreatePartitionDialog::~CreatePartitionDialog()
 {}
+
+void
+CreatePartitionDialog::initMbrPartitionTypeUi()
+{
+    QString fixedPartitionString;
+    bool parentIsPartitionTable = m_parent->isRoot();
+    if ( !parentIsPartitionTable )
+    {
+        m_role = PartitionRole( PartitionRole::Logical );
+        fixedPartitionString = tr( "Logical" );
+    }
+    else if ( m_device->partitionTable()->hasExtended() )
+    {
+        m_role = PartitionRole( PartitionRole::Primary );
+        fixedPartitionString = tr( "Primary" );
+    }
+
+    if ( fixedPartitionString.isEmpty() )
+        m_ui->fixedPartitionLabel->hide();
+    else
+    {
+        m_ui->fixedPartitionLabel->setText( fixedPartitionString );
+        m_ui->primaryRadioButton->hide();
+        m_ui->extendedRadioButton->hide();
+    }
+}
+
+void
+CreatePartitionDialog::initGptPartitionTypeUi()
+{
+    m_role = PartitionRole( PartitionRole::Primary );
+    m_ui->fixedPartitionLabel->setText( tr( "GPT" ) );
+    m_ui->primaryRadioButton->hide();
+    m_ui->extendedRadioButton->hide();
+}
 
 Partition*
 CreatePartitionDialog::createPartition()
