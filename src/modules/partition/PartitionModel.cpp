@@ -123,9 +123,9 @@ PartitionModel::headerData( int section, Qt::Orientation orientation, int role )
     case FileSystemColumn:
         return tr( "File System" );
     case MountPointColumn:
-        return tr(" Mount Point" );
+        return tr( "Mount Point" );
     case SizeColumn:
-        return tr(" Size" );
+        return tr( "Size" );
     default:
         cDebug() << "Unknown column" << section;
         return QVariant();
