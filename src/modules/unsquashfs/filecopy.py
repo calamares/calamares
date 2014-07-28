@@ -27,7 +27,6 @@ import subprocess
 import re
 
 
-COPY_CMD = 'rsync -ar --progress %(source)s %(dest)s'
 ON_POSIX = 'posix' in sys.builtin_module_names
 
 
@@ -39,11 +38,7 @@ class FileCopy:
         self.at_env = os.environ
         self.at_env["LC_ALL"] = "C"
 
-        self.process = subprocess.Popen(
-            ( COPY_CMD % {
-                'source': source,
-                'dest': dest,
-                } ).split(),
+        self.process = subprocess.Popen( [ 'rsync', '-ar', '--progress', source, dest ],
             env=self.at_env,
             bufsize=1,
             stdout=subprocess.PIPE,
