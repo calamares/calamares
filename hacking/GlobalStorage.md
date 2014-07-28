@@ -17,6 +17,7 @@ A list of dictionaries, one per partition. The dictionary contains the following
 - `device`: path to the partition device
 - `fs`: the name of the file system
 - `mountPoint`: where the device should be mounted
+- `uuid`: the UUID of the partition device
 
 ## rootMountPoint
 

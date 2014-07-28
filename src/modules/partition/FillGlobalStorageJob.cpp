@@ -29,15 +29,37 @@
 #include <core/partition.h>
 #include <fs/filesystem.h>
 
+// Qt
 #include <QDebug>
+#include <QDir>
+#include <QFileInfo>
+
+typedef QHash<QString, QString> UuidForPartitionHash;
+
+static const char* UUID_DIR = "/dev/disk/by-uuid";
+
+static UuidForPartitionHash
+findPartitionUuids()
+{
+    QDir dir( UUID_DIR );
+    UuidForPartitionHash hash;
+    for ( auto info : dir.entryInfoList( QDir::Files ) )
+    {
+        QString uuid = info.fileName();
+        QString path = info.canonicalFilePath();
+        hash.insert( path, uuid );
+    }
+    return hash;
+}
 
 static QVariant
-mapForPartition( Partition* partition )
+mapForPartition( Partition* partition, const QString& uuid )
 {
     QVariantMap map;
     map[ "device" ] = partition->partitionPath();
     map[ "mountPoint" ] = PartitionInfo::mountPoint( partition );
     map[ "fs" ] = partition->fileSystem().name();
+    map[ "uuid" ] = uuid;
     return map;
 }
 
@@ -68,10 +90,11 @@ FillGlobalStorageJob::exec()
 QVariant
 FillGlobalStorageJob::createPartitionList()
 {
+    UuidForPartitionHash hash = findPartitionUuids();
     QVariantList lst;
-    for( auto device : m_devices )
-        for( auto it = PartitionIterator::begin( device ); it != PartitionIterator::end( device ); ++it)
-            lst << mapForPartition( *it );
+    for ( auto device : m_devices )
+        for ( auto it = PartitionIterator::begin( device ); it != PartitionIterator::end( device ); ++it )
+            lst << mapForPartition( *it, hash.value( ( *it )->partitionPath() ) );
     return lst;
 }
 
