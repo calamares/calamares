@@ -22,7 +22,7 @@ import subprocess
 import tempfile
 
 from libcalamares import *
-from filecopy import FileCopyThread
+from filecopy import FileCopy
 
 
 class UnsquashOperation:
@@ -81,9 +81,8 @@ class UnsquashOperation:
         try:
             subprocess.check_call( [ "mount", entry[ "source" ], entry[ "sourceDir" ], "-t", "squashfs", "-o", "loop" ] )
 
-            t = FileCopyThread( entry[ "sourceDir" ], entry[ "destination" ], self.reportProgress )
-            t.start()
-            t.join()
+            t = FileCopy( entry[ "sourceDir" ], entry[ "destination" ], self.reportProgress )
+            t.run()
         finally:
             subprocess.check_call( [ "umount", "-l", entry[ "sourceDir" ] ] )
 

@@ -26,14 +26,12 @@ import os
 import subprocess
 import re
 
-from threading import Thread
-
 
 COPY_CMD = 'rsync -ar --progress %(source)s %(dest)s'
 ON_POSIX = 'posix' in sys.builtin_module_names
 
 
-class FileCopyThread( Thread ):
+class FileCopy:
     """ Update the value of the progress bar so that we get some movement """
     def __init__( self, source, dest, progress_cb ):
         # Environment used for executing rsync properly
@@ -53,13 +51,6 @@ class FileCopyThread( Thread ):
         )
 
         self.progress_cb = progress_cb
-
-        super( FileCopyThread, self ).__init__()
-
-
-    def kill( self ):
-        if self.process.poll() is None:
-            self.process.kill()
 
 
     def run( self ):
