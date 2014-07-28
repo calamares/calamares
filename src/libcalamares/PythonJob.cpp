@@ -122,15 +122,30 @@ PythonJob::exec()
         calamaresNamespace[ "job" ] = CalamaresPython::PythonJobInterface( this );
         calamaresNamespace[ "globalStorage" ] = bp::ptr( JobQueue::instance()->globalStorage() );
 
-        bp::object result = bp::exec_file( scriptFI.absoluteFilePath().toLocal8Bit().data(),
+        bp::object execResult = bp::exec_file( scriptFI.absoluteFilePath().toLocal8Bit().data(),
                                            scriptNamespace,
                                            scriptNamespace );
 
         bp::object entryPoint = scriptNamespace[ "run" ];
 
-        QString message = QString::fromStdString( bp::extract< std::string >( entryPoint() ) );
+        bp::object runResult = entryPoint();
 
-        cDebug() << "Python job" << prettyName() << "finished with message" << message;
+        //QString message = QString::fromStdString( bp::extract< std::string >( entryPoint() ) );
+        if ( runResult.is_none() )
+        {
+            return JobResult::ok();
+        }
+        else // Something happened in the Python job
+        {
+            bp::tuple resultTuple = bp::extract< bp::tuple >( runResult );
+            QString message = QString::fromStdString( bp::extract< std::string >( resultTuple[ 0 ] ) );
+            QString description = QString::fromStdString( bp::extract< std::string >( resultTuple[ 1 ] ) );
+            return JobResult::error( tr( "Job \"%1\" finished with error" )
+                                        .arg( prettyName() ),
+                                     QString( "<strong>%1</strong><br/>%2" )
+                                        .arg( message )
+                                        .arg( description ) );
+        }
     }
     catch ( bp::error_already_set )
     {
@@ -141,7 +156,7 @@ PythonJob::exec()
         }
         bp::handle_exception();
         PyErr_Clear();
-        return JobResult::error( tr( "Boost.Python error" ),
+        return JobResult::error( tr( "Boost.Python error in job \"%1\"" ).arg( prettyName() ),
                                  msg );
     }
 
