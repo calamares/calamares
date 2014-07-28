@@ -18,6 +18,7 @@
 #   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
 
 import os
+import shutil
 import subprocess
 import tempfile
 from collections import namedtuple
@@ -61,30 +62,23 @@ class UnsquashOperation:
         sourceMountPath = tempfile.mkdtemp()
         try:
             for entry in self.unpacklist:
-                try:
-                    sqfsList = subprocess.check_output( [ "unsquashfs", "-l", entry.source ] )
-                    filesCount = sqfsList.splitlines().count()
-                    self.unpackstatus[ entry.source ].total = filesCount
+                sqfsList = subprocess.check_output( [ "unsquashfs", "-l", entry.source ] )
+                filesCount = sqfsList.splitlines().count()
+                self.unpackstatus[ entry.source ].total = filesCount
 
-                    imgBaseName = os.path.splitext( os.path.basename( entry.source ) )[ 0 ]
-                    imgMountDir = sourceMountPath + os.sep + imgBaseName
-                    os.mkdir( imgMountDir )
-
-                    entry.sourceDir = imgMountDir
-
-                    self.reportProgress()
-
-                    self.unsquashImage( entry )
-                finally:
-                    os.rmdir( imgMountDir )
+                imgBaseName = os.path.splitext( os.path.basename( entry.source ) )[ 0 ]
+                imgMountDir = sourceMountPath + os.sep + imgBaseName
+                os.mkdir( imgMountDir )
+                entry.sourceDir = imgMountDir
+                self.reportProgress()
+                self.unsquashImage( entry )
         finally:
-            os.rmdir( sourceMountPath )
+            shutil.rmtree( sourceMountPath )
 
 
     def unsquashImage( self, entry ):
+        subprocess.check_call( [ "mount", entry.source, entry.sourceDir, "-t", "squashfs", "-o", "loop" ] )
         try:
-            subprocess.check_call( [ "mount", entry.source, entry.sourceDir, "-t", "squashfs", "-o", "loop" ] )
-
             t = FileCopy( entry.sourceDir, entry.destination, self.reportProgress )
             t.run()
         finally:
