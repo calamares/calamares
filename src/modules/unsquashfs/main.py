@@ -20,35 +20,38 @@
 import os
 import subprocess
 import tempfile
+from collections import namedtuple
 
 from libcalamares import *
 from filecopy import FileCopy
 
+UnpackEntry = namedtuple( 'UnpackEntry', [ 'source', 'destination', 'sourceDir' ] )
+UnpackStatusEntry = namedtuple( 'UnpackStatusEntry', [ 'copied', 'total' ] )
 
 class UnsquashOperation:
     def __init__( self, unpack ):
         self.unpacklist = unpack
         self.unpackstatus = dict()
         for entry in unpack:
-            self.unpackstatus[ entry[ "source" ] ] = { 'copied': 0, 'total': 0 }
+            self.unpackstatus[ entry.source ] = UnpackStatusEntry( copied=0, total=0 )
 
 
     def updateCopyProgress( self, source, nfiles ):
         if source in self.unpackstatus:
-            self.unpackstatus[ source ][ 'copied' ] = nfiles
+            self.unpackstatus[ source ].copied = nfiles
             self.reportProgress()
 
 
     def reportProgress( self ):
         progress = float( 0 )
-        for entry in self.unpackstatus:
+        for statusEntry in self.unpackstatus:
             partialProgress = float( 0 )
-            if entry[ 'total' ] is not 0:
+            if statusEntry.total is not 0:
                 partialProgress += 0.05
             else:
                 continue
 
-            partialProgress += 0.95 * ( entry[ 'copied' ] / float( entry[ 'total' ] ) )
+            partialProgress += 0.95 * ( statusEntry.copied / float( statusEntry.total ) )
             progress += partialProgress / len( self.unpackstatus )
 
         job.setprogress( progress )
@@ -59,15 +62,15 @@ class UnsquashOperation:
         try:
             for entry in self.unpacklist:
                 try:
-                    sqfsList = subprocess.check_output( [ "unsquashfs", "-l", entry[ "source" ] ] )
+                    sqfsList = subprocess.check_output( [ "unsquashfs", "-l", entry.source ] )
                     filesCount = sqfsList.splitlines().count()
-                    self.unpackstatus[ entry[ "source" ] ][ 'total' ] = filesCount
+                    self.unpackstatus[ entry.source ].total = filesCount
 
-                    imgBaseName = os.path.splitext( os.path.basename( entry[ "source" ] ) )[ 0 ]
+                    imgBaseName = os.path.splitext( os.path.basename( entry.source ) )[ 0 ]
                     imgMountDir = sourceMountPath + os.sep + imgBaseName
                     os.mkdir( imgMountDir )
 
-                    entry[ "sourceDir" ] = imgMountDir
+                    entry.sourceDir = imgMountDir
 
                     self.reportProgress()
 
@@ -77,14 +80,15 @@ class UnsquashOperation:
         finally:
             os.rmdir( sourceMountPath )
 
+
     def unsquashImage( self, entry ):
         try:
-            subprocess.check_call( [ "mount", entry[ "source" ], entry[ "sourceDir" ], "-t", "squashfs", "-o", "loop" ] )
+            subprocess.check_call( [ "mount", entry.source, entry.sourceDir, "-t", "squashfs", "-o", "loop" ] )
 
-            t = FileCopy( entry[ "sourceDir" ], entry[ "destination" ], self.reportProgress )
+            t = FileCopy( entry.sourceDir, entry.destination, self.reportProgress )
             t.run()
         finally:
-            subprocess.check_call( [ "umount", "-l", entry[ "sourceDir" ] ] )
+            subprocess.check_call( [ "umount", "-l", entry.sourceDir ] )
 
 
 
@@ -112,7 +116,7 @@ def run():
         if not os.path.isfile( source ) or not os.path.isdir( destination ):
             return "Error: bad source or destination"
 
-        unpack.append( { 'source': source, 'destination': destination } )
+        unpack.append( UnpackEntry( source, destination ) )
 
     unsquashop = UnsquashOperation( unpack )
     return unsquashop.run()
