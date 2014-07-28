@@ -19,6 +19,7 @@
 
 import os
 import subprocess
+import tempfile
 
 from libcalamares import *
 from filecopy import FileCopyThread
@@ -54,31 +55,40 @@ class UnsquashOperation:
 
 
     def run( self ):
-        sourceMountPath = job.configuration[ "sourceMountPath" ]
-        for entry in self.unpacklist:
-            unsqfsProcess = subprocess.Popen( [ "unsquashfs", "-l", entry[ "source" ] ], stdout = subprocess.PIPE )
-            wcProcess = subprocess.Popen( [ "wc", "-l" ], stdin = unsqfsProcess.stdout, stdout = subprocess.PIPE )
-            countString = wcProcess.communicate()[ 0 ]
-            filesCount = int( float( countString ) )
-            self.unpackstatus[ entry[ "source" ] ][ 'total' ] = filesCount
+        sourceMountPath = tempfile.mkdtemp()
+        try:
+            for entry in self.unpacklist:
+                try:
+                    unsqfsProcess = subprocess.Popen( [ "unsquashfs", "-l", entry[ "source" ] ], stdout = subprocess.PIPE )
+                    wcProcess = subprocess.Popen( [ "wc", "-l" ], stdin = unsqfsProcess.stdout, stdout = subprocess.PIPE )
+                    countString = wcProcess.communicate()[ 0 ]
+                    filesCount = int( float( countString ) )
+                    self.unpackstatus[ entry[ "source" ] ][ 'total' ] = filesCount
 
-            imgBaseName = os.path.splitext( os.path.basename( entry[ "source" ] ) )[ 0 ]
-            imgMountDir = sourceMountPath + os.sep + imgBaseName
-            os.mkdir( imgMountDir )
+                    imgBaseName = os.path.splitext( os.path.basename( entry[ "source" ] ) )[ 0 ]
+                    imgMountDir = sourceMountPath + os.sep + imgBaseName
+                    os.mkdir( imgMountDir )
 
-            entry[ "sourceDir" ] = imgMountDir
+                    entry[ "sourceDir" ] = imgMountDir
 
-            self.reportProgress()
+                    self.reportProgress()
 
-            self.unsquashImage( entry )
-
+                    self.unsquashImage( entry )
+                finally:
+                    os.rmdir( imgMountDir )
+        finally:
+            os.rmdir( sourceMountPath )
 
     def unsquashImage( self, entry ):
-        subprocess.check_call( [ "mount", entry[ "source" ], entry[ "sourceDir" ], "-t", "squashfs", "-o", "loop" ] )
+        try:
+            subprocess.check_call( [ "mount", entry[ "source" ], entry[ "sourceDir" ], "-t", "squashfs", "-o", "loop" ] )
 
-        t = FileCopyThread( entry[ "sourceDir" ], entry[ "destination" ], self.reportProgress )
-        t.start()
-        t.join()
+            t = FileCopyThread( entry[ "sourceDir" ], entry[ "destination" ], self.reportProgress )
+            t.start()
+            t.join()
+        finally:
+            subprocess.check_call( [ "umount", "-l", entry[ "sourceDir" ] ] )
+
 
 
 def run():
@@ -88,7 +98,6 @@ def run():
     # an ordered list of unpack mappings for sqfs file <-> target dir relative
     # to rootMountPoint, e.g.:
     # configuration:
-    #     sourceMountPath:   "/some/path"
     #     unpack:
     #         - source: "/path/to/squashfs/image.sqfs"
     #           destination: ""
@@ -98,12 +107,6 @@ def run():
     rootMountPoint = globalStorage.value( "rootMountPoint" )
 
     unpack = list()
-
-    sourceTempPath = os.path.abspath( job.configuration[ "sourceMountPath" ] )
-    if not os.path.exists( sourceTempPath ):
-        os.mkdir( sourceTempPath )
-        if not os.path.exists( sourceTempPath ):
-            return "Error: cannot create temporary mount directory for source images"
 
     for entry in job.configuration[ "unpack" ]:
         source = os.path.abspath( entry[ "source" ] )
