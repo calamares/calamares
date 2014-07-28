@@ -46,11 +46,10 @@ class UnsquashOperation:
     def reportProgress( self ):
         progress = float( 0 )
         for statusEntry in self.unpackstatus:
-            partialProgress = float( 0 )
-            if statusEntry.total is not 0:
-                partialProgress += 0.05
-            else:
+            if statusEntry.total == 0:
                 continue
+
+            partialProgress = 0.05 # Having a total !=0 gives 5%
 
             partialProgress += 0.95 * ( statusEntry.copied / float( statusEntry.total ) )
             progress += partialProgress / len( self.unpackstatus )
