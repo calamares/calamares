@@ -59,10 +59,8 @@ class UnsquashOperation:
         try:
             for entry in self.unpacklist:
                 try:
-                    unsqfsProcess = subprocess.Popen( [ "unsquashfs", "-l", entry[ "source" ] ], stdout = subprocess.PIPE )
-                    wcProcess = subprocess.Popen( [ "wc", "-l" ], stdin = unsqfsProcess.stdout, stdout = subprocess.PIPE )
-                    countString = wcProcess.communicate()[ 0 ]
-                    filesCount = int( float( countString ) )
+                    sqfsList = subprocess.check_output( [ "unsquashfs", "-l", entry[ "source" ] ] )
+                    filesCount = sqfsList.splitlines().count()
                     self.unpackstatus[ entry[ "source" ] ][ 'total' ] = filesCount
 
                     imgBaseName = os.path.splitext( os.path.basename( entry[ "source" ] ) )[ 0 ]
