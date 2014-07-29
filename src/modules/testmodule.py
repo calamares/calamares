@@ -33,8 +33,9 @@ except ImportError:
 
 class Job:
     def __init__( self, workingPath, doc ):
-        self.prettyName = "Testing job " + doc[ "name" ]
-        self.workingPath = workingPath
+        self.module_name = doc[ "name" ]
+        self.pretty_name = "Testing job " + doc[ "name" ]
+        self.working_path = workingPath
         self.configuration = doc[ "configuration" ]
 
     def setprogress( self, progress ):
@@ -61,7 +62,7 @@ def main():
         return 1
 
     libcalamares.job = Job( args.moduledir, doc )
-    libcalamares.globalStorage = libcalamares.GlobalStorage()
+    libcalamares.globalstorage = libcalamares.GlobalStorage()
 
     # if a file for simulating globalStorage contents is provided, load it
     if args.globalstorage_yaml:
