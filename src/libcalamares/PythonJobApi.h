@@ -36,6 +36,7 @@ class PythonJobInterface
 public:
     explicit PythonJobInterface( Calamares::PythonJob* parent );
 
+    std::string moduleName;
     std::string prettyName;
     std::string workingPath;
 

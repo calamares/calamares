@@ -36,17 +36,18 @@ namespace bp = boost::python;
 
 BOOST_PYTHON_MODULE( libcalamares )
 {
-    bp::scope().attr( "organizationName" ) = CALAMARES_ORGANIZATION_NAME;
-    bp::scope().attr( "organizationDomain" ) = CALAMARES_ORGANIZATION_DOMAIN;
-    bp::scope().attr( "applicationName" ) = CALAMARES_APPLICATION_NAME;
-    bp::scope().attr( "version" ) = CALAMARES_VERSION;
-    bp::scope().attr( "shortVersion" ) = CALAMARES_VERSION_SHORT;
+    bp::scope().attr( "ORGANIZATION_NAME" ) = CALAMARES_ORGANIZATION_NAME;
+    bp::scope().attr( "ORGANIZATION_DOMAIN" ) = CALAMARES_ORGANIZATION_DOMAIN;
+    bp::scope().attr( "APPLICATION_NAME" ) = CALAMARES_APPLICATION_NAME;
+    bp::scope().attr( "VERSION" ) = CALAMARES_VERSION;
+    bp::scope().attr( "VERSION_SHORT" ) = CALAMARES_VERSION_SHORT;
 
     bp::def( "debug", &CalamaresPython::debug );
 
     bp::class_< CalamaresPython::PythonJobInterface >( "Job", bp::init< Calamares::PythonJob* >() )
-        .def_readonly( "prettyName", &CalamaresPython::PythonJobInterface::prettyName )
-        .def_readonly( "workingPath", &CalamaresPython::PythonJobInterface::workingPath )
+        .def_readonly( "module_name", &CalamaresPython::PythonJobInterface::moduleName )
+        .def_readonly( "pretty_name", &CalamaresPython::PythonJobInterface::prettyName )
+        .def_readonly( "working_path", &CalamaresPython::PythonJobInterface::workingPath )
         .def_readonly( "configuration", &CalamaresPython::PythonJobInterface::configuration )
         .def( "setprogress", &CalamaresPython::PythonJobInterface::setprogress );
 
@@ -122,7 +123,7 @@ PythonJob::exec()
         bp::dict calamaresNamespace = bp::extract< bp::dict >( calamaresModule.attr( "__dict__" ) );
 
         calamaresNamespace[ "job" ] = CalamaresPython::PythonJobInterface( this );
-        calamaresNamespace[ "globalStorage" ] = bp::ptr( JobQueue::instance()->globalStorage() );
+        calamaresNamespace[ "globalstorage" ] = bp::ptr( JobQueue::instance()->globalStorage() );
 
         bp::object execResult = bp::exec_file( scriptFI.absoluteFilePath().toLocal8Bit().data(),
                                            scriptNamespace,

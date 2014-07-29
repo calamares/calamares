@@ -21,6 +21,8 @@
 #include "PythonHelper.h"
 #include "utils/Logger.h"
 
+#include <QDir>
+
 namespace CalamaresPython
 {
 
@@ -35,6 +37,7 @@ debug( const std::string& s )
 PythonJobInterface::PythonJobInterface( Calamares::PythonJob* parent )
     : m_parent( parent )
 {
+    moduleName = QDir( m_parent->m_workingPath ).dirName().toStdString();
     prettyName = m_parent->prettyName().toStdString();
     workingPath = m_parent->m_workingPath.toStdString();
     configuration = CalamaresPython::variantMapToPyDict( m_parent->m_configurationMap );
