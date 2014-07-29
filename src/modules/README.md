@@ -12,4 +12,7 @@ To add a Qt plugin module, put it in a subdirectory and make sure it has a `modu
 
 ### Python and process jobmodules
 
-Batch jobs for Calamares can be written as Python scripts or as generic commands (shell scripts, external programs, etc.). To add a Python or process jobmodule, put it in a subdirectory and make sure it has a `module.conf`. It will be picked up automatically by our CMake magic. `CMakeLists.txt` is not used for Python and process jobmodules.
+Batch jobs for Calamares can be written as Python scripts or as generic commands (shell scripts, external programs, etc.).
+To add a Python or process jobmodule, put it in a subdirectory and make sure it has a `module.conf`. It will be picked up automatically by our CMake magic. `CMakeLists.txt` is not used for Python and process jobmodules.
+
+All code in Python job modules must obey PEP8, the only exception are `libcalamares.globalstorage` keys, which should always be camelCaseWithLowerCaseInitial.
