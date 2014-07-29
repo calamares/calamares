@@ -114,7 +114,7 @@ PartitionPage::updateButtons()
 void
 PartitionPage::onNewPartitionTableClicked()
 {
-    QModelIndex index = m_ui->deviceComboBox->view()->currentIndex();
+    QModelIndex index = m_core->deviceModel()->index( m_ui->deviceComboBox->currentIndex(), 0 );
     Q_ASSERT( index.isValid() );
     Device* device = m_core->deviceModel()->deviceForIndex( index );
 
