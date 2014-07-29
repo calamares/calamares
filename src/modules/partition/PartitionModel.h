@@ -50,7 +50,8 @@ public:
     {
         // The raw size, as a qlonglong. This is different from the DisplayRole of
         // SizeColumn, which is a human-readable string.
-        SizeRole = Qt::UserRole + 1
+        SizeRole = Qt::UserRole + 1,
+        IsFreeSpaceRole
     };
 
     enum Column

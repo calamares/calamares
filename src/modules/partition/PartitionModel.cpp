@@ -174,6 +174,8 @@ PartitionModel::data( const QModelIndex& index, int role ) const
             return QVariant();
     case SizeRole:
         return ( partition->lastSector() - partition->firstSector() + 1 ) * m_device->logicalSectorSize();
+    case IsFreeSpaceRole:
+        return PMUtils::isPartitionFreeSpace( partition );
     default:
         return QVariant();
     }
