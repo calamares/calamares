@@ -50,6 +50,7 @@ private:
     void onEditClicked();
     void onDeleteClicked();
     void onPartitionViewActivated();
+    void onPartitionModelReset();
 
     void updatePartitionToCreate( Device*, Partition* );
     void editExistingPartition( Device*, Partition* );

@@ -19,22 +19,40 @@
 #define PARTITIONMODEL_H
 
 // Qt
-#include <QAbstractListModel>
+#include <QAbstractItemModel>
 
 class Device;
 class Partition;
 class PartitionNode;
 
-class PartitionModel : public QAbstractListModel
+class PartitionModel : public QAbstractItemModel
 {
 public:
+    /**
+     * This helper class must be instantiated on the stack *before* making
+     * changes to the device represented by this model. It will cause the model
+     * to emit modelAboutToBeReset() when instantiated and modelReset() when
+     * destructed.
+     */
+    class ResetHelper
+    {
+    public:
+        ResetHelper( PartitionModel* model );
+        ~ResetHelper();
+
+        ResetHelper( const ResetHelper& ) = delete;
+        ResetHelper& operator=( const ResetHelper& ) = delete;
+    private:
+        PartitionModel* m_model;
+    };
+
     enum Column
     {
         NameColumn,
         FileSystemColumn,
         MountPointColumn,
         SizeColumn,
-        LastColumn = SizeColumn + 1
+        ColumnCount = SizeColumn + 1
     };
 
     PartitionModel( QObject* parent = 0 );
@@ -43,6 +61,8 @@ public:
      */
     void init( Device* device );
 
+    QModelIndex index( int row, int column, const QModelIndex& parent = QModelIndex() ) const override;
+    QModelIndex parent( const QModelIndex& child ) const override;
     int columnCount( const QModelIndex& parent = QModelIndex() ) const override;
     int rowCount( const QModelIndex& parent = QModelIndex() ) const override;
     QVariant data( const QModelIndex& index, int role = Qt::DisplayRole ) const override;
@@ -55,16 +75,8 @@ public:
         return m_device;
     }
 
-    /**
-     * Reload model from m_device new content
-     */
-    void reload();
-
 private:
     Device* m_device;
-    QList< Partition* > m_partitionList;
-
-    void fillPartitionList( PartitionNode* parent );
 };
 
 #endif /* PARTITIONMODEL_H */

@@ -71,15 +71,22 @@ public:
         return m_hasRootMountPoint;
     }
 
-    void refresh( Device* device );
-
     void revert();
+
+    /**
+     * To be called when a partition has been altered, but only for changes
+     * which do not affect its size, because changes which affect the partition size
+     * affect the size of other partitions as well.
+     */
+    void refreshPartition( Device* device, Partition* partition );
 
 Q_SIGNALS:
     void hasRootMountPointChanged( bool value );
     void isDirtyChanged( bool value );
 
 private:
+    void refresh();
+
     /**
      * Owns the Device, PartitionModel and the jobs
      */

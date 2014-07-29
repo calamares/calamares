@@ -65,5 +65,5 @@ EditExistingPartitionDialog::applyChanges( PartitionCoreModule* core )
     if ( m_ui->formatRadioButton->isChecked() )
         core->formatPartition( m_device, m_partition );
     else
-        core->refresh( m_device );
+        core->refreshPartition( m_device, m_partition );
 }

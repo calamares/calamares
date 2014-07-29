@@ -249,8 +249,13 @@ PartitionPage::updateFromCurrentDevice()
 
     Device* device = m_core->deviceModel()->deviceForIndex( index );
 
+    QAbstractItemModel* oldModel = m_ui->partitionTreeView->model();
+    if ( oldModel )
+        disconnect( oldModel, 0, this, 0 );
+
     PartitionModel* model = m_core->partitionModelForDevice( device );
     m_ui->partitionTreeView->setModel( model );
+    m_ui->partitionTreeView->expandAll();
 
     // Must be done here because we need to have a model set to define
     // individual column resize mode
@@ -266,5 +271,12 @@ PartitionPage::updateFromCurrentDevice()
     {
         updateButtons();
     } );
-    connect( model, &QAbstractItemModel::modelReset, this, &PartitionPage::updateButtons );
+    connect( model, &QAbstractItemModel::modelReset, this, &PartitionPage::onPartitionModelReset );
+}
+
+void
+PartitionPage::onPartitionModelReset()
+{
+    m_ui->partitionTreeView->expandAll();
+    updateButtons();
 }

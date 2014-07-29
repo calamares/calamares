@@ -30,48 +30,92 @@
 // KF5
 #include <KFormat>
 
+//- ResetHelper --------------------------------------------
+PartitionModel::ResetHelper::ResetHelper( PartitionModel* model )
+: m_model( model )
+{
+    m_model->beginResetModel();
+}
+
+PartitionModel::ResetHelper::~ResetHelper()
+{
+    m_model->endResetModel();
+}
+
+//- PartitionModel -----------------------------------------
 PartitionModel::PartitionModel( QObject* parent )
-    : QAbstractListModel( parent )
+    : QAbstractItemModel( parent )
 {
 }
 
 void
 PartitionModel::init( Device* device )
 {
-    m_device = device;
-    reload();
-}
-
-void
-PartitionModel::reload()
-{
     beginResetModel();
-    m_partitionList.clear();
-    if ( m_device )
-        fillPartitionList( m_device->partitionTable() );
+    m_device = device;
     endResetModel();
 }
 
 int
 PartitionModel::columnCount( const QModelIndex& parent ) const
 {
-    return LastColumn;
+    return ColumnCount;
 }
 
 int
 PartitionModel::rowCount( const QModelIndex& parent ) const
 {
-    return parent.isValid() ? 0 : m_partitionList.count();
+    Partition* parentPartition = partitionForIndex( parent );
+    if ( parentPartition )
+        return parentPartition->children().count();
+    PartitionTable* table = m_device->partitionTable();
+    return table ? table->children().count() : 0;
+}
+
+QModelIndex
+PartitionModel::index( int row, int column, const QModelIndex& parent ) const
+{
+    PartitionNode* parentPartition = parent.isValid()
+        ? static_cast< PartitionNode* >( partitionForIndex( parent ))
+        : static_cast< PartitionNode* >( m_device->partitionTable() );
+    if ( !parentPartition )
+        return QModelIndex();
+    auto lst = parentPartition->children();
+    if ( row < 0 || row >= lst.count() )
+        return QModelIndex();
+    if ( column < 0 || column >= ColumnCount )
+        return QModelIndex();
+    Partition* partition = parentPartition->children().at( row );
+    return createIndex( row, column, partition );
+}
+
+QModelIndex
+PartitionModel::parent( const QModelIndex& child ) const
+{
+    if ( !child.isValid() )
+        return QModelIndex();
+    Partition* partition = partitionForIndex( child );
+    PartitionNode* parentNode = partition->parent();
+    if ( parentNode == m_device->partitionTable() )
+        return QModelIndex();
+
+    int row = 0;
+    for ( auto p : m_device->partitionTable()->children() )
+    {
+        if ( parentNode == p )
+            return createIndex( row, 0, parentNode );
+        ++row;
+    }
+    cLog() << "No parent found!";
+    return QModelIndex();
 }
 
 QVariant
 PartitionModel::data( const QModelIndex& index, int role ) const
 {
-    int row = index.row();
-    if ( row < 0 || row >= m_partitionList.count() )
+    Partition* partition = partitionForIndex( index );
+    if ( !partition )
         return QVariant();
-
-    Partition* partition = m_partitionList.at( row );
 
     switch ( role )
     {
@@ -80,17 +124,13 @@ PartitionModel::data( const QModelIndex& index, int role ) const
         int col = index.column();
         if ( col == NameColumn )
         {
-            // FIXME: Turn model into a tree model, will make implementing the
-            // preview easier
-            QString prefix = partition->roles().has( PartitionRole::Logical )
-                             ? QStringLiteral( "    " ) : QStringLiteral();
             if ( PMUtils::isPartitionFreeSpace( partition ) )
-                return prefix + tr( "Free Space" );
+                return tr( "Free Space" );
             else
             {
-                return prefix + ( PMUtils::isPartitionNew( partition )
-                                  ? tr( "New partition" )
-                                  : partition->partitionPath() );
+                return PMUtils::isPartitionNew( partition )
+                       ? tr( "New partition" )
+                       : partition->partitionPath();
             }
         }
         if ( col == FileSystemColumn )
@@ -132,23 +172,10 @@ PartitionModel::headerData( int section, Qt::Orientation orientation, int role )
     }
 }
 
-void
-PartitionModel::fillPartitionList( PartitionNode* parent )
-{
-    if ( !parent )
-        return;
-    for ( auto partition : parent->children() )
-    {
-        m_partitionList << partition;
-        fillPartitionList( partition );
-    }
-}
-
 Partition*
 PartitionModel::partitionForIndex( const QModelIndex& index ) const
 {
-    int row = index.row();
-    if ( row < 0 || row >= m_partitionList.count() )
+    if ( !index.isValid() )
         return nullptr;
-    return m_partitionList.at( row );
+    return reinterpret_cast< Partition* >( index.internalPointer() );
 }

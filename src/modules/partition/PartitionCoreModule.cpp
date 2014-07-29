@@ -137,11 +137,12 @@ PartitionCoreModule::createPartitionTable( Device* device, PartitionTable::Table
     // keep previous changes
     info->forgetChanges();
 
+    PartitionModel::ResetHelper helper( partitionModelForDevice( device ) );
     CreatePartitionTableJob* job = new CreatePartitionTableJob( device, type );
     job->updatePreview();
     info->jobs << Calamares::job_ptr( job );
 
-    refresh( device );
+    refresh();
 }
 
 void
@@ -150,12 +151,13 @@ PartitionCoreModule::createPartition( Device* device, Partition* partition )
     auto deviceInfo = infoForDevice( device );
     Q_ASSERT( deviceInfo );
 
+    PartitionModel::ResetHelper helper( partitionModelForDevice( device ) );
     CreatePartitionJob* job = new CreatePartitionJob( device, partition );
     job->updatePreview();
 
     deviceInfo->jobs << Calamares::job_ptr( job );
 
-    refresh( device );
+    refresh();
 }
 
 void
@@ -163,6 +165,8 @@ PartitionCoreModule::deletePartition( Device* device, Partition* partition )
 {
     auto deviceInfo = infoForDevice( device );
     Q_ASSERT( deviceInfo );
+
+    PartitionModel::ResetHelper helper( partitionModelForDevice( device ) );
 
     if ( partition->roles().has( PartitionRole::Extended ) )
     {
@@ -220,7 +224,7 @@ PartitionCoreModule::deletePartition( Device* device, Partition* partition )
         jobs << Calamares::job_ptr( job );
     }
 
-    refresh( device );
+    refresh();
 }
 
 void
@@ -228,11 +232,12 @@ PartitionCoreModule::formatPartition( Device* device, Partition* partition )
 {
     auto deviceInfo = infoForDevice( device );
     Q_ASSERT( deviceInfo );
+    PartitionModel::ResetHelper helper( partitionModelForDevice( device ) );
 
     FormatPartitionJob* job = new FormatPartitionJob( device, partition );
     deviceInfo->jobs << Calamares::job_ptr( job );
 
-    refresh( device );
+    refresh();
 }
 
 QList< Calamares::job_ptr >
@@ -262,11 +267,21 @@ PartitionCoreModule::dumpQueue() const
 }
 
 void
-PartitionCoreModule::refresh( Device* device )
+PartitionCoreModule::refreshPartition( Device* device, Partition* partition )
 {
+    // Keep it simple for now: reset the model. This can be improved to cause
+    // the model to emit dataChanged() for the affected row instead, avoiding
+    // the loss of the current selection.
     auto model = partitionModelForDevice( device );
     Q_ASSERT( model );
-    model->reload();
+    PartitionModel::ResetHelper helper( model );
+
+    refresh();
+}
+
+void
+PartitionCoreModule::refresh()
+{
     updateHasRootMountPoint();
     updateIsDirty();
     m_bootLoaderModel->update();
