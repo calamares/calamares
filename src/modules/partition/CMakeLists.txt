@@ -38,6 +38,7 @@ calamares_add_plugin( partition
         PartitionModel.cpp
         PartitionPage.cpp
         PartitionViewStep.cpp
+        PartitionPreview.cpp
         PMUtils.cpp
     UI
         CreatePartitionDialog.ui

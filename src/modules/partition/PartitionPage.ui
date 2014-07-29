@@ -55,11 +55,7 @@
     </layout>
    </item>
    <item>
-    <widget class="QLabel" name="label">
-     <property name="text">
-      <string>[Disk preview goes here]</string>
-     </property>
-    </widget>
+    <widget class="PartitionPreview" name="partitionPreview"/>
    </item>
    <item>
     <widget class="QTreeView" name="partitionTreeView">
@@ -177,6 +173,14 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>PartitionPreview</class>
+   <extends>QFrame</extends>
+   <header location="global">PartitionPreview.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <tabstops>
   <tabstop>deviceComboBox</tabstop>
   <tabstop>revertButton</tabstop>
