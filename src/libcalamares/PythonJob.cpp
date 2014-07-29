@@ -27,13 +27,22 @@
 
 #undef slots
 #include <boost/python.hpp>
+#include <boost/python/args.hpp>
 
 #include "PythonJobApi.h"
 
 
 namespace bp = boost::python;
 
-
+BOOST_PYTHON_FUNCTION_OVERLOADS( mount_overloads,
+                                 CalamaresPython::mount,
+                                 2, 4 );
+BOOST_PYTHON_FUNCTION_OVERLOADS( chroot_call_str_overloads,
+                                 CalamaresPython::chroot_call,
+                                 1, 3 );
+BOOST_PYTHON_FUNCTION_OVERLOADS( chroot_call_list_overloads,
+                                 CalamaresPython::chroot_call,
+                                 1, 3 );
 BOOST_PYTHON_MODULE( libcalamares )
 {
     bp::scope().attr( "ORGANIZATION_NAME" ) = CALAMARES_ORGANIZATION_NAME;
@@ -41,8 +50,6 @@ BOOST_PYTHON_MODULE( libcalamares )
     bp::scope().attr( "APPLICATION_NAME" ) = CALAMARES_APPLICATION_NAME;
     bp::scope().attr( "VERSION" ) = CALAMARES_VERSION;
     bp::scope().attr( "VERSION_SHORT" ) = CALAMARES_VERSION_SHORT;
-
-    bp::def( "debug", &CalamaresPython::debug );
 
     bp::class_< CalamaresPython::PythonJobInterface >( "Job", bp::init< Calamares::PythonJob* >() )
         .def_readonly( "module_name", &CalamaresPython::PythonJobInterface::moduleName )
@@ -58,6 +65,51 @@ BOOST_PYTHON_MODULE( libcalamares )
         .def( "keys",       &Calamares::GlobalStorage::python_keys )
         .def( "remove",     &Calamares::GlobalStorage::python_remove )
         .def( "value",      &Calamares::GlobalStorage::python_value );
+
+    // libcalamares.utils submodule starts here
+    bp::object submodule( bp::borrowed( PyImport_AddModule( "utils" ) ) );
+    bp::scope().attr( "utils" ) = submodule;
+    bp::scope utilsScope = submodule;
+    Q_UNUSED( utilsScope );
+
+    bp::def( "debug", &CalamaresPython::debug );
+    bp::def( "mount",
+             &CalamaresPython::mount,
+             mount_overloads( bp::args( "device_path",
+                                        "mount_point",
+                                        "filesystem_name",
+                                        "options" ),
+                              "Runs the mount utility with the specified parameters.\n"
+                              "Returns the program's exit code, or:\n"
+                              "-1 = QProcess crash\n"
+                              "-2 = QProcess cannot start\n"
+                              "-3 = bad arguments" ) );
+    bp::def( "chroot_call",
+             static_cast< int (*)( const std::string&,
+                                   const std::string&,
+                                   int ) >( &CalamaresPython::chroot_call ),
+             chroot_call_str_overloads( bp::args( "command",
+                                                  "stdin",
+                                                  "timeout" ),
+                                        "Runs the specified command in the chroot of the target system.\n"
+                                        "Returns the program's exit code, or:\n"
+                                        "-1 = QProcess crash\n"
+                                        "-2 = QProcess cannot start\n"
+                                        "-3 = bad arguments\n"
+                                        "-4 = QProcess timeout" ) );
+    bp::def( "chroot_call",
+             static_cast< int (*)( const bp::list&,
+                                   const std::string&,
+                                   int ) >( &CalamaresPython::chroot_call ),
+             chroot_call_list_overloads( bp::args( "args",
+                                                   "stdin",
+                                                   "timeout" ),
+                                         "Runs the specified command in the chroot of the target system.\n"
+                                         "Returns the program's exit code, or:\n"
+                                         "-1 = QProcess crash\n"
+                                         "-2 = QProcess cannot start\n"
+                                         "-3 = bad arguments\n"
+                                         "-4 = QProcess timeout" ) );
 }
 
 

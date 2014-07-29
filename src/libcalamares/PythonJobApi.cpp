@@ -20,11 +20,56 @@
 
 #include "PythonHelper.h"
 #include "utils/Logger.h"
+#include "utils/CalamaresUtilsSystem.h"
 
 #include <QDir>
 
+#undef slots
+#include <boost/python/extract.hpp>
+
+
 namespace CalamaresPython
 {
+
+int
+mount( const std::string& device_path,
+       const std::string& mount_point,
+       const std::string& filesystem_name,
+       const std::string& options )
+{
+    return CalamaresUtils::mount( QString::fromStdString( device_path ),
+                                  QString::fromStdString( mount_point ),
+                                  QString::fromStdString( filesystem_name ),
+                                  QString::fromStdString( options ) );
+}
+
+
+int
+chroot_call( const std::string& command,
+             const std::string& stdin,
+             int timeout )
+{
+    return CalamaresUtils::chrootCall( QString::fromStdString( command ),
+                                       QString::fromStdString( stdin ),
+                                       timeout );
+}
+
+
+int
+chroot_call( const boost::python::list& args,
+             const std::string& stdin,
+             int timeout )
+{
+    QStringList list;
+    for ( int i = 0; i < boost::python::len( args ); ++i )
+    {
+        list.append( QString::fromStdString(
+            boost::python::extract< std::string >( args[ i ] ) ) );
+    }
+    return CalamaresUtils::chrootCall( list.join( ' ' ),
+                                       QString::fromStdString( stdin ),
+                                       timeout );
+}
 
 
 void
@@ -50,5 +95,6 @@ PythonJobInterface::setprogress( qreal progress )
     if ( progress >= 0 && progress <= 1 )
         m_parent->emitProgress( progress );
 }
+
 
 }

@@ -29,6 +29,19 @@
 namespace CalamaresPython
 {
 
+int mount( const std::string& device_path,
+           const std::string& mount_point,
+           const std::string& filesystem_name = std::string(),
+           const std::string& options = std::string() );
+
+int chroot_call( const std::string& command,
+                 const std::string& stdin = std::string(),
+                 int timeout = 0 );
+
+int chroot_call( const boost::python::list& args,
+                 const std::string& stdin = std::string(),
+                 int timeout = 0 );
+
 void debug( const std::string& s );
 
 class PythonJobInterface

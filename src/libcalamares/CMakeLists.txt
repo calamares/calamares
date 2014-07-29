@@ -22,6 +22,7 @@ set( libSources
     kdsingleapplicationguard/kdlockedsharedmemorypointer.cpp
 
     utils/CalamaresUtils.cpp
+    utils/CalamaresUtilsSystem.cpp
     utils/Logger.cpp
 )
 
