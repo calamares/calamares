@@ -46,5 +46,5 @@ def run():
         str(libcalamares.globalStorage.value("item3")))
 
     libcalamares.job.setprogress(0.1)
-    libcalamares.debug(accumulator)
+    libcalamares.utils.debug(accumulator)
     return "", accumulator
