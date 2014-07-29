@@ -19,62 +19,61 @@
 
 import os
 import subprocess
-import sys
 
 import libcalamares
 
 
 # FIXME: Duplicated between mount and grub
-def mount( devicePath, mountPoint, fs = None, options = None ):
-    assert devicePath
-    assert mountPoint
-    if not os.path.exists( mountPoint ):
-        os.makedirs( mountPoint )
-    cmd = [ "mount", devicePath, mountPoint ]
+def mount(device_path, mount_point, fs=None, options=None):
+    assert device_path
+    assert mount_point
+    if not os.path.exists(mount_point):
+        os.makedirs(mount_point)
+    cmd = ["mount", device_path, mount_point]
     if fs:
-        cmd += ( "-t", fs )
+        cmd += ("-t", fs)
     if options:
-        cmd += ( "-o", options )
-    subprocess.check_call( cmd )
+        cmd += ("-o", options)
+    subprocess.check_call(cmd)
 
 
-def mountPartitions( rootMountPoint, partitions ):
+def mount_partitions(root_mount_point, partitions):
     for partition in partitions:
-        if not partition[ "mountPoint" ]:
+        if not partition["mountPoint"]:
             continue
         # Create mount point with `+` rather than `os.path.join()` because
         # `partition["mountPoint"]` starts with a '/'.
-        mountPoint = rootMountPoint + partition[ "mountPoint" ]
-        mount( partition[ "device" ], mountPoint,
-            fs = partition.get( "fs" ),
-            options = partition.get( "options" )
-        )
+        mount_point = root_mount_point + partition["mountPoint"]
+        mount(partition["device"], mount_point,
+              fs=partition.get("fs"),
+              options=partition.get("options")
+              )
 
 
-def umountPartitions( rootMountPoint, partitions ):
+def umount_partitions(root_mount_point, partitions):
     for partition in partitions:
-        if not partition[ "mountPoint" ]:
+        if not partition["mountPoint"]:
             continue
-        subprocess.call( [ "umount", rootMountPoint + partition[ "mountPoint" ] ] )
+        subprocess.call(["umount", root_mount_point + partition["mountPoint"]])
 
 
-def chroot_call( rootMountPoint, cmd ):
-    subprocess.check_call( [ "chroot", rootMountPoint ] + cmd )
+def chroot_call(root_mount_point, cmd):
+    subprocess.check_call(["chroot", root_mount_point] + cmd)
 
 
-def installGrub( rootMountPoint, bootLoader ):
-    installPath = bootLoader[ "installPath" ]
-    chroot_call( rootMountPoint, [ "grub-install", installPath ] )
-    chroot_call( rootMountPoint, [ "grub-mkconfig", "-o", "/boot/grub/grub.cfg" ] )
+def install_grub(root_mount_point, boot_loader):
+    install_path = boot_loader["installPath"]
+    chroot_call(root_mount_point, ["grub-install", install_path])
+    chroot_call(root_mount_point, ["grub-mkconfig", "-o", "/boot/grub/grub.cfg"])
 
 
 def run():
-    rootMountPoint = libcalamares.globalStorage.value( "rootMountPoint" )
-    bootLoader = libcalamares.globalStorage.value( "bootLoader" )
-    extraMounts = libcalamares.job.configuration[ "extraMounts" ]
-    mountPartitions( rootMountPoint, extraMounts )
+    root_mount_point = libcalamares.globalstorage.value("rootMountPoint")
+    boot_loader = libcalamares.globalstorage.value("bootLoader")
+    extra_mounts = libcalamares.job.configuration["extraMounts"]
+    mount_partitions(root_mount_point, extra_mounts)
     try:
-        installGrub( rootMountPoint, bootLoader )
+        install_grub(root_mount_point, boot_loader)
     finally:
-        umountPartitions( rootMountPoint, extraMounts )
+        umount_partitions(root_mount_point, extra_mounts)
     return None
