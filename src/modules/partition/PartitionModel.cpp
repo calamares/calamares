@@ -30,6 +30,28 @@
 // KF5
 #include <KFormat>
 
+// Qt
+#include <QColor>
+
+static QColor COLORS[ 4 ] = {
+    "#448eca",
+    "#a5cc42",
+    "#d87e30",
+    "#ffbdbd",
+};
+static QColor FREE_SPACE_COLOR = "#777777";
+static QColor EXTENDED_COLOR = "#aaaaaa";
+
+static QColor colorForPartition( Partition* partition, int row )
+{
+    if ( PMUtils::isPartitionFreeSpace( partition ) )
+        return FREE_SPACE_COLOR;
+    if ( partition->roles().has( PartitionRole::Extended ) )
+        return EXTENDED_COLOR;
+    // No partition-specific color needed, pick one from our list
+    return COLORS[ row % 4 ];
+}
+
 //- ResetHelper --------------------------------------------
 PartitionModel::ResetHelper::ResetHelper( PartitionModel* model )
 : m_model( model )
@@ -145,6 +167,11 @@ PartitionModel::data( const QModelIndex& index, int role ) const
         cDebug() << "Unknown column" << col;
         return QVariant();
     }
+    case Qt::DecorationRole:
+        if ( index.column() == NameColumn )
+            return colorForPartition( partition, index.row() );
+        else
+            return QVariant();
     default:
         return QVariant();
     }
