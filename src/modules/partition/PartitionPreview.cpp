@@ -24,7 +24,8 @@
 #include <QPainter>
 
 
-static const int VIEW_HEIGHT = 40;
+static const int VIEW_HEIGHT = 30;
+static const int CORNER_RADIUS = 3;
 static const int EXTENDED_PARTITION_MARGIN = 4;
 
 
@@ -49,8 +50,45 @@ void
 PartitionPreview::paintEvent( QPaintEvent* event )
 {
     QPainter painter( viewport() );
-    painter.fillRect( rect(), Qt::red );
+    painter.fillRect( rect(), palette().window() );
+    painter.setRenderHint( QPainter::Antialiasing );
     drawPartitions( &painter, rect(), QModelIndex() );
+}
+
+static void
+drawSection( QPainter* painter, const QRect& rect_, int x, int width, const QModelIndex& index )
+{
+    QColor color = index.data( Qt::DecorationRole ).value< QColor >();
+    bool isFreeSpace = index.data( PartitionModel::IsFreeSpaceRole ).toBool();
+
+    QRect rect = rect_;
+    const int y = rect.y();
+    const int height = rect.height();
+    const int radius = qMax( 1, CORNER_RADIUS - ( VIEW_HEIGHT - height ) / 2 );
+    painter->setClipRect( x, y, width, height );
+    painter->translate( 0.5, 0.5 );
+
+    rect.adjust( 0, 0, -1, -1 );
+    const QColor borderColor = color.darker();
+    painter->setPen( borderColor );
+    painter->setBrush( color );
+    painter->drawRoundedRect( rect, radius, radius );
+
+    // Draw shade
+    if ( !isFreeSpace )
+        rect.adjust( 2, 2, -2, -2 );
+
+    QLinearGradient gradient( 0, 0, 0, height / 2 );
+
+    qreal c = isFreeSpace ? 0 : 1;
+    gradient.setColorAt( 0, QColor::fromRgbF( c, c, c, 0.3 ) );
+    gradient.setColorAt( 1, QColor::fromRgbF( c, c, c, 0 ) );
+
+    painter->setPen( Qt::NoPen );
+    painter->setBrush( gradient );
+    painter->drawRoundedRect( rect, radius, radius );
+
+    painter->translate( -0.5, -0.5 );
 }
 
 void
@@ -63,7 +101,6 @@ PartitionPreview::drawPartitions( QPainter* painter, const QRect& rect, const QM
     const int totalWidth = rect.width();
     struct Item {
         qreal size;
-        QColor color;
         QModelIndex index;
     };
     QVector< Item > items( count );
@@ -72,9 +109,8 @@ PartitionPreview::drawPartitions( QPainter* painter, const QRect& rect, const QM
     {
         QModelIndex index = modl->index( row, 0, parent );
         qreal size = index.data( PartitionModel::SizeRole ).toLongLong();
-        QColor color = index.data( Qt::DecorationRole ).value< QColor >();
         total += size;
-        items[ row ] = { size, color, index };
+        items[ row ] = { size, index };
     }
 
     int x = rect.x();
@@ -88,7 +124,7 @@ PartitionPreview::drawPartitions( QPainter* painter, const QRect& rect, const QM
             // Make sure we fill the last pixel column
             width = rect.right() - x + 1;
 
-        painter->fillRect( x, rect.y(), width, rect.height(), item.color );
+        drawSection( painter, rect, x, width, item.index );
         if ( modl->hasChildren( item.index ) )
         {
             QRect subRect(
