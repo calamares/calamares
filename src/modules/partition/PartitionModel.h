@@ -46,6 +46,13 @@ public:
         PartitionModel* m_model;
     };
 
+    enum
+    {
+        // The raw size, as a qlonglong. This is different from the DisplayRole of
+        // SizeColumn, which is a human-readable string.
+        SizeRole = Qt::UserRole + 1
+    };
+
     enum Column
     {
         NameColumn,

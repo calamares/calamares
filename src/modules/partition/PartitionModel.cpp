@@ -172,6 +172,8 @@ PartitionModel::data( const QModelIndex& index, int role ) const
             return colorForPartition( partition, index.row() );
         else
             return QVariant();
+    case SizeRole:
+        return ( partition->lastSector() - partition->firstSector() + 1 ) * m_device->logicalSectorSize();
     default:
         return QVariant();
     }
