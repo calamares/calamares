@@ -23,29 +23,33 @@ import subprocess
 import libcalamares
 
 
-def listMounts( rootMountPoint ):
+def list_mounts(root_mount_point):
     lst = []
-    for line in open( "/etc/mtab" ).readlines():
-        device, mountPoint, _ = line.split( " ", 2 )
-        if mountPoint.startswith( rootMountPoint ):
-            lst.append( ( device, mountPoint ) )
+    for line in open("/etc/mtab").readlines():
+        device, mount_point, _ = line.split(" ", 2)
+        if mount_point.startswith(root_mount_point):
+            lst.append((device, mount_point))
     return lst
 
 
 def run():
-    rootMountPoint = libcalamares.globalStorage.value( "rootMountPoint" )
-    if not rootMountPoint:
-        return ( "No mount point for root partition in GlobalStorage", "GlobalStorage does not contain a \"rootMountPoint\" key, doing nothing" )
-    if not os.path.exists( rootMountPoint ):
-        return ( "Bad mount point for root partition in GlobalStorage", "GlobalStorage[\"rootMountPoint\"] is \"{}\", which does not exist, doing nothing".format( rootMountPoint ) )
+    root_mount_point = libcalamares.globalstorage.value("rootMountPoint")
+    if not root_mount_point:
+        return ("No mount point for root partition in globalstorage",
+                "globalstorage does not contain a \"rootMountPoint\" key, "
+                "doing nothing")
+    if not os.path.exists(root_mount_point):
+        return ("Bad mount point for root partition in globalstorage",
+                "globalstorage[\"rootMountPoint\"] is \"{}\", which does not "
+                "exist, doing nothing".format(root_mount_point))
 
-    lst = listMounts( rootMountPoint )
+    lst = list_mounts(root_mount_point)
     # Sort the list by mount point in decreasing order. This way we can be sure
     # we unmount deeper dirs first.
-    lst.sort( key = lambda x: x[ 1 ], reverse = True )
+    lst.sort(key=lambda x: x[1], reverse=True)
 
-    for device, mountPoint in lst:
-        subprocess.check_call( [ "umount", mountPoint ] )
+    for device, mount_point in lst:
+        subprocess.check_call(["umount", mount_point])
 
-    os.rmdir( rootMountPoint )
+    os.rmdir(root_mount_point)
     return None
