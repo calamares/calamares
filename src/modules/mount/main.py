@@ -19,46 +19,46 @@
 
 import os
 import subprocess
-import sys
 import tempfile
 
 import libcalamares
 
 
 # FIXME: Duplicated between mount and grub
-def mount( devicePath, mountPoint, fs = None, options = None ):
-    assert devicePath
-    assert mountPoint
-    if not os.path.exists( mountPoint ):
-        os.makedirs( mountPoint )
-    cmd = [ "mount", devicePath, mountPoint ]
+def mount(device_path, mount_point, fs=None, options=None):
+    assert device_path
+    assert mount_point
+    if not os.path.exists(mount_point):
+        os.makedirs(mount_point)
+    cmd = ["mount", device_path, mount_point]
     if fs:
-        cmd += ( "-t", fs )
+        cmd += ("-t", fs)
     if options:
-        cmd += ( "-o", options )
-    subprocess.check_call( cmd )
+        cmd += ("-o", options)
+    subprocess.check_call(cmd)
 
 
-def mountPartitions( rootMountPoint, partitions ):
+def mount_partitions(root_mount_point, partitions):
     for partition in partitions:
-        if not partition[ "mountPoint" ]:
+        if not partition["mountPoint"]:
             continue
         # Create mount point with `+` rather than `os.path.join()` because
         # `partition["mountPoint"]` starts with a '/'.
-        mountPoint = rootMountPoint + partition[ "mountPoint" ]
-        mount( partition[ "device" ], mountPoint,
-            fs = partition.get( "fs" ),
-            options = partition.get( "options" )
-        )
+        mount_point = root_mount_point + partition["mountPoint"]
+        mount(partition["device"], mount_point,
+              fs=partition.get("fs"),
+              options=partition.get("options")
+              )
 
 
 def run():
-    rootMountPoint = tempfile.mkdtemp( prefix="calamares-root-" )
-    partitions = libcalamares.globalStorage.value( "partitions" )
+    root_mount_point = tempfile.mkdtemp(prefix="calamares-root-")
+    partitions = libcalamares.globalstorage.value("partitions")
 
     # Sort by mount points to ensure / is mounted before the rest
-    partitions.sort( key = lambda x: x[ "mountPoint" ] )
-    mountPartitions( rootMountPoint, libcalamares.globalStorage.value( "partitions" ) )
+    partitions.sort(key=lambda x: x["mountPoint"])
+    mount_partitions(
+        root_mount_point, libcalamares.globalstorage.value("partitions"))
 
-    libcalamares.globalStorage.insert( "rootMountPoint", rootMountPoint )
+    libcalamares.globalstorage.insert("rootMountPoint", root_mount_point)
     return None
