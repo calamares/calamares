@@ -159,8 +159,7 @@ def run():
 
     for entry in job.configuration["unpack"]:
         source = os.path.abspath(entry["source"])
-        destination = os.path.abspath(
-            os.path.join(root_mount_point, entry["destination"]))
+        destination = os.path.abspath(root_mount_point + entry["destination"])
 
         if not os.path.isfile(source) or not os.path.isdir(destination):
             return ("Bad source or destination",
