@@ -145,6 +145,10 @@ ModuleManager::doInit()
                     {
                         m_availableModules.insert( moduleInfo->name(), moduleInfo );
                     }
+                    else
+                    {
+                        delete moduleInfo;
+                    }
                 }
                 else
                 {
