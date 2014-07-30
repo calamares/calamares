@@ -42,6 +42,15 @@
 // Qt
 #include <QStandardItemModel>
 
+static bool
+hasRootPartition( Device* device )
+{
+    for ( auto it = PartitionIterator::begin( device ); it != PartitionIterator::end( device ); ++it )
+        if ( (*it)->mountPoint() == "/" )
+            return true;
+    return false;
+}
+
 //- DeviceInfo ---------------------------------------------
 PartitionCoreModule::DeviceInfo::DeviceInfo( Device* _device )
     : device( _device )
@@ -92,6 +101,14 @@ PartitionCoreModule::init()
 {
     CoreBackend* backend = CoreBackendManager::self()->backend();
     auto devices = backend->scanDevices();
+
+    // Remove the device which contains / from the list
+    for ( auto it = devices.begin(); it != devices.end(); )
+        if ( hasRootPartition( *it ) )
+            it = devices.erase( it );
+        else
+            ++it;
+
     for ( auto device : devices )
     {
         auto deviceInfo = new DeviceInfo( device );
