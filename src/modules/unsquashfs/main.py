@@ -93,7 +93,7 @@ class UnsquashOperation:
 
     def report_progress(self):
         progress = float(0)
-        for status_entry in self.unpackstatus:
+        for status_entry in self.unpackstatus.values():
             if status_entry.total == 0:
                 continue
 
