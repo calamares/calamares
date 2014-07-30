@@ -125,6 +125,10 @@ class UnsquashOperation:
             shutil.rmtree(source_mount_path)
 
     def unsquash_image(self, entry, imgmountdir):
+        def progress_cb(copied):
+            self.unpackstatus[entry.source].copied = copied
+            self.report_progress()
+
         subprocess.check_call(["mount",
                                entry.source,
                                imgmountdir,
@@ -132,7 +136,7 @@ class UnsquashOperation:
         try:
             file_copy(imgmountdir,
                       entry.destination,
-                      self.report_progress)
+                      progress_cb)
         finally:
             subprocess.check_call(["umount", "-l", imgmountdir])
 
