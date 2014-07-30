@@ -28,7 +28,7 @@ from collections import namedtuple
 from libcalamares import *
 
 UnpackEntry = namedtuple(
-    'UnpackEntry', ['source', 'destination', 'source_dir'])
+    'UnpackEntry', ['source', 'destination'])
 UnpackStatusEntry = namedtuple('UnpackStatusEntry', ['copied', 'total'])
 
 ON_POSIX = 'posix' in sys.builtin_module_names
@@ -114,23 +114,22 @@ class UnsquashOperation:
                     os.path.basename(entry.source))[0]
                 imgmountdir = source_mount_path + os.sep + imgbasename
                 os.mkdir(imgmountdir)
-                entry.source_dir = imgmountdir
                 self.report_progress()
-                self.unsquash_image(entry)
+                self.unsquash_image(entry, imgmountdir)
         finally:
             shutil.rmtree(source_mount_path)
 
-    def unsquash_image(self, entry):
+    def unsquash_image(self, entry, imgmountdir):
         subprocess.check_call(["mount",
                                entry.source,
-                               entry.source_dir,
+                               imgmountdir,
                                "-t", "squashfs", "-o", "loop"])
         try:
-            file_copy(entry.source_dir,
+            file_copy(imgmountdir,
                       entry.destination,
                       self.report_progress)
         finally:
-            subprocess.check_call(["umount", "-l", entry.source_dir])
+            subprocess.check_call(["umount", "-l", imgmountdir])
 
 
 def run():
