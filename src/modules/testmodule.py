@@ -70,7 +70,7 @@ def main():
         with open(args.globalstorage_yaml) as f:
             doc = yaml.load(f)
         for key, value in doc.items():
-            libcalamares.globalStorage.insert(key, value)
+            libcalamares.globalstorage.insert(key, value)
 
     scriptpath = os.path.abspath(args.moduledir)
     sys.path.append(scriptpath)
