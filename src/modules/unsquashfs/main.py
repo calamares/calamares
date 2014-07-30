@@ -161,10 +161,11 @@ def run():
         source = os.path.abspath(entry["source"])
         destination = os.path.abspath(root_mount_point + entry["destination"])
 
-        if not os.path.isfile(source) or not os.path.isdir(destination):
-            return ("Bad source or destination",
-                    "source=\"{}\"\ndestination=\"{}\"".format(source,
-                                                               destination))
+        if not os.path.isfile(source):
+            return ("Bad source", "source=\"{}\"".format(source))
+        if not os.path.isdir(destination):
+            return ("Bad destination",
+                    "destination=\"{}\"".format(destination))
 
         unpack.append(UnpackEntry(source, destination))
 
