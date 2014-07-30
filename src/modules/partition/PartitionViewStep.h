@@ -37,6 +37,7 @@ public:
     explicit PartitionViewStep( QObject* parent = 0 );
 
     QString prettyName() const override;
+    QWidget* createSummaryWidget() const override;
 
     QWidget* widget() override;
 

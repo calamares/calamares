@@ -24,40 +24,67 @@
 #include <QBoxLayout>
 #include <QLabel>
 
+static const int SECTION_SPACING = 12;
 
 SummaryPage::SummaryPage( QWidget* parent )
     : QWidget()
 {
-    QBoxLayout *mainLayout = new QVBoxLayout;
-    setLayout( mainLayout );
-
-    mainLayout->addStretch();
-
-    m_label = new QLabel( this );
-    mainLayout->addWidget( m_label );
-    m_label->setWordWrap( true );
-
-    mainLayout->addStretch();
+    QVBoxLayout* layout = new QVBoxLayout( this );
+    layout->setContentsMargins( 0, 0, 0, 0 );
 }
 
 
 void
 SummaryPage::onActivate()
 {
+    createContentWidget();
+
     QString text;
+    bool first = true;
     foreach ( Calamares::ViewStep* step,
               Calamares::ViewManager::instance()->prepareSteps() )
     {
-        //TODO: make it nice!
-        if ( !step->prettyStatus().isEmpty() )
-        {
-            if ( !text.isEmpty() )
-                text += "<br/><br/>";
+        QString text = step->prettyStatus();
+        QWidget* widget = step->createSummaryWidget();
 
-            text += "<h3>" + step->prettyName() +
-                    "</h3><br/>" + step->prettyStatus();
-        }
+        if ( text.isEmpty() && !widget )
+            continue;
+
+        if ( first )
+            first = false;
+        else
+            m_layout->addSpacing( SECTION_SPACING );
+
+        m_layout->addWidget( createTitleLabel( step->prettyName() ) );
+        if ( !text.isEmpty() )
+            m_layout->addWidget( createBodyLabel( text ) );
+        if ( widget )
+            m_layout->addWidget( widget );
     }
+    m_layout->addStretch();
+}
 
-    m_label->setText( text );
+void
+SummaryPage::createContentWidget()
+{
+    delete m_contentWidget;
+    m_contentWidget = new QWidget;
+    m_layout = new QVBoxLayout( m_contentWidget );
+    layout()->addWidget( m_contentWidget );
+}
+
+QLabel*
+SummaryPage::createTitleLabel( const QString& text ) const
+{
+    QLabel* label = new QLabel( text );
+    QFont fnt = font();
+    fnt.setBold( true );
+    label->setFont( fnt );
+    return label;
+}
+
+QLabel*
+SummaryPage::createBodyLabel( const QString& text ) const
+{
+    return new QLabel( text );
 }

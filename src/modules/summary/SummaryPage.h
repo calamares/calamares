@@ -22,6 +22,7 @@
 #include <QWidget>
 
 class QLabel;
+class QVBoxLayout;
 
 class SummaryPage : public QWidget
 {
@@ -32,7 +33,12 @@ public:
     void onActivate();
 
 private:
-    QLabel* m_label;
+    QVBoxLayout* m_layout = nullptr;
+    QWidget* m_contentWidget = nullptr;
+
+    void createContentWidget();
+    QLabel* createTitleLabel( const QString& text ) const;
+    QLabel* createBodyLabel( const QString& text ) const;
 };
 
 #endif // SUMMARYPAGE_H

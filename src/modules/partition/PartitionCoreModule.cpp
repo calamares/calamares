@@ -349,3 +349,30 @@ PartitionCoreModule::revert()
     init();
     updateIsDirty();
 }
+
+QList< PartitionCoreModule::SummaryInfo >
+PartitionCoreModule::createSummaryInfo() const
+{
+    QList< SummaryInfo > lst;
+    CoreBackend* backend = CoreBackendManager::self()->backend();
+    for ( auto deviceInfo : m_deviceInfos )
+    {
+        if ( !deviceInfo->isDirty() )
+            continue;
+        SummaryInfo summaryInfo;
+        summaryInfo.deviceName = deviceInfo->device->name();
+
+        Device* deviceBefore = backend->scanDevice( deviceInfo->device->deviceNode() );
+        summaryInfo.partitionModelBefore = new PartitionModel;
+        summaryInfo.partitionModelBefore->init( deviceBefore );
+        // Make deviceBefore a child of partitionModelBefore so that it is not
+        // leaked (as long as partitionModelBefore is deleted)
+        deviceBefore->setParent( summaryInfo.partitionModelBefore );
+
+        summaryInfo.partitionModelAfter = new PartitionModel;
+        summaryInfo.partitionModelAfter->init( deviceInfo->device.data() );
+
+        lst << summaryInfo;
+    }
+    return lst;
+}

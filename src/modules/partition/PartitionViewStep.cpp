@@ -18,8 +18,15 @@
 
 #include <PartitionViewStep.h>
 
-#include <PartitionPage.h>
+#include <DeviceModel.h>
 #include <PartitionCoreModule.h>
+#include <PartitionModel.h>
+#include <PartitionPage.h>
+#include <PartitionPreview.h>
+
+// Qt
+#include <QFormLayout>
+#include <QLabel>
 
 PartitionViewStep::PartitionViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
@@ -44,6 +51,33 @@ PartitionViewStep::widget()
     return m_widget;
 }
 
+
+QWidget*
+PartitionViewStep::createSummaryWidget() const
+{
+    QWidget* widget = new QWidget;
+    QFormLayout* layout = new QFormLayout( widget );
+    layout->setMargin( 0 );
+
+    QList< PartitionCoreModule::SummaryInfo > list = m_core->createSummaryInfo();
+    for ( const auto& info : list )
+    {
+        PartitionPreview* preview;
+
+        layout->addRow( new QLabel( info.deviceName ) );
+
+        preview = new PartitionPreview;
+        preview->setModel( info.partitionModelBefore );
+        info.partitionModelBefore->setParent( widget );
+        layout->addRow( tr( "Before:" ), preview );
+
+        preview = new PartitionPreview;
+        preview->setModel( info.partitionModelAfter );
+        info.partitionModelAfter->setParent( widget );
+        layout->addRow( tr( "After:" ), preview );
+    }
+    return widget;
+}
 
 void
 PartitionViewStep::next()

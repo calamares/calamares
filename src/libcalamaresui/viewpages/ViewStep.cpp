@@ -36,6 +36,11 @@ ViewStep::prettyStatus() const
     return QString();
 }
 
+QWidget*
+ViewStep::createSummaryWidget() const
+{
+    return nullptr;
+}
 
 void
 ViewStep::onActivate()

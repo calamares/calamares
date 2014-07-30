@@ -45,6 +45,13 @@ class PartitionCoreModule : public QObject
 {
     Q_OBJECT
 public:
+    struct SummaryInfo
+    {
+        QString deviceName;
+        PartitionModel* partitionModelBefore;
+        PartitionModel* partitionModelAfter;
+    };
+
     PartitionCoreModule( QObject* parent = nullptr );
     ~PartitionCoreModule();
 
@@ -79,6 +86,12 @@ public:
      * affect the size of other partitions as well.
      */
     void refreshPartition( Device* device, Partition* partition );
+
+    /**
+     * Returns a list of SummaryInfo for devices which have pending changes.
+     * Caller is responsible for deleting the partition models
+     */
+    QList< SummaryInfo > createSummaryInfo() const;
 
 Q_SIGNALS:
     void hasRootMountPointChanged( bool value );
