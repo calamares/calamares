@@ -55,7 +55,7 @@ int mount( const QString& devicePath,
     return QProcess::execute( program, args );
 }
 
-int chrootCall( const QString& command,
+int chrootCall( const QStringList& args,
                 const QString& stdInput,
                 int timeoutSec )
 {
@@ -68,11 +68,12 @@ int chrootCall( const QString& command,
         return -3;
 
     QString program( "chroot" );
-    QStringList args = { destDir, command };
+    QStringList arguments = { destDir };
+    arguments << args;
 
     QProcess process;
     process.setProgram( program );
-    process.setArguments( args );
+    process.setArguments( arguments );
 
     if ( !process.waitForStarted() )
         return -2;
@@ -91,5 +92,16 @@ int chrootCall( const QString& command,
 
     return process.exitCode();
 }
+
+
+int chrootCall( const QString& command,
+                const QString& stdInput,
+                int timeoutSec )
+{
+    return chrootCall( QStringList() = { command },
+                       stdInput,
+                       timeoutSec );
+}
+
 
 }

@@ -66,7 +66,8 @@ chroot_call( const boost::python::list& args,
         list.append( QString::fromStdString(
             boost::python::extract< std::string >( args[ i ] ) ) );
     }
-    return CalamaresUtils::chrootCall( list.join( ' ' ),
+
+    return CalamaresUtils::chrootCall( list,
                                        QString::fromStdString( stdin ),
                                        timeout );
 }
