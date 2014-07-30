@@ -25,7 +25,7 @@
 KeyBoardPreview::KeyBoardPreview(QWidget *parent) :
     QWidget(parent)
 {
-    setMinimumSize(700, 190);
+    setMinimumSize(700, 191);
 
     layout = "us";
 
@@ -198,10 +198,10 @@ QString KeyBoardPreview::alt_text(int index) {
 
 void KeyBoardPreview::resizeEvent(QResizeEvent *) {
     space = 6;
-    usable_width = width()-6;
+    usable_width = width()-7;
     key_w = (usable_width - 14 * space)/15;
 
-    setMaximumHeight(key_w*4 + space*5);
+    setMaximumHeight(key_w*4 + space*5 + 1);
 }
 
 
@@ -221,6 +221,7 @@ void KeyBoardPreview::paintEvent(QPaintEvent * event) {
     p.setBrush(QColor(0x58, 0x58, 0x58));
 
     p.setBackgroundMode(Qt::TransparentMode);
+    p.translate(0.5, 0.5);
 
     int rx = 3;
     int x=6;
@@ -284,7 +285,6 @@ void KeyBoardPreview::paintEvent(QPaintEvent * event) {
         if (i != 1 && i != 2)
             p.drawRoundedRect(QRectF(x, y, rw, key_w), rx, rx);
 
-        x=.5;
         y = y + space + key_w;
     }
 
