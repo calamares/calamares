@@ -107,7 +107,7 @@ class UnsquashOperation:
                 sqfslist = subprocess.check_output(["unsquashfs",
                                                     "-l",
                                                     entry.source])
-                filescount = sqfslist.splitlines().count()
+                filescount = len(sqfslist.splitlines())
                 self.unpackstatus[entry.source].total = filescount
 
                 imgbasename = os.path.splitext(
