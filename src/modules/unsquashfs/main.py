@@ -112,7 +112,7 @@ class UnsquashOperation:
 
                 imgbasename = os.path.splitext(
                     os.path.basename(entry.source))[0]
-                imgmountdir = source_mount_path + os.sep + imgbasename
+                imgmountdir = os.path.join(source_mount_path, imgbasename)
                 os.mkdir(imgmountdir)
                 self.report_progress()
                 self.unsquash_image(entry, imgmountdir)
