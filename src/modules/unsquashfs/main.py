@@ -29,7 +29,13 @@ from libcalamares import *
 
 UnpackEntry = namedtuple(
     'UnpackEntry', ['source', 'destination'])
-UnpackStatusEntry = namedtuple('UnpackStatusEntry', ['copied', 'total'])
+
+class UnpackStatusEntry:
+    __slots__= ['copied', 'total']
+
+    def __init__(self):
+        self.copied = 0
+        self.total = 0
 
 ON_POSIX = 'posix' in sys.builtin_module_names
 
@@ -78,8 +84,7 @@ class UnsquashOperation:
         self.unpacklist = unpack
         self.unpackstatus = dict()
         for entry in unpack:
-            self.unpackstatus[entry.source] = UnpackStatusEntry(
-                copied=0, total=0)
+            self.unpackstatus[entry.source] = UnpackStatusEntry()
 
     def update_copy_progress(self, source, nfiles):
         if source in self.unpackstatus:
