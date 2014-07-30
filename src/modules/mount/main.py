@@ -24,20 +24,6 @@ import tempfile
 import libcalamares
 
 
-# FIXME: Duplicated between mount and grub
-def mount(device_path, mount_point, fs=None, options=None):
-    assert device_path
-    assert mount_point
-    if not os.path.exists(mount_point):
-        os.makedirs(mount_point)
-    cmd = ["mount", device_path, mount_point]
-    if fs:
-        cmd += ("-t", fs)
-    if options:
-        cmd += ("-o", options)
-    subprocess.check_call(cmd)
-
-
 def mount_partitions(root_mount_point, partitions):
     for partition in partitions:
         if not partition["mountPoint"]:
@@ -45,10 +31,11 @@ def mount_partitions(root_mount_point, partitions):
         # Create mount point with `+` rather than `os.path.join()` because
         # `partition["mountPoint"]` starts with a '/'.
         mount_point = root_mount_point + partition["mountPoint"]
-        mount(partition["device"], mount_point,
-              fs=partition.get("fs"),
-              options=partition.get("options")
-              )
+        libcalamares.utils.mount(
+            partition["device"], mount_point,
+            partition.get("fs", ""),
+            partition.get("options", "")
+            )
 
 
 def run():
