@@ -4,7 +4,7 @@ calamares_add_plugin( users
     EXPORT_MACRO PLUGINDLLEXPORT_PRO
     CONFIG_FILE module.conf
     SOURCES
-#        CreateUserJob.cpp
+        CreateUserJob.cpp
         UsersViewStep.cpp
         UsersPage.cpp
     UI
