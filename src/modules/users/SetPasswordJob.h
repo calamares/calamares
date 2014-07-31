@@ -16,46 +16,24 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef USERSPAGEPLUGIN_H
-#define USERSPAGEPLUGIN_H
+#ifndef SETPASSWORDJOB_H
+#define SETPASSWORDJOB_H
 
-#include <QObject>
+#include <Job.h>
 
-#include "viewpages/ViewStep.h"
-#include "PluginDllMacro.h"
 
-class UsersPage;
-
-class PLUGINDLLEXPORT UsersViewStep : public Calamares::ViewStep
+class SetPasswordJob : public Calamares::Job
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA( IID "calamares.ViewModule/1.0" )
-
-    Q_INTERFACES( Calamares::ViewStep )
-
 public:
-    explicit UsersViewStep( QObject* parent = nullptr );
-    virtual ~UsersViewStep();
-
+    SetPasswordJob( const QString& userName,
+                    const QString& newPassword );
     QString prettyName() const override;
-
-    QWidget* widget() override;
-
-    void next() override;
-    void back() override;
-
-    bool isNextEnabled() const override;
-
-    bool isAtBeginning() const override;
-    bool isAtEnd() const override;
-
-    QList< Calamares::job_ptr > jobs() const override;
-
-    void onLeave() override;
+    Calamares::JobResult exec() override;
 
 private:
-    UsersPage* m_widget;
-    QList< Calamares::job_ptr > m_jobs;
+    QString m_userName;
+    QString m_newPassword;
 };
 
-#endif // USERSPAGEPLUGIN_H
+#endif /* SETPASSWORDJOB_H */

@@ -23,6 +23,8 @@
 #ifndef USERSPAGE_H
 #define USERSPAGE_H
 
+#include "Typedefs.h"
+
 #include <QWidget>
 
 namespace Ui {
@@ -37,6 +39,8 @@ public:
     virtual ~UsersPage();
 
     bool isReady();
+
+    QList< Calamares::job_ptr > createJobs();
 
 protected slots:
     void onUsernameTextChanged( const QString& );

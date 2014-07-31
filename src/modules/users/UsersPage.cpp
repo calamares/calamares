@@ -22,6 +22,10 @@
 
 #include "UsersPage.h"
 #include "ui_page_usersetup.h"
+#include "CreateUserJob.h"
+#include "SetPasswordJob.h"
+#include "JobQueue.h"
+#include "GlobalStorage.h"
 
 #include <QBoxLayout>
 #include <QLabel>
@@ -67,6 +71,34 @@ bool
 UsersPage::isReady()
 {
     return m_readyHostname && m_readyPassword && m_readyRootPassword && m_readyUsername;
+}
+
+
+QList< Calamares::job_ptr >
+UsersPage::createJobs()
+{
+    QList< Calamares::job_ptr > list;
+    if ( !isReady() )
+        return list;
+
+    Calamares::Job* j;
+    j = new CreateUserJob( ui->textBoxUsername->text(),
+                           QString(),
+                           ui->checkBoxLoginAuto->isChecked() );
+    list.append( Calamares::job_ptr( j ) );
+
+    j = new SetPasswordJob( ui->textBoxUsername->text(),
+                            ui->textBoxUserPassword->text() );
+    list.append( Calamares::job_ptr( j ) );
+
+    j = new SetPasswordJob( "root",
+                            ui->textBoxRootPassword->text() );
+    list.append( Calamares::job_ptr( j ) );
+
+    Calamares::JobQueue::instance()->
+            globalStorage()->insert( "hostname", ui->textBoxHostname->text() );
+
+    return list;
 }
 
 

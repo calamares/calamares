@@ -87,6 +87,15 @@ UsersViewStep::isAtEnd() const
 QList< Calamares::job_ptr >
 UsersViewStep::jobs() const
 {
-    return QList< Calamares::job_ptr >();
+    return m_jobs;
+}
+
+
+void
+UsersViewStep::onLeave()
+{
+    m_jobs.clear();
+
+    m_jobs.append( m_widget->createJobs() );
 }
 
