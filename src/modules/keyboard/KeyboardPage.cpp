@@ -25,6 +25,9 @@
 #include "ui_KeyboardPage.h"
 #include "keyboardwidget/keyboardpreview.h"
 
+#include "GlobalStorage.h"
+#include "JobQueue.h"
+
 #include <QComboBox>
 #include <QProcess>
 #include <QPushButton>
@@ -185,6 +188,20 @@ KeyboardPage::prettyStatus() const
 
 
 void
+KeyboardPage::finalize()
+{
+    Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
+    if ( !m_selectedLayout.isEmpty() )
+    {
+        gs->insert( "keyboardLayout", m_selectedLayout );
+        gs->insert( "keyboardVariant", m_selectedVariant ); //empty means default variant
+    }
+
+    //FIXME: also store keyboard model for something?
+}
+
+
+void
 KeyboardPage::onListLayoutCurrentItemChanged( QListWidgetItem* current, QListWidgetItem* previous )
 {
     LayoutItem *item = dynamic_cast< LayoutItem* >( current );
@@ -242,5 +259,8 @@ KeyboardPage::onListVariantCurrentItemChanged( QListWidgetItem* current, QListWi
     // Set Xorg keyboard layout
     QProcess::execute( QString( "setxkbmap -layout \"%1\" -variant \"%2\"" )
                        .arg( layout, variant ).toUtf8() );
+
+    m_selectedLayout = layout;
+    m_selectedVariant = variant;
 }
 

@@ -46,6 +46,8 @@ public:
 
     QString prettyStatus() const;
 
+    void finalize();
+
 protected slots:
     void onListLayoutCurrentItemChanged( QListWidgetItem* current,
                                          QListWidgetItem* previous );
@@ -63,6 +65,9 @@ private:
     KeyBoardPreview* m_keyboardPreview;
     int m_defaultIndex;
     QMap< QString, QString > m_models;
+
+    QString m_selectedLayout;
+    QString m_selectedVariant;
 };
 
 #endif // KEYBOARDPAGE_H

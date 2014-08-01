@@ -104,5 +104,6 @@ KeyboardViewStep::jobs() const
 void
 KeyboardViewStep::onLeave()
 {
+    m_widget->finalize();
     m_prettyStatus = m_widget->prettyStatus();
 }
