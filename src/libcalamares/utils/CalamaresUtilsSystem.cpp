@@ -18,6 +18,7 @@
 
 #include "CalamaresUtilsSystem.h"
 
+#include "utils/Logger.h"
 #include "JobQueue.h"
 #include "GlobalStorage.h"
 
@@ -61,11 +62,17 @@ int chrootCall( const QStringList& args,
 {
     Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
     if ( !gs->contains( "rootMountPoint" ) )
+    {
+        cLog() << "No rootMountPoint in global storage";
         return -3;
+    }
 
     QString destDir = gs->value( "rootMountPoint" ).toString();
     if ( !QDir( destDir ).exists() )
+    {
+        cLog() << "rootMountPoint points to a dir which does not exist";
         return -3;
+    }
 
     QString program( "chroot" );
     QStringList arguments = { destDir };
@@ -74,10 +81,15 @@ int chrootCall( const QStringList& args,
     QProcess process;
     process.setProgram( program );
     process.setArguments( arguments );
+    process.setProcessChannelMode( QProcess::MergedChannels );
 
+    cLog() << "Running" << program << arguments;
     process.start();
     if ( !process.waitForStarted() )
+    {
+        cLog() << "Process failed to start" << process.error();
         return -2;
+    }
 
     if ( !stdInput.isEmpty() )
     {
@@ -86,11 +98,22 @@ int chrootCall( const QStringList& args,
     }
 
     if ( !process.waitForFinished( timeoutSec ? ( timeoutSec * 1000 ) : 30000 ) )
+    {
+        cLog() << "Timed out. output so far:";
+        cLog() << process.readAllStandardOutput();
         return -4;
+    }
+
+    cLog() << "Output:";
+    cLog() << process.readAllStandardOutput();
 
     if ( process.exitStatus() == QProcess::CrashExit )
+    {
+        cLog() << "Process crashed";
         return -1;
+    }
 
+    cLog() << "Finished. Exit code:" << process.exitCode();
     return process.exitCode();
 }
 
