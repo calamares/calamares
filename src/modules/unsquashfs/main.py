@@ -46,6 +46,11 @@ def file_copy(source, dest, progress_cb):
     at_env = os.environ
     at_env["LC_ALL"] = "C"
 
+    # `source` *must* end with '/' otherwise a directory named after the source
+    # will be created in `dest`: ie if `source` is "/foo/bar" and `dest` is
+    # "/dest", then files will be copied in "/dest/bar".
+    source += "/"
+
     process = subprocess.Popen(['rsync', '-ar', '--progress', source, dest],
                                env=at_env,
                                bufsize=1,
