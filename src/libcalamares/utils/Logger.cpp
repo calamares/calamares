@@ -65,7 +65,10 @@ log( const char *msg, unsigned int debugLevel, bool toDisk = true )
     {
         QMutexLocker lock( &s_mutex );
 
-        logfile << QDate::currentDate().toString().toUtf8().data()
+        // If we don't format the date as a Qt::ISODate then we get a crash when
+        // logging at exit as Qt tries to use QLocale to format, but QLocale is
+        // on its way out.
+        logfile << QDate::currentDate().toString( Qt::ISODate ).toUtf8().data()
                 << " - "
                 << QTime::currentTime().toString().toUtf8().data()
                 << " [" << QString::number( debugLevel ).toUtf8().data() << "]: "
