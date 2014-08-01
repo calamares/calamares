@@ -47,4 +47,7 @@ def run():
 
     libcalamares.job.setprogress(0.1)
     libcalamares.utils.debug(accumulator)
-    return "", accumulator
+
+    # To indicate an error, return a tuple of:
+    # (message, detailed-error-message)
+    return None
