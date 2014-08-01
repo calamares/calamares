@@ -95,8 +95,10 @@ UsersPage::createJobs()
                             ui->textBoxRootPassword->text() );
     list.append( Calamares::job_ptr( j ) );
 
-    Calamares::JobQueue::instance()->
-            globalStorage()->insert( "hostname", ui->textBoxHostname->text() );
+    Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
+    gs->insert( "hostname", ui->textBoxHostname->text() );
+    if ( ui->checkBoxLoginAuto->isChecked() )
+        gs->insert( "autologinUser", ui->textBoxUsername->text() );
 
     return list;
 }
