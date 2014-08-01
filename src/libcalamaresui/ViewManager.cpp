@@ -92,6 +92,9 @@ ViewManager::addViewStep( ViewStep* step )
     m_prepareSteps.append( step );
 
     insertViewStep( m_steps.size() - 1, step );
+    // If this is the first inserted view step, update status of "Next" button
+    if ( m_prepareSteps.count() == 1 )
+        m_next->setEnabled( step->isNextEnabled() );
 }
 
 
