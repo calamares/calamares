@@ -116,24 +116,20 @@ ViewManager::insertViewStep( int before, ViewStep* step)
 void
 ViewManager::onInstallationFailed( const QString& message, const QString& details )
 {
-    QString text = tr(
-        "<p><b>Installation Failed</b></p>"
-        "<p>%1</p>"
-        ).arg( message );
+    QMessageBox msgBox;
+    msgBox.setIcon( QMessageBox::Critical );
+    msgBox.setWindowTitle( tr("Error") );
+    msgBox.setText( "<strong>" + tr( "Installation Failed" ) + "</strong>" );
+    msgBox.setStandardButtons( QMessageBox::Close );
 
+    QString text = "<p>" + message + "</p>";
     if ( !details.isEmpty() )
     {
-        text += tr(
-            "<p>%1</p>"
-            ).arg( details );
+        text += "<p>" + details + "</p>";
     }
+    msgBox.setInformativeText( text );
 
-    QMessageBox::critical(
-        QApplication::activeWindow(),
-        tr( "Error" ),
-        text,
-        QMessageBox::Close
-    );
+    msgBox.exec();
     QApplication::quit();
 }
 

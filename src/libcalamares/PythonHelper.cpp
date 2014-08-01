@@ -270,9 +270,14 @@ Helper::handleLastError()
         msgList.append( valMsg );
 
     if ( !tbMsg.isEmpty() )
-        msgList.append( QString( "</code>Traceback:<code><br/>%1" ).arg( tbMsg ) );
+    {
+        msgList.append( "Traceback:" );
+        msgList.append( QString( "<pre>%1</pre>" ).arg( tbMsg ) );
+        cDebug() << "tbMsg" << tbMsg;
+    }
 
-    return QString( "<code>%1</code>" ).arg( msgList.join( "<br/>" ) );
+    // Return a string made of the msgList items, wrapped in <div> tags
+    return QString( "<div>%1</div>" ).arg( msgList.join( "</div><div>" ) );
 }
 
 

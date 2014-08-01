@@ -195,11 +195,7 @@ PythonJob::exec()
             bp::tuple resultTuple = bp::extract< bp::tuple >( runResult );
             QString message = QString::fromStdString( bp::extract< std::string >( resultTuple[ 0 ] ) );
             QString description = QString::fromStdString( bp::extract< std::string >( resultTuple[ 1 ] ) );
-            return JobResult::error( tr( "Job \"%1\" finished with error" )
-                                        .arg( prettyName() ),
-                                     QString( "<strong>%1</strong><br/>%2" )
-                                        .arg( message )
-                                        .arg( description ) );
+            return JobResult::error( message, description );
         }
     }
     catch ( bp::error_already_set )
@@ -211,7 +207,7 @@ PythonJob::exec()
         }
         bp::handle_exception();
         PyErr_Clear();
-        return JobResult::error( tr( "Boost.Python error in job \"%1\"" ).arg( prettyName() ),
+        return JobResult::error( tr( "Boost.Python error in job \"%1\"." ).arg( prettyName() ),
                                  msg );
     }
 
