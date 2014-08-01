@@ -55,6 +55,7 @@ public:
         for( auto job : m_jobs )
         {
             emitProgress();
+            cLog() << "Starting job" << job->prettyName();
             connect( job.data(), &Job::progress, this, &JobThread::emitProgress );
             JobResult result = job->exec();
             if ( !result )
@@ -86,7 +87,6 @@ private:
             : tr( "Done" );
 
         qreal percent = ( m_jobIndex + jobPercent ) / qreal( jobCount );
-        cLog() << Q_FUNC_INFO << "percent=" << percent * 100 << message;
 
         QMetaObject::invokeMethod( m_queue, "progress", Qt::QueuedConnection,
             Q_ARG( qreal, percent ),

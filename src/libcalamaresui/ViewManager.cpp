@@ -18,6 +18,7 @@
 
 #include "ViewManager.h"
 
+#include "utils/Logger.h"
 #include "viewpages/ViewStep.h"
 #include "InstallationViewStep.h"
 #include "JobQueue.h"
@@ -119,6 +120,10 @@ ViewManager::insertViewStep( int before, ViewStep* step)
 void
 ViewManager::onInstallationFailed( const QString& message, const QString& details )
 {
+    cLog() << "Installation failed:";
+    cLog() << "- message:" << message;
+    cLog() << "- details:" << details;
+
     QMessageBox msgBox;
     msgBox.setIcon( QMessageBox::Critical );
     msgBox.setWindowTitle( tr("Error") );
