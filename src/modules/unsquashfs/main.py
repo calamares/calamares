@@ -27,13 +27,12 @@ from collections import namedtuple
 
 from libcalamares import *
 
-UnpackEntry = namedtuple(
-    'UnpackEntry', ['source', 'destination'])
+class UnpackEntry:
+    __slots__= ['source', 'destination', 'copied', 'total']
 
-class UnpackStatusEntry:
-    __slots__= ['copied', 'total']
-
-    def __init__(self):
+    def __init__(self, source, destination):
+        self.source = source
+        self.destination = destination
         self.copied = 0
         self.total = 0
 
@@ -85,40 +84,32 @@ def file_copy(source, dest, progress_cb):
 
 class UnsquashOperation:
 
-    def __init__(self, unpack):
-        self.unpacklist = unpack
-        self.unpackstatus = dict()
-        for entry in unpack:
-            self.unpackstatus[entry.source] = UnpackStatusEntry()
-
-    def update_copy_progress(self, source, nfiles):
-        if source in self.unpackstatus:
-            self.unpackstatus[source].copied = nfiles
-            self.report_progress()
+    def __init__(self, entries):
+        self.entries = entries
+        self.entry_for_source = dict((x.source, x) for x in self.entries)
 
     def report_progress(self):
         progress = float(0)
-        for status_entry in self.unpackstatus.values():
-            if status_entry.total == 0:
+        for entry in self.entries:
+            if entry.total == 0:
                 continue
 
             partialprogress = 0.05  # Having a total !=0 gives 5%
 
             partialprogress += 0.95 * \
-                (status_entry.copied / float(status_entry.total))
-            progress += partialprogress / len(self.unpackstatus)
+                (entry.copied / float(entry.total))
+            progress += partialprogress / len(self.entries)
 
         job.setprogress(progress)
 
     def run(self):
         source_mount_path = tempfile.mkdtemp()
         try:
-            for entry in self.unpacklist:
+            for entry in self.entries:
                 sqfslist = subprocess.check_output(["unsquashfs",
                                                     "-l",
                                                     entry.source])
-                filescount = len(sqfslist.splitlines())
-                self.unpackstatus[entry.source].total = filescount
+                entry.total = len(sqfslist.splitlines())
 
                 imgbasename = os.path.splitext(
                     os.path.basename(entry.source))[0]
@@ -131,7 +122,7 @@ class UnsquashOperation:
 
     def unsquash_image(self, entry, imgmountdir):
         def progress_cb(copied):
-            self.unpackstatus[entry.source].copied = copied
+            entry.copied = copied
             self.report_progress()
 
         subprocess.check_call(["mount",
