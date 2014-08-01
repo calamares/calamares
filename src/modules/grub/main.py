@@ -23,8 +23,10 @@ import libcalamares
 
 def install_grub(boot_loader):
     install_path = boot_loader["installPath"]
-    libcalamares.utils.chroot_call(["grub-install", install_path])
-    libcalamares.utils.chroot_call(["grub-mkconfig", "-o", "/boot/grub/grub.cfg"])
+    ret = libcalamares.utils.chroot_call(["grub-install", install_path])
+    assert ret == 0
+    ret = libcalamares.utils.chroot_call(["grub-mkconfig", "-o", "/boot/grub/grub.cfg"])
+    assert ret == 0
 
 
 def run():
