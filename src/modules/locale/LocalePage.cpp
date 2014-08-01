@@ -19,6 +19,7 @@
 #include "LocalePage.h"
 
 #include "timezonewidget/timezonewidget.h"
+#include "SetTimezoneJob.h"
 
 #include <QBoxLayout>
 #include <QComboBox>
@@ -179,3 +180,15 @@ LocalePage::prettyStatus() const
     return status;
 }
 
+
+QList< Calamares::job_ptr >
+LocalePage::createJobs()
+{
+    QList< Calamares::job_ptr > list;
+    LocaleGlobal::Location location = m_tzWidget->getCurrentLocation();
+
+    Calamares::Job* j = new SetTimezoneJob( location.region, location.zone );
+    list.append( Calamares::job_ptr( j ) );
+
+    return list;
+}

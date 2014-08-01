@@ -19,6 +19,8 @@
 #ifndef LOCALEPAGE_H
 #define LOCALEPAGE_H
 
+#include "Typedefs.h"
+
 #include <QWidget>
 
 class QComboBox;
@@ -33,6 +35,8 @@ public:
     void init( const QString& initialRegion, const QString& initialZone );
 
     QString prettyStatus() const;
+
+    QList< Calamares::job_ptr > createJobs();
 
 private:
     TimeZoneWidget* m_tzWidget;

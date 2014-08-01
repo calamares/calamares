@@ -67,6 +67,8 @@ private:
     QString m_prettyStatus;
 
     QPair< QString, QString > m_startingTimezone;
+
+    QList< Calamares::job_ptr > m_jobs;
 };
 
 #endif // LOCALEVIEWSTEP_H

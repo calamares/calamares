@@ -154,13 +154,16 @@ LocaleViewStep::isAtEnd() const
 QList< Calamares::job_ptr >
 LocaleViewStep::jobs() const
 {
-    return QList< Calamares::job_ptr >();
+    return m_jobs;
 }
 
 
 void
 LocaleViewStep::onLeave()
 {
+    m_jobs.clear();
+    m_jobs.append( m_actualWidget->createJobs() );
+
     m_prettyStatus = m_actualWidget->prettyStatus();
 }
 
