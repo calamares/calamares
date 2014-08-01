@@ -29,12 +29,48 @@
 #include <QDebug>
 #include <QDir>
 #include <QLocale>
+#include <QStandardPaths>
 #include <QTranslator>
+
+
+// stdc++
+#include <iostream>
+
+using namespace std;
 
 namespace CalamaresUtils
 {
 
 static QDir s_appDataDir( CMAKE_INSTALL_FULL_DATADIR );
+
+static bool
+isWritableDir( const QDir& dir )
+{
+    // We log with cerr here because we might be looking for the log dir
+    QString path = dir.absolutePath();
+    if ( !dir.exists() )
+    {
+        if ( !dir.mkpath( "." ) )
+        {
+            cerr << "warning: failed to create " << qPrintable( path ) << endl;
+            return false;
+        }
+        return true;
+    }
+
+    QFileInfo info( path );
+    if ( !info.isDir() )
+    {
+        cerr << "warning: " << qPrintable( path ) << " is not a dir\n";
+        return false;
+    }
+    if ( !info.isWritable() )
+    {
+        cerr << "warning: " << qPrintable( path ) << " is not writable\n";
+        return false;
+    }
+    return true;
+}
 
 void
 setAppDataDir( const QDir& dir )
@@ -61,7 +97,18 @@ systemLibDir()
 QDir
 appLogDir()
 {
-    return appDataDir();
+    QString path = QStandardPaths::writableLocation( QStandardPaths::CacheLocation );
+    QDir dir( path );
+    if ( isWritableDir( dir ) )
+        return dir;
+
+    cerr << "warning: Could not find a standard writable location for log dir, falling back to $HOME\n";
+    dir = QDir::home();
+    if ( isWritableDir( dir ) )
+        return dir;
+
+    cerr << "warning: Found no writable location for log dir, falling back to the temp dir\n";
+    return QDir::temp();
 }
 
 
