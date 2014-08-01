@@ -75,6 +75,7 @@ int chrootCall( const QStringList& args,
     process.setProgram( program );
     process.setArguments( arguments );
 
+    process.start();
     if ( !process.waitForStarted() )
         return -2;
 
