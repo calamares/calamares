@@ -76,9 +76,9 @@ BOOST_PYTHON_MODULE( libcalamares )
         .def( "value",      &Calamares::GlobalStorage::python_value );
 
     // libcalamares.utils submodule starts here
-    bp::object utilModule( bp::handle<>( bp::borrowed( PyImport_AddModule( "libcalamares.utils" ) ) ) );
-    bp::scope().attr( "utils" ) = utilModule;
-    bp::scope utilsScope = utilModule;
+    bp::object utilsModule( bp::handle<>( bp::borrowed( PyImport_AddModule( "libcalamares.utils" ) ) ) );
+    bp::scope().attr( "utils" ) = utilsModule;
+    bp::scope utilsScope = utilsModule;
     Q_UNUSED( utilsScope );
 
     bp::def( "debug", &CalamaresPython::debug );
