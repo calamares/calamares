@@ -33,7 +33,8 @@ HEADER = """# /etc/fstab: static file system information.
 
 # Turn Parted filesystem names into fstab names
 FS_MAP = {
-    "fat": "vfat",
+    "fat16": "vfat",
+    "fat32": "vfat",
     "linuxswap": "swap",
 }
 
