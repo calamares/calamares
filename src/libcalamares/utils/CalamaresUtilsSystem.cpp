@@ -100,7 +100,7 @@ int chrootCall( const QStringList& args,
         process.closeWriteChannel();
     }
 
-    if ( !process.waitForFinished( timeoutSec ? ( timeoutSec * 1000 ) : 30000 ) )
+    if ( !process.waitForFinished( timeoutSec ? ( timeoutSec * 1000 ) : -1 ) )
     {
         cLog() << "Timed out. output so far:";
         cLog() << process.readAllStandardOutput();
