@@ -216,8 +216,9 @@ PartitionPage::updatePartitionToCreate( Device* device, Partition* partition )
     dlg->initFromPartitionToCreate( partition );
     if ( dlg->exec() == QDialog::Accepted )
     {
+        Partition* newPartition = dlg->createPartition();
         m_core->deletePartition( device, partition );
-        m_core->createPartition( device, dlg->createPartition() );
+        m_core->createPartition( device, newPartition );
     }
     delete dlg;
 }
