@@ -18,13 +18,13 @@
 #   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
 
 import libcalamares
+from libcalamares.utils import check_chroot_call
 
 
 def install_grub(boot_loader):
     install_path = boot_loader["installPath"]
-    libcalamares.utils.check_chroot_call(["grub-install", install_path])
-    libcalamares.utils.check_chroot_call(
-            ["grub-mkconfig", "-o", "/boot/grub/grub.cfg"])
+    check_chroot_call(["grub-install", install_path])
+    check_chroot_call(["grub-mkconfig", "-o", "/boot/grub/grub.cfg"])
 
 
 def run():
