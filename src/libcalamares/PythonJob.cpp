@@ -51,6 +51,9 @@ BOOST_PYTHON_FUNCTION_OVERLOADS( check_chroot_call_list_overloads,
                                  1, 3 );
 BOOST_PYTHON_MODULE( libcalamares )
 {
+    bp::object package = bp::scope();
+    package.attr( "__path__" ) = "libcalamares";
+
     bp::scope().attr( "ORGANIZATION_NAME" ) = CALAMARES_ORGANIZATION_NAME;
     bp::scope().attr( "ORGANIZATION_DOMAIN" ) = CALAMARES_ORGANIZATION_DOMAIN;
     bp::scope().attr( "APPLICATION_NAME" ) = CALAMARES_APPLICATION_NAME;
@@ -73,9 +76,9 @@ BOOST_PYTHON_MODULE( libcalamares )
         .def( "value",      &Calamares::GlobalStorage::python_value );
 
     // libcalamares.utils submodule starts here
-    bp::object submodule( bp::borrowed( PyImport_AddModule( "utils" ) ) );
-    bp::scope().attr( "utils" ) = submodule;
-    bp::scope utilsScope = submodule;
+    bp::object utilModule( bp::handle<>( bp::borrowed( PyImport_AddModule( "libcalamares.utils" ) ) ) );
+    bp::scope().attr( "utils" ) = utilModule;
+    bp::scope utilsScope = utilModule;
     Q_UNUSED( utilsScope );
 
     bp::def( "debug", &CalamaresPython::debug );
