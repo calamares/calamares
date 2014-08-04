@@ -18,11 +18,16 @@
 #ifndef PMUTILS_H
 #define PMUTILS_H
 
+// CalaPM
+#include <fs/filesystem.h>
+
 // Qt
 #include <QList>
 
 class Device;
 class Partition;
+class PartitionNode;
+class PartitionRole;
 
 namespace PMUtils
 {
@@ -32,6 +37,8 @@ bool isPartitionFreeSpace( Partition* );
 bool isPartitionNew( Partition* );
 
 Partition* findPartitionByMountPoint( const QList< Device* >& devices, const QString& mountPoint );
+
+Partition* createNewPartition( PartitionNode* parent, const Device& device, const PartitionRole& role, FileSystem::Type fsType, qint64 firstSector, qint64 lastSector );
 
 }
 

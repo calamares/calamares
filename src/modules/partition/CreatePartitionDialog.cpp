@@ -19,6 +19,7 @@
 #include <CreatePartitionDialog.h>
 
 #include <PartitionInfo.h>
+#include <PMUtils.h>
 #include <ui_CreatePartitionDialog.h>
 #include <utils/Logger.h>
 
@@ -137,23 +138,14 @@ CreatePartitionDialog::createPartition()
         }
     }
 
-    FileSystem::Type type = m_role.has( PartitionRole::Extended )
-                            ? FileSystem::Extended
-                            : FileSystem::typeForName( m_ui->fsComboBox->currentText() );
-    FileSystem* fs = FileSystemFactory::create( type, m_minSector, lastSector );
-
-    auto partition = new Partition(
+    FileSystem::Type fsType = m_role.has( PartitionRole::Extended )
+                              ? FileSystem::Extended
+                              : FileSystem::typeForName( m_ui->fsComboBox->currentText() );
+    Partition* partition = PMUtils::createNewPartition(
         m_parent,
         *m_device,
         m_role,
-        fs, m_minSector, lastSector,
-        QString() /* path */,
-        PartitionTable::FlagNone /* availableFlags */,
-        QString() /* mountPoint */,
-        false /* mounted */,
-        PartitionTable::FlagNone /* activeFlags */,
-        Partition::StateNew
-    );
+        fsType, m_minSector, lastSector );
 
     PartitionInfo::setMountPoint( partition, m_ui->mountPointComboBox->currentText() );
     PartitionInfo::setFormat( partition, true );

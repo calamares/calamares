@@ -23,7 +23,7 @@
 
 // CalaPM
 #include <core/partition.h>
-#include <fs/filesystem.h>
+#include <fs/filesystemfactory.h>
 
 namespace PMUtils
 {
@@ -46,6 +46,24 @@ findPartitionByMountPoint( const QList< Device* >& devices, const QString& mount
             if ( PartitionInfo::mountPoint( *it ) == mountPoint )
                 return *it;
     return nullptr;
+}
+
+Partition*
+createNewPartition( PartitionNode* parent, const Device& device, const PartitionRole& role, FileSystem::Type fsType, qint64 firstSector, qint64 lastSector )
+{
+    FileSystem* fs = FileSystemFactory::create( fsType, firstSector, lastSector );
+    return new Partition(
+        parent,
+        device,
+        role,
+        fs, fs->firstSector(), fs->lastSector(),
+        QString() /* path */,
+        PartitionTable::FlagNone /* availableFlags */,
+        QString() /* mountPoint */,
+        false /* mounted */,
+        PartitionTable::FlagNone /* activeFlags */,
+        Partition::StateNew
+    );
 }
 
 } // namespace

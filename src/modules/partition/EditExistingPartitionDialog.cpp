@@ -20,6 +20,7 @@
 
 #include <PartitionCoreModule.h>
 #include <PartitionInfo.h>
+#include <PMUtils.h>
 #include <ui_EditExistingPartitionDialog.h>
 #include <utils/Logger.h>
 
@@ -62,8 +63,59 @@ void
 EditExistingPartitionDialog::applyChanges( PartitionCoreModule* core )
 {
     PartitionInfo::setMountPoint( m_partition, m_ui->mountPointComboBox->currentText() );
-    if ( m_ui->formatRadioButton->isChecked() )
-        core->formatPartition( m_device, m_partition );
+
+    qint64 oldSize = mbSizeForSectorRange( m_partition->firstSector(), m_partition->lastSector() );
+    qint64 newSize = m_ui->sizeSpinBox->value();
+    if ( oldSize == newSize )
+    {
+        if ( m_ui->formatRadioButton->isChecked() )
+            core->formatPartition( m_device, m_partition );
+        else
+            core->refreshPartition( m_device, m_partition );
+    }
     else
-        core->refreshPartition( m_device, m_partition );
+    {
+        // FIXME: Duplicated from CreatePartitionDialog
+        qint64 maxSector = m_partition->lastSector() + m_device->partitionTable()->freeSectorsAfter( *m_partition );
+
+        qint64 lastSector;
+        int mbSize = m_ui->sizeSpinBox->value();
+        if ( mbSize == m_ui->sizeSpinBox->maximum() )
+        {
+            // If we are at the maximum value, select the last sector to avoid
+            // potential rounding errors which could leave a few sectors at the end
+            // unused
+            lastSector = maxSector;
+        }
+        else
+        {
+            lastSector = m_partition->firstSector() + qint64( mbSize ) * 1024 * 1024 / m_device->logicalSectorSize();
+            Q_ASSERT( lastSector <= maxSector );
+            if ( lastSector > maxSector )
+            {
+                cDebug() << "lastSector (" << lastSector << ") > maxSector (" << maxSector << "). This should not happen!";
+                lastSector = maxSector;
+            }
+        }
+
+        if ( m_ui->formatRadioButton->isChecked() )
+        {
+            Partition* newPartition = PMUtils::createNewPartition(
+                m_partition->parent(),
+                *m_device,
+                m_partition->roles(),
+                m_partition->fileSystem().type(),
+                m_partition->firstSector(),
+                lastSector);
+            PartitionInfo::setMountPoint( newPartition, PartitionInfo::mountPoint( m_partition ) );
+            PartitionInfo::setFormat( newPartition, true );
+
+            core->deletePartition( m_device, m_partition );
+            core->createPartition( m_device, newPartition );
+        }
+        else
+        {
+            //core->resizePartition( m_device, m_partition );
+        }
+    }
 }
