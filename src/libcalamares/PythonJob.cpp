@@ -43,6 +43,12 @@ BOOST_PYTHON_FUNCTION_OVERLOADS( chroot_call_str_overloads,
 BOOST_PYTHON_FUNCTION_OVERLOADS( chroot_call_list_overloads,
                                  CalamaresPython::chroot_call,
                                  1, 3 );
+BOOST_PYTHON_FUNCTION_OVERLOADS( check_chroot_call_str_overloads,
+                                 CalamaresPython::check_chroot_call,
+                                 1, 3 );
+BOOST_PYTHON_FUNCTION_OVERLOADS( check_chroot_call_list_overloads,
+                                 CalamaresPython::check_chroot_call,
+                                 1, 3 );
 BOOST_PYTHON_MODULE( libcalamares )
 {
     bp::scope().attr( "ORGANIZATION_NAME" ) = CALAMARES_ORGANIZATION_NAME;
@@ -73,43 +79,84 @@ BOOST_PYTHON_MODULE( libcalamares )
     Q_UNUSED( utilsScope );
 
     bp::def( "debug", &CalamaresPython::debug );
-    bp::def( "mount",
-             &CalamaresPython::mount,
-             mount_overloads( bp::args( "device_path",
-                                        "mount_point",
-                                        "filesystem_name",
-                                        "options" ),
-                              "Runs the mount utility with the specified parameters.\n"
-                              "Returns the program's exit code, or:\n"
-                              "-1 = QProcess crash\n"
-                              "-2 = QProcess cannot start\n"
-                              "-3 = bad arguments" ) );
-    bp::def( "chroot_call",
-             static_cast< int (*)( const std::string&,
-                                   const std::string&,
-                                   int ) >( &CalamaresPython::chroot_call ),
-             chroot_call_str_overloads( bp::args( "command",
-                                                  "stdin",
-                                                  "timeout" ),
-                                        "Runs the specified command in the chroot of the target system.\n"
-                                        "Returns the program's exit code, or:\n"
-                                        "-1 = QProcess crash\n"
-                                        "-2 = QProcess cannot start\n"
-                                        "-3 = bad arguments\n"
-                                        "-4 = QProcess timeout" ) );
-    bp::def( "chroot_call",
-             static_cast< int (*)( const bp::list&,
-                                   const std::string&,
-                                   int ) >( &CalamaresPython::chroot_call ),
-             chroot_call_list_overloads( bp::args( "args",
-                                                   "stdin",
-                                                   "timeout" ),
-                                         "Runs the specified command in the chroot of the target system.\n"
-                                         "Returns the program's exit code, or:\n"
-                                         "-1 = QProcess crash\n"
-                                         "-2 = QProcess cannot start\n"
-                                         "-3 = bad arguments\n"
-                                         "-4 = QProcess timeout" ) );
+    bp::def(
+        "mount",
+        &CalamaresPython::mount,
+        mount_overloads(
+            bp::args( "device_path",
+                      "mount_point",
+                      "filesystem_name",
+                      "options" ),
+            "Runs the mount utility with the specified parameters.\n"
+            "Returns the program's exit code, or:\n"
+            "-1 = QProcess crash\n"
+            "-2 = QProcess cannot start\n"
+            "-3 = bad arguments"
+        )
+    );
+    bp::def(
+        "chroot_call",
+        static_cast< int (*)( const std::string&,
+                              const std::string&,
+                              int ) >( &CalamaresPython::chroot_call ),
+        chroot_call_str_overloads(
+            bp::args( "command",
+                      "stdin",
+                      "timeout" ),
+            "Runs the specified command in the chroot of the target system.\n"
+            "Returns the program's exit code, or:\n"
+            "-1 = QProcess crash\n"
+            "-2 = QProcess cannot start\n"
+            "-3 = bad arguments\n"
+            "-4 = QProcess timeout"
+        )
+    );
+    bp::def(
+        "chroot_call",
+        static_cast< int (*)( const bp::list&,
+                              const std::string&,
+                              int ) >( &CalamaresPython::chroot_call ),
+        chroot_call_list_overloads(
+            bp::args( "args",
+                      "stdin",
+                      "timeout" ),
+            "Runs the specified command in the chroot of the target system.\n"
+            "Returns the program's exit code, or:\n"
+            "-1 = QProcess crash\n"
+            "-2 = QProcess cannot start\n"
+            "-3 = bad arguments\n"
+            "-4 = QProcess timeout"
+        )
+    );
+
+    bp::def(
+        "check_chroot_call",
+        static_cast< int (*)( const std::string&,
+                              const std::string&,
+                              int ) >( &CalamaresPython::check_chroot_call ),
+        check_chroot_call_str_overloads(
+            bp::args( "command",
+                      "stdin",
+                      "timeout" ),
+            "Runs the specified command in the chroot of the target system.\n"
+            "Returns 0, which is program's exit code if the program exited "
+            "successfully, or raises a subprocess.CalledProcessError."
+        )
+    );
+    bp::def(
+        "check_chroot_call",
+        static_cast< int (*)( const bp::list&,
+                              const std::string&,
+                              int ) >( &CalamaresPython::check_chroot_call ),
+        check_chroot_call_list_overloads(
+            bp::args( "args",
+                      "stdin",
+                      "timeout" ),
+            "Runs the specified command in the chroot of the target system.\n"
+            "Returns 0, which is program's exit code if the program exited "
+            "successfully, or raises a subprocess.CalledProcessError."
+        )
+    );
 }
 
 
@@ -185,7 +232,6 @@ PythonJob::exec()
 
         bp::object runResult = entryPoint();
 
-        //QString message = QString::fromStdString( bp::extract< std::string >( entryPoint() ) );
         if ( runResult.is_none() )
         {
             return JobResult::ok();

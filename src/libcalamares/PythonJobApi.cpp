@@ -25,8 +25,9 @@
 #include <QDir>
 
 #undef slots
-#include <boost/python/extract.hpp>
+#include <boost/python.hpp>
 
+namespace bp = boost::python;
 
 namespace CalamaresPython
 {
@@ -56,20 +57,66 @@ chroot_call( const std::string& command,
 
 
 int
-chroot_call( const boost::python::list& args,
+chroot_call( const bp::list& args,
              const std::string& stdin,
              int timeout )
 {
     QStringList list;
-    for ( int i = 0; i < boost::python::len( args ); ++i )
+    for ( int i = 0; i < bp::len( args ); ++i )
     {
         list.append( QString::fromStdString(
-            boost::python::extract< std::string >( args[ i ] ) ) );
+            bp::extract< std::string >( args[ i ] ) ) );
     }
 
     return CalamaresUtils::chrootCall( list,
                                        QString::fromStdString( stdin ),
                                        timeout );
+}
+
+
+int
+check_chroot_call( const std::string& command,
+                   const std::string& stdin,
+                   int timeout )
+{
+    int ec = chroot_call( command, stdin, timeout );
+    return _handle_check_chroot_call_error( ec, QString::fromStdString( command ) );
+}
+
+
+int
+check_chroot_call( const bp::list& args,
+                   const std::string& stdin,
+                   int timeout )
+{
+    int ec = chroot_call( args, stdin, timeout );
+    if ( !ec )
+        return ec;
+
+    QStringList failedCmdList;
+    for ( int i = 0; i < bp::len( args ); ++i )
+    {
+        failedCmdList.append( QString::fromStdString(
+            bp::extract< std::string >( args[ i ] ) ) );
+    }
+
+    return _handle_check_chroot_call_error( ec, failedCmdList.join( ' ' ) );
+}
+
+
+int
+_handle_check_chroot_call_error( int ec, const QString& cmd )
+{
+    if ( !ec )
+        return ec;
+
+    QString raise = QString( "import subprocess\n"
+                             "raise subprocess.CalledProcessError(%1,\"%2\")" )
+                        .arg( ec )
+                        .arg( cmd );
+    bp::exec( raise.toStdString().c_str() );
+    bp::throw_error_already_set();
+    return ec;
 }
 
 
@@ -96,6 +143,5 @@ PythonJobInterface::setprogress( qreal progress )
     if ( progress >= 0 && progress <= 1 )
         m_parent->emitProgress( progress );
 }
-
 
 }

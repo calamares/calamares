@@ -60,8 +60,11 @@ int chrootCall( const QStringList& args,
                 const QString& stdInput,
                 int timeoutSec )
 {
+    if ( !Calamares::JobQueue::instance() )
+        return -3;
+
     Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
-    if ( !gs->contains( "rootMountPoint" ) )
+    if ( !gs || !gs->contains( "rootMountPoint" ) )
     {
         cLog() << "No rootMountPoint in global storage";
         return -3;
