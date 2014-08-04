@@ -38,66 +38,21 @@ EditExistingPartitionDialog::EditExistingPartitionDialog( Device* device, Partit
     , m_partition( partition )
 {
     m_ui->setupUi( this );
-
-    PartitionTable* table = m_device->partitionTable();
-    qint64 minSector = partition->firstSector() - table->freeSectorsBefore( *partition );
-    qint64 maxSector = partition->lastSector() + table->freeSectorsAfter( *partition );
-
-    m_ui->sizeSpinBox->setMaximum( mbSizeForSectorRange( minSector, maxSector ) );
-    m_ui->sizeSpinBox->setValue( mbSizeForSectorRange( partition->firstSector(), partition->lastSector() ) );
-
-    // Mount point
+    m_ui->sizeSpinBox->init( device, partition );
     m_ui->mountPointComboBox->setCurrentText( PartitionInfo::mountPoint( partition ) );
 }
 
 EditExistingPartitionDialog::~EditExistingPartitionDialog()
 {}
 
-qint64
-EditExistingPartitionDialog::mbSizeForSectorRange( qint64 first, qint64 last ) const
-{
-    return ( last - first + 1 ) * m_device->logicalSectorSize() / 1024 / 1024;
-}
-
 void
 EditExistingPartitionDialog::applyChanges( PartitionCoreModule* core )
 {
     PartitionInfo::setMountPoint( m_partition, m_ui->mountPointComboBox->currentText() );
 
-    qint64 oldSize = mbSizeForSectorRange( m_partition->firstSector(), m_partition->lastSector() );
-    qint64 newSize = m_ui->sizeSpinBox->value();
-    if ( oldSize == newSize )
+    if ( m_ui->sizeSpinBox->isDirty() )
     {
-        if ( m_ui->formatRadioButton->isChecked() )
-            core->formatPartition( m_device, m_partition );
-        else
-            core->refreshPartition( m_device, m_partition );
-    }
-    else
-    {
-        // FIXME: Duplicated from CreatePartitionDialog
-        qint64 maxSector = m_partition->lastSector() + m_device->partitionTable()->freeSectorsAfter( *m_partition );
-
-        qint64 lastSector;
-        int mbSize = m_ui->sizeSpinBox->value();
-        if ( mbSize == m_ui->sizeSpinBox->maximum() )
-        {
-            // If we are at the maximum value, select the last sector to avoid
-            // potential rounding errors which could leave a few sectors at the end
-            // unused
-            lastSector = maxSector;
-        }
-        else
-        {
-            lastSector = m_partition->firstSector() + qint64( mbSize ) * 1024 * 1024 / m_device->logicalSectorSize();
-            Q_ASSERT( lastSector <= maxSector );
-            if ( lastSector > maxSector )
-            {
-                cDebug() << "lastSector (" << lastSector << ") > maxSector (" << maxSector << "). This should not happen!";
-                lastSector = maxSector;
-            }
-        }
-
+        PartitionSizeWidget::SectorRange range = m_ui->sizeSpinBox->sectorRange();
         if ( m_ui->formatRadioButton->isChecked() )
         {
             Partition* newPartition = PMUtils::createNewPartition(
@@ -105,8 +60,8 @@ EditExistingPartitionDialog::applyChanges( PartitionCoreModule* core )
                 *m_device,
                 m_partition->roles(),
                 m_partition->fileSystem().type(),
-                m_partition->firstSector(),
-                lastSector);
+                range.first,
+                range.second);
             PartitionInfo::setMountPoint( newPartition, PartitionInfo::mountPoint( m_partition ) );
             PartitionInfo::setFormat( newPartition, true );
 
@@ -117,5 +72,13 @@ EditExistingPartitionDialog::applyChanges( PartitionCoreModule* core )
         {
             //core->resizePartition( m_device, m_partition );
         }
+    }
+    else
+    {
+        // No size changes
+        if ( m_ui->formatRadioButton->isChecked() )
+            core->formatPartition( m_device, m_partition );
+        else
+            core->refreshPartition( m_device, m_partition );
     }
 }

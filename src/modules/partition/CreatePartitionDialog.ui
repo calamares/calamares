@@ -91,7 +91,7 @@
       </widget>
      </item>
      <item row="3" column="1">
-      <widget class="QSpinBox" name="sizeSpinBox">
+      <widget class="PartitionSizeWidget" name="sizeSpinBox">
        <property name="suffix">
         <string> MB</string>
        </property>
@@ -203,6 +203,13 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>PartitionSizeWidget</class>
+   <extends>QSpinBox</extends>
+   <header location="global">PartitionSizeWidget.h</header>
+  </customwidget>
+ </customwidgets>
  <tabstops>
   <tabstop>primaryRadioButton</tabstop>
   <tabstop>fsComboBox</tabstop>

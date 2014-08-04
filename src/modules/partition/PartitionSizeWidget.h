@@ -16,30 +16,35 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef EDITEXISTINGPARTITIONDIALOG_H
-#define EDITEXISTINGPARTITIONDIALOG_H
+#ifndef PARTITIONSIZEWIDGET_H
+#define PARTITIONSIZEWIDGET_H
 
-#include <QDialog>
-#include <QScopedPointer>
+#include <QSpinBox>
 
-class PartitionCoreModule;
 class Device;
 class Partition;
-class Ui_EditExistingPartitionDialog;
 
-class EditExistingPartitionDialog : public QDialog
+class PartitionSizeWidget : public QSpinBox
 {
-    Q_OBJECT
 public:
-    EditExistingPartitionDialog( Device* device, Partition* partition, QWidget* parentWidget = nullptr );
-    ~EditExistingPartitionDialog();
+    typedef QPair< qint64, qint64 > SectorRange;
 
-    void applyChanges( PartitionCoreModule* module );
+    explicit PartitionSizeWidget( QWidget* parent = nullptr );
+    void init( Device* device, Partition* partition );
+
+    SectorRange sectorRange() const;
+
+    bool isDirty() const;
 
 private:
-    QScopedPointer< Ui_EditExistingPartitionDialog > m_ui;
-    Device* m_device;
-    Partition* m_partition;
+    Device* m_device = nullptr;
+    Partition* m_partition = nullptr;
+    int m_initialValue;
+
+    qint64 mbSizeForSectorRange( qint64 first, qint64 last ) const;
+
+    qint64 computeMinSector() const;
+    qint64 computeMaxSector() const;
 };
 
-#endif /* EDITEXISTINGPARTITIONDIALOG_H */
+#endif /* PARTITIONSIZEWIDGET_H */

@@ -47,16 +47,12 @@ private Q_SLOTS:
 private:
     QScopedPointer< Ui_CreatePartitionDialog > m_ui;
     Device* m_device;
-    qint64 m_minSector = 0;
-    qint64 m_maxSector = 0;
     PartitionNode* m_parent;
     PartitionRole m_role = PartitionRole( PartitionRole::None );
 
     void initGptPartitionTypeUi();
     void initMbrPartitionTypeUi();
     void initSectorRange( Partition* );
-
-    qint64 mbSizeForSectorRange( qint64 first, qint64 last ) const;
 };
 
 #endif /* CREATEPARTITIONDIALOG_H */
