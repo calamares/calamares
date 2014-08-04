@@ -24,6 +24,7 @@
 #include "utils/CalamaresUtilsSystem.h"
 
 #include <QDir>
+#include <QFileInfo>
 
 
 SetTimezoneJob::SetTimezoneJob( const QString& region, const QString& zone )
@@ -49,10 +50,10 @@ SetTimezoneJob::exec()
     zoneinfoPath.append( QDir::separator() + m_zone );
 
     Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
-    QDir zoneDir( gs->value( "rootMountPoint" ).toString() + zoneinfoPath );
-    if ( !zoneDir.exists() || !zoneDir.isReadable() )
-        return Calamares::JobResult::error( tr( "Cannot access timezone directory." ),
-                                            tr( "Bad path: %1" ).arg( zoneDir.absolutePath() ) );
+    QFileInfo zoneFile( gs->value( "rootMountPoint" ).toString() + zoneinfoPath );
+    if ( !zoneFile.exists() || !zoneFile.isReadable() )
+        return Calamares::JobResult::error( tr( "Cannot access selected timezone path." ),
+                                            tr( "Bad path: %1" ).arg( zoneFile.absolutePath() ) );
 
     int ec = CalamaresUtils::chrootCall( { "ln",
                                            "-s",
