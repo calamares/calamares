@@ -276,6 +276,8 @@ JobTests::testResizePartition()
         QVERIFY( partition );
 
         ResizePartitionJob* job = new ResizePartitionJob( m_device.data(), partition, newFirst, newLast );
+        job->updatePreview();
+        m_queue.enqueue( job_ptr( job ) );
         QVERIFY( m_runner.run() );
     }
 
