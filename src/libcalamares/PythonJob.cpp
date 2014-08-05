@@ -61,11 +61,17 @@ BOOST_PYTHON_MODULE( libcalamares )
     bp::scope().attr( "VERSION_SHORT" ) = CALAMARES_VERSION_SHORT;
 
     bp::class_< CalamaresPython::PythonJobInterface >( "Job", bp::init< Calamares::PythonJob* >() )
-        .def_readonly( "module_name", &CalamaresPython::PythonJobInterface::moduleName )
-        .def_readonly( "pretty_name", &CalamaresPython::PythonJobInterface::prettyName )
-        .def_readonly( "working_path", &CalamaresPython::PythonJobInterface::workingPath )
+        .def_readonly( "module_name",   &CalamaresPython::PythonJobInterface::moduleName )
+        .def_readonly( "pretty_name",   &CalamaresPython::PythonJobInterface::prettyName )
+        .def_readonly( "working_path",  &CalamaresPython::PythonJobInterface::workingPath )
         .def_readonly( "configuration", &CalamaresPython::PythonJobInterface::configuration )
-        .def( "setprogress", &CalamaresPython::PythonJobInterface::setprogress );
+        .def(
+            "setprogress",
+            &CalamaresPython::PythonJobInterface::setprogress,
+            bp::args( "progress" ),
+            "Reports the progress status of this job to Calamares, "
+            "as a real number between 0 and 1."
+        );
 
     bp::class_< Calamares::GlobalStorage >( "GlobalStorage", bp::init<>() )
         .def( "contains",   &Calamares::GlobalStorage::python_contains )
@@ -81,7 +87,12 @@ BOOST_PYTHON_MODULE( libcalamares )
     bp::scope utilsScope = utilsModule;
     Q_UNUSED( utilsScope );
 
-    bp::def( "debug", &CalamaresPython::debug );
+    bp::def(
+        "debug",
+        &CalamaresPython::debug,
+        bp::args( "s" ),
+        "Writes the given string to the Calamares debug stream."
+    );
     bp::def(
         "mount",
         &CalamaresPython::mount,
