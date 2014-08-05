@@ -33,7 +33,8 @@
 // Qt
 #include <QColor>
 
-static QColor COLORS[ 4 ] = {
+static QColor COLORS[ 4 ] =
+{
     "#448eca",
     "#a5cc42",
     "#d87e30",
@@ -54,7 +55,7 @@ static QColor colorForPartition( Partition* partition, int row )
 
 //- ResetHelper --------------------------------------------
 PartitionModel::ResetHelper::ResetHelper( PartitionModel* model )
-: m_model( model )
+    : m_model( model )
 {
     m_model->beginResetModel();
 }
@@ -98,8 +99,8 @@ QModelIndex
 PartitionModel::index( int row, int column, const QModelIndex& parent ) const
 {
     PartitionNode* parentPartition = parent.isValid()
-        ? static_cast< PartitionNode* >( partitionForIndex( parent ))
-        : static_cast< PartitionNode* >( m_device->partitionTable() );
+                                     ? static_cast< PartitionNode* >( partitionForIndex( parent ) )
+                                     : static_cast< PartitionNode* >( m_device->partitionTable() );
     if ( !parentPartition )
         return QModelIndex();
     auto lst = parentPartition->children();

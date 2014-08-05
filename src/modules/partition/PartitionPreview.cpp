@@ -99,7 +99,8 @@ PartitionPreview::drawPartitions( QPainter* painter, const QRect& rect, const QM
         return;
     const int count = modl->rowCount( parent );
     const int totalWidth = rect.width();
-    struct Item {
+    struct Item
+    {
         qreal size;
         QModelIndex index;
     };
