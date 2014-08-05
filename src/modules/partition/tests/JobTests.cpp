@@ -233,7 +233,7 @@ JobTests::testResizePartition_data()
     QTest::addColumn< int >( "newSizeMB" );
 
     QTest::newRow("grow")      << 10 << 5 << 10 << 7;
-    QTest::newRow("shrink")    << 10 << 6 << 10 << 3;
+    QTest::newRow("shrink")    << 10 << 7 << 10 << 5;
     QTest::newRow("moveLeft")  << 10 << 5 << 8 << 5;
     QTest::newRow("moveRight") << 10 << 5 << 12 << 5;
 }
