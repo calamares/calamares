@@ -44,6 +44,8 @@ public:
 
 private:
     Device* m_device;
+    qint64 m_oldFirstSector;
+    qint64 m_oldLastSector;
     qint64 m_newFirstSector;
     qint64 m_newLastSector;
 

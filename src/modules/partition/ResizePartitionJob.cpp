@@ -67,6 +67,11 @@ struct Context
     {}
 
     ResizePartitionJob* job;
+    qint64 oldFirstSector;
+    qint64 oldLastSector;
+
+    QScopedPointer< CoreBackendPartitionTable > backendPartitionTable;
+    QString errorMessage;
 };
 
 //- ResizeFileSystemJob --------------------------------------------------------
@@ -74,6 +79,8 @@ class ResizeFileSystemJob : public Calamares::Job
 {
 public:
     ResizeFileSystemJob( Context* context, qint64 length )
+        : m_context( context )
+        , m_length( length )
     {}
 
     QString prettyName() const override
@@ -83,7 +90,52 @@ public:
 
     Calamares::JobResult exec() override
     {
+        Report report( nullptr );
+        Device* device = m_context->job->device();
+        Partition* partition = m_context->job->partition();
+        FileSystem& fs = partition->fileSystem();
+        FileSystem::CommandSupportType support = m_length < fs.length() ? fs.supportShrink() : fs.supportGrow();
+
+        switch (support)
+        {
+        case FileSystem::cmdSupportBackend:
+            if ( !backendResize( &report ) )
+                return Calamares::JobResult::error(
+                    m_context->errorMessage,
+                    tr( "Parted failed to resize filesystem." ) + '\n' + report.toText()
+                    );
+            break;
+        case FileSystem::cmdSupportFileSystem:
+        {
+            qint64 byteLength = device->logicalSectorSize() * m_length;
+            bool ok = fs.resize( report, partition->partitionPath(), byteLength );
+            if ( !ok )
+                return Calamares::JobResult::error(
+                    m_context->errorMessage,
+                    tr( "Failed to resize filesystem." ) + '\n' + report.toText()
+                    );
+            break;
+        }
+        default:
+            break;
+        }
+
+        fs.setLastSector( fs.firstSector() + m_length - 1 );
         return Calamares::JobResult::ok();
+    }
+
+private:
+    Context* m_context;
+    qint64 m_length;
+
+    bool backendResize( Report* report )
+    {
+        Partition* partition = m_context->job->partition();
+        bool ok = m_context->backendPartitionTable->resizeFileSystem( *report, *partition, m_length );
+        if ( !ok )
+            return false;
+        m_context->backendPartitionTable->commit();
+        return true;
     }
 };
 
@@ -92,6 +144,9 @@ class SetPartGeometryJob : public Calamares::Job
 {
 public:
     SetPartGeometryJob( Context* context, qint64 firstSector, qint64 length )
+        : m_context( context )
+        , m_firstSector( firstSector )
+        , m_length( length )
     {}
 
     QString prettyName() const override
@@ -101,8 +156,26 @@ public:
 
     Calamares::JobResult exec() override
     {
+        Report report( nullptr );
+        Partition* partition =  m_context->job->partition();
+        qint64 lastSector = m_firstSector + m_length - 1;
+        bool ok = m_context->backendPartitionTable->updateGeometry( report, *partition, m_firstSector, lastSector );
+        if ( !ok )
+        {
+            return Calamares::JobResult::error(
+                m_context->errorMessage,
+                tr( "Failed to change the geometry of the partition." ) + '\n' + report.toText() );
+        }
+        partition->setFirstSector( m_firstSector );
+        partition->setLastSector( lastSector );
+        m_context->backendPartitionTable->commit();
         return Calamares::JobResult::ok();
     }
+
+private:
+    Context* m_context;
+    qint64 m_firstSector;
+    qint64 m_length;
 };
 
 //- MoveFileSystemJob ----------------------------------------------------------
@@ -127,6 +200,8 @@ public:
 ResizePartitionJob::ResizePartitionJob( Device* device, Partition* partition, qint64 firstSector, qint64 lastSector )
     : PartitionJob( partition )
     , m_device( device )
+    , m_oldFirstSector( partition->firstSector() ) // Keep a copy of old sectors because they will be overwritten in updatePreview()
+    , m_oldLastSector( partition->lastSector() )
     , m_newFirstSector( firstSector )
     , m_newLastSector( lastSector )
 {
@@ -148,29 +223,28 @@ ResizePartitionJob::prettyName() const
 Calamares::JobResult
 ResizePartitionJob::exec()
 {
-    /*
-    Report report( 0 );
+    qint64 oldLength = m_oldLastSector - m_oldFirstSector + 1;
+    qint64 newLength = m_newLastSector - m_newFirstSector + 1;
+
+    // Setup context
     QString partitionPath = m_partition->partitionPath();
-    QString message = tr( "The installer failed to format partition %1 on disk '%2'." ).arg( partitionPath, m_device->name() );
+    Context context( this );
+    context.oldFirstSector = m_oldFirstSector;
+    context.oldLastSector = m_oldLastSector;
+    context.errorMessage = tr( "The installer failed to resize partition %1 on disk '%2'." ).arg( partitionPath, m_device->name() );
 
     CoreBackend* backend = CoreBackendManager::self()->backend();
     QScopedPointer<CoreBackendDevice> backendDevice( backend->openDevice( m_device->deviceNode() ) );
     if ( !backendDevice.data() )
     {
         return Calamares::JobResult::error(
-                   message,
+                   context.errorMessage,
                    tr( "Could not open device '%1'." ).arg( m_device->deviceNode() )
                );
     }
+    context.backendPartitionTable.reset( backendDevice->openPartitionTable() );
 
-    QScopedPointer<CoreBackendPartitionTable> backendPartitionTable( backendDevice->openPartitionTable() );
-    backendPartitionTable->commit();
-    return Calamares::JobResult::ok();
-    */
-    qint64 oldLength = m_partition->lastSector() - m_partition->firstSector() + 1;
-    qint64 newLength = m_newLastSector - m_newFirstSector + 1;
-
-    Context context( this );
+    // Create jobs
     QList< Calamares::job_ptr > jobs;
     if ( m_partition->roles().has( PartitionRole::Extended ) )
         jobs << Calamares::job_ptr( new SetPartGeometryJob( &context, m_newFirstSector, newLength ) );
