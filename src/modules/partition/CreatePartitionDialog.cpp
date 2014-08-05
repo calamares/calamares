@@ -124,10 +124,10 @@ CreatePartitionDialog::createPartition()
                               ? FileSystem::Extended
                               : FileSystem::typeForName( m_ui->fsComboBox->currentText() );
     Partition* partition = PMUtils::createNewPartition(
-        m_parent,
-        *m_device,
-        m_role,
-        fsType, range.first, range.second );
+                               m_parent,
+                               *m_device,
+                               m_role,
+                               fsType, range.first, range.second );
 
     PartitionInfo::setMountPoint( partition, m_ui->mountPointComboBox->currentText() );
     PartitionInfo::setFormat( partition, true );

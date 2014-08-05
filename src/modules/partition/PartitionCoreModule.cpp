@@ -46,7 +46,7 @@ static bool
 hasRootPartition( Device* device )
 {
     for ( auto it = PartitionIterator::begin( device ); it != PartitionIterator::end( device ); ++it )
-        if ( (*it)->mountPoint() == "/" )
+        if ( ( *it )->mountPoint() == "/" )
             return true;
     return false;
 }

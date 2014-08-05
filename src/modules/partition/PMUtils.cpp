@@ -53,17 +53,17 @@ createNewPartition( PartitionNode* parent, const Device& device, const Partition
 {
     FileSystem* fs = FileSystemFactory::create( fsType, firstSector, lastSector );
     return new Partition(
-        parent,
-        device,
-        role,
-        fs, fs->firstSector(), fs->lastSector(),
-        QString() /* path */,
-        PartitionTable::FlagNone /* availableFlags */,
-        QString() /* mountPoint */,
-        false /* mounted */,
-        PartitionTable::FlagNone /* activeFlags */,
-        Partition::StateNew
-    );
+               parent,
+               device,
+               role,
+               fs, fs->firstSector(), fs->lastSector(),
+               QString() /* path */,
+               PartitionTable::FlagNone /* availableFlags */,
+               QString() /* mountPoint */,
+               false /* mounted */,
+               PartitionTable::FlagNone /* activeFlags */,
+               Partition::StateNew
+           );
 }
 
 } // namespace

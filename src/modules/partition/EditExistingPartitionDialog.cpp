@@ -56,12 +56,12 @@ EditExistingPartitionDialog::applyChanges( PartitionCoreModule* core )
         if ( m_ui->formatRadioButton->isChecked() )
         {
             Partition* newPartition = PMUtils::createNewPartition(
-                m_partition->parent(),
-                *m_device,
-                m_partition->roles(),
-                m_partition->fileSystem().type(),
-                range.first,
-                range.second);
+                                          m_partition->parent(),
+                                          *m_device,
+                                          m_partition->roles(),
+                                          m_partition->fileSystem().type(),
+                                          range.first,
+                                          range.second );
             PartitionInfo::setMountPoint( newPartition, PartitionInfo::mountPoint( m_partition ) );
             PartitionInfo::setFormat( newPartition, true );
 
