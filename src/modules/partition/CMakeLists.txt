@@ -31,6 +31,7 @@ calamares_add_plugin( partition
         EditExistingPartitionDialog.cpp
         FillGlobalStorageJob.cpp
         FormatPartitionJob.cpp
+        MoveFileSystemJob.cpp
         PartitionCoreModule.cpp
         PartitionInfo.cpp
         PartitionIterator.cpp

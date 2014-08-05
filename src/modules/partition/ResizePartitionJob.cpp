@@ -40,7 +40,7 @@
 
 #include <ResizePartitionJob.h>
 
-//#include <utils/Logger.h>
+#include <MoveFileSystemJob.h>
 
 // CalaPM
 #include <backend/corebackend.h>
@@ -50,10 +50,6 @@
 #include <backend/corebackendpartitiontable.h>
 #include <core/device.h>
 #include <core/partition.h>
-/*
-#include <core/partitiontable.h>
-#include <fs/filesystem.h>
-*/
 #include <util/report.h>
 
 // Qt
@@ -71,7 +67,6 @@ struct Context
     qint64 oldLastSector;
 
     QScopedPointer< CoreBackendPartitionTable > backendPartitionTable;
-    QString errorMessage;
 };
 
 //- ResizeFileSystemJob --------------------------------------------------------
@@ -101,7 +96,7 @@ public:
         case FileSystem::cmdSupportBackend:
             if ( !backendResize( &report ) )
                 return Calamares::JobResult::error(
-                    m_context->errorMessage,
+                    QString(),
                     tr( "Parted failed to resize filesystem." ) + '\n' + report.toText()
                     );
             break;
@@ -111,7 +106,7 @@ public:
             bool ok = fs.resize( report, partition->partitionPath(), byteLength );
             if ( !ok )
                 return Calamares::JobResult::error(
-                    m_context->errorMessage,
+                    QString(),
                     tr( "Failed to resize filesystem." ) + '\n' + report.toText()
                     );
             break;
@@ -163,7 +158,7 @@ public:
         if ( !ok )
         {
             return Calamares::JobResult::error(
-                m_context->errorMessage,
+                QString(),
                 tr( "Failed to change the geometry of the partition." ) + '\n' + report.toText() );
         }
         partition->setFirstSector( m_firstSector );
@@ -176,24 +171,6 @@ private:
     Context* m_context;
     qint64 m_firstSector;
     qint64 m_length;
-};
-
-//- MoveFileSystemJob ----------------------------------------------------------
-class MoveFileSystemJob : public Calamares::Job
-{
-public:
-    MoveFileSystemJob( Context* context, qint64 firstSector )
-    {}
-
-    QString prettyName() const override
-    {
-        return QString();
-    }
-
-    Calamares::JobResult exec() override
-    {
-        return Calamares::JobResult::ok();
-    }
 };
 
 //- ResizePartitionJob ---------------------------------------------------------
@@ -231,14 +208,13 @@ ResizePartitionJob::exec()
     Context context( this );
     context.oldFirstSector = m_oldFirstSector;
     context.oldLastSector = m_oldLastSector;
-    context.errorMessage = tr( "The installer failed to resize partition %1 on disk '%2'." ).arg( partitionPath, m_device->name() );
 
     CoreBackend* backend = CoreBackendManager::self()->backend();
     QScopedPointer<CoreBackendDevice> backendDevice( backend->openDevice( m_device->deviceNode() ) );
     if ( !backendDevice.data() )
     {
         return Calamares::JobResult::error(
-                   context.errorMessage,
+                   QString(),
                    tr( "Could not open device '%1'." ).arg( m_device->deviceNode() )
                );
     }
@@ -265,7 +241,7 @@ ResizePartitionJob::exec()
             // shrunk, or to the original length (it may or may not then later be grown, we don't care here)
             const qint64 length = shrink ? newLength : oldLength;
             jobs << Calamares::job_ptr( new SetPartGeometryJob( &context, m_newFirstSector, length ) );
-            jobs << Calamares::job_ptr( new MoveFileSystemJob( &context, m_newFirstSector ) );
+            jobs << Calamares::job_ptr( new MoveFileSystemJob( m_device, m_partition, m_newFirstSector ) );
         }
         if ( grow )
         {
@@ -290,13 +266,21 @@ ResizePartitionJob::updatePreview()
 Calamares::JobResult
 ResizePartitionJob::execJobList( const QList< Calamares::job_ptr >& jobs )
 {
+    QString errorMessage = tr( "The installer failed to resize partition %1 on disk '%2'." )
+        .arg( m_partition->partitionPath() )
+        .arg( m_device->name() );
+
     int nbJobs = jobs.size();
     int count = 0;
     for ( Calamares::job_ptr job : jobs )
     {
         Calamares::JobResult result = job->exec();
         if ( !result )
+        {
+            if ( result.message().isEmpty() )
+                result.setMessage( errorMessage );
             return result;
+        }
         ++count;
         progress( qreal( count ) / nbJobs );
     }

@@ -5,6 +5,7 @@ set( jobtests_SRCS
     ${PartitionModule_SOURCE_DIR}/CreatePartitionJob.cpp
     ${PartitionModule_SOURCE_DIR}/CreatePartitionTableJob.cpp
     ${PartitionModule_SOURCE_DIR}/DeletePartitionJob.cpp
+    ${PartitionModule_SOURCE_DIR}/MoveFileSystemJob.cpp
     ${PartitionModule_SOURCE_DIR}/PartitionInfo.cpp
     ${PartitionModule_SOURCE_DIR}/PartitionIterator.cpp
     ${PartitionModule_SOURCE_DIR}/PartitionJob.cpp
