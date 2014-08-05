@@ -44,7 +44,10 @@ Settings::Settings( bool debugMode, QObject* parent )
     : QObject( parent )
     , m_debug( debugMode )
 {
-    QFileInfo settingsFile( CalamaresUtils::appDataDir().absoluteFilePath( "settings.conf" ) );
+    QFileInfo settingsFile( "/etc/calamares/settings.conf" );
+    if ( !settingsFile.exists() || !settingsFile.isReadable() )
+        settingsFile = QFileInfo( CalamaresUtils::appDataDir().absoluteFilePath( "settings.conf" ) );
+
     if ( debugMode )
     {
         QFileInfo localFile( QDir( QDir::currentPath() ).absoluteFilePath( "settings.conf" ) );

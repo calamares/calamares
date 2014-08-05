@@ -27,7 +27,7 @@
 #include <QDir>
 #include <QTimer>
 
-#define MODULE_CONFIG_FILENAME "module.conf"
+#define MODULE_CONFIG_FILENAME "module.desc"
 
 namespace Calamares
 {
@@ -92,7 +92,7 @@ ModuleManager::loadModules( Phase phase )
                 continue;
             }
 
-            recursiveLoad( moduleName );
+            doLoad( moduleName );
         }
         emit modulesLoaded( phase );
         // Loading sequence:
@@ -114,7 +114,7 @@ ModuleManager::doInit()
     // might (should) contain Calamares modules of any type/interface.
     // For each modules search path (directory), it is expected that each module
     // lives in its own subdirectory. This subdirectory must have the same name as
-    // the module name, and must contain a settings file named module.conf.
+    // the module name, and must contain a settings file named module.desc.
     // If at any time the module loading procedure finds something unexpected, it
     // silently skips to the next module or search path. --Teo 6/2014
     foreach ( const QString& path, m_paths )
@@ -137,7 +137,7 @@ ModuleManager::doInit()
                         continue;
                     }
 
-                    Module* moduleInfo = Module::fromConfigFile( metadataFileInfo.absoluteFilePath() );
+                    Module* moduleInfo = Module::fromDescriptorFile( metadataFileInfo.absoluteFilePath() );
 
                     if ( moduleInfo &&
                          ( moduleInfo->name() == currentDir.dirName() ) &&
@@ -170,16 +170,9 @@ ModuleManager::doInit()
 
 
 void
-ModuleManager::recursiveLoad( const QString& moduleName )
+ModuleManager::doLoad( const QString& moduleName )
 {
     Module* thisModule = m_availableModules.value( moduleName );
-    foreach ( const QString& module, thisModule->requiredModules() )
-    {
-        if ( !m_availableModules.value( module )->isLoaded() )
-        {
-            recursiveLoad( module );
-        }
-    }
     thisModule->loadSelf();
     cDebug() << ( thisModule->isLoaded() ? "SUCCESS" : "FAILURE" );
 }

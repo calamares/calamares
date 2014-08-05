@@ -54,7 +54,7 @@ def main():
 
     print("Testing module in: " + args.moduledir)
 
-    confpath = os.path.join(args.moduledir, "module.conf")
+    confpath = os.path.join(args.moduledir, "module.desc")
     with open(confpath) as f:
         doc = yaml.load(f)
 

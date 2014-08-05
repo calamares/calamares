@@ -4,8 +4,4 @@
 type:           "view"
 name:           "locale"
 interface:      "qtplugin"
-requires:       []
 load:           "libcalamares_viewmodule_locale.so"
-configuration:
-    region:		"Europe"
-    zone:		"London"

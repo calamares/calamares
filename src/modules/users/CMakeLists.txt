@@ -6,7 +6,6 @@ find_package( Crypt )
 calamares_add_plugin( users
     TYPE viewmodule
     EXPORT_MACRO PLUGINDLLEXPORT_PRO
-    CONFIG_FILE module.conf
     SOURCES
         CreateUserJob.cpp
         SetPasswordJob.cpp

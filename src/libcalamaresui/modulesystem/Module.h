@@ -59,7 +59,7 @@ public:
     };
     virtual ~Module();
 
-    static Module* fromConfigFile( const QString& path );
+    static Module* fromDescriptorFile( const QString& path );
 
     virtual QString name() const;
     virtual QStringList requiredModules() const;
@@ -80,6 +80,7 @@ protected:
     QVariantMap m_configurationMap;
 
 private:
+    void loadConfigurationFile(); //throws YAML::Exception
     QString m_name;
     Type m_type;
     Interface m_interface;

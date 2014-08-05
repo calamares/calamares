@@ -5,11 +5,13 @@ function( calamares_add_plugin )
     # parse arguments ( name needs to be saved before passing ARGN into the macro )
     set( NAME ${ARGV0} )
     set( options NO_INSTALL SHARED_LIB )
-    set( oneValueArgs NAME TYPE EXPORT_MACRO CONFIG_FILE )
+    set( oneValueArgs NAME TYPE EXPORT_MACRO )
     set( multiValueArgs SOURCES UI LINK_LIBRARIES COMPILE_DEFINITIONS )
     cmake_parse_arguments( PLUGIN "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN} )
     set( PLUGIN_NAME ${NAME} )
     set( PLUGIN_DESTINATION ${CMAKE_INSTALL_LIBDIR}/calamares/modules/${PLUGIN_NAME} )
+    set( PLUGIN_DESC_FILE module.desc )
+    set( PLUGIN_CONFIG_FILE ${NAME}.conf )
     set( CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}" )
     set( CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}" )
     set( CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}" )
@@ -62,7 +64,13 @@ function( calamares_add_plugin )
 
     calamares_add_library( ${calamares_add_library_args} )
 
-    configure_file( ${PLUGIN_CONFIG_FILE} ${PLUGIN_CONFIG_FILE} COPYONLY )
-    install( FILES ${CMAKE_CURRENT_BINARY_DIR}/${PLUGIN_CONFIG_FILE}
+    configure_file( ${PLUGIN_DESC_FILE} ${PLUGIN_DESC_FILE} COPYONLY )
+    install( FILES ${CMAKE_CURRENT_BINARY_DIR}/${PLUGIN_DESC_FILE}
              DESTINATION ${PLUGIN_DESTINATION} )
+
+    if( EXISTS "${CMAKE_CURRENT_BINARY_DIR}/${PLUGIN_CONFIG_FILE}" )
+        configure_file( ${PLUGIN_CONFIG_FILE} ${PLUGIN_CONFIG_FILE} COPYONLY )
+        install( FILES ${CMAKE_CURRENT_BINARY_DIR}/${PLUGIN_CONFIG_FILE}
+                 DESTINATION share/calamares/modules )
+    endif()
 endfunction()
