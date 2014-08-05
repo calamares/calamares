@@ -91,14 +91,14 @@ public:
         FileSystem& fs = partition->fileSystem();
         FileSystem::CommandSupportType support = m_length < fs.length() ? fs.supportShrink() : fs.supportGrow();
 
-        switch (support)
+        switch ( support )
         {
         case FileSystem::cmdSupportBackend:
             if ( !backendResize( &report ) )
                 return Calamares::JobResult::error(
-                    QString(),
-                    tr( "Parted failed to resize filesystem." ) + '\n' + report.toText()
-                    );
+                           QString(),
+                           tr( "Parted failed to resize filesystem." ) + '\n' + report.toText()
+                       );
             break;
         case FileSystem::cmdSupportFileSystem:
         {
@@ -106,9 +106,9 @@ public:
             bool ok = fs.resize( report, partition->partitionPath(), byteLength );
             if ( !ok )
                 return Calamares::JobResult::error(
-                    QString(),
-                    tr( "Failed to resize filesystem." ) + '\n' + report.toText()
-                    );
+                           QString(),
+                           tr( "Failed to resize filesystem." ) + '\n' + report.toText()
+                       );
             break;
         }
         default:
@@ -158,8 +158,8 @@ public:
         if ( !ok )
         {
             return Calamares::JobResult::error(
-                QString(),
-                tr( "Failed to change the geometry of the partition." ) + '\n' + report.toText() );
+                       QString(),
+                       tr( "Failed to change the geometry of the partition." ) + '\n' + report.toText() );
         }
         partition->setFirstSector( m_firstSector );
         partition->setLastSector( lastSector );
@@ -267,8 +267,8 @@ Calamares::JobResult
 ResizePartitionJob::execJobList( const QList< Calamares::job_ptr >& jobs )
 {
     QString errorMessage = tr( "The installer failed to resize partition %1 on disk '%2'." )
-        .arg( m_partition->partitionPath() )
-        .arg( m_device->name() );
+                           .arg( m_partition->partitionPath() )
+                           .arg( m_device->name() );
 
     int nbJobs = jobs.size();
     int count = 0;
