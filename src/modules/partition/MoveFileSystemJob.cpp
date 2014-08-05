@@ -17,7 +17,9 @@
  */
 
 // This class is heavily based on the MoveFileSystemJob class from KDE Partition
-// Manager. Original copyright follow:
+// Manager.
+// The copyBlock functions come from Partition Manager Job class.
+// Original copyright follow:
 
 /***************************************************************************
  *   Copyright (C) 2008 by Volker Lanz <vl@fidra.de>                       *
@@ -40,6 +42,8 @@
 
 #include <MoveFileSystemJob.h>
 
+#include <utils/Logger.h>
+
 // CalaPM
 #include <core/copysourcedevice.h>
 #include <core/copytargetdevice.h>
@@ -48,22 +52,12 @@
 #include <fs/filesystem.h>
 #include <util/report.h>
 
-static bool
-copyBlocks( Report& report, CopyTargetDevice& target, CopySourceDevice& source )
-{
-    return false;
-}
-
-static bool
-rollbackCopyBlocks( Report& report, CopyTargetDevice& target, CopySourceDevice& source )
-{
-    return false;
-}
-
-MoveFileSystemJob::MoveFileSystemJob( Device* device, Partition* partition, qint64 firstSector )
+MoveFileSystemJob::MoveFileSystemJob( Device* device, Partition* partition, qint64 oldFirstSector, qint64 newFirstSector, qint64 length )
     : PartitionJob( partition )
     , m_device( device )
-    , m_firstSector( firstSector )
+    , m_oldFirstSector( oldFirstSector )
+    , m_newFirstSector( newFirstSector )
+    , m_length( length )
 {}
 
 QString
@@ -77,49 +71,168 @@ MoveFileSystemJob::exec()
 {
     Report report( nullptr );
     QString partitionPath = partition()->partitionPath();
-    FileSystem& fs = partition()->fileSystem();
-    CopySourceDevice moveSource( *m_device, fs.firstSector(), fs.lastSector() );
-    CopyTargetDevice moveTarget( *m_device, m_firstSector, m_firstSector + fs.length() );
+    CopySourceDevice moveSource( *m_device, m_oldFirstSector, m_oldFirstSector + m_length - 1 );
+    CopyTargetDevice moveTarget( *m_device, m_newFirstSector, m_newFirstSector + m_length - 1 );
 
     if ( !moveSource.open() )
         return Calamares::JobResult::error(
-            QString(),
-            tr( "Could not open file system on partition %1 for moving." ).arg( partitionPath )
-            );
+                   QString(),
+                   tr( "Could not open file system on partition %1 for moving." ).arg( partitionPath )
+               );
 
     if ( !moveTarget.open() )
         return Calamares::JobResult::error(
-            QString(),
-            tr( "Could not create target for moving file system on partition %1." ).arg( partitionPath )
-            );
+                   QString(),
+                   tr( "Could not create target for moving file system on partition %1." ).arg( partitionPath )
+               );
 
     bool ok = copyBlocks( report, moveTarget, moveSource );
     if ( !ok )
     {
         if ( rollbackCopyBlocks( report, moveTarget, moveSource ) )
             return Calamares::JobResult::error(
-                QString(),
-                tr( "Moving of partition %1 failed, changes have been rolled back." ).arg( partitionPath )
-                + '\n' + report.toText()
-                );
+                       QString(),
+                       tr( "Moving of partition %1 failed, changes have been rolled back." ).arg( partitionPath )
+                       + '\n' + report.toText()
+                   );
         else
             return Calamares::JobResult::error(
-                QString(),
-                tr( "Moving of partition %1 failed. Roll back of the changes have failed." ).arg( partitionPath )
-                + '\n' + report.toText()
-                );
+                       QString(),
+                       tr( "Moving of partition %1 failed. Roll back of the changes have failed." ).arg( partitionPath )
+                       + '\n' + report.toText()
+                   );
     }
 
-    const qint64 savedLength = fs.length();
-    fs.setFirstSector( m_firstSector );
-    fs.setLastSector( m_firstSector + savedLength - 1 );
+    FileSystem& fs = partition()->fileSystem();
+    fs.setFirstSector( m_newFirstSector );
+    fs.setLastSector( m_newFirstSector + m_length - 1 );
 
     if ( !fs.updateBootSector( report, partitionPath ) )
         return Calamares::JobResult::error(
-            QString(),
-            tr( "Updating boot sector after the moving of partition %1 failed." ).arg( partitionPath )
-            + '\n' + report.toText()
-            );
+                   QString(),
+                   tr( "Updating boot sector after the moving of partition %1 failed." ).arg( partitionPath )
+                   + '\n' + report.toText()
+               );
 
     return Calamares::JobResult::ok();
+}
+
+bool
+MoveFileSystemJob::copyBlocks( Report& report, CopyTargetDevice& target, CopySourceDevice& source )
+{
+    /** @todo copyBlocks() assumes that source.sectorSize() == target.sectorSize(). */
+
+    if ( source.sectorSize() != target.sectorSize() )
+    {
+        report.line() << tr( "The logical sector sizes in the source and target for copying are not the same. This is currently unsupported." );
+        return false;
+    }
+
+    bool rval = true;
+    const qint64 blockSize = 16065 * 8; // number of sectors per block to copy
+    const qint64 blocksToCopy = source.length() / blockSize;
+
+    qint64 readOffset = source.firstSector();
+    qint64 writeOffset = target.firstSector();
+    qint32 copyDir = 1;
+
+    if ( target.firstSector() > source.firstSector() )
+    {
+        readOffset = source.firstSector() + source.length() - blockSize;
+        writeOffset = target.firstSector() + source.length() - blockSize;
+        copyDir = -1;
+    }
+
+    qint64 blocksCopied = 0;
+
+    void* buffer = malloc( blockSize * source.sectorSize() );
+    int percent = 0;
+
+    while ( blocksCopied < blocksToCopy )
+    {
+        rval = source.readSectors( buffer, readOffset + blockSize * blocksCopied * copyDir, blockSize );
+        if ( !rval )
+            break;
+
+        rval = target.writeSectors( buffer, writeOffset + blockSize * blocksCopied * copyDir, blockSize );
+        if ( !rval )
+            break;
+
+        if ( ++blocksCopied * 100 / blocksToCopy != percent )
+        {
+            percent = blocksCopied * 100 / blocksToCopy;
+            progress( qreal( percent ) / 100. );
+        }
+    }
+
+    const qint64 lastBlock = source.length() % blockSize;
+
+    // copy the remainder
+    if ( rval && lastBlock > 0 )
+    {
+        Q_ASSERT( lastBlock < blockSize );
+
+        if ( lastBlock >= blockSize )
+            cLog() << "warning: lastBlock: " << lastBlock << ", blockSize: " << blockSize;
+
+        const qint64 lastBlockReadOffset = copyDir > 0 ? readOffset + blockSize * blocksCopied : source.firstSector();
+        const qint64 lastBlockWriteOffset = copyDir > 0 ? writeOffset + blockSize * blocksCopied : target.firstSector();
+
+        rval = source.readSectors( buffer, lastBlockReadOffset, lastBlock );
+
+        if ( rval )
+            rval = target.writeSectors( buffer, lastBlockWriteOffset, lastBlock );
+
+        if ( rval )
+            emit progress( 1.0 );
+    }
+
+    free( buffer );
+
+    return rval;
+}
+
+bool
+MoveFileSystemJob::rollbackCopyBlocks( Report& report, CopyTargetDevice& origTarget, CopySourceDevice& origSource )
+{
+    if ( !origSource.overlaps( origTarget ) )
+    {
+        report.line() << tr( "Source and target for copying do not overlap: Rollback is not required." );
+        return true;
+    }
+
+    // default: use values as if we were copying from front to back.
+    qint64 undoSourceFirstSector = origTarget.firstSector();
+    qint64 undoSourceLastSector = origTarget.firstSector() + origTarget.sectorsWritten() - 1;
+
+    qint64 undoTargetFirstSector = origSource.firstSector();
+    qint64 undoTargetLastSector = origSource.firstSector() + origTarget.sectorsWritten() - 1;
+
+    if ( origTarget.firstSector() > origSource.firstSector() )
+    {
+        // we were copying from back to front
+        undoSourceFirstSector = origTarget.firstSector() + origSource.length() - origTarget.sectorsWritten();
+        undoSourceLastSector = origTarget.firstSector() + origSource.length() - 1;
+
+        undoTargetFirstSector = origSource.lastSector() - origTarget.sectorsWritten() + 1;
+        undoTargetLastSector = origSource.lastSector();
+    }
+
+    CopySourceDevice undoSource( origTarget.device(), undoSourceFirstSector, undoSourceLastSector );
+    if ( !undoSource.open() )
+    {
+        report.line() << tr( "Could not open device %1 to rollback copying." )
+                      .arg( origTarget.device().deviceNode() );
+        return false;
+    }
+
+    CopyTargetDevice undoTarget( origSource.device(), undoTargetFirstSector, undoTargetLastSector );
+    if ( !undoTarget.open() )
+    {
+        report.line() << tr( "Could not open device %1 to rollback copying." )
+                      .arg( origSource.device().deviceNode() );
+        return false;
+    }
+
+    return copyBlocks( report, undoTarget, undoSource );
 }

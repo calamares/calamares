@@ -42,13 +42,16 @@
 
 #include <PartitionJob.h>
 
+class CopySourceDevice;
+class CopyTargetDevice;
 class Device;
 class Partition;
+class Report;
 
 class MoveFileSystemJob : public PartitionJob
 {
 public:
-    MoveFileSystemJob( Device* device, Partition* partition, qint64 firstSector );
+    MoveFileSystemJob( Device* device, Partition* partition, qint64 oldFirstSector, qint64 newFirstSector, qint64 length );
 
     QString prettyName() const override;
 
@@ -56,7 +59,11 @@ public:
 
 private:
     Device* m_device;
-    qint64 m_firstSector;
+    qint64 m_oldFirstSector;
+    qint64 m_newFirstSector;
+    qint64 m_length;
+    bool copyBlocks( Report& report, CopyTargetDevice& target, CopySourceDevice& source );
+    bool rollbackCopyBlocks( Report& report, CopyTargetDevice& origTarget, CopySourceDevice& origSource );
 };
 
 #endif /* MOVEFILESYSTEMJOB_H */

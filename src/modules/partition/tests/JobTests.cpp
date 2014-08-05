@@ -274,11 +274,16 @@ JobTests::testResizePartition()
         QVERIFY( m_device->partitionTable() );
         Partition* partition = m_device->partitionTable()->findPartitionBySector( oldFirst, PartitionRole( PartitionRole::Primary ) );
         QVERIFY( partition );
+        QCOMPARE( partition->firstSector(), oldFirst );
+        QCOMPARE( partition->lastSector(), oldLast );
 
         ResizePartitionJob* job = new ResizePartitionJob( m_device.data(), partition, newFirst, newLast );
         job->updatePreview();
         m_queue.enqueue( job_ptr( job ) );
         QVERIFY( m_runner.run() );
+
+        QCOMPARE( partition->firstSector(), newFirst );
+        QCOMPARE( partition->lastSector(), newLast );
     }
 
     // Test

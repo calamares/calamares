@@ -203,6 +203,15 @@ ResizePartitionJob::exec()
     qint64 oldLength = m_oldLastSector - m_oldFirstSector + 1;
     qint64 newLength = m_newLastSector - m_newFirstSector + 1;
 
+    // Assuming updatePreview() has been called, `partition` uses its new
+    // position and size. Reset it to the old values: part of the libparted
+    // backend relies on this (for example:
+    // LibPartedPartitionTable::updateGeometry())
+    // The jobs are responsible for updating the partition back when they are
+    // done.
+    m_partition->setFirstSector( m_oldFirstSector );
+    m_partition->setLastSector( m_oldLastSector );
+
     // Setup context
     QString partitionPath = m_partition->partitionPath();
     Context context( this );
@@ -228,12 +237,12 @@ ResizePartitionJob::exec()
     {
         bool shrink = newLength < oldLength;
         bool grow = newLength > oldLength;
-        bool moveRight = m_newFirstSector > m_partition->firstSector();
-        bool moveLeft = m_newFirstSector < m_partition->firstSector();
+        bool moveRight = m_newFirstSector > m_oldFirstSector;
+        bool moveLeft = m_newFirstSector < m_oldFirstSector;
         if ( shrink )
         {
             jobs << Calamares::job_ptr( new ResizeFileSystemJob( &context, newLength ) );
-            jobs << Calamares::job_ptr( new SetPartGeometryJob( &context, m_partition->firstSector(), newLength ) );
+            jobs << Calamares::job_ptr( new SetPartGeometryJob( &context, m_oldFirstSector, newLength ) );
         }
         if ( moveRight || moveLeft )
         {
@@ -241,7 +250,7 @@ ResizePartitionJob::exec()
             // shrunk, or to the original length (it may or may not then later be grown, we don't care here)
             const qint64 length = shrink ? newLength : oldLength;
             jobs << Calamares::job_ptr( new SetPartGeometryJob( &context, m_newFirstSector, length ) );
-            jobs << Calamares::job_ptr( new MoveFileSystemJob( m_device, m_partition, m_newFirstSector ) );
+            jobs << Calamares::job_ptr( new MoveFileSystemJob( m_device, m_partition, m_oldFirstSector, m_newFirstSector, length ) );
         }
         if ( grow )
         {
