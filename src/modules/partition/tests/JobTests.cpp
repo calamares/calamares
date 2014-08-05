@@ -2,6 +2,7 @@
 
 #include <CreatePartitionJob.h>
 #include <CreatePartitionTableJob.h>
+#include <ResizePartitionJob.h>
 #include <PMUtils.h>
 
 // CalaPM
@@ -77,12 +78,18 @@ JobTests::initTestCase()
     }
 
     QVERIFY( CalaPM::init() );
+    FileSystemFactory::init();
 
+    refreshDevice();
+}
+
+void
+JobTests::refreshDevice()
+{
+    QString devicePath = qgetenv( "CALAMARES_TEST_DISK" );
     CoreBackend* backend = CoreBackendManager::self()->backend();
     m_device.reset( backend->scanDevice( devicePath ) );
     QVERIFY( !m_device.isNull() );
-
-    FileSystemFactory::init();
 }
 
 void
@@ -215,4 +222,72 @@ JobTests::testCreatePartitionExtended()
     QCOMPARE( partition1->partitionPath(), devicePath + "1" );
     QCOMPARE( extendedPartition->partitionPath(), devicePath + "2" );
     QCOMPARE( partition2->partitionPath(), devicePath + "5" );
+}
+
+void
+JobTests::testResizePartition_data()
+{
+    QTest::addColumn< int >( "oldStartMB" );
+    QTest::addColumn< int >( "oldSizeMB" );
+    QTest::addColumn< int >( "newStartMB" );
+    QTest::addColumn< int >( "newSizeMB" );
+
+    QTest::newRow("grow")      << 10 << 5 << 10 << 7;
+    QTest::newRow("shrink")    << 10 << 6 << 10 << 3;
+    QTest::newRow("moveLeft")  << 10 << 5 << 8 << 5;
+    QTest::newRow("moveRight") << 10 << 5 << 12 << 5;
+}
+
+void
+JobTests::testResizePartition()
+{
+    QFETCH( int, oldStartMB );
+    QFETCH( int, oldSizeMB );
+    QFETCH( int, newStartMB );
+    QFETCH( int, newSizeMB );
+
+    const qint64 sectorSize = m_device->logicalSectorSize();
+    const qint64 sectorForMB = MB / sectorSize;
+
+    qint64 oldFirst = sectorForMB * oldStartMB;
+    qint64 oldLast  = oldFirst + sectorForMB * oldSizeMB - 1;
+    qint64 newFirst = sectorForMB * newStartMB;
+    qint64 newLast  = newFirst + sectorForMB * newSizeMB - 1;
+
+    // Setup: create the test partition
+    {
+        queuePartitionTableCreation( PartitionTable::msdos );
+
+        Partition* freePartition = firstFreePartition( m_device->partitionTable() );
+        QVERIFY( freePartition );
+        Partition* partition = PMUtils::createNewPartition( freePartition->parent(), *m_device, PartitionRole( PartitionRole::Primary ), FileSystem::Ext4, oldFirst, oldLast );
+        CreatePartitionJob* job = new CreatePartitionJob( m_device.data(), partition );
+        job->updatePreview();
+        m_queue.enqueue( job_ptr( job ) );
+
+        QVERIFY( m_runner.run() );
+    }
+
+    // Resize
+    {
+        refreshDevice();
+        QVERIFY( m_device->partitionTable() );
+        Partition* partition = m_device->partitionTable()->findPartitionBySector( oldFirst, PartitionRole( PartitionRole::Primary ) );
+        QVERIFY( partition );
+
+        ResizePartitionJob* job = new ResizePartitionJob( m_device.data(), partition, newFirst, newLast );
+        QVERIFY( m_runner.run() );
+    }
+
+    // Test
+    {
+        refreshDevice();
+        QVERIFY( m_device->partitionTable() );
+        Partition* partition = m_device->partitionTable()->findPartitionBySector( newFirst, PartitionRole( PartitionRole::Primary ) );
+        QVERIFY( partition );
+        QCOMPARE( partition->firstSector(), newFirst );
+        QCOMPARE( partition->lastSector(), newLast );
+        QCOMPARE( partition->fileSystem().firstSector(), newFirst );
+        QCOMPARE( partition->fileSystem().lastSector(), newLast );
+    }
 }

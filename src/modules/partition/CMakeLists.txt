@@ -41,6 +41,7 @@ calamares_add_plugin( partition
         PartitionSizeWidget.cpp
         PartitionViewStep.cpp
         PMUtils.cpp
+        ResizePartitionJob.cpp
     UI
         CreatePartitionDialog.ui
         CreatePartitionTableDialog.ui

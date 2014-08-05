@@ -69,6 +69,8 @@ public:
 
     void formatPartition( Device* device, Partition* partition );
 
+    void resizePartition( Device* device, Partition* partition, qint64 first, qint64 last );
+
     void setBootLoaderInstallPath( const QString& path );
 
     QList< Calamares::job_ptr > jobs() const;

@@ -29,6 +29,7 @@
 #include <PartitionIterator.h>
 #include <PartitionModel.h>
 #include <PMUtils.h>
+#include <ResizePartitionJob.h>
 #include <Typedefs.h>
 #include <utils/Logger.h>
 
@@ -252,6 +253,20 @@ PartitionCoreModule::formatPartition( Device* device, Partition* partition )
     PartitionModel::ResetHelper helper( partitionModelForDevice( device ) );
 
     FormatPartitionJob* job = new FormatPartitionJob( device, partition );
+    deviceInfo->jobs << Calamares::job_ptr( job );
+
+    refresh();
+}
+
+void
+PartitionCoreModule::resizePartition( Device* device, Partition* partition, qint64 first, qint64 last )
+{
+    auto deviceInfo = infoForDevice( device );
+    Q_ASSERT( deviceInfo );
+    PartitionModel::ResetHelper helper( partitionModelForDevice( device ) );
+
+    ResizePartitionJob* job = new ResizePartitionJob( device, partition, first, last );
+    job->updatePreview();
     deviceInfo->jobs << Calamares::job_ptr( job );
 
     refresh();

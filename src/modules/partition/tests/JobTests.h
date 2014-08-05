@@ -43,6 +43,8 @@ private Q_SLOTS:
     void testPartitionTable();
     void testCreatePartition();
     void testCreatePartitionExtended();
+    void testResizePartition_data();
+    void testResizePartition();
 
 private:
     QScopedPointer< Device > m_device;
@@ -51,6 +53,7 @@ private:
 
     void queuePartitionTableCreation( PartitionTable::TableType type );
     CreatePartitionJob* newCreatePartitionJob( Partition* freeSpacePartition, PartitionRole, FileSystem::Type type, qint64 size );
+    void refreshDevice();
 };
 
 #endif /* JOBTESTS_H */

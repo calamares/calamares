@@ -9,6 +9,7 @@ set( jobtests_SRCS
     ${PartitionModule_SOURCE_DIR}/PartitionIterator.cpp
     ${PartitionModule_SOURCE_DIR}/PartitionJob.cpp
     ${PartitionModule_SOURCE_DIR}/PMUtils.cpp
+    ${PartitionModule_SOURCE_DIR}/ResizePartitionJob.cpp
     JobTests.cpp
 )
 

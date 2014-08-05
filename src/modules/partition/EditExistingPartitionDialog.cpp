@@ -69,9 +69,7 @@ EditExistingPartitionDialog::applyChanges( PartitionCoreModule* core )
             core->createPartition( m_device, newPartition );
         }
         else
-        {
-            //core->resizePartition( m_device, m_partition );
-        }
+            core->resizePartition( m_device, m_partition, range.first, range.second );
     }
     else
     {
