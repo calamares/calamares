@@ -47,8 +47,6 @@ CreatePartitionDialog::CreatePartitionDialog( Device* device, PartitionNode* par
 {
     m_ui->setupUi( this );
 
-    FileSystemFactory::init();
-
     if ( device->partitionTable()->type() == PartitionTable::msdos )
         initMbrPartitionTypeUi();
     else

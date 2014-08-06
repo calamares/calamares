@@ -39,6 +39,7 @@
 #include <core/partition.h>
 #include <backend/corebackend.h>
 #include <backend/corebackendmanager.h>
+#include <fs/filesystemfactory.h>
 
 // Qt
 #include <QStandardItemModel>
@@ -90,10 +91,9 @@ PartitionCoreModule::PartitionCoreModule( QObject* parent )
     , m_deviceModel( new DeviceModel( this ) )
     , m_bootLoaderModel( new BootLoaderModel( this ) )
 {
-    // FIXME: Should be done at startup
     if ( !CalaPM::init() )
         qFatal( "Failed to init CalaPM" );
-
+    FileSystemFactory::init();
     init();
 }
 
