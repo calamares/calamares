@@ -221,8 +221,11 @@ ResizePartitionJob::exec()
     QScopedPointer<CoreBackendDevice> backendDevice( backend->openDevice( m_device->deviceNode() ) );
     if ( !backendDevice.data() )
     {
+        QString errorMessage = tr( "The installer failed to resize partition %1 on disk '%2'." )
+                               .arg( m_partition->partitionPath() )
+                               .arg( m_device->name() );
         return Calamares::JobResult::error(
-                   QString(),
+                   errorMessage,
                    tr( "Could not open device '%1'." ).arg( m_device->deviceNode() )
                );
     }
