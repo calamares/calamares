@@ -68,7 +68,7 @@ def main():
     if args.globalstorage_yaml:
         with open(args.globalstorage_yaml) as f:
             gs_doc = yaml.load(f)
-        for key, value in doc.items():
+        for key, value in gs_doc.items():
             libcalamares.globalstorage.insert(key, value)
 
     cfg_doc = dict()
