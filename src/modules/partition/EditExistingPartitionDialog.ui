@@ -7,11 +7,11 @@
     <x>0</x>
     <y>0</y>
     <width>350</width>
-    <height>203</height>
+    <height>236</height>
    </rect>
   </property>
   <property name="sizePolicy">
-   <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+   <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
     <horstretch>0</horstretch>
     <verstretch>0</verstretch>
    </sizepolicy>
@@ -20,29 +20,31 @@
    <string>Edit Existing Partition</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="sizeConstraint">
+    <enum>QLayout::SetMinimumSize</enum>
+   </property>
+   <item>
+    <widget class="PartResizerWidget" name="partResizerWidget" native="true">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>59</height>
+      </size>
+     </property>
+    </widget>
+   </item>
    <item>
     <layout class="QFormLayout" name="formLayout">
      <property name="fieldGrowthPolicy">
       <enum>QFormLayout::ExpandingFieldsGrow</enum>
      </property>
-     <item row="0" column="0">
-      <widget class="QLabel" name="label">
-       <property name="text">
-        <string>Si&amp;ze:</string>
-       </property>
-       <property name="buddy">
-        <cstring>sizeSpinBox</cstring>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="1">
-      <widget class="PartitionSizeWidget" name="sizeSpinBox">
-       <property name="suffix">
-        <string> MB</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="0">
+     <item row="2" column="0">
       <widget class="QLabel" name="label_3">
        <property name="text">
         <string>Content:</string>
@@ -52,7 +54,7 @@
        </property>
       </widget>
      </item>
-     <item row="1" column="1">
+     <item row="2" column="1">
       <widget class="QRadioButton" name="keepRadioButton">
        <property name="text">
         <string>Keep</string>
@@ -62,15 +64,21 @@
        </property>
       </widget>
      </item>
-     <item row="2" column="1">
+     <item row="3" column="1">
       <widget class="QRadioButton" name="formatRadioButton">
        <property name="text">
         <string>Format</string>
        </property>
       </widget>
      </item>
-     <item row="3" column="1">
+     <item row="4" column="1">
       <widget class="QLabel" name="label_2">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
        <property name="text">
         <string>Warning: Formatting the partition will erase all existing data.</string>
        </property>
@@ -129,6 +137,19 @@
        </item>
       </widget>
      </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>Size:</string>
+       </property>
+       <property name="buddy">
+        <cstring>sizeSpinBox</cstring>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QSpinBox" name="sizeSpinBox"/>
+     </item>
     </layout>
    </item>
    <item>
@@ -145,9 +166,10 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>PartitionSizeWidget</class>
-   <extends>QSpinBox</extends>
-   <header location="global">PartitionSizeWidget.h</header>
+   <class>PartResizerWidget</class>
+   <extends>QWidget</extends>
+   <header location="global">gui/partresizerwidget.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <tabstops>

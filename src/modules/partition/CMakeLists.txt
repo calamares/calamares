@@ -40,6 +40,7 @@ calamares_add_plugin( partition
         PartitionModel.cpp
         PartitionPage.cpp
         PartitionPreview.cpp
+        PartitionSizeController.cpp
         PartitionSizeWidget.cpp
         PartitionViewStep.cpp
         PMUtils.cpp

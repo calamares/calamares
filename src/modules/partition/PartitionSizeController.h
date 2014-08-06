@@ -16,35 +16,42 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef EDITEXISTINGPARTITIONDIALOG_H
-#define EDITEXISTINGPARTITIONDIALOG_H
+#ifndef PARTITIONSIZECONTROLLER_H
+#define PARTITIONSIZECONTROLLER_H
 
-#include <QDialog>
-#include <QScopedPointer>
+#include <QObject>
 
-class PartitionCoreModule;
+class QSpinBox;
+
 class Device;
 class Partition;
-class PartitionSizeController;
-class Ui_EditExistingPartitionDialog;
+class PartResizerWidget;
 
-class EditExistingPartitionDialog : public QDialog
+/**
+ * Synchronize a PartResizerWidget and a QSpinBox
+ */
+class PartitionSizeController : public QObject
 {
     Q_OBJECT
 public:
-    EditExistingPartitionDialog( Device* device, Partition* partition, QWidget* parentWidget = nullptr );
-    ~EditExistingPartitionDialog();
-
-    void applyChanges( PartitionCoreModule* module );
+    explicit PartitionSizeController( QObject* parent = nullptr );
+    void setPartResizerWidget( PartResizerWidget* widget );
+    void setSpinBox( QSpinBox* spinBox );
+    void init( Device* device, Partition* partition );
 
 private:
-    QScopedPointer< Ui_EditExistingPartitionDialog > m_ui;
-    Device* m_device;
-    Partition* m_partition;
-    QScopedPointer< Partition > m_partResizerWidgetPartition;
-    PartitionSizeController* m_partitionSizeController;
+    PartResizerWidget* m_partResizerWidget = nullptr;
+    QSpinBox* m_spinBox = nullptr;
+    Device* m_device = nullptr;
+    Partition* m_partition = nullptr;
+    bool m_updating = false;
 
-    void replacePartResizerWidget();
+    void updateConnections();
+    void doUpdateSpinBox();
+
+private Q_SLOTS:
+    void updatePartResizerWidget();
+    void updateSpinBox();
 };
 
-#endif /* EDITEXISTINGPARTITIONDIALOG_H */
+#endif /* PARTITIONSIZECONTROLLER_H */
