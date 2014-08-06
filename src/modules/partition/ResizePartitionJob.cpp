@@ -258,6 +258,7 @@ ResizePartitionJob::exec()
             jobs << Calamares::job_ptr( new ResizeFileSystemJob( &context, newLength ) );
         }
     }
+    jobs << Calamares::job_ptr( new CheckFileSystemJob( partition() ) );
     return execJobList( jobs );
 }
 
