@@ -80,6 +80,10 @@ def file_copy(source, dest, progress_cb):
             # I guess we're updating every 100 files...
             if num_files_copied % 100 == 0:
                 progress_cb(num_files_copied)
+    process.wait()
+    if process.returncode != 0:
+        return "rsync failed with error code {}.".format(process.returncode)
+    return None
 
 
 class UnsquashOperation:
@@ -116,7 +120,11 @@ class UnsquashOperation:
                 imgmountdir = os.path.join(source_mount_path, imgbasename)
                 os.mkdir(imgmountdir)
                 self.report_progress()
-                self.unsquash_image(entry, imgmountdir)
+                error_msg = self.unsquash_image(entry, imgmountdir)
+                if error_msg:
+                    return ("Failed to unsquash {}".format(entry.source),
+                        error_msg)
+            return None
         finally:
             shutil.rmtree(source_mount_path)
 
@@ -130,7 +138,7 @@ class UnsquashOperation:
                                imgmountdir,
                                "-t", "squashfs", "-o", "loop"])
         try:
-            file_copy(imgmountdir,
+            return file_copy(imgmountdir,
                       entry.destination,
                       progress_cb)
         finally:
