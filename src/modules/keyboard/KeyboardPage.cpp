@@ -27,6 +27,7 @@
 
 #include "GlobalStorage.h"
 #include "JobQueue.h"
+#include "utils/Logger.h"
 
 #include <QComboBox>
 #include <QProcess>
@@ -262,5 +263,6 @@ KeyboardPage::onListVariantCurrentItemChanged( QListWidgetItem* current, QListWi
 
     m_selectedLayout = layout;
     m_selectedVariant = variant;
+    cDebug() << "xkbmap selection changed to: " << layout << "-" << variant;
 }
 
