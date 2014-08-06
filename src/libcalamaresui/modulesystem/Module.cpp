@@ -66,15 +66,14 @@ Module::fromDescriptorFile( const QString& path )
     if ( descriptorFile.exists() && descriptorFile.open( QFile::ReadOnly | QFile::Text ) )
     {
         QByteArray ba = descriptorFile.readAll();
-        cDebug() << Q_FUNC_INFO << "module descriptor file"
-                 << path << ":\n" << ba;
+        cDebug() << Q_FUNC_INFO << "module descriptor file" << path;
 
         try
         {
             YAML::Node doc = YAML::Load( ba.constData() );
             if ( !doc.IsMap() )
             {
-                cDebug() << Q_FUNC_INFO << "bad module descriptor format"
+                cLog() << Q_FUNC_INFO << "bad module descriptor format"
                          << path;
                 return nullptr;
             }
@@ -82,7 +81,7 @@ Module::fromDescriptorFile( const QString& path )
             if ( !doc[ "type" ] ||
                  !doc[ "interface" ] )
             {
-                cDebug() << Q_FUNC_INFO << "bad module descriptor format"
+                cLog() << Q_FUNC_INFO << "bad module descriptor format"
                          << path;
                 return nullptr;
             }
@@ -110,7 +109,7 @@ Module::fromDescriptorFile( const QString& path )
 
             if ( !m )
             {
-                cDebug() << Q_FUNC_INFO << "bad module type or interface string"
+                cLog() << Q_FUNC_INFO << "bad module type or interface string"
                          << path << typeString << intfString;
                 return nullptr;
             }
@@ -158,13 +157,13 @@ Module::loadConfigurationFile() //throws YAML::Exception
         if ( configFile.exists() && configFile.open( QFile::ReadOnly | QFile::Text ) )
         {
             QByteArray ba = configFile.readAll();
-            cDebug() << Q_FUNC_INFO << "module configuration file"
+            cLog() << Q_FUNC_INFO << "module configuration file"
                      << path << ":\n" << ba;
 
             YAML::Node doc = YAML::Load( ba.constData() );
             if ( !doc.IsMap() )
             {
-                cDebug() << Q_FUNC_INFO << "bad module configuration format"
+                cLog() << Q_FUNC_INFO << "bad module configuration format"
                          << path;
                 return;
             }
