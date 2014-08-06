@@ -31,6 +31,9 @@
 #include "viewpages/ViewStep.h"
 #include "ViewManager.h"
 
+#include <QDir>
+#include <QFileInfo>
+
 
 CalamaresApplication::CalamaresApplication( int& argc, char *argv[] )
     : QApplication( argc, argv )
@@ -130,7 +133,54 @@ CalamaresApplication::startPhase( Calamares::Phase phase )
 void
 CalamaresApplication::initSettings()
 {
-    new Calamares::Settings( isDebug(), this );
+    QFileInfo settingsFile;
+    if ( CalamaresUtils::isAppDataDirOverridden() )
+    {
+        settingsFile = QFileInfo( CalamaresUtils::appDataDir().absoluteFilePath( "settings.conf" ) );
+        if ( !settingsFile.exists() || !settingsFile.isReadable() )
+        {
+            cLog() << "FATAL ERROR: explicitly configured application data directory"
+                   << CalamaresUtils::appDataDir().absolutePath()
+                   << "does not contain a valid settings.conf file."
+                   << "\nCowardly refusing to continue startup without settings.";
+            ::exit( EXIT_FAILURE );
+        }
+    }
+    else
+    {
+        QStringList settingsFileCandidatesByPriority;
+        if ( isDebug() )
+        {
+            settingsFileCandidatesByPriority.append(
+                QDir::currentPath() +
+                QDir::separator() +
+                "settings.conf" );
+        }
+        settingsFileCandidatesByPriority.append( "/etc/calamares/settings.conf" );
+        settingsFileCandidatesByPriority.append( CalamaresUtils::appDataDir()
+                                                    .absoluteFilePath( "settings.conf" ) );
+
+        foreach ( const QString& path, settingsFileCandidatesByPriority )
+        {
+            QFileInfo pathFi( path );
+            if ( pathFi.exists() && pathFi.isReadable() )
+            {
+                settingsFile = pathFi;
+                break;
+            }
+        }
+
+        if ( !settingsFile.exists() || !settingsFile.isReadable() )
+        {
+            cLog() << "FATAL ERROR: none of the expected configuration file paths ("
+                   << settingsFileCandidatesByPriority.join( ", " )
+                   << ") contain a valid settings.conf file."
+                   << "\nCowardly refusing to continue startup without settings.";
+            ::exit( EXIT_FAILURE );
+        }
+    }
+
+    new Calamares::Settings( settingsFile.absoluteFilePath(), isDebug(), this );
 }
 
 
