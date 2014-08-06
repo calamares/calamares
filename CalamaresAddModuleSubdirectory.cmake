@@ -6,7 +6,7 @@ function( calamares_add_module_subdirectory )
     # If this subdirectory has a CMakeLists.txt, we add_subdirectory it...
     if( EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/${SUBDIRECTORY}/CMakeLists.txt" )
         add_subdirectory( ${SUBDIRECTORY} )
-    # ...otherwise, we look for a module.conf.
+    # ...otherwise, we look for a module.desc.
     elseif( EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/${SUBDIRECTORY}/module.desc" )
         set( MODULES_DIR ${CMAKE_INSTALL_LIBDIR}/calamares/modules )
         set( MODULE_DESTINATION ${MODULES_DIR}/${SUBDIRECTORY} )
@@ -37,7 +37,7 @@ function( calamares_add_module_subdirectory )
             message( "" )
         endif()
     else()
-        message( "-- ${BoldYellow}Warning:${ColorReset} tried to add module subdirectory ${BoldRed}${SUBDIRECTORY}${ColorReset} which has no CMakeLists.txt or module.conf." )
+        message( "-- ${BoldYellow}Warning:${ColorReset} tried to add module subdirectory ${BoldRed}${SUBDIRECTORY}${ColorReset} which has no CMakeLists.txt or module.desc." )
         message( "" )
     endif()
 endfunction()
