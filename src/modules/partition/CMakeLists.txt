@@ -23,6 +23,7 @@ calamares_add_plugin( partition
     CONFIG_FILE module.conf
     SOURCES
         BootLoaderModel.cpp
+        CheckFileSystemJob.cpp
         CreatePartitionDialog.cpp
         CreatePartitionJob.cpp
         CreatePartitionTableJob.cpp

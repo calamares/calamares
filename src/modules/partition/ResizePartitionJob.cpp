@@ -40,6 +40,7 @@
 
 #include <ResizePartitionJob.h>
 
+#include <CheckFileSystemJob.h>
 #include <MoveFileSystemJob.h>
 #include <utils/Logger.h>
 
@@ -229,6 +230,7 @@ ResizePartitionJob::exec()
 
     // Create jobs
     QList< Calamares::job_ptr > jobs;
+    jobs << Calamares::job_ptr( new CheckFileSystemJob( partition() ) );
     if ( m_partition->roles().has( PartitionRole::Extended ) )
         jobs << Calamares::job_ptr( new SetPartGeometryJob( &context, m_newFirstSector, newLength ) );
     else

@@ -2,6 +2,7 @@ find_package( Qt5 COMPONENTS Test REQUIRED )
 include( ECMAddTests )
 
 set( jobtests_SRCS
+    ${PartitionModule_SOURCE_DIR}/CheckFileSystemJob.cpp
     ${PartitionModule_SOURCE_DIR}/CreatePartitionJob.cpp
     ${PartitionModule_SOURCE_DIR}/CreatePartitionTableJob.cpp
     ${PartitionModule_SOURCE_DIR}/DeletePartitionJob.cpp
