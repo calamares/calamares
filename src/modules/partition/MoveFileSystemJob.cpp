@@ -63,7 +63,7 @@ MoveFileSystemJob::MoveFileSystemJob( Device* device, Partition* partition, qint
 QString
 MoveFileSystemJob::prettyName() const
 {
-    return tr( "Moving file system of partition %1." ).arg( partition()->partitionPath() );
+    return tr( "Move file system of partition %1." ).arg( partition()->partitionPath() );
 }
 
 Calamares::JobResult

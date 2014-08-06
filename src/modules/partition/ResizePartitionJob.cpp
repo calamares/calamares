@@ -41,6 +41,7 @@
 #include <ResizePartitionJob.h>
 
 #include <MoveFileSystemJob.h>
+#include <utils/Logger.h>
 
 // CalaPM
 #include <backend/corebackend.h>
@@ -80,7 +81,8 @@ public:
 
     QString prettyName() const override
     {
-        return QString();
+        QString path = m_context->job->partition()->partitionPath();
+        return tr( "Resize file system on partition %1." ).arg( path );
     }
 
     Calamares::JobResult exec() override
@@ -146,7 +148,8 @@ public:
 
     QString prettyName() const override
     {
-        return QString();
+        QString path = m_context->job->partition()->partitionPath();
+        return tr( "Update geometry of partition %1." ).arg( path );
     }
 
     Calamares::JobResult exec() override
@@ -187,14 +190,9 @@ ResizePartitionJob::ResizePartitionJob( Device* device, Partition* partition, qi
 QString
 ResizePartitionJob::prettyName() const
 {
-    /*
-    return tr( "Format partition %1 (file system: %2, size: %3 MB) on %4." )
-           .arg( m_partition->partitionPath() )
-           .arg( m_partition->fileSystem().name() )
-           .arg( m_partition->capacity() / 1024 / 1024 )
-           .arg( m_device->name() );
-    */
-    return QString();
+    // FIXME: Copy PM ResizeOperation code which generates a description of the
+    // operation
+    return tr( "Resize partition %1." ).arg( partition()->partitionPath() );
 }
 
 Calamares::JobResult
@@ -283,6 +281,7 @@ ResizePartitionJob::execJobList( const QList< Calamares::job_ptr >& jobs )
     int count = 0;
     for ( Calamares::job_ptr job : jobs )
     {
+        cLog() << "- " + job->prettyName();
         Calamares::JobResult result = job->exec();
         if ( !result )
         {
