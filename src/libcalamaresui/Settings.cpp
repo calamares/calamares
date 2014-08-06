@@ -40,23 +40,17 @@ Settings::instance()
 }
 
 
-Settings::Settings( bool debugMode, QObject* parent )
+Settings::Settings( const QString& settingsFilePath,
+                    bool debugMode,
+                    QObject* parent )
     : QObject( parent )
     , m_debug( debugMode )
 {
-    QFileInfo settingsFile( CalamaresUtils::appDataDir().absoluteFilePath( "settings.conf" ) );
-    if ( debugMode )
-    {
-        QFileInfo localFile( QDir( QDir::currentPath() ).absoluteFilePath( "settings.conf" ) );
-        if ( localFile.exists() && localFile.isReadable() )
-            settingsFile.setFile( localFile.absoluteFilePath() );
-    }
-    QFile file( settingsFile.absoluteFilePath() );
-
+    cDebug() << "Using Calamares settings file at" << settingsFilePath;
+    QFile file( settingsFilePath );
     if ( file.exists() && file.open( QFile::ReadOnly | QFile::Text ) )
     {
         QByteArray ba = file.readAll();
-        cDebug() << ba;
 
         try
         {

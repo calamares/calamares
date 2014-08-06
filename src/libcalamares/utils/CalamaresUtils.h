@@ -40,6 +40,7 @@ namespace CalamaresUtils
      * Override app data dir. Only for testing purposes.
      */
     DLLEXPORT void setAppDataDir( const QDir& dir );
+    DLLEXPORT bool isAppDataDirOverridden();
 }
 
 #endif // CALAMARESUTILS_H

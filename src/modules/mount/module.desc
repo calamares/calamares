@@ -1,6 +1,5 @@
+---
 type:       "job"
-name:       "grub"
+name:       "mount"
 interface:  "python"
-requires:   []
 script:     "main.py"
-configuration:

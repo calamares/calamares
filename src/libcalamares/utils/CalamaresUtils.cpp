@@ -42,6 +42,7 @@ namespace CalamaresUtils
 {
 
 static QDir s_appDataDir( CMAKE_INSTALL_FULL_DATADIR );
+static bool s_isAppDataDirOverridden = false;
 
 static bool
 isWritableDir( const QDir& dir )
@@ -76,6 +77,14 @@ void
 setAppDataDir( const QDir& dir )
 {
     s_appDataDir = dir;
+    s_isAppDataDirOverridden = true;
+}
+
+
+bool
+isAppDataDirOverridden()
+{
+    return s_isAppDataDirOverridden;
 }
 
 

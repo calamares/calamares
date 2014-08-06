@@ -41,7 +41,7 @@ main( int argc, char *argv[] )
     parser.addOption( debugOption );
 
     QCommandLineOption configOption( QStringList() << "c" << "config",
-                                     "Configuration dir to use, for testing purposes.", "config" );
+                                     "Configuration directory to use, for testing purposes.", "config" );
     parser.addOption( configOption );
 
     parser.process( a );

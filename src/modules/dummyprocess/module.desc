@@ -4,6 +4,5 @@
 type:       "job"
 name:       "dummyprocess"
 interface:  "process"
-requires:   []
 command:    "/bin/sh -c \"touch ~/calamares-dummyprocess\""
 timeout:    5

@@ -1,6 +1,5 @@
+---
 type:       "job"
 name:       "umount"
 interface:  "python"
-requires:   []
 script:     "main.py"
-configuration:

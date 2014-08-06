@@ -58,7 +58,7 @@ private slots:
     void doInit();
 
 private:
-    void recursiveLoad( const QString& moduleName );
+    void doLoad( const QString& moduleName );
     void checkDependencies();
 
     QMap< QString, Module* > m_availableModules;

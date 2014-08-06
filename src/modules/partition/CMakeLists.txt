@@ -20,7 +20,6 @@ include_directories( ${PROJECT_BINARY_DIR}/src/libcalamaresui )
 calamares_add_plugin( partition
     TYPE viewmodule
     EXPORT_MACRO PLUGINDLLEXPORT_PRO
-    CONFIG_FILE module.conf
     SOURCES
         BootLoaderModel.cpp
         CreatePartitionDialog.cpp

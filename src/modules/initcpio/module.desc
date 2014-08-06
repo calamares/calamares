@@ -1,7 +1,5 @@
+---
 type:       "job"
 name:       "initcpio"
 interface:  "python"
-requires:   []
 script:     "main.py"
-configuration:
-    kernel: linux312

@@ -3,9 +3,4 @@
 type:       "job"
 name:       "unsquashfs"
 interface:  "python"
-requires:   []
 script:     "main.py"   #assumed relative to the current directory
-configuration:
-    unpack:
-        -   source: "/path/to/squashfs/image.sqfs"
-            destination: ""

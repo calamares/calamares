@@ -1,0 +1,5 @@
+---
+type:       "job"
+name:       "grub"
+interface:  "python"
+script:     "main.py"

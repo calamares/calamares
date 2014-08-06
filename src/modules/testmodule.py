@@ -34,11 +34,11 @@ except ImportError:
 
 class Job:
 
-    def __init__(self, working_path, doc):
+    def __init__(self, working_path, doc, cfg_doc):
         self.module_name = doc["name"]
         self.pretty_name = "Testing job " + doc["name"]
         self.working_path = working_path
-        self.configuration = doc["configuration"]
+        self.configuration = cfg_doc
 
     def setprogress(self, progress):
         print("Job set progress to {}%.".format(progress * 100))
@@ -47,14 +47,16 @@ class Job:
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("moduledir",
-                        help="Dir containing the Python module")
+                        help="Dir containing the Python module.")
     parser.add_argument("globalstorage_yaml", nargs="?",
-                        help="A yaml file to initialize GlobalStorage")
+                        help="A yaml file to initialize GlobalStorage.")
+    parser.add_argument("configuration_yaml", nargs="?",
+                        help="A yaml file to initialize the configuration dict.")
     args = parser.parse_args()
 
     print("Testing module in: " + args.moduledir)
 
-    confpath = os.path.join(args.moduledir, "module.conf")
+    confpath = os.path.join(args.moduledir, "module.desc")
     with open(confpath) as f:
         doc = yaml.load(f)
 
@@ -62,15 +64,20 @@ def main():
         print("Only Python jobs can be tested.")
         return 1
 
-    libcalamares.job = Job(args.moduledir, doc)
-    libcalamares.globalstorage = libcalamares.GlobalStorage()
-
     # if a file for simulating globalStorage contents is provided, load it
     if args.globalstorage_yaml:
         with open(args.globalstorage_yaml) as f:
-            doc = yaml.load(f)
-        for key, value in doc.items():
+            gs_doc = yaml.load(f)
+        for key, value in gs_doc.items():
             libcalamares.globalstorage.insert(key, value)
+
+    cfg_doc = dict()
+    if args.configuration_yaml:
+        with open(args.configuration_yaml) as f:
+            cfg_doc = yaml.load(f)
+
+    libcalamares.job = Job(args.moduledir, doc, cfg_doc)
+    libcalamares.globalstorage = libcalamares.GlobalStorage()
 
     scriptpath = os.path.abspath(args.moduledir)
     sys.path.append(scriptpath)

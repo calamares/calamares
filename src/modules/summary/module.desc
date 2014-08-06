@@ -2,7 +2,6 @@
 # Syntax is YAML 1.2
 ---
 type:      "view"
-name:      "keyboard"
+name:      "summary"
 interface: "qtplugin"
-requires:  []
-load:      "libcalamares_viewmodule_keyboard.so"
+load:      "libcalamares_viewmodule_summary.so"

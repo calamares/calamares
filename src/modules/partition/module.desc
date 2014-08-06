@@ -4,7 +4,4 @@
 type:      "view"     #core or view
 name:      "partition" #the module name. must be unique and same as the parent directory
 interface: "qtplugin" #can be: qtplugin, python, process, ...
-requires:  []         #list of module names that must also be loaded. only applies to
-                      #binary plugins! these are actual link-time dependencies, not
-                      #conceptual dependencies for the setup procedure
 load:      "libcalamares_viewmodule_partition.so"
