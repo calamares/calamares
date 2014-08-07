@@ -49,10 +49,11 @@ private:
     Device* m_device;
     PartitionNode* m_parent;
     PartitionRole m_role = PartitionRole( PartitionRole::None );
+    QScopedPointer< Partition > m_partResizerWidgetPartition;
 
     void initGptPartitionTypeUi();
     void initMbrPartitionTypeUi();
-    void initSectorRange( Partition* );
+    void initPartResizerWidget( Partition* );
 };
 
 #endif /* CREATEPARTITIONDIALOG_H */

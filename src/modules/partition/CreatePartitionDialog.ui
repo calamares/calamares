@@ -15,8 +15,24 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
+    <widget class="PartResizerWidget" name="partResizerWidget" native="true">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>59</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item>
     <layout class="QFormLayout" name="formLayout">
-     <item row="0" column="0">
+     <item row="1" column="0">
       <widget class="QLabel" name="partitionTypeLabel">
        <property name="text">
         <string>Partition &amp;Type:</string>
@@ -26,7 +42,7 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="1">
+     <item row="1" column="1">
       <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
         <widget class="QRadioButton" name="primaryRadioButton">
@@ -67,7 +83,7 @@
        </item>
       </layout>
      </item>
-     <item row="2" column="0">
+     <item row="3" column="0">
       <widget class="QLabel" name="label_2">
        <property name="text">
         <string>F&amp;ile System:</string>
@@ -77,27 +93,10 @@
        </property>
       </widget>
      </item>
-     <item row="2" column="1">
+     <item row="3" column="1">
       <widget class="QComboBox" name="fsComboBox"/>
      </item>
-     <item row="3" column="0">
-      <widget class="QLabel" name="label">
-       <property name="text">
-        <string>Si&amp;ze:</string>
-       </property>
-       <property name="buddy">
-        <cstring>sizeSpinBox</cstring>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="1">
-      <widget class="PartitionSizeWidget" name="sizeSpinBox">
-       <property name="suffix">
-        <string> MB</string>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="1">
+     <item row="5" column="1">
       <spacer name="verticalSpacer_2">
        <property name="orientation">
         <enum>Qt::Vertical</enum>
@@ -113,7 +112,7 @@
        </property>
       </spacer>
      </item>
-     <item row="5" column="0">
+     <item row="6" column="0">
       <widget class="QLabel" name="mountPointLabel">
        <property name="text">
         <string>&amp;Mount Point:</string>
@@ -123,7 +122,7 @@
        </property>
       </widget>
      </item>
-     <item row="5" column="1">
+     <item row="6" column="1">
       <widget class="QComboBox" name="mountPointComboBox">
        <property name="editable">
         <bool>true</bool>
@@ -163,7 +162,7 @@
        </item>
       </widget>
      </item>
-     <item row="6" column="0">
+     <item row="7" column="0">
       <spacer name="verticalSpacer">
        <property name="orientation">
         <enum>Qt::Vertical</enum>
@@ -176,7 +175,7 @@
        </property>
       </spacer>
      </item>
-     <item row="1" column="1">
+     <item row="2" column="1">
       <spacer name="verticalSpacer_3">
        <property name="orientation">
         <enum>Qt::Vertical</enum>
@@ -188,6 +187,23 @@
         </size>
        </property>
       </spacer>
+     </item>
+     <item row="0" column="0">
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>Si&amp;ze:</string>
+       </property>
+       <property name="buddy">
+        <cstring>sizeSpinBox</cstring>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QSpinBox" name="sizeSpinBox">
+       <property name="suffix">
+        <string> MB</string>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>
@@ -205,15 +221,15 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>PartitionSizeWidget</class>
-   <extends>QSpinBox</extends>
-   <header location="global">PartitionSizeWidget.h</header>
+   <class>PartResizerWidget</class>
+   <extends>QWidget</extends>
+   <header location="global">gui/partresizerwidget.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <tabstops>
   <tabstop>primaryRadioButton</tabstop>
   <tabstop>fsComboBox</tabstop>
-  <tabstop>sizeSpinBox</tabstop>
  </tabstops>
  <resources/>
  <connections>

@@ -18,6 +18,7 @@
 
 #include <CreatePartitionDialog.h>
 
+#include <PartitionSizeController.h>
 #include <PartitionInfo.h>
 #include <PMUtils.h>
 #include <ui_CreatePartitionDialog.h>
@@ -116,7 +117,8 @@ CreatePartitionDialog::createPartition()
                  );
     }
 
-    PartitionSizeWidget::SectorRange range = m_ui->sizeSpinBox->sectorRange();
+    qint64 first = m_partResizerWidgetPartition->firstSector();
+    qint64 last = m_partResizerWidgetPartition->lastSector();
 
     FileSystem::Type fsType = m_role.has( PartitionRole::Extended )
                               ? FileSystem::Extended
@@ -125,7 +127,7 @@ CreatePartitionDialog::createPartition()
                                m_parent,
                                *m_device,
                                m_role,
-                               fsType, range.first, range.second );
+                               fsType, first, last );
 
     PartitionInfo::setMountPoint( partition, m_ui->mountPointComboBox->currentText() );
     PartitionInfo::setFormat( partition, true );
@@ -146,9 +148,24 @@ CreatePartitionDialog::updateMountPointUi()
 }
 
 void
+CreatePartitionDialog::initPartResizerWidget( Partition* partition )
+{
+    PartitionSizeController* controller = new PartitionSizeController( this );
+    m_partResizerWidgetPartition.reset( PMUtils::clonePartition( m_device, partition ) );
+
+    qint64 minFirstSector = partition->firstSector() - m_device->partitionTable()->freeSectorsBefore( *partition );
+    qint64 maxLastSector = partition->lastSector() + m_device->partitionTable()->freeSectorsAfter( *partition );
+    m_ui->partResizerWidget->init( *m_device, *m_partResizerWidgetPartition, minFirstSector, maxLastSector );
+
+    controller->init( m_device, m_partResizerWidgetPartition.data() );
+    controller->setPartResizerWidget( m_ui->partResizerWidget );
+    controller->setSpinBox( m_ui->sizeSpinBox );
+}
+
+void
 CreatePartitionDialog::initFromFreeSpace( Partition* freeSpacePartition )
 {
-    m_ui->sizeSpinBox->init( m_device, freeSpacePartition );
+    initPartResizerWidget( freeSpacePartition );
 }
 
 void
@@ -164,7 +181,7 @@ CreatePartitionDialog::initFromPartitionToCreate( Partition* partition )
         return;
     }
 
-    m_ui->sizeSpinBox->init( m_device, partition );
+    initPartResizerWidget( partition );
 
     // File System
     FileSystem::Type fsType = partition->fileSystem().type();
