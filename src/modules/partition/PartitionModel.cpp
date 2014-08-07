@@ -49,8 +49,20 @@ static QColor colorForPartition( Partition* partition, int row )
         return FREE_SPACE_COLOR;
     if ( partition->roles().has( PartitionRole::Extended ) )
         return EXTENDED_COLOR;
-    // No partition-specific color needed, pick one from our list
-    return COLORS[ row % 4 ];
+    // No partition-specific color needed, pick one from our list, but skip
+    // free space: we don't want a partition to change colors if space before
+    // it is inserted or removed
+    PartitionNode* parent = partition->parent();
+    Q_ASSERT( parent );
+    int colorIdx = 0;
+    for ( auto child : parent->children() )
+    {
+        if ( child == partition )
+            break;
+        if ( !PMUtils::isPartitionFreeSpace( child ) )
+            ++colorIdx;
+    }
+    return COLORS[ colorIdx % 4 ];
 }
 
 //- ResetHelper --------------------------------------------
