@@ -20,6 +20,7 @@
 #define PARTITIONSIZECONTROLLER_H
 
 #include <QObject>
+#include <QPointer>
 
 class QSpinBox;
 
@@ -40,8 +41,8 @@ public:
     void init( Device* device, Partition* partition );
 
 private:
-    PartResizerWidget* m_partResizerWidget = nullptr;
-    QSpinBox* m_spinBox = nullptr;
+    QPointer< PartResizerWidget > m_partResizerWidget;
+    QPointer< QSpinBox > m_spinBox;
     Device* m_device = nullptr;
     Partition* m_partition = nullptr;
     bool m_updating = false;
