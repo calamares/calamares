@@ -117,9 +117,9 @@ Module::fromDescriptorFile( const QString& path )
             QFileInfo mfi( path );
             m->m_directory = mfi.absoluteDir().absolutePath();
 
+            m->initFrom( doc );
             m->loadConfigurationFile();
 
-            m->initFrom( doc );
             return m;
         }
         catch ( YAML::Exception& e )
@@ -138,17 +138,27 @@ void
 Module::loadConfigurationFile() //throws YAML::Exception
 {
     QStringList configFilesByPriority;
-    configFilesByPriority.append(
-        QString( "/etc/calamares/modules/%1.conf" ).arg( m_name ) );
-    configFilesByPriority.append(
-        CalamaresUtils::appDataDir().absoluteFilePath(
-            QString( "modules/%1.conf" ).arg( m_name ) ) );
 
-    if ( Settings::instance()->debugMode() )
+    if ( CalamaresUtils::isAppDataDirOverridden() )
     {
         configFilesByPriority.append(
-            QDir( QDir::currentPath() ).absoluteFilePath(
-                QString( "src/modules/%1/%1.conf" ).arg( m_name ) ) );
+            CalamaresUtils::appDataDir().absoluteFilePath(
+                QString( "modules/%1.conf" ).arg( m_name ) ) );
+    }
+    else
+    {
+        if ( Settings::instance()->debugMode() )
+        {
+            configFilesByPriority.append(
+                QDir( QDir::currentPath() ).absoluteFilePath(
+                    QString( "src/modules/%1/%1.conf" ).arg( m_name ) ) );
+        }
+
+        configFilesByPriority.append(
+            QString( "/etc/calamares/modules/%1.conf" ).arg( m_name ) );
+        configFilesByPriority.append(
+            CalamaresUtils::appDataDir().absoluteFilePath(
+                QString( "modules/%1.conf" ).arg( m_name ) ) );
     }
 
     foreach ( const QString& path, configFilesByPriority )
