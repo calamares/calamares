@@ -44,19 +44,7 @@ EditExistingPartitionDialog::EditExistingPartitionDialog( Device* device, Partit
 
     // Create a partition for partResizerWidget because it alters the first and
     // last sectors when used
-    FileSystem* fs = FileSystemFactory::create(
-                         m_partition->fileSystem().type(),
-                         m_partition->firstSector(),
-                         m_partition->lastSector()
-                     );
-    m_partResizerWidgetPartition.reset( new Partition(
-                                            m_partition->parent(),
-                                            *m_device,
-                                            m_partition->roles(),
-                                            fs, fs->firstSector(), fs->lastSector(),
-                                            m_partition->partitionPath()
-                                        )
-                                      );
+    m_partResizerWidgetPartition.reset( PMUtils::clonePartition( m_device, m_partition ) );
 
     m_partitionSizeController->init( m_device, m_partResizerWidgetPartition.data() );
     m_partitionSizeController->setSpinBox( m_ui->sizeSpinBox );

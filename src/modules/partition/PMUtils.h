@@ -40,6 +40,7 @@ Partition* findPartitionByMountPoint( const QList< Device* >& devices, const QSt
 
 Partition* createNewPartition( PartitionNode* parent, const Device& device, const PartitionRole& role, FileSystem::Type fsType, qint64 firstSector, qint64 lastSector );
 
+Partition* clonePartition( Device* device, Partition* partition );
 }
 
 #endif /* PMUTILS_H */
