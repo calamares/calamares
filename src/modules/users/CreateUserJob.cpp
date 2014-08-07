@@ -53,12 +53,12 @@ CreateUserJob::exec()
     QDir destDir( gs->value( "rootMountPoint" ).toString() );
     QFileInfo sudoersFi( destDir.absoluteFilePath( "etc/sudoers.d/10-installer" ) );
 
-    if ( !sudoersFi.exists() || !sudoersFi.isWritable() )
-        return Calamares::JobResult::error( tr( "Sudoers file is not writable." ) );
+    if ( !sudoersFi.absoluteDir().exists() )
+        return Calamares::JobResult::error( tr( "Sudoers dir is not writable." ) );
 
     QFile sudoersFile( sudoersFi.absoluteFilePath() );
-    if (!sudoersFile.open( QIODevice::Append | QIODevice::Text ) )
-        return Calamares::JobResult::error( tr( "Cannot open sudoers file for writing." ) );
+    if (!sudoersFile.open( QIODevice::WriteOnly | QIODevice::Text ) )
+        return Calamares::JobResult::error( tr( "Cannot create sudoers file for writing." ) );
 
     QTextStream sudoersOut( &sudoersFile );
     sudoersOut << QString( "%1 ALL=(ALL) ALL\n" ).arg( m_userName );
