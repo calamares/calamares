@@ -18,8 +18,9 @@
 
 #include <CreatePartitionDialog.h>
 
-#include <PartitionSizeController.h>
+#include <ColorUtils.h>
 #include <PartitionInfo.h>
+#include <PartitionSizeController.h>
 #include <PMUtils.h>
 #include <ui_CreatePartitionDialog.h>
 #include <utils/Logger.h>
@@ -157,7 +158,10 @@ CreatePartitionDialog::initPartResizerWidget( Partition* partition )
     qint64 maxLastSector = partition->lastSector() + m_device->partitionTable()->freeSectorsAfter( *partition );
     m_ui->partResizerWidget->init( *m_device, *m_partResizerWidgetPartition, minFirstSector, maxLastSector );
 
-    controller->init( m_device, m_partResizerWidgetPartition.data() );
+    QColor color = PMUtils::isPartitionFreeSpace( partition )
+                   ? ColorUtils::colorForPartitionInFreeSpace( partition )
+                   : ColorUtils::colorForPartition( partition );
+    controller->init( m_device, m_partResizerWidgetPartition.data(), color );
     controller->setPartResizerWidget( m_ui->partResizerWidget );
     controller->setSpinBox( m_ui->sizeSpinBox );
 }

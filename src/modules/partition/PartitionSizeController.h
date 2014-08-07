@@ -19,6 +19,7 @@
 #ifndef PARTITIONSIZECONTROLLER_H
 #define PARTITIONSIZECONTROLLER_H
 
+#include <QColor>
 #include <QObject>
 #include <QPointer>
 
@@ -38,13 +39,14 @@ public:
     explicit PartitionSizeController( QObject* parent = nullptr );
     void setPartResizerWidget( PartResizerWidget* widget );
     void setSpinBox( QSpinBox* spinBox );
-    void init( Device* device, Partition* partition );
+    void init( Device* device, Partition* partition, const QColor& color );
 
 private:
     QPointer< PartResizerWidget > m_partResizerWidget;
     QPointer< QSpinBox > m_spinBox;
     Device* m_device = nullptr;
     Partition* m_partition = nullptr;
+    QColor m_partitionColor;
     bool m_updating = false;
 
     void updateConnections();

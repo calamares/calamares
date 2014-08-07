@@ -18,6 +18,8 @@
 
 #include <PartitionSizeController.h>
 
+#include <ColorUtils.h>
+
 // Qt
 #include <QSpinBox>
 
@@ -41,6 +43,11 @@ PartitionSizeController::setPartResizerWidget( PartResizerWidget* widget )
     m_partResizerWidget = widget;
     // FIXME: Should be set by PartResizerWidget itself
     m_partResizerWidget->setFixedHeight( PartResizerWidget::handleHeight() );
+
+    QPalette pal = widget->palette();
+    pal.setColor( QPalette::Base, ColorUtils::freeSpaceColor() );
+    pal.setColor( QPalette::Button, m_partitionColor );
+    m_partResizerWidget->setPalette( pal );
     updateConnections();
 }
 
@@ -55,10 +62,11 @@ PartitionSizeController::setSpinBox( QSpinBox* spinBox )
 }
 
 void
-PartitionSizeController::init( Device* device, Partition* partition )
+PartitionSizeController::init( Device* device, Partition* partition, const QColor& color )
 {
     m_device = device;
     m_partition = partition;
+    m_partitionColor = color;
 }
 
 void

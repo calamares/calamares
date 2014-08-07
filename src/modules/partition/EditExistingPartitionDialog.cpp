@@ -18,6 +18,7 @@
 
 #include <EditExistingPartitionDialog.h>
 
+#include <ColorUtils.h>
 #include <PartitionCoreModule.h>
 #include <PartitionInfo.h>
 #include <PartitionSizeController.h>
@@ -46,7 +47,8 @@ EditExistingPartitionDialog::EditExistingPartitionDialog( Device* device, Partit
     // last sectors when used
     m_partResizerWidgetPartition.reset( PMUtils::clonePartition( m_device, m_partition ) );
 
-    m_partitionSizeController->init( m_device, m_partResizerWidgetPartition.data() );
+    QColor color = ColorUtils::colorForPartition( m_partition );
+    m_partitionSizeController->init( m_device, m_partResizerWidgetPartition.data(), color );
     m_partitionSizeController->setSpinBox( m_ui->sizeSpinBox );
 
     m_ui->mountPointComboBox->setCurrentText( PartitionInfo::mountPoint( partition ) );
