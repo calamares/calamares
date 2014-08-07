@@ -32,8 +32,10 @@ public:
     operator bool() const;
 
     QString message() const;
+    void setMessage( const QString& message );
 
     QString details() const;
+    void setDetails( const QString& details );
 
     static JobResult ok();
 

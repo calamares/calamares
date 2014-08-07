@@ -22,6 +22,8 @@ calamares_add_plugin( partition
     EXPORT_MACRO PLUGINDLLEXPORT_PRO
     SOURCES
         BootLoaderModel.cpp
+        CheckFileSystemJob.cpp
+        ColorUtils.cpp
         CreatePartitionDialog.cpp
         CreatePartitionJob.cpp
         CreatePartitionTableJob.cpp
@@ -30,6 +32,7 @@ calamares_add_plugin( partition
         EditExistingPartitionDialog.cpp
         FillGlobalStorageJob.cpp
         FormatPartitionJob.cpp
+        MoveFileSystemJob.cpp
         PartitionCoreModule.cpp
         PartitionInfo.cpp
         PartitionIterator.cpp
@@ -37,9 +40,10 @@ calamares_add_plugin( partition
         PartitionModel.cpp
         PartitionPage.cpp
         PartitionPreview.cpp
-        PartitionSizeWidget.cpp
+        PartitionSizeController.cpp
         PartitionViewStep.cpp
         PMUtils.cpp
+        ResizePartitionJob.cpp
     UI
         CreatePartitionDialog.ui
         CreatePartitionTableDialog.ui

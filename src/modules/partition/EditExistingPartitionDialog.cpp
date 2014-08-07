@@ -18,8 +18,10 @@
 
 #include <EditExistingPartitionDialog.h>
 
+#include <ColorUtils.h>
 #include <PartitionCoreModule.h>
 #include <PartitionInfo.h>
+#include <PartitionSizeController.h>
 #include <PMUtils.h>
 #include <ui_EditExistingPartitionDialog.h>
 #include <utils/Logger.h>
@@ -27,6 +29,7 @@
 // CalaPM
 #include <core/device.h>
 #include <core/partition.h>
+#include <fs/filesystemfactory.h>
 
 // Qt
 #include <QComboBox>
@@ -36,10 +39,26 @@ EditExistingPartitionDialog::EditExistingPartitionDialog( Device* device, Partit
     , m_ui( new Ui_EditExistingPartitionDialog )
     , m_device( device )
     , m_partition( partition )
+    , m_partitionSizeController( new PartitionSizeController( this ) )
 {
     m_ui->setupUi( this );
-    m_ui->sizeSpinBox->init( device, partition );
+
+    // Create a partition for partResizerWidget because it alters the first and
+    // last sectors when used
+    m_partResizerWidgetPartition.reset( PMUtils::clonePartition( m_device, m_partition ) );
+
+    QColor color = ColorUtils::colorForPartition( m_partition );
+    m_partitionSizeController->init( m_device, m_partResizerWidgetPartition.data(), color );
+    m_partitionSizeController->setSpinBox( m_ui->sizeSpinBox );
+
     m_ui->mountPointComboBox->setCurrentText( PartitionInfo::mountPoint( partition ) );
+
+    replacePartResizerWidget();
+
+    connect( m_ui->formatRadioButton, &QAbstractButton::toggled, [ this ]( bool )
+    {
+        replacePartResizerWidget();
+    } );
 }
 
 EditExistingPartitionDialog::~EditExistingPartitionDialog()
@@ -50,9 +69,12 @@ EditExistingPartitionDialog::applyChanges( PartitionCoreModule* core )
 {
     PartitionInfo::setMountPoint( m_partition, m_ui->mountPointComboBox->currentText() );
 
-    if ( m_ui->sizeSpinBox->isDirty() )
+    qint64 newFirstSector = m_partResizerWidgetPartition->firstSector();
+    qint64 newLastSector = m_partResizerWidgetPartition->lastSector();
+    bool partitionChanged = newFirstSector != m_partition->firstSector() || newLastSector != m_partition->lastSector();
+
+    if ( partitionChanged )
     {
-        PartitionSizeWidget::SectorRange range = m_ui->sizeSpinBox->sectorRange();
         if ( m_ui->formatRadioButton->isChecked() )
         {
             Partition* newPartition = PMUtils::createNewPartition(
@@ -60,8 +82,8 @@ EditExistingPartitionDialog::applyChanges( PartitionCoreModule* core )
                                           *m_device,
                                           m_partition->roles(),
                                           m_partition->fileSystem().type(),
-                                          range.first,
-                                          range.second );
+                                          newFirstSector,
+                                          newLastSector );
             PartitionInfo::setMountPoint( newPartition, PartitionInfo::mountPoint( m_partition ) );
             PartitionInfo::setFormat( newPartition, true );
 
@@ -69,9 +91,7 @@ EditExistingPartitionDialog::applyChanges( PartitionCoreModule* core )
             core->createPartition( m_device, newPartition );
         }
         else
-        {
-            //core->resizePartition( m_device, m_partition );
-        }
+            core->resizePartition( m_device, m_partition, newFirstSector, newLastSector );
     }
     else
     {
@@ -81,4 +101,40 @@ EditExistingPartitionDialog::applyChanges( PartitionCoreModule* core )
         else
             core->refreshPartition( m_device, m_partition );
     }
+}
+
+void
+EditExistingPartitionDialog::replacePartResizerWidget()
+{
+    /*
+     * There is no way to reliably update the partition used by
+     * PartResizerWidget, which is necessary when we switch between "format" and
+     * "keep". This is a hack which replaces the existing PartResizerWidget
+     * with a new one.
+     */
+
+    bool format = m_ui->formatRadioButton->isChecked();
+
+    qint64 used = format ? 0 : m_partition->fileSystem().sectorsUsed();
+    m_partResizerWidgetPartition->fileSystem().setSectorsUsed( used );
+
+    qint64 minFirstSector = m_partition->firstSector() - m_device->partitionTable()->freeSectorsBefore( *m_partition );
+    qint64 maxLastSector = m_partition->lastSector() + m_device->partitionTable()->freeSectorsAfter( *m_partition );
+
+    PartResizerWidget* widget = new PartResizerWidget( this );
+    widget->init( *m_device, *m_partResizerWidgetPartition, minFirstSector, maxLastSector );
+
+    if ( !format )
+    {
+        // If we are not formatting, make sure the space between the first and
+        // last sectors is big enough to fit the existing content.
+        widget->updateLastSector( m_partResizerWidgetPartition->lastSector() );
+        widget->updateFirstSector( m_partResizerWidgetPartition->firstSector() );
+    }
+
+    layout()->replaceWidget( m_ui->partResizerWidget, widget );
+    delete m_ui->partResizerWidget;
+    m_ui->partResizerWidget = widget;
+
+    m_partitionSizeController->setPartResizerWidget( widget );
 }

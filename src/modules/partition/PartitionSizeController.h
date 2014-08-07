@@ -16,35 +16,45 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef PARTITIONSIZEWIDGET_H
-#define PARTITIONSIZEWIDGET_H
+#ifndef PARTITIONSIZECONTROLLER_H
+#define PARTITIONSIZECONTROLLER_H
 
-#include <QSpinBox>
+#include <QColor>
+#include <QObject>
+#include <QPointer>
+
+class QSpinBox;
 
 class Device;
 class Partition;
+class PartResizerWidget;
 
-class PartitionSizeWidget : public QSpinBox
+/**
+ * Synchronize a PartResizerWidget and a QSpinBox
+ */
+class PartitionSizeController : public QObject
 {
+    Q_OBJECT
 public:
-    typedef QPair< qint64, qint64 > SectorRange;
-
-    explicit PartitionSizeWidget( QWidget* parent = nullptr );
-    void init( Device* device, Partition* partition );
-
-    SectorRange sectorRange() const;
-
-    bool isDirty() const;
+    explicit PartitionSizeController( QObject* parent = nullptr );
+    void setPartResizerWidget( PartResizerWidget* widget );
+    void setSpinBox( QSpinBox* spinBox );
+    void init( Device* device, Partition* partition, const QColor& color );
 
 private:
+    QPointer< PartResizerWidget > m_partResizerWidget;
+    QPointer< QSpinBox > m_spinBox;
     Device* m_device = nullptr;
     Partition* m_partition = nullptr;
-    int m_initialValue;
+    QColor m_partitionColor;
+    bool m_updating = false;
 
-    qint64 mbSizeForSectorRange( qint64 first, qint64 last ) const;
+    void updateConnections();
+    void doUpdateSpinBox();
 
-    qint64 computeMinSector() const;
-    qint64 computeMaxSector() const;
+private Q_SLOTS:
+    void updatePartResizerWidget();
+    void updateSpinBox();
 };
 
-#endif /* PARTITIONSIZEWIDGET_H */
+#endif /* PARTITIONSIZECONTROLLER_H */

@@ -2,6 +2,7 @@
 
 #include <CreatePartitionJob.h>
 #include <CreatePartitionTableJob.h>
+#include <ResizePartitionJob.h>
 #include <PMUtils.h>
 
 // CalaPM
@@ -12,6 +13,7 @@
 
 // Qt
 #include <QEventLoop>
+#include <QProcess>
 #include <QtTest/QtTest>
 
 QTEST_GUILESS_MAIN( JobTests )
@@ -20,8 +22,77 @@ static const qint64 MB = 1024 * 1024;
 
 using namespace Calamares;
 
-static
-Partition* firstFreePartition( PartitionNode* parent )
+class PartitionMounter
+{
+public:
+    PartitionMounter( const QString& devicePath )
+        : m_mountPointDir( "calamares-partitiontests-mountpoint" )
+    {
+        QStringList args = QStringList() << devicePath << m_mountPointDir.path();
+        int ret = QProcess::execute( "mount", args );
+        m_mounted = ret == 0;
+        QCOMPARE( ret, 0 );
+    }
+
+    ~PartitionMounter()
+    {
+        if ( !m_mounted )
+            return;
+        int ret = QProcess::execute( "umount", QStringList() << m_mountPointDir.path() );
+        QCOMPARE( ret, 0 );
+    }
+
+    QString mountPoint() const
+    {
+        return m_mounted ? m_mountPointDir.path() : QString();
+    }
+
+private:
+    QString m_devicePath;
+    QTemporaryDir m_mountPointDir;
+    bool m_mounted;
+};
+
+static QByteArray
+generateTestData( qint64 size )
+{
+    QByteArray ba;
+    ba.resize( size );
+    // Fill the array explicitly to keep Valgrind happy
+    for ( auto it = ba.data() ; it < ba.data() + size ; ++it )
+    {
+        *it = rand() % 256;
+    }
+    return ba;
+}
+
+static void
+writeFile( const QString& path, const QByteArray data )
+{
+    QFile file( path );
+    QVERIFY( file.open( QIODevice::WriteOnly ) );
+
+    const char* ptr = data.constData();
+    const char* end = data.constData() + data.size();
+    const qint64 chunkSize = 16384;
+
+    while ( ptr < end )
+    {
+        qint64 count = file.write( ptr, chunkSize );
+        if ( count < 0 )
+        {
+            QString msg = QString( "Writing file failed. Only %1 bytes written out of %2. Error: '%3'." )
+                .arg( ptr - data.constData() )
+                .arg( data.size() )
+                .arg( file.errorString() );
+            QFAIL( qPrintable( msg ) );
+        }
+        ptr += count;
+    }
+}
+
+static Partition*
+firstFreePartition( PartitionNode* parent )
 {
     for( auto child : parent->children() )
         if ( PMUtils::isPartitionFreeSpace( child ) )
@@ -29,6 +100,7 @@ Partition* firstFreePartition( PartitionNode* parent )
     return nullptr;
 }
 
+//- QueueRunner ---------------------------------------------------------------
 QueueRunner::QueueRunner( JobQueue* queue )
     : m_queue( queue )
 {
@@ -62,7 +134,7 @@ QueueRunner::onFailed( const QString& message, const QString& details )
     QFAIL( qPrintable( msg ) );
 }
 
-//----------------------------------------------------------
+//- JobTests ------------------------------------------------------------------
 JobTests::JobTests()
     : m_runner( &m_queue )
 {}
@@ -77,12 +149,18 @@ JobTests::initTestCase()
     }
 
     QVERIFY( CalaPM::init() );
+    FileSystemFactory::init();
 
+    refreshDevice();
+}
+
+void
+JobTests::refreshDevice()
+{
+    QString devicePath = qgetenv( "CALAMARES_TEST_DISK" );
     CoreBackend* backend = CoreBackendManager::self()->backend();
     m_device.reset( backend->scanDevice( devicePath ) );
     QVERIFY( !m_device.isNull() );
-
-    FileSystemFactory::init();
 }
 
 void
@@ -215,4 +293,102 @@ JobTests::testCreatePartitionExtended()
     QCOMPARE( partition1->partitionPath(), devicePath + "1" );
     QCOMPARE( extendedPartition->partitionPath(), devicePath + "2" );
     QCOMPARE( partition2->partitionPath(), devicePath + "5" );
+}
+
+void
+JobTests::testResizePartition_data()
+{
+    QTest::addColumn< int >( "oldStartMB" );
+    QTest::addColumn< int >( "oldSizeMB" );
+    QTest::addColumn< int >( "newStartMB" );
+    QTest::addColumn< int >( "newSizeMB" );
+
+    QTest::newRow("grow")      << 10 << 50 << 10 << 70;
+    QTest::newRow("shrink")    << 10 << 70 << 10 << 50;
+    QTest::newRow("moveLeft")  << 10 << 50 << 8 << 50;
+    QTest::newRow("moveRight") << 10 << 50 << 12 << 50;
+}
+
+void
+JobTests::testResizePartition()
+{
+    QFETCH( int, oldStartMB );
+    QFETCH( int, oldSizeMB );
+    QFETCH( int, newStartMB );
+    QFETCH( int, newSizeMB );
+
+    const qint64 sectorForMB = MB / m_device->logicalSectorSize();
+
+    qint64 oldFirst = sectorForMB * oldStartMB;
+    qint64 oldLast  = oldFirst + sectorForMB * oldSizeMB - 1;
+    qint64 newFirst = sectorForMB * newStartMB;
+    qint64 newLast  = newFirst + sectorForMB * newSizeMB - 1;
+
+    // Make the test data file smaller than the full size of the partition to
+    // accomodate for the file system overhead
+    const QByteArray testData = generateTestData( ( qMin( oldSizeMB, newSizeMB ) ) * MB * 3 / 4 );
+    const QString testName = "test.data";
+
+    // Setup: create the test partition
+    {
+        queuePartitionTableCreation( PartitionTable::msdos );
+
+        Partition* freePartition = firstFreePartition( m_device->partitionTable() );
+        QVERIFY( freePartition );
+        Partition* partition = PMUtils::createNewPartition( freePartition->parent(), *m_device, PartitionRole( PartitionRole::Primary ), FileSystem::Ext4, oldFirst, oldLast );
+        CreatePartitionJob* job = new CreatePartitionJob( m_device.data(), partition );
+        job->updatePreview();
+        m_queue.enqueue( job_ptr( job ) );
+
+        QVERIFY( m_runner.run() );
+    }
+
+    {
+        // Write a test file in the partition
+        refreshDevice();
+        QVERIFY( m_device->partitionTable() );
+        Partition* partition = m_device->partitionTable()->findPartitionBySector( oldFirst, PartitionRole( PartitionRole::Primary ) );
+        QVERIFY( partition );
+        QCOMPARE( partition->firstSector(), oldFirst );
+        QCOMPARE( partition->lastSector(), oldLast );
+        {
+            PartitionMounter mounter( partition->partitionPath() );
+            QString mountPoint = mounter.mountPoint();
+            QVERIFY( !mountPoint.isEmpty() );
+            writeFile( mountPoint + '/' + testName, testData );
+        }
+
+        // Resize
+        ResizePartitionJob* job = new ResizePartitionJob( m_device.data(), partition, newFirst, newLast );
+        job->updatePreview();
+        m_queue.enqueue( job_ptr( job ) );
+        QVERIFY( m_runner.run() );
+
+        QCOMPARE( partition->firstSector(), newFirst );
+        QCOMPARE( partition->lastSector(), newLast );
+    }
+
+    // Test
+    {
+        refreshDevice();
+        QVERIFY( m_device->partitionTable() );
+        Partition* partition = m_device->partitionTable()->findPartitionBySector( newFirst, PartitionRole( PartitionRole::Primary ) );
+        QVERIFY( partition );
+        QCOMPARE( partition->firstSector(), newFirst );
+        QCOMPARE( partition->lastSector(), newLast );
+        QCOMPARE( partition->fileSystem().firstSector(), newFirst );
+        QCOMPARE( partition->fileSystem().lastSector(), newLast );
+
+
+        PartitionMounter mounter( partition->partitionPath() );
+        QString mountPoint = mounter.mountPoint();
+        QVERIFY( !mountPoint.isEmpty() );
+        {
+            QFile file( mountPoint + '/' + testName );
+            QVERIFY( file.open( QIODevice::ReadOnly ) );
+            QByteArray outData = file.readAll();
+            QCOMPARE( outData.size(), testData.size() );
+            QCOMPARE( outData, testData );
+        }
+    }
 }

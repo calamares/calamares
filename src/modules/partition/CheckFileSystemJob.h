@@ -15,32 +15,19 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef PMUTILS_H
-#define PMUTILS_H
 
-// CalaPM
-#include <fs/filesystem.h>
+#ifndef CHECKFILESYSTEMJOB_H
+#define CHECKFILESYSTEMJOB_H
 
-// Qt
-#include <QList>
+#include <PartitionJob.h>
 
-class Device;
-class Partition;
-class PartitionNode;
-class PartitionRole;
-
-namespace PMUtils
+class CheckFileSystemJob : public PartitionJob
 {
+public:
+    CheckFileSystemJob( Partition* partition );
 
-bool isPartitionFreeSpace( Partition* );
+    QString prettyName() const override;
+    Calamares::JobResult exec() override;
+};
 
-bool isPartitionNew( Partition* );
-
-Partition* findPartitionByMountPoint( const QList< Device* >& devices, const QString& mountPoint );
-
-Partition* createNewPartition( PartitionNode* parent, const Device& device, const PartitionRole& role, FileSystem::Type fsType, qint64 firstSector, qint64 lastSector );
-
-Partition* clonePartition( Device* device, Partition* partition );
-}
-
-#endif /* PMUTILS_H */
+#endif /* CHECKFILESYSTEMJOB_H */

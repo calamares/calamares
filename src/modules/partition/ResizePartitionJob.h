@@ -16,35 +16,42 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef EDITEXISTINGPARTITIONDIALOG_H
-#define EDITEXISTINGPARTITIONDIALOG_H
+#ifndef RESIZEPARTITIONJOB_H
+#define RESIZEPARTITIONJOB_H
 
-#include <QDialog>
-#include <QScopedPointer>
+#include <PartitionJob.h>
 
-class PartitionCoreModule;
 class Device;
 class Partition;
-class PartitionSizeController;
-class Ui_EditExistingPartitionDialog;
+class FileSystem;
 
-class EditExistingPartitionDialog : public QDialog
+struct Context;
+
+class ResizePartitionJob : public PartitionJob
 {
     Q_OBJECT
 public:
-    EditExistingPartitionDialog( Device* device, Partition* partition, QWidget* parentWidget = nullptr );
-    ~EditExistingPartitionDialog();
+    ResizePartitionJob( Device* device, Partition* partition, qint64 firstSector, qint64 lastSector );
+    QString prettyName() const override;
+    Calamares::JobResult exec() override;
 
-    void applyChanges( PartitionCoreModule* module );
+    void updatePreview();
+
+    Device* device() const
+    {
+        return m_device;
+    }
 
 private:
-    QScopedPointer< Ui_EditExistingPartitionDialog > m_ui;
     Device* m_device;
-    Partition* m_partition;
-    QScopedPointer< Partition > m_partResizerWidgetPartition;
-    PartitionSizeController* m_partitionSizeController;
+    qint64 m_oldFirstSector;
+    qint64 m_oldLastSector;
+    qint64 m_newFirstSector;
+    qint64 m_newLastSector;
 
-    void replacePartResizerWidget();
+    Calamares::JobResult execJobList( const QList< Calamares::job_ptr >& jobs );
+
+    friend struct Context;
 };
 
-#endif /* EDITEXISTINGPARTITIONDIALOG_H */
+#endif /* RESIZEPARTITIONJOB_H */

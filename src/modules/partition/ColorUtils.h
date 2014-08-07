@@ -15,32 +15,22 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef PMUTILS_H
-#define PMUTILS_H
+#ifndef COLORUTILS_H
+#define COLORUTILS_H
 
-// CalaPM
-#include <fs/filesystem.h>
+class QColor;
 
-// Qt
-#include <QList>
-
-class Device;
 class Partition;
-class PartitionNode;
-class PartitionRole;
 
-namespace PMUtils
+namespace ColorUtils
 {
 
-bool isPartitionFreeSpace( Partition* );
+QColor freeSpaceColor();
 
-bool isPartitionNew( Partition* );
+QColor colorForPartition( Partition* partition );
 
-Partition* findPartitionByMountPoint( const QList< Device* >& devices, const QString& mountPoint );
+QColor colorForPartitionInFreeSpace( Partition* partition );
 
-Partition* createNewPartition( PartitionNode* parent, const Device& device, const PartitionRole& role, FileSystem::Type fsType, qint64 firstSector, qint64 lastSector );
-
-Partition* clonePartition( Device* device, Partition* partition );
 }
 
-#endif /* PMUTILS_H */
+#endif /* COLORUTILS_H */
