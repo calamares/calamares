@@ -17,6 +17,7 @@
  */
 #include <PartitionModel.h>
 
+#include <ColorUtils.h>
 #include <PartitionInfo.h>
 #include <PMUtils.h>
 #include <utils/Logger.h>
@@ -32,38 +33,6 @@
 
 // Qt
 #include <QColor>
-
-static QColor COLORS[ 4 ] =
-{
-    "#448eca",
-    "#a5cc42",
-    "#d87e30",
-    "#ffbdbd",
-};
-static QColor FREE_SPACE_COLOR = "#777777";
-static QColor EXTENDED_COLOR = "#aaaaaa";
-
-static QColor colorForPartition( Partition* partition, int row )
-{
-    if ( PMUtils::isPartitionFreeSpace( partition ) )
-        return FREE_SPACE_COLOR;
-    if ( partition->roles().has( PartitionRole::Extended ) )
-        return EXTENDED_COLOR;
-    // No partition-specific color needed, pick one from our list, but skip
-    // free space: we don't want a partition to change colors if space before
-    // it is inserted or removed
-    PartitionNode* parent = partition->parent();
-    Q_ASSERT( parent );
-    int colorIdx = 0;
-    for ( auto child : parent->children() )
-    {
-        if ( child == partition )
-            break;
-        if ( !PMUtils::isPartitionFreeSpace( child ) )
-            ++colorIdx;
-    }
-    return COLORS[ colorIdx % 4 ];
-}
 
 //- ResetHelper --------------------------------------------
 PartitionModel::ResetHelper::ResetHelper( PartitionModel* model )
@@ -182,7 +151,7 @@ PartitionModel::data( const QModelIndex& index, int role ) const
     }
     case Qt::DecorationRole:
         if ( index.column() == NameColumn )
-            return colorForPartition( partition, index.row() );
+            return ColorUtils::colorForPartition( partition );
         else
             return QVariant();
     case SizeRole:

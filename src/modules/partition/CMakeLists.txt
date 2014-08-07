@@ -24,6 +24,7 @@ calamares_add_plugin( partition
     SOURCES
         BootLoaderModel.cpp
         CheckFileSystemJob.cpp
+        ColorUtils.cpp
         CreatePartitionDialog.cpp
         CreatePartitionJob.cpp
         CreatePartitionTableJob.cpp
