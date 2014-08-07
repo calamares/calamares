@@ -75,12 +75,12 @@ clonePartition( Device* device, Partition* partition )
                          partition->lastSector()
                      );
     return new Partition(
-        partition->parent(),
-        *device,
-        partition->roles(),
-        fs, fs->firstSector(), fs->lastSector(),
-        partition->partitionPath()
-    );
+               partition->parent(),
+               *device,
+               partition->roles(),
+               fs, fs->firstSector(), fs->lastSector(),
+               partition->partitionPath()
+           );
 }
 
 } // namespace
