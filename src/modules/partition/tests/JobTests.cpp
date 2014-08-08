@@ -1,9 +1,9 @@
 #include <JobTests.h>
 
-#include <CreatePartitionJob.h>
-#include <CreatePartitionTableJob.h>
-#include <ResizePartitionJob.h>
-#include <PMUtils.h>
+#include <jobs/CreatePartitionJob.h>
+#include <jobs/CreatePartitionTableJob.h>
+#include <jobs/ResizePartitionJob.h>
+#include <core/PMUtils.h>
 
 // CalaPM
 #include <CalaPM.h>

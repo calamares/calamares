@@ -21,34 +21,34 @@ calamares_add_plugin( partition
     TYPE viewmodule
     EXPORT_MACRO PLUGINDLLEXPORT_PRO
     SOURCES
-        BootLoaderModel.cpp
-        CheckFileSystemJob.cpp
-        ColorUtils.cpp
-        CreatePartitionDialog.cpp
-        CreatePartitionJob.cpp
-        CreatePartitionTableJob.cpp
-        DeletePartitionJob.cpp
-        DeviceModel.cpp
-        EditExistingPartitionDialog.cpp
-        FillGlobalStorageJob.cpp
-        FormatPartitionJob.cpp
-        MoveFileSystemJob.cpp
-        PartitionCoreModule.cpp
-        PartitionInfo.cpp
-        PartitionIterator.cpp
-        PartitionJob.cpp
-        PartitionModel.cpp
-        PartitionPage.cpp
-        PartitionPreview.cpp
-        PartitionSizeController.cpp
-        PartitionViewStep.cpp
-        PMUtils.cpp
-        ResizePartitionJob.cpp
+        core/BootLoaderModel.cpp
+        core/ColorUtils.cpp
+        core/DeviceModel.cpp
+        core/PartitionCoreModule.cpp
+        core/PartitionInfo.cpp
+        core/PartitionIterator.cpp
+        core/PartitionModel.cpp
+        core/PMUtils.cpp
+        gui/CreatePartitionDialog.cpp
+        gui/EditExistingPartitionDialog.cpp
+        gui/PartitionPage.cpp
+        gui/PartitionPreview.cpp
+        gui/PartitionSizeController.cpp
+        gui/PartitionViewStep.cpp
+        jobs/CheckFileSystemJob.cpp
+        jobs/CreatePartitionJob.cpp
+        jobs/CreatePartitionTableJob.cpp
+        jobs/DeletePartitionJob.cpp
+        jobs/FillGlobalStorageJob.cpp
+        jobs/FormatPartitionJob.cpp
+        jobs/MoveFileSystemJob.cpp
+        jobs/PartitionJob.cpp
+        jobs/ResizePartitionJob.cpp
     UI
-        CreatePartitionDialog.ui
-        CreatePartitionTableDialog.ui
-        EditExistingPartitionDialog.ui
-        PartitionPage.ui
+        gui/CreatePartitionDialog.ui
+        gui/CreatePartitionTableDialog.ui
+        gui/EditExistingPartitionDialog.ui
+        gui/PartitionPage.ui
     LINK_LIBRARIES
         calapm
         calamaresui
