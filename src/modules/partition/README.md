@@ -1,14 +1,81 @@
 # Architecture
 
-## PartitionCoreModule
+## Overview
+
+The heart of the module is the PartitionCoreModule class. It holds Qt models for
+the various elements and can create Calamares jobs representing the changes to
+be performed at install time.
+
+PartitionPage is the main UI class. It represents the module main page, the one
+with the device combo box, partition list and action buttons. It reacts to the
+buttons by creating various dialogs (the (...)Dialog classes) and tell
+PartitionCoreModule what to do.
+
+
+## Use of KDE Partition Manager source code
+
+This module makes heavy use of code coming from [KDE Partition Manager][kpm].
+Since Partition Manager does not provide a library, we build one out of it.
+
+We maintain our [own fork][kpm-calamares-repo] of Partition Manager source code.
+The master branch in this repository follows Partition Manager [upstream master
+branch][kpm-upstream-repo]. Calamares-specific code is kept in the `calamares`
+branch of the fork. The goal is to keep the changes as small as possible to be
+able to regularly import changes from the upstream `master` branch and merge
+them into the `calamares` branch.
+
+Partition Manager code is included in the source code using a git submodule.
+
+We only use a small subset of Partition Manager code: mainly the libparted
+abstraction and some widgets like the PartResizerWidget. We notably do not use
+Partition Manager job and operation classes.
+
+[kpm]: http://sourceforge.net/projects/partitionman/
+[kpm-calamares-repo]: http://github.com/calamares/partitionmanager
+[kpm-upstream-repo]: https://projects.kde.org/projects/extragear/sysadmin/partitionmanager/repository
+
 
 ## Partition and PartitionInfo
+
+Calamares needs to store some information about partitions which is not
+available in Partition Manager's Partition class.
+
+This includes the install mount point and a boolean to mark whether an existing
+partition should be formatted.
+
+Reusing the existing `Partition::mountPoint` property was not an option because
+it stores the directory where a partition is currently mounted, which is a
+different concept from the directory where the user wants the partition to be
+mounted on the installed system. We can't hijack this to store our install mount
+point because whether the partition is currently mounted is an important
+information which should be taken into account later to prevent any modification
+on an installed partition.
+
+The way this extra information is stored is a bit unusual: the functions in the
+PartitionInfo namespace takes advantage of Qt dynamic properties methods to add
+Calamares-specific properties to the Partition instances: setting the install
+mount point is done with `PartitionInfo::setMountPoint(partition, "/")`,
+retrieving it is done with `mountPoint = PartitionInfo::mountPoint(partition)`.
+
+The rational behind this unusual design is simplicity: the alternative would
+have been to keep a separate PartitionInfo object and a map linking each
+Partition to its PartitionInfo instance. Such a design makes things more
+complicated. It complicates memory management: if a Partition goes away, its
+matching PartitionInfo must be removed. It also leads to uglier APIs: code which
+needs access to extra partition information must be passed both Partition and
+PartitionInfo instances or know a way to get a PartitionInfo from a Partition.
+
+The other alternative would have been to add Calamares-specific information to
+the real Partition object. This would have worked and would have made for a less
+surprising API, but it would mean more Calamares-specific patches on Partition
+Manager, making it potentially more difficult to regularly merge Partition
+Manager `master` branch into our `calamares` branch.
+
 
 # Tests
 
 The module comes with unit tests for the partition jobs. Those tests need to
-run on a disk, USB stick or whatever storage device which does not contain any
-data you care about.
+run on storage device which does not contain any data you care about.
 
 To build them:
 
@@ -22,14 +89,16 @@ this:
 
     sudo CALAMARES_TEST_DISK=/dev/sdb $top_build_dir/partitiontests
 
+
 # TODO
+
+- Support resizing extended partitions. ResizePartitionJob should already
+  support this but the UI prevents editing of extended partitions for now.
 
 - PartitionPreview
     - Show used space
     - Highlight selected partition
     - Make the partitions clickable
 
-- Expose PartitionInfo::format in PartitionModel and add a column for it in the tree view
-
-- Support resizing extended partitions. ResizePartitionJob should already
-  support this but the UI prevents editing of extended partitions for now.
+- Expose PartitionInfo::format in PartitionModel and add a column for it in the
+  tree view
