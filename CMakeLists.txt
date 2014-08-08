@@ -111,7 +111,6 @@ file( COPY CalamaresAddPlugin.cmake DESTINATION "${PROJECT_BINARY_DIR}" )
 set( CALAMARES_LIBRARIES calamares )
 
 add_subdirectory( src )
-add_subdirectory( tests )
 
 macro_display_feature_log()
 
