@@ -49,6 +49,12 @@ BOOST_PYTHON_FUNCTION_OVERLOADS( check_chroot_call_str_overloads,
 BOOST_PYTHON_FUNCTION_OVERLOADS( check_chroot_call_list_overloads,
                                  CalamaresPython::check_chroot_call,
                                  1, 3 );
+BOOST_PYTHON_FUNCTION_OVERLOADS( check_chroot_output_str_overloads,
+                                 CalamaresPython::check_chroot_output,
+                                 1, 3 );
+BOOST_PYTHON_FUNCTION_OVERLOADS( check_chroot_output_list_overloads,
+                                 CalamaresPython::check_chroot_output,
+                                 1, 3 );
 BOOST_PYTHON_MODULE( libcalamares )
 {
     bp::object package = bp::scope();
@@ -169,6 +175,35 @@ BOOST_PYTHON_MODULE( libcalamares )
             "Runs the specified command in the chroot of the target system.\n"
             "Returns 0, which is program's exit code if the program exited "
             "successfully, or raises a subprocess.CalledProcessError."
+        )
+    );
+
+    bp::def(
+        "check_chroot_output",
+        static_cast< std::string (*)( const std::string&,
+                                      const std::string&,
+                                      int ) >( &CalamaresPython::check_chroot_output ),
+        check_chroot_output_str_overloads(
+            bp::args( "command",
+                      "stdin",
+                      "timeout" ),
+            "Runs the specified command in the chroot of the target system.\n"
+            "Returns the program's standard output, and raises a "
+            "subprocess.CalledProcessError if something went wrong."
+        )
+    );
+    bp::def(
+        "check_chroot_output",
+        static_cast< std::string (*)( const bp::list&,
+                                      const std::string&,
+                                      int ) >( &CalamaresPython::check_chroot_output ),
+        check_chroot_output_list_overloads(
+            bp::args( "args",
+                      "stdin",
+                      "timeout" ),
+            "Runs the specified command in the chroot of the target system.\n"
+            "Returns the program's standard output, and raises a "
+            "subprocess.CalledProcessError if something went wrong."
         )
     );
 }
