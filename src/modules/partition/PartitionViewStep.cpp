@@ -31,7 +31,7 @@
 PartitionViewStep::PartitionViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
     , m_core( new PartitionCoreModule( this ) )
-    , m_widget( new PartitionPage( m_core ) )
+    , m_page( new PartitionPage( m_core ) )
 {
     connect( m_core, SIGNAL( hasRootMountPointChanged( bool ) ),
              SIGNAL( nextStatusChanged( bool ) ) );
@@ -48,7 +48,7 @@ PartitionViewStep::prettyName() const
 QWidget*
 PartitionViewStep::widget()
 {
-    return m_widget;
+    return m_page;
 }
 
 

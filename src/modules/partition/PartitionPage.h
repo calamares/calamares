@@ -42,10 +42,6 @@ public:
     explicit PartitionPage( PartitionCoreModule* core, QWidget* parent = 0 );
     ~PartitionPage();
 
-Q_SIGNALS:
-
-public Q_SLOTS:
-
 private:
     QScopedPointer< Ui_PartitionPage > m_ui;
     PartitionCoreModule* m_core;

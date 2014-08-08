@@ -57,7 +57,7 @@ public:
 
 private:
     PartitionCoreModule* m_core;
-    PartitionPage* m_widget;
+    PartitionPage* m_page;
 };
 
 #endif // PARTITIONVIEWSTEP_H

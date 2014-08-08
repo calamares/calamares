@@ -74,7 +74,7 @@ public:
         FileSystemColumn,
         MountPointColumn,
         SizeColumn,
-        ColumnCount = SizeColumn + 1
+        ColumnCount // Must remain last
     };
 
     PartitionModel( QObject* parent = 0 );
