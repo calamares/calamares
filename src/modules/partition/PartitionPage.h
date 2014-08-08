@@ -29,6 +29,12 @@ class Device;
 class DeviceModel;
 class Partition;
 
+/**
+ * The user interface for the module.
+ *
+ * Shows the information exposed by PartitionCoreModule and asks it to schedule
+ * jobs according to user actions.
+ */
 class PartitionPage : public QWidget
 {
     Q_OBJECT

@@ -25,6 +25,12 @@ class Device;
 class Partition;
 class FileSystem;
 
+/**
+ * This job formats an existing partition.
+ *
+ * It is only used for existing partitions: newly created partitions are
+ * formatted by the CreatePartitionJob.
+ */
 class FormatPartitionJob : public PartitionJob
 {
     Q_OBJECT

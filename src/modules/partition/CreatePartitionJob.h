@@ -25,6 +25,13 @@ class Device;
 class Partition;
 class FileSystem;
 
+/**
+ * Creates a partition on a device.
+ *
+ * This job does two things:
+ * 1. Create the partition
+ * 2. Create the filesystem on the partition
+ */
 class CreatePartitionJob : public PartitionJob
 {
     Q_OBJECT

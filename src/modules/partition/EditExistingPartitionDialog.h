@@ -28,6 +28,12 @@ class Partition;
 class PartitionSizeController;
 class Ui_EditExistingPartitionDialog;
 
+/**
+ * The dialog which is shown to edit a partition which already existed when the installer started.
+ *
+ * It lets you decide how to reuse the partition: whether to keep its content
+ * or reformat it, whether to resize or move it.
+ */
 class EditExistingPartitionDialog : public QDialog
 {
     Q_OBJECT

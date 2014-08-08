@@ -25,6 +25,13 @@ class Device;
 class Partition;
 class FileSystem;
 
+/**
+ * Deletes an existing partition.
+ *
+ * This is only used for partitions which already existed before the installer
+ * was started: partitions created within the installer and then removed are
+ * simply forgotten.
+ */
 class DeletePartitionJob : public PartitionJob
 {
     Q_OBJECT

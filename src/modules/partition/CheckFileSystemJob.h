@@ -21,6 +21,9 @@
 
 #include <PartitionJob.h>
 
+/**
+ * Runs a file system check on an existing partition.
+ */
 class CheckFileSystemJob : public PartitionJob
 {
 public:

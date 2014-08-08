@@ -25,6 +25,20 @@ class Device;
 class Partition;
 class PartitionNode;
 
+/**
+ * A Qt tree model which exposes the partitions of a device.
+ *
+ * Its depth is only more than 1 if the device has extended partitions.
+ *
+ * Note on updating:
+ *
+ * The Device class does not notify the outside world of changes on the
+ * Partition objects it owns. Since a Qt model must notify its views *before*
+ * and *after* making changes, it is important to make use of
+ * the PartitionModel::ResetHelper class to wrap changes.
+ *
+ * This is what PartitionCoreModule does when it create jobs.
+ */
 class PartitionModel : public QAbstractItemModel
 {
 public:
@@ -69,6 +83,7 @@ public:
      */
     void init( Device* device );
 
+    // QAbstractItemModel API
     QModelIndex index( int row, int column, const QModelIndex& parent = QModelIndex() ) const override;
     QModelIndex parent( const QModelIndex& child ) const override;
     int columnCount( const QModelIndex& parent = QModelIndex() ) const override;

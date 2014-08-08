@@ -24,7 +24,7 @@
 class Partition;
 
 /**
- * Base class for jobs which affect a partition
+ * Base class for jobs which affect a partition.
  */
 class PartitionJob : public Calamares::Job
 {

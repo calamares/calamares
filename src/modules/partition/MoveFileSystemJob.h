@@ -48,6 +48,12 @@ class Device;
 class Partition;
 class Report;
 
+/**
+ * This job moves the data of a filesystem from one position on the disk to
+ * another.
+ *
+ * It is used by the ResizePartitionJob.
+ */
 class MoveFileSystemJob : public PartitionJob
 {
 public:

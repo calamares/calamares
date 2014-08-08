@@ -29,15 +29,30 @@ class Partition;
 class PartitionNode;
 class PartitionRole;
 
+/**
+ * Helper functions to manipulate partitions
+ */
 namespace PMUtils
 {
 
 bool isPartitionFreeSpace( Partition* );
 
+/**
+ * Returns true if the partition is planned to be created by the installer as
+ * opposed to already existing on the disk.
+ */
 bool isPartitionNew( Partition* );
 
+/**
+ * Iterates on all devices and return the first partition which is associated
+ * with mountPoint. This uses PartitionInfo::mountPoint(), not Partition::mountPoint()
+ */
 Partition* findPartitionByMountPoint( const QList< Device* >& devices, const QString& mountPoint );
 
+/**
+ * Helper function to create a new Partition object (does not create anything
+ * on the disk) associated with a FileSystem.
+ */
 Partition* createNewPartition( PartitionNode* parent, const Device& device, const PartitionRole& role, FileSystem::Type fsType, qint64 firstSector, qint64 lastSector );
 
 Partition* clonePartition( Device* device, Partition* partition );

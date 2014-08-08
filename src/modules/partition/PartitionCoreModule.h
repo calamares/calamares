@@ -39,7 +39,11 @@ class Partition;
 class QStandardItemModel;
 
 /**
- * Owns the Qt models and the PM devices
+ * The core of the module.
+ *
+ * It has two responsibilities:
+ * - Listing the devices and partitions, creating Qt models for them.
+ * - Creating jobs for any changes requested by the user interface.
  */
 class PartitionCoreModule : public QObject
 {

@@ -27,6 +27,10 @@
 class PartitionPage;
 class PartitionCoreModule;
 
+/**
+ * The starting point of the module. Instantiates PartitionCoreModule and
+ * PartitionPage, then connect them.
+ */
 class PLUGINDLLEXPORT PartitionViewStep : public Calamares::ViewStep
 {
     Q_OBJECT

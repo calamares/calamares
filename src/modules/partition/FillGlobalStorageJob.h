@@ -28,9 +28,11 @@ class Device;
 class Partition;
 
 /**
- * Fills the partitioning-related keys of GlobalStorage. Doing it after
- * partitioning makes it possible to access information such as the partition
- * device path.
+ * This job does not touch devices. It inserts in GlobalStorage the
+ * partition-related keys (see hacking/GlobalStorage.md)
+ *
+ * Inserting the keys after partitioning makes it possible to access
+ * information such as the partition path or the UUID.
  */
 class FillGlobalStorageJob : public Calamares::Job
 {

@@ -26,6 +26,12 @@
 
 class Device;
 
+/**
+ * Creates a partition table on a device. It supports MBR and GPT partition
+ * tables.
+ *
+ * This wipes all the data from the device.
+ */
 class CreatePartitionTableJob : public Calamares::Job
 {
     Q_OBJECT

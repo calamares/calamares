@@ -20,6 +20,13 @@
 
 #include <QAbstractItemView>
 
+/**
+ * A Qt model view which displays the partitions inside a device as a colored bar.
+ *
+ * It has been created to be used with a PartitionModel instance, but does not
+ * call any PartitionModel-specific methods: it should be usable with other
+ * models as long as they provide the same roles PartitionModel provides.
+ */
 class PartitionPreview : public QAbstractItemView
 {
 public:

@@ -25,6 +25,9 @@
 class Device;
 class PartitionModel;
 
+/**
+ * A Qt model which exposes a list of Devices.
+ */
 class DeviceModel : public QAbstractListModel
 {
 public:

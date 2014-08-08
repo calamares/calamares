@@ -25,6 +25,11 @@ class Device;
 class Partition;
 class FileSystem;
 
+/**
+ * This job resizes an existing partition.
+ *
+ * It can grow, shrink and/or move a partition while preserving its content.
+ */
 class ResizePartitionJob : public PartitionJob
 {
     Q_OBJECT

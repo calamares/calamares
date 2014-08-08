@@ -24,8 +24,17 @@
 class Partition;
 
 /**
- * Functions to store Calamares-specific info in the Qt properties of a
+ * Functions to store Calamares-specific information in the Qt properties of a
  * Partition object.
+ *
+ * See README.md for the rational behind this design.
+ *
+ * Properties:
+ * - mountPoint: which directory will a partition be mounted on the installed
+ *   system. This is different from Partition::mountPoint, which is the
+ *   directory on which a partition is *currently* mounted while the installer
+ *   is running.
+ * - format: whether this partition should be formatted at install time.
  */
 namespace PartitionInfo
 {
@@ -38,6 +47,11 @@ void setFormat( Partition* partition, bool value );
 
 void reset( Partition* partition );
 
+/**
+ * Returns true if one of the property has been set. This information is used
+ * by the UI to decide whether the "Revert" button should be enabled or
+ * disabled.
+ */
 bool isDirty( Partition* partition );
 
 };

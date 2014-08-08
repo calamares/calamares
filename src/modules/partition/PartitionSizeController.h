@@ -30,7 +30,8 @@ class Partition;
 class PartResizerWidget;
 
 /**
- * Synchronize a PartResizerWidget and a QSpinBox
+ * Synchronizes a PartResizerWidget and a QSpinBox, making sure any change made
+ * to one is reflected in the other.
  */
 class PartitionSizeController : public QObject
 {

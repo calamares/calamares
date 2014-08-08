@@ -22,6 +22,10 @@ class QColor;
 
 class Partition;
 
+/**
+ * Helper functions to define colors for partitions. It ensures no consecutive
+ * partitions have the same color.
+ */
 namespace ColorUtils
 {
 
@@ -29,7 +33,11 @@ QColor freeSpaceColor();
 
 QColor colorForPartition( Partition* partition );
 
-QColor colorForPartitionInFreeSpace( Partition* partition );
+/**
+ * This is similar to colorForPartition() but returns the color of a partition
+ * which would be created in freeSpacePartition
+ */
+QColor colorForPartitionInFreeSpace( Partition* freeSpacePartition );
 
 }
 

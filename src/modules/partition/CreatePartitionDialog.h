@@ -30,6 +30,10 @@ class Partition;
 class PartitionNode;
 class Ui_CreatePartitionDialog;
 
+/**
+ * The dialog which is shown to create a new partition or to edit a
+ * to-be-created partition.
+ */
 class CreatePartitionDialog : public QDialog
 {
     Q_OBJECT
@@ -37,7 +41,15 @@ public:
     CreatePartitionDialog( Device* device, PartitionNode* parentPartition, QWidget* parentWidget = nullptr );
     ~CreatePartitionDialog();
 
-    void initFromFreeSpace( Partition* partition );
+    /**
+     * Must be called when user wants to create a partition in
+     * freeSpacePartition.
+     */
+    void initFromFreeSpace( Partition* freeSpacePartition );
+
+    /**
+     * Must be called when user wants to edit a to-be-created partition.
+     */
     void initFromPartitionToCreate( Partition* partition );
     Partition* createPartition();
 
