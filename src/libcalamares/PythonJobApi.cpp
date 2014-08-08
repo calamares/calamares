@@ -104,6 +104,43 @@ check_chroot_call( const bp::list& args,
 }
 
 
+std::string
+check_chroot_output( const std::string& command,
+                     const std::string& stdin,
+                     int timeout )
+{
+    QString output;
+    int ec = CalamaresUtils::chrootOutput( QString::fromStdString( command ),
+                                           output,
+                                           QString::fromStdString( stdin ),
+                                           timeout );
+    _handle_check_chroot_call_error( ec, QString::fromStdString( command ) );
+    return output.toStdString();
+}
+
+
+std::string
+check_chroot_output( const bp::list& args,
+                     const std::string& stdin,
+                     int timeout )
+{
+    QString output;
+    QStringList list;
+    for ( int i = 0; i < bp::len( args ); ++i )
+    {
+        list.append( QString::fromStdString(
+            bp::extract< std::string >( args[ i ] ) ) );
+    }
+
+    int ec = CalamaresUtils::chrootOutput( list,
+                                           output,
+                                           QString::fromStdString( stdin ),
+                                           timeout );
+    _handle_check_chroot_call_error( ec, list.join( ' ' ) );
+    return output.toStdString();
+}
+
+
 int
 _handle_check_chroot_call_error( int ec, const QString& cmd )
 {

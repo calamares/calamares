@@ -50,6 +50,15 @@ int check_chroot_call( const boost::python::list& args,
                        const std::string& stdin = std::string(),
                        int timeout = 0 );
 
+std::string check_chroot_output( const std::string& command,
+                                 const std::string& stdin = std::string(),
+                                 int timeout = 0 );
+
+std::string check_chroot_output( const boost::python::list& args,
+                                 const std::string& stdin = std::string(),
+                                 int timeout = 0 );
+
+
 inline int _handle_check_chroot_call_error( int ec, const QString& cmd );
 
 void debug( const std::string& s );

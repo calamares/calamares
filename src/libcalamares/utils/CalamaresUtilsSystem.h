@@ -51,6 +51,16 @@ DLLEXPORT int chrootCall( const QStringList& args,
 DLLEXPORT int chrootCall( const QString& command,
                           const QString& stdInput = QString(),
                           int timeoutSec = 0 );
+
+DLLEXPORT int chrootOutput( const QStringList& args,
+                            QString& output,
+                            const QString& stdInput = QString(),
+                            int timeoutSec = 0 );
+
+DLLEXPORT int chrootOutput( const QString& command,
+                            QString& output,
+                            const QString& stdInput = QString(),
+                            int timeoutSec = 0 );
 }
 
 #endif // CALAMARESUTILSSYSTEM_H
