@@ -25,8 +25,6 @@ class Device;
 class Partition;
 class FileSystem;
 
-struct Context;
-
 class ResizePartitionJob : public PartitionJob
 {
     Q_OBJECT
@@ -50,8 +48,6 @@ private:
     qint64 m_newLastSector;
 
     Calamares::JobResult execJobList( const QList< Calamares::job_ptr >& jobs );
-
-    friend struct Context;
 };
 
 #endif /* RESIZEPARTITIONJOB_H */

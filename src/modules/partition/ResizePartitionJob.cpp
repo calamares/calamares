@@ -57,41 +57,27 @@
 // Qt
 #include <QScopedPointer>
 
-//- Context --------------------------------------------------------------------
-struct Context
-{
-    Context( ResizePartitionJob* job_ )
-        : job( job_ )
-    {}
-
-    ResizePartitionJob* job;
-    qint64 oldFirstSector;
-    qint64 oldLastSector;
-
-    QScopedPointer< CoreBackendPartitionTable > backendPartitionTable;
-};
-
 //- ResizeFileSystemJob --------------------------------------------------------
 class ResizeFileSystemJob : public Calamares::Job
 {
 public:
-    ResizeFileSystemJob( Context* context, qint64 length )
-        : m_context( context )
+    ResizeFileSystemJob( Device* device, CoreBackendPartitionTable* backendPartitionTable, Partition* partition, qint64 length )
+        : m_device( device )
+        , m_backendPartitionTable( backendPartitionTable )
+        , m_partition( partition )
         , m_length( length )
     {}
 
     QString prettyName() const override
     {
-        QString path = m_context->job->partition()->partitionPath();
+        QString path = m_partition->partitionPath();
         return tr( "Resize file system on partition %1." ).arg( path );
     }
 
     Calamares::JobResult exec() override
     {
         Report report( nullptr );
-        Device* device = m_context->job->device();
-        Partition* partition = m_context->job->partition();
-        FileSystem& fs = partition->fileSystem();
+        FileSystem& fs = m_partition->fileSystem();
         FileSystem::CommandSupportType support = m_length < fs.length() ? fs.supportShrink() : fs.supportGrow();
 
         switch ( support )
@@ -105,8 +91,8 @@ public:
             break;
         case FileSystem::cmdSupportFileSystem:
         {
-            qint64 byteLength = device->logicalSectorSize() * m_length;
-            bool ok = fs.resize( report, partition->partitionPath(), byteLength );
+            qint64 byteLength = m_device->logicalSectorSize() * m_length;
+            bool ok = fs.resize( report, m_partition->partitionPath(), byteLength );
             if ( !ok )
                 return Calamares::JobResult::error(
                            QString(),
@@ -123,16 +109,17 @@ public:
     }
 
 private:
-    Context* m_context;
+    Device* m_device;
+    CoreBackendPartitionTable* m_backendPartitionTable;
+    Partition* m_partition;
     qint64 m_length;
 
     bool backendResize( Report* report )
     {
-        Partition* partition = m_context->job->partition();
-        bool ok = m_context->backendPartitionTable->resizeFileSystem( *report, *partition, m_length );
+        bool ok = m_backendPartitionTable->resizeFileSystem( *report, *m_partition, m_length );
         if ( !ok )
             return false;
-        m_context->backendPartitionTable->commit();
+        m_backendPartitionTable->commit();
         return true;
     }
 };
@@ -141,38 +128,39 @@ private:
 class SetPartGeometryJob : public Calamares::Job
 {
 public:
-    SetPartGeometryJob( Context* context, qint64 firstSector, qint64 length )
-        : m_context( context )
+    SetPartGeometryJob( CoreBackendPartitionTable* backendPartitionTable, Partition* partition, qint64 firstSector, qint64 length )
+        : m_backendPartitionTable( backendPartitionTable )
+        , m_partition( partition )
         , m_firstSector( firstSector )
         , m_length( length )
     {}
 
     QString prettyName() const override
     {
-        QString path = m_context->job->partition()->partitionPath();
+        QString path = m_partition->partitionPath();
         return tr( "Update geometry of partition %1." ).arg( path );
     }
 
     Calamares::JobResult exec() override
     {
         Report report( nullptr );
-        Partition* partition =  m_context->job->partition();
         qint64 lastSector = m_firstSector + m_length - 1;
-        bool ok = m_context->backendPartitionTable->updateGeometry( report, *partition, m_firstSector, lastSector );
+        bool ok = m_backendPartitionTable->updateGeometry( report, *m_partition, m_firstSector, lastSector );
         if ( !ok )
         {
             return Calamares::JobResult::error(
                        QString(),
                        tr( "Failed to change the geometry of the partition." ) + '\n' + report.toText() );
         }
-        partition->setFirstSector( m_firstSector );
-        partition->setLastSector( lastSector );
-        m_context->backendPartitionTable->commit();
+        m_partition->setFirstSector( m_firstSector );
+        m_partition->setLastSector( lastSector );
+        m_backendPartitionTable->commit();
         return Calamares::JobResult::ok();
     }
 
 private:
-    Context* m_context;
+    CoreBackendPartitionTable* m_backendPartitionTable;
+    Partition* m_partition;
     qint64 m_firstSector;
     qint64 m_length;
 };
@@ -211,12 +199,6 @@ ResizePartitionJob::exec()
     m_partition->setFirstSector( m_oldFirstSector );
     m_partition->setLastSector( m_oldLastSector );
 
-    // Setup context
-    QString partitionPath = m_partition->partitionPath();
-    Context context( this );
-    context.oldFirstSector = m_oldFirstSector;
-    context.oldLastSector = m_oldLastSector;
-
     CoreBackend* backend = CoreBackendManager::self()->backend();
     QScopedPointer<CoreBackendDevice> backendDevice( backend->openDevice( m_device->deviceNode() ) );
     if ( !backendDevice.data() )
@@ -229,13 +211,13 @@ ResizePartitionJob::exec()
                    tr( "Could not open device '%1'." ).arg( m_device->deviceNode() )
                );
     }
-    context.backendPartitionTable.reset( backendDevice->openPartitionTable() );
+    QScopedPointer<CoreBackendPartitionTable> backendPartitionTable( backendDevice->openPartitionTable() );
 
     // Create jobs
     QList< Calamares::job_ptr > jobs;
     jobs << Calamares::job_ptr( new CheckFileSystemJob( partition() ) );
     if ( m_partition->roles().has( PartitionRole::Extended ) )
-        jobs << Calamares::job_ptr( new SetPartGeometryJob( &context, m_newFirstSector, newLength ) );
+        jobs << Calamares::job_ptr( new SetPartGeometryJob( backendPartitionTable.data(), m_partition, m_newFirstSector, newLength ) );
     else
     {
         bool shrink = newLength < oldLength;
@@ -244,21 +226,21 @@ ResizePartitionJob::exec()
         bool moveLeft = m_newFirstSector < m_oldFirstSector;
         if ( shrink )
         {
-            jobs << Calamares::job_ptr( new ResizeFileSystemJob( &context, newLength ) );
-            jobs << Calamares::job_ptr( new SetPartGeometryJob( &context, m_oldFirstSector, newLength ) );
+            jobs << Calamares::job_ptr( new ResizeFileSystemJob( m_device, backendPartitionTable.data(), m_partition, newLength ) );
+            jobs << Calamares::job_ptr( new SetPartGeometryJob( backendPartitionTable.data(), m_partition, m_oldFirstSector, newLength ) );
         }
         if ( moveRight || moveLeft )
         {
             // At this point, we need to set the partition's length to either the resized length, if it has already been
             // shrunk, or to the original length (it may or may not then later be grown, we don't care here)
             const qint64 length = shrink ? newLength : oldLength;
-            jobs << Calamares::job_ptr( new SetPartGeometryJob( &context, m_newFirstSector, length ) );
+            jobs << Calamares::job_ptr( new SetPartGeometryJob( backendPartitionTable.data(), m_partition, m_newFirstSector, length ) );
             jobs << Calamares::job_ptr( new MoveFileSystemJob( m_device, m_partition, m_oldFirstSector, m_newFirstSector, length ) );
         }
         if ( grow )
         {
-            jobs << Calamares::job_ptr( new SetPartGeometryJob( &context, m_newFirstSector, newLength ) );
-            jobs << Calamares::job_ptr( new ResizeFileSystemJob( &context, newLength ) );
+            jobs << Calamares::job_ptr( new SetPartGeometryJob( backendPartitionTable.data(), m_partition, m_newFirstSector, newLength ) );
+            jobs << Calamares::job_ptr( new ResizeFileSystemJob( m_device, backendPartitionTable.data(), m_partition, newLength ) );
         }
     }
     jobs << Calamares::job_ptr( new CheckFileSystemJob( partition() ) );
