@@ -1,4 +1,4 @@
-#include <JobTests.h>
+#include <PartitionJobTests.h>
 
 #include <jobs/CreatePartitionJob.h>
 #include <jobs/CreatePartitionTableJob.h>
@@ -16,7 +16,7 @@
 #include <QProcess>
 #include <QtTest/QtTest>
 
-QTEST_GUILESS_MAIN( JobTests )
+QTEST_GUILESS_MAIN( PartitionJobTests )
 
 static const qint64 MB = 1024 * 1024;
 
@@ -134,13 +134,13 @@ QueueRunner::onFailed( const QString& message, const QString& details )
     QFAIL( qPrintable( msg ) );
 }
 
-//- JobTests ------------------------------------------------------------------
-JobTests::JobTests()
+//- PartitionJobTests ------------------------------------------------------------------
+PartitionJobTests::PartitionJobTests()
     : m_runner( &m_queue )
 {}
 
 void
-JobTests::initTestCase()
+PartitionJobTests::initTestCase()
 {
     QString devicePath = qgetenv( "CALAMARES_TEST_DISK" );
     if ( devicePath.isEmpty() )
@@ -155,7 +155,7 @@ JobTests::initTestCase()
 }
 
 void
-JobTests::refreshDevice()
+PartitionJobTests::refreshDevice()
 {
     QString devicePath = qgetenv( "CALAMARES_TEST_DISK" );
     CoreBackend* backend = CoreBackendManager::self()->backend();
@@ -164,7 +164,7 @@ JobTests::refreshDevice()
 }
 
 void
-JobTests::testPartitionTable()
+PartitionJobTests::testPartitionTable()
 {
     queuePartitionTableCreation( PartitionTable::msdos );
     QVERIFY( m_runner.run() );
@@ -178,7 +178,7 @@ JobTests::testPartitionTable()
 }
 
 void
-JobTests::queuePartitionTableCreation( PartitionTable::TableType type)
+PartitionJobTests::queuePartitionTableCreation( PartitionTable::TableType type)
 {
     auto job = new CreatePartitionTableJob( m_device.data(), type );
     job->updatePreview();
@@ -186,7 +186,7 @@ JobTests::queuePartitionTableCreation( PartitionTable::TableType type)
 }
 
 CreatePartitionJob*
-JobTests::newCreatePartitionJob( Partition* freeSpacePartition, PartitionRole role, FileSystem::Type type, qint64 size )
+PartitionJobTests::newCreatePartitionJob( Partition* freeSpacePartition, PartitionRole role, FileSystem::Type type, qint64 size )
 {
     Q_ASSERT( freeSpacePartition );
 
@@ -215,7 +215,7 @@ JobTests::newCreatePartitionJob( Partition* freeSpacePartition, PartitionRole ro
 }
 
 void
-JobTests::testCreatePartition()
+PartitionJobTests::testCreatePartition()
 {
     queuePartitionTableCreation( PartitionTable::gpt );
     CreatePartitionJob* job;
@@ -256,7 +256,7 @@ JobTests::testCreatePartition()
 }
 
 void
-JobTests::testCreatePartitionExtended()
+PartitionJobTests::testCreatePartitionExtended()
 {
     queuePartitionTableCreation( PartitionTable::msdos );
     CreatePartitionJob* job;
@@ -296,7 +296,7 @@ JobTests::testCreatePartitionExtended()
 }
 
 void
-JobTests::testResizePartition_data()
+PartitionJobTests::testResizePartition_data()
 {
     QTest::addColumn< int >( "oldStartMB" );
     QTest::addColumn< int >( "oldSizeMB" );
@@ -310,7 +310,7 @@ JobTests::testResizePartition_data()
 }
 
 void
-JobTests::testResizePartition()
+PartitionJobTests::testResizePartition()
 {
     QFETCH( int, oldStartMB );
     QFETCH( int, oldSizeMB );

@@ -1,5 +1,5 @@
-#ifndef JOBTESTS_H
-#define JOBTESTS_H
+#ifndef PARTITIONJOBTESTS_H
+#define PARTITIONJOBTESTS_H
 
 #include <JobQueue.h>
 
@@ -32,11 +32,11 @@ private:
     bool m_success;
 };
 
-class JobTests : public QObject
+class PartitionJobTests : public QObject
 {
     Q_OBJECT
 public:
-    JobTests();
+    PartitionJobTests();
 
 private Q_SLOTS:
     void initTestCase();
@@ -56,4 +56,4 @@ private:
     void refreshDevice();
 };
 
-#endif /* JOBTESTS_H */
+#endif /* PARTITIONJOBTESTS_H */
