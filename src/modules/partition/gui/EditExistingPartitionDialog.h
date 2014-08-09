@@ -47,7 +47,6 @@ private:
     QScopedPointer< Ui_EditExistingPartitionDialog > m_ui;
     Device* m_device;
     Partition* m_partition;
-    QScopedPointer< Partition > m_partResizerWidgetPartition;
     PartitionSizeController* m_partitionSizeController;
 
     void replacePartResizerWidget();

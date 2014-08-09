@@ -46,6 +46,7 @@ static QSet< FileSystem::Type > s_unmountableFS(
 CreatePartitionDialog::CreatePartitionDialog( Device* device, PartitionNode* parentPartition, QWidget* parentWidget )
     : QDialog( parentWidget )
     , m_ui( new Ui_CreatePartitionDialog )
+    , m_partitionSizeController( new PartitionSizeController( this ) )
     , m_device( device )
     , m_parent( parentPartition )
 {
@@ -120,8 +121,8 @@ CreatePartitionDialog::createPartition()
                  );
     }
 
-    qint64 first = m_partResizerWidgetPartition->firstSector();
-    qint64 last = m_partResizerWidgetPartition->lastSector();
+    qint64 first = m_partitionSizeController->firstSector();
+    qint64 last = m_partitionSizeController->lastSector();
 
     FileSystem::Type fsType = m_role.has( PartitionRole::Extended )
                               ? FileSystem::Extended
@@ -153,19 +154,12 @@ CreatePartitionDialog::updateMountPointUi()
 void
 CreatePartitionDialog::initPartResizerWidget( Partition* partition )
 {
-    PartitionSizeController* controller = new PartitionSizeController( this );
-    m_partResizerWidgetPartition.reset( PMUtils::clonePartition( m_device, partition ) );
-
-    qint64 minFirstSector = partition->firstSector() - m_device->partitionTable()->freeSectorsBefore( *partition );
-    qint64 maxLastSector = partition->lastSector() + m_device->partitionTable()->freeSectorsAfter( *partition );
-    m_ui->partResizerWidget->init( *m_device, *m_partResizerWidgetPartition, minFirstSector, maxLastSector );
-
     QColor color = PMUtils::isPartitionFreeSpace( partition )
                    ? ColorUtils::colorForPartitionInFreeSpace( partition )
                    : ColorUtils::colorForPartition( partition );
-    controller->init( m_device, m_partResizerWidgetPartition.data(), color );
-    controller->setPartResizerWidget( m_ui->partResizerWidget );
-    controller->setSpinBox( m_ui->sizeSpinBox );
+    m_partitionSizeController->init( m_device, partition, color );
+    m_partitionSizeController->setPartResizerWidget( m_ui->partResizerWidget );
+    m_partitionSizeController->setSpinBox( m_ui->sizeSpinBox );
 }
 
 void

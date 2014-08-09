@@ -28,6 +28,7 @@
 class Device;
 class Partition;
 class PartitionNode;
+class PartitionSizeController;
 class Ui_CreatePartitionDialog;
 
 /**
@@ -58,10 +59,10 @@ private Q_SLOTS:
 
 private:
     QScopedPointer< Ui_CreatePartitionDialog > m_ui;
+    PartitionSizeController* m_partitionSizeController;
     Device* m_device;
     PartitionNode* m_parent;
     PartitionRole m_role = PartitionRole( PartitionRole::None );
-    QScopedPointer< Partition > m_partResizerWidgetPartition;
 
     void initGptPartitionTypeUi();
     void initMbrPartitionTypeUi();

@@ -19,9 +19,14 @@
 #ifndef PARTITIONSIZECONTROLLER_H
 #define PARTITIONSIZECONTROLLER_H
 
+// CalaPM
+#include <core/partition.h>
+
+// Qt
 #include <QColor>
 #include <QObject>
 #include <QPointer>
+#include <QScopedPointer>
 
 class QSpinBox;
 
@@ -32,25 +37,33 @@ class PartResizerWidget;
 /**
  * Synchronizes a PartResizerWidget and a QSpinBox, making sure any change made
  * to one is reflected in the other.
+ *
+ * It does not touch the partition it works on: changes are exposed through the
+ * firstSector() and lastSector() getters.
  */
 class PartitionSizeController : public QObject
 {
     Q_OBJECT
 public:
     explicit PartitionSizeController( QObject* parent = nullptr );
-    void setPartResizerWidget( PartResizerWidget* widget );
-    void setSpinBox( QSpinBox* spinBox );
     void init( Device* device, Partition* partition, const QColor& color );
+    void setPartResizerWidget( PartResizerWidget* widget, bool format = true );
+    void setSpinBox( QSpinBox* spinBox );
+
+    qint64 firstSector() const;
+    qint64 lastSector() const;
 
 private:
     QPointer< PartResizerWidget > m_partResizerWidget;
     QPointer< QSpinBox > m_spinBox;
     Device* m_device = nullptr;
-    Partition* m_partition = nullptr;
+    const Partition* m_originalPartition = nullptr;
+    QScopedPointer< Partition > m_partition;
     QColor m_partitionColor;
+
     bool m_updating = false;
 
-    void updateConnections();
+    void connectWidgets();
     void doUpdateSpinBox();
 
 private Q_SLOTS:

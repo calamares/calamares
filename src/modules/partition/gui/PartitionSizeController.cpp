@@ -19,13 +19,13 @@
 #include <gui/PartitionSizeController.h>
 
 #include <core/ColorUtils.h>
+#include <core/PMUtils.h>
 
 // Qt
 #include <QSpinBox>
 
 // CalaPM
 #include <core/device.h>
-#include <core/partition.h>
 #include <gui/partresizerwidget.h>
 
 // stdc++
@@ -36,11 +36,40 @@ PartitionSizeController::PartitionSizeController( QObject* parent )
 {}
 
 void
-PartitionSizeController::setPartResizerWidget( PartResizerWidget* widget )
+PartitionSizeController::init( Device* device, Partition* partition, const QColor& color )
 {
+    m_device = device;
+    m_originalPartition = partition;
+    // PartResizerWidget stores its changes directly in the partition it is
+    // initialized with. We don't want the changes to be committed that way,
+    // because it means we would have to revert them if the user cancel the
+    // dialog the widget is in. Therefore we init PartResizerWidget with a clone
+    // of the original partition.
+    m_partition.reset( PMUtils::clonePartition( m_device, partition ) );
+    m_partitionColor = color;
+}
+
+void
+PartitionSizeController::setPartResizerWidget( PartResizerWidget* widget, bool format )
+{
+    Q_ASSERT( m_device );
+
     if ( m_partResizerWidget )
         disconnect( m_partResizerWidget, 0, this, 0 );
+
+    // Update partition filesystem. This must be done *before* the call to
+    // PartResizerWidget::init() otherwise it will be ignored by the widget.
+    // This is why this method accept a `format` boolean.
+    qint64 used = format ? 0 : m_originalPartition->fileSystem().sectorsUsed();
+    m_partition->fileSystem().setSectorsUsed( used );
+
+    // Init PartResizerWidget
     m_partResizerWidget = widget;
+    PartitionTable* table = m_device->partitionTable();
+    qint64 minFirstSector = m_originalPartition->firstSector() - table->freeSectorsBefore( *m_originalPartition );
+    qint64 maxLastSector = m_originalPartition->lastSector() + table->freeSectorsAfter( *m_originalPartition );
+    m_partResizerWidget->init( *m_device, *m_partition.data(), minFirstSector, maxLastSector );
+
     // FIXME: Should be set by PartResizerWidget itself
     m_partResizerWidget->setFixedHeight( PartResizerWidget::handleHeight() );
 
@@ -48,7 +77,15 @@ PartitionSizeController::setPartResizerWidget( PartResizerWidget* widget )
     pal.setColor( QPalette::Base, ColorUtils::freeSpaceColor() );
     pal.setColor( QPalette::Button, m_partitionColor );
     m_partResizerWidget->setPalette( pal );
-    updateConnections();
+    connectWidgets();
+
+    if ( !format )
+    {
+        // If we are not formatting, update the widget to make sure the space
+        // between the first and last sectors is big enough to fit the existing
+        // content.
+        updatePartResizerWidget();
+    }
 }
 
 void
@@ -58,19 +95,11 @@ PartitionSizeController::setSpinBox( QSpinBox* spinBox )
         disconnect( m_spinBox, 0, this, 0 );
     m_spinBox = spinBox;
     m_spinBox->setMaximum( std::numeric_limits< int >::max() );
-    updateConnections();
+    connectWidgets();
 }
 
 void
-PartitionSizeController::init( Device* device, Partition* partition, const QColor& color )
-{
-    m_device = device;
-    m_partition = partition;
-    m_partitionColor = color;
-}
-
-void
-PartitionSizeController::updateConnections()
+PartitionSizeController::connectWidgets()
 {
     if ( !m_spinBox || !m_partResizerWidget )
         return;
@@ -78,6 +107,8 @@ PartitionSizeController::updateConnections()
     connect( m_spinBox, SIGNAL( editingFinished() ), SLOT( updatePartResizerWidget() ) );
     connect( m_partResizerWidget, SIGNAL( firstSectorChanged( qint64 ) ), SLOT( updateSpinBox() ) );
     connect( m_partResizerWidget, SIGNAL( lastSectorChanged( qint64 ) ), SLOT( updateSpinBox() ) );
+
+    // Init m_spinBox from m_partResizerWidget
     updateSpinBox();
 }
 
@@ -118,6 +149,20 @@ PartitionSizeController::updateSpinBox()
 void
 PartitionSizeController::doUpdateSpinBox()
 {
+    if ( !m_spinBox )
+        return;
     qint64 mbSize = ( m_partition->lastSector() - m_partition->firstSector() + 1 ) * m_device->logicalSectorSize() / 1024 / 1024;
     m_spinBox->setValue( mbSize );
+}
+
+qint64
+PartitionSizeController::firstSector() const
+{
+    return m_partition->firstSector();
+}
+
+qint64
+PartitionSizeController::lastSector() const
+{
+    return m_partition->lastSector();
 }
