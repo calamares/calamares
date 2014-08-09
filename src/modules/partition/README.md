@@ -95,10 +95,14 @@ this:
 - Support resizing extended partitions. ResizePartitionJob should already
   support this but the UI prevents editing of extended partitions for now.
 
+- Use os-prober to find out the installed OS. This information could then be
+  used in PartitionModel and in the partition views.
+
 - PartitionPreview
     - Show used space
     - Highlight selected partition
     - Make the partitions clickable
+    - Match appearance with PartResizerWidget appearance
 
 - Expose PartitionInfo::format in PartitionModel and add a column for it in the
   tree view
