@@ -21,6 +21,7 @@
 import os
 import libcalamares
 
+
 def set_autologin(username, displaymanagers, root_mount_point):
     """ Enables automatic login for the installed desktop managers """
 
@@ -37,7 +38,8 @@ def set_autologin(username, displaymanagers, root_mount_point):
                     mdm_conf.write(line)
         else:
             with open(mdm_conf_path, "w") as mdm_conf:
-                mdm_conf.write('# Calamares - Enable automatic login for user\n')
+                mdm_conf.write(
+                    '# Calamares - Enable automatic login for user\n')
                 mdm_conf.write('[daemon]\n')
                 mdm_conf.write('AutomaticLogin=%s\n' % username)
                 mdm_conf.write('AutomaticLoginEnable=True\n')
@@ -55,14 +57,16 @@ def set_autologin(username, displaymanagers, root_mount_point):
                     gdm_conf.write(line)
         else:
             with open(gdm_conf_path, "w") as gdm_conf:
-                gdm_conf.write('# Calamares - Enable automatic login for user\n')
+                gdm_conf.write(
+                    '# Calamares - Enable automatic login for user\n')
                 gdm_conf.write('[daemon]\n')
                 gdm_conf.write('AutomaticLogin=%s\n' % username)
                 gdm_conf.write('AutomaticLoginEnable=True\n')
 
     if "kdm" in displaymanagers:
         # Systems with KDM as Desktop Manager
-        kdm_conf_path = os.path.join(root_mount_point, "usr/share/config/kdm/kdmrc")
+        kdm_conf_path = os.path.join(
+            root_mount_point, "usr/share/config/kdm/kdmrc")
         text = []
         if os.path.exists(kdm_conf_path):
             with open(kdm_conf_path, "r") as kdm_conf:
@@ -95,8 +99,10 @@ def set_autologin(username, displaymanagers, root_mount_point):
     if "lightdm" in displaymanagers:
         # Systems with LightDM as Desktop Manager
         # Ideally, we should use configparser for the ini conf file,
-        # but we just do a simple text replacement for now, as it worksforme(tm)
-        lightdm_conf_path = os.path.join(root_mount_point, "etc/lightdm/lightdm.conf")
+        # but we just do a simple text replacement for now, as it
+        # worksforme(tm)
+        lightdm_conf_path = os.path.join(
+            root_mount_point, "etc/lightdm/lightdm.conf")
         text = []
         if os.path.exists(lightdm_conf_path):
             with open(lightdm_conf_path, "r") as lightdm_conf:
@@ -156,8 +162,8 @@ def run():
         return "No display managers selected for the displaymanager module.",\
                "The displaymanagers list is empty or undefined in both globalstorage and displaymanager.conf."
 
-    username = libcalamares.globalstorage.value( "autologinUser" )
-    root_mount_point = libcalamares.globalstorage.value( "rootMountPoint" )
+    username = libcalamares.globalstorage.value("autologinUser")
+    root_mount_point = libcalamares.globalstorage.value("rootMountPoint")
 
     # Setup slim
     if "slim" in displaymanagers:
@@ -174,19 +180,23 @@ def run():
         if os.path.exists("%s/usr/bin/lightdm" % root_mount_point):
             libcalamares.utils.chroot_call(['mkdir', '-p', '/run/lightdm'])
             libcalamares.utils.chroot_call(['getent', 'group', 'lightdm'])
-            libcalamares.utils.chroot_call(['groupadd', '-g', '620', 'lightdm'])
+            libcalamares.utils.chroot_call(
+                ['groupadd', '-g', '620', 'lightdm'])
             libcalamares.utils.chroot_call(['getent', 'passwd', 'lightdm'])
             libcalamares.utils.chroot_call(['useradd', '-c', '"LightDM Display Manager"',
-                 '-u', '620', '-g', 'lightdm', '-d', '/var/run/lightdm',
-                 '-s', '/usr/bin/nologin', 'lightdm'])
+                                            '-u', '620', '-g', 'lightdm', '-d', '/var/run/lightdm',
+                                            '-s', '/usr/bin/nologin', 'lightdm'])
             libcalamares.utils.chroot_call(['passwd', '-l', 'lightdm'])
-            libcalamares.utils.chroot_call(['chown', '-R', 'lightdm:lightdm', '/run/lightdm'])
+            libcalamares.utils.chroot_call(
+                ['chown', '-R', 'lightdm:lightdm', '/run/lightdm'])
             if os.path.exists("%s/usr/bin/startxfce4" % root_mount_point):
-                os.system("sed -i -e 's/^.*user-session=.*/user-session=xfce/' %s/etc/lightdm/lightdm.conf" % root_mount_point)
+                os.system(
+                    "sed -i -e 's/^.*user-session=.*/user-session=xfce/' %s/etc/lightdm/lightdm.conf" % root_mount_point)
             libcalamares.utils.chroot_call(['ln', '-s',
                                             '/usr/lib/lightdm/lightdm/gdmflexiserver',
                                             '/usr/bin/gdmflexiserver'])
-            libcalamares.utils.chroot_call(['chmod', '+r' '/etc/lightdm/lightdm.conf'])
+            libcalamares.utils.chroot_call(
+                ['chmod', '+r' '/etc/lightdm/lightdm.conf'])
         else:
             return "lightdm selected but not installed", ""
 
@@ -197,25 +207,34 @@ def run():
             libcalamares.utils.chroot_call(['groupadd', '-g', '120', 'gdm'])
             libcalamares.utils.chroot_call(['getent', 'passwd', 'gdm'])
             libcalamares.utils.chroot_call(['useradd', '-c', '"Gnome Display Manager"',
-                 '-u', '120', '-g', 'gdm', '-d', '/var/lib/gdm',
-                 '-s', '/usr/bin/nologin', 'gdm'])
+                                            '-u', '120', '-g', 'gdm', '-d', '/var/lib/gdm',
+                                            '-s', '/usr/bin/nologin', 'gdm'])
             libcalamares.utils.chroot_call(['passwd', '-l', 'gdm'])
-            libcalamares.utils.chroot_call(['chown', '-R', 'gdm:gdm', '/var/lib/gdm'])
+            libcalamares.utils.chroot_call(
+                ['chown', '-R', 'gdm:gdm', '/var/lib/gdm'])
             if os.path.exists("%s/var/lib/AccountsService/users" % root_mount_point):
-                os.system("echo \"[User]\" > %s/var/lib/AccountsService/users/gdm" % root_mount_point)
+                os.system(
+                    "echo \"[User]\" > %s/var/lib/AccountsService/users/gdm" % root_mount_point)
             if os.path.exists("%s/usr/bin/startxfce4" % root_mount_point):
-                os.system("echo \"XSession=xfce\" >> %s/var/lib/AccountsService/users/gdm" % root_mount_point)
+                os.system(
+                    "echo \"XSession=xfce\" >> %s/var/lib/AccountsService/users/gdm" % root_mount_point)
             if os.path.exists("%s/usr/bin/cinnamon-session" % root_mount_point):
-                os.system("echo \"XSession=cinnamon-session\" >> %s/var/lib/AccountsService/users/gdm" % root_mount_point)
+                os.system(
+                    "echo \"XSession=cinnamon-session\" >> %s/var/lib/AccountsService/users/gdm" % root_mount_point)
             if os.path.exists("%s/usr/bin/mate-session" % root_mount_point):
-                os.system("echo \"XSession=mate\" >> %s/var/lib/AccountsService/users/gdm" % root_mount_point)
+                os.system(
+                    "echo \"XSession=mate\" >> %s/var/lib/AccountsService/users/gdm" % root_mount_point)
             if os.path.exists("%s/usr/bin/enlightenment_start" % root_mount_point):
-                os.system("echo \"XSession=enlightenment\" >> %s/var/lib/AccountsService/users/gdm" % root_mount_point)
+                os.system(
+                    "echo \"XSession=enlightenment\" >> %s/var/lib/AccountsService/users/gdm" % root_mount_point)
             if os.path.exists("%s/usr/bin/openbox-session" % root_mount_point):
-                os.system("echo \"XSession=openbox\" >> %s/var/lib/AccountsService/users/gdm" % root_mount_point)
+                os.system(
+                    "echo \"XSession=openbox\" >> %s/var/lib/AccountsService/users/gdm" % root_mount_point)
             if os.path.exists("%s/usr/bin/lxsession" % root_mount_point):
-                os.system("echo \"XSession=LXDE\" >> %s/var/lib/AccountsService/users/gdm" % root_mount_point)
-            os.system("echo \"Icon=\" >> %s/var/lib/AccountsService/users/gdm" % root_mount_point)
+                os.system(
+                    "echo \"XSession=LXDE\" >> %s/var/lib/AccountsService/users/gdm" % root_mount_point)
+            os.system(
+                "echo \"Icon=\" >> %s/var/lib/AccountsService/users/gdm" % root_mount_point)
         else:
             return "gdm selected but not installed", ""
 
@@ -226,23 +245,30 @@ def run():
             libcalamares.utils.chroot_call(['groupadd', '-g', '128', 'mdm'])
             libcalamares.utils.chroot_call(['getent', 'passwd', 'mdm'])
             libcalamares.utils.chroot_call(['useradd', '-c', '"Linux Mint Display Manager"',
-                 '-u', '128', '-g', 'mdm', '-d', '/var/lib/mdm',
-                 '-s', '/usr/bin/nologin', 'mdm'])
+                                            '-u', '128', '-g', 'mdm', '-d', '/var/lib/mdm',
+                                            '-s', '/usr/bin/nologin', 'mdm'])
             libcalamares.utils.chroot_call(['passwd', '-l', 'mdm'])
-            libcalamares.utils.chroot_call(['chown', 'root:mdm', '/var/lib/mdm'])
+            libcalamares.utils.chroot_call(
+                ['chown', 'root:mdm', '/var/lib/mdm'])
             libcalamares.utils.chroot_call(['chmod', '1770', '/var/lib/mdm'])
             if os.path.exists("%s/usr/bin/startxfce4" % root_mount_point):
-                os.system("sed -i 's|default.desktop|xfce.desktop|g' %s/etc/mdm/custom.conf" % root_mount_point)
+                os.system(
+                    "sed -i 's|default.desktop|xfce.desktop|g' %s/etc/mdm/custom.conf" % root_mount_point)
             if os.path.exists("%s/usr/bin/cinnamon-session" % root_mount_point):
-                os.system("sed -i 's|default.desktop|cinnamon.desktop|g' %s/etc/mdm/custom.conf" % root_mount_point)
+                os.system(
+                    "sed -i 's|default.desktop|cinnamon.desktop|g' %s/etc/mdm/custom.conf" % root_mount_point)
             if os.path.exists("%s/usr/bin/openbox-session" % root_mount_point):
-                os.system("sed -i 's|default.desktop|openbox.desktop|g' %s/etc/mdm/custom.conf" % root_mount_point)
+                os.system(
+                    "sed -i 's|default.desktop|openbox.desktop|g' %s/etc/mdm/custom.conf" % root_mount_point)
             if os.path.exists("%s/usr/bin/mate-session" % root_mount_point):
-                os.system("sed -i 's|default.desktop|mate.desktop|g' %s/etc/mdm/custom.conf" % root_mount_point)
+                os.system(
+                    "sed -i 's|default.desktop|mate.desktop|g' %s/etc/mdm/custom.conf" % root_mount_point)
             if os.path.exists("%s/usr/bin/lxsession" % root_mount_point):
-                os.system("sed -i 's|default.desktop|LXDE.desktop|g' %s/etc/mdm/custom.conf" % root_mount_point)
+                os.system(
+                    "sed -i 's|default.desktop|LXDE.desktop|g' %s/etc/mdm/custom.conf" % root_mount_point)
             if os.path.exists("%s/usr/bin/enlightenment_start" % root_mount_point):
-                os.system("sed -i 's|default.desktop|enlightenment.desktop|g' %s/etc/mdm/custom.conf" % root_mount_point)
+                os.system(
+                    "sed -i 's|default.desktop|enlightenment.desktop|g' %s/etc/mdm/custom.conf" % root_mount_point)
         else:
             return "mdm selected but not installed", ""
 
@@ -251,20 +277,29 @@ def run():
         if os.path.exists("%s/usr/bin/lxdm" % root_mount_point):
             libcalamares.utils.chroot_call(['groupadd', '--system', 'lxdm'])
             if os.path.exists("%s/usr/bin/startxfce4" % root_mount_point):
-                os.system("sed -i -e 's|^.*session=.*|session=/usr/bin/startxfce4|' %s/etc/lxdm/lxdm.conf" % root_mount_point)
+                os.system(
+                    "sed -i -e 's|^.*session=.*|session=/usr/bin/startxfce4|' %s/etc/lxdm/lxdm.conf" % root_mount_point)
             if os.path.exists("%s/usr/bin/cinnamon-session" % root_mount_point):
-                os.system("sed -i -e 's|^.*session=.*|session=/usr/bin/cinnamon-session|' %s/etc/lxdm/lxdm.conf" % root_mount_point)
+                os.system(
+                    "sed -i -e 's|^.*session=.*|session=/usr/bin/cinnamon-session|' %s/etc/lxdm/lxdm.conf" % root_mount_point)
             if os.path.exists("%s/usr/bin/mate-session" % root_mount_point):
-                os.system("sed -i -e 's|^.*session=.*|session=/usr/bin/mate-session|' %s/etc/lxdm/lxdm.conf" % root_mount_point)
+                os.system(
+                    "sed -i -e 's|^.*session=.*|session=/usr/bin/mate-session|' %s/etc/lxdm/lxdm.conf" % root_mount_point)
             if os.path.exists("%s/usr/bin/enlightenment_start" % root_mount_point):
-                os.system("sed -i -e 's|^.*session=.*|session=/usr/bin/enlightenment_start|' %s/etc/lxdm/lxdm.conf" % root_mount_point)
+                os.system(
+                    "sed -i -e 's|^.*session=.*|session=/usr/bin/enlightenment_start|' %s/etc/lxdm/lxdm.conf" % root_mount_point)
             if os.path.exists("%s/usr/bin/openbox-session" % root_mount_point):
-                os.system("sed -i -e 's|^.*session=.*|session=/usr/bin/openbox-session|' %s/etc/lxdm/lxdm.conf" % root_mount_point)
+                os.system(
+                    "sed -i -e 's|^.*session=.*|session=/usr/bin/openbox-session|' %s/etc/lxdm/lxdm.conf" % root_mount_point)
             if os.path.exists("%s/usr/bin/lxsession" % root_mount_point):
-                os.system("sed -i -e 's|^.*session=.*|session=/usr/bin/lxsession|' %s/etc/lxdm/lxdm.conf" % root_mount_point)
-            libcalamares.utils.chroot_call(['chgrp', '-R', 'lxdm', '/var/lib/lxdm'])
-            libcalamares.utils.chroot_call(['chgrp', 'lxdm', '/etc/lxdm/lxdm.conf'])
-            libcalamares.utils.chroot_call(['chmod', '+r', '/etc/lxdm/lxdm.conf'])
+                os.system(
+                    "sed -i -e 's|^.*session=.*|session=/usr/bin/lxsession|' %s/etc/lxdm/lxdm.conf" % root_mount_point)
+            libcalamares.utils.chroot_call(
+                ['chgrp', '-R', 'lxdm', '/var/lib/lxdm'])
+            libcalamares.utils.chroot_call(
+                ['chgrp', 'lxdm', '/etc/lxdm/lxdm.conf'])
+            libcalamares.utils.chroot_call(
+                ['chmod', '+r', '/etc/lxdm/lxdm.conf'])
         else:
             return "lxdm selected but not installed", ""
 
@@ -275,15 +310,18 @@ def run():
             libcalamares.utils.chroot_call(['groupadd', '-g', '135', 'kdm'])
             libcalamares.utils.chroot_call(['getent', 'passwd', 'kdm'])
             libcalamares.utils.chroot_call(['useradd', '-u', '135', '-g', 'kdm', '-d',
-                 '/var/lib/kdm', '-s', '/bin/false', '-r', '-M', 'kdm'])
-            libcalamares.utils.chroot_call(['chown', '-R', '135:135', 'var/lib/kdm'])
-            libcalamares.utils.chroot_call(['xdg-icon-resource', 'forceupdate', '--theme', 'hicolor'])
+                                            '/var/lib/kdm', '-s', '/bin/false', '-r', '-M', 'kdm'])
+            libcalamares.utils.chroot_call(
+                ['chown', '-R', '135:135', 'var/lib/kdm'])
+            libcalamares.utils.chroot_call(
+                ['xdg-icon-resource', 'forceupdate', '--theme', 'hicolor'])
             libcalamares.utils.chroot_call(['update-desktop-database', '-q'])
         else:
             return "kdm selected but not installed", ""
 
     if username != "":
-        libcalamares.utils.debug("Setting up autologin for user %s." % username)
+        libcalamares.utils.debug(
+            "Setting up autologin for user %s." % username)
         return set_autologin(username, displaymanagers, root_mount_point)
 
     return None
