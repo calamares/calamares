@@ -5,6 +5,33 @@ Join #calamares on Freenode.
 
 Patches go to [github.com/calamares](https://github.com/calamares/calamares).
 
+Licensing
+---------
+Calamares is released under the terms of the GNU GPL, version 3 or later. Every source file must have a license header, with a list of copyright holders and years.
+
+Example:
+```
+/* === This file is part of Calamares - <http://github.com/calamares> ===
+ *
+ *   Copyright 2013-2014, Random Person <name@example.com>
+ *   Copyright 2010,      Someone Else <someone@example.com>
+ *
+ *   Calamares is free software: you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation, either version 3 of the License, or
+ *   (at your option) any later version.
+ *
+ *   Calamares is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
+ */
+```
+Copyright holders must be physical or legal personalities. A statement such as `Copyright 2014, The FooBarQuux project` has no legal value if "The FooBarQuux project" is not the legal name of a person, company, incorporated organization, etc.
+
 Formatting
 ----------
 * Spaces, not tabs.
