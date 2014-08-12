@@ -29,15 +29,15 @@ def set_autologin(username, displaymanagers, root_mount_point):
         # Systems with MDM as Desktop Manager
         mdm_conf_path = os.path.join(root_mount_point, "etc/mdm/custom.conf")
         if os.path.exists(mdm_conf_path):
-            with open(mdm_conf_path, "r") as mdm_conf:
+            with open(mdm_conf_path, 'r') as mdm_conf:
                 text = mdm_conf.readlines()
-            with open(mdm_conf_path, "w") as mdm_conf:
+            with open(mdm_conf_path, 'w') as mdm_conf:
                 for line in text:
                     if '[daemon]' in line:
                         line = '[daemon]\nAutomaticLogin=%s\nAutomaticLoginEnable=True\n' % username
                     mdm_conf.write(line)
         else:
-            with open(mdm_conf_path, "w") as mdm_conf:
+            with open(mdm_conf_path, 'w') as mdm_conf:
                 mdm_conf.write(
                     '# Calamares - Enable automatic login for user\n')
                 mdm_conf.write('[daemon]\n')
@@ -48,15 +48,15 @@ def set_autologin(username, displaymanagers, root_mount_point):
         # Systems with GDM as Desktop Manager
         gdm_conf_path = os.path.join(root_mount_point, "etc/gdm/custom.conf")
         if os.path.exists(gdm_conf_path):
-            with open(gdm_conf_path, "r") as gdm_conf:
+            with open(gdm_conf_path, 'r') as gdm_conf:
                 text = gdm_conf.readlines()
-            with open(gdm_conf_path, "w") as gdm_conf:
+            with open(gdm_conf_path, 'w') as gdm_conf:
                 for line in text:
                     if '[daemon]' in line:
                         line = '[daemon]\nAutomaticLogin=%s\nAutomaticLoginEnable=True\n' % username
                     gdm_conf.write(line)
         else:
-            with open(gdm_conf_path, "w") as gdm_conf:
+            with open(gdm_conf_path, 'w') as gdm_conf:
                 gdm_conf.write(
                     '# Calamares - Enable automatic login for user\n')
                 gdm_conf.write('[daemon]\n')
@@ -69,9 +69,9 @@ def set_autologin(username, displaymanagers, root_mount_point):
             root_mount_point, "usr/share/config/kdm/kdmrc")
         text = []
         if os.path.exists(kdm_conf_path):
-            with open(kdm_conf_path, "r") as kdm_conf:
+            with open(kdm_conf_path, 'r') as kdm_conf:
                 text = kdm_conf.readlines()
-            with open(kdm_conf_path, "w") as kdm_conf:
+            with open(kdm_conf_path, 'w') as kdm_conf:
                 for line in text:
                     if '#AutoLoginEnable=true' in line:
                         line = 'AutoLoginEnable=true\n'
@@ -86,9 +86,9 @@ def set_autologin(username, displaymanagers, root_mount_point):
         lxdm_conf_path = os.path.join(root_mount_point, "etc/lxdm/lxdm.conf")
         text = []
         if os.path.exists(lxdm_conf_path):
-            with open(lxdm_conf_path, "r") as lxdm_conf:
+            with open(lxdm_conf_path, 'r') as lxdm_conf:
                 text = lxdm_conf.readlines()
-            with open(lxdm_conf_path, "w") as lxdm_conf:
+            with open(lxdm_conf_path, 'w') as lxdm_conf:
                 for line in text:
                     if '# autologin=dgod' in line:
                         line = 'autologin=%s\n' % username
@@ -105,9 +105,9 @@ def set_autologin(username, displaymanagers, root_mount_point):
             root_mount_point, "etc/lightdm/lightdm.conf")
         text = []
         if os.path.exists(lightdm_conf_path):
-            with open(lightdm_conf_path, "r") as lightdm_conf:
+            with open(lightdm_conf_path, 'r') as lightdm_conf:
                 text = lightdm_conf.readlines()
-            with open(lightdm_conf_path, "w") as lightdm_conf:
+            with open(lightdm_conf_path, 'w') as lightdm_conf:
                 for line in text:
                     if '#autologin-user=' in line:
                         line = 'autologin-user=%s\n' % username
@@ -120,9 +120,9 @@ def set_autologin(username, displaymanagers, root_mount_point):
         slim_conf_path = os.path.join(root_mount_point, "etc/slim.conf")
         text = []
         if os.path.exists(slim_conf_path):
-            with open(slim_conf_path, "r") as slim_conf:
+            with open(slim_conf_path, 'r') as slim_conf:
                 text = slim_conf.readlines()
-            with open(slim_conf_path, "w") as slim_conf:
+            with open(slim_conf_path, 'w') as slim_conf:
                 for line in text:
                     if 'auto_login' in line:
                         line = 'auto_login yes\n'
@@ -137,15 +137,17 @@ def set_autologin(username, displaymanagers, root_mount_point):
         sddm_conf_path = os.path.join(root_mount_point, "etc/sddm.conf")
         text = []
         if os.path.exists(sddm_conf_path):
-            with open(sddm_conf_path, "r") as sddm_conf:
+            with open(sddm_conf_path, 'r') as sddm_conf:
                 text = sddm_conf.readlines()
-            with open(sddm_conf_path, "w") as sddm_conf:
+            with open(sddm_conf_path, 'w') as sddm_conf:
                 for line in text:
                     if 'AutoUser=' in line:
-                        line = 'AutoUser=%s\n' % username
+                        line = 'AutoUser={}\n'.format(username)
                     sddm_conf.write(line)
         else:
-            return "Cannot write SDDM configuration file", "SDDM config file %s does not exist" % sddm_conf_path
+            with open(sddm_conf_path, 'w') as sddm_conf:
+                sddm_conf.write('[General]\n')
+                sddm_conf.write('AutoUser={}\n'.format(username))
 
     return None
 
