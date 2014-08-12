@@ -29,6 +29,7 @@ class ProcessJob : public Job
 public:
     explicit ProcessJob( const QString& command,
                          const QString& workingPath,
+                         bool runInChroot = false,
                          int secondsTimeout = 30,
                          QObject* parent = nullptr );
     virtual ~ProcessJob();
@@ -37,8 +38,14 @@ public:
     JobResult exec() override;
 
 private:
+    int callOutput( const QString& command,
+                    QString& output,
+                    const QString& workingPath = QString(),
+                    const QString& stdInput = QString(),
+                    int timeoutSec = 0 );
     QString m_command;
     QString m_workingPath;
+    bool m_runInChroot;
     int m_timeoutSec;
 };
 

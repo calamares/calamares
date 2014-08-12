@@ -59,12 +59,14 @@ mount( const QString& devicePath,
 
 int
 chrootCall( const QStringList& args,
+            const QString& workingPath,
             const QString& stdInput,
             int timeoutSec )
 {
     QString discard;
     return chrootOutput( args,
                          discard,
+                         workingPath,
                          stdInput,
                          timeoutSec );
 }
@@ -72,10 +74,12 @@ chrootCall( const QStringList& args,
 
 int
 chrootCall( const QString& command,
+            const QString& workingPath,
             const QString& stdInput,
             int timeoutSec )
 {
     return chrootCall( QStringList() = { command },
+                       workingPath,
                        stdInput,
                        timeoutSec );
 }
@@ -84,6 +88,7 @@ chrootCall( const QString& command,
 int
 chrootOutput( const QStringList& args,
               QString& output,
+              const QString& workingPath,
               const QString& stdInput,
               int timeoutSec )
 {
@@ -114,6 +119,15 @@ chrootOutput( const QStringList& args,
     process.setProgram( program );
     process.setArguments( arguments );
     process.setProcessChannelMode( QProcess::MergedChannels );
+
+    if ( !workingPath.isEmpty() )
+    {
+        if ( QDir( workingPath ).exists() )
+            process.setWorkingDirectory( QDir( workingPath ).absolutePath() );
+        else
+            cLog() << "Invalid working directory:" << workingPath;
+            return -3;
+    }
 
     cLog() << "Running" << program << arguments;
     process.start();
@@ -152,15 +166,16 @@ chrootOutput( const QStringList& args,
 int
 chrootOutput( const QString& command,
               QString& output,
+              const QString& workingPath,
               const QString& stdInput,
               int timeoutSec )
 {
     return chrootOutput( QStringList() = { command },
                          output,
+                         workingPath,
                          stdInput,
                          timeoutSec );
 }
-
 
 
 }

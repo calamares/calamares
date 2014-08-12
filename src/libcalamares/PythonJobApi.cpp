@@ -51,6 +51,7 @@ chroot_call( const std::string& command,
              int timeout )
 {
     return CalamaresUtils::chrootCall( QString::fromStdString( command ),
+                                       QString(),
                                        QString::fromStdString( stdin ),
                                        timeout );
 }
@@ -69,6 +70,7 @@ chroot_call( const bp::list& args,
     }
 
     return CalamaresUtils::chrootCall( list,
+                                       QString(),
                                        QString::fromStdString( stdin ),
                                        timeout );
 }
@@ -112,6 +114,7 @@ check_chroot_output( const std::string& command,
     QString output;
     int ec = CalamaresUtils::chrootOutput( QString::fromStdString( command ),
                                            output,
+                                           QString(),
                                            QString::fromStdString( stdin ),
                                            timeout );
     _handle_check_chroot_call_error( ec, QString::fromStdString( command ) );
@@ -134,6 +137,7 @@ check_chroot_output( const bp::list& args,
 
     int ec = CalamaresUtils::chrootOutput( list,
                                            output,
+                                           QString(),
                                            QString::fromStdString( stdin ),
                                            timeout );
     _handle_check_chroot_call_error( ec, list.join( ' ' ) );

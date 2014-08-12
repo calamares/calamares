@@ -49,6 +49,7 @@ ProcessJobModule::loadSelf()
 
     m_job = Calamares::job_ptr( new ProcessJob( m_command,
                                                 m_workingPath,
+                                                m_runInChroot,
                                                 m_secondsTimeout ) );
     m_loaded = true;
 }
@@ -77,6 +78,12 @@ ProcessJobModule::initFrom( const YAML::Node& node )
     if ( node[ "timeout" ] )
     {
         m_secondsTimeout = node[ "timeout" ].as< int >();
+    }
+
+    m_runInChroot = false;
+    if ( node[ "chroot" ] )
+    {
+        m_runInChroot = node[ "chroot" ].as< bool >();
     }
 }
 
