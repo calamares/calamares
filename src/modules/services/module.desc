@@ -1,0 +1,6 @@
+---
+type:       "job"
+name:       "services"
+interface:  "python"
+requires:   []
+script:     "main.py"
