@@ -26,6 +26,8 @@
 #include "SetPasswordJob.h"
 #include "JobQueue.h"
 #include "GlobalStorage.h"
+#include "utils/Logger.h"
+#include "utils/CalamaresUtils.h"
 
 #include <QBoxLayout>
 #include <QLabel>
@@ -38,6 +40,7 @@
 UsersPage::UsersPage( QWidget* parent )
     : QWidget( parent )
     , ui( new Ui::Page_UserSetup )
+    , m_readyFullName( false )
     , m_readyUsername( false )
     , m_readyHostname( false )
     , m_readyPassword( false )
@@ -46,10 +49,12 @@ UsersPage::UsersPage( QWidget* parent )
     ui->setupUi( this );
 
     // Connect signals and slots
-    connect( ui->textBoxUsername, &QLineEdit::textChanged,
-             this, &UsersPage::onUsernameTextChanged );
-    connect( ui->textBoxHostname, &QLineEdit::textChanged,
-             this, &UsersPage::onHostnameTextChanged );
+    connect( ui->textBoxFullName, &QLineEdit::textEdited,
+             this, &UsersPage::onFullNameTextEdited );
+    connect( ui->textBoxUsername, &QLineEdit::textEdited,
+             this, &UsersPage::onUsernameTextEdited );
+    connect( ui->textBoxHostname, &QLineEdit::textEdited,
+             this, &UsersPage::onHostnameTextEdited );
     connect( ui->textBoxUserPassword, &QLineEdit::textChanged,
              this, &UsersPage::onPasswordTextChanged );
     connect( ui->textBoxUserVerifiedPassword, &QLineEdit::textChanged,
@@ -58,6 +63,9 @@ UsersPage::UsersPage( QWidget* parent )
              this, &UsersPage::onRootPasswordTextChanged );
     connect( ui->textBoxVerifiedRootPassword, &QLineEdit::textChanged,
              this, &UsersPage::onRootPasswordTextChanged );
+
+    m_customUsername = false;
+    m_customHostname = false;
 }
 
 
@@ -70,7 +78,11 @@ UsersPage::~UsersPage()
 bool
 UsersPage::isReady()
 {
-    return m_readyHostname && m_readyPassword && m_readyRootPassword && m_readyUsername;
+    return m_readyFullName &&
+           m_readyHostname &&
+           m_readyPassword &&
+           m_readyRootPassword &&
+           m_readyUsername;
 }
 
 
@@ -105,10 +117,84 @@ UsersPage::createJobs()
 
 
 void
-UsersPage::onUsernameTextChanged( const QString& textRef )
+UsersPage::onFullNameTextEdited( const QString &textRef )
 {
-    QString text = textRef;
-    QRegExp rx( "^[a-z][-a-z0-9_]*\\$" );
+    if ( textRef.isEmpty() )
+    {
+        ui->labelFullNameError->clear();
+        ui->labelFullName->clear();
+        if ( !m_customUsername )
+            ui->textBoxUsername->clear();
+        if ( !m_customHostname )
+            ui->textBoxHostname->clear();
+    }
+    else
+    {
+        ui->labelFullName->setPixmap( QPixmap( ":/images/valid.png" ) );
+        m_readyFullName = true;
+        fillSuggestions();
+    }
+    checkReady( isReady() );
+}
+
+
+void
+UsersPage::fillSuggestions()
+{
+    QString fullName = ui->textBoxFullName->text();
+    QRegExp rx( "[^a-zA-Z0-9 ]", Qt::CaseInsensitive );
+    QString cleanName = CalamaresUtils::removeDiacritics( fullName )
+                        .toLower().replace( rx, " " ).simplified();
+    QStringList cleanParts = cleanName.split( ' ' );
+
+    if ( !m_customUsername )
+    {
+        if ( !cleanParts.isEmpty() && !cleanParts.first().isEmpty() )
+        {
+            QString usernameSuggestion = cleanParts.first();
+            for ( int i = 1; i < cleanParts.length(); ++i )
+            {
+                if ( !cleanParts.value( i ).isEmpty() )
+                    usernameSuggestion.append( cleanParts.value( i ).at( 0 ) );
+            }
+            if ( m_usernameRx.indexIn( usernameSuggestion ) != -1 )
+            {
+                ui->textBoxUsername->setText( usernameSuggestion );
+                validateUsernameText( usernameSuggestion );
+                m_customUsername = false;
+            }
+        }
+    }
+
+    if ( !m_customHostname )
+    {
+        if ( !cleanParts.isEmpty() && !cleanParts.first().isEmpty() )
+        {
+            QString hostnameSuggestion = QString( "%1-pc" ).arg( cleanParts.first() );
+            if ( m_hostnameRx.indexIn( hostnameSuggestion ) != -1 )
+            {
+                ui->textBoxHostname->setText( hostnameSuggestion );
+                validateHostnameText( hostnameSuggestion );
+                m_customHostname = false;
+            }
+        }
+    }
+}
+
+
+void
+UsersPage::onUsernameTextEdited( const QString& textRef )
+{
+    m_customUsername = true;
+    validateUsernameText( textRef );
+}
+
+
+void
+UsersPage::validateUsernameText( const QString& textRef )
+{
+    QString text( textRef );
+    QRegExp rx( m_usernameRx );
     QRegExpValidator val( rx );
     int pos = -1;
 
@@ -144,10 +230,18 @@ UsersPage::onUsernameTextChanged( const QString& textRef )
 
 
 void
-UsersPage::onHostnameTextChanged( const QString& textRef )
+UsersPage::onHostnameTextEdited( const QString& textRef )
+{
+    m_customHostname = true;
+    validateHostnameText( textRef );
+}
+
+
+void
+UsersPage::validateHostnameText( const QString& textRef )
 {
     QString text = textRef;
-    QRegExp rx( "^[a-zA-Z][-a-zA-Z0-9_]*\\$" );
+    QRegExp rx( m_hostnameRx );
     QRegExpValidator val( rx );
     int pos = -1;
 

@@ -43,8 +43,12 @@ public:
     QList< Calamares::job_ptr > createJobs();
 
 protected slots:
-    void onUsernameTextChanged( const QString& );
-    void onHostnameTextChanged( const QString& );
+    void onFullNameTextEdited( const QString& );
+    void fillSuggestions();
+    void onUsernameTextEdited( const QString& );
+    void validateUsernameText( const QString& );
+    void onHostnameTextEdited( const QString& );
+    void validateHostnameText( const QString& );
     void onPasswordTextChanged( const QString& );
     void onRootPasswordTextChanged( const QString& );
 
@@ -53,8 +57,15 @@ signals:
 
 private:
     Ui::Page_UserSetup* ui;
+
+    const QRegExp m_usernameRx = QRegExp( "^[a-z_][a-z0-9_-]*[$]?$" );
+    const QRegExp m_hostnameRx = QRegExp( "^[a-zA-Z][-a-zA-Z0-9_]*$" );
+
+    bool m_readyFullName;
     bool m_readyUsername;
+    bool m_customUsername;
     bool m_readyHostname;
+    bool m_customHostname;
     bool m_readyPassword;
     bool m_readyRootPassword;
 
