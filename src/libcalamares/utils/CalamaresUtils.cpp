@@ -157,4 +157,50 @@ installTranslator( QObject* parent )
     QCoreApplication::installTranslator( translator );
 }
 
+
+QString
+removeDiacritics( const QString& string )
+{
+    const QString diacriticLetters = QString::fromUtf8(
+        "ŠŒŽšœžŸ¥µÀ"
+        "ÁÂÃÄÅÆÇÈÉÊ"
+        "ËÌÍÎÏÐÑÒÓÔ"
+        "ÕÖØÙÚÛÜÝßà"
+        "áâãäåæçèéê"
+        "ëìíîïðñòóô"
+        "õöøùúûüýÿÞ"
+        "þČčĆćĐđŠšŽ"
+        "ž"
+    );
+    const QStringList noDiacriticLetters = {
+        "S", "OE", "Z", "s", "oe", "z", "Y", "Y", "u", "A",
+        "A", "A", "A", "A", "A", "AE", "C", "E", "E", "E",
+        "E", "I", "I", "I", "I", "DH", "N", "O", "O", "O",
+        "O", "O", "O", "U", "U", "U", "U", "Y", "s", "a",
+        "a", "a", "a", "a", "a", "ae", "c", "e", "e", "e",
+        "e", "i", "i", "i", "i", "dh", "n", "o", "o", "o",
+        "o", "o", "o", "u", "u", "u", "u", "y", "y", "TH",
+        "th", "C", "c", "C", "c", "DJ", "dj", "S", "s", "Z",
+        "z"
+    };
+
+    QString output;
+    foreach ( QChar c, string )
+    {
+        int i = diacriticLetters.indexOf( c );
+        if ( i < 0 )
+        {
+            output.append( c );
+        }
+        else
+        {
+            QString replacement = noDiacriticLetters[ i ];
+            output.append( replacement );
+        }
+    }
+
+    return output;
+}
+
+
 }

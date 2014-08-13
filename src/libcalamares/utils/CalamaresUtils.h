@@ -41,6 +41,8 @@ namespace CalamaresUtils
      */
     DLLEXPORT void setAppDataDir( const QDir& dir );
     DLLEXPORT bool isAppDataDirOverridden();
+
+    DLLEXPORT QString removeDiacritics( const QString& string );
 }
 
 #endif // CALAMARESUTILS_H
