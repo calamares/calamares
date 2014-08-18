@@ -141,8 +141,8 @@ def set_autologin(username, displaymanagers, root_mount_point):
                 text = sddm_conf.readlines()
             with open(sddm_conf_path, 'w') as sddm_conf:
                 for line in text:
-                    if 'AutoUser=' in line:
-                        line = 'AutoUser={}\n'.format(username)
+                    if 'User=' in line:
+                        line = 'User={}\n'.format(username)
                     sddm_conf.write(line)
         else:
             return "Cannot write SDDM configuration file", "SDDM config file %s does not exist" % sddm_conf_path
