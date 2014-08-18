@@ -324,7 +324,7 @@ def run():
         else:
             return "kdm selected but not installed", ""
 
-    if username != "":
+    if username != "None":
         libcalamares.utils.debug(
             "Setting up autologin for user %s." % username)
         return set_autologin(username, displaymanagers, root_mount_point)
