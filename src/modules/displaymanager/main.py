@@ -152,6 +152,11 @@ def set_autologin(username, displaymanagers, root_mount_point):
 
 def run():
     """ Configure display managers """
+    # We acquire a list of displaymanagers, either from config or (overridden) from globalstorage.
+    # This module will try to set up (including autologin) all the displaymanagers in the list, in that specific order.
+    # Most distros will probably only ship one displaymanager.
+    # If a displaymanager is in the list but not installed, this module quits with error.
+
     if "displaymanagers" in libcalamares.job.configuration:
         displaymanagers = libcalamares.job.configuration["displaymanagers"]
 
