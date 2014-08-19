@@ -143,7 +143,9 @@ class UnpackOperation:
         subprocess.check_call(["mount",
                                entry.source,
                                imgmountdir,
-                               "-t", entry.sourcefs, "-o", "loop"])
+                               "-t",
+                               entry.sourcefs,
+                               "-o", "loop"])
 
     def unpack_image(self, entry, imgmountdir):
         def progress_cb(copied):
@@ -186,7 +188,11 @@ def run():
 
     for entry in job.configuration["unpack"]:
         source = os.path.abspath(entry["source"])
+
         sourcefs = entry["sourcefs"]
+        if sourcefs not in ["ext4", "squashfs"]:
+            return "Bad filesystem", "sourcefs=\"{}\"".format(sourcefs)
+
         destination = os.path.abspath(root_mount_point + entry["destination"])
 
         if not os.path.isfile(source):
