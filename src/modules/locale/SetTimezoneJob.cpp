@@ -45,6 +45,7 @@ SetTimezoneJob::prettyName() const
 Calamares::JobResult
 SetTimezoneJob::exec()
 {
+    QString localtimeSlink( "/etc/localtime" );
     QString zoneinfoPath( "/usr/share/zoneinfo" );
     zoneinfoPath.append( QDir::separator() + m_region );
     zoneinfoPath.append( QDir::separator() + m_zone );
@@ -55,10 +56,15 @@ SetTimezoneJob::exec()
         return Calamares::JobResult::error( tr( "Cannot access selected timezone path." ),
                                             tr( "Bad path: %1" ).arg( zoneFile.absolutePath() ) );
 
+    // Make sure /etc/localtime doesn't exist, otherwise symlinking will fail
+    CalamaresUtils::chrootCall( { "rm",
+                                  "-f",
+                                  localtimeSlink } );
+
     int ec = CalamaresUtils::chrootCall( { "ln",
                                            "-s",
                                            zoneinfoPath,
-                                           "/etc/localtime" } );
+                                           localtimeSlink } );
     if ( ec )
         return Calamares::JobResult::error( tr( "Cannot set timezone." ),
                                             tr( "Link creation failed, target: %1; link name: %2" )
