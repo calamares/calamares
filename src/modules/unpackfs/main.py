@@ -3,6 +3,8 @@
 # === This file is part of Calamares - <http://github.com/calamares> ===
 #
 #   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+#   Copyright 2014, Daniel Hillenbrand <codeworkx@bbqlinux.org>
+#   Copyright 2014, Philip Müller <philm@manjaro.org>
 #
 #   Calamares is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -28,10 +30,11 @@ from collections import namedtuple
 from libcalamares import *
 
 class UnpackEntry:
-    __slots__= ['source', 'destination', 'copied', 'total']
+    __slots__= ['source', 'sourcefs', 'destination', 'copied', 'total']
 
-    def __init__(self, source, destination):
+    def __init__(self, source, sourcefs, destination):
         self.source = source
+        self.sourcefs = sourcefs
         self.destination = destination
         self.copied = 0
         self.total = 0
@@ -86,7 +89,7 @@ def file_copy(source, dest, progress_cb):
     return None
 
 
-class UnsquashOperation:
+class UnpackOperation:
 
     def __init__(self, entries):
         self.entries = entries
@@ -110,33 +113,43 @@ class UnsquashOperation:
         source_mount_path = tempfile.mkdtemp()
         try:
             for entry in self.entries:
-                sqfslist = subprocess.check_output(["unsquashfs",
-                                                    "-l",
-                                                    entry.source])
-                entry.total = len(sqfslist.splitlines())
-
                 imgbasename = os.path.splitext(
                     os.path.basename(entry.source))[0]
                 imgmountdir = os.path.join(source_mount_path, imgbasename)
                 os.mkdir(imgmountdir)
+
+                self.mount_image(entry, imgmountdir)
+
+                if entry.sourcefs == "squashfs":
+                    sqfslist = subprocess.check_output(["unsquashfs",
+                                                        "-l",
+                                                        entry.source])
+                    entry.total = len(sqfslist.splitlines())
+                if entry.sourcefs == "ext4":
+                    fslist = subprocess.check_output(["ls", "-1",
+                                                      imgmountdir])
+                    entry.total = len(fslist.splitlines())
+
                 self.report_progress()
-                error_msg = self.unsquash_image(entry, imgmountdir)
+                error_msg = self.unpack_image(entry, imgmountdir)
                 if error_msg:
-                    return ("Failed to unsquash {}".format(entry.source),
+                    return ("Failed to unpack image {}".format(entry.source),
                         error_msg)
             return None
         finally:
             shutil.rmtree(source_mount_path)
 
-    def unsquash_image(self, entry, imgmountdir):
+    def mount_image(self, entry, imgmountdir):
+        subprocess.check_call(["mount",
+                               entry.source,
+                               imgmountdir,
+                               "-t", entry.sourcefs, "-o", "loop"])
+
+    def unpack_image(self, entry, imgmountdir):
         def progress_cb(copied):
             entry.copied = copied
             self.report_progress()
 
-        subprocess.check_call(["mount",
-                               entry.source,
-                               imgmountdir,
-                               "-t", "squashfs", "-o", "loop"])
         try:
             return file_copy(imgmountdir,
                       entry.destination,
@@ -149,13 +162,15 @@ def run():
     # from globalstorage: rootMountPoint
     # from job.configuration:
     # the path to where to mount the source image(s) for copying
-    # an ordered list of unpack mappings for sqfs file <-> target dir relative
+    # an ordered list of unpack mappings for image file <-> target dir relative
     # to rootMountPoint, e.g.:
     # configuration:
     #     unpack:
-    #         - source: "/path/to/squashfs/image.sqfs"
+    #         - source: "/path/to/filesystem.img"
+    #           sourcefs: "ext4"
     #           destination: ""
-    #         - source: "/path/to/another/image.sqfs"
+    #         - source: "/path/to/another/filesystem.sqfs"
+    #           sourcefs: "squashfs"
     #           destination: ""
 
     root_mount_point = globalstorage.value("rootMountPoint")
@@ -171,15 +186,17 @@ def run():
 
     for entry in job.configuration["unpack"]:
         source = os.path.abspath(entry["source"])
+        sourcefs = entry["sourcefs"]
         destination = os.path.abspath(root_mount_point + entry["destination"])
 
         if not os.path.isfile(source):
             return ("Bad source", "source=\"{}\"".format(source))
+        # Add test for supported filesystems
         if not os.path.isdir(destination):
             return ("Bad destination",
                     "destination=\"{}\"".format(destination))
 
-        unpack.append(UnpackEntry(source, destination))
+        unpack.append(UnpackEntry(source, sourcefs, destination))
 
-    unsquashop = UnsquashOperation(unpack)
-    return unsquashop.run()
+    unpackop = UnpackOperation(unpack)
+    return unpackop.run()
