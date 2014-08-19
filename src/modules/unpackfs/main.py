@@ -177,6 +177,8 @@ def run():
     #           sourcefs: "squashfs"
     #           destination: ""
 
+    PATH_PROCFS = '/proc/filesystems'
+
     root_mount_point = globalstorage.value("rootMountPoint")
     if not root_mount_point:
         return ("No mount point for root partition in globalstorage",
@@ -192,14 +194,31 @@ def run():
         source = os.path.abspath(entry["source"])
 
         sourcefs = entry["sourcefs"]
-        if sourcefs not in ["ext4", "squashfs"]:
+
+        # Get supported filesystems
+        fs_is_supported = False
+
+        if os.path.isfile(PATH_PROCFS) and os.access(PATH_PROCFS, os.R_OK):
+            procfile = open(PATH_PROCFS, 'r')
+            filesystems = procfile.read()
+            procfile.close
+
+            filesystems = filesystems.replace("nodev", "")
+            filesystems = filesystems.replace("\t", "")
+            filesystems = filesystems.splitlines()
+
+            # Check if the source filesystem is supported
+            for fs in filesystems:
+                if fs == sourcefs:
+                    fs_is_supported = True
+
+        if fs_is_supported == False:
             return "Bad filesystem", "sourcefs=\"{}\"".format(sourcefs)
 
         destination = os.path.abspath(root_mount_point + entry["destination"])
 
         if not os.path.isfile(source):
             return ("Bad source", "source=\"{}\"".format(source))
-        # Add test for supported filesystems
         if not os.path.isdir(destination):
             return ("Bad destination",
                     "destination=\"{}\"".format(destination))
