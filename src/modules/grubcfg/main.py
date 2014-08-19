@@ -31,6 +31,7 @@ def modify_grub_default(partitions, root_mount_point, distributor):
     if os.path.exists(plymouth_bin):
         use_splash = 'splash'
 
+    swap_uuid = ""
     for partition in partitions:
         if partition["fs"] == "linuxswap":
             swap_uuid = partition["uuid"]
