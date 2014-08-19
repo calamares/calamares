@@ -97,6 +97,13 @@ set( CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}" )
 set( CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}" )
 set( CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}" )
 
+# Better default installation paths: GNUInstallDirs defines
+# CMAKE_INSTALL_FULL_SYSCONFDIR to be CMAKE_INSTALL_PREFIX/etc by default
+# but we really want /etc
+if( NOT DEFINED CMAKE_INSTALL_SYSCONFDIR )
+    set( CMAKE_INSTALL_SYSCONFDIR "/etc" )
+endif()
+
 # make predefined install dirs available everywhere
 include( GNUInstallDirs )
 
