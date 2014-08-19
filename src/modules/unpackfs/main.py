@@ -126,8 +126,9 @@ class UnpackOperation:
                                                         entry.source])
                     entry.total = len(sqfslist.splitlines())
                 if entry.sourcefs == "ext4":
-                    fslist = subprocess.check_output(["ls", "-1",
-                                                      imgmountdir])
+                    fslist = subprocess.check_output(["find",
+                                                      imgmountdir,
+                                                      "-type", "f"])
                     entry.total = len(fslist.splitlines())
 
                 self.report_progress()
