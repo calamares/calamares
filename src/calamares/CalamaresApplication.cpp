@@ -20,6 +20,7 @@
 
 #include "CalamaresWindow.h"
 #include "CalamaresVersion.h"
+#include "CalamaresInstallDirs.h"
 #include "progresstree/ProgressTreeView.h"
 #include "progresstree/ProgressTreeModel.h"
 
@@ -156,6 +157,7 @@ CalamaresApplication::initSettings()
                 QDir::separator() +
                 "settings.conf" );
         }
+        settingsFileCandidatesByPriority.append( INSTALL_SYSCONFDIR "/calamares/settings.conf" );
         settingsFileCandidatesByPriority.append( "/etc/calamares/settings.conf" );
         settingsFileCandidatesByPriority.append( CalamaresUtils::appDataDir()
                                                     .absoluteFilePath( "settings.conf" ) );
