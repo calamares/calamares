@@ -120,16 +120,17 @@ class UnpackOperation:
 
                 self.mount_image(entry, imgmountdir)
 
+                fslist = ""
+
                 if entry.sourcefs == "squashfs":
-                    sqfslist = subprocess.check_output(["unsquashfs",
+                    fslist = subprocess.check_output(["unsquashfs",
                                                         "-l",
                                                         entry.source])
-                    entry.total = len(sqfslist.splitlines())
                 if entry.sourcefs == "ext4":
                     fslist = subprocess.check_output(["find",
                                                       imgmountdir,
                                                       "-type", "f"])
-                    entry.total = len(fslist.splitlines())
+                entry.total = len(fslist.splitlines())
 
                 self.report_progress()
                 error_msg = self.unpack_image(entry, imgmountdir)
