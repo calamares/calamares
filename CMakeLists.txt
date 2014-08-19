@@ -1,5 +1,10 @@
 project( calamares )
-cmake_minimum_required( VERSION 3.0 )
+
+# The partition manager uses ECM but ECMConfig.cmake
+# will complain if we require CMake less than 2.8.13,
+# so never change this.
+cmake_minimum_required( VERSION 2.8.12 )
+
 set( CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/CMakeModules" )
 set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wl,--no-undefined" )
 set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wl,--fatal-warnings -Wnon-virtual-dtor -Woverloaded-virtual -Werror=return-type" )
