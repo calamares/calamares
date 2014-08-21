@@ -35,3 +35,6 @@ CMakeLists.txt.user
 
 # PyCharm
 .idea
+
+# Backup files
+*~
