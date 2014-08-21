@@ -64,6 +64,8 @@ def main():
         print("Only Python jobs can be tested.")
         return 1
 
+    libcalamares.globalstorage = libcalamares.GlobalStorage()
+
     # if a file for simulating globalStorage contents is provided, load it
     if args.globalstorage_yaml:
         with open(args.globalstorage_yaml) as f:
@@ -77,7 +79,6 @@ def main():
             cfg_doc = yaml.load(f)
 
     libcalamares.job = Job(args.moduledir, doc, cfg_doc)
-    libcalamares.globalstorage = libcalamares.GlobalStorage()
 
     scriptpath = os.path.abspath(args.moduledir)
     sys.path.append(scriptpath)
