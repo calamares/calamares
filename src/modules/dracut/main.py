@@ -22,7 +22,6 @@ import libcalamares
 from libcalamares.utils import check_chroot_call
 
 def run_dracut():
-    kernelname = libcalamares.job.configuration['kernel']
     check_chroot_call(['dracut', '-f'])
 
 def run():
