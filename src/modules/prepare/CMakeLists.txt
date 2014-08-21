@@ -1,0 +1,19 @@
+include_directories( ${PROJECT_BINARY_DIR}/src/libcalamaresui )
+set( CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/CMakeModules )
+find_package( LIBPARTED REQUIRED )
+
+set_source_files_properties( partman_devices.c PROPERTIES LANGUAGE CXX )
+
+calamares_add_plugin( prepare
+    TYPE viewmodule
+    EXPORT_MACRO PLUGINDLLEXPORT_PRO
+    SOURCES
+        PrepareViewStep.cpp
+        PreparePage.cpp
+        partman_devices.c
+    UI
+    LINK_LIBRARIES
+        calamaresui
+        ${LIBPARTED_LIBS}
+    SHARED_LIB
+)
