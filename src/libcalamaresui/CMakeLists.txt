@@ -12,6 +12,8 @@ list( APPEND ${CALAMARESUI_LIBRARY_TARGET}_SOURCES
     viewpages/AbstractPage.cpp
     viewpages/ViewStep.cpp
 
+    widgets/QtWaitingSpinner.cpp
+
     InstallationViewStep.cpp
     Settings.cpp
     ViewManager.cpp
