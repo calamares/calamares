@@ -27,13 +27,14 @@
 
 #include <QBoxLayout>
 #include <QLabel>
+#include <QProcess>
 
 PrepareViewStep::PrepareViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
     , m_widget( new QWidget() )
     , m_actualWidget( new PreparePage() )
     , m_nextEnabled( false )
-    , m_requiredSpaceGB( -1 )
+    , m_requiredStorageGB( -1 )
 {
     QBoxLayout* mainLayout = new QHBoxLayout;
     m_widget->setLayout( mainLayout );
@@ -77,14 +78,20 @@ PrepareViewStep::PrepareViewStep( QObject* parent )
     connect( timer, &QTimer::timeout,
              [=]()
     {
-        bool bigEnough, hasPower, hasInternet;
-        qint64 requiredSpaceB = m_requiredSpaceGB * 1073741824L; /*powers of 2*/
-        cDebug() << "Need at least bytes:" << requiredSpaceB;
-        bigEnough = checkBigEnough( requiredSpaceB );
+        bool enoughStorage, enoughRam, hasPower, hasInternet;
+
+        qint64 requiredStorageB = m_requiredStorageGB * 1073741824L; /*powers of 2*/
+        cDebug() << "Need at least storage bytes:" << requiredStorageB;
+        enoughStorage = checkEnoughStorage( requiredStorageB );
+
+        qint64 requiredRamB = m_requiredRamGB * 1073741824L; /*powers of 2*/
+        cDebug() << "Need at least ram bytes:" << requiredRamB;
+        enoughRam = checkEnoughRam( requiredRamB );
+
         hasPower = checkHasPower();
         hasInternet = checkHasInternet();
-        cDebug() << "bigEnough, hasPower, hasInternet: "
-                 << bigEnough << hasPower << hasInternet;
+        cDebug() << "enoughStorage, enoughRam, hasPower, hasInternet: "
+                 << enoughStorage << enoughRam << hasPower << hasInternet;
 
         m_actualWidget->init();
         m_widget->layout()->removeWidget( waitingWidget );
@@ -170,25 +177,54 @@ PrepareViewStep::onLeave()
 void
 PrepareViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
-    if ( configurationMap.contains( "requiredSpace" ) &&
-         configurationMap.value( "requiredSpace" ).type() == QVariant::Double )
+    if ( configurationMap.contains( "requiredStorage" ) &&
+         configurationMap.value( "requiredStorage" ).type() == QVariant::Double )
     {
         bool ok = false;
-        m_requiredSpaceGB = configurationMap.value( "requiredSpace" ).toDouble( &ok );
+        m_requiredStorageGB = configurationMap.value( "requiredStorage" ).toDouble( &ok );
         if ( !ok )
-            m_requiredSpaceGB = 3.;
+            m_requiredStorageGB = 3.;
     }
     else
     {
-        m_requiredSpaceGB = 3.;
+        m_requiredStorageGB = 3.;
+    }
+
+    if ( configurationMap.contains( "requiredRam" ) &&
+         configurationMap.value( "requiredRam" ).type() == QVariant::Double )
+    {
+        bool ok = false;
+        m_requiredRamGB = configurationMap.value( "requiredRam" ).toDouble( &ok );
+        if ( !ok )
+            m_requiredRamGB = 1.;
+    }
+    else
+    {
+        m_requiredRamGB = 1.;
     }
 }
 
 
 bool
-PrepareViewStep::checkBigEnough( qint64 requiredSpace )
+PrepareViewStep::checkEnoughStorage( qint64 requiredSpace )
 {
     return check_big_enough( requiredSpace );
+}
+
+
+bool
+PrepareViewStep::checkEnoughRam( qint64 requiredRam )
+{
+    // A line in meminfo looks like this, with {print $2} we grab the second column.
+    // MemTotal:        8133432 kB
+
+    QProcess p;
+    p.start( "awk", { "/MemTotal/ {print $2}", "/proc/meminfo" } );
+    p.waitForFinished();
+    QString memoryLine = p.readAllStandardOutput().simplified();
+    qint64 availableRam = memoryLine.toLongLong() * 1024;
+
+    return availableRam >= requiredRam;
 }
 
 

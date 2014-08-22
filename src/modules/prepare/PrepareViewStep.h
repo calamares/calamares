@@ -56,12 +56,14 @@ public:
     void setConfigurationMap( const QVariantMap& configurationMap ) override;
 
 private:
-    bool checkBigEnough( qint64 requiredSpace );
+    bool checkEnoughStorage( qint64 requiredSpace );
+    bool checkEnoughRam( qint64 requiredRam );
     bool checkHasPower();
     bool checkHasInternet();
 
     QWidget* m_widget;
-    qreal m_requiredSpaceGB;
+    qreal m_requiredStorageGB;
+    qreal m_requiredRamGB;
 
     PreparePage* m_actualWidget;
     bool m_nextEnabled;
