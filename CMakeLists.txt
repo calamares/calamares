@@ -25,7 +25,9 @@ cmake_policy( SET CMP0043 OLD )
 include( MacroOptionalFindPackage )
 include( MacroLogFeature )
 
-find_package( Qt5 5.3.0 CONFIG REQUIRED Core Gui Widgets LinguistTools )
+set( QT_VERSION 5.3.0 )
+
+find_package( Qt5 ${QT_VERSION} CONFIG REQUIRED Core Gui Widgets LinguistTools )
 find_package( YamlCpp 0.5.1 REQUIRED )
 
 option( WITH_PYTHON "Enable Python modules support." ON )

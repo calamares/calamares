@@ -26,6 +26,8 @@
 #include "utils/Logger.h"
 
 #include <QBoxLayout>
+#include <QDBusConnection>
+#include <QDBusInterface>
 #include <QLabel>
 #include <QProcess>
 
@@ -238,6 +240,24 @@ PrepareViewStep::checkHasPower()
 bool
 PrepareViewStep::checkHasInternet()
 {
-    return false;
+    const QString NM_INTF_NAME( "org.freedesktop.NetworkManager" );
+    const int NM_STATE_CONNECTED_GLOBAL = 70;
+
+    QDBusInterface nmIntf( "org.freedesktop.NetworkManager",
+                           "/org/freedesktop/NetworkManager",
+                           NM_INTF_NAME,
+                           QDBusConnection::systemBus(), 0 );
+    bool ok = false;
+    int nmState = nmIntf.property( "state" ).toInt( &ok );
+
+    if ( !ok || !nmIntf.isValid() )
+    {
+        // We can't talk to NM, so no idea.  Wild guess: we're connected
+        // using ssh with X forwarding, and are therefore connected.  This
+        // allows us to proceed with a minimum of complaint.
+        return true;
+    }
+
+    return nmState == NM_STATE_CONNECTED_GLOBAL;
 }
 
