@@ -58,6 +58,7 @@ public:
 private:
     bool checkEnoughStorage( qint64 requiredSpace );
     bool checkEnoughRam( qint64 requiredRam );
+    bool checkBatteryExists();
     bool checkHasPower();
     bool checkHasInternet();
 

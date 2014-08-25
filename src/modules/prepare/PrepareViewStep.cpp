@@ -28,6 +28,8 @@
 #include <QBoxLayout>
 #include <QDBusConnection>
 #include <QDBusInterface>
+#include <QDir>
+#include <QFileInfo>
 #include <QLabel>
 #include <QProcess>
 
@@ -231,22 +233,76 @@ PrepareViewStep::checkEnoughRam( qint64 requiredRam )
 
 
 bool
+PrepareViewStep::checkBatteryExists()
+{
+    const QFileInfo basePath( "/sys/class/power_supply" );
+
+    if ( !( basePath.exists() && basePath.isDir() ) )
+        return false;
+
+    QDir baseDir( basePath.absoluteFilePath() );
+    foreach ( auto item, baseDir.entryList( QDir::AllDirs |
+                                            QDir::Readable |
+                                            QDir::NoDotAndDotDot ) )
+    {
+        QFileInfo typePath( baseDir.absoluteFilePath( QString( "%1/type" )
+                                                      .arg( item ) ) );
+        QFile typeFile( typePath.absoluteFilePath() );
+        if ( typeFile.open( QIODevice::ReadOnly | QIODevice::Text ) )
+        {
+            if ( typeFile.readAll().startsWith( "Battery" ) )
+                return true;
+        }
+    }
+
+    return false;
+}
+
+
+bool
 PrepareViewStep::checkHasPower()
 {
-    return false;
+    const QString UPOWER_SVC_NAME( "org.freedesktop.UPower" );
+    const QString UPOWER_INTF_NAME( "org.freedesktop.UPower" );
+    const QString UPOWER_PATH( "/org/freedesktop/UPower" );
+
+    if ( !checkBatteryExists() )
+        return true;
+
+    cDebug() << "A battery exists, checking for mains power.";
+    QDBusInterface upowerIntf( UPOWER_SVC_NAME,
+                               UPOWER_PATH,
+                               UPOWER_INTF_NAME,
+                               QDBusConnection::systemBus(), 0 );
+
+    bool onBattery = upowerIntf.property( "OnBattery" ).toBool();
+
+    if ( !upowerIntf.isValid() )
+    {
+        // We can't talk to upower but we're obviously up and running
+        // so I guess we got that going for us, which is nice...
+        return true;
+    }
+
+    // If a battery exists but we're not using it, means we got mains
+    // power.
+    return !onBattery;
 }
 
 
 bool
 PrepareViewStep::checkHasInternet()
 {
+    const QString NM_SVC_NAME( "org.freedesktop.NetworkManager" );
     const QString NM_INTF_NAME( "org.freedesktop.NetworkManager" );
+    const QString NM_PATH( "/org/freedesktop/NetworkManager" );
     const int NM_STATE_CONNECTED_GLOBAL = 70;
 
-    QDBusInterface nmIntf( "org.freedesktop.NetworkManager",
-                           "/org/freedesktop/NetworkManager",
+    QDBusInterface nmIntf( NM_SVC_NAME,
+                           NM_PATH,
                            NM_INTF_NAME,
                            QDBusConnection::systemBus(), 0 );
+
     bool ok = false;
     int nmState = nmIntf.property( "state" ).toInt( &ok );
 
