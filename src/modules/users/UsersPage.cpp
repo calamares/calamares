@@ -112,6 +112,8 @@ UsersPage::createJobs()
     if ( ui->checkBoxLoginAuto->isChecked() )
         gs->insert( "autologinUser", ui->textBoxUsername->text() );
 
+    gs->insert( "username", ui->textBoxUsername->text() );
+
     return list;
 }
 
