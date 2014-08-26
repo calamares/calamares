@@ -50,6 +50,14 @@ defaultPixmap( ImageType type, ImageMode mode, const QSize& size )
             pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/no.svgz", size );
             break;
 
+        case Information:
+            pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/information.svgz", size );
+            break;
+
+        case Fail:
+            pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/fail.svgz", size );
+            break;
+
         default:
             break;
     }

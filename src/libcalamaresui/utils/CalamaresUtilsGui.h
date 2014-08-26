@@ -32,7 +32,9 @@ namespace CalamaresUtils
 enum ImageType
 {
     Yes,
-    No
+    No,
+    Information,
+    Fail
 };
 
 enum ImageMode
