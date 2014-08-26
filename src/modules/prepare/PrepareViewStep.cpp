@@ -82,43 +82,82 @@ PrepareViewStep::PrepareViewStep( QObject* parent )
     connect( timer, &QTimer::timeout,
              [=]()
     {
-        bool enoughStorage, enoughRam, hasPower, hasInternet;
+        bool enoughStorage = false;
+        bool enoughRam = false;
+        bool hasPower = false;
+        bool hasInternet = false;
 
         qint64 requiredStorageB = m_requiredStorageGB * 1073741824L; /*powers of 2*/
         cDebug() << "Need at least storage bytes:" << requiredStorageB;
-        enoughStorage = checkEnoughStorage( requiredStorageB );
+        if ( m_entriesToCheck.contains( "storage" ) )
+            enoughStorage = checkEnoughStorage( requiredStorageB );
 
         qint64 requiredRamB = m_requiredRamGB * 1073741824L; /*powers of 2*/
         cDebug() << "Need at least ram bytes:" << requiredRamB;
-        enoughRam = checkEnoughRam( requiredRamB );
+        if ( m_entriesToCheck.contains( "ram" ) )
+            enoughRam = checkEnoughRam( requiredRamB );
 
-        hasPower = checkHasPower();
-        hasInternet = checkHasInternet();
+        if ( m_entriesToCheck.contains( "power" ) )
+            hasPower = checkHasPower();
+
+        if ( m_entriesToCheck.contains( "internet" ) )
+            hasInternet = checkHasInternet();
+
         cDebug() << "enoughStorage, enoughRam, hasPower, hasInternet: "
                  << enoughStorage << enoughRam << hasPower << hasInternet;
 
-        QList< QPair< QString, bool > > checkEntries;
-        checkEntries.append( qMakePair(
-            tr( "has at least %1 GB available drive space" )
-                .arg( m_requiredStorageGB ),
-            enoughStorage ) );
-        checkEntries.append( qMakePair(
-            tr( "has at least %1 GB working memory" )
-                .arg( m_requiredRamGB ),
-            enoughRam ) );
-        checkEntries.append( qMakePair(
-            tr( "is plugged in to a power source" ),
-            hasPower ) );
-        checkEntries.append( qMakePair(
-            tr( "is connected to the Internet" ),
-            hasInternet ) );
+        QList< PrepareEntry > checkEntries;
+        foreach ( const QString& entry, m_entriesToCheck )
+        {
+            if ( entry == "storage" )
+                checkEntries.append( {
+                    entry,
+                    tr( "has at least %1 GB available drive space" )
+                        .arg( m_requiredStorageGB ),
+                    enoughStorage,
+                    m_entriesToRequire.contains( entry )
+                } );
+            else if ( entry == "ram" )
+                checkEntries.append( {
+                    entry,
+                    tr( "has at least %1 GB working memory" )
+                        .arg( m_requiredRamGB ),
+                    enoughRam,
+                    m_entriesToRequire.contains( entry )
+                } );
+            else if ( entry == "power" )
+                checkEntries.append( {
+                    entry,
+                    tr( "is plugged in to a power source" ),
+                    hasPower,
+                    m_entriesToRequire.contains( entry )
+                } );
+            else if ( entry == "internet" )
+                checkEntries.append( {
+                    entry,
+                    tr( "is connected to the Internet" ),
+                    hasInternet,
+                    m_entriesToRequire.contains( entry )
+                } );
+        }
 
         m_actualWidget->init( checkEntries );
         m_widget->layout()->removeWidget( waitingWidget );
         waitingWidget->deleteLater();
         m_widget->layout()->addWidget( m_actualWidget );
-        m_nextEnabled = true;
+
+        bool canGoNext = true;
+        foreach ( const PrepareEntry& entry, checkEntries )
+        {
+            if ( !entry.checked && entry.required )
+            {
+                canGoNext = false;
+                break;
+            }
+        }
+        m_nextEnabled = canGoNext;
         emit nextStatusChanged( m_nextEnabled );
+
         timer->deleteLater();
     } );
     timer->start( 0 );
@@ -221,6 +260,20 @@ PrepareViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     else
     {
         m_requiredRamGB = 1.;
+    }
+
+    if ( configurationMap.contains( "check" ) &&
+         configurationMap.value( "check" ).type() == QVariant::List )
+    {
+        m_entriesToCheck.clear();
+        m_entriesToCheck.append( configurationMap.value( "check" ).toStringList() );
+    }
+
+    if ( configurationMap.contains( "required" ) &&
+         configurationMap.value( "required" ).type() == QVariant::List )
+    {
+        m_entriesToRequire.clear();
+        m_entriesToRequire.append( configurationMap.value( "required" ).toStringList() );
     }
 }
 

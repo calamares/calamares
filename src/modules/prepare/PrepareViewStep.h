@@ -20,11 +20,20 @@
 #define PREPAREPAGEPLUGIN_H
 
 #include <QObject>
+#include <QStringList>
 
 #include "viewpages/ViewStep.h"
 #include "PluginDllMacro.h"
 
 class PreparePage;
+
+struct PrepareEntry
+{
+    QString name;
+    QString text;
+    bool checked;
+    bool required;
+};
 
 class PLUGINDLLEXPORT PrepareViewStep : public Calamares::ViewStep
 {
@@ -56,6 +65,9 @@ public:
     void setConfigurationMap( const QVariantMap& configurationMap ) override;
 
 private:
+    QStringList m_entriesToCheck;
+    QStringList m_entriesToRequire;
+
     bool checkEnoughStorage( qint64 requiredSpace );
     bool checkEnoughRam( qint64 requiredRam );
     bool checkBatteryExists();

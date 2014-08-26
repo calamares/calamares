@@ -47,11 +47,11 @@ PreparePage::PreparePage( QWidget* parent )
 
 
 void
-PreparePage::init( const QList< QPair< QString, bool > > &checkEntries )
+PreparePage::init( const QList< PrepareEntry >& checkEntries )
 {
-    for ( const QPair< QString, bool >& entry : checkEntries )
+    for ( const PrepareEntry& entry : checkEntries )
     {
-        PrepareCheckWidget* pcw = new PrepareCheckWidget( entry.first, entry.second );
+        PrepareCheckWidget* pcw = new PrepareCheckWidget( entry.text, entry.checked );
         m_entriesLayout->addWidget( pcw );
         pcw->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred );
     }

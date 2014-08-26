@@ -19,6 +19,8 @@
 #ifndef PREPAREPAGE_H
 #define PREPAREPAGE_H
 
+#include "PrepareViewStep.h"
+
 #include <QBoxLayout>
 #include <QWidget>
 
@@ -28,7 +30,7 @@ class PreparePage : public QWidget
 public:
     explicit PreparePage( QWidget* parent = nullptr );
 
-    void init( const QList< QPair< QString, bool > >& checkEntries );
+    void init( const QList< PrepareEntry >& checkEntries );
 
 private:
     QBoxLayout* m_entriesLayout;
