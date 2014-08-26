@@ -35,6 +35,7 @@ PreparePage::PreparePage( QWidget* parent )
     QLabel* text = new QLabel( tr( "For best results, please ensure that this "
                                    "computer:" ), this );
 
+    mainLayout->addSpacing( CalamaresUtils::defaultFontHeight() );
     mainLayout->addWidget( text );
     QHBoxLayout* spacerLayout = new QHBoxLayout;
     mainLayout->addLayout( spacerLayout );
@@ -49,10 +50,59 @@ PreparePage::PreparePage( QWidget* parent )
 void
 PreparePage::init( const QList< PrepareEntry >& checkEntries )
 {
+    bool allChecked = true;
+    bool requirementsSatisfied = true;
+
     for ( const PrepareEntry& entry : checkEntries )
     {
         PrepareCheckWidget* pcw = new PrepareCheckWidget( entry.text, entry.checked );
         m_entriesLayout->addWidget( pcw );
         pcw->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred );
+
+        if ( !entry.checked )
+        {
+            allChecked = false;
+            if ( entry.required )
+            {
+                requirementsSatisfied = false;
+            }
+        }
+    }
+
+    if ( !allChecked )
+    {
+        QBoxLayout* mainLayout = dynamic_cast< QBoxLayout* >( layout() );
+        QBoxLayout* infoLayout = new QHBoxLayout;
+        QLabel* iconLabel = new QLabel;
+        QLabel* textLabel = new QLabel;
+        int iconSize = qBound( 32, CalamaresUtils::defaultFontHeight() * 6, 128 );
+        iconLabel->setFixedSize( iconSize, iconSize );
+        textLabel->setWordWrap( true );
+        infoLayout->addWidget( iconLabel );
+        infoLayout->addWidget( textLabel );
+        textLabel->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred );
+
+        if ( !requirementsSatisfied )
+        {
+            iconLabel->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::Fail,
+                                                                 CalamaresUtils::Original,
+                                                                 iconLabel->size() ) );
+            textLabel->setText( tr( "This computer does not satisfy the minimum "
+                                    "requirements for installing %1.\n"
+                                    "Installation cannot continue." ).arg( "$RELEASE_NAME" ) ); //TODO: fill this with text from branding system
+        }
+        else
+        {
+            iconLabel->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::Information,
+                                                                 CalamaresUtils::Original,
+                                                                 iconLabel->size() ) );
+            textLabel->setText( tr( "This computer does not satisfy some of the "
+                                    "recommended requirements for installing %1.\n"
+                                    "Installation can continue, but some features "
+                                    "might be disabled." ).arg( "$RELEASE_NAME" ) ); //TODO: fill this with text from branding system
+
+        }
+
+        mainLayout->insertLayout( mainLayout->count(), infoLayout );
     }
 }

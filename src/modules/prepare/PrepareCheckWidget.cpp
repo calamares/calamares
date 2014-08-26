@@ -33,6 +33,7 @@ PrepareCheckWidget::PrepareCheckWidget( const QString &text,
 
     m_iconLabel = new QLabel( this );
     mainLayout->addWidget( m_iconLabel );
+    m_iconLabel->setFixedSize( CalamaresUtils::defaultIconSize() );
     m_textLabel = new QLabel( text, this );
     mainLayout->addWidget( m_textLabel );
     m_textLabel->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred );
