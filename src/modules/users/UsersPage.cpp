@@ -27,7 +27,7 @@
 #include "JobQueue.h"
 #include "GlobalStorage.h"
 #include "utils/Logger.h"
-#include "utils/CalamaresUtils.h"
+#include "utils/CalamaresUtilsGui.h"
 
 #include <QBoxLayout>
 #include <QLabel>
@@ -132,7 +132,9 @@ UsersPage::onFullNameTextEdited( const QString &textRef )
     }
     else
     {
-        ui->labelFullName->setPixmap( QPixmap( ":/images/valid.png" ) );
+        ui->labelFullName->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::Yes,
+                                                                     CalamaresUtils::Original,
+                                                                     ui->labelFullName->size() ) );
         m_readyFullName = true;
         fillSuggestions();
     }
@@ -208,7 +210,9 @@ UsersPage::validateUsernameText( const QString& textRef )
     }
     else if ( val.validate( text, pos ) == QValidator::Invalid )
     {
-        ui->labelUsername->setPixmap( QPixmap( ":/images/invalid.png" ) );
+        ui->labelUsername->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::No,
+                                                                     CalamaresUtils::Original,
+                                                                     ui->labelUsername->size() ) );
         --pos;
 
         if ( pos >= 0 && pos < text.size() )
@@ -222,7 +226,9 @@ UsersPage::validateUsernameText( const QString& textRef )
         m_readyUsername = false;
     }
     else {
-        ui->labelUsername->setPixmap( QPixmap( ":/images/valid.png" ) );
+        ui->labelUsername->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::Yes,
+                                                                     CalamaresUtils::Original,
+                                                                     ui->labelUsername->size() ) );
         ui->labelUsernameError->clear();
         m_readyUsername = true;
     }
@@ -255,7 +261,9 @@ UsersPage::validateHostnameText( const QString& textRef )
     }
     else if ( val.validate( text, pos ) == QValidator::Invalid )
     {
-        ui->labelHostname->setPixmap( QPixmap( ":/images/invalid.png" ) );
+        ui->labelHostname->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::No,
+                                                                     CalamaresUtils::Original,
+                                                                     ui->labelHostname->size() ) );
         --pos;
 
         if ( pos >= 0 && pos < text.size() )
@@ -270,7 +278,9 @@ UsersPage::validateHostnameText( const QString& textRef )
     }
     else
     {
-        ui->labelHostname->setPixmap( QPixmap( ":/images/valid.png" ) );
+        ui->labelHostname->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::Yes,
+                                                                     CalamaresUtils::Original,
+                                                                     ui->labelHostname->size() ) );
         ui->labelHostnameError->clear();
         m_readyHostname = true;
     }
@@ -294,13 +304,17 @@ UsersPage::onPasswordTextChanged( const QString& )
     else if ( pw1 != pw2 )
     {
         ui->labelUserPasswordError->setText( tr( "Your passwords do not match!" ) );
-        ui->labelUserPassword->setPixmap( QPixmap( ":/images/invalid.png" ) );
+        ui->labelUserPassword->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::No,
+                                                                         CalamaresUtils::Original,
+                                                                         ui->labelUserPassword->size() ) );
         m_readyPassword = false;
     }
     else
     {
         ui->labelUserPasswordError->clear();
-        ui->labelUserPassword->setPixmap( QPixmap( ":/images/valid.png" ) );
+        ui->labelUserPassword->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::Yes,
+                                                                         CalamaresUtils::Original,
+                                                                         ui->labelUserPassword->size() ) );
         m_readyPassword = true;
     }
 
@@ -323,13 +337,17 @@ UsersPage::onRootPasswordTextChanged( const QString& )
     else if ( pw1 != pw2 )
     {
         ui->labelRootPasswordError->setText( tr( "Your passwords do not match!" ) );
-        ui->labelRootPassword->setPixmap( QPixmap( ":/images/invalid.png" ) );
+        ui->labelRootPassword->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::No,
+                                                                         CalamaresUtils::Original,
+                                                                         ui->labelRootPassword->size() ) );
         m_readyRootPassword = false;
     }
     else
     {
         ui->labelRootPasswordError->clear();
-        ui->labelRootPassword->setPixmap( QPixmap( ":/images/valid.png" ) );
+        ui->labelRootPassword->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::Yes,
+                                                                         CalamaresUtils::Original,
+                                                                         ui->labelRootPassword->size() ) );
         m_readyRootPassword = true;
     }
 
