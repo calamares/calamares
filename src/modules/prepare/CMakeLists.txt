@@ -9,8 +9,9 @@ calamares_add_plugin( prepare
     TYPE viewmodule
     EXPORT_MACRO PLUGINDLLEXPORT_PRO
     SOURCES
-        PrepareViewStep.cpp
+        PrepareCheckWidget.cpp
         PreparePage.cpp
+        PrepareViewStep.cpp
         partman_devices.c
     UI
     LINK_LIBRARIES

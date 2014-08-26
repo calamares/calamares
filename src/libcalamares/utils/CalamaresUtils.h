@@ -26,6 +26,8 @@
 
 #include "DllMacro.h"
 
+#define RESPATH ":/data/"
+
 class QDir;
 class QObject;
 

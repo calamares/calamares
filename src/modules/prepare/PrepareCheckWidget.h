@@ -16,22 +16,21 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef PREPAREPAGE_H
-#define PREPAREPAGE_H
+#ifndef PREPARECHECKWIDGET_H
+#define PREPARECHECKWIDGET_H
 
-#include <QBoxLayout>
-#include <QWidget>
+#include <QLabel>
 
-class PreparePage : public QWidget
+class PrepareCheckWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit PreparePage( QWidget* parent = nullptr );
-
-    void init( const QList< QPair< QString, bool > >& checkEntries );
-
+    explicit PrepareCheckWidget( const QString &text,
+                                 bool checked,
+                                 QWidget* parent = nullptr );
 private:
-    QBoxLayout* m_entriesLayout;
+    QLabel* m_textLabel;
+    QLabel* m_iconLabel;
 };
 
-#endif // PREPAREPAGE_H
+#endif // PREPARECHECKWIDGET_H

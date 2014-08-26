@@ -27,7 +27,7 @@ include( MacroLogFeature )
 
 set( QT_VERSION 5.3.0 )
 
-find_package( Qt5 ${QT_VERSION} CONFIG REQUIRED Core Gui Widgets LinguistTools )
+find_package( Qt5 ${QT_VERSION} CONFIG REQUIRED Core Gui Widgets LinguistTools Svg )
 find_package( YamlCpp 0.5.1 REQUIRED )
 
 option( WITH_PYTHON "Enable Python modules support." ON )

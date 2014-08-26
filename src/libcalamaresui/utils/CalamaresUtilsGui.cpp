@@ -18,15 +18,98 @@
 
 #include "CalamaresUtilsGui.h"
 
+#include "ImageRegistry.h"
+
+#include <QBrush>
 #include <QFont>
 #include <QFontMetrics>
 #include <QLayout>
+#include <QPainter>
+#include <QPen>
 
 namespace CalamaresUtils
 {
 
 static int s_defaultFontSize   = 0;
 static int s_defaultFontHeight = 0;
+
+
+
+QPixmap
+defaultPixmap( ImageType type, ImageMode mode, const QSize& size )
+{
+    QPixmap pixmap;
+
+    switch ( type )
+    {
+        case Yes:
+            pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/yes.svgz", size );
+            break;
+
+        case No:
+            pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/no.svgz", size );
+            break;
+
+        default:
+            break;
+    }
+
+    if ( pixmap.isNull() )
+    {
+        Q_ASSERT( false );
+        return QPixmap();
+    }
+
+    return pixmap;
+}
+
+
+QPixmap
+createRoundedImage( const QPixmap& pixmap, const QSize& size, float frameWidthPct )
+{
+    int height;
+    int width;
+
+    if ( !size.isEmpty() )
+    {
+        height = size.height();
+        width = size.width();
+    }
+    else
+    {
+        height = pixmap.height();
+        width = pixmap.width();
+    }
+
+    if ( !height || !width )
+        return QPixmap();
+
+    QPixmap scaledAvatar = pixmap.scaled( width, height, Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
+    if ( frameWidthPct == 0.00 )
+        return scaledAvatar;
+
+    QPixmap frame( width, height );
+    frame.fill( Qt::transparent );
+
+    QPainter painter( &frame );
+    painter.setRenderHint( QPainter::Antialiasing );
+
+    QRect outerRect( 0, 0, width, height );
+    QBrush brush( scaledAvatar );
+    QPen pen;
+    pen.setColor( Qt::transparent );
+    pen.setJoinStyle( Qt::RoundJoin );
+
+    painter.setBrush( brush );
+    painter.setPen( pen );
+    painter.drawRoundedRect( outerRect, frameWidthPct * 100.0, frameWidthPct * 100.0, Qt::RelativeSize );
+
+/*    painter.setBrush( Qt::transparent );
+    painter.setPen( Qt::white );
+    painter.drawRoundedRect( outerRect, frameWidthPct, frameWidthPct, Qt::RelativeSize ); */
+
+    return frame;
+}
 
 
 void

@@ -18,6 +18,10 @@
 
 #include "PreparePage.h"
 
+#include "PrepareCheckWidget.h"
+
+#include "utils/CalamaresUtilsGui.h"
+
 #include <QBoxLayout>
 #include <QLabel>
 
@@ -30,16 +34,25 @@ PreparePage::PreparePage( QWidget* parent )
 
     QLabel* text = new QLabel( tr( "For best results, please ensure that this "
                                    "computer:" ), this );
-    text->setAlignment( Qt::AlignCenter );
 
-    mainLayout->addStretch();
     mainLayout->addWidget( text );
+    QHBoxLayout* spacerLayout = new QHBoxLayout;
+    mainLayout->addLayout( spacerLayout );
+    spacerLayout->addSpacing( CalamaresUtils::defaultFontHeight() * 2 );
+    m_entriesLayout = new QVBoxLayout;
+    spacerLayout->addLayout( m_entriesLayout );
+    CalamaresUtils::unmarginLayout( spacerLayout );
     mainLayout->addStretch();
 }
 
 
 void
-PreparePage::init()
+PreparePage::init( const QList< QPair< QString, bool > > &checkEntries )
 {
-
+    for ( const QPair< QString, bool >& entry : checkEntries )
+    {
+        PrepareCheckWidget* pcw = new PrepareCheckWidget( entry.first, entry.second );
+        m_entriesLayout->addWidget( pcw );
+        pcw->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred );
+    }
 }

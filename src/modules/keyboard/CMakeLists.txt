@@ -10,6 +10,8 @@ calamares_add_plugin( keyboard
         keyboardwidget/keyboardpreview.cpp
     UI
         KeyboardPage.ui
+    RESOURCES
+        keyboard.qrc
     LINK_LIBRARIES
         calamaresui
     SHARED_LIB

@@ -97,7 +97,23 @@ PrepareViewStep::PrepareViewStep( QObject* parent )
         cDebug() << "enoughStorage, enoughRam, hasPower, hasInternet: "
                  << enoughStorage << enoughRam << hasPower << hasInternet;
 
-        m_actualWidget->init();
+        QList< QPair< QString, bool > > checkEntries;
+        checkEntries.append( qMakePair(
+            tr( "has at least %1 GB available drive space" )
+                .arg( m_requiredStorageGB ),
+            enoughStorage ) );
+        checkEntries.append( qMakePair(
+            tr( "has at least %1 GB working memory" )
+                .arg( m_requiredRamGB ),
+            enoughRam ) );
+        checkEntries.append( qMakePair(
+            tr( "is plugged in to a power source" ),
+            hasPower ) );
+        checkEntries.append( qMakePair(
+            tr( "is connected to the Internet" ),
+            hasInternet ) );
+
+        m_actualWidget->init( checkEntries );
         m_widget->layout()->removeWidget( waitingWidget );
         waitingWidget->deleteLater();
         m_widget->layout()->addWidget( m_actualWidget );

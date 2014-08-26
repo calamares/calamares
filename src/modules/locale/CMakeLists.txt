@@ -10,6 +10,8 @@ calamares_add_plugin( locale
         timezonewidget/timezonewidget.cpp
         timezonewidget/localeglobal.cpp
     UI
+    RESOURCES
+        locale.qrc
     LINK_LIBRARIES
         calamaresui
     SHARED_LIB
