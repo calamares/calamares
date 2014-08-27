@@ -13,6 +13,8 @@ calamares_add_plugin( users
         UsersPage.cpp
     UI
         page_usersetup.ui
+    RESOURCES
+        users.qrc
     LINK_LIBRARIES
         calamaresui
         ${CRYPT_LIBRARIES}

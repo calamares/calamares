@@ -22,19 +22,39 @@
 #include "utils/CalamaresUtils.h"
 #include "UiDllMacro.h"
 
+#include <QPixmap>
 #include <QSize>
 
 class QLayout;
 
 namespace CalamaresUtils
 {
+enum ImageType
+{
+    Yes,
+    No,
+    Information,
+    Fail
+};
+
+enum ImageMode
+{
+    Original,
+    CoverInCase,
+    Grid,
+    DropShadow,
+    RoundedCorners
+};
+
+UIDLLEXPORT QPixmap defaultPixmap( ImageType type, ImageMode mode = CalamaresUtils::Original, const QSize& size = QSize( 0, 0 ) );
+UIDLLEXPORT QPixmap createRoundedImage( const QPixmap& avatar, const QSize& size, float frameWidthPct = 0.20 );
 
 UIDLLEXPORT void unmarginLayout( QLayout* layout );
 
-DLLEXPORT void setDefaultFontSize( int points );
-DLLEXPORT int defaultFontSize();
-DLLEXPORT int defaultFontHeight();
-DLLEXPORT QSize defaultIconSize();
+UIDLLEXPORT void setDefaultFontSize( int points );
+UIDLLEXPORT int defaultFontSize();
+UIDLLEXPORT int defaultFontHeight();
+UIDLLEXPORT QSize defaultIconSize();
 
 }
 

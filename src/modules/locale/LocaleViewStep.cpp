@@ -19,7 +19,7 @@
 #include "LocaleViewStep.h"
 
 #include "LocalePage.h"
-#include "QtWaitingSpinner.h"
+#include "widgets/QtWaitingSpinner.h"
 #include "timezonewidget/localeglobal.h"
 
 #include "utils/CalamaresUtilsGui.h"

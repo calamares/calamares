@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/data">
+        <file alias="images/yes.svgz">../../data/images/yes.svgz</file>
+        <file alias="images/no.svgz">../../data/images/no.svgz</file>
+        <file alias="images/information.svgz">../../data/images/information.svgz</file>
+        <file alias="images/fail.svgz">../../data/images/fail.svgz</file>
+    </qresource>
+</RCC>

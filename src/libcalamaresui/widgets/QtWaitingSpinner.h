@@ -22,12 +22,14 @@
 #ifndef QTWAITINGSPINNER_H
 #define QTWAITINGSPINNER_H
 
+#include "UiDllMacro.h"
+
 #include <QtCore/QTimer>
 
 #include <QWidget>
 #include <QColor>
 
-class QtWaitingSpinner : public QWidget {
+class UIDLLEXPORT QtWaitingSpinner : public QWidget {
 	Q_OBJECT
 
 public:
