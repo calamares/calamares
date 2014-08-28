@@ -45,7 +45,7 @@ def run():
                     print(line)
                 else:
                     try:
-                        libcalamares.utils.chroot_call(['pacman', '-Rns', '--noconfirm', 
+                        libcalamares.utils.chroot_call(['pacman', '-R', '--noconfirm', 
                                                         'xf86-video-vmware'])
                     except Exception as e:
                         pass
@@ -53,7 +53,7 @@ def run():
                     print(line)
                 else:
                     try:
-                        libcalamares.utils.chroot_call(['pacman', '-Rns', '--noconfirm', 
+                        libcalamares.utils.chroot_call(['pacman', '-R', '--noconfirm', 
                                                         'xf86-video-nouveau', 'xf86-video-vmware'])
                     except Exception as e:
                         pass
@@ -61,14 +61,14 @@ def run():
                     print(line)
                 else:
                     try:
-                        libcalamares.utils.chroot_call(['pacman', '-Rns', '--noconfirm', 
+                        libcalamares.utils.chroot_call(['pacman', '-R', '--noconfirm', 
                                                         'xf86-video-ati', 'xf86-video-vmware'])
                     except Exception as e:
                         pass
         searchfile.close()
     else:
         try:
-            libcalamares.utils.chroot_call(['pacman', '-Rns', '--noconfirm', 'xf86-video-ati', 
+            libcalamares.utils.chroot_call(['pacman', '-R', '--noconfirm', 'xf86-video-ati', 
                                             'xf86-video-vmware'])
         except Exception as e:
             pass
@@ -94,7 +94,6 @@ def run():
                                              'xf86-input-wacom'])
         except Exception as e:
             pass
-    f.close()
 
     print('input driver removal complete')
 
