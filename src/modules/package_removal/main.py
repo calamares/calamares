@@ -28,6 +28,12 @@ def run():
     """ Package removal module. Live only packages, surplus language packs """
     
     install_path = libcalamares.globalstorage.value( "rootMountPoint" )
+    
+    # remove any db.lck
+    db_lock = os.path.join(install_path, "var/lib/pacman/db.lck")
+    if os.path.exists(db_lock):
+        with misc.raised_privileges():
+            os.remove(db_lock)
 
     # Remove Calamares and depends
     if os.path.exists("%s/usr/bin/calamares" % install_path):

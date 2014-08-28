@@ -68,7 +68,7 @@ def run():
         searchfile.close()
     else:
         try:
-            libcalamares.utils.chroot_call(['pacman', '-R', '--noconfirm', 'xf86-video-ati', 
+            libcalamares.utils.chroot_call(['pacman', '-Rns', '--noconfirm', 'xf86-video-ati', 
                                             'xf86-video-vmware'])
         except Exception as e:
             pass
@@ -77,25 +77,23 @@ def run():
 
     print('cleaning up input drivers')
 
-    with open("/var/log/Xorg.0.log", "r") as f:
-        has_synaptics, has_wacom = False, False
-        for line in f:
-            if not has_synaptics and "synaptics" in line:
-                has_synaptics = True
-            if not has_wacom and "wacom" in line:
-                has_wacom = True
-            if not has_synaptics:
-                try:
-                    libcalamares.utils.chroot_call(['pacman', '-Rncs', '--noconfirm',
-                                                    'xf86-input-synaptics'])
-                except Exception as e:
-                    pass
-            if not has_wacom:
-                try:
-                    libcalamares.utils.chroot_call(['pacman', '-Rncs', '--noconfirm', 
-                                                    'xf86-input-wacom'])
-                except Exception as e:
-                    pass
+    xorg = open("/var/log/Xorg.0.log").read()
+    if 'synaptics' in xorg:
+        print('synaptics in use')
+    else:
+        try:
+            libcalamares.utils.chroot_call(['pacman', '-Rncs', '--noconfirm',
+                                            'xf86-input-synaptics'])
+        except Exception as e:
+            pass
+    if 'wacom' in xorg:
+        print('wacom in use')
+    else:
+        try:
+            libcalamares.utils.chroot_call(['pacman', '-Rncs', '--noconfirm', 
+                                             'xf86-input-wacom'])
+        except Exception as e:
+            pass
     f.close()
 
     print('input driver removal complete')
