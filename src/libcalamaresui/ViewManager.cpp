@@ -111,7 +111,15 @@ ViewManager::insertViewStep( int before, ViewStep* step)
     m_stack->insertWidget( before, step->widget() );
 
     connect( step, &ViewStep::nextStatusChanged,
-             m_next, &QPushButton::setEnabled );
+             this, [this]( bool status )
+    {
+        ViewStep* vs = qobject_cast< ViewStep* >( sender() );
+        if ( vs )
+        {
+            if ( vs == m_steps.at( m_currentStep ) )
+                m_next->setEnabled( status );
+        }
+    } );
 
     m_stack->setCurrentIndex( 0 );
 }
