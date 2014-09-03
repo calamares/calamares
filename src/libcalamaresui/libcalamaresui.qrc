@@ -4,5 +4,7 @@
         <file alias="images/no.svgz">../../data/images/no.svgz</file>
         <file alias="images/information.svgz">../../data/images/information.svgz</file>
         <file alias="images/fail.svgz">../../data/images/fail.svgz</file>
+        <file alias="images/partitions.svgz">../../data/images/partitions.svgz</file>
+        <file alias="images/magic.svgz">../../data/images/magic.svgz</file>
     </qresource>
 </RCC>
