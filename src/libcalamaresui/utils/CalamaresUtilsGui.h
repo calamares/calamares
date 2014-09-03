@@ -34,7 +34,9 @@ enum ImageType
     Yes,
     No,
     Information,
-    Fail
+    Fail,
+    Partitions,
+    Magic
 };
 
 enum ImageMode
