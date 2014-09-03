@@ -17,6 +17,7 @@ add_definitions( -DCALAMARES )
 add_subdirectory( tests )
 
 include_directories( ${PROJECT_BINARY_DIR}/src/libcalamaresui )
+
 calamares_add_plugin( partition
     TYPE viewmodule
     EXPORT_MACRO PLUGINDLLEXPORT_PRO
@@ -29,12 +30,14 @@ calamares_add_plugin( partition
         core/PartitionIterator.cpp
         core/PartitionModel.cpp
         core/PMUtils.cpp
+        gui/ChoicePage.cpp
         gui/CreatePartitionDialog.cpp
         gui/EditExistingPartitionDialog.cpp
         gui/PartitionPage.cpp
         gui/PartitionPreview.cpp
         gui/PartitionSizeController.cpp
         gui/PartitionViewStep.cpp
+        gui/PrettyRadioButton.cpp
         jobs/CheckFileSystemJob.cpp
         jobs/CreatePartitionJob.cpp
         jobs/CreatePartitionTableJob.cpp
