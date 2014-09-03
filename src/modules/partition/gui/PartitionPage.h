@@ -39,7 +39,7 @@ class PartitionPage : public QWidget
 {
     Q_OBJECT
 public:
-    explicit PartitionPage( PartitionCoreModule* core, QWidget* parent = 0 );
+    explicit PartitionPage( PartitionCoreModule* core, QWidget* parent = nullptr );
     ~PartitionPage();
 
 private:
