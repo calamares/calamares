@@ -22,6 +22,7 @@
 #include "progresstree/ProgressTreeView.h"
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/CalamaresStyle.h"
+#include "utils/Logger.h"
 
 #include <QBoxLayout>
 #include <QLabel>
@@ -32,7 +33,12 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
 {
     // Hide close button
     setWindowFlags( Qt::Window | Qt::WindowTitleHint | Qt::CustomizeWindowHint );
+
     setMinimumSize( 1010, 600 );
+    int w = qMax( CalamaresUtils::defaultFontHeight() * 60, 1010 );
+    int h = qMax( CalamaresUtils::defaultFontHeight() * 36, 600 );
+    cDebug() << "Proposed window size:" << w << h;
+    resize( w, h );
 
     QBoxLayout* mainLayout = new QHBoxLayout;
     setLayout( mainLayout );
@@ -42,7 +48,7 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
 
     QBoxLayout* sideLayout = new QVBoxLayout;
     sideBox->setLayout( sideLayout );
-    sideBox->setFixedWidth( 190 ); //FIXME
+    sideBox->setFixedWidth( qMax( 190, CalamaresUtils::defaultFontHeight() * 12 ) );
     sideBox->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
 
     QHBoxLayout* logoLayout = new QHBoxLayout;
