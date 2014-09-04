@@ -383,6 +383,13 @@ PartitionCoreModule::revert()
     updateIsDirty();
 }
 
+
+bool
+PartitionCoreModule::isDirty()
+{
+    return m_isDirty;
+}
+
 QList< PartitionCoreModule::SummaryInfo >
 PartitionCoreModule::createSummaryInfo() const
 {

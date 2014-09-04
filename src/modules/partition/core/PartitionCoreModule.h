@@ -86,6 +86,8 @@ public:
 
     void revert();
 
+    bool isDirty();
+
     /**
      * To be called when a partition has been altered, but only for changes
      * which do not affect its size, because changes which affect the partition size
