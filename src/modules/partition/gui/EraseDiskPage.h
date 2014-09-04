@@ -16,36 +16,23 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef CHOICEPAGE_H
-#define CHOICEPAGE_H
+#ifndef ERASEDISKPAGE_H
+#define ERASEDISKPAGE_H
 
 #include <QWidget>
 
-class QBoxLayout;
-class QLabel;
-
 class PartitionCoreModule;
+class QListView;
 
-class ChoicePage : public QWidget
+class EraseDiskPage : public QWidget
 {
     Q_OBJECT
 public:
-    enum Choice
-    {
-        NoChoice,
-        Alongside,
-        Erase,
-        Manual
-    };
+    explicit EraseDiskPage( QWidget* parent = nullptr );
 
-    explicit ChoicePage( QWidget* parent = nullptr );
-    virtual ~ChoicePage();
-
-    void init( PartitionCoreModule* core, const QStringList& osproberLines );
+    void init( PartitionCoreModule* core );
 
     bool isNextEnabled();
-
-    Choice currentChoice();
 
 signals:
     void nextStatusChanged( bool );
@@ -53,13 +40,10 @@ signals:
 private:
     void setNextEnabled( bool enabled );
 
-    bool m_nextEnabled;
+    QListView* m_drivesView;
     PartitionCoreModule* m_core;
-    QBoxLayout* m_itemsLayout;
-    QLabel* m_messageLabel;
 
-    QStringList m_cleanOsproberLines;
-    Choice m_choice;
+    bool m_nextEnabled;
 };
 
-#endif // CHOICEPAGE_H
+#endif // ERASEDISKPAGE_H

@@ -22,6 +22,7 @@
 #include <core/PartitionCoreModule.h>
 #include <core/PartitionModel.h>
 #include <gui/ChoicePage.h>
+#include <gui/EraseDiskPage.h>
 #include <gui/PartitionPage.h>
 #include <gui/PartitionPreview.h>
 
@@ -43,6 +44,7 @@ PartitionViewStep::PartitionViewStep( QObject* parent )
     , m_widget( new QStackedWidget() )
     , m_core( new PartitionCoreModule( this ) )
     , m_choicePage( new ChoicePage() )
+    , m_erasePage( new EraseDiskPage() )
     , m_manualPartitionPage( new PartitionPage( m_core ) )
 {
     m_widget->setContentsMargins( 0, 0, 0, 0 );
@@ -78,9 +80,11 @@ PartitionViewStep::PartitionViewStep( QObject* parent )
         QStringList osproberLines = osproberOutput.split( '\n' );
 
         m_choicePage->init( m_core, osproberLines );
+        m_erasePage->init( m_core );
 
         m_widget->addWidget( m_choicePage );
         m_widget->addWidget( m_manualPartitionPage );
+        m_widget->addWidget( m_erasePage );
         m_widget->removeWidget( waitingWidget );
         waitingWidget->deleteLater();
 
@@ -88,10 +92,12 @@ PartitionViewStep::PartitionViewStep( QObject* parent )
     } );
     timer->start( 0 );
 
-    connect( m_core, &PartitionCoreModule::hasRootMountPointChanged,
-             this, &PartitionViewStep::nextStatusChanged );
-    connect( m_choicePage, &ChoicePage::nextStatusChanged,
-             this, &PartitionViewStep::nextStatusChanged );
+    connect( m_core,        &PartitionCoreModule::hasRootMountPointChanged,
+             this,          &PartitionViewStep::nextStatusChanged );
+    connect( m_choicePage,  &ChoicePage::nextStatusChanged,
+             this,          &PartitionViewStep::nextStatusChanged );
+    connect( m_erasePage,   &EraseDiskPage::nextStatusChanged,
+             this,          &PartitionViewStep::nextStatusChanged );
 }
 
 
@@ -151,7 +157,14 @@ PartitionViewStep::next()
 {
     if ( m_choicePage == m_widget->currentWidget() )
     {
-        m_widget->setCurrentWidget( m_manualPartitionPage );
+        if ( m_choicePage->currentChoice() == ChoicePage::Manual )
+            m_widget->setCurrentWidget( m_manualPartitionPage );
+        else if ( m_choicePage->currentChoice() == ChoicePage::Erase )
+        {
+            if ( m_core->isDirty() )
+                m_core->revert();
+            m_widget->setCurrentWidget( m_erasePage );
+        }
         cDebug() << "Choice applied: " << m_choicePage->currentChoice();
     }
     else
@@ -172,6 +185,9 @@ PartitionViewStep::isNextEnabled() const
 {
     if ( m_choicePage && m_choicePage == m_widget->currentWidget() )
         return m_choicePage->isNextEnabled();
+
+    if ( m_erasePage && m_erasePage == m_widget->currentWidget() )
+        return m_erasePage->isNextEnabled(); //FIXME: also check for mount point
 
     return m_core->hasRootMountPoint();
 }

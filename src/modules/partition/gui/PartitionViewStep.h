@@ -25,6 +25,7 @@
 #include "PluginDllMacro.h"
 
 class ChoicePage;
+class EraseDiskPage;
 class PartitionPage;
 class PartitionCoreModule;
 class QStackedWidget;
@@ -62,6 +63,7 @@ private:
     PartitionCoreModule* m_core;
     QStackedWidget*   m_widget;
     ChoicePage*       m_choicePage;
+    EraseDiskPage*    m_erasePage;
     PartitionPage*    m_manualPartitionPage;
 };
 
