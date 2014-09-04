@@ -53,7 +53,9 @@ EraseDiskPage::EraseDiskPage( QWidget* parent )
     m_drivesView->setGridSize( QSize( CalamaresUtils::defaultFontHeight() * 8,
                                       m_drivesView->iconSize().height() +
                                       CalamaresUtils::defaultFontHeight() * 4 ) );
-    m_drivesView->setMinimumHeight( m_drivesView->gridSize().height() + 2 );
+    m_drivesView->setMinimumHeight( m_drivesView->gridSize().height() +
+                                    CalamaresUtils::defaultFontHeight() / 2 );
+    m_drivesView->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred );
 
     mainLayout->addStretch();
     setNextEnabled( false );
