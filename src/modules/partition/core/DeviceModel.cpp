@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
+ *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -19,11 +20,15 @@
 
 #include <core/PartitionModel.h>
 
+#include "utils/CalamaresUtilsGui.h"
+
 // CalaPM
 #include <core/device.h>
 
 // KF5
 #include <KFormat>
+
+#include <QIcon>
 
 // STL
 #include <algorithm>
@@ -67,6 +72,7 @@ DeviceModel::data( const QModelIndex& index, int role ) const
     switch ( role )
     {
     case Qt::DisplayRole:
+    case Qt::ToolTipRole:
         if ( device->name().isEmpty() )
             return device->deviceNode();
         else
@@ -74,6 +80,11 @@ DeviceModel::data( const QModelIndex& index, int role ) const
                    .arg( device->name() )
                    .arg( KFormat().formatByteSize( device->capacity() ) )
                    .arg( device->deviceNode() );
+    case Qt::DecorationRole:
+        return CalamaresUtils::defaultPixmap( CalamaresUtils::Partitions,
+                                              CalamaresUtils::Original,
+                                              QSize( CalamaresUtils::defaultIconSize().width() * 3,
+                                                     CalamaresUtils::defaultIconSize().height() * 3 ) );
     default:
         return QVariant();
     }
