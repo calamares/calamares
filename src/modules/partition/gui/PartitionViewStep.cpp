@@ -196,7 +196,8 @@ PartitionViewStep::isNextEnabled() const
 bool
 PartitionViewStep::isAtBeginning() const
 {
-    if ( m_widget->currentWidget() == m_manualPartitionPage )
+    if ( m_widget->currentWidget() == m_manualPartitionPage ||
+         m_widget->currentWidget() == m_erasePage )
         return false;
     return true;
 }
