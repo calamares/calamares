@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
+ *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -380,6 +381,17 @@ PartitionCoreModule::revert()
     qDeleteAll( m_deviceInfos );
     m_deviceInfos.clear();
     init();
+    updateIsDirty();
+}
+
+
+void
+PartitionCoreModule::clearJobs()
+{
+    foreach ( DeviceInfo* deviceInfo, m_deviceInfos )
+    {
+        deviceInfo->forgetChanges();
+    }
     updateIsDirty();
 }
 
