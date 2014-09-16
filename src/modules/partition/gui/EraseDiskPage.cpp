@@ -20,11 +20,19 @@
 
 #include "core/DeviceModel.h"
 #include "core/PartitionCoreModule.h"
+#include "core/partition.h"
+#include "core/PMUtils.h"
+#include "core/PartitionInfo.h"
+#include "core/device.h"
+#include "fs/filesystem.h"
+#include "gui/PartitionPreview.h"
 
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
 
 #include <QBoxLayout>
+#include <QDir>
+#include <QFormLayout>
 #include <QListView>
 #include <QLabel>
 
@@ -57,7 +65,10 @@ EraseDiskPage::EraseDiskPage( QWidget* parent )
                                     CalamaresUtils::defaultFontHeight() / 2 );
     m_drivesView->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred );
 
-    mainLayout->addStretch();
+    m_previewFrame = new QWidget;
+    m_previewFrame->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Expanding );
+    mainLayout->addWidget( m_previewFrame );
+
     setNextEnabled( false );
 }
 
@@ -74,12 +85,19 @@ EraseDiskPage::init( PartitionCoreModule* core )
     m_core = core;
     m_drivesView->setModel( core->deviceModel() );
 
-    connect( m_drivesView->selectionModel(), &QItemSelectionModel::selectionChanged,
-             this, [ this ]()
+    connect( m_drivesView->selectionModel(), &QItemSelectionModel::currentChanged,
+             this, [ this ]( const QModelIndex& index,
+                             const QModelIndex& oldIndex )
     {
         setNextEnabled( m_drivesView->selectionModel()->hasSelection() );
 
-        //TODO: show a before/after view before this model, update it on selection changed
+        if ( m_core->isDirty() )
+            m_core->clearJobs();
+
+        Device* dev = m_core->deviceModel()->deviceForIndex( index );
+
+        if ( dev )
+            doAutopartition( dev );
     } );
 }
 
@@ -99,4 +117,95 @@ EraseDiskPage::setNextEnabled( bool enabled )
 
     m_nextEnabled = enabled;
     emit nextStatusChanged( enabled );
+}
+
+
+void
+EraseDiskPage::doAutopartition( Device* dev )
+{
+    bool isEfi = false;
+    if ( QDir( "/sys/firmware/efi/efivars" ).exists() )
+        isEfi = true;
+
+#define MiB * 1024 * 1024
+
+    // Partition sizes are expressed in MiB, should be multiples of
+    // the logical sector size (usually 512B).
+    int uefisys_part_size = 0;
+    int empty_space_size = 0;
+    if ( isEfi )
+    {
+        uefisys_part_size = 100;
+        empty_space_size = 2;
+    }
+    else
+    {
+        // we start with a 1MiB offset before the first partition
+        empty_space_size = 1;
+    }
+
+    qint64 first_free_sector = empty_space_size MiB / dev->logicalSectorSize() + 1;
+
+    if ( isEfi )
+    {
+        qint64 lastSector = first_free_sector + ( uefisys_part_size MiB / dev->logicalSectorSize() );
+        m_core->createPartitionTable( dev, PartitionTable::gpt );
+        Partition* efiPartition = PMUtils::createNewPartition(
+            dev->partitionTable(),
+            *dev,
+            PartitionRole( PartitionRole::Primary ),
+            FileSystem::Fat32,
+            first_free_sector,
+            lastSector
+        );
+        PartitionInfo::setMountPoint( efiPartition, "/boot/efi" );
+        PartitionInfo::setFormat( efiPartition, true );
+        m_core->createPartition( dev, efiPartition );
+        first_free_sector = lastSector + 1;
+    }
+    else
+    {
+        m_core->createPartitionTable( dev, PartitionTable::msdos );
+    }
+
+    Partition* rootPartition = PMUtils::createNewPartition(
+        dev->partitionTable(),
+        *dev,
+        PartitionRole( PartitionRole::Primary ),
+        FileSystem::Ext4,
+        first_free_sector,
+        dev->totalSectors() - 1 //last sector
+    );
+    PartitionInfo::setMountPoint( rootPartition, "/" );
+    PartitionInfo::setFormat( rootPartition, true );
+    m_core->createPartition( dev, rootPartition );
+
+
+    {
+        qDeleteAll( m_previewFrame->children() );
+        m_previewFrame->layout()->deleteLater();
+
+        QFormLayout* layout = new QFormLayout;
+        m_previewFrame->setLayout( layout );
+        layout->setMargin( 0 );
+
+        QList< PartitionCoreModule::SummaryInfo > list = m_core->createSummaryInfo();
+        for ( const auto& info : list )
+        {
+            PartitionPreview* preview;
+
+            layout->addRow( new QLabel( info.deviceName ) );
+
+            preview = new PartitionPreview;
+            preview->setModel( info.partitionModelBefore );
+            info.partitionModelBefore->setParent( m_previewFrame );
+            layout->addRow( tr( "Before:" ), preview );
+
+            preview = new PartitionPreview;
+            preview->setModel( info.partitionModelAfter );
+            info.partitionModelAfter->setParent( m_previewFrame );
+            layout->addRow( tr( "After:" ), preview );
+        }
+    }
+    m_core->dumpQueue();
 }

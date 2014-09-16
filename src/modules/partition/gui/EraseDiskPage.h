@@ -23,6 +23,7 @@
 
 class PartitionCoreModule;
 class QListView;
+class Device;
 
 class EraseDiskPage : public QWidget
 {
@@ -39,9 +40,11 @@ signals:
 
 private:
     void setNextEnabled( bool enabled );
+    void doAutopartition( Device* dev );
 
     QListView* m_drivesView;
     PartitionCoreModule* m_core;
+    QWidget* m_previewFrame;
 
     bool m_nextEnabled;
 };
