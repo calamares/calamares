@@ -103,7 +103,7 @@ EraseDiskPage::init( PartitionCoreModule* core )
 
 
 bool
-EraseDiskPage::isNextEnabled()
+EraseDiskPage::isNextEnabled() const
 {
     return m_nextEnabled;
 }

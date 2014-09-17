@@ -33,7 +33,7 @@ public:
 
     void init( PartitionCoreModule* core );
 
-    bool isNextEnabled();
+    bool isNextEnabled() const;
 
 signals:
     void nextStatusChanged( bool );
