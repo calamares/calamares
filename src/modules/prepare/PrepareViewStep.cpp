@@ -24,6 +24,8 @@
 #include "widgets/WaitingWidget.h"
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
+#include "JobQueue.h"
+#include "GlobalStorage.h"
 
 #include <QBoxLayout>
 #include <QDBusConnection>
@@ -214,6 +216,8 @@ PrepareViewStep::setConfigurationMap( const QVariantMap& configurationMap )
         m_requiredStorageGB = configurationMap.value( "requiredStorage" ).toDouble( &ok );
         if ( !ok )
             m_requiredStorageGB = 3.;
+
+        Calamares::JobQueue::instance()->globalStorage()->insert( "requiredStorageGB", m_requiredStorageGB );
     }
     else
     {
