@@ -16,36 +16,22 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef CHOICEPAGE_H
-#define CHOICEPAGE_H
+#ifndef ALONGSIDEPAGE_H
+#define ALONGSIDEPAGE_H
 
 #include <QWidget>
 
-class QBoxLayout;
-class QLabel;
-
 class PartitionCoreModule;
 
-class ChoicePage : public QWidget
+class AlongsidePage : public QWidget
 {
     Q_OBJECT
 public:
-    enum Choice
-    {
-        NoChoice,
-        Alongside,
-        Erase,
-        Manual
-    };
-
-    explicit ChoicePage( QWidget* parent = nullptr );
-    virtual ~ChoicePage();
+    explicit AlongsidePage( QWidget* parent = nullptr );
 
     void init( PartitionCoreModule* core, const QStringList& osproberLines );
 
-    bool isNextEnabled();
-
-    Choice currentChoice();
+    bool isNextEnabled() const;
 
 signals:
     void nextStatusChanged( bool );
@@ -53,15 +39,9 @@ signals:
 private:
     void setNextEnabled( bool enabled );
 
-    bool canBeResized( const QStringList& osproberLine );
+    PartitionCoreModule* m_core;
 
     bool m_nextEnabled;
-    PartitionCoreModule* m_core;
-    QBoxLayout* m_itemsLayout;
-    QLabel* m_messageLabel;
-
-    QStringList m_osproberLines;
-    Choice m_choice;
 };
 
-#endif // CHOICEPAGE_H
+#endif // ALONGSIDEPAGE_H

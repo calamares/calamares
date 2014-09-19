@@ -33,6 +33,7 @@ calamares_add_plugin( partition
         gui/ChoicePage.cpp
         gui/CreatePartitionDialog.cpp
         gui/EditExistingPartitionDialog.cpp
+        gui/AlongsidePage.cpp
         gui/EraseDiskPage.cpp
         gui/PartitionPage.cpp
         gui/PartitionPreview.cpp

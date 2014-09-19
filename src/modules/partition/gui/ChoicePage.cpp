@@ -18,9 +18,18 @@
 
 #include "ChoicePage.h"
 
+#include "core/PartitionCoreModule.h"
+#include "core/DeviceModel.h"
+#include "core/PartitionModel.h"
+#include "core/partition.h"
+#include "core/device.h"
+
+#include "JobQueue.h"
+#include "GlobalStorage.h"
 #include "PrettyRadioButton.h"
 
 #include "utils/CalamaresUtilsGui.h"
+#include "utils/Logger.h"
 
 #include <QBoxLayout>
 #include <QButtonGroup>
@@ -55,6 +64,7 @@ void
 ChoicePage::init( PartitionCoreModule* core, const QStringList& osproberLines )
 {
     m_core = core;
+    m_osproberLines = osproberLines;
 
     // sample os-prober output:
     // /dev/sda2:Windows 7 (loader):Windows:chain
@@ -75,13 +85,6 @@ ChoicePage::init( PartitionCoreModule* core, const QStringList& osproberLines )
                     CalamaresUtils::defaultIconSize().height() * 3 );
     QButtonGroup* grp = new QButtonGroup( this );
 
-    m_cleanOsproberLines.clear();
-    foreach ( const QString& line, osproberLines )
-    {
-        if ( !line.simplified().isEmpty() )
-            m_cleanOsproberLines.append( line );
-    }
-
     PrettyRadioButton* alongsideButton = new PrettyRadioButton;
     alongsideButton->setIconSize( iconSize );
     alongsideButton->setIcon( CalamaresUtils::defaultPixmap( CalamaresUtils::Information,
@@ -99,7 +102,9 @@ ChoicePage::init( PartitionCoreModule* core, const QStringList& osproberLines )
     m_itemsLayout->addWidget( alongsideButton );
     m_itemsLayout->addWidget( eraseButton );
 
-    if ( m_cleanOsproberLines.count() == 0 )
+    cDebug() << "Osprober lines, clean:\n" << m_osproberLines.join( '\n' );
+
+    if ( m_osproberLines.count() == 0 )
     {
         m_messageLabel->setText( tr( "This computer currently does not seem to have an operating system on it. "
                                      "What would you like to do?" ) );
@@ -111,51 +116,57 @@ ChoicePage::init( PartitionCoreModule* core, const QStringList& osproberLines )
 
         alongsideButton->hide();
     }
-    else if ( m_cleanOsproberLines.count() == 1 )
+    else if ( m_osproberLines.count() == 1 )
     {
-        QStringList osLine = m_cleanOsproberLines.first().split( ':' );
+        QStringList osLine = m_osproberLines.first().split( ':' );
         QString osName;
         if ( !osLine.value( 1 ).simplified().isEmpty() )
             osName = osLine.value( 1 ).simplified();
         else if ( !osLine.value( 2 ).simplified().isEmpty() )
             osName = osLine.value( 2 ).simplified();
 
-        if ( !osName.isEmpty() )
+        if ( canBeResized( osLine ) )
         {
-            m_messageLabel->setText( tr( "This computer currently has %1 on it. "
-                                         "What would you like to do?" )
-                                        .arg( osName ) );
 
-            alongsideButton->setText( tr( "<b>Install %2 alongside %1</b><br/>"
-                                          "Documents, music and other personal files will be kept. "
-                                          "You can choose which operating system you want each time the "
-                                          "computer starts up." )
+            if ( !osName.isEmpty() )
+            {
+                m_messageLabel->setText( tr( "This computer currently has %1 on it. "
+                                             "What would you like to do?" )
+                                            .arg( osName ) );
+
+                alongsideButton->setText( tr( "<b>Install %2 alongside %1</b><br/>"
+                                              "Documents, music and other personal files will be kept. "
+                                              "You can choose which operating system you want each time the "
+                                              "computer starts up." )
+                                            .arg( osName )
+                                            .arg( "$RELEASE" ) );
+
+                eraseButton->setText( tr( "<b>Replace %1 with %2</b><br/>"
+                                          "<font color=\"red\">Warning: </font>This will erase the whole disk and "
+                                          "delete all of your %1 programs, "
+                                          "documents, photos, music, and any other files." )
                                         .arg( osName )
                                         .arg( "$RELEASE" ) );
+            }
+            else
+            {
+                m_messageLabel->setText( tr( "This computer already has an operating system on it. "
+                                             "What would you like to do?" ) );
 
-            eraseButton->setText( tr( "<b>Replace %1 with %2</b><br/>"
-                                      "<font color=\"red\">Warning: </font>This will erase the whole disk and "
-                                      "delete all of your %1 programs, "
-                                      "documents, photos, music, and any other files." )
-                                    .arg( osName )
-                                    .arg( "$RELEASE" ) );
+                alongsideButton->setText( tr( "<b>Install %1 alongside your current operating system</b><br/>"
+                                              "Documents, music and other personal files will be kept. "
+                                              "You can choose which operating system you want each time the "
+                                              "computer starts up." )
+                                            .arg( "$RELEASE" ) );
+
+                eraseButton->setText( tr( "<b>Erase disk and install %1</b><br/>"
+                                          "<font color=\"red\">Warning: </font>This will delete all of your Windows 7 programs, "
+                                          "documents, photos, music, and any other files." )
+                                        .arg( "$RELEASE" ) );
+            }
         }
         else
-        {
-            m_messageLabel->setText( tr( "This computer already has an operating system on it. "
-                                         "What would you like to do?" ) );
-
-            alongsideButton->setText( tr( "<b>Install %1 alongside your current operating system</b><br/>"
-                                          "Documents, music and other personal files will be kept. "
-                                          "You can choose which operating system you want each time the "
-                                          "computer starts up." )
-                                        .arg( "$RELEASE" ) );
-
-            eraseButton->setText( tr( "<b>Erase disk and install %1</b><br/>"
-                                      "<font color=\"red\">Warning: </font>This will delete all of your Windows 7 programs, "
-                                      "documents, photos, music, and any other files." )
-                                    .arg( "$RELEASE" ) );
-        }
+            alongsideButton->hide();
     }
     else
     {
@@ -172,6 +183,7 @@ ChoicePage::init( PartitionCoreModule* core, const QStringList& osproberLines )
                                   "<font color=\"red\">Warning: </font>This will delete all of your Windows 7 programs, "
                                   "documents, photos, music, and any other files." )
                                 .arg( "$RELEASE" ) );
+        alongsideButton->hide(); //FIXME: allow this when we can
     }
 
     m_itemsLayout->addStretch();
@@ -243,4 +255,60 @@ ChoicePage::setNextEnabled( bool enabled )
 
     m_nextEnabled = enabled;
     emit nextStatusChanged( enabled );
+}
+
+
+bool
+ChoicePage::canBeResized( const QStringList& osproberLine )
+{
+    cDebug() << "checking if" << osproberLine << "can be resized.";
+    QString partitionWithOs = osproberLine.value( 0 ).simplified();
+    if ( partitionWithOs.startsWith( "/dev/" ) )
+    {
+        cDebug() << partitionWithOs << "seems like a good path";
+        bool canResize = false;
+        DeviceModel* dm = m_core->deviceModel();
+        for ( int i = 0; i < dm->rowCount(); ++i )
+        {
+            Device* dev = dm->deviceForIndex( dm->index( i ) );
+            PartitionModel* pm = m_core->partitionModelForDevice( dev );
+            for ( int j = 0; j < pm->rowCount(); ++j )
+            {
+                QModelIndex index = pm->index( j, 0 );
+                Partition* candidate = pm->partitionForIndex( index );
+                if ( candidate->partitionPath() == partitionWithOs )
+                {
+                    cDebug() << "found Partition* for" << partitionWithOs;
+                    bool ok = false;
+                    double requiredStorageGB = Calamares::JobQueue::instance()
+                                                    ->globalStorage()
+                                                    ->value( "requiredStorageGB" )
+                                                    .toDouble( &ok );
+
+                    qint64 availableStorageB = candidate->available() * dev->logicalSectorSize();
+
+                    // We require a little more for partitioning overhead and swap file
+                    // TODO: maybe make this configurable?
+                    qint64 requiredStorageB = ( requiredStorageGB + 0.1 + 2.0 ) * 1024 * 1024 * 1024;
+                    cDebug() << "Required  storage B:" << requiredStorageB;
+                    cDebug() << "Available storage B:" << availableStorageB;
+                    if ( ok &&
+                         availableStorageB > requiredStorageB )
+                    {
+                        canResize = true;
+                    }
+                }
+                if ( canResize )
+                    break;
+            }
+            if ( canResize )
+                break;
+        }
+
+        cDebug() << "Partition" << osproberLine << "authorized for resize + autopartition install.";
+        return canResize;
+    }
+
+    cDebug() << "Partition" << osproberLine << "CANNOT BE RESIZED FOR AUTOINSTALL.";
+    return false;
 }

@@ -23,6 +23,7 @@
 #include <core/PartitionModel.h>
 #include <gui/ChoicePage.h>
 #include <gui/EraseDiskPage.h>
+#include <gui/AlongsidePage.h>
 #include <gui/PartitionPage.h>
 #include <gui/PartitionPreview.h>
 
@@ -45,6 +46,7 @@ PartitionViewStep::PartitionViewStep( QObject* parent )
     , m_core( new PartitionCoreModule( this ) )
     , m_choicePage( new ChoicePage() )
     , m_erasePage( new EraseDiskPage() )
+    , m_alongsidePage( new AlongsidePage() )
     , m_manualPartitionPage( new PartitionPage( m_core ) )
 {
     m_widget->setContentsMargins( 0, 0, 0, 0 );
@@ -77,10 +79,16 @@ PartitionViewStep::PartitionViewStep( QObject* parent )
                     osprober.readAllStandardOutput() ).trimmed() );
         }
 
-        QStringList osproberLines = osproberOutput.split( '\n' );
+        QStringList osproberLines;
+        foreach ( const QString& line, osproberOutput.split( '\n' ) )
+        {
+            if ( !line.simplified().isEmpty() )
+                osproberLines.append( line );
+        }
 
         m_choicePage->init( m_core, osproberLines );
         m_erasePage->init( m_core );
+        m_alongsidePage->init( m_core, osproberLines );
 
         m_widget->addWidget( m_choicePage );
         m_widget->addWidget( m_manualPartitionPage );
@@ -92,12 +100,14 @@ PartitionViewStep::PartitionViewStep( QObject* parent )
     } );
     timer->start( 0 );
 
-    connect( m_core,        &PartitionCoreModule::hasRootMountPointChanged,
-             this,          &PartitionViewStep::nextStatusChanged );
-    connect( m_choicePage,  &ChoicePage::nextStatusChanged,
-             this,          &PartitionViewStep::nextStatusChanged );
-    connect( m_erasePage,   &EraseDiskPage::nextStatusChanged,
-             this,          &PartitionViewStep::nextStatusChanged );
+    connect( m_core,            &PartitionCoreModule::hasRootMountPointChanged,
+             this,              &PartitionViewStep::nextStatusChanged );
+    connect( m_choicePage,      &ChoicePage::nextStatusChanged,
+             this,              &PartitionViewStep::nextStatusChanged );
+    connect( m_erasePage,       &EraseDiskPage::nextStatusChanged,
+             this,              &PartitionViewStep::nextStatusChanged );
+    connect( m_alongsidePage,   &AlongsidePage::nextStatusChanged,
+             this,              &PartitionViewStep::nextStatusChanged );
 }
 
 
@@ -164,6 +174,12 @@ PartitionViewStep::next()
             if ( m_core->isDirty() )
                 m_core->revert();
             m_widget->setCurrentWidget( m_erasePage );
+        }
+        else if ( m_choicePage->currentChoice() == ChoicePage::Alongside )
+        {
+            if ( m_core->isDirty() )
+                m_core->revert();
+            m_widget->setCurrentWidget( m_alongsidePage );
         }
         cDebug() << "Choice applied: " << m_choicePage->currentChoice();
     }

@@ -26,6 +26,7 @@
 
 class ChoicePage;
 class EraseDiskPage;
+class AlongsidePage;
 class PartitionPage;
 class PartitionCoreModule;
 class QStackedWidget;
@@ -64,6 +65,7 @@ private:
     QStackedWidget*   m_widget;
     ChoicePage*       m_choicePage;
     EraseDiskPage*    m_erasePage;
+    AlongsidePage*    m_alongsidePage;
     PartitionPage*    m_manualPartitionPage;
 };
 
