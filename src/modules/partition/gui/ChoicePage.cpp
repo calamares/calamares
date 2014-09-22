@@ -101,6 +101,7 @@ ChoicePage::init( PartitionCoreModule* core, const QStringList& osproberLines )
 
     m_itemsLayout->addWidget( alongsideButton );
     m_itemsLayout->addWidget( eraseButton );
+    m_itemsLayout->setSpacing( CalamaresUtils::defaultFontHeight() / 2 );
 
     cDebug() << "Osprober lines, clean:\n" << m_osproberLines.join( '\n' );
 
@@ -204,13 +205,9 @@ ChoicePage::init( PartitionCoreModule* core, const QStringList& osproberLines )
             alongsideButton->hide();
     }
 
-    m_itemsLayout->addStretch();
-
     QFrame* hLine = new QFrame;
     hLine->setFrameStyle( QFrame::HLine );
     m_itemsLayout->addWidget( hLine );
-
-    m_itemsLayout->addStretch();
 
     PrettyRadioButton* somethingElseButton = new PrettyRadioButton;
     somethingElseButton->setText( tr( "<b>Something else</b><br/>"
