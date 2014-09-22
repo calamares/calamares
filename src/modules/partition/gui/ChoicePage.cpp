@@ -170,20 +170,38 @@ ChoicePage::init( PartitionCoreModule* core, const QStringList& osproberLines )
     }
     else
     {
-        m_messageLabel->setText( tr( "This computer currently has multiple operating systems on it. "
-                                     "What would you like to do?" ) );
+        // m_osproberLines has at least 2 items.
 
-        alongsideButton->setText( tr( "<b>Install %1 alongside your current operating systems</b><br/>"
-                                      "Documents, music and other personal files will be kept. "
-                                      "You can choose which operating system you want each time the "
-                                      "computer starts up." )
+        bool atLeastOneCanBeResized = false;
+
+        foreach ( QString line, m_osproberLines )
+        {
+            QStringList osLine = line.split( ':' );
+            if ( canBeResized( osLine ) )
+            {
+                atLeastOneCanBeResized = true;
+                break;
+            }
+        }
+
+        if ( atLeastOneCanBeResized )
+        {
+            m_messageLabel->setText( tr( "This computer currently has multiple operating systems on it. "
+                                         "What would you like to do?" ) );
+
+            alongsideButton->setText( tr( "<b>Install %1 alongside your current operating systems</b><br/>"
+                                          "Documents, music and other personal files will be kept. "
+                                          "You can choose which operating system you want each time the "
+                                          "computer starts up." )
+                                        .arg( "$RELEASE" ) );
+
+            eraseButton->setText( tr( "<b>Erase disk and install %1</b><br/>"
+                                      "<font color=\"red\">Warning: </font>This will delete all of your Windows 7 programs, "
+                                      "documents, photos, music, and any other files." )
                                     .arg( "$RELEASE" ) );
-
-        eraseButton->setText( tr( "<b>Erase disk and install %1</b><br/>"
-                                  "<font color=\"red\">Warning: </font>This will delete all of your Windows 7 programs, "
-                                  "documents, photos, music, and any other files." )
-                                .arg( "$RELEASE" ) );
-        alongsideButton->hide(); //FIXME: allow this when we can
+        }
+        else
+            alongsideButton->hide();
     }
 
     m_itemsLayout->addStretch();
