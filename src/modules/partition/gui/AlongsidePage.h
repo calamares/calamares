@@ -21,6 +21,8 @@
 
 #include <QWidget>
 
+#include "OsproberEntry.h"
+
 class PartitionCoreModule;
 
 class AlongsidePage : public QWidget
@@ -29,7 +31,7 @@ class AlongsidePage : public QWidget
 public:
     explicit AlongsidePage( QWidget* parent = nullptr );
 
-    void init( PartitionCoreModule* core, const QStringList& osproberLines );
+    void init( PartitionCoreModule* core, const OsproberEntryList& osproberEntries );
 
     bool isNextEnabled() const;
 

@@ -21,16 +21,21 @@
 #include <core/DeviceModel.h>
 #include <core/PartitionCoreModule.h>
 #include <core/PartitionModel.h>
+#include "core/partition.h"
+#include "core/device.h"
 #include <gui/ChoicePage.h>
 #include <gui/EraseDiskPage.h>
 #include <gui/AlongsidePage.h>
 #include <gui/PartitionPage.h>
 #include <gui/PartitionPreview.h>
+#include "OsproberEntry.h"
 
 #include "CalamaresVersion.h"
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
 #include "widgets/WaitingWidget.h"
+#include "GlobalStorage.h"
+#include "JobQueue.h"
 
 // Qt
 #include <QApplication>
@@ -79,16 +84,32 @@ PartitionViewStep::PartitionViewStep( QObject* parent )
                     osprober.readAllStandardOutput() ).trimmed() );
         }
 
-        QStringList osproberLines;
+        QString osProberReport( "Osprober lines, clean:\n" );
+        OsproberEntryList osproberEntries;
         foreach ( const QString& line, osproberOutput.split( '\n' ) )
         {
             if ( !line.simplified().isEmpty() )
-                osproberLines.append( line );
-        }
+            {
+                QStringList lineColumns = line.split( ':' );
+                QString prettyName;
+                if ( !lineColumns.value( 1 ).simplified().isEmpty() )
+                    prettyName = lineColumns.value( 1 ).simplified();
+                else if ( !lineColumns.value( 2 ).simplified().isEmpty() )
+                    prettyName = lineColumns.value( 2 ).simplified();
 
-        m_choicePage->init( m_core, osproberLines );
+                QString path = lineColumns.value( 0 ).simplified();
+                if ( !path.startsWith( "/dev/" ) ) //basic sanity check
+                    continue;
+
+                osproberEntries.append( { prettyName, path, canBeResized( path ), lineColumns } );
+                osProberReport.append( line );
+            }
+        }
+        cDebug() << osProberReport;
+
+        m_choicePage->init( m_core, osproberEntries );
         m_erasePage->init( m_core );
-        m_alongsidePage->init( m_core, osproberLines );
+        m_alongsidePage->init( m_core, osproberEntries );
 
         m_widget->addWidget( m_choicePage );
         m_widget->addWidget( m_manualPartitionPage );
@@ -238,4 +259,60 @@ QList< Calamares::job_ptr >
 PartitionViewStep::jobs() const
 {
     return m_core->jobs();
+}
+
+
+bool
+PartitionViewStep::canBeResized( const QString& partitionPath )
+{
+    cDebug() << "checking if" << partitionPath << "can be resized.";
+    QString partitionWithOs = partitionPath;
+    if ( partitionWithOs.startsWith( "/dev/" ) )
+    {
+        cDebug() << partitionWithOs << "seems like a good path";
+        bool canResize = false;
+        DeviceModel* dm = m_core->deviceModel();
+        for ( int i = 0; i < dm->rowCount(); ++i )
+        {
+            Device* dev = dm->deviceForIndex( dm->index( i ) );
+            PartitionModel* pm = m_core->partitionModelForDevice( dev );
+            for ( int j = 0; j < pm->rowCount(); ++j )
+            {
+                QModelIndex index = pm->index( j, 0 );
+                Partition* candidate = pm->partitionForIndex( index );
+                if ( candidate->partitionPath() == partitionWithOs )
+                {
+                    cDebug() << "found Partition* for" << partitionWithOs;
+                    bool ok = false;
+                    double requiredStorageGB = Calamares::JobQueue::instance()
+                                                    ->globalStorage()
+                                                    ->value( "requiredStorageGB" )
+                                                    .toDouble( &ok );
+
+                    qint64 availableStorageB = candidate->available() * dev->logicalSectorSize();
+
+                    // We require a little more for partitioning overhead and swap file
+                    // TODO: maybe make this configurable?
+                    qint64 requiredStorageB = ( requiredStorageGB + 0.1 + 2.0 ) * 1024 * 1024 * 1024;
+                    cDebug() << "Required  storage B:" << requiredStorageB;
+                    cDebug() << "Available storage B:" << availableStorageB;
+                    if ( ok &&
+                         availableStorageB > requiredStorageB )
+                    {
+                        canResize = true;
+                    }
+                }
+                if ( canResize )
+                    break;
+            }
+            if ( canResize )
+                break;
+        }
+
+        cDebug() << "Partition" << partitionWithOs << "authorized for resize + autopartition install.";
+        return canResize;
+    }
+
+    cDebug() << "Partition" << partitionWithOs << "CANNOT BE RESIZED FOR AUTOINSTALL.";
+    return false;
 }

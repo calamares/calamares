@@ -61,6 +61,8 @@ public:
     QList< Calamares::job_ptr > jobs() const override;
 
 private:
+    bool canBeResized( const QString& partitionPath );
+
     PartitionCoreModule* m_core;
     QStackedWidget*   m_widget;
     ChoicePage*       m_choicePage;

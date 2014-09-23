@@ -16,42 +16,19 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "AlongsidePage.h"
+#ifndef OSPROBERENTRY_H
+#define OSPROBERENTRY_H
 
-#include <QBoxLayout>
-#include <QLabel>
+#include <QStringList>
 
-AlongsidePage::AlongsidePage( QWidget* parent )
-    : QWidget( parent )
-    , m_nextEnabled( false )
-    , m_core( nullptr )
+struct OsproberEntry
 {
-    QVBoxLayout* mainLayout = new QVBoxLayout;
-    setLayout( mainLayout );
-}
+    QString prettyName;
+    QString path;
+    bool canBeResized;
+    QStringList line;
+};
 
+typedef QList< OsproberEntry > OsproberEntryList;
 
-void
-AlongsidePage::init( PartitionCoreModule* core , const OsproberEntryList& osproberEntries )
-{
-    QLabel* placeholder = new QLabel( "Alongside partitioning goes here." );
-    layout()->addWidget( placeholder );
-}
-
-
-bool
-AlongsidePage::isNextEnabled() const
-{
-    return m_nextEnabled;
-}
-
-
-void
-AlongsidePage::setNextEnabled( bool enabled )
-{
-    if ( enabled == m_nextEnabled )
-        return;
-
-    m_nextEnabled = enabled;
-    emit nextStatusChanged( enabled );
-}
+#endif // OSPROBERENTRY_H

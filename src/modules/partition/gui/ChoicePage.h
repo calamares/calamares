@@ -21,6 +21,8 @@
 
 #include <QWidget>
 
+#include "OsproberEntry.h"
+
 class QBoxLayout;
 class QLabel;
 
@@ -41,7 +43,7 @@ public:
     explicit ChoicePage( QWidget* parent = nullptr );
     virtual ~ChoicePage();
 
-    void init( PartitionCoreModule* core, const QStringList& osproberLines );
+    void init( PartitionCoreModule* core, const OsproberEntryList& osproberEntries );
 
     bool isNextEnabled();
 
@@ -53,14 +55,11 @@ signals:
 private:
     void setNextEnabled( bool enabled );
 
-    bool canBeResized( const QStringList& osproberLine );
-
     bool m_nextEnabled;
     PartitionCoreModule* m_core;
     QBoxLayout* m_itemsLayout;
     QLabel* m_messageLabel;
 
-    QStringList m_osproberLines;
     Choice m_choice;
 };
 
