@@ -84,7 +84,8 @@ ModuleManager::loadModules( Phase phase )
             {
                 cDebug() << "Module" << moduleName << "not found in module search paths."
                          << "\nCalamares will now quit.";
-                qApp->quit();
+                qApp->exit( 1 );
+                return;
             }
             if ( m_availableModules.value( moduleName )->isLoaded() )
             {
