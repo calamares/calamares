@@ -31,9 +31,17 @@ def mount_partitions(root_mount_point, partitions):
         # Create mount point with `+` rather than `os.path.join()` because
         # `partition["mountPoint"]` starts with a '/'.
         mount_point = root_mount_point + partition["mountPoint"]
+
+        fstype = partition.get("fs", "")
+        if fstype == "fat16":
+            fstype = "msdos"
+        if fstype == "fat32":
+            fstype = "vfat"
+
         libcalamares.utils.mount(
-            partition["device"], mount_point,
-            partition.get("fs", ""),
+            partition["device"],
+            mount_point,
+            fstype,
             partition.get("options", "")
             )
 
