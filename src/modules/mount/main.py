@@ -33,9 +33,7 @@ def mount_partitions(root_mount_point, partitions):
         mount_point = root_mount_point + partition["mountPoint"]
 
         fstype = partition.get("fs", "")
-        if fstype == "fat16":
-            fstype = "msdos"
-        if fstype == "fat32":
+        if fstype == "fat16" or fstype == "fat32":
             fstype = "vfat"
 
         libcalamares.utils.mount(
