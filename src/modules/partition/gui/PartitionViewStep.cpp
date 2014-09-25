@@ -21,6 +21,7 @@
 #include <core/DeviceModel.h>
 #include <core/PartitionCoreModule.h>
 #include <core/PartitionModel.h>
+#include <core/PMUtils.h>
 #include "core/partition.h"
 #include "core/device.h"
 #include <gui/ChoicePage.h>
@@ -113,6 +114,7 @@ PartitionViewStep::PartitionViewStep( QObject* parent )
 
         m_widget->addWidget( m_choicePage );
         m_widget->addWidget( m_manualPartitionPage );
+        m_widget->addWidget( m_alongsidePage );
         m_widget->addWidget( m_erasePage );
         m_widget->removeWidget( waitingWidget );
         waitingWidget->deleteLater();
@@ -240,7 +242,8 @@ bool
 PartitionViewStep::isAtBeginning() const
 {
     if ( m_widget->currentWidget() == m_manualPartitionPage ||
-         m_widget->currentWidget() == m_erasePage )
+         m_widget->currentWidget() == m_erasePage ||
+         m_widget->currentWidget() == m_alongsidePage )
         return false;
     return true;
 }
@@ -275,42 +278,32 @@ PartitionViewStep::canBeResized( const QString& partitionPath )
         for ( int i = 0; i < dm->rowCount(); ++i )
         {
             Device* dev = dm->deviceForIndex( dm->index( i ) );
-            PartitionModel* pm = m_core->partitionModelForDevice( dev );
-            for ( int j = 0; j < pm->rowCount(); ++j )
+            Partition* candidate = PMUtils::findPartitionByPath( { dev }, partitionWithOs );
+            if ( candidate )
             {
-                QModelIndex index = pm->index( j, 0 );
-                Partition* candidate = pm->partitionForIndex( index );
-                if ( candidate->partitionPath() == partitionWithOs )
+                cDebug() << "found Partition* for" << partitionWithOs;
+                bool ok = false;
+                double requiredStorageGB = Calamares::JobQueue::instance()
+                                                ->globalStorage()
+                                                ->value( "requiredStorageGB" )
+                                                .toDouble( &ok );
+
+                qint64 availableStorageB = candidate->available() * dev->logicalSectorSize();
+
+                // We require a little more for partitioning overhead and swap file
+                // TODO: maybe make this configurable?
+                qint64 requiredStorageB = ( requiredStorageGB + 0.1 + 2.0 ) * 1024 * 1024 * 1024;
+                cDebug() << "Required  storage B:" << requiredStorageB;
+                cDebug() << "Available storage B:" << availableStorageB;
+                if ( ok &&
+                     availableStorageB > requiredStorageB )
                 {
-                    cDebug() << "found Partition* for" << partitionWithOs;
-                    bool ok = false;
-                    double requiredStorageGB = Calamares::JobQueue::instance()
-                                                    ->globalStorage()
-                                                    ->value( "requiredStorageGB" )
-                                                    .toDouble( &ok );
+                    cDebug() << "Partition" << partitionWithOs << "authorized for resize + autopartition install.";
 
-                    qint64 availableStorageB = candidate->available() * dev->logicalSectorSize();
-
-                    // We require a little more for partitioning overhead and swap file
-                    // TODO: maybe make this configurable?
-                    qint64 requiredStorageB = ( requiredStorageGB + 0.1 + 2.0 ) * 1024 * 1024 * 1024;
-                    cDebug() << "Required  storage B:" << requiredStorageB;
-                    cDebug() << "Available storage B:" << availableStorageB;
-                    if ( ok &&
-                         availableStorageB > requiredStorageB )
-                    {
-                        canResize = true;
-                    }
+                    return true;
                 }
-                if ( canResize )
-                    break;
             }
-            if ( canResize )
-                break;
         }
-
-        cDebug() << "Partition" << partitionWithOs << "authorized for resize + autopartition install.";
-        return canResize;
     }
 
     cDebug() << "Partition" << partitionWithOs << "CANNOT BE RESIZED FOR AUTOINSTALL.";
