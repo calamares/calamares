@@ -203,10 +203,6 @@ ChoicePage::init( PartitionCoreModule* core, const OsproberEntryList& osproberEn
     m_itemsLayout->addWidget( somethingElseButton );
     grp->addButton( somethingElseButton->buttonWidget() );
 
-    //DEBUG:
-    alongsideButton->show();
-
-
     connect( alongsideButton->buttonWidget(), &QRadioButton::toggled,
              this, [ this ]( bool checked )
     {
