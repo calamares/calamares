@@ -50,6 +50,12 @@ bool isPartitionNew( Partition* );
 Partition* findPartitionByMountPoint( const QList< Device* >& devices, const QString& mountPoint );
 
 /**
+ * Iterates on all devices and partitions and returns a pointer to the Partition object
+ * for the given path, or nullptr if a Partition for the given path cannot be found.
+ */
+Partition* findPartitionByPath( const QList< Device* >& devices, const QString& path );
+
+/**
  * Helper function to create a new Partition object (does not create anything
  * on the disk) associated with a FileSystem.
  */

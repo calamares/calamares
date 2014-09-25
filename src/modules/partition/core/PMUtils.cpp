@@ -28,15 +28,18 @@
 namespace PMUtils
 {
 
+
 bool isPartitionFreeSpace( Partition* partition )
 {
     return partition->roles().has( PartitionRole::Unallocated );
 }
 
+
 bool isPartitionNew( Partition* partition )
 {
     return partition->state() == Partition::StateNew;
 }
+
 
 Partition*
 findPartitionByMountPoint( const QList< Device* >& devices, const QString& mountPoint )
@@ -47,6 +50,18 @@ findPartitionByMountPoint( const QList< Device* >& devices, const QString& mount
                 return *it;
     return nullptr;
 }
+
+
+Partition*
+findPartitionByPath( const QList< Device* >& devices, const QString& path )
+{
+    for ( auto device : devices )
+        for ( auto it = PartitionIterator::begin( device ); it != PartitionIterator::end( device ); ++it )
+            if ( ( *it )->partitionPath() == path.simplified() )
+                return *it;
+    return nullptr;
+}
+
 
 Partition*
 createNewPartition( PartitionNode* parent, const Device& device, const PartitionRole& role, FileSystem::Type fsType, qint64 firstSector, qint64 lastSector )
@@ -66,6 +81,7 @@ createNewPartition( PartitionNode* parent, const Device& device, const Partition
            );
 }
 
+
 Partition*
 clonePartition( Device* device, Partition* partition )
 {
@@ -80,7 +96,8 @@ clonePartition( Device* device, Partition* partition )
                partition->roles(),
                fs, fs->firstSector(), fs->lastSector(),
                partition->partitionPath()
-           );
+                );
 }
+
 
 } // namespace
