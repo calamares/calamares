@@ -25,6 +25,7 @@
 #include <QMouseEvent>
 #include <QStyleOption>
 
+
 static const int VIEW_HEIGHT = 30;
 static const int CORNER_RADIUS = 3;
 static const int EXTENDED_PARTITION_MARGIN = 4;
@@ -400,9 +401,10 @@ PartitionSplitterWidget::drawPartitions( QPainter* painter,
 }
 
 
+template < typename F >
 PartitionSplitterItem*
 PartitionSplitterWidget::_findItem( QList< PartitionSplitterItem >& items,
-                                    auto condition )
+                                    F condition )
 {
     for ( auto it = items.begin(); it != items.end(); ++it)
     {

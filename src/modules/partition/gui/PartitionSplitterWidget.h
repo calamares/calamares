@@ -21,6 +21,7 @@
 
 #include <QWidget>
 
+
 struct PartitionSplitterItem
 {
     QString itemPath;
@@ -69,7 +70,9 @@ private:
                            const QRect& rect_,
                            int x );
 
-    PartitionSplitterItem* _findItem( QList< PartitionSplitterItem >& items, auto condition );
+    template < typename F >
+    PartitionSplitterItem* _findItem( QList< PartitionSplitterItem >& items,
+                                      F condition );
 
     QList< PartitionSplitterItem > m_items;
     QString m_itemToResizePath;
