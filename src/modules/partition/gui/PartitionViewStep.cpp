@@ -205,9 +205,9 @@ PartitionViewStep::next()
             m_widget->setCurrentWidget( m_alongsidePage );
         }
         cDebug() << "Choice applied: " << m_choicePage->currentChoice();
+        return;
     }
-    else
-        emit done();
+    emit done();
 }
 
 
@@ -230,6 +230,9 @@ PartitionViewStep::isNextEnabled() const
         return m_erasePage->isNextEnabled() &&
                m_core->hasRootMountPoint();
     }
+
+    if ( m_alongsidePage && m_alongsidePage == m_widget->currentWidget() )
+        return m_alongsidePage->isNextEnabled();
 
     if ( m_manualPartitionPage && m_manualPartitionPage == m_widget->currentWidget() )
         return m_core->hasRootMountPoint();
@@ -258,6 +261,16 @@ PartitionViewStep::isAtEnd() const
 }
 
 
+void
+PartitionViewStep::onLeave()
+{
+    if ( m_widget->currentWidget() == m_alongsidePage )
+    {
+        m_alongsidePage->applyChanges();
+    }
+}
+
+
 QList< Calamares::job_ptr >
 PartitionViewStep::jobs() const
 {
@@ -268,6 +281,7 @@ PartitionViewStep::jobs() const
 bool
 PartitionViewStep::canBeResized( const QString& partitionPath )
 {
+    //FIXME: check for max partitions count on DOS MBR
     cDebug() << "checking if" << partitionPath << "can be resized.";
     QString partitionWithOs = partitionPath;
     if ( partitionWithOs.startsWith( "/dev/" ) )

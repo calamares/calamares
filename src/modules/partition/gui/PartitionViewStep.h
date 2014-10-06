@@ -58,6 +58,8 @@ public:
     bool isAtBeginning() const override;
     bool isAtEnd() const override;
 
+    void onLeave() override;
+
     QList< Calamares::job_ptr > jobs() const override;
 
 private:

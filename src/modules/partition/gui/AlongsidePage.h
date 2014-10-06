@@ -23,7 +23,12 @@
 
 #include "OsproberEntry.h"
 
+class QComboBox;
+class QLabel;
 class PartitionCoreModule;
+class PartitionSplitterWidget;
+class Partition;
+class Device;
 
 class AlongsidePage : public QWidget
 {
@@ -35,11 +40,17 @@ public:
 
     bool isNextEnabled() const;
 
+    void applyChanges();
+
 signals:
     void nextStatusChanged( bool );
 
 private:
     void setNextEnabled( bool enabled );
+
+    QComboBox* m_partitionsComboBox;
+    PartitionSplitterWidget* m_splitterWidget;
+    QLabel* m_sizeLabel;
 
     PartitionCoreModule* m_core;
 

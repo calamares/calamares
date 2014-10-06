@@ -38,6 +38,7 @@ calamares_add_plugin( partition
         gui/PartitionPage.cpp
         gui/PartitionPreview.cpp
         gui/PartitionSizeController.cpp
+        gui/PartitionSplitterWidget.cpp
         gui/PartitionViewStep.cpp
         gui/PrettyRadioButton.cpp
         jobs/CheckFileSystemJob.cpp
