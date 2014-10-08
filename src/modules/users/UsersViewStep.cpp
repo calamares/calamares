@@ -130,5 +130,12 @@ UsersViewStep::setConfigurationMap( const QVariantMap& configurationMap )
         Calamares::JobQueue::instance()->globalStorage()->insert( "autologinGroup",
                         configurationMap.value( "autologinGroup" ).toString() );
     }
+
+    if ( configurationMap.contains( "sudoersGroup" ) &&
+         configurationMap.value( "sudoersGroup" ).type() == QVariant::String )
+    {
+        Calamares::JobQueue::instance()->globalStorage()->insert( "sudoersGroup",
+                        configurationMap.value( "sudoersGroup" ).toString() );
+    }
 }
 
