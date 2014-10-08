@@ -20,6 +20,9 @@
 
 #include "UsersPage.h"
 
+#include "JobQueue.h"
+#include "GlobalStorage.h"
+
 UsersViewStep::UsersViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
     , m_widget( new UsersPage() )
@@ -96,6 +99,36 @@ UsersViewStep::onLeave()
 {
     m_jobs.clear();
 
-    m_jobs.append( m_widget->createJobs() );
+    m_jobs.append( m_widget->createJobs( m_userGroup, m_defaultGroups ) );
+}
+
+
+void
+UsersViewStep::setConfigurationMap( const QVariantMap& configurationMap )
+{
+    if ( configurationMap.contains( "userGroup" ) &&
+         configurationMap.value( "userGroup" ).type() == QVariant::String )
+    {
+        m_userGroup = configurationMap.value( "userGroup" ).toString();
+    }
+    if ( m_userGroup.isEmpty() )
+        m_userGroup = QStringLiteral( "users" );
+
+    if ( configurationMap.contains( "defaultGroups" ) &&
+         configurationMap.value( "defaultGroups" ).type() == QVariant::List )
+    {
+        m_defaultGroups = configurationMap.value( "defaultGroups" ).toStringList();
+    }
+    else
+    {
+        m_defaultGroups = { "lp", "video", "network", "storage", "wheel", "audio" };
+    }
+
+    if ( configurationMap.contains( "autologinGroup" ) &&
+         configurationMap.value( "autologinGroup" ).type() == QVariant::String )
+    {
+        Calamares::JobQueue::instance()->globalStorage()->insert( "autologinGroup",
+                        configurationMap.value( "autologinGroup" ).toString() );
+    }
 }
 

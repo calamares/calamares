@@ -40,7 +40,8 @@ public:
 
     bool isReady();
 
-    QList< Calamares::job_ptr > createJobs();
+    QList< Calamares::job_ptr > createJobs( const QString& defaultUserGroup,
+                                            const QStringList& defaultGroupsList );
 
 protected slots:
     void onFullNameTextEdited( const QString& );

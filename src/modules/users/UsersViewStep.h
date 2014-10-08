@@ -24,6 +24,8 @@
 #include "viewpages/ViewStep.h"
 #include "PluginDllMacro.h"
 
+#include <QVariant>
+
 class UsersPage;
 
 class PLUGINDLLEXPORT UsersViewStep : public Calamares::ViewStep
@@ -53,9 +55,14 @@ public:
 
     void onLeave() override;
 
+    void setConfigurationMap( const QVariantMap &configurationMap ) override;
+
 private:
     UsersPage* m_widget;
     QList< Calamares::job_ptr > m_jobs;
+
+    QString m_userGroup;
+    QStringList m_defaultGroups;
 };
 
 #endif // USERSPAGEPLUGIN_H

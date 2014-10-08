@@ -87,7 +87,7 @@ UsersPage::isReady()
 
 
 QList< Calamares::job_ptr >
-UsersPage::createJobs()
+UsersPage::createJobs( const QString& defaultUserGroup, const QStringList& defaultGroupsList )
 {
     QList< Calamares::job_ptr > list;
     if ( !isReady() )
@@ -96,7 +96,9 @@ UsersPage::createJobs()
     Calamares::Job* j;
     j = new CreateUserJob( ui->textBoxUsername->text(),
                            QString(),
-                           ui->checkBoxLoginAuto->isChecked() );
+                           ui->checkBoxLoginAuto->isChecked(),
+                           defaultUserGroup,
+                           defaultGroupsList );
     list.append( Calamares::job_ptr( j ) );
 
     j = new SetPasswordJob( ui->textBoxUsername->text(),

@@ -21,6 +21,7 @@
 
 #include <Job.h>
 
+#include <QStringList>
 
 class CreateUserJob : public Calamares::Job
 {
@@ -28,7 +29,9 @@ class CreateUserJob : public Calamares::Job
 public:
     CreateUserJob( const QString& userName,
                    const QString& fullName,
-                   bool autologin );
+                   bool autologin,
+                   const QString& userGroup,
+                   const QStringList& defaultGroups );
     QString prettyName() const override;
     Calamares::JobResult exec() override;
 
@@ -36,6 +39,8 @@ private:
     QString m_userName;
     QString m_fullName;
     bool m_autologin;
+    QString m_userGroup;
+    QStringList m_defaultGroups;
 };
 
 #endif /* CREATEUSERJOB_H */
