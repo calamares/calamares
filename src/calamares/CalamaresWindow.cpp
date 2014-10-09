@@ -24,7 +24,9 @@
 #include "utils/CalamaresStyle.h"
 #include "utils/Logger.h"
 
+#include <QApplication>
 #include <QBoxLayout>
+#include <QDesktopWidget>
 #include <QLabel>
 #include <QTreeView>
 
@@ -34,9 +36,11 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
     // Hide close button
     setWindowFlags( Qt::Window | Qt::WindowTitleHint | Qt::CustomizeWindowHint );
 
-    setMinimumSize( 1010, 600 );
-    int w = qMax( CalamaresUtils::defaultFontHeight() * 60, 1010 );
-    int h = qMax( CalamaresUtils::defaultFontHeight() * 36, 600 );
+    setMinimumSize( 1010, 560 );
+    QSize availableSize = qApp->desktop()->screenGeometry( this ).size();
+    int w = qBound( 1010, CalamaresUtils::defaultFontHeight() * 60, availableSize.width() );
+    int h = qBound( 560,  CalamaresUtils::defaultFontHeight() * 36, availableSize.height() );
+
     cDebug() << "Proposed window size:" << w << h;
     resize( w, h );
 
