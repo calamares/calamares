@@ -18,6 +18,7 @@ list( APPEND ${CALAMARESUI_LIBRARY_TARGET}_SOURCES
     widgets/WaitingWidget.cpp
 
     InstallationViewStep.cpp
+    Branding.cpp
     Settings.cpp
     ViewManager.cpp
 )
