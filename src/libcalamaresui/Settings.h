@@ -44,6 +44,8 @@ public:
 
     QStringList modules( Phase phase ) const;
 
+    QString brandingComponentName() const;
+
     bool debugMode() const;
 
 private:
@@ -56,6 +58,8 @@ private:
     QStringList m_modulesPrepareList;
     QStringList m_modulesInstallList;
     QStringList m_modulesPostInstallList;
+
+    QString m_brandingComponentName;
 };
 
 }

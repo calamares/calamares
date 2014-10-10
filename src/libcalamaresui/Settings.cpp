@@ -91,6 +91,8 @@ Settings::Settings( const QString& settingsFilePath,
             config[ "prepare" ] >> m_modulesPrepareList;
             config[ "install" ] >> m_modulesInstallList;
             config[ "postinstall" ] >> m_modulesPostInstallList;
+            m_brandingComponentName = QString::fromStdString( config[ "branding" ]
+                                                              .as< std::string >() );
         }
         catch ( YAML::Exception& e )
         {
@@ -127,6 +129,13 @@ Settings::modules( Phase phase ) const
     default:
         return QStringList();
     }
+}
+
+
+QString
+Settings::brandingComponentName() const
+{
+    return m_brandingComponentName;
 }
 
 
