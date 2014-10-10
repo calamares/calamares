@@ -121,6 +121,7 @@ configure_file( CalamaresUse.cmake.in "${PROJECT_BINARY_DIR}/CalamaresUse.cmake"
 file( COPY CalamaresAddLibrary.cmake DESTINATION "${PROJECT_BINARY_DIR}" )
 file( COPY CalamaresAddModuleSubdirectory.cmake DESTINATION "${PROJECT_BINARY_DIR}" )
 file( COPY CalamaresAddPlugin.cmake DESTINATION "${PROJECT_BINARY_DIR}" )
+file( COPY CalamaresAddBrandingSubdirectory.cmake DESTINATION "${PROJECT_BINARY_DIR}" )
 
 set( CALAMARES_LIBRARIES calamares )
 
@@ -154,7 +155,9 @@ install(
         "${PROJECT_BINARY_DIR}/CalamaresConfigVersion.cmake"
         "${PROJECT_BINARY_DIR}/CalamaresUse.cmake"
         "${PROJECT_BINARY_DIR}/CalamaresAddPlugin.cmake"
+        "${PROJECT_BINARY_DIR}/CalamaresAddModuleSubdirectory.cmake"
         "${PROJECT_BINARY_DIR}/CalamaresAddLibrary.cmake"
+        "${PROJECT_BINARY_DIR}/CalamaresAddBrandingSubdirectory.cmake"
     DESTINATION
         "${CMAKE_INSTALL_CMAKEDIR}"
 )
