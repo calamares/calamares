@@ -1,0 +1,3 @@
+rootMountPoint: /tmp/mount
+bootLoader:
+    installPath: /dev/sdb

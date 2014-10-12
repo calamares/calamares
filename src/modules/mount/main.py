@@ -48,12 +48,16 @@ def run():
     root_mount_point = tempfile.mkdtemp(prefix="calamares-root-")
     partitions = libcalamares.globalstorage.value("partitions")
     extra_mounts = libcalamares.job.configuration["extraMounts"]
+    extra_mounts_efi = libcalamares.job.configuration["extraMountsEfi"]
 
     # Sort by mount points to ensure / is mounted before the rest
     partitions.sort(key=lambda x: x["mountPoint"])
     mount_partitions(root_mount_point, partitions)
 
     mount_partitions(root_mount_point, extra_mounts)
+    
+    if(os.path.exists("/sys/firmware/efi/efivars")):
+        mount_partitions(root_mount_point, extra_mounts_efi)
 
     libcalamares.globalstorage.insert("rootMountPoint", root_mount_point)
     return None
