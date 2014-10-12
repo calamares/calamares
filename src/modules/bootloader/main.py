@@ -79,7 +79,7 @@ def create_loader(loader_path):
             f.write(l)
     f.close()
     
-def install_grub(boot_loader, fw_type):
+def install_bootloader(boot_loader, fw_type):
     if fw_type == 'efi':
         install_path = libcalamares.globalstorage.value( "rootMountPoint" )
         uuid = get_uuid()
@@ -98,5 +98,5 @@ def run():
     detect_firmware_type()
     boot_loader = libcalamares.globalstorage.value("bootLoader")
     fw_type = libcalamares.globalstorage.value("firmwareType")
-    install_grub(boot_loader, fw_type)
+    install_bootloader(boot_loader, fw_type)
     return None
