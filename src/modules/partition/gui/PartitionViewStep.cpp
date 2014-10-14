@@ -296,6 +296,10 @@ PartitionViewStep::canBeResized( const QString& partitionPath )
             if ( candidate )
             {
                 cDebug() << "found Partition* for" << partitionWithOs;
+                if ( !candidate->fileSystem().supportGrow() ||
+                     !candidate->fileSystem().supportShrink() )
+                    return false;
+
                 bool ok = false;
                 double requiredStorageGB = Calamares::JobQueue::instance()
                                                 ->globalStorage()
