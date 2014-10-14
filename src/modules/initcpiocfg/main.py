@@ -20,19 +20,22 @@
 import libcalamares
 import os
 import subprocess
+import shutil
 from libcalamares.utils import check_chroot_call
 
 
 def get_cpu():
     """ Check if system is an intel system. """
 
-    process1 = subprocess.Popen(["hwinfo", "--cpu"], stdout=subprocess.PIPE)
-    process2 = subprocess.Popen(["grep", "Model:[[:space:]]"],
-                                stdin=process1.stdout, stdout=subprocess.PIPE)
-    process1.stdout.close()
-    out, err = process2.communicate()
-    return out.decode().lower()
+    if shutil.which("hwinfo") != None:
+        process1 = subprocess.Popen(["hwinfo", "--cpu"], stdout=subprocess.PIPE)
+        process2 = subprocess.Popen(["grep", "Model:[[:space:]]"],
+                                    stdin=process1.stdout, stdout=subprocess.PIPE)
+        process1.stdout.close()
+        out, err = process2.communicate()
+        return out.decode().lower()
 
+    return ""
 
 def set_mkinitcpio_hooks_and_modules(hooks, modules, root_mount_point):
     """ Set up mkinitcpio.conf """

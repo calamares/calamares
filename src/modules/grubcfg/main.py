@@ -29,6 +29,9 @@ def modify_grub_default(partitions, root_mount_point, distributor):
     use_splash = ""
     swap_uuid = ""
 
+    if not os.path.exists(default_dir):
+        return ("Directory does not exist", "The directory {} does not exist on
+        the target".format(default_dir))
     if os.path.exists(plymouth_bin):
         use_splash = "splash"
 
@@ -58,10 +61,10 @@ def modify_grub_default(partitions, root_mount_point, distributor):
     with open(default_grub, 'w') as grub_file:
         grub_file.write("\n".join(lines) + "\n")
 
+    return None
 
 def run():
     partitions = libcalamares.globalstorage.value("partitions")
     root_mount_point = libcalamares.globalstorage.value("rootMountPoint")
     distributor = libcalamares.job.configuration["distributor"]
-    modify_grub_default(partitions, root_mount_point, distributor)
-    return None
+    return modify_grub_default(partitions, root_mount_point, distributor)
