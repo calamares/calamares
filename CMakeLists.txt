@@ -20,7 +20,7 @@ endif()
 cmake_policy( SET CMP0023 OLD )
 
 # Keep cmake 3.0 quiet
-if( "${CMAKE_VERSION}" VERSION_LESS "3.0.0" )
+if( POLICY CMP0043 )
     cmake_policy( SET CMP0043 OLD )
 endif()
 
