@@ -123,6 +123,10 @@ class UnpackOperation:
                 fslist = ""
 
                 if entry.sourcefs == "squashfs":
+                    if shutil.which("unsquashfs") == None:
+                        return ("Failed to unpack image", "Failed to find unsquashfs, make sure you have
+                        the squashfs-tools package installed")
+
                     fslist = subprocess.check_output(["unsquashfs",
                                                         "-l",
                                                         entry.source])
