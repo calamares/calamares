@@ -20,7 +20,9 @@ endif()
 cmake_policy( SET CMP0023 OLD )
 
 # Keep cmake 3.0 quiet
-cmake_policy( SET CMP0043 OLD )
+if( ${CMAKE_VERSION} VERSION_LESS "3.0.0" )
+    cmake_policy( SET CMP0043 OLD )
+endif()
 
 include( MacroOptionalFindPackage )
 include( MacroLogFeature )
