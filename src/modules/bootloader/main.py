@@ -35,9 +35,6 @@ def detect_firmware_type():
     else:
         fw_type = 'bios'
 
-    libcalamares.globalstorage.insert("firmwareType", fw_type)
-    libcalamares.utils.debug("Firmware type: {!s}".format(fw_type))
-
 def get_uuid():
     root_mount_point = libcalamares.globalstorage.value("rootMountPoint")
     print(root_mount_point)
