@@ -23,6 +23,8 @@
 #include "Typedefs.h"
 
 #include <QObject>
+#include <QStringList>
+#include <QMap>
 
 
 namespace Calamares
@@ -32,6 +34,9 @@ class UIDLLEXPORT Branding : public QObject
 {
     Q_OBJECT
 public:
+    enum StringEntry : short;
+    enum ImageEntry : short;
+
     static Branding* instance();
 
     explicit Branding( const QString& brandingFilePath,
@@ -41,12 +46,23 @@ public:
     QString componentName() const;
     QString componentDirectory() const;
 
+    QString string( Branding::StringEntry stringEntry ) const;
+    QString image( Branding::ImageEntry imageEntry ) const;
+    QStringList slideshow() const;
 
 private:
     static Branding* s_instance;
 
+    static QStringList s_stringEntryStrings;
+    static QStringList s_imageEntryStrings;
+
+    void bail( const QString& message );
+
     QString m_descriptorPath;
     QString m_componentName;
+    QMap< QString, QString > m_strings;
+    QMap< QString, QString > m_images;
+    QStringList m_slideshow;
 };
 
 }
