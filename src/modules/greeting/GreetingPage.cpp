@@ -39,6 +39,7 @@ GreetingPage::GreetingPage( QWidget* parent )
                                      string( Calamares::Branding::ProductName ) ), this );
     text->setAlignment( Qt::AlignCenter );
     text->setWordWrap( true );
+    text->setOpenExternalLinks( true );
 
     mainLayout->addStretch();
     mainLayout->addWidget( text );
