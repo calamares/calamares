@@ -30,8 +30,8 @@ def modify_grub_default(partitions, root_mount_point, distributor):
     swap_uuid = ""
 
     if not os.path.exists(default_dir):
-        return ("Directory does not exist", "The directory {} does not exist on
-        the target".format(default_dir))
+        return ("Directory does not exist", "The directory {} does not exist on "
+        "the target".format(default_dir))
     if os.path.exists(plymouth_bin):
         use_splash = "splash"
 
