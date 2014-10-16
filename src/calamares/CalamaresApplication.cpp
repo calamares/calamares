@@ -76,7 +76,8 @@ CalamaresApplication::init()
 
     initBranding();
 
-    setWindowIcon( QIcon( "from branding" ) );
+    setWindowIcon( QIcon( Calamares::Branding::instance()->
+                          imagePath( Calamares::Branding::ProductIcon ) ) );
 
     initPlugins();
 }

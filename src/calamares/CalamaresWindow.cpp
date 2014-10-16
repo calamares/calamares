@@ -23,6 +23,7 @@
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/CalamaresStyle.h"
 #include "utils/Logger.h"
+#include "Branding.h"
 
 #include <QApplication>
 #include <QBoxLayout>
@@ -35,6 +36,10 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
 {
     // Hide close button
     setWindowFlags( Qt::Window | Qt::WindowTitleHint | Qt::CustomizeWindowHint );
+
+    setWindowTitle( tr( "%1 Installer" )
+                    .arg( Calamares::Branding::instance()->
+                          string( Calamares::Branding::ProductName ) ) );
 
     setMinimumSize( 1010, 560 );
     QSize availableSize = qApp->desktop()->screenGeometry( this ).size();
@@ -58,7 +63,7 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
     QHBoxLayout* logoLayout = new QHBoxLayout;
     sideLayout->addLayout( logoLayout );
     logoLayout->addStretch();
-    QLabel* logoLabel = new QLabel( "branding\ngoes\nhere", sideBox );
+    QLabel* logoLabel = new QLabel( sideBox );
     {
         QPalette plt = sideBox->palette();
         sideBox->setAutoFillBackground( true );
@@ -69,6 +74,9 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
     }
     logoLabel->setAlignment( Qt::AlignCenter );
     logoLabel->setFixedSize( 80, 80 );
+    logoLabel->setPixmap( Calamares::Branding::instance()->
+                          image( Calamares::Branding::ProductIcon,
+                                 logoLabel->size() ) );
     logoLayout->addWidget( logoLabel );
     logoLayout->addStretch();
 
