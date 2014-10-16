@@ -28,12 +28,14 @@ import subprocess
 
 from libcalamares.utils import check_chroot_call
 
+
 def detect_firmware_type():
     # Check for EFI variables support
     if(os.path.exists("/sys/firmware/efi/efivars")):
         fw_type = 'efi'
     else:
         fw_type = 'bios'
+
 
 def get_uuid():
     root_mount_point = libcalamares.globalstorage.value("rootMountPoint")
@@ -45,7 +47,8 @@ def get_uuid():
             print(partition["uuid"])
             return partition["uuid"]
     return ""
-    
+
+
 def create_conf(uuid, conf_path):
     distribution = libcalamares.job.configuration["distribution"]
     lines = [
@@ -57,12 +60,13 @@ def create_conf(uuid, conf_path):
         'initrd  /initramfs-linux.img\n',
         'options root=UUID=%s quiet rw\n' % uuid,
     ]
-    
+
     with open(conf_path, 'w') as f:
         for l in lines:
             f.write(l)
     f.close()
-  
+
+
 def create_loader(loader_path):
     distribution = libcalamares.job.configuration["distribution"]
     timeout = libcalamares.job.configuration["timeout"]
@@ -70,26 +74,31 @@ def create_loader(loader_path):
         'timeout %s\n' % timeout,
         'default %s\n' % distribution,
     ]
-    
+
     with open(loader_path, 'w') as f:
         for l in lines:
             f.write(l)
     f.close()
-    
+
+
 def install_bootloader(boot_loader, fw_type):
     if fw_type == 'efi':
-        install_path = libcalamares.globalstorage.value( "rootMountPoint" )
+        install_path = libcalamares.globalstorage.value("rootMountPoint")
         uuid = get_uuid()
         distribution = libcalamares.job.configuration["distribution"]
-        conf_path = os.path.join(install_path, "boot", "loader", "entries", "%s.conf" % distribution)
-        loader_path = os.path.join(install_path, "boot", "loader", "loader.conf")
-        subprocess.call(["gummiboot", "--path=%s/boot" % install_path, "install"])
+        conf_path = os.path.join(
+            install_path, "boot", "loader", "entries", "%s.conf" % distribution)
+        loader_path = os.path.join(
+            install_path, "boot", "loader", "loader.conf")
+        subprocess.call(
+            ["gummiboot", "--path=%s/boot" % install_path, "install"])
         create_conf(uuid, conf_path)
         create_loader(loader_path)
     else:
         install_path = boot_loader["installPath"]
         check_chroot_call(["grub-install", install_path])
         check_chroot_call(["grub-mkconfig", "-o", "/boot/grub/grub.cfg"])
+
 
 def run():
     detect_firmware_type()
