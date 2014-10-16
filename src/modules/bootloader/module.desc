@@ -1,0 +1,5 @@
+---
+type:       "job"
+name:       "bootloader"
+interface:  "python"
+script:     "main.py"
