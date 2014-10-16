@@ -21,6 +21,7 @@
 #include "PrepareCheckWidget.h"
 
 #include "utils/CalamaresUtilsGui.h"
+#include "Branding.h"
 
 #include <QBoxLayout>
 #include <QLabel>
@@ -89,7 +90,9 @@ PreparePage::init( const QList< PrepareEntry >& checkEntries )
                                                                  iconLabel->size() ) );
             textLabel->setText( tr( "This computer does not satisfy the minimum "
                                     "requirements for installing %1.\n"
-                                    "Installation cannot continue." ).arg( "$RELEASE_NAME" ) ); //TODO: fill this with text from branding system
+                                    "Installation cannot continue." )
+                                        .arg( Calamares::Branding::instance()->
+                                              string( Calamares::Branding::ShortVersionedName ) ) );
         }
         else
         {
@@ -99,7 +102,9 @@ PreparePage::init( const QList< PrepareEntry >& checkEntries )
             textLabel->setText( tr( "This computer does not satisfy some of the "
                                     "recommended requirements for installing %1.\n"
                                     "Installation can continue, but some features "
-                                    "might be disabled." ).arg( "$RELEASE_NAME" ) ); //TODO: fill this with text from branding system
+                                    "might be disabled." )
+                                        .arg( Calamares::Branding::instance()->
+                                              string( Calamares::Branding::ShortVersionedName ) ) );
 
         }
 
