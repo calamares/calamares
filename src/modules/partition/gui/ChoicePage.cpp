@@ -27,6 +27,7 @@
 
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
+#include "Branding.h"
 
 #include <QBoxLayout>
 #include <QButtonGroup>
@@ -107,7 +108,8 @@ ChoicePage::init( PartitionCoreModule* core, const OsproberEntryList& osproberEn
         eraseButton->setText( tr( "<b>Erase disk and install %1</b><br/>"
                                   "<font color=\"red\">Warning: </font>This will delete all of your programs, "
                                   "documents, photos, music, and any other files." )
-                                .arg( "$RELEASE" ) );
+                                .arg( Calamares::Branding::instance()->
+                                      string( Calamares::Branding::VersionedName ) ) );
 
         alongsideButton->hide();
     }
@@ -126,14 +128,16 @@ ChoicePage::init( PartitionCoreModule* core, const OsproberEntryList& osproberEn
                                           "You can choose which operating system you want each time the "
                                           "computer starts up." )
                                         .arg( osName )
-                                        .arg( "$RELEASE" ) );
+                                        .arg( Calamares::Branding::instance()->
+                                              string( Calamares::Branding::VersionedName ) ) );
 
             eraseButton->setText( tr( "<b>Replace %1 with %2</b><br/>"
                                       "<font color=\"red\">Warning: </font>This will erase the whole disk and "
                                       "delete all of your %1 programs, "
                                       "documents, photos, music, and any other files." )
                                     .arg( osName )
-                                    .arg( "$RELEASE" ) );
+                                    .arg( Calamares::Branding::instance()->
+                                          string( Calamares::Branding::VersionedName ) ) );
         }
         else
         {
@@ -144,12 +148,14 @@ ChoicePage::init( PartitionCoreModule* core, const OsproberEntryList& osproberEn
                                           "Documents, music and other personal files will be kept. "
                                           "You can choose which operating system you want each time the "
                                           "computer starts up." )
-                                        .arg( "$RELEASE" ) );
+                                        .arg( Calamares::Branding::instance()->
+                                              string( Calamares::Branding::VersionedName ) ) );
 
             eraseButton->setText( tr( "<b>Erase disk and install %1</b><br/>"
                                       "<font color=\"red\">Warning: </font>This will delete all of your Windows 7 programs, "
                                       "documents, photos, music, and any other files." )
-                                    .arg( "$RELEASE" ) );
+                                    .arg( Calamares::Branding::instance()->
+                                          string( Calamares::Branding::VersionedName ) ) );
         }
         if ( !osproberEntries.first().canBeResized )
             alongsideButton->hide();
@@ -176,12 +182,14 @@ ChoicePage::init( PartitionCoreModule* core, const OsproberEntryList& osproberEn
                                       "Documents, music and other personal files will be kept. "
                                       "You can choose which operating system you want each time the "
                                       "computer starts up." )
-                                    .arg( "$RELEASE" ) );
+                                    .arg( Calamares::Branding::instance()->
+                                          string( Calamares::Branding::VersionedName ) ) );
 
         eraseButton->setText( tr( "<b>Erase disk and install %1</b><br/>"
                                   "<font color=\"red\">Warning: </font>This will delete all of your Windows 7 programs, "
                                   "documents, photos, music, and any other files." )
-                                .arg( "$RELEASE" ) );
+                                .arg( Calamares::Branding::instance()->
+                                      string( Calamares::Branding::VersionedName ) ) );
 
         if ( !atLeastOneCanBeResized )
             alongsideButton->hide();
@@ -195,7 +203,8 @@ ChoicePage::init( PartitionCoreModule* core, const OsproberEntryList& osproberEn
     somethingElseButton->setText( tr( "<b>Something else</b><br/>"
                                       "You can create or resize partitions yourself, or choose "
                                       "multiple partitions for %1." )
-                                    .arg( "$RELEASE" ) );
+                                    .arg( Calamares::Branding::instance()->
+                                          string( Calamares::Branding::ShortVersionedName ) ) );
     somethingElseButton->setIconSize( iconSize );
     somethingElseButton->setIcon( CalamaresUtils::defaultPixmap( CalamaresUtils::Partitions,
                                                                  CalamaresUtils::Original,

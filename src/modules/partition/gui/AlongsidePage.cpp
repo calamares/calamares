@@ -32,6 +32,7 @@
 #include "GlobalStorage.h"
 #include "utils/Logger.h"
 #include "utils/CalamaresUtilsGui.h"
+#include "Branding.h"
 
 #include <QBoxLayout>
 #include <QComboBox>
@@ -137,7 +138,8 @@ AlongsidePage::init( PartitionCoreModule* core , const OsproberEntryList& osprob
                                                      candidate->used() * 1.1,
                                                      candidate->capacity() - requiredStorageB,
                                                      candidate->capacity() / 2,
-                                                     tr( "$RELEASE" ) );
+                                                     Calamares::Branding::instance()->
+                                                         string( Calamares::Branding::ProductName ) );
 
                 m_splitterWidget->setFixedHeight( qMax< int >( CalamaresUtils::defaultFontHeight() * 1.5, 30 ) );
                 if ( ok )
@@ -158,12 +160,13 @@ AlongsidePage::init( PartitionCoreModule* core , const OsproberEntryList& osprob
     {
         m_sizeLabel->setText( tr( "With this operation, the partition <b>%1</b> which contains "
                                   "%4 will be shrunk "
-                                  "to %2MB and a new %3MB partition will be created for "
-                                  "$RELEASE." )
+                                  "to %2MB and a new %3MB partition will be created for %5." )
                               .arg( path )
                               .arg( size / ( 1024 * 1024 ) )
                               .arg( sizeNext / ( 1024 * 1024 ) )
-                              .arg( m_partitionsComboBox->currentText() ) );
+                              .arg( m_partitionsComboBox->currentText() )
+                              .arg( Calamares::Branding::instance()->
+                                        string( Calamares::Branding::ProductName ) ) );
     } );
 
     foreach ( const OsproberEntry& e, osproberEntries )
