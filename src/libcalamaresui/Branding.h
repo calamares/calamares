@@ -34,8 +34,20 @@ class UIDLLEXPORT Branding : public QObject
 {
     Q_OBJECT
 public:
-    enum StringEntry : short;
-    enum ImageEntry : short;
+    enum StringEntry : short
+    {
+        ProductName,
+        Version,
+        ShortVersion,
+        VersionedName,
+        ShortVersionedName
+    };
+
+    enum ImageEntry : short
+    {
+        ProductLogo,
+        ProductIcon
+    };
 
     static Branding* instance();
 
@@ -47,8 +59,9 @@ public:
     QString componentDirectory() const;
 
     QString string( Branding::StringEntry stringEntry ) const;
-    QString image( Branding::ImageEntry imageEntry ) const;
-    QStringList slideshow() const;
+    QString imagePath( Branding::ImageEntry imageEntry ) const;
+    QPixmap image( Branding::ImageEntry imageEntry, const QSize& size ) const;
+    QStringList slideshowPaths() const;
 
 private:
     static Branding* s_instance;

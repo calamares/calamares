@@ -21,9 +21,11 @@
 #include "utils/CalamaresUtils.h"
 #include "utils/Logger.h"
 #include "utils/YamlUtils.h"
+#include "utils/ImageRegistry.h"
 
 #include <QDir>
 #include <QFile>
+#include <QPixmap>
 
 #include <yaml-cpp/yaml.h>
 
@@ -39,15 +41,6 @@ Branding::instance()
     return s_instance;
 }
 
-enum Branding::StringEntry : short
-{
-    ProductName,
-    Version,
-    ShortVersion,
-    VersionedName,
-    ShortVersionedName
-};
-
 
 QStringList Branding::s_stringEntryStrings =
 {
@@ -56,13 +49,6 @@ QStringList Branding::s_stringEntryStrings =
     "shortVersion",
     "versionedName",
     "shortVersionedName"
-};
-
-
-enum Branding::ImageEntry : short
-{
-    ProductLogo,
-    ProductIcon
 };
 
 
@@ -186,14 +172,29 @@ Branding::string( Branding::StringEntry stringEntry ) const
 
 
 QString
-Branding::image( Branding::ImageEntry imageEntry ) const
+Branding::imagePath( Branding::ImageEntry imageEntry ) const
 {
     return m_images.value( s_imageEntryStrings.value( imageEntry ) );
 }
 
 
+QPixmap
+Branding::image( Branding::ImageEntry imageEntry, const QSize& size ) const
+{
+    QPixmap pixmap =
+        ImageRegistry::instance()->pixmap( imagePath( imageEntry ), size );
+
+    if ( pixmap.isNull() )
+    {
+        Q_ASSERT( false );
+        return QPixmap();
+    }
+    return pixmap;
+}
+
+
 QStringList
-Branding::slideshow() const
+Branding::slideshowPaths() const
 {
     return m_slideshow;
 }
