@@ -21,21 +21,36 @@ import libcalamares
 import os
 import subprocess
 import shutil
+from collections import OrderedDict
 from libcalamares.utils import check_chroot_call
 
+def cpuinfo():
+    ''' Return the information in /proc/cpuinfo
+    as a dictionary in the following format:
+    cpu_info['proc0']={...}
+    cpu_info['proc1']={...}
 
-def get_cpu():
-    """ Check if system is an intel system. """
+    '''
 
-    if shutil.which("hwinfo") != None:
-        process1 = subprocess.Popen(["hwinfo", "--cpu"], stdout=subprocess.PIPE)
-        process2 = subprocess.Popen(["grep", "Model:[[:space:]]"],
-                                    stdin=process1.stdout, stdout=subprocess.PIPE)
-        process1.stdout.close()
-        out, err = process2.communicate()
-        return out.decode().lower()
+    cpuinfo=OrderedDict()
+    procinfo=OrderedDict()
 
-    return ""
+    nprocs = 0
+    with open('/proc/cpuinfo') as f:
+        for line in f:
+            if not line.strip():
+                # end of one processor
+                cpuinfo['proc%s' % nprocs] = procinfo
+                nprocs=nprocs+1
+                # Reset
+                procinfo=OrderedDict()
+            else:
+                if len(line.split(':')) == 2:
+                    procinfo[line.split(':')[0].strip()] = line.split(':')[1].strip()
+                else:
+                    procinfo[line.split(':')[0].strip()] = ''
+
+    return cpuinfo
 
 def set_mkinitcpio_hooks_and_modules(hooks, modules, root_mount_point):
     """ Set up mkinitcpio.conf """
@@ -56,7 +71,7 @@ def set_mkinitcpio_hooks_and_modules(hooks, modules, root_mount_point):
 def modify_mkinitcpio_conf(partitions, root_mount_point):
     """ Modifies mkinitcpio.conf """
 
-    cpu = get_cpu()
+    cpu = cpu_info()
     swap_uuid = ""
     btrfs = ""
     hooks = ["base", "udev", "autodetect", "modconf", "block", "keyboard", "keymap"]
@@ -78,9 +93,9 @@ def modify_mkinitcpio_conf(partitions, root_mount_point):
     else:
         hooks.extend(["filesystems"])
 
-    if btrfs is "yes" and cpu is not "genuineintel":
+    if btrfs is "yes" and cpu['proc0']['vendor_id'].lower() != "genuineintel":
         modules.append("crc32c")
-    elif btrfs is "yes" and cpu is "genuineintel":
+    elif btrfs is "yes" and cpu['proc0']['vendor_id'].lower() == "genuineintel":
         modules.append("crc32c-intel")
     else:
         hooks.append("fsck")
