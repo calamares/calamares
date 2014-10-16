@@ -21,6 +21,8 @@
 #include <QBoxLayout>
 #include <QLabel>
 
+#include "Branding.h"
+
 
 GreetingPage::GreetingPage( QWidget* parent )
     : QWidget()
@@ -28,10 +30,15 @@ GreetingPage::GreetingPage( QWidget* parent )
     QBoxLayout *mainLayout = new QHBoxLayout;
     setLayout( mainLayout );
 
-    QLabel* text = new QLabel( tr( "<h1>Welcome to Calamares.</h1><br/>"
-                                   "This is some random welcome text. "
-                                   "It should change depending on the branding config." ), this );
+    QLabel* text = new QLabel( tr( "<h1>Welcome to the %1 installer.</h1><br/>"
+                                   "This program will ask you some questions and "
+                                   "set up %2 on your computer." )
+                               .arg( Calamares::Branding::instance()->
+                                     string( Calamares::Branding::VersionedName ) )
+                               .arg( Calamares::Branding::instance()->
+                                     string( Calamares::Branding::ProductName ) ), this );
     text->setAlignment( Qt::AlignCenter );
+    text->setWordWrap( true );
 
     mainLayout->addStretch();
     mainLayout->addWidget( text );
