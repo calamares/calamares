@@ -71,7 +71,7 @@ def set_mkinitcpio_hooks_and_modules(hooks, modules, root_mount_point):
 def modify_mkinitcpio_conf(partitions, root_mount_point):
     """ Modifies mkinitcpio.conf """
 
-    cpu = cpu_info()
+    cpu = cpuinfo()
     swap_uuid = ""
     btrfs = ""
     hooks = ["base", "udev", "autodetect", "modconf", "block", "keyboard", "keymap"]
