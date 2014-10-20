@@ -13,7 +13,7 @@ if( CMAKE_COMPILER_IS_GNUCXX )
     if( CMAKE_CXX_COMPILER_VERSION VERSION_GREATER 4.9 OR
         CMAKE_CXX_COMPILER_VERSION VERSION_EQUAL 4.9 )
         message( STATUS "Found GNU g++ ${CMAKE_CXX_COMPILER_VERSION}, enabling colorized error messages." )
-        set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fdiagnostics-color=always" )
+        set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fdiagnostics-color=auto" )
     endif()
 endif()
 
