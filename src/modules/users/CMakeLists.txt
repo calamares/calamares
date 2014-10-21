@@ -11,6 +11,7 @@ calamares_add_plugin( users
         SetPasswordJob.cpp
         UsersViewStep.cpp
         UsersPage.cpp
+        SetHostNameJob.cpp
     UI
         page_usersetup.ui
     RESOURCES

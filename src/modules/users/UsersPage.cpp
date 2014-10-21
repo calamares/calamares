@@ -24,6 +24,7 @@
 #include "ui_page_usersetup.h"
 #include "CreateUserJob.h"
 #include "SetPasswordJob.h"
+#include "SetHostNameJob.h"
 #include "JobQueue.h"
 #include "GlobalStorage.h"
 #include "utils/Logger.h"
@@ -107,6 +108,9 @@ UsersPage::createJobs( const QString& defaultUserGroup, const QStringList& defau
 
     j = new SetPasswordJob( "root",
                             ui->textBoxRootPassword->text() );
+    list.append( Calamares::job_ptr( j ) );
+
+    j = new SetHostNameJob( ui->textBoxHostname->text() );
     list.append( Calamares::job_ptr( j ) );
 
     Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
@@ -270,11 +274,11 @@ UsersPage::validateHostnameText( const QString& textRef )
 
         if ( pos >= 0 && pos < text.size() )
             ui->labelHostnameError->setText(
-                tr( "Your username contains an invalid character '%1'" )
+                tr( "Your hostname contains an invalid character '%1'" )
                     .arg( text.at( pos ) ) );
         else
             ui->labelHostnameError->setText(
-                tr( "Your username contains invalid characters!" ) );
+                tr( "Your hostname contains invalid characters!" ) );
 
         m_readyHostname = false;
     }
