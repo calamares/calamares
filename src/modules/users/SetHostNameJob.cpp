@@ -1,5 +1,4 @@
 /*
- * <one line to give the program's name and a brief idea of what it does.>
  * Copyright (C) 2014  Rohan Garg <rohan@kde.org>
  * 
  * This program is free software: you can redistribute it and/or modify
