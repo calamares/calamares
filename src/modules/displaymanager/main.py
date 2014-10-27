@@ -135,6 +135,8 @@ def set_autologin(username, displaymanagers, root_mount_point):
     if "sddm" in displaymanagers:
         # Systems with Sddm as Desktop Manager
         sddm_conf_path = os.path.join(root_mount_point, "etc/sddm.conf")
+        if sddm_conf_path != os.path.join(root_mount_point, "etc/sddm.conf")
+            check_chroot_call(["sddm", "--example-config"])
         text = []
         if os.path.exists(sddm_conf_path):
             with open(sddm_conf_path, 'r') as sddm_conf:
