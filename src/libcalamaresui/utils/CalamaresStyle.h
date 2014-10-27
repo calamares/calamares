@@ -28,6 +28,7 @@ namespace CalamaresStyle {
 
 static const QColor SIDEBAR_BACKGROUND =  "#292F34";
 static const QColor SIDEBAR_TEXT =        "#FFFFFF";
+static const QColor SIDEBAR_TEXT_SELECT = "#292F34";
 
 } // namespace CalamaresStyle
 

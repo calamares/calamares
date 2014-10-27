@@ -135,7 +135,7 @@ ProgressTreeDelegate::paintViewStep( QPainter* painter,
 
     if ( isCurrent )
     {
-        painter->setPen( CalamaresStyle::SIDEBAR_BACKGROUND );
+        painter->setPen( CalamaresStyle::SIDEBAR_TEXT_SELECT );
         painter->setBrush( APP->mainWindow()->palette().background() );
     }
 
