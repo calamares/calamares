@@ -76,7 +76,7 @@ def run():
     for entry in operations:
         run_operations(pkgman, entry)
 
-    if libcalamares.globalstorage.contains("pagkageOperations"):
+    if libcalamares.globalstorage.contains("packageOperations"):
         operations = libcalamares.globalstorage.value("packageOperations")
         for entry in operations:
             run_operations(pkgman, entry)
