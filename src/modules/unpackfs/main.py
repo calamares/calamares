@@ -221,7 +221,7 @@ def run():
 
         destination = os.path.abspath(root_mount_point + entry["destination"])
 
-        if not os.path.isfile(source):
+        if not os.path.exists(source) or os.path.isdir(source):
             return ("Bad source", "source=\"{}\"".format(source))
         if not os.path.isdir(destination):
             return ("Bad destination",
