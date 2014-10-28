@@ -84,7 +84,7 @@ ViewModule::initFrom( const YAML::Node& node )
     // If a load path is not specified, we look for a plugin to load in the directory.
     if ( load.isEmpty() || !QLibrary::isLibrary( load ) )
     {
-        QStringList ls = directory.entryList( QStringList() = { "*.so" } );
+        QStringList ls = directory.entryList( QStringList{ "*.so" } );
         if ( !ls.isEmpty() )
         {
             foreach ( QString entry, ls )
