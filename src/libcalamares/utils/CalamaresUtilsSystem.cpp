@@ -78,7 +78,7 @@ chrootCall( const QString& command,
             const QString& stdInput,
             int timeoutSec )
 {
-    return chrootCall( QStringList() = { command },
+    return chrootCall( { command },
                        workingPath,
                        stdInput,
                        timeoutSec );
@@ -170,7 +170,7 @@ chrootOutput( const QString& command,
               const QString& stdInput,
               int timeoutSec )
 {
-    return chrootOutput( QStringList() = { command },
+    return chrootOutput( { command },
                          output,
                          workingPath,
                          stdInput,
