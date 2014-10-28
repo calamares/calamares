@@ -121,7 +121,7 @@ UsersViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     }
     else
     {
-        m_defaultGroups = { "lp", "video", "network", "storage", "wheel", "audio" };
+        m_defaultGroups = QStringList{ "lp", "video", "network", "storage", "wheel", "audio" };
     }
 
     if ( configurationMap.contains( "autologinGroup" ) &&
