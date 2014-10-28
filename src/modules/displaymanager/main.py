@@ -136,19 +136,19 @@ def set_autologin(username, displaymanagers, root_mount_point):
         # Systems with Sddm as Desktop Manager
         sddm_conf_path = os.path.join(root_mount_point, "etc/sddm.conf")
         if sddm_conf_path != os.path.join(root_mount_point, "etc/sddm.conf"):
+	if os.path.isfile(sddm_conf_path):
+            print('SDDM config file exists')
+        else:
             check_chroot_call("sddm --example-config > etc/sddm.conf", shell=True)
         text = []
-        if os.path.exists(sddm_conf_path):
-            with open(sddm_conf_path, 'r') as sddm_conf:
-                text = sddm_conf.readlines()
-            with open(sddm_conf_path, 'w') as sddm_conf:
-                for line in text:
-                    if 'User=' in line:
-                        line = 'User={}\n'.format(username)
-                    sddm_conf.write(line)
-        else:
-            return "Cannot write SDDM configuration file", "SDDM config file %s does not exist" % sddm_conf_path
-
+        with open(sddm_conf_path, 'r') as sddm_conf:
+            text = sddm_conf.readlines()
+        with open(sddm_conf_path, 'w') as sddm_conf:
+            for line in text:
+                if 'User=' in line:
+                    line = 'User={}\n'.format(username)
+                sddm_conf.write(line)
+       
     return None
 
 
