@@ -3,6 +3,8 @@ Calamares
 
 Distribution-independent installer framework
 
+[![Build Status](http://54.252.111.23:8080/buildStatus/icon?job=calamares-master)](http://54.252.111.23:8080/job/calamares-master/)
+
 ### Dependencies
 * CMake >= 2.8.12
 * Qt >= 5.3
