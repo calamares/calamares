@@ -56,6 +56,7 @@ class Report;
  */
 class MoveFileSystemJob : public PartitionJob
 {
+    Q_OBJECT
 public:
     MoveFileSystemJob( Device* device, Partition* partition, qint64 oldFirstSector, qint64 newFirstSector, qint64 length );
 

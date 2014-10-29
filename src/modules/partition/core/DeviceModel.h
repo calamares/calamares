@@ -30,6 +30,7 @@ class PartitionModel;
  */
 class DeviceModel : public QAbstractListModel
 {
+    Q_OBJECT
 public:
     DeviceModel( QObject* parent = 0 );
     ~DeviceModel();

@@ -60,6 +60,7 @@
 //- ResizeFileSystemJob --------------------------------------------------------
 class ResizeFileSystemJob : public Calamares::Job
 {
+    Q_OBJECT
 public:
     ResizeFileSystemJob( Device* device, CoreBackendPartitionTable* backendPartitionTable, Partition* partition, qint64 length )
         : m_device( device )
@@ -127,6 +128,7 @@ private:
 //- SetPartGeometryJob ---------------------------------------------------------
 class SetPartGeometryJob : public Calamares::Job
 {
+    Q_OBJECT
 public:
     SetPartGeometryJob( CoreBackendPartitionTable* backendPartitionTable, Partition* partition, qint64 firstSector, qint64 length )
         : m_backendPartitionTable( backendPartitionTable )
@@ -282,3 +284,5 @@ ResizePartitionJob::execJobList( const QList< Calamares::job_ptr >& jobs )
     }
     return Calamares::JobResult::ok();
 }
+
+#include "ResizePartitionJob.moc"

@@ -29,6 +29,7 @@ class Device;
  */
 class BootLoaderModel : public QStandardItemModel
 {
+    Q_OBJECT
 public:
     enum
     {

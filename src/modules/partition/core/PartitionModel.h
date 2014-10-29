@@ -41,6 +41,7 @@ class PartitionNode;
  */
 class PartitionModel : public QAbstractItemModel
 {
+    Q_OBJECT
 public:
     /**
      * This helper class must be instantiated on the stack *before* making

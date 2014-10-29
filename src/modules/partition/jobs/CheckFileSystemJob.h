@@ -26,6 +26,7 @@
  */
 class CheckFileSystemJob : public PartitionJob
 {
+    Q_OBJECT
 public:
     CheckFileSystemJob( Partition* partition );
 
