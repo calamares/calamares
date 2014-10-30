@@ -137,7 +137,7 @@ ImageRegistry::pixmap( const QString& image, const QSize& size, CalamaresUtils::
 void
 ImageRegistry::putInCache( const QString& image, const QSize& size, CalamaresUtils::ImageMode mode, float opacity, const QPixmap& pixmap, QColor tint )
 {
-    cDebug( LOGVERBOSE ) << Q_FUNC_INFO << "Adding to image cache:" << image << size << mode;
+//    cDebug( LOGVERBOSE ) << Q_FUNC_INFO << "Adding to image cache:" << image << size << mode;
 
     QHash< qint64, QPixmap > subsubcache;
     QHash< int, QHash< qint64, QPixmap > > subcache;
