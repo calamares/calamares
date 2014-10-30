@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Calamares
+GenericName=System Installer
+TryExec=calamares
+Exec=calamares
+Comment=Calamares — System Installer
+Icon=calamares
+Terminal=false
+Categories=Qt;System;
