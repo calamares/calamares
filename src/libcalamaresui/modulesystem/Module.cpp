@@ -66,7 +66,7 @@ Module::fromDescriptorFile( const QString& path )
     if ( descriptorFile.exists() && descriptorFile.open( QFile::ReadOnly | QFile::Text ) )
     {
         QByteArray ba = descriptorFile.readAll();
-        cDebug() << Q_FUNC_INFO << "module descriptor file" << path;
+        cDebug() << "Loading descriptor file" << descriptorFile.fileName();
 
         try
         {
