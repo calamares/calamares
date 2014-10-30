@@ -175,7 +175,8 @@ ModuleManager::doLoad( const QString& moduleName )
 {
     Module* thisModule = m_availableModules.value( moduleName );
     thisModule->loadSelf();
-    cDebug() << ( thisModule->isLoaded() ? "SUCCESS" : "FAILURE" );
+    if ( !thisModule->isLoaded() )
+        cDebug() << "Module" << moduleName << "loading FAILED";
 }
 
 

@@ -47,7 +47,6 @@ ViewModule::interface() const
 void
 ViewModule::loadSelf()
 {
-    cDebug() << Q_FUNC_INFO << "for module" << name();
     if ( m_loader )
     {
         m_viewStep = qobject_cast< ViewStep* >( m_loader->instance() );
