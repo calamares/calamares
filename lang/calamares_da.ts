@@ -307,12 +307,12 @@ Udskrift:
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="137"/>
         <source>Error</source>
-        <translation type="unfinished"/>
+        <translation>Fejl</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="138"/>
         <source>Installation Failed</source>
-        <translation type="unfinished"/>
+        <translation>Installation Fejlede</translation>
     </message>
 </context>
 <context>
@@ -320,7 +320,7 @@ Udskrift:
     <message>
         <location filename="../src/libcalamares/PythonHelper.cpp" line="228"/>
         <source>Unknown exception type</source>
-        <translation type="unfinished"/>
+        <translation>Ukendt undtagelsestype</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonHelper.cpp" line="241"/>
@@ -335,7 +335,7 @@ Udskrift:
     <message>
         <location filename="../src/libcalamares/PythonHelper.cpp" line="261"/>
         <source>Unfetchable Python error.</source>
-        <translation type="unfinished"/>
+        <translation>Uhentbar Python fejl.</translation>
     </message>
 </context>
 <context>
@@ -343,7 +343,7 @@ Udskrift:
     <message>
         <location filename="../src/calamares/CalamaresWindow.cpp" line="40"/>
         <source>%1 Installer</source>
-        <translation type="unfinished"/>
+        <translation>%1 Installationsprogram</translation>
     </message>
 </context>
 <context>
@@ -351,12 +351,12 @@ Udskrift:
     <message>
         <location filename="../src/modules/partition/jobs/CheckFileSystemJob.cpp" line="34"/>
         <source>Checking file system on partition %1.</source>
-        <translation type="unfinished"/>
+        <translation>Tjekker filsystem på partition %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CheckFileSystemJob.cpp" line="50"/>
         <source>The file system check on partition %1 failed.</source>
-        <translation type="unfinished"/>
+        <translation>Filsystem tjekket på partition %1 fejlede.</translation>
     </message>
 </context>
 <context>
@@ -364,7 +364,7 @@ Udskrift:
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="105"/>
         <source>This computer currently does not seem to have an operating system on it. What would you like to do?</source>
-        <translation type="unfinished"/>
+        <translation>Denne computer ser ikke ud til at have et styresystem. Hvad vil du gerne gøre?</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="108"/>
@@ -374,7 +374,7 @@ Udskrift:
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="122"/>
         <source>This computer currently has %1 on it. What would you like to do?</source>
-        <translation type="unfinished"/>
+        <translation>Denne computer indeholder %1 lige nu. Hvad vil du gerne gøre?</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="126"/>
@@ -389,7 +389,7 @@ Udskrift:
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="144"/>
         <source>This computer already has an operating system on it. What would you like to do?</source>
-        <translation type="unfinished"/>
+        <translation>Denne computer har allerede et styresystem installeret. Hvad vil du gerne gøre?</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="147"/>
@@ -405,7 +405,7 @@ Udskrift:
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="178"/>
         <source>This computer currently has multiple operating systems on it. What would you like to do?</source>
-        <translation type="unfinished"/>
+        <translation>Denne computer har allerede flere styresystemer installeret. Hvad vil du gerne gøre?</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="181"/>
@@ -423,12 +423,12 @@ Udskrift:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="23"/>
         <source>Permissions</source>
-        <translation type="unfinished"/>
+        <translation>Rettigheder</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="35"/>
         <source>Allow applying operations without administrator privileges</source>
-        <translation type="unfinished"/>
+        <translation>Tillad at gennemføre handlinger uden administrator rettigheder</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="51"/>
@@ -443,47 +443,47 @@ Udskrift:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="79"/>
         <source>Units</source>
-        <translation type="unfinished"/>
+        <translation>Enheder</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="85"/>
         <source>Preferred unit:</source>
-        <translation type="unfinished"/>
+        <translation>Foretrukket enhed:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="96"/>
         <source>Byte</source>
-        <translation type="unfinished"/>
+        <translation>Byte</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="101"/>
         <source>KiB</source>
-        <translation type="unfinished"/>
+        <translation>KiB</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="106"/>
         <source>MiB</source>
-        <translation type="unfinished"/>
+        <translation>MiB</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="111"/>
         <source>GiB</source>
-        <translation type="unfinished"/>
+        <translation>GiB</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="116"/>
         <source>TiB</source>
-        <translation type="unfinished"/>
+        <translation>TiB</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="121"/>
         <source>PiB</source>
-        <translation type="unfinished"/>
+        <translation>PiB</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="126"/>
         <source>EiB</source>
-        <translation type="unfinished"/>
+        <translation>EiB</translation>
     </message>
 </context>
 <context>
@@ -491,132 +491,132 @@ Udskrift:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="23"/>
         <source>File Systems</source>
-        <translation type="unfinished"/>
+        <translation>Filsystem</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="29"/>
         <source>luks:</source>
-        <translation type="unfinished"/>
+        <translation>luks:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="45"/>
         <source>ntfs:</source>
-        <translation type="unfinished"/>
+        <translation>ntfs:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="58"/>
         <source>ext2:</source>
-        <translation type="unfinished"/>
+        <translation>ext2:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="87"/>
         <source>ext3:</source>
-        <translation type="unfinished"/>
+        <translation>ext3:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="116"/>
         <source>ext4:</source>
-        <translation type="unfinished"/>
+        <translation>ext4:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="132"/>
         <source>btrfs:</source>
-        <translation type="unfinished"/>
+        <translation>btrfs:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="174"/>
         <source>linuxswap:</source>
-        <translation type="unfinished"/>
+        <translation>linuxswap:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="190"/>
         <source>fat16:</source>
-        <translation type="unfinished"/>
+        <translation>fat16:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="219"/>
         <source>fat32:</source>
-        <translation type="unfinished"/>
+        <translation>fat32:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="248"/>
         <source>zfs:</source>
-        <translation type="unfinished"/>
+        <translation>zfs:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="264"/>
         <source>reiserfs:</source>
-        <translation type="unfinished"/>
+        <translation>reiserfs:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="293"/>
         <source>reiser4:</source>
-        <translation type="unfinished"/>
+        <translation>reiser4:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="322"/>
         <source>hpfs:</source>
-        <translation type="unfinished"/>
+        <translation>hpfs:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="338"/>
         <source>jfs</source>
-        <translation type="unfinished"/>
+        <translation>jfs</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="367"/>
         <source>hfs:</source>
-        <translation type="unfinished"/>
+        <translation>hfs:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="396"/>
         <source>hfsplus:</source>
-        <translation type="unfinished"/>
+        <translation>hfsplus:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="412"/>
         <source>ufs:</source>
-        <translation type="unfinished"/>
+        <translation>ufs:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="441"/>
         <source>xfs:</source>
-        <translation type="unfinished"/>
+        <translation>xfs:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="470"/>
         <source>ocfs2:</source>
-        <translation type="unfinished"/>
+        <translation>ocfs2:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="489"/>
         <source>extended:</source>
-        <translation type="unfinished"/>
+        <translation>udvidet:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="518"/>
         <source>unformatted:</source>
-        <translation type="unfinished"/>
+        <translation>uformateret:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="547"/>
         <source>unknown:</source>
-        <translation type="unfinished"/>
+        <translation>ukendt:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="570"/>
         <source>exfat:</source>
-        <translation type="unfinished"/>
+        <translation>exfat:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="583"/>
         <source>nilfs2:</source>
-        <translation type="unfinished"/>
+        <translation>nilfs2:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="622"/>
         <source>lvm2 pv:</source>
-        <translation type="unfinished"/>
+        <translation>lvm2 pv:</translation>
     </message>
 </context>
 <context>
@@ -639,7 +639,7 @@ Udskrift:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="55"/>
         <source> sectors</source>
-        <translation type="unfinished"/>
+        <translation>sektorer</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="71"/>
@@ -649,27 +649,27 @@ Udskrift:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="90"/>
         <source>Logging</source>
-        <translation type="unfinished"/>
+        <translation>Logføring</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="96"/>
         <source>Hide messages below:</source>
-        <translation type="unfinished"/>
+        <translation>Skjul nedenstående beskeder:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="107"/>
         <source>Debug</source>
-        <translation type="unfinished"/>
+        <translation>Fejlfinde</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="112"/>
         <source>Information</source>
-        <translation type="unfinished"/>
+        <translation>Information</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="117"/>
         <source>Warning</source>
-        <translation type="unfinished"/>
+        <translation>Advarsel</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="122"/>

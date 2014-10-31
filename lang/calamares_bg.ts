@@ -22,7 +22,7 @@
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/applyprogressdetailswidgetbase.ui" line="37"/>
         <source>Save</source>
-        <translation type="unfinished"/>
+        <translation>Запази</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/applyprogressdetailswidgetbase.ui" line="44"/>
@@ -68,7 +68,7 @@
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="20"/>
         <source>Installer</source>
-        <translation type="unfinished"/>
+        <translation>Инсталатор</translation>
     </message>
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="168"/>
@@ -115,12 +115,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="331"/>
         <source>Reboot</source>
-        <translation type="unfinished"/>
+        <translation>Рестартирай</translation>
     </message>
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="410"/>
         <source>Language</source>
-        <translation type="unfinished"/>
+        <translation>Език</translation>
     </message>
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="443"/>
@@ -135,7 +135,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="514"/>
         <source>Keyboard</source>
-        <translation type="unfinished"/>
+        <translation>Клавиатура</translation>
     </message>
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="521"/>
@@ -175,7 +175,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/libcalamaresui/InstallationViewStep.cpp" line="47"/>
         <source>Install</source>
-        <translation type="unfinished"/>
+        <translation>Инсталирай</translation>
     </message>
 </context>
 <context>
@@ -183,7 +183,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/libcalamares/JobQueue.cpp" line="88"/>
         <source>Done</source>
-        <translation type="unfinished"/>
+        <translation>Готово</translation>
     </message>
 </context>
 <context>
@@ -303,7 +303,7 @@ Output:
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="137"/>
         <source>Error</source>
-        <translation type="unfinished"/>
+        <translation>Грешка</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="138"/>
@@ -449,37 +449,37 @@ Output:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="96"/>
         <source>Byte</source>
-        <translation type="unfinished"/>
+        <translation>Байт</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="101"/>
         <source>KiB</source>
-        <translation type="unfinished"/>
+        <translation>КиБ</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="106"/>
         <source>MiB</source>
-        <translation type="unfinished"/>
+        <translation>МиБ</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="111"/>
         <source>GiB</source>
-        <translation type="unfinished"/>
+        <translation>ГиБ</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="116"/>
         <source>TiB</source>
-        <translation type="unfinished"/>
+        <translation>ТиБ</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="121"/>
         <source>PiB</source>
-        <translation type="unfinished"/>
+        <translation>ПиБ</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="126"/>
         <source>EiB</source>
-        <translation type="unfinished"/>
+        <translation>ЕиБ</translation>
     </message>
 </context>
 <context>
@@ -487,7 +487,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="23"/>
         <source>File Systems</source>
-        <translation type="unfinished"/>
+        <translation>Файлови Системи</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="29"/>
@@ -1164,12 +1164,12 @@ Output:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="53"/>
         <source>Type:</source>
-        <translation type="unfinished"/>
+        <translation>Вид:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="63"/>
         <source>Options:</source>
-        <translation type="unfinished"/>
+        <translation>Опции:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="73"/>
