@@ -4,17 +4,17 @@
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="54"/>
         <source>Choose partition to shrink:</source>
-        <translation type="unfinished"/>
+        <translation>Alegeți partiția de micșorat:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="63"/>
         <source>Allocate drive space by dragging the divider below:</source>
-        <translation type="unfinished"/>
+        <translation>Alocați spațiu pe disc trăgând despărțitorul:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="161"/>
         <source>With this operation, the partition &lt;b&gt;%1&lt;/b&gt; which contains %4 will be shrunk to %2MB and a new %3MB partition will be created for %5.</source>
-        <translation type="unfinished"/>
+        <translation>Prin această operație, partiția &lt;b&gt;%1&lt;/b&gt; care conține %4 va fi micșorată la %2MB și o nouă partiție de %3MB va fi creată pentru %5.</translation>
     </message>
 </context>
 <context>
@@ -22,12 +22,12 @@
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/applyprogressdetailswidgetbase.ui" line="37"/>
         <source>Save</source>
-        <translation type="unfinished"/>
+        <translation>Salvează</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/applyprogressdetailswidgetbase.ui" line="44"/>
         <source>Open in External Browser</source>
-        <translation type="unfinished"/>
+        <translation>Deschide în browser extern</translation>
     </message>
 </context>
 <context>
@@ -35,32 +35,32 @@
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/applyprogressdialogwidgetbase.ui" line="33"/>
         <source>Operations and Jobs</source>
-        <translation type="unfinished"/>
+        <translation>Operații și sarcini</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/applyprogressdialogwidgetbase.ui" line="38"/>
         <source>Time Elapsed</source>
-        <translation type="unfinished"/>
+        <translation>Timp scurs</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/applyprogressdialogwidgetbase.ui" line="64"/>
         <source>Total Time: 00:00:00</source>
-        <translation type="unfinished"/>
+        <translation>Timp total: 00:00:00</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/applyprogressdialogwidgetbase.ui" line="81"/>
         <source>Operation: %p%</source>
-        <translation type="unfinished"/>
+        <translation>Operație: %p%</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/applyprogressdialogwidgetbase.ui" line="91"/>
         <source>Status</source>
-        <translation type="unfinished"/>
+        <translation>Statut</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/applyprogressdialogwidgetbase.ui" line="107"/>
         <source>Total: %p%</source>
-        <translation type="unfinished"/>
+        <translation>Total: %p%</translation>
     </message>
 </context>
 <context>
@@ -68,7 +68,7 @@
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="20"/>
         <source>Installer</source>
-        <translation type="unfinished"/>
+        <translation>Instalator</translation>
     </message>
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="168"/>
@@ -82,12 +82,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="198"/>
         <source>Location</source>
-        <translation type="unfinished"/>
+        <translation>Locație</translation>
     </message>
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="224"/>
         <source>License Approval</source>
-        <translation type="unfinished"/>
+        <translation>Aprobarea licenței</translation>
     </message>
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="257"/>
@@ -101,7 +101,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="287"/>
         <source>Install System</source>
-        <translation type="unfinished"/>
+        <translation>Instalează sistemul</translation>
     </message>
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="320"/>
@@ -115,32 +115,32 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="331"/>
         <source>Reboot</source>
-        <translation type="unfinished"/>
+        <translation>Repornește</translation>
     </message>
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="410"/>
         <source>Language</source>
-        <translation type="unfinished"/>
+        <translation>Limbă</translation>
     </message>
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="443"/>
         <source>User Info</source>
-        <translation type="unfinished"/>
+        <translation>Informații Utilizator</translation>
     </message>
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="469"/>
         <source>Summary</source>
-        <translation type="unfinished"/>
+        <translation>Sumar</translation>
     </message>
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="514"/>
         <source>Keyboard</source>
-        <translation type="unfinished"/>
+        <translation>Tastatură</translation>
     </message>
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="521"/>
         <source>Disk Setup</source>
-        <translation type="unfinished"/>
+        <translation>Pregătire disc</translation>
     </message>
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="528"/>
@@ -157,17 +157,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="57"/>
         <source>Master Boot Record of %1</source>
-        <translation type="unfinished"/>
+        <translation>Înregistrare de boot principală (MBR) de %1</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="71"/>
         <source>Boot Partition</source>
-        <translation type="unfinished"/>
+        <translation>Partiție de boot</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="76"/>
         <source>System Partition</source>
-        <translation type="unfinished"/>
+        <translation>Partiție de sistem</translation>
     </message>
 </context>
 <context>
@@ -175,7 +175,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/libcalamaresui/InstallationViewStep.cpp" line="47"/>
         <source>Install</source>
-        <translation type="unfinished"/>
+        <translation>Instalează</translation>
     </message>
 </context>
 <context>
@@ -183,7 +183,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/libcalamares/JobQueue.cpp" line="88"/>
         <source>Done</source>
-        <translation type="unfinished"/>
+        <translation>Terminat</translation>
     </message>
 </context>
 <context>
@@ -191,63 +191,69 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="51"/>
         <source>Run command %1</source>
-        <translation type="unfinished"/>
+        <translation>Rulează comanda %1</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="77"/>
         <source>External command crashed</source>
-        <translation type="unfinished"/>
+        <translation>Comandă externă căzută</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="78"/>
         <source>Command %1 crashed.
 Output:
 %2</source>
-        <translation type="unfinished"/>
+        <translation>Comanda %1 căzută.
+Rezultat:
+%2</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="83"/>
         <source>External command failed to start</source>
-        <translation type="unfinished"/>
+        <translation>Comanda externă nu a pornit</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="84"/>
         <source>Command %1 failed to start.</source>
-        <translation type="unfinished"/>
+        <translation>Comanda %1 nu a pornit.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="88"/>
         <source>Internal error when starting command</source>
-        <translation type="unfinished"/>
+        <translation>Eroare internă în pornirea comenzii</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="89"/>
         <source>Bad parameters for process job call.</source>
-        <translation type="unfinished"/>
+        <translation>Parametrii proști pentru apelul sarcinii de proces.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="92"/>
         <source>External command failed to finish</source>
-        <translation type="unfinished"/>
+        <translation>Comanda externă nu s-a terminat</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="93"/>
         <source>Command %1 failed to finish in %2s.
 Output:
 %3</source>
-        <translation type="unfinished"/>
+        <translation>Comanda %1 nu s-a terminat în %2s.
+Rezultat:
+%3</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="99"/>
         <source>External command finished with errors</source>
-        <translation type="unfinished"/>
+        <translation>Comanda externă s-a terminat cu erori</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="100"/>
         <source>Command %1 finished with exit code %2.
 Output:
 %3</source>
-        <translation type="unfinished"/>
+        <translation>Comanda %1 s-a terminat cu codul de ieșirte %2.
+Rezultat:
+%3</translation>
     </message>
 </context>
 <context>
@@ -255,32 +261,32 @@ Output:
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="234"/>
         <source>Run script %1</source>
-        <translation type="unfinished"/>
+        <translation>Rulează scriptul %1</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="249"/>
         <source>Bad working directory path</source>
-        <translation type="unfinished"/>
+        <translation>Calea dosarului de lucru este proastă</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="250"/>
         <source>Working directory %1 for python job %2 is not readable.</source>
-        <translation type="unfinished"/>
+        <translation>Dosarul de lucru %1 pentru sarcina Python %2 nu este citibilă.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="260"/>
         <source>Bad main script file</source>
-        <translation type="unfinished"/>
+        <translation>Fișierul script principal este prost</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="261"/>
         <source>Main script file %1 for python job %2 is not readable.</source>
-        <translation type="unfinished"/>
+        <translation>Fișierul script peincipal %1 pentru sarcina Python %2 nu este citibil.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="305"/>
         <source>Boost.Python error in job &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Eroare Boost.Python în sarcina „%1”.</translation>
     </message>
 </context>
 <context>
@@ -288,27 +294,27 @@ Output:
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="55"/>
         <source>&amp;Back</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Înapoi</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="56"/>
         <source>&amp;Next</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Următorul</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="57"/>
         <source>&amp;Quit</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Ieșire</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="137"/>
         <source>Error</source>
-        <translation type="unfinished"/>
+        <translation>Eroare</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="138"/>
         <source>Installation Failed</source>
-        <translation type="unfinished"/>
+        <translation>Instalare eșuată</translation>
     </message>
 </context>
 <context>
@@ -316,22 +322,22 @@ Output:
     <message>
         <location filename="../src/libcalamares/PythonHelper.cpp" line="228"/>
         <source>Unknown exception type</source>
-        <translation type="unfinished"/>
+        <translation>Tip de excepție necunoscut</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonHelper.cpp" line="241"/>
         <source>unparseable Python error</source>
-        <translation type="unfinished"/>
+        <translation>Eroare Python neanalizabilă</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonHelper.cpp" line="257"/>
         <source>unparseable Python traceback</source>
-        <translation type="unfinished"/>
+        <translation>Traceback Python neanalizabil</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonHelper.cpp" line="261"/>
         <source>Unfetchable Python error.</source>
-        <translation type="unfinished"/>
+        <translation>Eroare Python nepreluabilă</translation>
     </message>
 </context>
 <context>
@@ -339,7 +345,7 @@ Output:
     <message>
         <location filename="../src/calamares/CalamaresWindow.cpp" line="40"/>
         <source>%1 Installer</source>
-        <translation type="unfinished"/>
+        <translation>Instalator %1</translation>
     </message>
 </context>
 <context>
@@ -347,12 +353,12 @@ Output:
     <message>
         <location filename="../src/modules/partition/jobs/CheckFileSystemJob.cpp" line="34"/>
         <source>Checking file system on partition %1.</source>
-        <translation type="unfinished"/>
+        <translation>Se verifică sistemul de fișiere pe partiția %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CheckFileSystemJob.cpp" line="50"/>
         <source>The file system check on partition %1 failed.</source>
-        <translation type="unfinished"/>
+        <translation>Verificarea sistemului de fișiere pe %1 a eșuat.</translation>
     </message>
 </context>
 <context>
@@ -360,58 +366,58 @@ Output:
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="105"/>
         <source>This computer currently does not seem to have an operating system on it. What would you like to do?</source>
-        <translation type="unfinished"/>
+        <translation>Acest calculator nu pare să aibe un sistem de operare instalat. Ce doriți să faceți?</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="108"/>
         <source>&lt;b&gt;Erase disk and install %1&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;This will delete all of your programs, documents, photos, music, and any other files.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Șterge discul și instalează %1&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Atenție: &lt;/font&gt;Aceasta va șterge toate programele, documentele, pozele, muzica și orice alte fișiere aveți.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="122"/>
         <source>This computer currently has %1 on it. What would you like to do?</source>
-        <translation type="unfinished"/>
+        <translation>Acest calculator are %1 instalat. Ce doriți să faceți?</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="126"/>
         <source>&lt;b&gt;Install %2 alongside %1&lt;/b&gt;&lt;br/&gt;Documents, music and other personal files will be kept. You can choose which operating system you want each time the computer starts up.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Instalează %2 lângă %1&lt;/b&gt;&lt;br/&gt;Documentele, muzica și alte fișiere personale vor fi păstrate. Puteți alege sistemul de operare dorit la fiecare pornire a calculatorului.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="134"/>
         <source>&lt;b&gt;Replace %1 with %2&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;This will erase the whole disk and delete all of your %1 programs, documents, photos, music, and any other files.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Înlocuiește %1 cu %2&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Atenție: &lt;/font&gt;Aceasta va șterge tot discul și va șterge toate programele, documentele, pozele, muzica și orice alte fișiere aveți.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="144"/>
         <source>This computer already has an operating system on it. What would you like to do?</source>
-        <translation type="unfinished"/>
+        <translation>Acest calculator are deja un sistem de operare instalat. Ce doriți să faceți?</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="147"/>
         <source>&lt;b&gt;Install %1 alongside your current operating system&lt;/b&gt;&lt;br/&gt;Documents, music and other personal files will be kept. You can choose which operating system you want each time the computer starts up.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Instalează %1 lângă sistemul de operare curent&lt;/b&gt;&lt;br/&gt;Documentele, muzica și alte fișiere personale vor fi păstrate. Puteți alege sistemul de operare dorit la fiecare pornire a calculatorului.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="154"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="188"/>
         <source>&lt;b&gt;Erase disk and install %1&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;This will delete all of your Windows 7 programs, documents, photos, music, and any other files.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Șterge discul și instalează %1&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Atenție: &lt;/font&gt;Aceasta va șterge toate programele, documentele, pozele, muzica și orice alte fișiere Windows 7 aveți.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="178"/>
         <source>This computer currently has multiple operating systems on it. What would you like to do?</source>
-        <translation type="unfinished"/>
+        <translation>Acest calculator are mai multe sisteme de operare instalate. Ce doriți să faceți?</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="181"/>
         <source>&lt;b&gt;Install %1 alongside your current operating systems&lt;/b&gt;&lt;br/&gt;Documents, music and other personal files will be kept. You can choose which operating system you want each time the computer starts up.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Instalează %1 lângă sistemul de operare curent&lt;/b&gt;&lt;br/&gt;Documentele, muzica și alte fișiere personale vor fi păstrate. Puteți alege sistemul de operare dorit la fiecare pornire a calculatorului.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="203"/>
         <source>&lt;b&gt;Something else&lt;/b&gt;&lt;br/&gt;You can create or resize partitions yourself, or choose multiple partitions for %1.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Altceva&lt;/b&gt;&lt;br/&gt;Puteți crea sau modifica mărimea partiților, sau alege multiple partișii pentru %1.</translation>
     </message>
 </context>
 <context>
@@ -419,67 +425,67 @@ Output:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="23"/>
         <source>Permissions</source>
-        <translation type="unfinished"/>
+        <translation>Permisiuni</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="35"/>
         <source>Allow applying operations without administrator privileges</source>
-        <translation type="unfinished"/>
+        <translation>Permite aplicarea operațiunilor fără drepturi de administrator</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="51"/>
         <source>Backend</source>
-        <translation type="unfinished"/>
+        <translation>Backend</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="57"/>
         <source>Active backend:</source>
-        <translation type="unfinished"/>
+        <translation>Backend activ:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="79"/>
         <source>Units</source>
-        <translation type="unfinished"/>
+        <translation>Unități</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="85"/>
         <source>Preferred unit:</source>
-        <translation type="unfinished"/>
+        <translation>Unitate preferată:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="96"/>
         <source>Byte</source>
-        <translation type="unfinished"/>
+        <translation>Octeți</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="101"/>
         <source>KiB</source>
-        <translation type="unfinished"/>
+        <translation>KiB</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="106"/>
         <source>MiB</source>
-        <translation type="unfinished"/>
+        <translation>MiB</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="111"/>
         <source>GiB</source>
-        <translation type="unfinished"/>
+        <translation>GiB</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="116"/>
         <source>TiB</source>
-        <translation type="unfinished"/>
+        <translation>TiB</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="121"/>
         <source>PiB</source>
-        <translation type="unfinished"/>
+        <translation>PiB</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="126"/>
         <source>EiB</source>
-        <translation type="unfinished"/>
+        <translation>EiB</translation>
     </message>
 </context>
 <context>
@@ -487,132 +493,132 @@ Output:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="23"/>
         <source>File Systems</source>
-        <translation type="unfinished"/>
+        <translation>Sisteme de fișiere</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="29"/>
         <source>luks:</source>
-        <translation type="unfinished"/>
+        <translation>luks:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="45"/>
         <source>ntfs:</source>
-        <translation type="unfinished"/>
+        <translation>ntfs:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="58"/>
         <source>ext2:</source>
-        <translation type="unfinished"/>
+        <translation>ext2:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="87"/>
         <source>ext3:</source>
-        <translation type="unfinished"/>
+        <translation>ext3:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="116"/>
         <source>ext4:</source>
-        <translation type="unfinished"/>
+        <translation>ext4:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="132"/>
         <source>btrfs:</source>
-        <translation type="unfinished"/>
+        <translation>btrfs:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="174"/>
         <source>linuxswap:</source>
-        <translation type="unfinished"/>
+        <translation>linuxswap:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="190"/>
         <source>fat16:</source>
-        <translation type="unfinished"/>
+        <translation>fat16:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="219"/>
         <source>fat32:</source>
-        <translation type="unfinished"/>
+        <translation>fat32:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="248"/>
         <source>zfs:</source>
-        <translation type="unfinished"/>
+        <translation>zfs:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="264"/>
         <source>reiserfs:</source>
-        <translation type="unfinished"/>
+        <translation>reserfs:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="293"/>
         <source>reiser4:</source>
-        <translation type="unfinished"/>
+        <translation>reiser4:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="322"/>
         <source>hpfs:</source>
-        <translation type="unfinished"/>
+        <translation>hpfs:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="338"/>
         <source>jfs</source>
-        <translation type="unfinished"/>
+        <translation>jfs:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="367"/>
         <source>hfs:</source>
-        <translation type="unfinished"/>
+        <translation>hfs:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="396"/>
         <source>hfsplus:</source>
-        <translation type="unfinished"/>
+        <translation>hfsplus:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="412"/>
         <source>ufs:</source>
-        <translation type="unfinished"/>
+        <translation>ufs:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="441"/>
         <source>xfs:</source>
-        <translation type="unfinished"/>
+        <translation>xfs:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="470"/>
         <source>ocfs2:</source>
-        <translation type="unfinished"/>
+        <translation>ocfs2:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="489"/>
         <source>extended:</source>
-        <translation type="unfinished"/>
+        <translation>extinsă:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="518"/>
         <source>unformatted:</source>
-        <translation type="unfinished"/>
+        <translation>neformatată:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="547"/>
         <source>unknown:</source>
-        <translation type="unfinished"/>
+        <translation>necunoscut:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="570"/>
         <source>exfat:</source>
-        <translation type="unfinished"/>
+        <translation>exfat:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="583"/>
         <source>nilfs2:</source>
-        <translation type="unfinished"/>
+        <translation>nilfs2:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="622"/>
         <source>lvm2 pv:</source>
-        <translation type="unfinished"/>
+        <translation>lvm2 pv:</translation>
     </message>
 </context>
 <context>
@@ -620,87 +626,87 @@ Output:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="23"/>
         <source>Partition Alignment</source>
-        <translation type="unfinished"/>
+        <translation>Aliniament partiție</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="29"/>
         <source>Use cylinder based alignment (Windows XP compatible)</source>
-        <translation type="unfinished"/>
+        <translation>Folosește aliniament bazat pe cilindri (compatibil Windows XP)</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="42"/>
         <source>Sector alignment:</source>
-        <translation type="unfinished"/>
+        <translation>Aliniament sectoare:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="55"/>
         <source> sectors</source>
-        <translation type="unfinished"/>
+        <translation>sectoare</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="71"/>
         <source>Align partitions per default</source>
-        <translation type="unfinished"/>
+        <translation>Aliniază implicit partiția</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="90"/>
         <source>Logging</source>
-        <translation type="unfinished"/>
+        <translation>Logare</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="96"/>
         <source>Hide messages below:</source>
-        <translation type="unfinished"/>
+        <translation>Ascunde mesajele dedesupt:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="107"/>
         <source>Debug</source>
-        <translation type="unfinished"/>
+        <translation>Depanare</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="112"/>
         <source>Information</source>
-        <translation type="unfinished"/>
+        <translation>Informație</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="117"/>
         <source>Warning</source>
-        <translation type="unfinished"/>
+        <translation>Atenție</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="122"/>
         <source>Error</source>
-        <translation type="unfinished"/>
+        <translation>Eroare</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="139"/>
         <source>File Systems</source>
-        <translation type="unfinished"/>
+        <translation>Sisteme de fișiere</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="145"/>
         <source>Default file system:</source>
-        <translation type="unfinished"/>
+        <translation>Sistem de fișiere implicit:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="167"/>
         <source>Shredding</source>
-        <translation type="unfinished"/>
+        <translation>Mărunțire</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="173"/>
         <source>Overwrite with:</source>
-        <translation type="unfinished"/>
+        <translation>Suprascrie cu:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="180"/>
         <source>Random data</source>
-        <translation type="unfinished"/>
+        <translation>Date aleatoare</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="190"/>
         <source>Zeros</source>
-        <translation type="unfinished"/>
+        <translation>Zerouri</translation>
     </message>
 </context>
 <context>
@@ -708,87 +714,87 @@ Output:
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="14"/>
         <source>Create a Partition</source>
-        <translation type="unfinished"/>
+        <translation>Crează o partiție</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="38"/>
         <source>Partition &amp;Type:</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Tip de partiție:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="50"/>
         <source>&amp;Primary</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Primară</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="60"/>
         <source>E&amp;xtended</source>
-        <translation type="unfinished"/>
+        <translation>E&amp;xtinsă</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="89"/>
         <source>F&amp;ile System:</source>
-        <translation type="unfinished"/>
+        <translation>Sistem de F&amp;ișiere:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="118"/>
         <source>&amp;Mount Point:</source>
-        <translation type="unfinished"/>
+        <translation>Punct de &amp;Montare</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="135"/>
         <source>/</source>
-        <translation type="unfinished"/>
+        <translation>/</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="140"/>
         <source>/boot</source>
-        <translation type="unfinished"/>
+        <translation>/boot</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="145"/>
         <source>/home</source>
-        <translation type="unfinished"/>
+        <translation>/home</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="150"/>
         <source>/opt</source>
-        <translation type="unfinished"/>
+        <translation>/opt</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="155"/>
         <source>/usr</source>
-        <translation type="unfinished"/>
+        <translation>/usr</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="160"/>
         <source>/var</source>
-        <translation type="unfinished"/>
+        <translation>/var</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="194"/>
         <source>Si&amp;ze:</source>
-        <translation type="unfinished"/>
+        <translation>Mă&amp;rime:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="204"/>
         <source> MB</source>
-        <translation type="unfinished"/>
+        <translation>MB</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="85"/>
         <source>Logical</source>
-        <translation type="unfinished"/>
+        <translation>Logică</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="90"/>
         <source>Primary</source>
-        <translation type="unfinished"/>
+        <translation>Primară</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="107"/>
         <source>GPT</source>
-        <translation type="unfinished"/>
+        <translation>GPT</translation>
     </message>
 </context>
 <context>
@@ -796,22 +802,22 @@ Output:
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="47"/>
         <source>Create partition (file system: %1, size: %2 MB) on %3.</source>
-        <translation type="unfinished"/>
+        <translation>Crează partiție (sistem de fișiere: %1, mărime: %2 MB) pe %3.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="60"/>
         <source>The installer failed to create partition on disk &apos;%1&apos;.</source>
-        <translation type="unfinished"/>
+        <translation>Instalatorul a eșuat să creeze partiția pe discul „%1”.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="69"/>
         <source>Could not open device &apos;%1&apos;.</source>
-        <translation type="unfinished"/>
+        <translation>Nu se poate deschide dispozitivul „%1”.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="79"/>
         <source>Could not open partition table.</source>
-        <translation type="unfinished"/>
+        <translation>Nu se poate deschide tabelul de partiție.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="103"/>

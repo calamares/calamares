@@ -451,57 +451,57 @@ Output:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="51"/>
         <source>Backend</source>
-        <translation type="unfinished"/>
+        <translation>バックエンド</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="57"/>
         <source>Active backend:</source>
-        <translation type="unfinished"/>
+        <translation>アクティブなバックエンド:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="79"/>
         <source>Units</source>
-        <translation type="unfinished"/>
+        <translation>単位</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="85"/>
         <source>Preferred unit:</source>
-        <translation type="unfinished"/>
+        <translation>選択する単位:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="96"/>
         <source>Byte</source>
-        <translation type="unfinished"/>
+        <translation>Byte</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="101"/>
         <source>KiB</source>
-        <translation type="unfinished"/>
+        <translation>KiB</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="106"/>
         <source>MiB</source>
-        <translation type="unfinished"/>
+        <translation>MiB</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="111"/>
         <source>GiB</source>
-        <translation type="unfinished"/>
+        <translation>GiB</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="116"/>
         <source>TiB</source>
-        <translation type="unfinished"/>
+        <translation>TiB</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="121"/>
         <source>PiB</source>
-        <translation type="unfinished"/>
+        <translation>PiB</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="126"/>
         <source>EiB</source>
-        <translation type="unfinished"/>
+        <translation>EiB</translation>
     </message>
 </context>
 <context>
@@ -509,132 +509,132 @@ Output:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="23"/>
         <source>File Systems</source>
-        <translation type="unfinished"/>
+        <translation>ファイルシステム</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="29"/>
         <source>luks:</source>
-        <translation type="unfinished"/>
+        <translation>luks:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="45"/>
         <source>ntfs:</source>
-        <translation type="unfinished"/>
+        <translation>ntfs:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="58"/>
         <source>ext2:</source>
-        <translation type="unfinished"/>
+        <translation>ext2:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="87"/>
         <source>ext3:</source>
-        <translation type="unfinished"/>
+        <translation>ext3:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="116"/>
         <source>ext4:</source>
-        <translation type="unfinished"/>
+        <translation>ext4:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="132"/>
         <source>btrfs:</source>
-        <translation type="unfinished"/>
+        <translation>btrfs:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="174"/>
         <source>linuxswap:</source>
-        <translation type="unfinished"/>
+        <translation>linuxswap:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="190"/>
         <source>fat16:</source>
-        <translation type="unfinished"/>
+        <translation>fat16:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="219"/>
         <source>fat32:</source>
-        <translation type="unfinished"/>
+        <translation>fat32:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="248"/>
         <source>zfs:</source>
-        <translation type="unfinished"/>
+        <translation>zfs:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="264"/>
         <source>reiserfs:</source>
-        <translation type="unfinished"/>
+        <translation>reiserfs:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="293"/>
         <source>reiser4:</source>
-        <translation type="unfinished"/>
+        <translation>reiser4:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="322"/>
         <source>hpfs:</source>
-        <translation type="unfinished"/>
+        <translation>hpfs:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="338"/>
         <source>jfs</source>
-        <translation type="unfinished"/>
+        <translation>jfs</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="367"/>
         <source>hfs:</source>
-        <translation type="unfinished"/>
+        <translation>hfs:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="396"/>
         <source>hfsplus:</source>
-        <translation type="unfinished"/>
+        <translation>hfsplus:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="412"/>
         <source>ufs:</source>
-        <translation type="unfinished"/>
+        <translation>ufs:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="441"/>
         <source>xfs:</source>
-        <translation type="unfinished"/>
+        <translation>xfs:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="470"/>
         <source>ocfs2:</source>
-        <translation type="unfinished"/>
+        <translation>ocfs2:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="489"/>
         <source>extended:</source>
-        <translation type="unfinished"/>
+        <translation>拡張:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="518"/>
         <source>unformatted:</source>
-        <translation type="unfinished"/>
+        <translation>フォーマットされていない:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="547"/>
         <source>unknown:</source>
-        <translation type="unfinished"/>
+        <translation>未知の:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="570"/>
         <source>exfat:</source>
-        <translation type="unfinished"/>
+        <translation>exfat:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="583"/>
         <source>nilfs2:</source>
-        <translation type="unfinished"/>
+        <translation>nilfs2:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="622"/>
         <source>lvm2 pv:</source>
-        <translation type="unfinished"/>
+        <translation>lvm2 pv:</translation>
     </message>
 </context>
 <context>
@@ -642,87 +642,87 @@ Output:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="23"/>
         <source>Partition Alignment</source>
-        <translation type="unfinished"/>
+        <translation>パーティションアライメント</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="29"/>
         <source>Use cylinder based alignment (Windows XP compatible)</source>
-        <translation type="unfinished"/>
+        <translation>Cylinder based alignment (Windows XP と互換性があります) を使用</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="42"/>
         <source>Sector alignment:</source>
-        <translation type="unfinished"/>
+        <translation>セクタアライメント:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="55"/>
         <source> sectors</source>
-        <translation type="unfinished"/>
+        <translation>セクタ</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="71"/>
         <source>Align partitions per default</source>
-        <translation type="unfinished"/>
+        <translation>デフォルトの方法でパーティションアライメントを実施</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="90"/>
         <source>Logging</source>
-        <translation type="unfinished"/>
+        <translation>Logging</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="96"/>
         <source>Hide messages below:</source>
-        <translation type="unfinished"/>
+        <translation>メッセージを表示しない:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="107"/>
         <source>Debug</source>
-        <translation type="unfinished"/>
+        <translation>デバッグ</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="112"/>
         <source>Information</source>
-        <translation type="unfinished"/>
+        <translation>情報</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="117"/>
         <source>Warning</source>
-        <translation type="unfinished"/>
+        <translation>警告</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="122"/>
         <source>Error</source>
-        <translation type="unfinished"/>
+        <translation>エラー</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="139"/>
         <source>File Systems</source>
-        <translation type="unfinished"/>
+        <translation>ファイルシステム</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="145"/>
         <source>Default file system:</source>
-        <translation type="unfinished"/>
+        <translation>デフォルトのファイルシステム;</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="167"/>
         <source>Shredding</source>
-        <translation type="unfinished"/>
+        <translation>破砕</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="173"/>
         <source>Overwrite with:</source>
-        <translation type="unfinished"/>
+        <translation>上書き:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="180"/>
         <source>Random data</source>
-        <translation type="unfinished"/>
+        <translation>ランダムデータ</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="190"/>
         <source>Zeros</source>
-        <translation type="unfinished"/>
+        <translation>ゼロ</translation>
     </message>
 </context>
 <context>
@@ -730,87 +730,87 @@ Output:
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="14"/>
         <source>Create a Partition</source>
-        <translation type="unfinished"/>
+        <translation>パーティションの生成</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="38"/>
         <source>Partition &amp;Type:</source>
-        <translation type="unfinished"/>
+        <translation>パーティションの種類（&amp;T）:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="50"/>
         <source>&amp;Primary</source>
-        <translation type="unfinished"/>
+        <translation>プライマリ（&amp;P）</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="60"/>
         <source>E&amp;xtended</source>
-        <translation type="unfinished"/>
+        <translation>拡張（&amp;x）</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="89"/>
         <source>F&amp;ile System:</source>
-        <translation type="unfinished"/>
+        <translation>ファイルシステム:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="118"/>
         <source>&amp;Mount Point:</source>
-        <translation type="unfinished"/>
+        <translation>マウントポイント（&amp;M）</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="135"/>
         <source>/</source>
-        <translation type="unfinished"/>
+        <translation>/</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="140"/>
         <source>/boot</source>
-        <translation type="unfinished"/>
+        <translation>/boot</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="145"/>
         <source>/home</source>
-        <translation type="unfinished"/>
+        <translation>/home</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="150"/>
         <source>/opt</source>
-        <translation type="unfinished"/>
+        <translation>/opt</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="155"/>
         <source>/usr</source>
-        <translation type="unfinished"/>
+        <translation>/usr</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="160"/>
         <source>/var</source>
-        <translation type="unfinished"/>
+        <translation>/var</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="194"/>
         <source>Si&amp;ze:</source>
-        <translation type="unfinished"/>
+        <translation>サイズ（&amp;Z）</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="204"/>
         <source> MB</source>
-        <translation type="unfinished"/>
+        <translation> MB</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="85"/>
         <source>Logical</source>
-        <translation type="unfinished"/>
+        <translation>論理</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="90"/>
         <source>Primary</source>
-        <translation type="unfinished"/>
+        <translation>プライマリ</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="107"/>
         <source>GPT</source>
-        <translation type="unfinished"/>
+        <translation>GPT</translation>
     </message>
 </context>
 <context>
@@ -818,32 +818,32 @@ Output:
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="47"/>
         <source>Create partition (file system: %1, size: %2 MB) on %3.</source>
-        <translation type="unfinished"/>
+        <translation>%3 にパーティション(ファイルシステム: %1, サイズ: %2 MB)を作成。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="60"/>
         <source>The installer failed to create partition on disk &apos;%1&apos;.</source>
-        <translation type="unfinished"/>
+        <translation>インストーラーはディスク &apos;%1&apos; にパーティションを作成することに失敗しました。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="69"/>
         <source>Could not open device &apos;%1&apos;.</source>
-        <translation type="unfinished"/>
+        <translation>デバイス &apos;%1&apos; を開けませんでした。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="79"/>
         <source>Could not open partition table.</source>
-        <translation type="unfinished"/>
+        <translation>パーティションテーブルを開くことができませんでした。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="103"/>
         <source>The installer failed to create file system on partition %1.</source>
-        <translation type="unfinished"/>
+        <translation>インストラーは %1 パーティションにシステムを作成することに失敗しました。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="111"/>
         <source>The installer failed to update partition table on disk &apos;%1&apos;.</source>
-        <translation type="unfinished"/>
+        <translation>インストーラーはディスク &apos;%1&apos; 上のパーティションテーブルのアップデートに失敗しました。</translation>
     </message>
 </context>
 <context>
@@ -851,27 +851,27 @@ Output:
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="20"/>
         <source>Create Partition Table</source>
-        <translation type="unfinished"/>
+        <translation>パーティションテーブルの作成</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="39"/>
         <source>Creating a new partition table will delete all existing data on the disk.</source>
-        <translation type="unfinished"/>
+        <translation>パーティションテーブルを作成することによって、ディスク上のデータが全て消去されます。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="65"/>
         <source>What kind of partition table do you want to create?</source>
-        <translation type="unfinished"/>
+        <translation>どの種類のパーティションテーブルを作成しますか?</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="72"/>
         <source>Master Boot Record (MBR)</source>
-        <translation type="unfinished"/>
+        <translation>Master Boot Record (MBR)</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="82"/>
         <source>GUID Partition Table (GPT)</source>
-        <translation type="unfinished"/>
+        <translation>GUID Partition Table (GPT)</translation>
     </message>
 </context>
 <context>
@@ -879,17 +879,17 @@ Output:
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="47"/>
         <source>Create partition table</source>
-        <translation type="unfinished"/>
+        <translation>パーティションテーブルの生成</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="54"/>
         <source>The installer failed to create a partition table on %1.</source>
-        <translation type="unfinished"/>
+        <translation>インストーラーは%1 上でのパーティションテーブルの作成に失敗しました。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="62"/>
         <source>Could not open device %1.</source>
-        <translation type="unfinished"/>
+        <translation>デバイス %1 が開けませんでした。</translation>
     </message>
 </context>
 <context>
@@ -897,27 +897,27 @@ Output:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/createpartitiontablewidgetbase.ui" line="20"/>
         <source>Choose the type of partition table you want to create:</source>
-        <translation type="unfinished"/>
+        <translation>パーティションテーブルの種類を選択してください:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/createpartitiontablewidgetbase.ui" line="29"/>
         <source>GPT</source>
-        <translation type="unfinished"/>
+        <translation>GPT</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/createpartitiontablewidgetbase.ui" line="39"/>
         <source>MS-Dos</source>
-        <translation type="unfinished"/>
+        <translation>MS-Dos</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/createpartitiontablewidgetbase.ui" line="66"/>
         <source>(icon)</source>
-        <translation type="unfinished"/>
+        <translation>(アイコン)</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/createpartitiontablewidgetbase.ui" line="79"/>
         <source>&lt;b&gt;Warning:&lt;/b&gt; This will destroy all data on the device!</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;警告:&lt;/b&gt; デバイス上のすべてのデータが破壊されます!</translation>
     </message>
 </context>
 <context>
@@ -925,57 +925,57 @@ Output:
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="51"/>
         <source>Create user %1</source>
-        <translation type="unfinished"/>
+        <translation>ユーザー %1 を作成</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="67"/>
         <source>Sudoers dir is not writable.</source>
-        <translation type="unfinished"/>
+        <translation>Sudoersディレクトリに書き込みできません。</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="71"/>
         <source>Cannot create sudoers file for writing.</source>
-        <translation type="unfinished"/>
+        <translation>sudoersファイルを作成できません。</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="79"/>
         <source>Cannot chmod sudoers file.</source>
-        <translation type="unfinished"/>
+        <translation>sudoersファイルの権限を変更できません。</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="85"/>
         <source>Cannot open groups file for reading.</source>
-        <translation type="unfinished"/>
+        <translation>groups ファイルを読み込めません。</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="123"/>
         <source>Cannot create user %1.</source>
-        <translation type="unfinished"/>
+        <translation>ユーザー %1 を作成できません。</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="125"/>
         <source>useradd terminated with error code %1.</source>
-        <translation type="unfinished"/>
+        <translation>エラーコード %1 によりuseraddを中止しました。</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="130"/>
         <source>Cannot set full name for user %1.</source>
-        <translation type="unfinished"/>
+        <translation>ユーサー %1 のフルネームを設定できません。</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="132"/>
         <source>chfn terminated with error code %1.</source>
-        <translation type="unfinished"/>
+        <translation>エラーコード %1 により chfn は中止しました。</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="141"/>
         <source>Cannot set home directory ownership for user %1.</source>
-        <translation type="unfinished"/>
+        <translation>ユーザー %1 のホームディレクトリの所有者の設定ができません。</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="143"/>
         <source>chown terminated with error code %1.</source>
-        <translation type="unfinished"/>
+        <translation>エラーコード %1 によりchown は中止しました。</translation>
     </message>
 </context>
 <context>
@@ -983,12 +983,12 @@ Output:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/decryptluksdialogwidgetbase.ui" line="22"/>
         <source>&amp;Name:</source>
-        <translation type="unfinished"/>
+        <translation>名前（&amp;N）:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/decryptluksdialogwidgetbase.ui" line="35"/>
         <source>&amp;Passphrase:</source>
-        <translation type="unfinished"/>
+        <translation>パスフレーズ（&amp;P）</translation>
     </message>
 </context>
 <context>
@@ -996,7 +996,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="41"/>
         <source>Delete partition %1</source>
-        <translation type="unfinished"/>
+        <translation>パーティション %1 の削除</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="48"/>

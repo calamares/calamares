@@ -253,19 +253,23 @@ Output:
         <source>Command %1 failed to finish in %2s.
 Output:
 %3</source>
-        <translation type="unfinished"/>
+        <translation>指令 %1 無法在 %2 秒內完成。
+輸出：
+%3</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="99"/>
         <source>External command finished with errors</source>
-        <translation type="unfinished"/>
+        <translation>外部指令以錯誤方式完成</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="100"/>
         <source>Command %1 finished with exit code %2.
 Output:
 %3</source>
-        <translation type="unfinished"/>
+        <translation>指令 %1 以退出狀態 %2 完成。
+輸出：
+%3</translation>
     </message>
 </context>
 <context>
@@ -273,12 +277,12 @@ Output:
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="234"/>
         <source>Run script %1</source>
-        <translation type="unfinished"/>
+        <translation>執行指令稿 %1</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="249"/>
         <source>Bad working directory path</source>
-        <translation type="unfinished"/>
+        <translation>不良的工作目錄路徑</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="250"/>

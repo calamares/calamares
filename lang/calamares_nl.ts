@@ -330,7 +330,7 @@ Uitvoer:
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="138"/>
         <source>Installation Failed</source>
-        <translation type="unfinished"/>
+        <translation>Installatie Mislukt</translation>
     </message>
 </context>
 <context>
@@ -338,7 +338,7 @@ Uitvoer:
     <message>
         <location filename="../src/libcalamares/PythonHelper.cpp" line="228"/>
         <source>Unknown exception type</source>
-        <translation type="unfinished"/>
+        <translation>Onbekend exceptie type</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonHelper.cpp" line="241"/>
@@ -374,7 +374,7 @@ Uitvoer:
     <message>
         <location filename="../src/modules/partition/jobs/CheckFileSystemJob.cpp" line="50"/>
         <source>The file system check on partition %1 failed.</source>
-        <translation>Controllen op bestands systeem partitie %1 mislukt.</translation>
+        <translation>Controle van bestandssysteem partitie %1 mislukt.</translation>
     </message>
 </context>
 <context>
@@ -382,58 +382,58 @@ Uitvoer:
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="105"/>
         <source>This computer currently does not seem to have an operating system on it. What would you like to do?</source>
-        <translation type="unfinished"/>
+        <translation>Deze computer lijkt geen besturingssysteem te bevatten. Wat wil je doen?</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="108"/>
         <source>&lt;b&gt;Erase disk and install %1&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;This will delete all of your programs, documents, photos, music, and any other files.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Wis de schijf en installeer %1&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Opgelet: &lt;/font&gt;Dit zal alle programma&apos;s, documenten, foto&apos;s, muziek en alle andere bestanden wissen.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="122"/>
         <source>This computer currently has %1 on it. What would you like to do?</source>
-        <translation type="unfinished"/>
+        <translation>Deze computer bevat momenteel %1. Wat wil je doen?</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="126"/>
         <source>&lt;b&gt;Install %2 alongside %1&lt;/b&gt;&lt;br/&gt;Documents, music and other personal files will be kept. You can choose which operating system you want each time the computer starts up.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Installeer %2 naast %1&lt;/b&gt;&lt;br\&gt;Documenten, muziek en andere persoonlijke bestanden zullen bewaard blijven.  Telkens de computer opstart kan je kiezen welk besturingssysteem je wil gebruiken.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="134"/>
         <source>&lt;b&gt;Replace %1 with %2&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;This will erase the whole disk and delete all of your %1 programs, documents, photos, music, and any other files.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Vervang %1 door %2&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Opgelet: &lt;/font&gt;Dit zal de volledige schijf wissen, en dus ook alle %1 programma&apos;s, documenten, foto&apos;s, muziek en andere bestanden.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="144"/>
         <source>This computer already has an operating system on it. What would you like to do?</source>
-        <translation type="unfinished"/>
+        <translation>Deze computer bevat reeds een besturingssysteem.  Wat wil je doen?</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="147"/>
         <source>&lt;b&gt;Install %1 alongside your current operating system&lt;/b&gt;&lt;br/&gt;Documents, music and other personal files will be kept. You can choose which operating system you want each time the computer starts up.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Installeer %1 naast je huidige besturingssysteem&lt;/b&gt;&lt;br/&gt;Documenten, muziek en andere persoonlijke bestanden zullen bewaard blijven.  Telkens de computer opstart kan je kiezen welk besturingssysteem je wil gebruiken.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="154"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="188"/>
         <source>&lt;b&gt;Erase disk and install %1&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;This will delete all of your Windows 7 programs, documents, photos, music, and any other files.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Wis de schijf en installeer %1&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Opgelet: &lt;/font&gt;Dit zal alle Windows 7 programma&apos;s, documenten, foto&apos;s, muziek en alle andere bestanden wissen.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="178"/>
         <source>This computer currently has multiple operating systems on it. What would you like to do?</source>
-        <translation type="unfinished"/>
+        <translation>Deze computer bevat meerdere besturingssystemen.  Wat wil je doen?</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="181"/>
         <source>&lt;b&gt;Install %1 alongside your current operating systems&lt;/b&gt;&lt;br/&gt;Documents, music and other personal files will be kept. You can choose which operating system you want each time the computer starts up.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Installeer %1 naast de huidige besturingssystemen&lt;/b&gt;&lt;br/&gt;Documenten, muziek en andere persoonlijke bestanden zullen bewaard blijven.  Telkens de computer opstart kan je kiezen welk besturingssysteem je wil gebruiken.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="203"/>
         <source>&lt;b&gt;Something else&lt;/b&gt;&lt;br/&gt;You can create or resize partitions yourself, or choose multiple partitions for %1.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Iets anders&lt;/b&gt;&lt;br/&gt;Zelf partities maken of aanpassen, of meerdere partities voor %1 kiezen.</translation>
     </message>
 </context>
 <context>
@@ -795,22 +795,22 @@ Uitvoer:
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="204"/>
         <source> MB</source>
-        <translation type="unfinished"/>
+        <translation>MB</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="85"/>
         <source>Logical</source>
-        <translation type="unfinished"/>
+        <translation>Logisch</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="90"/>
         <source>Primary</source>
-        <translation type="unfinished"/>
+        <translation>Primair</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="107"/>
         <source>GPT</source>
-        <translation type="unfinished"/>
+        <translation>GPT</translation>
     </message>
 </context>
 <context>
@@ -871,7 +871,7 @@ Uitvoer:
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="82"/>
         <source>GUID Partition Table (GPT)</source>
-        <translation type="unfinished"/>
+        <translation>GUID Partitietabel (GPT)</translation>
     </message>
 </context>
 <context>
@@ -907,7 +907,7 @@ Uitvoer:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/createpartitiontablewidgetbase.ui" line="39"/>
         <source>MS-Dos</source>
-        <translation>MS-Dos</translation>
+        <translation>MS-DOS</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/createpartitiontablewidgetbase.ui" line="66"/>
@@ -960,12 +960,12 @@ Uitvoer:
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="130"/>
         <source>Cannot set full name for user %1.</source>
-        <translation type="unfinished"/>
+        <translation>Kan de volledige naam voor gebruiker %1 niet instellen.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="132"/>
         <source>chfn terminated with error code %1.</source>
-        <translation type="unfinished"/>
+        <translation>chfn is gestopt met foutcode %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="141"/>
@@ -975,7 +975,7 @@ Uitvoer:
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="143"/>
         <source>chown terminated with error code %1.</source>
-        <translation type="unfinished"/>
+        <translation>chown is gestopt met foutcode %1.</translation>
     </message>
 </context>
 <context>
@@ -983,7 +983,7 @@ Uitvoer:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/decryptluksdialogwidgetbase.ui" line="22"/>
         <source>&amp;Name:</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Naam:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/decryptluksdialogwidgetbase.ui" line="35"/>
@@ -996,27 +996,27 @@ Uitvoer:
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="41"/>
         <source>Delete partition %1</source>
-        <translation type="unfinished"/>
+        <translation>Verwijder partitie %1</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="48"/>
         <source>The installer failed to delete partition %1.</source>
-        <translation type="unfinished"/>
+        <translation>Het installatieprogramma kon partitie %1 niet verwijderen.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="54"/>
         <source>Partition (%1) and device (%2) do not match.</source>
-        <translation type="unfinished"/>
+        <translation>Partitie (%1) en apparaat (%2) komen niet overeen.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="66"/>
         <source>Could not open device %1.</source>
-        <translation type="unfinished"/>
+        <translation>Kon apparaat %1 niet openen.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="75"/>
         <source>Could not open partition table.</source>
-        <translation type="unfinished"/>
+        <translation>Kon de partitietabel niet openen.</translation>
     </message>
 </context>
 <context>
@@ -1024,7 +1024,7 @@ Uitvoer:
     <message>
         <location filename="../src/modules/partition/core/DeviceModel.cpp" line="79"/>
         <source>%1 - %2 (%3)</source>
-        <translation type="unfinished"/>
+        <translation>%1 - %2 (%3)</translation>
     </message>
 </context>
 <context>
@@ -1032,27 +1032,27 @@ Uitvoer:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/devicepropswidgetbase.ui" line="58"/>
         <source>Partition table:</source>
-        <translation type="unfinished"/>
+        <translation>Partitietabel:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/devicepropswidgetbase.ui" line="77"/>
         <source>Cylinder alignment</source>
-        <translation type="unfinished"/>
+        <translation>Cilinderuitlijning</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/devicepropswidgetbase.ui" line="84"/>
         <source>Sector based alignment</source>
-        <translation type="unfinished"/>
+        <translation>Sectoruitlijning</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/devicepropswidgetbase.ui" line="113"/>
         <source>Capacity:</source>
-        <translation type="unfinished"/>
+        <translation>Capaciteit:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/devicepropswidgetbase.ui" line="130"/>
         <source>Total sectors:</source>
-        <translation type="unfinished"/>
+        <translation>Totaal aantal sectoren:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/devicepropswidgetbase.ui" line="160"/>
@@ -1082,12 +1082,12 @@ Uitvoer:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/devicepropswidgetbase.ui" line="265"/>
         <source>SMART status:</source>
-        <translation type="unfinished"/>
+        <translation>SMART status:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/devicepropswidgetbase.ui" line="303"/>
         <source>More...</source>
-        <translation type="unfinished"/>
+        <translation>Meer...</translation>
     </message>
 </context>
 <context>
@@ -1095,32 +1095,32 @@ Uitvoer:
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="20"/>
         <source>Edit Existing Partition</source>
-        <translation type="unfinished"/>
+        <translation>Bestaande Partitie Aanpassen</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="50"/>
         <source>Content:</source>
-        <translation type="unfinished"/>
+        <translation>Inhoud:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="60"/>
         <source>Keep</source>
-        <translation type="unfinished"/>
+        <translation>Behouden</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="70"/>
         <source>Format</source>
-        <translation type="unfinished"/>
+        <translation>Formatteren</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="83"/>
         <source>Warning: Formatting the partition will erase all existing data.</source>
-        <translation type="unfinished"/>
+        <translation>Opgelet: Een partitie formatteren zal alle bestaande gegevens wissen.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="93"/>
         <source>&amp;Mount Point:</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Aankoppelpunt:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="110"/>
@@ -1163,12 +1163,12 @@ Uitvoer:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountoptionsdialogwidgetbase.ui" line="14"/>
         <source>Edit Mount Options</source>
-        <translation type="unfinished"/>
+        <translation>Wijzig Aankoppelopties</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountoptionsdialogwidgetbase.ui" line="20"/>
         <source>Edit the mount options for this file system:</source>
-        <translation type="unfinished"/>
+        <translation>Wijzig de aankoppelopties voor dit bestandssysteem:</translation>
     </message>
 </context>
 <context>
@@ -1176,37 +1176,37 @@ Uitvoer:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="17"/>
         <source>Path:</source>
-        <translation type="unfinished"/>
+        <translation>Pad:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="46"/>
         <source>Select...</source>
-        <translation type="unfinished"/>
+        <translation>Selecteer...</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="53"/>
         <source>Type:</source>
-        <translation type="unfinished"/>
+        <translation>Type:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="63"/>
         <source>Options:</source>
-        <translation type="unfinished"/>
+        <translation>Opties:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="73"/>
         <source>Read-only</source>
-        <translation type="unfinished"/>
+        <translation>Alleen-lezen</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="80"/>
         <source>Users can mount and unmount</source>
-        <translation type="unfinished"/>
+        <translation>Gebruikers kunnen aan- en afkoppelen</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="87"/>
         <source>No automatic mount</source>
-        <translation type="unfinished"/>
+        <translation>Niet automatisch aankoppelen</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="94"/>
@@ -1236,7 +1236,7 @@ Uitvoer:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="142"/>
         <source>More...</source>
-        <translation type="unfinished"/>
+        <translation>Meer...</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="149"/>
@@ -1256,17 +1256,17 @@ Uitvoer:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="295"/>
         <source>UUID</source>
-        <translation type="unfinished"/>
+        <translation>UUID</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="302"/>
         <source>Label</source>
-        <translation type="unfinished"/>
+        <translation>Label</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="309"/>
         <source>Identify by:</source>
-        <translation type="unfinished"/>
+        <translation>Identificeer door:</translation>
     </message>
 </context>
 <context>
@@ -1274,17 +1274,17 @@ Uitvoer:
     <message>
         <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="47"/>
         <source>Select drive:</source>
-        <translation type="unfinished"/>
+        <translation>Selecteer schijf:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="202"/>
         <source>Before:</source>
-        <translation type="unfinished"/>
+        <translation>Voor:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="207"/>
         <source>After:</source>
-        <translation type="unfinished"/>
+        <translation>Na:</translation>
     </message>
 </context>
 <context>
@@ -1293,52 +1293,53 @@ Uitvoer:
         <location filename="../src/modules/partition/partitionmanager/src/gui/filesystemsupportdialogwidgetbase.ui" line="17"/>
         <source>This table shows which file systems are supported and which specific operations can be performed on them.
 Some file systems need external tools to be installed for them to be supported. But not all operations can be performed on all file systems, even if all required tools are installed. Please see the documentation for details. </source>
-        <translation type="unfinished"/>
+        <translation>Deze tabel toont welke bestandssystemen ondersteund worden en welke specifieke acties uitgevoerd kunnen worden op deze.
+Sommige bestandssystemen vereisen dat externe programma&apos;s geïnstalleerd worden om ondersteund te worden.  Niet alle acties kunnen echter worden uitgevoerd op alle bestandsystemen, zelfs niet als alle hulpprogramma&apos;s geïnstalleerd zijn.  Consulteer de documentatie voor details.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/filesystemsupportdialogwidgetbase.ui" line="65"/>
         <source>File System</source>
-        <translation type="unfinished"/>
+        <translation>Bestandssysteem</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/filesystemsupportdialogwidgetbase.ui" line="70"/>
         <source>Create</source>
-        <translation type="unfinished"/>
+        <translation>Maken</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/filesystemsupportdialogwidgetbase.ui" line="75"/>
         <source>Grow</source>
-        <translation type="unfinished"/>
+        <translation>Vergroten</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/filesystemsupportdialogwidgetbase.ui" line="80"/>
         <source>Shrink</source>
-        <translation type="unfinished"/>
+        <translation>Verkleinen</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/filesystemsupportdialogwidgetbase.ui" line="85"/>
         <source>Move</source>
-        <translation type="unfinished"/>
+        <translation>Verplaatsen</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/filesystemsupportdialogwidgetbase.ui" line="90"/>
         <source>Copy</source>
-        <translation type="unfinished"/>
+        <translation>Kopiëren</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/filesystemsupportdialogwidgetbase.ui" line="95"/>
         <source>Check</source>
-        <translation type="unfinished"/>
+        <translation>Controleren</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/filesystemsupportdialogwidgetbase.ui" line="100"/>
         <source>Read Label</source>
-        <translation type="unfinished"/>
+        <translation>Lees Label</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/filesystemsupportdialogwidgetbase.ui" line="105"/>
         <source>Write Label</source>
-        <translation type="unfinished"/>
+        <translation>Schrijf Label</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/filesystemsupportdialogwidgetbase.ui" line="110"/>

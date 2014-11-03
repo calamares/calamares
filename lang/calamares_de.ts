@@ -9,7 +9,7 @@
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="63"/>
         <source>Allocate drive space by dragging the divider below:</source>
-        <translation>Teilen Sie Festplattenplatz zu indem Sie den  Trenner untern verschieben:</translation>
+        <translation>Teilen Sie Festplattenplatz zu, indem Sie den Trenner unten verschieben:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="161"/>
@@ -446,7 +446,7 @@ Ausgabe:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="35"/>
         <source>Allow applying operations without administrator privileges</source>
-        <translation>Übernehmen der Änderungen ohne Administratorrechte erlauben</translation>
+        <translation>Erlauben, dass Änderungen ohne Administratorrechte vorgenommen werden können</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="51"/>
@@ -642,7 +642,7 @@ Ausgabe:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="23"/>
         <source>Partition Alignment</source>
-        <translation>Partitions Ausrichtung</translation>
+        <translation>Partitions-Ausrichtung</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="29"/>
@@ -652,7 +652,7 @@ Ausgabe:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="42"/>
         <source>Sector alignment:</source>
-        <translation>Sektoren Ausrichtung</translation>
+        <translation>Sektor-Ausrichtung:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="55"/>
@@ -667,7 +667,7 @@ Ausgabe:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="90"/>
         <source>Logging</source>
-        <translation>Fehlerprotokoll</translation>
+        <translation>Protokoll</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="96"/>
@@ -940,12 +940,12 @@ Ausgabe:
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="79"/>
         <source>Cannot chmod sudoers file.</source>
-        <translation>Kann chmod nicht auf sudoers Datei anwenden.</translation>
+        <translation>Kann chmod nicht auf sudoers-Datei anwenden.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="85"/>
         <source>Cannot open groups file for reading.</source>
-        <translation>Kann groups Datei nicht zum Lesen öffnen.</translation>
+        <translation>Kann groups-Datei nicht zum Lesen öffnen.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="123"/>
@@ -970,7 +970,7 @@ Ausgabe:
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="141"/>
         <source>Cannot set home directory ownership for user %1.</source>
-        <translation>Kann Besitzrechte des Home-Ordners von Benutzer %1 nicht setzen.</translation>
+        <translation>Kann Besitzrechte des Home-Verzeichnisses von Benutzer %1 nicht setzen.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="143"/>
@@ -1037,7 +1037,7 @@ Ausgabe:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/devicepropswidgetbase.ui" line="77"/>
         <source>Cylinder alignment</source>
-        <translation>Zylinder Ausrichtung:</translation>
+        <translation>Zylinder-Ausrichtung:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/devicepropswidgetbase.ui" line="84"/>
@@ -1105,12 +1105,12 @@ Ausgabe:
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="60"/>
         <source>Keep</source>
-        <translation>behalten</translation>
+        <translation>Beibehalten</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="70"/>
         <source>Format</source>
-        <translation>Format</translation>
+        <translation>Formatieren</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="83"/>
@@ -1120,7 +1120,7 @@ Ausgabe:
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="93"/>
         <source>&amp;Mount Point:</source>
-        <translation>Einhängepunkt:</translation>
+        <translation>Einhängepun&amp;kt:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="110"/>
@@ -1221,7 +1221,7 @@ Ausgabe:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="108"/>
         <source>No update of directory access times</source>
-        <translation>Keine Aktualisierung der Ordnerzugriffszeit</translation>
+        <translation>Keine Aktualisierung der Verzeichnis-Zugriffszeit</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="115"/>
@@ -1279,7 +1279,7 @@ Ausgabe:
     <message>
         <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="202"/>
         <source>Before:</source>
-        <translation>Bevor:</translation>
+        <translation>Davor:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="207"/>
@@ -1592,7 +1592,7 @@ Einige Dateisysteme erfordern die Installation externer Programme, um unterstüt
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="33"/>
         <source>What is your name?</source>
-        <translation>Wie ist Ihr Name?</translation>
+        <translation>Wie ist Ihr Vor- und Nachname?</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="111"/>
@@ -1630,7 +1630,7 @@ Einige Dateisysteme erfordern die Installation externer Programme, um unterstüt
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="428"/>
         <source>&lt;small&gt;This name will be used if you make the computer visible to others on a network.&lt;/small&gt;</source>
-        <translation>&lt;small&gt;Dieser Name wird benutzt wenn Sie den Computer im Netzwerk sichtbar machen.&lt;/small&gt;</translation>
+        <translation>&lt;small&gt;Dieser Name wird benutzt, wenn Sie den Computer im Netzwerk sichtbar machen.&lt;/small&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="451"/>
@@ -1640,17 +1640,17 @@ Einige Dateisysteme erfordern die Installation externer Programme, um unterstüt
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="556"/>
         <source>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors.&lt;/small&gt;</source>
-        <translation>&lt;small&gt;Geben Sie das Passwort zwei mal an um es auf Tippfehler zu prüfen.&lt;/small&gt;</translation>
+        <translation>&lt;small&gt;Geben Sie das Passwort zweimal ein, um es auf Tippfehler zu prüfen.&lt;/small&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="596"/>
         <source>Log in automatically</source>
-        <translation>Automatisch Anmelden</translation>
+        <translation>Automatisches Anmelden</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="606"/>
         <source>Require my password to log in</source>
-        <translation>Erfordere mein Passwort zum Anmelden</translation>
+        <translation>Passworteingabe erforderlich zum Anmelden</translation>
     </message>
 </context>
 <context>
@@ -1888,7 +1888,7 @@ Einige Dateisysteme erfordern die Installation externer Programme, um unterstüt
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="145"/>
         <source>&amp;Install boot loader on:</source>
-        <translation>&amp;Installiere Bootloader auf:</translation>
+        <translation>&amp;Installiere Bootloader hier:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="125"/>
@@ -1951,22 +1951,22 @@ Die Installation wird fortgesetzt, es werden eventuell nicht alle Funktionen ver
     <message>
         <location filename="../src/modules/prepare/PrepareViewStep.cpp" line="88"/>
         <source>has at least %1 GB available drive space</source>
-        <translation>hat mindestens %1 GB freien Festplattenplatz</translation>
+        <translation>mindestens %1 GB freien Festplattenplatz hat</translation>
     </message>
     <message>
         <location filename="../src/modules/prepare/PrepareViewStep.cpp" line="96"/>
         <source>has at least %1 GB working memory</source>
-        <translation>hat mindestens %1 GB verfügbaren Arbeitsspeicher</translation>
+        <translation>mindestens %1 GB Arbeitsspeicher hat</translation>
     </message>
     <message>
         <location filename="../src/modules/prepare/PrepareViewStep.cpp" line="104"/>
         <source>is plugged in to a power source</source>
-        <translation>ist an eine Stromquelle angeschlossen</translation>
+        <translation>an eine Stromquelle angeschlossen ist</translation>
     </message>
     <message>
         <location filename="../src/modules/prepare/PrepareViewStep.cpp" line="111"/>
         <source>is connected to the Internet</source>
-        <translation>ist mit dem Internet verbunden</translation>
+        <translation>mit dem Internet verbunden ist</translation>
     </message>
     <message>
         <location filename="../src/modules/prepare/PrepareViewStep.cpp" line="152"/>
@@ -2341,7 +2341,7 @@ Die Installation wird fortgesetzt, es werden eventuell nicht alle Funktionen ver
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="23"/>
         <source>SMART status:</source>
-        <translation>SMART Status:</translation>
+        <translation>SMART-Status:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="63"/>
@@ -2356,7 +2356,7 @@ Die Installation wird fortgesetzt, es werden eventuell nicht alle Funktionen ver
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="121"/>
         <source>Firmware revision:</source>
-        <translation>Firmware Revision:</translation>
+        <translation>Firmware-Version:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="150"/>
@@ -2371,7 +2371,7 @@ Die Installation wird fortgesetzt, es werden eventuell nicht alle Funktionen ver
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="208"/>
         <source>Powered on for:</source>
-        <translation>Eingeschaltet für:</translation>
+        <translation>Betriebsstunden:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="237"/>
@@ -2381,7 +2381,7 @@ Die Installation wird fortgesetzt, es werden eventuell nicht alle Funktionen ver
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="289"/>
         <source>Id</source>
-        <translation>Id</translation>
+        <translation>ID</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="294"/>
@@ -2401,7 +2401,7 @@ Die Installation wird fortgesetzt, es werden eventuell nicht alle Funktionen ver
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="309"/>
         <source>Worst</source>
-        <translation>Minimum</translation>
+        <translation>Schlechtester</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="314"/>
@@ -2411,12 +2411,12 @@ Die Installation wird fortgesetzt, es werden eventuell nicht alle Funktionen ver
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="319"/>
         <source>Threshold</source>
-        <translation>Grenzbereich</translation>
+        <translation>Grenzwert</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="324"/>
         <source>Raw</source>
-        <translation>Ungestaltet</translation>
+        <translation>Roh</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="329"/>

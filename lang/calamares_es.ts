@@ -212,26 +212,26 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="77"/>
         <source>External command crashed</source>
-        <translation>Comando externo ha fallado</translation>
+        <translation>El comando externo ha fallado</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="78"/>
         <source>Command %1 crashed.
 Output:
 %2</source>
-        <translation>Comando %1 ha fallado.
+        <translation>El comando %1 ha fallado.
 
 Salida: %2</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="83"/>
         <source>External command failed to start</source>
-        <translation>Comando externo no ha podido iniciarse</translation>
+        <translation>El comando externo no ha podido iniciarse</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="84"/>
         <source>Command %1 failed to start.</source>
-        <translation>Comando %1 no se pudo iniciar.</translation>
+        <translation>El comando %1 no se pudo iniciar.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="88"/>
