@@ -186,3 +186,10 @@ install(
   DESTINATION
       "${POLKITQT-1_POLICY_FILES_INSTALL_DIR}"
 )
+
+install(
+  FILES
+      calamares.desktop
+  DESTINATION
+      "${XDG_APPS_INSTALL_DIR}"
+)
