@@ -369,7 +369,7 @@ Ausgabe:
     <message>
         <location filename="../src/modules/partition/jobs/CheckFileSystemJob.cpp" line="34"/>
         <source>Checking file system on partition %1.</source>
-        <translation>Das Dateisystem auf Partition %1 wird überprüft</translation>
+        <translation>Das Dateisystem auf Partition %1 wird überprüft.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CheckFileSystemJob.cpp" line="50"/>
