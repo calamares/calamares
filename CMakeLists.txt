@@ -191,5 +191,5 @@ install(
   FILES
       calamares.desktop
   DESTINATION
-      "${XDG_APPS_INSTALL_DIR}"
+      ${CMAKE_INSTALL_DATADIR}/applications
 )
