@@ -31,6 +31,7 @@ set( QT_VERSION 5.3.0 )
 
 find_package( Qt5 ${QT_VERSION} CONFIG REQUIRED Core Gui Widgets LinguistTools Svg )
 find_package( YamlCpp 0.5.1 REQUIRED )
+find_package( PolkitQt5-1 REQUIRED )
 
 option( WITH_PYTHON "Enable Python modules support." ON )
 
@@ -177,4 +178,11 @@ install(
         settings.conf
     DESTINATION
         share/calamares
+)
+
+install(
+  FILES
+      com.github.calamares.calamares.bin
+  DESTINATION
+      "${POLKITQT-1_POLICY_FILES_INSTALL_DIR}"
 )
