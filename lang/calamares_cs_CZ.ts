@@ -1365,7 +1365,7 @@ Některé souborové systémy vyžadují instalaci externích nástrojů. Jisté
         <location filename="../src/modules/partition/partitionmanager/src/gui/filesystemsupportdialogwidgetbase.ui" line="135"/>
         <source>Rescan Support</source>
         <comment>@action:button</comment>
-        <translation type="unfinished"/>
+        <translation>Ověřit podporu</translation>
     </message>
 </context>
 <context>
