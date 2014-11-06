@@ -20,6 +20,7 @@
 
 import os
 import libcalamares
+import subprocess
 
 
 def set_autologin(username, displaymanagers, root_mount_point):
