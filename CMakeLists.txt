@@ -182,7 +182,7 @@ install(
 
 install(
   FILES
-      com.github.calamares.calamares.bin
+      com.github.calamares.calamares.policy
   DESTINATION
       "${POLKITQT-1_POLICY_FILES_INSTALL_DIR}"
 )
