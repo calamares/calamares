@@ -27,6 +27,9 @@ import subprocess
 DesktopEnvironment = collections.namedtuple('DesktopEnvironment', ['executable', 'desktop_file'])
 
 desktop_environments = [
+    DesktopEnvironment('/usr/bin/startkde', 'plasma'), # KDE Plasma 5
+    DesktopEnvironment('/usr/bin/startkde', 'kde-plasma'), # KDE Plasma 4
+    DesktopEnvironment('/usr/bin/gnome-session', 'gnome'),
     DesktopEnvironment('/usr/bin/startxfce4', 'xfce'),
     DesktopEnvironment('/usr/bin/cinnamon-session', 'cinnamon-session'),
     DesktopEnvironment('/usr/bin/mate-session', 'mate'),
