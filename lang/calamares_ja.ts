@@ -2116,7 +2116,7 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="334"/>
         <source>Apply &amp;fixes</source>
-        <translation type="unfinished"/>
+        <translation>適用及び修復（&amp;F）</translation>
     </message>
 </context>
 <context>
@@ -2161,7 +2161,7 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/users/SetHostNameJob.cpp" line="36"/>
         <source>Set hostname %1</source>
-        <translation>ホストネーム %1 の設定</translation>
+        <translation>ホスト名 %1 の設定</translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetHostNameJob.cpp" line="46"/>
@@ -2172,7 +2172,7 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/users/SetHostNameJob.cpp" line="60"/>
         <source>Cannot write hostname to target system</source>
-        <translation type="unfinished"/>
+        <translation>ターゲットとするシステムにホスト名を書き込めません</translation>
     </message>
 </context>
 <context>
@@ -2180,12 +2180,12 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="143"/>
         <source>Update geometry of partition %1.</source>
-        <translation type="unfinished"/>
+        <translation>パーティション %1 のジオメトリーの更新</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="155"/>
         <source>Failed to change the geometry of the partition.</source>
-        <translation type="unfinished"/>
+        <translation>パーティションのジオメトリーの変更に失敗しました。</translation>
     </message>
 </context>
 <context>
@@ -2198,7 +2198,7 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="52"/>
         <source>Bad destination system path.</source>
-        <translation type="unfinished"/>
+        <translation>不正なシステムパス。</translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="53"/>
@@ -2213,7 +2213,7 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="64"/>
         <source>usermod terminated with error code %1.</source>
-        <translation type="unfinished"/>
+        <translation>エラーコード %1 によりusermodが停止しました。</translation>
     </message>
 </context>
 <context>
@@ -2221,12 +2221,12 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="41"/>
         <source>Set timezone to %1/%2</source>
-        <translation type="unfinished"/>
+        <translation>タイムゾーンを %1/%2 に設定</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="56"/>
         <source>Cannot access selected timezone path.</source>
-        <translation type="unfinished"/>
+        <translation>選択したタイムゾーンのパスにアクセスできません。</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="57"/>
@@ -2236,12 +2236,12 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="69"/>
         <source>Cannot set timezone.</source>
-        <translation type="unfinished"/>
+        <translation>タイムゾーンを設定できません。</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="70"/>
         <source>Link creation failed, target: %1; link name: %2</source>
-        <translation type="unfinished"/>
+        <translation>リンクの作成に失敗しました、ターゲット: %1 ; リンク名: %2</translation>
     </message>
 </context>
 <context>
@@ -2309,31 +2309,31 @@ Installation can continue, but some features might be disabled.</source>
         <location filename="../src/modules/partition/partitionmanager/src/gui/sizedialogwidgetbase.ui" line="152"/>
         <source>Minimum size:</source>
         <comment>@label</comment>
-        <translation>最低サイズ</translation>
+        <translation>最小サイズ:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/sizedialogwidgetbase.ui" line="175"/>
         <source>Maximum size:</source>
         <comment>@label</comment>
-        <translation>最大サイズ</translation>
+        <translation>最大サイズ:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/sizedialogwidgetbase.ui" line="198"/>
         <source>Free space before:</source>
         <comment>@label:listbox</comment>
-        <translation>前方の空き領域</translation>
+        <translation>以前の空き領域:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/sizedialogwidgetbase.ui" line="233"/>
         <source>Size:</source>
         <comment>@label:listbox</comment>
-        <translation>サイズ</translation>
+        <translation>サイズ:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/sizedialogwidgetbase.ui" line="262"/>
         <source>Free space after:</source>
         <comment>@label:listbox</comment>
-        <translation>後方の空き領域</translation>
+        <translation>操作後の空き領域:</translation>
     </message>
 </context>
 <context>
@@ -2341,7 +2341,7 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="23"/>
         <source>SMART status:</source>
-        <translation>SMART状態</translation>
+        <translation>SMART状態:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="63"/>
@@ -2356,7 +2356,7 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="121"/>
         <source>Firmware revision:</source>
-        <translation type="unfinished"/>
+        <translation>ファームウェアのリビジョン:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="150"/>
@@ -2371,12 +2371,12 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="208"/>
         <source>Powered on for:</source>
-        <translation type="unfinished"/>
+        <translation>Powered on for:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="237"/>
         <source>Power cycles:</source>
-        <translation type="unfinished"/>
+        <translation>Power cycles:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="289"/>
@@ -2386,12 +2386,12 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="294"/>
         <source>Attribute</source>
-        <translation type="unfinished"/>
+        <translation>Attribute</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="299"/>
         <source>Failure Type</source>
-        <translation type="unfinished"/>
+        <translation>Failure Type</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="304"/>
@@ -2401,37 +2401,37 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="309"/>
         <source>Worst</source>
-        <translation type="unfinished"/>
+        <translation>Worst</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="314"/>
         <source>Current</source>
-        <translation type="unfinished"/>
+        <translation>Current</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="319"/>
         <source>Threshold</source>
-        <translation type="unfinished"/>
+        <translation>Threshold</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="324"/>
         <source>Raw</source>
-        <translation type="unfinished"/>
+        <translation>Raw</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="329"/>
         <source>Assessment</source>
-        <translation type="unfinished"/>
+        <translation>評価</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="334"/>
         <source>Value</source>
-        <translation type="unfinished"/>
+        <translation>値</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="385"/>
         <source>Overall assessment:</source>
-        <translation type="unfinished"/>
+        <translation>総合的な評価:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="414"/>
@@ -2478,22 +2478,22 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="226"/>
         <source>Your username contains an invalid character &apos;%1&apos;</source>
-        <translation>ユーザーネームには、 &apos;%1&apos; の不正な字が含まれています。</translation>
+        <translation>ユーザー名に、 &apos;%1&apos; の不正な字が含まれています。</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="230"/>
         <source>Your username contains invalid characters!</source>
-        <translation>ユーザーネームには、不正な字が含まれています！</translation>
+        <translation>ユーザー名に、不正な字が含まれています！</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="277"/>
         <source>Your hostname contains an invalid character &apos;%1&apos;</source>
-        <translation>ホストネームには、 &apos;%1&apos; の不正な字が含まれています。</translation>
+        <translation>ホスト名には、 &apos;%1&apos; の不正な字が含まれています。</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="281"/>
         <source>Your hostname contains invalid characters!</source>
-        <translation>ホストネームには、不正な字が含まれています！</translation>
+        <translation>ホスト名には、不正な字が含まれています！</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="312"/>

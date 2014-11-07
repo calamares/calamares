@@ -137,7 +137,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="443"/>
         <source>User Info</source>
-        <translation>Informações de Usuário</translation>
+        <translation>Informações do Utilizador</translation>
     </message>
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="469"/>
@@ -612,7 +612,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="518"/>
         <source>unformatted:</source>
-        <translation type="unfinished"/>
+        <translation>Não formatado:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="547"/>
@@ -675,7 +675,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="107"/>
         <source>Debug</source>
-        <translation type="unfinished"/>
+        <translation>Depuração</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="112"/>
@@ -763,7 +763,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="140"/>
         <source>/boot</source>
-        <translation>/boot</translation>
+        <translation>/arranque</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="145"/>
@@ -788,7 +788,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="194"/>
         <source>Si&amp;ze:</source>
-        <translation>Ta&amp;ho:</translation>
+        <translation>Ta&amp;manho:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="204"/>
@@ -1642,7 +1642,7 @@ Some file systems need external tools to be installed for them to be supported. 
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="596"/>
         <source>Log in automatically</source>
-        <translation>Entrar automaticamente</translation>
+        <translation>login automático </translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="606"/>
@@ -1656,7 +1656,7 @@ Some file systems need external tools to be installed for them to be supported. 
         <location filename="../src/modules/partition/partitionmanager/src/gui/partpropswidgetbase.ui" line="49"/>
         <source>File system:</source>
         <comment>@label:listbox</comment>
-        <translation>Ficheiro sistema:</translation>
+        <translation>Ficheiro do sistema:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/partpropswidgetbase.ui" line="65"/>
@@ -1749,7 +1749,7 @@ Some file systems need external tools to be installed for them to be supported. 
         <location filename="../src/modules/partition/partitionmanager/src/gui/partitionmanagerwidgetbase.ui" line="14"/>
         <source>KDE Partition Manager</source>
         <comment>@title:window</comment>
-        <translation type="unfinished"/>
+        <translation>KDE Gestor de Partições</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/partitionmanagerwidgetbase.ui" line="70"/>
@@ -1908,12 +1908,12 @@ Some file systems need external tools to be installed for them to be supported. 
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="177"/>
         <source>Before:</source>
-        <translation>Antes:</translation>
+        <translation>Anterior:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="182"/>
         <source>After:</source>
-        <translation>Depois:</translation>
+        <translation>Seguinte:</translation>
     </message>
 </context>
 <context>
@@ -1961,7 +1961,7 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/prepare/PrepareViewStep.cpp" line="111"/>
         <source>is connected to the Internet</source>
-        <translation type="unfinished"/>
+        <translation>está ligado a internet </translation>
     </message>
     <message>
         <location filename="../src/modules/prepare/PrepareViewStep.cpp" line="152"/>
@@ -1987,7 +1987,7 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/keyboard/keyboardwidget/keyboardglobal.cpp" line="82"/>
         <source>Default Keyboard Model</source>
-        <translation type="unfinished"/>
+        <translation>Teclado Modelo Padrão</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/keyboardwidget/keyboardglobal.cpp" line="127"/>
@@ -2001,7 +2001,7 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="20"/>
         <source>KDE Release Builder</source>
-        <translation type="unfinished"/>
+        <translation>KDE Realease Builder</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="32"/>
@@ -2021,22 +2021,22 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="93"/>
         <source>Repository and Revision</source>
-        <translation type="unfinished"/>
+        <translation>Revisão e Repositório</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="99"/>
         <source>&amp;Checkout From:</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Verificar alterações:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="119"/>
         <source>trunk</source>
-        <translation type="unfinished"/>
+        <translation>tronco</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="124"/>
         <source>branches</source>
-        <translation type="unfinished"/>
+        <translation>ramificações</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="129"/>
@@ -2046,7 +2046,7 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="137"/>
         <source>Ta&amp;g/Branch:</source>
-        <translation type="unfinished"/>
+        <translation>Et&amp;iqueta/ramifição:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="163"/>
@@ -2056,7 +2056,7 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="183"/>
         <source>anonsvn</source>
-        <translation type="unfinished"/>
+        <translation>anonsvn</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="188"/>
@@ -2106,7 +2106,7 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="324"/>
         <source>Create Tar&amp;ball</source>
-        <translation type="unfinished"/>
+        <translation>Criar Tar&amp;ball</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="334"/>
@@ -2119,17 +2119,17 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="75"/>
         <source>Resize file system on partition %1.</source>
-        <translation type="unfinished"/>
+        <translation>Redimensionar o ficheiro do sistema na partição %1. </translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="90"/>
         <source>Parted failed to resize filesystem.</source>
-        <translation type="unfinished"/>
+        <translation>Falha ao redimensionar os ficheiros do sistema Parted.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="100"/>
         <source>Failed to resize filesystem.</source>
-        <translation type="unfinished"/>
+        <translation>Falha ao redimensionar o ficheiro do sistema.</translation>
     </message>
 </context>
 <context>
@@ -2148,7 +2148,7 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="213"/>
         <source>Could not open device &apos;%1&apos;.</source>
-        <translation type="unfinished"/>
+        <translation>Não foi possível abrir o dispositivo &apos;%1&apos;.</translation>
     </message>
 </context>
 <context>
@@ -2175,12 +2175,12 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="143"/>
         <source>Update geometry of partition %1.</source>
-        <translation type="unfinished"/>
+        <translation>Geometria da partição actualizar %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="155"/>
         <source>Failed to change the geometry of the partition.</source>
-        <translation type="unfinished"/>
+        <translation>Alteração geometria da partição falhou.</translation>
     </message>
 </context>
 <context>
@@ -2198,7 +2198,7 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="53"/>
         <source>rootMountPoint is %1</source>
-        <translation type="unfinished"/>
+        <translation>Ponto de montagem da root está %1</translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="62"/>
@@ -2208,7 +2208,7 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="64"/>
         <source>usermod terminated with error code %1.</source>
-        <translation type="unfinished"/>
+        <translation>usermod terminou com código de erro %1.</translation>
     </message>
 </context>
 <context>

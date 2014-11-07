@@ -1060,12 +1060,12 @@ Output:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/devicepropswidgetbase.ui" line="265"/>
         <source>SMART status:</source>
-        <translation type="unfinished"/>
+        <translation>S.M.A.R.T statusas:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/devicepropswidgetbase.ui" line="303"/>
         <source>More...</source>
-        <translation type="unfinished"/>
+        <translation>Daugiau...</translation>
     </message>
 </context>
 <context>
@@ -1078,7 +1078,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="50"/>
         <source>Content:</source>
-        <translation type="unfinished"/>
+        <translation>Turinys:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="60"/>
@@ -1098,7 +1098,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="93"/>
         <source>&amp;Mount Point:</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Prijungimo vieta:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="110"/>

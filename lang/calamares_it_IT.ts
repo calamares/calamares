@@ -2171,7 +2171,7 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/users/SetHostNameJob.cpp" line="60"/>
         <source>Cannot write hostname to target system</source>
-        <translation type="unfinished"/>
+        <translation>Impossibile scrivere l&apos;hostname nel sistema di destinazione</translation>
     </message>
 </context>
 <context>
@@ -2197,7 +2197,7 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="52"/>
         <source>Bad destination system path.</source>
-        <translation type="unfinished"/>
+        <translation>Percorso di sistema di destinazione errato.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="53"/>
@@ -2225,7 +2225,7 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="56"/>
         <source>Cannot access selected timezone path.</source>
-        <translation type="unfinished"/>
+        <translation>Impossibile accedere al percorso della timezone selezionata</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="57"/>

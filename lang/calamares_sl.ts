@@ -970,12 +970,12 @@ Izpis:
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="141"/>
         <source>Cannot set home directory ownership for user %1.</source>
-        <translation type="unfinished"/>
+        <translation>Ni mogoče nastaviti lastništva domače mape za uporabnika %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="143"/>
         <source>chown terminated with error code %1.</source>
-        <translation type="unfinished"/>
+        <translation>chown se je prekinil s kodo napake %1.</translation>
     </message>
 </context>
 <context>
@@ -983,12 +983,12 @@ Izpis:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/decryptluksdialogwidgetbase.ui" line="22"/>
         <source>&amp;Name:</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Ime:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/decryptluksdialogwidgetbase.ui" line="35"/>
         <source>&amp;Passphrase:</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Geslo:</translation>
     </message>
 </context>
 <context>
@@ -996,27 +996,27 @@ Izpis:
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="41"/>
         <source>Delete partition %1</source>
-        <translation type="unfinished"/>
+        <translation>Izbriši razdelek %1</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="48"/>
         <source>The installer failed to delete partition %1.</source>
-        <translation type="unfinished"/>
+        <translation>Namestilniku ni uspelo izbrisati razdelka %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="54"/>
         <source>Partition (%1) and device (%2) do not match.</source>
-        <translation type="unfinished"/>
+        <translation>Razdelek (%1) in naprava (%2) si ne ustrezata.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="66"/>
         <source>Could not open device %1.</source>
-        <translation type="unfinished"/>
+        <translation>Ni mogoče odpreti naprave %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="75"/>
         <source>Could not open partition table.</source>
-        <translation type="unfinished"/>
+        <translation>Ni mogoče odpreti razpredelnice razdelkov.</translation>
     </message>
 </context>
 <context>
@@ -1024,7 +1024,7 @@ Izpis:
     <message>
         <location filename="../src/modules/partition/core/DeviceModel.cpp" line="79"/>
         <source>%1 - %2 (%3)</source>
-        <translation type="unfinished"/>
+        <translation>%1 - %2 (%3)</translation>
     </message>
 </context>
 <context>
@@ -1032,62 +1032,62 @@ Izpis:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/devicepropswidgetbase.ui" line="58"/>
         <source>Partition table:</source>
-        <translation type="unfinished"/>
+        <translation>Razpredelnica razdelkov:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/devicepropswidgetbase.ui" line="77"/>
         <source>Cylinder alignment</source>
-        <translation type="unfinished"/>
+        <translation>Poravnanje cilindrov</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/devicepropswidgetbase.ui" line="84"/>
         <source>Sector based alignment</source>
-        <translation type="unfinished"/>
+        <translation>Poravnanje po sektorjih</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/devicepropswidgetbase.ui" line="113"/>
         <source>Capacity:</source>
-        <translation type="unfinished"/>
+        <translation>Velikost:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/devicepropswidgetbase.ui" line="130"/>
         <source>Total sectors:</source>
-        <translation type="unfinished"/>
+        <translation>Vsi sektorji:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/devicepropswidgetbase.ui" line="160"/>
         <source>Cylinders/Heads/Sectors:</source>
-        <translation type="unfinished"/>
+        <translation>Cilindri/glave/sektorji:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/devicepropswidgetbase.ui" line="183"/>
         <source>Logical sector size:</source>
-        <translation type="unfinished"/>
+        <translation>Velikost logičnega sektorja:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/devicepropswidgetbase.ui" line="200"/>
         <source>Physical sector size:</source>
-        <translation type="unfinished"/>
+        <translation>Velikost fizičnega sektorja:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/devicepropswidgetbase.ui" line="217"/>
         <source>Cylinder size:</source>
-        <translation type="unfinished"/>
+        <translation>Velikost cilindra:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/devicepropswidgetbase.ui" line="241"/>
         <source>Primaries/Max:</source>
-        <translation type="unfinished"/>
+        <translation>Primaries/Max:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/devicepropswidgetbase.ui" line="265"/>
         <source>SMART status:</source>
-        <translation type="unfinished"/>
+        <translation>Stanje SMART:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/devicepropswidgetbase.ui" line="303"/>
         <source>More...</source>
-        <translation type="unfinished"/>
+        <translation>Več ...</translation>
     </message>
 </context>
 <context>
@@ -1095,67 +1095,67 @@ Izpis:
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="20"/>
         <source>Edit Existing Partition</source>
-        <translation type="unfinished"/>
+        <translation>Uredi obstoječi razdelek</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="50"/>
         <source>Content:</source>
-        <translation type="unfinished"/>
+        <translation>Vsebina:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="60"/>
         <source>Keep</source>
-        <translation type="unfinished"/>
+        <translation>Ohrani</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="70"/>
         <source>Format</source>
-        <translation type="unfinished"/>
+        <translation>Formatiraj</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="83"/>
         <source>Warning: Formatting the partition will erase all existing data.</source>
-        <translation type="unfinished"/>
+        <translation>Opozorilo: Formatiranje razdelka bo izbrisalo vse obstoječe podatke.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="93"/>
         <source>&amp;Mount Point:</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Priklopna točka:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="110"/>
         <source>/</source>
-        <translation type="unfinished"/>
+        <translation>/</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="115"/>
         <source>/boot</source>
-        <translation type="unfinished"/>
+        <translation>/boot</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="120"/>
         <source>/home</source>
-        <translation type="unfinished"/>
+        <translation>/home</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="125"/>
         <source>/opt</source>
-        <translation type="unfinished"/>
+        <translation>/opt</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="130"/>
         <source>/usr</source>
-        <translation type="unfinished"/>
+        <translation>/usr</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="135"/>
         <source>/var</source>
-        <translation type="unfinished"/>
+        <translation>/var</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="143"/>
         <source>Size:</source>
-        <translation type="unfinished"/>
+        <translation>Velikost:</translation>
     </message>
 </context>
 <context>
@@ -1163,12 +1163,12 @@ Izpis:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountoptionsdialogwidgetbase.ui" line="14"/>
         <source>Edit Mount Options</source>
-        <translation type="unfinished"/>
+        <translation>Uredi možnosti priklopa</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountoptionsdialogwidgetbase.ui" line="20"/>
         <source>Edit the mount options for this file system:</source>
-        <translation type="unfinished"/>
+        <translation>Uredi možnosti priklopa za ta datotečni sistem:</translation>
     </message>
 </context>
 <context>
@@ -1176,57 +1176,57 @@ Izpis:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="17"/>
         <source>Path:</source>
-        <translation type="unfinished"/>
+        <translation>Pot:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="46"/>
         <source>Select...</source>
-        <translation type="unfinished"/>
+        <translation>Izberi ...</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="53"/>
         <source>Type:</source>
-        <translation type="unfinished"/>
+        <translation>Vrsta:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="63"/>
         <source>Options:</source>
-        <translation type="unfinished"/>
+        <translation>Možnosti:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="73"/>
         <source>Read-only</source>
-        <translation type="unfinished"/>
+        <translation>Samo za branje</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="80"/>
         <source>Users can mount and unmount</source>
-        <translation type="unfinished"/>
+        <translation>Uporabniki lahko priklopijo in odklopijo</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="87"/>
         <source>No automatic mount</source>
-        <translation type="unfinished"/>
+        <translation>Ni samodejnega priklopa</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="94"/>
         <source>No update of file access times</source>
-        <translation type="unfinished"/>
+        <translation>Ni posodobitve časa dostopa do datotek</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="101"/>
         <source>Synchronous access</source>
-        <translation type="unfinished"/>
+        <translation>Sočasni dostop</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="108"/>
         <source>No update of directory access times</source>
-        <translation type="unfinished"/>
+        <translation>Ni posodobitve časa dostopa do map</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="115"/>
         <source>No binary execution</source>
-        <translation type="unfinished"/>
+        <translation>Brez zagona binarnih datotek</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="122"/>
