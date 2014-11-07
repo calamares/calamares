@@ -171,6 +171,11 @@ def set_autologin(username, displaymanagers, root_mount_point):
                 # User= line, possibly commented out
                 if re.match('\\s*(?:#\\s*)?User=', line):
                     line = 'User={}\n'.format(username)
+                # Session= line, commented out or with empty value
+                if re.match('\\s*#\\s*Session=|\\s*Session=$', line):
+                    default_desktop_environment = find_desktop_environment(root_mount_point)
+                    if default_desktop_environment != None:
+                        line = 'Session={}.desktop\n'.format(default_desktop_environment.desktop_file)
                 sddm_conf.write(line)
        
     return None
