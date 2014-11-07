@@ -139,7 +139,7 @@ def set_autologin(username, displaymanagers, root_mount_point):
         if os.path.isfile(sddm_conf_path):
             print('SDDM config file exists')
         else:
-            libcalamares.utils.check_chroot_call("sddm --example-config > /etc/sddm.conf")
+            libcalamares.utils.check_chroot_call(["sh", "-c", "sddm --example-config > /etc/sddm.conf"])
         text = []
         with open(sddm_conf_path, 'r') as sddm_conf:
             text = sddm_conf.readlines()
