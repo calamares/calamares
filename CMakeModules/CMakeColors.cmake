@@ -1,7 +1,7 @@
 if(NOT WIN32)
   # [ -t 2 ] tests whether stderr is interactive.
   # The negation '!' is because for POSIX shells, 0 is true and 1 is false.
-  execute_process(COMMAND "[ ! -t 2 ]" RESULT_VARIABLE IS_STDERR_INTERACTIVE)
+  execute_process(COMMAND test ! -t 2 RESULT_VARIABLE IS_STDERR_INTERACTIVE)
   if(IS_STDERR_INTERACTIVE)
     string(ASCII 27 Esc)
     set(ColorReset  "${Esc}[m")
