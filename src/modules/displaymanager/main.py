@@ -19,9 +19,32 @@
 #   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
 
 import os
+import collections
+import re
 import libcalamares
 import subprocess
 
+
+DesktopEnvironment = collections.namedtuple('DesktopEnvironment', ['executable', 'desktop_file'])
+
+desktop_environments = [
+    DesktopEnvironment('/usr/bin/startkde', 'plasma'), # KDE Plasma 5
+    DesktopEnvironment('/usr/bin/startkde', 'kde-plasma'), # KDE Plasma 4
+    DesktopEnvironment('/usr/bin/gnome-session', 'gnome'),
+    DesktopEnvironment('/usr/bin/startxfce4', 'xfce'),
+    DesktopEnvironment('/usr/bin/cinnamon-session', 'cinnamon-session'),
+    DesktopEnvironment('/usr/bin/mate-session', 'mate'),
+    DesktopEnvironment('/usr/bin/enlightenment_start', 'enlightenment'),
+    DesktopEnvironment('/usr/bin/openbox-session', 'openbox'),
+    DesktopEnvironment('/usr/bin/lxsession', 'LXDE')
+]
+
+def find_desktop_environment(root_mount_point):
+    for desktop_environment in desktop_environments:
+        if os.path.exists('%s%s' % (root_mount_point, desktop_environment.executable)) \
+           and os.path.exists('%s/usr/share/xsessions/%s.desktop' % (root_mount_point, desktop_environment.desktop_file)):
+            return desktop_environment
+    return None
 
 def set_autologin(username, displaymanagers, root_mount_point):
     """ Enables automatic login for the installed desktop managers """
@@ -145,8 +168,14 @@ def set_autologin(username, displaymanagers, root_mount_point):
             text = sddm_conf.readlines()
         with open(sddm_conf_path, 'w') as sddm_conf:
             for line in text:
-                if 'User=' in line:
+                # User= line, possibly commented out
+                if re.match('\\s*(?:#\\s*)?User=', line):
                     line = 'User={}\n'.format(username)
+                # Session= line, commented out or with empty value
+                if re.match('\\s*#\\s*Session=|\\s*Session=$', line):
+                    default_desktop_environment = find_desktop_environment(root_mount_point)
+                    if default_desktop_environment != None:
+                        line = 'Session={}.desktop\n'.format(default_desktop_environment.desktop_file)
                 sddm_conf.write(line)
        
     return None
@@ -196,9 +225,10 @@ def run():
             libcalamares.utils.chroot_call(['passwd', '-l', 'lightdm'])
             libcalamares.utils.chroot_call(
                 ['chown', '-R', 'lightdm:lightdm', '/run/lightdm'])
-            if os.path.exists("%s/usr/bin/startxfce4" % root_mount_point):
+            default_desktop_environment = find_desktop_environment(root_mount_point)
+            if default_desktop_environment != None:
                 os.system(
-                    "sed -i -e 's/^.*user-session=.*/user-session=xfce/' %s/etc/lightdm/lightdm.conf" % root_mount_point)
+                    "sed -i -e 's/^.*user-session=.*/user-session=%s/' %s/etc/lightdm/lightdm.conf" % (default_desktop_environment.desktop_file, root_mount_point))
             libcalamares.utils.chroot_call(['ln', '-s',
                                             '/usr/lib/lightdm/lightdm/gdmflexiserver',
                                             '/usr/bin/gdmflexiserver'])
@@ -222,24 +252,10 @@ def run():
             if os.path.exists("%s/var/lib/AccountsService/users" % root_mount_point):
                 os.system(
                     "echo \"[User]\" > %s/var/lib/AccountsService/users/gdm" % root_mount_point)
-            if os.path.exists("%s/usr/bin/startxfce4" % root_mount_point):
+            default_desktop_environment = find_desktop_environment(root_mount_point)
+            if default_desktop_environment != None:
                 os.system(
-                    "echo \"XSession=xfce\" >> %s/var/lib/AccountsService/users/gdm" % root_mount_point)
-            if os.path.exists("%s/usr/bin/cinnamon-session" % root_mount_point):
-                os.system(
-                    "echo \"XSession=cinnamon-session\" >> %s/var/lib/AccountsService/users/gdm" % root_mount_point)
-            if os.path.exists("%s/usr/bin/mate-session" % root_mount_point):
-                os.system(
-                    "echo \"XSession=mate\" >> %s/var/lib/AccountsService/users/gdm" % root_mount_point)
-            if os.path.exists("%s/usr/bin/enlightenment_start" % root_mount_point):
-                os.system(
-                    "echo \"XSession=enlightenment\" >> %s/var/lib/AccountsService/users/gdm" % root_mount_point)
-            if os.path.exists("%s/usr/bin/openbox-session" % root_mount_point):
-                os.system(
-                    "echo \"XSession=openbox\" >> %s/var/lib/AccountsService/users/gdm" % root_mount_point)
-            if os.path.exists("%s/usr/bin/lxsession" % root_mount_point):
-                os.system(
-                    "echo \"XSession=LXDE\" >> %s/var/lib/AccountsService/users/gdm" % root_mount_point)
+                    "echo \"XSession=%s\" >> %s/var/lib/AccountsService/users/gdm" % (default_desktop_environment.desktop_file, root_mount_point))
             os.system(
                 "echo \"Icon=\" >> %s/var/lib/AccountsService/users/gdm" % root_mount_point)
         else:
@@ -258,24 +274,10 @@ def run():
             libcalamares.utils.chroot_call(
                 ['chown', 'root:mdm', '/var/lib/mdm'])
             libcalamares.utils.chroot_call(['chmod', '1770', '/var/lib/mdm'])
-            if os.path.exists("%s/usr/bin/startxfce4" % root_mount_point):
+            default_desktop_environment = find_desktop_environment(root_mount_point)
+            if default_desktop_environment != None:
                 os.system(
-                    "sed -i 's|default.desktop|xfce.desktop|g' %s/etc/mdm/custom.conf" % root_mount_point)
-            if os.path.exists("%s/usr/bin/cinnamon-session" % root_mount_point):
-                os.system(
-                    "sed -i 's|default.desktop|cinnamon.desktop|g' %s/etc/mdm/custom.conf" % root_mount_point)
-            if os.path.exists("%s/usr/bin/openbox-session" % root_mount_point):
-                os.system(
-                    "sed -i 's|default.desktop|openbox.desktop|g' %s/etc/mdm/custom.conf" % root_mount_point)
-            if os.path.exists("%s/usr/bin/mate-session" % root_mount_point):
-                os.system(
-                    "sed -i 's|default.desktop|mate.desktop|g' %s/etc/mdm/custom.conf" % root_mount_point)
-            if os.path.exists("%s/usr/bin/lxsession" % root_mount_point):
-                os.system(
-                    "sed -i 's|default.desktop|LXDE.desktop|g' %s/etc/mdm/custom.conf" % root_mount_point)
-            if os.path.exists("%s/usr/bin/enlightenment_start" % root_mount_point):
-                os.system(
-                    "sed -i 's|default.desktop|enlightenment.desktop|g' %s/etc/mdm/custom.conf" % root_mount_point)
+                    "sed -i 's|default.desktop|%s.desktop|g' %s/etc/mdm/custom.conf" % (default_desktop_environment.desktop_file, root_mount_point))
         else:
             return "mdm selected but not installed", ""
 
@@ -283,24 +285,10 @@ def run():
     if "lxdm" in displaymanagers:
         if os.path.exists("%s/usr/bin/lxdm" % root_mount_point):
             libcalamares.utils.chroot_call(['groupadd', '--system', 'lxdm'])
-            if os.path.exists("%s/usr/bin/startxfce4" % root_mount_point):
+            default_desktop_environment = find_desktop_environment(root_mount_point)
+            if default_desktop_environment != None:
                 os.system(
-                    "sed -i -e 's|^.*session=.*|session=/usr/bin/startxfce4|' %s/etc/lxdm/lxdm.conf" % root_mount_point)
-            if os.path.exists("%s/usr/bin/cinnamon-session" % root_mount_point):
-                os.system(
-                    "sed -i -e 's|^.*session=.*|session=/usr/bin/cinnamon-session|' %s/etc/lxdm/lxdm.conf" % root_mount_point)
-            if os.path.exists("%s/usr/bin/mate-session" % root_mount_point):
-                os.system(
-                    "sed -i -e 's|^.*session=.*|session=/usr/bin/mate-session|' %s/etc/lxdm/lxdm.conf" % root_mount_point)
-            if os.path.exists("%s/usr/bin/enlightenment_start" % root_mount_point):
-                os.system(
-                    "sed -i -e 's|^.*session=.*|session=/usr/bin/enlightenment_start|' %s/etc/lxdm/lxdm.conf" % root_mount_point)
-            if os.path.exists("%s/usr/bin/openbox-session" % root_mount_point):
-                os.system(
-                    "sed -i -e 's|^.*session=.*|session=/usr/bin/openbox-session|' %s/etc/lxdm/lxdm.conf" % root_mount_point)
-            if os.path.exists("%s/usr/bin/lxsession" % root_mount_point):
-                os.system(
-                    "sed -i -e 's|^.*session=.*|session=/usr/bin/lxsession|' %s/etc/lxdm/lxdm.conf" % root_mount_point)
+                    "sed -i -e 's|^.*session=.*|session=%s|' %s/etc/lxdm/lxdm.conf" % (default_desktop_environment.executable, root_mount_point))
             libcalamares.utils.chroot_call(
                 ['chgrp', '-R', 'lxdm', '/var/lib/lxdm'])
             libcalamares.utils.chroot_call(
