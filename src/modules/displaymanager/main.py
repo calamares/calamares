@@ -20,6 +20,7 @@
 
 import os
 import collections
+import re
 import libcalamares
 import subprocess
 
@@ -167,7 +168,8 @@ def set_autologin(username, displaymanagers, root_mount_point):
             text = sddm_conf.readlines()
         with open(sddm_conf_path, 'w') as sddm_conf:
             for line in text:
-                if 'User=' in line:
+                # User= line, possibly commented out
+                if re.match('\\s*(?:#\\s*)?User=', line):
                     line = 'User={}\n'.format(username)
                 sddm_conf.write(line)
        
