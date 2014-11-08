@@ -348,7 +348,7 @@ Sortida:
     <message>
         <location filename="../src/libcalamares/PythonHelper.cpp" line="257"/>
         <source>unparseable Python traceback</source>
-        <translation>Localització de Python no analitzable</translation>
+        <translation>Traceback de Python no analitzable</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonHelper.cpp" line="261"/>
@@ -745,7 +745,7 @@ Sortida:
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="60"/>
         <source>E&amp;xtended</source>
-        <translation>E&amp;xtesa</translation>
+        <translation>E&amp;stesa</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="89"/>
@@ -790,7 +790,7 @@ Sortida:
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="194"/>
         <source>Si&amp;ze:</source>
-        <translation>Ta&amp;many:</translation>
+        <translation>Mi&amp;da:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="204"/>
@@ -1868,7 +1868,7 @@ Alguns sistemes de fitxers requereixen la instal·lació d&apos;eines externes p
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="84"/>
         <source>New Partition &amp;Table</source>
-        <translation>Nova &amp;Taula de particions</translation>
+        <translation>Nova &amp;taula de particions</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="104"/>
@@ -2124,12 +2124,12 @@ La instal·lació pot continuar, però algunes característiques podrien ser des
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="75"/>
         <source>Resize file system on partition %1.</source>
-        <translation>Redimensionar el sistema de fitxers a la partició %1.</translation>
+        <translation>Redimensionar el sistema de fitxers de la partició %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="90"/>
         <source>Parted failed to resize filesystem.</source>
-        <translation>El Parted no ha pogut redimensionar el sistema d&apos;arxius.</translation>
+        <translation>El parted no ha pogut redimensionar el sistema d&apos;arxius.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="100"/>
@@ -2280,7 +2280,7 @@ La instal·lació pot continuar, però algunes característiques podrien ser des
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/sizedialogwidgetbase.ui" line="77"/>
         <source>Extended</source>
-        <translation>Extesa</translation>
+        <translation>Estesa</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/sizedialogwidgetbase.ui" line="84"/>
@@ -2376,7 +2376,7 @@ La instal·lació pot continuar, però algunes característiques podrien ser des
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="237"/>
         <source>Power cycles:</source>
-        <translation>Cercles de potència:</translation>
+        <translation>Cicles de potència:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="289"/>

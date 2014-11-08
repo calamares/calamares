@@ -14,7 +14,7 @@
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="161"/>
         <source>With this operation, the partition &lt;b&gt;%1&lt;/b&gt; which contains %4 will be shrunk to %2MB and a new %3MB partition will be created for %5.</source>
-        <translation type="unfinished"/>
+        <translation>Con esta operación, la partición &lt;b&gt;%1&lt;/b&gt; que contiene %4 sera encogida a %2MB y una nueva partición de %3MB sera creada para %5</translation>
     </message>
 </context>
 <context>
