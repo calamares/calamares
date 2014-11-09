@@ -86,7 +86,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="198"/>
         <source>Location</source>
-        <translation>Yerel</translation>
+        <translation>Yereliniz</translation>
     </message>
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="224"/>
@@ -173,7 +173,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="57"/>
         <source>Master Boot Record of %1</source>
-        <translation>Önyükleyici Kaydı %1</translation>
+        <translation>%1 Üzerine Önyükleyici Kur</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="71"/>
@@ -361,7 +361,7 @@ Output:
     <message>
         <location filename="../src/calamares/CalamaresWindow.cpp" line="40"/>
         <source>%1 Installer</source>
-        <translation>Yükleniyor %1</translation>
+        <translation>%1 Yükleniyor</translation>
     </message>
 </context>
 <context>
@@ -392,17 +392,17 @@ Output:
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="122"/>
         <source>This computer currently has %1 on it. What would you like to do?</source>
-        <translation>Bu bilgisayar üzerinde %1 yer vardır. Ne yapmak istersiniz?</translation>
+        <translation>Bu bilgisayar üzerinde %1 kuruludur. Ne yapmak istersiniz?</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="126"/>
         <source>&lt;b&gt;Install %2 alongside %1&lt;/b&gt;&lt;br/&gt;Documents, music and other personal files will be kept. You can choose which operating system you want each time the computer starts up.</source>
-        <translation>&lt;b&gt;%1 yanına %2 yükle&lt;/b&gt;&lt;br/&gt;Belgeler, müzik ve diğer kişisel dosyalar tutulacaktır. Bilgisayarınız başlatılırken istediğiniz işletim sistemini seçebilirsiniz.</translation>
+        <translation>&lt;b&gt;%1 yanına %2 yükle&lt;/b&gt;&lt;br/&gt;Belgeler, müzik ve diğer kişisel dosyalar korunacaktır. Bilgisayarınız başlatılırken istediğiniz işletim sistemini seçebilirsiniz.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="134"/>
         <source>&lt;b&gt;Replace %1 with %2&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;This will erase the whole disk and delete all of your %1 programs, documents, photos, music, and any other files.</source>
-        <translation>&lt;b&gt;%1 üzerine yaz %2 ile&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Uyarı: &lt;/font&gt;Tüm diskiniz temizlenecek %1 program, belgeler, fotoğraflar, müzik ve tüm diğer dosyalar silinecek.</translation>
+        <translation>&lt;b&gt;%2 ile %1 üzerine biçimleyip kur&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Uyarı: &lt;/font&gt;Tüm diskiniz temizlenecek %1 program, belgeler, fotoğraflar, müzik ve tüm diğer dosyalar silinecek.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="144"/>
@@ -412,7 +412,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="147"/>
         <source>&lt;b&gt;Install %1 alongside your current operating system&lt;/b&gt;&lt;br/&gt;Documents, music and other personal files will be kept. You can choose which operating system you want each time the computer starts up.</source>
-        <translation>&lt;b&gt;Diğer işletim sisteminin yanına %1 yükle&lt;/b&gt;&lt;br/&gt;Belgeler, müzik ve diğer kişisel dosyalar tutulacaktır. Bilgisayarınız başlatılırken istediğiniz işletim sistemini seçebilirsiniz.</translation>
+        <translation>&lt;b&gt;Diğer işletim sisteminin yanına %1 yükle&lt;/b&gt;&lt;br/&gt;Belgeler, müzik ve diğer kişisel dosyalar korunacaktır. Bilgisayarınız başlatılırken istediğiniz işletim sistemini seçebilirsiniz.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="154"/>
@@ -428,12 +428,12 @@ Output:
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="181"/>
         <source>&lt;b&gt;Install %1 alongside your current operating systems&lt;/b&gt;&lt;br/&gt;Documents, music and other personal files will be kept. You can choose which operating system you want each time the computer starts up.</source>
-        <translation>&lt;b&gt;Diğer işletim sistemlerinin yanına %1 yükle&lt;/b&gt;&lt;br/&gt;Belgeler, müzik ve diğer kişisel dosyalar tutulacaktır. Bilgisayarınız başlatılırken istediğiniz işletim sistemini seçebilirsiniz.</translation>
+        <translation>&lt;b&gt;Diğer işletim sistemlerinin yanına %1 yükle&lt;/b&gt;&lt;br/&gt;Belgeler, müzik ve diğer kişisel dosyalar korunacaktır. Bilgisayarınız başlatılırken istediğiniz işletim sistemini seçebilirsiniz.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="203"/>
         <source>&lt;b&gt;Something else&lt;/b&gt;&lt;br/&gt;You can create or resize partitions yourself, or choose multiple partitions for %1.</source>
-        <translation>&lt;b&gt;Başka bir şey&lt;/b&gt;&lt;br/&gt;%1 için birden fazla bölüm oluşturabilirsiniz ya da yeniden boyutlandırabilirsiniz.</translation>
+        <translation>&lt;b&gt;Gelişmiş Kurulum Seçenekleri&lt;/b&gt;&lt;br/&gt;%1 için birden fazla bölüm oluşturabilirsiniz ya da yeniden boyutlandırabilirsiniz.</translation>
     </message>
 </context>
 <context>
@@ -755,7 +755,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="118"/>
         <source>&amp;Mount Point:</source>
-        <translation>%Bağlama Noktası:</translation>
+        <translation>&amp;Bağlama Noktası:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="135"/>
@@ -1479,7 +1479,7 @@ Bazı dosya sistemlerinin desteklenmesi ve düzenlenmesi için ek uygulamalar ge
     <message>
         <location filename="../src/modules/locale/LocaleViewStep.cpp" line="74"/>
         <source>Location</source>
-        <translation>Yerel</translation>
+        <translation>Sistem Yereli</translation>
     </message>
 </context>
 <context>
@@ -1620,7 +1620,7 @@ Bazı dosya sistemlerinin desteklenmesi ve düzenlenmesi için ek uygulamalar ge
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="322"/>
         <source>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors. A good password will contain a mixture of letters, numbers and punctuation, should be at least eight characters long, and should be changed at regular intervals.&lt;/small&gt;</source>
-        <translation>&lt;small&gt;Yazım hatası ihtimaline karşı parolanızı iki kere yazınız.  İyi bir parola en az sekiz karakter olmalı ve rakamları, harfleri, karakterleri içermelidir, düzenli aralıklarla değiştirilmelidir.&lt;/small&gt;</translation>
+        <translation>&lt;small&gt;Yazım hatası ihtimaline karşı parolanızı iki kere yazınız.  Güçlü bir parola en az sekiz karakter olmalı ve rakamları, harfleri, karakterleri içermelidir, düzenli aralıklarla değiştirilmelidir.&lt;/small&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="345"/>
@@ -1635,7 +1635,7 @@ Bazı dosya sistemlerinin desteklenmesi ve düzenlenmesi için ek uygulamalar ge
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="451"/>
         <source>Choose a password for the administrator account.</source>
-        <translation>Yönetici hesabı için bir parola seç.</translation>
+        <translation>Yönetici-Root hesabı için bir parola belirle.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="556"/>
@@ -1863,7 +1863,7 @@ Bazı dosya sistemlerinin desteklenmesi ve düzenlenmesi için ek uygulamalar ge
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="51"/>
         <source>&amp;Revert All Changes</source>
-        <translation>&amp;Tüm Değişiklikleri Döndür</translation>
+        <translation>&amp;Tüm Değişiklikleri Geri Al</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="84"/>
@@ -1906,7 +1906,7 @@ Bazı dosya sistemlerinin desteklenmesi ve düzenlenmesi için ek uygulamalar ge
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="149"/>
         <source>Partitions</source>
-        <translation>Bölümler</translation>
+        <translation>Disk Bölümleme</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="177"/>
@@ -1924,7 +1924,7 @@ Bazı dosya sistemlerinin desteklenmesi ve düzenlenmesi için ek uygulamalar ge
     <message>
         <location filename="../src/modules/prepare/PreparePage.cpp" line="36"/>
         <source>For best results, please ensure that this computer:</source>
-        <translation>En iyi sonucu elde etmek için bilgisayarınızın şunları karşıladığından emin olunuz:</translation>
+        <translation>En iyi sonucu elde etmek için bilgisayarınızın aşağıdaki gereksinimleri karşıladığından emin olunuz:</translation>
     </message>
     <message>
         <location filename="../src/modules/prepare/PreparePage.cpp" line="91"/>
@@ -1951,27 +1951,27 @@ Kuruluma devam edebilirsiniz fakat bazı özellikler devre dışı kalabilir.</t
     <message>
         <location filename="../src/modules/prepare/PrepareViewStep.cpp" line="88"/>
         <source>has at least %1 GB available drive space</source>
-        <translation>En az %1 GB disk alanı gerekli</translation>
+        <translation>En az %1 GB disk alanı olduğundan...</translation>
     </message>
     <message>
         <location filename="../src/modules/prepare/PrepareViewStep.cpp" line="96"/>
         <source>has at least %1 GB working memory</source>
-        <translation>En az %1 bellek gerekli</translation>
+        <translation>En az %1 GB bellek bulunduğundan...</translation>
     </message>
     <message>
         <location filename="../src/modules/prepare/PrepareViewStep.cpp" line="104"/>
         <source>is plugged in to a power source</source>
-        <translation>Bir güç kaynağına takılı</translation>
+        <translation>Bir güç kaynağına takılı olduğundan...</translation>
     </message>
     <message>
         <location filename="../src/modules/prepare/PrepareViewStep.cpp" line="111"/>
         <source>is connected to the Internet</source>
-        <translation>İnternete bağlı</translation>
+        <translation>İnternete bağlı olduğundan...</translation>
     </message>
     <message>
         <location filename="../src/modules/prepare/PrepareViewStep.cpp" line="152"/>
         <source>Prepare</source>
-        <translation>Hazırlık yap</translation>
+        <translation>Hazırlıklar</translation>
     </message>
 </context>
 <context>
@@ -1979,7 +1979,7 @@ Kuruluma devam edebilirsiniz fakat bazı özellikler devre dışı kalabilir.</t
     <message>
         <location filename="../src/calamares/progresstree/ProgressTreeModel.cpp" line="136"/>
         <source>Prepare</source>
-        <translation>Hazırlık yap</translation>
+        <translation>Hazırlıklar</translation>
     </message>
     <message>
         <location filename="../src/calamares/progresstree/ProgressTreeModel.cpp" line="145"/>
