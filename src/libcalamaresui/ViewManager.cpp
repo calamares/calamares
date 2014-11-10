@@ -122,6 +122,7 @@ ViewManager::insertViewStep( int before, ViewStep* step)
     } );
 
     m_stack->setCurrentIndex( 0 );
+    step->widget()->setFocus();
 }
 
 
