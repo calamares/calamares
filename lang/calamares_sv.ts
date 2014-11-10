@@ -210,17 +210,17 @@ Output:
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="83"/>
         <source>External command failed to start</source>
-        <translation type="unfinished"/>
+        <translation>Externt kommando kunde inte initieras</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="84"/>
         <source>Command %1 failed to start.</source>
-        <translation type="unfinished"/>
+        <translation>Kommando %1 kunde inte initieras.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="88"/>
         <source>Internal error when starting command</source>
-        <translation type="unfinished"/>
+        <translation>Internt fel när kommando initieras</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="89"/>
@@ -230,7 +230,7 @@ Output:
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="92"/>
         <source>External command failed to finish</source>
-        <translation type="unfinished"/>
+        <translation>Externt kommando kunde inte avslutas.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="93"/>
@@ -249,7 +249,9 @@ Output:
         <source>Command %1 finished with exit code %2.
 Output:
 %3</source>
-        <translation type="unfinished"/>
+        <translation>Kommando %1 avslutades med utgångskod %2.
+Output:
+%3</translation>
     </message>
 </context>
 <context>
@@ -262,27 +264,27 @@ Output:
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="249"/>
         <source>Bad working directory path</source>
-        <translation type="unfinished"/>
+        <translation>Arbetskatalogens sökväg är ogiltig</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="250"/>
         <source>Working directory %1 for python job %2 is not readable.</source>
-        <translation type="unfinished"/>
+        <translation>Arbetskatalog %1 för python uppgift %2 är inte läsbar.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="260"/>
         <source>Bad main script file</source>
-        <translation type="unfinished"/>
+        <translation>Ogiltig main script fil</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="261"/>
         <source>Main script file %1 for python job %2 is not readable.</source>
-        <translation type="unfinished"/>
+        <translation>Main script fil %1 för python uppgift %2 är inte läsbar.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="305"/>
         <source>Boost.Python error in job &quot;%1&quot;.</source>
-        <translation>Boost.Python error i uppgift &quot;%&apos;1&quot;.</translation>
+        <translation>Boost.Python fel i uppgift &quot;%&apos;1&quot;.</translation>
     </message>
 </context>
 <context>
@@ -300,7 +302,7 @@ Output:
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="57"/>
         <source>&amp;Quit</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Sluta</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="137"/>
@@ -632,7 +634,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="42"/>
         <source>Sector alignment:</source>
-        <translation type="unfinished"/>
+        <translation>Sektoralignering:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="55"/>
@@ -647,7 +649,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="90"/>
         <source>Logging</source>
-        <translation type="unfinished"/>
+        <translation>Loggar</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="96"/>
@@ -697,7 +699,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="180"/>
         <source>Random data</source>
-        <translation type="unfinished"/>
+        <translation>Obetydlig data</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="190"/>
@@ -730,7 +732,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="89"/>
         <source>F&amp;ile System:</source>
-        <translation type="unfinished"/>
+        <translation>F&amp;ilsystem</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="118"/>
@@ -869,7 +871,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="62"/>
         <source>Could not open device %1.</source>
-        <translation type="unfinished"/>
+        <translation>Kunde inte öppna enhet %1.</translation>
     </message>
 </context>
 <context>
@@ -877,7 +879,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/createpartitiontablewidgetbase.ui" line="20"/>
         <source>Choose the type of partition table you want to create:</source>
-        <translation type="unfinished"/>
+        <translation>Välj vilken typ av partitionstabell du vill skapa:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/createpartitiontablewidgetbase.ui" line="29"/>
@@ -915,7 +917,7 @@ Output:
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="71"/>
         <source>Cannot create sudoers file for writing.</source>
-        <translation type="unfinished"/>
+        <translation>Kan inte skapa sudoers fil för skrivning.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="79"/>
@@ -963,7 +965,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/decryptluksdialogwidgetbase.ui" line="22"/>
         <source>&amp;Name:</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Namn:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/decryptluksdialogwidgetbase.ui" line="35"/>
@@ -1231,7 +1233,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="285"/>
         <source>Device Node</source>
-        <translation type="unfinished"/>
+        <translation>Enhetsnod</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="295"/>

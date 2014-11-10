@@ -147,7 +147,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="514"/>
         <source>Keyboard</source>
-        <translation>Klavye</translation>
+        <translation>Klavye Düzeni</translation>
     </message>
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="521"/>
@@ -191,7 +191,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/libcalamaresui/InstallationViewStep.cpp" line="47"/>
         <source>Install</source>
-        <translation>Yükle</translation>
+        <translation>Sistem Yüklemesi</translation>
     </message>
 </context>
 <context>
@@ -199,7 +199,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/libcalamares/JobQueue.cpp" line="88"/>
         <source>Done</source>
-        <translation>Tamam</translation>
+        <translation>Sistem kurulumu tamamlandı, kurulum aracından çıkabilirsiniz.</translation>
     </message>
 </context>
 <context>
@@ -277,7 +277,7 @@ Output:
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="234"/>
         <source>Run script %1</source>
-        <translation>%1 betiği çalışıyor</translation>
+        <translation>%1 betiği çalışıyor ve işletim sistemi bilgisayarınıza kuruluyor...</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="249"/>
@@ -387,7 +387,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="108"/>
         <source>&lt;b&gt;Erase disk and install %1&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;This will delete all of your programs, documents, photos, music, and any other files.</source>
-        <translation>&lt;b&gt;Diski sil ve yükle %1&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Uyarı: &lt;/font&gt;Bu işlem ile programlarınız, belgeleriniz, fotoğraflarınız, medyalarınız ve diğer tüm dosyalarınız silinecek.</translation>
+        <translation>&lt;b&gt;Diski sil ve %1 yükle&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Uyarı: &lt;/font&gt;Bu işlem ile programlarınız, belgeleriniz, fotoğraflarınız, medyalarınız ve diğer tüm dosyalarınız silinecek.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="122"/>
@@ -818,7 +818,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="47"/>
         <source>Create partition (file system: %1, size: %2 MB) on %3.</source>
-        <translation>Bölüm oluştur (dosya sistemi: %1, boyut: %2 MB) %3 üzerinde.</translation>
+        <translation>%3 üzerinde (dosya sistemi: %1, boyut: %2 MB) bölümleri oluşturuluyor.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="60"/>
@@ -1435,12 +1435,12 @@ Bazı dosya sistemlerinin desteklenmesi ve düzenlenmesi için ek uygulamalar ge
     <message>
         <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="181"/>
         <source>Set keyboard model to %1.&lt;br/&gt;</source>
-        <translation>%1 Klavye modelini ayarla.&lt;br/&gt;</translation>
+        <translation>%1 Klavye düzeni olarak seçildi.&lt;br/&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="183"/>
         <source>Set keyboard layout to %1/%2.</source>
-        <translation>%1/%2 klavye türevini ayarla.</translation>
+        <translation>Alt klavye türevi olarak %1/%2 seçildi.</translation>
     </message>
 </context>
 <context>
@@ -1448,7 +1448,7 @@ Bazı dosya sistemlerinin desteklenmesi ve düzenlenmesi için ek uygulamalar ge
     <message>
         <location filename="../src/modules/keyboard/KeyboardViewStep.cpp" line="45"/>
         <source>Keyboard</source>
-        <translation>Klavye</translation>
+        <translation>Klavye Düzeni</translation>
     </message>
 </context>
 <context>
@@ -1466,7 +1466,7 @@ Bazı dosya sistemlerinin desteklenmesi ve düzenlenmesi için ek uygulamalar ge
     <message>
         <location filename="../src/modules/locale/LocalePage.cpp" line="176"/>
         <source>Set timezone to %1/%2.&lt;br/&gt;</source>
-        <translation>%1/%2 zaman dilimi ayarla.&lt;br/&gt;</translation>
+        <translation>Bölge ve zaman dilimi olarak %1/%2 ayarlandı.&lt;br/&gt;</translation>
     </message>
 </context>
 <context>
@@ -2507,7 +2507,7 @@ Kuruluma devam edebilirsiniz fakat bazı özellikler devre dışı kalabilir.</t
     <message>
         <location filename="../src/modules/users/UsersViewStep.cpp" line="46"/>
         <source>Users</source>
-        <translation>Kullanıcılar</translation>
+        <translation>Kullanıcı Seçenekleri</translation>
     </message>
 </context>
 </TS>

@@ -1168,7 +1168,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountoptionsdialogwidgetbase.ui" line="20"/>
         <source>Edit the mount options for this file system:</source>
-        <translation type="unfinished"/>
+        <translation>Επεξεργάσου τις επιλογές Mount για αυτό το σύστημα αρχείων:</translation>
     </message>
 </context>
 <context>
@@ -1176,72 +1176,72 @@ Output:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="17"/>
         <source>Path:</source>
-        <translation type="unfinished"/>
+        <translation>Διαδρομή:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="46"/>
         <source>Select...</source>
-        <translation type="unfinished"/>
+        <translation>Επέλεξε...</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="53"/>
         <source>Type:</source>
-        <translation type="unfinished"/>
+        <translation>Τύπος:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="63"/>
         <source>Options:</source>
-        <translation type="unfinished"/>
+        <translation>Επιλογές:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="73"/>
         <source>Read-only</source>
-        <translation type="unfinished"/>
+        <translation>Μόνο ανάγνωση:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="80"/>
         <source>Users can mount and unmount</source>
-        <translation type="unfinished"/>
+        <translation>Οι χρήστες μπορούν να κάνουν mount και unmount</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="87"/>
         <source>No automatic mount</source>
-        <translation type="unfinished"/>
+        <translation>Μη αυτόματο mount</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="94"/>
         <source>No update of file access times</source>
-        <translation type="unfinished"/>
+        <translation>Μη αναβάθμιση των χρόνων πρόσβασης αρχείων</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="101"/>
         <source>Synchronous access</source>
-        <translation type="unfinished"/>
+        <translation>Συγχρονισμένη πρόσβαση</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="108"/>
         <source>No update of directory access times</source>
-        <translation type="unfinished"/>
+        <translation>Μη αναβάθμιση των χρόνων πρόσβασης καταλόγου</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="115"/>
         <source>No binary execution</source>
-        <translation type="unfinished"/>
+        <translation>Μη εκτέλεση δυαδικού</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="122"/>
         <source>Update access times relative to modification</source>
-        <translation type="unfinished"/>
+        <translation>Αναβάθμισε τους χρόνους πρόσβασης σε σχέση με τις αλλαγές</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="142"/>
         <source>More...</source>
-        <translation type="unfinished"/>
+        <translation>Περισσότερα...</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="149"/>
         <source>Dump Frequency:</source>
-        <translation type="unfinished"/>
+        <translation>Συχνότητα εντολής Dump:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="178"/>

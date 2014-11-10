@@ -77,7 +77,11 @@
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600; color:#343434;&quot;&gt;Welcome&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600; color:#343434;&quot;&gt;Sveiki&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="198"/>
@@ -96,7 +100,11 @@ p, li { white-space: pre-wrap; }
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600; color:#343434;&quot;&gt;Installation&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600; color:#343434;&quot;&gt;Diegimas&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="287"/>
@@ -110,7 +118,11 @@ p, li { white-space: pre-wrap; }
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600; color:#343434;&quot;&gt;Configuration&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600; color:#343434;&quot;&gt;Konfiguravimas&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="331"/>
@@ -149,7 +161,11 @@ p, li { white-space: pre-wrap; }
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600; color:#343434;&quot;&gt;Preparation&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600; color:#343434;&quot;&gt;Paruošimas&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
@@ -203,7 +219,9 @@ p, li { white-space: pre-wrap; }
         <source>Command %1 crashed.
 Output:
 %2</source>
-        <translation type="unfinished"/>
+        <translation>Komanda %1 nustojo veikti .
+Išvestis:
+%2</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="83"/>
@@ -235,7 +253,9 @@ Output:
         <source>Command %1 failed to finish in %2s.
 Output:
 %3</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko pabaigti komandos %1 per %2s.
+Išvestis:
+%3</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="99"/>
@@ -247,7 +267,9 @@ Output:
         <source>Command %1 finished with exit code %2.
 Output:
 %3</source>
-        <translation type="unfinished"/>
+        <translation>Komanda %1 pabaiga su išėjimo kodu %2.
+Išvestis:
+%3</translation>
     </message>
 </context>
 <context>
@@ -280,7 +302,7 @@ Output:
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="305"/>
         <source>Boost.Python error in job &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Boost.Python error in job &quot;%1&quot;.</translation>
     </message>
 </context>
 <context>
@@ -424,12 +446,12 @@ Output:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="35"/>
         <source>Allow applying operations without administrator privileges</source>
-        <translation type="unfinished"/>
+        <translation>Įgalinti operacijų paleidimą bet administratoriaus privilėgijų</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="51"/>
         <source>Backend</source>
-        <translation type="unfinished"/>
+        <translation>Vidinis</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="57"/>
@@ -444,7 +466,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="85"/>
         <source>Preferred unit:</source>
-        <translation type="unfinished"/>
+        <translation>Pageidautinas vienetas:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="96"/>
@@ -635,7 +657,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="55"/>
         <source> sectors</source>
-        <translation type="unfinished"/>
+        <translation>sektoriai</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="71"/>
@@ -650,7 +672,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="96"/>
         <source>Hide messages below:</source>
-        <translation type="unfinished"/>
+        <translation>Paslėpti žinutes:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="107"/>
@@ -700,7 +722,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="190"/>
         <source>Zeros</source>
-        <translation type="unfinished"/>
+        <translation>Nuliai</translation>
     </message>
 </context>
 <context>
@@ -733,7 +755,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="118"/>
         <source>&amp;Mount Point:</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Prijungimo vieta:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="135"/>
@@ -829,27 +851,27 @@ Output:
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="20"/>
         <source>Create Partition Table</source>
-        <translation type="unfinished"/>
+        <translation>Sukurti skirsnio lentelę</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="39"/>
         <source>Creating a new partition table will delete all existing data on the disk.</source>
-        <translation type="unfinished"/>
+        <translation>Kuriant nauja skirsnio lentelė ištrinama visa esama informacija iš disko</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="65"/>
         <source>What kind of partition table do you want to create?</source>
-        <translation type="unfinished"/>
+        <translation>Kokio tipo skirsnių lentelę norite sukurti?</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="72"/>
         <source>Master Boot Record (MBR)</source>
-        <translation type="unfinished"/>
+        <translation>MBR</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="82"/>
         <source>GUID Partition Table (GPT)</source>
-        <translation type="unfinished"/>
+        <translation>GPT</translation>
     </message>
 </context>
 <context>
@@ -857,7 +879,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="47"/>
         <source>Create partition table</source>
-        <translation type="unfinished"/>
+        <translation>Sukurti skirsnių lentelę</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="54"/>
@@ -2361,17 +2383,17 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="294"/>
         <source>Attribute</source>
-        <translation type="unfinished"/>
+        <translation>Atributas </translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="299"/>
         <source>Failure Type</source>
-        <translation type="unfinished"/>
+        <translation>Nesėkmes tipas</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="304"/>
         <source>Update Type</source>
-        <translation type="unfinished"/>
+        <translation>Atnaujinimo tipas</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="309"/>
@@ -2381,12 +2403,12 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="314"/>
         <source>Current</source>
-        <translation type="unfinished"/>
+        <translation>Dabartinis</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="319"/>
         <source>Threshold</source>
-        <translation type="unfinished"/>
+        <translation>Slenkstis</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="324"/>
@@ -2396,7 +2418,7 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="329"/>
         <source>Assessment</source>
-        <translation type="unfinished"/>
+        <translation>Įvertinimas</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="334"/>
@@ -2411,7 +2433,7 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="414"/>
         <source>Self tests:</source>
-        <translation type="unfinished"/>
+        <translation>Savarankiškas testas:</translation>
     </message>
 </context>
 <context>
@@ -2433,7 +2455,7 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/treelogbase.ui" line="57"/>
         <source>Severity</source>
-        <translation type="unfinished"/>
+        <translation>Sunkumas</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/treelogbase.ui" line="62"/>
@@ -2453,7 +2475,7 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="226"/>
         <source>Your username contains an invalid character &apos;%1&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Jūsų prisijungimo vardas turi neleistinų simbolių &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="230"/>
@@ -2463,7 +2485,7 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="277"/>
         <source>Your hostname contains an invalid character &apos;%1&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Jūsų kompiuterio varde yra neleistinų simbolių &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="281"/>
