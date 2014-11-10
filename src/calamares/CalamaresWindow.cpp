@@ -82,6 +82,7 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
 
     ProgressTreeView* tv = new ProgressTreeView( sideBox );
     sideLayout->addWidget( tv );
+    tv->setFocusPolicy( Qt::NoFocus );
     CalamaresUtils::unmarginLayout( sideLayout );
     CalamaresUtils::unmarginLayout( mainLayout );
 
