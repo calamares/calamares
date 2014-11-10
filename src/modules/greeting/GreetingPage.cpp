@@ -77,20 +77,16 @@ GreetingPage::GreetingPage( QWidget* parent )
         } );
     }
 
-    QLabel* text = new QLabel( tr( "<h1>Welcome to the %1 installer.</h1><br/>"
-                                   "This program will ask you some questions and "
-                                   "set up %2 on your computer." )
-                               .arg( Calamares::Branding::instance()->
-                                     string( Calamares::Branding::VersionedName ) )
-                               .arg( Calamares::Branding::instance()->
-                                     string( Calamares::Branding::ProductName ) ), this );
-    text->setAlignment( Qt::AlignCenter );
-    text->setWordWrap( true );
-    text->setOpenExternalLinks( true );
+    m_text = new QLabel( this );
+    m_text->setAlignment( Qt::AlignCenter );
+    m_text->setWordWrap( true );
+    m_text->setOpenExternalLinks( true );
 
     mainLayout->addStretch();
-    mainLayout->addWidget( text );
+    mainLayout->addWidget( m_text );
     mainLayout->addStretch();
+
+    retranslate();
 }
 
 
@@ -101,7 +97,7 @@ GreetingPage::changeEvent( QEvent* e )
     switch ( e->type() )
     {
         case QEvent::LanguageChange:
-            //TODO: retranslate all widgets
+            retranslate();
             break;
 
         default:
@@ -116,4 +112,17 @@ GreetingPage::focusInEvent( QFocusEvent* e )
     if ( m_languageWidget )
         m_languageWidget->setFocus();
     e->accept();
+}
+
+
+void
+GreetingPage::retranslate()
+{
+    m_text->setText( tr( "<h1>Welcome to the %1 installer.</h1><br/>"
+                         "This program will ask you some questions and "
+                         "set up %2 on your computer." )
+                     .arg( Calamares::Branding::instance()->
+                           string( Calamares::Branding::VersionedName ) )
+                     .arg( Calamares::Branding::instance()->
+                           string( Calamares::Branding::ProductName ) ) );
 }
