@@ -24,6 +24,7 @@
 #include <QWidget>
 
 class QComboBox;
+class QLabel;
 class TimeZoneWidget;
 
 class LocalePage : public QWidget
@@ -38,10 +39,18 @@ public:
 
     QList< Calamares::job_ptr > createJobs();
 
+protected:
+    void changeEvent( QEvent* e ) override;
+
 private:
+    void retranslate();
+
     TimeZoneWidget* m_tzWidget;
     QComboBox* m_regionCombo;
     QComboBox* m_timezoneCombo;
+
+    QLabel* m_cityLabel;
+    QLabel* m_timezoneLabel;
 
     bool m_blockTzWidgetSet;
 };
