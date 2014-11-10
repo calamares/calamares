@@ -44,6 +44,10 @@ namespace CalamaresUtils
 static QDir s_appDataDir( CMAKE_INSTALL_FULL_DATADIR );
 static bool s_isAppDataDirOverridden = false;
 
+static QTranslator* s_translator = nullptr;
+static QTranslator* s_qtTranslator = nullptr;
+
+
 static bool
 isWritableDir( const QDir& dir )
 {
@@ -122,9 +126,10 @@ appLogDir()
 
 
 void
-installTranslator( QObject* parent )
+installTranslator( const QString& localeName, QObject* parent )
 {
-    QString locale = QLocale::system().uiLanguages().first().replace( "-", "_" );
+    QString locale = localeName;
+    locale.replace( "-", "_" );
 
     if ( locale == "C" )
         locale = "en";
@@ -141,7 +146,14 @@ installTranslator( QObject* parent )
         translator->load( QString( ":/lang/calamares_en" ) );
     }
 
+    if ( s_translator )
+    {
+        QCoreApplication::removeTranslator( s_translator );
+        delete s_translator;
+    }
+
     QCoreApplication::installTranslator( translator );
+    s_translator = translator;
 
     // Qt translations
     translator = new QTranslator( parent );
@@ -154,7 +166,13 @@ installTranslator( QObject* parent )
         qDebug() << "Translation: Qt: Using default locale, system locale one not found:" << locale;
     }
 
+    if ( s_qtTranslator )
+    {
+        QCoreApplication::removeTranslator( s_qtTranslator );
+        delete s_qtTranslator;
+    }
     QCoreApplication::installTranslator( translator );
+    s_qtTranslator = translator;
 }
 
 
