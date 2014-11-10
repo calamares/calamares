@@ -46,7 +46,8 @@ CalamaresApplication::CalamaresApplication( int& argc, char *argv[] )
     setApplicationName( QLatin1String( CALAMARES_APPLICATION_NAME ) );
     setApplicationVersion( QLatin1String( CALAMARES_VERSION ) );
 
-    CalamaresUtils::installTranslator( this );
+    QString startupLocale = QLocale::system().uiLanguages().first();
+    CalamaresUtils::installTranslator( startupLocale, this );
 
     QFont f = font();
 
@@ -59,13 +60,15 @@ CalamaresApplication::CalamaresApplication( int& argc, char *argv[] )
     // The following line blocks for 15s on Qt 5.1.0
     cDebug() << "Font height:" << QFontMetrics( f ).height();
     CalamaresUtils::setDefaultFontSize( f.pointSize() );
+
+    cDebug() << "Available languages:" << QString( CALAMARES_TRANSLATION_LANGUAGES ).split( ';' );
 }
 
 
 void
 CalamaresApplication::init()
 {
-    qDebug() << "CalamaresApplication thread:" << thread();
+    cDebug() << "CalamaresApplication thread:" << thread();
 
     //TODO: Icon loader
     Logger::setupLogfile();
