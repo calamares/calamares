@@ -24,6 +24,7 @@ set( libSources
     utils/CalamaresUtils.cpp
     utils/CalamaresUtilsSystem.cpp
     utils/Logger.cpp
+    utils/Retranslator.cpp
 )
 
 include_directories(
