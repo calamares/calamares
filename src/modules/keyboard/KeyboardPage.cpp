@@ -29,6 +29,7 @@
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 #include "utils/Logger.h"
+#include "utils/Retranslator.h"
 
 #include <QComboBox>
 #include <QProcess>
@@ -67,6 +68,8 @@ KeyboardPage::KeyboardPage( QWidget* parent )
         QProcess::execute( QString( "setxkbmap -model \"%1\"" )
                            .arg( model ).toUtf8() );
     });
+
+    CALAMARES_RETRANSLATE( ui->retranslateUi( this ); )
 }
 
 
