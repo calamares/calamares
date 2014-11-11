@@ -59,7 +59,8 @@ protected slots:
                                           QListWidgetItem* previous );
 
 private:
-    class LayoutItem : public QListWidgetItem {
+    class LayoutItem : public QListWidgetItem
+    {
     public:
         QString data;
         KeyboardGlobal::KeyboardInfo info;

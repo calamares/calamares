@@ -56,17 +56,19 @@ SetKeyboardLayoutJob::prettyName() const
 
 
 QString
-SetKeyboardLayoutJob::findConvertedKeymap( const QString& convertedKeymapPath ) const {
+SetKeyboardLayoutJob::findConvertedKeymap( const QString& convertedKeymapPath ) const
+{
     // No search path supplied, assume the distribution does not provide
     // converted keymaps
     if ( convertedKeymapPath.isEmpty() )
         return QString();
 
     QDir convertedKeymapDir( convertedKeymapPath );
-    QString name = m_variant.isEmpty() ? m_layout : (m_layout + '-' + m_variant);
+    QString name = m_variant.isEmpty() ? m_layout : ( m_layout + '-' + m_variant );
 
     if ( convertedKeymapDir.exists( name + ".map" )
-         || convertedKeymapDir.exists( name + ".map.gz" ) ) {
+         || convertedKeymapDir.exists( name + ".map.gz" ) )
+    {
         cDebug() << "Found converted keymap" << name;
 
         return name;
@@ -77,14 +79,16 @@ SetKeyboardLayoutJob::findConvertedKeymap( const QString& convertedKeymapPath ) 
 
 
 QString
-SetKeyboardLayoutJob::findLegacyKeymap() const {
+SetKeyboardLayoutJob::findLegacyKeymap() const
+{
     int bestMatching = 0;
     QString name;
 
     QFile file( ":/kbd-model-map" );
     file.open( QIODevice::ReadOnly | QIODevice::Text );
     QTextStream stream( &file );
-    while ( !stream.atEnd() ) {
+    while ( !stream.atEnd() )
+    {
         QString line = stream.readLine().trimmed();
         if ( line.isEmpty() || line.startsWith( '#' ) )
             continue;
@@ -105,7 +109,8 @@ SetKeyboardLayoutJob::findLegacyKeymap() const {
         else if ( mapping[1].startsWith( m_layout + ',' ) )
             matching = 5;
 
-        if (matching > 0) {
+        if ( matching > 0 )
+        {
             if ( m_model.isEmpty() || m_model == mapping[2] )
                 matching++;
 
@@ -123,11 +128,13 @@ SetKeyboardLayoutJob::findLegacyKeymap() const {
         }
 
         // The best matching entry so far, then let's save that
-        if ( matching >= qMax( bestMatching, 1 ) ) {
+        if ( matching >= qMax( bestMatching, 1 ) )
+        {
             cDebug() << "Found legacy keymap" << mapping[0]
                      << "with score" << matching;
 
-            if ( matching > bestMatching ) {
+            if ( matching > bestMatching )
+            {
                 bestMatching = matching;
                 name = mapping[0];
             }
@@ -140,11 +147,13 @@ SetKeyboardLayoutJob::findLegacyKeymap() const {
 
 bool
 SetKeyboardLayoutJob::writeVConsoleData( const QString& vconsoleConfPath,
-                                         const QString& convertedKeymapPath ) const {
+                                         const QString& convertedKeymapPath ) const
+{
     QString keymap = findConvertedKeymap( convertedKeymapPath );
     if ( keymap.isEmpty() )
         keymap = findLegacyKeymap();
-    if ( keymap.isEmpty() ) {
+    if ( keymap.isEmpty() )
+    {
         cDebug() << "Trying to use X11 layout" << m_layout
                  << "as the virtual console layout";
         keymap = m_layout;
@@ -154,7 +163,8 @@ SetKeyboardLayoutJob::writeVConsoleData( const QString& vconsoleConfPath,
 
     // Read in the existing vconsole.conf, if it exists
     QFile file( vconsoleConfPath );
-    if ( file.exists() ) {
+    if ( file.exists() )
+    {
         file.open( QIODevice::ReadOnly | QIODevice::Text );
         QTextStream stream( &file );
         while ( !stream.atEnd() )
@@ -168,25 +178,29 @@ SetKeyboardLayoutJob::writeVConsoleData( const QString& vconsoleConfPath,
     file.open( QIODevice::WriteOnly | QIODevice::Text );
     QTextStream stream( &file );
     bool found = false;
-    foreach ( const QString& existingLine, existingLines ) {
-        if ( existingLine.trimmed().startsWith( "KEYMAP=" ) ) {
+    foreach ( const QString& existingLine, existingLines )
+    {
+        if ( existingLine.trimmed().startsWith( "KEYMAP=" ) )
+        {
             stream << "KEYMAP=" << keymap << '\n';
             found = true;
-        } else
+        }
+        else
             stream << existingLine << '\n';
     }
     // Add a KEYMAP= line if there wasn't any
-    if (!found)
+    if ( !found )
         stream << "KEYMAP=" << keymap << '\n';
     stream.flush();
     file.close();
 
-    return (stream.status() == QTextStream::Ok);
+    return ( stream.status() == QTextStream::Ok );
 }
 
 
 bool
-SetKeyboardLayoutJob::writeX11Data( const QString& keyboardConfPath ) const {
+SetKeyboardLayoutJob::writeX11Data( const QString& keyboardConfPath ) const
+{
     QFile file( keyboardConfPath );
     file.open( QIODevice::WriteOnly | QIODevice::Text );
     QTextStream stream( &file );
@@ -211,7 +225,7 @@ SetKeyboardLayoutJob::writeX11Data( const QString& keyboardConfPath ) const {
 
     file.close();
 
-    return (stream.status() == QTextStream::Ok);
+    return ( stream.status() == QTextStream::Ok );
 }
 
 
@@ -237,7 +251,8 @@ SetKeyboardLayoutJob::exec()
     QString convertedKeymapPath;
     QString convertedKeymapPathSetting
         = gs->value( "keyboardConvertedKeymapPath" ).toString();
-    if ( !convertedKeymapPathSetting.isEmpty() ) {
+    if ( !convertedKeymapPathSetting.isEmpty() )
+    {
         while ( convertedKeymapPathSetting.startsWith( '/' ) )
             convertedKeymapPathSetting.remove( 0, 1 );
         convertedKeymapPath = destDir.absoluteFilePath( convertedKeymapPathSetting );
