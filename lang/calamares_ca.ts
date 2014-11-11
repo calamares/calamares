@@ -9,7 +9,7 @@
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="63"/>
         <source>Allocate drive space by dragging the divider below:</source>
-        <translation>Assigneu l&apos;espai del disc arrossegant el separador davall:</translation>
+        <translation>Assigneu l&apos;espai del disc arrossegant el separador d&apos;avall:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="161"/>

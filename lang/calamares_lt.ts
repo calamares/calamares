@@ -343,17 +343,17 @@ Išvestis:
     <message>
         <location filename="../src/libcalamares/PythonHelper.cpp" line="241"/>
         <source>unparseable Python error</source>
-        <translation type="unfinished"/>
+        <translation>Nepalyginama Python klaida</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonHelper.cpp" line="257"/>
         <source>unparseable Python traceback</source>
-        <translation type="unfinished"/>
+        <translation>Nepalyginamas Python atsekimas</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonHelper.cpp" line="261"/>
         <source>Unfetchable Python error.</source>
-        <translation type="unfinished"/>
+        <translation>Neatgaunama Python klaida.</translation>
     </message>
 </context>
 <context>
@@ -397,43 +397,43 @@ Išvestis:
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="126"/>
         <source>&lt;b&gt;Install %2 alongside %1&lt;/b&gt;&lt;br/&gt;Documents, music and other personal files will be kept. You can choose which operating system you want each time the computer starts up.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Diegit%2 šalia %1&lt;/b&gt;&lt;br/&gt;Dokumentai, muzika bei kiti asmeniniai failai bus išsaugoti. Jūs galėsite pasirinkti kurią sistemą norite užkrauti, kaskart paleidžiant kompiuterį. </translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="134"/>
         <source>&lt;b&gt;Replace %1 with %2&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;This will erase the whole disk and delete all of your %1 programs, documents, photos, music, and any other files.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Pakeisti%1 su%2&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Perspėjimas &lt;/font&gt;Tai ištrins jūsų visą diską ir pašalins visas jūsų %1 programas, dokumentus, nuotraukas, muzika ir visus kitus failus.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="144"/>
         <source>This computer already has an operating system on it. What would you like to do?</source>
-        <translation type="unfinished"/>
+        <translation>Šis kompiuteris jau turi operacinė sistemą. Ką norėtumėte daryti?</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="147"/>
         <source>&lt;b&gt;Install %1 alongside your current operating system&lt;/b&gt;&lt;br/&gt;Documents, music and other personal files will be kept. You can choose which operating system you want each time the computer starts up.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Diegti %1 šalia esamones operacinės sistemos&lt;/b&gt;&lt;br/&gt; Dokumentai, muzika bei kiti asmeniniai failai bus išsaugoti. Jūs galėsite pasirinkti kurią operacinę sistemą naudot kaskart paleidžiant kompiuterį. </translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="154"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="188"/>
         <source>&lt;b&gt;Erase disk and install %1&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;This will delete all of your Windows 7 programs, documents, photos, music, and any other files.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Ištrinti diską ir diegti %1&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Ispėjimas: &lt;/font&gt; Tai ištrins visus jūsų Windows 7 programas, dokumentus, nuotraukas, muzika ir visus kitus failus.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="178"/>
         <source>This computer currently has multiple operating systems on it. What would you like to do?</source>
-        <translation type="unfinished"/>
+        <translation>Šis kompiuteris šiuo metu turi kelias operacines sistemas. Ką norėtumėte daryti?</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="181"/>
         <source>&lt;b&gt;Install %1 alongside your current operating systems&lt;/b&gt;&lt;br/&gt;Documents, music and other personal files will be kept. You can choose which operating system you want each time the computer starts up.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Diegti %1 šalia esamos operacinės sistemos &lt;/b&gt;&lt;br/&gt;Dokumentai, muzika bei kiti asmeniniai failai bus išsaugoti. Jūs galėsite pasirinkti kurią operacinę sistemą naudot kaskart paleidžiant kompiuterį. </translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="203"/>
         <source>&lt;b&gt;Something else&lt;/b&gt;&lt;br/&gt;You can create or resize partitions yourself, or choose multiple partitions for %1.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Kita&lt;/b&gt;&lt;br/&gt;Jūs galėsite sukurti bei koreguoti skirsnius pats %1.</translation>
     </message>
 </context>
 <context>

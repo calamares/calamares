@@ -35,7 +35,7 @@
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/applyprogressdialogwidgetbase.ui" line="33"/>
         <source>Operations and Jobs</source>
-        <translation>Operações e Jobs</translation>
+        <translation>Operações e Tarefas</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/applyprogressdialogwidgetbase.ui" line="38"/>
@@ -199,7 +199,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/libcalamares/JobQueue.cpp" line="88"/>
         <source>Done</source>
-        <translation>Feito</translation>
+        <translation>Concluído</translation>
     </message>
 </context>
 <context>

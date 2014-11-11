@@ -423,12 +423,12 @@ Uitvoer:
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="178"/>
         <source>This computer currently has multiple operating systems on it. What would you like to do?</source>
-        <translation>Deze computer bevat meerdere besturingssystemen.  Wat wilt u doen?</translation>
+        <translation>Deze computer bevat meerdere besturingssystemen.  Wat wil je doen?</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="181"/>
         <source>&lt;b&gt;Install %1 alongside your current operating systems&lt;/b&gt;&lt;br/&gt;Documents, music and other personal files will be kept. You can choose which operating system you want each time the computer starts up.</source>
-        <translation>&lt;b&gt;Installeer %1 naast de huidige besturingssystemen&lt;/b&gt;&lt;br/&gt;Documenten, muziek en andere persoonlijke bestanden zullen bewaard blijven.  U kunt telkens kiezen welk besturingssysteem u wilt gebruiken wanneer de computer opstart.</translation>
+        <translation>&lt;b&gt;Installeer %1 naast de huidige besturingssystemen&lt;/b&gt;&lt;br/&gt;Documenten, muziek en andere persoonlijke bestanden zullen bewaard blijven. Telkens de computer opstart kan je kiezen welk besturingssysteem je wil gebruiken.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="203"/>

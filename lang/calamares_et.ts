@@ -22,7 +22,7 @@
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/applyprogressdetailswidgetbase.ui" line="37"/>
         <source>Save</source>
-        <translation type="unfinished"/>
+        <translation>Salvesta</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/applyprogressdetailswidgetbase.ui" line="44"/>
@@ -82,7 +82,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="198"/>
         <source>Location</source>
-        <translation type="unfinished"/>
+        <translation>Asukoht</translation>
     </message>
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="224"/>
@@ -115,7 +115,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="331"/>
         <source>Reboot</source>
-        <translation type="unfinished"/>
+        <translation>Taaskäivita</translation>
     </message>
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="410"/>
@@ -130,7 +130,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="469"/>
         <source>Summary</source>
-        <translation type="unfinished"/>
+        <translation>Kokkuvõte</translation>
     </message>
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="514"/>
@@ -183,7 +183,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/libcalamares/JobQueue.cpp" line="88"/>
         <source>Done</source>
-        <translation type="unfinished"/>
+        <translation>Valmis</translation>
     </message>
 </context>
 <context>
@@ -303,7 +303,7 @@ Output:
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="137"/>
         <source>Error</source>
-        <translation type="unfinished"/>
+        <translation>Viga</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="138"/>
@@ -419,7 +419,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="23"/>
         <source>Permissions</source>
-        <translation type="unfinished"/>
+        <translation>Õigused</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="35"/>
@@ -487,7 +487,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="23"/>
         <source>File Systems</source>
-        <translation type="unfinished"/>
+        <translation>Failisüsteemid</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="29"/>
@@ -597,7 +597,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="547"/>
         <source>unknown:</source>
-        <translation type="unfinished"/>
+        <translation>tundmatu:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="570"/>
@@ -635,7 +635,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="55"/>
         <source> sectors</source>
-        <translation type="unfinished"/>
+        <translation>sektorid</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="71"/>
@@ -645,32 +645,32 @@ Output:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="90"/>
         <source>Logging</source>
-        <translation type="unfinished"/>
+        <translation>Logib</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="96"/>
         <source>Hide messages below:</source>
-        <translation type="unfinished"/>
+        <translation>Peida allolevad sõnumid:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="107"/>
         <source>Debug</source>
-        <translation type="unfinished"/>
+        <translation>Silu</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="112"/>
         <source>Information</source>
-        <translation type="unfinished"/>
+        <translation>Informatsioon</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="117"/>
         <source>Warning</source>
-        <translation type="unfinished"/>
+        <translation>Hoiatus</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="122"/>
         <source>Error</source>
-        <translation type="unfinished"/>
+        <translation>Viga</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="139"/>
@@ -708,7 +708,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="14"/>
         <source>Create a Partition</source>
-        <translation type="unfinished"/>
+        <translation>Loo sektsioon</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="38"/>
@@ -738,7 +738,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="135"/>
         <source>/</source>
-        <translation type="unfinished"/>
+        <translation>/</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="140"/>
@@ -748,7 +748,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="145"/>
         <source>/home</source>
-        <translation type="unfinished"/>
+        <translation>/kodukataloog</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="150"/>
@@ -768,7 +768,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="194"/>
         <source>Si&amp;ze:</source>
-        <translation type="unfinished"/>
+        <translation>Suurus:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="204"/>
@@ -778,17 +778,17 @@ Output:
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="85"/>
         <source>Logical</source>
-        <translation type="unfinished"/>
+        <translation>Loogiline köide</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="90"/>
         <source>Primary</source>
-        <translation type="unfinished"/>
+        <translation>Peamine</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="107"/>
         <source>GPT</source>
-        <translation type="unfinished"/>
+        <translation>GPT</translation>
     </message>
 </context>
 <context>
@@ -1113,7 +1113,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="120"/>
         <source>/home</source>
-        <translation type="unfinished"/>
+        <translation>/kodukataloog</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="125"/>

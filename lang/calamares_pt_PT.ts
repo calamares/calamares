@@ -667,7 +667,7 @@ Saída:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="90"/>
         <source>Logging</source>
-        <translation>Coletando</translation>
+        <translation>Colectando</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="96"/>
@@ -770,7 +770,7 @@ Saída:
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="145"/>
         <source>/home</source>
-        <translation>/home</translation>
+        <translation>/iniciar</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="150"/>
@@ -843,7 +843,7 @@ Saída:
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="111"/>
         <source>The installer failed to update partition table on disk &apos;%1&apos;.</source>
-        <translation>O instalador falhou ao atualizar a tabela de partições no disco &apos;%1&apos;.</translation>
+        <translation>O instalador falhou ao actualizar a tabela de partições no disco &apos;%1&apos;.</translation>
     </message>
 </context>
 <context>
@@ -930,12 +930,12 @@ Saída:
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="67"/>
         <source>Sudoers dir is not writable.</source>
-        <translation>O diretório do Superutilizador não é gravável.</translation>
+        <translation>O directório do Super utilizador não é gravável.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="71"/>
         <source>Cannot create sudoers file for writing.</source>
-        <translation>Impossível criar ficheiro do superutilizador para gravação.</translation>
+        <translation>Impossível criar ficheiro do super utilizador para gravação.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="79"/>
@@ -1057,17 +1057,17 @@ Saída:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/devicepropswidgetbase.ui" line="160"/>
         <source>Cylinders/Heads/Sectors:</source>
-        <translation>Cilindros/Cabeças/Setores:</translation>
+        <translation>Cilindros/Cabeças/Sectores:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/devicepropswidgetbase.ui" line="183"/>
         <source>Logical sector size:</source>
-        <translation>Tamanho do setor lógico</translation>
+        <translation>Tamanho do sector lógico</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/devicepropswidgetbase.ui" line="200"/>
         <source>Physical sector size:</source>
-        <translation>Tamanho do setor físico:</translation>
+        <translation>Tamanho do sector físico:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/devicepropswidgetbase.ui" line="217"/>
@@ -1135,7 +1135,7 @@ Saída:
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="120"/>
         <source>/home</source>
-        <translation>/home</translation>
+        <translation>/iniciar</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="125"/>
@@ -1211,7 +1211,7 @@ Saída:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="94"/>
         <source>No update of file access times</source>
-        <translation>Sem atualização nos tempos de acesso do ficheiro</translation>
+        <translation>Sem actualização nos tempos de acesso do ficheiro</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="101"/>
@@ -1221,7 +1221,7 @@ Saída:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="108"/>
         <source>No update of directory access times</source>
-        <translation>Sem atualização nos tempos de acesso do diretório</translation>
+        <translation>Sem actualização nos tempos de acesso do directório</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="115"/>
@@ -1231,7 +1231,7 @@ Saída:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="122"/>
         <source>Update access times relative to modification</source>
-        <translation>Atualiza os tempos de acesso relativo a modificações</translation>
+        <translation>Actualiza os tempos de acesso relativo a modificações</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="142"/>
@@ -1294,7 +1294,7 @@ Saída:
         <source>This table shows which file systems are supported and which specific operations can be performed on them.
 Some file systems need external tools to be installed for them to be supported. But not all operations can be performed on all file systems, even if all required tools are installed. Please see the documentation for details. </source>
         <translation>Esta tabela mostra os sistemas de ficheiros suportados e as operações possíveis de serem executadas.
-Alguns sistemas de ficheiros necessitam de ferramentas externas para serem suportados. Contudo, mesmo com todas as ferramentas instaladas, nem todas as operações podem ser realizadas em todos os sistemas de ficheiros. Consulte a documentação para maiores informações.</translation>
+Alguns sistemas de ficheiros necessitam de ferramentas externas para serem suportados. Contudo, mesmo com todas as ferramentas instaladas, nem todas as operações podem ser realizadas em todos os sistemas de ficheiros. Consulte a documentação para mais informações.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/filesystemsupportdialogwidgetbase.ui" line="65"/>
@@ -1411,7 +1411,7 @@ Alguns sistemas de ficheiros necessitam de ferramentas externas para serem supor
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="92"/>
         <source>The installer failed to update partition table on disk &apos;%1&apos;.</source>
-        <translation>O instalador falhou ao atualizar a tabela de partições no disco &apos;%1&apos;.</translation>
+        <translation>O instalador falhou ao actualizar a tabela de partições no disco &apos;%1&apos;.</translation>
     </message>
 </context>
 <context>
@@ -1545,12 +1545,12 @@ Alguns sistemas de ficheiros necessitam de ferramentas externas para serem supor
     <message>
         <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="113"/>
         <source>Updating boot sector after the moving of partition %1 failed.</source>
-        <translation>A atualizar sector de arranque após a movimentação da partição %1 ter falhado.</translation>
+        <translation>A actualizar sector de arranque após a movimentação da partição %1 ter falhado.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="127"/>
         <source>The logical sector sizes in the source and target for copying are not the same. This is currently unsupported.</source>
-        <translation>O tamanho de setor lógico a copiar no destino e na fonte não são os mesmos. Esta operação não é suportada atualmente.</translation>
+        <translation>O tamanho de sector lógico a copiar no destino e na fonte não são os mesmos. Esta operação não é suportada actualmente.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="200"/>
@@ -1630,7 +1630,7 @@ Alguns sistemas de ficheiros necessitam de ferramentas externas para serem supor
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="428"/>
         <source>&lt;small&gt;This name will be used if you make the computer visible to others on a network.&lt;/small&gt;</source>
-        <translation>&lt;small&gt;Este nome será usado caso você decida tornar este computador visível para outros na mesma rede.&lt;/small&gt;</translation>
+        <translation>&lt;small&gt;Este nome será usado caso decida tornar este computador visível para outros na mesma rede.&lt;/small&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="451"/>
@@ -1640,7 +1640,7 @@ Alguns sistemas de ficheiros necessitam de ferramentas externas para serem supor
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="556"/>
         <source>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors.&lt;/small&gt;</source>
-        <translation>&lt;small&gt;Introduza a mesma palavra-passe duas vezes, para que se possam vericar erros na introdução.&lt;/small&gt;</translation>
+        <translation>&lt;small&gt;Introduza a mesma palavra-passe duas vezes, para que se possam verificar erros na introdução.&lt;/small&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="596"/>
@@ -2172,7 +2172,7 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
     <message>
         <location filename="../src/modules/users/SetHostNameJob.cpp" line="60"/>
         <source>Cannot write hostname to target system</source>
-        <translation>Não é possível gravar o nome da máquina para o sistema selecionado</translation>
+        <translation>Não é possível gravar o nome da máquina para o sistema seleccionado</translation>
     </message>
 </context>
 <context>
@@ -2198,7 +2198,7 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="52"/>
         <source>Bad destination system path.</source>
-        <translation>O caminho para o sistema está mal direcionado.</translation>
+        <translation>O caminho para o sistema está mal direccionado.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="53"/>

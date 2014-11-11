@@ -14,7 +14,7 @@
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="161"/>
         <source>With this operation, the partition &lt;b&gt;%1&lt;/b&gt; which contains %4 will be shrunk to %2MB and a new %3MB partition will be created for %5.</source>
-        <translation type="unfinished"/>
+        <translation>Med denna handling komer partitionen &lt;b&gt;%1&lt;/b&gt; som innehåller %4 att förminskas till %2MB och en ny %3MB partition kommer att skapas för %5.</translation>
     </message>
 </context>
 <context>
@@ -35,7 +35,7 @@
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/applyprogressdialogwidgetbase.ui" line="33"/>
         <source>Operations and Jobs</source>
-        <translation type="unfinished"/>
+        <translation>Processer och Uppgifter</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/applyprogressdialogwidgetbase.ui" line="38"/>
@@ -45,12 +45,12 @@
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/applyprogressdialogwidgetbase.ui" line="64"/>
         <source>Total Time: 00:00:00</source>
-        <translation type="unfinished"/>
+        <translation>Total Tid: 00:00:00</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/applyprogressdialogwidgetbase.ui" line="81"/>
         <source>Operation: %p%</source>
-        <translation type="unfinished"/>
+        <translation>Process: %p%</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/applyprogressdialogwidgetbase.ui" line="91"/>
@@ -68,7 +68,7 @@
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="20"/>
         <source>Installer</source>
-        <translation type="unfinished"/>
+        <translation>Installationsprogram</translation>
     </message>
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="168"/>
@@ -87,7 +87,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="224"/>
         <source>License Approval</source>
-        <translation type="unfinished"/>
+        <translation>Acceptera Licens</translation>
     </message>
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="257"/>
@@ -225,7 +225,7 @@ Output:
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="89"/>
         <source>Bad parameters for process job call.</source>
-        <translation type="unfinished"/>
+        <translation>Ogiltiga parametrar för processens uppgifts-anrop.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="92"/>
@@ -237,7 +237,9 @@ Output:
         <source>Command %1 failed to finish in %2s.
 Output:
 %3</source>
-        <translation type="unfinished"/>
+        <translation>Kommando %1 kunde inte avslutas efter %2s.
+Output:
+%3</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="99"/>
@@ -325,17 +327,17 @@ Output:
     <message>
         <location filename="../src/libcalamares/PythonHelper.cpp" line="241"/>
         <source>unparseable Python error</source>
-        <translation type="unfinished"/>
+        <translation>Otillgängligt Python-fel</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonHelper.cpp" line="257"/>
         <source>unparseable Python traceback</source>
-        <translation type="unfinished"/>
+        <translation>Otillgängligt Python-traceback</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonHelper.cpp" line="261"/>
         <source>Unfetchable Python error.</source>
-        <translation type="unfinished"/>
+        <translation>Ohämtbart Python-fel</translation>
     </message>
 </context>
 <context>
@@ -343,7 +345,7 @@ Output:
     <message>
         <location filename="../src/calamares/CalamaresWindow.cpp" line="40"/>
         <source>%1 Installer</source>
-        <translation type="unfinished"/>
+        <translation>%1 Installationsprogram</translation>
     </message>
 </context>
 <context>
@@ -356,7 +358,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/jobs/CheckFileSystemJob.cpp" line="50"/>
         <source>The file system check on partition %1 failed.</source>
-        <translation>Filsystemskontrollen på partition %1 misslyckades.</translation>
+        <translation>Filsystemkontrollen på partition %1 misslyckades.</translation>
     </message>
 </context>
 <context>
@@ -369,7 +371,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="108"/>
         <source>&lt;b&gt;Erase disk and install %1&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;This will delete all of your programs, documents, photos, music, and any other files.</source>
-        <translation>&lt;b&gt;Radera data på hårddisken och installera %1&lt;/b&gt; &lt;br/&gt; &lt;font color=&quot;red&quot;&gt;Varning: &lt;/font&gt; Detta kommer att radera alla program, dokument, foton, musik, och andra filer.</translation>
+        <translation>&lt;b&gt;Radera disk och installera %1&lt;/b&gt; &lt;br/&gt; &lt;font color=&quot;red&quot;&gt;Varning: &lt;/font&gt; Detta kommer att radera alla program, dokument, foton, musik, och andra filer.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="122"/>
@@ -384,7 +386,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="134"/>
         <source>&lt;b&gt;Replace %1 with %2&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;This will erase the whole disk and delete all of your %1 programs, documents, photos, music, and any other files.</source>
-        <translation>&lt;b&gt;Ersätt %1 med %2&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Varning: &lt;/font&gt; Detta kommer att radera allt innehåll på hårddisken och ta bort alla filer på %1, inklusive dina program, dokument, foton och musik.</translation>
+        <translation>&lt;b&gt;Ersätt %1 med %2&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Varning: &lt;/font&gt; Detta kommer att radera hela disken och ta bort alla dina %1 program, dokument, foton, music, och övriga filer.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="144"/>
@@ -394,13 +396,13 @@ Output:
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="147"/>
         <source>&lt;b&gt;Install %1 alongside your current operating system&lt;/b&gt;&lt;br/&gt;Documents, music and other personal files will be kept. You can choose which operating system you want each time the computer starts up.</source>
-        <translation>&lt;b&gt;Installera %1 parallellt med ditt nuvarande operativsystem&lt;/b&gt;&lt;br/&gt;Dokument, musik och andra personliga filer kommer att finnas kvar. Du kan välja vilket operativsystem du vill använda vid varje uppstart.</translation>
+        <translation>&lt;b&gt;Installera %1 parallellt med ditt nuvarande operativsystem&lt;/b&gt;&lt;br/&gt;Dokument, musik och andra personliga filer kommer att behållas. Du kan välja vilket operativsystem du vill använda vid varje uppstart.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="154"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="188"/>
         <source>&lt;b&gt;Erase disk and install %1&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;This will delete all of your Windows 7 programs, documents, photos, music, and any other files.</source>
-        <translation>&lt;b&gt;Radera data på hårddisken och installera %1&lt;b/&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Varning: &lt;/font&gt;Detta kommer att radera alla dina Windows 7 program, dokument, musik, och andra filer.</translation>
+        <translation>&lt;b&gt;Radera disken och installera %1&lt;b/&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Varning: &lt;/font&gt;Detta kommer att ta bort alla dina Windows 7 program, dokument, musik, och övriga filer.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="178"/>
@@ -410,12 +412,12 @@ Output:
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="181"/>
         <source>&lt;b&gt;Install %1 alongside your current operating systems&lt;/b&gt;&lt;br/&gt;Documents, music and other personal files will be kept. You can choose which operating system you want each time the computer starts up.</source>
-        <translation>&lt;b&gt;Installera %1 parallellt med ditt nuvarande operativsystem&lt;/b&gt;&lt;br/&gt;Dokument, musik och andra personliga filer kommer att finnas kvar. Du kan välja vilket operativsystem du vill använda vid varje uppstart.</translation>
+        <translation>&lt;b&gt;Installera %1 parallellt med ditt nuvarande operativsystem&lt;/b&gt;&lt;br/&gt;Dokument, musik och andra personliga filer kommer att behållas. Du kan välja vilket operativsystem du vill använda vid varje uppstart.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="203"/>
         <source>&lt;b&gt;Something else&lt;/b&gt;&lt;br/&gt;You can create or resize partitions yourself, or choose multiple partitions for %1.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Något annat&lt;/b&gt; &lt;br/&gt; Du kan själv skapa eller anpassa storleken på partitioner, eller välja flera partitioner för %1.</translation>
     </message>
 </context>
 <context>
@@ -591,7 +593,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="489"/>
         <source>extended:</source>
-        <translation type="unfinished"/>
+        <translation>utökad:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="518"/>
@@ -624,17 +626,17 @@ Output:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="23"/>
         <source>Partition Alignment</source>
-        <translation type="unfinished"/>
+        <translation>Partitionjustering</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="29"/>
         <source>Use cylinder based alignment (Windows XP compatible)</source>
-        <translation type="unfinished"/>
+        <translation>Använd cylinderbaserad justering (Windows XP kompatibel)</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="42"/>
         <source>Sector alignment:</source>
-        <translation>Sektoralignering:</translation>
+        <translation>Sektorjustering:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="55"/>
@@ -644,12 +646,12 @@ Output:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="71"/>
         <source>Align partitions per default</source>
-        <translation type="unfinished"/>
+        <translation>Justera partitioner som standard</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="90"/>
         <source>Logging</source>
-        <translation>Loggar</translation>
+        <translation>Loggförning</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="96"/>
@@ -684,12 +686,12 @@ Output:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="145"/>
         <source>Default file system:</source>
-        <translation type="unfinished"/>
+        <translation>Standard filsystem:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="167"/>
         <source>Shredding</source>
-        <translation type="unfinished"/>
+        <translation>Makulering</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="173"/>
@@ -717,7 +719,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="38"/>
         <source>Partition &amp;Type:</source>
-        <translation type="unfinished"/>
+        <translation>Partition &amp;Type:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="50"/>
@@ -727,12 +729,12 @@ Output:
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="60"/>
         <source>E&amp;xtended</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Utökad</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="89"/>
         <source>F&amp;ile System:</source>
-        <translation>F&amp;ilsystem</translation>
+        <translation>&amp;Filsystem</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="118"/>
@@ -742,37 +744,37 @@ Output:
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="135"/>
         <source>/</source>
-        <translation type="unfinished"/>
+        <translation>/</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="140"/>
         <source>/boot</source>
-        <translation type="unfinished"/>
+        <translation>/boot</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="145"/>
         <source>/home</source>
-        <translation type="unfinished"/>
+        <translation>/home</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="150"/>
         <source>/opt</source>
-        <translation type="unfinished"/>
+        <translation>/opt</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="155"/>
         <source>/usr</source>
-        <translation type="unfinished"/>
+        <translation>/usr</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="160"/>
         <source>/var</source>
-        <translation type="unfinished"/>
+        <translation>/var</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="194"/>
         <source>Si&amp;ze:</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Storlek:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="204"/>
@@ -805,7 +807,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="60"/>
         <source>The installer failed to create partition on disk &apos;%1&apos;.</source>
-        <translation type="unfinished"/>
+        <translation>Installationsprogrammet kunde inte skapa partition på disk &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="69"/>
@@ -820,12 +822,12 @@ Output:
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="103"/>
         <source>The installer failed to create file system on partition %1.</source>
-        <translation type="unfinished"/>
+        <translation>Installationsprogrammet kunde inte skapa filsystem på disk %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="111"/>
         <source>The installer failed to update partition table on disk &apos;%1&apos;.</source>
-        <translation type="unfinished"/>
+        <translation>Installationsprogrammet kunde inte uppdatera partitionstabell på disk &apos;%1&apos;.</translation>
     </message>
 </context>
 <context>
@@ -861,12 +863,12 @@ Output:
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="47"/>
         <source>Create partition table</source>
-        <translation>Skapar partitionstabellen</translation>
+        <translation>Skapa partitionstabell</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="54"/>
         <source>The installer failed to create a partition table on %1.</source>
-        <translation type="unfinished"/>
+        <translation>Installationsprogrammet kunde inte skapa en partitionstabell på %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="62"/>
@@ -894,7 +896,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/createpartitiontablewidgetbase.ui" line="66"/>
         <source>(icon)</source>
-        <translation type="unfinished"/>
+        <translation>(ikon)</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/createpartitiontablewidgetbase.ui" line="79"/>
@@ -912,7 +914,7 @@ Output:
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="67"/>
         <source>Sudoers dir is not writable.</source>
-        <translation type="unfinished"/>
+        <translation>Sudoers mapp är inte skrivbar.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="71"/>
@@ -927,7 +929,7 @@ Output:
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="85"/>
         <source>Cannot open groups file for reading.</source>
-        <translation type="unfinished"/>
+        <translation>Kan inte öppna gruppernas fil för läsning.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="123"/>
@@ -942,17 +944,17 @@ Output:
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="130"/>
         <source>Cannot set full name for user %1.</source>
-        <translation type="unfinished"/>
+        <translation>Kan inte uppsätta fullt namn för användare %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="132"/>
         <source>chfn terminated with error code %1.</source>
-        <translation type="unfinished"/>
+        <translation>chfn stoppades med felkod %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="141"/>
         <source>Cannot set home directory ownership for user %1.</source>
-        <translation type="unfinished"/>
+        <translation>Kan inte bestämma hemkatalog ägarskap för användare %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="143"/>
@@ -970,7 +972,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/decryptluksdialogwidgetbase.ui" line="35"/>
         <source>&amp;Passphrase:</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Lösenordsfras:</translation>
     </message>
 </context>
 <context>
@@ -983,12 +985,12 @@ Output:
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="48"/>
         <source>The installer failed to delete partition %1.</source>
-        <translation type="unfinished"/>
+        <translation>Installationsprogrammet kunde inte ta bort partition %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="54"/>
         <source>Partition (%1) and device (%2) do not match.</source>
-        <translation type="unfinished"/>
+        <translation>Partition (%1) och enhet (%2) matchar inte.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="66"/>
@@ -1019,17 +1021,17 @@ Output:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/devicepropswidgetbase.ui" line="77"/>
         <source>Cylinder alignment</source>
-        <translation type="unfinished"/>
+        <translation>Cylinderjustering</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/devicepropswidgetbase.ui" line="84"/>
         <source>Sector based alignment</source>
-        <translation type="unfinished"/>
+        <translation>Sektorbaserad justering</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/devicepropswidgetbase.ui" line="113"/>
         <source>Capacity:</source>
-        <translation type="unfinished"/>
+        <translation>Kapasitet:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/devicepropswidgetbase.ui" line="130"/>
@@ -1039,7 +1041,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/devicepropswidgetbase.ui" line="160"/>
         <source>Cylinders/Heads/Sectors:</source>
-        <translation type="unfinished"/>
+        <translation>Cylindrar/Huvuden/Sektorer:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/devicepropswidgetbase.ui" line="183"/>
@@ -1059,7 +1061,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/devicepropswidgetbase.ui" line="241"/>
         <source>Primaries/Max:</source>
-        <translation type="unfinished"/>
+        <translation>Primärer/Max:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/devicepropswidgetbase.ui" line="265"/>
@@ -1092,7 +1094,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="70"/>
         <source>Format</source>
-        <translation type="unfinished"/>
+        <translation>Format</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="83"/>
@@ -1107,32 +1109,32 @@ Output:
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="110"/>
         <source>/</source>
-        <translation type="unfinished"/>
+        <translation>/</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="115"/>
         <source>/boot</source>
-        <translation type="unfinished"/>
+        <translation>/boot</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="120"/>
         <source>/home</source>
-        <translation type="unfinished"/>
+        <translation>/home</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="125"/>
         <source>/opt</source>
-        <translation type="unfinished"/>
+        <translation>/opt</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="130"/>
         <source>/usr</source>
-        <translation type="unfinished"/>
+        <translation>/usr</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="135"/>
         <source>/var</source>
-        <translation type="unfinished"/>
+        <translation>/var</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="143"/>
@@ -1178,7 +1180,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="73"/>
         <source>Read-only</source>
-        <translation type="unfinished"/>
+        <translation>Skrivskyddad</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="80"/>
@@ -1193,7 +1195,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="94"/>
         <source>No update of file access times</source>
-        <translation type="unfinished"/>
+        <translation>Ingen uppdatering av fil-åtkomst-tider</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="101"/>
@@ -1203,17 +1205,17 @@ Output:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="108"/>
         <source>No update of directory access times</source>
-        <translation type="unfinished"/>
+        <translation>Ingen uppdatering av katalog-åtkomst-tider</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="115"/>
         <source>No binary execution</source>
-        <translation type="unfinished"/>
+        <translation>Ingen binär exekvering</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="122"/>
         <source>Update access times relative to modification</source>
-        <translation type="unfinished"/>
+        <translation>Uppdatera åtkomst-tider relativt till modifikation</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="142"/>
@@ -1223,7 +1225,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="149"/>
         <source>Dump Frequency:</source>
-        <translation type="unfinished"/>
+        <translation>Dump Intervall:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="178"/>
@@ -1248,7 +1250,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="309"/>
         <source>Identify by:</source>
-        <translation type="unfinished"/>
+        <translation>Identifiera efter:</translation>
     </message>
 </context>
 <context>
@@ -1276,7 +1278,7 @@ Output:
         <source>This table shows which file systems are supported and which specific operations can be performed on them.
 Some file systems need external tools to be installed for them to be supported. But not all operations can be performed on all file systems, even if all required tools are installed. Please see the documentation for details. </source>
         <translation>Denna tabell visar vilka filsystem som är stödda samt vilka specifika åtgärder som kan utföras i respektive filsystem.
-Vissa filsystem behöver 3:e-parts-verktyg installerade för att de skall kunna stödjas. Men alla åtgärder kan inte utföras på alla filsystem, även om har rätt verktyg installerade. Vänligen se dokumentationen för detaljer.</translation>
+Vissa filsystem behöver externa verktyg installerade för att de skall kunna stödjas. Men alla åtgärder kan inte utföras på alla filsystem, även om har rätt verktyg installerade. Vänligen se dokumentationen för detaljer.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/filesystemsupportdialogwidgetbase.ui" line="65"/>
@@ -1326,7 +1328,7 @@ Vissa filsystem behöver 3:e-parts-verktyg installerade för att de skall kunna 
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/filesystemsupportdialogwidgetbase.ui" line="110"/>
         <source>Read Usage</source>
-        <translation type="unfinished"/>
+        <translation>Läsanvändning</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/filesystemsupportdialogwidgetbase.ui" line="115"/>
@@ -1341,13 +1343,13 @@ Vissa filsystem behöver 3:e-parts-verktyg installerade för att de skall kunna 
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/filesystemsupportdialogwidgetbase.ui" line="125"/>
         <source>Support Tools</source>
-        <translation>Hjälpverktyg</translation>
+        <translation>Supportverktyg</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/filesystemsupportdialogwidgetbase.ui" line="135"/>
         <source>Rescan Support</source>
         <comment>@action:button</comment>
-        <translation type="unfinished"/>
+        <translation>Skanna om Support</translation>
     </message>
 </context>
 <context>
@@ -1355,12 +1357,12 @@ Vissa filsystem behöver 3:e-parts-verktyg installerade för att de skall kunna 
     <message>
         <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="75"/>
         <source>Set partition information</source>
-        <translation>Ange partitionsinformation</translation>
+        <translation>Ange partitions-information</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="85"/>
         <source>Failed to find path for boot loader</source>
-        <translation>Kunde inte hitta sökvägen till boot loader</translation>
+        <translation>Kunde inte hitta sökväg till boot loader</translation>
     </message>
 </context>
 <context>
@@ -1373,7 +1375,7 @@ Vissa filsystem behöver 3:e-parts-verktyg installerade för att de skall kunna 
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="59"/>
         <source>The installer failed to format partition %1 on disk &apos;%2&apos;.</source>
-        <translation type="unfinished"/>
+        <translation>Installationsprogrammet kunde inte formatera partition %1 på disk &apos;%2&apos;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="67"/>
@@ -1388,12 +1390,12 @@ Vissa filsystem behöver 3:e-parts-verktyg installerade för att de skall kunna 
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="84"/>
         <source>The installer failed to create file system on partition %1.</source>
-        <translation type="unfinished"/>
+        <translation>Installationsprogrammet misslyckades att skapa filsystem på partition %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="92"/>
         <source>The installer failed to update partition table on disk &apos;%1&apos;.</source>
-        <translation type="unfinished"/>
+        <translation>Installationsprogrammet misslyckades med att uppdatera partitionstabellen på disk &apos;%1&apos;.</translation>
     </message>
 </context>
 <context>
@@ -1401,7 +1403,7 @@ Vissa filsystem behöver 3:e-parts-verktyg installerade för att de skall kunna 
     <message>
         <location filename="../src/modules/greeting/GreetingPage.cpp" line="33"/>
         <source>&lt;h1&gt;Welcome to the %1 installer.&lt;/h1&gt;&lt;br/&gt;This program will ask you some questions and set up %2 on your computer.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;h1&gt;Välkommen till %1 installationsprogrammet.&lt;/h1&gt;&lt;br/&gt;Detta program kommer att ställa dig några frågor och sätta upp %2 på din dator.</translation>
     </message>
 </context>
 <context>
@@ -1417,12 +1419,12 @@ Vissa filsystem behöver 3:e-parts-verktyg installerade för att de skall kunna 
     <message>
         <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="181"/>
         <source>Set keyboard model to %1.&lt;br/&gt;</source>
-        <translation type="unfinished"/>
+        <translation>Ställ in tangenbordets modell till %1.&lt;br/&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="183"/>
         <source>Set keyboard layout to %1/%2.</source>
-        <translation type="unfinished"/>
+        <translation>Ställ in tangentbordets layout till %1/%2.</translation>
     </message>
 </context>
 <context>
@@ -1448,7 +1450,7 @@ Vissa filsystem behöver 3:e-parts-verktyg installerade för att de skall kunna 
     <message>
         <location filename="../src/modules/locale/LocalePage.cpp" line="176"/>
         <source>Set timezone to %1/%2.&lt;br/&gt;</source>
-        <translation>Ändra tidszon till %1/%2.&lt;br/&gt;</translation>
+        <translation>Ställ in tidszon till %1/%2.&lt;br/&gt;</translation>
     </message>
 </context>
 <context>
@@ -1482,7 +1484,7 @@ Vissa filsystem behöver 3:e-parts-verktyg installerade för att de skall kunna 
         <location filename="../src/modules/partition/partitionmanager/src/gui/mainwindowbase.ui" line="38"/>
         <source>Pending Operations</source>
         <comment>@title:window</comment>
-        <translation type="unfinished"/>
+        <translation>Köade processer</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/mainwindowbase.ui" line="49"/>
@@ -1502,7 +1504,7 @@ Vissa filsystem behöver 3:e-parts-verktyg installerade för att de skall kunna 
     <message>
         <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="66"/>
         <source>Move file system of partition %1.</source>
-        <translation type="unfinished"/>
+        <translation>Flytta filsystemet av partition %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="80"/>
@@ -1517,17 +1519,17 @@ Vissa filsystem behöver 3:e-parts-verktyg installerade för att de skall kunna 
     <message>
         <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="95"/>
         <source>Moving of partition %1 failed, changes have been rolled back.</source>
-        <translation type="unfinished"/>
+        <translation>Flytten av partition %1 misslyckades, ändringar har återställts.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="101"/>
         <source>Moving of partition %1 failed. Roll back of the changes have failed.</source>
-        <translation type="unfinished"/>
+        <translation>Flytten av partition %1 misslyckades. Återställning av ändringar misslyckades.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="113"/>
         <source>Updating boot sector after the moving of partition %1 failed.</source>
-        <translation type="unfinished"/>
+        <translation>Uppdaterar bootsektor efter att flytten av partition %1 misslyckades.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="127"/>

@@ -1231,42 +1231,42 @@ Izpis:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="122"/>
         <source>Update access times relative to modification</source>
-        <translation type="unfinished"/>
+        <translation>Posodobi čase dostopa glede na spremembe</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="142"/>
         <source>More...</source>
-        <translation type="unfinished"/>
+        <translation>Več ...</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="149"/>
         <source>Dump Frequency:</source>
-        <translation type="unfinished"/>
+        <translation>Pogostost izpisovanja:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="178"/>
         <source>Pass Number:</source>
-        <translation type="unfinished"/>
+        <translation>Številka prehoda:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="285"/>
         <source>Device Node</source>
-        <translation type="unfinished"/>
+        <translation>Vozlišče naprave</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="295"/>
         <source>UUID</source>
-        <translation type="unfinished"/>
+        <translation>UUID</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="302"/>
         <source>Label</source>
-        <translation type="unfinished"/>
+        <translation>Oznaka</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="309"/>
         <source>Identify by:</source>
-        <translation type="unfinished"/>
+        <translation>Identificiraj z:</translation>
     </message>
 </context>
 <context>
@@ -1274,17 +1274,17 @@ Izpis:
     <message>
         <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="47"/>
         <source>Select drive:</source>
-        <translation type="unfinished"/>
+        <translation>Izbor diska:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="202"/>
         <source>Before:</source>
-        <translation type="unfinished"/>
+        <translation>Prej:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="207"/>
         <source>After:</source>
-        <translation type="unfinished"/>
+        <translation>Potem:</translation>
     </message>
 </context>
 <context>
@@ -1293,78 +1293,79 @@ Izpis:
         <location filename="../src/modules/partition/partitionmanager/src/gui/filesystemsupportdialogwidgetbase.ui" line="17"/>
         <source>This table shows which file systems are supported and which specific operations can be performed on them.
 Some file systems need external tools to be installed for them to be supported. But not all operations can be performed on all file systems, even if all required tools are installed. Please see the documentation for details. </source>
-        <translation type="unfinished"/>
+        <translation>To je razpredelnica podprtih datotečnih sistemov in specifičnih opravil, ki so lahko na teh sistemih izvedena.
+Nekateri datotečni sistemi za podprtost zahtevajo namestitev zunanjih orodij. Vendar pa tudi v primeru namestitve zahtevanih orodij vseh opravil ni možno izvesti na vseh datotečnih sistemih. Za več podrobnosti glejte dokumentacijo.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/filesystemsupportdialogwidgetbase.ui" line="65"/>
         <source>File System</source>
-        <translation type="unfinished"/>
+        <translation>Datotečni sistem</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/filesystemsupportdialogwidgetbase.ui" line="70"/>
         <source>Create</source>
-        <translation type="unfinished"/>
+        <translation>Ustvari</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/filesystemsupportdialogwidgetbase.ui" line="75"/>
         <source>Grow</source>
-        <translation type="unfinished"/>
+        <translation>Razširi</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/filesystemsupportdialogwidgetbase.ui" line="80"/>
         <source>Shrink</source>
-        <translation type="unfinished"/>
+        <translation>Skrči</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/filesystemsupportdialogwidgetbase.ui" line="85"/>
         <source>Move</source>
-        <translation type="unfinished"/>
+        <translation>Premakni</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/filesystemsupportdialogwidgetbase.ui" line="90"/>
         <source>Copy</source>
-        <translation type="unfinished"/>
+        <translation>Kopiraj</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/filesystemsupportdialogwidgetbase.ui" line="95"/>
         <source>Check</source>
-        <translation type="unfinished"/>
+        <translation>Preveri</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/filesystemsupportdialogwidgetbase.ui" line="100"/>
         <source>Read Label</source>
-        <translation type="unfinished"/>
+        <translation>Beri oznako</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/filesystemsupportdialogwidgetbase.ui" line="105"/>
         <source>Write Label</source>
-        <translation type="unfinished"/>
+        <translation>Piši oznako</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/filesystemsupportdialogwidgetbase.ui" line="110"/>
         <source>Read Usage</source>
-        <translation type="unfinished"/>
+        <translation>Beri uporabo</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/filesystemsupportdialogwidgetbase.ui" line="115"/>
         <source>Backup</source>
-        <translation type="unfinished"/>
+        <translation>Varnostna kopija</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/filesystemsupportdialogwidgetbase.ui" line="120"/>
         <source>Restore</source>
-        <translation type="unfinished"/>
+        <translation>Obnovi</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/filesystemsupportdialogwidgetbase.ui" line="125"/>
         <source>Support Tools</source>
-        <translation type="unfinished"/>
+        <translation>Podporna orodja</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/filesystemsupportdialogwidgetbase.ui" line="135"/>
         <source>Rescan Support</source>
         <comment>@action:button</comment>
-        <translation type="unfinished"/>
+        <translation>Podpora za ponovno preverjanje (rescan)</translation>
     </message>
 </context>
 <context>
@@ -1372,12 +1373,12 @@ Some file systems need external tools to be installed for them to be supported. 
     <message>
         <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="75"/>
         <source>Set partition information</source>
-        <translation type="unfinished"/>
+        <translation>Nastavi informacije razdelka</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="85"/>
         <source>Failed to find path for boot loader</source>
-        <translation type="unfinished"/>
+        <translation>Neuspešno iskanje poti za zagonski nalagalnik</translation>
     </message>
 </context>
 <context>
@@ -1385,32 +1386,32 @@ Some file systems need external tools to be installed for them to be supported. 
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="47"/>
         <source>Format partition %1 (file system: %2, size: %3 MB) on %4.</source>
-        <translation type="unfinished"/>
+        <translation>Formatiraj razdelek %1 (datotečni sistem: %2, velikost %3 MB) na %4.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="59"/>
         <source>The installer failed to format partition %1 on disk &apos;%2&apos;.</source>
-        <translation type="unfinished"/>
+        <translation>Namestilniku ni uspelo formatirati razdelka %1 na disku &apos;%2&apos;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="67"/>
         <source>Could not open device &apos;%1&apos;.</source>
-        <translation type="unfinished"/>
+        <translation>Ni mogoče odpreti naprave &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="76"/>
         <source>Could not open partition table.</source>
-        <translation type="unfinished"/>
+        <translation>Ni mogoče odpreti razpredelnice razdelkov.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="84"/>
         <source>The installer failed to create file system on partition %1.</source>
-        <translation type="unfinished"/>
+        <translation>Namestilniku ni uspelo ustvariti datotečnega sistema na razdelku %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="92"/>
         <source>The installer failed to update partition table on disk &apos;%1&apos;.</source>
-        <translation type="unfinished"/>
+        <translation>Namestilniku ni uspelo posodobiti razpredelnice razdelkov na disku &apos;%1&apos;.</translation>
     </message>
 </context>
 <context>
