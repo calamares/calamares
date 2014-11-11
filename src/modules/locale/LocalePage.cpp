@@ -121,11 +121,10 @@ LocalePage::LocalePage( QWidget* parent )
         m_blockTzWidgetSet = false;
     });
 
-    new CalamaresUtils::Retranslator( this, [this]
-    {
+    RETRANSLATE(
         m_cityLabel->setText( tr( "Region:" ) );
         m_timezoneLabel->setText( tr( "Zone:" ) );
-    } );
+    )
 }
 
 

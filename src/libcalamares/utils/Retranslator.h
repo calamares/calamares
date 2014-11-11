@@ -42,6 +42,10 @@ private:
     std::function< void( void ) > m_retranslateFunc;
 };
 
+
 } // namespace CalamaresUtils
+
+#define RETRANSLATE(a) \
+    new CalamaresUtils::Retranslator( this, [this] { a } );
 
 #endif // CALAMARESUTILS_RETRANSLATOR_H
