@@ -30,6 +30,7 @@
 #include "utils/CalamaresUtilsSystem.h"
 
 #include <QDir>
+#include <QFileInfo>
 #include <QFile>
 #include <QTextStream>
 #include <QSettings>
@@ -245,19 +246,31 @@ SetKeyboardLayoutJob::exec()
     QString vconsoleConfPath = destDir.absoluteFilePath( "etc/vconsole.conf" );
 
     // Get the path to the destination's /etc/X11/xorg.conf.d/00-keyboard.conf
-    QString xorgConfDPath = destDir.absoluteFilePath( "etc/X11/xorg.conf.d" );
-    destDir.mkpath( xorgConfDPath );
-    QString keyboardConfPath = QDir( xorgConfDPath )
+    QString xorgConfDPath;
+    QString keyboardConfPath;
+    if ( QDir::isAbsolutePath( m_xOrgConfFileName ) )
+    {
+        keyboardConfPath = m_xOrgConfFileName;
+        while ( keyboardConfPath.startsWith( '/' ) )
+            keyboardConfPath.remove( 0, 1 );
+        keyboardConfPath = destDir.absoluteFilePath( keyboardConfPath );
+        xorgConfDPath = QFileInfo( keyboardConfPath ).path();
+    }
+    else
+    {
+        xorgConfDPath = destDir.absoluteFilePath( "etc/X11/xorg.conf.d" );
+        keyboardConfPath = QDir( xorgConfDPath )
                                .absoluteFilePath( m_xOrgConfFileName );
+    }
+    destDir.mkpath( xorgConfDPath );
 
     // Get the path to the destination's path to the converted key mappings
-    QString convertedKeymapPath;
-    QString convertedKeymapPathSetting = m_convertedKeymapPath;
-    if ( !convertedKeymapPathSetting.isEmpty() )
+    QString convertedKeymapPath = m_convertedKeymapPath;
+    if ( !convertedKeymapPath.isEmpty() )
     {
-        while ( convertedKeymapPathSetting.startsWith( '/' ) )
-            convertedKeymapPathSetting.remove( 0, 1 );
-        convertedKeymapPath = destDir.absoluteFilePath( convertedKeymapPathSetting );
+        while ( convertedKeymapPath.startsWith( '/' ) )
+            convertedKeymapPath.remove( 0, 1 );
+        convertedKeymapPath = destDir.absoluteFilePath( convertedKeymapPath );
     }
 
     if ( !writeVConsoleData( vconsoleConfPath, convertedKeymapPath ) )
