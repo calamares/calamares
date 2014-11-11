@@ -34,6 +34,8 @@
 #include <core/device.h>
 #include <core/partition.h>
 
+#include "utils/Retranslator.h"
+
 // Qt
 #include <QDebug>
 #include <QHeaderView>
@@ -74,6 +76,8 @@ PartitionPage::PartitionPage( PartitionCoreModule* core, QWidget* parent )
     connect( m_ui->createButton, &QAbstractButton::clicked, this, &PartitionPage::onCreateClicked );
     connect( m_ui->editButton, &QAbstractButton::clicked, this, &PartitionPage::onEditClicked );
     connect( m_ui->deleteButton, &QAbstractButton::clicked, this, &PartitionPage::onDeleteClicked );
+
+    CALAMARES_RETRANSLATE( m_ui->retranslateUi( this ); )
 }
 
 PartitionPage::~PartitionPage()

@@ -29,6 +29,7 @@
 
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
+#include "utils/Retranslator.h"
 
 #include <QBoxLayout>
 #include <QDir>
@@ -44,8 +45,9 @@ EraseDiskPage::EraseDiskPage( QWidget* parent )
     QVBoxLayout* mainLayout = new QVBoxLayout;
     setLayout( mainLayout );
 
-    QLabel* driveLabel = new QLabel( tr( "Select drive:" ) );
+    QLabel* driveLabel = new QLabel( this );
     mainLayout->addWidget( driveLabel );
+    CALAMARES_RETRANSLATE( driveLabel->setText( tr( "Select drive:" ) ); )
 
     m_drivesView = new QListView;
     mainLayout->addWidget( m_drivesView );

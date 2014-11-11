@@ -27,6 +27,7 @@
 
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
+#include "utils/Retranslator.h"
 #include "Branding.h"
 
 #include <QBoxLayout>
@@ -102,14 +103,16 @@ ChoicePage::init( PartitionCoreModule* core, const OsproberEntryList& osproberEn
 
     if ( osproberEntries.count() == 0 )
     {
-        m_messageLabel->setText( tr( "This computer currently does not seem to have an operating system on it. "
-                                     "What would you like to do?" ) );
+        CALAMARES_RETRANSLATE(
+            m_messageLabel->setText( tr( "This computer currently does not seem to have an operating system on it. "
+                                         "What would you like to do?" ) );
 
-        eraseButton->setText( tr( "<b>Erase disk and install %1</b><br/>"
-                                  "<font color=\"red\">Warning: </font>This will delete all of your programs, "
-                                  "documents, photos, music, and any other files." )
-                                .arg( Calamares::Branding::instance()->
-                                      string( Calamares::Branding::VersionedName ) ) );
+            eraseButton->setText( tr( "<b>Erase disk and install %1</b><br/>"
+                                      "<font color=\"red\">Warning: </font>This will delete all of your programs, "
+                                      "documents, photos, music, and any other files." )
+                                    .arg( Calamares::Branding::instance()->
+                                          string( Calamares::Branding::VersionedName ) ) );
+        )
 
         alongsideButton->hide();
     }
@@ -119,43 +122,47 @@ ChoicePage::init( PartitionCoreModule* core, const OsproberEntryList& osproberEn
 
         if ( !osName.isEmpty() )
         {
-            m_messageLabel->setText( tr( "This computer currently has %1 on it. "
-                                         "What would you like to do?" )
-                                        .arg( osName ) );
+            CALAMARES_RETRANSLATE(
+                m_messageLabel->setText( tr( "This computer currently has %1 on it. "
+                                             "What would you like to do?" )
+                                            .arg( osName ) );
 
-            alongsideButton->setText( tr( "<b>Install %2 alongside %1</b><br/>"
-                                          "Documents, music and other personal files will be kept. "
-                                          "You can choose which operating system you want each time the "
-                                          "computer starts up." )
+                alongsideButton->setText( tr( "<b>Install %2 alongside %1</b><br/>"
+                                              "Documents, music and other personal files will be kept. "
+                                              "You can choose which operating system you want each time the "
+                                              "computer starts up." )
+                                            .arg( osName )
+                                            .arg( Calamares::Branding::instance()->
+                                                  string( Calamares::Branding::VersionedName ) ) );
+
+                eraseButton->setText( tr( "<b>Replace %1 with %2</b><br/>"
+                                          "<font color=\"red\">Warning: </font>This will erase the whole disk and "
+                                          "delete all of your %1 programs, "
+                                          "documents, photos, music, and any other files." )
                                         .arg( osName )
                                         .arg( Calamares::Branding::instance()->
                                               string( Calamares::Branding::VersionedName ) ) );
-
-            eraseButton->setText( tr( "<b>Replace %1 with %2</b><br/>"
-                                      "<font color=\"red\">Warning: </font>This will erase the whole disk and "
-                                      "delete all of your %1 programs, "
-                                      "documents, photos, music, and any other files." )
-                                    .arg( osName )
-                                    .arg( Calamares::Branding::instance()->
-                                          string( Calamares::Branding::VersionedName ) ) );
+            )
         }
         else
         {
-            m_messageLabel->setText( tr( "This computer already has an operating system on it. "
-                                         "What would you like to do?" ) );
+            CALAMARES_RETRANSLATE(
+                m_messageLabel->setText( tr( "This computer already has an operating system on it. "
+                                             "What would you like to do?" ) );
 
-            alongsideButton->setText( tr( "<b>Install %1 alongside your current operating system</b><br/>"
-                                          "Documents, music and other personal files will be kept. "
-                                          "You can choose which operating system you want each time the "
-                                          "computer starts up." )
+                alongsideButton->setText( tr( "<b>Install %1 alongside your current operating system</b><br/>"
+                                              "Documents, music and other personal files will be kept. "
+                                              "You can choose which operating system you want each time the "
+                                              "computer starts up." )
+                                            .arg( Calamares::Branding::instance()->
+                                                  string( Calamares::Branding::VersionedName ) ) );
+
+                eraseButton->setText( tr( "<b>Erase disk and install %1</b><br/>"
+                                          "<font color=\"red\">Warning: </font>This will delete all of your Windows 7 programs, "
+                                          "documents, photos, music, and any other files." )
                                         .arg( Calamares::Branding::instance()->
                                               string( Calamares::Branding::VersionedName ) ) );
-
-            eraseButton->setText( tr( "<b>Erase disk and install %1</b><br/>"
-                                      "<font color=\"red\">Warning: </font>This will delete all of your Windows 7 programs, "
-                                      "documents, photos, music, and any other files." )
-                                    .arg( Calamares::Branding::instance()->
-                                          string( Calamares::Branding::VersionedName ) ) );
+            )
         }
         if ( !osproberEntries.first().canBeResized )
             alongsideButton->hide();
@@ -175,21 +182,23 @@ ChoicePage::init( PartitionCoreModule* core, const OsproberEntryList& osproberEn
             }
         }
 
-        m_messageLabel->setText( tr( "This computer currently has multiple operating systems on it. "
-                                     "What would you like to do?" ) );
+        CALAMARES_RETRANSLATE(
+            m_messageLabel->setText( tr( "This computer currently has multiple operating systems on it. "
+                                         "What would you like to do?" ) );
 
-        alongsideButton->setText( tr( "<b>Install %1 alongside your current operating systems</b><br/>"
-                                      "Documents, music and other personal files will be kept. "
-                                      "You can choose which operating system you want each time the "
-                                      "computer starts up." )
+            alongsideButton->setText( tr( "<b>Install %1 alongside your current operating systems</b><br/>"
+                                          "Documents, music and other personal files will be kept. "
+                                          "You can choose which operating system you want each time the "
+                                          "computer starts up." )
+                                        .arg( Calamares::Branding::instance()->
+                                              string( Calamares::Branding::VersionedName ) ) );
+
+            eraseButton->setText( tr( "<b>Erase disk and install %1</b><br/>"
+                                      "<font color=\"red\">Warning: </font>This will delete all of your Windows 7 programs, "
+                                      "documents, photos, music, and any other files." )
                                     .arg( Calamares::Branding::instance()->
                                           string( Calamares::Branding::VersionedName ) ) );
-
-        eraseButton->setText( tr( "<b>Erase disk and install %1</b><br/>"
-                                  "<font color=\"red\">Warning: </font>This will delete all of your Windows 7 programs, "
-                                  "documents, photos, music, and any other files." )
-                                .arg( Calamares::Branding::instance()->
-                                      string( Calamares::Branding::VersionedName ) ) );
+        )
 
         if ( !atLeastOneCanBeResized )
             alongsideButton->hide();
@@ -200,11 +209,13 @@ ChoicePage::init( PartitionCoreModule* core, const OsproberEntryList& osproberEn
     m_itemsLayout->addWidget( hLine );
 
     PrettyRadioButton* somethingElseButton = new PrettyRadioButton;
-    somethingElseButton->setText( tr( "<b>Something else</b><br/>"
-                                      "You can create or resize partitions yourself, or choose "
-                                      "multiple partitions for %1." )
-                                    .arg( Calamares::Branding::instance()->
-                                          string( Calamares::Branding::ShortVersionedName ) ) );
+    CALAMARES_RETRANSLATE(
+        somethingElseButton->setText( tr( "<b>Something else</b><br/>"
+                                          "You can create or resize partitions yourself, or choose "
+                                          "multiple partitions for %1." )
+                                        .arg( Calamares::Branding::instance()->
+                                              string( Calamares::Branding::ShortVersionedName ) ) );
+    )
     somethingElseButton->setIconSize( iconSize );
     somethingElseButton->setIcon( CalamaresUtils::defaultPixmap( CalamaresUtils::Partitions,
                                                                  CalamaresUtils::Original,

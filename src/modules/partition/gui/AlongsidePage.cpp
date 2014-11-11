@@ -32,6 +32,7 @@
 #include "GlobalStorage.h"
 #include "utils/Logger.h"
 #include "utils/CalamaresUtilsGui.h"
+#include "utils/Retranslator.h"
 #include "Branding.h"
 
 #include <QBoxLayout>
@@ -51,7 +52,6 @@ AlongsidePage::AlongsidePage( QWidget* parent )
     mainLayout->addLayout( partitionsComboLayout );
 
     QLabel* partitionsLabel = new QLabel;
-    partitionsLabel->setText( tr( "Choose partition to shrink:" ) );
     partitionsComboLayout->addWidget( partitionsLabel );
 
     m_partitionsComboBox = new QComboBox;
@@ -60,7 +60,13 @@ AlongsidePage::AlongsidePage( QWidget* parent )
 
     partitionsComboLayout->addStretch();
 
-    mainLayout->addWidget( new QLabel( tr( "Allocate drive space by dragging the divider below:" ) ) );
+    QLabel* allocateSpaceLabel = new QLabel();
+    mainLayout->addWidget( allocateSpaceLabel );
+
+    CALAMARES_RETRANSLATE(
+        partitionsLabel->setText( tr( "Choose partition to shrink:" ) );
+        allocateSpaceLabel->setText( tr( "Allocate drive space by dragging the divider below:" ) );
+    )
 
     m_splitterWidget = new PartitionSplitterWidget;
     mainLayout->addWidget( m_splitterWidget );

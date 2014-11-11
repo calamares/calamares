@@ -34,6 +34,7 @@
 #include "CalamaresVersion.h"
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
+#include "utils/Retranslator.h"
 #include "widgets/WaitingWidget.h"
 #include "GlobalStorage.h"
 #include "JobQueue.h"
@@ -57,8 +58,9 @@ PartitionViewStep::PartitionViewStep( QObject* parent )
 {
     m_widget->setContentsMargins( 0, 0, 0, 0 );
 
-    QWidget* waitingWidget = new WaitingWidget( tr( "Gathering system information..." ) );
+    WaitingWidget* waitingWidget = new WaitingWidget( QString() );
     m_widget->addWidget( waitingWidget );
+    CALAMARES_RETRANSLATE( waitingWidget->setText( tr( "Gathering system information..." ) ); )
 
     QTimer* timer = new QTimer;
     timer->setSingleShot( true );
