@@ -39,12 +39,7 @@ public:
 
     QList< Calamares::job_ptr > createJobs();
 
-protected:
-    void changeEvent( QEvent* e ) override;
-
 private:
-    void retranslate();
-
     TimeZoneWidget* m_tzWidget;
     QComboBox* m_regionCombo;
     QComboBox* m_timezoneCombo;

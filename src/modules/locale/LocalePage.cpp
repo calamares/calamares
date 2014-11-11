@@ -20,6 +20,7 @@
 
 #include "timezonewidget/timezonewidget.h"
 #include "SetTimezoneJob.h"
+#include "utils/Retranslator.h"
 
 #include <QBoxLayout>
 #include <QComboBox>
@@ -119,6 +120,12 @@ LocalePage::LocalePage( QWidget* parent )
 
         m_blockTzWidgetSet = false;
     });
+
+    new CalamaresUtils::Retranslator( this, [this]
+    {
+        m_cityLabel->setText( tr( "Region:" ) );
+        m_timezoneLabel->setText( tr( "Zone:" ) );
+    } );
 }
 
 
@@ -193,26 +200,3 @@ LocalePage::createJobs()
     return list;
 }
 
-
-void
-LocalePage::changeEvent( QEvent* e )
-{
-    QWidget::changeEvent( e );
-    switch ( e->type() )
-    {
-        case QEvent::LanguageChange:
-            retranslate();
-            break;
-
-        default:
-            break;
-    }
-}
-
-
-void
-LocalePage::retranslate()
-{
-    m_cityLabel->setText( tr( "Region:" ) );
-    m_timezoneLabel->setText( tr( "Zone:" ) );
-}
