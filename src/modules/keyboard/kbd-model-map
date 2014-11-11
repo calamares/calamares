@@ -1,4 +1,5 @@
 # Copied from systemd-localed
+# http://cgit.freedesktop.org/systemd/systemd/log/src/locale/kbd-model-map
 # (originally under LGPLv2.1+, used under the LGPL to GPL conversion clause)
 # Generated from system-config-keyboard's model list
 # consolelayout		xlayout	xmodel		xvariant	xoptions
