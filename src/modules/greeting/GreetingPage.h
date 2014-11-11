@@ -31,12 +31,9 @@ public:
     explicit GreetingPage( QWidget* parent = nullptr );
 
 protected:
-    void changeEvent( QEvent* e ) override;
     void focusInEvent( QFocusEvent* e ) override; //choose the child widget to focus
 
 private:
-    void retranslate();
-
     QListWidget* m_languageWidget;
     QLabel* m_text;
 };

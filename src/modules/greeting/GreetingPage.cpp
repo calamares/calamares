@@ -21,6 +21,7 @@
 #include "CalamaresVersion.h"
 #include "utils/Logger.h"
 #include "utils/CalamaresUtils.h"
+#include "utils/Retranslator.h"
 #include "ViewManager.h"
 
 #include <QApplication>
@@ -86,23 +87,15 @@ GreetingPage::GreetingPage( QWidget* parent )
     mainLayout->addWidget( m_text );
     mainLayout->addStretch();
 
-    retranslate();
-}
-
-
-void
-GreetingPage::changeEvent( QEvent* e )
-{
-    QWidget::changeEvent( e );
-    switch ( e->type() )
-    {
-        case QEvent::LanguageChange:
-            retranslate();
-            break;
-
-        default:
-            break;
-    }
+    CALAMARES_RETRANSLATE(
+        m_text->setText( tr( "<h1>Welcome to the %1 installer.</h1><br/>"
+                             "This program will ask you some questions and "
+                             "set up %2 on your computer." )
+                         .arg( Calamares::Branding::instance()->
+                               string( Calamares::Branding::VersionedName ) )
+                         .arg( Calamares::Branding::instance()->
+                               string( Calamares::Branding::ProductName ) ) );
+    )
 }
 
 
@@ -114,15 +107,3 @@ GreetingPage::focusInEvent( QFocusEvent* e )
     e->accept();
 }
 
-
-void
-GreetingPage::retranslate()
-{
-    m_text->setText( tr( "<h1>Welcome to the %1 installer.</h1><br/>"
-                         "This program will ask you some questions and "
-                         "set up %2 on your computer." )
-                     .arg( Calamares::Branding::instance()->
-                           string( Calamares::Branding::VersionedName ) )
-                     .arg( Calamares::Branding::instance()->
-                           string( Calamares::Branding::ProductName ) ) );
-}
