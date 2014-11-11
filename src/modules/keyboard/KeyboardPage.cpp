@@ -190,7 +190,8 @@ KeyboardPage::prettyStatus() const
 
 
 QList< Calamares::job_ptr >
-KeyboardPage::createJobs()
+KeyboardPage::createJobs( const QString& xOrgConfFileName,
+                          const QString& convertedKeymapPath )
 {
     QList< Calamares::job_ptr > list;
     QString selectedModel = m_models.value( ui->comboBoxModel->currentText(),
@@ -198,7 +199,9 @@ KeyboardPage::createJobs()
 
     Calamares::Job* j = new SetKeyboardLayoutJob( selectedModel,
                                                   m_selectedLayout,
-                                                  m_selectedVariant );
+                                                  m_selectedVariant,
+                                                  xOrgConfFileName,
+                                                  convertedKeymapPath );
     list.append( Calamares::job_ptr( j ) );
 
     return list;

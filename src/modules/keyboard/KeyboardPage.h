@@ -48,7 +48,8 @@ public:
 
     QString prettyStatus() const;
 
-    QList< Calamares::job_ptr > createJobs();
+    QList< Calamares::job_ptr > createJobs( const QString& xOrgConfFileName,
+                                            const QString& convertedKeymapPath );
 
     void finalize();
 

@@ -61,6 +61,9 @@ private:
     bool m_nextEnabled;
     QString m_prettyStatus;
 
+    QString m_xOrgConfFileName;
+    QString m_convertedKeymapPath;
+
     QList< Calamares::job_ptr > m_jobs;
 };
 

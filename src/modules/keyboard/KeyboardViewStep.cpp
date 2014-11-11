@@ -108,7 +108,7 @@ void
 KeyboardViewStep::onLeave()
 {
     m_widget->finalize();
-    m_jobs = m_widget->createJobs();
+    m_jobs = m_widget->createJobs( m_xOrgConfFileName, m_convertedKeymapPath );
     m_prettyStatus = m_widget->prettyStatus();
 }
 
@@ -123,23 +123,23 @@ KeyboardViewStep::setConfigurationMap( const QVariantMap& configurationMap )
          configurationMap.value( "xOrgConfFileName" ).type() == QVariant::String &&
          !configurationMap.value( "xOrgConfFileName" ).toString().isEmpty() )
     {
-        gs->insert( "keyboardXOrgConfFileName",
-                    configurationMap.value( "xOrgConfFileName" ) );
+        m_xOrgConfFileName = configurationMap.value( "xOrgConfFileName" )
+                                             .toString();
     }
     else
     {
-        gs->insert( "keyboardXOrgConfFileName", "00-keyboard.conf" );
+        m_xOrgConfFileName = "00-keyboard.conf";
     }
 
     if ( configurationMap.contains( "convertedKeymapPath" ) &&
          configurationMap.value( "convertedKeymapPath" ).type() == QVariant::String &&
          !configurationMap.value( "convertedKeymapPath" ).toString().isEmpty() )
     {
-        gs->insert( "keyboardConvertedKeymapPath",
-                    configurationMap.value( "convertedKeymapPath" ) );
+        m_convertedKeymapPath = configurationMap.value( "convertedKeymapPath" )
+                                                .toString();
     }
     else
     {
-        gs->remove( "keyboardConvertedKeymapPath" );
+        m_convertedKeymapPath = QString();
     }
 }

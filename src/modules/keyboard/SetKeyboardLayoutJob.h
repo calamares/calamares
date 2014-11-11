@@ -29,7 +29,9 @@ class SetKeyboardLayoutJob : public Calamares::Job
 public:
     SetKeyboardLayoutJob( const QString& model,
                           const QString& layout,
-                          const QString& variant );
+                          const QString& variant,
+                          const QString& xOrgConfFileName,
+                          const QString& convertedKeymapPath );
 
     QString prettyName() const override;
     Calamares::JobResult exec() override;
@@ -44,6 +46,8 @@ private:
     QString m_model;
     QString m_layout;
     QString m_variant;
+    QString m_xOrgConfFileName;
+    QString m_convertedKeymapPath;
 };
 
 #endif /* SETKEYBOARDLAYOUTJOB_H */

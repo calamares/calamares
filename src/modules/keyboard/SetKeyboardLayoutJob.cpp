@@ -37,11 +37,15 @@
 
 SetKeyboardLayoutJob::SetKeyboardLayoutJob( const QString& model,
                                             const QString& layout,
-                                            const QString& variant )
+                                            const QString& variant,
+                                            const QString& xOrgConfFileName,
+                                            const QString& convertedKeymapPath )
     : Calamares::Job()
     , m_model( model )
     , m_layout( layout )
     , m_variant( variant )
+    , m_xOrgConfFileName( xOrgConfFileName )
+    , m_convertedKeymapPath( convertedKeymapPath )
 {
 }
 
@@ -243,14 +247,12 @@ SetKeyboardLayoutJob::exec()
     // Get the path to the destination's /etc/X11/xorg.conf.d/00-keyboard.conf
     QString xorgConfDPath = destDir.absoluteFilePath( "etc/X11/xorg.conf.d" );
     destDir.mkpath( xorgConfDPath );
-    QString keyboardConfFile = gs->value( "keyboardXOrgConfFileName" ).toString();
     QString keyboardConfPath = QDir( xorgConfDPath )
-                               .absoluteFilePath( keyboardConfFile );
+                               .absoluteFilePath( m_xOrgConfFileName );
 
     // Get the path to the destination's path to the converted key mappings
     QString convertedKeymapPath;
-    QString convertedKeymapPathSetting
-        = gs->value( "keyboardConvertedKeymapPath" ).toString();
+    QString convertedKeymapPathSetting = m_convertedKeymapPath;
     if ( !convertedKeymapPathSetting.isEmpty() )
     {
         while ( convertedKeymapPathSetting.startsWith( '/' ) )
