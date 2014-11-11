@@ -20,4 +20,5 @@
 from libcalamares.utils import check_chroot_call
 
 def run():
-    return check_chroot_call(["update-initramfs", "-k", "all", "-u"])
+    check_chroot_call(["update-initramfs", "-k", "all", "-u"])
+    return None
