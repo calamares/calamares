@@ -51,6 +51,6 @@ private:
 } // namespace CalamaresUtils
 
 #define CALAMARES_RETRANSLATE(a) \
-    CalamaresUtils::Retranslator::attachRetranslator( this, [this] { a } );
+    CalamaresUtils::Retranslator::attachRetranslator( this, [=] { a } );
 
 #endif // CALAMARESUTILS_RETRANSLATOR_H
