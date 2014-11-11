@@ -25,6 +25,8 @@
 
 #include "keyboardwidget/keyboardglobal.h"
 
+#include "Typedefs.h"
+
 #include <QListWidgetItem>
 #include <QWidget>
 
@@ -45,6 +47,8 @@ public:
     void init();
 
     QString prettyStatus() const;
+
+    QList< Calamares::job_ptr > createJobs();
 
     void finalize();
 

@@ -24,6 +24,7 @@
 
 #include "ui_KeyboardPage.h"
 #include "keyboardwidget/keyboardpreview.h"
+#include "SetKeyboardLayoutJob.h"
 
 #include "GlobalStorage.h"
 #include "JobQueue.h"
@@ -185,6 +186,22 @@ KeyboardPage::prettyStatus() const
               .arg( ui->listVariant->currentItem()->text() );
 
     return status;
+}
+
+
+QList< Calamares::job_ptr >
+KeyboardPage::createJobs()
+{
+    QList< Calamares::job_ptr > list;
+    QString selectedModel = m_models.value( ui->comboBoxModel->currentText(),
+                                            "pc105" );
+
+    Calamares::Job* j = new SetKeyboardLayoutJob( selectedModel,
+                                                  m_selectedLayout,
+                                                  m_selectedVariant );
+    list.append( Calamares::job_ptr( j ) );
+
+    return list;
 }
 
 
