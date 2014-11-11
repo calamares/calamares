@@ -19,6 +19,7 @@
 #ifndef CALAMARESUTILS_RETRANSLATOR_H
 #define CALAMARESUTILS_RETRANSLATOR_H
 
+#include <QList>
 #include <QObject>
 
 #include <functional>
@@ -32,20 +33,24 @@ class Retranslator : public QObject
 {
     Q_OBJECT
 public:
-    explicit Retranslator( QObject* parent,
-                           std::function< void( void ) > retranslateFunc );
+    static void attachRetranslator( QObject* parent,
+                                    std::function< void( void ) > retranslateFunc );
+
+    void addRetranslateFunc( std::function< void( void ) > retranslateFunc );
 
 protected:
     bool eventFilter( QObject* obj, QEvent* e ) override;
 
 private:
-    std::function< void( void ) > m_retranslateFunc;
+    explicit Retranslator( QObject* parent );
+
+    QList< std::function< void( void ) > > m_retranslateFuncList;
 };
 
 
 } // namespace CalamaresUtils
 
-#define RETRANSLATE(a) \
-    new CalamaresUtils::Retranslator( this, [this] { a } );
+#define CALAMARES_RETRANSLATE(a) \
+    CalamaresUtils::Retranslator::attachRetranslator( this, [this] { a } );
 
 #endif // CALAMARESUTILS_RETRANSLATOR_H

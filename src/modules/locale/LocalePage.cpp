@@ -121,7 +121,7 @@ LocalePage::LocalePage( QWidget* parent )
         m_blockTzWidgetSet = false;
     });
 
-    RETRANSLATE(
+    CALAMARES_RETRANSLATE(
         m_cityLabel->setText( tr( "Region:" ) );
         m_timezoneLabel->setText( tr( "Zone:" ) );
     )

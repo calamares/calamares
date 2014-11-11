@@ -24,13 +24,29 @@
 namespace CalamaresUtils {
 
 
-Retranslator::Retranslator( QObject* parent,
-                            std::function< void ( void ) > retranslateFunc )
-    : QObject( parent )
-    , m_retranslateFunc( retranslateFunc )
+void
+Retranslator::attachRetranslator( QObject* parent,
+                                  std::function< void ( void ) > retranslateFunc )
 {
-    m_retranslateFunc();
+    Retranslator* r = nullptr;
+    foreach ( QObject* child, parent->children() )
+    {
+        r = qobject_cast< Retranslator* >( child );
+        if ( r )
+            break;
+    }
 
+    if ( !r )
+        r = new Retranslator( parent );
+
+    r->m_retranslateFuncList.append( retranslateFunc );
+    retranslateFunc();
+}
+
+
+Retranslator::Retranslator( QObject* parent )
+    : QObject( parent )
+{
     parent->installEventFilter( this );
 }
 
@@ -42,7 +58,8 @@ Retranslator::eventFilter( QObject* obj, QEvent* e )
     {
         if ( e->type() == QEvent::LanguageChange )
         {
-            m_retranslateFunc();
+            foreach ( std::function< void() > func, m_retranslateFuncList )
+                func();
             return true;
         }
     }
