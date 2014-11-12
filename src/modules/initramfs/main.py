@@ -17,9 +17,9 @@
 #   You should have received a copy of the GNU General Public License
 #   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
 
-from libcalamares.utils import check_chroot_call
+from libcalamares.utils import chroot_call
 
 def run():
-    returnCode = check_chroot_call(["update-initramfs", "-k", "all", "-u"])
+    returnCode = chroot_call(["update-initramfs", "-k", "all", "-u"])
     if returnCode != 0:
         return ("Failed to run update-initramfs on the target", "The exit code was {}".format(returnCode))
