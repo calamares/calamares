@@ -35,6 +35,9 @@ def detect_firmware_type():
         fw_type = 'efi'
     else:
         fw_type = 'bios'
+        
+    libcalamares.globalstorage.insert("firmwareType", fw_type)
+    libcalamares.utils.debug("Firmware type: {!s}".format(fw_type))
 
 
 def get_uuid():
@@ -48,20 +51,52 @@ def get_uuid():
             return partition["uuid"]
     return ""
 
-
 def create_conf(uuid, conf_path):
     distribution = libcalamares.job.configuration["distribution"]
+    kernel = libcalamares.job.configuration["kernel"]
+    img = libcalamares.job.configuration["img"]
+    partitions = libcalamares.globalstorage.value("partitions")
+    for partition in partitions:
+        if partition["fs"] == "linuxswap":
+            swap = partition["uuid"]
+        else:
+            swap = ""
     lines = [
         '## This is just an exmaple config file.\n',
         '## Please edit the paths and kernel parameters according to your system.\n',
         '\n',
         'title   %s GNU/Linux, with Linux core repo kernel\n' % distribution,
-        'linux   /vmlinuz-linux\n',
-        'initrd  /initramfs-linux.img\n',
-        'options root=UUID=%s quiet rw\n' % uuid,
+        'linux   %s\n' % kernel,
+        'initrd  %s\n' % img,
+        'options root=UUID=%s quiet resume=%s rw\n' % (uuid, swap),
     ]
 
     with open(conf_path, 'w') as f:
+        for l in lines:
+            f.write(l)
+    f.close()
+
+def create_fallback(uuid, fallback_path):
+    distribution = libcalamares.job.configuration["distribution"]
+    kernel = libcalamares.job.configuration["kernel"]
+    fb_img = libcalamares.job.configuration["fallback"]
+    partitions = libcalamares.globalstorage.value("partitions")
+    for partition in partitions:
+        if partition["fs"] == "linuxswap":
+            swap = partition["uuid"]
+        else:
+            swap = ""
+    lines = [
+        '## This is just an exmaple config file.\n',
+        '## Please edit the paths and kernel parameters according to your system.\n',
+        '\n',
+        'title   %s GNU/Linux, with Linux fallback kernel\n' % distribution,
+        'linux   %s\n' % kernel,
+        'initrd  %s\n' % fb_img,
+        'options root=UUID=%s quiet resume=%s rw\n' % (uuid, swap),
+    ]
+
+    with open(fallback_path, 'w') as f:
         for l in lines:
             f.write(l)
     f.close()
@@ -88,11 +123,23 @@ def install_bootloader(boot_loader, fw_type):
         distribution = libcalamares.job.configuration["distribution"]
         conf_path = os.path.join(
             install_path, "boot", "loader", "entries", "%s.conf" % distribution)
+        fallback_path = os.path.join(
+            install_path, "boot", "loader", "entries", "%s-fallback.conf" % distribution)
         loader_path = os.path.join(
             install_path, "boot", "loader", "loader.conf")
+        partitions = libcalamares.globalstorage.value("partitions")
+        for partition in partitions:
+            if partition["mountPoint"] == "/boot":
+                print(partition["device"])
+                boot_device = partition["device"]
+                boot_p = boot_device[-1:]
+                device = boot_device[:-1]
+                print(device)
+        subprocess.call(['sgdisk', '--typecode=%s:EF00 %s' % (boot_p, device)])
         subprocess.call(
             ["gummiboot", "--path=%s/boot" % install_path, "install"])
         create_conf(uuid, conf_path)
+        create_fallback(uuid, fallback_path)
         create_loader(loader_path)
     else:
         install_path = boot_loader["installPath"]
