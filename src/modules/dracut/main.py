@@ -22,8 +22,11 @@ import libcalamares
 from libcalamares.utils import check_chroot_call
 
 def run_dracut():
-    check_chroot_call(['dracut', '-f'])
+    return check_chroot_call(['dracut', '-f'])
 
 def run():
-    run_dracut()
-    return None
+    returnCode = run_dracut()
+    if returnCode != 0:
+        return ("Failed to run dracut on the target", "The exit code was {}".format(returnCode))
+    
+    

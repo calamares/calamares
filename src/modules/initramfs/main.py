@@ -20,5 +20,6 @@
 from libcalamares.utils import check_chroot_call
 
 def run():
-    check_chroot_call(["update-initramfs", "-k", "all", "-u"])
-    return None
+    returnCode = check_chroot_call(["update-initramfs", "-k", "all", "-u"])
+    if returnCode != 0:
+        return ("Failed to run update-initramfs on the target", "The exit code was {}".format(returnCode))
