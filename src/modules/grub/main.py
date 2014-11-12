@@ -18,16 +18,23 @@
 #   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
 
 import libcalamares
+
 from libcalamares.utils import check_chroot_call
 
 
-def install_grub(boot_loader):
-    install_path = boot_loader["installPath"]
-    check_chroot_call(["grub-install", install_path])
-    check_chroot_call(["grub-mkconfig", "-o", "/boot/grub/grub.cfg"])
+def install_grub(boot_loader, fw_type):
+    if fw_type == 'efi' then:
+        efi_directory = "/boot/efi"
+        distribution_name = "DistributionName"
+        check_chroot_call(["grub-install", "--target=x86_64-efi", "--efi-directory={!s}".format(efi_directory), "--bootloader-id={!s}".format(distribution_name)])
+    else:
+        install_path = boot_loader["installPath"]
+        check_chroot_call(["grub-install", install_path])
 
+    check_chroot_call(["grub-mkconfig", "-o", "/boot/grub/grub.cfg"])
 
 def run():
     boot_loader = libcalamares.globalstorage.value("bootLoader")
-    install_grub(boot_loader)
+    fw_type = libcalamares.globalstorage.value("firmwareType")
+    install_grub(boot_loader, fw_type)
     return None
