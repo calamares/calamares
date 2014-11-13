@@ -25,9 +25,10 @@ class PrepareCheckWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit PrepareCheckWidget( const QString &text,
-                                 bool checked,
+    explicit PrepareCheckWidget( bool checked,
                                  QWidget* parent = nullptr );
+
+    void setText( const QString& text );
 private:
     QLabel* m_textLabel;
     QLabel* m_iconLabel;

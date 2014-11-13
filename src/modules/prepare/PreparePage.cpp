@@ -59,7 +59,8 @@ PreparePage::init( const QList< PrepareEntry >& checkEntries )
 
     for ( const PrepareEntry& entry : checkEntries )
     {
-        PrepareCheckWidget* pcw = new PrepareCheckWidget( entry.text, entry.checked );
+        PrepareCheckWidget* pcw = new PrepareCheckWidget( entry.checked );
+        pcw->setText( entry.text );
         m_entriesLayout->addWidget( pcw );
         pcw->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred );
 

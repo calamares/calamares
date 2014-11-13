@@ -23,8 +23,7 @@
 
 #include <QBoxLayout>
 
-PrepareCheckWidget::PrepareCheckWidget( const QString &text,
-                                        bool checked,
+PrepareCheckWidget::PrepareCheckWidget( bool checked,
                                         QWidget* parent )
     : QWidget( parent )
 {
@@ -34,7 +33,7 @@ PrepareCheckWidget::PrepareCheckWidget( const QString &text,
     m_iconLabel = new QLabel( this );
     mainLayout->addWidget( m_iconLabel );
     m_iconLabel->setFixedSize( CalamaresUtils::defaultIconSize() );
-    m_textLabel = new QLabel( text, this );
+    m_textLabel = new QLabel( this );
     mainLayout->addWidget( m_textLabel );
     m_textLabel->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred );
 
@@ -48,4 +47,11 @@ PrepareCheckWidget::PrepareCheckWidget( const QString &text,
                                                                CalamaresUtils::Original,
                                                                QSize( m_iconLabel->height(),
                                                                       m_iconLabel->height() ) ) );
+}
+
+
+void
+PrepareCheckWidget::setText( const QString& text )
+{
+    m_textLabel->setText( text );
 }
