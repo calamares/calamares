@@ -35,7 +35,7 @@ def detect_firmware_type():
         fw_type = 'efi'
     else:
         fw_type = 'bios'
-        
+
     libcalamares.globalstorage.insert("firmwareType", fw_type)
     libcalamares.utils.debug("Firmware type: {!s}".format(fw_type))
 
@@ -50,6 +50,7 @@ def get_uuid():
             print(partition["uuid"])
             return partition["uuid"]
     return ""
+
 
 def create_conf(uuid, conf_path):
     distribution = libcalamares.job.configuration["distribution"]
@@ -75,6 +76,7 @@ def create_conf(uuid, conf_path):
         for l in lines:
             f.write(l)
     f.close()
+
 
 def create_fallback(uuid, fallback_path):
     distribution = libcalamares.job.configuration["distribution"]
@@ -143,8 +145,10 @@ def install_bootloader(boot_loader, fw_type):
         create_loader(loader_path)
     else:
         install_path = boot_loader["installPath"]
-        check_chroot_call([libcalamares.job.configuration["grubInstall"], install_path])
-        check_chroot_call([libcalamares.job.configuration["grubMkconfig"], "-o", libcalamares.job.configuration["grubCfg"]])
+        check_chroot_call(
+            [libcalamares.job.configuration["grubInstall"], install_path])
+        check_chroot_call([libcalamares.job.configuration[
+                          "grubMkconfig"], "-o", libcalamares.job.configuration["grubCfg"]])
 
 
 def run():
