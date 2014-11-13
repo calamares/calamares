@@ -1,0 +1,5 @@
+---
+type:       "job"
+name:       "localecfg"
+interface:  "python"
+script:     "main.py"
