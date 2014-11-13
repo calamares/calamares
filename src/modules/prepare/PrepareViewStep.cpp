@@ -24,6 +24,7 @@
 #include "widgets/WaitingWidget.h"
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
+#include "utils/Retranslator.h"
 #include "JobQueue.h"
 #include "GlobalStorage.h"
 
@@ -47,8 +48,9 @@ PrepareViewStep::PrepareViewStep( QObject* parent )
     m_widget->setLayout( mainLayout );
     CalamaresUtils::unmarginLayout( mainLayout );
 
-    QWidget* waitingWidget = new WaitingWidget( tr( "Gathering system information..." ) );
+    WaitingWidget* waitingWidget = new WaitingWidget( QString() );
     mainLayout->addWidget( waitingWidget );
+    CALAMARES_RETRANSLATE( waitingWidget->setText( tr( "Gathering system information..." ) ); )
 
     QTimer* timer = new QTimer;
     timer->setSingleShot( true );
