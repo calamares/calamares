@@ -65,7 +65,7 @@ Calamares::JobResult SetHostNameJob::exec()
     hostfile.close();
 
     QFile hostsfile( destDir + "/etc/hosts" );
-    if ( !hostfile.open( QFile::WriteOnly ) )
+    if ( !hostsfile.open( QFile::WriteOnly ) )
     {
         cLog() << "Can't write to hosts file";
         return Calamares::JobResult::error( tr( "Cannot write hostname to target system" ) );
