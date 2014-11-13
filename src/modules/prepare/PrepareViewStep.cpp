@@ -87,30 +87,30 @@ PrepareViewStep::PrepareViewStep( QObject* parent )
             if ( entry == "storage" )
                 checkEntries.append( {
                     entry,
-                    tr( "has at least %1 GB available drive space" )
-                        .arg( m_requiredStorageGB ),
+                    [this]{ return tr( "has at least %1 GB available drive space" )
+                        .arg( m_requiredStorageGB ); },
                     enoughStorage,
                     m_entriesToRequire.contains( entry )
                 } );
             else if ( entry == "ram" )
                 checkEntries.append( {
                     entry,
-                    tr( "has at least %1 GB working memory" )
-                        .arg( m_requiredRamGB ),
+                    [this]{ return tr( "has at least %1 GB working memory" )
+                        .arg( m_requiredRamGB ); },
                     enoughRam,
                     m_entriesToRequire.contains( entry )
                 } );
             else if ( entry == "power" )
                 checkEntries.append( {
                     entry,
-                    tr( "is plugged in to a power source" ),
+                    [this]{ return tr( "is plugged in to a power source" ); },
                     hasPower,
                     m_entriesToRequire.contains( entry )
                 } );
             else if ( entry == "internet" )
                 checkEntries.append( {
                     entry,
-                    tr( "is connected to the Internet" ),
+                    [this]{ return tr( "is connected to the Internet" ); },
                     hasInternet,
                     m_entriesToRequire.contains( entry )
                 } );

@@ -19,18 +19,20 @@
 #ifndef PREPAREPAGEPLUGIN_H
 #define PREPAREPAGEPLUGIN_H
 
+#include "viewpages/ViewStep.h"
+#include "PluginDllMacro.h"
+
 #include <QObject>
 #include <QStringList>
 
-#include "viewpages/ViewStep.h"
-#include "PluginDllMacro.h"
+#include <functional>
 
 class PreparePage;
 
 struct PrepareEntry
 {
     QString name;
-    QString text;
+    std::function< QString() > text;
     bool checked;
     bool required;
 };
