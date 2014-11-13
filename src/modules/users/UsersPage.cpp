@@ -29,6 +29,7 @@
 #include "GlobalStorage.h"
 #include "utils/Logger.h"
 #include "utils/CalamaresUtilsGui.h"
+#include "utils/Retranslator.h"
 
 #include <QBoxLayout>
 #include <QLabel>
@@ -67,6 +68,8 @@ UsersPage::UsersPage( QWidget* parent )
 
     m_customUsername = false;
     m_customHostname = false;
+
+    CALAMARES_RETRANSLATE( ui->retranslateUi( this ); )
 }
 
 
