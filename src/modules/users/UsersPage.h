@@ -42,6 +42,8 @@ public:
 
     QList< Calamares::job_ptr > createJobs( const QString& defaultUserGroup,
                                             const QStringList& defaultGroupsList );
+protected:
+    void focusInEvent( QFocusEvent* e ) override;
 
 protected slots:
     void onFullNameTextEdited( const QString& );

@@ -128,6 +128,13 @@ UsersPage::createJobs( const QString& defaultUserGroup, const QStringList& defau
 
 
 void
+UsersPage::focusInEvent( QFocusEvent* e )
+{
+    ui->textBoxFullName->setFocus();
+}
+
+
+void
 UsersPage::onFullNameTextEdited( const QString &textRef )
 {
     if ( textRef.isEmpty() )
