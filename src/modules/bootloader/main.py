@@ -110,9 +110,10 @@ def create_loader(loader_path):
     branding = libcalamares.globalstorage.value("branding")
     distribution = branding["productName"]
     timeout = libcalamares.job.configuration["timeout"]
+    file_name_sanitizer = str.maketrans(" /", "_-")
     lines = [
         'timeout %s\n' % timeout,
-        'default %s\n' % distribution,
+        'default %s\n' % distribution.translate(file_name_sanitizer),
     ]
 
     with open(loader_path, 'w') as f:
@@ -127,10 +128,11 @@ def install_bootloader(boot_loader, fw_type):
         uuid = get_uuid()
         branding = libcalamares.globalstorage.value("branding")
         distribution = branding["productName"]
+        file_name_sanitizer = str.maketrans(" /", "_-")
         conf_path = os.path.join(
-            install_path, "boot", "loader", "entries", "%s.conf" % distribution)
+            install_path, "boot", "loader", "entries", "%s.conf" % distribution.translate(file_name_sanitizer))
         fallback_path = os.path.join(
-            install_path, "boot", "loader", "entries", "%s-fallback.conf" % distribution)
+            install_path, "boot", "loader", "entries", "%s-fallback.conf" % distribution.translate(file_name_sanitizer))
         loader_path = os.path.join(
             install_path, "boot", "loader", "loader.conf")
         partitions = libcalamares.globalstorage.value("partitions")
