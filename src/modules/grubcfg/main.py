@@ -66,5 +66,6 @@ def modify_grub_default(partitions, root_mount_point, distributor):
 def run():
     partitions = libcalamares.globalstorage.value("partitions")
     root_mount_point = libcalamares.globalstorage.value("rootMountPoint")
-    distributor = libcalamares.job.configuration["distributor"]
+    branding = libcalamares.globalstorage.value("branding")
+    distributor = branding["productName"]
     return modify_grub_default(partitions, root_mount_point, distributor)
