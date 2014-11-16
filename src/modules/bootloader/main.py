@@ -53,7 +53,8 @@ def get_uuid():
 
 
 def create_conf(uuid, conf_path):
-    distribution = libcalamares.job.configuration["distribution"]
+    branding = libcalamares.globalstorage.value("branding")
+    distribution = branding["productName"]
     kernel = libcalamares.job.configuration["kernel"]
     img = libcalamares.job.configuration["img"]
     partitions = libcalamares.globalstorage.value("partitions")
@@ -79,7 +80,8 @@ def create_conf(uuid, conf_path):
 
 
 def create_fallback(uuid, fallback_path):
-    distribution = libcalamares.job.configuration["distribution"]
+    branding = libcalamares.globalstorage.value("branding")
+    distribution = branding["productName"]
     kernel = libcalamares.job.configuration["kernel"]
     fb_img = libcalamares.job.configuration["fallback"]
     partitions = libcalamares.globalstorage.value("partitions")
@@ -105,7 +107,8 @@ def create_fallback(uuid, fallback_path):
 
 
 def create_loader(loader_path):
-    distribution = libcalamares.job.configuration["distribution"]
+    branding = libcalamares.globalstorage.value("branding")
+    distribution = branding["productName"]
     timeout = libcalamares.job.configuration["timeout"]
     lines = [
         'timeout %s\n' % timeout,
@@ -122,7 +125,8 @@ def install_bootloader(boot_loader, fw_type):
     if fw_type == 'efi':
         install_path = libcalamares.globalstorage.value("rootMountPoint")
         uuid = get_uuid()
-        distribution = libcalamares.job.configuration["distribution"]
+        branding = libcalamares.globalstorage.value("branding")
+        distribution = branding["productName"]
         conf_path = os.path.join(
             install_path, "boot", "loader", "entries", "%s.conf" % distribution)
         fallback_path = os.path.join(
