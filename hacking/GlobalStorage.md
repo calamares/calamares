@@ -10,6 +10,17 @@ A dictionary with the following keys:
 
 - `installPath`: device where the boot loader should be installed ("/dev/sda", "/dev/sdb1"...)
 
+## branding
+
+A dictionary with the following keys (loaded from branding.desc):
+
+- `productName`: distribution unversioned product name (long version)
+- `shortProductName`: distribution unversioned product name (short version)
+- `version`: distribution version number (long version)
+- `shortVersion`: distribution version number (short version)
+- `versionedName`: distribution product name and version (long version)
+- `shortVersionedName`: distribution product name and version (short version)
+
 ## partitions
 
 A list of dictionaries, one per partition. The dictionary contains the following keys:
