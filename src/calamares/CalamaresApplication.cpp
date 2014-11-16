@@ -316,5 +316,6 @@ CalamaresApplication::onPluginsReady()
 void
 CalamaresApplication::initJobQueue()
 {
-    new Calamares::JobQueue( this );
+    Calamares::JobQueue *jobQueue = new Calamares::JobQueue( this );
+    Calamares::Branding::instance()->setGlobals( jobQueue->globalStorage() );
 }

@@ -30,6 +30,8 @@
 namespace Calamares
 {
 
+class GlobalStorage;
+
 class UIDLLEXPORT Branding : public QObject
 {
     Q_OBJECT
@@ -62,6 +64,13 @@ public:
     QString imagePath( Branding::ImageEntry imageEntry ) const;
     QPixmap image( Branding::ImageEntry imageEntry, const QSize& size ) const;
     QStringList slideshowPaths() const;
+
+    /**
+     * Creates a map called "branding" in the global storage, and inserts an
+     * entry for each of the branding strings. This makes the branding
+     * information accessible to the Python modules.
+     */
+    void setGlobals( GlobalStorage* globalStorage ) const;
 
 private:
     static Branding* s_instance;
