@@ -42,7 +42,8 @@ public:
         Version,
         ShortVersion,
         VersionedName,
-        ShortVersionedName
+        ShortVersionedName,
+        ShortProductName
     };
 
     enum ImageEntry : short

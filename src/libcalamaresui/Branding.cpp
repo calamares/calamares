@@ -50,7 +50,8 @@ QStringList Branding::s_stringEntryStrings =
     "version",
     "shortVersion",
     "versionedName",
-    "shortVersionedName"
+    "shortVersionedName",
+    "shortProductName"
 };
 
 
@@ -206,11 +207,8 @@ void
 Branding::setGlobals( GlobalStorage* globalStorage ) const
 {
     QVariantMap brandingMap;
-    brandingMap.insert( "productName", string( ProductName ) );
-    brandingMap.insert( "version", string( Version ) );
-    brandingMap.insert( "shortVersion", string( ShortVersion ) );
-    brandingMap.insert( "versionedName", string( VersionedName ) );
-    brandingMap.insert( "shortVersionedName", string( ShortVersionedName ) );
+    foreach ( const QString& key, s_stringEntryStrings )
+        brandingMap.insert( key, m_strings.value( key ) );
     globalStorage->insert( "branding", brandingMap );
 }
 
