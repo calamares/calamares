@@ -56,7 +56,7 @@ def modify_grub_default(partitions, root_mount_point, distributor):
         elif lines[i].startswith("GRUB_CMDLINE_LINUX_DEFAULT"):
             lines[i] = kernel_cmd
         elif lines[i].startswith("#GRUB_DISTRIBUTOR") or lines[i].startswith("GRUB_DISTRIBUTOR"):
-            lines[i] = "GRUB_DISTRIBUTOR=%s" % distributor
+            lines[i] = "GRUB_DISTRIBUTOR='%s'" % distributor.replace("'", "'\\''")
 
     with open(default_grub, 'w') as grub_file:
         grub_file.write("\n".join(lines) + "\n")
@@ -66,5 +66,6 @@ def modify_grub_default(partitions, root_mount_point, distributor):
 def run():
     partitions = libcalamares.globalstorage.value("partitions")
     root_mount_point = libcalamares.globalstorage.value("rootMountPoint")
-    distributor = libcalamares.job.configuration["distributor"]
+    branding = libcalamares.globalstorage.value("branding")
+    distributor = branding["shortProductName"]
     return modify_grub_default(partitions, root_mount_point, distributor)

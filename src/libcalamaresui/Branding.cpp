@@ -18,6 +18,7 @@
 
 #include "Branding.h"
 
+#include "GlobalStorage.h"
 #include "utils/CalamaresUtils.h"
 #include "utils/Logger.h"
 #include "utils/YamlUtils.h"
@@ -26,6 +27,7 @@
 #include <QDir>
 #include <QFile>
 #include <QPixmap>
+#include <QVariantMap>
 
 #include <yaml-cpp/yaml.h>
 
@@ -48,7 +50,8 @@ QStringList Branding::s_stringEntryStrings =
     "version",
     "shortVersion",
     "versionedName",
-    "shortVersionedName"
+    "shortVersionedName",
+    "shortProductName"
 };
 
 
@@ -197,6 +200,16 @@ QStringList
 Branding::slideshowPaths() const
 {
     return m_slideshow;
+}
+
+
+void
+Branding::setGlobals( GlobalStorage* globalStorage ) const
+{
+    QVariantMap brandingMap;
+    foreach ( const QString& key, s_stringEntryStrings )
+        brandingMap.insert( key, m_strings.value( key ) );
+    globalStorage->insert( "branding", brandingMap );
 }
 
 

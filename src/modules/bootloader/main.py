@@ -53,7 +53,8 @@ def get_uuid():
 
 
 def create_conf(uuid, conf_path):
-    distribution = libcalamares.job.configuration["distribution"]
+    branding = libcalamares.globalstorage.value("branding")
+    distribution = branding["shortProductName"]
     kernel = libcalamares.job.configuration["kernel"]
     img = libcalamares.job.configuration["img"]
     partitions = libcalamares.globalstorage.value("partitions")
@@ -79,7 +80,8 @@ def create_conf(uuid, conf_path):
 
 
 def create_fallback(uuid, fallback_path):
-    distribution = libcalamares.job.configuration["distribution"]
+    branding = libcalamares.globalstorage.value("branding")
+    distribution = branding["shortProductName"]
     kernel = libcalamares.job.configuration["kernel"]
     fb_img = libcalamares.job.configuration["fallback"]
     partitions = libcalamares.globalstorage.value("partitions")
@@ -105,11 +107,13 @@ def create_fallback(uuid, fallback_path):
 
 
 def create_loader(loader_path):
-    distribution = libcalamares.job.configuration["distribution"]
+    branding = libcalamares.globalstorage.value("branding")
+    distribution = branding["shortProductName"]
     timeout = libcalamares.job.configuration["timeout"]
+    file_name_sanitizer = str.maketrans(" /", "_-")
     lines = [
         'timeout %s\n' % timeout,
-        'default %s\n' % distribution,
+        'default %s\n' % distribution.translate(file_name_sanitizer),
     ]
 
     with open(loader_path, 'w') as f:
@@ -122,11 +126,13 @@ def install_bootloader(boot_loader, fw_type):
     if fw_type == 'efi':
         install_path = libcalamares.globalstorage.value("rootMountPoint")
         uuid = get_uuid()
-        distribution = libcalamares.job.configuration["distribution"]
+        branding = libcalamares.globalstorage.value("branding")
+        distribution = branding["shortProductName"]
+        file_name_sanitizer = str.maketrans(" /", "_-")
         conf_path = os.path.join(
-            install_path, "boot", "loader", "entries", "%s.conf" % distribution)
+            install_path, "boot", "loader", "entries", "%s.conf" % distribution.translate(file_name_sanitizer))
         fallback_path = os.path.join(
-            install_path, "boot", "loader", "entries", "%s-fallback.conf" % distribution)
+            install_path, "boot", "loader", "entries", "%s-fallback.conf" % distribution.translate(file_name_sanitizer))
         loader_path = os.path.join(
             install_path, "boot", "loader", "loader.conf")
         partitions = libcalamares.globalstorage.value("partitions")
