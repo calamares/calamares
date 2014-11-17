@@ -1550,18 +1550,18 @@ Nekateri datotečni sistemi za podprtost zahtevajo namestitev zunanjih orodij. V
     <message>
         <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="127"/>
         <source>The logical sector sizes in the source and target for copying are not the same. This is currently unsupported.</source>
-        <translation type="unfinished"/>
+        <translation>Velikosti logičnih sektorjev v viru in cilju za kopiranje niso enake. To trenutno ni podprto.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="200"/>
         <source>Source and target for copying do not overlap: Rollback is not required.</source>
-        <translation type="unfinished"/>
+        <translation>Vir in cilj za kopiranje se ne prekrivata: razveljavitev ni potrebna.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="224"/>
         <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="232"/>
         <source>Could not open device %1 to rollback copying.</source>
-        <translation type="unfinished"/>
+        <translation>Ni mogoče odpreti naprave %1 za razveljavitev kopiranja.</translation>
     </message>
 </context>
 <context>
@@ -1569,17 +1569,17 @@ Nekateri datotečni sistemi za podprtost zahtevajo namestitev zunanjih orodij. V
     <message>
         <location filename="../src/modules/keyboard/KeyboardPage.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>Oblika</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardPage.ui" line="70"/>
         <source>Keyboard Model:</source>
-        <translation type="unfinished"/>
+        <translation>Model tipkovnice:</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardPage.ui" line="131"/>
         <source>Type here to test your keyboard</source>
-        <translation type="unfinished"/>
+        <translation>Tipkajte tukaj za testiranje tipkovnice</translation>
     </message>
 </context>
 <context>
@@ -1587,17 +1587,17 @@ Nekateri datotečni sistemi za podprtost zahtevajo namestitev zunanjih orodij. V
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>Oblika</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="33"/>
         <source>What is your name?</source>
-        <translation type="unfinished"/>
+        <translation>Vaše ime?</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="111"/>
         <source>What name do you want to use to log in?</source>
-        <translation type="unfinished"/>
+        <translation>Katero ime želite uporabiti za prijavljanje?</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="191"/>
@@ -1605,52 +1605,52 @@ Nekateri datotečni sistemi za podprtost zahtevajo namestitev zunanjih orodij. V
         <location filename="../src/modules/users/page_usersetup.ui" line="425"/>
         <location filename="../src/modules/users/page_usersetup.ui" line="553"/>
         <source>font-weight: normal</source>
-        <translation type="unfinished"/>
+        <translation>Debelina pisave: normalna</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="194"/>
         <source>&lt;small&gt;If more than one person will use this computer, you can set up multiple accounts after installation.&lt;/small&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;small&gt;Če bo ta računalnik uporabljala več kot ena oseba, lahko po namestitvi nastavite nadaljnje račune&lt;/small&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="217"/>
         <source>Choose a password to keep your account safe.</source>
-        <translation type="unfinished"/>
+        <translation>Izberite geslo za zaščito vašega računa.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="322"/>
         <source>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors. A good password will contain a mixture of letters, numbers and punctuation, should be at least eight characters long, and should be changed at regular intervals.&lt;/small&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;small&gt;Geslo vnesite dvakrat, da se zavarujete pred morebitnimi tipkarskimi napakami. Dobro geslo vsebuje mešanico črk, številk in ločil ter ima najmanj osem znakov. Priporočljivo je, da ga spreminjate v rednih časovnih razmikih.&lt;/small&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="345"/>
         <source>What is the name of this computer?</source>
-        <translation type="unfinished"/>
+        <translation>Ime računalnika?</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="428"/>
         <source>&lt;small&gt;This name will be used if you make the computer visible to others on a network.&lt;/small&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;small&gt;To ime bo uporabljeno, če bo vaš računalnik viden drugim napravam v omrežju.&lt;/small&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="451"/>
         <source>Choose a password for the administrator account.</source>
-        <translation type="unfinished"/>
+        <translation>Izberite geslo za skrbniški račun.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="556"/>
         <source>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors.&lt;/small&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;small&gt;Geslo vnesite dvakrat, da se zavarujete pred morebitnimi tipkarskimi napakami.&lt;/small&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="596"/>
         <source>Log in automatically</source>
-        <translation type="unfinished"/>
+        <translation>Samodejna prijava</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="606"/>
         <source>Require my password to log in</source>
-        <translation type="unfinished"/>
+        <translation>Za prijavo zahtevaj moje geslo</translation>
     </message>
 </context>
 <context>
@@ -1659,91 +1659,91 @@ Nekateri datotečni sistemi za podprtost zahtevajo namestitev zunanjih orodij. V
         <location filename="../src/modules/partition/partitionmanager/src/gui/partpropswidgetbase.ui" line="49"/>
         <source>File system:</source>
         <comment>@label:listbox</comment>
-        <translation type="unfinished"/>
+        <translation>Datotečni sistem:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/partpropswidgetbase.ui" line="65"/>
         <source>Label:</source>
         <comment>@label</comment>
-        <translation type="unfinished"/>
+        <translation>Oznaka:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/partpropswidgetbase.ui" line="82"/>
         <source>This file system does not support setting a label.</source>
         <comment>@label</comment>
-        <translation type="unfinished"/>
+        <translation>Ta datotečni sistem ne podpira nastavljanja oznak.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/partpropswidgetbase.ui" line="92"/>
         <source>Recreate existing file system</source>
         <comment>@action:button</comment>
-        <translation type="unfinished"/>
+        <translation>Ponovno ustvari obstoječi datotečni sistem</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/partpropswidgetbase.ui" line="106"/>
         <source>Mount point:</source>
         <comment>@label</comment>
-        <translation type="unfinished"/>
+        <translation>Priklopna točka:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/partpropswidgetbase.ui" line="123"/>
         <source>Partition type:</source>
         <comment>@label</comment>
-        <translation type="unfinished"/>
+        <translation>Vrsta razdelka:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/partpropswidgetbase.ui" line="140"/>
         <source>Status:</source>
         <comment>@label</comment>
-        <translation type="unfinished"/>
+        <translation>Stanje:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/partpropswidgetbase.ui" line="157"/>
         <source>UUID:</source>
         <comment>@label</comment>
-        <translation type="unfinished"/>
+        <translation>UUID:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/partpropswidgetbase.ui" line="187"/>
         <source>Size:</source>
         <comment>@label</comment>
-        <translation type="unfinished"/>
+        <translation>Velikost:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/partpropswidgetbase.ui" line="210"/>
         <source>Available:</source>
         <comment>@label partition capacity available</comment>
-        <translation type="unfinished"/>
+        <translation>Razpoložljivo:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/partpropswidgetbase.ui" line="227"/>
         <source>Used:</source>
         <comment>@label partition capacity used</comment>
-        <translation type="unfinished"/>
+        <translation>Uporabljeno:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/partpropswidgetbase.ui" line="251"/>
         <source>First sector:</source>
         <comment>@label</comment>
-        <translation type="unfinished"/>
+        <translation>Prvi sektor:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/partpropswidgetbase.ui" line="268"/>
         <source>Last sector:</source>
         <comment>@label</comment>
-        <translation type="unfinished"/>
+        <translation>Zadnji sektor:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/partpropswidgetbase.ui" line="285"/>
         <source>Number of sectors:</source>
         <comment>@label</comment>
-        <translation type="unfinished"/>
+        <translation>Število sektorjev:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/partpropswidgetbase.ui" line="309"/>
         <source>Flags:</source>
         <comment>@label</comment>
-        <translation type="unfinished"/>
+        <translation>Zastavice:</translation>
     </message>
 </context>
 <context>
@@ -1752,67 +1752,67 @@ Nekateri datotečni sistemi za podprtost zahtevajo namestitev zunanjih orodij. V
         <location filename="../src/modules/partition/partitionmanager/src/gui/partitionmanagerwidgetbase.ui" line="14"/>
         <source>KDE Partition Manager</source>
         <comment>@title:window</comment>
-        <translation type="unfinished"/>
+        <translation>Upravljalnik razdelkov KDE</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/partitionmanagerwidgetbase.ui" line="70"/>
         <source>Partition</source>
-        <translation type="unfinished"/>
+        <translation>Razdelek</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/partitionmanagerwidgetbase.ui" line="75"/>
         <source>Type</source>
-        <translation type="unfinished"/>
+        <translation>Vrsta</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/partitionmanagerwidgetbase.ui" line="80"/>
         <source>Mount Point</source>
-        <translation type="unfinished"/>
+        <translation>Priklopna točka</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/partitionmanagerwidgetbase.ui" line="85"/>
         <source>Label</source>
-        <translation type="unfinished"/>
+        <translation>Oznaka</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/partitionmanagerwidgetbase.ui" line="90"/>
         <source>UUID</source>
-        <translation type="unfinished"/>
+        <translation>UUID</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/partitionmanagerwidgetbase.ui" line="95"/>
         <source>Size</source>
-        <translation type="unfinished"/>
+        <translation>Velikost</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/partitionmanagerwidgetbase.ui" line="100"/>
         <source>Used</source>
-        <translation type="unfinished"/>
+        <translation>Uporabljeno</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/partitionmanagerwidgetbase.ui" line="105"/>
         <source>Available</source>
-        <translation type="unfinished"/>
+        <translation>Razpoložljivo</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/partitionmanagerwidgetbase.ui" line="110"/>
         <source>First Sector</source>
-        <translation type="unfinished"/>
+        <translation>Prvi sektor</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/partitionmanagerwidgetbase.ui" line="115"/>
         <source>Last Sector</source>
-        <translation type="unfinished"/>
+        <translation>Zadnji sektor</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/partitionmanagerwidgetbase.ui" line="120"/>
         <source>Number of Sectors</source>
-        <translation type="unfinished"/>
+        <translation>Število sektorjev</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/partitionmanagerwidgetbase.ui" line="125"/>
         <source>Flags</source>
-        <translation type="unfinished"/>
+        <translation>Zastavice</translation>
     </message>
 </context>
 <context>
@@ -1820,32 +1820,32 @@ Nekateri datotečni sistemi za podprtost zahtevajo namestitev zunanjih orodij. V
     <message>
         <location filename="../src/modules/partition/core/PartitionModel.cpp" line="132"/>
         <source>Free Space</source>
-        <translation type="unfinished"/>
+        <translation>Razpoložljiv prostor</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/core/PartitionModel.cpp" line="136"/>
         <source>New partition</source>
-        <translation type="unfinished"/>
+        <translation>Nov razdelek</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/core/PartitionModel.cpp" line="175"/>
         <source>Name</source>
-        <translation type="unfinished"/>
+        <translation>Ime</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/core/PartitionModel.cpp" line="177"/>
         <source>File System</source>
-        <translation type="unfinished"/>
+        <translation>Datotečni sistem</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/core/PartitionModel.cpp" line="179"/>
         <source>Mount Point</source>
-        <translation type="unfinished"/>
+        <translation>Priklopna točka</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/core/PartitionModel.cpp" line="181"/>
         <source>Size</source>
-        <translation type="unfinished"/>
+        <translation>Velikost</translation>
     </message>
 </context>
 <context>
@@ -1853,47 +1853,47 @@ Nekateri datotečni sistemi za podprtost zahtevajo namestitev zunanjih orodij. V
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>Oblika</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="22"/>
         <source>&amp;Disk:</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Disk:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="51"/>
         <source>&amp;Revert All Changes</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Povrni vse spremembe</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="84"/>
         <source>New Partition &amp;Table</source>
-        <translation type="unfinished"/>
+        <translation>Nov razdelek &amp;Razpredelnica</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="104"/>
         <source>&amp;Create</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Ustvari</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="111"/>
         <source>&amp;Edit</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Urejaj</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="118"/>
         <source>&amp;Delete</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Izbriši</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="145"/>
         <source>&amp;Install boot loader on:</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Namesti zagonski nalagalnik na:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="125"/>
         <source>Are you sure you want to create a new partition table on %1?</source>
-        <translation type="unfinished"/>
+        <translation>Ali ste prepričani, da želite ustvariti novo razpredelnico razdelkov na %1?</translation>
     </message>
 </context>
 <context>
@@ -1901,22 +1901,22 @@ Nekateri datotečni sistemi za podprtost zahtevajo namestitev zunanjih orodij. V
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="60"/>
         <source>Gathering system information...</source>
-        <translation type="unfinished"/>
+        <translation>Zbiranje informacij o sistemu ...</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="149"/>
         <source>Partitions</source>
-        <translation type="unfinished"/>
+        <translation>Razdelki</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="177"/>
         <source>Before:</source>
-        <translation type="unfinished"/>
+        <translation>Pred:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="182"/>
         <source>After:</source>
-        <translation type="unfinished"/>
+        <translation>Potem:</translation>
     </message>
 </context>
 <context>
@@ -1924,19 +1924,21 @@ Nekateri datotečni sistemi za podprtost zahtevajo namestitev zunanjih orodij. V
     <message>
         <location filename="../src/modules/prepare/PreparePage.cpp" line="36"/>
         <source>For best results, please ensure that this computer:</source>
-        <translation type="unfinished"/>
+        <translation>Za najboljše rezultate se prepričajte, da vaš računalnik izpolnjuje naslednje zahteve:</translation>
     </message>
     <message>
         <location filename="../src/modules/prepare/PreparePage.cpp" line="91"/>
         <source>This computer does not satisfy the minimum requirements for installing %1.
 Installation cannot continue.</source>
-        <translation type="unfinished"/>
+        <translation>Ta računalnik ne izpolnjuje minimalnih zahtev za namestitev %1.
+Namestitve ni mogoče nadaljevati.</translation>
     </message>
     <message>
         <location filename="../src/modules/prepare/PreparePage.cpp" line="102"/>
         <source>This computer does not satisfy some of the recommended requirements for installing %1.
 Installation can continue, but some features might be disabled.</source>
-        <translation type="unfinished"/>
+        <translation>Ta računalnik ne izpolnjuje nekaterih priporočenih zahtev za namestitev %1.
+Namestitev je možno nadaljevati, vendar se lahko zgodi, da bodo nekatere možnosti onemogočene.</translation>
     </message>
 </context>
 <context>
@@ -1944,27 +1946,27 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/prepare/PrepareViewStep.cpp" line="50"/>
         <source>Gathering system information...</source>
-        <translation type="unfinished"/>
+        <translation>Zbiranje informacij o sistemu ...</translation>
     </message>
     <message>
         <location filename="../src/modules/prepare/PrepareViewStep.cpp" line="88"/>
         <source>has at least %1 GB available drive space</source>
-        <translation type="unfinished"/>
+        <translation>ima vsaj %1 GB razpoložljivega prostora na disku</translation>
     </message>
     <message>
         <location filename="../src/modules/prepare/PrepareViewStep.cpp" line="96"/>
         <source>has at least %1 GB working memory</source>
-        <translation type="unfinished"/>
+        <translation>ima vsaj %1 GB delovnega pomnilnika</translation>
     </message>
     <message>
         <location filename="../src/modules/prepare/PrepareViewStep.cpp" line="104"/>
         <source>is plugged in to a power source</source>
-        <translation type="unfinished"/>
+        <translation>je priklopljen na vir napajanja</translation>
     </message>
     <message>
         <location filename="../src/modules/prepare/PrepareViewStep.cpp" line="111"/>
         <source>is connected to the Internet</source>
-        <translation type="unfinished"/>
+        <translation>je povezan s spletom</translation>
     </message>
     <message>
         <location filename="../src/modules/prepare/PrepareViewStep.cpp" line="152"/>

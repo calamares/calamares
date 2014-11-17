@@ -310,17 +310,17 @@ Output:
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="55"/>
         <source>&amp;Back</source>
-        <translation type="unfinished"/>
+        <translation>返回 (&amp;B)</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="56"/>
         <source>&amp;Next</source>
-        <translation type="unfinished"/>
+        <translation>下一步 (&amp;N)</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="57"/>
         <source>&amp;Quit</source>
-        <translation type="unfinished"/>
+        <translation>離開 (&amp;Q)</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="137"/>
@@ -735,27 +735,27 @@ Output:
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="38"/>
         <source>Partition &amp;Type:</source>
-        <translation type="unfinished"/>
+        <translation>分割區與類型 (&amp;T)：</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="50"/>
         <source>&amp;Primary</source>
-        <translation type="unfinished"/>
+        <translation>主要分割區 (&amp;P)</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="60"/>
         <source>E&amp;xtended</source>
-        <translation type="unfinished"/>
+        <translation>延伸分割區 (&amp;x)</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="89"/>
         <source>F&amp;ile System:</source>
-        <translation type="unfinished"/>
+        <translation>檔案系統 (&amp;i)：</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="118"/>
         <source>&amp;Mount Point:</source>
-        <translation type="unfinished"/>
+        <translation>掛載點 (&amp;M)：</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="135"/>
@@ -790,7 +790,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="194"/>
         <source>Si&amp;ze:</source>
-        <translation>容量大小 (Si) ：</translation>
+        <translation>容量大小 (&amp;z) ：</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="204"/>
@@ -983,12 +983,12 @@ Output:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/decryptluksdialogwidgetbase.ui" line="22"/>
         <source>&amp;Name:</source>
-        <translation type="unfinished"/>
+        <translation>名稱 (&amp;N)：</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/decryptluksdialogwidgetbase.ui" line="35"/>
         <source>&amp;Passphrase:</source>
-        <translation type="unfinished"/>
+        <translation>通關密語 (&amp;P)：</translation>
     </message>
 </context>
 <context>
@@ -1120,7 +1120,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="93"/>
         <source>&amp;Mount Point:</source>
-        <translation type="unfinished"/>
+        <translation>掛載點 (&amp;M)：</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="110"/>
@@ -1857,7 +1857,7 @@ Some file systems need external tools to be installed for them to be supported. 
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="22"/>
         <source>&amp;Disk:</source>
-        <translation type="unfinished"/>
+        <translation>磁碟 (&amp;D)：</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="51"/>
@@ -2018,7 +2018,7 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="48"/>
         <source>&amp;Version:</source>
-        <translation>版本(&amp;V)：</translation>
+        <translation>版本 (&amp;V)：</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="93"/>

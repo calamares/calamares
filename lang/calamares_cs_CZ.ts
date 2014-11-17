@@ -1266,7 +1266,7 @@ Výstup:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="309"/>
         <source>Identify by:</source>
-        <translation type="unfinished"/>
+        <translation>Identifikovat:</translation>
     </message>
 </context>
 <context>
@@ -1569,7 +1569,7 @@ Některé souborové systémy vyžadují instalaci externích nástrojů. Jisté
     <message>
         <location filename="../src/modules/keyboard/KeyboardPage.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>Form</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardPage.ui" line="70"/>
@@ -1587,7 +1587,7 @@ Některé souborové systémy vyžadují instalaci externích nástrojů. Jisté
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>Form</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="33"/>
@@ -1677,7 +1677,7 @@ Některé souborové systémy vyžadují instalaci externích nástrojů. Jisté
         <location filename="../src/modules/partition/partitionmanager/src/gui/partpropswidgetbase.ui" line="92"/>
         <source>Recreate existing file system</source>
         <comment>@action:button</comment>
-        <translation type="unfinished"/>
+        <translation>Znovu vytvořit existující souborový systém</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/partpropswidgetbase.ui" line="106"/>
@@ -1853,7 +1853,7 @@ Některé souborové systémy vyžadují instalaci externích nástrojů. Jisté
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>Form</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="22"/>
@@ -2006,7 +2006,7 @@ Instalace může pokračovat, ale některé prvky nemusí fungovat.</translation
     <message>
         <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="20"/>
         <source>KDE Release Builder</source>
-        <translation type="unfinished"/>
+        <translation>Tvůrce vydání KDE</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="32"/>
@@ -2046,7 +2046,7 @@ Instalace může pokračovat, ale některé prvky nemusí fungovat.</translation
     <message>
         <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="129"/>
         <source>tags</source>
-        <translation type="unfinished"/>
+        <translation>tagy</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="137"/>
@@ -2198,7 +2198,7 @@ Instalace může pokračovat, ale některé prvky nemusí fungovat.</translation
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="52"/>
         <source>Bad destination system path.</source>
-        <translation type="unfinished"/>
+        <translation>Špatná cílová systémová cesta.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="53"/>
@@ -2226,7 +2226,7 @@ Instalace může pokračovat, ale některé prvky nemusí fungovat.</translation
     <message>
         <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="56"/>
         <source>Cannot access selected timezone path.</source>
-        <translation type="unfinished"/>
+        <translation>Není přístup k vybrané cestě časové zóny.</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="57"/>
@@ -2371,12 +2371,12 @@ Instalace může pokračovat, ale některé prvky nemusí fungovat.</translation
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="208"/>
         <source>Powered on for:</source>
-        <translation type="unfinished"/>
+        <translation>Zapnuto:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="237"/>
         <source>Power cycles:</source>
-        <translation type="unfinished"/>
+        <translation>Cyklů zapnutí:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="289"/>

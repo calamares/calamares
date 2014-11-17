@@ -4,17 +4,17 @@
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="54"/>
         <source>Choose partition to shrink:</source>
-        <translation type="unfinished"/>
+        <translation>Избери дял, който да смалиш:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="63"/>
         <source>Allocate drive space by dragging the divider below:</source>
-        <translation type="unfinished"/>
+        <translation>Разпредели дисковото пространство, като влачиш разделителя по-долу:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="161"/>
         <source>With this operation, the partition &lt;b&gt;%1&lt;/b&gt; which contains %4 will be shrunk to %2MB and a new %3MB partition will be created for %5.</source>
-        <translation type="unfinished"/>
+        <translation>С това действие, делът &lt;b&gt;%1&lt;/b&gt;, който съдърга %4, ще бъде смален до %2МБ и нов %3МБ дял ще бъде създаден за %5.</translation>
     </message>
 </context>
 <context>
@@ -27,7 +27,7 @@
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/applyprogressdetailswidgetbase.ui" line="44"/>
         <source>Open in External Browser</source>
-        <translation type="unfinished"/>
+        <translation>Отвори във Външен Браузър.</translation>
     </message>
 </context>
 <context>
@@ -40,27 +40,27 @@
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/applyprogressdialogwidgetbase.ui" line="38"/>
         <source>Time Elapsed</source>
-        <translation type="unfinished"/>
+        <translation>Отминало време</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/applyprogressdialogwidgetbase.ui" line="64"/>
         <source>Total Time: 00:00:00</source>
-        <translation type="unfinished"/>
+        <translation>Общо време: 00:00:00</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/applyprogressdialogwidgetbase.ui" line="81"/>
         <source>Operation: %p%</source>
-        <translation type="unfinished"/>
+        <translation>Действие: %p%</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/applyprogressdialogwidgetbase.ui" line="91"/>
         <source>Status</source>
-        <translation type="unfinished"/>
+        <translation>Статус</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/applyprogressdialogwidgetbase.ui" line="107"/>
         <source>Total: %p%</source>
-        <translation type="unfinished"/>
+        <translation>Общо: %p%</translation>
     </message>
 </context>
 <context>
@@ -82,12 +82,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="198"/>
         <source>Location</source>
-        <translation type="unfinished"/>
+        <translation>Място</translation>
     </message>
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="224"/>
         <source>License Approval</source>
-        <translation type="unfinished"/>
+        <translation>Одобрение за лиценз</translation>
     </message>
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="257"/>
@@ -101,7 +101,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="287"/>
         <source>Install System</source>
-        <translation type="unfinished"/>
+        <translation>Инсталирай система</translation>
     </message>
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="320"/>
@@ -125,12 +125,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="443"/>
         <source>User Info</source>
-        <translation type="unfinished"/>
+        <translation>Информация за потребителя</translation>
     </message>
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="469"/>
         <source>Summary</source>
-        <translation type="unfinished"/>
+        <translation>Обобщение</translation>
     </message>
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="514"/>
@@ -140,7 +140,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="521"/>
         <source>Disk Setup</source>
-        <translation type="unfinished"/>
+        <translation>Настройка на диска</translation>
     </message>
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="528"/>
@@ -162,12 +162,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="71"/>
         <source>Boot Partition</source>
-        <translation type="unfinished"/>
+        <translation>Дял за зареждане</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="76"/>
         <source>System Partition</source>
-        <translation type="unfinished"/>
+        <translation>Системен дял</translation>
     </message>
 </context>
 <context>
@@ -191,7 +191,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="51"/>
         <source>Run command %1</source>
-        <translation type="unfinished"/>
+        <translation>Пусни команда %1</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="77"/>
@@ -2211,7 +2211,7 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="69"/>
         <source>Cannot set timezone.</source>
-        <translation type="unfinished"/>
+        <translation>Не може да се зададе часова зона.</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="70"/>
@@ -2225,13 +2225,13 @@ Installation can continue, but some features might be disabled.</source>
         <location filename="../src/modules/partition/partitionmanager/src/gui/sizedetailswidgetbase.ui" line="62"/>
         <source>First sector:</source>
         <comment>@label:listbox</comment>
-        <translation type="unfinished"/>
+        <translation>Първи сектор:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/sizedetailswidgetbase.ui" line="97"/>
         <source>Last sector:</source>
         <comment>@label:listbox</comment>
-        <translation type="unfinished"/>
+        <translation>Последен сектор:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/sizedetailswidgetbase.ui" line="120"/>
@@ -2245,70 +2245,70 @@ Installation can continue, but some features might be disabled.</source>
         <location filename="../src/modules/partition/partitionmanager/src/gui/sizedialogwidgetbase.ui" line="55"/>
         <source>Partition type:</source>
         <comment>@label:listbox</comment>
-        <translation type="unfinished"/>
+        <translation>Тип на делa:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/sizedialogwidgetbase.ui" line="70"/>
         <source>Primary</source>
-        <translation type="unfinished"/>
+        <translation>Главна</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/sizedialogwidgetbase.ui" line="77"/>
         <source>Extended</source>
-        <translation type="unfinished"/>
+        <translation>Разширена</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/sizedialogwidgetbase.ui" line="84"/>
         <source>Logical</source>
-        <translation type="unfinished"/>
+        <translation>Логическа</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/sizedialogwidgetbase.ui" line="99"/>
         <source>File system:</source>
         <comment>@label:listbox</comment>
-        <translation type="unfinished"/>
+        <translation>Файлова система:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/sizedialogwidgetbase.ui" line="115"/>
         <source>Label:</source>
         <comment>@label</comment>
-        <translation type="unfinished"/>
+        <translation>Етикет:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/sizedialogwidgetbase.ui" line="134"/>
         <source>This file system does not support setting a label.</source>
         <comment>@label</comment>
-        <translation type="unfinished"/>
+        <translation>Тази файлова система не поддържа задаване на етикет.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/sizedialogwidgetbase.ui" line="152"/>
         <source>Minimum size:</source>
         <comment>@label</comment>
-        <translation type="unfinished"/>
+        <translation>Минимален размер:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/sizedialogwidgetbase.ui" line="175"/>
         <source>Maximum size:</source>
         <comment>@label</comment>
-        <translation type="unfinished"/>
+        <translation>Максимален размер:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/sizedialogwidgetbase.ui" line="198"/>
         <source>Free space before:</source>
         <comment>@label:listbox</comment>
-        <translation type="unfinished"/>
+        <translation>Дисково простраснство преди:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/sizedialogwidgetbase.ui" line="233"/>
         <source>Size:</source>
         <comment>@label:listbox</comment>
-        <translation type="unfinished"/>
+        <translation>Размер:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/sizedialogwidgetbase.ui" line="262"/>
         <source>Free space after:</source>
         <comment>@label:listbox</comment>
-        <translation type="unfinished"/>
+        <translation>Дисково пространство след:</translation>
     </message>
 </context>
 <context>
@@ -2316,42 +2316,42 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="23"/>
         <source>SMART status:</source>
-        <translation type="unfinished"/>
+        <translation>SMART статус:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="63"/>
         <source>Model:</source>
-        <translation type="unfinished"/>
+        <translation>Модел:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="92"/>
         <source>Serial number:</source>
-        <translation type="unfinished"/>
+        <translation>Сериен номер:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="121"/>
         <source>Firmware revision:</source>
-        <translation type="unfinished"/>
+        <translation>Версия на фърмуера:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="150"/>
         <source>Temperature:</source>
-        <translation type="unfinished"/>
+        <translation>Температура:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="179"/>
         <source>Bad sectors:</source>
-        <translation type="unfinished"/>
+        <translation>Лоши сектори:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="208"/>
         <source>Powered on for:</source>
-        <translation type="unfinished"/>
+        <translation>Включен за:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="237"/>
         <source>Power cycles:</source>
-        <translation type="unfinished"/>
+        <translation>Цикли на захранването:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="289"/>
@@ -2361,57 +2361,57 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="294"/>
         <source>Attribute</source>
-        <translation type="unfinished"/>
+        <translation>Атрибут</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="299"/>
         <source>Failure Type</source>
-        <translation type="unfinished"/>
+        <translation>Тип грешка</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="304"/>
         <source>Update Type</source>
-        <translation type="unfinished"/>
+        <translation>Тип актуализация</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="309"/>
         <source>Worst</source>
-        <translation type="unfinished"/>
+        <translation>Най-лош</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="314"/>
         <source>Current</source>
-        <translation type="unfinished"/>
+        <translation>Моментен</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="319"/>
         <source>Threshold</source>
-        <translation type="unfinished"/>
+        <translation>Праг</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="324"/>
         <source>Raw</source>
-        <translation type="unfinished"/>
+        <translation>Суров</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="329"/>
         <source>Assessment</source>
-        <translation type="unfinished"/>
+        <translation>Оценка</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="334"/>
         <source>Value</source>
-        <translation type="unfinished"/>
+        <translation>Стойност</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="385"/>
         <source>Overall assessment:</source>
-        <translation type="unfinished"/>
+        <translation>Обща оценка:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="414"/>
         <source>Self tests:</source>
-        <translation type="unfinished"/>
+        <translation>Самотестове:</translation>
     </message>
 </context>
 <context>
@@ -2419,7 +2419,7 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/summary/SummaryViewStep.cpp" line="41"/>
         <source>Summary</source>
-        <translation type="unfinished"/>
+        <translation>Обобщение</translation>
     </message>
 </context>
 <context>
@@ -2428,24 +2428,24 @@ Installation can continue, but some features might be disabled.</source>
         <location filename="../src/modules/partition/partitionmanager/src/gui/treelogbase.ui" line="54"/>
         <source>Sev.</source>
         <comment>@title:column Severity of a log entry / log level. Text must be very short.</comment>
-        <translation type="unfinished"/>
+        <translation>Тр.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/treelogbase.ui" line="57"/>
         <source>Severity</source>
-        <translation type="unfinished"/>
+        <translation>Трудност</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/treelogbase.ui" line="62"/>
         <source>Time</source>
         <comment>@title:column a time stamp of a log entry</comment>
-        <translation type="unfinished"/>
+        <translation>Време</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/treelogbase.ui" line="67"/>
         <source>Message</source>
         <comment>@title:column the text message of a log entry</comment>
-        <translation type="unfinished"/>
+        <translation>Съобщение</translation>
     </message>
 </context>
 <context>
@@ -2453,28 +2453,28 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="226"/>
         <source>Your username contains an invalid character &apos;%1&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Потребителското Ви име съдържа непозволен символ &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="230"/>
         <source>Your username contains invalid characters!</source>
-        <translation type="unfinished"/>
+        <translation>Потребителското Ви име съдържа непозволени символи!</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="277"/>
         <source>Your hostname contains an invalid character &apos;%1&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Вашето име на хоста съдържа непозволен символ &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="281"/>
         <source>Your hostname contains invalid characters!</source>
-        <translation type="unfinished"/>
+        <translation>Вашето име на хоста съдържа непозволени символи!</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="312"/>
         <location filename="../src/modules/users/UsersPage.cpp" line="345"/>
         <source>Your passwords do not match!</source>
-        <translation type="unfinished"/>
+        <translation>Паролите Ви не съвпадат!</translation>
     </message>
 </context>
 <context>
@@ -2482,7 +2482,7 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/users/UsersViewStep.cpp" line="46"/>
         <source>Users</source>
-        <translation type="unfinished"/>
+        <translation>Потребители</translation>
     </message>
 </context>
 </TS>
