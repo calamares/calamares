@@ -46,22 +46,40 @@ def modify_grub_default(partitions, root_mount_point, distributor):
     if not os.path.exists(default_dir):
         os.mkdir(default_dir)
 
-    with open(default_grub, 'r') as grub_file:
-        lines = [x.strip() for x in grub_file.readlines()]
-
     have_kernel_cmd = False
     have_distributor_line = False
 
-    for i in range(len(lines)):
-        if lines[i].startswith("#GRUB_CMDLINE_LINUX_DEFAULT"):
-            lines[i] = kernel_cmd
-            have_kernel_cmd = True
-        elif lines[i].startswith("GRUB_CMDLINE_LINUX_DEFAULT"):
-            lines[i] = kernel_cmd
-            have_kernel_cmd = True
-        elif lines[i].startswith("#GRUB_DISTRIBUTOR") or lines[i].startswith("GRUB_DISTRIBUTOR"):
-            lines[i] = distributor_line
-            have_distributor_line = True
+    if "overwrite" in libcalamares.job.configuration:
+        overwrite = libcalamares.job.configuration["overwrite"]
+    else:
+        overwrite = False
+
+    if os.path.exists(default_grub) and not overwrite:
+        with open(default_grub, 'r') as grub_file:
+            lines = [x.strip() for x in grub_file.readlines()]
+
+        for i in range(len(lines)):
+            if lines[i].startswith("#GRUB_CMDLINE_LINUX_DEFAULT"):
+                lines[i] = kernel_cmd
+                have_kernel_cmd = True
+            elif lines[i].startswith("GRUB_CMDLINE_LINUX_DEFAULT"):
+                lines[i] = kernel_cmd
+                have_kernel_cmd = True
+            elif lines[i].startswith("#GRUB_DISTRIBUTOR") or lines[i].startswith("GRUB_DISTRIBUTOR"):
+                lines[i] = distributor_line
+                have_distributor_line = True
+    else:
+        lines = []
+        if "defaults" in libcalamares.job.configuration:
+            for key, value in libcalamares.job.configuration["defaults"].items():
+                if value.__class__.__name__ == "bool":
+                    if value:
+                        escaped_value = "true"
+                    else:
+                        escaped_value = "false"
+                else:
+                    escaped_value = str(value).replace("'", "'\\''")
+                lines.append("%s='%s'" % (key, escaped_value))
 
     if not have_kernel_cmd:
         lines.append(kernel_cmd)
