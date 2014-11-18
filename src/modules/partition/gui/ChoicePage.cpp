@@ -158,7 +158,7 @@ ChoicePage::init( PartitionCoreModule* core, const OsproberEntryList& osproberEn
                                                   string( Calamares::Branding::VersionedName ) ) );
 
                 eraseButton->setText( tr( "<b>Erase disk and install %1</b><br/>"
-                                          "<font color=\"red\">Warning: </font>This will delete all of your Windows 7 programs, "
+                                          "<font color=\"red\">Warning: </font>This will delete all of your programs, "
                                           "documents, photos, music, and any other files." )
                                         .arg( Calamares::Branding::instance()->
                                               string( Calamares::Branding::VersionedName ) ) );
@@ -194,7 +194,7 @@ ChoicePage::init( PartitionCoreModule* core, const OsproberEntryList& osproberEn
                                               string( Calamares::Branding::VersionedName ) ) );
 
             eraseButton->setText( tr( "<b>Erase disk and install %1</b><br/>"
-                                      "<font color=\"red\">Warning: </font>This will delete all of your Windows 7 programs, "
+                                      "<font color=\"red\">Warning: </font>This will delete all of your programs, "
                                       "documents, photos, music, and any other files." )
                                     .arg( Calamares::Branding::instance()->
                                           string( Calamares::Branding::VersionedName ) ) );
