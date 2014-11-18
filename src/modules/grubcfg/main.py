@@ -41,19 +41,33 @@ def modify_grub_default(partitions, root_mount_point, distributor):
     else:
         kernel_cmd = 'GRUB_CMDLINE_LINUX_DEFAULT="quiet %s"' % use_splash
 
+    distributor_line = "GRUB_DISTRIBUTOR='%s'" % distributor.replace("'", "'\\''")
+
     if not os.path.exists(default_dir):
         os.mkdir(default_dir)
 
     with open(default_grub, 'r') as grub_file:
         lines = [x.strip() for x in grub_file.readlines()]
 
+    have_kernel_cmd = False
+    have_distributor_line = False
+
     for i in range(len(lines)):
         if lines[i].startswith("#GRUB_CMDLINE_LINUX_DEFAULT"):
             lines[i] = kernel_cmd
+            have_kernel_cmd = True
         elif lines[i].startswith("GRUB_CMDLINE_LINUX_DEFAULT"):
             lines[i] = kernel_cmd
+            have_kernel_cmd = True
         elif lines[i].startswith("#GRUB_DISTRIBUTOR") or lines[i].startswith("GRUB_DISTRIBUTOR"):
-            lines[i] = "GRUB_DISTRIBUTOR='%s'" % distributor.replace("'", "'\\''")
+            lines[i] = distributor_line
+            have_distributor_line = True
+
+    if not have_kernel_cmd:
+        lines.append(kernel_cmd)
+
+    if not have_distributor_line:
+        lines.append(distributor_line)
 
     with open(default_grub, 'w') as grub_file:
         grub_file.write("\n".join(lines) + "\n")
