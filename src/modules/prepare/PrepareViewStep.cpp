@@ -32,6 +32,7 @@
 #include <QDBusConnection>
 #include <QDBusInterface>
 #include <QDir>
+#include <QFile>
 #include <QFileInfo>
 #include <QLabel>
 #include <QProcess>
@@ -132,6 +133,9 @@ PrepareViewStep::PrepareViewStep( QObject* parent )
         }
         m_nextEnabled = canGoNext;
         emit nextStatusChanged( m_nextEnabled );
+
+        if ( canGoNext )
+            detectFirmwareType();
 
         timer->deleteLater();
     } );
@@ -363,3 +367,10 @@ PrepareViewStep::checkHasInternet()
     return nmState == NM_STATE_CONNECTED_GLOBAL;
 }
 
+
+void
+PrepareViewStep::detectFirmwareType()
+{
+    QString fwType = QFile::exists( "/sys/firmware/efi/efivars" ) ? "efi" : "bios";
+    Calamares::JobQueue::instance()->globalStorage()->insert( "firmwareType", fwType );
+}

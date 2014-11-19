@@ -75,6 +75,7 @@ private:
     bool checkBatteryExists();
     bool checkHasPower();
     bool checkHasInternet();
+    void detectFirmwareType();
 
     QWidget* m_widget;
     qreal m_requiredStorageGB;
