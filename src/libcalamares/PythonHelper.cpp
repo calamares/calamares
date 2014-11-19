@@ -53,6 +53,9 @@ variantToPyObject( const QVariant& variant )
     case QVariant::String:
         return bp::object( variant.toString().toStdString() );
 
+    case QVariant::Bool:
+        return bp::object( variant.toBool() );
+
     default:
         return bp::object();
     }
@@ -77,6 +80,9 @@ variantFromPyObject( const boost::python::object& pyObject )
 
     else if ( pyType == "str" )
         return QVariant( QString::fromStdString( bp::extract< std::string >( pyObject ) ) );
+
+    else if ( pyType == "bool" )
+        return QVariant( bp::extract< bool >( pyObject ) );
 
     else
         return QVariant();
