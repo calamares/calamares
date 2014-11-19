@@ -54,7 +54,7 @@ def get_uuid():
 
 def create_conf(uuid, conf_path):
     branding = libcalamares.globalstorage.value("branding")
-    distribution = branding["shortProductName"]
+    distribution = branding["bootloaderEntryName"]
     kernel = libcalamares.job.configuration["kernel"]
     img = libcalamares.job.configuration["img"]
     partitions = libcalamares.globalstorage.value("partitions")
@@ -81,7 +81,7 @@ def create_conf(uuid, conf_path):
 
 def create_fallback(uuid, fallback_path):
     branding = libcalamares.globalstorage.value("branding")
-    distribution = branding["shortProductName"]
+    distribution = branding["bootloaderEntryName"]
     kernel = libcalamares.job.configuration["kernel"]
     fb_img = libcalamares.job.configuration["fallback"]
     partitions = libcalamares.globalstorage.value("partitions")
@@ -108,7 +108,7 @@ def create_fallback(uuid, fallback_path):
 
 def create_loader(loader_path):
     branding = libcalamares.globalstorage.value("branding")
-    distribution = branding["shortProductName"]
+    distribution = branding["bootloaderEntryName"]
     timeout = libcalamares.job.configuration["timeout"]
     file_name_sanitizer = str.maketrans(" /", "_-")
     lines = [
@@ -127,7 +127,7 @@ def install_bootloader(boot_loader, fw_type):
         install_path = libcalamares.globalstorage.value("rootMountPoint")
         uuid = get_uuid()
         branding = libcalamares.globalstorage.value("branding")
-        distribution = branding["shortProductName"]
+        distribution = branding["bootloaderEntryName"]
         file_name_sanitizer = str.maketrans(" /", "_-")
         conf_path = os.path.join(
             install_path, "boot", "loader", "entries", "%s.conf" % distribution.translate(file_name_sanitizer))

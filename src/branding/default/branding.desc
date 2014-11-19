@@ -2,16 +2,17 @@
 componentName:  default
 
 strings:
-    productName:        Generic GNU/Linux
-    shortProductName:   Generic
-    version:            1.0 LTS
-    shortVersion:       1.0
-    versionedName:      Generic GNU/Linux 1.0 LTS "Rusty Trombone"
-    shortVersionedName: Generic 1.0
+    productName:         Generic GNU/Linux
+    shortProductName:    Generic
+    version:             1.0 LTS
+    shortVersion:        1.0
+    versionedName:       Generic GNU/Linux 1.0 LTS "Rusty Trombone"
+    shortVersionedName:  Generic 1.0
+    bootloaderEntryName: Generic
 
 images:
-    productLogo:        "squid.png"
-    productIcon:        "squid.png"
+    productLogo:         "squid.png"
+    productIcon:         "squid.png"
 
 slideshow:
     - "squid.png"
