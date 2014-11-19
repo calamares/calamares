@@ -52,9 +52,15 @@ def get_uuid():
     return ""
 
 
+def get_bootloader_entry_name():
+    if "bootloaderEntryName" in libcalamares.job.configuration:
+        return libcalamares.job.configuration["bootloaderEntryName"]
+    else:
+        branding = libcalamares.globalstorage.value("branding")
+        return branding["bootloaderEntryName"]
+
 def create_conf(uuid, conf_path):
-    branding = libcalamares.globalstorage.value("branding")
-    distribution = branding["bootloaderEntryName"]
+    distribution = get_bootloader_entry_name()
     kernel = libcalamares.job.configuration["kernel"]
     img = libcalamares.job.configuration["img"]
     partitions = libcalamares.globalstorage.value("partitions")
@@ -80,8 +86,7 @@ def create_conf(uuid, conf_path):
 
 
 def create_fallback(uuid, fallback_path):
-    branding = libcalamares.globalstorage.value("branding")
-    distribution = branding["bootloaderEntryName"]
+    distribution = get_bootloader_entry_name()
     kernel = libcalamares.job.configuration["kernel"]
     fb_img = libcalamares.job.configuration["fallback"]
     partitions = libcalamares.globalstorage.value("partitions")
@@ -107,8 +112,7 @@ def create_fallback(uuid, fallback_path):
 
 
 def create_loader(loader_path):
-    branding = libcalamares.globalstorage.value("branding")
-    distribution = branding["bootloaderEntryName"]
+    distribution = get_bootloader_entry_name()
     timeout = libcalamares.job.configuration["timeout"]
     file_name_sanitizer = str.maketrans(" /", "_-")
     lines = [
@@ -126,8 +130,7 @@ def install_bootloader(boot_loader, fw_type):
     if fw_type == 'efi':
         install_path = libcalamares.globalstorage.value("rootMountPoint")
         uuid = get_uuid()
-        branding = libcalamares.globalstorage.value("branding")
-        distribution = branding["bootloaderEntryName"]
+        distribution = get_bootloader_entry_name()
         file_name_sanitizer = str.maketrans(" /", "_-")
         conf_path = os.path.join(
             install_path, "boot", "loader", "entries", "%s.conf" % distribution.translate(file_name_sanitizer))
