@@ -19,7 +19,6 @@
 #include "GreetingPage.h"
 
 #include "ui_GreetingPage.h"
-#include "AboutDialog.h"
 #include "CalamaresVersion.h"
 #include "utils/Logger.h"
 #include "utils/CalamaresUtilsGui.h"
