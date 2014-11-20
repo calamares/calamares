@@ -6,6 +6,7 @@ calamares_add_plugin( greeting
         GreetingViewStep.cpp
         GreetingPage.cpp
     UI
+        GreetingPage.ui
     LINK_LIBRARIES
         calamaresui
     SHARED_LIB

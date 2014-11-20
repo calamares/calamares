@@ -18,9 +18,11 @@
 
 #include "GreetingPage.h"
 
+#include "ui_GreetingPage.h"
+#include "AboutDialog.h"
 #include "CalamaresVersion.h"
 #include "utils/Logger.h"
-#include "utils/CalamaresUtils.h"
+#include "utils/CalamaresUtilsGui.h"
 #include "utils/Retranslator.h"
 #include "ViewManager.h"
 
@@ -29,20 +31,18 @@
 #include <QFocusEvent>
 #include <QLabel>
 #include <QListWidget>
+#include <QMessageBox>
 
 #include "Branding.h"
 
 
 GreetingPage::GreetingPage( QWidget* parent )
-    : QWidget()
+    : QWidget( parent )
+    , ui( new Ui::GreetingPage )
 {
-    QBoxLayout *mainLayout = new QHBoxLayout;
-    setLayout( mainLayout );
+    ui->setupUi( this );
 
     QString defaultLocale = QLocale::system().name();
-
-    m_languageWidget = new QListWidget( this );
-    mainLayout->addWidget( m_languageWidget );
     {
         foreach ( const QString& locale, QString( CALAMARES_TRANSLATION_LANGUAGES ).split( ';') )
         {
@@ -52,16 +52,16 @@ GreetingPage::GreetingPage( QWidget* parent )
                 lang.append( QString( " (%1)" )
                              .arg( QLocale::countryToString( thisLocale.country() ) ) );
 
-            m_languageWidget->addItem( lang );
-            m_languageWidget->item( m_languageWidget->count() - 1 )
+            ui->languageWidget->addItem( lang );
+            ui->languageWidget->item( ui->languageWidget->count() - 1 )
                             ->setData( Qt::UserRole, thisLocale );
             if ( thisLocale.language() == QLocale( defaultLocale ).language() &&
                  thisLocale.country() == QLocale( defaultLocale ).country() )
-                m_languageWidget->setCurrentRow( m_languageWidget->count() - 1 );
+                ui->languageWidget->setCurrentRow( ui->languageWidget->count() - 1 );
         }
-        m_languageWidget->sortItems();
+        ui->languageWidget->sortItems();
 
-        connect( m_languageWidget, &QListWidget::currentItemChanged,
+        connect( ui->languageWidget, &QListWidget::currentItemChanged,
                  this, [ & ]( QListWidgetItem *current, QListWidgetItem *previous )
         {
             QLocale selectedLocale = current->data( Qt::UserRole ).toLocale();
@@ -71,24 +71,19 @@ GreetingPage::GreetingPage( QWidget* parent )
             CalamaresUtils::installTranslator( selectedLocale.name(), qApp );
         } );
 
-        connect( m_languageWidget, &QListWidget::itemActivated,
+        connect( ui->languageWidget, &QListWidget::itemDoubleClicked,
                  this, []
         {
             Calamares::ViewManager::instance()->next();
         } );
     }
 
-    m_text = new QLabel( this );
-    m_text->setAlignment( Qt::AlignCenter );
-    m_text->setWordWrap( true );
-    m_text->setOpenExternalLinks( true );
-
-    mainLayout->addStretch();
-    mainLayout->addWidget( m_text );
-    mainLayout->addStretch();
+    ui->mainText->setAlignment( Qt::AlignCenter );
+    ui->mainText->setWordWrap( true );
+    ui->mainText->setOpenExternalLinks( true );
 
     CALAMARES_RETRANSLATE(
-        m_text->setText( tr( "<h1>Welcome to the %1 installer.</h1><br/>"
+        ui->mainText->setText( tr( "<h1>Welcome to the %1 installer.</h1><br/>"
                              "This program will ask you some questions and "
                              "set up %2 on your computer." )
                          .arg( Calamares::Branding::instance()->
@@ -96,14 +91,42 @@ GreetingPage::GreetingPage( QWidget* parent )
                          .arg( Calamares::Branding::instance()->
                                string( Calamares::Branding::ProductName ) ) );
     )
+
+    ui->aboutButton->setIcon( CalamaresUtils::defaultPixmap( CalamaresUtils::Information,
+                                                             CalamaresUtils::Original,
+                                                             2*QSize( CalamaresUtils::defaultFontHeight(),
+                                                                    CalamaresUtils::defaultFontHeight() ) ) );
+    connect( ui->aboutButton, &QPushButton::clicked,
+             this, [ this ]
+    {
+        QMessageBox::about( this,
+                            tr( "About %1 installer" )
+                                .arg( CALAMARES_APPLICATION_NAME ),
+                            tr(
+                                "<h1>%1</h1><br/>"
+                                "<b>%2<br/>"
+                                "for %3</b><br/><br/>"
+                                "Copyright 2014 Teo Mrnjavac &lt;teo@kde.org&gt;<br/>"
+                                "Thanks to: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Philip Müller, "
+                                "Pier Luigi Fiorini and Rohan Garg.<br/><br/>"
+                                "<a href=\"https://calamares.github.io/\">Calamares</a> "
+                                "development is sponsored by <br/>"
+                                "<a href=\"http://www.blue-systems.com/\">Blue Systems</a> - "
+                                "technologies for a better world."
+                            )
+                            .arg( CALAMARES_APPLICATION_NAME )
+                            .arg( CALAMARES_VERSION )
+                            .arg( Calamares::Branding::instance()->string(
+                                      Calamares::Branding::VersionedName ) ) );
+    } );
 }
 
 
 void
 GreetingPage::focusInEvent( QFocusEvent* e )
 {
-    if ( m_languageWidget )
-        m_languageWidget->setFocus();
+    if ( ui->languageWidget )
+        ui->languageWidget->setFocus();
     e->accept();
 }
 

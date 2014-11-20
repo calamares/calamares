@@ -21,8 +21,10 @@
 
 #include <QWidget>
 
-class QLabel;
-class QListWidget;
+namespace Ui
+{
+class GreetingPage;
+}
 
 class GreetingPage : public QWidget
 {
@@ -34,8 +36,7 @@ protected:
     void focusInEvent( QFocusEvent* e ) override; //choose the child widget to focus
 
 private:
-    QListWidget* m_languageWidget;
-    QLabel* m_text;
+    Ui::GreetingPage* ui;
 };
 
 #endif // GREETINGPAGE_H
