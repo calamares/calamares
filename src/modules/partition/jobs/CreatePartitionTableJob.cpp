@@ -68,8 +68,12 @@ CreatePartitionTableJob::exec()
     if ( !ok )
     {
         return Calamares::JobResult::error(
-                   message,
-                   report.toText()
+                    message,
+                    QString( "Text: %1\nCommand: %2\nOutput: %3\nStatus: %4" )
+                        .arg( report.toText() )
+                        .arg( report.command() )
+                        .arg( report.output() )
+                        .arg( report.status() )
                );
     }
 
