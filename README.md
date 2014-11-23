@@ -3,7 +3,7 @@ Calamares
 
 Distribution-independent installer framework
 
-[![Build Status](http://calamares.pangea.pub/buildStatus/icon?job=calamares-master)](http://calamares.pangea.pub/job/calamares-master/)
+[![Build Status](http://calamares.pangea.pub/ci/buildStatus/icon?job=calamares-master)](http://calamares.pangea.pub/ci/job/calamares-master/)
 
 ### Dependencies
 * CMake >= 2.8.12
