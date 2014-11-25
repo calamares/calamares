@@ -287,10 +287,11 @@ LocalePage::guessLCLocale()
     if ( m_localeGenLines.isEmpty() )
         return "en_US.UTF-8 UTF-8";
 
+    QString myLanguage = QLocale::languageToString( myLocale.language() );
     QStringList linesForLanguage;
     foreach ( QString line, m_localeGenLines )
     {
-        if ( line.startsWith( QLocale::languageToString( myLocale.language() ) ) )
+        if ( line.startsWith( myLanguage ) )
             linesForLanguage.append( line );
     }
 
@@ -312,10 +313,10 @@ LocalePage::guessLCLocale()
     }
 
     // FIXME: use reverse geocoding to guess the country
+    QString prefix = myLocale.name();
     QStringList linesForLanguageAndCountry;
     foreach ( QString line, linesForLanguage )
     {
-        QString prefix = myLocale.name();
         if ( line.startsWith( prefix ) )
             linesForLanguageAndCountry.append( line );
     }
