@@ -20,6 +20,7 @@
 
 #include <QBoxLayout>
 #include <QDialogButtonBox>
+#include <QLabel>
 #include <QListWidget>
 #include <QPushButton>
 
@@ -29,9 +30,19 @@ LCLocaleDialog::LCLocaleDialog( const QString& guessedLCLocale,
     : QDialog( parent )
 {
     setModal( true );
+    setWindowTitle( tr( "System locale setting" ) );
 
     QBoxLayout* mainLayout = new QVBoxLayout;
     setLayout( mainLayout );
+
+    QLabel* upperText = new QLabel( this );
+    upperText->setWordWrap( true );
+    upperText->setText( tr( "The system locale setting affects the language and character "
+                            "set for some command line user interface elements.<br/>"
+                            "The current setting is <b>%1</b>." )
+                            .arg( guessedLCLocale ) );
+    mainLayout->addWidget( upperText );
+    setMinimumWidth( upperText->fontMetrics().height() * 24 );
 
     m_localesWidget = new QListWidget( this );
     m_localesWidget->addItems( localeGenLines );
