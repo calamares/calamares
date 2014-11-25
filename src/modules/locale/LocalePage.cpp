@@ -30,6 +30,7 @@
 #include <QComboBox>
 #include <QLabel>
 #include <QPushButton>
+#include <QProcess>
 
 
 LocalePage::LocalePage( QWidget* parent )
@@ -226,12 +227,22 @@ LocalePage::init( const QString& initialRegion,
     // Fill in meaningful locale/charset lines from locale.gen
     m_localeGenLines.clear();
     QFile localeGen( localeGenPath );
-    if ( !localeGen.open( QIODevice::ReadOnly | QIODevice::Text ) )
+    QByteArray ba;
+    if ( localeGen.open( QIODevice::ReadOnly | QIODevice::Text ) )
     {
-        cDebug() << "ERROR: Cannot open file" << localeGenPath << ".";
-        return;
+        ba = localeGen.readAll();
+        localeGen.close();
     }
-    QByteArray ba = localeGen.readAll();
+    else
+    {
+        cDebug() << "Cannot open file" << localeGenPath
+                 << ". Assuming the supported languages are already built into "
+                    "the locale archive.";
+        QProcess localeA;
+        localeA.start( "locale", QStringList() << "-a" );
+        localeA.waitForFinished();
+        ba = localeA.readAllStandardOutput();
+    }
     foreach ( QByteArray line, ba.split( '\n' ) )
     {
         if ( line.startsWith( "# " ) || line.simplified() == "#" )
