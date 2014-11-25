@@ -27,8 +27,9 @@ def run():
     """ Create locale """
 
     us = '#en_US'
-    # locale = libcalamares.globalstorage.value("localeSetting")
-    locale = 'en_US.UTF-8'
+    locale = libcalamares.globalstorage.value("localeSetting")
+    if not locale:
+        locale = 'en_US.UTF-8 UTF-8'
 
     install_path = libcalamares.globalstorage.value("rootMountPoint")
 
@@ -57,6 +58,6 @@ def run():
 
     locale_conf_path = os.path.join(install_path, "etc/locale.conf")
     with open(locale_conf_path, "w") as locale_conf:
-        locale_conf.write('LANG=%s\n' % locale)
+        locale_conf.write('LANG=%s\n' % locale.split(' ')[0])
 
     return None
