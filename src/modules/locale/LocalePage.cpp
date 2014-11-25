@@ -290,7 +290,7 @@ LocalePage::guessLCLocale()
     QStringList linesForLanguage;
     foreach ( QString line, m_localeGenLines )
     {
-        if ( line.startsWith( myLocale.name().left( 2 ) ) )
+        if ( line.startsWith( QLocale::languageToString( myLocale.language() ) ) )
             linesForLanguage.append( line );
     }
 
