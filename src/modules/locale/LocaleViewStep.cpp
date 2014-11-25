@@ -21,6 +21,8 @@
 #include "LocalePage.h"
 #include "timezonewidget/localeglobal.h"
 #include "widgets/WaitingWidget.h"
+#include "JobQueue.h"
+#include "GlobalStorage.h"
 
 #include "utils/CalamaresUtilsGui.h"
 
@@ -46,7 +48,9 @@ LocaleViewStep::LocaleViewStep( QObject* parent )
     connect( &m_initWatcher, &QFutureWatcher< void >::finished,
              [=]
     {
-        m_actualWidget->init( m_startingTimezone.first, m_startingTimezone.second );
+        m_actualWidget->init( m_startingTimezone.first,
+                              m_startingTimezone.second,
+                              m_localeGenPath );
         m_widget->layout()->removeWidget( waitingWidget );
         waitingWidget->deleteLater();
         m_widget->layout()->addWidget( m_actualWidget );
@@ -92,7 +96,8 @@ LocaleViewStep::widget()
 void
 LocaleViewStep::next()
 {
-    //TODO: actually save those settings somewhere
+    Calamares::JobQueue::instance()->globalStorage()->insert( "lcLocale",
+                                                              m_actualWidget->lcLocale() );
     emit done();
 }
 
@@ -157,5 +162,16 @@ LocaleViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     {
         m_startingTimezone = qMakePair( QStringLiteral( "Europe" ),
                                         QStringLiteral( "Berlin" ) );
+    }
+
+    if ( configurationMap.contains( "localeGenPath" ) &&
+         configurationMap.value( "localeGenPath" ).type() == QVariant::String &&
+         !configurationMap.value( "localeGenPath" ).toString().isEmpty() )
+    {
+        m_localeGenPath = configurationMap.value( "localeGenPath" ).toString();
+    }
+    else
+    {
+        m_localeGenPath = QStringLiteral( "/etc/locale.gen" );
     }
 }

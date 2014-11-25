@@ -67,6 +67,7 @@ private:
     QString m_prettyStatus;
 
     QPair< QString, QString > m_startingTimezone;
+    QString m_localeGenPath;
 
     QList< Calamares::job_ptr > m_jobs;
 };
