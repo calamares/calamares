@@ -1868,7 +1868,7 @@ Kai kurios failų sistemos tam, kad būtų palaikomos, reikalauja, kad būtų į
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="84"/>
         <source>New Partition &amp;Table</source>
-        <translation>Nauja Skirsnio Len&amp;telė</translation>
+        <translation>Naujo skirsnio &amp;Lentelė</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="104"/>
