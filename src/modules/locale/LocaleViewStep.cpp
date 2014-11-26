@@ -135,6 +135,13 @@ LocaleViewStep::jobs() const
 
 
 void
+LocaleViewStep::onActivate()
+{
+    m_actualWidget->onActivate();
+}
+
+
+void
 LocaleViewStep::onLeave()
 {
     m_jobs.clear();

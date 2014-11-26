@@ -45,6 +45,8 @@ public:
 
     QString lcLocale();
 
+    void onActivate();
+
 private:
     QString guessLCLocale();
     QString prettyLCLocale( const QString& lcLocale );

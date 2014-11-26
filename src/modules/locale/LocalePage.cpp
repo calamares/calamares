@@ -290,6 +290,13 @@ LocalePage::lcLocale()
 }
 
 
+void
+LocalePage::onActivate()
+{
+    m_regionCombo->setFocus();
+}
+
+
 QString
 LocalePage::guessLCLocale()
 {

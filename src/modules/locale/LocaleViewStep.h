@@ -54,6 +54,7 @@ public:
 
     QList< Calamares::job_ptr > jobs() const override;
 
+    void onActivate() override;
     void onLeave() override;
 
     void setConfigurationMap( const QVariantMap& configurationMap ) override;
