@@ -27,7 +27,7 @@ def run():
     """ Create locale """
 
     us = '#en_US'
-    locale = libcalamares.globalstorage.value("localeSetting")
+    locale = libcalamares.globalstorage.value("lcLocale")
     if not locale:
         locale = 'en_US.UTF-8 UTF-8'
 
