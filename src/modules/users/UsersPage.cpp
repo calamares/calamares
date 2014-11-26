@@ -128,7 +128,7 @@ UsersPage::createJobs( const QString& defaultUserGroup, const QStringList& defau
 
 
 void
-UsersPage::focusInEvent( QFocusEvent* e )
+UsersPage::onActivate()
 {
     ui->textBoxFullName->setFocus();
 }
