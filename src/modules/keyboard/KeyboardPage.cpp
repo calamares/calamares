@@ -212,6 +212,13 @@ KeyboardPage::createJobs( const QString& xOrgConfFileName,
 
 
 void
+KeyboardPage::onActivate()
+{
+    ui->listLayout->setFocus();
+}
+
+
+void
 KeyboardPage::finalize()
 {
     Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();

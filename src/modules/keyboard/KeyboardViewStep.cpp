@@ -105,6 +105,13 @@ KeyboardViewStep::jobs() const
 
 
 void
+KeyboardViewStep::onActivate()
+{
+    m_widget->onActivate();
+}
+
+
+void
 KeyboardViewStep::onLeave()
 {
     m_widget->finalize();

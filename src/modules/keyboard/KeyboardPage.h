@@ -51,6 +51,7 @@ public:
     QList< Calamares::job_ptr > createJobs( const QString& xOrgConfFileName,
                                             const QString& convertedKeymapPath );
 
+    void onActivate();
     void finalize();
 
 protected slots:
