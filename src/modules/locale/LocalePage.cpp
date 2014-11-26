@@ -298,10 +298,11 @@ LocalePage::guessLCLocale()
     if ( m_localeGenLines.isEmpty() )
         return "en_US.UTF-8 UTF-8";
 
+    QString myLanguage = myLocale.name().split( '_' ).first();
     QStringList linesForLanguage;
     foreach ( QString line, m_localeGenLines )
     {
-        if ( line.startsWith( myLocale.name().split( '_' ).first() ) )
+        if ( line.startsWith( myLanguage ) )
             linesForLanguage.append( line );
     }
 
