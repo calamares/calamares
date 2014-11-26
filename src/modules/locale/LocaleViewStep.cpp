@@ -97,9 +97,6 @@ LocaleViewStep::widget()
 void
 LocaleViewStep::next()
 {
-    Calamares::JobQueue::instance()->globalStorage()->insert( "lcLocale",
-                                                              m_actualWidget->lcLocale() );
-    cDebug() << "GlobalStorage inserted lcLocale:" << m_actualWidget->lcLocale();
     emit done();
 }
 
@@ -144,6 +141,10 @@ LocaleViewStep::onLeave()
     m_jobs.append( m_actualWidget->createJobs() );
 
     m_prettyStatus = m_actualWidget->prettyStatus();
+
+    Calamares::JobQueue::instance()->globalStorage()->insert( "lcLocale",
+                                                              m_actualWidget->lcLocale() );
+    cDebug() << "GlobalStorage inserted lcLocale:" << m_actualWidget->lcLocale();
 }
 
 
