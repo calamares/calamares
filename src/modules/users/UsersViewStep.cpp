@@ -95,6 +95,13 @@ UsersViewStep::jobs() const
 
 
 void
+UsersViewStep::onActivate()
+{
+    m_widget->onActivate();
+}
+
+
+void
 UsersViewStep::onLeave()
 {
     m_jobs.clear();
