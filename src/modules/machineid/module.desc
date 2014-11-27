@@ -1,0 +1,5 @@
+---
+type:       "job"
+name:       "machineid"
+interface:  "python"
+script:     "main.py"
