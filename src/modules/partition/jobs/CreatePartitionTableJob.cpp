@@ -64,6 +64,9 @@ CreatePartitionTableJob::exec()
     }
 
     QScopedPointer< PartitionTable > table( createTable() );
+    cDebug() << "Creating new partition table of type" << table->typeName()
+             << ", uncommitted yet:\n" << table;
+
     bool ok = backendDevice->createPartitionTable( report, *table );
     if ( !ok )
     {
@@ -93,6 +96,8 @@ CreatePartitionTableJob::updatePreview()
 PartitionTable*
 CreatePartitionTableJob::createTable()
 {
+    cDebug() << "CreatePartitionTableJob::createTable trying to make table for device"
+             << m_device->deviceNode();
     return new PartitionTable( m_type,
                                PartitionTable::defaultFirstUsable( *m_device, m_type ),
                                PartitionTable::defaultLastUsable( *m_device, m_type )
