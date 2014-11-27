@@ -53,7 +53,7 @@ def file_copy(source, dest, progress_cb):
     # "/dest", then files will be copied in "/dest/bar".
     source += "/"
 
-    process = subprocess.Popen(['rsync', '-ar', '--progress', source, dest],
+    process = subprocess.Popen(['rsync', '-aHAXr', '--exclude', '/dev/', '--exclude', '/proc/', '--exclude', '/sys/', '--exclude', '/run/', '--progress', source, dest],
                                env=at_env,
                                bufsize=1,
                                stdout=subprocess.PIPE,
