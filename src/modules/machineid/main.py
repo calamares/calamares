@@ -19,6 +19,7 @@
 
 import libcalamares
 import os
+from libcalamares.utils import check_chroot_call
 
 
 def run():
