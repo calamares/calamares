@@ -55,6 +55,7 @@ class PackageManager:
             check_chroot_call(["urpme"] + pkgs)
         elif self.backend == "apt":
             check_chroot_call(["apt-get", "--purge", "-q", "-y", "remove"] + pkgs)
+            check_chroot_call(["apt-get", "--purge", "-q", "-y", "autoremove"])
         elif self.backend == "pacman":
             check_chroot_call(["pacman", "-R"] + pkgs)
 
