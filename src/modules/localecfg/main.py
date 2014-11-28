@@ -33,11 +33,13 @@ def run():
 
     install_path = libcalamares.globalstorage.value("rootMountPoint")
 
-    # run locale-gen if detected
-    if os.path.exists('/etc/locale.gen'):
+    # restore backup if available
+    if os.path.exists('/etc/locale.gen.bak'):
         shutil.copy2('%s/etc/locale.gen.bak' %
                      (install_path), '%s/etc/locale.gen' % (install_path))
 
+    # run locale-gen if detected
+    if os.path.exists('/etc/locale.gen'):
         text = []
         with open("%s/etc/locale.gen" % install_path, "r") as gen:
             text = gen.readlines()
