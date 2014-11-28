@@ -50,8 +50,9 @@ def list_excludes(destination):
     for line in open('/etc/mtab').readlines():
         device, mount_point, _ = line.split(" ", 2)
         if mount_point.startswith(prefix):
-            # -1 to include the / at the end of the prefix
-            lst.extend(['--exclude', mount_point[len(prefix)-1:]])
+            # -1 to include the leading / from the end of the prefix
+            # also add a trailing /
+            lst.extend(['--exclude', mount_point[len(prefix)-1:] + '/'])
     return lst
 
 
