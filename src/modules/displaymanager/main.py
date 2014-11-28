@@ -48,7 +48,7 @@ def find_desktop_environment(root_mount_point):
             return desktop_environment
     return None
 
-def set_autologin(username, displaymanagers, root_mount_point):
+def set_autologin(username, displaymanagers, default_desktop_environment, root_mount_point):
     """ Enables automatic login for the installed desktop managers """
 
     if "mdm" in displaymanagers:
@@ -322,6 +322,6 @@ def run():
     if username != None:
         libcalamares.utils.debug(
             "Setting up autologin for user %s." % username)
-        return set_autologin(username, displaymanagers, root_mount_point)
+        return set_autologin(username, displaymanagers, default_desktop_environment, root_mount_point)
 
     return None
