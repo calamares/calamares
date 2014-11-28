@@ -42,6 +42,19 @@ class UnpackEntry:
 ON_POSIX = 'posix' in sys.builtin_module_names
 
 
+def list_excludes(destination):
+    prefix = destination.replace('//', '/')
+    if not prefix.endswith('/'):
+        prefix = prefix + '/'
+    lst = []
+    for line in open('/etc/mtab').readlines():
+        device, mount_point, _ = line.split(" ", 2)
+        if mount_point.startswith(prefix):
+            # -1 to include the / at the end of the prefix
+            lst.extend(['--exclude', mount_point[len(prefix)-1:]])
+    return lst
+
+
 def file_copy(source, dest, progress_cb):
     # Environment used for executing rsync properly
     # Setting locale to C (fix issue with tr_TR locale)
@@ -53,7 +66,10 @@ def file_copy(source, dest, progress_cb):
     # "/dest", then files will be copied in "/dest/bar".
     source += "/"
 
-    process = subprocess.Popen(['rsync', '-aHAXr', '--exclude', '/dev/', '--exclude', '/proc/', '--exclude', '/sys/', '--exclude', '/run/', '--progress', source, dest],
+    args = ['rsync', '-aHAXr']
+    args.extend(list_excludes(dest))
+    args.extend(['--progress', source, dest])
+    process = subprocess.Popen(args,
                                env=at_env,
                                bufsize=1,
                                stdout=subprocess.PIPE,
