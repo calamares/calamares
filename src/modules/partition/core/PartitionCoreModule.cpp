@@ -25,6 +25,7 @@
 #include <core/PartitionIterator.h>
 #include <core/PartitionModel.h>
 #include <core/PMUtils.h>
+#include <jobs/ClearMountsJob.h>
 #include <jobs/CreatePartitionJob.h>
 #include <jobs/CreatePartitionTableJob.h>
 #include <jobs/DeletePartitionJob.h>
@@ -279,12 +280,19 @@ PartitionCoreModule::jobs() const
 {
     QList< Calamares::job_ptr > lst;
     QList< Device* > devices;
+
+    for ( auto info : m_deviceInfos )
+    {
+        lst << Calamares::job_ptr( new ClearMountsJob( info->device.data() ) );
+    }
+
     for ( auto info : m_deviceInfos )
     {
         lst << info->jobs;
         devices << info->device.data();
     }
     lst << Calamares::job_ptr( new FillGlobalStorageJob( devices, m_bootLoaderInstallPath ) );
+
     return lst;
 }
 
