@@ -35,10 +35,10 @@ desktop_environments = [
     DesktopEnvironment('/usr/bin/cinnamon-session', 'cinnamon-session'),
     DesktopEnvironment('/usr/bin/mate-session', 'mate'),
     DesktopEnvironment('/usr/bin/enlightenment_start', 'enlightenment'),
-    DesktopEnvironment('/usr/bin/openbox-session', 'openbox'),
     DesktopEnvironment('/usr/bin/lxsession', 'LXDE'),
     DesktopEnvironment('/usr/bin/startlxde', 'LXDE'),
-    DesktopEnvironment('/usr/bin/lxqt-session', 'lxqt')
+    DesktopEnvironment('/usr/bin/lxqt-session', 'lxqt'),
+    DesktopEnvironment('/usr/bin/openbox-session', 'openbox')
 ]
 
 def find_desktop_environment(root_mount_point):
