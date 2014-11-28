@@ -49,7 +49,7 @@ def run():
     lst.sort(key=lambda x: x[1], reverse=True)
 
     for device, mount_point in lst:
-        subprocess.check_call(["umount", mount_point])
+        subprocess.check_call(["umount", "-lv", mount_point])
 
     os.rmdir(root_mount_point)
     return None
