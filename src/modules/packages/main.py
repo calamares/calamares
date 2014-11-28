@@ -39,7 +39,7 @@ class PackageManager:
         elif self.backend == "apt":
             check_chroot_call(["apt-get", "-q", "-y", "install"] + pkgs)
         elif self.backend == "pacman":
-            check_chroot_call(["pacman", "-Sy"] + pkgs)
+            check_chroot_call(["pacman", "-Sy", "--noconfirm"] + pkgs)
 
     def remove(self, pkgs):
         if self.backend == "packagekit":
@@ -57,7 +57,7 @@ class PackageManager:
             check_chroot_call(["apt-get", "--purge", "-q", "-y", "remove"] + pkgs)
             check_chroot_call(["apt-get", "--purge", "-q", "-y", "autoremove"])
         elif self.backend == "pacman":
-            check_chroot_call(["pacman", "-R"] + pkgs)
+            check_chroot_call(["pacman", "-Rs", "--noconfirm"] + pkgs)
 
 def run_operations(pkgman, entry):
     for key in entry.keys():
