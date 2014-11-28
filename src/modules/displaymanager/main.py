@@ -203,10 +203,9 @@ def run():
     root_mount_point = libcalamares.globalstorage.value("rootMountPoint")
     
     if "default_desktop_environment" in libcalamares.job.configuration:
-        entry = libcalamares.job.configuration["default_desktop_environment"]:
+        entry = libcalamares.job.configuration["default_desktop_environment"]
         default_desktop_environment = DesktopEnvironment(entry["executable"], entry["desktop_file"])
-
-    if default_desktop_environment is None:
+    else:
         default_desktop_environment = find_desktop_environment(root_mount_point)
 
     # Setup slim
