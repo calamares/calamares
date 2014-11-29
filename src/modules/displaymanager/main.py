@@ -238,9 +238,6 @@ def run():
             if default_desktop_environment != None:
                 os.system(
                     "sed -i -e 's/^.*user-session=.*/user-session=%s/' %s/etc/lightdm/lightdm.conf" % (default_desktop_environment.desktop_file, root_mount_point))
-            libcalamares.utils.chroot_call(['ln', '-s',
-                                            '/usr/lib/lightdm/lightdm/gdmflexiserver',
-                                            '/usr/bin/gdmflexiserver'])
             libcalamares.utils.chroot_call(
                 ['chmod', '+r' '/etc/lightdm/lightdm.conf'])
         else:
