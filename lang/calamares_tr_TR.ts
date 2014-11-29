@@ -925,7 +925,7 @@ Output:
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="51"/>
         <source>Create user %1</source>
-        <translation>%1 Kullanıcı oluştur</translation>
+        <translation>%1 Kullanıcısı oluşturuluyor...</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="67"/>
@@ -950,7 +950,7 @@ Output:
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="123"/>
         <source>Cannot create user %1.</source>
-        <translation>%1 Kullanıcı oluşturulamadı.</translation>
+        <translation>%1 Kullanıcısı oluşturulamadı...</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="125"/>
@@ -960,7 +960,7 @@ Output:
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="130"/>
         <source>Cannot set full name for user %1.</source>
-        <translation>%1 Kullanıcı için tam isim ayarlanmadı.</translation>
+        <translation>%1 Kullanıcısı için tam isim ayarlanmadı.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="132"/>
