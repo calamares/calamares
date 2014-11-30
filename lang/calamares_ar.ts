@@ -14,7 +14,7 @@
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="161"/>
         <source>With this operation, the partition &lt;b&gt;%1&lt;/b&gt; which contains %4 will be shrunk to %2MB and a new %3MB partition will be created for %5.</source>
-        <translation>سيتم من خلال هذه العملية تقليص القسم &lt;b&gt;%1&lt;/b&gt; الذي يحوي %4 إلى %2MB وستم إنشاء قسم %3MB ل %5.</translation>
+        <translation>سيتم من خلال هذه العملية تقليص القسم &lt;b&gt;%1&lt;/b&gt; الذي يحوي %4 إلى %2MB وسيتم إنشاء قسم %3MB ل %5.</translation>
     </message>
 </context>
 <context>
@@ -212,14 +212,14 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="77"/>
         <source>External command crashed</source>
-        <translation>إنهار الأمر الخارجي</translation>
+        <translation>إنهاء الأمر الخارجي</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="78"/>
         <source>Command %1 crashed.
 Output:
 %2</source>
-        <translation>انهار الأمر %1.
+        <translation>إنهاء الأمر %1.
 الخرج:
 %2</translation>
     </message>
@@ -315,7 +315,7 @@ Output:
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="56"/>
         <source>&amp;Next</source>
-        <translation>ال&amp;تالي</translation>
+        <translation>&amp;التالي</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="57"/>
@@ -433,7 +433,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="203"/>
         <source>&lt;b&gt;Something else&lt;/b&gt;&lt;br/&gt;You can create or resize partitions yourself, or choose multiple partitions for %1.</source>
-        <translation>&lt;b&gt;خيار اخر&lt;/b&gt;&lt;br/&gt;يمكنك إنشاء أو تغيير حجم الأقسام بنفسك, أو اختيار عدة أقسام ل %1.</translation>
+        <translation>&lt;b&gt;خيار اخر&lt;/b&gt; &lt;br/&gt;يمكنك إنشاء أو تغيير حجم الأقسام بنفسك, أو اختيار عدة أقسام ل %1.</translation>
     </message>
 </context>
 <context>
@@ -652,7 +652,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="42"/>
         <source>Sector alignment:</source>
-        <translation>انتظام القطاع:</translation>
+        <translation>محاذاة القطاع:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="55"/>
@@ -662,7 +662,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="71"/>
         <source>Align partitions per default</source>
-        <translation>اختر الانتظام الافتراضي للأقسام</translation>
+        <translation>محاذاة الاقسام افتراضيا</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="90"/>
@@ -740,7 +740,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="50"/>
         <source>&amp;Primary</source>
-        <translation>أ&amp;ساسي:</translation>
+        <translation>&amp;أساسي:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="60"/>
@@ -755,7 +755,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="118"/>
         <source>&amp;Mount Point:</source>
-        <translation>نقاط ال&amp;ربط:</translation>
+        <translation>نقاط &amp;الربط:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="135"/>
@@ -871,7 +871,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="82"/>
         <source>GUID Partition Table (GPT)</source>
-        <translation>جدول أقسام من نوع GUID (GPT)</translation>
+        <translation>جدول أقسام GUID من نوع (GPT)</translation>
     </message>
 </context>
 <context>
@@ -983,7 +983,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/decryptluksdialogwidgetbase.ui" line="22"/>
         <source>&amp;Name:</source>
-        <translation>الا&amp;سم:</translation>
+        <translation>&amp;الاسم:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/decryptluksdialogwidgetbase.ui" line="35"/>
@@ -996,7 +996,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="41"/>
         <source>Delete partition %1</source>
-        <translation>احذع القسم %1</translation>
+        <translation>احذف القسم %1</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="48"/>
@@ -1077,7 +1077,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/devicepropswidgetbase.ui" line="241"/>
         <source>Primaries/Max:</source>
-        <translation>الرئيسية\الأعظمي:</translation>
+        <translation>الرئيسية\الأقصى:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/devicepropswidgetbase.ui" line="265"/>
@@ -1294,7 +1294,7 @@ Output:
         <source>This table shows which file systems are supported and which specific operations can be performed on them.
 Some file systems need external tools to be installed for them to be supported. But not all operations can be performed on all file systems, even if all required tools are installed. Please see the documentation for details. </source>
         <translation>يظهر هذا الجدول ما هي نظم الملفات المدعومة و العمليات المحددة التي يمكن تنفيذها عليها.
-تحتاج بعض نظم الملفات إلى تثبيت أدوات خارجية ليتم دعمها. لكن لا يمكن تنفيذ جميع العمليات على كل الأنظمة, حتى لو تم تثبيت جميع الأدوات المطلوبة. انظر في الوثائق للمزيد من التفصيل.</translation>
+تحتاج بعض نظم الملفات إلى تثبيت أدوات خارجية ليتم دعمها. لكن لا يمكن تنفيذ جميع العمليات على كل الأنظمة, حتى لو تم تثبيت جميع الأدوات المطلوبة. انظر في الوثائق للمزيد من التفاصيل.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/filesystemsupportdialogwidgetbase.ui" line="65"/>
@@ -1304,7 +1304,7 @@ Some file systems need external tools to be installed for them to be supported. 
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/filesystemsupportdialogwidgetbase.ui" line="70"/>
         <source>Create</source>
-        <translation>انشاء</translation>
+        <translation>إنشاء</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/filesystemsupportdialogwidgetbase.ui" line="75"/>
@@ -1488,7 +1488,7 @@ Some file systems need external tools to be installed for them to be supported. 
         <location filename="../src/modules/partition/partitionmanager/src/gui/mainwindowbase.ui" line="14"/>
         <source>KDE Partition Manager</source>
         <comment>@title:window</comment>
-        <translation>مدير أقسام &apos;سطح المكتب كدي&apos;</translation>
+        <translation>مدير أقسام سطح المكتب KDE</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/mainwindowbase.ui" line="24"/>
@@ -1752,7 +1752,7 @@ Some file systems need external tools to be installed for them to be supported. 
         <location filename="../src/modules/partition/partitionmanager/src/gui/partitionmanagerwidgetbase.ui" line="14"/>
         <source>KDE Partition Manager</source>
         <comment>@title:window</comment>
-        <translation>مدير أقسام &apos;سطح المكتب كدي&apos;</translation>
+        <translation>مدير أقسام سطح المكتب KDE</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/partitionmanagerwidgetbase.ui" line="70"/>
@@ -1858,12 +1858,12 @@ Some file systems need external tools to be installed for them to be supported. 
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="22"/>
         <source>&amp;Disk:</source>
-        <translation>ال&amp;قرص:</translation>
+        <translation>&amp;القرص:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="51"/>
         <source>&amp;Revert All Changes</source>
-        <translation>ال&amp;تراجع عن جميع التغيرات</translation>
+        <translation>&amp;التراجع عن جميع التغيرات</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="84"/>
@@ -1873,7 +1873,7 @@ Some file systems need external tools to be installed for them to be supported. 
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="104"/>
         <source>&amp;Create</source>
-        <translation>إ&amp;نشاء</translation>
+        <translation>&amp;إنشاء</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="111"/>
@@ -1888,7 +1888,7 @@ Some file systems need external tools to be installed for them to be supported. 
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="145"/>
         <source>&amp;Install boot loader on:</source>
-        <translation>ت&amp;ثبيت برنامج الإقلاع على:</translation>
+        <translation>&amp;تثبيت برنامج الإقلاع على:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="125"/>
@@ -1966,7 +1966,7 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/prepare/PrepareViewStep.cpp" line="111"/>
         <source>is connected to the Internet</source>
-        <translation>موصول بالانترنت</translation>
+        <translation>موصول بالإنترنت</translation>
     </message>
     <message>
         <location filename="../src/modules/prepare/PrepareViewStep.cpp" line="152"/>
@@ -2006,7 +2006,7 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="20"/>
         <source>KDE Release Builder</source>
-        <translation>باني توزيعة &apos;سطح المكتب كدي&apos;</translation>
+        <translation>باني توزيعة سطح المكتب KDE</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="32"/>
@@ -2021,7 +2021,7 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="48"/>
         <source>&amp;Version:</source>
-        <translation>الا&amp;صدار:</translation>
+        <translation>&amp;الاصدار:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="93"/>
@@ -2031,7 +2031,7 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="99"/>
         <source>&amp;Checkout From:</source>
-        <translation>صي&amp;غة الخروج</translation>
+        <translation>&amp;الخروج من:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="119"/>
@@ -2056,7 +2056,7 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="163"/>
         <source>&amp;SVN Access:</source>
-        <translation>ال&amp;دخول إلى SVN:</translation>
+        <translation>&amp;الدخول إلى SVN:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="183"/>
@@ -2076,7 +2076,7 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="201"/>
         <source>&amp;User:</source>
-        <translation>ال&amp;مستخدم:</translation>
+        <translation>&amp;المستخدم:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="236"/>
@@ -2086,12 +2086,12 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="242"/>
         <source>Get &amp;Documentation</source>
-        <translation>الحصول على ال&amp;معلومات</translation>
+        <translation>الحصول على &amp;المعلومات</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="252"/>
         <source>Get &amp;Translations</source>
-        <translation>الحصول على ال&amp;ترجمة</translation>
+        <translation>الحصول على &amp;الترجمة</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="262"/>
@@ -2101,7 +2101,7 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="271"/>
         <source>S&amp;kip translations below completion:</source>
-        <translation>&amp;تجاوز الترجمات تحت الإكمال:</translation>
+        <translation>ت&amp;جاوز الترجمات تحت الإكمال:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="306"/>
@@ -2116,7 +2116,7 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="334"/>
         <source>Apply &amp;fixes</source>
-        <translation>تطبيق الت&amp;صحيحات</translation>
+        <translation>تطبيق &amp;التصحيحات</translation>
     </message>
 </context>
 <context>
@@ -2124,7 +2124,7 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="75"/>
         <source>Resize file system on partition %1.</source>
-        <translation>غير حجم نظام الملفات عيى القسم %1.</translation>
+        <translation>غير حجم نظام الملفات على القسم %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="90"/>
@@ -2148,7 +2148,7 @@ Installation can continue, but some features might be disabled.</source>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="208"/>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="266"/>
         <source>The installer failed to resize partition %1 on disk &apos;%2&apos;.</source>
-        <translation>فشل المثبِت في تغيير حجم القسم %1 على القرص %2.</translation>
+        <translation>فشل المثبِت في تغيير حجم القسم %1 على القرص &apos;%2&apos;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="213"/>
@@ -2172,7 +2172,7 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/users/SetHostNameJob.cpp" line="60"/>
         <source>Cannot write hostname to target system</source>
-        <translation>لايمكن كتابة السم المضيف إلى النظام الوجهة</translation>
+        <translation>لايمكن كتابة اسم المضيف إلى النظام الوجهة</translation>
     </message>
 </context>
 <context>
@@ -2261,7 +2261,7 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/sizedetailswidgetbase.ui" line="120"/>
         <source>Align partition</source>
-        <translation>انظم القسم</translation>
+        <translation>محاذاة القسم</translation>
     </message>
 </context>
 <context>
@@ -2315,7 +2315,7 @@ Installation can continue, but some features might be disabled.</source>
         <location filename="../src/modules/partition/partitionmanager/src/gui/sizedialogwidgetbase.ui" line="175"/>
         <source>Maximum size:</source>
         <comment>@label</comment>
-        <translation>الحجم الأعظمي</translation>
+        <translation>الحجم الأقصى</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/sizedialogwidgetbase.ui" line="198"/>
