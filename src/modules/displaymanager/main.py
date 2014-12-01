@@ -171,7 +171,7 @@ def set_autologin(username, displaymanagers, default_desktop_environment, root_m
         # Systems with Sddm as Desktop Manager
         sddm_conf_path = os.path.join(root_mount_point, "etc/sddm.conf")
         if os.path.isfile(sddm_conf_path):
-            print('SDDM config file exists')
+            libcalamares.utils.debug('SDDM config file exists')
         else:
             libcalamares.utils.check_chroot_call(["sh", "-c", "sddm --example-config > /etc/sddm.conf"])
         text = []
