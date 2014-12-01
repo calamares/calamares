@@ -89,6 +89,14 @@ def set_autologin(username, displaymanagers, default_desktop_environment, root_m
                 gdm_conf.write('[daemon]\n')
                 gdm_conf.write('AutomaticLogin=%s\n' % username)
                 gdm_conf.write('AutomaticLoginEnable=True\n')
+        if os.path.exists("%s/var/lib/AccountsService/users" % root_mount_point):
+            os.system(
+                "echo \"[User]\" > %s/var/lib/AccountsService/users/%s" % (root_mount_point, username))
+            if default_desktop_environment != None:
+                os.system(
+                    "echo \"XSession=%s\" >> %s/var/lib/AccountsService/users/%s" % (default_desktop_environment.desktop_file, root_mount_point, username))
+            os.system(
+                "echo \"Icon=\" >> %s/var/lib/AccountsService/users/%s" % (root_mount_point, username))
 
     if "kdm" in displaymanagers:
         # Systems with KDM as Desktop Manager
@@ -256,14 +264,6 @@ def run():
             libcalamares.utils.chroot_call(['passwd', '-l', 'gdm'])
             libcalamares.utils.chroot_call(
                 ['chown', '-R', 'gdm:gdm', '/var/lib/gdm'])
-            if os.path.exists("%s/var/lib/AccountsService/users" % root_mount_point):
-                os.system(
-                    "echo \"[User]\" > %s/var/lib/AccountsService/users/gdm" % root_mount_point)
-            if default_desktop_environment != None:
-                os.system(
-                    "echo \"XSession=%s\" >> %s/var/lib/AccountsService/users/gdm" % (default_desktop_environment.desktop_file, root_mount_point))
-            os.system(
-                "echo \"Icon=\" >> %s/var/lib/AccountsService/users/gdm" % root_mount_point)
         else:
             libcalamares.utils.debug("gdm selected but not installed")
             displaymanagers.remove("gdm")
