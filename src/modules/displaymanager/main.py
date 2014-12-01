@@ -217,6 +217,11 @@ def run():
     else:
         default_desktop_environment = find_desktop_environment(root_mount_point)
 
+    if "basicSetup" in libcalamares.job.configuration:
+        enable_basic_setup = libcalamares.job.configuration["basicSetup"]
+    else:
+        enable_basic_setup = False
+
     # Setup slim
     if "slim" in displaymanagers:
         if not os.path.exists("%s/usr/bin/slim" % root_mount_point):
@@ -232,22 +237,23 @@ def run():
     # setup lightdm
     if "lightdm" in displaymanagers:
         if os.path.exists("%s/usr/bin/lightdm" % root_mount_point):
-            libcalamares.utils.chroot_call(['mkdir', '-p', '/run/lightdm'])
-            libcalamares.utils.chroot_call(['getent', 'group', 'lightdm'])
-            libcalamares.utils.chroot_call(
-                ['groupadd', '-g', '620', 'lightdm'])
-            libcalamares.utils.chroot_call(['getent', 'passwd', 'lightdm'])
-            libcalamares.utils.chroot_call(['useradd', '-c', '"LightDM Display Manager"',
-                                            '-u', '620', '-g', 'lightdm', '-d', '/var/run/lightdm',
-                                            '-s', '/usr/bin/nologin', 'lightdm'])
-            libcalamares.utils.chroot_call(['passwd', '-l', 'lightdm'])
-            libcalamares.utils.chroot_call(
-                ['chown', '-R', 'lightdm:lightdm', '/run/lightdm'])
+            if enable_basic_setup:
+                libcalamares.utils.chroot_call(['mkdir', '-p', '/run/lightdm'])
+                libcalamares.utils.chroot_call(['getent', 'group', 'lightdm'])
+                libcalamares.utils.chroot_call(
+                    ['groupadd', '-g', '620', 'lightdm'])
+                libcalamares.utils.chroot_call(['getent', 'passwd', 'lightdm'])
+                libcalamares.utils.chroot_call(['useradd', '-c', '"LightDM Display Manager"',
+                                                '-u', '620', '-g', 'lightdm', '-d', '/var/run/lightdm',
+                                                '-s', '/usr/bin/nologin', 'lightdm'])
+                libcalamares.utils.chroot_call(['passwd', '-l', 'lightdm'])
+                libcalamares.utils.chroot_call(
+                    ['chown', '-R', 'lightdm:lightdm', '/run/lightdm'])
+                libcalamares.utils.chroot_call(
+                    ['chmod', '+r' '/etc/lightdm/lightdm.conf'])
             if default_desktop_environment != None:
                 os.system(
                     "sed -i -e 's/^.*user-session=.*/user-session=%s/' %s/etc/lightdm/lightdm.conf" % (default_desktop_environment.desktop_file, root_mount_point))
-            libcalamares.utils.chroot_call(
-                ['chmod', '+r' '/etc/lightdm/lightdm.conf'])
         else:
             libcalamares.utils.debug("lightdm selected but not installed")
             displaymanagers.remove("lightdm")
@@ -255,15 +261,16 @@ def run():
     # Setup gdm
     if "gdm" in displaymanagers:
         if os.path.exists("%s/usr/bin/gdm" % root_mount_point):
-            libcalamares.utils.chroot_call(['getent', 'group', 'gdm'])
-            libcalamares.utils.chroot_call(['groupadd', '-g', '120', 'gdm'])
-            libcalamares.utils.chroot_call(['getent', 'passwd', 'gdm'])
-            libcalamares.utils.chroot_call(['useradd', '-c', '"Gnome Display Manager"',
-                                            '-u', '120', '-g', 'gdm', '-d', '/var/lib/gdm',
-                                            '-s', '/usr/bin/nologin', 'gdm'])
-            libcalamares.utils.chroot_call(['passwd', '-l', 'gdm'])
-            libcalamares.utils.chroot_call(
-                ['chown', '-R', 'gdm:gdm', '/var/lib/gdm'])
+            if enable_basic_setup:
+                libcalamares.utils.chroot_call(['getent', 'group', 'gdm'])
+                libcalamares.utils.chroot_call(['groupadd', '-g', '120', 'gdm'])
+                libcalamares.utils.chroot_call(['getent', 'passwd', 'gdm'])
+                libcalamares.utils.chroot_call(['useradd', '-c', '"Gnome Display Manager"',
+                                                '-u', '120', '-g', 'gdm', '-d', '/var/lib/gdm',
+                                                '-s', '/usr/bin/nologin', 'gdm'])
+                libcalamares.utils.chroot_call(['passwd', '-l', 'gdm'])
+                libcalamares.utils.chroot_call(
+                    ['chown', '-R', 'gdm:gdm', '/var/lib/gdm'])
         else:
             libcalamares.utils.debug("gdm selected but not installed")
             displaymanagers.remove("gdm")
@@ -271,16 +278,17 @@ def run():
     # Setup mdm
     if "mdm" in displaymanagers:
         if os.path.exists("%s/usr/bin/mdm" % root_mount_point):
-            libcalamares.utils.chroot_call(['getent', 'group', 'mdm'])
-            libcalamares.utils.chroot_call(['groupadd', '-g', '128', 'mdm'])
-            libcalamares.utils.chroot_call(['getent', 'passwd', 'mdm'])
-            libcalamares.utils.chroot_call(['useradd', '-c', '"Linux Mint Display Manager"',
-                                            '-u', '128', '-g', 'mdm', '-d', '/var/lib/mdm',
-                                            '-s', '/usr/bin/nologin', 'mdm'])
-            libcalamares.utils.chroot_call(['passwd', '-l', 'mdm'])
-            libcalamares.utils.chroot_call(
-                ['chown', 'root:mdm', '/var/lib/mdm'])
-            libcalamares.utils.chroot_call(['chmod', '1770', '/var/lib/mdm'])
+            if enable_basic_setup:
+                libcalamares.utils.chroot_call(['getent', 'group', 'mdm'])
+                libcalamares.utils.chroot_call(['groupadd', '-g', '128', 'mdm'])
+                libcalamares.utils.chroot_call(['getent', 'passwd', 'mdm'])
+                libcalamares.utils.chroot_call(['useradd', '-c', '"Linux Mint Display Manager"',
+                                                '-u', '128', '-g', 'mdm', '-d', '/var/lib/mdm',
+                                                '-s', '/usr/bin/nologin', 'mdm'])
+                libcalamares.utils.chroot_call(['passwd', '-l', 'mdm'])
+                libcalamares.utils.chroot_call(
+                    ['chown', 'root:mdm', '/var/lib/mdm'])
+                libcalamares.utils.chroot_call(['chmod', '1770', '/var/lib/mdm'])
             if default_desktop_environment != None:
                 os.system(
                     "sed -i 's|default.desktop|%s.desktop|g' %s/etc/mdm/custom.conf" % (default_desktop_environment.desktop_file, root_mount_point))
@@ -291,16 +299,17 @@ def run():
     # Setup lxdm
     if "lxdm" in displaymanagers:
         if os.path.exists("%s/usr/bin/lxdm" % root_mount_point):
-            libcalamares.utils.chroot_call(['groupadd', '--system', 'lxdm'])
+            if enable_basic_setup:
+                libcalamares.utils.chroot_call(['groupadd', '--system', 'lxdm'])
+                libcalamares.utils.chroot_call(
+                    ['chgrp', '-R', 'lxdm', '/var/lib/lxdm'])
+                libcalamares.utils.chroot_call(
+                    ['chgrp', 'lxdm', '/etc/lxdm/lxdm.conf'])
+                libcalamares.utils.chroot_call(
+                    ['chmod', '+r', '/etc/lxdm/lxdm.conf'])
             if default_desktop_environment != None:
                 os.system(
                     "sed -i -e 's|^.*session=.*|session=%s|' %s/etc/lxdm/lxdm.conf" % (default_desktop_environment.executable, root_mount_point))
-            libcalamares.utils.chroot_call(
-                ['chgrp', '-R', 'lxdm', '/var/lib/lxdm'])
-            libcalamares.utils.chroot_call(
-                ['chgrp', 'lxdm', '/etc/lxdm/lxdm.conf'])
-            libcalamares.utils.chroot_call(
-                ['chmod', '+r', '/etc/lxdm/lxdm.conf'])
         else:
             libcalamares.utils.debug("lxdm selected but not installed")
             displaymanagers.remove("lxdm")
@@ -308,16 +317,17 @@ def run():
     # Setup kdm
     if "kdm" in displaymanagers:
         if os.path.exists("%s/usr/bin/kdm" % root_mount_point):
-            libcalamares.utils.chroot_call(['getent', 'group', 'kdm'])
-            libcalamares.utils.chroot_call(['groupadd', '-g', '135', 'kdm'])
-            libcalamares.utils.chroot_call(['getent', 'passwd', 'kdm'])
-            libcalamares.utils.chroot_call(['useradd', '-u', '135', '-g', 'kdm', '-d',
-                                            '/var/lib/kdm', '-s', '/bin/false', '-r', '-M', 'kdm'])
-            libcalamares.utils.chroot_call(
-                ['chown', '-R', '135:135', 'var/lib/kdm'])
-            libcalamares.utils.chroot_call(
-                ['xdg-icon-resource', 'forceupdate', '--theme', 'hicolor'])
-            libcalamares.utils.chroot_call(['update-desktop-database', '-q'])
+            if enable_basic_setup:
+                libcalamares.utils.chroot_call(['getent', 'group', 'kdm'])
+                libcalamares.utils.chroot_call(['groupadd', '-g', '135', 'kdm'])
+                libcalamares.utils.chroot_call(['getent', 'passwd', 'kdm'])
+                libcalamares.utils.chroot_call(['useradd', '-u', '135', '-g', 'kdm', '-d',
+                                                '/var/lib/kdm', '-s', '/bin/false', '-r', '-M', 'kdm'])
+                libcalamares.utils.chroot_call(
+                    ['chown', '-R', '135:135', 'var/lib/kdm'])
+                libcalamares.utils.chroot_call(
+                    ['xdg-icon-resource', 'forceupdate', '--theme', 'hicolor'])
+                libcalamares.utils.chroot_call(['update-desktop-database', '-q'])
         else:
             libcalamares.utils.debug("kdm selected but not installed")
             displaymanagers.remove("kdm")
