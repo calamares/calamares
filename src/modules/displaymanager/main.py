@@ -326,9 +326,6 @@ def run():
                                                     '/var/lib/kdm', '-s', '/bin/false', '-r', '-M', 'kdm'])
                 libcalamares.utils.chroot_call(
                     ['chown', '-R', '135:135', 'var/lib/kdm'])
-                libcalamares.utils.chroot_call(
-                    ['xdg-icon-resource', 'forceupdate', '--theme', 'hicolor'])
-                libcalamares.utils.chroot_call(['update-desktop-database', '-q'])
         else:
             libcalamares.utils.debug("kdm selected but not installed")
             displaymanagers.remove("kdm")
