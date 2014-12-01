@@ -239,13 +239,13 @@ def run():
         if os.path.exists("%s/usr/bin/lightdm" % root_mount_point):
             if enable_basic_setup:
                 libcalamares.utils.chroot_call(['mkdir', '-p', '/run/lightdm'])
-                libcalamares.utils.chroot_call(['getent', 'group', 'lightdm'])
-                libcalamares.utils.chroot_call(
-                    ['groupadd', '-g', '620', 'lightdm'])
-                libcalamares.utils.chroot_call(['getent', 'passwd', 'lightdm'])
-                libcalamares.utils.chroot_call(['useradd', '-c', '"LightDM Display Manager"',
-                                                '-u', '620', '-g', 'lightdm', '-d', '/var/run/lightdm',
-                                                '-s', '/usr/bin/nologin', 'lightdm'])
+                if libcalamares.utils.chroot_call(['getent', 'group', 'lightdm']) != 0:
+                    libcalamares.utils.chroot_call(
+                        ['groupadd', '-g', '620', 'lightdm'])
+                if libcalamares.utils.chroot_call(['getent', 'passwd', 'lightdm']) != 0:
+                    libcalamares.utils.chroot_call(['useradd', '-c', '"LightDM Display Manager"',
+                                                    '-u', '620', '-g', 'lightdm', '-d', '/var/run/lightdm',
+                                                    '-s', '/usr/bin/nologin', 'lightdm'])
                 libcalamares.utils.chroot_call(['passwd', '-l', 'lightdm'])
                 libcalamares.utils.chroot_call(
                     ['chown', '-R', 'lightdm:lightdm', '/run/lightdm'])
@@ -262,12 +262,12 @@ def run():
     if "gdm" in displaymanagers:
         if os.path.exists("%s/usr/bin/gdm" % root_mount_point):
             if enable_basic_setup:
-                libcalamares.utils.chroot_call(['getent', 'group', 'gdm'])
-                libcalamares.utils.chroot_call(['groupadd', '-g', '120', 'gdm'])
-                libcalamares.utils.chroot_call(['getent', 'passwd', 'gdm'])
-                libcalamares.utils.chroot_call(['useradd', '-c', '"Gnome Display Manager"',
-                                                '-u', '120', '-g', 'gdm', '-d', '/var/lib/gdm',
-                                                '-s', '/usr/bin/nologin', 'gdm'])
+                if libcalamares.utils.chroot_call(['getent', 'group', 'gdm']) != 0:
+                    libcalamares.utils.chroot_call(['groupadd', '-g', '120', 'gdm'])
+                if libcalamares.utils.chroot_call(['getent', 'passwd', 'gdm']) != 0:
+                    libcalamares.utils.chroot_call(['useradd', '-c', '"Gnome Display Manager"',
+                                                    '-u', '120', '-g', 'gdm', '-d', '/var/lib/gdm',
+                                                    '-s', '/usr/bin/nologin', 'gdm'])
                 libcalamares.utils.chroot_call(['passwd', '-l', 'gdm'])
                 libcalamares.utils.chroot_call(
                     ['chown', '-R', 'gdm:gdm', '/var/lib/gdm'])
@@ -279,12 +279,12 @@ def run():
     if "mdm" in displaymanagers:
         if os.path.exists("%s/usr/bin/mdm" % root_mount_point):
             if enable_basic_setup:
-                libcalamares.utils.chroot_call(['getent', 'group', 'mdm'])
-                libcalamares.utils.chroot_call(['groupadd', '-g', '128', 'mdm'])
-                libcalamares.utils.chroot_call(['getent', 'passwd', 'mdm'])
-                libcalamares.utils.chroot_call(['useradd', '-c', '"Linux Mint Display Manager"',
-                                                '-u', '128', '-g', 'mdm', '-d', '/var/lib/mdm',
-                                                '-s', '/usr/bin/nologin', 'mdm'])
+                if libcalamares.utils.chroot_call(['getent', 'group', 'mdm']) != 0:
+                    libcalamares.utils.chroot_call(['groupadd', '-g', '128', 'mdm'])
+                if libcalamares.utils.chroot_call(['getent', 'passwd', 'mdm']) != 0:
+                    libcalamares.utils.chroot_call(['useradd', '-c', '"Linux Mint Display Manager"',
+                                                    '-u', '128', '-g', 'mdm', '-d', '/var/lib/mdm',
+                                                    '-s', '/usr/bin/nologin', 'mdm'])
                 libcalamares.utils.chroot_call(['passwd', '-l', 'mdm'])
                 libcalamares.utils.chroot_call(
                     ['chown', 'root:mdm', '/var/lib/mdm'])
@@ -300,7 +300,8 @@ def run():
     if "lxdm" in displaymanagers:
         if os.path.exists("%s/usr/bin/lxdm" % root_mount_point):
             if enable_basic_setup:
-                libcalamares.utils.chroot_call(['groupadd', '--system', 'lxdm'])
+                if libcalamares.utils.chroot_call(['getent', 'group', 'lxdm']) != 0:
+                    libcalamares.utils.chroot_call(['groupadd', '--system', 'lxdm'])
                 libcalamares.utils.chroot_call(
                     ['chgrp', '-R', 'lxdm', '/var/lib/lxdm'])
                 libcalamares.utils.chroot_call(
@@ -318,11 +319,11 @@ def run():
     if "kdm" in displaymanagers:
         if os.path.exists("%s/usr/bin/kdm" % root_mount_point):
             if enable_basic_setup:
-                libcalamares.utils.chroot_call(['getent', 'group', 'kdm'])
-                libcalamares.utils.chroot_call(['groupadd', '-g', '135', 'kdm'])
-                libcalamares.utils.chroot_call(['getent', 'passwd', 'kdm'])
-                libcalamares.utils.chroot_call(['useradd', '-u', '135', '-g', 'kdm', '-d',
-                                                '/var/lib/kdm', '-s', '/bin/false', '-r', '-M', 'kdm'])
+                if libcalamares.utils.chroot_call(['getent', 'group', 'kdm']) != 0:
+                    libcalamares.utils.chroot_call(['groupadd', '-g', '135', 'kdm'])
+                if libcalamares.utils.chroot_call(['getent', 'passwd', 'kdm']) != 0:
+                    libcalamares.utils.chroot_call(['useradd', '-u', '135', '-g', 'kdm', '-d',
+                                                    '/var/lib/kdm', '-s', '/bin/false', '-r', '-M', 'kdm'])
                 libcalamares.utils.chroot_call(
                     ['chown', '-R', '135:135', 'var/lib/kdm'])
                 libcalamares.utils.chroot_call(
