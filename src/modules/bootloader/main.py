@@ -29,17 +29,6 @@ import subprocess
 from libcalamares.utils import check_chroot_call
 
 
-def detect_firmware_type():
-    # Check for EFI variables support
-    if(os.path.exists("/sys/firmware/efi/efivars")):
-        fw_type = 'efi'
-    else:
-        fw_type = 'bios'
-
-    libcalamares.globalstorage.insert("firmwareType", fw_type)
-    libcalamares.utils.debug("Firmware type: {!s}".format(fw_type))
-
-
 def get_uuid():
     root_mount_point = libcalamares.globalstorage.value("rootMountPoint")
     print(root_mount_point)
@@ -161,7 +150,6 @@ def install_bootloader(boot_loader, fw_type):
 
 
 def run():
-    detect_firmware_type()
     boot_loader = libcalamares.globalstorage.value("bootLoader")
     fw_type = libcalamares.globalstorage.value("firmwareType")
     install_bootloader(boot_loader, fw_type)
