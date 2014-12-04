@@ -43,6 +43,7 @@ ON_POSIX = 'posix' in sys.builtin_module_names
 
 
 def list_excludes(destination):
+    lst = []
     extra_mounts = globalstorage.value("extraMounts")
     for extra_mount in extra_mounts:
         mount_point = extra_mount["mountPoint"]
