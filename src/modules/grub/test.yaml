@@ -2,4 +2,4 @@ rootMountPoint: /tmp/mount
 bootLoader:
     installPath: /dev/sdb
 branding:
-    shortProductName: "Generic Distro"
+    bootloaderEntryName: "Generic Distro"
