@@ -43,16 +43,11 @@ ON_POSIX = 'posix' in sys.builtin_module_names
 
 
 def list_excludes(destination):
-    prefix = destination.replace('//', '/')
-    if not prefix.endswith('/'):
-        prefix = prefix + '/'
-    lst = []
-    for line in open('/etc/mtab').readlines():
-        device, mount_point, _ = line.split(" ", 2)
-        if mount_point.startswith(prefix):
-            # -1 to include the leading / from the end of the prefix
-            # also add a trailing /
-            lst.extend(['--exclude', mount_point[len(prefix)-1:] + '/'])
+    extra_mounts = globalstorage.value("extraMounts")
+    for extra_mount in extra_mounts:
+        mount_point = extra_mount["mountPoint"]
+        if mount_point:
+            lst.extend(['--exclude', mount_point + '/'])
     return lst
 
 

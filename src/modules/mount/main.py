@@ -55,9 +55,16 @@ def run():
     mount_partitions(root_mount_point, partitions)
 
     mount_partitions(root_mount_point, extra_mounts)
-    
-    if(os.path.exists("/sys/firmware/efi/efivars")):
+
+    fw_type = libcalamares.globalstorage.value("firmwareType")
+    if fw_type == 'efi':
         mount_partitions(root_mount_point, extra_mounts_efi)
 
     libcalamares.globalstorage.insert("rootMountPoint", root_mount_point)
+    # Remember the extra mounts for the unpackfs module
+    if fw_type == 'efi':
+        libcalamares.globalstorage.insert("extraMounts", extra_mounts + extra_mounts_efi)
+    else:
+        libcalamares.globalstorage.insert("extraMounts", extra_mounts)
+
     return None
