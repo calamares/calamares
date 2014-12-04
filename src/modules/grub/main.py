@@ -27,7 +27,7 @@ def install_grub(boot_loader, fw_type):
     if fw_type == 'efi':
         efi_directory = "/boot/efi"
         branding = libcalamares.globalstorage.value("branding")
-        distribution = branding["shortProductName"]
+        distribution = branding["bootloaderEntryName"]
         file_name_sanitizer = str.maketrans(" /", "_-")
         check_chroot_call([libcalamares.job.configuration["grubInstall"], "--target=x86_64-efi", "--efi-directory={!s}".format(efi_directory), "--bootloader-id={!s}".format(distribution.translate(file_name_sanitizer))])
     else:
