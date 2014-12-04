@@ -320,7 +320,7 @@ Ausgabe:
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="57"/>
         <source>&amp;Quit</source>
-        <translation>&amp;Abbrechen</translation>
+        <translation>&amp;Beenden</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="137"/>
