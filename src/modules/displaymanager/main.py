@@ -49,6 +49,9 @@ def find_desktop_environment(root_mount_point):
             return desktop_environment
     return None
 
+def have_dm(dm_name, root_mount_point):
+    return os.path.exists("%s/usr/bin/%s" % (root_mount_point, dm_name)) or os.path.exists("%s/usr/sbin/%s" % (root_mount_point, dm_name))
+
 def set_autologin(username, displaymanagers, default_desktop_environment, root_mount_point):
     """ Enables automatic login for the installed desktop managers """
 
@@ -224,19 +227,19 @@ def run():
 
     # Setup slim
     if "slim" in displaymanagers:
-        if not os.path.exists("%s/usr/bin/slim" % root_mount_point):
+        if not have_dm("slim", root_mount_point):
             libcalamares.utils.debug("slim selected but not installed")
             displaymanagers.remove("slim")
 
     # Setup sddm
     if "sddm" in displaymanagers:
-        if not os.path.exists("%s/usr/bin/sddm" % root_mount_point):
+        if not have_dm("sddm", root_mount_point):
             libcalamares.utils.debug("sddm selected but not installed")
             displaymanagers.remove("sddm")
 
     # setup lightdm
     if "lightdm" in displaymanagers:
-        if os.path.exists("%s/usr/bin/lightdm" % root_mount_point):
+        if have_dm("lightdm", root_mount_point):
             if enable_basic_setup:
                 libcalamares.utils.chroot_call(['mkdir', '-p', '/run/lightdm'])
                 if libcalamares.utils.chroot_call(['getent', 'group', 'lightdm']) != 0:
@@ -260,7 +263,7 @@ def run():
 
     # Setup gdm
     if "gdm" in displaymanagers:
-        if os.path.exists("%s/usr/bin/gdm" % root_mount_point):
+        if have_dm("gdm", root_mount_point):
             if enable_basic_setup:
                 if libcalamares.utils.chroot_call(['getent', 'group', 'gdm']) != 0:
                     libcalamares.utils.chroot_call(['groupadd', '-g', '120', 'gdm'])
@@ -277,7 +280,7 @@ def run():
 
     # Setup mdm
     if "mdm" in displaymanagers:
-        if os.path.exists("%s/usr/bin/mdm" % root_mount_point):
+        if have_dm("mdm", root_mount_point):
             if enable_basic_setup:
                 if libcalamares.utils.chroot_call(['getent', 'group', 'mdm']) != 0:
                     libcalamares.utils.chroot_call(['groupadd', '-g', '128', 'mdm'])
@@ -298,7 +301,7 @@ def run():
 
     # Setup lxdm
     if "lxdm" in displaymanagers:
-        if os.path.exists("%s/usr/bin/lxdm" % root_mount_point):
+        if have_dm("lxdm", root_mount_point):
             if enable_basic_setup:
                 if libcalamares.utils.chroot_call(['getent', 'group', 'lxdm']) != 0:
                     libcalamares.utils.chroot_call(['groupadd', '--system', 'lxdm'])
@@ -317,7 +320,7 @@ def run():
 
     # Setup kdm
     if "kdm" in displaymanagers:
-        if os.path.exists("%s/usr/bin/kdm" % root_mount_point):
+        if have_dm("kdm", root_mount_point):
             if enable_basic_setup:
                 if libcalamares.utils.chroot_call(['getent', 'group', 'kdm']) != 0:
                     libcalamares.utils.chroot_call(['groupadd', '-g', '135', 'kdm'])
