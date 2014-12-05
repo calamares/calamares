@@ -84,6 +84,7 @@ KeyboardPage::init()
 {
     //### Detect current keyboard layout and variant
     QString currentLayout;
+    QString currentVariant;
     QProcess process;
     process.start( "setxkbmap", QStringList() << "-print" );
 
@@ -109,9 +110,17 @@ KeyboardPage::init()
                 currentLayout = split.at( 1 );
 
                 if ( currentLayout.contains( "(" ) )
+                {
+                    int parenthesisIndex = currentLayout.indexOf( "(" );
+                    currentVariant = currentLayout.mid( parenthesisIndex + 1 )
+                                                  .trimmed();
+                    currentVariant.chop( 1 );
                     currentLayout = currentLayout
-                                    .mid( 0, currentLayout.indexOf( "(" ) )
+                                    .mid( 0, parenthesisIndex )
                                     .trimmed();
+                }
+
+                break;
             }
         }
     }
@@ -167,13 +176,19 @@ KeyboardPage::init()
 
     ui->listLayout->sortItems();
 
+    // Set current layout and variant
+    if ( currentLayoutItem )
+    {
+        ui->listLayout->setCurrentItem( currentLayoutItem );
+        updateVariants( currentLayoutItem, currentVariant );
+    }
+
     // Unblock signals
     ui->listLayout->blockSignals( false );
 
-    // Set current layout
-    if ( currentLayoutItem )
-        ui->listLayout->setCurrentItem( currentLayoutItem );
-    else if ( ui->listLayout->count() > 0 )
+    // Default to the first available layout if none was set
+    // Do this after unblocking signals so we get the default variant handling.
+    if ( !currentLayoutItem && ui->listLayout->count() > 0 )
         ui->listLayout->setCurrentRow( 0 );
 }
 
@@ -233,16 +248,12 @@ KeyboardPage::finalize()
 
 
 void
-KeyboardPage::onListLayoutCurrentItemChanged( QListWidgetItem* current, QListWidgetItem* previous )
+KeyboardPage::updateVariants( LayoutItem* currentItem, QString currentVariant )
 {
-    LayoutItem *item = dynamic_cast< LayoutItem* >( current );
-    if ( !item )
-       return;
-
     // Block signals
     ui->listVariant->blockSignals( true );
 
-    QMap< QString, QString > variants = item->info.variants;
+    QMap< QString, QString > variants = currentItem->info.variants;
     QMapIterator< QString, QString > li( variants );
     LayoutItem* defaultItem = nullptr;
 
@@ -252,12 +263,14 @@ KeyboardPage::onListLayoutCurrentItemChanged( QListWidgetItem* current, QListWid
     {
        li.next();
 
-       item = new LayoutItem();
+       LayoutItem* item = new LayoutItem();
        item->setText( li.key() );
        item->data = li.value();
        ui->listVariant->addItem( item );
 
-       if ( li.value() == "" )
+       // currentVariant defaults to QString(). It is only non-empty during the
+       // initial setup.
+       if ( li.value() == currentVariant )
            defaultItem = item;
     }
 
@@ -267,6 +280,17 @@ KeyboardPage::onListLayoutCurrentItemChanged( QListWidgetItem* current, QListWid
     // Set to default value
     if ( defaultItem )
        ui->listVariant->setCurrentItem( defaultItem );
+}
+
+
+void
+KeyboardPage::onListLayoutCurrentItemChanged( QListWidgetItem* current, QListWidgetItem* previous )
+{
+    LayoutItem* item = dynamic_cast< LayoutItem* >( current );
+    if ( !item )
+       return;
+
+    updateVariants( item );
 }
 
 

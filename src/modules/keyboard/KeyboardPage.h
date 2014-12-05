@@ -68,6 +68,8 @@ private:
         KeyboardGlobal::KeyboardInfo info;
     };
 
+    void updateVariants( LayoutItem* currentItem, QString currentVariant = QString() );
+
     Ui::Page_Keyboard *ui;
     KeyBoardPreview* m_keyboardPreview;
     int m_defaultIndex;
