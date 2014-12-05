@@ -29,7 +29,6 @@ TimeZoneWidget::TimeZoneWidget(QWidget *parent) :
     setCursor(Qt::PointingHandCursor);
 
     // Font
-    font.setFamily("Cantarell");
     font.setPointSize(12);
     font.setBold(false);
 
