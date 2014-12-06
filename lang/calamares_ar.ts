@@ -828,12 +828,12 @@ Output:
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="69"/>
         <source>Could not open device &apos;%1&apos;.</source>
-        <translation>لا يمكن فتح الجهاز &apos;%1&apos;.</translation>
+        <translation>لم يستطع فتح الجهاز &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="79"/>
         <source>Could not open partition table.</source>
-        <translation>لا يمكن فتح جدول الأقسام.</translation>
+        <translation>لم يستطع فتح جدول الأقسام.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="103"/>
@@ -889,7 +889,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="62"/>
         <source>Could not open device %1.</source>
-        <translation>لا يمكن فتح الجهاز %1.</translation>
+        <translation>لم يستطع فتح الجهاز %1.</translation>
     </message>
 </context>
 <context>
