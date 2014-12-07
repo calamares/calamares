@@ -236,7 +236,7 @@ Output:
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="88"/>
         <source>Internal error when starting command</source>
-        <translation>خطأ داخلي أثناء بدء الأمر</translation>
+        <translation>حدث خطأ داخلي أثناء بدء الأمر</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="89"/>
@@ -1011,12 +1011,12 @@ Output:
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="66"/>
         <source>Could not open device %1.</source>
-        <translation>لا يمكن فتح الجهاز %1.</translation>
+        <translation>لم يستطع فتح الجهاز %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="75"/>
         <source>Could not open partition table.</source>
-        <translation>لا يمكن فتح جدول الأقسام.</translation>
+        <translation>لم يستطع فتح جدول الأقسام.</translation>
     </message>
 </context>
 <context>
@@ -1396,12 +1396,12 @@ Some file systems need external tools to be installed for them to be supported. 
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="67"/>
         <source>Could not open device &apos;%1&apos;.</source>
-        <translation>لا يمكن فتح الجهاز &apos;%1&apos;.</translation>
+        <translation>لم يستطع فتح الجهاز &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="76"/>
         <source>Could not open partition table.</source>
-        <translation>لا يمكن فتح جدول الأقسام.</translation>
+        <translation>لم يستطع فتح جدول الأقسام.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="84"/>
@@ -1525,12 +1525,12 @@ Some file systems need external tools to be installed for them to be supported. 
     <message>
         <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="80"/>
         <source>Could not open file system on partition %1 for moving.</source>
-        <translation>لا يمكن فتح نظام الملفات على القرص %1 للقيام بتحريكه.</translation>
+        <translation>لم يستطع فتح نظام الملفات على القرص %1 للقيام بتحريكه.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="86"/>
         <source>Could not create target for moving file system on partition %1.</source>
-        <translation>لا يمكن إنشاء وجهة لتحريك نظام الملفات على القسم %1.</translation>
+        <translation>لم يستطع إنشاء وجهة لتحريك نظام الملفات على القسم %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="95"/>
@@ -1561,7 +1561,7 @@ Some file systems need external tools to be installed for them to be supported. 
         <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="224"/>
         <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="232"/>
         <source>Could not open device %1 to rollback copying.</source>
-        <translation>لا يمكن فتح الجهاز %1 للتراجع عن النسخ.</translation>
+        <translation>لم يستطع فتح الجهاز %1 للتراجع عن النسخ.</translation>
     </message>
 </context>
 <context>
@@ -2153,7 +2153,7 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="213"/>
         <source>Could not open device &apos;%1&apos;.</source>
-        <translation>لا يمكن فتح الجهاز &apos;%1&apos;.</translation>
+        <translation>لم يستطع فتح الجهاز &apos;%1&apos;.</translation>
     </message>
 </context>
 <context>
