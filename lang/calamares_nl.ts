@@ -818,12 +818,12 @@ Uitvoer:
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="47"/>
         <source>Create partition (file system: %1, size: %2 MB) on %3.</source>
-        <translation>Maak partitie (bestands systeem: %1, omvang: %2 MB) on %3.</translation>
+        <translation>Maak partitie (bestands systeem: %1, omvang: %2 MB) op %3.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="60"/>
         <source>The installer failed to create partition on disk &apos;%1&apos;.</source>
-        <translation>Installatieprogramma heeft gefaald om een partitie aan te maken op disk &apos;%1&apos;</translation>
+        <translation>Het installatieprogramma kon geen partitie aanmaken op schijf &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="69"/>
@@ -838,12 +838,12 @@ Uitvoer:
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="103"/>
         <source>The installer failed to create file system on partition %1.</source>
-        <translation>Installatieprogramma heeft gefaald om een bestandssysteem aan te maken op partitie %1.</translation>
+        <translation>Het installatieprogramma kon geen bestandssysteem aanmaken op partitie %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="111"/>
         <source>The installer failed to update partition table on disk &apos;%1&apos;.</source>
-        <translation>Installatieprogramma heeft gefaald om de partitietabel bij te werken op schijf &apos;%1&apos;.</translation>
+        <translation>Het installatieprogramma kon de partitietabel op schijf &apos;%1&apos; niet bijwerken .</translation>
     </message>
 </context>
 <context>
@@ -884,12 +884,12 @@ Uitvoer:
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="54"/>
         <source>The installer failed to create a partition table on %1.</source>
-        <translation>Installatieprogramma heeft gefaald om een partitietabel aan te maken op %1.</translation>
+        <translation>Het installatieprogramma kon geen partitietabel aanmaken op %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="62"/>
         <source>Could not open device %1.</source>
-        <translation>Kan apparaat %1 niet openen.</translation>
+        <translation>Kon apparaat %1 niet openen.</translation>
     </message>
 </context>
 <context>
@@ -1001,7 +1001,7 @@ Uitvoer:
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="48"/>
         <source>The installer failed to delete partition %1.</source>
-        <translation>Installatieprogramma heeft gefaald in het verwijderen van partitie %1.</translation>
+        <translation>Het installatieprogramma kon partitie %1 niet verwijderen.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="54"/>
@@ -1011,7 +1011,7 @@ Uitvoer:
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="66"/>
         <source>Could not open device %1.</source>
-        <translation>Kan apparaat %1 niet openen.</translation>
+        <translation>Kon apparaat %1 niet openen.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="75"/>
@@ -1062,17 +1062,17 @@ Uitvoer:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/devicepropswidgetbase.ui" line="183"/>
         <source>Logical sector size:</source>
-        <translation>Logische sector grootte:</translation>
+        <translation>Logische sectorgrootte:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/devicepropswidgetbase.ui" line="200"/>
         <source>Physical sector size:</source>
-        <translation>Fysieke sector grootte:</translation>
+        <translation>Fysieke sectorgrootte:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/devicepropswidgetbase.ui" line="217"/>
         <source>Cylinder size:</source>
-        <translation>Cilinder grootte:</translation>
+        <translation>Cilindergrootte:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/devicepropswidgetbase.ui" line="241"/>
