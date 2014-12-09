@@ -36,7 +36,7 @@ def install_grub(boot_loader, fw_type):
         check_chroot_call([libcalamares.job.configuration["grubInstall"], "--target=x86_64-efi", "--efi-directory={!s}".format(efi_directory), "--bootloader-id={!s}".format(efi_bootloader_id)])
     else:
         install_path = boot_loader["installPath"]
-        check_chroot_call([libcalamares.job.configuration["grubInstall"], install_path])
+        check_chroot_call([libcalamares.job.configuration["grubInstall"], "--target=i386-pc", install_path])
 
     check_chroot_call([libcalamares.job.configuration["grubMkconfig"], "-o", libcalamares.job.configuration["grubCfg"]])
 
