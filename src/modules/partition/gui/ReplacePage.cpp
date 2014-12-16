@@ -173,7 +173,7 @@ ReplacePage::onPartitionSelected()
         {
             updateStatus( CalamaresUtils::Fail,
                           tr( "The partition %1 is too small for %2. Please select a partition "
-                              "with capacity at least %3 GB." )
+                              "with capacity at least %3 GiB." )
                           .arg( partition->partitionPath() )
                           .arg( Calamares::Branding::instance()->
                                 string( Calamares::Branding::VersionedName ) )
