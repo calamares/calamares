@@ -66,6 +66,10 @@ defaultPixmap( ImageType type, ImageMode mode, const QSize& size )
             pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/magic.svgz", size );
             break;
 
+        case Replace:
+            pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/replace.svgz", size );
+            break;
+
         default:
             break;
     }

@@ -29,14 +29,15 @@ class QLayout;
 
 namespace CalamaresUtils
 {
-enum ImageType
+enum ImageType : int
 {
     Yes,
     No,
     Information,
     Fail,
     Partitions,
-    Magic
+    Magic,
+    Replace
 };
 
 enum ImageMode
