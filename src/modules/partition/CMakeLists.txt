@@ -41,6 +41,7 @@ calamares_add_plugin( partition
         gui/PartitionSplitterWidget.cpp
         gui/PartitionViewStep.cpp
         gui/PrettyRadioButton.cpp
+        gui/ReplacePage.cpp
         jobs/CheckFileSystemJob.cpp
         jobs/ClearMountsJob.cpp
         jobs/CreatePartitionJob.cpp
@@ -56,6 +57,7 @@ calamares_add_plugin( partition
         gui/CreatePartitionTableDialog.ui
         gui/EditExistingPartitionDialog.ui
         gui/PartitionPage.ui
+        gui/ReplacePage.ui
     LINK_LIBRARIES
         calapm
         calamaresui
