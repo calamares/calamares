@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
+ *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -28,6 +29,7 @@ class ChoicePage;
 class EraseDiskPage;
 class AlongsidePage;
 class PartitionPage;
+class ReplacePage;
 class PartitionCoreModule;
 class QStackedWidget;
 
@@ -71,6 +73,7 @@ private:
     EraseDiskPage*    m_erasePage;
     AlongsidePage*    m_alongsidePage;
     PartitionPage*    m_manualPartitionPage;
+    ReplacePage*      m_replacePage;
 };
 
 #endif // PARTITIONVIEWSTEP_H

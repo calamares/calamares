@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
+ *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -28,6 +29,7 @@
 #include <gui/EraseDiskPage.h>
 #include <gui/AlongsidePage.h>
 #include <gui/PartitionPage.h>
+#include <gui/ReplacePage.h>
 #include <gui/PartitionPreview.h>
 #include "OsproberEntry.h"
 
@@ -55,6 +57,7 @@ PartitionViewStep::PartitionViewStep( QObject* parent )
     , m_erasePage( new EraseDiskPage() )
     , m_alongsidePage( new AlongsidePage() )
     , m_manualPartitionPage( new PartitionPage( m_core ) )
+    , m_replacePage( new ReplacePage( m_core ) )
 {
     m_widget->setContentsMargins( 0, 0, 0, 0 );
 
@@ -118,6 +121,7 @@ PartitionViewStep::PartitionViewStep( QObject* parent )
         m_widget->addWidget( m_manualPartitionPage );
         m_widget->addWidget( m_alongsidePage );
         m_widget->addWidget( m_erasePage );
+        m_widget->addWidget( m_replacePage );
         m_widget->removeWidget( waitingWidget );
         waitingWidget->deleteLater();
 
@@ -132,6 +136,8 @@ PartitionViewStep::PartitionViewStep( QObject* parent )
     connect( m_erasePage,       &EraseDiskPage::nextStatusChanged,
              this,              &PartitionViewStep::nextStatusChanged );
     connect( m_alongsidePage,   &AlongsidePage::nextStatusChanged,
+             this,              &PartitionViewStep::nextStatusChanged );
+    connect( m_replacePage,     &ReplacePage::nextStatusChanged,
              this,              &PartitionViewStep::nextStatusChanged );
 }
 
@@ -206,6 +212,12 @@ PartitionViewStep::next()
                 m_core->revert();
             m_widget->setCurrentWidget( m_alongsidePage );
         }
+        else if ( m_choicePage->currentChoice() == ChoicePage::Replace )
+        {
+            if ( m_core->isDirty() )
+                m_core->revert();
+            m_widget->setCurrentWidget( m_replacePage );
+        }
         cDebug() << "Choice applied: " << m_choicePage->currentChoice();
         return;
     }
@@ -248,7 +260,8 @@ PartitionViewStep::isAtBeginning() const
 {
     if ( m_widget->currentWidget() == m_manualPartitionPage ||
          m_widget->currentWidget() == m_erasePage ||
-         m_widget->currentWidget() == m_alongsidePage )
+         m_widget->currentWidget() == m_alongsidePage ||
+         m_widget->currentWidget() == m_replacePage )
         return false;
     return true;
 }
@@ -269,6 +282,10 @@ PartitionViewStep::onLeave()
     if ( m_widget->currentWidget() == m_alongsidePage )
     {
         m_alongsidePage->applyChanges();
+    }
+    else if ( m_widget->currentWidget() == m_replacePage )
+    {
+        m_replacePage->applyChanges();
     }
 }
 

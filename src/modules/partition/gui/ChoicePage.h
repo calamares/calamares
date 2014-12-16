@@ -37,6 +37,7 @@ public:
         NoChoice,
         Alongside,
         Erase,
+        Replace,
         Manual
     };
 

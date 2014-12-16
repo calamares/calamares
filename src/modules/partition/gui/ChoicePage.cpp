@@ -97,8 +97,16 @@ ChoicePage::init( PartitionCoreModule* core, const OsproberEntryList& osproberEn
                                                          iconSize ) );
     grp->addButton( eraseButton->buttonWidget() );
 
+    PrettyRadioButton* replaceButton = new PrettyRadioButton;
+    replaceButton->setIconSize( iconSize );
+    replaceButton->setIcon( CalamaresUtils::defaultPixmap( CalamaresUtils::Replace,
+                                                           CalamaresUtils::Original,
+                                                           iconSize ) );
+    grp->addButton( replaceButton->buttonWidget() );
+
     m_itemsLayout->addWidget( eraseButton );
     m_itemsLayout->addWidget( alongsideButton );
+    m_itemsLayout->addWidget( replaceButton );
     m_itemsLayout->setSpacing( CalamaresUtils::defaultFontHeight() / 2 );
 
     if ( osproberEntries.count() == 0 )
@@ -114,6 +122,7 @@ ChoicePage::init( PartitionCoreModule* core, const OsproberEntryList& osproberEn
                                           string( Calamares::Branding::VersionedName ) ) );
         )
 
+        replaceButton->hide();
         alongsideButton->hide();
     }
     else if ( osproberEntries.count() == 1 )
@@ -135,11 +144,17 @@ ChoicePage::init( PartitionCoreModule* core, const OsproberEntryList& osproberEn
                                             .arg( Calamares::Branding::instance()->
                                                   string( Calamares::Branding::VersionedName ) ) );
 
-                eraseButton->setText( tr( "<b>Replace %1 with %2</b><br/>"
+                eraseButton->setText( tr( "<b>Erase entire disk with %1 and install %2</b><br/>"
                                           "<font color=\"red\">Warning: </font>This will erase the whole disk and "
                                           "delete all of your %1 programs, "
                                           "documents, photos, music, and any other files." )
                                         .arg( osName )
+                                        .arg( Calamares::Branding::instance()->
+                                              string( Calamares::Branding::VersionedName ) ) );
+
+                replaceButton->setText( tr( "<b>Install %1 on an existing partition</b><br/>"
+                                            "<font color=\"red\">Warning: </font>This will delete all files "
+                                            "on the selected partition." )
                                         .arg( Calamares::Branding::instance()->
                                               string( Calamares::Branding::VersionedName ) ) );
             )
@@ -160,6 +175,12 @@ ChoicePage::init( PartitionCoreModule* core, const OsproberEntryList& osproberEn
                 eraseButton->setText( tr( "<b>Erase disk and install %1</b><br/>"
                                           "<font color=\"red\">Warning: </font>This will delete all of your programs, "
                                           "documents, photos, music, and any other files." )
+                                        .arg( Calamares::Branding::instance()->
+                                              string( Calamares::Branding::VersionedName ) ) );
+
+                replaceButton->setText( tr( "<b>Install %1 on an existing partition</b><br/>"
+                                            "<font color=\"red\">Warning: </font>This will delete all files "
+                                            "on the selected partition." )
                                         .arg( Calamares::Branding::instance()->
                                               string( Calamares::Branding::VersionedName ) ) );
             )
@@ -196,6 +217,12 @@ ChoicePage::init( PartitionCoreModule* core, const OsproberEntryList& osproberEn
             eraseButton->setText( tr( "<b>Erase disk and install %1</b><br/>"
                                       "<font color=\"red\">Warning: </font>This will delete all of your programs, "
                                       "documents, photos, music, and any other files." )
+                                    .arg( Calamares::Branding::instance()->
+                                          string( Calamares::Branding::VersionedName ) ) );
+
+            replaceButton->setText( tr( "<b>Install %1 on an existing partition</b><br/>"
+                                        "<font color=\"red\">Warning: </font>This will delete all files "
+                                        "on the selected partition." )
                                     .arg( Calamares::Branding::instance()->
                                           string( Calamares::Branding::VersionedName ) ) );
         )
@@ -236,6 +263,14 @@ ChoicePage::init( PartitionCoreModule* core, const OsproberEntryList& osproberEn
     {
         if ( checked )
             m_choice = Erase;
+        setNextEnabled( true );
+    } );
+
+    connect( replaceButton->buttonWidget(), &QRadioButton::toggled,
+             this, [ this ]( bool checked )
+    {
+        if ( checked )
+            m_choice = Replace;
         setNextEnabled( true );
     } );
 
