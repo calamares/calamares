@@ -53,7 +53,7 @@ ReplacePage::ReplacePage( PartitionCoreModule* core, QWidget* parent )
         updateFromCurrentDevice();
     } );
 
-    connect( m_ui->partitionTreeView, &QAbstractItemView::activated,
+    connect( m_ui->partitionTreeView->selectionModel(), &QItemSelectionModel::currentRowChanged,
              this, &ReplacePage::onPartitionViewActivated );
 
     CALAMARES_RETRANSLATE(
