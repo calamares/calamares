@@ -53,9 +53,6 @@ ReplacePage::ReplacePage( PartitionCoreModule* core, QWidget* parent )
         updateFromCurrentDevice();
     } );
 
-    connect( m_ui->partitionTreeView->selectionModel(), &QItemSelectionModel::currentRowChanged,
-             this, &ReplacePage::onPartitionViewActivated );
-
     CALAMARES_RETRANSLATE(
         m_ui->retranslateUi( this );
         onPartitionSelected();
@@ -283,11 +280,9 @@ ReplacePage::updateFromCurrentDevice()
     //updateButtons();
     // Establish connection here because selection model is destroyed when
     // model changes
-    connect( m_ui->partitionTreeView->selectionModel(), &QItemSelectionModel::currentChanged,
-             [ this ]( const QModelIndex& index, const QModelIndex& oldIndex )
-    {
-    //    updateButtons();
-    } );
+    connect( m_ui->partitionTreeView->selectionModel(), &QItemSelectionModel::currentRowChanged,
+             this, &ReplacePage::onPartitionViewActivated );
+
     connect( model, &QAbstractItemModel::modelReset, this, &ReplacePage::onPartitionModelReset );
 }
 
