@@ -91,6 +91,7 @@ PartitionViewStep::PartitionViewStep( QObject* parent )
         }
 
         QString osProberReport( "Osprober lines, clean:\n" );
+        QStringList osproberCleanLines;
         OsproberEntryList osproberEntries;
         foreach ( const QString& line, osproberOutput.split( '\n' ) )
         {
@@ -108,10 +109,12 @@ PartitionViewStep::PartitionViewStep( QObject* parent )
                     continue;
 
                 osproberEntries.append( { prettyName, path, canBeResized( path ), lineColumns } );
-                osProberReport.append( line );
+                osproberCleanLines.append( line );
             }
         }
+        osProberReport.append( osproberCleanLines.join( '\n' ) );
         cDebug() << osProberReport;
+        Calamares::JobQueue::instance()->globalStorage()->insert( "osproberLines", osproberCleanLines );
 
         m_choicePage->init( m_core, osproberEntries );
         m_erasePage->init( m_core );
