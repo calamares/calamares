@@ -110,7 +110,7 @@ ReplacePage::onPartitionSelected()
     {
         updateStatus( CalamaresUtils::Partitions,
                       tr( "Select where to install %1.<br/>"
-                          "<font color=\"red\">Warning: </font>This will delete all files "
+                          "<font color=\"red\">Warning: </font>this will delete all files "
                           "on the selected partition." )
                           .arg( Calamares::Branding::instance()->
                                 string( Calamares::Branding::VersionedName ) ) );
@@ -184,7 +184,9 @@ ReplacePage::onPartitionSelected()
         }
 
         updateStatus( CalamaresUtils::Partitions,
-                      tr( "%1 will be installed on %2." )
+                      tr( "%1 will be installed on %2.<br/>"
+                          "<font color=\"red\">Warning: </font>all data on partition"
+                          "%2 will be lost.")
                         .arg( Calamares::Branding::instance()->
                             string( Calamares::Branding::VersionedName ) )
                         .arg( partition->partitionPath() ) );
