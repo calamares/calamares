@@ -1,7 +1,7 @@
 # Gummiboot
 
 The idea behind this module is not to make something gummiboot is not (a bootmanager), 
-but rather make some simple enhancements to this booloader.
+but rather make some simple enhancements to this bootloader.
 
 Gummiboot, by design, automatically adds entries for UEFI Windows systems and any other 
 OS already using gummiboot.  But that leaves installs using the grub bootmanager as not 
