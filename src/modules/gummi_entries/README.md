@@ -19,3 +19,6 @@ find an already existing grub.cfg.  It then reads the first seven characters of 
 distribution's name, the used kernel image (initrd), kernel and UUID, and copies those to a unique 
 gummiboot .conf
 
+In the settings.conf the grub module needs to be disabled, bootloader module enabled, run the
+gummi_entries after the bootloader to ensure the correct directories are set.
+
