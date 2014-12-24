@@ -30,21 +30,31 @@ menu_entries = []
  
 def read_grub():
     global menu_entries
-    grub_path = os.path.join(install_path, 'boot', 'grub', 'grub.cfg')
+    grub_path = ""
+    if os.path.exists('%s/boot/grub/grub.cfg' % install_path):
+        grub_path = os.path.join(install_path, 'boot', 'grub', 'grub.cfg')
+    elif os.path.exists('%s/boot/grub2/grub.cfg' % install_path):
+        grub_path = os.path.join(install_path, 'boot', 'grub2', 'grub.cfg')
+    elif os.path.exists('%s/boot/efi/grub/grub.cfg' % install_path):
+        grub_path = os.path.join(install_path, 'boot', 'efi', 'grub', 'grub.cfg')
+    elif os.path.exists('%s/boot/efi/grub2/grub.cfg' % install_path):
+        grub_path = os.path.join(install_path, 'boot', 'efi', 'grub2', 'grub.cfg')
+    if not grub_path:
+        return
     o = False
     with open(grub_path, 'r') as f:
         for l in f:
             if l.strip()[:9] == 'menuentry' and l[-2] == '{':
                 o = True
                 e = {}
-                e["title"] = l[11:18]
+                e["title"] = l[11:19]
             elif l.lstrip()[:5] == 'linux':
-                l = l.lstrip()[5:].lstrip()
+                l = l.lstrip()[11:].lstrip()
                 i = l.find(' ')
                 e["linux"] = l[:i]
                 e["options"] = l[i+1:].rstrip('\n')
             elif l.lstrip()[:6] == 'initrd':
-                e["initrd"] = l.lstrip()[6:].strip().rstrip('\n')
+                e["initrd"] = l.lstrip()[12:].strip().rstrip('\n')
             elif '}' in l and o:
                 o = False
                 menu_entries.append(e)
