@@ -353,7 +353,7 @@ Output:
     <message>
         <location filename="../src/libcalamares/PythonHelper.cpp" line="261"/>
         <source>Unfetchable Python error.</source>
-        <translation type="unfinished"/>
+        <translation>無法讀取的 Python 錯誤。</translation>
     </message>
 </context>
 <context>
@@ -369,12 +369,12 @@ Output:
     <message>
         <location filename="../src/modules/partition/jobs/CheckFileSystemJob.cpp" line="34"/>
         <source>Checking file system on partition %1.</source>
-        <translation type="unfinished"/>
+        <translation>正在檢查分割區 %1 上的檔案系統。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CheckFileSystemJob.cpp" line="50"/>
         <source>The file system check on partition %1 failed.</source>
-        <translation type="unfinished"/>
+        <translation>在分割區 %1 上的檔案系統檢查失敗。</translation>
     </message>
 </context>
 <context>
