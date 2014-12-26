@@ -117,7 +117,7 @@ ChoicePage::init( PartitionCoreModule* core, const OsproberEntryList& osproberEn
 
             eraseButton->setText( tr( "<b>Erase disk and install %1</b><br/>"
                                       "<font color=\"red\">Warning: </font>This will delete all of your programs, "
-                                      "documents, photos, music, and any other files." )
+                                      "documents, photos, music, and any other files. <b>Not suitable for UEFI installs</b>" )
                                     .arg( Calamares::Branding::instance()->
                                           string( Calamares::Branding::VersionedName ) ) );
         )
@@ -139,7 +139,7 @@ ChoicePage::init( PartitionCoreModule* core, const OsproberEntryList& osproberEn
                 alongsideButton->setText( tr( "<b>Install %2 alongside %1</b><br/>"
                                               "Documents, music and other personal files will be kept. "
                                               "You can choose which operating system you want each time the "
-                                              "computer starts up." )
+                                              "computer starts up.  <b>WARNING: not an option for UEFI installs</b>" )
                                             .arg( osName )
                                             .arg( Calamares::Branding::instance()->
                                                   string( Calamares::Branding::VersionedName ) ) );
@@ -147,14 +147,14 @@ ChoicePage::init( PartitionCoreModule* core, const OsproberEntryList& osproberEn
                 eraseButton->setText( tr( "<b>Erase entire disk with %1 and install %2</b><br/>"
                                           "<font color=\"red\">Warning: </font>This will erase the whole disk and "
                                           "delete all of your %1 programs, "
-                                          "documents, photos, music, and any other files." )
+                                          "documents, photos, music, and any other files. <b>Not suitable for UEFI installs</b>" )
                                         .arg( osName )
                                         .arg( Calamares::Branding::instance()->
                                               string( Calamares::Branding::VersionedName ) ) );
 
                 replaceButton->setText( tr( "<b>Install %1 on an existing partition</b><br/>"
                                             "<font color=\"red\">Warning: </font>This will delete all files "
-                                            "on the selected partition." )
+                                            "on the selected partition. <b>Not suitable for UEFI installs</b> " )
                                         .arg( Calamares::Branding::instance()->
                                               string( Calamares::Branding::VersionedName ) ) );
             )
@@ -168,19 +168,19 @@ ChoicePage::init( PartitionCoreModule* core, const OsproberEntryList& osproberEn
                 alongsideButton->setText( tr( "<b>Install %1 alongside your current operating system</b><br/>"
                                               "Documents, music and other personal files will be kept. "
                                               "You can choose which operating system you want each time the "
-                                              "computer starts up." )
+                                              "computer starts up.  <b>WARNING: not an option for UEFI installs</b>" )
                                             .arg( Calamares::Branding::instance()->
                                                   string( Calamares::Branding::VersionedName ) ) );
 
                 eraseButton->setText( tr( "<b>Erase disk and install %1</b><br/>"
                                           "<font color=\"red\">Warning: </font>This will delete all of your programs, "
-                                          "documents, photos, music, and any other files." )
+                                          "documents, photos, music, and any other files. <b>Not suitable for UEFI installs</b>" )
                                         .arg( Calamares::Branding::instance()->
                                               string( Calamares::Branding::VersionedName ) ) );
 
                 replaceButton->setText( tr( "<b>Install %1 on an existing partition</b><br/>"
                                             "<font color=\"red\">Warning: </font>This will delete all files "
-                                            "on the selected partition." )
+                                            "on the selected partition. <b>Not suitable for UEFI installs</b> " )
                                         .arg( Calamares::Branding::instance()->
                                               string( Calamares::Branding::VersionedName ) ) );
             )
@@ -210,19 +210,19 @@ ChoicePage::init( PartitionCoreModule* core, const OsproberEntryList& osproberEn
             alongsideButton->setText( tr( "<b>Install %1 alongside your current operating systems</b><br/>"
                                           "Documents, music and other personal files will be kept. "
                                           "You can choose which operating system you want each time the "
-                                          "computer starts up." )
+                                          "computer starts up.  <b>WARNING: not an option for UEFI installs</b>" )
                                         .arg( Calamares::Branding::instance()->
                                               string( Calamares::Branding::VersionedName ) ) );
 
             eraseButton->setText( tr( "<b>Erase disk and install %1</b><br/>"
                                       "<font color=\"red\">Warning: </font>This will delete all of your programs, "
-                                      "documents, photos, music, and any other files." )
+                                      "documents, photos, music, and any other files. <b>Not suitable for UEFI installs</b>" )
                                     .arg( Calamares::Branding::instance()->
                                           string( Calamares::Branding::VersionedName ) ) );
 
             replaceButton->setText( tr( "<b>Install %1 on an existing partition</b><br/>"
                                         "<font color=\"red\">Warning: </font>This will delete all files "
-                                        "on the selected partition." )
+                                        "on the selected partition. <b>Not suitable for UEFI installs</b>" )
                                     .arg( Calamares::Branding::instance()->
                                           string( Calamares::Branding::VersionedName ) ) );
         )
@@ -239,7 +239,9 @@ ChoicePage::init( PartitionCoreModule* core, const OsproberEntryList& osproberEn
     CALAMARES_RETRANSLATE(
         somethingElseButton->setText( tr( "<b>Something else</b><br/>"
                                           "You can create or resize partitions yourself, or choose "
-                                          "multiple partitions for %1." )
+                                          "multiple partitions for %1."
++                                         "  Use this option for UEFI installs, having a <b>fat32 512Mb /boot partition"
++                                         " is a must for UEFI installs</b>, either use an existing without formatting or create one." )
                                         .arg( Calamares::Branding::instance()->
                                               string( Calamares::Branding::ShortVersionedName ) ) );
     )
