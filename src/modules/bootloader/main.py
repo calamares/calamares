@@ -53,11 +53,10 @@ def create_conf(uuid, conf_path):
     kernel = libcalamares.job.configuration["kernel"]
     img = libcalamares.job.configuration["img"]
     partitions = libcalamares.globalstorage.value("partitions")
+    swap = ""
     for partition in partitions:
         if partition["fs"] == "linuxswap":
             swap = partition["uuid"]
-        else:
-            swap = ""
     lines = [
         '## This is just an exmaple config file.\n',
         '## Please edit the paths and kernel parameters according to your system.\n',
