@@ -65,7 +65,7 @@ def create_conf(uuid, conf_path):
         'title   %s GNU/Linux, with Linux core repo kernel\n' % distribution,
         'linux   %s\n' % kernel,
         'initrd  %s\n' % img,
-        'options root=UUID=%s quiet resume=%s rw\n' % (uuid, swap),
+        'options root=UUID=%s quiet resume=UUID=%s rw\n' % (uuid, swap),
     ]
 
     with open(conf_path, 'w') as f:
@@ -91,7 +91,7 @@ def create_fallback(uuid, fallback_path):
         'title   %s GNU/Linux, with Linux fallback kernel\n' % distribution,
         'linux   %s\n' % kernel,
         'initrd  %s\n' % fb_img,
-        'options root=UUID=%s quiet resume=%s rw\n' % (uuid, swap),
+        'options root=UUID=%s quiet resume=UUID=%s rw\n' % (uuid, swap),
     ]
 
     with open(fallback_path, 'w') as f:
