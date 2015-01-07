@@ -25,58 +25,70 @@ import yaml
 try:
     import libcalamares
 except ImportError:
-    print( "Failed to import libcalamares. Make sure then PYTHONPATH environment variable includes the dir where libcalamares.so is installed." )
+    print("Failed to import libcalamares. Make sure then PYTHONPATH "
+          "environment variable includes the dir where libcalamares.so is "
+          "installed.")
     print()
     raise
 
 
 class Job:
-    def __init__( self, workingPath, doc ):
-        self.prettyName = "Testing job " + doc[ "name" ]
-        self.workingPath = workingPath
-        self.configuration = doc[ "configuration" ]
 
-    def setprogress( self, progress ):
-        print ( "Job set progress to {}%.".format( progress * 100 ) )
+    def __init__(self, working_path, doc, cfg_doc):
+        self.module_name = doc["name"]
+        self.pretty_name = "Testing job " + doc["name"]
+        self.working_path = working_path
+        self.configuration = cfg_doc
+
+    def setprogress(self, progress):
+        print("Job set progress to {}%.".format(progress * 100))
 
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument( "moduledir",
-                         help = "Dir containing the Python module" )
-    parser.add_argument( "globalstorage_yaml", nargs = "?",
-                         help = "A yaml file to initialize GlobalStorage" )
+    parser.add_argument("moduledir",
+                        help="Dir containing the Python module.")
+    parser.add_argument("globalstorage_yaml", nargs="?",
+                        help="A yaml file to initialize GlobalStorage.")
+    parser.add_argument("configuration_yaml", nargs="?",
+                        help="A yaml file to initialize the configuration dict.")
     args = parser.parse_args()
 
-    print( "Testing module in: " + args.moduledir )
+    print("Testing module in: " + args.moduledir)
 
-    confpath = os.path.join( args.moduledir, "module.conf" )
-    with open( confpath ) as f:
-        doc = yaml.load( f )
+    confpath = os.path.join(args.moduledir, "module.desc")
+    with open(confpath) as f:
+        doc = yaml.load(f)
 
-    if doc[ "type" ] != "job" or doc[ "interface" ] != "python":
-        print( "Only Python jobs can be tested." )
+    if doc["type"] != "job" or doc["interface"] != "python":
+        print("Only Python jobs can be tested.")
         return 1
 
-    libcalamares.job = Job( args.moduledir, doc )
-    libcalamares.global_storage = libcalamares.GlobalStorage()
+    libcalamares.globalstorage = libcalamares.GlobalStorage()
 
-    # if a file for simulating global_storage contents is provided, load it
+    # if a file for simulating globalStorage contents is provided, load it
     if args.globalstorage_yaml:
-        with open( args.globalstorage_yaml ) as f:
-            doc = yaml.load( f )
-        for key, value in doc.items():
-            libcalamares.global_storage.insert( key, value )
+        with open(args.globalstorage_yaml) as f:
+            gs_doc = yaml.load(f)
+        for key, value in gs_doc.items():
+            libcalamares.globalstorage.insert(key, value)
 
-    scriptpath = os.path.abspath( args.moduledir )
-    sys.path.append( scriptpath )
+    cfg_doc = dict()
+    if args.configuration_yaml:
+        with open(args.configuration_yaml) as f:
+            cfg_doc = yaml.load(f)
+
+    libcalamares.job = Job(args.moduledir, doc, cfg_doc)
+
+    scriptpath = os.path.abspath(args.moduledir)
+    sys.path.append(scriptpath)
     import main
 
-    print( "Output from module:" )
-    print( main.calamares_main() )
+    print("Output from module:")
+    print(main.run())
 
     return 0
 
 
 if __name__ == "__main__":
-    sys.exit( main() )
+    sys.exit(main())

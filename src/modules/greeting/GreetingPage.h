@@ -21,12 +21,22 @@
 
 #include <QWidget>
 
+namespace Ui
+{
+class GreetingPage;
+}
+
 class GreetingPage : public QWidget
 {
     Q_OBJECT
 public:
     explicit GreetingPage( QWidget* parent = nullptr );
 
+protected:
+    void focusInEvent( QFocusEvent* e ) override; //choose the child widget to focus
+
+private:
+    Ui::GreetingPage* ui;
 };
 
 #endif // GREETINGPAGE_H

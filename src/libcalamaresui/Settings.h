@@ -33,7 +33,9 @@ class UIDLLEXPORT Settings : public QObject
 {
     Q_OBJECT
 public:
-    explicit Settings( bool debugMode, QObject *parent = nullptr );
+    explicit Settings( const QString& settingsFilePath,
+                       bool debugMode,
+                       QObject *parent = nullptr );
 
     static Settings* instance();
     //TODO: load from JSON then emit ready
@@ -41,6 +43,8 @@ public:
     QStringList modulesSearchPaths() const;
 
     QStringList modules( Phase phase ) const;
+
+    QString brandingComponentName() const;
 
     bool debugMode() const;
 
@@ -54,6 +58,8 @@ private:
     QStringList m_modulesPrepareList;
     QStringList m_modulesInstallList;
     QStringList m_modulesPostInstallList;
+
+    QString m_brandingComponentName;
 };
 
 }

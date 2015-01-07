@@ -25,6 +25,8 @@
 
 #include "keyboardwidget/keyboardglobal.h"
 
+#include "Typedefs.h"
+
 #include <QListWidgetItem>
 #include <QWidget>
 
@@ -46,6 +48,12 @@ public:
 
     QString prettyStatus() const;
 
+    QList< Calamares::job_ptr > createJobs( const QString& xOrgConfFileName,
+                                            const QString& convertedKeymapPath );
+
+    void onActivate();
+    void finalize();
+
 protected slots:
     void onListLayoutCurrentItemChanged( QListWidgetItem* current,
                                          QListWidgetItem* previous );
@@ -53,16 +61,22 @@ protected slots:
                                           QListWidgetItem* previous );
 
 private:
-    class LayoutItem : public QListWidgetItem {
+    class LayoutItem : public QListWidgetItem
+    {
     public:
         QString data;
         KeyboardGlobal::KeyboardInfo info;
     };
 
+    void updateVariants( LayoutItem* currentItem, QString currentVariant = QString() );
+
     Ui::Page_Keyboard *ui;
     KeyBoardPreview* m_keyboardPreview;
     int m_defaultIndex;
     QMap< QString, QString > m_models;
+
+    QString m_selectedLayout;
+    QString m_selectedVariant;
 };
 
 #endif // KEYBOARDPAGE_H

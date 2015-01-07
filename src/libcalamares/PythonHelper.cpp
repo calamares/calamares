@@ -53,6 +53,9 @@ variantToPyObject( const QVariant& variant )
     case QVariant::String:
         return bp::object( variant.toString().toStdString() );
 
+    case QVariant::Bool:
+        return bp::object( variant.toBool() );
+
     default:
         return bp::object();
     }
@@ -77,6 +80,9 @@ variantFromPyObject( const boost::python::object& pyObject )
 
     else if ( pyType == "str" )
         return QVariant( QString::fromStdString( bp::extract< std::string >( pyObject ) ) );
+
+    else if ( pyType == "bool" )
+        return QVariant( bp::extract< bool >( pyObject ) );
 
     else
         return QVariant();
@@ -270,9 +276,14 @@ Helper::handleLastError()
         msgList.append( valMsg );
 
     if ( !tbMsg.isEmpty() )
-        msgList.append( QString( "</code>Traceback:<code><br/>%1" ).arg( tbMsg ) );
+    {
+        msgList.append( "Traceback:" );
+        msgList.append( QString( "<pre>%1</pre>" ).arg( tbMsg ) );
+        cDebug() << "tbMsg" << tbMsg;
+    }
 
-    return QString( "<code>%1</code>" ).arg( msgList.join( "<br/>" ) );
+    // Return a string made of the msgList items, wrapped in <div> tags
+    return QString( "<div>%1</div>" ).arg( msgList.join( "</div><div>" ) );
 }
 
 

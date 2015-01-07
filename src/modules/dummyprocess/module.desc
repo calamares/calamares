@@ -1,0 +1,9 @@
+# Module metadata file for dummy process jobmodule
+# Syntax is YAML 1.2
+---
+type:       "job"
+name:       "dummyprocess"
+interface:  "process"
+chroot:     false
+command:    "/bin/sh -c \"touch ~/calamares-dummyprocess\""
+timeout:    5

@@ -20,10 +20,12 @@
 #include "CalamaresApplication.h"
 
 #include "kdsingleapplicationguard/kdsingleapplicationguard.h"
+#include "utils/CalamaresUtils.h"
 #include "utils/Logger.h"
 
 #include <QCommandLineParser>
 #include <QDebug>
+#include <QDir>
 
 int
 main( int argc, char *argv[] )
@@ -38,9 +40,16 @@ main( int argc, char *argv[] )
                                       "Verbose output for debugging purposes." );
     parser.addOption( debugOption );
 
+    QCommandLineOption configOption( QStringList() << "c" << "config",
+                                     "Configuration directory to use, for testing purposes.", "config" );
+    parser.addOption( configOption );
+
     parser.process( a );
 
     a.setDebug( parser.isSet( debugOption ) );
+
+    if ( parser.isSet( configOption ) )
+        CalamaresUtils::setAppDataDir( QDir( parser.value( configOption ) ) );
 
     KDSingleApplicationGuard guard( KDSingleApplicationGuard::AutoKillOtherInstances );
 

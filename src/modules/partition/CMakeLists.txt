@@ -17,33 +17,47 @@ add_definitions( -DCALAMARES )
 add_subdirectory( tests )
 
 include_directories( ${PROJECT_BINARY_DIR}/src/libcalamaresui )
+
 calamares_add_plugin( partition
     TYPE viewmodule
     EXPORT_MACRO PLUGINDLLEXPORT_PRO
-    CONFIG_FILE module.conf
     SOURCES
-        BootLoaderModel.cpp
-        CreatePartitionDialog.cpp
-        CreatePartitionJob.cpp
-        CreatePartitionTableJob.cpp
-        DeletePartitionJob.cpp
-        DeviceModel.cpp
-        EditExistingPartitionDialog.cpp
-        FillGlobalStorageJob.cpp
-        FormatPartitionJob.cpp
-        PartitionCoreModule.cpp
-        PartitionInfo.cpp
-        PartitionIterator.cpp
-        PartitionJob.cpp
-        PartitionModel.cpp
-        PartitionPage.cpp
-        PartitionViewStep.cpp
-        PMUtils.cpp
+        core/BootLoaderModel.cpp
+        core/ColorUtils.cpp
+        core/DeviceModel.cpp
+        core/PartitionCoreModule.cpp
+        core/PartitionInfo.cpp
+        core/PartitionIterator.cpp
+        core/PartitionModel.cpp
+        core/PMUtils.cpp
+        gui/ChoicePage.cpp
+        gui/CreatePartitionDialog.cpp
+        gui/EditExistingPartitionDialog.cpp
+        gui/AlongsidePage.cpp
+        gui/EraseDiskPage.cpp
+        gui/PartitionPage.cpp
+        gui/PartitionPreview.cpp
+        gui/PartitionSizeController.cpp
+        gui/PartitionSplitterWidget.cpp
+        gui/PartitionViewStep.cpp
+        gui/PrettyRadioButton.cpp
+        gui/ReplacePage.cpp
+        jobs/CheckFileSystemJob.cpp
+        jobs/ClearMountsJob.cpp
+        jobs/CreatePartitionJob.cpp
+        jobs/CreatePartitionTableJob.cpp
+        jobs/DeletePartitionJob.cpp
+        jobs/FillGlobalStorageJob.cpp
+        jobs/FormatPartitionJob.cpp
+        jobs/MoveFileSystemJob.cpp
+        jobs/PartitionJob.cpp
+        jobs/ResizePartitionJob.cpp
     UI
-        CreatePartitionDialog.ui
-        CreatePartitionTableDialog.ui
-        EditExistingPartitionDialog.ui
-        PartitionPage.ui
+        gui/CreatePartitionDialog.ui
+        gui/CreatePartitionTableDialog.ui
+        gui/EditExistingPartitionDialog.ui
+        gui/PartitionPage.ui
+        gui/ReplacePage.ui
     LINK_LIBRARIES
         calapm
         calamaresui

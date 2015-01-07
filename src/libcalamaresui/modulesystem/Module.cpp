@@ -20,8 +20,10 @@
 
 #include "ProcessJobModule.h"
 #include "ViewModule.h"
+#include "utils/CalamaresUtils.h"
 #include "utils/YamlUtils.h"
 #include "utils/Logger.h"
+#include "Settings.h"
 #include "CalamaresConfig.h"
 
 #ifdef WITH_PYTHON
@@ -36,30 +38,18 @@
 #include <QString>
 
 
-// Example module.conf
+// Example module.desc
 /*
 ---
 type:      "view"      #job or view
 name:      "foo"      #the module name. must be unique and same as the parent directory
 interface: "qtplugin" #can be: qtplugin, python, process, ...
-requires:  []         #list of module names that must also be loaded before this one
 */
 
 void
 operator>>( const YAML::Node& node, Calamares::Module* m )
 {
     m->m_name = QString::fromStdString( node[ "name" ].as< std::string >() );
-
-    if ( node[ "requires" ] && node[ "requires" ].IsSequence() )
-    {
-        node[ "requires" ] >> m->m_requiredModules;
-    }
-
-    // Module-specific configuration
-    if ( node[ "configuration" ] && node[ "configuration" ].IsMap() )
-    {
-        m->m_configurationMap = CalamaresUtils::yamlMapToVariant( node[ "configuration" ] ).toMap();
-    }
 }
 
 namespace Calamares
@@ -69,21 +59,21 @@ Module::~Module()
 {}
 
 Module*
-Module::fromConfigFile( const QString& path )
+Module::fromDescriptorFile( const QString& path )
 {
     Module* m = nullptr;
-    QFile metadataFile( path );
-    if ( metadataFile.exists() && metadataFile.open( QFile::ReadOnly | QFile::Text ) )
+    QFile descriptorFile( path );
+    if ( descriptorFile.exists() && descriptorFile.open( QFile::ReadOnly | QFile::Text ) )
     {
-        QByteArray ba = metadataFile.readAll();
-        cDebug() << Q_FUNC_INFO << "module metadata file: " << ba;
+        QByteArray ba = descriptorFile.readAll();
+        cDebug() << "Loading module.desc for" << QFileInfo( descriptorFile ).dir().dirName();
 
         try
         {
             YAML::Node doc = YAML::Load( ba.constData() );
             if ( !doc.IsMap() )
             {
-                cDebug() << Q_FUNC_INFO << "bad module metadata format"
+                cLog() << Q_FUNC_INFO << "bad module descriptor format"
                          << path;
                 return nullptr;
             }
@@ -91,7 +81,7 @@ Module::fromConfigFile( const QString& path )
             if ( !doc[ "type" ] ||
                  !doc[ "interface" ] )
             {
-                cDebug() << Q_FUNC_INFO << "bad module metadata format"
+                cLog() << Q_FUNC_INFO << "bad module descriptor format"
                          << path;
                 return nullptr;
             }
@@ -119,7 +109,7 @@ Module::fromConfigFile( const QString& path )
 
             if ( !m )
             {
-                cDebug() << Q_FUNC_INFO << "bad module type or interface string"
+                cLog() << Q_FUNC_INFO << "bad module type or interface string"
                          << path << typeString << intfString;
                 return nullptr;
             }
@@ -128,6 +118,8 @@ Module::fromConfigFile( const QString& path )
             m->m_directory = mfi.absoluteDir().absolutePath();
 
             m->initFrom( doc );
+            m->loadConfigurationFile();
+
             return m;
         }
         catch ( YAML::Exception& e )
@@ -140,6 +132,58 @@ Module::fromConfigFile( const QString& path )
 
     return nullptr;
 }
+
+
+void
+Module::loadConfigurationFile() //throws YAML::Exception
+{
+    QStringList configFilesByPriority;
+
+    if ( CalamaresUtils::isAppDataDirOverridden() )
+    {
+        configFilesByPriority.append(
+            CalamaresUtils::appDataDir().absoluteFilePath(
+                QString( "modules/%1.conf" ).arg( m_name ) ) );
+    }
+    else
+    {
+        if ( Settings::instance()->debugMode() )
+        {
+            configFilesByPriority.append(
+                QDir( QDir::currentPath() ).absoluteFilePath(
+                    QString( "src/modules/%1/%1.conf" ).arg( m_name ) ) );
+        }
+
+        configFilesByPriority.append(
+            QString( "/etc/calamares/modules/%1.conf" ).arg( m_name ) );
+        configFilesByPriority.append(
+            CalamaresUtils::appDataDir().absoluteFilePath(
+                QString( "modules/%1.conf" ).arg( m_name ) ) );
+    }
+
+    foreach ( const QString& path, configFilesByPriority )
+    {
+        QFile configFile( path );
+        if ( configFile.exists() && configFile.open( QFile::ReadOnly | QFile::Text ) )
+        {
+            QByteArray ba = configFile.readAll();
+
+            YAML::Node doc = YAML::Load( ba.constData() );
+            if ( !doc.IsMap() )
+            {
+                cLog() << Q_FUNC_INFO << "bad module configuration format"
+                         << path;
+                return;
+            }
+
+            m_configurationMap = CalamaresUtils::yamlMapToVariant( doc ).toMap();
+            return;
+        }
+        else
+            continue;
+    }
+}
+
 
 QString
 Module::name() const

@@ -1,0 +1,9 @@
+[main]
+host = https://www.transifex.com
+
+[calamares.calamares-master]
+file_filter = lang/calamares_<lang>.ts
+source_file = lang/calamares_en.ts
+source_lang = en
+type = QT
+

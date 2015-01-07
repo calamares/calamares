@@ -1,15 +1,18 @@
 find_package( Qt5 COMPONENTS Test REQUIRED )
 include( ECMAddTests )
 
-set( jobtests_SRCS
-    ${PartitionModule_SOURCE_DIR}/CreatePartitionJob.cpp
-    ${PartitionModule_SOURCE_DIR}/CreatePartitionTableJob.cpp
-    ${PartitionModule_SOURCE_DIR}/DeletePartitionJob.cpp
-    ${PartitionModule_SOURCE_DIR}/PartitionInfo.cpp
-    ${PartitionModule_SOURCE_DIR}/PartitionIterator.cpp
-    ${PartitionModule_SOURCE_DIR}/PartitionJob.cpp
-    ${PartitionModule_SOURCE_DIR}/PMUtils.cpp
-    JobTests.cpp
+set( partitionjobtests_SRCS
+    ${PartitionModule_SOURCE_DIR}/core/PMUtils.cpp
+    ${PartitionModule_SOURCE_DIR}/core/PartitionInfo.cpp
+    ${PartitionModule_SOURCE_DIR}/core/PartitionIterator.cpp
+    ${PartitionModule_SOURCE_DIR}/jobs/CheckFileSystemJob.cpp
+    ${PartitionModule_SOURCE_DIR}/jobs/CreatePartitionJob.cpp
+    ${PartitionModule_SOURCE_DIR}/jobs/CreatePartitionTableJob.cpp
+    ${PartitionModule_SOURCE_DIR}/jobs/DeletePartitionJob.cpp
+    ${PartitionModule_SOURCE_DIR}/jobs/MoveFileSystemJob.cpp
+    ${PartitionModule_SOURCE_DIR}/jobs/PartitionJob.cpp
+    ${PartitionModule_SOURCE_DIR}/jobs/ResizePartitionJob.cpp
+    PartitionJobTests.cpp
 )
 
 include_directories(
@@ -17,8 +20,8 @@ include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
-ecm_add_test( ${jobtests_SRCS}
-    TEST_NAME jobtests
+ecm_add_test( ${partitionjobtests_SRCS}
+    TEST_NAME partitionjobtests
     LINK_LIBRARIES
         calapm
         ${CALAMARES_LIBRARIES}
@@ -26,4 +29,4 @@ ecm_add_test( ${jobtests_SRCS}
         Qt5::Test
 )
 
-set_target_properties( jobtests PROPERTIES AUTOMOC TRUE )
+set_target_properties( partitionjobtests PROPERTIES AUTOMOC TRUE )

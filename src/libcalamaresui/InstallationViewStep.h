@@ -29,6 +29,7 @@ namespace Calamares
 
 class InstallationViewStep : public ViewStep
 {
+    Q_OBJECT
 public:
     explicit InstallationViewStep( QObject* parent = nullptr );
 

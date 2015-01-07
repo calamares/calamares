@@ -45,6 +45,7 @@ private:
     QString m_command;
     QString m_workingPath;
     int m_secondsTimeout;
+    bool m_runInChroot;
     job_ptr m_job;
 };
 

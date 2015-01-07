@@ -18,6 +18,9 @@
 
 #include "KeyboardViewStep.h"
 
+#include "JobQueue.h"
+#include "GlobalStorage.h"
+
 #include "KeyboardPage.h"
 
 
@@ -97,12 +100,53 @@ KeyboardViewStep::isAtEnd() const
 QList< Calamares::job_ptr >
 KeyboardViewStep::jobs() const
 {
-    return QList< Calamares::job_ptr >();
+    return m_jobs;
+}
+
+
+void
+KeyboardViewStep::onActivate()
+{
+    m_widget->onActivate();
 }
 
 
 void
 KeyboardViewStep::onLeave()
 {
+    m_widget->finalize();
+    m_jobs = m_widget->createJobs( m_xOrgConfFileName, m_convertedKeymapPath );
     m_prettyStatus = m_widget->prettyStatus();
+}
+
+
+void
+KeyboardViewStep::setConfigurationMap( const QVariantMap& configurationMap )
+{
+    // Save the settings to the global settings for the SetKeyboardLayoutJob to use
+    Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
+
+    if ( configurationMap.contains( "xOrgConfFileName" ) &&
+         configurationMap.value( "xOrgConfFileName" ).type() == QVariant::String &&
+         !configurationMap.value( "xOrgConfFileName" ).toString().isEmpty() )
+    {
+        m_xOrgConfFileName = configurationMap.value( "xOrgConfFileName" )
+                                             .toString();
+    }
+    else
+    {
+        m_xOrgConfFileName = "00-keyboard.conf";
+    }
+
+    if ( configurationMap.contains( "convertedKeymapPath" ) &&
+         configurationMap.value( "convertedKeymapPath" ).type() == QVariant::String &&
+         !configurationMap.value( "convertedKeymapPath" ).toString().isEmpty() )
+    {
+        m_convertedKeymapPath = configurationMap.value( "convertedKeymapPath" )
+                                                .toString();
+    }
+    else
+    {
+        m_convertedKeymapPath = QString();
+    }
 }

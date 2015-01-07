@@ -19,13 +19,159 @@
 #include "PythonJobApi.h"
 
 #include "PythonHelper.h"
+#include "utils/Logger.h"
+#include "utils/CalamaresUtilsSystem.h"
+
+#include <QDir>
+
+#undef slots
+#include <boost/python.hpp>
+
+namespace bp = boost::python;
 
 namespace CalamaresPython
 {
 
+int
+mount( const std::string& device_path,
+       const std::string& mount_point,
+       const std::string& filesystem_name,
+       const std::string& options )
+{
+    return CalamaresUtils::mount( QString::fromStdString( device_path ),
+                                  QString::fromStdString( mount_point ),
+                                  QString::fromStdString( filesystem_name ),
+                                  QString::fromStdString( options ) );
+}
+
+
+int
+chroot_call( const std::string& command,
+             const std::string& stdin,
+             int timeout )
+{
+    return CalamaresUtils::chrootCall( QString::fromStdString( command ),
+                                       QString(),
+                                       QString::fromStdString( stdin ),
+                                       timeout );
+}
+
+
+int
+chroot_call( const bp::list& args,
+             const std::string& stdin,
+             int timeout )
+{
+    QStringList list;
+    for ( int i = 0; i < bp::len( args ); ++i )
+    {
+        list.append( QString::fromStdString(
+            bp::extract< std::string >( args[ i ] ) ) );
+    }
+
+    return CalamaresUtils::chrootCall( list,
+                                       QString(),
+                                       QString::fromStdString( stdin ),
+                                       timeout );
+}
+
+
+int
+check_chroot_call( const std::string& command,
+                   const std::string& stdin,
+                   int timeout )
+{
+    int ec = chroot_call( command, stdin, timeout );
+    return _handle_check_chroot_call_error( ec, QString::fromStdString( command ) );
+}
+
+
+int
+check_chroot_call( const bp::list& args,
+                   const std::string& stdin,
+                   int timeout )
+{
+    int ec = chroot_call( args, stdin, timeout );
+    if ( !ec )
+        return ec;
+
+    QStringList failedCmdList;
+    for ( int i = 0; i < bp::len( args ); ++i )
+    {
+        failedCmdList.append( QString::fromStdString(
+            bp::extract< std::string >( args[ i ] ) ) );
+    }
+
+    return _handle_check_chroot_call_error( ec, failedCmdList.join( ' ' ) );
+}
+
+
+std::string
+check_chroot_output( const std::string& command,
+                     const std::string& stdin,
+                     int timeout )
+{
+    QString output;
+    int ec = CalamaresUtils::chrootOutput( QString::fromStdString( command ),
+                                           output,
+                                           QString(),
+                                           QString::fromStdString( stdin ),
+                                           timeout );
+    _handle_check_chroot_call_error( ec, QString::fromStdString( command ) );
+    return output.toStdString();
+}
+
+
+std::string
+check_chroot_output( const bp::list& args,
+                     const std::string& stdin,
+                     int timeout )
+{
+    QString output;
+    QStringList list;
+    for ( int i = 0; i < bp::len( args ); ++i )
+    {
+        list.append( QString::fromStdString(
+            bp::extract< std::string >( args[ i ] ) ) );
+    }
+
+    int ec = CalamaresUtils::chrootOutput( list,
+                                           output,
+                                           QString(),
+                                           QString::fromStdString( stdin ),
+                                           timeout );
+    _handle_check_chroot_call_error( ec, list.join( ' ' ) );
+    return output.toStdString();
+}
+
+
+int
+_handle_check_chroot_call_error( int ec, const QString& cmd )
+{
+    if ( !ec )
+        return ec;
+
+    QString raise = QString( "import subprocess\n"
+                             "raise subprocess.CalledProcessError(%1,\"%2\")" )
+                        .arg( ec )
+                        .arg( cmd );
+    bp::exec( raise.toStdString().c_str() );
+    bp::throw_error_already_set();
+    return ec;
+}
+
+
+void
+debug( const std::string& s )
+{
+    cDebug() << "[PYTHON JOB]: " << QString::fromStdString( s );
+}
+
+
 PythonJobInterface::PythonJobInterface( Calamares::PythonJob* parent )
     : m_parent( parent )
 {
+    moduleName = QDir( m_parent->m_workingPath ).dirName().toStdString();
     prettyName = m_parent->prettyName().toStdString();
     workingPath = m_parent->m_workingPath.toStdString();
     configuration = CalamaresPython::variantMapToPyDict( m_parent->m_configurationMap );

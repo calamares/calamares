@@ -19,46 +19,52 @@
 
 import os
 import subprocess
-import sys
 import tempfile
 
 import libcalamares
 
 
-# FIXME: Duplicated between mount and grub
-def mount( devicePath, mountPoint, fs = None, options = None ):
-    assert devicePath
-    assert mountPoint
-    if not os.path.exists( mountPoint ):
-        os.makedirs( mountPoint )
-    cmd = [ "mount", devicePath, mountPoint ]
-    if fs:
-        cmd += ( "-t", fs )
-    if options:
-        cmd += ( "-o", options )
-    subprocess.check_call( cmd )
-
-
-def mountPartitions( rootMountPoint, partitions ):
+def mount_partitions(root_mount_point, partitions):
     for partition in partitions:
-        if not partition[ "mountPoint" ]:
+        if not partition["mountPoint"]:
             continue
         # Create mount point with `+` rather than `os.path.join()` because
         # `partition["mountPoint"]` starts with a '/'.
-        mountPoint = rootMountPoint + partition[ "mountPoint" ]
-        mount( partition[ "device" ], mountPoint,
-            fs = partition.get( "fs" ),
-            options = partition.get( "options" )
-        )
+        mount_point = root_mount_point + partition["mountPoint"]
+
+        fstype = partition.get("fs", "")
+        if fstype == "fat16" or fstype == "fat32":
+            fstype = "vfat"
+
+        libcalamares.utils.mount(
+            partition["device"],
+            mount_point,
+            fstype,
+            partition.get("options", "")
+            )
 
 
-def calamares_main():
-    rootMountPoint = tempfile.mkdtemp( prefix="calamares-root-" )
-    partitions = libcalamares.global_storage.value( "partitions" )
+def run():
+    root_mount_point = tempfile.mkdtemp(prefix="calamares-root-")
+    partitions = libcalamares.globalstorage.value("partitions")
+    extra_mounts = libcalamares.job.configuration["extraMounts"]
+    extra_mounts_efi = libcalamares.job.configuration["extraMountsEfi"]
 
     # Sort by mount points to ensure / is mounted before the rest
-    partitions.sort( key = lambda x: x[ "mountPoint" ] )
-    mountPartitions( rootMountPoint, libcalamares.global_storage.value( "partitions" ) )
+    partitions.sort(key=lambda x: x["mountPoint"])
+    mount_partitions(root_mount_point, partitions)
 
-    libcalamares.global_storage.insert( "rootMountPoint", rootMountPoint )
-    return "All done, mounted at {}".format( rootMountPoint )
+    mount_partitions(root_mount_point, extra_mounts)
+
+    fw_type = libcalamares.globalstorage.value("firmwareType")
+    if fw_type == 'efi':
+        mount_partitions(root_mount_point, extra_mounts_efi)
+
+    libcalamares.globalstorage.insert("rootMountPoint", root_mount_point)
+    # Remember the extra mounts for the unpackfs module
+    if fw_type == 'efi':
+        libcalamares.globalstorage.insert("extraMounts", extra_mounts + extra_mounts_efi)
+    else:
+        libcalamares.globalstorage.insert("extraMounts", extra_mounts)
+
+    return None

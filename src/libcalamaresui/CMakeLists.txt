@@ -7,12 +7,18 @@ list( APPEND ${CALAMARESUI_LIBRARY_TARGET}_SOURCES
     modulesystem/ViewModule.cpp
 
     utils/CalamaresUtilsGui.cpp
+    utils/ImageRegistry.cpp
     utils/YamlUtils.cpp
 
     viewpages/AbstractPage.cpp
     viewpages/ViewStep.cpp
 
+    widgets/ClickableLabel.cpp
+    widgets/QtWaitingSpinner.cpp
+    widgets/WaitingWidget.cpp
+
     InstallationViewStep.cpp
+    Branding.cpp
     Settings.cpp
     ViewManager.cpp
 )
@@ -33,6 +39,8 @@ calamares_add_library( ${CALAMARESUI_LIBRARY_TARGET}
     EXPORT_MACRO UIDLLEXPORT_PRO
     LINK_LIBRARIES
         yaml-cpp
+        Qt5::Svg
+    RESOURCES libcalamaresui.qrc
     EXPORT CalamaresLibraryDepends
     VERSION ${CALAMARES_VERSION_SHORT}
 )

@@ -54,6 +54,7 @@ public:
 
     QList< Calamares::job_ptr > jobs() const override;
 
+    void onActivate() override;
     void onLeave() override;
 
     void setConfigurationMap( const QVariantMap& configurationMap ) override;
@@ -67,6 +68,9 @@ private:
     QString m_prettyStatus;
 
     QPair< QString, QString > m_startingTimezone;
+    QString m_localeGenPath;
+
+    QList< Calamares::job_ptr > m_jobs;
 };
 
 #endif // LOCALEVIEWSTEP_H

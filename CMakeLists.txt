@@ -1,5 +1,10 @@
 project( calamares )
+
+# The partition manager uses ECM but ECMConfig.cmake
+# will complain if we require CMake less than 2.8.13,
+# so never change this.
 cmake_minimum_required( VERSION 2.8.12 )
+
 set( CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/CMakeModules" )
 set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wl,--no-undefined" )
 set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wl,--fatal-warnings -Wnon-virtual-dtor -Woverloaded-virtual -Werror=return-type" )
@@ -8,24 +13,29 @@ if( CMAKE_COMPILER_IS_GNUCXX )
     if( CMAKE_CXX_COMPILER_VERSION VERSION_GREATER 4.9 OR
         CMAKE_CXX_COMPILER_VERSION VERSION_EQUAL 4.9 )
         message( STATUS "Found GNU g++ ${CMAKE_CXX_COMPILER_VERSION}, enabling colorized error messages." )
-        set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fdiagnostics-color=always" )
+        set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fdiagnostics-color=auto" )
     endif()
 endif()
 
 cmake_policy( SET CMP0023 OLD )
 
 # Keep cmake 3.0 quiet
-cmake_policy( SET CMP0043 OLD )
+if( POLICY CMP0043 )
+    cmake_policy( SET CMP0043 OLD )
+endif()
 
 include( MacroOptionalFindPackage )
 include( MacroLogFeature )
 
-find_package( Qt5 5.3.0 CONFIG REQUIRED Core Gui Widgets LinguistTools )
+set( QT_VERSION 5.3.0 )
+
+find_package( Qt5 ${QT_VERSION} CONFIG REQUIRED Core Gui Widgets LinguistTools Svg )
 find_package( YamlCpp 0.5.1 REQUIRED )
+find_package( PolkitQt5-1 REQUIRED )
 
 option( WITH_PYTHON "Enable Python modules support." ON )
 
-macro_optional_find_package( PythonLibs 3.3 REQUIRED )
+macro_optional_find_package( PythonLibs 3.3 )
 macro_log_feature(
     PYTHONLIBS_FOUND
     "Python"
@@ -57,10 +67,10 @@ set( CALAMARES_ORGANIZATION_NAME "Calamares" )
 set( CALAMARES_ORGANIZATION_DOMAIN "github.com/calamares" )
 set( CALAMARES_APPLICATION_NAME  "Calamares" )
 set( CALAMARES_DESCRIPTION_SUMMARY "The distribution-independent installer framework" )
-set( CALAMARES_TRANSLATION_LANGUAGES de en )
+set( CALAMARES_TRANSLATION_LANGUAGES ar ast ca cs_CZ da de en es_MX es fi_FI fr hr hu id it_IT ja lt nl pl pt_BR pt_PT ro ru sk sl sv tr_TR zh_CN zh_TW )
 
 set( CALAMARES_VERSION_MAJOR 0 )
-set( CALAMARES_VERSION_MINOR 1 )
+set( CALAMARES_VERSION_MINOR 17 )
 set( CALAMARES_VERSION_PATCH 0 )
 #set( CALAMARES_VERSION_RC 0 )
 
@@ -92,6 +102,13 @@ set( CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}" )
 set( CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}" )
 set( CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}" )
 
+# Better default installation paths: GNUInstallDirs defines
+# CMAKE_INSTALL_FULL_SYSCONFDIR to be CMAKE_INSTALL_PREFIX/etc by default
+# but we really want /etc
+if( NOT DEFINED CMAKE_INSTALL_SYSCONFDIR )
+    set( CMAKE_INSTALL_SYSCONFDIR "/etc" )
+endif()
+
 # make predefined install dirs available everywhere
 include( GNUInstallDirs )
 
@@ -107,11 +124,11 @@ configure_file( CalamaresUse.cmake.in "${PROJECT_BINARY_DIR}/CalamaresUse.cmake"
 file( COPY CalamaresAddLibrary.cmake DESTINATION "${PROJECT_BINARY_DIR}" )
 file( COPY CalamaresAddModuleSubdirectory.cmake DESTINATION "${PROJECT_BINARY_DIR}" )
 file( COPY CalamaresAddPlugin.cmake DESTINATION "${PROJECT_BINARY_DIR}" )
+file( COPY CalamaresAddBrandingSubdirectory.cmake DESTINATION "${PROJECT_BINARY_DIR}" )
 
 set( CALAMARES_LIBRARIES calamares )
 
 add_subdirectory( src )
-add_subdirectory( tests )
 
 macro_display_feature_log()
 
@@ -141,7 +158,9 @@ install(
         "${PROJECT_BINARY_DIR}/CalamaresConfigVersion.cmake"
         "${PROJECT_BINARY_DIR}/CalamaresUse.cmake"
         "${PROJECT_BINARY_DIR}/CalamaresAddPlugin.cmake"
+        "${PROJECT_BINARY_DIR}/CalamaresAddModuleSubdirectory.cmake"
         "${PROJECT_BINARY_DIR}/CalamaresAddLibrary.cmake"
+        "${PROJECT_BINARY_DIR}/CalamaresAddBrandingSubdirectory.cmake"
     DESTINATION
         "${CMAKE_INSTALL_CMAKEDIR}"
 )
@@ -159,4 +178,18 @@ install(
         settings.conf
     DESTINATION
         share/calamares
+)
+
+install(
+  FILES
+      com.github.calamares.calamares.policy
+  DESTINATION
+      "${POLKITQT-1_POLICY_FILES_INSTALL_DIR}"
+)
+
+install(
+  FILES
+      calamares.desktop
+  DESTINATION
+      ${CMAKE_INSTALL_DATADIR}/applications
 )

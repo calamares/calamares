@@ -19,10 +19,13 @@
 #include "LocaleViewStep.h"
 
 #include "LocalePage.h"
-#include "QtWaitingSpinner.h"
 #include "timezonewidget/localeglobal.h"
+#include "widgets/WaitingWidget.h"
+#include "JobQueue.h"
+#include "GlobalStorage.h"
 
 #include "utils/CalamaresUtilsGui.h"
+#include "utils/Logger.h"
 
 #include <QBoxLayout>
 #include <QLabel>
@@ -38,43 +41,17 @@ LocaleViewStep::LocaleViewStep( QObject* parent )
     m_widget->setLayout( mainLayout );
     CalamaresUtils::unmarginLayout( mainLayout );
 
-    QWidget* waitingWidget = new QWidget;
-    {
-        QBoxLayout* waitingLayout = new QVBoxLayout;
-        waitingWidget->setLayout( waitingLayout );
-        waitingLayout->addStretch();
-        QBoxLayout* pbLayout = new QHBoxLayout;
-        waitingLayout->addLayout( pbLayout );
-        pbLayout->addStretch();
+    WaitingWidget* waitingWidget =
+        new WaitingWidget( tr( "Loading location data..." ) );
 
-        QtWaitingSpinner* spnr = new QtWaitingSpinner();
-        pbLayout->addWidget( spnr );
-
-        pbLayout->addStretch();
-
-        QLabel* waitingLabel = new QLabel( "Loading location data..." );
-
-        int spnrSize = waitingLabel->fontMetrics().height() * 4;
-        spnr->setFixedSize( spnrSize, spnrSize );
-        spnr->setRadius( spnrSize / 2 );
-        spnr->setLength( spnrSize / 2 );
-        spnr->setWidth( spnrSize / 8 );
-        spnr->start();
-
-        waitingLabel->setAlignment( Qt::AlignCenter);
-        waitingLayout->addSpacing( spnrSize / 2 );
-        waitingLayout->addWidget( waitingLabel );
-        waitingLayout->addStretch();
-
-        mainLayout->addWidget( waitingWidget );
-
-        CalamaresUtils::unmarginLayout( waitingLayout );
-    }
+    mainLayout->addWidget( waitingWidget );
 
     connect( &m_initWatcher, &QFutureWatcher< void >::finished,
              [=]
     {
-        m_actualWidget->init( m_startingTimezone.first, m_startingTimezone.second );
+        m_actualWidget->init( m_startingTimezone.first,
+                              m_startingTimezone.second,
+                              m_localeGenPath );
         m_widget->layout()->removeWidget( waitingWidget );
         waitingWidget->deleteLater();
         m_widget->layout()->addWidget( m_actualWidget );
@@ -120,7 +97,6 @@ LocaleViewStep::widget()
 void
 LocaleViewStep::next()
 {
-    //TODO: actually save those settings somewhere
     emit done();
 }
 
@@ -154,14 +130,27 @@ LocaleViewStep::isAtEnd() const
 QList< Calamares::job_ptr >
 LocaleViewStep::jobs() const
 {
-    return QList< Calamares::job_ptr >();
+    return m_jobs;
+}
+
+
+void
+LocaleViewStep::onActivate()
+{
+    m_actualWidget->onActivate();
 }
 
 
 void
 LocaleViewStep::onLeave()
 {
+    m_jobs.clear();
+    m_jobs.append( m_actualWidget->createJobs() );
+
     m_prettyStatus = m_actualWidget->prettyStatus();
+
+    Calamares::JobQueue::instance()->globalStorage()->insert( "lcLocale",
+                                                              m_actualWidget->lcLocale() );
 }
 
 
@@ -182,5 +171,16 @@ LocaleViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     {
         m_startingTimezone = qMakePair( QStringLiteral( "Europe" ),
                                         QStringLiteral( "Berlin" ) );
+    }
+
+    if ( configurationMap.contains( "localeGenPath" ) &&
+         configurationMap.value( "localeGenPath" ).type() == QVariant::String &&
+         !configurationMap.value( "localeGenPath" ).toString().isEmpty() )
+    {
+        m_localeGenPath = configurationMap.value( "localeGenPath" ).toString();
+    }
+    else
+    {
+        m_localeGenPath = QStringLiteral( "/etc/locale.gen" );
     }
 }

@@ -18,6 +18,7 @@
 
 #include "ViewManager.h"
 
+#include "utils/Logger.h"
 #include "viewpages/ViewStep.h"
 #include "InstallationViewStep.h"
 #include "JobQueue.h"
@@ -92,6 +93,9 @@ ViewManager::addViewStep( ViewStep* step )
     m_prepareSteps.append( step );
 
     insertViewStep( m_steps.size() - 1, step );
+    // If this is the first inserted view step, update status of "Next" button
+    if ( m_prepareSteps.count() == 1 )
+        m_next->setEnabled( step->isNextEnabled() );
 }
 
 
@@ -107,33 +111,42 @@ ViewManager::insertViewStep( int before, ViewStep* step)
     m_stack->insertWidget( before, step->widget() );
 
     connect( step, &ViewStep::nextStatusChanged,
-             m_next, &QPushButton::setEnabled );
+             this, [this]( bool status )
+    {
+        ViewStep* vs = qobject_cast< ViewStep* >( sender() );
+        if ( vs )
+        {
+            if ( vs == m_steps.at( m_currentStep ) )
+                m_next->setEnabled( status );
+        }
+    } );
 
     m_stack->setCurrentIndex( 0 );
+    step->widget()->setFocus();
 }
 
 
 void
 ViewManager::onInstallationFailed( const QString& message, const QString& details )
 {
-    QString text = tr(
-        "<p><b>Installation Failed</b></p>"
-        "<p>%1</p>"
-        ).arg( message );
+    cLog() << "Installation failed:";
+    cLog() << "- message:" << message;
+    cLog() << "- details:" << details;
 
+    QMessageBox msgBox;
+    msgBox.setIcon( QMessageBox::Critical );
+    msgBox.setWindowTitle( tr("Error") );
+    msgBox.setText( "<strong>" + tr( "Installation Failed" ) + "</strong>" );
+    msgBox.setStandardButtons( QMessageBox::Close );
+
+    QString text = "<p>" + message + "</p>";
     if ( !details.isEmpty() )
     {
-        text += tr(
-            "<p>%1</p>"
-            ).arg( details );
+        text += "<p>" + details + "</p>";
     }
+    msgBox.setInformativeText( text );
 
-    QMessageBox::critical(
-        QApplication::activeWindow(),
-        tr( "Error" ),
-        text,
-        QMessageBox::Close
-    );
+    msgBox.exec();
     QApplication::quit();
 }
 

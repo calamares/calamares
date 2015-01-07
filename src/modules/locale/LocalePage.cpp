@@ -19,10 +19,18 @@
 #include "LocalePage.h"
 
 #include "timezonewidget/timezonewidget.h"
+#include "SetTimezoneJob.h"
+#include "utils/Logger.h"
+#include "utils/Retranslator.h"
+#include "GlobalStorage.h"
+#include "JobQueue.h"
+#include "LCLocaleDialog.h"
 
 #include <QBoxLayout>
 #include <QComboBox>
 #include <QLabel>
+#include <QPushButton>
+#include <QProcess>
 
 
 LocalePage::LocalePage( QWidget* parent )
@@ -42,25 +50,36 @@ LocalePage::LocalePage( QWidget* parent )
     QBoxLayout* bottomLayout = new QHBoxLayout;
     mainLayout->addLayout( bottomLayout );
 
-    QLabel* cityLabel = new QLabel( tr( "Region:" ), this );
-    bottomLayout->addWidget( cityLabel );
+    m_regionLabel = new QLabel( this );
+    bottomLayout->addWidget( m_regionLabel );
 
     m_regionCombo = new QComboBox( this );
     bottomLayout->addWidget( m_regionCombo );
     m_regionCombo->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred );
-    cityLabel->setBuddy( m_regionCombo );
+    m_regionLabel->setBuddy( m_regionCombo );
 
     bottomLayout->addSpacing( 20 );
 
-    QLabel* timezoneLabel = new QLabel( tr( "Zone:" ), this );
-    bottomLayout->addWidget( timezoneLabel );
+    m_zoneLabel = new QLabel( this );
+    bottomLayout->addWidget( m_zoneLabel );
 
-    m_timezoneCombo = new QComboBox( this );
-    m_timezoneCombo->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred );
-    bottomLayout->addWidget( m_timezoneCombo );
-    timezoneLabel->setBuddy( m_timezoneCombo );
+    m_zoneCombo = new QComboBox( this );
+    m_zoneCombo->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred );
+    bottomLayout->addWidget( m_zoneCombo );
+    m_zoneLabel->setBuddy( m_zoneCombo );
 
     mainLayout->addStretch();
+
+    QBoxLayout* localeLayout = new QHBoxLayout;
+    m_localeLabel = new QLabel( this );
+    m_localeLabel->setWordWrap( true );
+    m_localeLabel->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred );
+    localeLayout->addWidget( m_localeLabel );
+
+    m_localeChangeButton = new QPushButton( this );
+    m_localeChangeButton->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Preferred );
+    localeLayout->addWidget( m_localeChangeButton );
+    mainLayout->addLayout( localeLayout );
 
     setLayout( mainLayout );
 
@@ -72,30 +91,30 @@ LocalePage::LocalePage( QWidget* parent )
         if ( !regions.contains( current ) )
             return;
 
-        m_timezoneCombo->blockSignals( true );
+        m_zoneCombo->blockSignals( true );
 
-        m_timezoneCombo->clear();
+        m_zoneCombo->clear();
 
         QList< LocaleGlobal::Location > zones = regions.value( current );
         foreach ( const LocaleGlobal::Location& zone, zones )
         {
-            m_timezoneCombo->addItem( zone.zone );
+            m_zoneCombo->addItem( zone.zone );
         }
 
-        m_timezoneCombo->model()->sort( 0 );
+        m_zoneCombo->model()->sort( 0 );
 
-        m_timezoneCombo->blockSignals( false );
+        m_zoneCombo->blockSignals( false );
 
-        m_timezoneCombo->currentIndexChanged( m_timezoneCombo->currentText() );
-    });
+        m_zoneCombo->currentIndexChanged( m_zoneCombo->currentText() );
+    } );
 
-    connect( m_timezoneCombo,
+    connect( m_zoneCombo,
              static_cast< void ( QComboBox::* )( const QString& ) >( &QComboBox::currentIndexChanged ),
              [this]( const QString& current )
     {
         if ( !m_blockTzWidgetSet )
             m_tzWidget->setCurrentLocation( m_regionCombo->currentText(), current );
-    });
+    } );
 
     connect( m_tzWidget, &TimeZoneWidget::locationChanged,
              [this]( LocaleGlobal::Location location )
@@ -110,22 +129,61 @@ LocalePage::LocalePage( QWidget* parent )
         m_regionCombo->setCurrentIndex( index );
 
         // Set zone index
-        index = m_timezoneCombo->findText( location.zone );
+        index = m_zoneCombo->findText( location.zone );
         if ( index < 0 )
             return;
 
-        m_timezoneCombo->setCurrentIndex( index );
+        m_zoneCombo->setCurrentIndex( index );
 
         m_blockTzWidgetSet = false;
-    });
+
+        Calamares::JobQueue::instance()->globalStorage()
+                ->insert( "locationRegion", location.region );
+        Calamares::JobQueue::instance()->globalStorage()
+                ->insert( "locationZone", location.zone );
+    } );
+
+    connect( m_localeChangeButton, &QPushButton::clicked,
+             [this]()
+    {
+        LCLocaleDialog* dlg = new LCLocaleDialog( lcLocale(),
+                                                  m_localeGenLines,
+                                                  this );
+        dlg->exec();
+        if ( dlg->result() == QDialog::Accepted &&
+             !dlg->selectedLCLocale().isEmpty() )
+        {
+            m_selectedLocale = dlg->selectedLCLocale();
+            m_localeLabel->setText( tr( "The system locale is set to %1." )
+                                    .arg( prettyLCLocale( m_selectedLocale ) ) );
+        }
+
+        dlg->deleteLater();
+    } );
+
+    CALAMARES_RETRANSLATE(
+        m_regionLabel->setText( tr( "Region:" ) );
+        m_zoneLabel->setText( tr( "Zone:" ) );
+
+        m_localeLabel->setText( tr( "The system locale is set to %1." )
+                                .arg( prettyLCLocale( lcLocale() ) ) );
+
+        m_localeChangeButton->setText( tr( "&Change..." ) );
+    )
 }
 
 
+LocalePage::~LocalePage()
+{}
+
+
 void
-LocalePage::init( const QString& initialRegion, const QString& initialZone )
+LocalePage::init( const QString& initialRegion,
+                  const QString& initialZone,
+                  const QString& localeGenPath )
 {
     m_regionCombo->blockSignals( true );
-    m_timezoneCombo->blockSignals( true );
+    m_zoneCombo->blockSignals( true );
 
     // Setup locations
     QHash< QString, QList< LocaleGlobal::Location > > regions = LocaleGlobal::getLocations();
@@ -139,7 +197,7 @@ LocalePage::init( const QString& initialRegion, const QString& initialZone )
     }
 
     m_regionCombo->blockSignals( false );
-    m_timezoneCombo->blockSignals( false );
+    m_zoneCombo->blockSignals( false );
 
     m_regionCombo->currentIndexChanged( m_regionCombo->currentText() );
 
@@ -165,6 +223,38 @@ LocalePage::init( const QString& initialRegion, const QString& initialZone )
         m_tzWidget->setCurrentLocation( "Europe", "Berlin" );
     }
     emit m_tzWidget->locationChanged( m_tzWidget->getCurrentLocation() );
+
+    // Fill in meaningful locale/charset lines from locale.gen
+    m_localeGenLines.clear();
+    QFile localeGen( localeGenPath );
+    QByteArray ba;
+    if ( localeGen.open( QIODevice::ReadOnly | QIODevice::Text ) )
+    {
+        ba = localeGen.readAll();
+        localeGen.close();
+    }
+    else
+    {
+        cDebug() << "Cannot open file" << localeGenPath
+                 << ". Assuming the supported languages are already built into "
+                    "the locale archive.";
+        QProcess localeA;
+        localeA.start( "locale", QStringList() << "-a" );
+        localeA.waitForFinished();
+        ba = localeA.readAllStandardOutput();
+    }
+    foreach ( QByteArray line, ba.split( '\n' ) )
+    {
+        if ( line.startsWith( "# " ) || line.simplified() == "#" )
+            continue;
+
+        QString lineString = QString::fromLatin1( line.simplified() );
+
+        if ( lineString.startsWith( "#" ) )
+            lineString.remove( '#' );
+
+        m_localeGenLines.append( lineString );
+    }
 }
 
 
@@ -174,8 +264,107 @@ LocalePage::prettyStatus() const
     QString status;
     status += tr( "Set timezone to %1/%2.<br/>" )
               .arg( m_regionCombo->currentText() )
-              .arg( m_timezoneCombo->currentText() );
+              .arg( m_zoneCombo->currentText() );
 
     return status;
 }
 
+
+QList< Calamares::job_ptr >
+LocalePage::createJobs()
+{
+    QList< Calamares::job_ptr > list;
+    LocaleGlobal::Location location = m_tzWidget->getCurrentLocation();
+
+    Calamares::Job* j = new SetTimezoneJob( location.region, location.zone );
+    list.append( Calamares::job_ptr( j ) );
+
+    return list;
+}
+
+
+QString
+LocalePage::lcLocale()
+{
+    return m_selectedLocale.isEmpty() ? guessLCLocale() : m_selectedLocale;
+}
+
+
+void
+LocalePage::onActivate()
+{
+    m_regionCombo->setFocus();
+}
+
+
+QString
+LocalePage::guessLCLocale()
+{
+    QLocale myLocale = QLocale();
+
+    if ( m_localeGenLines.isEmpty() )
+        return "en_US.UTF-8 UTF-8";
+
+    QString myLanguage = myLocale.name().split( '_' ).first();
+    QStringList linesForLanguage;
+    foreach ( QString line, m_localeGenLines )
+    {
+        if ( line.startsWith( myLanguage ) )
+            linesForLanguage.append( line );
+    }
+
+    if ( linesForLanguage.length() == 0 )
+        return "en_US.UTF-8 UTF-8";
+    else if ( linesForLanguage.length() == 1 )
+        return linesForLanguage.first();
+    else
+    {
+        QStringList linesForLanguageUtf;
+        foreach ( QString line, linesForLanguage )
+        {
+            if ( line.contains( "UTF-8" ) )
+                linesForLanguageUtf.append( line );
+        }
+
+        if ( linesForLanguageUtf.length() == 1 )
+            return linesForLanguageUtf.first();
+    }
+
+    // FIXME: use reverse geocoding to guess the country
+    QString prefix = myLocale.name();
+    QStringList linesForLanguageAndCountry;
+    foreach ( QString line, linesForLanguage )
+    {
+        if ( line.startsWith( prefix ) )
+            linesForLanguageAndCountry.append( line );
+    }
+
+    if ( linesForLanguageAndCountry.length() == 0 )
+        return "en_US.UTF-8 UTF-8";
+    else if ( linesForLanguageAndCountry.length() == 1 )
+        return linesForLanguageAndCountry.first();
+    else
+    {
+        QStringList linesForLanguageAndCountryUtf;
+        foreach ( QString line, linesForLanguageAndCountry )
+        {
+            if ( line.contains( "UTF-8" ) )
+                linesForLanguageAndCountryUtf.append( line );
+        }
+
+        if ( linesForLanguageAndCountryUtf.length() == 1 )
+            return linesForLanguageAndCountryUtf.first();
+    }
+
+    return "en_US.UTF-8 UTF-8";
+}
+
+
+QString
+LocalePage::prettyLCLocale( const QString& lcLocale )
+{
+    QString localeString = lcLocale;
+    if ( localeString.endsWith( " UTF-8" ) )
+        localeString.remove( " UTF-8" );
+    return localeString;
+}

@@ -37,6 +37,12 @@ public:
     virtual QString prettyName() const = 0;
     virtual QString prettyStatus() const;
 
+    /**
+     * Optional. Should return a widget which will be inserted in the summary
+     * page. The caller takes ownership of the widget.
+     */
+    virtual QWidget* createSummaryWidget() const;
+
     //TODO: we might want to make this a QSharedPointer
     virtual QWidget* widget() = 0;
 

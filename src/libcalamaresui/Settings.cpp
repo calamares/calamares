@@ -40,23 +40,17 @@ Settings::instance()
 }
 
 
-Settings::Settings( bool debugMode, QObject* parent )
+Settings::Settings( const QString& settingsFilePath,
+                    bool debugMode,
+                    QObject* parent )
     : QObject( parent )
     , m_debug( debugMode )
 {
-    QFileInfo settingsFile( CalamaresUtils::appDataDir().absoluteFilePath( "settings.conf" ) );
-    if ( debugMode )
-    {
-        QFileInfo localFile( QDir( QDir::currentPath() ).absoluteFilePath( "settings.conf" ) );
-        if ( localFile.exists() && localFile.isReadable() )
-            settingsFile.setFile( localFile.absoluteFilePath() );
-    }
-    QFile file( settingsFile.absoluteFilePath() );
-
+    cDebug() << "Using Calamares settings file at" << settingsFilePath;
+    QFile file( settingsFilePath );
     if ( file.exists() && file.open( QFile::ReadOnly | QFile::Text ) )
     {
         QByteArray ba = file.readAll();
-        cDebug() << ba;
 
         try
         {
@@ -97,6 +91,8 @@ Settings::Settings( bool debugMode, QObject* parent )
             config[ "prepare" ] >> m_modulesPrepareList;
             config[ "install" ] >> m_modulesInstallList;
             config[ "postinstall" ] >> m_modulesPostInstallList;
+            m_brandingComponentName = QString::fromStdString( config[ "branding" ]
+                                                              .as< std::string >() );
         }
         catch ( YAML::Exception& e )
         {
@@ -133,6 +129,13 @@ Settings::modules( Phase phase ) const
     default:
         return QStringList();
     }
+}
+
+
+QString
+Settings::brandingComponentName() const
+{
+    return m_brandingComponentName;
 }
 
 

@@ -47,20 +47,17 @@ ViewModule::interface() const
 void
 ViewModule::loadSelf()
 {
-    cDebug() << Q_FUNC_INFO << "for module" << name();
     if ( m_loader )
     {
         m_viewStep = qobject_cast< ViewStep* >( m_loader->instance() );
+        if ( !m_viewStep )
+        {
+            cLog() << Q_FUNC_INFO << m_loader->errorString();
+            return;
+        }
         m_viewStep->setConfigurationMap( m_configurationMap );
-        if ( m_viewStep )
-        {
-            ViewManager::instance()->addViewStep( m_viewStep );
-            m_loaded = true;
-        }
-        else
-        {
-            cDebug() << Q_FUNC_INFO << m_loader->errorString();
-        }
+        ViewManager::instance()->addViewStep( m_viewStep );
+        m_loaded = true;
     }
 }
 
@@ -86,7 +83,7 @@ ViewModule::initFrom( const YAML::Node& node )
     // If a load path is not specified, we look for a plugin to load in the directory.
     if ( load.isEmpty() || !QLibrary::isLibrary( load ) )
     {
-        QStringList ls = directory.entryList( QStringList() = { "*.so" } );
+        QStringList ls = directory.entryList( QStringList{ "*.so" } );
         if ( !ls.isEmpty() )
         {
             foreach ( QString entry, ls )

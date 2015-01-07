@@ -26,6 +26,8 @@
 
 #include "DllMacro.h"
 
+#define RESPATH ":/data/"
+
 class QDir;
 class QObject;
 
@@ -34,8 +36,15 @@ namespace CalamaresUtils
     DLLEXPORT QDir appDataDir();
     DLLEXPORT QDir appLogDir();
     DLLEXPORT QDir systemLibDir();
-    DLLEXPORT void installTranslator( QObject* parent );
+    DLLEXPORT void installTranslator( const QString& localeName, QObject* parent );
 
+    /**
+     * Override app data dir. Only for testing purposes.
+     */
+    DLLEXPORT void setAppDataDir( const QDir& dir );
+    DLLEXPORT bool isAppDataDirOverridden();
+
+    DLLEXPORT QString removeDiacritics( const QString& string );
 }
 
 #endif // CALAMARESUTILS_H

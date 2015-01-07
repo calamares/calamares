@@ -18,3 +18,6 @@ add_subdirectory( calamares )
 
 # plugins
 add_subdirectory( modules )
+
+# branding components
+add_subdirectory( branding )

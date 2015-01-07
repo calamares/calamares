@@ -22,8 +22,12 @@
 #include "progresstree/ProgressTreeView.h"
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/CalamaresStyle.h"
+#include "utils/Logger.h"
+#include "Branding.h"
 
+#include <QApplication>
 #include <QBoxLayout>
+#include <QDesktopWidget>
 #include <QLabel>
 #include <QTreeView>
 
@@ -32,7 +36,18 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
 {
     // Hide close button
     setWindowFlags( Qt::Window | Qt::WindowTitleHint | Qt::CustomizeWindowHint );
-    setMinimumSize( 1010, 600 );
+
+    setWindowTitle( tr( "%1 Installer" )
+                    .arg( Calamares::Branding::instance()->
+                          string( Calamares::Branding::ProductName ) ) );
+
+    setMinimumSize( 1010, 560 );
+    QSize availableSize = qApp->desktop()->screenGeometry( this ).size();
+    int w = qBound( 1010, CalamaresUtils::defaultFontHeight() * 60, availableSize.width() );
+    int h = qBound( 560,  CalamaresUtils::defaultFontHeight() * 36, availableSize.height() );
+
+    cDebug() << "Proposed window size:" << w << h;
+    resize( w, h );
 
     QBoxLayout* mainLayout = new QHBoxLayout;
     setLayout( mainLayout );
@@ -42,13 +57,13 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
 
     QBoxLayout* sideLayout = new QVBoxLayout;
     sideBox->setLayout( sideLayout );
-    sideBox->setFixedWidth( 190 ); //FIXME
+    sideBox->setFixedWidth( qMax( 190, CalamaresUtils::defaultFontHeight() * 12 ) );
     sideBox->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
 
     QHBoxLayout* logoLayout = new QHBoxLayout;
     sideLayout->addLayout( logoLayout );
     logoLayout->addStretch();
-    QLabel* logoLabel = new QLabel( "branding\ngoes\nhere", sideBox );
+    QLabel* logoLabel = new QLabel( sideBox );
     {
         QPalette plt = sideBox->palette();
         sideBox->setAutoFillBackground( true );
@@ -59,11 +74,15 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
     }
     logoLabel->setAlignment( Qt::AlignCenter );
     logoLabel->setFixedSize( 80, 80 );
+    logoLabel->setPixmap( Calamares::Branding::instance()->
+                          image( Calamares::Branding::ProductIcon,
+                                 logoLabel->size() ) );
     logoLayout->addWidget( logoLabel );
     logoLayout->addStretch();
 
     ProgressTreeView* tv = new ProgressTreeView( sideBox );
     sideLayout->addWidget( tv );
+    tv->setFocusPolicy( Qt::NoFocus );
     CalamaresUtils::unmarginLayout( sideLayout );
     CalamaresUtils::unmarginLayout( mainLayout );
 

@@ -42,7 +42,7 @@ qt5_wrap_ui( calamaresUi_H ${calamaresUi} )
 include( ${CMAKE_SOURCE_DIR}/lang/translations.cmake )
 add_calamares_translations( ${CALAMARES_TRANSLATION_LANGUAGES} )
 
-set( final_src ${calamaresUi_H} ${calamaresSources} ${calamaresRc} )
+set( final_src ${calamaresUi_H} ${calamaresSources} ${calamaresRc} ${trans_outfile} )
 
 add_executable( calamares_bin ${final_src} )
 SET_TARGET_PROPERTIES(calamares_bin

@@ -1,0 +1,6 @@
+---
+type:       "job"
+name:       "networkcfg"
+interface:  "python"
+requires:   []
+script:     "main.py"

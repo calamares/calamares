@@ -19,9 +19,13 @@
 #ifndef LOCALEPAGE_H
 #define LOCALEPAGE_H
 
+#include "Typedefs.h"
+
 #include <QWidget>
 
 class QComboBox;
+class QLabel;
+class QPushButton;
 class TimeZoneWidget;
 
 class LocalePage : public QWidget
@@ -29,15 +33,36 @@ class LocalePage : public QWidget
     Q_OBJECT
 public:
     explicit LocalePage( QWidget* parent = nullptr );
+    virtual ~LocalePage();
 
-    void init( const QString& initialRegion, const QString& initialZone );
+    void init( const QString& initialRegion,
+               const QString& initialZone,
+               const QString& localeGenPath );
 
     QString prettyStatus() const;
 
+    QList< Calamares::job_ptr > createJobs();
+
+    QString lcLocale();
+
+    void onActivate();
+
 private:
+    QString guessLCLocale();
+    QString prettyLCLocale( const QString& lcLocale );
+
     TimeZoneWidget* m_tzWidget;
     QComboBox* m_regionCombo;
-    QComboBox* m_timezoneCombo;
+    QComboBox* m_zoneCombo;
+
+    QLabel* m_regionLabel;
+    QLabel* m_zoneLabel;
+    QLabel* m_localeLabel;
+    QPushButton* m_localeChangeButton;
+
+    QString m_selectedLocale;
+
+    QStringList m_localeGenLines;
 
     bool m_blockTzWidgetSet;
 };

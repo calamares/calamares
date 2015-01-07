@@ -27,26 +27,57 @@
 
 #undef slots
 #include <boost/python.hpp>
+#include <boost/python/args.hpp>
 
 #include "PythonJobApi.h"
 
 
 namespace bp = boost::python;
 
-
+BOOST_PYTHON_FUNCTION_OVERLOADS( mount_overloads,
+                                 CalamaresPython::mount,
+                                 2, 4 );
+BOOST_PYTHON_FUNCTION_OVERLOADS( chroot_call_str_overloads,
+                                 CalamaresPython::chroot_call,
+                                 1, 3 );
+BOOST_PYTHON_FUNCTION_OVERLOADS( chroot_call_list_overloads,
+                                 CalamaresPython::chroot_call,
+                                 1, 3 );
+BOOST_PYTHON_FUNCTION_OVERLOADS( check_chroot_call_str_overloads,
+                                 CalamaresPython::check_chroot_call,
+                                 1, 3 );
+BOOST_PYTHON_FUNCTION_OVERLOADS( check_chroot_call_list_overloads,
+                                 CalamaresPython::check_chroot_call,
+                                 1, 3 );
+BOOST_PYTHON_FUNCTION_OVERLOADS( check_chroot_output_str_overloads,
+                                 CalamaresPython::check_chroot_output,
+                                 1, 3 );
+BOOST_PYTHON_FUNCTION_OVERLOADS( check_chroot_output_list_overloads,
+                                 CalamaresPython::check_chroot_output,
+                                 1, 3 );
 BOOST_PYTHON_MODULE( libcalamares )
 {
-    bp::scope().attr( "organizationName" ) = CALAMARES_ORGANIZATION_NAME;
-    bp::scope().attr( "organizationDomain" ) = CALAMARES_ORGANIZATION_DOMAIN;
-    bp::scope().attr( "applicationName" ) = CALAMARES_APPLICATION_NAME;
-    bp::scope().attr( "version" ) = CALAMARES_VERSION;
-    bp::scope().attr( "shortVersion" ) = CALAMARES_VERSION_SHORT;
+    bp::object package = bp::scope();
+    package.attr( "__path__" ) = "libcalamares";
+
+    bp::scope().attr( "ORGANIZATION_NAME" ) = CALAMARES_ORGANIZATION_NAME;
+    bp::scope().attr( "ORGANIZATION_DOMAIN" ) = CALAMARES_ORGANIZATION_DOMAIN;
+    bp::scope().attr( "APPLICATION_NAME" ) = CALAMARES_APPLICATION_NAME;
+    bp::scope().attr( "VERSION" ) = CALAMARES_VERSION;
+    bp::scope().attr( "VERSION_SHORT" ) = CALAMARES_VERSION_SHORT;
 
     bp::class_< CalamaresPython::PythonJobInterface >( "Job", bp::init< Calamares::PythonJob* >() )
-        .def_readonly( "prettyName", &CalamaresPython::PythonJobInterface::prettyName )
-        .def_readonly( "workingPath", &CalamaresPython::PythonJobInterface::workingPath )
+        .def_readonly( "module_name",   &CalamaresPython::PythonJobInterface::moduleName )
+        .def_readonly( "pretty_name",   &CalamaresPython::PythonJobInterface::prettyName )
+        .def_readonly( "working_path",  &CalamaresPython::PythonJobInterface::workingPath )
         .def_readonly( "configuration", &CalamaresPython::PythonJobInterface::configuration )
-        .def( "setprogress", &CalamaresPython::PythonJobInterface::setprogress );
+        .def(
+            "setprogress",
+            &CalamaresPython::PythonJobInterface::setprogress,
+            bp::args( "progress" ),
+            "Reports the progress status of this job to Calamares, "
+            "as a real number between 0 and 1."
+        );
 
     bp::class_< Calamares::GlobalStorage >( "GlobalStorage", bp::init<>() )
         .def( "contains",   &Calamares::GlobalStorage::python_contains )
@@ -55,6 +86,126 @@ BOOST_PYTHON_MODULE( libcalamares )
         .def( "keys",       &Calamares::GlobalStorage::python_keys )
         .def( "remove",     &Calamares::GlobalStorage::python_remove )
         .def( "value",      &Calamares::GlobalStorage::python_value );
+
+    // libcalamares.utils submodule starts here
+    bp::object utilsModule( bp::handle<>( bp::borrowed( PyImport_AddModule( "libcalamares.utils" ) ) ) );
+    bp::scope().attr( "utils" ) = utilsModule;
+    bp::scope utilsScope = utilsModule;
+    Q_UNUSED( utilsScope );
+
+    bp::def(
+        "debug",
+        &CalamaresPython::debug,
+        bp::args( "s" ),
+        "Writes the given string to the Calamares debug stream."
+    );
+    bp::def(
+        "mount",
+        &CalamaresPython::mount,
+        mount_overloads(
+            bp::args( "device_path",
+                      "mount_point",
+                      "filesystem_name",
+                      "options" ),
+            "Runs the mount utility with the specified parameters.\n"
+            "Returns the program's exit code, or:\n"
+            "-1 = QProcess crash\n"
+            "-2 = QProcess cannot start\n"
+            "-3 = bad arguments"
+        )
+    );
+    bp::def(
+        "chroot_call",
+        static_cast< int (*)( const std::string&,
+                              const std::string&,
+                              int ) >( &CalamaresPython::chroot_call ),
+        chroot_call_str_overloads(
+            bp::args( "command",
+                      "stdin",
+                      "timeout" ),
+            "Runs the specified command in the chroot of the target system.\n"
+            "Returns the program's exit code, or:\n"
+            "-1 = QProcess crash\n"
+            "-2 = QProcess cannot start\n"
+            "-3 = bad arguments\n"
+            "-4 = QProcess timeout"
+        )
+    );
+    bp::def(
+        "chroot_call",
+        static_cast< int (*)( const bp::list&,
+                              const std::string&,
+                              int ) >( &CalamaresPython::chroot_call ),
+        chroot_call_list_overloads(
+            bp::args( "args",
+                      "stdin",
+                      "timeout" ),
+            "Runs the specified command in the chroot of the target system.\n"
+            "Returns the program's exit code, or:\n"
+            "-1 = QProcess crash\n"
+            "-2 = QProcess cannot start\n"
+            "-3 = bad arguments\n"
+            "-4 = QProcess timeout"
+        )
+    );
+
+    bp::def(
+        "check_chroot_call",
+        static_cast< int (*)( const std::string&,
+                              const std::string&,
+                              int ) >( &CalamaresPython::check_chroot_call ),
+        check_chroot_call_str_overloads(
+            bp::args( "command",
+                      "stdin",
+                      "timeout" ),
+            "Runs the specified command in the chroot of the target system.\n"
+            "Returns 0, which is program's exit code if the program exited "
+            "successfully, or raises a subprocess.CalledProcessError."
+        )
+    );
+    bp::def(
+        "check_chroot_call",
+        static_cast< int (*)( const bp::list&,
+                              const std::string&,
+                              int ) >( &CalamaresPython::check_chroot_call ),
+        check_chroot_call_list_overloads(
+            bp::args( "args",
+                      "stdin",
+                      "timeout" ),
+            "Runs the specified command in the chroot of the target system.\n"
+            "Returns 0, which is program's exit code if the program exited "
+            "successfully, or raises a subprocess.CalledProcessError."
+        )
+    );
+
+    bp::def(
+        "check_chroot_output",
+        static_cast< std::string (*)( const std::string&,
+                                      const std::string&,
+                                      int ) >( &CalamaresPython::check_chroot_output ),
+        check_chroot_output_str_overloads(
+            bp::args( "command",
+                      "stdin",
+                      "timeout" ),
+            "Runs the specified command in the chroot of the target system.\n"
+            "Returns the program's standard output, and raises a "
+            "subprocess.CalledProcessError if something went wrong."
+        )
+    );
+    bp::def(
+        "check_chroot_output",
+        static_cast< std::string (*)( const bp::list&,
+                                      const std::string&,
+                                      int ) >( &CalamaresPython::check_chroot_output ),
+        check_chroot_output_list_overloads(
+            bp::args( "args",
+                      "stdin",
+                      "timeout" ),
+            "Runs the specified command in the chroot of the target system.\n"
+            "Returns the program's standard output, and raises a "
+            "subprocess.CalledProcessError if something went wrong."
+        )
+    );
 }
 
 
@@ -120,17 +271,27 @@ PythonJob::exec()
         bp::dict calamaresNamespace = bp::extract< bp::dict >( calamaresModule.attr( "__dict__" ) );
 
         calamaresNamespace[ "job" ] = CalamaresPython::PythonJobInterface( this );
-        calamaresNamespace[ "global_storage" ] = bp::ptr( JobQueue::instance()->globalStorage() );
+        calamaresNamespace[ "globalstorage" ] = bp::ptr( JobQueue::instance()->globalStorage() );
 
-        bp::object result = bp::exec_file( scriptFI.absoluteFilePath().toLocal8Bit().data(),
+        bp::object execResult = bp::exec_file( scriptFI.absoluteFilePath().toLocal8Bit().data(),
                                            scriptNamespace,
                                            scriptNamespace );
 
-        bp::object entryPoint = scriptNamespace[ "calamares_main" ];
+        bp::object entryPoint = scriptNamespace[ "run" ];
 
-        QString message = QString::fromStdString( bp::extract< std::string >( entryPoint() ) );
+        bp::object runResult = entryPoint();
 
-        cDebug() << "Python job" << prettyName() << "finished with message" << message;
+        if ( runResult.is_none() )
+        {
+            return JobResult::ok();
+        }
+        else // Something happened in the Python job
+        {
+            bp::tuple resultTuple = bp::extract< bp::tuple >( runResult );
+            QString message = QString::fromStdString( bp::extract< std::string >( resultTuple[ 0 ] ) );
+            QString description = QString::fromStdString( bp::extract< std::string >( resultTuple[ 1 ] ) );
+            return JobResult::error( message, description );
+        }
     }
     catch ( bp::error_already_set )
     {
@@ -141,7 +302,7 @@ PythonJob::exec()
         }
         bp::handle_exception();
         PyErr_Clear();
-        return JobResult::error( tr( "Boost.Python error" ),
+        return JobResult::error( tr( "Boost.Python error in job \"%1\"." ).arg( prettyName() ),
                                  msg );
     }
 

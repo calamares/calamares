@@ -18,6 +18,7 @@
 #include <QDesktopWidget>
 #include "CalamaresApplication.h"
 
+#include "CalamaresConfig.h"
 #include "CalamaresWindow.h"
 #include "CalamaresVersion.h"
 #include "progresstree/ProgressTreeView.h"
@@ -27,9 +28,13 @@
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
 #include "JobQueue.h"
+#include "Branding.h"
 #include "Settings.h"
 #include "viewpages/ViewStep.h"
 #include "ViewManager.h"
+
+#include <QDir>
+#include <QFileInfo>
 
 
 CalamaresApplication::CalamaresApplication( int& argc, char *argv[] )
@@ -41,7 +46,8 @@ CalamaresApplication::CalamaresApplication( int& argc, char *argv[] )
     setApplicationName( QLatin1String( CALAMARES_APPLICATION_NAME ) );
     setApplicationVersion( QLatin1String( CALAMARES_VERSION ) );
 
-    CalamaresUtils::installTranslator( this );
+    QString startupLocale = QLocale::system().uiLanguages().first();
+    CalamaresUtils::installTranslator( startupLocale, this );
 
     QFont f = font();
 
@@ -54,13 +60,15 @@ CalamaresApplication::CalamaresApplication( int& argc, char *argv[] )
     // The following line blocks for 15s on Qt 5.1.0
     cDebug() << "Font height:" << QFontMetrics( f ).height();
     CalamaresUtils::setDefaultFontSize( f.pointSize() );
+
+    cDebug() << "Available languages:" << QString( CALAMARES_TRANSLATION_LANGUAGES ).split( ';' );
 }
 
 
 void
 CalamaresApplication::init()
 {
-    qDebug() << "CalamaresApplication thread:" << thread();
+    cDebug() << "CalamaresApplication thread:" << thread();
 
     //TODO: Icon loader
     Logger::setupLogfile();
@@ -71,7 +79,8 @@ CalamaresApplication::init()
 
     initBranding();
 
-    setWindowIcon( QIcon( "from branding" ) );
+    setWindowIcon( QIcon( Calamares::Branding::instance()->
+                          imagePath( Calamares::Branding::ProductIcon ) ) );
 
     initPlugins();
 }
@@ -130,14 +139,123 @@ CalamaresApplication::startPhase( Calamares::Phase phase )
 void
 CalamaresApplication::initSettings()
 {
-    new Calamares::Settings( isDebug(), this );
+    QFileInfo settingsFile;
+    if ( CalamaresUtils::isAppDataDirOverridden() )
+    {
+        settingsFile = QFileInfo( CalamaresUtils::appDataDir().absoluteFilePath( "settings.conf" ) );
+        if ( !settingsFile.exists() || !settingsFile.isReadable() )
+        {
+            cLog() << "FATAL ERROR: explicitly configured application data directory"
+                   << CalamaresUtils::appDataDir().absolutePath()
+                   << "does not contain a valid settings.conf file."
+                   << "\nCowardly refusing to continue startup without settings.";
+            ::exit( EXIT_FAILURE );
+        }
+    }
+    else
+    {
+        QStringList settingsFileCandidatesByPriority;
+        if ( isDebug() )
+        {
+            settingsFileCandidatesByPriority.append(
+                QDir::currentPath() +
+                QDir::separator() +
+                "settings.conf" );
+        }
+        settingsFileCandidatesByPriority.append( CMAKE_INSTALL_FULL_SYSCONFDIR "/calamares/settings.conf" );
+        settingsFileCandidatesByPriority.append( CalamaresUtils::appDataDir()
+                                                    .absoluteFilePath( "settings.conf" ) );
+
+        foreach ( const QString& path, settingsFileCandidatesByPriority )
+        {
+            QFileInfo pathFi( path );
+            if ( pathFi.exists() && pathFi.isReadable() )
+            {
+                settingsFile = pathFi;
+                break;
+            }
+        }
+
+        if ( !settingsFile.exists() || !settingsFile.isReadable() )
+        {
+            cLog() << "FATAL ERROR: none of the expected configuration file paths ("
+                   << settingsFileCandidatesByPriority.join( ", " )
+                   << ") contain a valid settings.conf file."
+                   << "\nCowardly refusing to continue startup without settings.";
+            ::exit( EXIT_FAILURE );
+        }
+    }
+
+    new Calamares::Settings( settingsFile.absoluteFilePath(), isDebug(), this );
 }
 
 
 void
 CalamaresApplication::initBranding()
 {
+    QString brandingComponentName = Calamares::Settings::instance()->brandingComponentName();
+    if ( brandingComponentName.simplified().isEmpty() )
+    {
+        cLog() << "FATAL ERROR: branding component not set in settings.conf";
+        ::exit( EXIT_FAILURE );
+    }
 
+    QString brandingDescriptorSubpath = QString( "branding/%1/branding.desc" )
+                                        .arg( brandingComponentName );
+
+    QFileInfo brandingFile;
+    if ( CalamaresUtils::isAppDataDirOverridden() )
+    {
+        brandingFile = QFileInfo( CalamaresUtils::appDataDir()
+                                  .absoluteFilePath( brandingDescriptorSubpath ) );
+        if ( !brandingFile.exists() || !brandingFile.isReadable() )
+        {
+            cLog() << "FATAL ERROR: explicitly configured application data directory"
+                   << CalamaresUtils::appDataDir().absolutePath()
+                   << "does not contain a valid branding component descriptor at"
+                   << brandingFile.absoluteFilePath()
+                   << "\nCowardly refusing to continue startup without branding.";
+            ::exit( EXIT_FAILURE );
+        }
+    }
+    else
+    {
+        QStringList brandingFileCandidatesByPriority;
+        if ( isDebug() )
+        {
+            brandingFileCandidatesByPriority.append(
+                QDir::currentPath() +
+                QDir::separator() +
+                "src" +
+                QDir::separator() +
+                brandingDescriptorSubpath );
+        }
+        brandingFileCandidatesByPriority.append( QDir( CMAKE_INSTALL_FULL_SYSCONFDIR "/calamares/" )
+                                                 .absoluteFilePath( brandingDescriptorSubpath ) );
+        brandingFileCandidatesByPriority.append( CalamaresUtils::appDataDir()
+                                                 .absoluteFilePath( brandingDescriptorSubpath ) );
+
+        foreach ( const QString& path, brandingFileCandidatesByPriority )
+        {
+            QFileInfo pathFi( path );
+            if ( pathFi.exists() && pathFi.isReadable() )
+            {
+                brandingFile = pathFi;
+                break;
+            }
+        }
+
+        if ( !brandingFile.exists() || !brandingFile.isReadable() )
+        {
+            cLog() << "FATAL ERROR: none of the expected branding descriptor file paths ("
+                   << brandingFileCandidatesByPriority.join( ", " )
+                   << ") contain a valid branding.desc file."
+                   << "\nCowardly refusing to continue startup without branding.";
+            ::exit( EXIT_FAILURE );
+        }
+    }
+
+    new Calamares::Branding( brandingFile.absoluteFilePath(), this );
 }
 
 
@@ -198,5 +316,6 @@ CalamaresApplication::onPluginsReady()
 void
 CalamaresApplication::initJobQueue()
 {
-    new Calamares::JobQueue( this );
+    Calamares::JobQueue *jobQueue = new Calamares::JobQueue( this );
+    Calamares::Branding::instance()->setGlobals( jobQueue->globalStorage() );
 }

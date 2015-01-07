@@ -35,10 +35,24 @@ JobResult::message() const
 }
 
 
+void
+JobResult::setMessage( const QString& message )
+{
+    m_message = message;
+}
+
+
 QString
 JobResult::details() const
 {
     return m_details;
+}
+
+
+void
+JobResult::setDetails( const QString& details )
+{
+    m_details = details;
 }
 
 

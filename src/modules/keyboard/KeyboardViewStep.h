@@ -52,12 +52,20 @@ public:
 
     QList< Calamares::job_ptr > jobs() const override;
 
+    void onActivate() override;
     void onLeave() override;
+
+    void setConfigurationMap( const QVariantMap& configurationMap ) override;
 
 private:
     KeyboardPage* m_widget;
     bool m_nextEnabled;
     QString m_prettyStatus;
+
+    QString m_xOrgConfFileName;
+    QString m_convertedKeymapPath;
+
+    QList< Calamares::job_ptr > m_jobs;
 };
 
 #endif // KEYBOARDVIEWSTEP_H
