@@ -204,12 +204,6 @@ CreatePartitionDialog::initFromPartitionToCreate( Partition* partition )
     updateMountPointUi();
 }
 
-qint64
-CreatePartitionDialog::mbSizeForSectorRange( qint64 first, qint64 last ) const
-{
-    return ( last - first + 1 ) * m_device->logicalSectorSize() / 1024 / 1024;
-}
-
 int
 CreatePartitionDialog::exec()
 {
