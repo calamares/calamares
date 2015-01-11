@@ -129,7 +129,7 @@ class FstabGenerator(object):
 
         return dict(
             device="UUID=" + partition["uuid"],
-            mount_point=mount_point or "none",
+            mount_point=mount_point or "swap",
             fs=fs,
             options=options,
             check=check)
