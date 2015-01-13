@@ -667,7 +667,7 @@ Salida:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="90"/>
         <source>Logging</source>
-        <translation type="unfinished"/>
+        <translation>Aniciu de sesión</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="96"/>
@@ -1334,12 +1334,12 @@ Dellos sistemes de ficheros riquen la instalación de ferramientes esternes pa t
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/filesystemsupportdialogwidgetbase.ui" line="100"/>
         <source>Read Label</source>
-        <translation type="unfinished"/>
+        <translation>Etiqueta de llectura</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/filesystemsupportdialogwidgetbase.ui" line="105"/>
         <source>Write Label</source>
-        <translation type="unfinished"/>
+        <translation>Etiqueta d&apos;escritura</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/filesystemsupportdialogwidgetbase.ui" line="110"/>
@@ -1979,12 +1979,12 @@ La instalación pue siguir, pero delles carauterístiques pudieron deshabilitase
     <message>
         <location filename="../src/calamares/progresstree/ProgressTreeModel.cpp" line="136"/>
         <source>Prepare</source>
-        <translation type="unfinished"/>
+        <translation>Tresnáu</translation>
     </message>
     <message>
         <location filename="../src/calamares/progresstree/ProgressTreeModel.cpp" line="145"/>
         <source>Finish</source>
-        <translation type="unfinished"/>
+        <translation>Finq</translation>
     </message>
 </context>
 <context>
