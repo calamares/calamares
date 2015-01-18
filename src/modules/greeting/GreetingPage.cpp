@@ -43,6 +43,8 @@ GreetingPage::GreetingPage( QWidget* parent )
 
     QString defaultLocale = QLocale::system().name();
     {
+        bool isTranslationAvailable = false;
+
         foreach ( const QString& locale, QString( CALAMARES_TRANSLATION_LANGUAGES ).split( ';') )
         {
             QLocale thisLocale = QLocale( locale );
@@ -56,9 +58,39 @@ GreetingPage::GreetingPage( QWidget* parent )
                             ->setData( Qt::UserRole, thisLocale );
             if ( thisLocale.language() == QLocale( defaultLocale ).language() &&
                  thisLocale.country() == QLocale( defaultLocale ).country() )
+            {
+                isTranslationAvailable = true;
                 ui->languageWidget->setCurrentRow( ui->languageWidget->count() - 1 );
+            }
         }
         ui->languageWidget->sortItems();
+
+        if ( !isTranslationAvailable )
+        {
+            for (int i = 0; i < ui->languageWidget->count(); i++)
+            {
+                QLocale thisLocale = ui->languageWidget->item(i)->data( Qt::UserRole ).toLocale();
+                if ( thisLocale.language() == QLocale( defaultLocale ).language() )
+                {
+                    isTranslationAvailable = true;
+                    ui->languageWidget->setCurrentRow( i );
+                    break;
+                }
+            }
+        }
+
+        if ( !isTranslationAvailable )
+        {
+            for (int i = 0; i < ui->languageWidget->count(); i++)
+            {
+                QLocale thisLocale = ui->languageWidget->item(i)->data( Qt::UserRole ).toLocale();
+                if ( thisLocale == QLocale( QLocale::English, QLocale::UnitedStates ) )
+                {
+                    ui->languageWidget->setCurrentRow( i );
+                    break;
+                }
+            }
+        }
 
         connect( ui->languageWidget, &QListWidget::currentItemChanged,
                  this, [ & ]( QListWidgetItem *current, QListWidgetItem *previous )
