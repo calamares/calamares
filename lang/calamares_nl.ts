@@ -667,7 +667,7 @@ Uitvoer:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="90"/>
         <source>Logging</source>
-        <translation>Logging</translation>
+        <translation>Loggen</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="96"/>
@@ -1211,7 +1211,7 @@ Uitvoer:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="94"/>
         <source>No update of file access times</source>
-        <translation>Geen update van de bestandtoegangstijden</translation>
+        <translation>Geen update van bestandstoegangstijden</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="101"/>
@@ -1221,7 +1221,7 @@ Uitvoer:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="108"/>
         <source>No update of directory access times</source>
-        <translation>Geen update van de maptoegangstijden</translation>
+        <translation>Geen update van maptoegangstijden</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="115"/>
@@ -1231,7 +1231,7 @@ Uitvoer:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="122"/>
         <source>Update access times relative to modification</source>
-        <translation>Toegangstijden relatief aan de wijzigingen bijwerken</translation>
+        <translation>Toegangstijden voor wijzigingen bijwerken</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="142"/>
@@ -1241,7 +1241,7 @@ Uitvoer:
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="149"/>
         <source>Dump Frequency:</source>
-        <translation>Dump frequentie:</translation>
+        <translation>Dump Frequentie:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="178"/>
@@ -1294,7 +1294,7 @@ Uitvoer:
         <source>This table shows which file systems are supported and which specific operations can be performed on them.
 Some file systems need external tools to be installed for them to be supported. But not all operations can be performed on all file systems, even if all required tools are installed. Please see the documentation for details. </source>
         <translation>Deze tabel toont welke bestandssystemen ondersteund worden en welke specifieke acties op de bestandssystemen uitgevoerd kunnen worden.
-Sommige bestandssystemen vereisen dat externe programma&apos;s geïnstalleerd worden om ondersteund te worden.  Niet alle acties kunnen echter worden uitgevoerd op alle bestandsystemen, zelfs niet als alle hulpprogramma&apos;s geïnstalleerd zijn.  Raadpleeg de documentatie voor details.</translation>
+Sommige bestandssystemen vereisen dat externe programma&apos;s geïnstalleerd worden om ondersteund te worden.  Niet alle acties kunnen worden uitgevoerd op alle bestandsystemen, zelfs niet als alle hulpprogramma&apos;s geïnstalleerd zijn.  Raadpleeg de documentatie voor details.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/filesystemsupportdialogwidgetbase.ui" line="65"/>
@@ -1365,7 +1365,7 @@ Sommige bestandssystemen vereisen dat externe programma&apos;s geïnstalleerd wo
         <location filename="../src/modules/partition/partitionmanager/src/gui/filesystemsupportdialogwidgetbase.ui" line="135"/>
         <source>Rescan Support</source>
         <comment>@action:button</comment>
-        <translation>Herscan ondersteuning</translation>
+        <translation>Herscan Ondersteuning</translation>
     </message>
 </context>
 <context>
@@ -1391,7 +1391,7 @@ Sommige bestandssystemen vereisen dat externe programma&apos;s geïnstalleerd wo
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="59"/>
         <source>The installer failed to format partition %1 on disk &apos;%2&apos;.</source>
-        <translation>Installatieprogramma heeft gefaald om partitie %1 te formateren op schijf %2.</translation>
+        <translation>Installatieprogramma heeft gefaald om partitie %1 op schijf %2 te formateren.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="67"/>
@@ -1474,12 +1474,12 @@ Sommige bestandssystemen vereisen dat externe programma&apos;s geïnstalleerd wo
     <message>
         <location filename="../src/modules/locale/LocaleViewStep.cpp" line="42"/>
         <source>Loading location data...</source>
-        <translation>Laden van plaatsgegevens...</translation>
+        <translation>Laden van locatiegegevens...</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/LocaleViewStep.cpp" line="74"/>
         <source>Location</source>
-        <translation>Plaats</translation>
+        <translation>Locatie</translation>
     </message>
 </context>
 <context>
@@ -1512,7 +1512,7 @@ Sommige bestandssystemen vereisen dat externe programma&apos;s geïnstalleerd wo
         <location filename="../src/modules/partition/partitionmanager/src/gui/mainwindowbase.ui" line="63"/>
         <source>Log Output</source>
         <comment>@title:window</comment>
-        <translation>Log uitvoer</translation>
+        <translation>Log Uitvoer</translation>
     </message>
 </context>
 <context>
@@ -1535,12 +1535,12 @@ Sommige bestandssystemen vereisen dat externe programma&apos;s geïnstalleerd wo
     <message>
         <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="95"/>
         <source>Moving of partition %1 failed, changes have been rolled back.</source>
-        <translation>Verplaatsen van partitie %1 heeft gefaald. De veranderingen zijn teruggedraaid.</translation>
+        <translation>Verplaatsen van partitie %1 mislukt. De veranderingen zijn teruggedraaid.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="101"/>
         <source>Moving of partition %1 failed. Roll back of the changes have failed.</source>
-        <translation>Verplaatsen van partitie %1 heeft gefaald. Het terugdraaien van de veranderingen heeft gefaald.</translation>
+        <translation>Verplaatsen van partitie %1 mislukt. Het terugdraaien van de veranderingen heeft gefaald.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="113"/>
@@ -1550,7 +1550,7 @@ Sommige bestandssystemen vereisen dat externe programma&apos;s geïnstalleerd wo
     <message>
         <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="127"/>
         <source>The logical sector sizes in the source and target for copying are not the same. This is currently unsupported.</source>
-        <translation>De logische sector afmetingen in de bron en doel voor kopiëren zijn niet hetzelfde. Dit is op dit moment niet ondersteund.</translation>
+        <translation>De logische sector afmetingen in de bron en doel voor kopiëren zijn niet hetzelfde. Dit wordt momenteel niet ondersteund.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="200"/>
@@ -1569,7 +1569,7 @@ Sommige bestandssystemen vereisen dat externe programma&apos;s geïnstalleerd wo
     <message>
         <location filename="../src/modules/keyboard/KeyboardPage.ui" line="14"/>
         <source>Form</source>
-        <translation>Form</translation>
+        <translation>Vorm</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardPage.ui" line="70"/>
@@ -1587,17 +1587,17 @@ Sommige bestandssystemen vereisen dat externe programma&apos;s geïnstalleerd wo
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="14"/>
         <source>Form</source>
-        <translation>Form</translation>
+        <translation>Vorm</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="33"/>
         <source>What is your name?</source>
-        <translation>Wat is uw naam?</translation>
+        <translation>Wat is je naam?</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="111"/>
         <source>What name do you want to use to log in?</source>
-        <translation>Welke naam wilt u gebruiken om in te loggen?</translation>
+        <translation>Welke naam wil je gebruiken om in te loggen?</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="191"/>
@@ -1605,12 +1605,12 @@ Sommige bestandssystemen vereisen dat externe programma&apos;s geïnstalleerd wo
         <location filename="../src/modules/users/page_usersetup.ui" line="425"/>
         <location filename="../src/modules/users/page_usersetup.ui" line="553"/>
         <source>font-weight: normal</source>
-        <translation>Gewicht lettertype: normaal</translation>
+        <translation>afronding lettertype: normaal</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="194"/>
         <source>&lt;small&gt;If more than one person will use this computer, you can set up multiple accounts after installation.&lt;/small&gt;</source>
-        <translation>&lt;small&gt;Indien meer dan één persoon deze computer gebruikt, kunt u meerdere accounts na de installatie instellen.&lt;/ small&gt;</translation>
+        <translation>&lt;small&gt;Indien meer dan één persoon deze computer gebruikt, kunt u meerdere accounts instellen na de installatie.&lt;/ small&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="217"/>
@@ -1671,7 +1671,7 @@ Sommige bestandssystemen vereisen dat externe programma&apos;s geïnstalleerd wo
         <location filename="../src/modules/partition/partitionmanager/src/gui/partpropswidgetbase.ui" line="82"/>
         <source>This file system does not support setting a label.</source>
         <comment>@label</comment>
-        <translation>Dit bestandssysteem ondersteunt het configureren van een label niet.</translation>
+        <translation>Dit bestandssysteem ondersteunt het instellen van een label niet.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/partpropswidgetbase.ui" line="92"/>
@@ -1737,13 +1737,13 @@ Sommige bestandssystemen vereisen dat externe programma&apos;s geïnstalleerd wo
         <location filename="../src/modules/partition/partitionmanager/src/gui/partpropswidgetbase.ui" line="285"/>
         <source>Number of sectors:</source>
         <comment>@label</comment>
-        <translation>Aantal sectoren</translation>
+        <translation>Aantal sectoren:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/partpropswidgetbase.ui" line="309"/>
         <source>Flags:</source>
         <comment>@label</comment>
-        <translation>Parameters:</translation>
+        <translation>Vlaggen:</translation>
     </message>
 </context>
 <context>
@@ -1812,7 +1812,7 @@ Sommige bestandssystemen vereisen dat externe programma&apos;s geïnstalleerd wo
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/partitionmanagerwidgetbase.ui" line="125"/>
         <source>Flags</source>
-        <translation>Parameters</translation>
+        <translation>Vlaggen</translation>
     </message>
 </context>
 <context>
@@ -1853,7 +1853,7 @@ Sommige bestandssystemen vereisen dat externe programma&apos;s geïnstalleerd wo
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="14"/>
         <source>Form</source>
-        <translation>Form</translation>
+        <translation>Vorm</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="22"/>
@@ -1868,7 +1868,7 @@ Sommige bestandssystemen vereisen dat externe programma&apos;s geïnstalleerd wo
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="84"/>
         <source>New Partition &amp;Table</source>
-        <translation>Nieuwe partitie&amp;tabel</translation>
+        <translation>Nieuwe Partitie &amp; Tabel</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="104"/>
@@ -1888,12 +1888,12 @@ Sommige bestandssystemen vereisen dat externe programma&apos;s geïnstalleerd wo
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="145"/>
         <source>&amp;Install boot loader on:</source>
-        <translation>&amp;Installeer de boot loader op:</translation>
+        <translation>&amp;Installeer de bootloader op:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="125"/>
         <source>Are you sure you want to create a new partition table on %1?</source>
-        <translation>Weet u zeker dat u een nieuwe partitie tabel wilt aanleggen op %1?</translation>
+        <translation>Weet u zeker dat u een nieuwe partitie tabel wil maken op %1?</translation>
     </message>
 </context>
 <context>
@@ -1901,7 +1901,7 @@ Sommige bestandssystemen vereisen dat externe programma&apos;s geïnstalleerd wo
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="60"/>
         <source>Gathering system information...</source>
-        <translation>Informatie verzamelen over het systeem...</translation>
+        <translation>Systeeminformatie verzamelen...</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="149"/>
@@ -1938,7 +1938,7 @@ De installatie kan niet worden voortgezet.</translation>
         <source>This computer does not satisfy some of the recommended requirements for installing %1.
 Installation can continue, but some features might be disabled.</source>
         <translation>Deze computer voldoet niet aan alle aanbevolen vereisten voor het installeren van %1.
-De installatie kan doorgaan, maar sommige functies kunnen worden uitgeschakeld.</translation>
+De installatie kan doorgaan, maar sommige functies werken mogelijk niet.</translation>
     </message>
 </context>
 <context>
@@ -1946,7 +1946,7 @@ De installatie kan doorgaan, maar sommige functies kunnen worden uitgeschakeld.<
     <message>
         <location filename="../src/modules/prepare/PrepareViewStep.cpp" line="50"/>
         <source>Gathering system information...</source>
-        <translation>Informatie verzamelen over het systeem...</translation>
+        <translation>Systeeminformatie verzamelen...</translation>
     </message>
     <message>
         <location filename="../src/modules/prepare/PrepareViewStep.cpp" line="88"/>
@@ -1961,13 +1961,12 @@ De installatie kan doorgaan, maar sommige functies kunnen worden uitgeschakeld.<
     <message>
         <location filename="../src/modules/prepare/PrepareViewStep.cpp" line="104"/>
         <source>is plugged in to a power source</source>
-        <translation>is aangesloten op een stroombron</translation>
+        <translation>aangesloten is op een stroombron</translation>
     </message>
     <message>
         <location filename="../src/modules/prepare/PrepareViewStep.cpp" line="111"/>
         <source>is connected to the Internet</source>
-        <translation>
-is verbonden met het internet</translation>
+        <translation>verbonden is met het internet</translation>
     </message>
     <message>
         <location filename="../src/modules/prepare/PrepareViewStep.cpp" line="152"/>
@@ -1993,7 +1992,7 @@ is verbonden met het internet</translation>
     <message>
         <location filename="../src/modules/keyboard/keyboardwidget/keyboardglobal.cpp" line="82"/>
         <source>Default Keyboard Model</source>
-        <translation>Standaard toetsenbord model</translation>
+        <translation>Standaard Toetsenbord Model</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/keyboardwidget/keyboardglobal.cpp" line="127"/>
@@ -2032,27 +2031,27 @@ is verbonden met het internet</translation>
     <message>
         <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="99"/>
         <source>&amp;Checkout From:</source>
-        <translation>&amp;Uitchecken van:</translation>
+        <translation>&amp;Uitchecken Van:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="119"/>
         <source>trunk</source>
-        <translation>Hoofdbestand</translation>
+        <translation>kanaal</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="124"/>
         <source>branches</source>
-        <translation>takken</translation>
+        <translation>extenties</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="129"/>
         <source>tags</source>
-        <translation>labels</translation>
+        <translation>tags</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="137"/>
         <source>Ta&amp;g/Branch:</source>
-        <translation>&amp;Label/Tak:</translation>
+        <translation>Ta&amp;g/Extentie:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="163"/>
@@ -2087,22 +2086,22 @@ is verbonden met het internet</translation>
     <message>
         <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="242"/>
         <source>Get &amp;Documentation</source>
-        <translation>Verkrijg &amp;documentatie</translation>
+        <translation>Verkrijg &amp;Documentatie</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="252"/>
         <source>Get &amp;Translations</source>
-        <translation>Verkrijg &amp;vertalingen</translation>
+        <translation>Verkrijg &amp;Vertalingen</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="262"/>
         <source>C&amp;reate Tag</source>
-        <translation>C&amp;reëer label</translation>
+        <translation>C&amp;reëer Tag</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="271"/>
         <source>S&amp;kip translations below completion:</source>
-        <translation>S&amp;la vertalingen over onder voltooiing:</translation>
+        <translation>S&amp;la vertalingen over onder voltooiïng:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="306"/>
@@ -2112,12 +2111,12 @@ is verbonden met het internet</translation>
     <message>
         <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="324"/>
         <source>Create Tar&amp;ball</source>
-        <translation>Creëer Tar&amp;archief</translation>
+        <translation>Creëer Tar&amp;ball</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="334"/>
         <source>Apply &amp;fixes</source>
-        <translation>Pas &amp;verbeteringen toe</translation>
+        <translation>Toepassen &amp;verbeteringen</translation>
     </message>
 </context>
 <context>
@@ -2135,7 +2134,7 @@ is verbonden met het internet</translation>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="100"/>
         <source>Failed to resize filesystem.</source>
-        <translation>Het aanpassen van de bestandsysteem grootte heeft gefaald.</translation>
+        <translation>Het aanpassen van de grootte van het bestandsysteem is mislukt.</translation>
     </message>
 </context>
 <context>
@@ -2149,7 +2148,7 @@ is verbonden met het internet</translation>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="208"/>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="266"/>
         <source>The installer failed to resize partition %1 on disk &apos;%2&apos;.</source>
-        <translation>Installatieprogramma heeft gefaald in het aanpassen van de grootte van partitie %1 op schrijf %2.</translation>
+        <translation>Installatieprogramma is er niet in geslaagd om de grootte van partitie %1 op schrijf %2 aan te passen.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="213"/>
@@ -2168,12 +2167,12 @@ is verbonden met het internet</translation>
         <location filename="../src/modules/users/SetHostNameJob.cpp" line="46"/>
         <location filename="../src/modules/users/SetHostNameJob.cpp" line="53"/>
         <source>Internal Error</source>
-        <translation>Interne fout</translation>
+        <translation>Interne Fout</translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetHostNameJob.cpp" line="60"/>
         <source>Cannot write hostname to target system</source>
-        <translation>Kan de hostname niet naar het doelsysteem schrijven</translation>
+        <translation>Kan de hostname niet naar doelsysteem schrijven</translation>
     </message>
 </context>
 <context>
@@ -2181,7 +2180,7 @@ is verbonden met het internet</translation>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="143"/>
         <source>Update geometry of partition %1.</source>
-        <translation>Update Geometrie van partitie %1.</translation>
+        <translation>Update geometrie van partitie %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="155"/>
@@ -2199,12 +2198,12 @@ is verbonden met het internet</translation>
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="52"/>
         <source>Bad destination system path.</source>
-        <translation>Onjuist bestemmingssysteempad.</translation>
+        <translation>Onjuiste bestemming systeempad.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="53"/>
         <source>rootMountPoint is %1</source>
-        <translation>Hoofdaankoppelpunt is %1</translation>
+        <translation>rootAankoppelpunt is %1</translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="62"/>
@@ -2237,12 +2236,12 @@ is verbonden met het internet</translation>
     <message>
         <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="69"/>
         <source>Cannot set timezone.</source>
-        <translation>Kan de tijdzone niet instellen.</translation>
+        <translation>Kan tijdzone niet instellen.</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="70"/>
         <source>Link creation failed, target: %1; link name: %2</source>
-        <translation>Link creatie mislukt, doel: %1; koppeling naam: %2</translation>
+        <translation>Link maken mislukt, doel: %1; koppeling naam: %2</translation>
     </message>
 </context>
 <context>
@@ -2357,7 +2356,7 @@ is verbonden met het internet</translation>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="121"/>
         <source>Firmware revision:</source>
-        <translation>Firmware revisie:</translation>
+        <translation>Firmware versie:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="150"/>
@@ -2402,12 +2401,12 @@ is verbonden met het internet</translation>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="309"/>
         <source>Worst</source>
-        <translation>Slechtst</translation>
+        <translation>Slechtste</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="314"/>
         <source>Current</source>
-        <translation>Huidig</translation>
+        <translation>Huidige</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="319"/>
@@ -2417,7 +2416,7 @@ is verbonden met het internet</translation>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="324"/>
         <source>Raw</source>
-        <translation>Ruw</translation>
+        <translation>Raw</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="329"/>
@@ -2432,7 +2431,7 @@ is verbonden met het internet</translation>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="385"/>
         <source>Overall assessment:</source>
-        <translation>Eindbeoordeling:</translation>
+        <translation>Algemene beoordeling:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="414"/>
@@ -2479,28 +2478,28 @@ is verbonden met het internet</translation>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="226"/>
         <source>Your username contains an invalid character &apos;%1&apos;</source>
-        <translation>De gebruikersnaam bevat een ongeldig karakter &apos;%1&apos;</translation>
+        <translation>Je gebruikersnaam bevat een ongeldig karakter &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="230"/>
         <source>Your username contains invalid characters!</source>
-        <translation>De gebruikersnaam bevat ongeldig karakters!</translation>
+        <translation>Je gebruikersnaam bevat ongeldig karakters!</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="277"/>
         <source>Your hostname contains an invalid character &apos;%1&apos;</source>
-        <translation>De hostname bevat een ongeldig karakter &apos;%1&apos;</translation>
+        <translation>Je hostname bevat een ongeldig karakter &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="281"/>
         <source>Your hostname contains invalid characters!</source>
-        <translation>De hostname bevat ongeldige karakters!</translation>
+        <translation>Je hostname bevat ongeldige karakters!</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="312"/>
         <location filename="../src/modules/users/UsersPage.cpp" line="345"/>
         <source>Your passwords do not match!</source>
-        <translation>De wachtwoorden komen niet overeen!</translation>
+        <translation>Je wachtwoorden komen niet overeen!</translation>
     </message>
 </context>
 <context>
