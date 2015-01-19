@@ -18,7 +18,7 @@
 #   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
 
 import libcalamares
-from libcalamares.utils import check_chroot_call
+from libcalamares.utils import check_chroot_call, chroot_call
 
 class PackageManager:
     def __init__(self, backend):
@@ -50,7 +50,8 @@ class PackageManager:
         elif self.backend == "yum":
             check_chroot_call(["yum", "--disablerepo=*", "-C", "-y", "remove"] + pkgs)
         elif self.backend == "dnf":
-            check_chroot_call(["dnf", "--disablerepo=*", "-C", "-y", "remove"] + pkgs)
+            # ignore the error code for now because dnf thinks removing a nonexistent package is an error
+            chroot_call(["dnf", "--disablerepo=*", "-C", "-y", "remove"] + pkgs)
         elif self.backend == "urpmi":
             check_chroot_call(["urpme"] + pkgs)
         elif self.backend == "apt":
