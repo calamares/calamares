@@ -48,9 +48,9 @@ class PackageManager:
         elif self.backend == "zypp":
             check_chroot_call(["zypper", "--non-interactive", "remove"] + pkgs)
         elif self.backend == "yum":
-            check_chroot_call(["yum", "-y", "remove"] + pkgs)
+            check_chroot_call(["yum", "--disablerepo=*", "-C", "-y", "remove"] + pkgs)
         elif self.backend == "dnf":
-            check_chroot_call(["dnf", "-y", "remove"] + pkgs)
+            check_chroot_call(["dnf", "--disablerepo=*", "-C", "-y", "remove"] + pkgs)
         elif self.backend == "urpmi":
             check_chroot_call(["urpme"] + pkgs)
         elif self.backend == "apt":
