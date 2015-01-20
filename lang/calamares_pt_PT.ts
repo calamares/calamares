@@ -27,7 +27,7 @@
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/applyprogressdetailswidgetbase.ui" line="44"/>
         <source>Open in External Browser</source>
-        <translation>Abrir num navegador externo</translation>
+        <translation>Abrir num Navegador Externo</translation>
     </message>
 </context>
 <context>
@@ -1597,7 +1597,7 @@ Alguns sistemas de ficheiros necessitam de ferramentas externas para serem supor
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="111"/>
         <source>What name do you want to use to log in?</source>
-        <translation>Que nome deseja usar como login?</translation>
+        <translation>Que nome deseja usar para iniciar a sessão?</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="191"/>
@@ -1645,12 +1645,12 @@ Alguns sistemas de ficheiros necessitam de ferramentas externas para serem supor
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="596"/>
         <source>Log in automatically</source>
-        <translation>login automático </translation>
+        <translation>Início de sessão automático </translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="606"/>
         <source>Require my password to log in</source>
-        <translation>Pedir a minha palavra-passe ao entrar</translation>
+        <translation>Pedir a minha palavra-passe ao iniciar sessão</translation>
     </message>
 </context>
 <context>
