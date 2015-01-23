@@ -42,6 +42,7 @@ namespace CalamaresUtils
 {
 
 static QDir s_appDataDir( CMAKE_INSTALL_FULL_DATADIR );
+static QDir s_qmlModulesDir( QString( CMAKE_INSTALL_FULL_DATADIR ) + "/qml" );
 static bool s_isAppDataDirOverridden = false;
 
 static QTranslator* s_translator = nullptr;
@@ -76,6 +77,14 @@ isWritableDir( const QDir& dir )
     }
     return true;
 }
+
+
+QDir
+qmlModulesDir()
+{
+    return s_qmlModulesDir;
+}
+
 
 void
 setAppDataDir( const QDir& dir )
@@ -173,6 +182,13 @@ installTranslator( const QString& localeName, QObject* parent )
     }
     QCoreApplication::installTranslator( translator );
     s_qtTranslator = translator;
+}
+
+
+void
+setQmlModulesDir( const QDir &dir )
+{
+    s_qmlModulesDir = dir;
 }
 
 

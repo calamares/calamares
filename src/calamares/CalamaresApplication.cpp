@@ -75,8 +75,8 @@ CalamaresApplication::init()
 
     setQuitOnLastWindowClosed( false );
 
+    initQmlPath();
     initSettings();
-
     initBranding();
 
     setWindowIcon( QIcon( Calamares::Branding::instance()->
@@ -133,6 +133,64 @@ void
 CalamaresApplication::startPhase( Calamares::Phase phase )
 {
     m_moduleManager->loadModules( phase );
+}
+
+
+void
+CalamaresApplication::initQmlPath()
+{
+    QDir importPath;
+
+    QString subpath( "qml" );
+
+    if ( CalamaresUtils::isAppDataDirOverridden() )
+    {
+        importPath = QDir( CalamaresUtils::appDataDir()
+                           .absoluteFilePath( subpath ) );
+        if ( !importPath.exists() || !importPath.isReadable() )
+        {
+            cLog() << "FATAL ERROR: explicitly configured application data directory"
+                   << CalamaresUtils::appDataDir().absolutePath()
+                   << "does not contain a valid QML modules directory at"
+                   << importPath.absolutePath()
+                   << "\nCowardly refusing to continue startup without the QML directory.";
+            ::exit( EXIT_FAILURE );
+        }
+    }
+    else
+    {
+        QStringList qmlDirCandidatesByPriority;
+        if ( isDebug() )
+        {
+            qmlDirCandidatesByPriority.append(
+                        QDir::current().absoluteFilePath(
+                        QString( "src/%1" )
+                            .arg( subpath ) ) );
+        }
+        qmlDirCandidatesByPriority.append( CalamaresUtils::appDataDir()
+                            .absoluteFilePath( subpath ) );
+
+        foreach ( const QString& path, qmlDirCandidatesByPriority )
+        {
+            QDir dir( path );
+            if ( dir.exists() && dir.isReadable() )
+            {
+                importPath = dir;
+                break;
+            }
+        }
+
+        if ( !importPath.exists() || !importPath.isReadable() )
+        {
+            cLog() << "FATAL ERROR: none of the expected QML paths ("
+                   << qmlDirCandidatesByPriority.join( ", " )
+                   << ") exist."
+                   << "\nCowardly refusing to continue startup without the QML directory.";
+            ::exit( EXIT_FAILURE );
+        }
+    }
+
+    CalamaresUtils::setQmlModulesDir( importPath );
 }
 
 

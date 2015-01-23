@@ -33,6 +33,7 @@ class QObject;
 
 namespace CalamaresUtils
 {
+    DLLEXPORT QDir qmlModulesDir();
     DLLEXPORT QDir appDataDir();
     DLLEXPORT QDir appLogDir();
     DLLEXPORT QDir systemLibDir();
@@ -43,6 +44,8 @@ namespace CalamaresUtils
      */
     DLLEXPORT void setAppDataDir( const QDir& dir );
     DLLEXPORT bool isAppDataDirOverridden();
+
+    DLLEXPORT void setQmlModulesDir( const QDir& dir );
 
     DLLEXPORT QString removeDiacritics( const QString& string );
 }

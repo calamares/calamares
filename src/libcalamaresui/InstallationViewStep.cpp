@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
+ *   Copyright 2015, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -52,61 +53,8 @@ InstallationViewStep::InstallationViewStep( QObject* parent )
     m_slideShow->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
     m_slideShow->setResizeMode( QQuickWidget::SizeRootObjectToView );
 
-    QDir importPath;
-    {
-        QString subpath( "slideshow" );
+    m_slideShow->engine()->addImportPath( CalamaresUtils::qmlModulesDir().absolutePath() );
 
-        if ( CalamaresUtils::isAppDataDirOverridden() )
-        {
-            importPath = QDir( CalamaresUtils::appDataDir()
-                               .absoluteFilePath( subpath ) );
-            if ( !importPath.exists() || !importPath.isReadable() )
-            {
-                cLog() << "FATAL ERROR: explicitly configured application data directory"
-                       << CalamaresUtils::appDataDir().absolutePath()
-                       << "does not contain a valid slideshow directory at"
-                       << importPath.absolutePath()
-                       << "\nCowardly refusing to continue startup without slideshow.";
-                ::exit( EXIT_FAILURE );
-            }
-        }
-        else
-        {
-            QStringList slideshowDirCandidatesByPriority;
-            if ( Calamares::Settings::instance()->debugMode() )
-            {
-                slideshowDirCandidatesByPriority.append(
-                            QDir::current().absoluteFilePath(
-                            QString( "src/libcalamaresui/%1" )
-                                .arg( subpath ) ) );
-            }
-            slideshowDirCandidatesByPriority.append( CalamaresUtils::appDataDir()
-                                .absoluteFilePath( subpath ) );
-
-            foreach ( const QString& path, slideshowDirCandidatesByPriority )
-            {
-                QDir dir( path );
-                if ( dir.exists() && dir.isReadable() )
-                {
-                    importPath = dir;
-                    break;
-                }
-            }
-
-            if ( !importPath.exists() || !importPath.isReadable() )
-            {
-                cLog() << "FATAL ERROR: none of the expected slideshow paths ("
-                       << slideshowDirCandidatesByPriority.join( ", " )
-                       << ") exist."
-                       << "\nCowardly refusing to continue startup without slideshow.";
-                ::exit( EXIT_FAILURE );
-            }
-        }
-    }
-    cDebug() << "importPath:" << importPath;
-    importPath.cdUp();
-
-    m_slideShow->engine()->addImportPath( importPath.absolutePath() );
     m_slideShow->setSource( QUrl::fromLocalFile( Calamares::Branding::instance()
                                                  ->slideshowPath() ) );
 
@@ -117,8 +65,7 @@ InstallationViewStep::InstallationViewStep( QObject* parent )
     connect( JobQueue::instance(), &JobQueue::progress,
              this, &InstallationViewStep::updateFromJobQueue );
 
-    cDebug() << "importPathList:" << m_slideShow->engine()->importPathList();
-
+    cDebug() << "QML import paths:" << m_slideShow->engine()->importPathList();
 }
 
 QString

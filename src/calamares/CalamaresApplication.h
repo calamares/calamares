@@ -53,6 +53,7 @@ private slots:
     void onPluginsReady();
 
 private:
+    void initQmlPath();
     void initSettings();
     void initBranding();
     void initPlugins();

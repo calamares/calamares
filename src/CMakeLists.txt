@@ -13,6 +13,9 @@ include_directories( ${CMAKE_CURRENT_BINARY_DIR}/libcalamaresui )
 include_directories( ${CMAKE_CURRENT_LIST_DIR}/libcalamaresui )
 add_subdirectory( libcalamaresui )
 
+# all things qml
+add_subdirectory( qml )
+
 # application
 add_subdirectory( calamares )
 
@@ -21,3 +24,4 @@ add_subdirectory( modules )
 
 # branding components
 add_subdirectory( branding )
+

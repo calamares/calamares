@@ -45,5 +45,3 @@ calamares_add_library( ${CALAMARESUI_LIBRARY_TARGET}
     EXPORT CalamaresLibraryDepends
     VERSION ${CALAMARES_VERSION_SHORT}
 )
-
-add_subdirectory( slideshow )
