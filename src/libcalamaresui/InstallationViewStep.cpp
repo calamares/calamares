@@ -55,8 +55,9 @@ InstallationViewStep::InstallationViewStep( QObject* parent )
 
     m_slideShow->engine()->addImportPath( CalamaresUtils::qmlModulesDir().absolutePath() );
 
-    m_slideShow->setSource( QUrl::fromLocalFile( Calamares::Branding::instance()
-                                                 ->slideshowPath() ) );
+    if ( !Calamares::Branding::instance()->slideshowPath().isEmpty() )
+        m_slideShow->setSource( QUrl::fromLocalFile( Calamares::Branding::instance()
+                                                     ->slideshowPath() ) );
 
     innerLayout->addSpacing( CalamaresUtils::defaultFontHeight() / 2 );
     innerLayout->addWidget( m_progressBar );
