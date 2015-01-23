@@ -14,5 +14,4 @@ images:
     productLogo:         "squid.png"
     productIcon:         "squid.png"
 
-slideshow:
-    - "squid.png"
+slideshow:               "show.qml"

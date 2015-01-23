@@ -18,11 +18,18 @@
 
 #include <InstallationViewStep.h>
 
-#include <JobQueue.h>
+#include "JobQueue.h"
+#include "Branding.h"
+#include "utils/CalamaresUtilsGui.h"
+#include "utils/Logger.h"
+#include "Settings.h"
 
+#include <QDir>
 #include <QLabel>
 #include <QProgressBar>
 #include <QVBoxLayout>
+#include <QtQuickWidgets/QQuickWidget>
+#include <QQmlEngine>
 
 namespace Calamares
 {
@@ -35,10 +42,83 @@ InstallationViewStep::InstallationViewStep( QObject* parent )
     m_progressBar->setMaximum( 10000 );
     m_label = new QLabel;
     QVBoxLayout* layout = new QVBoxLayout( m_widget );
-    layout->addWidget(m_progressBar);
-    layout->addWidget(m_label);
+    QVBoxLayout* innerLayout = new QVBoxLayout;
 
-    connect( JobQueue::instance(), &JobQueue::progress, this, &InstallationViewStep::updateFromJobQueue );
+    m_slideShow = new QQuickWidget;
+    layout->addWidget( m_slideShow );
+    CalamaresUtils::unmarginLayout( layout );
+
+    layout->addLayout( innerLayout );
+    m_slideShow->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
+    m_slideShow->setResizeMode( QQuickWidget::SizeRootObjectToView );
+
+    QDir importPath;
+    {
+        QString subpath( "slideshow" );
+
+        if ( CalamaresUtils::isAppDataDirOverridden() )
+        {
+            importPath = QDir( CalamaresUtils::appDataDir()
+                               .absoluteFilePath( subpath ) );
+            if ( !importPath.exists() || !importPath.isReadable() )
+            {
+                cLog() << "FATAL ERROR: explicitly configured application data directory"
+                       << CalamaresUtils::appDataDir().absolutePath()
+                       << "does not contain a valid slideshow directory at"
+                       << importPath.absolutePath()
+                       << "\nCowardly refusing to continue startup without slideshow.";
+                ::exit( EXIT_FAILURE );
+            }
+        }
+        else
+        {
+            QStringList slideshowDirCandidatesByPriority;
+            if ( Calamares::Settings::instance()->debugMode() )
+            {
+                slideshowDirCandidatesByPriority.append(
+                            QDir::current().absoluteFilePath(
+                            QString( "src/libcalamaresui/%1" )
+                                .arg( subpath ) ) );
+            }
+            slideshowDirCandidatesByPriority.append( CalamaresUtils::appDataDir()
+                                .absoluteFilePath( subpath ) );
+
+            foreach ( const QString& path, slideshowDirCandidatesByPriority )
+            {
+                QDir dir( path );
+                if ( dir.exists() && dir.isReadable() )
+                {
+                    importPath = dir;
+                    break;
+                }
+            }
+
+            if ( !importPath.exists() || !importPath.isReadable() )
+            {
+                cLog() << "FATAL ERROR: none of the expected slideshow paths ("
+                       << slideshowDirCandidatesByPriority.join( ", " )
+                       << ") exist."
+                       << "\nCowardly refusing to continue startup without slideshow.";
+                ::exit( EXIT_FAILURE );
+            }
+        }
+    }
+    cDebug() << "importPath:" << importPath;
+    importPath.cdUp();
+
+    m_slideShow->engine()->addImportPath( importPath.absolutePath() );
+    m_slideShow->setSource( QUrl::fromLocalFile( Calamares::Branding::instance()
+                                                 ->slideshowPath() ) );
+
+    innerLayout->addSpacing( CalamaresUtils::defaultFontHeight() / 2 );
+    innerLayout->addWidget( m_progressBar );
+    innerLayout->addWidget( m_label );
+
+    connect( JobQueue::instance(), &JobQueue::progress,
+             this, &InstallationViewStep::updateFromJobQueue );
+
+    cDebug() << "importPathList:" << m_slideShow->engine()->importPathList();
+
 }
 
 QString

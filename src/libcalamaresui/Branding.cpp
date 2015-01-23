@@ -116,20 +116,37 @@ Branding::Branding( const QString& brandingFilePath,
                 m_images.insert( it.key(), imageFi.absoluteFilePath() );
             }
 
-            if ( !doc[ "slideshow" ].IsSequence() )
+            if ( doc[ "slideshow" ].IsSequence() )
+            {
+                QStringList slideShowPictures;
+                doc[ "slideshow" ] >> slideShowPictures;
+                for ( int i = 0; i < slideShowPictures.count(); ++i )
+                {
+                    QString pathString = slideShowPictures[ i ];
+                    QFileInfo imageFi( componentDir.absoluteFilePath( pathString ) );
+                    if ( !imageFi.exists() )
+                        bail( QString( "Slideshow file %1 does not exist." )
+                                .arg( imageFi.absoluteFilePath() ) );
+
+                    slideShowPictures[ i ] = imageFi.absoluteFilePath();
+                }
+
+                //FIXME: implement a GenericSlideShow.qml that uses these slideShowPictures
+            }
+            else if ( doc[ "slideshow" ].IsScalar() )
+            {
+                QString slideshowPath = QString::fromStdString( doc[ "slideshow" ]
+                                                          .as< std::string >() );
+                QFileInfo slideshowFi( componentDir.absoluteFilePath( slideshowPath ) );
+                if ( !slideshowFi.exists() ||
+                     !slideshowFi.fileName().toLower().endsWith( ".qml" ) )
+                    bail( QString( "Slideshow file %1 does not exist or is not a valid QML file." )
+                            .arg( slideshowFi.absoluteFilePath() ) );
+                m_slideshowPath = slideshowFi.absoluteFilePath();
+            }
+            else
                 bail( "Syntax error in slideshow sequence." );
 
-            doc[ "slideshow" ] >> m_slideshow;
-            for ( int i = 0; i < m_slideshow.count(); ++i )
-            {
-                QString pathString = m_slideshow[ i ];
-                QFileInfo imageFi( componentDir.absoluteFilePath( pathString ) );
-                if ( !imageFi.exists() )
-                    bail( QString( "Slideshow file %1 does not exist." )
-                            .arg( imageFi.absoluteFilePath() ) );
-
-                m_slideshow[ i ] = imageFi.absoluteFilePath();
-            }
         }
         catch ( YAML::Exception& e )
         {
@@ -197,10 +214,10 @@ Branding::image( Branding::ImageEntry imageEntry, const QSize& size ) const
 }
 
 
-QStringList
-Branding::slideshowPaths() const
+QString
+Branding::slideshowPath() const
 {
-    return m_slideshow;
+    return m_slideshowPath;
 }
 
 

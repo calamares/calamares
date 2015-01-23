@@ -65,7 +65,7 @@ public:
     QString string( Branding::StringEntry stringEntry ) const;
     QString imagePath( Branding::ImageEntry imageEntry ) const;
     QPixmap image( Branding::ImageEntry imageEntry, const QSize& size ) const;
-    QStringList slideshowPaths() const;
+    QString slideshowPath() const;
 
     /**
      * Creates a map called "branding" in the global storage, and inserts an
@@ -86,7 +86,7 @@ private:
     QString m_componentName;
     QMap< QString, QString > m_strings;
     QMap< QString, QString > m_images;
-    QStringList m_slideshow;
+    QString m_slideshowPath;
 };
 
 }

@@ -23,6 +23,7 @@
 
 class QLabel;
 class QProgressBar;
+class QQuickWidget;
 
 namespace Calamares
 {
@@ -51,6 +52,7 @@ private:
     QWidget* m_widget;
     QProgressBar* m_progressBar;
     QLabel* m_label;
+    QQuickWidget* m_slideShow;
 
     void updateFromJobQueue( qreal percent, const QString& message );
 };
