@@ -51,6 +51,7 @@ Item {
 
     property bool showNotes: false;
     property bool allowDelay: true;
+    property bool loop: true;
 
     property color titleColor: textColor;
     property color textColor: "black"
@@ -101,6 +102,16 @@ Item {
             if (switchSlides(from, to, true)) {
                 currentSlide = currentSlide + 1;
                 root.focus = true;
+            }
+        }
+        else {
+            if (root.loop) {
+                var from = slides[currentSlide]
+                var to = slides[0]
+                if (switchSlides(from, to, true)) {
+                    currentSlide = 0;
+		    root.focus = true;
+                }
             }
         }
     }
