@@ -35,7 +35,7 @@ class PackageManager:
         elif self.backend == "dnf":
             check_chroot_call(["dnf", "install", "-y"] + pkgs)
         elif self.backend == "urpmi":
-            check_chroot_call(["urpmi"] + pkgs)
+            check_chroot_call(["urpmi", "--download-all", "--no-suggests", "--no-verify-rpm", "--fastunsafe", "--ignoresize", "--nolock", "--auto"] + pkgs)
         elif self.backend == "apt":
             check_chroot_call(["apt-get", "-q", "-y", "install"] + pkgs)
         elif self.backend == "pacman":
