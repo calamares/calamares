@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -54,7 +54,7 @@ ViewManager::ViewManager( QObject* parent )
 
     m_back = new QPushButton( tr( "&Back" ), m_widget );
     m_next = new QPushButton( tr( "&Next" ), m_widget );
-    m_quit = new QPushButton( tr( "&Quit" ), m_widget );
+    m_quit = new QPushButton( tr( "&Cancel" ), m_widget );
 
     QBoxLayout* bottomLayout = new QHBoxLayout;
     mainLayout->addLayout( bottomLayout );
@@ -64,7 +64,24 @@ ViewManager::ViewManager( QObject* parent )
     bottomLayout->addSpacing( 12 );
     bottomLayout->addWidget( m_quit );
 
-    connect( m_quit, &QPushButton::clicked, qApp, &QApplication::quit );
+    connect( m_quit, &QPushButton::clicked,
+             this, [this]()
+    {
+        if ( m_currentStep == m_steps.count() -1 &&
+             m_steps.last()->isAtEnd() )
+            qApp->quit();
+        else
+        {
+            int response = QMessageBox::question( m_widget,
+                            tr( "Cancel installation?" ),
+                            tr( "Do you really want to cancel the current install process?\n"
+                                "The installer will quit and all changes will be lost." ),
+                            QMessageBox::Yes | QMessageBox::No,
+                            QMessageBox::No );
+            if ( response == QMessageBox::Yes )
+                qApp->quit();
+        }
+    } );
     connect( m_next, &QPushButton::clicked, this, &ViewManager::next );
     connect( m_back, &QPushButton::clicked, this, &ViewManager::back );
     m_back->setEnabled( false );
@@ -204,6 +221,10 @@ ViewManager::next()
 
     m_next->setEnabled( !installing && m_steps.at( m_currentStep )->isNextEnabled() );
     m_back->setEnabled( !installing );
+
+    if ( m_currentStep == m_steps.count() -1 &&
+         m_steps.last()->isAtEnd() )
+        m_quit->setText( tr( "&Quit" ) );
 }
 
 
@@ -228,6 +249,10 @@ ViewManager::back()
     m_next->setEnabled( m_steps.at( m_currentStep )->isNextEnabled() );
     if ( m_currentStep == 0 && m_steps.first()->isAtBeginning() )
         m_back->setEnabled( false );
+
+    if ( !( m_currentStep == m_steps.count() -1 &&
+            m_steps.last()->isAtEnd() ) )
+        m_quit->setText( tr( "&Cancel" ) );
 }
 
 }
