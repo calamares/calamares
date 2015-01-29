@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -50,6 +50,7 @@ public:
     virtual void back() = 0;
 
     virtual bool isNextEnabled() const = 0;
+    virtual bool isBackEnabled() const = 0;
 
     virtual bool isAtBeginning() const = 0;
     virtual bool isAtEnd() const = 0;
