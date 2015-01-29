@@ -23,12 +23,23 @@
 #include "viewpages/ViewStep.h"
 
 
-ViewStepItem::ViewStepItem( const Calamares::ViewStep* step, ProgressTreeItem* parent )
+ViewStepItem::ViewStepItem( const QString& prettyName,
+                            std::function< const Calamares::ViewStep*() > accessor,
+                            ProgressTreeItem* parent )
+    : ProgressTreeItem( parent )
+    , m_step( 0 )
+    , m_prettyName( prettyName )
+{
+    m_accessor = accessor;
+}
+
+
+ViewStepItem::ViewStepItem( const Calamares::ViewStep* step,
+                            ProgressTreeItem* parent )
     : ProgressTreeItem( parent )
 {
     m_step = step;
 }
-
 
 void
 ViewStepItem::appendChild( ProgressTreeItem* item )
@@ -43,8 +54,10 @@ ViewStepItem::data( int role ) const
     if ( role == ProgressTreeModel::ProgressTreeItemRole )
         return this;
     if ( role == Qt::DisplayRole )
-        return m_step->prettyName();
+        return m_step ? m_step->prettyName() : m_prettyName;
     if ( role == ProgressTreeModel::ProgressTreeItemCurrentRole )
-        return Calamares::ViewManager::instance()->currentStep() == m_step;
+        return m_step ?
+                    ( Calamares::ViewManager::instance()->currentStep() == m_step ) :
+                    ( Calamares::ViewManager::instance()->currentStep() == m_accessor() );
     return QVariant();
 }

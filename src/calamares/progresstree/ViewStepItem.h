@@ -21,6 +21,8 @@
 
 #include "ProgressTreeItem.h"
 
+#include <functional>
+
 namespace Calamares
 {
 class ViewStep;
@@ -29,13 +31,20 @@ class ViewStep;
 class ViewStepItem : public ProgressTreeItem
 {
 public:
-    explicit ViewStepItem( const Calamares::ViewStep* step, ProgressTreeItem* parent = nullptr );
+    explicit ViewStepItem( const QString& prettyName,
+                           std::function< const Calamares::ViewStep*() > accessor,
+                           ProgressTreeItem* parent = nullptr );
+
+    explicit ViewStepItem( const Calamares::ViewStep* step,
+                           ProgressTreeItem* parent = nullptr );
 
     void appendChild( ProgressTreeItem* item ) override;
 
     QVariant data( int role ) const override;
 
 private:
+    std::function< const Calamares::ViewStep*() > m_accessor;
+    QString m_prettyName;
     const Calamares::ViewStep* m_step;
 };
 
