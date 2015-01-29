@@ -35,6 +35,7 @@ namespace Calamares
 ModuleManager::ModuleManager( const QStringList& paths, QObject* parent )
     : QObject( parent )
     , m_paths( paths )
+    , m_lastPhaseLoaded( Phase_NULL )
 {
 }
 
@@ -68,6 +69,13 @@ ModuleManager::module( const QString& name )
 }
 
 
+Phase
+ModuleManager::currentPhase()
+{
+    return m_lastPhaseLoaded;
+}
+
+
 void
 ModuleManager::loadModules( Phase phase )
 {
@@ -96,6 +104,7 @@ ModuleManager::loadModules( Phase phase )
             doLoad( moduleName );
         }
         emit modulesLoaded( phase );
+        m_lastPhaseLoaded = phase;
         // Loading sequence:
         // 1) deps are already fine. check if we have all the modules needed by the roster
         // 2) ask ModuleManager to load them from the list provided by Settings

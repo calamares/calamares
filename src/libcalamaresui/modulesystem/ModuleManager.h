@@ -48,6 +48,8 @@ public:
     QStringList availableModules();
     Module* module( const QString& name );
 
+    Phase currentPhase();
+
     void loadModules( Phase phase );
 
 signals:
@@ -65,6 +67,7 @@ private:
 
     QStringList m_paths;
 
+    Phase m_lastPhaseLoaded;
 };
 
 }
