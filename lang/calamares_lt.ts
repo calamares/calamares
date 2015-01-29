@@ -2,17 +2,17 @@
 <context>
     <name>AlongsidePage</name>
     <message>
-        <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="54"/>
+        <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="67"/>
         <source>Choose partition to shrink:</source>
         <translation>Pasirinkite skirsnį kurį mažinsite:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="63"/>
+        <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="68"/>
         <source>Allocate drive space by dragging the divider below:</source>
         <translation>Paskirstykite diską, traukdami paskirstytoją apačioje:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="161"/>
+        <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="167"/>
         <source>With this operation, the partition &lt;b&gt;%1&lt;/b&gt; which contains %4 will be shrunk to %2MB and a new %3MB partition will be created for %5.</source>
         <translation>Po šios operacijos, skirsnis &lt;b&gt;%1&lt;/b&gt; kuriame yra %4 bus sumažintas iki %2MB ir naujas %3MB skirsnis bus sukurtas sistemai %5.</translation>
     </message>
@@ -189,7 +189,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>Calamares::InstallationViewStep</name>
     <message>
-        <location filename="../src/libcalamaresui/InstallationViewStep.cpp" line="47"/>
+        <location filename="../src/libcalamaresui/InstallationViewStep.cpp" line="75"/>
         <source>Install</source>
         <translation>Diegti</translation>
     </message>
@@ -319,16 +319,34 @@ Išvestis:
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="57"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="255"/>
+        <source>&amp;Cancel</source>
+        <translation>A&amp;tšaukti</translation>
+    </message>
+    <message>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="76"/>
+        <source>Cancel installation?</source>
+        <translation>Atšaukti diegimą?</translation>
+    </message>
+    <message>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="77"/>
+        <source>Do you really want to cancel the current install process?
+The installer will quit and all changes will be lost.</source>
+        <translation>Ar tikrai norite atšaukti dabartinio diegimo procesą?
+Diegėjas užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
+    </message>
+    <message>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="227"/>
         <source>&amp;Quit</source>
         <translation>&amp;Išeiti</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="137"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="155"/>
         <source>Error</source>
         <translation>Klaida</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="138"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="156"/>
         <source>Installation Failed</source>
         <translation>Diegimas nepavyko</translation>
     </message>
@@ -336,22 +354,22 @@ Išvestis:
 <context>
     <name>CalamaresPython::Helper</name>
     <message>
-        <location filename="../src/libcalamares/PythonHelper.cpp" line="228"/>
+        <location filename="../src/libcalamares/PythonHelper.cpp" line="234"/>
         <source>Unknown exception type</source>
         <translation>Nežinomas išimties tipas</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonHelper.cpp" line="241"/>
+        <location filename="../src/libcalamares/PythonHelper.cpp" line="247"/>
         <source>unparseable Python error</source>
         <translation>Nepalyginama Python klaida</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonHelper.cpp" line="257"/>
+        <location filename="../src/libcalamares/PythonHelper.cpp" line="263"/>
         <source>unparseable Python traceback</source>
         <translation>Nepalyginamas Python atsekimas</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonHelper.cpp" line="261"/>
+        <location filename="../src/libcalamares/PythonHelper.cpp" line="267"/>
         <source>Unfetchable Python error.</source>
         <translation>Neatgaunama Python klaida.</translation>
     </message>
@@ -380,60 +398,86 @@ Išvestis:
 <context>
     <name>ChoicePage</name>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="105"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="115"/>
         <source>This computer currently does not seem to have an operating system on it. What would you like to do?</source>
         <translation>Šis kompiuteris šiuo metu neturi operacinės sistemos. Ką norėtumėte daryti?</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="108"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="118"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="175"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="217"/>
         <source>&lt;b&gt;Erase disk and install %1&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;This will delete all of your programs, documents, photos, music, and any other files.</source>
         <translation>&lt;b&gt;Ištrinti diską ir diegti %1&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Perspėjimas: &lt;/font&gt;Tai ištrins visas jūsų programas, dokumentus, nuotraukas, muziką ir visus kitus failus.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="122"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="135"/>
         <source>This computer currently has %1 on it. What would you like to do?</source>
         <translation>Šiuo metu šis kompiuteris turi %1 . Ką norėtumėte daryti?</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="126"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="139"/>
         <source>&lt;b&gt;Install %2 alongside %1&lt;/b&gt;&lt;br/&gt;Documents, music and other personal files will be kept. You can choose which operating system you want each time the computer starts up.</source>
         <translation>&lt;b&gt;Diegti %2 šalia %1&lt;/b&gt;&lt;br/&gt;Dokumentai, muzika bei kiti asmeniniai failai bus išsaugoti. Kaskart ijungę kompiuterį galėsite pasirinkti, kurią operacinę sistemą naudoti.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="134"/>
-        <source>&lt;b&gt;Replace %1 with %2&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;This will erase the whole disk and delete all of your %1 programs, documents, photos, music, and any other files.</source>
-        <translation>&lt;b&gt;Pakeisti %1 su%2&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Perspėjimas: &lt;/font&gt;Tai ištrins visą jūsų diską ir pašalins visas jūsų %1 programas, dokumentus, nuotraukas, muziką ir visus kitus failus.</translation>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="147"/>
+        <source>&lt;b&gt;Erase entire disk with %1 and install %2&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;This will erase the whole disk and delete all of your %1 programs, documents, photos, music, and any other files.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="144"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="155"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="181"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="223"/>
+        <source>&lt;b&gt;Install %1 on an existing partition&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;This will delete all files on the selected partition.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="165"/>
         <source>This computer already has an operating system on it. What would you like to do?</source>
         <translation>Šis kompiuteris jau turi operacinę sistemą. Ką norėtumėte daryti?</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="147"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="168"/>
         <source>&lt;b&gt;Install %1 alongside your current operating system&lt;/b&gt;&lt;br/&gt;Documents, music and other personal files will be kept. You can choose which operating system you want each time the computer starts up.</source>
         <translation>&lt;b&gt;Diegti %1 šalia esamos operacinės sistemos&lt;/b&gt;&lt;br/&gt; Dokumentai, muzika bei kiti asmeniniai failai bus išsaugoti. Kaskart ijungę kompiuterį galėsite pasirinkti, kurią operacinę sistemą naudoti.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="154"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="188"/>
-        <source>&lt;b&gt;Erase disk and install %1&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;This will delete all of your Windows 7 programs, documents, photos, music, and any other files.</source>
-        <translation>&lt;b&gt;Ištrinti diską ir diegti %1&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Ispėjimas: &lt;/font&gt; Tai ištrins visas jūsų Windows 7 programas, dokumentus, nuotraukas, muziką ir visus kitus failus.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="178"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="207"/>
         <source>This computer currently has multiple operating systems on it. What would you like to do?</source>
         <translation>Šis kompiuteris šiuo metu turi kelias operacines sistemas. Ką norėtumėte daryti?</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="181"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="210"/>
         <source>&lt;b&gt;Install %1 alongside your current operating systems&lt;/b&gt;&lt;br/&gt;Documents, music and other personal files will be kept. You can choose which operating system you want each time the computer starts up.</source>
         <translation>&lt;b&gt;Diegti %1 šalia esamos operacinės sistemos &lt;/b&gt;&lt;br/&gt;Dokumentai, muzika bei kiti asmeniniai failai bus išsaugoti. Kaskart įjungę kompiuterį galėsite pasirinkti, kurią operacinę sistemą naudoti. </translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="203"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="240"/>
         <source>&lt;b&gt;Something else&lt;/b&gt;&lt;br/&gt;You can create or resize partitions yourself, or choose multiple partitions for %1.</source>
         <translation>&lt;b&gt;Kita&lt;/b&gt;&lt;br/&gt;Galite patys kurti bei koreguoti skirsnius arba pasirinkti keletą skirsnių sistemai %1.</translation>
+    </message>
+</context>
+<context>
+    <name>ClearMountsJob</name>
+    <message>
+        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="40"/>
+        <source>Clear mounts for partitioning operations on %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="62"/>
+        <source>Cannot umount partition %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="64"/>
+        <source>Cannot proceed with partitioning operations because some partitions are still mounted.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="70"/>
+        <source>Cleared all mounts for %1</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1272,17 +1316,17 @@ Išvestis:
 <context>
     <name>EraseDiskPage</name>
     <message>
-        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="47"/>
+        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="50"/>
         <source>Select drive:</source>
         <translation>Pasirinkite diską:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="202"/>
+        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="204"/>
         <source>Before:</source>
         <translation>Prieš:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="207"/>
+        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="209"/>
         <source>After:</source>
         <translation>Po:</translation>
     </message>
@@ -1417,9 +1461,29 @@ Kai kurios failų sistemos tam, kad būtų palaikomos, reikalauja, kad būtų į
 <context>
     <name>GreetingPage</name>
     <message>
-        <location filename="../src/modules/greeting/GreetingPage.cpp" line="33"/>
+        <location filename="../src/modules/greeting/GreetingPage.cpp" line="117"/>
         <source>&lt;h1&gt;Welcome to the %1 installer.&lt;/h1&gt;&lt;br/&gt;This program will ask you some questions and set up %2 on your computer.</source>
         <translation>&lt;h1&gt;Sveiki atvykę į %1 diegėją.&lt;/h1&gt;&lt;br/&gt;Ši programa užduos jums kelis klausimus ir padės jūsų kompiuteryje nustatyti %2.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/greeting/GreetingPage.cpp" line="134"/>
+        <source>About %1 installer</source>
+        <translation>Apie %1 diegėją</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/greeting/GreetingPage.cpp" line="136"/>
+        <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;b&gt;%2&lt;br/&gt;for %3&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Thanks to: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Philip Müller, Pier Luigi Fiorini and Rohan Garg.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;https://calamares.github.io/&quot;&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - technologies for a better world.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/greeting/GreetingPage.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/greeting/GreetingPage.ui" line="102"/>
+        <source>&amp;About</source>
+        <translation>&amp;Apie</translation>
     </message>
 </context>
 <context>
@@ -1433,12 +1497,12 @@ Kai kurios failų sistemos tam, kad būtų palaikomos, reikalauja, kad būtų į
 <context>
     <name>KeyboardPage</name>
     <message>
-        <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="181"/>
+        <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="200"/>
         <source>Set keyboard model to %1.&lt;br/&gt;</source>
         <translation>Nustatyti klaviatūros modelį kaip %1.&lt;br/&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="183"/>
+        <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="202"/>
         <source>Set keyboard layout to %1/%2.</source>
         <translation>Nustatyti klaviatūros išdėstymą kaip %1/%2.</translation>
     </message>
@@ -1446,25 +1510,49 @@ Kai kurios failų sistemos tam, kad būtų palaikomos, reikalauja, kad būtų į
 <context>
     <name>KeyboardViewStep</name>
     <message>
-        <location filename="../src/modules/keyboard/KeyboardViewStep.cpp" line="45"/>
+        <location filename="../src/modules/keyboard/KeyboardViewStep.cpp" line="48"/>
         <source>Keyboard</source>
         <translation>Klaviatūra</translation>
     </message>
 </context>
 <context>
+    <name>LCLocaleDialog</name>
+    <message>
+        <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="33"/>
+        <source>System locale setting</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="40"/>
+        <source>The system locale setting affects the language and character set for some command line user interface elements.&lt;br/&gt;The current setting is &lt;b&gt;%1&lt;/b&gt;.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>LocalePage</name>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="46"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="157"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="168"/>
+        <source>The system locale is set to %1.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="165"/>
         <source>Region:</source>
         <translation>Regionas:</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="56"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="166"/>
         <source>Zone:</source>
         <translation>Zona:</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="176"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="171"/>
+        <source>&amp;Change...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="265"/>
         <source>Set timezone to %1/%2.&lt;br/&gt;</source>
         <translation>Nustatyti laiko juostą kaip %1/%2.&lt;br/&gt;</translation>
     </message>
@@ -1472,12 +1560,12 @@ Kai kurios failų sistemos tam, kad būtų palaikomos, reikalauja, kad būtų į
 <context>
     <name>LocaleViewStep</name>
     <message>
-        <location filename="../src/modules/locale/LocaleViewStep.cpp" line="42"/>
+        <location filename="../src/modules/locale/LocaleViewStep.cpp" line="45"/>
         <source>Loading location data...</source>
         <translation>Įkeliami vietos duomenys...</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocaleViewStep.cpp" line="74"/>
+        <location filename="../src/modules/locale/LocaleViewStep.cpp" line="79"/>
         <source>Location</source>
         <translation>Vieta</translation>
     </message>
@@ -1891,7 +1979,7 @@ Kai kurios failų sistemos tam, kad būtų palaikomos, reikalauja, kad būtų į
         <translation>&amp;Diegti įkrovos valdiklį skirsnyje: </translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="125"/>
+        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="129"/>
         <source>Are you sure you want to create a new partition table on %1?</source>
         <translation>Ar tikrai %1 norite sukurti naują skirsnio lentelę?</translation>
     </message>
@@ -1899,22 +1987,22 @@ Kai kurios failų sistemos tam, kad būtų palaikomos, reikalauja, kad būtų į
 <context>
     <name>PartitionViewStep</name>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="60"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="66"/>
         <source>Gathering system information...</source>
         <translation>Renkama sistemos informacija...</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="149"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="160"/>
         <source>Partitions</source>
         <translation>Skirsniai</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="177"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="188"/>
         <source>Before:</source>
         <translation>Prieš:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="182"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="193"/>
         <source>After:</source>
         <translation>Po:</translation>
     </message>
@@ -1922,19 +2010,19 @@ Kai kurios failų sistemos tam, kad būtų palaikomos, reikalauja, kad būtų į
 <context>
     <name>PreparePage</name>
     <message>
-        <location filename="../src/modules/prepare/PreparePage.cpp" line="36"/>
+        <location filename="../src/modules/prepare/PreparePage.cpp" line="39"/>
         <source>For best results, please ensure that this computer:</source>
         <translation>Norint pasiekti geriausių rezultatų, įsitikinkite kad šis kompiuteris:</translation>
     </message>
     <message>
-        <location filename="../src/modules/prepare/PreparePage.cpp" line="91"/>
+        <location filename="../src/modules/prepare/PreparePage.cpp" line="96"/>
         <source>This computer does not satisfy the minimum requirements for installing %1.
 Installation cannot continue.</source>
         <translation>Šis kompiuteris netenkina minimalių %1 diegimo reikalavimų.
 Diegimas negali būti tęsiamas.</translation>
     </message>
     <message>
-        <location filename="../src/modules/prepare/PreparePage.cpp" line="102"/>
+        <location filename="../src/modules/prepare/PreparePage.cpp" line="109"/>
         <source>This computer does not satisfy some of the recommended requirements for installing %1.
 Installation can continue, but some features might be disabled.</source>
         <translation>Šis kompiuteris netenkina kai kurių %1 diegimo rekomenduojamų reikalavimų.
@@ -1944,32 +2032,32 @@ Diegimas gali būti tęsiamas, bet kai kurios funkcijos gali būti išjungtos.</
 <context>
     <name>PrepareViewStep</name>
     <message>
-        <location filename="../src/modules/prepare/PrepareViewStep.cpp" line="50"/>
+        <location filename="../src/modules/prepare/PrepareViewStep.cpp" line="54"/>
         <source>Gathering system information...</source>
         <translation>Renkama sistemos informacija...</translation>
     </message>
     <message>
-        <location filename="../src/modules/prepare/PrepareViewStep.cpp" line="88"/>
+        <location filename="../src/modules/prepare/PrepareViewStep.cpp" line="91"/>
         <source>has at least %1 GB available drive space</source>
         <translation>turi bent %1 GB laisvos disko vietos</translation>
     </message>
     <message>
-        <location filename="../src/modules/prepare/PrepareViewStep.cpp" line="96"/>
+        <location filename="../src/modules/prepare/PrepareViewStep.cpp" line="99"/>
         <source>has at least %1 GB working memory</source>
         <translation>turi bent %1 GB darbinės atminties</translation>
     </message>
     <message>
-        <location filename="../src/modules/prepare/PrepareViewStep.cpp" line="104"/>
+        <location filename="../src/modules/prepare/PrepareViewStep.cpp" line="107"/>
         <source>is plugged in to a power source</source>
         <translation>yra įjungtas į energijos šaltinį</translation>
     </message>
     <message>
-        <location filename="../src/modules/prepare/PrepareViewStep.cpp" line="111"/>
+        <location filename="../src/modules/prepare/PrepareViewStep.cpp" line="114"/>
         <source>is connected to the Internet</source>
         <translation>yra prijungtas prie Interneto</translation>
     </message>
     <message>
-        <location filename="../src/modules/prepare/PrepareViewStep.cpp" line="152"/>
+        <location filename="../src/modules/prepare/PrepareViewStep.cpp" line="158"/>
         <source>Prepare</source>
         <translation>Paruošti</translation>
     </message>
@@ -2120,6 +2208,69 @@ Diegimas gali būti tęsiamas, bet kai kurios funkcijos gali būti išjungtos.</
     </message>
 </context>
 <context>
+    <name>ReplacePage</name>
+    <message>
+        <location filename="../src/modules/partition/gui/ReplacePage.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ReplacePage.ui" line="22"/>
+        <source>&amp;Disk:</source>
+        <translation>&amp;Diskas:</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="109"/>
+        <source>Select where to install %1.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;this will delete all files on the selected partition.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="136"/>
+        <source>The selected item does not appear to be a valid partition.</source>
+        <translation>Pasirinktas elementas neatrodo kaip teisingas skirsnis.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="144"/>
+        <source>%1 cannot be installed on empty space. Please select an existing partition.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="155"/>
+        <source>%1 cannot be installed on an extended partition. Please select an existing primary or logical partition.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="166"/>
+        <source>%1 cannot be installed on this partition.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="173"/>
+        <source>Data partition (%1)</source>
+        <translation>Duomenų skirsnis (%1)</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="190"/>
+        <source>Unknown system partition (%1)</source>
+        <translation>Nežinomas sistemos skirsnis (%1)</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="195"/>
+        <source>%1 system partition (%2)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="206"/>
+        <source>&lt;b&gt;%4&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;The partition %1 is too small for %2. Please select a partition with capacity at least %3 GiB.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="220"/>
+        <source>&lt;b&gt;%3&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;%1 will be installed on %2.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;all data on partition%2 will be lost.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>ResizeFileSystemJob</name>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="75"/>
@@ -2171,8 +2322,33 @@ Diegimas gali būti tęsiamas, bet kai kurios funkcijos gali būti išjungtos.</
     </message>
     <message>
         <location filename="../src/modules/users/SetHostNameJob.cpp" line="60"/>
+        <location filename="../src/modules/users/SetHostNameJob.cpp" line="71"/>
         <source>Cannot write hostname to target system</source>
         <translation>Nepavyko įrašyti kompiuterio vardo į paskirties sistemą</translation>
+    </message>
+</context>
+<context>
+    <name>SetKeyboardLayoutJob</name>
+    <message>
+        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="57"/>
+        <source>Set keyboard model to %1, layout to %2-%3</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="277"/>
+        <source>Failed to write keyboard configuration for the virtual console.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="278"/>
+        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="282"/>
+        <source>Failed to write to %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="281"/>
+        <source>Failed to write keyboard configuration for X11.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2476,28 +2652,28 @@ Diegimas gali būti tęsiamas, bet kai kurios funkcijos gali būti išjungtos.</
 <context>
     <name>UsersPage</name>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="226"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="236"/>
         <source>Your username contains an invalid character &apos;%1&apos;</source>
         <translation>Jūsų prisijungimo vardas turi neleistinų simbolių &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="230"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="240"/>
         <source>Your username contains invalid characters!</source>
         <translation>Jūsų prisijungimo vardas turi neleistinų simbolių!</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="277"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="287"/>
         <source>Your hostname contains an invalid character &apos;%1&apos;</source>
         <translation>Jūsų kompiuterio varde yra neleistinų simbolių &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="281"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="291"/>
         <source>Your hostname contains invalid characters!</source>
         <translation>Jūsų kompiuterio varde yra neleistinų simbolių!</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="312"/>
-        <location filename="../src/modules/users/UsersPage.cpp" line="345"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="322"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="355"/>
         <source>Your passwords do not match!</source>
         <translation>Jūsų slaptažodžiai nesutampa!</translation>
     </message>
