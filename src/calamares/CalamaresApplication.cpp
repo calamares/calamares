@@ -335,6 +335,8 @@ CalamaresApplication::initPlugins()
 
             ProgressTreeModel* m = new ProgressTreeModel( this );
             ProgressTreeView::instance()->setModel( m );
+
+            Calamares::ViewManager::instance()->setUpInstallationStep();
         }
         else if ( phase == Calamares::Install )
         {
@@ -350,6 +352,10 @@ CalamaresApplication::initPlugins()
                      vm, &Calamares::ViewManager::onInstallationFailed );
 
             queue->start();
+        }
+        else if ( phase == Calamares::PostInstall )
+        {
+            Calamares::ViewManager::instance()->next();
         }
     });
 }

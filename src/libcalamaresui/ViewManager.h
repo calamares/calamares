@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -46,10 +46,14 @@ public:
 
     void addViewStep( ViewStep* step );
 
+    void setUpInstallationStep();
+
     QList< ViewStep* > prepareSteps() const;
     ViewStep* installationStep() const;
     ViewStep* currentStep() const;
+    ViewStep* finishedStep() const;
     int currentStepIndex() const;
+
 
 public slots:
     void next();
@@ -69,6 +73,7 @@ private:
     QList< ViewStep* > m_steps;
     QList< ViewStep* > m_prepareSteps;
     InstallationViewStep* m_installationViewStep;
+    ViewStep* m_finishedStep;
     int m_currentStep;
 
     QWidget* m_widget;
@@ -76,6 +81,8 @@ private:
     QPushButton* m_back;
     QPushButton* m_next;
     QPushButton* m_quit;
+
+    Calamares::Phase m_phase;
 };
 
 }

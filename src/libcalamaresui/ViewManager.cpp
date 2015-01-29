@@ -43,6 +43,9 @@ ViewManager::ViewManager( QObject* parent )
     : QObject( parent )
     , m_widget( new QWidget() )
     , m_currentStep( 0 )
+    , m_installationViewStep( 0 )
+    , m_phase( Prepare )
+    , m_finishedStep( 0 )
 {
     s_instance = this;
     QBoxLayout* mainLayout = new QVBoxLayout;
@@ -87,7 +90,6 @@ ViewManager::ViewManager( QObject* parent )
     m_back->setEnabled( false );
 
     m_installationViewStep = new InstallationViewStep( this );
-    insertViewStep( 0, m_installationViewStep );
 }
 
 
@@ -107,12 +109,31 @@ ViewManager::centralWidget()
 void
 ViewManager::addViewStep( ViewStep* step )
 {
-    m_prepareSteps.append( step );
+    insertViewStep( m_steps.size(), step );
 
-    insertViewStep( m_steps.size() - 1, step );
-    // If this is the first inserted view step, update status of "Next" button
-    if ( m_prepareSteps.count() == 1 )
-        m_next->setEnabled( step->isNextEnabled() );
+    if ( m_phase == Prepare )
+    {
+        m_prepareSteps.append( step );
+        // If this is the first inserted view step, update status of "Next" button
+        if ( m_prepareSteps.count() == 1 )
+            m_next->setEnabled( step->isNextEnabled() );
+    }
+    else if ( m_phase == PostInstall )
+    {
+        //FIXME: allow multiple postinstall pages
+        if ( !m_finishedStep )
+            m_finishedStep = step;
+    }
+}
+
+
+void
+ViewManager::setUpInstallationStep()
+{
+    if ( m_installationViewStep && !m_steps.contains( m_installationViewStep ) )
+    {
+        insertViewStep( m_steps.count(), m_installationViewStep );
+    }
 }
 
 
@@ -189,6 +210,13 @@ ViewManager::currentStep() const
 }
 
 
+ViewStep*
+ViewManager::finishedStep() const
+{
+    return m_finishedStep;
+}
+
+
 int
 ViewManager::currentStepIndex() const
 {
@@ -212,6 +240,16 @@ ViewManager::next()
         if ( installing )
         {
             emit phaseChangeRequested( Calamares::Install );
+            m_phase = Install;
+            m_back->setEnabled( false );
+            m_next->setEnabled( false );
+            connect( Calamares::JobQueue::instance(), &Calamares::JobQueue::finished,
+                     this, [this]
+            {
+                emit phaseChangeRequested( Calamares::PostInstall );
+                m_phase = PostInstall;
+                m_next->setEnabled( true );
+            } );
         }
     }
     else
@@ -220,7 +258,7 @@ ViewManager::next()
     }
 
     m_next->setEnabled( !installing && m_steps.at( m_currentStep )->isNextEnabled() );
-    m_back->setEnabled( !installing );
+    m_back->setEnabled( !installing && m_steps.at( m_currentStep )->isBackEnabled() );
 
     if ( m_currentStep == m_steps.count() -1 &&
          m_steps.last()->isAtEnd() )
@@ -247,6 +285,8 @@ ViewManager::back()
     else return;
 
     m_next->setEnabled( m_steps.at( m_currentStep )->isNextEnabled() );
+    m_back->setEnabled( m_steps.at( m_currentStep )->isBackEnabled() );
+
     if ( m_currentStep == 0 && m_steps.first()->isAtBeginning() )
         m_back->setEnabled( false );
 
