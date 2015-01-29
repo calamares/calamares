@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -141,8 +141,17 @@ ProgressTreeModel::setupModelData()
         prepare->appendChild( new ViewStepItem( step, prepare ) );
     }
 
-    m_rootItem->appendChild( new ViewStepItem( vm->installationStep(), m_rootItem ) );
-    m_rootItem->appendChild( new TextTreeItem( tr( "Finish" ), m_rootItem ) );
+    m_rootItem->appendChild( new ViewStepItem( tr( "Install" ),
+        [vm]() -> const Calamares::ViewStep*
+        {
+            return vm->installationStep();
+        }, m_rootItem ) );
+
+    m_rootItem->appendChild( new ViewStepItem( tr( "Finish" ),
+        [vm]() -> const Calamares::ViewStep*
+        {
+            return vm->finishedStep();
+        }, m_rootItem ) );
 }
 
 
