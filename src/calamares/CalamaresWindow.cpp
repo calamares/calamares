@@ -41,10 +41,10 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
                     .arg( Calamares::Branding::instance()->
                           string( Calamares::Branding::ProductName ) ) );
 
-    setMinimumSize( 1010, 560 );
+    setMinimumSize( 1010, 520 );
     QSize availableSize = qApp->desktop()->screenGeometry( this ).size();
     int w = qBound( 1010, CalamaresUtils::defaultFontHeight() * 60, availableSize.width() );
-    int h = qBound( 560,  CalamaresUtils::defaultFontHeight() * 36, availableSize.height() );
+    int h = qBound( 520,  CalamaresUtils::defaultFontHeight() * 36, availableSize.height() );
 
     cDebug() << "Proposed window size:" << w << h;
     resize( w, h );
