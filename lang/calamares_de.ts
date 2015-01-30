@@ -1545,12 +1545,12 @@ Einige Dateisysteme erfordern die Installation externer Programme, um unterstüt
     <message>
         <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="33"/>
         <source>System locale setting</source>
-        <translation>System-Ländereinstellung</translation>
+        <translation>Regions- und Spracheinstellungen</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="40"/>
         <source>The system locale setting affects the language and character set for some command line user interface elements.&lt;br/&gt;The current setting is &lt;b&gt;%1&lt;/b&gt;.</source>
-        <translation>Die System-Lokale-Einstellung beeinflusst die Sprache sowie den Zeichensatz für verschiedene Kommandozeilen-Benutzeroberflächen. &lt;br/&gt;Die aktuelle Einstellung ist &lt;b&gt;%1&lt;/b&gt;.</translation>
+        <translation>Die Regions- und Spracheinstellungen beeinflussen die Sprache sowie den Zeichensatz für verschiedene Kommandozeilen-Benutzeroberflächen. &lt;br/&gt;Die aktuelle Einstellung ist &lt;b&gt;%1&lt;/b&gt;.</translation>
     </message>
 </context>
 <context>
