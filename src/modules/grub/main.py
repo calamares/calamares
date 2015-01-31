@@ -35,7 +35,7 @@ def install_grub(boot_loader, fw_type):
             efi_bootloader_id = distribution.translate(file_name_sanitizer)
         check_chroot_call([libcalamares.job.configuration["grubInstall"], "--target=x86_64-efi", "--efi-directory={!s}".format(efi_directory), "--bootloader-id={!s}".format(efi_bootloader_id)])
         # Workaround for some UEFI firmwares
-        chroot_call(["mkdir", "-p", "{!s}/EFI/boot".format(efi_directory)])])
+        chroot_call(["mkdir", "-p", "{!s}/EFI/boot".format(efi_directory)])
         chroot_call(["cp", "{!s}/EFI/{!s}/grubx64.efi".format(efi_directory,efi_bootloader_id), "{!s}/EFI/boot/bootx64.efi".format(efi_directory)])
     else:
         install_path = boot_loader["installPath"]
