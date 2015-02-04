@@ -90,7 +90,7 @@ FinishedPage::setUpRestart()
         {
             if ( ui->restartCheckBox->isVisible() &&
                  ui->restartCheckBox->isChecked() )
-                QProcess::execute( "/bin/sh", { m_restartNowCommand } );
+                QProcess::execute( "/bin/sh", { "-c", m_restartNowCommand } );
         } );
     }
 }
