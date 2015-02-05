@@ -132,6 +132,10 @@ add_subdirectory( src )
 
 macro_display_feature_log()
 
+if ( NOT WITH_PYTHON )
+    message( "-- WARNING: Building Calamares without Python support. Python modules will not work.\n" )
+endif()
+
 # Add all targets to the build-tree export set
 set( CMAKE_INSTALL_CMAKEDIR "${CMAKE_INSTALL_LIBDIR}/cmake/Calamares" CACHE PATH  "Installation directory for CMake files" )
 set( CMAKE_INSTALL_FULL_CMAKEDIR "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_CMAKEDIR}" )
