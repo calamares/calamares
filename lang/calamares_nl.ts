@@ -1337,8 +1337,8 @@ Het installatieprogramma zal afsluiten en alle wijzigingen zullen verloren gaan.
         <location filename="../src/modules/partition/partitionmanager/src/gui/filesystemsupportdialogwidgetbase.ui" line="17"/>
         <source>This table shows which file systems are supported and which specific operations can be performed on them.
 Some file systems need external tools to be installed for them to be supported. But not all operations can be performed on all file systems, even if all required tools are installed. Please see the documentation for details. </source>
-        <translation>Deze tabel toont welke bestandssystemen ondersteund worden en welke specifieke acties op de bestandssystemen uitgevoerd kunnen worden.
-Sommige bestandssystemen vereisen dat externe programma&apos;s geïnstalleerd worden om ondersteund te worden.  Niet alle acties kunnen worden uitgevoerd op alle bestandsystemen, zelfs niet als alle hulpprogramma&apos;s geïnstalleerd zijn.  Raadpleeg de documentatie voor details.</translation>
+        <translation>Deze tabel toont de ondersteunde bestandssystemen en de specifieke acties die hierop kunnen uitgevoerd worden.
+Sommige bestandssystemen vereisen externe programma&apos;s om ondersteund te worden.  Niet alle acties kunnen worden uitgevoerd op alle bestandsystemen, zelfs niet als alle hulpprogramma&apos;s geïnstalleerd zijn.  Raadpleeg de documentatie voor details.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/filesystemsupportdialogwidgetbase.ui" line="65"/>
@@ -1499,7 +1499,7 @@ Sommige bestandssystemen vereisen dat externe programma&apos;s geïnstalleerd wo
     <message>
         <location filename="../src/modules/greeting/GreetingPage.cpp" line="136"/>
         <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;b&gt;%2&lt;br/&gt;for %3&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Thanks to: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Philip Müller, Pier Luigi Fiorini and Rohan Garg.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;https://calamares.github.io/&quot;&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - technologies for a better world.</source>
-        <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;b&gt;%2&lt;br/&gt;voor %3&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Met dank aan: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Philip Müller, Pier Luigi Fiorini and Rohan Garg.&lt;br/&gt;&lt;br/&gt;de ontwikkeling van &lt;a href=&quot;https://calamares.github.io/&quot;&gt;Calamares&lt;/a&gt; is gesponsord door &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - technologies for a better world.</translation>
+        <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;b&gt;%2&lt;br/&gt;voor %3&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Met dank aan: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Philip Müller, Pier Luigi Fiorini and Rohan Garg.&lt;br/&gt;&lt;br/&gt;De ontwikkeling van &lt;a href=&quot;https://calamares.github.io/&quot;&gt;Calamares&lt;/a&gt; is gesponsord door &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - technologies for a better world.</translation>
     </message>
     <message>
         <location filename="../src/modules/greeting/GreetingPage.ui" line="14"/>
@@ -2038,7 +2038,7 @@ Sommige bestandssystemen vereisen dat externe programma&apos;s geïnstalleerd wo
     <message>
         <location filename="../src/modules/prepare/PreparePage.cpp" line="39"/>
         <source>For best results, please ensure that this computer:</source>
-        <translation>Voor het beste resultaat, zorgt u er a.u.b. voor dat deze computer:</translation>
+        <translation>Voor het beste resultaat, gelieve ervoor te zorgen dat deze computer:</translation>
     </message>
     <message>
         <location filename="../src/modules/prepare/PreparePage.cpp" line="96"/>
@@ -2253,7 +2253,7 @@ De installatie kan doorgaan, maar sommige functies werken mogelijk niet.</transl
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="109"/>
         <source>Select where to install %1.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;this will delete all files on the selected partition.</source>
-        <translation>Selecteer waar %1 te installeren.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Opgelet: &lt;/font&gt;dit zal alle bestanden op de geselecteerde partitie verwijderen.</translation>
+        <translation>Selecteer waar %1 te installeren.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Opgelet: &lt;/font&gt;dit zal alle bestanden op deze partitie verwijderen.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="136"/>
@@ -2278,17 +2278,17 @@ De installatie kan doorgaan, maar sommige functies werken mogelijk niet.</transl
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="173"/>
         <source>Data partition (%1)</source>
-        <translation>Data partitie (%1)</translation>
+        <translation>Gegevenspartitie (%1)</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="190"/>
         <source>Unknown system partition (%1)</source>
-        <translation>Onbekende systeem partitie (%1)</translation>
+        <translation>Onbekende systeempartitie (%1)</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="195"/>
         <source>%1 system partition (%2)</source>
-        <translation>%1 systeem partitie (%2)</translation>
+        <translation>%1 systeempartitie (%2)</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="206"/>
@@ -2298,8 +2298,7 @@ De installatie kan doorgaan, maar sommige functies werken mogelijk niet.</transl
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="220"/>
         <source>&lt;b&gt;%3&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;%1 will be installed on %2.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;all data on partition%2 will be lost.</source>
-        <translation>
-&lt;b&gt;%3&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;%1 zal geïnstalleerd worden op %2.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Opgelet: &lt;/font&gt;alle gegevens op partitie %2 zullen verloren gaan.</translation>
+        <translation>&lt;b&gt;%3&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;%1 zal geïnstalleerd worden op %2.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Opgelet: &lt;/font&gt;alle gegevens op partitie %2 zullen verloren gaan.</translation>
     </message>
 </context>
 <context>
@@ -2364,12 +2363,12 @@ De installatie kan doorgaan, maar sommige functies werken mogelijk niet.</transl
     <message>
         <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="57"/>
         <source>Set keyboard model to %1, layout to %2-%3</source>
-        <translation>Zet het toetsenbord model naar %1, de lay-out naar %2-%3</translation>
+        <translation>Instellen van het toetsenbordmodel %1 en -indeling %2-%3</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="277"/>
         <source>Failed to write keyboard configuration for the virtual console.</source>
-        <translation>Het wegschrijven van de toetsenbordconfiguratie voor de virtuele console is mislukt.</translation>
+        <translation>Kon de toetsenbordconfiguratie voor de virtuele console niet opslaan.</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="278"/>

@@ -321,18 +321,18 @@ Saída:
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="60"/>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="295"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished"/>
+        <translation>&amp; Cancelar</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="79"/>
         <source>Cancel installation?</source>
-        <translation type="unfinished"/>
+        <translation>Cancelar a instalação?</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="80"/>
         <source>Do you really want to cancel the current install process?
 The installer will quit and all changes will be lost.</source>
-        <translation type="unfinished"/>
+        <translation>Tem a certeza que pretende cancelar o processo de instalação? A instalação será cancelada e todas as alterações serão apagadas.</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="265"/>
@@ -421,14 +421,14 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="147"/>
         <source>&lt;b&gt;Erase entire disk with %1 and install %2&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;This will erase the whole disk and delete all of your %1 programs, documents, photos, music, and any other files.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Apagar o disco todo %1 e instalar %2&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Aviso: &lt;/font&gt;Esta operação irá apagar o disco e também todos os seus %1 programas, documentos, fotografias, música, e quaisquer outros ficheiros.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="155"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="181"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="223"/>
         <source>&lt;b&gt;Install %1 on an existing partition&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;This will delete all files on the selected partition.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Instalar %1 numa partição existente&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Aviso: &lt;/font&gt;Esta operação irá apagar todos os ficheiros existentes na partição selecionada.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="165"/>
@@ -466,7 +466,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="62"/>
         <source>Cannot umount partition %1</source>
-        <translation type="unfinished"/>
+        <translation>Não é possível desmontar a partição %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="64"/>

@@ -40,7 +40,7 @@
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/applyprogressdialogwidgetbase.ui" line="38"/>
         <source>Time Elapsed</source>
-        <translation>Kulunut aika</translation>
+        <translation>Kulunut Aika</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/applyprogressdialogwidgetbase.ui" line="64"/>

@@ -321,18 +321,19 @@ Rezultat:
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="60"/>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="295"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Anulează</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="79"/>
         <source>Cancel installation?</source>
-        <translation type="unfinished"/>
+        <translation>Anulez instalarea?</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="80"/>
         <source>Do you really want to cancel the current install process?
 The installer will quit and all changes will be lost.</source>
-        <translation type="unfinished"/>
+        <translation>Doriți să anulați procesul curent de instalare?
+Instalatorul va ieși, iar toate modificările vor fi pierdute.</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="265"/>
@@ -1429,12 +1430,12 @@ Anumite sisteme de fișiere au nevoie de unelte externe instalate pentru suport.
     <message>
         <location filename="../src/modules/finished/FinishedPage.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>Formular</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedPage.ui" line="77"/>
         <source>&amp;Restart now</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Repornește acum</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedPage.cpp" line="50"/>
@@ -1447,7 +1448,7 @@ Anumite sisteme de fișiere au nevoie de unelte externe instalate pentru suport.
     <message>
         <location filename="../src/modules/finished/FinishedViewStep.cpp" line="43"/>
         <source>All done</source>
-        <translation type="unfinished"/>
+        <translation>Terminat</translation>
     </message>
 </context>
 <context>
@@ -1493,7 +1494,7 @@ Anumite sisteme de fișiere au nevoie de unelte externe instalate pentru suport.
     <message>
         <location filename="../src/modules/greeting/GreetingPage.cpp" line="134"/>
         <source>About %1 installer</source>
-        <translation type="unfinished"/>
+        <translation>Despre instalatorul %1</translation>
     </message>
     <message>
         <location filename="../src/modules/greeting/GreetingPage.cpp" line="136"/>
@@ -1503,12 +1504,12 @@ Anumite sisteme de fișiere au nevoie de unelte externe instalate pentru suport.
     <message>
         <location filename="../src/modules/greeting/GreetingPage.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>Formular</translation>
     </message>
     <message>
         <location filename="../src/modules/greeting/GreetingPage.ui" line="102"/>
         <source>&amp;About</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Despre</translation>
     </message>
 </context>
 <context>
@@ -1545,7 +1546,7 @@ Anumite sisteme de fișiere au nevoie de unelte externe instalate pentru suport.
     <message>
         <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="33"/>
         <source>System locale setting</source>
-        <translation type="unfinished"/>
+        <translation>Setările de localizare</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="40"/>

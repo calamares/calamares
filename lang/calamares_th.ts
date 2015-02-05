@@ -4,17 +4,17 @@
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="67"/>
         <source>Choose partition to shrink:</source>
-        <translation type="unfinished"/>
+        <translation>เลือกพาร์ทิชันที่ต้องการตัดย่อ:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="68"/>
         <source>Allocate drive space by dragging the divider below:</source>
-        <translation type="unfinished"/>
+        <translation>แบ่งพื้นที่ไดรฟ์โดยการเลื่อนตัวแบ่งพื้นที่ที่ด้านล่าง:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="167"/>
         <source>With this operation, the partition &lt;b&gt;%1&lt;/b&gt; which contains %4 will be shrunk to %2MB and a new %3MB partition will be created for %5.</source>
-        <translation type="unfinished"/>
+        <translation>ด้วยการปฏิบัติการนี้ พาร์ทิชัน &lt;b&gt;%1&lt;/b&gt; ซึ่งมี %4 จะถูกย่อเหลือ %2MB และพาร์ทิชันใหม่ขนาด %3MB จะถูกสร้างขึ้นสำหรับ %5</translation>
     </message>
 </context>
 <context>
@@ -22,12 +22,12 @@
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/applyprogressdetailswidgetbase.ui" line="37"/>
         <source>Save</source>
-        <translation type="unfinished"/>
+        <translation>บันทึก</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/applyprogressdetailswidgetbase.ui" line="44"/>
         <source>Open in External Browser</source>
-        <translation type="unfinished"/>
+        <translation>เปิดในบราวเซอร์ภายนอก</translation>
     </message>
 </context>
 <context>
@@ -35,32 +35,32 @@
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/applyprogressdialogwidgetbase.ui" line="33"/>
         <source>Operations and Jobs</source>
-        <translation type="unfinished"/>
+        <translation>การปฏิบัติการและงาน</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/applyprogressdialogwidgetbase.ui" line="38"/>
         <source>Time Elapsed</source>
-        <translation type="unfinished"/>
+        <translation>เวลาผ่านไป</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/applyprogressdialogwidgetbase.ui" line="64"/>
         <source>Total Time: 00:00:00</source>
-        <translation type="unfinished"/>
+        <translation>เวลาทั้งหมด: 00:00:00</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/applyprogressdialogwidgetbase.ui" line="81"/>
         <source>Operation: %p%</source>
-        <translation type="unfinished"/>
+        <translation>การปฏิบัติการ: %p%</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/applyprogressdialogwidgetbase.ui" line="91"/>
         <source>Status</source>
-        <translation type="unfinished"/>
+        <translation>สถานะ</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/applyprogressdialogwidgetbase.ui" line="107"/>
         <source>Total: %p%</source>
-        <translation type="unfinished"/>
+        <translation>ทั้งหมด: %p%</translation>
     </message>
 </context>
 <context>
@@ -68,7 +68,7 @@
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="20"/>
         <source>Installer</source>
-        <translation type="unfinished"/>
+        <translation>ตัวติดตั้ง</translation>
     </message>
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="168"/>
@@ -77,17 +77,21 @@
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600; color:#343434;&quot;&gt;Welcome&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600; color:#343434;&quot;&gt;ยินดีต้อนรับ&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="198"/>
         <source>Location</source>
-        <translation type="unfinished"/>
+        <translation>ตำแหน่ง</translation>
     </message>
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="224"/>
         <source>License Approval</source>
-        <translation type="unfinished"/>
+        <translation>การยอมรับใบอนุญาต</translation>
     </message>
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="257"/>
@@ -96,12 +100,16 @@ p, li { white-space: pre-wrap; }
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600; color:#343434;&quot;&gt;Installation&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600; color:#343434;&quot;&gt;การติดตั้ง&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="287"/>
         <source>Install System</source>
-        <translation type="unfinished"/>
+        <translation>ติดตั้งระบบ</translation>
     </message>
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="320"/>
@@ -110,37 +118,41 @@ p, li { white-space: pre-wrap; }
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600; color:#343434;&quot;&gt;Configuration&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600; color:#343434;&quot;&gt;การตั้งค่า&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="331"/>
         <source>Reboot</source>
-        <translation type="unfinished"/>
+        <translation>ปิดเปิดเครื่องใหม่</translation>
     </message>
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="410"/>
         <source>Language</source>
-        <translation type="unfinished"/>
+        <translation>ภาษา</translation>
     </message>
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="443"/>
         <source>User Info</source>
-        <translation type="unfinished"/>
+        <translation>ข้อมูลผู้ใช้</translation>
     </message>
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="469"/>
         <source>Summary</source>
-        <translation type="unfinished"/>
+        <translation>สาระสำคัญ</translation>
     </message>
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="514"/>
         <source>Keyboard</source>
-        <translation type="unfinished"/>
+        <translation>แป้นพิมพ์</translation>
     </message>
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="521"/>
         <source>Disk Setup</source>
-        <translation type="unfinished"/>
+        <translation>การติดตั้งดิสก์</translation>
     </message>
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="528"/>
@@ -149,7 +161,11 @@ p, li { white-space: pre-wrap; }
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600; color:#343434;&quot;&gt;Preparation&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600; color:#343434;&quot;&gt;การเตรียมตัว&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
@@ -157,17 +173,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="57"/>
         <source>Master Boot Record of %1</source>
-        <translation type="unfinished"/>
+        <translation>Master Boot Record ของ %1</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="71"/>
         <source>Boot Partition</source>
-        <translation type="unfinished"/>
+        <translation>พาร์ทิชัน Boot</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="76"/>
         <source>System Partition</source>
-        <translation type="unfinished"/>
+        <translation>พาร์ทิชันระบบ</translation>
     </message>
 </context>
 <context>
@@ -175,7 +191,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/libcalamaresui/InstallationViewStep.cpp" line="75"/>
         <source>Install</source>
-        <translation type="unfinished"/>
+        <translation>ติดตั้ง</translation>
     </message>
 </context>
 <context>
@@ -183,7 +199,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/libcalamares/JobQueue.cpp" line="88"/>
         <source>Done</source>
-        <translation type="unfinished"/>
+        <translation>เสร็จสิ้น</translation>
     </message>
 </context>
 <context>
@@ -191,63 +207,69 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="51"/>
         <source>Run command %1</source>
-        <translation type="unfinished"/>
+        <translation>ทำคำสั่ง %1</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="77"/>
         <source>External command crashed</source>
-        <translation type="unfinished"/>
+        <translation>คำสั่งภายนอกล้มเหลว</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="78"/>
         <source>Command %1 crashed.
 Output:
 %2</source>
-        <translation type="unfinished"/>
+        <translation>คำสั่ง %1 ล้มเหลว
+ผลลัพธ์:
+%2</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="83"/>
         <source>External command failed to start</source>
-        <translation type="unfinished"/>
+        <translation>การเริ่มต้นคำสั่งภายนอกล้มเหลว</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="84"/>
         <source>Command %1 failed to start.</source>
-        <translation type="unfinished"/>
+        <translation>การเริ่มต้นคำสั่ง %1 ล้มเหลว</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="88"/>
         <source>Internal error when starting command</source>
-        <translation type="unfinished"/>
+        <translation>เกิดข้อผิดพลาดภายในขณะเริ่มต้นคำสั่ง</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="89"/>
         <source>Bad parameters for process job call.</source>
-        <translation type="unfinished"/>
+        <translation>พารามิเตอร์ไม่ถูกต้องสำหรับการเรียกการทำงาน</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="92"/>
         <source>External command failed to finish</source>
-        <translation type="unfinished"/>
+        <translation>การจบคำสั่งภายนอกล้มเหลว</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="93"/>
         <source>Command %1 failed to finish in %2s.
 Output:
 %3</source>
-        <translation type="unfinished"/>
+        <translation>คำสั่ง %1  ล้มเหลวที่จะจบใน %2 วินาที
+ผลลัพธ์:
+%3</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="99"/>
         <source>External command finished with errors</source>
-        <translation type="unfinished"/>
+        <translation>คำสั่งภายนอกจบพร้อมกับข้อผิดพลาด</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="100"/>
         <source>Command %1 finished with exit code %2.
 Output:
 %3</source>
-        <translation type="unfinished"/>
+        <translation>คำสั่ง %1 จบพร้อมกับรหัสสิ้นสุดการทำงาน %2.
+ผลลัพธ์:
+%3</translation>
     </message>
 </context>
 <context>
@@ -255,32 +277,32 @@ Output:
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="234"/>
         <source>Run script %1</source>
-        <translation type="unfinished"/>
+        <translation>ทำสคริปต์ %1</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="249"/>
         <source>Bad working directory path</source>
-        <translation type="unfinished"/>
+        <translation>เส้นทางไดเรคทอรีที่ใช้ทำงานไม่ถูกต้อง</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="250"/>
         <source>Working directory %1 for python job %2 is not readable.</source>
-        <translation type="unfinished"/>
+        <translation>ไม่สามารถอ่านไดเรคทอรีที่ใช้ทำงาน %1 สำหรับ python %2 ได้</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="260"/>
         <source>Bad main script file</source>
-        <translation type="unfinished"/>
+        <translation>ไฟล์สคริปต์หลักไม่ถูกต้อง</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="261"/>
         <source>Main script file %1 for python job %2 is not readable.</source>
-        <translation type="unfinished"/>
+        <translation>ไม่สามารถอ่านไฟล์สคริปต์หลัก %1 สำหรับ python %2 ได้</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="305"/>
         <source>Boost.Python error in job &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Boost.Python ผิดพลาดที่งาน &quot;%1&quot;.</translation>
     </message>
 </context>
 <context>
@@ -288,44 +310,45 @@ Output:
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="58"/>
         <source>&amp;Back</source>
-        <translation type="unfinished"/>
+        <translation>&amp;ย้อนกลับ</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="59"/>
         <source>&amp;Next</source>
-        <translation type="unfinished"/>
+        <translation>&amp;ถัดไป</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="60"/>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="295"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished"/>
+        <translation>&amp;ยกเลิก</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="79"/>
         <source>Cancel installation?</source>
-        <translation type="unfinished"/>
+        <translation>ยกเลิกการติดตั้ง?</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="80"/>
         <source>Do you really want to cancel the current install process?
 The installer will quit and all changes will be lost.</source>
-        <translation type="unfinished"/>
+        <translation>คุณต้องการยกเลิกกระบวนการติดตั้งที่กำลังดำเนินการอยู่หรือไม่?
+ตัวติดตั้งจะสิ้นสุดการทำงานและไม่บันทึกการเปลี่ยนแปลงที่ได้ดำเนินการก่อนหน้านี้</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="265"/>
         <source>&amp;Quit</source>
-        <translation type="unfinished"/>
+        <translation>&amp;ออก</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="176"/>
         <source>Error</source>
-        <translation type="unfinished"/>
+        <translation>ข้อผิดพลาด</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="177"/>
         <source>Installation Failed</source>
-        <translation type="unfinished"/>
+        <translation>การติดตั้งล้มเหลว</translation>
     </message>
 </context>
 <context>
@@ -333,22 +356,22 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/libcalamares/PythonHelper.cpp" line="234"/>
         <source>Unknown exception type</source>
-        <translation type="unfinished"/>
+        <translation>ข้อผิดพลาดไม่ทราบประเภท</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonHelper.cpp" line="247"/>
         <source>unparseable Python error</source>
-        <translation type="unfinished"/>
+        <translation>ข้อผิดพลาด unparseable Python</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonHelper.cpp" line="263"/>
         <source>unparseable Python traceback</source>
-        <translation type="unfinished"/>
+        <translation>ประวัติย้อนหลัง unparseable Python</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonHelper.cpp" line="267"/>
         <source>Unfetchable Python error.</source>
-        <translation type="unfinished"/>
+        <translation>ข้อผิดพลาด Unfetchable Python</translation>
     </message>
 </context>
 <context>
@@ -356,7 +379,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/calamares/CalamaresWindow.cpp" line="40"/>
         <source>%1 Installer</source>
-        <translation type="unfinished"/>
+        <translation>ตัวติดตั้ง %1</translation>
     </message>
 </context>
 <context>
@@ -364,7 +387,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/CheckFileSystemJob.cpp" line="34"/>
         <source>Checking file system on partition %1.</source>
-        <translation type="unfinished"/>
+        <translation>กำลังตรวจสอบไฟล์ระบบบนพาร์ทิชัน %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CheckFileSystemJob.cpp" line="50"/>
