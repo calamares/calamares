@@ -34,6 +34,7 @@
 
 // Qt
 #include <QScopedPointer>
+#include <QProcess>
 
 CreatePartitionTableJob::CreatePartitionTableJob( Device* device, PartitionTable::TableType type )
     : m_device( device )
@@ -66,6 +67,20 @@ CreatePartitionTableJob::exec()
     QScopedPointer< PartitionTable > table( createTable() );
     cDebug() << "Creating new partition table of type" << table->typeName()
              << ", uncommitted yet:\n" << table;
+
+    QProcess lsblk;
+    lsblk.setProgram( "lsblk" );
+    lsblk.setProcessChannelMode( QProcess::MergedChannels );
+    lsblk.start();
+    lsblk.waitForFinished();
+    cDebug() << "lsblk:\n" << lsblk.readAllStandardOutput();
+
+    QProcess mount;
+    mount.setProgram( "mount" );
+    mount.setProcessChannelMode( QProcess::MergedChannels );
+    mount.start();
+    mount.waitForFinished();
+    cDebug() << "mount:\n" << mount.readAllStandardOutput();
 
     bool ok = backendDevice->createPartitionTable( report, *table );
     if ( !ok )
