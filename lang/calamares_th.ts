@@ -4,7 +4,7 @@
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="67"/>
         <source>Choose partition to shrink:</source>
-        <translation>เลือกพาร์ทิชันที่ต้องการตัดย่อ:</translation>
+        <translation>เลือกพาร์ทิชันที่ต้องการย่อขนาด:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="68"/>
@@ -392,7 +392,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/CheckFileSystemJob.cpp" line="50"/>
         <source>The file system check on partition %1 failed.</source>
-        <translation type="unfinished"/>
+        <translation>การตรวจสอบไฟล์ระบบบนพาร์ทิชัน %1 ล้มเหลว</translation>
     </message>
 </context>
 <context>
@@ -400,61 +400,61 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="115"/>
         <source>This computer currently does not seem to have an operating system on it. What would you like to do?</source>
-        <translation type="unfinished"/>
+        <translation>คอมพิวเตอร์เครื่องนี้ไม่มีระบบปฏิบัติการติดตั้งอยู่ คุณต้องการจะทำอะไรต่อ?</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="118"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="175"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="217"/>
         <source>&lt;b&gt;Erase disk and install %1&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;This will delete all of your programs, documents, photos, music, and any other files.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;ลบดิสก์และติดตั้ง %1&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;คำเตือน: &lt;/font&gt;ตัวเลือกนี้จะลบโปรแกรม เอกสาร รูปภาพ เพลง และไฟล์อื่นๆ ทั้งหมดบนดิสก์</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="135"/>
         <source>This computer currently has %1 on it. What would you like to do?</source>
-        <translation type="unfinished"/>
+        <translation>คอมพิวเตอร์นี้มีการติดตั้ง %1 อยู่แล้ว คุณต้องการจะทำอะไรต่อ?</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="139"/>
         <source>&lt;b&gt;Install %2 alongside %1&lt;/b&gt;&lt;br/&gt;Documents, music and other personal files will be kept. You can choose which operating system you want each time the computer starts up.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;ติดตั้ง %2 ควบคู่กับ %1&lt;/b&gt;&lt;br/&gt;เอกสาร เพลง และไฟล์ส่วนตัวอื่นๆ จะถูกเก็บไว้ คุณสามารถเลือกใช้ระบบปฏิบัติการใดก็ได้ในแต่ละครั้งที่ทำการเริ่มการใช้งานคอมพิวเตอร์</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="147"/>
         <source>&lt;b&gt;Erase entire disk with %1 and install %2&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;This will erase the whole disk and delete all of your %1 programs, documents, photos, music, and any other files.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;ลบดิสก์ทั้งหมดพร้อมกับ %1 และติดตั้ง %2&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;คำเตือน: &lt;/font&gt;ตัวเลือกนี้จะลบดิสก์ทั้งหมด และลบโปรแกรม %1 เอกสาร รูปภาพ เพลง และไฟล์อื่นๆ ทั้งหมดบนดิสก์</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="155"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="181"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="223"/>
         <source>&lt;b&gt;Install %1 on an existing partition&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;This will delete all files on the selected partition.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;ติดตั้ง %1 บนพาร์ทิชันที่มีอยู่เดิม&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;คำเตือน: &lt;/font&gt;ตัวเลือกนี้จะทำการลบไฟล์ทั้งหมดบนพาร์ทิชันที่เลือก</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="165"/>
         <source>This computer already has an operating system on it. What would you like to do?</source>
-        <translation type="unfinished"/>
+        <translation>คอมพิวเตอร์เครื่องนี้มีระบบปฏิบัติติดตั้งอยู่แล้ว คุณต้องการจะทำอะไรต่อไป?</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="168"/>
         <source>&lt;b&gt;Install %1 alongside your current operating system&lt;/b&gt;&lt;br/&gt;Documents, music and other personal files will be kept. You can choose which operating system you want each time the computer starts up.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;ติดตั้ง %1 ควบคู่กับระบบปฏิบัติการปัจจุบันของคุณ&lt;/b&gt;&lt;br/&gt;เอกสาร เพลง และไฟล์ส่วนตัวอื่นๆ จะถูกเก็บไว้ คุณสามารถเลือกใช้ระบบปฏิบัติการใดก็ได้ในแต่ละครั้งที่ทำการเริ่มการใช้งานคอมพิวเตอร์</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="207"/>
         <source>This computer currently has multiple operating systems on it. What would you like to do?</source>
-        <translation type="unfinished"/>
+        <translation>คอมพิวเตอร์เครื่องนี้มีระบบปฏิบัติการหลายระบบติดตั้งอยู่แล้ว คุณต้องการจะทำอะไรต่อไป?</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="210"/>
         <source>&lt;b&gt;Install %1 alongside your current operating systems&lt;/b&gt;&lt;br/&gt;Documents, music and other personal files will be kept. You can choose which operating system you want each time the computer starts up.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;ติดตั้ง %1 ควบคู่กับระบบปฏิบัติการปัจจุบันของคุณ&lt;/b&gt;&lt;br/&gt;เอกสาร เพลง และไฟล์ส่วนตัวอื่นๆ จะถูกเก็บไว้ คุณสามารถเลือกใช้ระบบปฏิบัติการใดก็ได้ในแต่ละครั้งที่ทำการเริ่มการใช้งานคอมพิวเตอร์</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="240"/>
         <source>&lt;b&gt;Something else&lt;/b&gt;&lt;br/&gt;You can create or resize partitions yourself, or choose multiple partitions for %1.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;ทางเลือกอื่น&lt;/b&gt;&lt;br/&gt;คุณสามารถสร้างหรือเปลี่ยนขนาดพาร์ทิชันด้วยตัวของคุณเอง หรือเลือกหลายพาร์ทิชันสำหรับ %1.</translation>
     </message>
 </context>
 <context>
@@ -462,22 +462,22 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="40"/>
         <source>Clear mounts for partitioning operations on %1</source>
-        <translation type="unfinished"/>
+        <translation>ล้างจุดเชื่อมต่อสำหรับการแบ่งพาร์ทิชันบน %1</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="62"/>
         <source>Cannot umount partition %1</source>
-        <translation type="unfinished"/>
+        <translation>ไม่สามารถยกเลิกจุดเชื่อมต่อพาร์ทิชัน %1</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="64"/>
         <source>Cannot proceed with partitioning operations because some partitions are still mounted.</source>
-        <translation type="unfinished"/>
+        <translation>ไม่สามารถดำเนินการแบ่งพาร์ทิชันต่อได้ เนื่องจากบางพาร์ทิชันยังถูกเชื่อมต่ออยู่</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="70"/>
         <source>Cleared all mounts for %1</source>
-        <translation type="unfinished"/>
+        <translation>ล้างจุดเชื่อมต่อทั้งหมดแล้วสำหรับ %1</translation>
     </message>
 </context>
 <context>
@@ -485,67 +485,67 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="23"/>
         <source>Permissions</source>
-        <translation type="unfinished"/>
+        <translation>สิทธิ</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="35"/>
         <source>Allow applying operations without administrator privileges</source>
-        <translation type="unfinished"/>
+        <translation>ยินยอมการปฏิบัติการโดยไม่ต้องมีสิทธิของผู้ดูแลระบบ</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="51"/>
         <source>Backend</source>
-        <translation type="unfinished"/>
+        <translation>โปรแกรมส่วนหลัง</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="57"/>
         <source>Active backend:</source>
-        <translation type="unfinished"/>
+        <translation>โปรแกรมส่วนหลังที่กำลังทำงานอยู่:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="79"/>
         <source>Units</source>
-        <translation type="unfinished"/>
+        <translation>หน่วย</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="85"/>
         <source>Preferred unit:</source>
-        <translation type="unfinished"/>
+        <translation>หน่วยที่ต้องการ:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="96"/>
         <source>Byte</source>
-        <translation type="unfinished"/>
+        <translation>Byte ไบต์</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="101"/>
         <source>KiB</source>
-        <translation type="unfinished"/>
+        <translation>KiB กิบิไบต์</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="106"/>
         <source>MiB</source>
-        <translation type="unfinished"/>
+        <translation>MiB เมบิไบต์</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="111"/>
         <source>GiB</source>
-        <translation type="unfinished"/>
+        <translation>GiB จิบิไบต์</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="116"/>
         <source>TiB</source>
-        <translation type="unfinished"/>
+        <translation>TiB เทบิไบต์</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="121"/>
         <source>PiB</source>
-        <translation type="unfinished"/>
+        <translation>PiB เพบิไบต์</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="126"/>
         <source>EiB</source>
-        <translation type="unfinished"/>
+        <translation>EiB เอ็กซ์บิไบต์</translation>
     </message>
 </context>
 <context>
@@ -921,17 +921,17 @@ The installer will quit and all changes will be lost.</source>
 <context>
     <name>CreatePartitionTableJob</name>
     <message>
-        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="47"/>
+        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="48"/>
         <source>Create partition table</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="54"/>
+        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="55"/>
         <source>The installer failed to create a partition table on %1.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="62"/>
+        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="63"/>
         <source>Could not open device %1.</source>
         <translation type="unfinished"/>
     </message>

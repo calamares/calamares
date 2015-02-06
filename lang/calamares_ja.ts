@@ -921,17 +921,17 @@ The installer will quit and all changes will be lost.</source>
 <context>
     <name>CreatePartitionTableJob</name>
     <message>
-        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="47"/>
+        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="48"/>
         <source>Create partition table</source>
         <translation>パーティションテーブルの生成</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="54"/>
+        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="55"/>
         <source>The installer failed to create a partition table on %1.</source>
         <translation>インストーラーは%1 上でのパーティションテーブルの作成に失敗しました。</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="62"/>
+        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="63"/>
         <source>Could not open device %1.</source>
         <translation>デバイス %1 を開けませんでした。</translation>
     </message>

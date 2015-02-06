@@ -321,18 +321,19 @@ Udskrift:
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="60"/>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="295"/>
         <source>&amp;Cancel</source>
-        <translation>&amp;Annuller</translation>
+        <translation>&amp;Annullér</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="79"/>
         <source>Cancel installation?</source>
-        <translation>Annuller installationen?</translation>
+        <translation>Annullér installationen?</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="80"/>
         <source>Do you really want to cancel the current install process?
 The installer will quit and all changes will be lost.</source>
-        <translation type="unfinished"/>
+        <translation>Vil du virkelig annullere den igangværende installationsprocess?
+Installationsprogrammet vil stoppe og alle ændringer vil gå tabt.</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="265"/>
@@ -421,14 +422,14 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="147"/>
         <source>&lt;b&gt;Erase entire disk with %1 and install %2&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;This will erase the whole disk and delete all of your %1 programs, documents, photos, music, and any other files.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Slet hele harddisken med %1 og installér %2&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Advarsel: &lt;/font&gt;Dette vil slette hele harddisken og derved alle dine %1 programmer, dokumenter, billeder, musik, og enhver anden fil.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="155"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="181"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="223"/>
         <source>&lt;b&gt;Install %1 on an existing partition&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;This will delete all files on the selected partition.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Installér %1 på en eksisterende partition&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Advarsel: &lt;/font&gt;Dette vil slette alle filer på den valgte partition.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="165"/>
@@ -461,22 +462,22 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="40"/>
         <source>Clear mounts for partitioning operations on %1</source>
-        <translation type="unfinished"/>
+        <translation>Frigør monteringer til partitionering på %1</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="62"/>
         <source>Cannot umount partition %1</source>
-        <translation type="unfinished"/>
+        <translation>Kan ikke afmontere partition %1</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="64"/>
         <source>Cannot proceed with partitioning operations because some partitions are still mounted.</source>
-        <translation type="unfinished"/>
+        <translation>Kan ikke forsætte med at partitionere fordi nogle partitioner stadig er monterede.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="70"/>
         <source>Cleared all mounts for %1</source>
-        <translation type="unfinished"/>
+        <translation>Frigjorde alle monteringer til %1</translation>
     </message>
 </context>
 <context>
@@ -920,17 +921,17 @@ The installer will quit and all changes will be lost.</source>
 <context>
     <name>CreatePartitionTableJob</name>
     <message>
-        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="47"/>
+        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="48"/>
         <source>Create partition table</source>
         <translation>Opret partitionstabel</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="54"/>
+        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="55"/>
         <source>The installer failed to create a partition table on %1.</source>
         <translation>Installationsprogrammet fejlede i at oprette en partitionstabel på %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="62"/>
+        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="63"/>
         <source>Could not open device %1.</source>
         <translation>Kunne ikke åbne enhed %1.</translation>
     </message>
@@ -1429,17 +1430,17 @@ Nogle filsystemer kræver at eksterne værktøjer skal installeres for at være 
     <message>
         <location filename="../src/modules/finished/FinishedPage.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>Form</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedPage.ui" line="77"/>
         <source>&amp;Restart now</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Genstart nu</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedPage.cpp" line="50"/>
         <source>&lt;h1&gt;All done.&lt;/h1&gt;&lt;br/&gt;%1 has been installed on your computer.&lt;br/&gt;You may now restart into your new system, or continue using the %2 Live environment.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;h1&gt;Færdig.&lt;/h1&gt;&lt;br/&gt;%1 er blevet installeret på din computer.&lt;br/&gt;Du kan nu genstarte ind i dit nye system, eller fortsætte med at bruge %2 Live miljøet.</translation>
     </message>
 </context>
 <context>
@@ -1447,7 +1448,7 @@ Nogle filsystemer kræver at eksterne værktøjer skal installeres for at være 
     <message>
         <location filename="../src/modules/finished/FinishedViewStep.cpp" line="43"/>
         <source>All done</source>
-        <translation type="unfinished"/>
+        <translation>Færdig</translation>
     </message>
 </context>
 <context>
@@ -1493,22 +1494,22 @@ Nogle filsystemer kræver at eksterne værktøjer skal installeres for at være 
     <message>
         <location filename="../src/modules/greeting/GreetingPage.cpp" line="134"/>
         <source>About %1 installer</source>
-        <translation type="unfinished"/>
+        <translation>Om %1 installationsprogrammet</translation>
     </message>
     <message>
         <location filename="../src/modules/greeting/GreetingPage.cpp" line="136"/>
         <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;b&gt;%2&lt;br/&gt;for %3&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Thanks to: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Philip Müller, Pier Luigi Fiorini and Rohan Garg.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;https://calamares.github.io/&quot;&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - technologies for a better world.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;b&gt;%2&lt;br/&gt;for %3&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Tak til: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Phillip Müller, Pier Luigi Fiorini og Rohan Garg.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;https://calamares.github.io/&quot;&gt;Calamares&lt;/a&gt; udvikling sponsoreret a &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - Teknologier til en bedre verden.</translation>
     </message>
     <message>
         <location filename="../src/modules/greeting/GreetingPage.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>Form</translation>
     </message>
     <message>
         <location filename="../src/modules/greeting/GreetingPage.ui" line="102"/>
         <source>&amp;About</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Om</translation>
     </message>
 </context>
 <context>
@@ -1545,12 +1546,12 @@ Nogle filsystemer kræver at eksterne værktøjer skal installeres for at være 
     <message>
         <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="33"/>
         <source>System locale setting</source>
-        <translation type="unfinished"/>
+        <translation>System område indstilling</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="40"/>
         <source>The system locale setting affects the language and character set for some command line user interface elements.&lt;br/&gt;The current setting is &lt;b&gt;%1&lt;/b&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>System område indstillingen påvirker sprog og karakter sæt for nogle kommando prompt brugerflade elementer.&gt;br/&gt;Den nuværende indstilling er&lt;b&gt;%1&lt;/b&gt;.</translation>
     </message>
 </context>
 <context>
@@ -1559,7 +1560,7 @@ Nogle filsystemer kræver at eksterne værktøjer skal installeres for at være 
         <location filename="../src/modules/locale/LocalePage.cpp" line="157"/>
         <location filename="../src/modules/locale/LocalePage.cpp" line="168"/>
         <source>The system locale is set to %1.</source>
-        <translation type="unfinished"/>
+        <translation>System område indstillingen er sat til %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/LocalePage.cpp" line="165"/>
@@ -1574,7 +1575,7 @@ Nogle filsystemer kræver at eksterne værktøjer skal installeres for at være 
     <message>
         <location filename="../src/modules/locale/LocalePage.cpp" line="171"/>
         <source>&amp;Change...</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Ændre...</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/LocalePage.cpp" line="265"/>
@@ -2097,7 +2098,7 @@ Installation kan fortsætte, men nogle features kan være deaktiveret.</translat
     <message>
         <location filename="../src/calamares/progresstree/ProgressTreeModel.cpp" line="144"/>
         <source>Install</source>
-        <translation type="unfinished"/>
+        <translation>Installér</translation>
     </message>
     <message>
         <location filename="../src/calamares/progresstree/ProgressTreeModel.cpp" line="150"/>
@@ -2242,62 +2243,62 @@ Installation kan fortsætte, men nogle features kan være deaktiveret.</translat
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>Form</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.ui" line="22"/>
         <source>&amp;Disk:</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Disk:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="109"/>
         <source>Select where to install %1.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;this will delete all files on the selected partition.</source>
-        <translation type="unfinished"/>
+        <translation>Vælg hvor %1 skal installeres.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Advarsel: &lt;/font&gt;dette vil slette alle filerne på den valgte partition.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="136"/>
         <source>The selected item does not appear to be a valid partition.</source>
-        <translation type="unfinished"/>
+        <translation>Det valgte emne ser ikke ud til at være en gyldig partition.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="144"/>
         <source>%1 cannot be installed on empty space. Please select an existing partition.</source>
-        <translation type="unfinished"/>
+        <translation>%1 kan ikke installeres på tomt plads. Vælg venligst en eksisterende partition.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="155"/>
         <source>%1 cannot be installed on an extended partition. Please select an existing primary or logical partition.</source>
-        <translation type="unfinished"/>
+        <translation>%1 kan ikke installeres på en udvidet partition. Vælg venligst en eksisterende primær eller logisk partition.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="166"/>
         <source>%1 cannot be installed on this partition.</source>
-        <translation type="unfinished"/>
+        <translation>%1 kan ikke installeres på denne partition.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="173"/>
         <source>Data partition (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Data partition (%1)</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="190"/>
         <source>Unknown system partition (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Ukendt system partition (%1)</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="195"/>
         <source>%1 system partition (%2)</source>
-        <translation type="unfinished"/>
+        <translation>%1 system partition (%2)</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="206"/>
         <source>&lt;b&gt;%4&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;The partition %1 is too small for %2. Please select a partition with capacity at least %3 GiB.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%4&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;Partition %1 er for lille til %2. Vælg venligst en partition med minimum %3 GB plads.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="220"/>
         <source>&lt;b&gt;%3&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;%1 will be installed on %2.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;all data on partition%2 will be lost.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%3&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;%1 vil blive installeret på %2.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Advarsel: &lt;/font&gt;Al data på partition %2 vil gå tabt.</translation>
     </message>
 </context>
 <context>
@@ -2362,23 +2363,23 @@ Installation kan fortsætte, men nogle features kan være deaktiveret.</translat
     <message>
         <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="57"/>
         <source>Set keyboard model to %1, layout to %2-%3</source>
-        <translation type="unfinished"/>
+        <translation>Indstil tastatur model til %1, layout til %2-%3</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="277"/>
         <source>Failed to write keyboard configuration for the virtual console.</source>
-        <translation type="unfinished"/>
+        <translation>Fejl ved at skrive tastatur konfiguration for den virtuelle konsol.</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="278"/>
         <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="282"/>
         <source>Failed to write to %1</source>
-        <translation type="unfinished"/>
+        <translation>Fejlede at skrive til %1</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="281"/>
         <source>Failed to write keyboard configuration for X11.</source>
-        <translation type="unfinished"/>
+        <translation>Fejlede at skrive tastatur konfiguration til X11.</translation>
     </message>
 </context>
 <context>

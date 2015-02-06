@@ -920,17 +920,17 @@ The installer will quit and all changes will be lost.</source>
 <context>
     <name>CreatePartitionTableJob</name>
     <message>
-        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="47"/>
+        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="48"/>
         <source>Create partition table</source>
         <translation>Vytvořit tabulku oddílů</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="54"/>
+        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="55"/>
         <source>The installer failed to create a partition table on %1.</source>
         <translation>Instalátor selhal při vytváření tabulky oddílů na %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="62"/>
+        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="63"/>
         <source>Could not open device %1.</source>
         <translation>Nelze otevřít zařízení %1.</translation>
     </message>

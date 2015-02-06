@@ -921,17 +921,17 @@ Instalator zostanie zamknięty i wszystkie zmiany zostaną utracone.</translatio
 <context>
     <name>CreatePartitionTableJob</name>
     <message>
-        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="47"/>
+        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="48"/>
         <source>Create partition table</source>
         <translation>Utwórz tablicę partycji</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="54"/>
+        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="55"/>
         <source>The installer failed to create a partition table on %1.</source>
         <translation>Instalator nie mógł utworzyć tablicy partycji na %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="62"/>
+        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="63"/>
         <source>Could not open device %1.</source>
         <translation>Nie udało się otworzyć urządzenia %1.</translation>
     </message>

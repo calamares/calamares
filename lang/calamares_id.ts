@@ -321,12 +321,12 @@ Keluaran:
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="60"/>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="295"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished"/>
+        <translation>Batal</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="79"/>
         <source>Cancel installation?</source>
-        <translation type="unfinished"/>
+        <translation>Batalkan instalasi:</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="80"/>
@@ -920,17 +920,17 @@ The installer will quit and all changes will be lost.</source>
 <context>
     <name>CreatePartitionTableJob</name>
     <message>
-        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="47"/>
+        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="48"/>
         <source>Create partition table</source>
         <translation>Buat tabel partisi</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="54"/>
+        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="55"/>
         <source>The installer failed to create a partition table on %1.</source>
         <translation>Penginstal gagal membuat tabel partisi pada %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="62"/>
+        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="63"/>
         <source>Could not open device %1.</source>
         <translation>Tidak dapat membuka piranti %1.</translation>
     </message>
