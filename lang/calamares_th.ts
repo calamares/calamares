@@ -127,7 +127,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="331"/>
         <source>Reboot</source>
-        <translation>ปิดเปิดเครื่องใหม่</translation>
+        <translation>เริ่มทำงานใหม่</translation>
     </message>
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="410"/>
@@ -310,18 +310,18 @@ Output:
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="58"/>
         <source>&amp;Back</source>
-        <translation>&amp;ย้อนกลับ</translation>
+        <translation>&amp;B ย้อนกลับ</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="59"/>
         <source>&amp;Next</source>
-        <translation>&amp;ถัดไป</translation>
+        <translation>&amp;N ถัดไป</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="60"/>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="295"/>
         <source>&amp;Cancel</source>
-        <translation>&amp;ยกเลิก</translation>
+        <translation>&amp;C ยกเลิก</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="79"/>
@@ -338,7 +338,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="265"/>
         <source>&amp;Quit</source>
-        <translation>&amp;ออก</translation>
+        <translation>&amp;Q ออก</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="176"/>
@@ -387,12 +387,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/CheckFileSystemJob.cpp" line="34"/>
         <source>Checking file system on partition %1.</source>
-        <translation>กำลังตรวจสอบไฟล์ระบบบนพาร์ทิชัน %1.</translation>
+        <translation>กำลังตรวจสอบระบบไฟล์บนพาร์ทิชัน %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CheckFileSystemJob.cpp" line="50"/>
         <source>The file system check on partition %1 failed.</source>
-        <translation>การตรวจสอบไฟล์ระบบบนพาร์ทิชัน %1 ล้มเหลว</translation>
+        <translation>การตรวจสอบระบบไฟล์บนพาร์ทิชัน %1 ล้มเหลว</translation>
     </message>
 </context>
 <context>
@@ -553,132 +553,132 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="23"/>
         <source>File Systems</source>
-        <translation type="unfinished"/>
+        <translation>ระบบไฟล์</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="29"/>
         <source>luks:</source>
-        <translation type="unfinished"/>
+        <translation>luks:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="45"/>
         <source>ntfs:</source>
-        <translation type="unfinished"/>
+        <translation>ntfs:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="58"/>
         <source>ext2:</source>
-        <translation type="unfinished"/>
+        <translation>ext2:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="87"/>
         <source>ext3:</source>
-        <translation type="unfinished"/>
+        <translation>ext3:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="116"/>
         <source>ext4:</source>
-        <translation type="unfinished"/>
+        <translation>ext4:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="132"/>
         <source>btrfs:</source>
-        <translation type="unfinished"/>
+        <translation>btrfs:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="174"/>
         <source>linuxswap:</source>
-        <translation type="unfinished"/>
+        <translation>linuxswap:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="190"/>
         <source>fat16:</source>
-        <translation type="unfinished"/>
+        <translation>fat16:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="219"/>
         <source>fat32:</source>
-        <translation type="unfinished"/>
+        <translation>fat32:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="248"/>
         <source>zfs:</source>
-        <translation type="unfinished"/>
+        <translation>zfs:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="264"/>
         <source>reiserfs:</source>
-        <translation type="unfinished"/>
+        <translation>reiserfs:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="293"/>
         <source>reiser4:</source>
-        <translation type="unfinished"/>
+        <translation>reiser4:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="322"/>
         <source>hpfs:</source>
-        <translation type="unfinished"/>
+        <translation>hpfs:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="338"/>
         <source>jfs</source>
-        <translation type="unfinished"/>
+        <translation>jfs</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="367"/>
         <source>hfs:</source>
-        <translation type="unfinished"/>
+        <translation>hfs:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="396"/>
         <source>hfsplus:</source>
-        <translation type="unfinished"/>
+        <translation>hfsplus:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="412"/>
         <source>ufs:</source>
-        <translation type="unfinished"/>
+        <translation>ufs:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="441"/>
         <source>xfs:</source>
-        <translation type="unfinished"/>
+        <translation>xfs:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="470"/>
         <source>ocfs2:</source>
-        <translation type="unfinished"/>
+        <translation>ocfs2:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="489"/>
         <source>extended:</source>
-        <translation type="unfinished"/>
+        <translation>extended:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="518"/>
         <source>unformatted:</source>
-        <translation type="unfinished"/>
+        <translation>unformatted:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="547"/>
         <source>unknown:</source>
-        <translation type="unfinished"/>
+        <translation>unknown:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="570"/>
         <source>exfat:</source>
-        <translation type="unfinished"/>
+        <translation>exfat:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="583"/>
         <source>nilfs2:</source>
-        <translation type="unfinished"/>
+        <translation>nilfs2:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="622"/>
         <source>lvm2 pv:</source>
-        <translation type="unfinished"/>
+        <translation>lvm2 pv:</translation>
     </message>
 </context>
 <context>
@@ -686,87 +686,87 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="23"/>
         <source>Partition Alignment</source>
-        <translation type="unfinished"/>
+        <translation>การจัดเรียงพาร์ทิชัน</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="29"/>
         <source>Use cylinder based alignment (Windows XP compatible)</source>
-        <translation type="unfinished"/>
+        <translation>ใช้การจัดเรียงแบบ cylinder (ซึ่งเข้ากันได้ Windows XP)</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="42"/>
         <source>Sector alignment:</source>
-        <translation type="unfinished"/>
+        <translation>การจัดเรียงเซ็คเตอร์:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="55"/>
         <source> sectors</source>
-        <translation type="unfinished"/>
+        <translation> sectors</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="71"/>
         <source>Align partitions per default</source>
-        <translation type="unfinished"/>
+        <translation>จัดเรียงพาร์ทิชันโดยค่าเริ่มต้น</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="90"/>
         <source>Logging</source>
-        <translation type="unfinished"/>
+        <translation>การเก็บล็อก</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="96"/>
         <source>Hide messages below:</source>
-        <translation type="unfinished"/>
+        <translation>ซ่อนข้อความต่อไปนี้:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="107"/>
         <source>Debug</source>
-        <translation type="unfinished"/>
+        <translation>แก้ไขข้อบกพร่อง</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="112"/>
         <source>Information</source>
-        <translation type="unfinished"/>
+        <translation>ข้อมูล</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="117"/>
         <source>Warning</source>
-        <translation type="unfinished"/>
+        <translation>คำเตือน</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="122"/>
         <source>Error</source>
-        <translation type="unfinished"/>
+        <translation>ข้อผิดพลาด</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="139"/>
         <source>File Systems</source>
-        <translation type="unfinished"/>
+        <translation>ระบบไฟล์</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="145"/>
         <source>Default file system:</source>
-        <translation type="unfinished"/>
+        <translation>ค่าเริ่มต้นระบบไฟล์:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="167"/>
         <source>Shredding</source>
-        <translation type="unfinished"/>
+        <translation>การบดย่อยทำลาย</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="173"/>
         <source>Overwrite with:</source>
-        <translation type="unfinished"/>
+        <translation>เขียนทับด้วย:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="180"/>
         <source>Random data</source>
-        <translation type="unfinished"/>
+        <translation>ข้อมูลสุ่ม</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="190"/>
         <source>Zeros</source>
-        <translation type="unfinished"/>
+        <translation>ศูนย์</translation>
     </message>
 </context>
 <context>
@@ -774,32 +774,32 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="14"/>
         <source>Create a Partition</source>
-        <translation type="unfinished"/>
+        <translation>สร้างพาร์ทิชัน</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="38"/>
         <source>Partition &amp;Type:</source>
-        <translation type="unfinished"/>
+        <translation>พาร์ทิชันและประเภท:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="50"/>
         <source>&amp;Primary</source>
-        <translation type="unfinished"/>
+        <translation>&amp;P หลัก</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="60"/>
         <source>E&amp;xtended</source>
-        <translation type="unfinished"/>
+        <translation>&amp;x ขยาย</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="89"/>
         <source>F&amp;ile System:</source>
-        <translation type="unfinished"/>
+        <translation>&amp;i ระบบไฟล์:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="118"/>
         <source>&amp;Mount Point:</source>
-        <translation type="unfinished"/>
+        <translation>&amp;M จุดเชื่อมต่อ:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="135"/>
@@ -834,7 +834,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="194"/>
         <source>Si&amp;ze:</source>
-        <translation type="unfinished"/>
+        <translation>&amp;z ขนาด:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="204"/>
@@ -1027,12 +1027,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/decryptluksdialogwidgetbase.ui" line="22"/>
         <source>&amp;Name:</source>
-        <translation type="unfinished"/>
+        <translation>&amp;N ชื่อ:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/decryptluksdialogwidgetbase.ui" line="35"/>
         <source>&amp;Passphrase:</source>
-        <translation type="unfinished"/>
+        <translation>&amp;P รหัสผ่าน:</translation>
     </message>
 </context>
 <context>
@@ -1164,7 +1164,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="93"/>
         <source>&amp;Mount Point:</source>
-        <translation type="unfinished"/>
+        <translation>&amp;M จุดเชื่อมต่อ:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="110"/>
@@ -1434,7 +1434,7 @@ Some file systems need external tools to be installed for them to be supported. 
     <message>
         <location filename="../src/modules/finished/FinishedPage.ui" line="77"/>
         <source>&amp;Restart now</source>
-        <translation type="unfinished"/>
+        <translation>&amp;R เริ่มต้นใหม่ทันที</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedPage.cpp" line="50"/>
@@ -1498,7 +1498,7 @@ Some file systems need external tools to be installed for them to be supported. 
     <message>
         <location filename="../src/modules/greeting/GreetingPage.cpp" line="136"/>
         <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;b&gt;%2&lt;br/&gt;for %3&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Thanks to: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Philip Müller, Pier Luigi Fiorini and Rohan Garg.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;https://calamares.github.io/&quot;&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - technologies for a better world.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;b&gt;%2&lt;br/&gt;สำหรับ %3&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;ขอขอบคุณ: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Philip Müller, Pier Luigi Fiorini and Rohan Garg.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;https://calamares.github.io/&quot;&gt;Calamares&lt;/a&gt; การพัฒนานี้ได้รับการสนับสนุนโดย &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - เทคโนโลยีเพื่อโลกที่ดีกว่า</translation>
     </message>
     <message>
         <location filename="../src/modules/greeting/GreetingPage.ui" line="14"/>
@@ -1508,7 +1508,7 @@ Some file systems need external tools to be installed for them to be supported. 
     <message>
         <location filename="../src/modules/greeting/GreetingPage.ui" line="102"/>
         <source>&amp;About</source>
-        <translation type="unfinished"/>
+        <translation>&amp;A เกี่ยวกับ</translation>
     </message>
 </context>
 <context>
@@ -1574,7 +1574,7 @@ Some file systems need external tools to be installed for them to be supported. 
     <message>
         <location filename="../src/modules/locale/LocalePage.cpp" line="171"/>
         <source>&amp;Change...</source>
-        <translation type="unfinished"/>
+        <translation>&amp;C เปลี่ยนแปลง...</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/LocalePage.cpp" line="265"/>
@@ -1971,32 +1971,32 @@ Some file systems need external tools to be installed for them to be supported. 
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="22"/>
         <source>&amp;Disk:</source>
-        <translation type="unfinished"/>
+        <translation>&amp;D ดิสก์:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="51"/>
         <source>&amp;Revert All Changes</source>
-        <translation type="unfinished"/>
+        <translation>&amp;R คืนค่าการเปลี่ยนแปลงทั้งหมด</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="84"/>
         <source>New Partition &amp;Table</source>
-        <translation type="unfinished"/>
+        <translation>&amp;T ตารางพาร์ทิชันใหม่</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="104"/>
         <source>&amp;Create</source>
-        <translation type="unfinished"/>
+        <translation>&amp;C สร้าง</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="111"/>
         <source>&amp;Edit</source>
-        <translation type="unfinished"/>
+        <translation>&amp;E แก้ไข</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="118"/>
         <source>&amp;Delete</source>
-        <translation type="unfinished"/>
+        <translation>&amp;D ลบ</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="145"/>
