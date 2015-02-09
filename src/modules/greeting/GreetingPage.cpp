@@ -41,7 +41,7 @@ GreetingPage::GreetingPage( QWidget* parent )
 {
     ui->setupUi( this );
 
-    QString defaultLocale = QLocale::system().name();
+    QLocale defaultLocale = QLocale( QLocale::system().name() );
     {
         bool isTranslationAvailable = false;
 
@@ -56,8 +56,8 @@ GreetingPage::GreetingPage( QWidget* parent )
             ui->languageWidget->addItem( lang );
             ui->languageWidget->item( ui->languageWidget->count() - 1 )
                             ->setData( Qt::UserRole, thisLocale );
-            if ( thisLocale.language() == QLocale( defaultLocale ).language() &&
-                 thisLocale.country() == QLocale( defaultLocale ).country() )
+            if ( thisLocale.language() == defaultLocale.language() &&
+                 thisLocale.country() == defaultLocale.country() )
             {
                 isTranslationAvailable = true;
                 ui->languageWidget->setCurrentRow( ui->languageWidget->count() - 1 );
@@ -72,7 +72,7 @@ GreetingPage::GreetingPage( QWidget* parent )
             for (int i = 0; i < ui->languageWidget->count(); i++)
             {
                 QLocale thisLocale = ui->languageWidget->item(i)->data( Qt::UserRole ).toLocale();
-                if ( thisLocale.language() == QLocale( defaultLocale ).language() )
+                if ( thisLocale.language() == defaultLocale.language() )
                 {
                     isTranslationAvailable = true;
                     ui->languageWidget->setCurrentRow( i );
