@@ -61,6 +61,8 @@ GreetingPage::GreetingPage( QWidget* parent )
             {
                 isTranslationAvailable = true;
                 ui->languageWidget->setCurrentRow( ui->languageWidget->count() - 1 );
+                cDebug() << "Initial locale " << thisLocale.name();
+                CalamaresUtils::installTranslator( thisLocale.name(), qApp );
             }
         }
         ui->languageWidget->sortItems();
@@ -74,6 +76,8 @@ GreetingPage::GreetingPage( QWidget* parent )
                 {
                     isTranslationAvailable = true;
                     ui->languageWidget->setCurrentRow( i );
+                    cDebug() << "Initial locale " << thisLocale.name();
+                    CalamaresUtils::installTranslator( thisLocale.name(), qApp );
                     break;
                 }
             }
@@ -87,6 +91,9 @@ GreetingPage::GreetingPage( QWidget* parent )
                 if ( thisLocale == QLocale( QLocale::English, QLocale::UnitedStates ) )
                 {
                     ui->languageWidget->setCurrentRow( i );
+                    cDebug() << "Translation unavailable, so initial locale set to " << thisLocale.name();
+                    QLocale::setDefault( thisLocale );
+                    CalamaresUtils::installTranslator( thisLocale.name(), qApp );
                     break;
                 }
             }
