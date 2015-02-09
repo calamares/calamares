@@ -477,7 +477,7 @@ El instalador se cerrará y se perderán todos los cambios.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="70"/>
         <source>Cleared all mounts for %1</source>
-        <translation type="unfinished"/>
+        <translation>Unidades desmontadas en %1</translation>
     </message>
 </context>
 <context>
@@ -1440,7 +1440,7 @@ Algunos sistemas de ficheros necesitan instalar herramientas externas para ser s
     <message>
         <location filename="../src/modules/finished/FinishedPage.cpp" line="50"/>
         <source>&lt;h1&gt;All done.&lt;/h1&gt;&lt;br/&gt;%1 has been installed on your computer.&lt;br/&gt;You may now restart into your new system, or continue using the %2 Live environment.</source>
-        <translation type="unfinished"/>
+        <translation>Hecho. %1 ha sido instalado en tu ordenador. Puedes reiniciar el nuevo sistema, o continuar en el modo %2 Live.</translation>
     </message>
 </context>
 <context>
@@ -1448,7 +1448,7 @@ Algunos sistemas de ficheros necesitan instalar herramientas externas para ser s
     <message>
         <location filename="../src/modules/finished/FinishedViewStep.cpp" line="43"/>
         <source>All done</source>
-        <translation type="unfinished"/>
+        <translation>Hecho</translation>
     </message>
 </context>
 <context>
@@ -1546,12 +1546,12 @@ Algunos sistemas de ficheros necesitan instalar herramientas externas para ser s
     <message>
         <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="33"/>
         <source>System locale setting</source>
-        <translation type="unfinished"/>
+        <translation>Ajustar configuración local</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="40"/>
         <source>The system locale setting affects the language and character set for some command line user interface elements.&lt;br/&gt;The current setting is &lt;b&gt;%1&lt;/b&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>La configuración local afecta al idioma y caracteres de algunos elementos de la linea de comandos. El ajuste actual es %1</translation>
     </message>
 </context>
 <context>
@@ -1560,7 +1560,7 @@ Algunos sistemas de ficheros necesitan instalar herramientas externas para ser s
         <location filename="../src/modules/locale/LocalePage.cpp" line="157"/>
         <location filename="../src/modules/locale/LocalePage.cpp" line="168"/>
         <source>The system locale is set to %1.</source>
-        <translation type="unfinished"/>
+        <translation>Configuración local establecida en %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/LocalePage.cpp" line="165"/>
