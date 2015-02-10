@@ -5,6 +5,7 @@
 #   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
 #   Copyright 2014, Daniel Hillenbrand <codeworkx@bbqlinux.org>
 #   Copyright 2014, Kevin Kofler <kevin.kofler@chello.at>
+#   Copyright 2015, Philip Mueller <philm@manjaro.org>
 #
 #   Calamares is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -26,6 +27,7 @@ from libcalamares.utils import check_chroot_call
 def install_grub(boot_loader, fw_type):
     if fw_type == 'efi':
         efi_directory = "/boot/efi"
+        chroot_call(["mkdir", "-p", "{!s}".format(efi_directory)])
         if "efiBootloaderId" in libcalamares.job.configuration:
             efi_bootloader_id = libcalamares.job.configuration["efiBootloaderId"]
         else:
