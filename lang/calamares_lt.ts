@@ -400,7 +400,7 @@ Diegėjas užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="115"/>
         <source>This computer currently does not seem to have an operating system on it. What would you like to do?</source>
-        <translation>Šis kompiuteris šiuo metu neturi operacinės sistemos. Ką norėtumėte daryti?</translation>
+        <translation>Šiuo metu šiame kompiuteryje nėra įdiegtos operacinės sistemos. Ką norėtumėte daryti?</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="118"/>
@@ -412,7 +412,7 @@ Diegėjas užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="135"/>
         <source>This computer currently has %1 on it. What would you like to do?</source>
-        <translation>Šiuo metu šis kompiuteris turi %1 . Ką norėtumėte daryti?</translation>
+        <translation>Šiuo metu šiame kompiuteryje yra įdiegta %1 sistema. Ką norėtumėte daryti?</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="139"/>
@@ -444,7 +444,7 @@ Diegėjas užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="207"/>
         <source>This computer currently has multiple operating systems on it. What would you like to do?</source>
-        <translation>Šis kompiuteris šiuo metu turi kelias operacines sistemas. Ką norėtumėte daryti?</translation>
+        <translation>Šiuo metu šiame kompiuteryje yra įdiegtos kelios operacinės sistemos. Ką norėtumėte daryti?</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="210"/>
@@ -462,22 +462,22 @@ Diegėjas užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="40"/>
         <source>Clear mounts for partitioning operations on %1</source>
-        <translation type="unfinished"/>
+        <translation>Išvalyti prijungimus, siekiant atlikti skaidymo operacijas skirsniuose %1</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="62"/>
         <source>Cannot umount partition %1</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko atjungti skirsnio %1</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="64"/>
         <source>Cannot proceed with partitioning operations because some partitions are still mounted.</source>
-        <translation type="unfinished"/>
+        <translation>Neįmanoma tęsti skaidymo operacijų, nes kai kurie skirsniai yra vis dar prijungti.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="70"/>
         <source>Cleared all mounts for %1</source>
-        <translation type="unfinished"/>
+        <translation>Visi %1 prijungimai išvalyti</translation>
     </message>
 </context>
 <context>
@@ -1430,7 +1430,7 @@ Kai kurios failų sistemos tam, kad būtų palaikomos, reikalauja, kad būtų į
     <message>
         <location filename="../src/modules/finished/FinishedPage.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>Forma</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedPage.ui" line="77"/>
@@ -1440,7 +1440,7 @@ Kai kurios failų sistemos tam, kad būtų palaikomos, reikalauja, kad būtų į
     <message>
         <location filename="../src/modules/finished/FinishedPage.cpp" line="50"/>
         <source>&lt;h1&gt;All done.&lt;/h1&gt;&lt;br/&gt;%1 has been installed on your computer.&lt;br/&gt;You may now restart into your new system, or continue using the %2 Live environment.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;h1&gt;Viskas atlikta.&lt;/h1&gt;&lt;br/&gt;%1 yra įdiegta jūsų kompiuteryje.&lt;br/&gt;Galite iš naujo paleisti kompiuterį dabar ir naudotis savo naująja sistema arba tęsti naudojimąsi %2 Live aplinka.</translation>
     </message>
 </context>
 <context>
@@ -1504,7 +1504,7 @@ Kai kurios failų sistemos tam, kad būtų palaikomos, reikalauja, kad būtų į
     <message>
         <location filename="../src/modules/greeting/GreetingPage.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>Forma</translation>
     </message>
     <message>
         <location filename="../src/modules/greeting/GreetingPage.ui" line="102"/>
@@ -1551,7 +1551,7 @@ Kai kurios failų sistemos tam, kad būtų palaikomos, reikalauja, kad būtų į
     <message>
         <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="40"/>
         <source>The system locale setting affects the language and character set for some command line user interface elements.&lt;br/&gt;The current setting is &lt;b&gt;%1&lt;/b&gt;.</source>
-        <translation>Sistemos lokalės nustatymas įtakoja, kai kurių komandų eilutės vartotojo sąsajos elementų, kalbos ir simbolių rinkinį.&lt;br/&gt;Dabar yra nustatyta &lt;b&gt;%1&lt;/b&gt;.</translation>
+        <translation>Sistemos lokalės nustatymas įtakoja kai kurių komandinės eilutės vartotojo sąsajos elementų kalbos ir simbolių rinkinį.&lt;br/&gt;Dabar yra nustatyta &lt;b&gt;%1&lt;/b&gt;.</translation>
     </message>
 </context>
 <context>
@@ -1764,7 +1764,7 @@ Kai kurios failų sistemos tam, kad būtų palaikomos, reikalauja, kad būtų į
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="606"/>
         <source>Require my password to log in</source>
-        <translation>Reikalauti slaptažodžio prisijungimo metu</translation>
+        <translation>Reikalauti įvesti slaptažodį prisijungimo metu</translation>
     </message>
 </context>
 <context>
@@ -2085,7 +2085,7 @@ Diegimas gali būti tęsiamas, bet kai kurios funkcijos gali būti išjungtos.</
     <message>
         <location filename="../src/modules/prepare/PrepareViewStep.cpp" line="158"/>
         <source>Prepare</source>
-        <translation>Paruošti</translation>
+        <translation>Paruošimas</translation>
     </message>
 </context>
 <context>
@@ -2098,7 +2098,7 @@ Diegimas gali būti tęsiamas, bet kai kurios funkcijos gali būti išjungtos.</
     <message>
         <location filename="../src/calamares/progresstree/ProgressTreeModel.cpp" line="144"/>
         <source>Install</source>
-        <translation type="unfinished"/>
+        <translation>Įdiegti</translation>
     </message>
     <message>
         <location filename="../src/calamares/progresstree/ProgressTreeModel.cpp" line="150"/>
@@ -2243,7 +2243,7 @@ Diegimas gali būti tęsiamas, bet kai kurios funkcijos gali būti išjungtos.</
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>Forma</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.ui" line="22"/>
@@ -2293,12 +2293,12 @@ Diegimas gali būti tęsiamas, bet kai kurios funkcijos gali būti išjungtos.</
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="206"/>
         <source>&lt;b&gt;%4&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;The partition %1 is too small for %2. Please select a partition with capacity at least %3 GiB.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%4&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;Skirsnis %1 yra per mažas sistemai %2. Prašome pasirinkti skirsnį, kurio dydis būtų bent %3 GiB.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="220"/>
         <source>&lt;b&gt;%3&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;%1 will be installed on %2.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;all data on partition%2 will be lost.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%3&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;%1 sistema bus įdiegta skirsnyje %2.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Įspėjimas: &lt;/font&gt;visi duomenys skirsnyje %2 bus prarasti.</translation>
     </message>
 </context>
 <context>
@@ -2368,7 +2368,7 @@ Diegimas gali būti tęsiamas, bet kai kurios funkcijos gali būti išjungtos.</
     <message>
         <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="277"/>
         <source>Failed to write keyboard configuration for the virtual console.</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko įrašyti klaviatūros sąrankos virtualiam pultui.</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="278"/>
@@ -2379,7 +2379,7 @@ Diegimas gali būti tęsiamas, bet kai kurios funkcijos gali būti išjungtos.</
     <message>
         <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="281"/>
         <source>Failed to write keyboard configuration for X11.</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko įrašyti klaviatūros sąrankos X11 aplinkai.</translation>
     </message>
 </context>
 <context>
