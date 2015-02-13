@@ -47,7 +47,6 @@ ClearMountsJob::prettyName() const
 Calamares::JobResult
 ClearMountsJob::exec()
 {
-    cDebug() << "Executing ClearMounts job for device" << m_device->deviceNode();
     QStringList goodNews;
 
     QProcess process;
@@ -62,9 +61,6 @@ ClearMountsJob::exec()
 
     QString partitions = process.readAllStandardOutput();
     QStringList partitionsList = partitions.simplified().split( ' ' );
-
-    cDebug() << "Raw:" << partitions;
-    cDebug() << "List:" << partitionsList.join( ", " );
 
     foreach ( QString p, partitionsList )
     {
@@ -86,6 +82,5 @@ ClearMountsJob::exec()
                         .arg( m_device->deviceNode() ) );
     ok.setDetails( goodNews.join( "\n" ) );
 
-    cDebug() << "Finished ClearMounts job.";
     return ok;
 }
