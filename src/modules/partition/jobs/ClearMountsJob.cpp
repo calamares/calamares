@@ -23,6 +23,7 @@
 #include <core/PartitionInfo.h>
 #include <core/PartitionIterator.h>
 #include <util/report.h>
+#include <utils/Logger.h>
 
 #include <QStringList>
 
@@ -45,30 +46,40 @@ ClearMountsJob::prettyName() const
 Calamares::JobResult
 ClearMountsJob::exec()
 {
+    cDebug() << "Executing ClearMounts job for device" << m_device->deviceNode();
     QStringList goodNews;
     for ( auto it = PartitionIterator::begin( m_device );
           it != PartitionIterator::end( m_device ); ++it )
     {
+        cDebug() << "Now examining device" << (*it)->partitionPath();
         if ( (*it)->isMounted() )
         {
+            cDebug() << "\tIt's mounted!";
             if ( (*it)->canUnmount() )
             {
+                cDebug() << "\tTrying to umount...";
                 Report report( 0, QString() );
                 (*it)->unmount( report );
                 goodNews.append( report.toText() );
+                cDebug() << "\tUmounted" << (*it)->partitionPath();
             }
             else
             {
+                cDebug() << "\tCannot umount. This is very bad.";
                 return Calamares::JobResult::error( tr( "Cannot umount partition %1" )
                                                         .arg( (*it)->deviceNode() ),
                                                     tr( "Cannot proceed with partitioning operations "
                                                         "because some partitions are still mounted." ) );
             }
         }
+        else
+            cDebug() << "\tIt's not mounted.";
     }
     Calamares::JobResult ok = Calamares::JobResult::ok();
     ok.setMessage( tr( "Cleared all mounts for %1" )
                         .arg( m_device->deviceNode() ) );
     ok.setDetails( goodNews.join( "\n" ) );
+
+    cDebug() << "Finished ClearMounts job.";
     return ok;
 }

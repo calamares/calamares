@@ -293,6 +293,16 @@ PartitionCoreModule::jobs() const
     }
     lst << Calamares::job_ptr( new FillGlobalStorageJob( devices, m_bootLoaderInstallPath ) );
 
+
+    QStringList jobsDebug;
+    foreach ( auto job, lst )
+    {
+        jobsDebug.append( job->prettyName() );
+    }
+
+    cDebug() << "PartitionCodeModule has been asked for jobs. About to return:"
+             << jobsDebug.join( "\n" );
+
     return lst;
 }
 
