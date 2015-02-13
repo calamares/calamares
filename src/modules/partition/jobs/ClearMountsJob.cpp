@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -25,6 +25,7 @@
 #include <util/report.h>
 #include <utils/Logger.h>
 
+#include <QProcess>
 #include <QStringList>
 
 
@@ -48,33 +49,38 @@ ClearMountsJob::exec()
 {
     cDebug() << "Executing ClearMounts job for device" << m_device->deviceNode();
     QStringList goodNews;
-    for ( auto it = PartitionIterator::begin( m_device );
-          it != PartitionIterator::end( m_device ); ++it )
+
+    QProcess process;
+    process.setProgram( "sh" );
+    process.setArguments( {
+                              "-c",
+                              QString( "echo $(awk '{print $4}' /proc/partitions | sed -e '/name/d' -e '/^$/d' -e '/[1-9]/!d' | grep %1)" )
+                                      .arg( m_device->deviceNode().split( '/' ).last() )
+                          } );
+    process.start();
+    process.waitForFinished();
+
+    QString partitions = process.readAllStandardOutput();
+    QStringList partitionsList = partitions.simplified().split( ' ' );
+
+    cDebug() << "Raw:" << partitions;
+    cDebug() << "List:" << partitionsList.join( ", " );
+
+    foreach ( QString p, partitionsList )
     {
-        cDebug() << "Now examining device" << (*it)->partitionPath();
-        if ( (*it)->isMounted() )
-        {
-            cDebug() << "\tIt's mounted!";
-            if ( (*it)->canUnmount() )
-            {
-                cDebug() << "\tTrying to umount...";
-                Report report( 0, QString() );
-                (*it)->unmount( report );
-                goodNews.append( report.toText() );
-                cDebug() << "\tUmounted" << (*it)->partitionPath();
-            }
-            else
-            {
-                cDebug() << "\tCannot umount. This is very bad.";
-                return Calamares::JobResult::error( tr( "Cannot umount partition %1" )
-                                                        .arg( (*it)->deviceNode() ),
-                                                    tr( "Cannot proceed with partitioning operations "
-                                                        "because some partitions are still mounted." ) );
-            }
-        }
-        else
-            cDebug() << "\tIt's not mounted.";
+        QString partPath = QString( "/dev/%1" ).arg( p );
+
+        process.start( "umount", { partPath } );
+        process.waitForFinished();
+        if ( process.exitCode() == 0 )
+            goodNews.append( QString( "Successfully unmounted %1." ).arg( partPath ) );
+
+        process.start( "swapoff", { partPath } );
+        process.waitForFinished();
+        if ( process.exitCode() == 0 )
+            goodNews.append( QString( "Successfully disabled swap %1." ).arg( partPath ) );
     }
+
     Calamares::JobResult ok = Calamares::JobResult::ok();
     ok.setMessage( tr( "Cleared all mounts for %1" )
                         .arg( m_device->deviceNode() ) );
