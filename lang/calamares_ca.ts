@@ -460,22 +460,12 @@ L&apos;instal·lador es tancarà i tots els canvis es perdran.</translation>
 <context>
     <name>ClearMountsJob</name>
     <message>
-        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="40"/>
+        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="42"/>
         <source>Clear mounts for partitioning operations on %1</source>
         <translation>Netejar els muntatges per les operacions de partició a %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="62"/>
-        <source>Cannot umount partition %1</source>
-        <translation>No es pot desmuntar la partició %1</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="64"/>
-        <source>Cannot proceed with partitioning operations because some partitions are still mounted.</source>
-        <translation>No es pot prosseguir amb les operacions del particionament perquè algunes particions encara estan muntades.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="70"/>
+        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="81"/>
         <source>Cleared all mounts for %1</source>
         <translation>S&apos;han netejar tots els muntatges de %1</translation>
     </message>

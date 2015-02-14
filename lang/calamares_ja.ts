@@ -460,22 +460,12 @@ The installer will quit and all changes will be lost.</source>
 <context>
     <name>ClearMountsJob</name>
     <message>
-        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="40"/>
+        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="42"/>
         <source>Clear mounts for partitioning operations on %1</source>
         <translation>%1 のパーティション操作のため、マウントを解除</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="62"/>
-        <source>Cannot umount partition %1</source>
-        <translation>パーティション %1 をアンマウントできません</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="64"/>
-        <source>Cannot proceed with partitioning operations because some partitions are still mounted.</source>
-        <translation>パーティションがマウントされているためパーティション操作を進めることができません。</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="70"/>
+        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="81"/>
         <source>Cleared all mounts for %1</source>
         <translation>%1 の全てのマウントを解除</translation>
     </message>
@@ -2306,12 +2296,12 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="75"/>
         <source>Resize file system on partition %1.</source>
-        <translation>パーティション %1 でのファイルシステムリサイズ</translation>
+        <translation>パーティション %1 でのファイルシステムのリサイズ</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="90"/>
         <source>Parted failed to resize filesystem.</source>
-        <translation>Partedは、ファイルシステムリサイズに失敗しました。</translation>
+        <translation>Partedは、ファイルシステムのリサイズに失敗しました。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="100"/>
@@ -2330,7 +2320,7 @@ Installation can continue, but some features might be disabled.</source>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="208"/>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="266"/>
         <source>The installer failed to resize partition %1 on disk &apos;%2&apos;.</source>
-        <translation>インストーラが、ディスク &apos;%2&apos; でのパーティション %1 をリサイズに失敗しました。</translation>
+        <translation>インストーラが、ディスク &apos;%2&apos; でのパーティション %1 のリサイズに失敗しました。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="213"/>
@@ -2379,7 +2369,7 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="281"/>
         <source>Failed to write keyboard configuration for X11.</source>
-        <translation>X11のためにキーボード設定の書き込みに失敗しました。</translation>
+        <translation>X11のためのキーボード設定の書き込みに失敗しました。</translation>
     </message>
 </context>
 <context>
@@ -2695,12 +2685,12 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="287"/>
         <source>Your hostname contains an invalid character &apos;%1&apos;</source>
-        <translation>ホスト名には、 &apos;%1&apos; の不正な字が含まれています。</translation>
+        <translation>ホスト名に、 &apos;%1&apos; の不正な字が含まれています。</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="291"/>
         <source>Your hostname contains invalid characters!</source>
-        <translation>ホスト名には、不正な字が含まれています！</translation>
+        <translation>ホスト名に、不正な字が含まれています！</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="322"/>

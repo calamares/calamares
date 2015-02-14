@@ -460,22 +460,12 @@ The installer will quit and all changes will be lost.</source>
 <context>
     <name>ClearMountsJob</name>
     <message>
-        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="40"/>
+        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="42"/>
         <source>Clear mounts for partitioning operations on %1</source>
         <translation>ล้างจุดเชื่อมต่อสำหรับการแบ่งพาร์ทิชันบน %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="62"/>
-        <source>Cannot umount partition %1</source>
-        <translation>ไม่สามารถยกเลิกจุดเชื่อมต่อพาร์ทิชัน %1</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="64"/>
-        <source>Cannot proceed with partitioning operations because some partitions are still mounted.</source>
-        <translation>ไม่สามารถดำเนินการแบ่งพาร์ทิชันต่อได้ เนื่องจากบางพาร์ทิชันยังถูกเชื่อมต่ออยู่</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="70"/>
+        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="81"/>
         <source>Cleared all mounts for %1</source>
         <translation>ล้างจุดเชื่อมต่อทั้งหมดแล้วสำหรับ %1</translation>
     </message>
