@@ -57,6 +57,7 @@ def create_conf(uuid, conf_path):
     for partition in partitions:
         if partition["fs"] == "linuxswap":
             swap = partition["uuid"]
+
     lines = [
         '## This is just an exmaple config file.\n',
         '## Please edit the paths and kernel parameters according to your system.\n',
@@ -78,11 +79,11 @@ def create_fallback(uuid, fallback_path):
     kernel = libcalamares.job.configuration["kernel"]
     fb_img = libcalamares.job.configuration["fallback"]
     partitions = libcalamares.globalstorage.value("partitions")
+    swap = ""
     for partition in partitions:
         if partition["fs"] == "linuxswap":
             swap = partition["uuid"]
-        else:
-            swap = ""
+
     lines = [
         '## This is just an exmaple config file.\n',
         '## Please edit the paths and kernel parameters according to your system.\n',
