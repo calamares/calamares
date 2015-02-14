@@ -63,6 +63,8 @@ public:
 
     void onLeave() override;
 
+    void setConfigurationMap( const QVariantMap& configurationMap ) override;
+
     QList< Calamares::job_ptr > jobs() const override;
 
 private:

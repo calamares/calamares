@@ -117,18 +117,20 @@ def create_loader(loader_path):
 def install_bootloader(boot_loader, fw_type):
     if fw_type == 'efi':
         install_path = libcalamares.globalstorage.value("rootMountPoint")
+        efi_directory = libcalamares.globalstorage.value("efiSystemPartition")
+        install_efi_directory = install_path + efi_directory
         uuid = get_uuid()
         distribution = get_bootloader_entry_name()
         file_name_sanitizer = str.maketrans(" /", "_-")
         conf_path = os.path.join(
-            install_path, "boot", "loader", "entries", "%s.conf" % distribution.translate(file_name_sanitizer))
+            install_efi_directory, "loader", "entries", "%s.conf" % distribution.translate(file_name_sanitizer))
         fallback_path = os.path.join(
-            install_path, "boot", "loader", "entries", "%s-fallback.conf" % distribution.translate(file_name_sanitizer))
+            install_efi_directory, "loader", "entries", "%s-fallback.conf" % distribution.translate(file_name_sanitizer))
         loader_path = os.path.join(
-            install_path, "boot", "loader", "loader.conf")
+            install_efi_directory, "loader", "loader.conf")
         partitions = libcalamares.globalstorage.value("partitions")
         for partition in partitions:
-            if partition["mountPoint"] == "/boot":
+            if partition["mountPoint"] == efi_directory:
                 print(partition["device"])
                 boot_device = partition["device"]
                 boot_p = boot_device[-1:]
@@ -136,7 +138,7 @@ def install_bootloader(boot_loader, fw_type):
                 print(device)
         subprocess.call(["sgdisk", "--typecode=%s:EF00" % boot_p, "%s" % device])
         subprocess.call(
-            ["gummiboot", "--path=%s/boot" % install_path, "install"])
+            ["gummiboot", "--path=%s" % install_efi_directory, "install"])
         create_conf(uuid, conf_path)
         create_fallback(uuid, fallback_path)
         create_loader(loader_path)

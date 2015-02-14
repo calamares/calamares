@@ -26,8 +26,8 @@ from libcalamares.utils import check_chroot_call
 
 def install_grub(boot_loader, fw_type):
     if fw_type == 'efi':
-        efi_directory = "/boot"
-        efi_directory_firmware = "/boot/EFI"
+        efi_directory = libcalamares.globalstorage.value("efiSystemPartition")
+        efi_directory_firmware = efi_directory + "/EFI"
         check_chroot_call(["mkdir", "-p", "{!s}".format(efi_directory)])
         if "efiBootloaderId" in libcalamares.job.configuration:
             efi_bootloader_id = libcalamares.job.configuration["efiBootloaderId"]

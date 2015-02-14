@@ -300,6 +300,25 @@ PartitionViewStep::onLeave()
 }
 
 
+void
+PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
+{
+    // Copy the efiSystemPartition setting to the global storage. It is needed not only in
+    // the EraseDiskPage, but also in the bootloader configuration modules (grub, bootloader).
+    Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
+    if ( configurationMap.contains( "efiSystemPartition" ) &&
+         configurationMap.value( "efiSystemPartition" ).type() == QVariant::String &&
+         !configurationMap.value( "efiSystemPartition" ).toString().isEmpty() )
+    {
+        gs->insert( "efiSystemPartition", configurationMap.value( "efiSystemPartition" ).toString() );
+    }
+    else
+    {
+        gs->insert( "efiSystemPartition", QStringLiteral( "/boot/efi" ) );
+    }
+}
+
+
 QList< Calamares::job_ptr >
 PartitionViewStep::jobs() const
 {

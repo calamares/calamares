@@ -30,6 +30,8 @@
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
+#include "GlobalStorage.h"
+#include "JobQueue.h"
 
 #include <QBoxLayout>
 #include <QDir>
@@ -160,7 +162,10 @@ EraseDiskPage::doAutopartition( Device* dev )
             first_free_sector,
             lastSector
         );
-        PartitionInfo::setMountPoint( efiPartition, "/boot" );
+        PartitionInfo::setMountPoint( efiPartition, Calamares::JobQueue::instance()
+                                                        ->globalStorage()
+                                                        ->value( "efiSystemPartition" )
+                                                        .toString() );
         PartitionInfo::setFormat( efiPartition, true );
         m_core->createPartition( dev, efiPartition );
         first_free_sector = lastSector + 1;
