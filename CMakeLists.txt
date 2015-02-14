@@ -45,16 +45,18 @@ macro_log_feature(
     "Python 3 is used for some Calamares job modules."
 )
 
-include( BoostPython3 )
-find_boost_python3( 1.54.0 ${PYTHONLIBS_VERSION_STRING} CALAMARES_BOOST_PYTHON3_FOUND )
-macro_log_feature(
-    CALAMARES_BOOST_PYTHON3_FOUND
-    "Boost.Python"
-    "A C++ library which enables seamless interoperability between C++ and Python 3."
-    "http://www.boost.org"
-    FALSE "1.54.0"
-    "Boost.Python is used for interfacing with Calamares job modules written in Python 3."
-)
+if ( PYTHONLIBS_FOUND )
+    include( BoostPython3 )
+    find_boost_python3( 1.54.0 ${PYTHONLIBS_VERSION_STRING} CALAMARES_BOOST_PYTHON3_FOUND )
+    macro_log_feature(
+        CALAMARES_BOOST_PYTHON3_FOUND
+        "Boost.Python"
+        "A C++ library which enables seamless interoperability between C++ and Python 3."
+        "http://www.boost.org"
+        FALSE "1.54.0"
+        "Boost.Python is used for interfacing with Calamares job modules written in Python 3."
+    )
+endif()
 
 if ( PYTHONLIBS_NOTFOUND OR NOT CALAMARES_BOOST_PYTHON3_FOUND )
     set( WITH_PYTHON OFF )
