@@ -160,7 +160,7 @@ EraseDiskPage::doAutopartition( Device* dev )
             first_free_sector,
             lastSector
         );
-        PartitionInfo::setMountPoint( efiPartition, "/boot/efi" );
+        PartitionInfo::setMountPoint( efiPartition, "/boot" );
         PartitionInfo::setFormat( efiPartition, true );
         m_core->createPartition( dev, efiPartition );
         first_free_sector = lastSector + 1;
