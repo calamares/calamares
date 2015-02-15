@@ -1304,17 +1304,17 @@ The installer will quit and all changes will be lost.</source>
 <context>
     <name>EraseDiskPage</name>
     <message>
-        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="50"/>
+        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="52"/>
         <source>Select drive:</source>
         <translation>选择驱动器：</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="204"/>
+        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="209"/>
         <source>Before:</source>
         <translation>之前：</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="209"/>
+        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="214"/>
         <source>After:</source>
         <translation>之后：</translation>
     </message>

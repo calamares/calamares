@@ -1306,17 +1306,17 @@ Diegėjas užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
 <context>
     <name>EraseDiskPage</name>
     <message>
-        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="50"/>
+        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="52"/>
         <source>Select drive:</source>
         <translation>Pasirinkite diską:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="204"/>
+        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="209"/>
         <source>Before:</source>
         <translation>Prieš:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="209"/>
+        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="214"/>
         <source>After:</source>
         <translation>Po:</translation>
     </message>

@@ -400,7 +400,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="115"/>
         <source>This computer currently does not seem to have an operating system on it. What would you like to do?</source>
-        <translation>このコンピューターには現在オペレーションシステムが搭載されて無いみたいです。どうしますか?</translation>
+        <translation>このコンピュータには現在オペレーションシステムが搭載されて無いみたいです。どうしますか?</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="118"/>
@@ -412,12 +412,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="135"/>
         <source>This computer currently has %1 on it. What would you like to do?</source>
-        <translation>このコンピューターには %1 が存在します。どうしますか?</translation>
+        <translation>このコンピュータには %1 が存在します。どうしますか?</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="139"/>
         <source>&lt;b&gt;Install %2 alongside %1&lt;/b&gt;&lt;br/&gt;Documents, music and other personal files will be kept. You can choose which operating system you want each time the computer starts up.</source>
-        <translation>&lt;b&gt; %1 に共存して %2 をインストール&lt;/b&gt;&lt;br/&gt;文書、音楽などの個人データは保護されます。コンピューターを起動させる際にオペレーティングシステムを選択することができます。</translation>
+        <translation>&lt;b&gt; %1 に共存して %2 をインストール&lt;/b&gt;&lt;br/&gt;文書、音楽などの個人データは保護されます。コンピュータを起動させる際にオペレーティングシステムを選択することができます。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="147"/>
@@ -434,22 +434,22 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="165"/>
         <source>This computer already has an operating system on it. What would you like to do?</source>
-        <translation>このコンピューターにはすでにオペレーティングシステムが搭載されています。どうしますか?</translation>
+        <translation>このコンピュータにはすでにオペレーティングシステムが搭載されています。どうしますか?</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="168"/>
         <source>&lt;b&gt;Install %1 alongside your current operating system&lt;/b&gt;&lt;br/&gt;Documents, music and other personal files will be kept. You can choose which operating system you want each time the computer starts up.</source>
-        <translation>&lt;b&gt; 現在のオペレーティングシステムに共存して %1 をインストール&lt;/b&gt;&lt;br/&gt;文書、音楽などの個人データは保護されます。コンピューターを起動させる際にオペレーティングシステムを選択することができます。</translation>
+        <translation>&lt;b&gt; 現在のオペレーティングシステムに共存して %1 をインストール&lt;/b&gt;&lt;br/&gt;文書、音楽などの個人データは保護されます。コンピュータを起動させる際にオペレーティングシステムを選択することができます。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="207"/>
         <source>This computer currently has multiple operating systems on it. What would you like to do?</source>
-        <translation>このコンピューターには現在複数のオペレーションシステムが搭載されています。どうしますか?</translation>
+        <translation>このコンピュータには現在複数のオペレーションシステムが搭載されています。どうしますか?</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="210"/>
         <source>&lt;b&gt;Install %1 alongside your current operating systems&lt;/b&gt;&lt;br/&gt;Documents, music and other personal files will be kept. You can choose which operating system you want each time the computer starts up.</source>
-        <translation>&lt;b&gt; 現在のオペレーティングシステムに共存して %1 をインストール&lt;/b&gt;&lt;br/&gt;文書、音楽などの個人データは保護されます。コンピューターを起動させる際にオペレーティングシステムを選択することができます。</translation>
+        <translation>&lt;b&gt; 現在のオペレーティングシステムに共存して %1 をインストール&lt;/b&gt;&lt;br/&gt;文書、音楽などの個人データは保護されます。コンピュータを起動させる際にオペレーティングシステムを選択することができます。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="240"/>
@@ -1306,17 +1306,17 @@ The installer will quit and all changes will be lost.</source>
 <context>
     <name>EraseDiskPage</name>
     <message>
-        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="50"/>
+        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="52"/>
         <source>Select drive:</source>
         <translation>ドライブの選択:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="204"/>
+        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="209"/>
         <source>Before:</source>
         <translation>前 :</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="209"/>
+        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="214"/>
         <source>After:</source>
         <translation>後 :</translation>
     </message>
@@ -1714,7 +1714,7 @@ Some file systems need external tools to be installed for them to be supported. 
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="194"/>
         <source>&lt;small&gt;If more than one person will use this computer, you can set up multiple accounts after installation.&lt;/small&gt;</source>
-        <translation>&lt;small&gt;もし複数の人間がこのコンピューターを使用する場合、インストールの後で複数のアカウントのセットアップを行うことができます。&lt;/small&gt;</translation>
+        <translation>&lt;small&gt;もし複数の人間がこのコンピュータを使用する場合、インストールの後で複数のアカウントのセットアップを行うことができます。&lt;/small&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="217"/>
@@ -1729,7 +1729,7 @@ Some file systems need external tools to be installed for them to be supported. 
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="345"/>
         <source>What is the name of this computer?</source>
-        <translation>このコンピューターの名前は何ですか？</translation>
+        <translation>このコンピュータの名前は何ですか？</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="428"/>
@@ -2028,20 +2028,20 @@ Some file systems need external tools to be installed for them to be supported. 
     <message>
         <location filename="../src/modules/prepare/PreparePage.cpp" line="39"/>
         <source>For best results, please ensure that this computer:</source>
-        <translation>好結果を得られるため、このコンピューターについて以下の項目を確認して下さい：</translation>
+        <translation>良好な結果を得るために、このコンピュータについて以下の項目を確認して下さい：</translation>
     </message>
     <message>
         <location filename="../src/modules/prepare/PreparePage.cpp" line="96"/>
         <source>This computer does not satisfy the minimum requirements for installing %1.
 Installation cannot continue.</source>
-        <translation>このコンピューターは、 %1 をインストールするための最低要件を満たしていません。
+        <translation>このコンピュータは、 %1 をインストールするための最低要件を満たしていません。
 インストールが続行できません。</translation>
     </message>
     <message>
         <location filename="../src/modules/prepare/PreparePage.cpp" line="109"/>
         <source>This computer does not satisfy some of the recommended requirements for installing %1.
 Installation can continue, but some features might be disabled.</source>
-        <translation>このコンピューターは、 %1 をインストールするための推奨条件をいくつか満たしていません。
+        <translation>このコンピュータは、 %1 をインストールするための推奨条件をいくつか満たしていません。
 インストールは続行しますが、一部の機能が無効になる場合があります。</translation>
     </message>
 </context>

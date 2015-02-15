@@ -1306,17 +1306,17 @@ L&apos;instal·lador es tancarà i tots els canvis es perdran.</translation>
 <context>
     <name>EraseDiskPage</name>
     <message>
-        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="50"/>
+        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="52"/>
         <source>Select drive:</source>
         <translation>Seleccionar el disc:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="204"/>
+        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="209"/>
         <source>Before:</source>
         <translation>Abans:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="209"/>
+        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="214"/>
         <source>After:</source>
         <translation>Després:</translation>
     </message>
