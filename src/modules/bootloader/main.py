@@ -6,6 +6,7 @@
 #   Copyright 2014, Anke Boersma <demm@kaosx.us>
 #   Copyright 2014, Daniel Hillenbrand <codeworkx@bbqlinux.org>
 #   Copyright 2014, Benjamin Vaudour <benjamin.vaudour@yahoo.fr>
+#   Copyright 2015, Philip Mueller <philm@manjaro.org>
 #
 #   Calamares is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -62,10 +63,10 @@ def create_conf(uuid, conf_path):
         '## This is just an exmaple config file.\n',
         '## Please edit the paths and kernel parameters according to your system.\n',
         '\n',
-        'title   %s GNU/Linux, with Linux core repo kernel\n' % distribution,
-        'linux   %s\n' % kernel,
-        'initrd  %s\n' % img,
-        'options root=UUID=%s quiet resume=UUID=%s rw\n' % (uuid, swap),
+        "title   {!s} GNU/Linux, with Linux core repo kernel\n".format(distribution),
+        "linux   {!s}\n".format(kernel),
+        "initrd  {!s}\n".format(img),
+        "options root=UUID={!s} quiet resume=UUID={!s} rw\n".format(uuid, swap),
     ]
 
     with open(conf_path, 'w') as f:
@@ -88,10 +89,10 @@ def create_fallback(uuid, fallback_path):
         '## This is just an exmaple config file.\n',
         '## Please edit the paths and kernel parameters according to your system.\n',
         '\n',
-        'title   %s GNU/Linux, with Linux fallback kernel\n' % distribution,
-        'linux   %s\n' % kernel,
-        'initrd  %s\n' % fb_img,
-        'options root=UUID=%s quiet resume=UUID=%s rw\n' % (uuid, swap),
+        "title   {!s} GNU/Linux, with Linux fallback kernel\n".format(distribution),
+        "linux   {!s}\n".format(kernel),
+        "initrd  {!s}\n".format(fb_img),
+        "options root=UUID={!s} quiet resume=UUID={!s} rw\n".format(uuid, swap),
     ]
 
     with open(fallback_path, 'w') as f:
@@ -104,9 +105,10 @@ def create_loader(loader_path):
     distribution = get_bootloader_entry_name()
     timeout = libcalamares.job.configuration["timeout"]
     file_name_sanitizer = str.maketrans(" /", "_-")
+    distribution_translated = distribution.translate(file_name_sanitizer)
     lines = [
-        'timeout %s\n' % timeout,
-        'default %s\n' % distribution.translate(file_name_sanitizer),
+        "timeout {!s}\n".format(timeout),
+        "default {!s}\n".format(distribution_translated),
     ]
 
     with open(loader_path, 'w') as f:
@@ -123,10 +125,11 @@ def install_bootloader(boot_loader, fw_type):
         uuid = get_uuid()
         distribution = get_bootloader_entry_name()
         file_name_sanitizer = str.maketrans(" /", "_-")
+        distribution_translated = distribution.translate(file_name_sanitizer)
         conf_path = os.path.join(
-            install_efi_directory, "loader", "entries", "%s.conf" % distribution.translate(file_name_sanitizer))
+            install_efi_directory, "loader", "entries", "{!s}.conf".format(distribution_translated))
         fallback_path = os.path.join(
-            install_efi_directory, "loader", "entries", "%s-fallback.conf" % distribution.translate(file_name_sanitizer))
+            install_efi_directory, "loader", "entries", "{!s}-fallback.conf".format(distribution_translated))
         loader_path = os.path.join(
             install_efi_directory, "loader", "loader.conf")
         partitions = libcalamares.globalstorage.value("partitions")
@@ -137,16 +140,16 @@ def install_bootloader(boot_loader, fw_type):
                 boot_p = boot_device[-1:]
                 device = boot_device[:-1]
                 print(device)
-        subprocess.call(["sgdisk", "--typecode=%s:EF00" % boot_p, "%s" % device])
+        subprocess.call(["sgdisk", "--typecode={!s}:EF00".format(boot_p), "{!s}".format(device)])
         subprocess.call(
-            ["gummiboot", "--path=%s" % install_efi_directory, "install"])
+            ["gummiboot", "--path={!s}".format(install_efi_directory), "install"])
         create_conf(uuid, conf_path)
         create_fallback(uuid, fallback_path)
         create_loader(loader_path)
     else:
         install_path = boot_loader["installPath"]
         check_chroot_call(
-            [libcalamares.job.configuration["grubInstall"], install_path])
+            [libcalamares.job.configuration["grubInstall"], "--target=i386-pc", install_path])
         check_chroot_call([libcalamares.job.configuration[
                           "grubMkconfig"], "-o", libcalamares.job.configuration["grubCfg"]])
 
