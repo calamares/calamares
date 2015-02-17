@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *
  *   Portions from the Manjaro Installation Framework
  *   by Roland Singer <roland@manjaro.org>
@@ -177,7 +177,7 @@ UsersPage::fillSuggestions()
                 if ( !cleanParts.value( i ).isEmpty() )
                     usernameSuggestion.append( cleanParts.value( i ).at( 0 ) );
             }
-            if ( m_usernameRx.indexIn( usernameSuggestion ) != -1 )
+            if ( USERNAME_RX.indexIn( usernameSuggestion ) != -1 )
             {
                 ui->textBoxUsername->setText( usernameSuggestion );
                 validateUsernameText( usernameSuggestion );
@@ -191,7 +191,7 @@ UsersPage::fillSuggestions()
         if ( !cleanParts.isEmpty() && !cleanParts.first().isEmpty() )
         {
             QString hostnameSuggestion = QString( "%1-pc" ).arg( cleanParts.first() );
-            if ( m_hostnameRx.indexIn( hostnameSuggestion ) != -1 )
+            if ( HOSTNAME_RX.indexIn( hostnameSuggestion ) != -1 )
             {
                 ui->textBoxHostname->setText( hostnameSuggestion );
                 validateHostnameText( hostnameSuggestion );
@@ -214,7 +214,7 @@ void
 UsersPage::validateUsernameText( const QString& textRef )
 {
     QString text( textRef );
-    QRegExp rx( m_usernameRx );
+    QRegExp rx( USERNAME_RX );
     QRegExpValidator val( rx );
     int pos = -1;
 
@@ -224,20 +224,23 @@ UsersPage::validateUsernameText( const QString& textRef )
         ui->labelUsername->clear();
         m_readyUsername = false;
     }
+    else if ( text.length() > USERNAME_MAX_LENGTH )
+    {
+        ui->labelUsername->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::No,
+                                                                     CalamaresUtils::Original,
+                                                                     ui->labelUsername->size() ) );
+        ui->labelUsernameError->setText(
+            tr( "Your username is too long." ) );
+
+        m_readyUsername = false;
+    }
     else if ( val.validate( text, pos ) == QValidator::Invalid )
     {
         ui->labelUsername->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::No,
                                                                      CalamaresUtils::Original,
                                                                      ui->labelUsername->size() ) );
-        --pos;
-
-        if ( pos >= 0 && pos < text.size() )
-            ui->labelUsernameError->setText(
-                tr( "Your username contains an invalid character '%1'" )
-                    .arg( text.at( pos ) ) );
-        else
-            ui->labelUsernameError->setText(
-                tr( "Your username contains invalid characters!" ) );
+        ui->labelUsernameError->setText(
+            tr( "Your username contains invalid characters. Only lowercase letters and numbers are allowed." ) );
 
         m_readyUsername = false;
     }
@@ -265,7 +268,7 @@ void
 UsersPage::validateHostnameText( const QString& textRef )
 {
     QString text = textRef;
-    QRegExp rx( m_hostnameRx );
+    QRegExp rx( HOSTNAME_RX );
     QRegExpValidator val( rx );
     int pos = -1;
 
@@ -275,20 +278,35 @@ UsersPage::validateHostnameText( const QString& textRef )
         ui->labelHostname->clear();
         m_readyHostname= false;
     }
+    else if ( text.length() < HOSTNAME_MIN_LENGTH )
+    {
+        ui->labelHostname->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::No,
+                                                                     CalamaresUtils::Original,
+                                                                     ui->labelHostname->size() ) );
+        ui->labelHostnameError->setText(
+            tr( "Your hostname is too short." ) );
+
+        m_readyHostname = false;
+
+    }
+    else if ( text.length() > HOSTNAME_MAX_LENGTH )
+    {
+        ui->labelHostname->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::No,
+                                                                     CalamaresUtils::Original,
+                                                                     ui->labelHostname->size() ) );
+        ui->labelHostnameError->setText(
+            tr( "Your hostname is too long." ) );
+
+        m_readyHostname = false;
+
+    }
     else if ( val.validate( text, pos ) == QValidator::Invalid )
     {
         ui->labelHostname->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::No,
                                                                      CalamaresUtils::Original,
                                                                      ui->labelHostname->size() ) );
-        --pos;
-
-        if ( pos >= 0 && pos < text.size() )
-            ui->labelHostnameError->setText(
-                tr( "Your hostname contains an invalid character '%1'" )
-                    .arg( text.at( pos ) ) );
-        else
-            ui->labelHostnameError->setText(
-                tr( "Your hostname contains invalid characters!" ) );
+        ui->labelHostnameError->setText(
+            tr( "Your hostname contains invalid characters. Only letters, numbers and dashes are allowed." ) );
 
         m_readyHostname = false;
     }

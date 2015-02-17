@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *
  *   Portions from the Manjaro Installation Framework
  *   by Roland Singer <roland@manjaro.org>
@@ -61,8 +61,11 @@ signals:
 private:
     Ui::Page_UserSetup* ui;
 
-    const QRegExp m_usernameRx = QRegExp( "^[a-z_][a-z0-9_-]*[$]?$" );
-    const QRegExp m_hostnameRx = QRegExp( "^[a-zA-Z][-a-zA-Z0-9_]*$" );
+    const QRegExp USERNAME_RX = QRegExp( "^[a-z_][a-z0-9_-]*[$]?$" );
+    const QRegExp HOSTNAME_RX = QRegExp( "^[a-zA-Z][-a-zA-Z0-9_]*$" );
+    const int USERNAME_MAX_LENGTH = 31;
+    const int HOSTNAME_MIN_LENGTH = 2;
+    const int HOSTNAME_MAX_LENGTH = 24;
 
     bool m_readyFullName;
     bool m_readyUsername;
