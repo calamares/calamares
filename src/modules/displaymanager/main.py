@@ -2,7 +2,7 @@
 # encoding: utf-8
 # === This file is part of Calamares - <http://github.com/calamares> ===
 #
-#   Copyright 2014, Philip Müller <philm@manjaro.org>
+#   Copyright 2014 - 2015, Philip Müller <philm@manjaro.org>
 #   Copyright 2014, Teo Mrnjavac <teo@kde.org>
 #   Copyright 2014, Kevin Kofler <kevin.kofler@chello.at>
 #
@@ -44,13 +44,13 @@ desktop_environments = [
 
 def find_desktop_environment(root_mount_point):
     for desktop_environment in desktop_environments:
-        if os.path.exists('%s%s' % (root_mount_point, desktop_environment.executable)) \
-           and os.path.exists('%s/usr/share/xsessions/%s.desktop' % (root_mount_point, desktop_environment.desktop_file)):
+        if os.path.exists("{!s}{!s}".format(root_mount_point,desktop_environment.executable)) \
+           and os.path.exists("{!s}/usr/share/xsessions/{!s}.desktop".format(root_mount_point,desktop_environment.desktop_file)):
             return desktop_environment
     return None
 
 def have_dm(dm_name, root_mount_point):
-    return os.path.exists("%s/usr/bin/%s" % (root_mount_point, dm_name)) or os.path.exists("%s/usr/sbin/%s" % (root_mount_point, dm_name))
+    return os.path.exists("{!s}/usr/bin/{!s}".format(root_mount_point,dm_name)) or os.path.exists("{!s}/usr/sbin/{!s}".format(root_mount_point,dm_name))
 
 def set_autologin(username, displaymanagers, default_desktop_environment, root_mount_point):
     """ Enables automatic login for the installed desktop managers """
@@ -64,14 +64,14 @@ def set_autologin(username, displaymanagers, default_desktop_environment, root_m
             with open(mdm_conf_path, 'w') as mdm_conf:
                 for line in text:
                     if '[daemon]' in line:
-                        line = '[daemon]\nAutomaticLogin=%s\nAutomaticLoginEnable=True\n' % username
+                        line = "[daemon]\nAutomaticLogin={!s}\nAutomaticLoginEnable=True\n".format(username)
                     mdm_conf.write(line)
         else:
             with open(mdm_conf_path, 'w') as mdm_conf:
                 mdm_conf.write(
                     '# Calamares - Enable automatic login for user\n')
                 mdm_conf.write('[daemon]\n')
-                mdm_conf.write('AutomaticLogin=%s\n' % username)
+                mdm_conf.write("AutomaticLogin={!s}\n".format(username))
                 mdm_conf.write('AutomaticLoginEnable=True\n')
 
     if "gdm" in displaymanagers:
@@ -83,23 +83,23 @@ def set_autologin(username, displaymanagers, default_desktop_environment, root_m
             with open(gdm_conf_path, 'w') as gdm_conf:
                 for line in text:
                     if '[daemon]' in line:
-                        line = '[daemon]\nAutomaticLogin=%s\nAutomaticLoginEnable=True\n' % username
+                        line = "[daemon]\nAutomaticLogin={!s}\nAutomaticLoginEnable=True\n".format(username)
                     gdm_conf.write(line)
         else:
             with open(gdm_conf_path, 'w') as gdm_conf:
                 gdm_conf.write(
                     '# Calamares - Enable automatic login for user\n')
                 gdm_conf.write('[daemon]\n')
-                gdm_conf.write('AutomaticLogin=%s\n' % username)
+                gdm_conf.write("AutomaticLogin={!s}\n".format(username))
                 gdm_conf.write('AutomaticLoginEnable=True\n')
-        if os.path.exists("%s/var/lib/AccountsService/users" % root_mount_point):
+        if os.path.exists("{!s}/var/lib/AccountsService/users".format(root_mount_point)):
             os.system(
-                "echo \"[User]\" > %s/var/lib/AccountsService/users/%s" % (root_mount_point, username))
+                "echo \"[User]\" > {!s}/var/lib/AccountsService/users/{!s}".format(root_mount_point,username))
             if default_desktop_environment != None:
                 os.system(
-                    "echo \"XSession=%s\" >> %s/var/lib/AccountsService/users/%s" % (default_desktop_environment.desktop_file, root_mount_point, username))
+                    "echo \"XSession={!s}\" >> {!s}/var/lib/AccountsService/users/{!s}".format(default_desktop_environment.desktop_file,root_mount_point,username))
             os.system(
-                "echo \"Icon=\" >> %s/var/lib/AccountsService/users/%s" % (root_mount_point, username))
+                "echo \"Icon=\" >> {!s}/var/lib/AccountsService/users/{!s}".format(root_mount_point,username))
 
     if "kdm" in displaymanagers:
         # Systems with KDM as Desktop Manager
@@ -114,10 +114,10 @@ def set_autologin(username, displaymanagers, default_desktop_environment, root_m
                     if '#AutoLoginEnable=true' in line:
                         line = 'AutoLoginEnable=true\n'
                     if 'AutoLoginUser=' in line:
-                        line = 'AutoLoginUser=%s\n' % username
+                        line = "AutoLoginUser={!s}\n".format(username)
                     kdm_conf.write(line)
         else:
-            return "Cannot write KDM configuration file", "KDM config file %s does not exist" % kdm_conf_path
+            return "Cannot write KDM configuration file", "KDM config file {!s} does not exist".format(kdm_conf_path)
 
     if "lxdm" in displaymanagers:
         # Systems with LXDM as Desktop Manager
@@ -129,10 +129,10 @@ def set_autologin(username, displaymanagers, default_desktop_environment, root_m
             with open(lxdm_conf_path, 'w') as lxdm_conf:
                 for line in text:
                     if '# autologin=dgod' in line:
-                        line = 'autologin=%s\n' % username
+                        line = "autologin={!s}\n".format(username)
                     lxdm_conf.write(line)
         else:
-            return "Cannot write LXDM configuration file", "LXDM config file %s does not exist" % lxdm_conf_path
+            return "Cannot write LXDM configuration file", "LXDM config file {!s} does not exist".format(lxdm_conf_path)
 
     if "lightdm" in displaymanagers:
         # Systems with LightDM as Desktop Manager
@@ -148,10 +148,10 @@ def set_autologin(username, displaymanagers, default_desktop_environment, root_m
             with open(lightdm_conf_path, 'w') as lightdm_conf:
                 for line in text:
                     if '#autologin-user=' in line:
-                        line = 'autologin-user=%s\n' % username
+                        line = "autologin-user={!s}\n".format(username)
                     lightdm_conf.write(line)
         else:
-            return "Cannot write LightDM configuration file", "LightDM config file %s does not exist" % lightdm_conf_path
+            return "Cannot write LightDM configuration file", "LightDM config file {!s} does not exist".format(lightdm_conf_path)
 
     if "slim" in displaymanagers:
         # Systems with Slim as Desktop Manager
@@ -165,10 +165,10 @@ def set_autologin(username, displaymanagers, default_desktop_environment, root_m
                     if 'auto_login' in line:
                         line = 'auto_login yes\n'
                     if 'default_user' in line:
-                        line = 'default_user %s\n' % username
+                        line = "default_user {!s}\n".format(username)
                     slim_conf.write(line)
         else:
-            return "Cannot write SLIM configuration file", "SLIM config file %s does not exist" % slim_conf_path
+            return "Cannot write SLIM configuration file", "SLIM config file {!s} does not exist".format(slim_conf_path)
 
     if "sddm" in displaymanagers:
         # Systems with Sddm as Desktop Manager
@@ -256,7 +256,7 @@ def run():
                     ['chmod', '+r' '/etc/lightdm/lightdm.conf'])
             if default_desktop_environment != None:
                 os.system(
-                    "sed -i -e 's/^.*user-session=.*/user-session=%s/' %s/etc/lightdm/lightdm.conf" % (default_desktop_environment.desktop_file, root_mount_point))
+                    "sed -i -e \"s/^.*user-session=.*/user-session={!s}/\" {!s}/etc/lightdm/lightdm.conf".format(default_desktop_environment.desktop_file,root_mount_point))
         else:
             libcalamares.utils.debug("lightdm selected but not installed")
             displaymanagers.remove("lightdm")
@@ -294,7 +294,7 @@ def run():
                 libcalamares.utils.chroot_call(['chmod', '1770', '/var/lib/mdm'])
             if default_desktop_environment != None:
                 os.system(
-                    "sed -i 's|default.desktop|%s.desktop|g' %s/etc/mdm/custom.conf" % (default_desktop_environment.desktop_file, root_mount_point))
+                    "sed -i \"s|default.desktop|{!s}.desktop|g\" {!s}/etc/mdm/custom.conf".format(default_desktop_environment.desktop_file,root_mount_point))
         else:
             libcalamares.utils.debug("mdm selected but not installed")
             displaymanagers.remove("mdm")
@@ -313,7 +313,7 @@ def run():
                     ['chmod', '+r', '/etc/lxdm/lxdm.conf'])
             if default_desktop_environment != None:
                 os.system(
-                    "sed -i -e 's|^.*session=.*|session=%s|' %s/etc/lxdm/lxdm.conf" % (default_desktop_environment.executable, root_mount_point))
+                    "sed -i -e \"s|^.*session=.*|session={!s}|\" {!s}/etc/lxdm/lxdm.conf".format(default_desktop_environment.executable,root_mount_point))
         else:
             libcalamares.utils.debug("lxdm selected but not installed")
             displaymanagers.remove("lxdm")
@@ -335,7 +335,7 @@ def run():
 
     if username != None:
         libcalamares.utils.debug(
-            "Setting up autologin for user %s." % username)
+            "Setting up autologin for user {!s}.".format(username))
         return set_autologin(username, displaymanagers, default_desktop_environment, root_mount_point)
 
     return None

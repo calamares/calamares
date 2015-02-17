@@ -3,6 +3,7 @@
 # === This file is part of Calamares - <http://github.com/calamares> ===
 #
 #   Copyright 2014, Rohan Garg <rohan@kde.org>
+#   Copyright 2015, Philip Müller <philm@manjaro.org>
 #
 #   Calamares is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -40,7 +41,7 @@ def cpuinfo():
         for line in f:
             if not line.strip():
                 # end of one processor
-                cpuinfo['proc%s' % nprocs] = procinfo
+                cpuinfo["proc{!s}".format(nprocs)] = procinfo
                 nprocs=nprocs+1
                 # Reset
                 procinfo=OrderedDict()
@@ -60,9 +61,11 @@ def set_mkinitcpio_hooks_and_modules(hooks, modules, root_mount_point):
 
     for i in range(len(mklins)):
         if mklins[i].startswith("HOOKS"):
-            mklins[i] = 'HOOKS="%s"' % ' '.join(hooks)
+            joined_hooks = ' '.join(hooks)
+            mklins[i] = "HOOKS=\"{!s}\"".format(joined_hooks)
         elif mklins[i].startswith("MODULES"):
-            mklins[i] = 'MODULES="%s"' % ' '.join(modules)
+            joined_modules = ' '.join(modules)
+            mklins[i] = "MODULES=\"{!s}\"".format(joined_modules)
 
     path = os.path.join(root_mount_point, "etc/mkinitcpio.conf")
     with open(path, "w") as mkinitcpio_file:

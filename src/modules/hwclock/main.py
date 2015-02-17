@@ -2,7 +2,7 @@
 # encoding: utf-8
 # === This file is part of Calamares - <http://github.com/calamares> ===
 #
-#   Copyright 2014, Philip Müller <philm@manjaro.org>
+#   Copyright 2014 - 2015, Philip Müller <philm@manjaro.org>
 #   Copyright 2014, Teo Mrnjavac <teo@kde.org>
 #
 #   Calamares is free software: you can redistribute it and/or modify
@@ -34,6 +34,6 @@ def run():
         return "Cannot set hardware clock.",\
                "hwclock terminated with exit code {}.".format(e.returncode)
 
-    shutil.copy2("/etc/adjtime", "%s/etc/" % root_mount_point)
+    shutil.copy2("/etc/adjtime", "{!s}/etc/".format(root_mount_point))
 
     return None

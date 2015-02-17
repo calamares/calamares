@@ -2,7 +2,7 @@
 # encoding: utf-8
 # === This file is part of Calamares - <http://github.com/calamares> ===
 #
-# Copyright 2014, Philip Müller <philm@manjaro.org>
+# Copyright 2014 - 2015, Philip Müller <philm@manjaro.org>
 #
 # Calamares is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,6 +25,7 @@ def modify_grub_default(partitions, root_mount_point, distributor):
 
     default_dir = os.path.join(root_mount_point, "etc/default")
     default_grub = os.path.join(default_dir, "grub")
+    distributor_replace = distributor.replace("'", "'\\''")
     plymouth_bin = os.path.join(root_mount_point, "usr/bin/plymouth")
     use_splash = ""
     swap_uuid = ""
@@ -37,11 +38,11 @@ def modify_grub_default(partitions, root_mount_point, distributor):
             swap_uuid = partition["uuid"]
 
     if swap_uuid != "":
-        kernel_cmd = 'GRUB_CMDLINE_LINUX_DEFAULT="resume=UUID=%s quiet %s"' % (swap_uuid, use_splash)
+        kernel_cmd = "GRUB_CMDLINE_LINUX_DEFAULT=\"resume=UUID={!s} quiet {!s}\"".format(swap_uuid,use_splash)
     else:
-        kernel_cmd = 'GRUB_CMDLINE_LINUX_DEFAULT="quiet %s"' % use_splash
+        kernel_cmd = "GRUB_CMDLINE_LINUX_DEFAULT=\"quiet {!s}\"".format(use_splash)
 
-    distributor_line = "GRUB_DISTRIBUTOR='%s'" % distributor.replace("'", "'\\''")
+    distributor_line = "GRUB_DISTRIBUTOR=\"{!s}\"".format(distributor_replace)
 
     if not os.path.exists(default_dir):
         os.mkdir(default_dir)
@@ -79,7 +80,7 @@ def modify_grub_default(partitions, root_mount_point, distributor):
                         escaped_value = "false"
                 else:
                     escaped_value = str(value).replace("'", "'\\''")
-                lines.append("%s='%s'" % (key, escaped_value))
+                lines.append("{!s}=\"{!s}\"".format(key,escaped_value))
 
     if not have_kernel_cmd:
         lines.append(kernel_cmd)

@@ -3,6 +3,7 @@
 # === This file is part of Calamares - <http://github.com/calamares> ===
 #
 #   Copyright 2014, Anke Boersma <demm@kaosx.us>
+#   Copyright 2015, Philip Müller <philm@manjaro.org>
 #
 #   Calamares is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -35,17 +36,17 @@ def run():
 
     # restore backup if available
     if os.path.exists('/etc/locale.gen.bak'):
-        shutil.copy2('%s/etc/locale.gen.bak' %
-                     (install_path), '%s/etc/locale.gen' % (install_path))
+        shutil.copy2("{!s}/etc/locale.gen.bak".format.(install_path),
+                     "{!s}/etc/locale.gen".format(install_path))
 
     # run locale-gen if detected
     if os.path.exists('/etc/locale.gen'):
         text = []
-        with open("%s/etc/locale.gen" % install_path, "r") as gen:
+        with open("{!s}/etc/locale.gen".format(install_path), "r") as gen:
             text = gen.readlines()
 
         # always enable en_US
-        with open("%s/etc/locale.gen" % install_path, "w") as gen:
+        with open("{!s}/etc/locale.gen".format(install_path), "w") as gen:
             for line in text:
                 if us in line and line[0] == "#":
                     # uncomment line
@@ -60,6 +61,7 @@ def run():
 
     locale_conf_path = os.path.join(install_path, "etc/locale.conf")
     with open(locale_conf_path, "w") as locale_conf:
-        locale_conf.write('LANG=%s\n' % locale.split(' ')[0])
+        locale_split = locale.split(' ')[0]
+        locale_conf.write("LANG={!s}\n".format(locale_split))
 
     return None
