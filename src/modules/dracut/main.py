@@ -22,8 +22,10 @@
 import libcalamares
 from libcalamares.utils import chroot_call
 
+
 def run_dracut():
     return chroot_call(['dracut', '-f'])
+
 
 def run():
     returnCode = run_dracut()

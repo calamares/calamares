@@ -42,7 +42,7 @@ def mount_partitions(root_mount_point, partitions):
             mount_point,
             fstype,
             partition.get("options", "")
-            )
+        )
 
 
 def run():

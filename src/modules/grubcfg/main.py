@@ -3,27 +3,26 @@
 #
 # === This file is part of Calamares - <http://github.com/calamares> ===
 #
-# Copyright 2014 - 2015, Philip Müller <philm@manjaro.org>
+#   Copyright 2014 - 2015, Philip Müller <philm@manjaro.org>
 #
-# Calamares is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+#   Calamares is free software: you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation, either version 3 of the License, or
+#   (at your option) any later version.
 #
-# Calamares is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-# GNU General Public License for more details.
+#   Calamares is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+#   GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with Calamares. If not, see <http://www.gnu.org/licenses/>.
+#   You should have received a copy of the GNU General Public License
+#   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
 
 import libcalamares
 import os
 
 
 def modify_grub_default(partitions, root_mount_point, distributor):
-
     default_dir = os.path.join(root_mount_point, "etc/default")
     default_grub = os.path.join(default_dir, "grub")
     distributor_replace = distributor.replace("'", "'\\''")
@@ -39,7 +38,7 @@ def modify_grub_default(partitions, root_mount_point, distributor):
             swap_uuid = partition["uuid"]
 
     if swap_uuid != "":
-        kernel_cmd = "GRUB_CMDLINE_LINUX_DEFAULT=\"resume=UUID={!s} quiet {!s}\"".format(swap_uuid,use_splash)
+        kernel_cmd = "GRUB_CMDLINE_LINUX_DEFAULT=\"resume=UUID={!s} quiet {!s}\"".format(swap_uuid, use_splash)
     else:
         kernel_cmd = "GRUB_CMDLINE_LINUX_DEFAULT=\"quiet {!s}\"".format(use_splash)
 
@@ -81,7 +80,7 @@ def modify_grub_default(partitions, root_mount_point, distributor):
                         escaped_value = "false"
                 else:
                     escaped_value = str(value).replace("'", "'\\''")
-                lines.append("{!s}=\"{!s}\"".format(key,escaped_value))
+                lines.append("{!s}=\"{!s}\"".format(key, escaped_value))
 
     if not have_kernel_cmd:
         lines.append(kernel_cmd)
@@ -93,6 +92,7 @@ def modify_grub_default(partitions, root_mount_point, distributor):
         grub_file.write("\n".join(lines) + "\n")
 
     return None
+
 
 def run():
     partitions = libcalamares.globalstorage.value("partitions")

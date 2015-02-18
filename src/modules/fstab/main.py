@@ -61,7 +61,7 @@ def disk_name_for_partition(partition):
 
 class FstabGenerator(object):
     def __init__(self, partitions, root_mount_point, mount_options,
-            ssd_extra_mount_options):
+                 ssd_extra_mount_options):
         self.partitions = partitions
         self.root_mount_point = root_mount_point
         self.mount_options = mount_options
@@ -98,7 +98,7 @@ class FstabGenerator(object):
                     fs="tmpfs",
                     options="defaults,noatime,mode=1777",
                     check=0,
-                    )
+                )
                 self.print_fstab_line(dct, file=fl)
 
     def generate_fstab_line_info(self, partition):
@@ -149,6 +149,7 @@ class FstabGenerator(object):
             if partition["mountPoint"]:
                 mkdir_p(self.root_mount_point + partition["mountPoint"])
 
+
 def run():
     gs = libcalamares.globalstorage
     conf = libcalamares.job.configuration
@@ -159,5 +160,5 @@ def run():
     ssd_extra_mount_options = conf.get("ssdExtraMountOptions", {})
 
     generator = FstabGenerator(partitions, root_mount_point,
-        mount_options, ssd_extra_mount_options)
+                               mount_options, ssd_extra_mount_options)
     return generator.run()
