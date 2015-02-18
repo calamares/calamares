@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-# encoding: utf-8
+# -*- coding: utf-8 -*-
+#
 # === This file is part of Calamares - <http://github.com/calamares> ===
 #
 #   Copyright 2014, Philip Müller <philm@manjaro.org>
@@ -20,9 +21,11 @@
 import libcalamares
 from libcalamares.utils import check_chroot_call
 
+
 def run_mkinitcpio():
     kernel = libcalamares.job.configuration['kernel']
     check_chroot_call(['mkinitcpio', '-p', kernel])
+
 
 def run():
     run_mkinitcpio()

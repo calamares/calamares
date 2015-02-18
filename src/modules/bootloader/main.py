@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-# encoding: utf-8
+# -*- coding: utf-8 -*-
+#
 # === This file is part of Calamares - <http://github.com/calamares> ===
 #
 #   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
@@ -48,6 +49,7 @@ def get_bootloader_entry_name():
     else:
         branding = libcalamares.globalstorage.value("branding")
         return branding["bootloaderEntryName"]
+
 
 def create_conf(uuid, conf_path):
     distribution = get_bootloader_entry_name()
@@ -127,9 +129,11 @@ def install_bootloader(boot_loader, fw_type):
         file_name_sanitizer = str.maketrans(" /", "_-")
         distribution_translated = distribution.translate(file_name_sanitizer)
         conf_path = os.path.join(
-            install_efi_directory, "loader", "entries", "{!s}.conf".format(distribution_translated))
+            install_efi_directory, "loader", "entries",
+            "{!s}.conf".format(distribution_translated))
         fallback_path = os.path.join(
-            install_efi_directory, "loader", "entries", "{!s}-fallback.conf".format(distribution_translated))
+            install_efi_directory, "loader", "entries",
+            "{!s}-fallback.conf".format(distribution_translated))
         loader_path = os.path.join(
             install_efi_directory, "loader", "loader.conf")
         partitions = libcalamares.globalstorage.value("partitions")
@@ -141,17 +145,17 @@ def install_bootloader(boot_loader, fw_type):
                 device = boot_device[:-1]
                 print(device)
         subprocess.call(["sgdisk", "--typecode={!s}:EF00".format(boot_p), "{!s}".format(device)])
-        subprocess.call(
-            ["gummiboot", "--path={!s}".format(install_efi_directory), "install"])
+        subprocess.call(["gummiboot", "--path={!s}".format(install_efi_directory), "install"])
         create_conf(uuid, conf_path)
         create_fallback(uuid, fallback_path)
         create_loader(loader_path)
     else:
         install_path = boot_loader["installPath"]
         check_chroot_call(
-            [libcalamares.job.configuration["grubInstall"], "--target=i386-pc", install_path])
-        check_chroot_call([libcalamares.job.configuration[
-                          "grubMkconfig"], "-o", libcalamares.job.configuration["grubCfg"]])
+            [libcalamares.job.configuration["grubInstall"], "--target=i386-pc",
+             install_path])
+        check_chroot_call([libcalamares.job.configuration["grubMkconfig"], "-o",
+                           libcalamares.job.configuration["grubCfg"]])
 
 
 def run():

@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-# encoding: utf-8
+# -*- coding: utf-8 -*-
+#
 # === This file is part of Calamares - <http://github.com/calamares> ===
 #
 #   Copyright 2014 - 2015, Philip Müller <philm@manjaro.org>
@@ -31,7 +32,7 @@ def run():
     try:
         subprocess.check_call(["hwclock", "--systohc", "--utc"])
     except subprocess.CalledProcessError as e:
-        return "Cannot set hardware clock.",\
+        return "Cannot set hardware clock.", \
                "hwclock terminated with exit code {}.".format(e.returncode)
 
     shutil.copy2("/etc/adjtime", "{!s}/etc/".format(root_mount_point))

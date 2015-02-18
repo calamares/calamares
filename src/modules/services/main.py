@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-# encoding: utf-8
+# -*- coding: utf-8 -*-
+#
 # === This file is part of Calamares - <http://github.com/calamares> ===
 #
 #   Copyright 2014, Philip Müller <philm@manjaro.org>
@@ -34,7 +35,7 @@ def run():
                                              '{}.service'.format(svc['name'])])
         if ec != 0:
             if svc['mandatory']:
-                return "Cannot enable systemd service {}".format(svc['name']),\
+                return "Cannot enable systemd service {}".format(svc['name']), \
                        "systemctl enable call in chroot returned error code {}".format(ec)
             else:
                 libcalamares.utils.debug(

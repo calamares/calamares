@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-# encoding: utf-8
+# -*- coding: utf-8 -*-
+#
 # === This file is part of Calamares - <http://github.com/calamares> ===
 #
 #   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
@@ -36,15 +37,23 @@ def install_grub(boot_loader, fw_type):
             distribution = branding["bootloaderEntryName"]
             file_name_sanitizer = str.maketrans(" /", "_-")
             efi_bootloader_id = distribution.translate(file_name_sanitizer)
-        check_chroot_call([libcalamares.job.configuration["grubInstall"], "--target=x86_64-efi", "--efi-directory={!s}".format(efi_directory), "--bootloader-id={!s}".format(efi_bootloader_id)])
+        check_chroot_call(
+            [libcalamares.job.configuration["grubInstall"], "--target=x86_64-efi",
+             "--efi-directory={!s}".format(efi_directory),
+             "--bootloader-id={!s}".format(efi_bootloader_id)])
         # Workaround for some UEFI firmwares
         check_chroot_call(["mkdir", "-p", "{!s}/boot".format(efi_directory_firmware)])
-        check_chroot_call(["cp", "{!s}/{!s}/grubx64.efi".format(efi_directory_firmware,efi_bootloader_id), "{!s}/boot/bootx64.efi".format(efi_directory_firmware)])
+        check_chroot_call(["cp", "{!s}/{!s}/grubx64.efi".format(efi_directory_firmware,
+                                                                efi_bootloader_id),
+                           "{!s}/boot/bootx64.efi".format(efi_directory_firmware)])
     else:
         install_path = boot_loader["installPath"]
-        check_chroot_call([libcalamares.job.configuration["grubInstall"], "--target=i386-pc", install_path])
+        check_chroot_call(
+            [libcalamares.job.configuration["grubInstall"], "--target=i386-pc",
+             install_path])
 
-    check_chroot_call([libcalamares.job.configuration["grubMkconfig"], "-o", libcalamares.job.configuration["grubCfg"]])
+    check_chroot_call([libcalamares.job.configuration["grubMkconfig"], "-o",
+                       libcalamares.job.configuration["grubCfg"]])
 
 
 def run():

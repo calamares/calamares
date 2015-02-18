@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-# encoding: utf-8
+# -*- coding: utf-8 -*-
+#
 # === This file is part of Calamares - <http://github.com/calamares> ===
 #
 #   Copyright 2014, Philip Müller <philm@manjaro.org>
@@ -18,6 +19,7 @@
 #   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
 
 from libcalamares.utils import chroot_call
+
 
 def run():
     returnCode = chroot_call(["update-initramfs", "-k", "all", "-u"])

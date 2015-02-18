@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-# encoding: utf-8
+# -*- coding: utf-8 -*-
+#
 # === This file is part of Calamares - <http://github.com/calamares> ===
 #
 #   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
@@ -41,7 +42,7 @@ def mount_partitions(root_mount_point, partitions):
             mount_point,
             fstype,
             partition.get("options", "")
-            )
+        )
 
 
 def run():

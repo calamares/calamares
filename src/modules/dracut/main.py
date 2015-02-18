@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-# encoding: utf-8
+# -*- coding: utf-8 -*-
+#
 # === This file is part of Calamares - <http://github.com/calamares> ===
 #
 #   Copyright 2014, Philip Müller <philm@manjaro.org>
@@ -21,8 +22,10 @@
 import libcalamares
 from libcalamares.utils import chroot_call
 
+
 def run_dracut():
     return chroot_call(['dracut', '-f'])
+
 
 def run():
     returnCode = run_dracut()
