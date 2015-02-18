@@ -35,7 +35,7 @@ def run():
                                              '{}.service'.format(svc['name'])])
         if ec != 0:
             if svc['mandatory']:
-                return "Cannot enable systemd service {}".format(svc['name']),\
+                return "Cannot enable systemd service {}".format(svc['name']), \
                        "systemctl enable call in chroot returned error code {}".format(ec)
             else:
                 libcalamares.utils.debug(

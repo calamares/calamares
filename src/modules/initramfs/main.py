@@ -20,6 +20,7 @@
 
 from libcalamares.utils import chroot_call
 
+
 def run():
     returnCode = chroot_call(["update-initramfs", "-k", "all", "-u"])
     if returnCode != 0:

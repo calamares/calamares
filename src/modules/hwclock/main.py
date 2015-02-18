@@ -32,7 +32,7 @@ def run():
     try:
         subprocess.check_call(["hwclock", "--systohc", "--utc"])
     except subprocess.CalledProcessError as e:
-        return "Cannot set hardware clock.",\
+        return "Cannot set hardware clock.", \
                "hwclock terminated with exit code {}.".format(e.returncode)
 
     shutil.copy2("/etc/adjtime", "{!s}/etc/".format(root_mount_point))

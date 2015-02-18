@@ -21,6 +21,7 @@
 import libcalamares
 from libcalamares.utils import check_chroot_call, chroot_call
 
+
 class PackageManager:
     def __init__(self, backend):
         self.backend = backend
@@ -30,13 +31,17 @@ class PackageManager:
             for pkg in pkgs:
                 check_chroot_call(["pkcon", "-py", "install", pkg])
         elif self.backend == "zypp":
-            check_chroot_call(["zypper", "--non-interactive", "--quiet-install", "install", "--auto-agree-with-licenses", "install"] + pkgs)
+            check_chroot_call(
+                ["zypper", "--non-interactive", "--quiet-install", "install",
+                 "--auto-agree-with-licenses", "install"] + pkgs)
         elif self.backend == "yum":
             check_chroot_call(["yum", "install", "-y"] + pkgs)
         elif self.backend == "dnf":
             check_chroot_call(["dnf", "install", "-y"] + pkgs)
         elif self.backend == "urpmi":
-            check_chroot_call(["urpmi", "--download-all", "--no-suggests", "--no-verify-rpm", "--fastunsafe", "--ignoresize", "--nolock", "--auto"] + pkgs)
+            check_chroot_call(
+                ["urpmi", "--download-all", "--no-suggests", "--no-verify-rpm",
+                 "--fastunsafe", "--ignoresize", "--nolock", "--auto"] + pkgs)
         elif self.backend == "apt":
             check_chroot_call(["apt-get", "-q", "-y", "install"] + pkgs)
         elif self.backend == "pacman":
@@ -61,12 +66,14 @@ class PackageManager:
         elif self.backend == "pacman":
             check_chroot_call(["pacman", "-Rs", "--noconfirm"] + pkgs)
 
+
 def run_operations(pkgman, entry):
     for key in entry.keys():
         if key == "install":
             pkgman.install(entry[key])
         elif key == "remove":
             pkgman.remove(entry[key])
+
 
 def run():
     backend = libcalamares.job.configuration.get("backend")

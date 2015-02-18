@@ -30,8 +30,9 @@ from collections import namedtuple
 
 from libcalamares import *
 
+
 class UnpackEntry:
-    __slots__= ['source', 'sourcefs', 'destination', 'copied', 'total']
+    __slots__ = ['source', 'sourcefs', 'destination', 'copied', 'total']
 
     def __init__(self, source, sourcefs, destination):
         self.source = source
@@ -39,6 +40,7 @@ class UnpackEntry:
         self.destination = destination
         self.copied = 0
         self.total = 0
+
 
 ON_POSIX = 'posix' in sys.builtin_module_names
 
@@ -104,7 +106,6 @@ def file_copy(source, dest, progress_cb):
 
 
 class UnpackOperation:
-
     def __init__(self, entries):
         self.entries = entries
         self.entry_for_source = dict((x.source, x) for x in self.entries)
@@ -117,8 +118,7 @@ class UnpackOperation:
 
             partialprogress = 0.05  # Having a total !=0 gives 5%
 
-            partialprogress += 0.95 * \
-                (entry.copied / float(entry.total))
+            partialprogress += 0.95 * (entry.copied / float(entry.total))
             progress += partialprogress / len(self.entries)
 
         job.setprogress(progress)
@@ -138,12 +138,13 @@ class UnpackOperation:
 
                 if entry.sourcefs == "squashfs":
                     if shutil.which("unsquashfs") is None:
-                        return ("Failed to unpack image", "Failed to find unsquashfs, make sure you have "
-                        "the squashfs-tools package installed")
+                        return ("Failed to unpack image",
+                                "Failed to find unsquashfs, make sure you have "
+                                "the squashfs-tools package installed")
 
                     fslist = subprocess.check_output(["unsquashfs",
-                                                        "-l",
-                                                        entry.source])
+                                                      "-l",
+                                                      entry.source])
                 if entry.sourcefs == "ext4":
                     fslist = subprocess.check_output(["find",
                                                       imgmountdir,
@@ -154,7 +155,7 @@ class UnpackOperation:
                 error_msg = self.unpack_image(entry, imgmountdir)
                 if error_msg:
                     return ("Failed to unpack image {}".format(entry.source),
-                        error_msg)
+                            error_msg)
             return None
         finally:
             shutil.rmtree(source_mount_path)
@@ -174,8 +175,8 @@ class UnpackOperation:
 
         try:
             return file_copy(imgmountdir,
-                      entry.destination,
-                      progress_cb)
+                             entry.destination,
+                             progress_cb)
         finally:
             subprocess.check_call(["umount", "-l", imgmountdir])
 
