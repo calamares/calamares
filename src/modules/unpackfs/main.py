@@ -219,7 +219,7 @@ def run():
         if os.path.isfile(PATH_PROCFS) and os.access(PATH_PROCFS, os.R_OK):
             procfile = open(PATH_PROCFS, 'r')
             filesystems = procfile.read()
-            procfile.close
+            procfile.close()
 
             filesystems = filesystems.replace("nodev", "")
             filesystems = filesystems.replace("\t", "")
