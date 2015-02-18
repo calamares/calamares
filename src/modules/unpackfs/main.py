@@ -230,7 +230,7 @@ def run():
                 if fs == sourcefs:
                     fs_is_supported = True
 
-        if fs_is_supported == False:
+        if not fs_is_supported:
             return "Bad filesystem", "sourcefs=\"{}\"".format(sourcefs)
 
         destination = os.path.abspath(root_mount_point + entry["destination"])
