@@ -37,7 +37,7 @@ def run():
 
     # restore backup if available
     if os.path.exists('/etc/locale.gen.bak'):
-        shutil.copy2("{!s}/etc/locale.gen.bak".format.(install_path),
+        shutil.copy2("{!s}/etc/locale.gen.bak".format(install_path),
                      "{!s}/etc/locale.gen".format(install_path))
 
     # run locale-gen if detected
