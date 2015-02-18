@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-# encoding: utf-8
+# -*- coding: utf-8 -*-
+#
 # === This file is part of Calamares - <http://github.com/calamares> ===
 #
 # Copyright 2014, Kevin Kofler <kevin.kofler@chello.at>

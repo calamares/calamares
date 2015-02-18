@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+#
 # === This file is part of Calamares - <http://github.com/calamares> ===
 #
 #   Copyright 2014, Teo Mrnjavac <teo@kde.org>
