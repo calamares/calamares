@@ -43,7 +43,7 @@ def cpuinfo():
             if not line.strip():
                 # end of one processor
                 cpuinfo["proc{!s}".format(nprocs)] = procinfo
-                nprocs=nprocs+1
+                nprocs += 1
                 # Reset
                 procinfo=OrderedDict()
             else:
