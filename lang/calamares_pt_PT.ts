@@ -2672,28 +2672,33 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
 <context>
     <name>UsersPage</name>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="236"/>
-        <source>Your username contains an invalid character &apos;%1&apos;</source>
-        <translation>Nome do utilizador contém um caracter inválido &apos;%1&apos; </translation>
+        <location filename="../src/modules/users/UsersPage.cpp" line="233"/>
+        <source>Your username is too long.</source>
+        <translation>O seu nome de utilizador é demasiado longo.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="240"/>
-        <source>Your username contains invalid characters!</source>
-        <translation>Nome do utilizador contém caracteres inválidos! </translation>
+        <location filename="../src/modules/users/UsersPage.cpp" line="243"/>
+        <source>Your username contains invalid characters. Only lowercase letters and numbers are allowed.</source>
+        <translation>O seu nome de utilizador contem caractéres inválidos. Apenas letras minúsculas e números são permitidos.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="287"/>
-        <source>Your hostname contains an invalid character &apos;%1&apos;</source>
-        <translation>Nome da máquina contém um caracter inválido &apos;%1&apos; </translation>
+        <source>Your hostname is too short.</source>
+        <translation>O seu nome de anfitrião é demasiado curto.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="291"/>
-        <source>Your hostname contains invalid characters!</source>
-        <translation>Nome da máquina contém um caracter inválido!</translation>
+        <location filename="../src/modules/users/UsersPage.cpp" line="298"/>
+        <source>Your hostname is too long.</source>
+        <translation>O seu nome de anfitrião é demasiado longo.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="322"/>
-        <location filename="../src/modules/users/UsersPage.cpp" line="355"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="309"/>
+        <source>Your hostname contains invalid characters. Only letters, numbers and dashes are allowed.</source>
+        <translation>O seu nome de anfitrião contém caractéres inválidos, Apenas letras, números e traços são permitidos.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/users/UsersPage.cpp" line="340"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="373"/>
         <source>Your passwords do not match!</source>
         <translation>As suas passwords não coincidem!</translation>
     </message>

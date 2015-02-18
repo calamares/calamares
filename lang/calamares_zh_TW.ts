@@ -2673,28 +2673,33 @@ Installation can continue, but some features might be disabled.</source>
 <context>
     <name>UsersPage</name>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="236"/>
-        <source>Your username contains an invalid character &apos;%1&apos;</source>
-        <translation>您的使用者名稱含有無效的字元 「%1」</translation>
+        <location filename="../src/modules/users/UsersPage.cpp" line="233"/>
+        <source>Your username is too long.</source>
+        <translation>您的使用者名稱太長了。</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="240"/>
-        <source>Your username contains invalid characters!</source>
-        <translation>您的使用者名稱含有無效的字元！</translation>
+        <location filename="../src/modules/users/UsersPage.cpp" line="243"/>
+        <source>Your username contains invalid characters. Only lowercase letters and numbers are allowed.</source>
+        <translation>您的使用者名稱含有無效的字元。只能使用小寫字母及數字。</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="287"/>
-        <source>Your hostname contains an invalid character &apos;%1&apos;</source>
-        <translation>您的主機名稱含有無效的字元「%1」</translation>
+        <source>Your hostname is too short.</source>
+        <translation>您的主機名稱太短了。</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="291"/>
-        <source>Your hostname contains invalid characters!</source>
-        <translation>您的主機名稱含有無效的字元！</translation>
+        <location filename="../src/modules/users/UsersPage.cpp" line="298"/>
+        <source>Your hostname is too long.</source>
+        <translation>您的主機名稱太長了。</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="322"/>
-        <location filename="../src/modules/users/UsersPage.cpp" line="355"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="309"/>
+        <source>Your hostname contains invalid characters. Only letters, numbers and dashes are allowed.</source>
+        <translation>您的主機名稱含有無效的字元。只能使用字母、數字及破折號。</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/users/UsersPage.cpp" line="340"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="373"/>
         <source>Your passwords do not match!</source>
         <translation>密碼不符！</translation>
     </message>

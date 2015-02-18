@@ -2671,28 +2671,33 @@ Installation can continue, but some features might be disabled.</source>
 <context>
     <name>UsersPage</name>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="236"/>
-        <source>Your username contains an invalid character &apos;%1&apos;</source>
-        <translation>用户名包含无效字符“%1”</translation>
+        <location filename="../src/modules/users/UsersPage.cpp" line="233"/>
+        <source>Your username is too long.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="240"/>
-        <source>Your username contains invalid characters!</source>
-        <translation>用户名包含无效字符！</translation>
+        <location filename="../src/modules/users/UsersPage.cpp" line="243"/>
+        <source>Your username contains invalid characters. Only lowercase letters and numbers are allowed.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="287"/>
-        <source>Your hostname contains an invalid character &apos;%1&apos;</source>
-        <translation>主机名包含无效字符“%1”</translation>
+        <source>Your hostname is too short.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="291"/>
-        <source>Your hostname contains invalid characters!</source>
-        <translation>主机名包含无效字符！</translation>
+        <location filename="../src/modules/users/UsersPage.cpp" line="298"/>
+        <source>Your hostname is too long.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="322"/>
-        <location filename="../src/modules/users/UsersPage.cpp" line="355"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="309"/>
+        <source>Your hostname contains invalid characters. Only letters, numbers and dashes are allowed.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/users/UsersPage.cpp" line="340"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="373"/>
         <source>Your passwords do not match!</source>
         <translation>密码不匹配！</translation>
     </message>

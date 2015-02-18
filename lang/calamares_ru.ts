@@ -2672,28 +2672,33 @@ Installation can continue, but some features might be disabled.</source>
 <context>
     <name>UsersPage</name>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="236"/>
-        <source>Your username contains an invalid character &apos;%1&apos;</source>
-        <translation>Имя пользователя содержит недопустимый символ: &apos;%1&apos;</translation>
+        <location filename="../src/modules/users/UsersPage.cpp" line="233"/>
+        <source>Your username is too long.</source>
+        <translation>Ваше имя пользователя слишком длинное.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="240"/>
-        <source>Your username contains invalid characters!</source>
-        <translation>Имя пользователя содержит недопустимые символы!</translation>
+        <location filename="../src/modules/users/UsersPage.cpp" line="243"/>
+        <source>Your username contains invalid characters. Only lowercase letters and numbers are allowed.</source>
+        <translation>Ваше имя пользователя содержит недопустимые символы. Допускаются только строчные буквы и цифры.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="287"/>
-        <source>Your hostname contains an invalid character &apos;%1&apos;</source>
-        <translation>Имя компьютера содержит недопустимый символ: &apos;%1&apos;</translation>
+        <source>Your hostname is too short.</source>
+        <translation>Имя вашего компьютера слишком коротко.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="291"/>
-        <source>Your hostname contains invalid characters!</source>
-        <translation>Имя компьютера содержит недопустимые символы!</translation>
+        <location filename="../src/modules/users/UsersPage.cpp" line="298"/>
+        <source>Your hostname is too long.</source>
+        <translation>Имя вашего компьютера слишком длинное.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="322"/>
-        <location filename="../src/modules/users/UsersPage.cpp" line="355"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="309"/>
+        <source>Your hostname contains invalid characters. Only letters, numbers and dashes are allowed.</source>
+        <translation>Имя вашего компьютера содержит недопустимые символы. Разрешены буквы, цифры и тире.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/users/UsersPage.cpp" line="340"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="373"/>
         <source>Your passwords do not match!</source>
         <translation>Пароли не совпадают!</translation>
     </message>
