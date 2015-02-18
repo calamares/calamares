@@ -283,7 +283,8 @@ PartitionCoreModule::jobs() const
 
     for ( auto info : m_deviceInfos )
     {
-        lst << Calamares::job_ptr( new ClearMountsJob( info->device.data() ) );
+        if ( info->isDirty() )
+            lst << Calamares::job_ptr( new ClearMountsJob( info->device.data() ) );
     }
 
     for ( auto info : m_deviceInfos )
