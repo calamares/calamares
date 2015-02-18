@@ -26,16 +26,17 @@ import shutil
 from collections import OrderedDict
 from libcalamares.utils import check_chroot_call
 
+
 def cpuinfo():
-    ''' Return the information in /proc/cpuinfo
-    as a dictionary in the following format:
+    """
+    Return the information in /proc/cpuinfo as a dictionary in the following format:
     cpu_info['proc0']={...}
     cpu_info['proc1']={...}
 
-    '''
+    """
 
-    cpuinfo=OrderedDict()
-    procinfo=OrderedDict()
+    cpuinfo = OrderedDict()
+    procinfo = OrderedDict()
 
     nprocs = 0
     with open('/proc/cpuinfo') as f:
@@ -45,7 +46,7 @@ def cpuinfo():
                 cpuinfo["proc{!s}".format(nprocs)] = procinfo
                 nprocs += 1
                 # Reset
-                procinfo=OrderedDict()
+                procinfo = OrderedDict()
             else:
                 if len(line.split(':')) == 2:
                     procinfo[line.split(':')[0].strip()] = line.split(':')[1].strip()
@@ -53,6 +54,7 @@ def cpuinfo():
                     procinfo[line.split(':')[0].strip()] = ''
 
     return cpuinfo
+
 
 def set_mkinitcpio_hooks_and_modules(hooks, modules, root_mount_point):
     """ Set up mkinitcpio.conf """
@@ -71,6 +73,7 @@ def set_mkinitcpio_hooks_and_modules(hooks, modules, root_mount_point):
     path = os.path.join(root_mount_point, "etc/mkinitcpio.conf")
     with open(path, "w") as mkinitcpio_file:
         mkinitcpio_file.write("\n".join(mklins) + "\n")
+
 
 def modify_mkinitcpio_conf(partitions, root_mount_point):
     """ Modifies mkinitcpio.conf """

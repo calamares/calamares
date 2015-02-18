@@ -35,7 +35,6 @@ except ImportError:
 
 
 class Job:
-
     def __init__(self, working_path, doc, cfg_doc):
         self.module_name = doc["name"]
         self.pretty_name = "Testing job " + doc["name"]

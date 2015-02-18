@@ -32,16 +32,13 @@ def run():
     accumulator += "This job's path: " + libcalamares.job.working_path + "\n"
     accumulator += str(libcalamares.job.configuration)
     accumulator += "   *** globalstorage test ***\n"
-    accumulator += "lala: " + \
-        str(libcalamares.globalstorage.contains("lala")) + "\n"
-    accumulator += "foo: " + \
-        str(libcalamares.globalstorage.contains("foo")) + "\n"
+    accumulator += "lala: " + str(libcalamares.globalstorage.contains("lala")) + "\n"
+    accumulator += "foo: " + str(libcalamares.globalstorage.contains("foo")) + "\n"
     accumulator += "count: " + str(libcalamares.globalstorage.count()) + "\n"
     libcalamares.globalstorage.insert("item2", "value2")
     libcalamares.globalstorage.insert("item3", 3)
     accumulator += "keys: {}\n".format(str(libcalamares.globalstorage.keys()))
-    accumulator += "remove: {}\n".format(
-        str(libcalamares.globalstorage.remove("item2")))
+    accumulator += "remove: {}\n".format(str(libcalamares.globalstorage.remove("item2")))
     accumulator += "values: {} {} {}\n".format(
         str(libcalamares.globalstorage.value("foo")),
         str(libcalamares.globalstorage.value("item2")),
