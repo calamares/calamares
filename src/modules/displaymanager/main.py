@@ -96,7 +96,7 @@ def set_autologin(username, displaymanagers, default_desktop_environment, root_m
         if os.path.exists("{!s}/var/lib/AccountsService/users".format(root_mount_point)):
             os.system(
                 "echo \"[User]\" > {!s}/var/lib/AccountsService/users/{!s}".format(root_mount_point,username))
-            if default_desktop_environment != None:
+            if default_desktop_environment is not None:
                 os.system(
                     "echo \"XSession={!s}\" >> {!s}/var/lib/AccountsService/users/{!s}".format(default_desktop_environment.desktop_file,root_mount_point,username))
             os.system(
@@ -188,7 +188,7 @@ def set_autologin(username, displaymanagers, default_desktop_environment, root_m
                     line = 'User={}\n'.format(username)
                 # Session= line, commented out or with empty value
                 if re.match('\\s*#\\s*Session=|\\s*Session=$', line):
-                    if default_desktop_environment != None:
+                    if default_desktop_environment is not None:
                         line = 'Session={}.desktop\n'.format(default_desktop_environment.desktop_file)
                 sddm_conf.write(line)
        
@@ -255,7 +255,7 @@ def run():
                     ['chown', '-R', 'lightdm:lightdm', '/run/lightdm'])
                 libcalamares.utils.chroot_call(
                     ['chmod', '+r' '/etc/lightdm/lightdm.conf'])
-            if default_desktop_environment != None:
+            if default_desktop_environment is not None:
                 os.system(
                     "sed -i -e \"s/^.*user-session=.*/user-session={!s}/\" {!s}/etc/lightdm/lightdm.conf".format(default_desktop_environment.desktop_file,root_mount_point))
         else:
@@ -293,7 +293,7 @@ def run():
                 libcalamares.utils.chroot_call(
                     ['chown', 'root:mdm', '/var/lib/mdm'])
                 libcalamares.utils.chroot_call(['chmod', '1770', '/var/lib/mdm'])
-            if default_desktop_environment != None:
+            if default_desktop_environment is not None:
                 os.system(
                     "sed -i \"s|default.desktop|{!s}.desktop|g\" {!s}/etc/mdm/custom.conf".format(default_desktop_environment.desktop_file,root_mount_point))
         else:
@@ -312,7 +312,7 @@ def run():
                     ['chgrp', 'lxdm', '/etc/lxdm/lxdm.conf'])
                 libcalamares.utils.chroot_call(
                     ['chmod', '+r', '/etc/lxdm/lxdm.conf'])
-            if default_desktop_environment != None:
+            if default_desktop_environment is not None:
                 os.system(
                     "sed -i -e \"s|^.*session=.*|session={!s}|\" {!s}/etc/lxdm/lxdm.conf".format(default_desktop_environment.executable,root_mount_point))
         else:
@@ -334,7 +334,7 @@ def run():
             libcalamares.utils.debug("kdm selected but not installed")
             displaymanagers.remove("kdm")
 
-    if username != None:
+    if username is not None:
         libcalamares.utils.debug(
             "Setting up autologin for user {!s}.".format(username))
         return set_autologin(username, displaymanagers, default_desktop_environment, root_mount_point)
