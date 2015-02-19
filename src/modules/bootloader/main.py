@@ -150,9 +150,9 @@ def install_grub(efi_directory, fw_type):
 
 
 def prepare_bootloader(fw_type):
+    efi_directory = libcalamares.globalstorage.value("efiSystemPartition")
+    efi_boot_loader = libcalamares.job.configuration["efiBootLoader"]
     if fw_type == "efi":
-        efi_boot_loader = libcalamares.job.configuration["efiBootLoader"]
-        efi_directory = libcalamares.globalstorage.value("efiSystemPartition")
         partitions = libcalamares.globalstorage.value("partitions")
         boot_p = ""
         device = ""
