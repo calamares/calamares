@@ -51,7 +51,7 @@ def get_bootloader_entry_name():
         return branding["bootloaderEntryName"]
 
 
-def create_conf(uuid, conf_path):
+def create_conf(uuid, conf_path, kernel_line):
     distribution = get_bootloader_entry_name()
     kernel = libcalamares.job.configuration["kernel"]
     img = libcalamares.job.configuration["img"]
@@ -65,39 +65,13 @@ def create_conf(uuid, conf_path):
         '## This is just an example config file.\n',
         '## Please edit the paths and kernel parameters according to your system.\n',
         '\n',
-        "title   {!s} GNU/Linux, with Linux core repo kernel\n".format(distribution),
+        "title   {!s} GNU/Linux, with {!s}\n".format(distribution,kernel_line),
         "linux   {!s}\n".format(kernel),
         "initrd  {!s}\n".format(img),
         "options root=UUID={!s} quiet resume=UUID={!s} rw\n".format(uuid, swap),
     ]
 
     with open(conf_path, 'w') as f:
-        for l in lines:
-            f.write(l)
-    f.close()
-
-
-def create_fallback(uuid, fallback_path):
-    distribution = get_bootloader_entry_name()
-    kernel = libcalamares.job.configuration["kernel"]
-    fb_img = libcalamares.job.configuration["fallback"]
-    partitions = libcalamares.globalstorage.value("partitions")
-    swap = ""
-    for partition in partitions:
-        if partition["fs"] == "linuxswap":
-            swap = partition["uuid"]
-
-    lines = [
-        '## This is just an example config file.\n',
-        '## Please edit the paths and kernel parameters according to your system.\n',
-        '\n',
-        "title   {!s} GNU/Linux, with Linux fallback kernel\n".format(distribution),
-        "linux   {!s}\n".format(kernel),
-        "initrd  {!s}\n".format(fb_img),
-        "options root=UUID={!s} quiet resume=UUID={!s} rw\n".format(uuid, swap),
-    ]
-
-    with open(fallback_path, 'w') as f:
         for l in lines:
             f.write(l)
     f.close()
@@ -154,8 +128,12 @@ def install_bootloader(boot_loader, fw_type):
                     print("Boot device: \"{!s}\"".format(device))
         subprocess.call(["sgdisk", "--typecode={!s}:EF00".format(boot_p), "{!s}".format(device)])
         subprocess.call(["gummiboot", "--path={!s}".format(install_efi_directory), "install"])
-        create_conf(uuid, conf_path)
-        create_fallback(uuid, fallback_path)
+        kernel_line = libcalamares.job.configuration("kernelLine")
+        fallback_kernel_line = libcalamares.job.configuration("fallbackKernelLine")
+        print("Configure: \"{!s}\"".format(kernel_line))
+        create_conf(uuid, conf_path, kernel_line)
+        print("Configure: \"{!s}\"".format(fallback_kernel_line))
+        create_conf(uuid, fallback_path, fallback_kernel_line)
         create_loader(loader_path)
     else:
         install_path = boot_loader["installPath"]
