@@ -137,13 +137,17 @@ def install_bootloader(boot_loader, fw_type):
         loader_path = os.path.join(
             install_efi_directory, "loader", "loader.conf")
         partitions = libcalamares.globalstorage.value("partitions")
+        boot_p = ""
+        device = ""
         for partition in partitions:
             if partition["mountPoint"] == efi_directory:
-                print(partition["device"])
                 boot_device = partition["device"]
                 boot_p = boot_device[-1:]
                 device = boot_device[:-1]
-                print(device)
+                if (boot_p == "" or device == ""):
+                    return ("EFI directory \"{!s}\" not found!",
+                            "Boot partition: \"{!s}\"",
+                            "Device: \"{!s}\"".format(efi_directory,boot_p,device))
         subprocess.call(["sgdisk", "--typecode={!s}:EF00".format(boot_p), "{!s}".format(device)])
         subprocess.call(["gummiboot", "--path={!s}".format(install_efi_directory), "install"])
         create_conf(uuid, conf_path)
