@@ -111,8 +111,8 @@ def install_bootloader(boot_loader, fw_type):
         loader_path = os.path.join(
             install_efi_directory, "loader", "loader.conf")
         partitions = libcalamares.globalstorage.value("partitions")
-        kernel_line = libcalamares.job.configuration("kernelLine")
-        fallback_kernel_line = libcalamares.job.configuration("fallbackKernelLine")
+        kernel_line = libcalamares.job.configuration["kernelLine"]
+        fallback_kernel_line = libcalamares.job.configuration["fallbackKernelLine"]
         boot_p = ""
         device = ""
         for partition in partitions:
