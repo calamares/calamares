@@ -53,14 +53,14 @@ def get_bootloader_entry_name():
 
 
 def get_kernel_line(kernel_type):
-    if "bootloaderEntryName" in libcalamares.job.configuration:
-        if kernel_type == "fallback":
+    if kernel_type == "fallback":
+        if "fallbackKernelLine" in libcalamares.job.configuration:
             return libcalamares.job.configuration["fallbackKernelLine"]
         else:
-            return libcalamares.job.configuration["kernelLine"]
-    else:
-        if kernel_type == "fallback":
             return " (fallback)"
+    else:
+        if "kernelLine" in libcalamares.job.configuration:
+            return libcalamares.job.configuration["kernelLine"]
         else:
             return ""
 
