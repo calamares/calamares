@@ -33,12 +33,12 @@ from libcalamares.utils import check_chroot_call
 
 def get_uuid():
     root_mount_point = libcalamares.globalstorage.value("rootMountPoint")
-    print(root_mount_point)
+    print("Root mount point: \"{!s}\"".format(root_mount_point))
     partitions = libcalamares.globalstorage.value("partitions")
-    print(partitions)
+    print("Partitions: \"{!s}\"".format(partitions))
     for partition in partitions:
         if partition["mountPoint"] == "/":
-            print(partition["uuid"])
+            print("Root partition uuid: \"{!s}\"".format(partition["uuid"]))
             return partition["uuid"]
     return ""
 
@@ -147,7 +147,11 @@ def install_bootloader(boot_loader, fw_type):
                 if (boot_p == "" or device == ""):
                     return ("EFI directory \"{!s}\" not found!",
                             "Boot partition: \"{!s}\"",
-                            "Device: \"{!s}\"".format(efi_directory,boot_p,device))
+                            "Boot device: \"{!s}\"".format(efi_directory,boot_p,device))
+                else:
+                    print("EFI directory: \"{!s}\"".format(efi_directory))
+                    print("Boot partition: \"{!s}\"".format(boot_p))
+                    print("Boot device: \"{!s}\"".format(device))
         subprocess.call(["sgdisk", "--typecode={!s}:EF00".format(boot_p), "{!s}".format(device)])
         subprocess.call(["gummiboot", "--path={!s}".format(install_efi_directory), "install"])
         create_conf(uuid, conf_path)
