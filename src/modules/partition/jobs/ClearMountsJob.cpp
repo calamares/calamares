@@ -82,5 +82,7 @@ ClearMountsJob::exec()
                         .arg( m_device->deviceNode() ) );
     ok.setDetails( goodNews.join( "\n" ) );
 
+    cDebug() << "ClearMountsJob finished. Here's what was done:\n" << goodNews.join( "\n" );
+
     return ok;
 }
