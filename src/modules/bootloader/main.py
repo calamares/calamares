@@ -111,6 +111,8 @@ def install_bootloader(boot_loader, fw_type):
         loader_path = os.path.join(
             install_efi_directory, "loader", "loader.conf")
         partitions = libcalamares.globalstorage.value("partitions")
+        kernel_line = libcalamares.job.configuration("kernelLine")
+        fallback_kernel_line = libcalamares.job.configuration("fallbackKernelLine")
         boot_p = ""
         device = ""
         for partition in partitions:
@@ -128,8 +130,6 @@ def install_bootloader(boot_loader, fw_type):
                     print("Boot device: \"{!s}\"".format(device))
         subprocess.call(["sgdisk", "--typecode={!s}:EF00".format(boot_p), "{!s}".format(device)])
         subprocess.call(["gummiboot", "--path={!s}".format(install_efi_directory), "install"])
-        kernel_line = libcalamares.job.configuration("kernelLine")
-        fallback_kernel_line = libcalamares.job.configuration("fallbackKernelLine")
         print("Configure: \"{!s}\"".format(kernel_line))
         create_conf(uuid, conf_path, kernel_line)
         print("Configure: \"{!s}\"".format(fallback_kernel_line))
