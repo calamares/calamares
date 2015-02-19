@@ -23,6 +23,7 @@
 
 import libcalamares
 from libcalamares.utils import check_chroot_call
+import subprocess
 
 
 def install_grub(boot_loader, fw_type):
@@ -37,6 +38,23 @@ def install_grub(boot_loader, fw_type):
             distribution = branding["bootloaderEntryName"]
             file_name_sanitizer = str.maketrans(" /", "_-")
             efi_bootloader_id = distribution.translate(file_name_sanitizer)
+        partitions = libcalamares.globalstorage.value("partitions")
+        boot_p = ""
+        device = ""
+        for partition in partitions:
+            if partition["mountPoint"] == efi_directory:
+                boot_device = partition["device"]
+                boot_p = boot_device[-1:]
+                device = boot_device[:-1]
+                if (not boot_p or not device):
+                    return ("EFI directory \"{!s}\" not found!",
+                            "Boot partition: \"{!s}\"",
+                            "Boot device: \"{!s}\"".format(efi_directory,boot_p,device))
+                else:
+                    print("EFI directory: \"{!s}\"".format(efi_directory))
+                    print("Boot partition: \"{!s}\"".format(boot_p))
+                    print("Boot device: \"{!s}\"".format(device))
+        subprocess.call(["sgdisk", "--typecode={!s}:EF00".format(boot_p), "{!s}".format(device)])
         check_chroot_call(
             [libcalamares.job.configuration["grubInstall"], "--target=x86_64-efi",
              "--efi-directory={!s}".format(efi_directory),
