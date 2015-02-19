@@ -144,7 +144,7 @@ def install_bootloader(boot_loader, fw_type):
                 boot_device = partition["device"]
                 boot_p = boot_device[-1:]
                 device = boot_device[:-1]
-                if (boot_p == "" or device == ""):
+                if (not boot_p or not device):
                     return ("EFI directory \"{!s}\" not found!",
                             "Boot partition: \"{!s}\"",
                             "Boot device: \"{!s}\"".format(efi_directory,boot_p,device))
