@@ -2333,7 +2333,7 @@ De installatie kan doorgaan, maar sommige functies werken mogelijk niet.</transl
     <message>
         <location filename="../src/modules/users/SetHostNameJob.cpp" line="36"/>
         <source>Set hostname %1</source>
-        <translation>Instellen hostname %1</translation>
+        <translation>Instellen hostnaam %1</translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetHostNameJob.cpp" line="46"/>
@@ -2345,7 +2345,7 @@ De installatie kan doorgaan, maar sommige functies werken mogelijk niet.</transl
         <location filename="../src/modules/users/SetHostNameJob.cpp" line="60"/>
         <location filename="../src/modules/users/SetHostNameJob.cpp" line="71"/>
         <source>Cannot write hostname to target system</source>
-        <translation>Kan de hostname niet naar doelsysteem schrijven</translation>
+        <translation>Kan de hostnaam niet naar doelsysteem schrijven</translation>
     </message>
 </context>
 <context>
@@ -2685,17 +2685,17 @@ De installatie kan doorgaan, maar sommige functies werken mogelijk niet.</transl
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="287"/>
         <source>Your hostname is too short.</source>
-        <translation>De hostname is te kort.</translation>
+        <translation>De hostnaam is te kort.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="298"/>
         <source>Your hostname is too long.</source>
-        <translation>De hostname is te lang.</translation>
+        <translation>De hostnaam is te lang.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="309"/>
         <source>Your hostname contains invalid characters. Only letters, numbers and dashes are allowed.</source>
-        <translation>De hostname bevat ongeldige tekens.  Enkel letters, cijfers en liggende streepjes zijn toegelaten.</translation>
+        <translation>De hostnaam bevat ongeldige tekens.  Enkel letters, cijfers en liggende streepjes zijn toegelaten.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="340"/>
