@@ -7,6 +7,7 @@
 #   Copyright 2014, Anke Boersma <demm@kaosx.us>
 #   Copyright 2014, Daniel Hillenbrand <codeworkx@bbqlinux.org>
 #   Copyright 2014, Benjamin Vaudour <benjamin.vaudour@yahoo.fr>
+#   Copyright 2014, Kevin Kofler <kevin.kofler@chello.at>
 #   Copyright 2015, Philip Mueller <philm@manjaro.org>
 #
 #   Calamares is free software: you can redistribute it and/or modify
@@ -93,26 +94,66 @@ def create_loader(loader_path):
     f.close()
 
 
-def install_bootloader(boot_loader, fw_type):
-    if fw_type == 'efi':
-        install_path = libcalamares.globalstorage.value("rootMountPoint")
+def install_gummiboot(efi_directory):
+    install_path = libcalamares.globalstorage.value("rootMountPoint")
+    install_efi_directory = install_path + efi_directory
+    kernel_line = libcalamares.job.configuration["kernelLine"]
+    fallback_kernel_line = libcalamares.job.configuration["fallbackKernelLine"]
+    uuid = get_uuid()
+    distribution = get_bootloader_entry_name()
+    file_name_sanitizer = str.maketrans(" /", "_-")
+    distribution_translated = distribution.translate(file_name_sanitizer)
+    conf_path = os.path.join(
+        install_efi_directory, "loader", "entries",
+        "{!s}.conf".format(distribution_translated))
+    fallback_path = os.path.join(
+        install_efi_directory, "loader", "entries",
+        "{!s}-fallback.conf".format(distribution_translated))
+    loader_path = os.path.join(
+        install_efi_directory, "loader", "loader.conf")
+    subprocess.call(["gummiboot", "--path={!s}".format(install_efi_directory), "install"])
+    print("Configure: \"{!s}\"".format(kernel_line))
+    create_conf(uuid, conf_path, kernel_line)
+    print("Configure: \"{!s}\"".format(fallback_kernel_line))
+    create_conf(uuid, fallback_path, fallback_kernel_line)
+    create_loader(loader_path)
+
+
+def install_grub(efi_directory, fw_type):
+    if fw_type == "efi":
+        efi_directory_firmware = efi_directory + "/EFI"
+        check_chroot_call(["mkdir", "-p", "{!s}".format(efi_directory)])
+        if "efiBootloaderId" in libcalamares.job.configuration:
+            efi_bootloader_id = libcalamares.job.configuration["efiBootloaderId"]
+        else:
+            branding = libcalamares.globalstorage.value("branding")
+            distribution = branding["bootloaderEntryName"]
+            file_name_sanitizer = str.maketrans(" /", "_-")
+            efi_bootloader_id = distribution.translate(file_name_sanitizer)
+        check_chroot_call(
+            [libcalamares.job.configuration["grubInstall"], "--target=x86_64-efi",
+             "--efi-directory={!s}".format(efi_directory),
+             "--bootloader-id={!s}".format(efi_bootloader_id)])
+        # Workaround for some UEFI firmwares
+        check_chroot_call(["mkdir", "-p", "{!s}/boot".format(efi_directory_firmware)])
+        check_chroot_call(["cp", "{!s}/{!s}/grubx64.efi".format(efi_directory_firmware,
+                                                                efi_bootloader_id),
+                           "{!s}/boot/bootx64.efi".format(efi_directory_firmware)])
+    else:
+        boot_loader = libcalamares.globalstorage.value("bootLoader")
+        check_chroot_call(
+            [libcalamares.job.configuration["grubInstall"], "--target=i386-pc",
+             boot_loader["installPath"]])
+
+    check_chroot_call([libcalamares.job.configuration["grubMkconfig"], "-o",
+                       libcalamares.job.configuration["grubCfg"]])
+
+
+def prepare_bootloader(fw_type):
+    if fw_type == "efi":
+        efi_boot_loader = libcalamares.job.configuration["efiBootLoader"]
         efi_directory = libcalamares.globalstorage.value("efiSystemPartition")
-        install_efi_directory = install_path + efi_directory
-        uuid = get_uuid()
-        distribution = get_bootloader_entry_name()
-        file_name_sanitizer = str.maketrans(" /", "_-")
-        distribution_translated = distribution.translate(file_name_sanitizer)
-        conf_path = os.path.join(
-            install_efi_directory, "loader", "entries",
-            "{!s}.conf".format(distribution_translated))
-        fallback_path = os.path.join(
-            install_efi_directory, "loader", "entries",
-            "{!s}-fallback.conf".format(distribution_translated))
-        loader_path = os.path.join(
-            install_efi_directory, "loader", "loader.conf")
         partitions = libcalamares.globalstorage.value("partitions")
-        kernel_line = libcalamares.job.configuration["kernelLine"]
-        fallback_kernel_line = libcalamares.job.configuration["fallbackKernelLine"]
         boot_p = ""
         device = ""
         for partition in partitions:
@@ -129,23 +170,13 @@ def install_bootloader(boot_loader, fw_type):
                     print("Boot partition: \"{!s}\"".format(boot_p))
                     print("Boot device: \"{!s}\"".format(device))
         subprocess.call(["sgdisk", "--typecode={!s}:EF00".format(boot_p), "{!s}".format(device)])
-        subprocess.call(["gummiboot", "--path={!s}".format(install_efi_directory), "install"])
-        print("Configure: \"{!s}\"".format(kernel_line))
-        create_conf(uuid, conf_path, kernel_line)
-        print("Configure: \"{!s}\"".format(fallback_kernel_line))
-        create_conf(uuid, fallback_path, fallback_kernel_line)
-        create_loader(loader_path)
+    if (efi_boot_loader == "gummiboot" and fw_type == "efi"):
+            install_gummiboot(efi_directory)
     else:
-        install_path = boot_loader["installPath"]
-        check_chroot_call(
-            [libcalamares.job.configuration["grubInstall"], "--target=i386-pc",
-             install_path])
-        check_chroot_call([libcalamares.job.configuration["grubMkconfig"], "-o",
-                           libcalamares.job.configuration["grubCfg"]])
+            install_grub(efi_directory, fw_type)
 
 
 def run():
-    boot_loader = libcalamares.globalstorage.value("bootLoader")
     fw_type = libcalamares.globalstorage.value("firmwareType")
-    install_bootloader(boot_loader, fw_type)
+    prepare_bootloader(fw_type)
     return None
