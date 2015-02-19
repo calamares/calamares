@@ -46,7 +46,7 @@ def get_uuid():
 
 def get_bootloader_entry_name():
     if "productName" in libcalamares.job.configuration:
-        return libcalamares.job.configuration["bootloaderEntryName"]
+        return libcalamares.job.configuration["productName"]
     else:
         branding = libcalamares.globalstorage.value("branding")
         return branding["productName"]
