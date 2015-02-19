@@ -45,11 +45,24 @@ def get_uuid():
 
 
 def get_bootloader_entry_name():
-    if "bootloaderEntryName" in libcalamares.job.configuration:
+    if "productName" in libcalamares.job.configuration:
         return libcalamares.job.configuration["bootloaderEntryName"]
     else:
         branding = libcalamares.globalstorage.value("branding")
-        return branding["bootloaderEntryName"]
+        return branding["productName"]
+
+
+def get_kernel_line(kernel_type):
+    if "bootloaderEntryName" in libcalamares.job.configuration:
+        if kernel_type == "fallback":
+            return libcalamares.job.configuration["fallbackKernelLine"]
+        else:
+            return libcalamares.job.configuration["kernelLine"]
+    else:
+        if kernel_type == "fallback":
+            return " (fallback)"
+        else:
+            return ""
 
 
 def create_conf(uuid, conf_path, kernel_line):
@@ -66,7 +79,7 @@ def create_conf(uuid, conf_path, kernel_line):
         '## This is just an example config file.\n',
         '## Please edit the paths and kernel parameters according to your system.\n',
         '\n',
-        "title   {!s} GNU/Linux, with {!s}\n".format(distribution,kernel_line),
+        "title   {!s}{!s}\n".format(distribution,kernel_line),
         "linux   {!s}\n".format(kernel),
         "initrd  {!s}\n".format(img),
         "options root=UUID={!s} quiet resume=UUID={!s} rw\n".format(uuid, swap),
@@ -97,7 +110,6 @@ def create_loader(loader_path):
 def install_gummiboot(efi_directory):
     install_path = libcalamares.globalstorage.value("rootMountPoint")
     install_efi_directory = install_path + efi_directory
-    kernel_line = libcalamares.job.configuration["kernelLine"]
     fallback_kernel_line = libcalamares.job.configuration["fallbackKernelLine"]
     uuid = get_uuid()
     distribution = get_bootloader_entry_name()
@@ -112,10 +124,12 @@ def install_gummiboot(efi_directory):
     loader_path = os.path.join(
         install_efi_directory, "loader", "loader.conf")
     subprocess.call(["gummiboot", "--path={!s}".format(install_efi_directory), "install"])
+    kernel_line = get_bootloader_entry_name("default")
     print("Configure: \"{!s}\"".format(kernel_line))
     create_conf(uuid, conf_path, kernel_line)
-    print("Configure: \"{!s}\"".format(fallback_kernel_line))
-    create_conf(uuid, fallback_path, fallback_kernel_line)
+    kernel_line = get_bootloader_entry_name("fallback")
+    print("Configure: \"{!s}\"".format(kernel_line))
+    create_conf(uuid, fallback_path, kernel_line)
     create_loader(loader_path)
 
 
