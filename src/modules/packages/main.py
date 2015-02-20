@@ -23,10 +23,18 @@ from libcalamares.utils import check_chroot_call, chroot_call
 
 
 class PackageManager:
+    """
+
+    :param backend:
+    """
     def __init__(self, backend):
         self.backend = backend
 
     def install(self, pkgs):
+        """
+
+        :param pkgs:
+        """
         if self.backend == "packagekit":
             for pkg in pkgs:
                 check_chroot_call(["pkcon", "-py", "install", pkg])
@@ -48,6 +56,10 @@ class PackageManager:
             check_chroot_call(["pacman", "-Sy", "--noconfirm"] + pkgs)
 
     def remove(self, pkgs):
+        """
+
+        :param pkgs:
+        """
         if self.backend == "packagekit":
             for pkg in pkgs:
                 check_chroot_call(["pkcon", "-py", "remove", pkg])
@@ -68,6 +80,11 @@ class PackageManager:
 
 
 def run_operations(pkgman, entry):
+    """
+
+    :param pkgman:
+    :param entry:
+    """
     for key in entry.keys():
         if key == "install":
             pkgman.install(entry[key])
@@ -76,6 +93,11 @@ def run_operations(pkgman, entry):
 
 
 def run():
+    """
+
+
+    :return:
+    """
     backend = libcalamares.job.configuration.get("backend")
     if backend not in ("packagekit", "zypp", "yum", "dnf", "urpmi", "apt", "pacman"):
         return ("Bad backend", "backend=\"{}\"".format(backend))

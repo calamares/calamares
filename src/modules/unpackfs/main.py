@@ -32,6 +32,12 @@ from libcalamares import *
 
 
 class UnpackEntry:
+    """
+
+    :param source:
+    :param sourcefs:
+    :param destination:
+    """
     __slots__ = ['source', 'sourcefs', 'destination', 'copied', 'total']
 
     def __init__(self, source, sourcefs, destination):
@@ -46,6 +52,11 @@ ON_POSIX = 'posix' in sys.builtin_module_names
 
 
 def list_excludes(destination):
+    """
+
+    :param destination:
+    :return:
+    """
     lst = []
     extra_mounts = globalstorage.value("extraMounts")
     for extra_mount in extra_mounts:
@@ -56,6 +67,13 @@ def list_excludes(destination):
 
 
 def file_copy(source, dest, progress_cb):
+    """
+
+    :param source:
+    :param dest:
+    :param progress_cb:
+    :return:
+    """
     # Environment used for executing rsync properly
     # Setting locale to C (fix issue with tr_TR locale)
     at_env = os.environ
@@ -106,11 +124,19 @@ def file_copy(source, dest, progress_cb):
 
 
 class UnpackOperation:
+    """
+
+    :param entries:
+    """
     def __init__(self, entries):
         self.entries = entries
         self.entry_for_source = dict((x.source, x) for x in self.entries)
 
     def report_progress(self):
+        """
+
+
+        """
         progress = float(0)
         for entry in self.entries:
             if entry.total == 0:
@@ -124,6 +150,11 @@ class UnpackOperation:
         job.setprogress(progress)
 
     def run(self):
+        """
+
+
+        :return:
+        """
         source_mount_path = tempfile.mkdtemp()
         try:
             for entry in self.entries:
@@ -161,6 +192,11 @@ class UnpackOperation:
             shutil.rmtree(source_mount_path)
 
     def mount_image(self, entry, imgmountdir):
+        """
+
+        :param entry:
+        :param imgmountdir:
+        """
         subprocess.check_call(["mount",
                                entry.source,
                                imgmountdir,
@@ -169,7 +205,18 @@ class UnpackOperation:
                                "-o", "loop"])
 
     def unpack_image(self, entry, imgmountdir):
+        """
+
+        :param entry:
+        :param imgmountdir:
+        :return:
+        """
+
         def progress_cb(copied):
+            """
+
+            :param copied:
+            """
             entry.copied = copied
             self.report_progress()
 
@@ -196,6 +243,11 @@ def run():
     #           sourcefs: "squashfs"
     #           destination: ""
 
+    """
+
+
+    :return:
+    """
     PATH_PROCFS = '/proc/filesystems'
 
     root_mount_point = globalstorage.value("rootMountPoint")

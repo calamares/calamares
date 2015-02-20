@@ -23,10 +23,19 @@ from libcalamares.utils import check_chroot_call
 
 
 def run_mkinitcpio():
+    """
+
+
+    """
     kernel = libcalamares.job.configuration['kernel']
     check_chroot_call(['mkinitcpio', '-p', kernel])
 
 
 def run():
+    """
+
+
+    :return:
+    """
     run_mkinitcpio()
     return None

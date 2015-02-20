@@ -23,6 +23,13 @@ import os
 
 
 def modify_grub_default(partitions, root_mount_point, distributor):
+    """
+
+    :param partitions:
+    :param root_mount_point:
+    :param distributor:
+    :return:
+    """
     default_dir = os.path.join(root_mount_point, "etc/default")
     default_grub = os.path.join(default_dir, "grub")
     distributor_replace = distributor.replace("'", "'\\''")
@@ -95,6 +102,11 @@ def modify_grub_default(partitions, root_mount_point, distributor):
 
 
 def run():
+    """
+
+
+    :return:
+    """
     partitions = libcalamares.globalstorage.value("partitions")
     root_mount_point = libcalamares.globalstorage.value("rootMountPoint")
     branding = libcalamares.globalstorage.value("branding")

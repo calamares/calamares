@@ -24,6 +24,11 @@ from time import gmtime, strftime
 
 
 def run():
+    """
+
+
+    :return:
+    """
     os.system("/bin/sh -c \"touch ~/calamares-dummypython\"")
     accumulator = strftime("%Y-%m-%d %H:%M:%S", gmtime()) + "\n"
     accumulator += "Calamares version: " + libcalamares.VERSION_SHORT + "\n"

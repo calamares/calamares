@@ -24,10 +24,20 @@ from libcalamares.utils import chroot_call
 
 
 def run_dracut():
+    """
+
+
+    :return:
+    """
     return chroot_call(['dracut', '-f'])
 
 
 def run():
+    """
+
+
+    :return:
+    """
     returnCode = run_dracut()
     if returnCode != 0:
         return ("Failed to run dracut on the target", "The exit code was {}".format(returnCode))

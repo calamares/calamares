@@ -41,11 +41,20 @@ FS_MAP = {
 
 
 def mkdir_p(path):
+    """
+
+    :param path:
+    """
     if not os.path.exists(path):
         os.makedirs(path)
 
 
 def is_ssd_disk(disk_name):
+    """
+
+    :param disk_name:
+    :return:
+    """
     filename = os.path.join("/sys/block", disk_name, "queue/rotational")
     if not os.path.exists(filename):
         # Should not happen unless sysfs changes, but better safe than sorry
@@ -55,11 +64,24 @@ def is_ssd_disk(disk_name):
 
 
 def disk_name_for_partition(partition):
+    """
+
+    :param partition:
+    :return:
+    """
     name = os.path.basename(partition["device"])
     return re.sub("[0-9]+$", "", name)
 
 
 class FstabGenerator(object):
+    """
+
+    :param partitions:
+    :param root_mount_point:
+    :param mount_options:
+    :param ssd_extra_mount_options:
+    """
+
     def __init__(self, partitions, root_mount_point, mount_options,
                  ssd_extra_mount_options):
         self.partitions = partitions
@@ -70,17 +92,29 @@ class FstabGenerator(object):
         self.root_is_ssd = False
 
     def run(self):
+        """
+
+
+        :return:
+        """
         self.find_ssd_disks()
         self.generate_fstab()
         self.create_mount_points()
         return None
 
     def find_ssd_disks(self):
+        """
+
+
+        """
         disks = {disk_name_for_partition(x) for x in self.partitions}
         self.ssd_disks = {x for x in disks if is_ssd_disk(x)}
 
     def generate_fstab(self):
-        # Create fstab
+        """
+        Create fstab.
+
+        """
         mkdir_p(os.path.join(self.root_mount_point, "etc"))
         fstab_path = os.path.join(self.root_mount_point, "etc", "fstab")
         with open(fstab_path, "w") as fl:
@@ -102,6 +136,11 @@ class FstabGenerator(object):
                 self.print_fstab_line(dct, file=fl)
 
     def generate_fstab_line_info(self, partition):
+        """
+
+        :param partition:
+        :return:
+        """
         fs = partition["fs"]
         mount_point = partition["mountPoint"]
         disk_name = disk_name_for_partition(partition)
@@ -136,6 +175,11 @@ class FstabGenerator(object):
             check=check)
 
     def print_fstab_line(self, dct, file=None):
+        """
+
+        :param dct:
+        :param file:
+        """
         line = "{:41} {:<14} {:<7} {:<10} 0       {}".format(
             dct["device"],
             dct["mount_point"],
@@ -145,12 +189,21 @@ class FstabGenerator(object):
         print(line, file=file)
 
     def create_mount_points(self):
+        """
+
+
+        """
         for partition in self.partitions:
             if partition["mountPoint"]:
                 mkdir_p(self.root_mount_point + partition["mountPoint"])
 
 
 def run():
+    """
+
+
+    :return:
+    """
     gs = libcalamares.globalstorage
     conf = libcalamares.job.configuration
     partitions = gs.value("partitions")
