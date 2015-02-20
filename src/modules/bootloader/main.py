@@ -171,9 +171,9 @@ def prepare_bootloader(fw_type):
                     print("Boot device: \"{!s}\"".format(device))
         subprocess.call(["sgdisk", "--typecode={!s}:EF00".format(boot_p), "{!s}".format(device)])
     if (efi_boot_loader == "gummiboot" and fw_type == "efi"):
-            install_gummiboot(efi_directory)
+        install_gummiboot(efi_directory)
     else:
-            install_grub(efi_directory, fw_type)
+        install_grub(efi_directory, fw_type)
 
 
 def run():
