@@ -24,7 +24,6 @@ import os
 import collections
 import re
 import libcalamares
-import subprocess
 
 
 DesktopEnvironment = collections.namedtuple('DesktopEnvironment', ['executable', 'desktop_file'])

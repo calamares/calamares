@@ -21,8 +21,6 @@
 
 import libcalamares
 import os
-import subprocess
-import shutil
 from collections import OrderedDict
 from libcalamares.utils import check_chroot_call
 

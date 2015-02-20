@@ -26,7 +26,6 @@
 import libcalamares
 
 import os
-import shutil
 import subprocess
 
 from libcalamares.utils import check_chroot_call
