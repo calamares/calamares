@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *
  *   Originally from the Manjaro Installation Framework
  *   by Roland Singer <roland@manjaro.org>
@@ -45,6 +45,8 @@ public:
     struct Location {
         QString region, zone;
         double latitude, longitude;
+        static QString pretty( const QString& s );
+        QString comment();
     };
 
     static void init();

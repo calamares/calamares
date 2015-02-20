@@ -22,6 +22,7 @@
 
 #include "localeglobal.h"
 
+#include <QTimeZone>
 
 //###
 //### Private variables
@@ -34,6 +35,23 @@ QHash<QString, QList<LocaleGlobal::Location> > LocaleGlobal::locations;
 //###
 //### Public methods
 //###
+
+
+QString
+LocaleGlobal::Location::pretty( const QString& s )
+{
+    return QString( s ).replace( '_', ' ' ).simplified();
+}
+
+
+QString
+LocaleGlobal::Location::comment()
+{
+    QTimeZone qtz = QTimeZone( QString( "%1/%2" )
+                                    .arg( region )
+                                    .arg( zone ).toLatin1() );
+    return qtz.comment();
+}
 
 
 void LocaleGlobal::init() {
@@ -162,3 +180,4 @@ double LocaleGlobal::getRightGeoLocation(QString str) {
 
     return sign * num;
 }
+

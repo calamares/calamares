@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -84,36 +84,38 @@ LocalePage::LocalePage( QWidget* parent )
     setLayout( mainLayout );
 
     connect( m_regionCombo,
-             static_cast< void ( QComboBox::* )( const QString& ) >( &QComboBox::currentIndexChanged ),
-             [this]( const QString& current )
+             static_cast< void ( QComboBox::* )( int ) >( &QComboBox::currentIndexChanged ),
+             [this]( int currentIndex )
     {
+        Q_UNUSED( currentIndex );
         QHash< QString, QList< LocaleGlobal::Location > > regions = LocaleGlobal::getLocations();
-        if ( !regions.contains( current ) )
+        if ( !regions.contains( m_regionCombo->currentData().toString() ) )
             return;
 
         m_zoneCombo->blockSignals( true );
 
         m_zoneCombo->clear();
 
-        QList< LocaleGlobal::Location > zones = regions.value( current );
+        QList< LocaleGlobal::Location > zones = regions.value( m_regionCombo->currentData().toString() );
         foreach ( const LocaleGlobal::Location& zone, zones )
         {
-            m_zoneCombo->addItem( zone.zone );
+            m_zoneCombo->addItem( LocaleGlobal::Location::pretty( zone.zone ), zone.zone );
         }
 
         m_zoneCombo->model()->sort( 0 );
 
         m_zoneCombo->blockSignals( false );
 
-        m_zoneCombo->currentIndexChanged( m_zoneCombo->currentText() );
+        m_zoneCombo->currentIndexChanged( m_zoneCombo->currentIndex() );
     } );
 
     connect( m_zoneCombo,
-             static_cast< void ( QComboBox::* )( const QString& ) >( &QComboBox::currentIndexChanged ),
-             [this]( const QString& current )
+             static_cast< void ( QComboBox::* )( int ) >( &QComboBox::currentIndexChanged ),
+             [this]( int currentIndex )
     {
         if ( !m_blockTzWidgetSet )
-            m_tzWidget->setCurrentLocation( m_regionCombo->currentText(), current );
+            m_tzWidget->setCurrentLocation( m_regionCombo->currentData().toString(),
+                                            m_zoneCombo->currentData().toString() );
     } );
 
     connect( m_tzWidget, &TimeZoneWidget::locationChanged,
@@ -122,14 +124,14 @@ LocalePage::LocalePage( QWidget* parent )
         m_blockTzWidgetSet = true;
 
         // Set region index
-        int index = m_regionCombo->findText( location.region );
+        int index = m_regionCombo->findData( location.region );
         if ( index < 0 )
             return;
 
         m_regionCombo->setCurrentIndex( index );
 
         // Set zone index
-        index = m_zoneCombo->findText( location.zone );
+        index = m_zoneCombo->findData( location.zone );
         if ( index < 0 )
             return;
 
@@ -193,13 +195,13 @@ LocalePage::init( const QString& initialRegion,
 
     foreach ( const QString& key, keys )
     {
-        m_regionCombo->addItem( key );
+        m_regionCombo->addItem( LocaleGlobal::Location::pretty( key ), key );
     }
 
     m_regionCombo->blockSignals( false );
     m_zoneCombo->blockSignals( false );
 
-    m_regionCombo->currentIndexChanged( m_regionCombo->currentText() );
+    m_regionCombo->currentIndexChanged( m_regionCombo->currentIndex() );
 
     // Default location
     auto containsLocation = []( const QList< LocaleGlobal::Location >& locations,
