@@ -123,10 +123,10 @@ def install_gummiboot(efi_directory):
     loader_path = os.path.join(
         install_efi_directory, "loader", "loader.conf")
     subprocess.call(["gummiboot", "--path={!s}".format(install_efi_directory), "install"])
-    kernel_line = get_bootloader_entry_name("default")
+    kernel_line = get_kernel_line("default")
     print("Configure: \"{!s}\"".format(kernel_line))
     create_conf(uuid, conf_path, kernel_line)
-    kernel_line = get_bootloader_entry_name("fallback")
+    kernel_line = get_kernel_line("fallback")
     print("Configure: \"{!s}\"".format(kernel_line))
     create_conf(uuid, fallback_path, kernel_line)
     create_loader(loader_path)
