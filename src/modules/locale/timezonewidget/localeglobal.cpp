@@ -45,7 +45,7 @@ LocaleGlobal::Location::pretty( const QString& s )
 
 
 QString
-LocaleGlobal::Location::comment()
+LocaleGlobal::Location::comment() const
 {
     QTimeZone qtz = QTimeZone( QString( "%1/%2" )
                                     .arg( region )

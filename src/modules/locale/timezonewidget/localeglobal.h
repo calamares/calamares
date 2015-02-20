@@ -46,7 +46,7 @@ public:
         QString region, zone;
         double latitude, longitude;
         static QString pretty( const QString& s );
-        QString comment();
+        QString comment() const;
     };
 
     static void init();
