@@ -53,8 +53,7 @@ def cpuinfo():
 
 
 def set_mkinitcpio_hooks_and_modules(hooks, modules, root_mount_point):
-    """
-    Set up mkinitcpio.conf.
+    """ Set up mkinitcpio.conf.
 
     :param hooks:
     :param modules:
@@ -77,8 +76,7 @@ def set_mkinitcpio_hooks_and_modules(hooks, modules, root_mount_point):
 
 
 def modify_mkinitcpio_conf(partitions, root_mount_point):
-    """
-    Modifies mkinitcpio.conf
+    """ Modifies mkinitcpio.conf
 
     :param partitions:
     :param root_mount_point:

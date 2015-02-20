@@ -111,10 +111,7 @@ class FstabGenerator(object):
         self.ssd_disks = {x for x in disks if is_ssd_disk(x)}
 
     def generate_fstab(self):
-        """
-        Create fstab.
-
-        """
+        """ Create fstab. """
         mkdir_p(os.path.join(self.root_mount_point, "etc"))
         fstab_path = os.path.join(self.root_mount_point, "etc", "fstab")
         with open(fstab_path, "w") as fl:
