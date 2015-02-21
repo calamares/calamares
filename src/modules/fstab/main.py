@@ -41,7 +41,7 @@ FS_MAP = {
 
 
 def mkdir_p(path):
-    """
+    """ Create directory.
 
     :param path:
     """
@@ -50,7 +50,7 @@ def mkdir_p(path):
 
 
 def is_ssd_disk(disk_name):
-    """
+    """ Checks if given disk is actually a ssd disk.
 
     :param disk_name:
     :return:
@@ -64,7 +64,7 @@ def is_ssd_disk(disk_name):
 
 
 def disk_name_for_partition(partition):
-    """
+    """ Returns disk name for each found partition.
 
     :param partition:
     :return:
@@ -74,7 +74,7 @@ def disk_name_for_partition(partition):
 
 
 class FstabGenerator(object):
-    """
+    """ Class header
 
     :param partitions:
     :param root_mount_point:
@@ -92,8 +92,7 @@ class FstabGenerator(object):
         self.root_is_ssd = False
 
     def run(self):
-        """
-
+        """ Calls needed sub routines.
 
         :return:
         """
@@ -103,10 +102,7 @@ class FstabGenerator(object):
         return None
 
     def find_ssd_disks(self):
-        """
-
-
-        """
+        """ Checks for ssd disks """
         disks = {disk_name_for_partition(x) for x in self.partitions}
         self.ssd_disks = {x for x in disks if is_ssd_disk(x)}
 
@@ -133,7 +129,7 @@ class FstabGenerator(object):
                 self.print_fstab_line(dct, file=fl)
 
     def generate_fstab_line_info(self, partition):
-        """
+        """ Generates information for each fstab entry.
 
         :param partition:
         :return:
@@ -172,7 +168,7 @@ class FstabGenerator(object):
             check=check)
 
     def print_fstab_line(self, dct, file=None):
-        """
+        """ Prints line to /etc/fstab file.
 
         :param dct:
         :param file:
@@ -186,18 +182,14 @@ class FstabGenerator(object):
         print(line, file=file)
 
     def create_mount_points(self):
-        """
-
-
-        """
+        """ Creates mount points """
         for partition in self.partitions:
             if partition["mountPoint"]:
                 mkdir_p(self.root_mount_point + partition["mountPoint"])
 
 
 def run():
-    """
-
+    """ Configures fstab.
 
     :return:
     """

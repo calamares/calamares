@@ -222,7 +222,7 @@ def set_autologin(username, displaymanagers, default_desktop_environment,
 
 
 def run():
-    """Configure display managers.
+    """ Configure display managers.
     
     We acquire a list of displaymanagers, either from config or (overridden) from globalstorage.
     This module will try to set up (including autologin) all the displaymanagers in the list, in that specific order.
