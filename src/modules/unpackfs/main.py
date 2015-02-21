@@ -32,7 +32,7 @@ from libcalamares import *
 
 
 class UnpackEntry:
-    """
+    """ Extraction routine using rsync.
 
     :param source:
     :param sourcefs:
@@ -52,7 +52,7 @@ ON_POSIX = 'posix' in sys.builtin_module_names
 
 
 def list_excludes(destination):
-    """
+    """ List excludes for rsync.
 
     :param destination:
     :return:
@@ -67,7 +67,7 @@ def list_excludes(destination):
 
 
 def file_copy(source, dest, progress_cb):
-    """
+    """ Extract given image using rsync.
 
     :param source:
     :param dest:
@@ -124,7 +124,7 @@ def file_copy(source, dest, progress_cb):
 
 
 class UnpackOperation:
-    """
+    """ Extraction routine using unsquashfs.
 
     :param entries:
     """
@@ -133,10 +133,7 @@ class UnpackOperation:
         self.entry_for_source = dict((x.source, x) for x in self.entries)
 
     def report_progress(self):
-        """
-
-
-        """
+        """ Pass progress to user interface """
         progress = float(0)
         for entry in self.entries:
             if entry.total == 0:
@@ -150,8 +147,7 @@ class UnpackOperation:
         job.setprogress(progress)
 
     def run(self):
-        """
-
+        """ Extract given image using unsquashfs.
 
         :return:
         """
@@ -192,7 +188,7 @@ class UnpackOperation:
             shutil.rmtree(source_mount_path)
 
     def mount_image(self, entry, imgmountdir):
-        """
+        """ Mount given image as loop device.
 
         :param entry:
         :param imgmountdir:
@@ -205,7 +201,7 @@ class UnpackOperation:
                                "-o", "loop"])
 
     def unpack_image(self, entry, imgmountdir):
-        """
+        """ Unpacks image.
 
         :param entry:
         :param imgmountdir:
@@ -213,7 +209,7 @@ class UnpackOperation:
         """
 
         def progress_cb(copied):
-            """
+            """ Copies file to given destination target.
 
             :param copied:
             """
@@ -229,22 +225,20 @@ class UnpackOperation:
 
 
 def run():
-    # from globalstorage: rootMountPoint
-    # from job.configuration:
-    # the path to where to mount the source image(s) for copying
-    # an ordered list of unpack mappings for image file <-> target dir relative
-    # to rootMountPoint, e.g.:
-    # configuration:
-    #     unpack:
-    #         - source: "/path/to/filesystem.img"
-    #           sourcefs: "ext4"
-    #           destination: ""
-    #         - source: "/path/to/another/filesystem.sqfs"
-    #           sourcefs: "squashfs"
-    #           destination: ""
+    """ Unsquashes given filesystem from given image file.
 
-    """
-
+    from globalstorage: rootMountPoint
+    from job.configuration: the path to where to mount the source image(s) for copying
+    an ordered list of unpack mappings for image file <-> target dir relative
+    to rootMountPoint, e.g.:
+    configuration:
+        unpack:
+            - source: "/path/to/filesystem.img"
+              sourcefs: "ext4"
+              destination: ""
+            - source: "/path/to/another/filesystem.sqfs"
+              sourcefs: "squashfs"
+              destination: ""
 
     :return:
     """
