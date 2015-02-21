@@ -29,7 +29,7 @@ def run_mkinitcpio():
 
 
 def run():
-    """ Calls routine
+    """ Calls routine to create kernel initramfs image.
 
     :return:
     """

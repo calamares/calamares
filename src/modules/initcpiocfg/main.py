@@ -26,8 +26,8 @@ from libcalamares.utils import check_chroot_call
 
 
 def cpuinfo():
-    """
-    Return the information in /proc/cpuinfo as a dictionary in the following format:
+    """ Return the information in /proc/cpuinfo as a dictionary in the following format:
+
     cpu_info['proc0']={...}
     cpu_info['proc1']={...}
     """
@@ -114,8 +114,7 @@ def modify_mkinitcpio_conf(partitions, root_mount_point):
 
 
 def run():
-    """
-
+    """ Calls routine with given parameters to modify '/etc/mkinitcpio.conf'.
 
     :return:
     """
