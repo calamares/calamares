@@ -24,8 +24,7 @@ from libcalamares.utils import chroot_call
 
 
 def run_dracut():
-    """
-    Creates initramfs, even when initramfs already exists.
+    """ Creates initramfs, even when initramfs already exists.
 
     :return:
     """
@@ -33,8 +32,7 @@ def run_dracut():
 
 
 def run():
-    """
-    Starts routine to create initramfs. It passes back the exit code if it fails.
+    """ Starts routine to create initramfs. It passes back the exit code if it fails.
 
     :return:
     """

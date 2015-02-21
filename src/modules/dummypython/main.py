@@ -24,8 +24,12 @@ from time import gmtime, strftime
 
 
 def run():
-    """
+    """ Example Python jobmodule.
 
+    A Python jobmodule is a Python program which imports libcalamares and
+    has a function run() as entry point. run() must return None if everything
+    went well, or a tuple (str,str) with an error message and description 
+    if something went wrong.
 
     :return:
     """

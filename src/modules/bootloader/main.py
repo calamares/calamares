@@ -32,8 +32,7 @@ from libcalamares.utils import check_chroot_call
 
 
 def get_uuid():
-    """
-    Checks and passes 'uuid' to other routine.
+    """ Checks and passes 'uuid' to other routine.
 
     :return:
     """
@@ -49,8 +48,7 @@ def get_uuid():
 
 
 def get_bootloader_entry_name():
-    """
-    Passes 'bootloader_entry_name' to other routine based on configuration file.
+    """ Passes 'bootloader_entry_name' to other routine based on configuration file.
 
     :return:
     """
@@ -62,8 +60,7 @@ def get_bootloader_entry_name():
 
 
 def get_kernel_line(kernel_type):
-    """
-    Passes 'kernel_line' to other routine based on configuration file.
+    """ Passes 'kernel_line' to other routine based on configuration file.
 
     :param kernel_type:
     :return:
@@ -81,8 +78,7 @@ def get_kernel_line(kernel_type):
 
 
 def create_conf(uuid, conf_path, kernel_line):
-    """
-    Creates gummiboot configuration files based on given parameters.
+    """ Creates gummiboot configuration files based on given parameters.
 
     :param uuid:
     :param conf_path:
@@ -114,8 +110,7 @@ def create_conf(uuid, conf_path, kernel_line):
 
 
 def create_loader(loader_path):
-    """
-    Writes configuration for loader.
+    """ Writes configuration for loader.
 
     :param loader_path:
     """
@@ -135,8 +130,7 @@ def create_loader(loader_path):
 
 
 def install_gummiboot(efi_directory):
-    """
-    Installs gummiboot as bootloader for EFI setups.
+    """ Installs gummiboot as bootloader for EFI setups.
 
     :param efi_directory:
     """
@@ -167,8 +161,7 @@ def install_gummiboot(efi_directory):
 
 
 def install_grub(efi_directory, fw_type):
-    """
-    Installs grub as bootloader, either in pc or efi mode.
+    """ Installs grub as bootloader, either in pc or efi mode.
 
     :param efi_directory:
     :param fw_type:
@@ -205,8 +198,7 @@ def install_grub(efi_directory, fw_type):
 
 
 def prepare_bootloader(fw_type):
-    """
-    Prepares bootloader and set proper flags to EFI boot partition (esp,boot).
+    """ Prepares bootloader and set proper flags to EFI boot partition (esp,boot).
     Based on value 'efi_boot_loader', it either calls gummiboot or grub to be installed.
 
     :param fw_type:
@@ -240,8 +232,7 @@ def prepare_bootloader(fw_type):
 
 
 def run():
-    """
-    Starts procedure and passes 'fw_type' to other routine.
+    """ Starts procedure and passes 'fw_type' to other routine.
 
     :return:
     """

@@ -44,8 +44,7 @@ desktop_environments = [
 
 
 def find_desktop_environment(root_mount_point):
-    """
-    Checks which desktop environment is currently installed.
+    """ Checks which desktop environment is currently installed.
 
     :param root_mount_point:
     :return:
@@ -60,8 +59,7 @@ def find_desktop_environment(root_mount_point):
 
 
 def have_dm(dm_name, root_mount_point):
-    """
-    Checks if display manager is properly installed.
+    """ Checks if display manager is properly installed.
 
     :param dm_name:
     :param root_mount_point:
@@ -74,8 +72,7 @@ def have_dm(dm_name, root_mount_point):
 
 def set_autologin(username, displaymanagers, default_desktop_environment,
                   root_mount_point):
-    """
-    Enables automatic login for the installed desktop managers.
+    """ Enables automatic login for the installed desktop managers.
 
     :param username:
     :param displaymanagers:
