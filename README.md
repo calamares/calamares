@@ -1,8 +1,8 @@
-### Calamares: Distribution-Independent Installer Framework [![Build Status](http://calamares.io/ci/buildStatus/icon?job=calamares-master)](http://calamares.pangea.pub/ci/job/calamares-master/)
+### Calamares: Distribution-Independent Installer Framework
 ---------
 
-| [Report a Bug](http://calamares.io/bugs/) | Freenode (IRC): #calamares |
-|:-----------------------------------------:|:--------------------------:|
+| [![Build Status](http://calamares.io/ci/buildStatus/icon?job=calamares-master)](http://calamares.pangea.pub/ci/job/calamares-master/) | [Report a Bug](http://calamares.io/bugs/) | Freenode (IRC): #calamares |
+|:-----------------------------------------:|:--------------------------:|:--------------------------:|
 
 ### Dependencies
 | Main | Partitioning Module |
