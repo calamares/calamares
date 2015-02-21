@@ -23,7 +23,7 @@ from libcalamares.utils import check_chroot_call, chroot_call
 
 
 class PackageManager:
-    """ Package manager class
+    """ Package manager class.
 
     :param backend:
     """

@@ -225,7 +225,7 @@ class UnpackOperation:
 
 
 def run():
-    """ Unsquashes given filesystem from given image file.
+    """ Unsquashes filesystem from given image file.
 
     from globalstorage: rootMountPoint
     from job.configuration: the path to where to mount the source image(s) for copying
