@@ -23,7 +23,7 @@ from libcalamares.utils import check_chroot_call, chroot_call
 
 
 class PackageManager:
-    """
+    """ Package manager class
 
     :param backend:
     """
@@ -31,7 +31,7 @@ class PackageManager:
         self.backend = backend
 
     def install(self, pkgs):
-        """
+        """ Installs packages.
 
         :param pkgs:
         """
@@ -56,7 +56,7 @@ class PackageManager:
             check_chroot_call(["pacman", "-Sy", "--noconfirm"] + pkgs)
 
     def remove(self, pkgs):
-        """
+        """ Removes packages.
 
         :param pkgs:
         """
@@ -80,7 +80,7 @@ class PackageManager:
 
 
 def run_operations(pkgman, entry):
-    """
+    """ Call package manager with given parameters.
 
     :param pkgman:
     :param entry:
@@ -93,8 +93,8 @@ def run_operations(pkgman, entry):
 
 
 def run():
-    """
-
+    """ Calls routine with detected package manager to install locale packages
+    or remove drivers not needed on the installed system.
 
     :return:
     """
