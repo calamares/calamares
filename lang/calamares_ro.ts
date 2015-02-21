@@ -1547,28 +1547,28 @@ Anumite sisteme de fișiere au nevoie de unelte externe instalate pentru suport.
 <context>
     <name>LocalePage</name>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="157"/>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="168"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="159"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="170"/>
         <source>The system locale is set to %1.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="165"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="167"/>
         <source>Region:</source>
         <translation>Regiune:</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="166"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="168"/>
         <source>Zone:</source>
         <translation>Zonă:</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="171"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="173"/>
         <source>&amp;Change...</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="265"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="267"/>
         <source>Set timezone to %1/%2.&lt;br/&gt;</source>
         <translation>Setează fusul orar la %1/%2.&lt;br/&gt;</translation>
     </message>

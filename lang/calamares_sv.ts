@@ -1547,28 +1547,28 @@ Vissa filsystem behöver externa verktyg installerade för att de skall kunna st
 <context>
     <name>LocalePage</name>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="157"/>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="168"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="159"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="170"/>
         <source>The system locale is set to %1.</source>
         <translation>%1 är valt som systemspråk.</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="165"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="167"/>
         <source>Region:</source>
         <translation>Region:</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="166"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="168"/>
         <source>Zone:</source>
         <translation>Zon:</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="171"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="173"/>
         <source>&amp;Change...</source>
         <translation>Ändra...</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="265"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="267"/>
         <source>Set timezone to %1/%2.&lt;br/&gt;</source>
         <translation>Sätt tidszon till %1/%2.&lt;br/&gt;</translation>
     </message>

@@ -1547,28 +1547,28 @@ Certains systèmes de fichiers nécessitent l&apos;installation d&apos;outils ex
 <context>
     <name>LocalePage</name>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="157"/>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="168"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="159"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="170"/>
         <source>The system locale is set to %1.</source>
         <translation>Les paramètres régionaux du système sont %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="165"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="167"/>
         <source>Region:</source>
         <translation>Région :</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="166"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="168"/>
         <source>Zone:</source>
         <translation>Zone :</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="171"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="173"/>
         <source>&amp;Change...</source>
         <translation>&amp;Modifier...</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="265"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="267"/>
         <source>Set timezone to %1/%2.&lt;br/&gt;</source>
         <translation>Configurer la zone de temps à %1/%2.&lt;br/&gt;</translation>
     </message>

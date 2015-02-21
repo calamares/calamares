@@ -1547,28 +1547,28 @@ Bazı dosya sistemlerinin desteklenmesi ve düzenlenmesi için ek uygulamalar ge
 <context>
     <name>LocalePage</name>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="157"/>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="168"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="159"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="170"/>
         <source>The system locale is set to %1.</source>
         <translation>Sistem yereli %1 olarak ayarlandı.</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="165"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="167"/>
         <source>Region:</source>
         <translation>Bölge:</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="166"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="168"/>
         <source>Zone:</source>
         <translation>Şehir:</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="171"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="173"/>
         <source>&amp;Change...</source>
         <translation>&amp;Değiştir...</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="265"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="267"/>
         <source>Set timezone to %1/%2.&lt;br/&gt;</source>
         <translation>Bölge ve zaman dilimi olarak %1/%2 ayarlandı.&lt;br/&gt;</translation>
     </message>

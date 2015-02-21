@@ -1547,28 +1547,28 @@ Some file systems need external tools to be installed for them to be supported. 
 <context>
     <name>LocalePage</name>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="157"/>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="168"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="159"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="170"/>
         <source>The system locale is set to %1.</source>
         <translation>locale ระบบถูกตั้งค่าเป็น %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="165"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="167"/>
         <source>Region:</source>
         <translation>ภูมิภาค:</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="166"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="168"/>
         <source>Zone:</source>
         <translation>โซน:</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="171"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="173"/>
         <source>&amp;Change...</source>
         <translation>&amp;C เปลี่ยนแปลง...</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="265"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="267"/>
         <source>Set timezone to %1/%2.&lt;br/&gt;</source>
         <translation>ตั้งโซนเวลาเป็น %1/%2&lt;br/&gt;</translation>
     </message>
