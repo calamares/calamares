@@ -1,10 +1,6 @@
 Hacking on Calamares
 ====================
 
-Join #calamares on Freenode.
-
-Patches go to [github.com/calamares](https://github.com/calamares/calamares).
-
 Licensing
 ---------
 Calamares is released under the terms of the GNU GPL, version 3 or later. Every source file must have a license header, with a list of copyright holders and years.
@@ -78,7 +74,7 @@ Naming
 ------
 * Use CamelCase for everything.
 * Local variables should start out with a lowercase letter.
-* Class names are captialized
+* Class names are capitalized
 * Prefix class member variables with `m_`, e.g. `m_queue`.
 * Prefix static member variables with `s_`, e.g. `s_instance`.
 * Functions are named in the Qt style, like Java's, without the 'get' prefix.
@@ -128,7 +124,7 @@ The use of `nullptr` is preferred over the use of `0` or `NULL`.
 For Qt containers it is better to use Qt's own `foreach`. For all other containers, the
 range-based `for` syntax introduced with C++11 is preferred ([see this blog post][1]).
 
-When reimplementing a virtual method, always add the `override` keyword.
+When re-implementing a virtual method, always add the `override` keyword.
 
 Try to keep your code const correct. Declare methods const if they don't mutate the 
 object, and use const variables. It improves safety, and also makes it easier to 
