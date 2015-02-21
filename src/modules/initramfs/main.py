@@ -22,8 +22,7 @@ from libcalamares.utils import chroot_call
 
 
 def run():
-    """
-
+    """ Generate an initramfs image.
 
     :return:
     """
