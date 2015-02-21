@@ -24,7 +24,7 @@ import libcalamares
 
 
 def mount_partitions(root_mount_point, partitions):
-    """
+    """ Pass back mount point and filesystem for each partition.
 
     :param root_mount_point:
     :param partitions:
@@ -49,8 +49,7 @@ def mount_partitions(root_mount_point, partitions):
 
 
 def run():
-    """
-
+    """ Define mountpoints.
 
     :return:
     """
