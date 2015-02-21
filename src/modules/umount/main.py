@@ -25,7 +25,7 @@ import libcalamares
 
 
 def list_mounts(root_mount_point):
-    """
+    """ List mount points.
 
     :param root_mount_point:
     :return:
@@ -39,8 +39,7 @@ def list_mounts(root_mount_point):
 
 
 def run():
-    """
-
+    """ Unmounts given mountpoints in decreasing order.
 
     :return:
     """
