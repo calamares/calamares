@@ -3,7 +3,7 @@
 #
 # === This file is part of Calamares - <http://github.com/calamares> ===
 #
-#   Copyright 2014 - 2015, Philip Müller <philm@manjaro.org>
+#   Copyright 2014-2015, Philip Müller <philm@manjaro.org>
 #   Copyright 2014, Teo Mrnjavac <teo@kde.org>
 #   Copyright 2014, Kevin Kofler <kevin.kofler@chello.at>
 #
@@ -45,6 +45,7 @@ desktop_environments = [
 
 def find_desktop_environment(root_mount_point):
     """
+    Checks which desktop environment is currently installed.
 
     :param root_mount_point:
     :return:
@@ -60,6 +61,7 @@ def find_desktop_environment(root_mount_point):
 
 def have_dm(dm_name, root_mount_point):
     """
+    Checks if display manager is properly installed.
 
     :param dm_name:
     :param root_mount_point:
