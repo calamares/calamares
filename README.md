@@ -24,7 +24,7 @@ $ make
 ```
 
 ### Design Notes
-__Calamares is currently split as follows__:
+Calamares is currently split as follows:
  1. __libcalamares__ - The back-end library.
    * Only depends on QtCore, yaml-cpp, Python and Boost.Python.
    * Provides a job queue and generic jobs.
