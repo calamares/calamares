@@ -24,8 +24,7 @@ from libcalamares.utils import check_chroot_call
 
 
 def run():
-    """
-
+    """ Generate machine-id using dbus and systemd.
 
     :return:
     """
