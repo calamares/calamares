@@ -168,7 +168,7 @@ class FstabGenerator(object):
             check=check)
 
     def print_fstab_line(self, dct, file=None):
-        """ Prints line to /etc/fstab file.
+        """ Prints line to '/etc/fstab' file.
 
         :param dct:
         :param file:
