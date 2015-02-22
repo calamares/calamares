@@ -185,7 +185,7 @@ def prepare_bootloader(fw_type):
                     print("EFI directory: \"{!s}\"".format(efi_directory))
                     print("Boot partition: \"{!s}\"".format(boot_p))
                     print("Boot device: \"{!s}\"".format(device))
-        print("Set EF00 flag")
+        print("Set 'EF00' flag")
         subprocess.call(["sgdisk", "--typecode={!s}:EF00".format(boot_p), "{!s}".format(device)])
     if fw_type != "efi":
         partitions = libcalamares.globalstorage.value("partitions")
@@ -206,15 +206,15 @@ def prepare_bootloader(fw_type):
                 device = boot_device[:-1]
                 print("Partition (/): \"{!s}\"".format(boot_p))
                 print("Device: \"{!s}\"".format(device))
-            if (not boot_p or not device):
-                return ("Boot partition not found!",
-                        "Partition: \"{!s}\"",
-                        "Device: \"{!s}\"".format(boot_p,device))
-
+        if (not boot_p or not device):
+            return ("Boot partition not found!",
+                    "Partition: \"{!s}\"",
+                    "Device: \"{!s}\"".format(boot_p,device))
         process = subprocess.Popen(["parted", "{!s}".format(device),
                                     "--list"], stdout=subprocess.PIPE)
         for line in process.stdout:
             if b"gpt" in line:
+                print("Set 'bios_grub' flag")
                 subprocess.call(["parted", "{!s}".format(device),
                                  "set {!s} bios_grub on".format(boot_p)])        
     if (efi_boot_loader == "gummiboot" and fw_type == "efi"):
