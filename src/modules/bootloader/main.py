@@ -156,7 +156,7 @@ def install_grub(efi_directory, fw_type):
         boot_loader = libcalamares.globalstorage.value("bootLoader")
         check_chroot_call(
             [libcalamares.job.configuration["grubInstall"], "--target=i386-pc",
-             boot_loader["installPath"]])
+             "--recheck", boot_loader["installPath"]])
 
     check_chroot_call([libcalamares.job.configuration["grubMkconfig"], "-o",
                        libcalamares.job.configuration["grubCfg"]])
@@ -183,6 +183,34 @@ def prepare_bootloader(fw_type):
                     print("Boot partition: \"{!s}\"".format(boot_p))
                     print("Boot device: \"{!s}\"".format(device))
         subprocess.call(["sgdisk", "--typecode={!s}:EF00".format(boot_p), "{!s}".format(device)])
+    else:
+        partitions = libcalamares.globalstorage.value("partitions")
+        boot_p = ""
+        device = ""
+        use_boot = ""
+        for partition in partitions:
+            if partition["mountPoint"] == "/boot":
+                boot_device = partition["device"]
+                boot_p = boot_device[-1:]
+                device = boot_device[:-1]
+                use_boot = True
+            if (not use_boot and partition["mountPoint"] == "/"):
+                boot_device = partition["device"]
+                boot_p = boot_device[-1:]
+                device = boot_device[:-1]
+            if (not boot_p or not device):
+                return ("Boot partition: \"{!s}\"",
+                        "Boot device: \"{!s}\"".format(boot_p,device))
+            else:
+                print("Boot partition: \"{!s}\"".format(boot_p))
+                print("Boot device: \"{!s}\"".format(device))
+        process = subprocess.Popen(["parted", "{!s}".format(device),
+                                    "--list"], stdout=subprocess.PIPE)
+        for line in process.stdout:
+            for part in line.split():
+                if "gpt" in part:
+                    subprocess.call(["parted", "{!s}".format(device),
+                                     "set {!s} bios_grub on".format(boot_p)])        
     if (efi_boot_loader == "gummiboot" and fw_type == "efi"):
         install_gummiboot(efi_directory)
     else:
