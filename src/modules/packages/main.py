@@ -59,7 +59,7 @@ class PackageManager:
             # ignore the error code for now because dnf thinks removing a nonexistent package is an error
             chroot_call(["dnf", "--disablerepo=*", "-C", "-y", "remove"] + pkgs)
         elif self.backend == "urpmi":
-            check_chroot_call(["urpme"] + pkgs)
+            check_chroot_call(["urpme", "--auto"] + pkgs)
         elif self.backend == "apt":
             check_chroot_call(["apt-get", "--purge", "-q", "-y", "remove"] + pkgs)
             check_chroot_call(["apt-get", "--purge", "-q", "-y", "autoremove"])
