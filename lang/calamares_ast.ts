@@ -1515,12 +1515,12 @@ Dellos sistemes de ficheros riquen la instalación de ferramientes esternes pa t
     <message>
         <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="200"/>
         <source>Set keyboard model to %1.&lt;br/&gt;</source>
-        <translation type="unfinished"/>
+        <translation>Afitóse&apos;l modelu de tecláu a %1.&lt;br/&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="202"/>
         <source>Set keyboard layout to %1/%2.</source>
-        <translation type="unfinished"/>
+        <translation>Afitóse la distribución de tecláu a %1/%2.</translation>
     </message>
 </context>
 <context>
@@ -2150,7 +2150,7 @@ La instalación pue siguir, pero delles carauterístiques pudieron deshabilitase
     <message>
         <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="124"/>
         <source>branches</source>
-        <translation type="unfinished"/>
+        <translation>rames</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="129"/>
@@ -2675,7 +2675,7 @@ La instalación pue siguir, pero delles carauterístiques pudieron deshabilitase
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="233"/>
         <source>Your username is too long.</source>
-        <translation type="unfinished"/>
+        <translation>El to nome d&apos;usuariu ye mui llargu.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="243"/>
@@ -2685,12 +2685,12 @@ La instalación pue siguir, pero delles carauterístiques pudieron deshabilitase
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="287"/>
         <source>Your hostname is too short.</source>
-        <translation type="unfinished"/>
+        <translation>El to nome d&apos;agospiu ye mui curtiu.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="298"/>
         <source>Your hostname is too long.</source>
-        <translation type="unfinished"/>
+        <translation>El to nome d&apos;agospiu ye mui llargu.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="309"/>
