@@ -57,7 +57,7 @@ ViewStepItem::data( int role ) const
         return m_step ? m_step->prettyName() : m_prettyName;
     if ( role == ProgressTreeModel::ProgressTreeItemCurrentRole )
         return m_step ?
-                    ( Calamares::ViewManager::instance()->currentStep() == m_step ) :
-                    ( Calamares::ViewManager::instance()->currentStep() == m_accessor() );
+               ( Calamares::ViewManager::instance()->currentStep() == m_step ) :
+               ( Calamares::ViewManager::instance()->currentStep() == m_accessor() );
     return QVariant();
 }
