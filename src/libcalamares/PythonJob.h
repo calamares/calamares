@@ -29,7 +29,8 @@ class PythonJobInterface;
 class Helper;
 }
 
-namespace Calamares {
+namespace Calamares
+{
 
 class PythonJob : public Job
 {

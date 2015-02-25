@@ -39,14 +39,14 @@ PrepareCheckWidget::PrepareCheckWidget( bool checked,
 
     if ( checked )
         m_iconLabel->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::Yes,
-                                                               CalamaresUtils::Original,
-                                                               QSize( m_iconLabel->height(),
-                                                                      m_iconLabel->height() ) ) );
+                                CalamaresUtils::Original,
+                                QSize( m_iconLabel->height(),
+                                       m_iconLabel->height() ) ) );
     else
         m_iconLabel->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::No,
-                                                               CalamaresUtils::Original,
-                                                               QSize( m_iconLabel->height(),
-                                                                      m_iconLabel->height() ) ) );
+                                CalamaresUtils::Original,
+                                QSize( m_iconLabel->height(),
+                                       m_iconLabel->height() ) ) );
 }
 
 

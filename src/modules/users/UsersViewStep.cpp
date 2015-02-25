@@ -121,35 +121,31 @@ void
 UsersViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
     if ( configurationMap.contains( "userGroup" ) &&
-         configurationMap.value( "userGroup" ).type() == QVariant::String )
-    {
+            configurationMap.value( "userGroup" ).type() == QVariant::String )
         m_userGroup = configurationMap.value( "userGroup" ).toString();
-    }
     if ( m_userGroup.isEmpty() )
         m_userGroup = QStringLiteral( "users" );
 
     if ( configurationMap.contains( "defaultGroups" ) &&
-         configurationMap.value( "defaultGroups" ).type() == QVariant::List )
-    {
+            configurationMap.value( "defaultGroups" ).type() == QVariant::List )
         m_defaultGroups = configurationMap.value( "defaultGroups" ).toStringList();
-    }
     else
     {
         m_defaultGroups = QStringList{ "lp", "video", "network", "storage", "wheel", "audio" };
     }
 
     if ( configurationMap.contains( "autologinGroup" ) &&
-         configurationMap.value( "autologinGroup" ).type() == QVariant::String )
+            configurationMap.value( "autologinGroup" ).type() == QVariant::String )
     {
         Calamares::JobQueue::instance()->globalStorage()->insert( "autologinGroup",
-                        configurationMap.value( "autologinGroup" ).toString() );
+                configurationMap.value( "autologinGroup" ).toString() );
     }
 
     if ( configurationMap.contains( "sudoersGroup" ) &&
-         configurationMap.value( "sudoersGroup" ).type() == QVariant::String )
+            configurationMap.value( "sudoersGroup" ).type() == QVariant::String )
     {
         Calamares::JobQueue::instance()->globalStorage()->insert( "sudoersGroup",
-                        configurationMap.value( "sudoersGroup" ).toString() );
+                configurationMap.value( "sudoersGroup" ).toString() );
     }
 }
 

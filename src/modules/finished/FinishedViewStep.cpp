@@ -109,7 +109,7 @@ void
 FinishedViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
     if ( configurationMap.contains( "restartNowEnabled" ) &&
-         configurationMap.value( "restartNowEnabled" ).type() == QVariant::Bool )
+            configurationMap.value( "restartNowEnabled" ).type() == QVariant::Bool )
     {
         bool restartNowEnabled = configurationMap.value( "restartNowEnabled" ).toBool();
 
@@ -118,9 +118,9 @@ FinishedViewStep::setConfigurationMap( const QVariantMap& configurationMap )
             m_widget->setRestartNowEnabled( restartNowEnabled );
 
             if ( configurationMap.contains( "restartNowChecked" ) &&
-                 configurationMap.value( "restartNowChecked" ).type() == QVariant::Bool &&
-                 configurationMap.contains( "restartNowCommand" ) &&
-                 configurationMap.value( "restartNowCommand" ).type() == QVariant::String )
+                    configurationMap.value( "restartNowChecked" ).type() == QVariant::Bool &&
+                    configurationMap.contains( "restartNowCommand" ) &&
+                    configurationMap.value( "restartNowCommand" ).type() == QVariant::String )
             {
                 m_widget->setRestartNowChecked( configurationMap.value( "restartNowChecked" ).toBool() );
                 m_widget->setRestartNowCommand( configurationMap.value( "restartNowCommand" ).toString() );

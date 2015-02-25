@@ -146,9 +146,7 @@ installTranslator( const QString& localeName, QObject* parent )
     // Calamares translations
     QTranslator* translator = new QTranslator( parent );
     if ( translator->load( QString( ":/lang/calamares_" ) + locale ) )
-    {
         qDebug() << "Translation: Calamares: Using system locale:" << locale;
-    }
     else
     {
         qDebug() << "Translation: Calamares: Using default locale, system locale one not found:" << locale;
@@ -167,13 +165,9 @@ installTranslator( const QString& localeName, QObject* parent )
     // Qt translations
     translator = new QTranslator( parent );
     if ( translator->load( QString( ":/lang/qt_" ) + locale ) )
-    {
         qDebug() << "Translation: Qt: Using system locale:" << locale;
-    }
     else
-    {
         qDebug() << "Translation: Qt: Using default locale, system locale one not found:" << locale;
-    }
 
     if ( s_qtTranslator )
     {
@@ -186,7 +180,7 @@ installTranslator( const QString& localeName, QObject* parent )
 
 
 void
-setQmlModulesDir( const QDir &dir )
+setQmlModulesDir( const QDir& dir )
 {
     s_qmlModulesDir = dir;
 }
@@ -196,23 +190,24 @@ QString
 removeDiacritics( const QString& string )
 {
     const QString diacriticLetters = QString::fromUtf8(
-        "ŠŒŽšœžŸ¥µÀ"
-        "ÁÂÃÄÅÆÇÈÉÊ"
-        "ËÌÍÎÏÐÑÒÓÔ"
-        "ÕÖØÙÚÛÜÝßà"
-        "áâãäåæçèéê"
-        "ëìíîïðñòóô"
-        "õöøùúûüýÿÞ"
-        "þČčĆćĐđŠšŽ"
-        "žŞşĞğİıȚțȘ"
-        "șĂăŐőŰűŘřĀ"
-        "āĒēĪīŌōŪūŢ"
-        "ţẀẁẂẃŴŵŶŷĎ"
-        "ďĚěŇňŤťŮůŔ"
-        "ŕĄąĘęŁłŃńŚ"
-        "śŹźŻż"
-    );
-    const QStringList noDiacriticLetters = {
+                                         "ŠŒŽšœžŸ¥µÀ"
+                                         "ÁÂÃÄÅÆÇÈÉÊ"
+                                         "ËÌÍÎÏÐÑÒÓÔ"
+                                         "ÕÖØÙÚÛÜÝßà"
+                                         "áâãäåæçèéê"
+                                         "ëìíîïðñòóô"
+                                         "õöøùúûüýÿÞ"
+                                         "þČčĆćĐđŠšŽ"
+                                         "žŞşĞğİıȚțȘ"
+                                         "șĂăŐőŰűŘřĀ"
+                                         "āĒēĪīŌōŪūŢ"
+                                         "ţẀẁẂẃŴŵŶŷĎ"
+                                         "ďĚěŇňŤťŮůŔ"
+                                         "ŕĄąĘęŁłŃńŚ"
+                                         "śŹźŻż"
+                                     );
+    const QStringList noDiacriticLetters =
+    {
         "S", "OE", "Z", "s", "oe", "z", "Y", "Y", "u", "A",
         "A", "A", "A", "A", "AA", "AE", "C", "E", "E", "E",
         "E", "I", "I", "I", "I", "D", "N", "O", "O", "O",
@@ -235,9 +230,7 @@ removeDiacritics( const QString& string )
     {
         int i = diacriticLetters.indexOf( c );
         if ( i < 0 )
-        {
             output.append( c );
-        }
         else
         {
             QString replacement = noDiacriticLetters[ i ];

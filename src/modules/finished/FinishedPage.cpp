@@ -48,13 +48,13 @@ FinishedPage::FinishedPage( QWidget* parent )
     CALAMARES_RETRANSLATE(
         ui->retranslateUi( this );
         ui->mainText->setText( tr( "<h1>All done.</h1><br/>"
-                             "%1 has been installed on your computer.<br/>"
-                             "You may now restart into your new system, or continue "
-                             "using the %2 Live environment." )
-                         .arg( Calamares::Branding::instance()->
-                               string( Calamares::Branding::VersionedName ) )
-                         .arg( Calamares::Branding::instance()->
-                               string( Calamares::Branding::ProductName ) ) );
+                                   "%1 has been installed on your computer.<br/>"
+                                   "You may now restart into your new system, or continue "
+                                   "using the %2 Live environment." )
+                               .arg( Calamares::Branding::instance()->
+                                     string( Calamares::Branding::VersionedName ) )
+                               .arg( Calamares::Branding::instance()->
+                                     string( Calamares::Branding::ProductName ) ) );
     )
 }
 
@@ -89,7 +89,7 @@ FinishedPage::setUpRestart()
                  this, [this]
         {
             if ( ui->restartCheckBox->isVisible() &&
-                 ui->restartCheckBox->isChecked() )
+            ui->restartCheckBox->isChecked() )
                 QProcess::execute( "/bin/sh", { "-c", m_restartNowCommand } );
         } );
     }

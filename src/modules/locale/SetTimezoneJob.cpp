@@ -59,17 +59,19 @@ SetTimezoneJob::exec()
     // Make sure /etc/localtime doesn't exist, otherwise symlinking will fail
     CalamaresUtils::chrootCall( { "rm",
                                   "-f",
-                                  localtimeSlink } );
+                                  localtimeSlink
+                                } );
 
     int ec = CalamaresUtils::chrootCall( { "ln",
                                            "-s",
                                            zoneinfoPath,
-                                           localtimeSlink } );
+                                           localtimeSlink
+                                         } );
     if ( ec )
         return Calamares::JobResult::error( tr( "Cannot set timezone." ),
                                             tr( "Link creation failed, target: %1; link name: %2" )
-                                                .arg( zoneinfoPath )
-                                                .arg( "/etc/localtime" ) );
+                                            .arg( zoneinfoPath )
+                                            .arg( "/etc/localtime" ) );
 
     return Calamares::JobResult::ok();
 }

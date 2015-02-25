@@ -21,7 +21,8 @@
 
 #include "Job.h"
 
-namespace Calamares {
+namespace Calamares
+{
 
 class ProcessJob : public Job
 {

@@ -46,22 +46,22 @@ namespace Logger
 {
 
 static void
-log( const char *msg, unsigned int debugLevel, bool toDisk = true )
+log( const char* msg, unsigned int debugLevel, bool toDisk = true )
 {
     if ( s_threshold < 0 )
     {
         if ( qApp->arguments().contains( "--debug" ) ||
-             qApp->arguments().contains( "-d" ) )
+                qApp->arguments().contains( "-d" ) )
             s_threshold = LOGVERBOSE;
         else
-            #ifdef QT_NO_DEBUG
+#ifdef QT_NO_DEBUG
             s_threshold = RELEASE_LEVEL_THRESHOLD;
-            #else
+#else
             s_threshold = DEBUG_LEVEL_THRESHOLD;
-            #endif
+#endif
     }
 
-    if ( toDisk || (int)debugLevel <= s_threshold )
+    if ( toDisk || ( int )debugLevel <= s_threshold )
     {
         QMutexLocker lock( &s_mutex );
 
@@ -77,7 +77,7 @@ log( const char *msg, unsigned int debugLevel, bool toDisk = true )
         logfile.flush();
     }
 
-    if ( debugLevel <= LOGEXTRA || (int)debugLevel <= s_threshold )
+    if ( debugLevel <= LOGEXTRA || ( int )debugLevel <= s_threshold )
     {
         QMutexLocker lock( &s_mutex );
 
@@ -99,23 +99,23 @@ CalamaresLogHandler( QtMsgType type, const QMessageLogContext& context, const QS
     const char* message = ba.constData();
 
     QMutexLocker locker( &s_mutex );
-    switch( type )
+    switch ( type )
     {
-        case QtDebugMsg:
-            log( message, LOGVERBOSE );
-            break;
+    case QtDebugMsg:
+        log( message, LOGVERBOSE );
+        break;
 
-        case QtCriticalMsg:
-            log( message, 0 );
-            break;
+    case QtCriticalMsg:
+        log( message, 0 );
+        break;
 
-        case QtWarningMsg:
-            log( message, 0 );
-            break;
+    case QtWarningMsg:
+        log( message, 0 );
+        break;
 
-        case QtFatalMsg:
-            log( message, 0 );
-            break;
+    case QtFatalMsg:
+        log( message, 0 );
+        break;
     }
 }
 

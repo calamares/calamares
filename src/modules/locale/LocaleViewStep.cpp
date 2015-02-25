@@ -50,14 +50,14 @@ LocaleViewStep::LocaleViewStep( QObject* parent )
              [=]
     {
         m_actualWidget->init( m_startingTimezone.first,
-                              m_startingTimezone.second,
-                              m_localeGenPath );
+        m_startingTimezone.second,
+        m_localeGenPath );
         m_widget->layout()->removeWidget( waitingWidget );
         waitingWidget->deleteLater();
         m_widget->layout()->addWidget( m_actualWidget );
         m_nextEnabled = true;
         emit nextStatusChanged( m_nextEnabled );
-    });
+    } );
 
     QFuture< void > initFuture = QtConcurrent::run( LocaleGlobal::init );
     m_initWatcher.setFuture( initFuture );
@@ -157,7 +157,7 @@ LocaleViewStep::onLeave()
     m_prettyStatus = m_actualWidget->prettyStatus();
 
     Calamares::JobQueue::instance()->globalStorage()->insert( "lcLocale",
-                                                              m_actualWidget->lcLocale() );
+            m_actualWidget->lcLocale() );
 }
 
 
@@ -165,11 +165,11 @@ void
 LocaleViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
     if ( configurationMap.contains( "region" ) &&
-         configurationMap.value( "region" ).type() == QVariant::String &&
-         !configurationMap.value( "region" ).toString().isEmpty() &&
-         configurationMap.contains( "zone" ) &&
-         configurationMap.value( "zone" ).type() == QVariant::String &&
-         !configurationMap.value( "zone" ).toString().isEmpty() )
+            configurationMap.value( "region" ).type() == QVariant::String &&
+            !configurationMap.value( "region" ).toString().isEmpty() &&
+            configurationMap.contains( "zone" ) &&
+            configurationMap.value( "zone" ).type() == QVariant::String &&
+            !configurationMap.value( "zone" ).toString().isEmpty() )
     {
         m_startingTimezone = qMakePair( configurationMap.value( "region" ).toString(),
                                         configurationMap.value( "zone" ).toString() );
@@ -181,13 +181,9 @@ LocaleViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     }
 
     if ( configurationMap.contains( "localeGenPath" ) &&
-         configurationMap.value( "localeGenPath" ).type() == QVariant::String &&
-         !configurationMap.value( "localeGenPath" ).toString().isEmpty() )
-    {
+            configurationMap.value( "localeGenPath" ).type() == QVariant::String &&
+            !configurationMap.value( "localeGenPath" ).toString().isEmpty() )
         m_localeGenPath = configurationMap.value( "localeGenPath" ).toString();
-    }
     else
-    {
         m_localeGenPath = QStringLiteral( "/etc/locale.gen" );
-    }
 }

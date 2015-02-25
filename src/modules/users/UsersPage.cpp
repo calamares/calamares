@@ -135,7 +135,7 @@ UsersPage::onActivate()
 
 
 void
-UsersPage::onFullNameTextEdited( const QString &textRef )
+UsersPage::onFullNameTextEdited( const QString& textRef )
 {
     if ( textRef.isEmpty() )
     {
@@ -149,8 +149,8 @@ UsersPage::onFullNameTextEdited( const QString &textRef )
     else
     {
         ui->labelFullName->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::Yes,
-                                                                     CalamaresUtils::Original,
-                                                                     ui->labelFullName->size() ) );
+                                      CalamaresUtils::Original,
+                                      ui->labelFullName->size() ) );
         m_readyFullName = true;
         fillSuggestions();
     }
@@ -227,8 +227,8 @@ UsersPage::validateUsernameText( const QString& textRef )
     else if ( text.length() > USERNAME_MAX_LENGTH )
     {
         ui->labelUsername->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::No,
-                                                                     CalamaresUtils::Original,
-                                                                     ui->labelUsername->size() ) );
+                                      CalamaresUtils::Original,
+                                      ui->labelUsername->size() ) );
         ui->labelUsernameError->setText(
             tr( "Your username is too long." ) );
 
@@ -237,17 +237,18 @@ UsersPage::validateUsernameText( const QString& textRef )
     else if ( val.validate( text, pos ) == QValidator::Invalid )
     {
         ui->labelUsername->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::No,
-                                                                     CalamaresUtils::Original,
-                                                                     ui->labelUsername->size() ) );
+                                      CalamaresUtils::Original,
+                                      ui->labelUsername->size() ) );
         ui->labelUsernameError->setText(
             tr( "Your username contains invalid characters. Only lowercase letters and numbers are allowed." ) );
 
         m_readyUsername = false;
     }
-    else {
+    else
+    {
         ui->labelUsername->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::Yes,
-                                                                     CalamaresUtils::Original,
-                                                                     ui->labelUsername->size() ) );
+                                      CalamaresUtils::Original,
+                                      ui->labelUsername->size() ) );
         ui->labelUsernameError->clear();
         m_readyUsername = true;
     }
@@ -281,8 +282,8 @@ UsersPage::validateHostnameText( const QString& textRef )
     else if ( text.length() < HOSTNAME_MIN_LENGTH )
     {
         ui->labelHostname->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::No,
-                                                                     CalamaresUtils::Original,
-                                                                     ui->labelHostname->size() ) );
+                                      CalamaresUtils::Original,
+                                      ui->labelHostname->size() ) );
         ui->labelHostnameError->setText(
             tr( "Your hostname is too short." ) );
 
@@ -292,8 +293,8 @@ UsersPage::validateHostnameText( const QString& textRef )
     else if ( text.length() > HOSTNAME_MAX_LENGTH )
     {
         ui->labelHostname->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::No,
-                                                                     CalamaresUtils::Original,
-                                                                     ui->labelHostname->size() ) );
+                                      CalamaresUtils::Original,
+                                      ui->labelHostname->size() ) );
         ui->labelHostnameError->setText(
             tr( "Your hostname is too long." ) );
 
@@ -303,8 +304,8 @@ UsersPage::validateHostnameText( const QString& textRef )
     else if ( val.validate( text, pos ) == QValidator::Invalid )
     {
         ui->labelHostname->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::No,
-                                                                     CalamaresUtils::Original,
-                                                                     ui->labelHostname->size() ) );
+                                      CalamaresUtils::Original,
+                                      ui->labelHostname->size() ) );
         ui->labelHostnameError->setText(
             tr( "Your hostname contains invalid characters. Only letters, numbers and dashes are allowed." ) );
 
@@ -313,8 +314,8 @@ UsersPage::validateHostnameText( const QString& textRef )
     else
     {
         ui->labelHostname->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::Yes,
-                                                                     CalamaresUtils::Original,
-                                                                     ui->labelHostname->size() ) );
+                                      CalamaresUtils::Original,
+                                      ui->labelHostname->size() ) );
         ui->labelHostnameError->clear();
         m_readyHostname = true;
     }
@@ -339,16 +340,16 @@ UsersPage::onPasswordTextChanged( const QString& )
     {
         ui->labelUserPasswordError->setText( tr( "Your passwords do not match!" ) );
         ui->labelUserPassword->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::No,
-                                                                         CalamaresUtils::Original,
-                                                                         ui->labelUserPassword->size() ) );
+                                          CalamaresUtils::Original,
+                                          ui->labelUserPassword->size() ) );
         m_readyPassword = false;
     }
     else
     {
         ui->labelUserPasswordError->clear();
         ui->labelUserPassword->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::Yes,
-                                                                         CalamaresUtils::Original,
-                                                                         ui->labelUserPassword->size() ) );
+                                          CalamaresUtils::Original,
+                                          ui->labelUserPassword->size() ) );
         m_readyPassword = true;
     }
 
@@ -372,16 +373,16 @@ UsersPage::onRootPasswordTextChanged( const QString& )
     {
         ui->labelRootPasswordError->setText( tr( "Your passwords do not match!" ) );
         ui->labelRootPassword->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::No,
-                                                                         CalamaresUtils::Original,
-                                                                         ui->labelRootPassword->size() ) );
+                                          CalamaresUtils::Original,
+                                          ui->labelRootPassword->size() ) );
         m_readyRootPassword = false;
     }
     else
     {
         ui->labelRootPasswordError->clear();
         ui->labelRootPassword->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::Yes,
-                                                                         CalamaresUtils::Original,
-                                                                         ui->labelRootPassword->size() ) );
+                                          CalamaresUtils::Original,
+                                          ui->labelRootPassword->size() ) );
         m_readyRootPassword = true;
     }
 

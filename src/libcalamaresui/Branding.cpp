@@ -85,7 +85,7 @@ Branding::Branding( const QString& brandingFilePath,
             Q_ASSERT( doc.IsMap() );
 
             m_componentName = QString::fromStdString( doc[ "componentName" ]
-                                                      .as< std::string >() );
+                              .as< std::string >() );
             if ( m_componentName != QFileInfo( m_descriptorPath ).absoluteDir().dirName() )
                 bail( "The branding component name should match the name of the "
                       "component directory." );
@@ -111,7 +111,7 @@ Branding::Branding( const QString& brandingFilePath,
                 QFileInfo imageFi( componentDir.absoluteFilePath( pathString ) );
                 if ( !imageFi.exists() )
                     bail( QString( "Image file %1 does not exist." )
-                            .arg( imageFi.absoluteFilePath() ) );
+                          .arg( imageFi.absoluteFilePath() ) );
 
                 m_images.insert( it.key(), imageFi.absoluteFilePath() );
             }
@@ -126,7 +126,7 @@ Branding::Branding( const QString& brandingFilePath,
                     QFileInfo imageFi( componentDir.absoluteFilePath( pathString ) );
                     if ( !imageFi.exists() )
                         bail( QString( "Slideshow file %1 does not exist." )
-                                .arg( imageFi.absoluteFilePath() ) );
+                              .arg( imageFi.absoluteFilePath() ) );
 
                     slideShowPictures[ i ] = imageFi.absoluteFilePath();
                 }
@@ -136,12 +136,12 @@ Branding::Branding( const QString& brandingFilePath,
             else if ( doc[ "slideshow" ].IsScalar() )
             {
                 QString slideshowPath = QString::fromStdString( doc[ "slideshow" ]
-                                                          .as< std::string >() );
+                                        .as< std::string >() );
                 QFileInfo slideshowFi( componentDir.absoluteFilePath( slideshowPath ) );
                 if ( !slideshowFi.exists() ||
-                     !slideshowFi.fileName().toLower().endsWith( ".qml" ) )
+                        !slideshowFi.fileName().toLower().endsWith( ".qml" ) )
                     bail( QString( "Slideshow file %1 does not exist or is not a valid QML file." )
-                            .arg( slideshowFi.absoluteFilePath() ) );
+                          .arg( slideshowFi.absoluteFilePath() ) );
                 m_slideshowPath = slideshowFi.absoluteFilePath();
             }
             else
@@ -154,9 +154,7 @@ Branding::Branding( const QString& brandingFilePath,
         }
     }
     else
-    {
         cDebug() << "WARNING: Cannot read " << file.fileName();
-    }
 
     s_instance = this;
     cDebug() << "Loaded branding component" << m_componentName;

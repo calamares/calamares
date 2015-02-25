@@ -57,7 +57,7 @@ public:
     void onActivate() override;
     void onLeave() override;
 
-    void setConfigurationMap( const QVariantMap &configurationMap ) override;
+    void setConfigurationMap( const QVariantMap& configurationMap ) override;
 
 private:
     UsersPage* m_widget;

@@ -57,12 +57,13 @@ SetPasswordJob::exec()
     int ec = CalamaresUtils::chrootCall( { "usermod",
                                            "-p",
                                            QString::fromLatin1( data ),
-                                           m_userName } );
+                                           m_userName
+                                         } );
     if ( ec )
         return Calamares::JobResult::error( tr( "Cannot set password for user %1." )
-                                                .arg( m_userName ),
+                                            .arg( m_userName ),
                                             tr( "usermod terminated with error code %1." )
-                                                .arg( ec ) );
+                                            .arg( ec ) );
 
     return Calamares::JobResult::ok();
 }

@@ -86,35 +86,43 @@ PrepareViewStep::PrepareViewStep( QObject* parent )
         foreach ( const QString& entry, m_entriesToCheck )
         {
             if ( entry == "storage" )
-                checkEntries.append( {
-                    entry,
-                    [this]{ return tr( "has at least %1 GB available drive space" )
-                        .arg( m_requiredStorageGB ); },
-                    enoughStorage,
-                    m_entriesToRequire.contains( entry )
-                } );
+                checkEntries.append(
+            {
+                entry,
+                [this]{
+                    return tr( "has at least %1 GB available drive space" )
+                    .arg( m_requiredStorageGB );
+                },
+                enoughStorage,
+                m_entriesToRequire.contains( entry )
+            } );
             else if ( entry == "ram" )
-                checkEntries.append( {
-                    entry,
-                    [this]{ return tr( "has at least %1 GB working memory" )
-                        .arg( m_requiredRamGB ); },
-                    enoughRam,
-                    m_entriesToRequire.contains( entry )
-                } );
+                checkEntries.append(
+            {
+                entry,
+                [this]{
+                    return tr( "has at least %1 GB working memory" )
+                    .arg( m_requiredRamGB );
+                },
+                enoughRam,
+                m_entriesToRequire.contains( entry )
+            } );
             else if ( entry == "power" )
-                checkEntries.append( {
-                    entry,
-                    [this]{ return tr( "is plugged in to a power source" ); },
-                    hasPower,
-                    m_entriesToRequire.contains( entry )
-                } );
+                checkEntries.append(
+            {
+                entry,
+                [this]{ return tr( "is plugged in to a power source" ); },
+                hasPower,
+                m_entriesToRequire.contains( entry )
+            } );
             else if ( entry == "internet" )
-                checkEntries.append( {
-                    entry,
-                    [this]{ return tr( "is connected to the Internet" ); },
-                    hasInternet,
-                    m_entriesToRequire.contains( entry )
-                } );
+                checkEntries.append(
+            {
+                entry,
+                [this]{ return tr( "is connected to the Internet" ); },
+                hasInternet,
+                m_entriesToRequire.contains( entry )
+            } );
         }
 
         m_actualWidget->init( checkEntries );
@@ -223,7 +231,7 @@ void
 PrepareViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
     if ( configurationMap.contains( "requiredStorage" ) &&
-         configurationMap.value( "requiredStorage" ).type() == QVariant::Double )
+            configurationMap.value( "requiredStorage" ).type() == QVariant::Double )
     {
         bool ok = false;
         m_requiredStorageGB = configurationMap.value( "requiredStorage" ).toDouble( &ok );
@@ -233,12 +241,10 @@ PrepareViewStep::setConfigurationMap( const QVariantMap& configurationMap )
         Calamares::JobQueue::instance()->globalStorage()->insert( "requiredStorageGB", m_requiredStorageGB );
     }
     else
-    {
         m_requiredStorageGB = 3.;
-    }
 
     if ( configurationMap.contains( "requiredRam" ) &&
-         configurationMap.value( "requiredRam" ).type() == QVariant::Double )
+            configurationMap.value( "requiredRam" ).type() == QVariant::Double )
     {
         bool ok = false;
         m_requiredRamGB = configurationMap.value( "requiredRam" ).toDouble( &ok );
@@ -246,19 +252,17 @@ PrepareViewStep::setConfigurationMap( const QVariantMap& configurationMap )
             m_requiredRamGB = 1.;
     }
     else
-    {
         m_requiredRamGB = 1.;
-    }
 
     if ( configurationMap.contains( "check" ) &&
-         configurationMap.value( "check" ).type() == QVariant::List )
+            configurationMap.value( "check" ).type() == QVariant::List )
     {
         m_entriesToCheck.clear();
         m_entriesToCheck.append( configurationMap.value( "check" ).toStringList() );
     }
 
     if ( configurationMap.contains( "required" ) &&
-         configurationMap.value( "required" ).type() == QVariant::List )
+            configurationMap.value( "required" ).type() == QVariant::List )
     {
         m_entriesToRequire.clear();
         m_entriesToRequire.append( configurationMap.value( "required" ).toStringList() );
@@ -303,7 +307,7 @@ PrepareViewStep::checkBatteryExists()
                                             QDir::NoDotAndDotDot ) )
     {
         QFileInfo typePath( baseDir.absoluteFilePath( QString( "%1/type" )
-                                                      .arg( item ) ) );
+                            .arg( item ) ) );
         QFile typeFile( typePath.absoluteFilePath() );
         if ( typeFile.open( QIODevice::ReadOnly | QIODevice::Text ) )
         {

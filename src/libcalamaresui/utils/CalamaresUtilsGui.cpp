@@ -42,36 +42,36 @@ defaultPixmap( ImageType type, ImageMode mode, const QSize& size )
 
     switch ( type )
     {
-        case Yes:
-            pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/yes.svgz", size );
-            break;
+    case Yes:
+        pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/yes.svgz", size );
+        break;
 
-        case No:
-            pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/no.svgz", size );
-            break;
+    case No:
+        pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/no.svgz", size );
+        break;
 
-        case Information:
-            pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/information.svgz", size );
-            break;
+    case Information:
+        pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/information.svgz", size );
+        break;
 
-        case Fail:
-            pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/fail.svgz", size );
-            break;
+    case Fail:
+        pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/fail.svgz", size );
+        break;
 
-        case Partitions:
-            pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/partitions.svgz", size );
-            break;
+    case Partitions:
+        pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/partitions.svgz", size );
+        break;
 
-        case Magic:
-            pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/magic.svgz", size );
-            break;
+    case Magic:
+        pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/magic.svgz", size );
+        break;
 
-        case Replace:
-            pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/replace.svgz", size );
-            break;
+    case Replace:
+        pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/replace.svgz", size );
+        break;
 
-        default:
-            break;
+    default:
+        break;
     }
 
     if ( pixmap.isNull() )
@@ -124,9 +124,9 @@ createRoundedImage( const QPixmap& pixmap, const QSize& size, float frameWidthPc
     painter.setPen( pen );
     painter.drawRoundedRect( outerRect, frameWidthPct * 100.0, frameWidthPct * 100.0, Qt::RelativeSize );
 
-/*    painter.setBrush( Qt::transparent );
-    painter.setPen( Qt::white );
-    painter.drawRoundedRect( outerRect, frameWidthPct, frameWidthPct, Qt::RelativeSize ); */
+    /*    painter.setBrush( Qt::transparent );
+        painter.setPen( Qt::white );
+        painter.drawRoundedRect( outerRect, frameWidthPct, frameWidthPct, Qt::RelativeSize ); */
 
     return frame;
 }

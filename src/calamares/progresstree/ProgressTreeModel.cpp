@@ -88,7 +88,7 @@ ProgressTreeModel::data( const QModelIndex& index, int role ) const
     if ( !index.isValid() )
         return QVariant();
 
-    ProgressTreeItem *item = static_cast< ProgressTreeItem* >( index.internalPointer() );
+    ProgressTreeItem* item = static_cast< ProgressTreeItem* >( index.internalPointer() );
 
     return item->data( role );
 }
@@ -137,21 +137,19 @@ ProgressTreeModel::setupModelData()
     m_rootItem->appendChild( prepare );
 
     foreach ( const Calamares::ViewStep* step, vm->prepareSteps() )
-    {
         prepare->appendChild( new ViewStepItem( step, prepare ) );
-    }
 
     m_rootItem->appendChild( new ViewStepItem( tr( "Install" ),
-        [vm]() -> const Calamares::ViewStep*
-        {
-            return vm->installationStep();
-        }, m_rootItem ) );
+                             [vm]() -> const Calamares::ViewStep*
+    {
+        return vm->installationStep();
+    }, m_rootItem ) );
 
     m_rootItem->appendChild( new ViewStepItem( tr( "Finish" ),
-        [vm]() -> const Calamares::ViewStep*
-        {
-            return vm->finishedStep();
-        }, m_rootItem ) );
+                             [vm]() -> const Calamares::ViewStep*
+    {
+        return vm->finishedStep();
+    }, m_rootItem ) );
 }
 
 
@@ -180,7 +178,8 @@ ProgressTreeModel::indexFromItem( ProgressTreeItem* item )
      **/
     QList< int > childIndexList;
     ProgressTreeItem* curItem = item;
-    while ( curItem != m_rootItem ) {
+    while ( curItem != m_rootItem )
+    {
         int row  = curItem->row(); //relative to its parent
         if ( row < 0 ) // something went wrong, bail
             return QModelIndex();
@@ -193,9 +192,7 @@ ProgressTreeModel::indexFromItem( ProgressTreeItem* item )
     // Now we rebuild the QModelIndex we need
     QModelIndex idx;
     for ( int i = childIndexList.size() - 1; i >= 0 ; i-- )
-    {
         idx = index( childIndexList[ i ], 0, idx );
-    }
 
     return idx;
 }

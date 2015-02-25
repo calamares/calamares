@@ -45,7 +45,7 @@ GreetingPage::GreetingPage( QWidget* parent )
     {
         bool isTranslationAvailable = false;
 
-        foreach ( const QString& locale, QString( CALAMARES_TRANSLATION_LANGUAGES ).split( ';') )
+        foreach ( const QString& locale, QString( CALAMARES_TRANSLATION_LANGUAGES ).split( ';' ) )
         {
             QLocale thisLocale = QLocale( locale );
             QString lang = QLocale::languageToString( thisLocale.language() );
@@ -55,9 +55,9 @@ GreetingPage::GreetingPage( QWidget* parent )
 
             ui->languageWidget->addItem( lang );
             ui->languageWidget->item( ui->languageWidget->count() - 1 )
-                            ->setData( Qt::UserRole, thisLocale );
+            ->setData( Qt::UserRole, thisLocale );
             if ( thisLocale.language() == defaultLocale.language() &&
-                 thisLocale.country() == defaultLocale.country() )
+                    thisLocale.country() == defaultLocale.country() )
             {
                 isTranslationAvailable = true;
                 ui->languageWidget->setCurrentRow( ui->languageWidget->count() - 1 );
@@ -69,9 +69,9 @@ GreetingPage::GreetingPage( QWidget* parent )
 
         if ( !isTranslationAvailable )
         {
-            for (int i = 0; i < ui->languageWidget->count(); i++)
+            for ( int i = 0; i < ui->languageWidget->count(); i++ )
             {
-                QLocale thisLocale = ui->languageWidget->item(i)->data( Qt::UserRole ).toLocale();
+                QLocale thisLocale = ui->languageWidget->item( i )->data( Qt::UserRole ).toLocale();
                 if ( thisLocale.language() == defaultLocale.language() )
                 {
                     isTranslationAvailable = true;
@@ -85,9 +85,9 @@ GreetingPage::GreetingPage( QWidget* parent )
 
         if ( !isTranslationAvailable )
         {
-            for (int i = 0; i < ui->languageWidget->count(); i++)
+            for ( int i = 0; i < ui->languageWidget->count(); i++ )
             {
-                QLocale thisLocale = ui->languageWidget->item(i)->data( Qt::UserRole ).toLocale();
+                QLocale thisLocale = ui->languageWidget->item( i )->data( Qt::UserRole ).toLocale();
                 if ( thisLocale == QLocale( QLocale::English, QLocale::UnitedStates ) )
                 {
                     ui->languageWidget->setCurrentRow( i );
@@ -122,40 +122,40 @@ GreetingPage::GreetingPage( QWidget* parent )
 
     CALAMARES_RETRANSLATE(
         ui->mainText->setText( tr( "<h1>Welcome to the %1 installer.</h1><br/>"
-                             "This program will ask you some questions and "
-                             "set up %2 on your computer." )
-                         .arg( Calamares::Branding::instance()->
-                               string( Calamares::Branding::VersionedName ) )
-                         .arg( Calamares::Branding::instance()->
-                               string( Calamares::Branding::ProductName ) ) );
+                                   "This program will ask you some questions and "
+                                   "set up %2 on your computer." )
+                               .arg( Calamares::Branding::instance()->
+                                     string( Calamares::Branding::VersionedName ) )
+                               .arg( Calamares::Branding::instance()->
+                                     string( Calamares::Branding::ProductName ) ) );
     )
 
     ui->aboutButton->setIcon( CalamaresUtils::defaultPixmap( CalamaresUtils::Information,
-                                                             CalamaresUtils::Original,
-                                                             2*QSize( CalamaresUtils::defaultFontHeight(),
-                                                                    CalamaresUtils::defaultFontHeight() ) ) );
+                              CalamaresUtils::Original,
+                              2*QSize( CalamaresUtils::defaultFontHeight(),
+                                       CalamaresUtils::defaultFontHeight() ) ) );
     connect( ui->aboutButton, &QPushButton::clicked,
              this, [ this ]
     {
         QMessageBox::about( this,
-                            tr( "About %1 installer" )
-                                .arg( CALAMARES_APPLICATION_NAME ),
-                            tr(
-                                "<h1>%1</h1><br/>"
-                                "<b>%2<br/>"
-                                "for %3</b><br/><br/>"
-                                "Copyright 2014 Teo Mrnjavac &lt;teo@kde.org&gt;<br/>"
-                                "Thanks to: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Philip Müller, "
-                                "Pier Luigi Fiorini and Rohan Garg.<br/><br/>"
-                                "<a href=\"https://calamares.github.io/\">Calamares</a> "
-                                "development is sponsored by <br/>"
-                                "<a href=\"http://www.blue-systems.com/\">Blue Systems</a> - "
-                                "technologies for a better world."
-                            )
-                            .arg( CALAMARES_APPLICATION_NAME )
-                            .arg( CALAMARES_VERSION )
-                            .arg( Calamares::Branding::instance()->string(
-                                      Calamares::Branding::VersionedName ) ) );
+        tr( "About %1 installer" )
+        .arg( CALAMARES_APPLICATION_NAME ),
+        tr(
+            "<h1>%1</h1><br/>"
+            "<b>%2<br/>"
+            "for %3</b><br/><br/>"
+            "Copyright 2014 Teo Mrnjavac &lt;teo@kde.org&gt;<br/>"
+            "Thanks to: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Philip Müller, "
+            "Pier Luigi Fiorini and Rohan Garg.<br/><br/>"
+            "<a href=\"https://calamares.github.io/\">Calamares</a> "
+            "development is sponsored by <br/>"
+            "<a href=\"http://www.blue-systems.com/\">Blue Systems</a> - "
+            "technologies for a better world."
+        )
+        .arg( CALAMARES_APPLICATION_NAME )
+        .arg( CALAMARES_VERSION )
+        .arg( Calamares::Branding::instance()->string(
+            Calamares::Branding::VersionedName ) ) );
     } );
 }
 

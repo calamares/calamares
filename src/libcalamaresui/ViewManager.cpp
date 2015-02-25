@@ -71,16 +71,16 @@ ViewManager::ViewManager( QObject* parent )
              this, [this]()
     {
         if ( m_currentStep == m_steps.count() -1 &&
-             m_steps.last()->isAtEnd() )
+                m_steps.last()->isAtEnd() )
             qApp->quit();
         else
         {
             int response = QMessageBox::question( m_widget,
-                            tr( "Cancel installation?" ),
-                            tr( "Do you really want to cancel the current install process?\n"
-                                "The installer will quit and all changes will be lost." ),
-                            QMessageBox::Yes | QMessageBox::No,
-                            QMessageBox::No );
+                                                  tr( "Cancel installation?" ),
+                                                  tr( "Do you really want to cancel the current install process?\n"
+                                                          "The installer will quit and all changes will be lost." ),
+                                                  QMessageBox::Yes | QMessageBox::No,
+                                                  QMessageBox::No );
             if ( response == QMessageBox::Yes )
                 qApp->quit();
         }
@@ -131,21 +131,17 @@ void
 ViewManager::setUpInstallationStep()
 {
     if ( m_installationViewStep && !m_steps.contains( m_installationViewStep ) )
-    {
         insertViewStep( m_steps.count(), m_installationViewStep );
-    }
 }
 
 
 void
-ViewManager::insertViewStep( int before, ViewStep* step)
+ViewManager::insertViewStep( int before, ViewStep* step )
 {
     m_steps.insert( before, step );
     QLayout* layout = step->widget()->layout();
     if ( layout )
-    {
         layout->setContentsMargins( 0, 0, 0, 0 );
-    }
     m_stack->insertWidget( before, step->widget() );
 
     connect( step, &ViewStep::nextStatusChanged,
@@ -173,15 +169,13 @@ ViewManager::onInstallationFailed( const QString& message, const QString& detail
 
     QMessageBox msgBox;
     msgBox.setIcon( QMessageBox::Critical );
-    msgBox.setWindowTitle( tr("Error") );
+    msgBox.setWindowTitle( tr( "Error" ) );
     msgBox.setText( "<strong>" + tr( "Installation Failed" ) + "</strong>" );
     msgBox.setStandardButtons( QMessageBox::Close );
 
     QString text = "<p>" + message + "</p>";
     if ( !details.isEmpty() )
-    {
         text += "<p>" + details + "</p>";
-    }
     msgBox.setInformativeText( text );
 
     msgBox.exec();
@@ -253,15 +247,13 @@ ViewManager::next()
         }
     }
     else
-    {
         step->next();
-    }
 
     m_next->setEnabled( !installing && m_steps.at( m_currentStep )->isNextEnabled() );
     m_back->setEnabled( !installing && m_steps.at( m_currentStep )->isBackEnabled() );
 
     if ( m_currentStep == m_steps.count() -1 &&
-         m_steps.last()->isAtEnd() )
+            m_steps.last()->isAtEnd() )
         m_quit->setText( tr( "&Quit" ) );
 }
 
@@ -279,9 +271,7 @@ ViewManager::back()
         emit currentStepChanged();
     }
     else if ( !step->isAtBeginning() )
-    {
         step->back();
-    }
     else return;
 
     m_next->setEnabled( m_steps.at( m_currentStep )->isNextEnabled() );

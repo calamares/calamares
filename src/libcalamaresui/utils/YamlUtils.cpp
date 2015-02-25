@@ -26,9 +26,7 @@ void
 operator>>( const YAML::Node& node, QStringList& v )
 {
     for ( int i = 0; i < node.size(); ++i )
-    {
         v.append( QString::fromStdString( node[ i ].as< std::string >() ) );
-    }
 }
 
 namespace CalamaresUtils
@@ -81,10 +79,8 @@ yamlSequenceToVariant( const YAML::Node& sequenceNode )
 {
     QVariantList vl;
     for ( YAML::const_iterator it = sequenceNode.begin();
-          it != sequenceNode.end(); ++it )
-    {
+            it != sequenceNode.end(); ++it )
         vl << yamlToVariant( *it );
-    }
     return vl;
 }
 
@@ -94,7 +90,7 @@ yamlMapToVariant( const YAML::Node& mapNode )
 {
     QVariantMap vm;
     for ( YAML::const_iterator it = mapNode.begin();
-          it != mapNode.end(); ++it )
+            it != mapNode.end(); ++it )
     {
         vm.insert( QString::fromStdString( it->first.as< std::string >() ),
                    yamlToVariant( it->second ) );

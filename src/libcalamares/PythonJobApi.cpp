@@ -66,7 +66,7 @@ chroot_call( const bp::list& args,
     for ( int i = 0; i < bp::len( args ); ++i )
     {
         list.append( QString::fromStdString(
-            bp::extract< std::string >( args[ i ] ) ) );
+                         bp::extract< std::string >( args[ i ] ) ) );
     }
 
     return CalamaresUtils::chrootCall( list,
@@ -99,7 +99,7 @@ check_chroot_call( const bp::list& args,
     for ( int i = 0; i < bp::len( args ); ++i )
     {
         failedCmdList.append( QString::fromStdString(
-            bp::extract< std::string >( args[ i ] ) ) );
+                                  bp::extract< std::string >( args[ i ] ) ) );
     }
 
     return _handle_check_chroot_call_error( ec, failedCmdList.join( ' ' ) );
@@ -132,7 +132,7 @@ check_chroot_output( const bp::list& args,
     for ( int i = 0; i < bp::len( args ); ++i )
     {
         list.append( QString::fromStdString(
-            bp::extract< std::string >( args[ i ] ) ) );
+                         bp::extract< std::string >( args[ i ] ) ) );
     }
 
     int ec = CalamaresUtils::chrootOutput( list,
@@ -153,8 +153,8 @@ _handle_check_chroot_call_error( int ec, const QString& cmd )
 
     QString raise = QString( "import subprocess\n"
                              "raise subprocess.CalledProcessError(%1,\"%2\")" )
-                        .arg( ec )
-                        .arg( cmd );
+                    .arg( ec )
+                    .arg( cmd );
     bp::exec( raise.toStdString().c_str() );
     bp::throw_error_already_set();
     return ec;

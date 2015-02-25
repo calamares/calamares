@@ -126,7 +126,7 @@ chrootOutput( const QStringList& args,
             process.setWorkingDirectory( QDir( workingPath ).absolutePath() );
         else
             cLog() << "Invalid working directory:" << workingPath;
-            return -3;
+        return -3;
     }
 
     cLog() << "Running" << program << arguments;

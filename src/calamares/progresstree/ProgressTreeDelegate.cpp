@@ -52,13 +52,9 @@ ProgressTreeDelegate::sizeHint( const QStyleOptionViewItem& option,
     QFont font = qApp->font();
 
     if ( isFirstLevel )
-    {
         font.setPointSize( CAT_FONTSIZE );
-    }
     else
-    {
         font.setPointSize( VS_FONTSIZE );
-    }
     QFontMetrics fm( font );
     int height = fm.height();
 
@@ -71,7 +67,7 @@ ProgressTreeDelegate::sizeHint( const QStyleOptionViewItem& option,
 void
 ProgressTreeDelegate::paint( QPainter* painter,
                              const QStyleOptionViewItem& option,
-                             const QModelIndex& index) const
+                             const QModelIndex& index ) const
 {
     bool isFirstLevel = !index.parent().isValid();
 

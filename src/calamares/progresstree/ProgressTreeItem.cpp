@@ -66,7 +66,7 @@ ProgressTreeItem::row() const
 {
     if ( m_parentItem )
         return m_parentItem->m_childItems.indexOf(
-                    const_cast< ProgressTreeItem* >( this ) );
+                   const_cast< ProgressTreeItem* >( this ) );
     return 0;
 }
 

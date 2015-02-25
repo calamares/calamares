@@ -37,8 +37,8 @@ class JobThread : public QThread
     Q_OBJECT
 public:
     JobThread( JobQueue* queue )
-    : QThread( queue )
-    , m_queue( queue )
+        : QThread( queue )
+        , m_queue( queue )
     {
 #ifdef WITH_PYTHON
         new CalamaresPython::Helper( this );
@@ -53,7 +53,7 @@ public:
     void run() override
     {
         m_jobIndex = 0;
-        for( auto job : m_jobs )
+        for ( auto job : m_jobs )
         {
             emitProgress();
             cLog() << "Starting job" << job->prettyName();
@@ -84,23 +84,23 @@ private:
 
         int jobCount = m_jobs.size();
         QString message = m_jobIndex < jobCount
-            ? m_jobs.at( m_jobIndex )->prettyName()
-            : tr( "Done" );
+                          ? m_jobs.at( m_jobIndex )->prettyName()
+                          : tr( "Done" );
 
         qreal percent = ( m_jobIndex + jobPercent ) / qreal( jobCount );
 
         QMetaObject::invokeMethod( m_queue, "progress", Qt::QueuedConnection,
-            Q_ARG( qreal, percent ),
-            Q_ARG( QString, message )
-        );
+                                   Q_ARG( qreal, percent ),
+                                   Q_ARG( QString, message )
+                                 );
     }
 
     void emitFailed( const QString& message, const QString& details )
     {
         QMetaObject::invokeMethod( m_queue, "failed", Qt::QueuedConnection,
-            Q_ARG( QString, message ),
-            Q_ARG( QString, details )
-        );
+                                   Q_ARG( QString, message ),
+                                   Q_ARG( QString, details )
+                                 );
     }
 
     void emitFinished()

@@ -31,10 +31,10 @@ public:
         AutoKillOtherInstances = 1
     };
 
-    explicit KDSingleApplicationGuard( QObject * parent=0 );
-    explicit KDSingleApplicationGuard( Policy policy, QObject * parent=0 );
-    explicit KDSingleApplicationGuard( const QStringList & arguments, QObject * parent=0 );
-    explicit KDSingleApplicationGuard( const QStringList & arguments, Policy policy, QObject * parent=0 );
+    explicit KDSingleApplicationGuard( QObject* parent=0 );
+    explicit KDSingleApplicationGuard( Policy policy, QObject* parent=0 );
+    explicit KDSingleApplicationGuard( const QStringList& arguments, QObject* parent=0 );
+    explicit KDSingleApplicationGuard( const QStringList& arguments, Policy policy, QObject* parent=0 );
     ~KDSingleApplicationGuard();
 
     bool isOperational() const;
@@ -51,8 +51,8 @@ public:
     QVector<Instance> instances() const;
 
 Q_SIGNALS:
-    void instanceStarted( const KDSingleApplicationGuard::Instance & instance );
-    void instanceExited( const KDSingleApplicationGuard::Instance & instance );
+    void instanceStarted( const KDSingleApplicationGuard::Instance& instance );
+    void instanceExited( const KDSingleApplicationGuard::Instance& instance );
     void exitRequested();
     void raiseRequested();
     void becamePrimaryInstance();
@@ -64,7 +64,8 @@ public Q_SLOTS:
     void killOtherInstances();
 
 protected:
-    /*! \reimp */ bool event( QEvent * event );
+    /*! \reimp */
+    bool event( QEvent* event );
 
 private:
 #ifndef Q_WS_WIN
@@ -78,30 +79,36 @@ private:
     kdtools::pimpl_ptr< Private > d;
 };
 
-class DLLEXPORT KDSingleApplicationGuard::Instance {
+class DLLEXPORT KDSingleApplicationGuard::Instance
+{
     friend class ::KDSingleApplicationGuard;
     friend class ::KDSingleApplicationGuard::Private;
-    Instance( const QStringList &, bool, qint64 );
+    Instance( const QStringList&, bool, qint64 );
 public:
     Instance();
-    Instance( const Instance & other );
+    Instance( const Instance& other );
     ~Instance();
 
-    void swap( Instance & other ) {
+    void swap( Instance& other )
+    {
         std::swap( d, other.d );
     }
 
-    Instance & operator=( Instance other ) {
+    Instance& operator=( Instance other )
+    {
         swap( other );
         return *this;
     }
 
-    bool isNull() const { return !d; }
+    bool isNull() const
+    {
+        return !d;
+    }
     bool isValid() const;
 
     bool areArgumentsTruncated() const;
 
-    const QStringList & arguments() const;
+    const QStringList& arguments() const;
     qint64 pid() const;
 
     void shutdown();
@@ -110,23 +117,24 @@ public:
 
 private:
     class Private;
-    Private * d;
+    Private* d;
 };
 
-namespace std {
-    template <>
-    inline void swap( KDSingleApplicationGuard::Instance & lhs,
-                      KDSingleApplicationGuard::Instance & rhs )
-    {
-        lhs.swap( rhs );
-    }
+namespace std
+{
+template <>
+inline void swap( KDSingleApplicationGuard::Instance& lhs,
+                  KDSingleApplicationGuard::Instance& rhs )
+{
+    lhs.swap( rhs );
+}
 } // namespace std
 
 QT_BEGIN_NAMESPACE
 
 template <>
-inline void qSwap( KDSingleApplicationGuard::Instance & lhs,
-                   KDSingleApplicationGuard::Instance & rhs )
+inline void qSwap( KDSingleApplicationGuard::Instance& lhs,
+                   KDSingleApplicationGuard::Instance& rhs )
 {
     lhs.swap( rhs );
 }

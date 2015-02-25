@@ -31,7 +31,7 @@
 PreparePage::PreparePage( QWidget* parent )
     : QWidget()
 {
-    QBoxLayout *mainLayout = new QVBoxLayout;
+    QBoxLayout* mainLayout = new QVBoxLayout;
     setLayout( mainLayout );
 
     QLabel* text = new QLabel( this );
@@ -68,9 +68,7 @@ PreparePage::init( const QList< PrepareEntry >& checkEntries )
         {
             allChecked = false;
             if ( entry.required )
-            {
                 requirementsSatisfied = false;
-            }
         }
     }
 
@@ -90,28 +88,28 @@ PreparePage::init( const QList< PrepareEntry >& checkEntries )
         if ( !requirementsSatisfied )
         {
             iconLabel->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::Fail,
-                                                                 CalamaresUtils::Original,
-                                                                 iconLabel->size() ) );
+                                  CalamaresUtils::Original,
+                                  iconLabel->size() ) );
             CALAMARES_RETRANSLATE(
                 textLabel->setText( tr( "This computer does not satisfy the minimum "
                                         "requirements for installing %1.\n"
                                         "Installation cannot continue." )
-                                        .arg( Calamares::Branding::instance()->
-                                              string( Calamares::Branding::ShortVersionedName ) ) );
+                                    .arg( Calamares::Branding::instance()->
+                                          string( Calamares::Branding::ShortVersionedName ) ) );
             )
         }
         else
         {
             iconLabel->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::Information,
-                                                                 CalamaresUtils::Original,
-                                                                 iconLabel->size() ) );
+                                  CalamaresUtils::Original,
+                                  iconLabel->size() ) );
             CALAMARES_RETRANSLATE(
                 textLabel->setText( tr( "This computer does not satisfy some of the "
                                         "recommended requirements for installing %1.\n"
                                         "Installation can continue, but some features "
                                         "might be disabled." )
-                                        .arg( Calamares::Branding::instance()->
-                                              string( Calamares::Branding::ShortVersionedName ) ) );
+                                    .arg( Calamares::Branding::instance()->
+                                          string( Calamares::Branding::ShortVersionedName ) ) );
             )
         }
 

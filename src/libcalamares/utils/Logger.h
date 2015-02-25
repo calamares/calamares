@@ -31,28 +31,28 @@
 
 namespace Logger
 {
-    class DLLEXPORT CLog : public QDebug
+class DLLEXPORT CLog : public QDebug
+{
+public:
+    CLog( unsigned int debugLevel = 0 );
+    virtual ~CLog();
+
+private:
+    QString m_msg;
+    unsigned int m_debugLevel;
+};
+
+class DLLEXPORT CDebug : public CLog
+{
+public:
+    CDebug( unsigned int debugLevel = LOGDEBUG ) : CLog( debugLevel )
     {
-    public:
-        CLog( unsigned int debugLevel = 0 );
-        virtual ~CLog();
+    }
+};
 
-    private:
-        QString m_msg;
-        unsigned int m_debugLevel;
-    };
-
-    class DLLEXPORT CDebug : public CLog
-    {
-    public:
-        CDebug( unsigned int debugLevel = LOGDEBUG ) : CLog( debugLevel )
-        {
-        }
-    };
-
-    DLLEXPORT void CalamaresLogHandler( QtMsgType type, const char* msg );
-    DLLEXPORT void setupLogfile();
-    DLLEXPORT QString logFile();
+DLLEXPORT void CalamaresLogHandler( QtMsgType type, const char* msg );
+DLLEXPORT void setupLogfile();
+DLLEXPORT QString logFile();
 }
 
 #define cLog Logger::CLog

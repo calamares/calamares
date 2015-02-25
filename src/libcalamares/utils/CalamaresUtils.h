@@ -33,21 +33,21 @@ class QObject;
 
 namespace CalamaresUtils
 {
-    DLLEXPORT QDir qmlModulesDir();
-    DLLEXPORT QDir appDataDir();
-    DLLEXPORT QDir appLogDir();
-    DLLEXPORT QDir systemLibDir();
-    DLLEXPORT void installTranslator( const QString& localeName, QObject* parent );
+DLLEXPORT QDir qmlModulesDir();
+DLLEXPORT QDir appDataDir();
+DLLEXPORT QDir appLogDir();
+DLLEXPORT QDir systemLibDir();
+DLLEXPORT void installTranslator( const QString& localeName, QObject* parent );
 
-    /**
-     * Override app data dir. Only for testing purposes.
-     */
-    DLLEXPORT void setAppDataDir( const QDir& dir );
-    DLLEXPORT bool isAppDataDirOverridden();
+/**
+ * Override app data dir. Only for testing purposes.
+ */
+DLLEXPORT void setAppDataDir( const QDir& dir );
+DLLEXPORT bool isAppDataDirOverridden();
 
-    DLLEXPORT void setQmlModulesDir( const QDir& dir );
+DLLEXPORT void setQmlModulesDir( const QDir& dir );
 
-    DLLEXPORT QString removeDiacritics( const QString& string );
+DLLEXPORT QString removeDiacritics( const QString& string );
 }
 
 #endif // CALAMARESUTILS_H

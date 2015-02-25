@@ -28,7 +28,7 @@
 #include <QDir>
 
 int
-main( int argc, char *argv[] )
+main( int argc, char* argv[] )
 {
     CalamaresApplication a( argc, argv );
 
@@ -37,7 +37,7 @@ main( int argc, char *argv[] )
     parser.addHelpOption();
     parser.addVersionOption();
     QCommandLineOption debugOption( QStringList() << "d" << "debug",
-                                      "Verbose output for debugging purposes." );
+                                    "Verbose output for debugging purposes." );
     parser.addOption( debugOption );
 
     QCommandLineOption configOption( QStringList() << "c" << "config",

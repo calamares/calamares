@@ -24,7 +24,8 @@
 
 #include <QObject>
 
-namespace Calamares {
+namespace Calamares
+{
 
 class DLLEXPORT JobResult
 {

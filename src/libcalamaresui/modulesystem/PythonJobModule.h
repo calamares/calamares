@@ -23,7 +23,8 @@
 
 #include "UiDllMacro.h"
 
-namespace Calamares {
+namespace Calamares
+{
 
 class UIDLLEXPORT PythonJobModule : public Module
 {
@@ -35,7 +36,7 @@ public:
     QList< job_ptr > jobs() const override;
 
 protected:
-    void initFrom( const YAML::Node &node ) override;
+    void initFrom( const YAML::Node& node ) override;
 
 private:
     friend class Module;
