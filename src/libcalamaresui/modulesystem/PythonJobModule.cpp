@@ -25,7 +25,8 @@
 #include <QDir>
 
 
-namespace Calamares {
+namespace Calamares
+{
 
 
 Module::Type
@@ -49,8 +50,8 @@ PythonJobModule::loadSelf()
         return;
 
     m_job = Calamares::job_ptr( new PythonJob( m_scriptFileName,
-                                               m_workingPath,
-                                               m_configurationMap ) );
+                                m_workingPath,
+                                m_configurationMap ) );
     m_loaded = true;
 }
 
@@ -70,9 +71,7 @@ PythonJobModule::initFrom( const YAML::Node& node )
     m_workingPath = directory.absolutePath();
 
     if ( node[ "script" ] )
-    {
         m_scriptFileName = QString::fromStdString( node[ "script" ].as< std::string >() );
-    }
 }
 
 

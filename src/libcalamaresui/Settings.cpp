@@ -92,7 +92,7 @@ Settings::Settings( const QString& settingsFilePath,
             config[ "install" ] >> m_modulesInstallList;
             config[ "postinstall" ] >> m_modulesPostInstallList;
             m_brandingComponentName = QString::fromStdString( config[ "branding" ]
-                                                              .as< std::string >() );
+                                      .as< std::string >() );
         }
         catch ( YAML::Exception& e )
         {
@@ -100,9 +100,7 @@ Settings::Settings( const QString& settingsFilePath,
         }
     }
     else
-    {
         cDebug() << "WARNING: Cannot read " << file.fileName();
-    }
 
     s_instance = this;
 }

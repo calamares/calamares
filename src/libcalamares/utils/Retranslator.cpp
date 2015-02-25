@@ -21,7 +21,8 @@
 #include <QEvent>
 
 
-namespace CalamaresUtils {
+namespace CalamaresUtils
+{
 
 
 void

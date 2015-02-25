@@ -37,10 +37,10 @@
 
 
 SetKeyboardLayoutJob::SetKeyboardLayoutJob( const QString& model,
-                                            const QString& layout,
-                                            const QString& variant,
-                                            const QString& xOrgConfFileName,
-                                            const QString& convertedKeymapPath )
+        const QString& layout,
+        const QString& variant,
+        const QString& xOrgConfFileName,
+        const QString& convertedKeymapPath )
     : Calamares::Job()
     , m_model( model )
     , m_layout( layout )
@@ -55,8 +55,8 @@ QString
 SetKeyboardLayoutJob::prettyName() const
 {
     return tr( "Set keyboard model to %1, layout to %2-%3" ).arg( m_model )
-                                                            .arg( m_layout )
-                                                            .arg( m_variant );
+           .arg( m_layout )
+           .arg( m_variant );
 }
 
 
@@ -72,7 +72,7 @@ SetKeyboardLayoutJob::findConvertedKeymap( const QString& convertedKeymapPath ) 
     QString name = m_variant.isEmpty() ? m_layout : ( m_layout + '-' + m_variant );
 
     if ( convertedKeymapDir.exists( name + ".map" )
-         || convertedKeymapDir.exists( name + ".map.gz" ) )
+            || convertedKeymapDir.exists( name + ".map.gz" ) )
     {
         cDebug() << "Found converted keymap" << name;
 
@@ -152,7 +152,7 @@ SetKeyboardLayoutJob::findLegacyKeymap() const
 
 bool
 SetKeyboardLayoutJob::writeVConsoleData( const QString& vconsoleConfPath,
-                                         const QString& convertedKeymapPath ) const
+        const QString& convertedKeymapPath ) const
 {
     QString keymap = findConvertedKeymap( convertedKeymapPath );
     if ( keymap.isEmpty() )
@@ -211,10 +211,10 @@ SetKeyboardLayoutJob::writeX11Data( const QString& keyboardConfPath ) const
     QTextStream stream( &file );
 
     stream << "# Read and parsed by systemd-localed. It's probably wise not to edit this file\n"
-              "# manually too freely.\n"
-              "Section \"InputClass\"\n"
-              "        Identifier \"system-keyboard\"\n"
-              "        MatchIsKeyboard \"on\"\n";
+           "# manually too freely.\n"
+           "Section \"InputClass\"\n"
+           "        Identifier \"system-keyboard\"\n"
+           "        MatchIsKeyboard \"on\"\n";
 
     if ( !m_layout.isEmpty() )
         stream << "        Option \"XkbLayout\" \"" << m_layout << "\"\n";
@@ -260,7 +260,7 @@ SetKeyboardLayoutJob::exec()
     {
         xorgConfDPath = destDir.absoluteFilePath( "etc/X11/xorg.conf.d" );
         keyboardConfPath = QDir( xorgConfDPath )
-                               .absoluteFilePath( m_xOrgConfFileName );
+                           .absoluteFilePath( m_xOrgConfFileName );
     }
     destDir.mkpath( xorgConfDPath );
 
