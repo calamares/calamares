@@ -24,6 +24,10 @@ from libcalamares.utils import check_chroot_call
 
 
 def run():
+    """ Generate machine-id using dbus and systemd.
+
+    :return:
+    """
     root_mount_point = libcalamares.globalstorage.value("rootMountPoint")
     enable_systemd = libcalamares.job.configuration["systemd"]
     enable_dbus = libcalamares.job.configuration["dbus"]

@@ -32,6 +32,12 @@ from libcalamares import *
 
 
 class UnpackEntry:
+    """ Extraction routine using rsync.
+
+    :param source:
+    :param sourcefs:
+    :param destination:
+    """
     __slots__ = ['source', 'sourcefs', 'destination', 'copied', 'total']
 
     def __init__(self, source, sourcefs, destination):
@@ -46,6 +52,11 @@ ON_POSIX = 'posix' in sys.builtin_module_names
 
 
 def list_excludes(destination):
+    """ List excludes for rsync.
+
+    :param destination:
+    :return:
+    """
     lst = []
     extra_mounts = globalstorage.value("extraMounts")
     for extra_mount in extra_mounts:
@@ -56,6 +67,13 @@ def list_excludes(destination):
 
 
 def file_copy(source, dest, progress_cb):
+    """ Extract given image using rsync.
+
+    :param source:
+    :param dest:
+    :param progress_cb:
+    :return:
+    """
     # Environment used for executing rsync properly
     # Setting locale to C (fix issue with tr_TR locale)
     at_env = os.environ
@@ -106,11 +124,16 @@ def file_copy(source, dest, progress_cb):
 
 
 class UnpackOperation:
+    """ Extraction routine using unsquashfs.
+
+    :param entries:
+    """
     def __init__(self, entries):
         self.entries = entries
         self.entry_for_source = dict((x.source, x) for x in self.entries)
 
     def report_progress(self):
+        """ Pass progress to user interface """
         progress = float(0)
         for entry in self.entries:
             if entry.total == 0:
@@ -124,6 +147,10 @@ class UnpackOperation:
         job.setprogress(progress)
 
     def run(self):
+        """ Extract given image using unsquashfs.
+
+        :return:
+        """
         source_mount_path = tempfile.mkdtemp()
         try:
             for entry in self.entries:
@@ -161,6 +188,11 @@ class UnpackOperation:
             shutil.rmtree(source_mount_path)
 
     def mount_image(self, entry, imgmountdir):
+        """ Mount given image as loop device.
+
+        :param entry:
+        :param imgmountdir:
+        """
         subprocess.check_call(["mount",
                                entry.source,
                                imgmountdir,
@@ -169,7 +201,18 @@ class UnpackOperation:
                                "-o", "loop"])
 
     def unpack_image(self, entry, imgmountdir):
+        """ Unpacks image.
+
+        :param entry:
+        :param imgmountdir:
+        :return:
+        """
+
         def progress_cb(copied):
+            """ Copies file to given destination target.
+
+            :param copied:
+            """
             entry.copied = copied
             self.report_progress()
 
@@ -182,20 +225,23 @@ class UnpackOperation:
 
 
 def run():
-    # from globalstorage: rootMountPoint
-    # from job.configuration:
-    # the path to where to mount the source image(s) for copying
-    # an ordered list of unpack mappings for image file <-> target dir relative
-    # to rootMountPoint, e.g.:
-    # configuration:
-    #     unpack:
-    #         - source: "/path/to/filesystem.img"
-    #           sourcefs: "ext4"
-    #           destination: ""
-    #         - source: "/path/to/another/filesystem.sqfs"
-    #           sourcefs: "squashfs"
-    #           destination: ""
+    """ Unsquashes filesystem from given image file.
 
+    from globalstorage: rootMountPoint
+    from job.configuration: the path to where to mount the source image(s) for copying
+    an ordered list of unpack mappings for image file <-> target dir relative
+    to rootMountPoint, e.g.:
+    configuration:
+        unpack:
+            - source: "/path/to/filesystem.img"
+              sourcefs: "ext4"
+              destination: ""
+            - source: "/path/to/another/filesystem.sqfs"
+              sourcefs: "squashfs"
+              destination: ""
+
+    :return:
+    """
     PATH_PROCFS = '/proc/filesystems'
 
     root_mount_point = globalstorage.value("rootMountPoint")

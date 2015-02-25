@@ -25,6 +25,11 @@ import libcalamares
 
 
 def list_mounts(root_mount_point):
+    """ List mount points.
+
+    :param root_mount_point:
+    :return:
+    """
     lst = []
     for line in open("/etc/mtab").readlines():
         device, mount_point, _ = line.split(" ", 2)
@@ -34,6 +39,10 @@ def list_mounts(root_mount_point):
 
 
 def run():
+    """ Unmounts given mountpoints in decreasing order.
+
+    :return:
+    """
     root_mount_point = libcalamares.globalstorage.value("rootMountPoint")
     if not root_mount_point:
         return ("No mount point for root partition in globalstorage",

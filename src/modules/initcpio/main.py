@@ -23,10 +23,15 @@ from libcalamares.utils import check_chroot_call
 
 
 def run_mkinitcpio():
+    """ Runs mkinitcpio with given kernel profile """
     kernel = libcalamares.job.configuration['kernel']
     check_chroot_call(['mkinitcpio', '-p', kernel])
 
 
 def run():
+    """ Calls routine to create kernel initramfs image.
+
+    :return:
+    """
     run_mkinitcpio()
     return None

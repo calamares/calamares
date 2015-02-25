@@ -3,7 +3,7 @@
 #
 # === This file is part of Calamares - <http://github.com/calamares> ===
 #
-#   Copyright 2014 - 2015, Philip Müller <philm@manjaro.org>
+#   Copyright 2014-2015, Philip Müller <philm@manjaro.org>
 #   Copyright 2014, Teo Mrnjavac <teo@kde.org>
 #   Copyright 2014, Kevin Kofler <kevin.kofler@chello.at>
 #
@@ -44,6 +44,11 @@ desktop_environments = [
 
 
 def find_desktop_environment(root_mount_point):
+    """ Checks which desktop environment is currently installed.
+
+    :param root_mount_point:
+    :return:
+    """
     for desktop_environment in desktop_environments:
         if os.path.exists(
                 "{!s}{!s}".format(root_mount_point, desktop_environment.executable)) \
@@ -54,6 +59,12 @@ def find_desktop_environment(root_mount_point):
 
 
 def have_dm(dm_name, root_mount_point):
+    """ Checks if display manager is properly installed.
+
+    :param dm_name:
+    :param root_mount_point:
+    :return:
+    """
     return os.path.exists(
         "{!s}/usr/bin/{!s}".format(root_mount_point, dm_name)) or os.path.exists(
         "{!s}/usr/sbin/{!s}".format(root_mount_point, dm_name))
@@ -61,8 +72,13 @@ def have_dm(dm_name, root_mount_point):
 
 def set_autologin(username, displaymanagers, default_desktop_environment,
                   root_mount_point):
-    """ Enables automatic login for the installed desktop managers """
+    """ Enables automatic login for the installed desktop managers.
 
+    :param username:
+    :param displaymanagers:
+    :param default_desktop_environment:
+    :param root_mount_point:
+    """
     if "mdm" in displaymanagers:
         # Systems with MDM as Desktop Manager
         mdm_conf_path = os.path.join(root_mount_point, "etc/mdm/custom.conf")
@@ -206,12 +222,13 @@ def set_autologin(username, displaymanagers, default_desktop_environment,
 
 
 def run():
-    """ Configure display managers """
-    # We acquire a list of displaymanagers, either from config or (overridden) from globalstorage.
-    # This module will try to set up (including autologin) all the displaymanagers in the list, in that specific order.
-    # Most distros will probably only ship one displaymanager.
-    # If a displaymanager is in the list but not installed, a debugging message is printed and the entry ignored.
-
+    """ Configure display managers.
+    
+    We acquire a list of displaymanagers, either from config or (overridden) from globalstorage.
+    This module will try to set up (including autologin) all the displaymanagers in the list, in that specific order.
+    Most distros will probably only ship one displaymanager.
+    If a displaymanager is in the list but not installed, a debugging message is printed and the entry ignored.
+    """
     if "displaymanagers" in libcalamares.job.configuration:
         displaymanagers = libcalamares.job.configuration["displaymanagers"]
 

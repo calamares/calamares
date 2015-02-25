@@ -3,7 +3,7 @@
 #
 # === This file is part of Calamares - <http://github.com/calamares> ===
 #
-#   Copyright 2014, Philip Müller <philm@manjaro.org>
+#   Copyright 2014-2015, Philip Müller <philm@manjaro.org>
 #   Copyright 2014, Teo Mrnjavac <teo@kde.org>
 #
 #   Calamares is free software: you can redistribute it and/or modify
@@ -24,10 +24,18 @@ from libcalamares.utils import chroot_call
 
 
 def run_dracut():
+    """ Creates initramfs, even when initramfs already exists.
+
+    :return:
+    """
     return chroot_call(['dracut', '-f'])
 
 
 def run():
+    """ Starts routine to create initramfs. It passes back the exit code if it fails.
+
+    :return:
+    """
     returnCode = run_dracut()
     if returnCode != 0:
         return ("Failed to run dracut on the target", "The exit code was {}".format(returnCode))

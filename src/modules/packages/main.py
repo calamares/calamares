@@ -23,10 +23,18 @@ from libcalamares.utils import check_chroot_call, chroot_call
 
 
 class PackageManager:
+    """ Package manager class.
+
+    :param backend:
+    """
     def __init__(self, backend):
         self.backend = backend
 
     def install(self, pkgs):
+        """ Installs packages.
+
+        :param pkgs:
+        """
         if self.backend == "packagekit":
             for pkg in pkgs:
                 check_chroot_call(["pkcon", "-py", "install", pkg])
@@ -48,6 +56,10 @@ class PackageManager:
             check_chroot_call(["pacman", "-Sy", "--noconfirm"] + pkgs)
 
     def remove(self, pkgs):
+        """ Removes packages.
+
+        :param pkgs:
+        """
         if self.backend == "packagekit":
             for pkg in pkgs:
                 check_chroot_call(["pkcon", "-py", "remove", pkg])
@@ -68,6 +80,11 @@ class PackageManager:
 
 
 def run_operations(pkgman, entry):
+    """ Call package manager with given parameters.
+
+    :param pkgman:
+    :param entry:
+    """
     for key in entry.keys():
         if key == "install":
             pkgman.install(entry[key])
@@ -76,6 +93,11 @@ def run_operations(pkgman, entry):
 
 
 def run():
+    """ Calls routine with detected package manager to install locale packages
+    or remove drivers not needed on the installed system.
+
+    :return:
+    """
     backend = libcalamares.job.configuration.get("backend")
     if backend not in ("packagekit", "zypp", "yum", "dnf", "urpmi", "apt", "pacman"):
         return ("Bad backend", "backend=\"{}\"".format(backend))

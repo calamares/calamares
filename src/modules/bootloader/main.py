@@ -32,6 +32,10 @@ from libcalamares.utils import check_chroot_call
 
 
 def get_uuid():
+    """ Checks and passes 'uuid' to other routine.
+
+    :return:
+    """
     root_mount_point = libcalamares.globalstorage.value("rootMountPoint")
     print("Root mount point: \"{!s}\"".format(root_mount_point))
     partitions = libcalamares.globalstorage.value("partitions")
@@ -44,6 +48,10 @@ def get_uuid():
 
 
 def get_bootloader_entry_name():
+    """ Passes 'bootloader_entry_name' to other routine based on configuration file.
+
+    :return:
+    """
     if "bootloaderEntryName" in libcalamares.job.configuration:
         return libcalamares.job.configuration["bootloaderEntryName"]
     else:
@@ -52,6 +60,11 @@ def get_bootloader_entry_name():
 
 
 def get_kernel_line(kernel_type):
+    """ Passes 'kernel_line' to other routine based on configuration file.
+
+    :param kernel_type:
+    :return:
+    """
     if kernel_type == "fallback":
         if "fallbackKernelLine" in libcalamares.job.configuration:
             return libcalamares.job.configuration["fallbackKernelLine"]
@@ -65,6 +78,12 @@ def get_kernel_line(kernel_type):
 
 
 def create_conf(uuid, conf_path, kernel_line):
+    """ Creates gummiboot configuration files based on given parameters.
+
+    :param uuid:
+    :param conf_path:
+    :param kernel_line:
+    """
     distribution = get_bootloader_entry_name()
     kernel = libcalamares.job.configuration["kernel"]
     img = libcalamares.job.configuration["img"]
@@ -91,6 +110,10 @@ def create_conf(uuid, conf_path, kernel_line):
 
 
 def create_loader(loader_path):
+    """ Writes configuration for loader.
+
+    :param loader_path:
+    """
     distribution = get_bootloader_entry_name()
     timeout = libcalamares.job.configuration["timeout"]
     file_name_sanitizer = str.maketrans(" /", "_-")
@@ -107,6 +130,10 @@ def create_loader(loader_path):
 
 
 def install_gummiboot(efi_directory):
+    """ Installs gummiboot as bootloader for EFI setups.
+
+    :param efi_directory:
+    """
     print("Bootloader: gummiboot")
     install_path = libcalamares.globalstorage.value("rootMountPoint")
     install_efi_directory = install_path + efi_directory
@@ -134,6 +161,11 @@ def install_gummiboot(efi_directory):
 
 
 def install_grub(efi_directory, fw_type):
+    """ Installs grub as bootloader, either in pc or efi mode.
+
+    :param efi_directory:
+    :param fw_type:
+    """
     if fw_type == "efi":
         print("Bootloader: grub (efi)")
         efi_directory_firmware = efi_directory + "/EFI"
@@ -166,6 +198,12 @@ def install_grub(efi_directory, fw_type):
 
 
 def prepare_bootloader(fw_type):
+    """ Prepares bootloader and set proper flags to EFI boot partition (esp,boot).
+    Based on value 'efi_boot_loader', it either calls gummiboot or grub to be installed.
+
+    :param fw_type:
+    :return:
+    """
     efi_boot_loader = libcalamares.job.configuration["efiBootLoader"]
     efi_directory = libcalamares.globalstorage.value("efiSystemPartition")
     if fw_type == "efi":
@@ -194,6 +232,10 @@ def prepare_bootloader(fw_type):
 
 
 def run():
+    """ Starts procedure and passes 'fw_type' to other routine.
+
+    :return:
+    """
     fw_type = libcalamares.globalstorage.value("firmwareType")
     prepare_bootloader(fw_type)
     return None

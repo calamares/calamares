@@ -26,13 +26,11 @@ from libcalamares.utils import check_chroot_call
 
 
 def cpuinfo():
-    """
-    Return the information in /proc/cpuinfo as a dictionary in the following format:
+    """ Return the information in /proc/cpuinfo as a dictionary in the following format:
+
     cpu_info['proc0']={...}
     cpu_info['proc1']={...}
-
     """
-
     cpuinfo = OrderedDict()
     procinfo = OrderedDict()
 
@@ -55,8 +53,12 @@ def cpuinfo():
 
 
 def set_mkinitcpio_hooks_and_modules(hooks, modules, root_mount_point):
-    """ Set up mkinitcpio.conf """
+    """ Set up mkinitcpio.conf.
 
+    :param hooks:
+    :param modules:
+    :param root_mount_point:
+    """
     with open("/etc/mkinitcpio.conf", "r") as mkinitcpio_file:
         mklins = [x.strip() for x in mkinitcpio_file.readlines()]
 
@@ -74,8 +76,11 @@ def set_mkinitcpio_hooks_and_modules(hooks, modules, root_mount_point):
 
 
 def modify_mkinitcpio_conf(partitions, root_mount_point):
-    """ Modifies mkinitcpio.conf """
+    """ Modifies mkinitcpio.conf
 
+    :param partitions:
+    :param root_mount_point:
+    """
     cpu = cpuinfo()
     swap_uuid = ""
     btrfs = ""
@@ -109,6 +114,10 @@ def modify_mkinitcpio_conf(partitions, root_mount_point):
 
 
 def run():
+    """ Calls routine with given parameters to modify '/etc/mkinitcpio.conf'.
+
+    :return:
+    """
     partitions = libcalamares.globalstorage.value("partitions")
     root_mount_point = libcalamares.globalstorage.value("rootMountPoint")
     modify_mkinitcpio_conf(partitions, root_mount_point)
