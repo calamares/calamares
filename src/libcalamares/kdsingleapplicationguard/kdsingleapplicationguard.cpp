@@ -48,7 +48,7 @@ using namespace kdtools;
 static unsigned int KDSINGLEAPPLICATIONGUARD_SHM_VERSION = 0;
 
 Q_GLOBAL_STATIC_WITH_ARGS( int, registerInstanceType,
-                           (qRegisterMetaType<KDSingleApplicationGuard::Instance>()) )
+                           ( qRegisterMetaType<KDSingleApplicationGuard::Instance>() ) )
 
 /*!
   \class KDSingleApplicationGuard::Instance
@@ -61,10 +61,11 @@ Q_GLOBAL_STATIC_WITH_ARGS( int, registerInstanceType,
   pid() and the arguments() they were started with.
 */
 
-class KDSingleApplicationGuard::Instance::Private : public QSharedData {
+class KDSingleApplicationGuard::Instance::Private : public QSharedData
+{
     friend class ::KDSingleApplicationGuard::Instance;
 public:
-    Private( const QStringList & args, bool truncated, qint64 pid )
+    Private( const QStringList& args, bool truncated, qint64 pid )
         : pid( pid ), arguments( args ), truncated( truncated ) {}
 
 private:
@@ -83,15 +84,15 @@ class KDSingleApplicationGuard::Private
     friend class ::KDSingleApplicationGuard;
     friend class ::KDSingleApplicationGuard::Instance;
     friend struct ::ProcessInfo;
-    KDSingleApplicationGuard * const q;
+    KDSingleApplicationGuard* const q;
 public:
     Private( Policy policy, KDSingleApplicationGuard* qq );
     ~Private();
 
     void create( const QStringList& arguments );
 
-    bool checkOperational( const char * function, const char * act ) const;
-    bool checkOperationalPrimary( const char * function, const char * act ) const;
+    bool checkOperational( const char* function, const char* act ) const;
+    bool checkOperationalPrimary( const char* function, const char* act ) const;
 
     struct segmentheader
     {
@@ -120,11 +121,11 @@ private:
 /*!
   \internal
 */
-KDSingleApplicationGuard::Instance::Instance( const QStringList & args, bool truncated, qint64 p )
+KDSingleApplicationGuard::Instance::Instance( const QStringList& args, bool truncated, qint64 p )
     : d( new Private( args, truncated, p ) )
 {
     d->ref.ref();
-    (void)registerInstanceType();
+    ( void )registerInstanceType();
 }
 
 /*!
@@ -138,7 +139,7 @@ KDSingleApplicationGuard::Instance::Instance() : d( 0 ) {}
 /*!
   Copy constructor.
 */
-KDSingleApplicationGuard::Instance::Instance( const Instance & other )
+KDSingleApplicationGuard::Instance::Instance( const Instance& other )
     : d( other.d )
 {
     if ( d )
@@ -218,7 +219,7 @@ bool KDSingleApplicationGuard::Instance::areArgumentsTruncated() const
 
   \sa areArgumentsTruncated()
 */
-const QStringList & KDSingleApplicationGuard::Instance::arguments() const
+const QStringList& KDSingleApplicationGuard::Instance::arguments() const
 {
     if ( d )
         return d->arguments;
@@ -315,7 +316,7 @@ static const quint16 RegularEndOfOptions   = -2;
 
 struct ProcessInfo
 {
-    static const size_t MarkerSize = sizeof(quint16);
+    static const size_t MarkerSize = sizeof( quint16 );
 
     explicit ProcessInfo( Command c = FreeInstance, const QStringList& arguments = QStringList(), qint64 p = -1 )
         : pid( p ),
@@ -326,8 +327,8 @@ struct ProcessInfo
         setArguments( arguments );
     }
 
-    void setArguments( const QStringList & arguments );
-    QStringList arguments( bool * prematureEnd  ) const;
+    void setArguments( const QStringList& arguments );
+    QStringList arguments( bool* prematureEnd  ) const;
 
     qint64 pid;
     quint32 command;
@@ -335,13 +336,13 @@ struct ProcessInfo
     char* commandline;
 };
 
-static inline bool operator==( const ProcessInfo & lhs, const ProcessInfo & rhs )
+static inline bool operator==( const ProcessInfo& lhs, const ProcessInfo& rhs )
 {
     return lhs.command == rhs.command &&
            ( lhs.commandline == rhs.commandline || ( lhs.commandline != 0 && rhs.commandline != 0 && ::strcmp( lhs.commandline, rhs.commandline ) == 0 ) );
 }
 
-static inline bool operator!=( const ProcessInfo & lhs, const ProcessInfo & rhs )
+static inline bool operator!=( const ProcessInfo& lhs, const ProcessInfo& rhs )
 {
     return !operator==( lhs, rhs );
 }
@@ -380,45 +381,48 @@ struct InstanceRegister
     Q_DISABLE_COPY( InstanceRegister )
 };
 
-void ProcessInfo::setArguments( const QStringList & arguments )
+void ProcessInfo::setArguments( const QStringList& arguments )
 {
-    if( commandline != 0 )
+    if ( commandline != 0 )
         KDSingleApplicationGuard::Private::sharedmem_free( commandline );
 
     commandline = 0;
-    if( arguments.isEmpty() )
+    if ( arguments.isEmpty() )
         return;
 
     size_t totalsize = MarkerSize;
-    Q_FOREACH( const QString& arg, arguments )
+    Q_FOREACH ( const QString& arg, arguments )
     {
         const QByteArray utf8 = arg.toUtf8();
         totalsize += utf8.size() + MarkerSize;
     }
     InstanceRegister* const reg = reinterpret_cast<InstanceRegister*>( KDSingleApplicationGuard::Private::primaryInstance->d->mem.data() );
     this->commandline = KDSingleApplicationGuard::Private::sharedmem_malloc( totalsize );
-    if( this->commandline == 0 )
+    if ( this->commandline == 0 )
     {
-        qWarning("KDSingleApplicationguard: out of memory when trying to save arguments.\n");
+        qWarning( "KDSingleApplicationguard: out of memory when trying to save arguments.\n" );
         return;
     }
 
-    char* const commandline = this->commandline + reinterpret_cast<qptrdiff>(reg->commandLines);
+    char* const commandline = this->commandline + reinterpret_cast<qptrdiff>( reg->commandLines );
 
     int argpos = 0;
-    Q_FOREACH( const QString & arg, arguments )
+    Q_FOREACH ( const QString& arg, arguments )
     {
         const QByteArray utf8 = arg.toUtf8();
         const int required = MarkerSize + utf8.size() + MarkerSize ;
         const int available = KDSINGLEAPPLICATIONGUARD_MAX_COMMAND_LINE - argpos ;
-        if ( required > available || utf8.size() > std::numeric_limits<quint16>::max() ) {
+        if ( required > available || utf8.size() > std::numeric_limits<quint16>::max() )
+        {
             // write a premature-eoo marker, and quit
             memcpy( commandline + argpos, &PrematureEndOfOptions, MarkerSize );
             argpos += MarkerSize;
             qWarning( "KDSingleApplicationGuard: argument list is too long (bytes required: %d, used: %d, available: %d",
                       required, argpos - 2, available );
             return;
-        } else {
+        }
+        else
+        {
             const quint16 len16 = utf8.size();
             // write the size of the data...
             memcpy( commandline + argpos, &len16, MarkerSize );
@@ -434,21 +438,22 @@ void ProcessInfo::setArguments( const QStringList & arguments )
     argpos += MarkerSize;
 }
 
-QStringList ProcessInfo::arguments( bool * prematureEnd  ) const
+QStringList ProcessInfo::arguments( bool* prematureEnd  ) const
 {
     QStringList result;
-    if( commandline == 0 )
+    if ( commandline == 0 )
     {
-        if( prematureEnd )
+        if ( prematureEnd )
             *prematureEnd = true;
         return result;
     }
 
     InstanceRegister* const reg = reinterpret_cast<InstanceRegister*>( KDSingleApplicationGuard::Private::primaryInstance->d->mem.data() );
-    const char* const commandline = this->commandline + reinterpret_cast<qptrdiff>(reg->commandLines);
+    const char* const commandline = this->commandline + reinterpret_cast<qptrdiff>( reg->commandLines );
 
     int argpos = 0;
-    while ( true ) {
+    while ( true )
+    {
         const int available = KDSINGLEAPPLICATIONGUARD_MAX_COMMAND_LINE - argpos ;
         assert( available >= 2 );
 
@@ -456,17 +461,20 @@ QStringList ProcessInfo::arguments( bool * prematureEnd  ) const
         memcpy( &marker, commandline + argpos, MarkerSize );
         argpos += MarkerSize;
 
-        if ( marker == PrematureEndOfOptions ) {
+        if ( marker == PrematureEndOfOptions )
+        {
             if ( prematureEnd ) *prematureEnd = true;
             break;
         }
-        if ( marker == RegularEndOfOptions ) {
+        if ( marker == RegularEndOfOptions )
+        {
             if ( prematureEnd ) *prematureEnd = false;
             break;
         }
 
         const int requested = MarkerSize + marker + MarkerSize ;
-        if ( requested > available ) {
+        if ( requested > available )
+        {
             const long long int p = pid;
             qWarning( "KDSingleApplicationGuard: inconsistency detected when parsing command-line argument for process %lld", p );
             if ( prematureEnd ) *prematureEnd = true;
@@ -482,11 +490,11 @@ QStringList ProcessInfo::arguments( bool * prematureEnd  ) const
 
 KDSingleApplicationGuard::Private::~Private()
 {
-    if( primaryInstance == q )
+    if ( primaryInstance == q )
         primaryInstance = 0;
 }
 
-bool KDSingleApplicationGuard::Private::checkOperational( const char * function, const char * act ) const
+bool KDSingleApplicationGuard::Private::checkOperational( const char* function, const char* act ) const
 {
     assert( function );
     assert( act );
@@ -495,7 +503,7 @@ bool KDSingleApplicationGuard::Private::checkOperational( const char * function,
     return operational;
 }
 
-bool KDSingleApplicationGuard::Private::checkOperationalPrimary( const char * function, const char * act ) const
+bool KDSingleApplicationGuard::Private::checkOperationalPrimary( const char* function, const char* act ) const
 {
     if ( !checkOperational( function, act ) )
         return false;
@@ -513,7 +521,7 @@ void KDSingleApplicationGuard::Private::sharedmem_free( char* pointer )
 {
     InstanceRegister* const reg = reinterpret_cast<InstanceRegister*>( KDSingleApplicationGuard::Private::primaryInstance->d->mem.data() );
     char* const heap = reg->commandLines;
-    char* const heap_ptr = heap + reinterpret_cast<qptrdiff>(pointer) - sizeof( segmentheader );
+    char* const heap_ptr = heap + reinterpret_cast<qptrdiff>( pointer ) - sizeof( segmentheader );
     const segmentheader* const header = reinterpret_cast< const segmentheader* >( heap_ptr );
     const size_t size = header->size;
 
@@ -522,9 +530,9 @@ void KDSingleApplicationGuard::Private::sharedmem_free( char* pointer )
     std::copy( heap_ptr + size, end, heap_ptr );
     std::fill( end - size, end, 0 );
 
-    for( uint i = 0; i < reg->maxInstances; ++i )
+    for ( uint i = 0; i < reg->maxInstances; ++i )
     {
-        if( reg->info[ i ].commandline > pointer )
+        if ( reg->info[ i ].commandline > pointer )
             reg->info[ i ].commandline -= size + sizeof( segmentheader );
     }
 }
@@ -534,13 +542,13 @@ char* KDSingleApplicationGuard::Private::sharedmem_malloc( size_t size )
     InstanceRegister* const reg = reinterpret_cast<InstanceRegister*>( KDSingleApplicationGuard::Private::primaryInstance->d->mem.data() );
     char* heap = reg->commandLines;
 
-    while( heap + sizeof( segmentheader ) + size < reg->commandLines + KDSINGLEAPPLICATIONGUARD_MAX_COMMAND_LINE )
+    while ( heap + sizeof( segmentheader ) + size < reg->commandLines + KDSINGLEAPPLICATIONGUARD_MAX_COMMAND_LINE )
     {
         segmentheader* const header = reinterpret_cast< segmentheader* >( heap );
-        if( header->size == 0 )
+        if ( header->size == 0 )
         {
             header->size = size;
-            return heap + sizeof( segmentheader ) - reinterpret_cast<qptrdiff>(reg->commandLines);
+            return heap + sizeof( segmentheader ) - reinterpret_cast<qptrdiff>( reg->commandLines );
         }
         heap += sizeof( header ) + header->size;
     }
@@ -552,12 +560,12 @@ void KDSingleApplicationGuard::Private::shutdownInstance()
     KDLockedSharedMemoryPointer< InstanceRegister > instances( &q->d->mem );
     instances->info[ q->d->id ].command |= ExitedInstance;
 
-    if( q->isPrimaryInstance() )
+    if ( q->isPrimaryInstance() )
     {
         // ohh... we need a new primary instance...
         for ( int i = 1, end = instances->maxInstances ; i  < end ; ++i )
         {
-            if( ( instances->info[ i ].command & ( FreeInstance | ExitedInstance | ShutDownCommand | KillCommand ) ) == 0 )
+            if ( ( instances->info[ i ].command & ( FreeInstance | ExitedInstance | ShutDownCommand | KillCommand ) ) == 0 )
             {
                 instances->info[ i ].command |= BecomePrimaryCommand;
                 return;
@@ -581,9 +589,9 @@ void KDSingleApplicationGuard::Instance::kill()
     KDLockedSharedMemoryPointer< InstanceRegister > instances( &KDSingleApplicationGuard::Private::primaryInstance->d->mem );
     for ( int i = 0, end = instances->maxInstances ; i < end ; ++i )
     {
-        if( instances->info[ i ].pid != d->pid )
-           continue;
-        if( ( instances->info[ i ].command & ( FreeInstance | ExitedInstance ) ) == 0 )
+        if ( instances->info[ i ].pid != d->pid )
+            continue;
+        if ( ( instances->info[ i ].command & ( FreeInstance | ExitedInstance ) ) == 0 )
             instances->info[ i ].command = KillCommand;
     }
 }
@@ -600,9 +608,9 @@ void KDSingleApplicationGuard::Instance::shutdown()
     KDLockedSharedMemoryPointer< InstanceRegister > instances( &KDSingleApplicationGuard::Private::primaryInstance->d->mem );
     for ( int i = 0, end = instances->maxInstances ; i < end ; ++i )
     {
-        if( instances->info[ i ].pid != d->pid )
-           continue;
-        if( ( instances->info[ i ].command & ( FreeInstance | ExitedInstance ) ) == 0 )
+        if ( instances->info[ i ].pid != d->pid )
+            continue;
+        if ( ( instances->info[ i ].command & ( FreeInstance | ExitedInstance ) ) == 0 )
             instances->info[ i ].command = ShutDownCommand;
     }
 }
@@ -625,9 +633,9 @@ void KDSingleApplicationGuard::Instance::raise()
     KDLockedSharedMemoryPointer< InstanceRegister > instances( &KDSingleApplicationGuard::Private::primaryInstance->d->mem );
     for ( int i = 0, end = instances->maxInstances ; i < end ; ++i )
     {
-        if( instances->info[ i ].pid != d->pid )
-           continue;
-        if( ( instances->info[ i ].command & ( FreeInstance | ExitedInstance ) ) == 0 )
+        if ( instances->info[ i ].pid != d->pid )
+            continue;
+        if ( ( instances->info[ i ].command & ( FreeInstance | ExitedInstance ) ) == 0 )
             instances->info[ i ].command = RaiseCommand;
     }
 }
@@ -637,7 +645,7 @@ void KDSingleApplicationGuard::Instance::raise()
 // static
 void KDSingleApplicationGuard::SIGINT_handler( int sig )
 {
-    if( sig == SIGINT && Private::primaryInstance != 0 )
+    if ( sig == SIGINT && Private::primaryInstance != 0 )
         Private::primaryInstance->d->shutdownInstance();
     ::exit( 1 );
 }
@@ -666,7 +674,7 @@ void KDSingleApplicationGuard::SIGINT_handler( int sig )
   QCoreApplication::arguments() and policy AutoKillOtherInstances,
   passing \a parent to the base class constructor, as usual.
 */
-KDSingleApplicationGuard::KDSingleApplicationGuard( QObject * parent )
+KDSingleApplicationGuard::KDSingleApplicationGuard( QObject* parent )
     : QObject( parent ), d( new Private( AutoKillOtherInstances, this ) )
 {
     d->create( QCoreApplication::arguments() );
@@ -677,7 +685,7 @@ KDSingleApplicationGuard::KDSingleApplicationGuard( QObject * parent )
   QCoreApplication::arguments() and policy \a policy, passing \a
   parent to the base class constructor, as usual.
 */
-KDSingleApplicationGuard::KDSingleApplicationGuard( Policy policy, QObject * parent )
+KDSingleApplicationGuard::KDSingleApplicationGuard( Policy policy, QObject* parent )
     : QObject( parent ), d( new Private( policy, this ) )
 {
     d->create( QCoreApplication::arguments() );
@@ -688,7 +696,7 @@ KDSingleApplicationGuard::KDSingleApplicationGuard( Policy policy, QObject * par
   and policy AutoKillOtherInstances, passing \a parent to the base
   class constructor, as usual.
 */
-KDSingleApplicationGuard::KDSingleApplicationGuard( const QStringList & arguments, QObject * parent )
+KDSingleApplicationGuard::KDSingleApplicationGuard( const QStringList& arguments, QObject* parent )
     : QObject( parent ), d( new Private( AutoKillOtherInstances, this ) )
 {
     d->create( arguments );
@@ -699,13 +707,13 @@ KDSingleApplicationGuard::KDSingleApplicationGuard( const QStringList & argument
   and policy \a policy, passing \a parent to the base class
   constructor, as usual.
 */
-KDSingleApplicationGuard::KDSingleApplicationGuard( const QStringList & arguments, Policy policy, QObject * parent )
+KDSingleApplicationGuard::KDSingleApplicationGuard( const QStringList& arguments, Policy policy, QObject* parent )
     : QObject( parent ), d( new Private( policy, this ) )
 {
     d->create( arguments );
 }
 
-KDSingleApplicationGuard::Private::Private( Policy policy_, KDSingleApplicationGuard * qq )
+KDSingleApplicationGuard::Private::Private( Policy policy_, KDSingleApplicationGuard* qq )
     : q( qq ),
       id( -1 ),
       policy( policy_ ),
@@ -714,20 +722,22 @@ KDSingleApplicationGuard::Private::Private( Policy policy_, KDSingleApplicationG
 {
 }
 
-void KDSingleApplicationGuard::Private::create( const QStringList & arguments )
+void KDSingleApplicationGuard::Private::create( const QStringList& arguments )
 {
-    if ( !QCoreApplication::instance() ) {
+    if ( !QCoreApplication::instance() )
+    {
         qWarning( "KDSingleApplicationGuard: you need to construct a Q(Core)Application before you can construct a KDSingleApplicationGuard" );
         return;
     }
 
     const QString name = QCoreApplication::applicationName();
-    if ( name.isEmpty() ) {
+    if ( name.isEmpty() )
+    {
         qWarning( "KDSingleApplicationGuard: QCoreApplication::applicationName must not be emty" );
         return;
     }
 
-    (void)registerInstanceType();
+    ( void )registerInstanceType();
     if ( primaryInstance == 0 )
         primaryInstance = q;
 
@@ -741,15 +751,15 @@ void KDSingleApplicationGuard::Private::create( const QStringList & arguments )
 #endif
 
     const bool created = mem.create( sizeof( InstanceRegister ) );
-    if( !created )
+    if ( !created )
     {
         QString errorMsg;
-        if( mem.error() != QSharedMemory::NoError && mem.error() != QSharedMemory::AlreadyExists )
+        if ( mem.error() != QSharedMemory::NoError && mem.error() != QSharedMemory::AlreadyExists )
             errorMsg += QString::fromLatin1( "QSharedMemomry::create() failed: %1" ).arg( mem.errorString() );
 
-        if( !mem.attach() )
+        if ( !mem.attach() )
         {
-            if( mem.error() != QSharedMemory::NoError )
+            if ( mem.error() != QSharedMemory::NoError )
                 errorMsg += QString::fromLatin1( "QSharedMemomry::attach() failed: %1" ).arg( mem.errorString() );
 
             qWarning( "KDSingleApplicationGuard: Could neither create nor attach to shared memory segment." );
@@ -763,19 +773,20 @@ void KDSingleApplicationGuard::Private::create( const QStringList & arguments )
 
         // lets wait till the other instance initialized the register
         bool initialized = false;
-        while( !initialized && waitTimer.elapsed() < maxWaitMSecs )
+        while ( !initialized && waitTimer.elapsed() < maxWaitMSecs )
         {
             const KDLockedSharedMemoryPointer< InstanceRegister > instances( &mem );
             initialized = instances->isValid();
 #ifdef Q_WS_WIN
-            ::Sleep(20);
+            ::Sleep( 20 );
 #else
-            usleep(20000);
+            usleep( 20000 );
 #endif
         }
 
         const KDLockedSharedMemoryPointer< InstanceRegister > instances( &mem );
-        if ( instances->version != 0 ) {
+        if ( instances->version != 0 )
+        {
             qWarning( "KDSingleApplicationGuard: Detected version mismatch. "
                       "Highest supported version: %ud, actual version: %ud",
                       KDSINGLEAPPLICATIONGUARD_SHM_VERSION, instances->version );
@@ -787,7 +798,7 @@ void KDSingleApplicationGuard::Private::create( const QStringList & arguments )
 
     KDLockedSharedMemoryPointer< InstanceRegister > instances( &mem );
 
-    if( !created )
+    if ( !created )
     {
         assert( instances->isValid() );
 
@@ -803,7 +814,7 @@ void KDSingleApplicationGuard::Private::create( const QStringList & arguments )
         policy = static_cast<Policy>( instances->policy );
 
         // but the signal that we tried to start was sent to the primary application
-        if( killOurSelf )
+        if ( killOurSelf )
             exitRequested = true;
     }
     else
@@ -833,7 +844,7 @@ void KDSingleApplicationGuard::Private::create( const QStringList & arguments )
  */
 KDSingleApplicationGuard::~KDSingleApplicationGuard()
 {
-    if( d->id == -1 )
+    if ( d->id == -1 )
         return;
 
     d->shutdownInstance();
@@ -906,7 +917,7 @@ void KDSingleApplicationGuard::setPolicy( Policy policy )
     if ( !d->checkOperationalPrimary( "setPolicy", "change the policy" ) )
         return;
 
-    if( d->policy == policy )
+    if ( d->policy == policy )
         return;
 
     d->policy = policy;
@@ -924,16 +935,15 @@ KDSingleApplicationGuard::instances() const
     if ( !d->checkOperational( "instances", "report on other instances" ) )
         return QVector<Instance>();
 
-    if ( Private::primaryInstance == 0 ) {
+    if ( Private::primaryInstance == 0 )
         Private::primaryInstance = const_cast<KDSingleApplicationGuard*>( this );
-    }
 
     QVector<Instance> result;
     const KDLockedSharedMemoryPointer< InstanceRegister > instances( const_cast< QSharedMemory* >( &d->mem ) );
     for ( int i = 0, end = instances->maxInstances ; i < end ; ++i )
     {
         const ProcessInfo& info = instances->info[ i ];
-        if( ( info.command & ( FreeInstance | ExitedInstance ) ) == 0 )
+        if ( ( info.command & ( FreeInstance | ExitedInstance ) ) == 0 )
         {
             bool truncated;
             const QStringList arguments = info.arguments( &truncated );
@@ -956,7 +966,7 @@ void KDSingleApplicationGuard::shutdownOtherInstances()
     KDLockedSharedMemoryPointer< InstanceRegister > instances( &d->mem );
     for ( int i = 1, end = instances->maxInstances ; i < end ; ++i )
     {
-        if( ( instances->info[ i ].command & ( FreeInstance | ExitedInstance ) ) == 0 )
+        if ( ( instances->info[ i ].command & ( FreeInstance | ExitedInstance ) ) == 0 )
             instances->info[ i ].command = ShutDownCommand;
     }
 }
@@ -975,16 +985,18 @@ void KDSingleApplicationGuard::killOtherInstances()
     KDLockedSharedMemoryPointer< InstanceRegister > instances( &d->mem );
     for ( int i = 1, end = instances->maxInstances ; i < end ; ++i )
     {
-        if( ( instances->info[ i ].command & ( FreeInstance | ExitedInstance ) ) == 0 )
+        if ( ( instances->info[ i ].command & ( FreeInstance | ExitedInstance ) ) == 0 )
             instances->info[ i ].command = KillCommand;
     }
 }
 
-bool KDSingleApplicationGuard::event( QEvent * event )
+bool KDSingleApplicationGuard::event( QEvent* event )
 {
-    if ( event->type() == QEvent::Timer ) {
-        const QTimerEvent * const te = static_cast<QTimerEvent*>( event );
-        if ( te->timerId() == d->timer.timerId() ) {
+    if ( event->type() == QEvent::Timer )
+    {
+        const QTimerEvent* const te = static_cast<QTimerEvent*>( event );
+        if ( te->timerId() == d->timer.timerId() )
+        {
             d->poll();
             return true;
         }
@@ -992,13 +1004,13 @@ bool KDSingleApplicationGuard::event( QEvent * event )
     return QObject::event( event );
 }
 
-void KDSingleApplicationGuard::Private::poll() {
+void KDSingleApplicationGuard::Private::poll()
+{
 
     const quint32 now = QDateTime::currentDateTime().toTime_t();
 
-    if ( primaryInstance == 0 ) {
+    if ( primaryInstance == 0 )
         primaryInstance = q;
-    }
 
     if ( q->isPrimaryInstance() )
     {
@@ -1009,11 +1021,11 @@ void KDSingleApplicationGuard::Private::poll() {
         {
             KDLockedSharedMemoryPointer< InstanceRegister > instances( &mem );
 
-            if( instances->info[ id ].pid != QCoreApplication::applicationPid() )
+            if ( instances->info[ id ].pid != QCoreApplication::applicationPid() )
             {
                 for ( int i = 1, end = instances->maxInstances ; i < end && id == 0 ; ++i )
                 {
-                    if( instances->info[ i ].pid == QCoreApplication::applicationPid() )
+                    if ( instances->info[ i ].pid == QCoreApplication::applicationPid() )
                         id = i;
                 }
                 emit q->becameSecondaryInstance();
@@ -1025,14 +1037,14 @@ void KDSingleApplicationGuard::Private::poll() {
             for ( int i = 1, end = instances->maxInstances ; i < end ; ++i )
             {
                 ProcessInfo& info = instances->info[ i ];
-                if( info.command & NewInstance )
+                if ( info.command & NewInstance )
                 {
                     bool truncated;
                     const QStringList arguments = info.arguments( &truncated );
                     startedInstances.push_back( Instance( arguments, truncated, info.pid ) );
                     info.command &= ~NewInstance;  // clear NewInstance flag
                 }
-                if( info.command & ExitedInstance )
+                if ( info.command & ExitedInstance )
                 {
                     bool truncated;
                     const QStringList arguments = info.arguments( &truncated );
@@ -1043,9 +1055,9 @@ void KDSingleApplicationGuard::Private::poll() {
         }
 
         // one signal for every new instance - _after_ the memory segment was unlocked again
-        for( QVector< Instance >::const_iterator it = startedInstances.constBegin(); it != startedInstances.constEnd(); ++it )
+        for ( QVector< Instance >::const_iterator it = startedInstances.constBegin(); it != startedInstances.constEnd(); ++it )
             emit q->instanceStarted( *it );
-        for( QVector< Instance >::const_iterator it = exitedInstances.constBegin(); it != exitedInstances.constEnd(); ++it )
+        for ( QVector< Instance >::const_iterator it = exitedInstances.constBegin(); it != exitedInstances.constEnd(); ++it )
             emit q->instanceExited( *it );
     }
     else
@@ -1063,7 +1075,7 @@ void KDSingleApplicationGuard::Private::poll() {
             policyDidChange = policy != oldPolicy;
 
             // check for the primary instance health status
-            if( now - instances->info[ 0 ].timestamp > KDSINGLEAPPLICATIONGUARD_TIMEOUT_SECONDS )
+            if ( now - instances->info[ 0 ].timestamp > KDSINGLEAPPLICATIONGUARD_TIMEOUT_SECONDS )
             {
                 std::swap( instances->info[ 0 ], instances->info[ id ] );
                 id = 0;
@@ -1072,7 +1084,7 @@ void KDSingleApplicationGuard::Private::poll() {
                 instances->info[ id ].command &= ~BecomePrimaryCommand;  // afterwards, reset the flag
             }
 
-            if( instances->info[ id ].command & BecomePrimaryCommand )
+            if ( instances->info[ id ].command & BecomePrimaryCommand )
             {
                 // we became primary!
                 instances->info[ 0 ] = instances->info[ id ];
@@ -1082,32 +1094,32 @@ void KDSingleApplicationGuard::Private::poll() {
                 emit q->becamePrimaryInstance();
             }
 
-            if( instances->info[ id ].command & RaiseCommand )
+            if ( instances->info[ id ].command & RaiseCommand )
             {
-               // raise ourself!
-               emit q->raiseRequested();
-               instances->info[ id ].command &= ~RaiseCommand;  // afterwards, reset the flag
+                // raise ourself!
+                emit q->raiseRequested();
+                instances->info[ id ].command &= ~RaiseCommand;  // afterwards, reset the flag
             }
 
 
             killOurSelf = instances->info[ id ].command & KillCommand;            // check for kill command
             shutDownOurSelf = instances->info[ id ].command & ShutDownCommand;    // check for shut down command
             instances->info[ id ].command &= ~( KillCommand | ShutDownCommand | BecomePrimaryCommand );  // reset both flags
-            if( killOurSelf )
+            if ( killOurSelf )
             {
                 instances->info[ id ].command |= ExitedInstance;  // upon kill, we have to set the ExitedInstance flag
                 id = -1;                                          // becauso our d'tor won't be called anymore
             }
         }
 
-        if( killOurSelf )  // kill our self takes precedence
+        if ( killOurSelf ) // kill our self takes precedence
         {
             exitRequested = true;
             emit q->exitRequested();
         }
-        else if( shutDownOurSelf )
+        else if ( shutDownOurSelf )
             qApp->quit();
-        else if( policyDidChange )
+        else if ( policyDidChange )
             emit q->policyChanged( policy );
     }
 }
@@ -1126,46 +1138,48 @@ void KDSingleApplicationGuard::Private::poll() {
 #include <QtCore/QUuid>
 #include <QtTest/QSignalSpy>
 
-static void wait( int msec, QSignalSpy * spy=0, int expectedCount=INT_MAX )
+static void wait( int msec, QSignalSpy* spy=0, int expectedCount=INT_MAX )
 {
     QTime t;
     t.start();
     while ( ( !spy || spy->count() < expectedCount ) && t.elapsed() < msec )
-    {
         qApp->processEvents( QEventLoop::WaitForMoreEvents, qMax( 10, msec - t.elapsed() ) );
-    }
 }
 
 static std::ostream& operator<<( std::ostream& stream, const QStringList& list )
 {
     stream << "QStringList(";
-    for( QStringList::const_iterator it = list.begin(); it != list.end(); ++it )
+    for ( QStringList::const_iterator it = list.begin(); it != list.end(); ++it )
     {
         stream << " " << it->toLocal8Bit().data();
-        if( it + 1 != list.end() )
+        if ( it + 1 != list.end() )
             stream << ",";
     }
     stream << " )";
     return stream;
 }
 
-namespace {
-    class ApplicationNameSaver {
-        Q_DISABLE_COPY( ApplicationNameSaver )
-        const QString oldname;
-    public:
-        explicit ApplicationNameSaver( const QString & name )
-            : oldname( QCoreApplication::applicationName() )
-        {
-            QCoreApplication::setApplicationName( name );
-        }
-        ~ApplicationNameSaver() {
-            QCoreApplication::setApplicationName( oldname );
-        }
-    };
+namespace
+{
+class ApplicationNameSaver
+{
+    Q_DISABLE_COPY( ApplicationNameSaver )
+    const QString oldname;
+public:
+    explicit ApplicationNameSaver( const QString& name )
+        : oldname( QCoreApplication::applicationName() )
+    {
+        QCoreApplication::setApplicationName( name );
+    }
+    ~ApplicationNameSaver()
+    {
+        QCoreApplication::setApplicationName( oldname );
+    }
+};
 }
 
-KDAB_UNITTEST_SIMPLE( KDSingleApplicationGuard, "kdcoretools" ) {
+KDAB_UNITTEST_SIMPLE( KDSingleApplicationGuard, "kdcoretools" )
+{
 
     // set it to an unique name
     const ApplicationNameSaver saver( QUuid::createUuid().toString() );
@@ -1183,7 +1197,7 @@ KDAB_UNITTEST_SIMPLE( KDSingleApplicationGuard, "kdcoretools" ) {
         guard1.setPolicy( KDSingleApplicationGuard::NoPolicy );
         assertEqual( guard1.policy(), KDSingleApplicationGuard::NoPolicy );
 
-        QSignalSpy spy1( &guard1, SIGNAL(instanceStarted(KDSingleApplicationGuard::Instance)) );
+        QSignalSpy spy1( &guard1, SIGNAL( instanceStarted( KDSingleApplicationGuard::Instance ) ) );
 
         KDSingleApplicationGuard guard2;
         assertEqual( guard1.instances().count(), 2 );
@@ -1195,8 +1209,8 @@ KDAB_UNITTEST_SIMPLE( KDSingleApplicationGuard, "kdcoretools" ) {
 
         assertEqual( spy1.count(), 1 );
         guard3.reset( new KDSingleApplicationGuard );
-        spy3.reset( new QSignalSpy( guard3.get(), SIGNAL(becamePrimaryInstance()) ) );
-        spy4.reset( new QSignalSpy( guard3.get(), SIGNAL(instanceExited(KDSingleApplicationGuard::Instance) ) ) );
+        spy3.reset( new QSignalSpy( guard3.get(), SIGNAL( becamePrimaryInstance() ) ) );
+        spy4.reset( new QSignalSpy( guard3.get(), SIGNAL( instanceExited( KDSingleApplicationGuard::Instance ) ) ) );
         assertFalse( guard3->isPrimaryInstance() );
     }
 
@@ -1209,8 +1223,8 @@ KDAB_UNITTEST_SIMPLE( KDSingleApplicationGuard, "kdcoretools" ) {
 
     assertEqual( guard3->instances().first().arguments(), qApp->arguments() );
 
-    QSignalSpy spyStarted( guard3.get(), SIGNAL(instanceStarted(KDSingleApplicationGuard::Instance)) );
-    QSignalSpy spyExited(  guard3.get(), SIGNAL(instanceExited(KDSingleApplicationGuard::Instance)) );
+    QSignalSpy spyStarted( guard3.get(), SIGNAL( instanceStarted( KDSingleApplicationGuard::Instance ) ) );
+    QSignalSpy spyExited(  guard3.get(), SIGNAL( instanceExited( KDSingleApplicationGuard::Instance ) ) );
 
     {
         KDSingleApplicationGuard guard1;

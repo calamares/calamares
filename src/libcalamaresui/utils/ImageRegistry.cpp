@@ -74,16 +74,14 @@ ImageRegistry::pixmap( const QString& image, const QSize& size, CalamaresUtils::
 
             const qint64 ck = cacheKey( size, opacity, tint );
             if ( subsubcache.contains( ck ) )
-            {
                 return subsubcache.value( ck );
-            }
         }
     }
 
     // Image not found in cache. Let's load it.
     QPixmap pixmap;
     if ( image.toLower().endsWith( ".svg" ) ||
-         image.toLower().endsWith( ".svgz" ) )
+            image.toLower().endsWith( ".svgz" ) )
     {
         QSvgRenderer svgRenderer( image );
         QPixmap p( size.isNull() ? svgRenderer.defaultSize() : size );
@@ -116,12 +114,12 @@ ImageRegistry::pixmap( const QString& image, const QSize& size, CalamaresUtils::
     {
         switch ( mode )
         {
-            case CalamaresUtils::RoundedCorners:
-                pixmap = CalamaresUtils::createRoundedImage( pixmap, size );
-                break;
+        case CalamaresUtils::RoundedCorners:
+            pixmap = CalamaresUtils::createRoundedImage( pixmap, size );
+            break;
 
-            default:
-                break;
+        default:
+            break;
         }
 
         if ( !size.isNull() && pixmap.size() != size )
@@ -150,10 +148,10 @@ ImageRegistry::putInCache( const QString& image, const QSize& size, CalamaresUti
         {
             subsubcache = subcache.value( mode );
 
-/*            if ( subsubcache.contains( size.width() * size.height() ) )
-            {
-                Q_ASSERT( false );
-            }*/
+            /*            if ( subsubcache.contains( size.width() * size.height() ) )
+                        {
+                            Q_ASSERT( false );
+                        }*/
         }
     }
 

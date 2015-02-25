@@ -8,14 +8,14 @@ namespace kdtools
 }
 using namespace kdtools;
 
-KDLockedSharedMemoryPointerBase::KDLockedSharedMemoryPointerBase( QSharedMemory * m )
+KDLockedSharedMemoryPointerBase::KDLockedSharedMemoryPointerBase( QSharedMemory* m )
     : locker( m ),
       mem( m )
 {
 
 }
 
-KDLockedSharedMemoryPointerBase::KDLockedSharedMemoryPointerBase( QSharedMemory & m )
+KDLockedSharedMemoryPointerBase::KDLockedSharedMemoryPointerBase( QSharedMemory& m )
     : locker( &m ),
       mem( &m )
 {
@@ -24,15 +24,18 @@ KDLockedSharedMemoryPointerBase::KDLockedSharedMemoryPointerBase( QSharedMemory 
 
 KDLockedSharedMemoryPointerBase::~KDLockedSharedMemoryPointerBase() {}
 
-void * KDLockedSharedMemoryPointerBase::get() {
+void* KDLockedSharedMemoryPointerBase::get()
+{
     return mem ? mem->data() : 0 ;
 }
 
-const void * KDLockedSharedMemoryPointerBase::get() const {
+const void* KDLockedSharedMemoryPointerBase::get() const
+{
     return mem ? mem->data() : 0 ;
 }
 
-size_t KDLockedSharedMemoryPointerBase::byteSize() const {
+size_t KDLockedSharedMemoryPointerBase::byteSize() const
+{
     return mem ? mem->size() : 0;
 }
 
@@ -295,68 +298,69 @@ size_t KDLockedSharedMemoryPointerBase::byteSize() const {
 
 namespace
 {
-    struct TestStruct
+struct TestStruct
+{
+    TestStruct( uint nn = 0 )
+        : n( nn ),
+          f( 0.0 ),
+          c( '\0' ),
+          b( false )
     {
-        TestStruct( uint nn = 0 )
-            : n( nn ),
-              f( 0.0 ),
-              c( '\0' ),
-              b( false )
-        {
-        }
-        uint n;
-        double f;
-        char c;
-        bool b;
-    };
+    }
+    uint n;
+    double f;
+    char c;
+    bool b;
+};
 
-    bool operator==( const TestStruct& lhs, const TestStruct& rhs )
+bool operator==( const TestStruct& lhs, const TestStruct& rhs )
+{
+    return lhs.n == rhs.n && lhs.f == rhs.f && lhs.c == rhs.c && lhs.b == rhs.b;
+}
+
+class TestThread : public QThread
+{
+public:
+    TestThread( const QString& key )
+        : mem( key )
     {
-        return lhs.n == rhs.n && lhs.f == rhs.f && lhs.c == rhs.c && lhs.b == rhs.b;
+        mem.attach();
     }
 
-    class TestThread : public QThread
+    void run()
     {
-    public:
-        TestThread( const QString& key )
-            : mem( key )
+        while ( true )
         {
-            mem.attach();
+            msleep( 100 );
+            kdtools::KDLockedSharedMemoryPointer< TestStruct > p( &mem );
+            if ( !p->b )
+                continue;
+
+            p->n = 5;
+            p->f = 3.14;
+            p->c = 'A';
+            p->b = false;
+            return;
         }
-
-        void run()
-        {
-            while( true )
-            {
-                msleep( 100 );
-                kdtools::KDLockedSharedMemoryPointer< TestStruct > p( &mem );
-                if( !p->b )
-                    continue;
-
-                p->n = 5;
-                p->f = 3.14;
-                p->c = 'A';
-                p->b = false;
-                return;
-            }
-        }
-
-        QSharedMemory mem;
-    };
-
-    bool isConst( TestStruct* )
-    {
-        return false;
     }
 
-    bool isConst( const TestStruct* )
-    {
-        return true;
-    }
+    QSharedMemory mem;
+};
+
+bool isConst( TestStruct* )
+{
+    return false;
+}
+
+bool isConst( const TestStruct* )
+{
+    return true;
+}
 }
 
 
-KDAB_UNITTEST_SIMPLE( KDLockedSharedMemoryPointer, "kdcoretools" ) {
+KDAB_UNITTEST_SIMPLE( KDLockedSharedMemoryPointer, "kdcoretools" )
+{
 
     const QString key = QUuid::createUuid();
     QSharedMemory mem( key );
@@ -411,7 +415,7 @@ KDAB_UNITTEST_SIMPLE( KDLockedSharedMemoryPointer, "kdcoretools" ) {
         kdtools::KDLockedSharedMemoryPointer< TestStruct > p( mem );
         assertEqual( mem.data(), p.get() );
         assertEqual( p.get(), p.operator->() );
-        assertEqual( p.get(), &(*p) );
+        assertEqual( p.get(), &( *p ) );
         assertEqual( p.get(), p.data() );
         assertFalse( isConst( p.get() ) );
     }
@@ -420,7 +424,7 @@ KDAB_UNITTEST_SIMPLE( KDLockedSharedMemoryPointer, "kdcoretools" ) {
         const kdtools::KDLockedSharedMemoryPointer< TestStruct > p( &mem );
         assertEqual( mem.data(), p.get() );
         assertEqual( p.get(), p.operator->() );
-        assertEqual( p.get(), &(*p) );
+        assertEqual( p.get(), &( *p ) );
         assertEqual( p.get(), p.data() );
         assertTrue( isConst( p.get() ) );
     }
@@ -453,21 +457,21 @@ KDAB_UNITTEST_SIMPLE( KDLockedSharedMemoryPointer, "kdcoretools" ) {
         assertEqual( ts.n, 10u );
 
         std::vector< TestStruct > v;
-        for( uint i = 0; i < a.size(); ++i )
+        for ( uint i = 0; i < a.size(); ++i )
             v.push_back( TestStruct( i ) );
 
         std::copy( v.begin(), v.end(), a.begin() );
-        for( uint i = 0; i < a.size(); ++i )
+        for ( uint i = 0; i < a.size(); ++i )
             assertEqual( a[ i ].n, i );
         assertEqual( a.front().n, 0u );
         assertEqual( a.back().n, a.size() - 1 );
 
         std::copy( v.begin(), v.end(), a.rbegin() );
-        for( uint i = 0; i < a.size(); ++i )
+        for ( uint i = 0; i < a.size(); ++i )
             assertEqual( a[ i ].n, a.size() - 1 - i );
         assertEqual( a.front().n, a.size() - 1 );
         assertEqual( a.back().n, 0u );
-     }
+    }
 
 }
 #endif // KDTOOLSCORE_UNITTESTS

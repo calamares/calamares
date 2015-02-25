@@ -56,7 +56,7 @@ KeyboardPage::KeyboardPage( QWidget* parent )
              [this]
     {
         ui->comboBoxModel->setCurrentIndex( m_defaultIndex );
-    });
+    } );
 
     connect( ui->comboBoxModel,
              static_cast< void ( QComboBox::* )( const QString& ) >( &QComboBox::currentIndexChanged ),
@@ -67,7 +67,7 @@ KeyboardPage::KeyboardPage( QWidget* parent )
         // Set Xorg keyboard model
         QProcess::execute( QString( "setxkbmap -model \"%1\"" )
                            .arg( model ).toUtf8() );
-    });
+    } );
 
     CALAMARES_RETRANSLATE( ui->retranslateUi( this ); )
 }
@@ -93,15 +93,15 @@ KeyboardPage::init()
         QStringList list = QString( process.readAll() )
                            .split( "\n", QString::SkipEmptyParts );
 
-        foreach( QString line, list )
+        foreach ( QString line, list )
         {
             line = line.trimmed();
             if ( !line.startsWith( "xkb_symbols" ) )
                 continue;
 
             line = line.remove( "}" )
-                       .remove( "{" )
-                       .remove( ";" );
+                   .remove( "{" )
+                   .remove( ";" );
             line = line.mid( line.indexOf( "\"" ) + 1 );
 
             QStringList split = line.split( "+", QString::SkipEmptyParts );
@@ -113,7 +113,7 @@ KeyboardPage::init()
                 {
                     int parenthesisIndex = currentLayout.indexOf( "(" );
                     currentVariant = currentLayout.mid( parenthesisIndex + 1 )
-                                                  .trimmed();
+                                     .trimmed();
                     currentVariant.chop( 1 );
                     currentLayout = currentLayout
                                     .mid( 0, parenthesisIndex )
@@ -153,7 +153,7 @@ KeyboardPage::init()
     ui->listLayout->blockSignals( true );
 
     QMap< QString, KeyboardGlobal::KeyboardInfo > layouts =
-            KeyboardGlobal::getKeyboardLayouts();
+        KeyboardGlobal::getKeyboardLayouts();
     QMapIterator< QString, KeyboardGlobal::KeyboardInfo > li( layouts );
     LayoutItem* currentLayoutItem = nullptr;
 
@@ -216,10 +216,10 @@ KeyboardPage::createJobs( const QString& xOrgConfFileName,
                                             "pc105" );
 
     Calamares::Job* j = new SetKeyboardLayoutJob( selectedModel,
-                                                  m_selectedLayout,
-                                                  m_selectedVariant,
-                                                  xOrgConfFileName,
-                                                  convertedKeymapPath );
+            m_selectedLayout,
+            m_selectedVariant,
+            xOrgConfFileName,
+            convertedKeymapPath );
     list.append( Calamares::job_ptr( j ) );
 
     return list;
@@ -261,17 +261,17 @@ KeyboardPage::updateVariants( LayoutItem* currentItem, QString currentVariant )
 
     while ( li.hasNext() )
     {
-       li.next();
+        li.next();
 
-       LayoutItem* item = new LayoutItem();
-       item->setText( li.key() );
-       item->data = li.value();
-       ui->listVariant->addItem( item );
+        LayoutItem* item = new LayoutItem();
+        item->setText( li.key() );
+        item->data = li.value();
+        ui->listVariant->addItem( item );
 
-       // currentVariant defaults to QString(). It is only non-empty during the
-       // initial setup.
-       if ( li.value() == currentVariant )
-           defaultItem = item;
+        // currentVariant defaults to QString(). It is only non-empty during the
+        // initial setup.
+        if ( li.value() == currentVariant )
+            defaultItem = item;
     }
 
     // Unblock signals
@@ -279,7 +279,7 @@ KeyboardPage::updateVariants( LayoutItem* currentItem, QString currentVariant )
 
     // Set to default value
     if ( defaultItem )
-       ui->listVariant->setCurrentItem( defaultItem );
+        ui->listVariant->setCurrentItem( defaultItem );
 }
 
 
@@ -288,7 +288,7 @@ KeyboardPage::onListLayoutCurrentItemChanged( QListWidgetItem* current, QListWid
 {
     LayoutItem* item = dynamic_cast< LayoutItem* >( current );
     if ( !item )
-       return;
+        return;
 
     updateVariants( item );
 }

@@ -39,7 +39,8 @@
 class KeyboardGlobal
 {
 public:
-    struct KeyboardInfo {
+    struct KeyboardInfo
+    {
         QString description;
         QMap< QString, QString > variants;
     };
@@ -48,8 +49,8 @@ public:
     static QMap< QString, QString > getKeyboardModels();
 
 private:
-    static QMap< QString, QString > parseKeyboardModels(QString filepath);
-    static QMap< QString, KeyboardInfo > parseKeyboardLayouts(QString filepath);
+    static QMap< QString, QString > parseKeyboardModels( QString filepath );
+    static QMap< QString, KeyboardInfo > parseKeyboardLayouts( QString filepath );
 };
 
 #endif // KEYBOARDGLOBAL_H
