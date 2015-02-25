@@ -38,11 +38,13 @@
 class LocaleGlobal
 {
 public:
-    struct Locale {
+    struct Locale
+    {
         QString description, locale;
     };
 
-    struct Location {
+    struct Location
+    {
         QString region, zone;
         double latitude, longitude;
         static QString pretty( const QString& s );
@@ -59,7 +61,7 @@ private:
 
     static void initLocales();
     static void initLocations();
-    static double getRightGeoLocation(QString str);
+    static double getRightGeoLocation( QString str );
 };
 
 #endif // LOCALEGLOBAL_H

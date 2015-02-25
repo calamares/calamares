@@ -74,15 +74,15 @@ Module::fromDescriptorFile( const QString& path )
             if ( !doc.IsMap() )
             {
                 cLog() << Q_FUNC_INFO << "bad module descriptor format"
-                         << path;
+                       << path;
                 return nullptr;
             }
 
             if ( !doc[ "type" ] ||
-                 !doc[ "interface" ] )
+                    !doc[ "interface" ] )
             {
                 cLog() << Q_FUNC_INFO << "bad module descriptor format"
-                         << path;
+                       << path;
                 return nullptr;
             }
 
@@ -90,27 +90,21 @@ Module::fromDescriptorFile( const QString& path )
             QString intfString = QString::fromStdString( doc[ "interface" ].as< std::string >() );
 
             if ( typeString == "view" && intfString == "qtplugin" )
-            {
                 m = new ViewModule();
-            }
             else if ( typeString == "job" )
             {
                 if ( intfString == "process" )
-                {
                     m = new ProcessJobModule();
-                }
 #ifdef WITH_PYTHON
                 else if ( intfString == "python" )
-                {
                     m = new PythonJobModule();
-                }
 #endif
             }
 
             if ( !m )
             {
                 cLog() << Q_FUNC_INFO << "bad module type or interface string"
-                         << path << typeString << intfString;
+                       << path << typeString << intfString;
                 return nullptr;
             }
 
@@ -172,7 +166,7 @@ Module::loadConfigurationFile() //throws YAML::Exception
             if ( !doc.IsMap() )
             {
                 cLog() << Q_FUNC_INFO << "bad module configuration format"
-                         << path;
+                       << path;
                 return;
             }
 

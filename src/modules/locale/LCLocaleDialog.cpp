@@ -40,7 +40,7 @@ LCLocaleDialog::LCLocaleDialog( const QString& guessedLCLocale,
     upperText->setText( tr( "The system locale setting affects the language and character "
                             "set for some command line user interface elements.<br/>"
                             "The current setting is <b>%1</b>." )
-                            .arg( guessedLCLocale ) );
+                        .arg( guessedLCLocale ) );
     mainLayout->addWidget( upperText );
     setMinimumWidth( upperText->fontMetrics().height() * 24 );
 
@@ -60,8 +60,8 @@ LCLocaleDialog::LCLocaleDialog( const QString& guessedLCLocale,
     }
 
     QDialogButtonBox* dbb = new QDialogButtonBox( QDialogButtonBox::Ok | QDialogButtonBox::Cancel,
-                                                  Qt::Horizontal,
-                                                  this );
+            Qt::Horizontal,
+            this );
     mainLayout->addWidget( dbb );
 
     connect( dbb->button( QDialogButtonBox::Ok ), &QPushButton::clicked,
@@ -80,9 +80,7 @@ LCLocaleDialog::LCLocaleDialog( const QString& guessedLCLocale,
     } );
 
     if ( selected > -1 )
-    {
         m_localesWidget->setCurrentRow( selected );
-    }
 }
 
 

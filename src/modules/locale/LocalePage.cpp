@@ -98,9 +98,7 @@ LocalePage::LocalePage( QWidget* parent )
 
         QList< LocaleGlobal::Location > zones = regions.value( m_regionCombo->currentData().toString() );
         foreach ( const LocaleGlobal::Location& zone, zones )
-        {
             m_zoneCombo->addItem( LocaleGlobal::Location::pretty( zone.zone ), zone.zone );
-        }
 
         m_zoneCombo->model()->sort( 0 );
 
@@ -140,20 +138,20 @@ LocalePage::LocalePage( QWidget* parent )
         m_blockTzWidgetSet = false;
 
         Calamares::JobQueue::instance()->globalStorage()
-                ->insert( "locationRegion", location.region );
+        ->insert( "locationRegion", location.region );
         Calamares::JobQueue::instance()->globalStorage()
-                ->insert( "locationZone", location.zone );
+        ->insert( "locationZone", location.zone );
     } );
 
     connect( m_localeChangeButton, &QPushButton::clicked,
              [this]()
     {
         LCLocaleDialog* dlg = new LCLocaleDialog( lcLocale(),
-                                                  m_localeGenLines,
-                                                  this );
+                m_localeGenLines,
+                this );
         dlg->exec();
         if ( dlg->result() == QDialog::Accepted &&
-             !dlg->selectedLCLocale().isEmpty() )
+                !dlg->selectedLCLocale().isEmpty() )
         {
             m_selectedLocale = dlg->selectedLCLocale();
             m_localeLabel->setText( tr( "The system locale is set to %1." )
@@ -194,9 +192,7 @@ LocalePage::init( const QString& initialRegion,
     keys.sort();
 
     foreach ( const QString& key, keys )
-    {
         m_regionCombo->addItem( LocaleGlobal::Location::pretty( key ), key );
-    }
 
     m_regionCombo->blockSignals( false );
     m_zoneCombo->blockSignals( false );
@@ -216,14 +212,10 @@ LocalePage::init( const QString& initialRegion,
     };
 
     if ( keys.contains( initialRegion ) &&
-         containsLocation( regions.value( initialRegion ), initialZone ) )
-    {
+            containsLocation( regions.value( initialRegion ), initialZone ) )
         m_tzWidget->setCurrentLocation( initialRegion, initialZone );
-    }
     else
-    {
         m_tzWidget->setCurrentLocation( "Europe", "Berlin" );
-    }
     emit m_tzWidget->locationChanged( m_tzWidget->getCurrentLocation() );
 
     // Fill in meaningful locale/charset lines from locale.gen
@@ -239,7 +231,7 @@ LocalePage::init( const QString& initialRegion,
     {
         cDebug() << "Cannot open file" << localeGenPath
                  << ". Assuming the supported languages are already built into "
-                    "the locale archive.";
+                 "the locale archive.";
         QProcess localeA;
         localeA.start( "locale", QStringList() << "-a" );
         localeA.waitForFinished();

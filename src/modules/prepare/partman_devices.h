@@ -19,6 +19,6 @@
 #ifndef PARTMAN_DEVICES_H
 #define PARTMAN_DEVICES_H
 
-int check_big_enough(long long required_space);
+int check_big_enough( long long required_space );
 
 #endif // PARTMAN_DEVICES_H

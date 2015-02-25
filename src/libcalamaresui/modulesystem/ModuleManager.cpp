@@ -42,9 +42,7 @@ ModuleManager::ModuleManager( const QStringList& paths, QObject* parent )
 ModuleManager::~ModuleManager()
 {
     foreach ( Module* m, m_availableModules )
-    {
         delete m;
-    }
 }
 
 
@@ -112,7 +110,7 @@ ModuleManager::loadModules( Phase phase )
         // 4) Module must have subclasses that reimplement loadSelf for various module types
 
         timer->deleteLater();
-    });
+    } );
     timer->start( 0 );
 }
 
@@ -150,15 +148,11 @@ ModuleManager::doInit()
                     Module* moduleInfo = Module::fromDescriptorFile( metadataFileInfo.absoluteFilePath() );
 
                     if ( moduleInfo &&
-                         ( moduleInfo->name() == currentDir.dirName() ) &&
-                         ( !m_availableModules.contains( moduleInfo->name() ) ) )
-                    {
+                            ( moduleInfo->name() == currentDir.dirName() ) &&
+                            ( !m_availableModules.contains( moduleInfo->name() ) ) )
                         m_availableModules.insert( moduleInfo->name(), moduleInfo );
-                    }
                     else
-                    {
                         delete moduleInfo;
-                    }
                 }
                 else
                 {
@@ -168,9 +162,7 @@ ModuleManager::doInit()
             }
         }
         else
-        {
             cDebug() << "ModuleManager bad search path" << path;
-        }
     }
     // At this point m_availableModules is filled with whatever was found in the
     // search paths.
@@ -198,9 +190,9 @@ ModuleManager::checkDependencies()
     forever
     {
         for ( auto it = m_availableModules.begin();
-              it != m_availableModules.end(); ++it )
+                it != m_availableModules.end(); ++it )
         {
-            foreach ( QString depName, (*it)->requiredModules() )
+            foreach ( QString depName, ( *it )->requiredModules() )
             {
                 if ( !m_availableModules.contains( depName ) )
                 {

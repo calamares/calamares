@@ -134,26 +134,22 @@ KeyboardViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
 
     if ( configurationMap.contains( "xOrgConfFileName" ) &&
-         configurationMap.value( "xOrgConfFileName" ).type() == QVariant::String &&
-         !configurationMap.value( "xOrgConfFileName" ).toString().isEmpty() )
+            configurationMap.value( "xOrgConfFileName" ).type() == QVariant::String &&
+            !configurationMap.value( "xOrgConfFileName" ).toString().isEmpty() )
     {
         m_xOrgConfFileName = configurationMap.value( "xOrgConfFileName" )
-                                             .toString();
+                             .toString();
     }
     else
-    {
         m_xOrgConfFileName = "00-keyboard.conf";
-    }
 
     if ( configurationMap.contains( "convertedKeymapPath" ) &&
-         configurationMap.value( "convertedKeymapPath" ).type() == QVariant::String &&
-         !configurationMap.value( "convertedKeymapPath" ).toString().isEmpty() )
+            configurationMap.value( "convertedKeymapPath" ).type() == QVariant::String &&
+            !configurationMap.value( "convertedKeymapPath" ).toString().isEmpty() )
     {
         m_convertedKeymapPath = configurationMap.value( "convertedKeymapPath" )
-                                                .toString();
+                                .toString();
     }
     else
-    {
         m_convertedKeymapPath = QString();
-    }
 }

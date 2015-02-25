@@ -40,40 +40,42 @@ class KeyBoardPreview : public QWidget
 {
     Q_OBJECT
 public:
-    explicit KeyBoardPreview(QWidget *parent = 0);
-    
-    void setLayout(QString layout);
-    void setVariant(QString variant);
+    explicit KeyBoardPreview( QWidget* parent = 0 );
+
+    void setLayout( QString layout );
+    void setVariant( QString variant );
 
 private:
     enum KB_TYPE { KB_104, KB_105, KB_106 };
 
-    struct KB {
+    struct KB
+    {
         bool kb_extended_return;
         QList<QList<int> > keys;
     };
 
-    struct Code {
+    struct Code
+    {
         QString plain, shift, ctrl, alt;
     };
 
     QString layout, variant;
     QFont lowerFont, upperFont;
-    KB *kb, kbList[3];
+    KB* kb, kbList[3];
     QList<Code> codes;
     int space, usable_width, key_w;
 
     void loadInfo();
     bool loadCodes();
-    QString regular_text(int index);
-    QString shift_text(int index);
-    QString ctrl_text(int index);
-    QString alt_text(int index);
-    QString fromUnicodeString(QString raw);
+    QString regular_text( int index );
+    QString shift_text( int index );
+    QString ctrl_text( int index );
+    QString alt_text( int index );
+    QString fromUnicodeString( QString raw );
 
 protected:
-    void paintEvent(QPaintEvent * event);
-    void resizeEvent(QResizeEvent * event);
+    void paintEvent( QPaintEvent* event );
+    void resizeEvent( QResizeEvent* event );
 
 };
 
