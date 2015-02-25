@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -48,7 +48,9 @@ QString
 ProcessJob::prettyName() const
 {
     //TODO: show something more meaningful
-    return tr( "Run command %1" ).arg( m_command );
+    return tr( "Run command %1 %2" )
+            .arg( m_command )
+            .arg( m_runInChroot ? "in chroot" : "" );
 }
 
 
@@ -114,7 +116,8 @@ ProcessJob::callOutput( const QString& command,
     output.clear();
 
     QProcess process;
-    process.setProgram( command );
+    process.setProgram( "/bin/sh" );
+    process.setArguments( { "-c", command } );
     process.setProcessChannelMode( QProcess::MergedChannels );
 
     if ( !workingPath.isEmpty() )
@@ -122,8 +125,10 @@ ProcessJob::callOutput( const QString& command,
         if ( QDir( workingPath ).exists() )
             process.setWorkingDirectory( QDir( workingPath ).absolutePath() );
         else
+        {
             cLog() << "Invalid working directory:" << workingPath;
             return -3;
+        }
     }
 
     cLog() << "Running" << command;
