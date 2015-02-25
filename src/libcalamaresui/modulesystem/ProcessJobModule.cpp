@@ -24,7 +24,8 @@
 
 #include <yaml-cpp/yaml.h>
 
-namespace Calamares {
+namespace Calamares
+{
 
 
 Module::Type
@@ -48,9 +49,9 @@ ProcessJobModule::loadSelf()
         return;
 
     m_job = Calamares::job_ptr( new ProcessJob( m_command,
-                                                m_workingPath,
-                                                m_runInChroot,
-                                                m_secondsTimeout ) );
+                                m_workingPath,
+                                m_runInChroot,
+                                m_secondsTimeout ) );
     m_loaded = true;
 }
 
@@ -70,21 +71,15 @@ ProcessJobModule::initFrom( const YAML::Node& node )
     m_workingPath = directory.absolutePath();
 
     if ( node[ "command" ] )
-    {
         m_command = QString::fromStdString( node[ "command" ].as< std::string >() );
-    }
 
     m_secondsTimeout = 30;
     if ( node[ "timeout" ] )
-    {
         m_secondsTimeout = node[ "timeout" ].as< int >();
-    }
 
     m_runInChroot = false;
     if ( node[ "chroot" ] )
-    {
         m_runInChroot = node[ "chroot" ].as< bool >();
-    }
 }
 
 

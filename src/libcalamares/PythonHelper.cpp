@@ -29,7 +29,8 @@
 
 namespace bp = boost::python;
 
-namespace CalamaresPython {
+namespace CalamaresPython
+{
 
 
 boost::python::object
@@ -94,9 +95,7 @@ variantListToPyList( const QVariantList& variantList )
 {
     bp::list pyList;
     foreach ( const QVariant& variant, variantList )
-    {
         pyList.append( variantToPyObject( variant ) );
-    }
     return pyList;
 }
 
@@ -106,9 +105,7 @@ variantListFromPyList( const boost::python::list& pyList )
 {
     QVariantList list;
     for ( int i = 0; i < bp::len( pyList ); ++i )
-    {
         list.append( variantFromPyObject( pyList[ i ] ) );
-    }
     return list;
 }
 
@@ -118,9 +115,7 @@ variantMapToPyDict( const QVariantMap& variantMap )
 {
     bp::dict pyDict;
     for ( auto it = variantMap.constBegin(); it != variantMap.constEnd(); ++it )
-    {
         pyDict[ it.key().toStdString() ] = variantToPyObject( it.value() );
-    }
     return pyDict;
 }
 
@@ -165,20 +160,16 @@ Helper::Helper( QObject* parent )
         // If we're running from the build dir
         QFileInfo fi( QDir::current().absoluteFilePath( "libcalamares.so" ) );
         if ( fi.exists() && fi.isReadable() )
-        {
             m_pythonPaths.append( fi.dir().absolutePath() );
-        }
 
         QDir calaPythonPath( CalamaresUtils::systemLibDir().absolutePath() +
                              QDir::separator() + "calamares" );
         if ( calaPythonPath.exists() &&
-             calaPythonPath.isReadable() )
+                calaPythonPath.isReadable() )
         {
             QFileInfo fi( calaPythonPath.absoluteFilePath( "libcalamares.so" ) );
             if ( fi.exists() && fi.isReadable() )
-            {
                 m_pythonPaths.append( fi.dir().absolutePath() );
-            }
         }
 
 
@@ -218,7 +209,7 @@ Helper::createCleanNamespace()
 QString
 Helper::handleLastError()
 {
-    PyObject *type = nullptr, *val = nullptr, *tb = nullptr;
+    PyObject* type = nullptr, *val = nullptr, *tb = nullptr;
     PyErr_Fetch( &type, &val, &tb );
 
     QString typeMsg;

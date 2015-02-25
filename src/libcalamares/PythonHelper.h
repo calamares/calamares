@@ -28,7 +28,8 @@
 #include <boost/python/list.hpp>
 #include <boost/python/object.hpp>
 
-namespace CalamaresPython {
+namespace CalamaresPython
+{
 
 boost::python::object   variantToPyObject( const QVariant& variant );
 QVariant                variantFromPyObject( const boost::python::object& pyObject );

@@ -24,7 +24,8 @@
 #include <QDir>
 #include <QProcess>
 
-namespace Calamares {
+namespace Calamares
+{
 
 
 ProcessJob::ProcessJob( const QString& command,
@@ -76,13 +77,13 @@ ProcessJob::exec()
     if ( ec == -1 ) //Crash!
         return JobResult::error( tr( "External command crashed" ),
                                  tr( "Command %1 crashed.\nOutput:\n%2" )
-                                        .arg( m_command )
-                                        .arg( output ) );
+                                 .arg( m_command )
+                                 .arg( output ) );
 
     if ( ec == -2 )
         return JobResult::error( tr( "External command failed to start" ),
                                  tr( "Command %1 failed to start." )
-                                    .arg( m_command ) );
+                                 .arg( m_command ) );
 
     if ( ec == -3 )
         return JobResult::error( tr( "Internal error when starting command" ),
@@ -91,16 +92,16 @@ ProcessJob::exec()
     if ( ec == -4 )
         return JobResult::error( tr( "External command failed to finish" ),
                                  tr( "Command %1 failed to finish in %2s.\nOutput:\n%3" )
-                                    .arg( m_command )
-                                    .arg( m_timeoutSec )
-                                    .arg( output ) );
+                                 .arg( m_command )
+                                 .arg( m_timeoutSec )
+                                 .arg( output ) );
 
     //Any other exit code
     return JobResult::error( tr( "External command finished with errors" ),
                              tr( "Command %1 finished with exit code %2.\nOutput:\n%3" )
-                                .arg( m_command )
-                                .arg( ec )
-                                .arg( output ) );
+                             .arg( m_command )
+                             .arg( ec )
+                             .arg( output ) );
 }
 
 
@@ -123,7 +124,7 @@ ProcessJob::callOutput( const QString& command,
             process.setWorkingDirectory( QDir( workingPath ).absolutePath() );
         else
             cLog() << "Invalid working directory:" << workingPath;
-            return -3;
+        return -3;
     }
 
     cLog() << "Running" << command;
