@@ -1,0 +1,9 @@
+# Module metadata file for removeliveuser jobmodule
+# Syntax is YAML 1.2
+---
+type:       "job"
+name:       "removeliveuser"
+interface:  "process"
+chroot:     true
+command:    userdel -f -r live
+timeout:    5
