@@ -37,7 +37,7 @@
 #include <QFileInfo>
 
 
-CalamaresApplication::CalamaresApplication( int& argc, char *argv[] )
+CalamaresApplication::CalamaresApplication( int& argc, char* argv[] )
     : QApplication( argc, argv )
     , m_mainwindow( 0 )
 {
@@ -163,12 +163,12 @@ CalamaresApplication::initQmlPath()
         if ( isDebug() )
         {
             qmlDirCandidatesByPriority.append(
-                        QDir::current().absoluteFilePath(
-                        QString( "src/%1" )
-                            .arg( subpath ) ) );
+                QDir::current().absoluteFilePath(
+                    QString( "src/%1" )
+                    .arg( subpath ) ) );
         }
         qmlDirCandidatesByPriority.append( CalamaresUtils::appDataDir()
-                            .absoluteFilePath( subpath ) );
+                                           .absoluteFilePath( subpath ) );
 
         foreach ( const QString& path, qmlDirCandidatesByPriority )
         {
@@ -222,7 +222,7 @@ CalamaresApplication::initSettings()
         }
         settingsFileCandidatesByPriority.append( CMAKE_INSTALL_FULL_SYSCONFDIR "/calamares/settings.conf" );
         settingsFileCandidatesByPriority.append( CalamaresUtils::appDataDir()
-                                                    .absoluteFilePath( "settings.conf" ) );
+                .absoluteFilePath( "settings.conf" ) );
 
         foreach ( const QString& path, settingsFileCandidatesByPriority )
         {
@@ -289,9 +289,9 @@ CalamaresApplication::initBranding()
                 brandingDescriptorSubpath );
         }
         brandingFileCandidatesByPriority.append( QDir( CMAKE_INSTALL_FULL_SYSCONFDIR "/calamares/" )
-                                                 .absoluteFilePath( brandingDescriptorSubpath ) );
+                .absoluteFilePath( brandingDescriptorSubpath ) );
         brandingFileCandidatesByPriority.append( CalamaresUtils::appDataDir()
-                                                 .absoluteFilePath( brandingDescriptorSubpath ) );
+                .absoluteFilePath( brandingDescriptorSubpath ) );
 
         foreach ( const QString& path, brandingFileCandidatesByPriority )
         {
@@ -343,7 +343,7 @@ CalamaresApplication::initPlugins()
             Calamares::ViewManager* vm = Calamares::ViewManager::instance();
             Calamares::JobQueue* queue = Calamares::JobQueue::instance();
 
-            for( const QString& name : Calamares::Settings::instance()->modules( Calamares::Install ) )
+            for ( const QString& name : Calamares::Settings::instance()->modules( Calamares::Install ) )
             {
                 Calamares::Module* module = m_moduleManager->module( name );
                 queue->enqueue( module->jobs() );
@@ -354,10 +354,8 @@ CalamaresApplication::initPlugins()
             queue->start();
         }
         else if ( phase == Calamares::PostInstall )
-        {
             Calamares::ViewManager::instance()->next();
-        }
-    });
+    } );
 }
 
 
@@ -380,6 +378,6 @@ CalamaresApplication::onPluginsReady()
 void
 CalamaresApplication::initJobQueue()
 {
-    Calamares::JobQueue *jobQueue = new Calamares::JobQueue( this );
+    Calamares::JobQueue* jobQueue = new Calamares::JobQueue( this );
     Calamares::Branding::instance()->setGlobals( jobQueue->globalStorage() );
 }

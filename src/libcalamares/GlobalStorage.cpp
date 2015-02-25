@@ -28,7 +28,8 @@
 namespace bp = boost::python;
 #endif
 
-namespace Calamares {
+namespace Calamares
+{
 
 GlobalStorage::GlobalStorage()
 {
@@ -87,7 +88,7 @@ GlobalStorage::python_contains( const std::string& key ) const
 
 void
 GlobalStorage::python_insert( const std::string& key,
-                       const bp::object& value )
+                              const bp::object& value )
 {
     insert( QString::fromStdString( key ),
             CalamaresPython::variantFromPyObject( value ) );
@@ -98,7 +99,7 @@ bp::list
 GlobalStorage::python_keys() const
 {
     bp::list pyList;
-    foreach( const QString& key, keys() )
+    foreach ( const QString& key, keys() )
         pyList.append( key.toStdString() );
     return pyList;
 }

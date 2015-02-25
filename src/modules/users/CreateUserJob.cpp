@@ -59,7 +59,7 @@ CreateUserJob::exec()
     QDir destDir( gs->value( "rootMountPoint" ).toString() );
 
     if ( gs->contains( "sudoersGroup" ) &&
-         !gs->value( "sudoersGroup" ).toString().isEmpty() )
+            !gs->value( "sudoersGroup" ).toString().isEmpty() )
     {
         QFileInfo sudoersFi( destDir.absoluteFilePath( "etc/sudoers.d/10-installer" ) );
 
@@ -67,7 +67,7 @@ CreateUserJob::exec()
             return Calamares::JobResult::error( tr( "Sudoers dir is not writable." ) );
 
         QFile sudoersFile( sudoersFi.absoluteFilePath() );
-        if (!sudoersFile.open( QIODevice::WriteOnly | QIODevice::Text ) )
+        if ( !sudoersFile.open( QIODevice::WriteOnly | QIODevice::Text ) )
             return Calamares::JobResult::error( tr( "Cannot create sudoers file for writing." ) );
 
         QString sudoersGroup = gs->value( "sudoersGroup" ).toString();
@@ -86,7 +86,7 @@ CreateUserJob::exec()
     QString groupsData = QString::fromLocal8Bit( groupsFile.readAll() );
     QStringList groupsLines = groupsData.split( '\n' );
     for ( QStringList::iterator it = groupsLines.begin();
-          it != groupsLines.end(); ++it )
+            it != groupsLines.end(); ++it )
     {
         int indexOfFirstToDrop = it->indexOf( ':' );
         it->truncate( indexOfFirstToDrop );
@@ -101,7 +101,7 @@ CreateUserJob::exec()
     {
         QString autologinGroup;
         if ( gs->contains( "autologinGroup" ) &&
-             !gs->value( "autologinGroup" ).toString().isEmpty() )
+                !gs->value( "autologinGroup" ).toString().isEmpty() )
             autologinGroup = gs->value( "autologinGroup" ).toString();
         else
             autologinGroup = QStringLiteral( "autologin" );
@@ -118,30 +118,32 @@ CreateUserJob::exec()
                                            "users",
                                            "-G",
                                            defaultGroups,
-                                           m_userName } );
+                                           m_userName
+                                         } );
     if ( ec )
         return Calamares::JobResult::error( tr( "Cannot create user %1." )
-                                                .arg( m_userName ),
+                                            .arg( m_userName ),
                                             tr( "useradd terminated with error code %1." )
-                                                .arg( ec ) );
+                                            .arg( ec ) );
 
     ec = CalamaresUtils::chrootCall( { "chfn", "-f", m_fullName, m_userName } );
     if ( ec )
         return Calamares::JobResult::error( tr( "Cannot set full name for user %1." )
-                                                .arg( m_userName ),
+                                            .arg( m_userName ),
                                             tr( "chfn terminated with error code %1." )
-                                                .arg( ec ) );
+                                            .arg( ec ) );
 
     ec = CalamaresUtils::chrootCall( { "chown",
                                        "-R",
                                        QString( "%1:%2" ).arg( m_userName )
-                                                         .arg( m_userGroup ),
-                                       QString( "/home/%1" ).arg( m_userName ) } );
+                                       .arg( m_userGroup ),
+                                       QString( "/home/%1" ).arg( m_userName )
+                                     } );
     if ( ec )
         return Calamares::JobResult::error( tr( "Cannot set home directory ownership for user %1." )
-                                                .arg( m_userName ),
+                                            .arg( m_userName ),
                                             tr( "chown terminated with error code %1." )
-                                                .arg( ec ) );
+                                            .arg( ec ) );
 
     return Calamares::JobResult::ok();
 }
