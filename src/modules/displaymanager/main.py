@@ -4,7 +4,7 @@
 # === This file is part of Calamares - <http://github.com/calamares> ===
 #
 #   Copyright 2014-2015, Philip Müller <philm@manjaro.org>
-#   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+#   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
 #   Copyright 2014, Kevin Kofler <kevin.kofler@chello.at>
 #
 #   Calamares is free software: you can redistribute it and/or modify
@@ -88,15 +88,21 @@ def set_autologin(username, displaymanagers, default_desktop_environment,
             with open(mdm_conf_path, 'w') as mdm_conf:
                 for line in text:
                     if '[daemon]' in line:
-                        line = "[daemon]\nAutomaticLogin={!s}\nAutomaticLoginEnable=True\n".format(username)
+                        if do_autologin:
+                            line = "[daemon]\nAutomaticLogin={!s}\nAutomaticLoginEnable=True\n".format(username)
+                        else:
+                            line = "[daemon]\nAutomaticLogin={!s}\nAutomaticLoginEnable=False\n".format(username)
                     mdm_conf.write(line)
         else:
             with open(mdm_conf_path, 'w') as mdm_conf:
                 mdm_conf.write(
-                    '# Calamares - Enable automatic login for user\n')
+                    '# Calamares - Configure automatic login for user\n')
                 mdm_conf.write('[daemon]\n')
                 mdm_conf.write("AutomaticLogin={!s}\n".format(username))
-                mdm_conf.write('AutomaticLoginEnable=True\n')
+                if do_autologin:
+                    mdm_conf.write('AutomaticLoginEnable=True\n')
+                else:
+                    mdm_conf.write('AutomaticLoginEnable=False\n')
 
     if "gdm" in displaymanagers:
         # Systems with GDM as Desktop Manager
@@ -107,7 +113,10 @@ def set_autologin(username, displaymanagers, default_desktop_environment,
             with open(gdm_conf_path, 'w') as gdm_conf:
                 for line in text:
                     if '[daemon]' in line:
-                        line = "[daemon]\nAutomaticLogin={!s}\nAutomaticLoginEnable=True\n".format(username)
+                        if do_autologin:
+                            line = "[daemon]\nAutomaticLogin={!s}\nAutomaticLoginEnable=True\n".format(username)
+                        else:
+                            line = "[daemon]\nAutomaticLogin={!s}\nAutomaticLoginEnable=False\n".format(username)
                     gdm_conf.write(line)
         else:
             with open(gdm_conf_path, 'w') as gdm_conf:
@@ -115,7 +124,10 @@ def set_autologin(username, displaymanagers, default_desktop_environment,
                     '# Calamares - Enable automatic login for user\n')
                 gdm_conf.write('[daemon]\n')
                 gdm_conf.write("AutomaticLogin={!s}\n".format(username))
-                gdm_conf.write('AutomaticLoginEnable=True\n')
+                if do_autologin:
+                    mdm_conf.write('AutomaticLoginEnable=True\n')
+                else:
+                    mdm_conf.write('AutomaticLoginEnable=False\n')
         if os.path.exists("{!s}/var/lib/AccountsService/users".format(root_mount_point)):
             os.system(
                 "echo \"[User]\" > {!s}/var/lib/AccountsService/users/{!s}".format(
@@ -138,8 +150,11 @@ def set_autologin(username, displaymanagers, default_desktop_environment,
                 text = kdm_conf.readlines()
             with open(kdm_conf_path, 'w') as kdm_conf:
                 for line in text:
-                    if '#AutoLoginEnable=true' in line:
-                        line = 'AutoLoginEnable=true\n'
+                    if 'AutoLoginEnable=' in line:
+                        if do_autologin:
+                            line = 'AutoLoginEnable=true\n'
+                        else:
+                            line = 'AutoLoginEnable=false\n'
                     if 'AutoLoginUser=' in line:
                         line = "AutoLoginUser={!s}\n".format(username)
                     kdm_conf.write(line)
@@ -155,8 +170,11 @@ def set_autologin(username, displaymanagers, default_desktop_environment,
                 text = lxdm_conf.readlines()
             with open(lxdm_conf_path, 'w') as lxdm_conf:
                 for line in text:
-                    if '# autologin=dgod' in line:
-                        line = "autologin={!s}\n".format(username)
+                    if 'autologin=' in line:
+                        if do_autologin:
+                            line = "autologin={!s}\n".format(username)
+                        else:
+                            line = "# autologin={!s}\n".format(username)
                     lxdm_conf.write(line)
         else:
             return "Cannot write LXDM configuration file", "LXDM config file {!s} does not exist".format(lxdm_conf_path)
@@ -174,8 +192,11 @@ def set_autologin(username, displaymanagers, default_desktop_environment,
                 text = lightdm_conf.readlines()
             with open(lightdm_conf_path, 'w') as lightdm_conf:
                 for line in text:
-                    if '#autologin-user=' in line:
-                        line = "autologin-user={!s}\n".format(username)
+                    if 'autologin-user=' in line:
+                        if do_autologin:
+                            line = "autologin-user={!s}\n".format(username)
+                        else:
+                            line = "#autologin-user={!s}\n".format(username)
                     lightdm_conf.write(line)
         else:
             return "Cannot write LightDM configuration file", "LightDM config file {!s} does not exist".format(lightdm_conf_path)
@@ -190,7 +211,10 @@ def set_autologin(username, displaymanagers, default_desktop_environment,
             with open(slim_conf_path, 'w') as slim_conf:
                 for line in text:
                     if 'auto_login' in line:
-                        line = 'auto_login yes\n'
+                        if do_autologin:
+                            line = 'auto_login yes\n'
+                        else:
+                            line = 'auto_login no\n'
                     if 'default_user' in line:
                         line = "default_user {!s}\n".format(username)
                     slim_conf.write(line)
@@ -211,11 +235,17 @@ def set_autologin(username, displaymanagers, default_desktop_environment,
             for line in text:
                 # User= line, possibly commented out
                 if re.match('\\s*(?:#\\s*)?User=', line):
-                    line = 'User={}\n'.format(username)
+                    if do_autologin:
+                        line = 'User={}\n'.format(username)
+                    else:
+                        line = '#User={}\n'.format(username)
                 # Session= line, commented out or with empty value
                 if re.match('\\s*#\\s*Session=|\\s*Session=$', line):
                     if default_desktop_environment is not None:
-                        line = 'Session={}.desktop\n'.format(default_desktop_environment.desktop_file)
+                        if do_autologin:
+                            line = 'Session={}.desktop\n'.format(default_desktop_environment.desktop_file)
+                        else:
+                            line = '#Session={}.desktop\n'.format(default_desktop_environment.desktop_file)
                 sddm_conf.write(line)
 
     return None
@@ -372,6 +402,11 @@ def run():
     if username is not None:
         libcalamares.utils.debug(
             "Setting up autologin for user {!s}.".format(username))
-        return set_autologin(username, displaymanagers, default_desktop_environment, root_mount_point)
+        return set_autologin(username, displaymanagers, default_desktop_environment, root_mount_point, True)
+    else:
+        libcalamares.utils.debug(
+            "Unsetting autologin for user {!s}.".format(username))
+        return set_autologin(username, displaymanagers, default_desktop_environment, root_mount_point, False)
+
 
     return None
