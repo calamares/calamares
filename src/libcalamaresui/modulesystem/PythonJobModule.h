@@ -35,7 +35,7 @@ public:
     QList< job_ptr > jobs() const override;
 
 protected:
-    void initFrom( const YAML::Node &node ) override;
+    void initFrom( const YAML::Node& node ) override;
 
 private:
     friend class Module;

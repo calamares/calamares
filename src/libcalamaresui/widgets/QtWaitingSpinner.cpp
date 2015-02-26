@@ -26,7 +26,7 @@
 
 #include "QtWaitingSpinner.h"
 
-QtWaitingSpinner::QtWaitingSpinner(int linesNumber, int length, int width, int radius, QWidget *parent) : QWidget(parent),
+QtWaitingSpinner::QtWaitingSpinner(int linesNumber, int length, int width, int radius, QWidget* parent) : QWidget(parent),
 	myLinesNumber(linesNumber),
 	myLength(length + width),
 	myWidth(width),
@@ -45,7 +45,7 @@ QtWaitingSpinner::QtWaitingSpinner(int linesNumber, int length, int width, int r
 	this->hide();
 }
 
-void QtWaitingSpinner::paintEvent(QPaintEvent */*ev*/) {
+void QtWaitingSpinner::paintEvent(QPaintEvent* /*ev*/) {
 	QPainter painter(this);
 	painter.fillRect(this->rect(), Qt::transparent);
 	painter.setRenderHint(QPainter::Antialiasing, true);

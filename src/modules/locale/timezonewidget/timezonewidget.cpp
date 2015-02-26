@@ -22,7 +22,7 @@
 
 #include "timezonewidget.h"
 
-TimeZoneWidget::TimeZoneWidget(QWidget *parent) :
+TimeZoneWidget::TimeZoneWidget(QWidget* parent) :
     QWidget(parent)
 {
     setMouseTracking(false);
@@ -157,7 +157,7 @@ void TimeZoneWidget::paintEvent(QPaintEvent*) {
 
 
 
-void TimeZoneWidget::mousePressEvent(QMouseEvent *event) {
+void TimeZoneWidget::mousePressEvent(QMouseEvent* event) {
     if (event->button() != Qt::LeftButton)
         return;
 

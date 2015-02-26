@@ -56,7 +56,7 @@ public:
     static Branding* instance();
 
     explicit Branding( const QString& brandingFilePath,
-                       QObject *parent = nullptr );
+                       QObject* parent = nullptr );
 
     QString descriptorPath() const;
     QString componentName() const;

@@ -70,7 +70,7 @@ private:
 
     void updateVariants( LayoutItem* currentItem, QString currentVariant = QString() );
 
-    Ui::Page_Keyboard *ui;
+    Ui::Page_Keyboard* ui;
     KeyBoardPreview* m_keyboardPreview;
     int m_defaultIndex;
     QMap< QString, QString > m_models;

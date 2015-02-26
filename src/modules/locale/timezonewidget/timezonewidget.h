@@ -48,7 +48,7 @@ class TimeZoneWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit TimeZoneWidget(QWidget *parent = 0);
+    explicit TimeZoneWidget(QWidget* parent = 0);
 
     LocaleGlobal::Location getCurrentLocation() { return currentLocation; }
     void setCurrentLocation(QString region, QString zone);
@@ -65,8 +65,8 @@ private:
 
     QPoint getLocationPosition(double longitude, double latitude);
 
-    void paintEvent(QPaintEvent *event);
-    void mousePressEvent(QMouseEvent *event);
+    void paintEvent(QPaintEvent* event);
+    void mousePressEvent(QMouseEvent* event);
 };
 
 #endif // TIMEZONEWIDGET_H

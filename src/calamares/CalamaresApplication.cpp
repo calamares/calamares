@@ -37,7 +37,7 @@
 #include <QFileInfo>
 
 
-CalamaresApplication::CalamaresApplication( int& argc, char *argv[] )
+CalamaresApplication::CalamaresApplication( int& argc, char* argv[] )
     : QApplication( argc, argv )
     , m_mainwindow( 0 )
 {
@@ -380,6 +380,6 @@ CalamaresApplication::onPluginsReady()
 void
 CalamaresApplication::initJobQueue()
 {
-    Calamares::JobQueue *jobQueue = new Calamares::JobQueue( this );
+    Calamares::JobQueue* jobQueue = new Calamares::JobQueue( this );
     Calamares::Branding::instance()->setGlobals( jobQueue->globalStorage() );
 }

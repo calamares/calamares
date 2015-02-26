@@ -28,7 +28,7 @@
 #include <QDir>
 
 int
-main( int argc, char *argv[] )
+main( int argc, char* argv[] )
 {
     CalamaresApplication a( argc, argv );
 

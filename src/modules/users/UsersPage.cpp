@@ -135,7 +135,7 @@ UsersPage::onActivate()
 
 
 void
-UsersPage::onFullNameTextEdited( const QString &textRef )
+UsersPage::onFullNameTextEdited( const QString& textRef )
 {
     if ( textRef.isEmpty() )
     {

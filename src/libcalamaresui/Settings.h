@@ -35,7 +35,7 @@ class UIDLLEXPORT Settings : public QObject
 public:
     explicit Settings( const QString& settingsFilePath,
                        bool debugMode,
-                       QObject *parent = nullptr );
+                       QObject* parent = nullptr );
 
     static Settings* instance();
     //TODO: load from JSON then emit ready
