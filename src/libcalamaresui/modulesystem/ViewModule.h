@@ -38,14 +38,14 @@ public:
     QList< job_ptr > jobs() const override;
 
 protected:
-    void initFrom( const YAML::Node &node ) override;
+    void initFrom( const YAML::Node& node ) override;
 
 private:
     friend class Module; //so only the superclass can instantiate
     explicit ViewModule();
     virtual ~ViewModule();
 
-    QPluginLoader *m_loader;
+    QPluginLoader* m_loader;
     ViewStep* m_viewStep = nullptr;
 };
 

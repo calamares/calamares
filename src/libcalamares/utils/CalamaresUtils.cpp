@@ -186,7 +186,7 @@ installTranslator( const QString& localeName, QObject* parent )
 
 
 void
-setQmlModulesDir( const QDir &dir )
+setQmlModulesDir( const QDir& dir )
 {
     s_qmlModulesDir = dir;
 }

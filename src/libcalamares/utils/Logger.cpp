@@ -46,7 +46,7 @@ namespace Logger
 {
 
 static void
-log( const char *msg, unsigned int debugLevel, bool toDisk = true )
+log( const char* msg, unsigned int debugLevel, bool toDisk = true )
 {
     if ( s_threshold < 0 )
     {

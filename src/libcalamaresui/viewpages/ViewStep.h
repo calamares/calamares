@@ -31,7 +31,7 @@ class UIDLLEXPORT ViewStep : public QObject
 {
     Q_OBJECT
 public:
-    explicit ViewStep( QObject *parent = nullptr );
+    explicit ViewStep( QObject* parent = nullptr );
     virtual ~ViewStep();
 
     virtual QString prettyName() const = 0;

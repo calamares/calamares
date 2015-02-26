@@ -40,7 +40,7 @@ class KeyBoardPreview : public QWidget
 {
     Q_OBJECT
 public:
-    explicit KeyBoardPreview(QWidget *parent = 0);
+    explicit KeyBoardPreview(QWidget* parent = 0);
     
     void setLayout(QString layout);
     void setVariant(QString variant);
@@ -59,7 +59,7 @@ private:
 
     QString layout, variant;
     QFont lowerFont, upperFont;
-    KB *kb, kbList[3];
+    KB* kb, kbList[3];
     QList<Code> codes;
     int space, usable_width, key_w;
 
@@ -72,8 +72,8 @@ private:
     QString fromUnicodeString(QString raw);
 
 protected:
-    void paintEvent(QPaintEvent * event);
-    void resizeEvent(QResizeEvent * event);
+    void paintEvent(QPaintEvent* event);
+    void resizeEvent(QResizeEvent* event);
 
 };
 

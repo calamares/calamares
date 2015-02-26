@@ -218,7 +218,7 @@ Helper::createCleanNamespace()
 QString
 Helper::handleLastError()
 {
-    PyObject *type = nullptr, *val = nullptr, *tb = nullptr;
+    PyObject* type = nullptr, *val = nullptr, *tb = nullptr;
     PyErr_Fetch( &type, &val, &tb );
 
     QString typeMsg;

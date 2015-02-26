@@ -31,7 +31,7 @@
 PreparePage::PreparePage( QWidget* parent )
     : QWidget()
 {
-    QBoxLayout *mainLayout = new QVBoxLayout;
+    QBoxLayout* mainLayout = new QVBoxLayout;
     setLayout( mainLayout );
 
     QLabel* text = new QLabel( this );

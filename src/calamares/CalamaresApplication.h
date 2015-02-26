@@ -36,7 +36,7 @@ class CalamaresApplication : public QApplication
 {
     Q_OBJECT
 public:
-    CalamaresApplication( int& argc, char *argv[] );
+    CalamaresApplication( int& argc, char* argv[] );
     virtual ~CalamaresApplication();
 
     void init();

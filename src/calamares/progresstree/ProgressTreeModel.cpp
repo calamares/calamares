@@ -88,7 +88,7 @@ ProgressTreeModel::data( const QModelIndex& index, int role ) const
     if ( !index.isValid() )
         return QVariant();
 
-    ProgressTreeItem *item = static_cast< ProgressTreeItem* >( index.internalPointer() );
+    ProgressTreeItem* item = static_cast< ProgressTreeItem* >( index.internalPointer() );
 
     return item->data( role );
 }

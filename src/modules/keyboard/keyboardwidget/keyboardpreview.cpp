@@ -22,7 +22,7 @@
 
 #include "keyboardpreview.h"
 
-KeyBoardPreview::KeyBoardPreview(QWidget *parent) :
+KeyBoardPreview::KeyBoardPreview(QWidget* parent) :
     QWidget(parent)
 {
     setMinimumSize(700, 191);
@@ -206,7 +206,7 @@ void KeyBoardPreview::resizeEvent(QResizeEvent *) {
 
 
 
-void KeyBoardPreview::paintEvent(QPaintEvent * event) {
+void KeyBoardPreview::paintEvent(QPaintEvent* event) {
     QPainter p(this);
     p.setRenderHint(QPainter::Antialiasing);
 
