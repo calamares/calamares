@@ -206,16 +206,16 @@ p, li { white-space: pre-wrap; }
     <name>Calamares::ProcessJob</name>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="51"/>
-        <source>Run command %1</source>
-        <translation>ทำคำสั่ง %1</translation>
+        <source>Run command %1 %2</source>
+        <translation>ทำคำสั่ง %1 %2</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/ProcessJob.cpp" line="77"/>
+        <location filename="../src/libcalamares/ProcessJob.cpp" line="79"/>
         <source>External command crashed</source>
         <translation>คำสั่งภายนอกล้มเหลว</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/ProcessJob.cpp" line="78"/>
+        <location filename="../src/libcalamares/ProcessJob.cpp" line="80"/>
         <source>Command %1 crashed.
 Output:
 %2</source>
@@ -224,32 +224,32 @@ Output:
 %2</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/ProcessJob.cpp" line="83"/>
+        <location filename="../src/libcalamares/ProcessJob.cpp" line="85"/>
         <source>External command failed to start</source>
         <translation>การเริ่มต้นคำสั่งภายนอกล้มเหลว</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/ProcessJob.cpp" line="84"/>
+        <location filename="../src/libcalamares/ProcessJob.cpp" line="86"/>
         <source>Command %1 failed to start.</source>
         <translation>การเริ่มต้นคำสั่ง %1 ล้มเหลว</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/ProcessJob.cpp" line="88"/>
+        <location filename="../src/libcalamares/ProcessJob.cpp" line="90"/>
         <source>Internal error when starting command</source>
         <translation>เกิดข้อผิดพลาดภายในขณะเริ่มต้นคำสั่ง</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/ProcessJob.cpp" line="89"/>
+        <location filename="../src/libcalamares/ProcessJob.cpp" line="91"/>
         <source>Bad parameters for process job call.</source>
         <translation>พารามิเตอร์ไม่ถูกต้องสำหรับการเรียกการทำงาน</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/ProcessJob.cpp" line="92"/>
+        <location filename="../src/libcalamares/ProcessJob.cpp" line="94"/>
         <source>External command failed to finish</source>
         <translation>การจบคำสั่งภายนอกล้มเหลว</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/ProcessJob.cpp" line="93"/>
+        <location filename="../src/libcalamares/ProcessJob.cpp" line="95"/>
         <source>Command %1 failed to finish in %2s.
 Output:
 %3</source>
@@ -258,12 +258,12 @@ Output:
 %3</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/ProcessJob.cpp" line="99"/>
+        <location filename="../src/libcalamares/ProcessJob.cpp" line="101"/>
         <source>External command finished with errors</source>
         <translation>คำสั่งภายนอกจบพร้อมกับข้อผิดพลาด</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/ProcessJob.cpp" line="100"/>
+        <location filename="../src/libcalamares/ProcessJob.cpp" line="102"/>
         <source>Command %1 finished with exit code %2.
 Output:
 %3</source>
@@ -2675,27 +2675,27 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="233"/>
         <source>Your username is too long.</source>
-        <translation type="unfinished"/>
+        <translation>ชื่อผู้ใช้ของคุณยาวเกินไป</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="243"/>
         <source>Your username contains invalid characters. Only lowercase letters and numbers are allowed.</source>
-        <translation type="unfinished"/>
+        <translation>ชื่อผู้ใช้ของคุณมีตัวอักษรที่ไม่ถูกต้อง ใช้ได้เฉพาะตัวอักษรภาษาอังกฤษตัวเล็กและตัวเลขเท่านั้น</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="287"/>
         <source>Your hostname is too short.</source>
-        <translation type="unfinished"/>
+        <translation>ชื่อโฮสต์ของคุณสั้นเกินไป</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="298"/>
         <source>Your hostname is too long.</source>
-        <translation type="unfinished"/>
+        <translation>ชื่อโฮสต์ของคุณยาวเกินไป</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="309"/>
         <source>Your hostname contains invalid characters. Only letters, numbers and dashes are allowed.</source>
-        <translation type="unfinished"/>
+        <translation>ชื่อโฮสต์ของคุณมีตัวอักษรที่ไม่ถูกต้อง ใช้ได้เฉพาะตัวอักษรภาษาอังกฤษ ตัวเลข และขีดกลาง &quot;-&quot; เท่านั้น</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="340"/>

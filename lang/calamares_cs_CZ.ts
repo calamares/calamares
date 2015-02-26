@@ -206,16 +206,16 @@ p, li { white-space: pre-wrap; }
     <name>Calamares::ProcessJob</name>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="51"/>
-        <source>Run command %1</source>
-        <translation>Spustit příkaz</translation>
+        <source>Run command %1 %2</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/libcalamares/ProcessJob.cpp" line="77"/>
+        <location filename="../src/libcalamares/ProcessJob.cpp" line="79"/>
         <source>External command crashed</source>
         <translation>Externí příkaz selhal</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/ProcessJob.cpp" line="78"/>
+        <location filename="../src/libcalamares/ProcessJob.cpp" line="80"/>
         <source>Command %1 crashed.
 Output:
 %2</source>
@@ -224,32 +224,32 @@ Výstup:
 %2</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/ProcessJob.cpp" line="83"/>
+        <location filename="../src/libcalamares/ProcessJob.cpp" line="85"/>
         <source>External command failed to start</source>
         <translation>Start externího příkazu selhal</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/ProcessJob.cpp" line="84"/>
+        <location filename="../src/libcalamares/ProcessJob.cpp" line="86"/>
         <source>Command %1 failed to start.</source>
         <translation>Start příkazu %1 selhal.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/ProcessJob.cpp" line="88"/>
+        <location filename="../src/libcalamares/ProcessJob.cpp" line="90"/>
         <source>Internal error when starting command</source>
         <translation>Vnitřní chyba při startu příkazu</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/ProcessJob.cpp" line="89"/>
+        <location filename="../src/libcalamares/ProcessJob.cpp" line="91"/>
         <source>Bad parameters for process job call.</source>
         <translation>Špatné parametry příkazu.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/ProcessJob.cpp" line="92"/>
+        <location filename="../src/libcalamares/ProcessJob.cpp" line="94"/>
         <source>External command failed to finish</source>
         <translation>Dokončení externího příkazu selhalo.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/ProcessJob.cpp" line="93"/>
+        <location filename="../src/libcalamares/ProcessJob.cpp" line="95"/>
         <source>Command %1 failed to finish in %2s.
 Output:
 %3</source>
@@ -258,12 +258,12 @@ Výstup:
 %3</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/ProcessJob.cpp" line="99"/>
+        <location filename="../src/libcalamares/ProcessJob.cpp" line="101"/>
         <source>External command finished with errors</source>
         <translation>Externí příkaz skončil s chybami.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/ProcessJob.cpp" line="100"/>
+        <location filename="../src/libcalamares/ProcessJob.cpp" line="102"/>
         <source>Command %1 finished with exit code %2.
 Output:
 %3</source>
