@@ -1,0 +1,6 @@
+---
+type:       "job"
+name:       "removeuser"
+interface:  "python"
+requires:   []
+script:     "main.py"
