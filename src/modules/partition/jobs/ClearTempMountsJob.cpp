@@ -43,7 +43,7 @@ Calamares::JobResult
 ClearTempMountsJob::exec()
 {
     // Fetch a list of current mounts to Calamares temporary directories.
-    QMap< QString, QString > lst;
+    QList< QPair < QString, QString > > lst;
     QFile mtab( "/etc/mtab" );
     if ( !mtab.open( QFile::ReadOnly | QFile::Text ) )
         return Calamares::JobResult::error( tr( "Cannot get list of temporary mounts." ) );
@@ -59,21 +59,22 @@ ClearTempMountsJob::exec()
         if ( mountPoint.startsWith( "/tmp/calamares-" ) )
         {
             cDebug() << "INSERTING pair (device, mountPoint)" << device << mountPoint;
-            lst.insert( device, mountPoint );
+            lst.append( qMakePair( device, mountPoint ) );
         }
     }
 
-    QStringList keys = lst.keys();
-    keys.sort();
-
-    cDebug() << "Sorted keys:\n" << keys;
+    qSort( lst.begin(), lst.end(), []( const QPair< QString, QString >& a,
+                                       const QPair< QString, QString >& b ) -> bool
+    {
+        return a.first > b.first;
+    } );
 
     QStringList goodNews;
     QProcess process;
 
-    for ( int i = keys.length() - 1; i >= 0; --i )
+    foreach ( auto line, lst )
     {
-        QString partPath = lst.value( keys[ i ] );
+        QString partPath = line.second;
         cDebug() << "Will try to umount path" << partPath;
         process.start( "umount", { "-lv", partPath } );
         process.waitForFinished();
