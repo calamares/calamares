@@ -207,7 +207,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="51"/>
         <source>Run command %1 %2</source>
-        <translation type="unfinished"/>
+        <translation>Esegui comando %1 %2</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="79"/>
@@ -2694,7 +2694,7 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="309"/>
         <source>Your hostname contains invalid characters. Only letters, numbers and dashes are allowed.</source>
-        <translation type="unfinished"/>
+        <translation>Il tuo hostname contiene caratteri non validi. Sono ammessi solo lettere, numeri e trattini.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="340"/>
