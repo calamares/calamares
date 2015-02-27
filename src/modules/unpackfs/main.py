@@ -3,9 +3,9 @@
 #
 # === This file is part of Calamares - <http://github.com/calamares> ===
 #
-#   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+#   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
 #   Copyright 2014, Daniel Hillenbrand <codeworkx@bbqlinux.org>
-#   Copyright 2014, Philip Müller <philm@manjaro.org>
+#   Copyright 2014-2015, Philip Müller <philm@manjaro.org>
 #
 #   Calamares is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -223,6 +223,16 @@ class UnpackOperation:
         finally:
             subprocess.check_call(["umount", "-l", imgmountdir])
 
+def list_mounts_to_clear():
+    """ Fetch a list of current mounts to Calamares temporary directories.
+    :return: a list of (device, mount_point) tuples.
+    """
+    lst = []
+    for line in open("/etc/mtab").readlines():
+        device, mount_point, _ = line.split(" ", 2)
+        if mount_point.startswith("/tmp/calamares-"):
+            lst.append((device, mount_point))
+    return lst
 
 def run():
     """ Unsquashes filesystem from given image file.
@@ -242,6 +252,17 @@ def run():
 
     :return:
     """
+
+    # First we need to make sure there are no leftover mounts to Calamares temporary
+    # directories from a previous incomplete install.
+    lst = list_mounts_to_clear()
+    # Sort the list by mount point in decreasing order. This way we can be sure
+    # we unmount deeper dirs first.
+    lst.sort(key=lambda x: x[1], reverse=True)
+
+    for device, mount_point in lst:
+        subprocess.check_call(["umount", "-lv", mount_point])
+
     PATH_PROCFS = '/proc/filesystems'
 
     root_mount_point = globalstorage.value("rootMountPoint")
