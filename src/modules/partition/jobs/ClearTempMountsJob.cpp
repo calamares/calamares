@@ -48,18 +48,25 @@ ClearTempMountsJob::exec()
     if ( !mtab.open( QFile::ReadOnly | QFile::Text ) )
         return Calamares::JobResult::error( tr( "Cannot get list of temporary mounts." ) );
 
+    cDebug() << "Opened mtab. Lines:";
     while ( !mtab.atEnd() )
     {
         QStringList line = QString::fromLocal8Bit( mtab.readLine() )
                            .split( ' ', QString::SkipEmptyParts );
+        cDebug() << line.join( ' ' );
         QString device = line.at( 0 );
         QString mountPoint = line.at( 1 );
         if ( mountPoint.startsWith( "/tmp/calamares-" ) )
+        {
+            cDebug() << "INSERTING pair (device, mountPoint)" << device << mountPoint;
             lst.insert( device, mountPoint );
+        }
     }
 
     QStringList keys = lst.keys();
     keys.sort();
+
+    cDebug() << "Sorted keys:\n" << keys;
 
     QStringList goodNews;
     QProcess process;
@@ -67,11 +74,11 @@ ClearTempMountsJob::exec()
     for ( int i = keys.length() - 1; i >= 0; --i )
     {
         QString partPath = lst.value( keys[ i ] );
+        cDebug() << "Will try to umount path" << partPath;
         process.start( "umount", { "-lv", partPath } );
         process.waitForFinished();
         if ( process.exitCode() == 0 )
             goodNews.append( QString( "Successfully unmounted %1." ).arg( partPath ) );
-
     }
 
     Calamares::JobResult ok = Calamares::JobResult::ok();
