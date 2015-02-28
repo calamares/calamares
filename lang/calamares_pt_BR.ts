@@ -9,7 +9,7 @@
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="68"/>
         <source>Allocate drive space by dragging the divider below:</source>
-        <translation>Aloque espaço no drive deslizando o divisor abaixo:</translation>
+        <translation>Aloque espaço no disco deslizando o divisor abaixo:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="167"/>
@@ -207,7 +207,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="51"/>
         <source>Run command %1 %2</source>
-        <translation type="unfinished"/>
+        <translation>Executar comando %1 %2</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="79"/>
@@ -231,7 +231,7 @@ Saída:
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="86"/>
         <source>Command %1 failed to start.</source>
-        <translation>Comando %1 falhou ao iniciar</translation>
+        <translation>Comando %1 falhou ao iniciar.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="90"/>
@@ -356,7 +356,7 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
     <message>
         <location filename="../src/libcalamares/PythonHelper.cpp" line="234"/>
         <source>Unknown exception type</source>
-        <translation>Tipo de exceção desconhecido</translation>
+        <translation>Tipo de exceção desconhecida</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonHelper.cpp" line="247"/>
@@ -422,7 +422,7 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="147"/>
         <source>&lt;b&gt;Erase entire disk with %1 and install %2&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;This will erase the whole disk and delete all of your %1 programs, documents, photos, music, and any other files.</source>
-        <translation>&lt;b&gt;Apagar disco inteiro com %1 e instalar %2&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Aviso: &lt;/font&gt;Isso ira apagar todo o disco e deletar todos os seus programas %1 programas, documentos, fotos, musicas, e outros arquivos.</translation>
+        <translation>&lt;b&gt;Apagar disco inteiro com %1 e instalar %2&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Aviso: &lt;/font&gt;Isso irá apagar todo o disco e deletar todos os seus %1 programas, documentos, fotos, músicas e outros arquivos.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="155"/>
@@ -439,7 +439,7 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="168"/>
         <source>&lt;b&gt;Install %1 alongside your current operating system&lt;/b&gt;&lt;br/&gt;Documents, music and other personal files will be kept. You can choose which operating system you want each time the computer starts up.</source>
-        <translation>&lt;b&gt; Instalar %1 junto ao sistema operacional atual&lt;/ b&gt;&lt;br/&gt;Serão mantidos documentos, músicas e outros arquivos pessoais e você poderá escolher entre os sistemas operacionais durante a inicialização.</translation>
+        <translation>&lt;b&gt; Instalar %1 junto ao sistema operacional atual&lt;/ b&gt;&lt;br/&gt;Serão mantidos documentos, músicas e outros arquivos pessoais. Você poderá escolher entre os sistemas operacionais durante a inicialização.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="207"/>
@@ -449,12 +449,12 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="210"/>
         <source>&lt;b&gt;Install %1 alongside your current operating systems&lt;/b&gt;&lt;br/&gt;Documents, music and other personal files will be kept. You can choose which operating system you want each time the computer starts up.</source>
-        <translation>&lt;b&gt;Instalar %1 junto aos sistemas operacionais atuais&lt;/ b&gt;&lt;br/&gt;Serão mantidos documentos, músicas e outros arquivos pessoais e você poderá escolher entre os sistemas operacionais durante a inicialização</translation>
+        <translation>&lt;b&gt;Instalar %1 junto aos sistemas operacionais atuais&lt;/ b&gt;&lt;br/&gt;Serão mantidos documentos, músicas e outros arquivos pessoais. Você poderá escolher entre os sistemas operacionais durante a inicialização</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="240"/>
         <source>&lt;b&gt;Something else&lt;/b&gt;&lt;br/&gt;You can create or resize partitions yourself, or choose multiple partitions for %1.</source>
-        <translation>&lt;b&gt;Outra coisa&lt;/ b&gt;&lt;br/&gt;Você pode criar ou redimensionar partições manualmente ou para escolher múltiplas partições para %1.</translation>
+        <translation>&lt;b&gt;Outra coisa&lt;/ b&gt;&lt;br/&gt;Você pode criar ou redimensionar partições manualmente ou escolher múltiplas partições para %1.</translation>
     </message>
 </context>
 <context>
@@ -510,32 +510,32 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="101"/>
         <source>KiB</source>
-        <translation>KB</translation>
+        <translation>KiB</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="106"/>
         <source>MiB</source>
-        <translation>MB</translation>
+        <translation>MiB</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="111"/>
         <source>GiB</source>
-        <translation>GB</translation>
+        <translation>GiB</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="116"/>
         <source>TiB</source>
-        <translation>TB</translation>
+        <translation>TiB</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="121"/>
         <source>PiB</source>
-        <translation>PB</translation>
+        <translation>PiB</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="126"/>
         <source>EiB</source>
-        <translation>EB</translation>
+        <translation>EiB</translation>
     </message>
 </context>
 <context>
@@ -701,7 +701,7 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="90"/>
         <source>Logging</source>
-        <translation>Entrando</translation>
+        <translation>Logging</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="96"/>
@@ -834,12 +834,12 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="85"/>
         <source>Logical</source>
-        <translation>Lógico</translation>
+        <translation>Lógica</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="90"/>
         <source>Primary</source>
-        <translation>Primário</translation>
+        <translation>Primária</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="107"/>
@@ -1739,7 +1739,7 @@ Alguns sistemas de arquivos necessitam de ferramentas externas para serem suport
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="451"/>
         <source>Choose a password for the administrator account.</source>
-        <translation>Definir a senha da conta administradora.</translation>
+        <translation>Escolha uma senha para a conta administradora.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="556"/>
@@ -2675,27 +2675,27 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="233"/>
         <source>Your username is too long.</source>
-        <translation type="unfinished"/>
+        <translation>O nome de usuário é grande demais.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="243"/>
         <source>Your username contains invalid characters. Only lowercase letters and numbers are allowed.</source>
-        <translation type="unfinished"/>
+        <translation>O nome de usuário contém caracteres inválidos. Apenas letras minúsculas e números são permitidos.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="287"/>
         <source>Your hostname is too short.</source>
-        <translation type="unfinished"/>
+        <translation>O nome da máquina é muito curto.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="298"/>
         <source>Your hostname is too long.</source>
-        <translation type="unfinished"/>
+        <translation>O nome da máquina é muito grande.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="309"/>
         <source>Your hostname contains invalid characters. Only letters, numbers and dashes are allowed.</source>
-        <translation type="unfinished"/>
+        <translation>O nome da máquina contém caracteres inválidos. Apenas letras, números e traços são permitidos.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="340"/>
