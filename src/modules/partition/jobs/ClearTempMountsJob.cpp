@@ -49,10 +49,11 @@ ClearTempMountsJob::exec()
         return Calamares::JobResult::error( tr( "Cannot get list of temporary mounts." ) );
 
     cDebug() << "Opened mtab. Lines:";
-    while ( !mtab.atEnd() )
+    QTextStream in(&mtab);
+    QString lineIn = in.readLine();
+    while ( !lineIn.isNull() )
     {
-        QStringList line = QString::fromLocal8Bit( mtab.readLine() )
-                           .split( ' ', QString::SkipEmptyParts );
+        QStringList line = lineIn.split( ' ', QString::SkipEmptyParts );
         cDebug() << line.join( ' ' );
         QString device = line.at( 0 );
         QString mountPoint = line.at( 1 );
@@ -61,6 +62,7 @@ ClearTempMountsJob::exec()
             cDebug() << "INSERTING pair (device, mountPoint)" << device << mountPoint;
             lst.append( qMakePair( device, mountPoint ) );
         }
+        lineIn = in.readLine();
     }
 
     qSort( lst.begin(), lst.end(), []( const QPair< QString, QString >& a,
