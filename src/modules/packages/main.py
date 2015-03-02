@@ -53,7 +53,7 @@ class PackageManager:
         elif self.backend == "apt":
             check_chroot_call(["apt-get", "-q", "-y", "install"] + pkgs)
         elif self.backend == "pacman":
-            pacman_flags = "-Sy" if from_local else "-U"
+            pacman_flags = "-U" if from_local else "-Sy"
             check_chroot_call(["pacman", pacman_flags, "--noconfirm"] + pkgs)
 
     def remove(self, pkgs):
