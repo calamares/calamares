@@ -44,6 +44,7 @@ calamares_add_plugin( partition
         gui/ReplacePage.cpp
         jobs/CheckFileSystemJob.cpp
         jobs/ClearMountsJob.cpp
+        jobs/ClearTempMountsJob.cpp
         jobs/CreatePartitionJob.cpp
         jobs/CreatePartitionTableJob.cpp
         jobs/DeletePartitionJob.cpp
