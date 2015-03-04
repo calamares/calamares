@@ -24,6 +24,7 @@
 #include "utils/CalamaresStyle.h"
 #include "utils/Logger.h"
 #include "utils/DebugWindow.h"
+#include "utils/Retranslator.h"
 #include "Settings.h"
 #include "Branding.h"
 
@@ -89,7 +90,10 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
 
     if ( Calamares::Settings::instance()->debugMode() )
     {
-        QPushButton* debugWindowBtn = new QPushButton( tr( "Show diagnostics" ) );
+        QPushButton* debugWindowBtn = new QPushButton;
+        CALAMARES_RETRANSLATE(
+            debugWindowBtn->setText( tr( "Show diagnostics" ) );
+        )
         sideLayout->addWidget( debugWindowBtn );
         debugWindowBtn->setFlat( true );
         debugWindowBtn->setCheckable( true );
