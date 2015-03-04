@@ -91,7 +91,7 @@ def run_operations(pkgman, entry):
             pkgman.install(entry[key])
         elif key == "remove":
             pkgman.remove(entry[key])
-        elif key == "local_install":
+        elif key == "localInstall":
             pkgman.install(entry[key], from_local=True)
 
 
