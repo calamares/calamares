@@ -40,6 +40,8 @@ class list;
 namespace Calamares
 {
 
+class DebugWindow;
+
 class GlobalStorage
 {
 public:
@@ -61,8 +63,11 @@ public:
     int python_remove( const std::string& key );
     boost::python::api::object python_value( const std::string& key ) const;
 #endif
+
 private:
     QVariantMap m;
+
+    friend DebugWindow;
 };
 
 } // namespace Calamares
