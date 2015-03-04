@@ -23,6 +23,8 @@
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/CalamaresStyle.h"
 #include "utils/Logger.h"
+#include "utils/DebugWindow.h"
+#include "Settings.h"
 #include "Branding.h"
 
 #include <QApplication>
@@ -33,6 +35,7 @@
 
 CalamaresWindow::CalamaresWindow( QWidget* parent )
     : QWidget( parent )
+    , m_debugWindow( nullptr )
 {
     // Hide close button
     setWindowFlags( Qt::Window | Qt::WindowTitleHint | Qt::CustomizeWindowHint );
@@ -83,6 +86,37 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
     ProgressTreeView* tv = new ProgressTreeView( sideBox );
     sideLayout->addWidget( tv );
     tv->setFocusPolicy( Qt::NoFocus );
+
+    if ( Calamares::Settings::instance()->debugMode() )
+    {
+        QPushButton* debugWindowBtn = new QPushButton( tr( "Show diagnostics" ) );
+        sideLayout->addWidget( debugWindowBtn );
+        debugWindowBtn->setFlat( true );
+        debugWindowBtn->setCheckable( true );
+        connect( debugWindowBtn, &QPushButton::clicked,
+                 [ this, debugWindowBtn ]( bool checked )
+        {
+            if ( checked )
+            {
+                m_debugWindow = new Calamares::DebugWindow();
+                m_debugWindow->show();
+                connect( m_debugWindow, &Calamares::DebugWindow::closed,
+                         [ this, debugWindowBtn ]
+                {
+                    m_debugWindow->deleteLater();
+                    debugWindowBtn->setChecked( false );
+                } );
+            }
+            else
+            {
+                if ( m_debugWindow )
+                {
+                    m_debugWindow->deleteLater();
+                }
+            }
+        } );
+    }
+
     CalamaresUtils::unmarginLayout( sideLayout );
     CalamaresUtils::unmarginLayout( mainLayout );
 

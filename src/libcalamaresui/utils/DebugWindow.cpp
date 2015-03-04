@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2015, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -16,26 +16,26 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef CALAMARESWINDOW_H
-#define CALAMARESWINDOW_H
+#include "DebugWindow.h"
+#include "utils/Retranslator.h"
 
-#include <QPointer>
-#include <QWidget>
+namespace Calamares {
 
-namespace Calamares
+DebugWindow::DebugWindow()
+    : QWidget( nullptr )
 {
-class DebugWindow;
+
+    setupUi( this );
+
+    CALAMARES_RETRANSLATE( retranslateUi( this ); )
 }
 
-class CalamaresWindow : public QWidget
+
+void
+DebugWindow::closeEvent( QCloseEvent* e )
 {
-    Q_OBJECT
-public:
-    CalamaresWindow( QWidget* parent = nullptr );
-    virtual ~CalamaresWindow() {}
+    Q_UNUSED( e )
+    emit closed();
+}
 
-private:
-    QPointer< Calamares::DebugWindow > m_debugWindow;
-};
-
-#endif //CALAMARESWINDOW_H
+} // namespace Calamares
