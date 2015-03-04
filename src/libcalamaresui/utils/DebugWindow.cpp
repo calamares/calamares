@@ -18,6 +18,12 @@
 
 #include "DebugWindow.h"
 #include "utils/Retranslator.h"
+#include "utils/qjsonmodel.h"
+#include "JobQueue.h"
+#include "GlobalStorage.h"
+
+#include <QJsonDocument>
+#include <QTreeView>
 
 namespace Calamares {
 
@@ -26,6 +32,11 @@ DebugWindow::DebugWindow()
 {
 
     setupUi( this );
+
+    QJsonModel* jsonModel = new QJsonModel( this );
+
+    globalStorageView->setModel( jsonModel );
+    jsonModel->loadJson( QJsonDocument::fromVariant( Calamares::JobQueue::instance()->globalStorage()->m ).toJson() );
 
     CALAMARES_RETRANSLATE( retranslateUi( this ); )
 }
