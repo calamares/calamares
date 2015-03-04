@@ -11,6 +11,9 @@ list( APPEND ${CALAMARESUI_LIBRARY_TARGET}_SOURCES
     utils/ImageRegistry.cpp
     utils/YamlUtils.cpp
 
+    utils/qjsonmodel.cpp
+    utils/qjsonitem.cpp
+
     viewpages/AbstractPage.cpp
     viewpages/ViewStep.cpp
 
