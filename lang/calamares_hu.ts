@@ -474,6 +474,24 @@ A dokumentumai, zenéi és egyéb személyes fájljai megmaradnak. Választhat a
     </message>
 </context>
 <context>
+    <name>ClearTempMountsJob</name>
+    <message>
+        <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="38"/>
+        <source>Clear all temporary mounts.</source>
+        <translation>Minden ideiglenes csatolás törlése</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="49"/>
+        <source>Cannot get list of temporary mounts.</source>
+        <translation>Nem lehet lekérni az ideiglenes csatolási listát</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="88"/>
+        <source>Cleared all temporary mounts.</source>
+        <translation>Minden ideiglenes csatolás törölve</translation>
+    </message>
+</context>
+<context>
     <name>ConfigurePageAdvanced</name>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="23"/>

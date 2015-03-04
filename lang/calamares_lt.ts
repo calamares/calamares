@@ -471,6 +471,24 @@ Diegėjas užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
     </message>
 </context>
 <context>
+    <name>ClearTempMountsJob</name>
+    <message>
+        <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="38"/>
+        <source>Clear all temporary mounts.</source>
+        <translation>Išvalyti visus laikinuosius prijungimus.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="49"/>
+        <source>Cannot get list of temporary mounts.</source>
+        <translation>Nepavyksta gauti laikinųjų prijungimų sąrašo.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="88"/>
+        <source>Cleared all temporary mounts.</source>
+        <translation>Visi laikinieji prijungimai išvalyti.</translation>
+    </message>
+</context>
+<context>
     <name>ConfigurePageAdvanced</name>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="23"/>

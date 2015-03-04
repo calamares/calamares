@@ -471,6 +471,24 @@ The installer will quit and all changes will be lost.</translation>
     </message>
 </context>
 <context>
+    <name>ClearTempMountsJob</name>
+    <message>
+        <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="38"/>
+        <source>Clear all temporary mounts.</source>
+        <translation>Clear all temporary mounts.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="49"/>
+        <source>Cannot get list of temporary mounts.</source>
+        <translation>Cannot get list of temporary mounts.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="88"/>
+        <source>Cleared all temporary mounts.</source>
+        <translation>Cleared all temporary mounts.</translation>
+    </message>
+</context>
+<context>
     <name>ConfigurePageAdvanced</name>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="23"/>
