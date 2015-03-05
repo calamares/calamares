@@ -36,7 +36,14 @@ DebugWindow::DebugWindow()
     QJsonModel* jsonModel = new QJsonModel( this );
 
     globalStorageView->setModel( jsonModel );
-    jsonModel->loadJson( QJsonDocument::fromVariant( Calamares::JobQueue::instance()->globalStorage()->m ).toJson() );
+    GlobalStorage* gs = JobQueue::instance()->globalStorage();
+
+    connect( gs, &GlobalStorage::changed, [ jsonModel, gs ]
+    {
+        jsonModel->loadJson( QJsonDocument::fromVariant( gs->m ).toJson() );
+    } );
+    jsonModel->loadJson( QJsonDocument::fromVariant( gs->m ).toJson() );
+
 
     CALAMARES_RETRANSLATE( retranslateUi( this ); )
 }
