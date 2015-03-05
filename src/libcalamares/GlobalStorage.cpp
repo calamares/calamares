@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -31,6 +31,7 @@ namespace bp = boost::python;
 namespace Calamares {
 
 GlobalStorage::GlobalStorage()
+    : QObject( nullptr )
 {
 }
 
@@ -53,6 +54,7 @@ void
 GlobalStorage::insert( const QString& key, const QVariant& value )
 {
     m.insert( key, value );
+    emit changed();
 }
 
 
@@ -67,6 +69,7 @@ int
 GlobalStorage::remove( const QString& key )
 {
     return m.remove( key );
+    emit changed();
 }
 
 
@@ -76,47 +79,63 @@ GlobalStorage::value( const QString& key ) const
     return m.value( key );
 }
 
+} // namespace Calamares
+
 #ifdef WITH_PYTHON
 
-bool
-GlobalStorage::python_contains( const std::string& key ) const
+namespace CalamaresPython
 {
-    return contains( QString::fromStdString( key ) );
+
+GlobalStoragePythonWrapper::GlobalStoragePythonWrapper( Calamares::GlobalStorage* gs )
+    : m_gs( gs )
+{}
+
+bool
+GlobalStoragePythonWrapper::contains( const std::string& key ) const
+{
+    return m_gs->contains( QString::fromStdString( key ) );
+}
+
+
+int
+GlobalStoragePythonWrapper::count() const
+{
+    return m_gs->count();
 }
 
 
 void
-GlobalStorage::python_insert( const std::string& key,
+GlobalStoragePythonWrapper::insert( const std::string& key,
                        const bp::object& value )
 {
-    insert( QString::fromStdString( key ),
-            CalamaresPython::variantFromPyObject( value ) );
+    m_gs->insert( QString::fromStdString( key ),
+                CalamaresPython::variantFromPyObject( value ) );
 }
 
 
 bp::list
-GlobalStorage::python_keys() const
+GlobalStoragePythonWrapper::keys() const
 {
     bp::list pyList;
-    foreach( const QString& key, keys() )
+    foreach( const QString& key, m_gs->keys() )
         pyList.append( key.toStdString() );
     return pyList;
 }
 
 
 int
-GlobalStorage::python_remove( const std::string& key )
+GlobalStoragePythonWrapper::remove( const std::string& key )
 {
-    return remove( QString::fromStdString( key ) );
+    return m_gs->remove( QString::fromStdString( key ) );
 }
 
 
 bp::object
-GlobalStorage::python_value( const std::string& key ) const
+GlobalStoragePythonWrapper::value( const std::string& key ) const
 {
-    return CalamaresPython::variantToPyObject( value( QString::fromStdString( key ) ) );
+    return CalamaresPython::variantToPyObject( m_gs->value( QString::fromStdString( key ) ) );
 }
 
-#endif // WITH_PYTHON
+} // namespace CalamaresPython
 
-} // namespace Calamares
+#endif // WITH_PYTHON
