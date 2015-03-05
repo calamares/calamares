@@ -475,17 +475,17 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
     <message>
         <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="38"/>
         <source>Clear all temporary mounts.</source>
-        <translation type="unfinished"/>
+        <translation>Limpar pontos de montagens temporários.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="49"/>
         <source>Cannot get list of temporary mounts.</source>
-        <translation type="unfinished"/>
+        <translation>Não foi possível listar os pontos de montagens.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="88"/>
         <source>Cleared all temporary mounts.</source>
-        <translation type="unfinished"/>
+        <translation>Pontos de montagens temporários limpos.</translation>
     </message>
 </context>
 <context>
@@ -1089,12 +1089,12 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/devicepropswidgetbase.ui" line="77"/>
         <source>Cylinder alignment</source>
-        <translation>Arredondar para o tamanho do cilindro</translation>
+        <translation>Alinhamento baseado no cilindro</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/devicepropswidgetbase.ui" line="84"/>
         <source>Sector based alignment</source>
-        <translation>Arredondar para o tamanho do setor</translation>
+        <translation>Alinhamento baseado no setor</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/devicepropswidgetbase.ui" line="113"/>
@@ -1303,7 +1303,7 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="285"/>
         <source>Device Node</source>
-        <translation>Nódulo do dispositivo</translation>
+        <translation>Nó do dispositivo</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/editmountpointdialogwidgetbase.ui" line="295"/>
@@ -1430,7 +1430,7 @@ Alguns sistemas de arquivos necessitam de ferramentas externas para serem suport
     <message>
         <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="85"/>
         <source>Failed to find path for boot loader</source>
-        <translation>Impossível encontrar o inicalizador</translation>
+        <translation>Falha ao encontrar o inicalizador</translation>
     </message>
 </context>
 <context>
@@ -2158,7 +2158,7 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
     <message>
         <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="99"/>
         <source>&amp;Checkout From:</source>
-        <translation>Verificar de:</translation>
+        <translation>&amp;Verificar de:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="119"/>

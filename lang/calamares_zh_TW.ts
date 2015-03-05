@@ -241,7 +241,7 @@ Output:
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="91"/>
         <source>Bad parameters for process job call.</source>
-        <translation>呼叫行程的參數無效。</translation>
+        <translation>呼叫程序的參數無效。</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="94"/>
@@ -277,7 +277,7 @@ Output:
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="234"/>
         <source>Run script %1</source>
-        <translation>執行指令稿 %1</translation>
+        <translation>執行腳本檔 %1</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="249"/>
@@ -332,7 +332,7 @@ Output:
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="80"/>
         <source>Do you really want to cancel the current install process?
 The installer will quit and all changes will be lost.</source>
-        <translation>您真的想要取消目前的安裝行程嗎？
+        <translation>您真的想要取消目前的安裝程序嗎？
 安裝程式將會退出且所有變動將會遺失。</translation>
     </message>
     <message>
@@ -407,7 +407,7 @@ The installer will quit and all changes will be lost.</source>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="175"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="217"/>
         <source>&lt;b&gt;Erase disk and install %1&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;This will delete all of your programs, documents, photos, music, and any other files.</source>
-        <translation>&lt;b&gt;抹除磁碟病安裝 %1&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;警告：&lt;/font&gt;這將會刪除所有軟體、文件、相片、音樂以及其他任何檔案！</translation>
+        <translation>&lt;b&gt;抹除磁碟並安裝 %1&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;警告：&lt;/font&gt;這將會刪除所有軟體、文件、相片、音樂以及其他任何檔案！</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="135"/>
@@ -462,7 +462,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="42"/>
         <source>Clear mounts for partitioning operations on %1</source>
-        <translation>為在 %1 上的分割操作清除掛載</translation>
+        <translation>為了準備分割區操作而完全卸載 %1</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="81"/>
@@ -1507,7 +1507,7 @@ Some file systems need external tools to be installed for them to be supported. 
     <message>
         <location filename="../src/modules/greeting/GreetingPage.cpp" line="143"/>
         <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;b&gt;%2&lt;br/&gt;for %3&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Thanks to: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Philip Müller, Pier Luigi Fiorini and Rohan Garg.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;https://calamares.github.io/&quot;&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - technologies for a better world.</source>
-        <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;b&gt;%2&lt;br/&gt;為 %3&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;感謝：Anke Boersma, Aurélien Gâteau, Kevin Kofler, Philip Müller, Pier Luigi Fiorini 及 Rohan Garg。&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;https://calamares.github.io/&quot;&gt;Calamares&lt;/a&gt; 開發由 &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - 科技是為了更好的世界，贊助。</translation>
+        <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;b&gt;%2&lt;br/&gt;為 %3&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;感謝：Anke Boersma, Aurélien Gâteau, Kevin Kofler, Philip Müller, Pier Luigi Fiorini 及 Rohan Garg。&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;https://calamares.github.io/&quot;&gt;Calamares&lt;/a&gt; 開發由 &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - 科技使世界更美好，提供贊助。</translation>
     </message>
     <message>
         <location filename="../src/modules/greeting/GreetingPage.ui" line="14"/>
@@ -1559,7 +1559,7 @@ Some file systems need external tools to be installed for them to be supported. 
     <message>
         <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="40"/>
         <source>The system locale setting affects the language and character set for some command line user interface elements.&lt;br/&gt;The current setting is &lt;b&gt;%1&lt;/b&gt;.</source>
-        <translation>系統語系設定會影響部份命令列使用者介面元素的語言及字元集。&lt;br/&gt;目前的設定為 &lt;b&gt;%1&lt;/b&gt;。</translation>
+        <translation>系統語系設定會影響部份命令列使用者介面的語言及字元集。&lt;br/&gt;目前的設定為 &lt;b&gt;%1&lt;/b&gt;。</translation>
     </message>
 </context>
 <context>
@@ -1634,7 +1634,7 @@ Some file systems need external tools to be installed for them to be supported. 
         <location filename="../src/modules/partition/partitionmanager/src/gui/mainwindowbase.ui" line="63"/>
         <source>Log Output</source>
         <comment>@title:window</comment>
-        <translation>日誌輸出</translation>
+        <translation>紀錄輸出</translation>
     </message>
 </context>
 <context>
@@ -1652,7 +1652,7 @@ Some file systems need external tools to be installed for them to be supported. 
     <message>
         <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="86"/>
         <source>Could not create target for moving file system on partition %1.</source>
-        <translation>無法建立目標來移動分割區 %1 上的檔案系統。</translation>
+        <translation>無法建立目標以移動分割區 %1 上的檔案系統。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="95"/>
@@ -1683,7 +1683,7 @@ Some file systems need external tools to be installed for them to be supported. 
         <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="224"/>
         <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="232"/>
         <source>Could not open device %1 to rollback copying.</source>
-        <translation>無法開啟裝置 %1 來恢復所作的複製。</translation>
+        <translation>無法開啟裝置 %1 以恢復所作的複製。</translation>
     </message>
 </context>
 <context>
@@ -1691,7 +1691,7 @@ Some file systems need external tools to be installed for them to be supported. 
     <message>
         <location filename="../src/modules/keyboard/KeyboardPage.ui" line="14"/>
         <source>Form</source>
-        <translation>型式</translation>
+        <translation>Form</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardPage.ui" line="70"/>
@@ -1709,7 +1709,7 @@ Some file systems need external tools to be installed for them to be supported. 
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="14"/>
         <source>Form</source>
-        <translation>型式</translation>
+        <translation>Form</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="33"/>
@@ -1975,7 +1975,7 @@ Some file systems need external tools to be installed for them to be supported. 
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="14"/>
         <source>Form</source>
-        <translation>型式</translation>
+        <translation>Form</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="22"/>
@@ -2059,7 +2059,7 @@ Installation cannot continue.</source>
         <location filename="../src/modules/prepare/PreparePage.cpp" line="109"/>
         <source>This computer does not satisfy some of the recommended requirements for installing %1.
 Installation can continue, but some features might be disabled.</source>
-        <translation>此電腦未滿足安裝 %1 的部份推薦配備。
+        <translation>此電腦未滿足一些安裝 %1 的推薦需求。
 安裝可以繼續，但部份功能可能會被停用。</translation>
     </message>
 </context>
@@ -2261,12 +2261,12 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="109"/>
         <source>Select where to install %1.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;this will delete all files on the selected partition.</source>
-        <translation>&lt;b&gt;選取要安裝 %1 的地方。&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;警告：&lt;/font&gt;這將會刪除所有在選中的分割區上的檔案。</translation>
+        <translation>&lt;b&gt;選取要安裝 %1 的地方。&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;警告：&lt;/font&gt;這將會刪除所有已選取的分割區上的檔案。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="136"/>
         <source>The selected item does not appear to be a valid partition.</source>
-        <translation>選中的項目可能並不是有效的分割區。</translation>
+        <translation>已選取的項目可能並不是有效的分割區。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="144"/>
