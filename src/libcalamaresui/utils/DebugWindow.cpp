@@ -20,6 +20,7 @@
 #include "utils/Retranslator.h"
 #include "utils/qjsonmodel.h"
 #include "JobQueue.h"
+#include "Job.h"
 #include "GlobalStorage.h"
 
 #include <QJsonDocument>
@@ -45,6 +46,19 @@ DebugWindow::DebugWindow()
     } );
     jsonModel->loadJson( QJsonDocument::fromVariant( gs->m ).toJson() );
     globalStorageView->expandAll();
+
+    jobQueueText->setReadOnly( true );
+    connect( JobQueue::instance(), &JobQueue::queueChanged,
+             [ this ]( const QList< Calamares::job_ptr >& jobs )
+    {
+        QStringList text;
+        foreach( auto job, jobs )
+        {
+            text.append( job->prettyName() );
+        }
+
+        jobQueueText->setText( text.join( '\n' ) );
+    } );
 
     CALAMARES_RETRANSLATE( retranslateUi( this ); )
 }
