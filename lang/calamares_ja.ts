@@ -207,7 +207,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="51"/>
         <source>Run command %1 %2</source>
-        <translation type="unfinished"/>
+        <translation>コマンド %1 %2 を実行</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="79"/>
@@ -475,17 +475,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="38"/>
         <source>Clear all temporary mounts.</source>
-        <translation type="unfinished"/>
+        <translation>全てのテンポラリなマウントをクリア</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="49"/>
         <source>Cannot get list of temporary mounts.</source>
-        <translation type="unfinished"/>
+        <translation>テンポラリなマウントのリストを取得できません。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="88"/>
         <source>Cleared all temporary mounts.</source>
-        <translation type="unfinished"/>
+        <translation>全てのテンポラリなマウントがクリアされました。</translation>
     </message>
 </context>
 <context>
@@ -2693,27 +2693,27 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="233"/>
         <source>Your username is too long.</source>
-        <translation type="unfinished"/>
+        <translation>ユーザー名が長すぎます。</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="243"/>
         <source>Your username contains invalid characters. Only lowercase letters and numbers are allowed.</source>
-        <translation type="unfinished"/>
+        <translation>ユーザー名に不適切な文字が含まれています。アルファベットの小文字と数字のみが使用できます。</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="287"/>
         <source>Your hostname is too short.</source>
-        <translation type="unfinished"/>
+        <translation>ホスト名が短すぎます。</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="298"/>
         <source>Your hostname is too long.</source>
-        <translation type="unfinished"/>
+        <translation>ホスト名が長過ぎます。</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="309"/>
         <source>Your hostname contains invalid characters. Only letters, numbers and dashes are allowed.</source>
-        <translation type="unfinished"/>
+        <translation>ホスト名に不適切な文字が含まれています。アルファベット、数字及びハイフンのみが使用できます。</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="340"/>
