@@ -941,7 +941,7 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="63"/>
         <source>Could not open device %1.</source>
-        <translation>Impossível abrir o dispositivo %1.</translation>
+        <translation>Não foi possível abrir o dispositivo %1.</translation>
     </message>
 </context>
 <context>
@@ -1022,12 +1022,12 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="141"/>
         <source>Cannot set home directory ownership for user %1.</source>
-        <translation>Impossível definir permissão da pasta pessoal para o usuário %1.</translation>
+        <translation>Impossível definir proprietário da pasta pessoal para o usuário %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="143"/>
         <source>chown terminated with error code %1.</source>
-        <translation>chown terminou com código de erra %1.</translation>
+        <translation>chown terminou com código de erro %1.</translation>
     </message>
 </context>
 <context>
@@ -1040,7 +1040,7 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/decryptluksdialogwidgetbase.ui" line="35"/>
         <source>&amp;Passphrase:</source>
-        <translation>Senha:</translation>
+        <translation>&amp;Senha:</translation>
     </message>
 </context>
 <context>
@@ -1063,12 +1063,12 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="66"/>
         <source>Could not open device %1.</source>
-        <translation>Impossível abrir o dispositivo %1.</translation>
+        <translation>Não foi possível abrir o dispositivo %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="75"/>
         <source>Could not open partition table.</source>
-        <translation>Impossível abrir a tabela de partições.</translation>
+        <translation>Não foi possível abrir a tabela de partições.</translation>
     </message>
 </context>
 <context>
@@ -1652,7 +1652,7 @@ Alguns sistemas de arquivos necessitam de ferramentas externas para serem suport
     <message>
         <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="86"/>
         <source>Could not create target for moving file system on partition %1.</source>
-        <translation>Impossível criar o alvo para mover o sistema de aquivos na partição %1</translation>
+        <translation>Não foi possível criar o alvo para mover o sistema de aquivos na partição %1</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="95"/>
@@ -1683,7 +1683,7 @@ Alguns sistemas de arquivos necessitam de ferramentas externas para serem suport
         <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="224"/>
         <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="232"/>
         <source>Could not open device %1 to rollback copying.</source>
-        <translation>Impossível abrir o dispositivo %1 para reverter a cópia.</translation>
+        <translation>Não foi possível abrir o dispositivo %1 para reverter a cópia.</translation>
     </message>
 </context>
 <context>

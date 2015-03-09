@@ -475,17 +475,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="38"/>
         <source>Clear all temporary mounts.</source>
-        <translation type="unfinished"/>
+        <translation>ล้างจุดเชื่อมต่อชั่วคราวทั้งหมด</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="49"/>
         <source>Cannot get list of temporary mounts.</source>
-        <translation type="unfinished"/>
+        <translation>ไม่สามารถดึงรายการจุดเชื่อมต่อชั่วคราวได้</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="88"/>
         <source>Cleared all temporary mounts.</source>
-        <translation type="unfinished"/>
+        <translation>จุดเชื่อมต่อชั่วคราวทั้งหมดถูกล้างแล้ว</translation>
     </message>
 </context>
 <context>
