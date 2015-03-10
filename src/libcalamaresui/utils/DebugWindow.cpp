@@ -22,8 +22,12 @@
 #include "JobQueue.h"
 #include "Job.h"
 #include "GlobalStorage.h"
+#include "modulesystem/ModuleManager.h"
+#include "modulesystem/Module.h"
 
 #include <QJsonDocument>
+#include <QSplitter>
+#include <QStringListModel>
 #include <QTreeView>
 
 namespace Calamares {
@@ -34,6 +38,7 @@ DebugWindow::DebugWindow()
 
     setupUi( this );
 
+    // GlobalStorage page
     QJsonModel* jsonModel = new QJsonModel( this );
 
     globalStorageView->setModel( jsonModel );
@@ -47,6 +52,7 @@ DebugWindow::DebugWindow()
     jsonModel->loadJson( QJsonDocument::fromVariant( gs->m ).toJson() );
     globalStorageView->expandAll();
 
+    // JobQueue page
     jobQueueText->setReadOnly( true );
     connect( JobQueue::instance(), &JobQueue::queueChanged,
              [ this ]( const QList< Calamares::job_ptr >& jobs )
@@ -58,6 +64,31 @@ DebugWindow::DebugWindow()
         }
 
         jobQueueText->setText( text.join( '\n' ) );
+    } );
+
+    // Modules page
+    QSplitter* splitter = new QSplitter( modulesTab );
+    modulesTab->layout()->addWidget( splitter );
+    splitter->addWidget( modulesListView );
+    splitter->addWidget( moduleConfigView );
+
+    QStringListModel* modulesModel = new QStringListModel( ModuleManager::instance()->availableModules() );
+    modulesListView->setModel( modulesModel );
+    modulesListView->setSelectionMode( QAbstractItemView::SingleSelection );
+
+    QJsonModel* moduleConfigModel = new QJsonModel( this );
+    moduleConfigView->setModel( moduleConfigModel );
+
+    connect( modulesListView->selectionModel(), &QItemSelectionModel::selectionChanged,
+             [ this, moduleConfigModel ]
+    {
+        QString moduleName = modulesListView->currentIndex().data().toString();
+        Module* module = ModuleManager::instance()->module( moduleName );
+        if ( module )
+        {
+            moduleConfigModel->loadJson( QJsonDocument::fromVariant( module->configurationMap() ).toJson() );
+            moduleConfigView->expandAll();
+        }
     } );
 
     CALAMARES_RETRANSLATE( retranslateUi( this ); )
