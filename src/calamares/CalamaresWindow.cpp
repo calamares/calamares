@@ -92,7 +92,7 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
     {
         QPushButton* debugWindowBtn = new QPushButton;
         CALAMARES_RETRANSLATE(
-            debugWindowBtn->setText( tr( "Show diagnostics" ) );
+            debugWindowBtn->setText( tr( "Show debug information" ) );
         )
         sideLayout->addWidget( debugWindowBtn );
         debugWindowBtn->setFlat( true );
