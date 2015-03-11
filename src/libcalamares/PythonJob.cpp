@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -79,13 +79,13 @@ BOOST_PYTHON_MODULE( libcalamares )
             "as a real number between 0 and 1."
         );
 
-    bp::class_< Calamares::GlobalStorage >( "GlobalStorage", bp::init<>() )
-        .def( "contains",   &Calamares::GlobalStorage::python_contains )
-        .def( "count",      &Calamares::GlobalStorage::count )
-        .def( "insert",     &Calamares::GlobalStorage::python_insert )
-        .def( "keys",       &Calamares::GlobalStorage::python_keys )
-        .def( "remove",     &Calamares::GlobalStorage::python_remove )
-        .def( "value",      &Calamares::GlobalStorage::python_value );
+    bp::class_< CalamaresPython::GlobalStoragePythonWrapper >( "GlobalStorage", bp::init< Calamares::GlobalStorage* >() )
+        .def( "contains",   &CalamaresPython::GlobalStoragePythonWrapper::contains )
+        .def( "count",      &CalamaresPython::GlobalStoragePythonWrapper::count )
+        .def( "insert",     &CalamaresPython::GlobalStoragePythonWrapper::insert )
+        .def( "keys",       &CalamaresPython::GlobalStoragePythonWrapper::keys )
+        .def( "remove",     &CalamaresPython::GlobalStoragePythonWrapper::remove )
+        .def( "value",      &CalamaresPython::GlobalStoragePythonWrapper::value );
 
     // libcalamares.utils submodule starts here
     bp::object utilsModule( bp::handle<>( bp::borrowed( PyImport_AddModule( "libcalamares.utils" ) ) ) );
@@ -271,7 +271,8 @@ PythonJob::exec()
         bp::dict calamaresNamespace = bp::extract< bp::dict >( calamaresModule.attr( "__dict__" ) );
 
         calamaresNamespace[ "job" ] = CalamaresPython::PythonJobInterface( this );
-        calamaresNamespace[ "globalstorage" ] = bp::ptr( JobQueue::instance()->globalStorage() );
+        calamaresNamespace[ "globalstorage" ] = CalamaresPython::GlobalStoragePythonWrapper(
+                                                JobQueue::instance()->globalStorage() );
 
         bp::object execResult = bp::exec_file( scriptFI.absoluteFilePath().toLocal8Bit().data(),
                                            scriptNamespace,

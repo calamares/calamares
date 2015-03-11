@@ -38,6 +38,8 @@ public:
     explicit ModuleManager( const QStringList& paths, QObject* parent = nullptr );
     virtual ~ModuleManager();
 
+    static ModuleManager* instance();
+
     /**
      * @brief init goes through the module search directories and gets a list of
      * modules available for loading, along with their metadata.
@@ -64,10 +66,10 @@ private:
     void checkDependencies();
 
     QMap< QString, Module* > m_availableModules;
-
     QStringList m_paths;
-
     Phase m_lastPhaseLoaded;
+
+    static ModuleManager* s_instance;
 };
 
 }

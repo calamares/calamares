@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Calamares::DebugWindow</class>
+ <widget class="QWidget" name="Calamares::DebugWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>632</width>
+    <height>497</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="globalStorageTab">
+      <attribute name="title">
+       <string>GlobalStorage</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <widget class="QTreeView" name="globalStorageView"/>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="jobQueueTab">
+      <attribute name="title">
+       <string>JobQueue</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <item>
+        <widget class="QTextEdit" name="jobQueueText"/>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="modulesTab">
+      <attribute name="title">
+       <string>Modules</string>
+      </attribute>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QListView" name="modulesListView"/>
+       </item>
+       <item>
+        <widget class="QTreeView" name="moduleConfigView"/>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

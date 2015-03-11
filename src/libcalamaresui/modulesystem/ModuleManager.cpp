@@ -32,11 +32,24 @@
 namespace Calamares
 {
 
+
+ModuleManager* ModuleManager::s_instance = nullptr;
+
+
+ModuleManager*
+ModuleManager::instance()
+{
+    return s_instance;
+}
+
+
 ModuleManager::ModuleManager( const QStringList& paths, QObject* parent )
     : QObject( parent )
     , m_paths( paths )
     , m_lastPhaseLoaded( Phase_NULL )
 {
+    Q_ASSERT( !s_instance );
+    s_instance = this;
 }
 
 ModuleManager::~ModuleManager()

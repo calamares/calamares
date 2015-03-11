@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -158,6 +158,7 @@ JobQueue::enqueue( const Calamares::job_ptr& job )
 {
     Q_ASSERT( !m_thread->isRunning() );
     m_jobs.append( job );
+    emit queueChanged( m_jobs );
 }
 
 
@@ -166,6 +167,7 @@ JobQueue::enqueue( const QList< job_ptr >& jobs )
 {
     Q_ASSERT( !m_thread->isRunning() );
     m_jobs.append( jobs );
+    emit queueChanged( m_jobs );
 }
 
 } // namespace Calamares

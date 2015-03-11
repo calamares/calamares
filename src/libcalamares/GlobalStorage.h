@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -40,8 +40,11 @@ class list;
 namespace Calamares
 {
 
-class GlobalStorage
+class DebugWindow;
+
+class GlobalStorage : public QObject
 {
+    Q_OBJECT
 public:
     explicit GlobalStorage();
 
@@ -54,17 +57,37 @@ public:
     int remove( const QString& key );
     QVariant value( const QString& key ) const;
 
-#ifdef WITH_PYTHON
-    bool python_contains( const std::string& key ) const;
-    void python_insert( const std::string& key, const boost::python::api::object& value );
-    boost::python::list python_keys() const;
-    int python_remove( const std::string& key );
-    boost::python::api::object python_value( const std::string& key ) const;
-#endif
+signals:
+    void changed();
+
 private:
     QVariantMap m;
+
+    friend DebugWindow;
 };
 
 } // namespace Calamares
+
+#ifdef WITH_PYTHON
+namespace CalamaresPython
+{
+
+class GlobalStoragePythonWrapper
+{
+public:
+    explicit GlobalStoragePythonWrapper( Calamares::GlobalStorage* gs );
+
+    bool contains( const std::string& key ) const;
+    int count() const;
+    void insert( const std::string& key, const boost::python::api::object& value );
+    boost::python::list keys() const;
+    int remove( const std::string& key );
+    boost::python::api::object value( const std::string& key ) const;
+private:
+    Calamares::GlobalStorage* m_gs;
+};
+
+} // namespace CalamaresPython
+#endif
 
 #endif // CALAMARES_GLOBALSTORAGE_H

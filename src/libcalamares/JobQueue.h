@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -46,6 +46,7 @@ public:
     void start();
 
 signals:
+    void queueChanged( const QList< Calamares::job_ptr >& jobs );
     void progress( qreal percent, const QString& prettyName );
     void finished();
     void failed( const QString& message, const QString& details );

@@ -7,8 +7,12 @@ list( APPEND ${CALAMARESUI_LIBRARY_TARGET}_SOURCES
     modulesystem/ViewModule.cpp
 
     utils/CalamaresUtilsGui.cpp
+    utils/DebugWindow.cpp
     utils/ImageRegistry.cpp
     utils/YamlUtils.cpp
+
+    utils/qjsonmodel.cpp
+    utils/qjsonitem.cpp
 
     viewpages/AbstractPage.cpp
     viewpages/ViewStep.cpp
@@ -24,7 +28,7 @@ list( APPEND ${CALAMARESUI_LIBRARY_TARGET}_SOURCES
 )
 
 list( APPEND ${CALAMARESUI_LIBRARY_TARGET}_UI
-
+    utils/DebugWindow.ui
 )
 
 if( WITH_PYTHON )
