@@ -35,7 +35,6 @@ namespace Calamares {
 DebugWindow::DebugWindow()
     : QWidget( nullptr )
 {
-
     setupUi( this );
 
     // GlobalStorage page
@@ -91,7 +90,10 @@ DebugWindow::DebugWindow()
         }
     } );
 
-    CALAMARES_RETRANSLATE( retranslateUi( this ); )
+    CALAMARES_RETRANSLATE(
+        retranslateUi( this );
+        setWindowTitle( tr( "Debug information" ) );
+    )
 }
 
 
