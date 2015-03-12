@@ -187,6 +187,34 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>Calamares::DebugWindow</name>
+    <message>
+        <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="14"/>
+        <source>Form</source>
+        <translation>型式</translation>
+    </message>
+    <message>
+        <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="24"/>
+        <source>GlobalStorage</source>
+        <translation>全域儲存</translation>
+    </message>
+    <message>
+        <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="34"/>
+        <source>JobQueue</source>
+        <translation>工作佇列</translation>
+    </message>
+    <message>
+        <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="44"/>
+        <source>Modules</source>
+        <translation>模組</translation>
+    </message>
+    <message>
+        <location filename="../src/libcalamaresui/utils/DebugWindow.cpp" line="95"/>
+        <source>Debug information</source>
+        <translation>除錯資訊</translation>
+    </message>
+</context>
+<context>
     <name>Calamares::InstallationViewStep</name>
     <message>
         <location filename="../src/libcalamaresui/InstallationViewStep.cpp" line="75"/>
@@ -300,7 +328,7 @@ Output:
         <translation>Python 行程 %2 的主要腳本檔 %1 無法讀取。</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="305"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="306"/>
         <source>Boost.Python error in job &quot;%1&quot;.</source>
         <translation>行程 %1 中 Boost.Python 錯誤。</translation>
     </message>
@@ -377,9 +405,14 @@ The installer will quit and all changes will be lost.</source>
 <context>
     <name>CalamaresWindow</name>
     <message>
-        <location filename="../src/calamares/CalamaresWindow.cpp" line="40"/>
+        <location filename="../src/calamares/CalamaresWindow.cpp" line="44"/>
         <source>%1 Installer</source>
         <translation>%1 安裝程式</translation>
+    </message>
+    <message>
+        <location filename="../src/calamares/CalamaresWindow.cpp" line="95"/>
+        <source>Show debug information</source>
+        <translation>顯示除錯資訊</translation>
     </message>
 </context>
 <context>
@@ -403,56 +436,64 @@ The installer will quit and all changes will be lost.</source>
         <translation>目前似乎沒有任何作業系統安裝在這台電腦上。您打算怎麼做？</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="118"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="175"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="217"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="119"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="187"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="234"/>
         <source>&lt;b&gt;Erase disk and install %1&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;This will delete all of your programs, documents, photos, music, and any other files.</source>
         <translation>&lt;b&gt;抹除磁碟並安裝 %1&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;警告：&lt;/font&gt;這將會刪除所有軟體、文件、相片、音樂以及其他任何檔案！</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="135"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="125"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="162"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="193"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="240"/>
+        <source>&lt;b&gt;Erase disk and install %1&lt;/b&gt;&lt;br/&gt;You will be offered a choice of which disk to erase.</source>
+        <translation>&lt;b&gt;抹除磁碟並安裝 %1&lt;/b&gt;&lt;br/&gt;您將會被提醒要抹除哪一個磁碟。</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="141"/>
         <source>This computer currently has %1 on it. What would you like to do?</source>
         <translation>目前這台電腦裝有 &amp;1 。您打算怎麼做？</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="139"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="145"/>
         <source>&lt;b&gt;Install %2 alongside %1&lt;/b&gt;&lt;br/&gt;Documents, music and other personal files will be kept. You can choose which operating system you want each time the computer starts up.</source>
         <translation>&lt;b&gt;在 %1 旁邊安裝 %2&lt;/b&gt;&lt;br/&gt;文件、音樂及其他個人檔案將會被保留。您可以在每次電腦開機時，選擇要進入哪一個作業系統。</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="147"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="154"/>
         <source>&lt;b&gt;Erase entire disk with %1 and install %2&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;This will erase the whole disk and delete all of your %1 programs, documents, photos, music, and any other files.</source>
         <translation>&lt;b&gt;將包含 %1 的磁碟整個抹除並安裝 %2&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;警告： &lt;/font&gt;這將會抹除整個磁碟並刪除您在 %1 上所有的程式、文件、照片、音樂以及其他檔案。</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="155"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="181"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="223"/>
-        <source>&lt;b&gt;Install %1 on an existing partition&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;This will delete all files on the selected partition.</source>
-        <translation>&lt;b&gt;在已存在的分割區上安裝 %1&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;警告：&lt;/font&gt;這將會刪除所有在選中的分割區上的檔案。</translation>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="167"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="198"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="245"/>
+        <source>&lt;b&gt;Install %1 on an existing partition&lt;/b&gt;&lt;br/&gt;You will be offered a choice of which partition to erase.</source>
+        <translation>&lt;b&gt;安裝 %1 到已存在的分割區中&lt;/b&gt;&lt;br/&gt;您將會被提醒要抹除哪一個分割區。</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="165"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="176"/>
         <source>This computer already has an operating system on it. What would you like to do?</source>
         <translation>這台電腦已經裝有作業系統。您打算怎麼做？</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="168"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="179"/>
         <source>&lt;b&gt;Install %1 alongside your current operating system&lt;/b&gt;&lt;br/&gt;Documents, music and other personal files will be kept. You can choose which operating system you want each time the computer starts up.</source>
         <translation>&lt;b&gt;在您目前的作業系統旁邊安裝 %1&lt;/b&gt;&lt;br/&gt;文件、音樂及其他個人檔案將會被保留。您可以在每次電腦開機時，選擇要進入哪一個作業系統。</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="207"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="223"/>
         <source>This computer currently has multiple operating systems on it. What would you like to do?</source>
         <translation>這臺電腦上已有多個作業系統。您想要做什麼?</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="210"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="226"/>
         <source>&lt;b&gt;Install %1 alongside your current operating systems&lt;/b&gt;&lt;br/&gt;Documents, music and other personal files will be kept. You can choose which operating system you want each time the computer starts up.</source>
         <translation>&lt;b&gt;在您目前的作業系統旁邊安裝 %1&lt;/b&gt;&lt;br/&gt;文件、音樂及其他個人檔案將會被保留。您可以在每次電腦開機時，選擇要進入哪一個作業系統。</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="240"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="261"/>
         <source>&lt;b&gt;Something else&lt;/b&gt;&lt;br/&gt;You can create or resize partitions yourself, or choose multiple partitions for %1.</source>
         <translation>&lt;b&gt;其他選項&lt;/b&gt;&lt;br/&gt;您可以自行建立或重新調整分割區大小，或是為 %1 選擇多個分割區。</translation>
     </message>

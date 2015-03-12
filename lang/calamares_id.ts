@@ -187,6 +187,34 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>Calamares::DebugWindow</name>
+    <message>
+        <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="24"/>
+        <source>GlobalStorage</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="34"/>
+        <source>JobQueue</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="44"/>
+        <source>Modules</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/libcalamaresui/utils/DebugWindow.cpp" line="95"/>
+        <source>Debug information</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>Calamares::InstallationViewStep</name>
     <message>
         <location filename="../src/libcalamaresui/InstallationViewStep.cpp" line="75"/>
@@ -300,7 +328,7 @@ Keluaran:
         <translation>Berkas skrip utama %1 untuk penugasan python %2 tidak dapat dibaca.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="305"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="306"/>
         <source>Boost.Python error in job &quot;%1&quot;.</source>
         <translation>Boost.Python mogok dalam penugasan &quot;%1&quot;.</translation>
     </message>
@@ -376,9 +404,14 @@ The installer will quit and all changes will be lost.</source>
 <context>
     <name>CalamaresWindow</name>
     <message>
-        <location filename="../src/calamares/CalamaresWindow.cpp" line="40"/>
+        <location filename="../src/calamares/CalamaresWindow.cpp" line="44"/>
         <source>%1 Installer</source>
         <translation>Penginstal %1</translation>
+    </message>
+    <message>
+        <location filename="../src/calamares/CalamaresWindow.cpp" line="95"/>
+        <source>Show debug information</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -402,56 +435,64 @@ The installer will quit and all changes will be lost.</source>
         <translation>Komputer ini tampaknya tidak memiliki sistem operasi di atasnya saat ini. Apa yang akan Anda lakukan?</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="118"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="175"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="217"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="119"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="187"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="234"/>
         <source>&lt;b&gt;Erase disk and install %1&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;This will delete all of your programs, documents, photos, music, and any other files.</source>
         <translation>&lt;b&gt;Hapus disk dan instal %1&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Peringatan: &lt;/font&gt;Hal ini akan menghapus semua program, dokumen, foto, musik dan berkas lain milik Anda.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="135"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="125"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="162"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="193"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="240"/>
+        <source>&lt;b&gt;Erase disk and install %1&lt;/b&gt;&lt;br/&gt;You will be offered a choice of which disk to erase.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="141"/>
         <source>This computer currently has %1 on it. What would you like to do?</source>
         <translation>Komputer ini memiliki %1 didalamnya saat ini. Apa yang akan Anda lakukan?</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="139"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="145"/>
         <source>&lt;b&gt;Install %2 alongside %1&lt;/b&gt;&lt;br/&gt;Documents, music and other personal files will be kept. You can choose which operating system you want each time the computer starts up.</source>
         <translation>&lt;b&gt;Instal %2 berdampingan dengan %1&lt;/b&gt;&lt;br/&gt;Dokumen, musik dan berkas pribadi lainnya akan terlindungi. Anda dapat memilih sistem operasi apa yang diinginkan setiap kali komputer dijalankan.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="147"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="154"/>
         <source>&lt;b&gt;Erase entire disk with %1 and install %2&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;This will erase the whole disk and delete all of your %1 programs, documents, photos, music, and any other files.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="155"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="181"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="223"/>
-        <source>&lt;b&gt;Install %1 on an existing partition&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;This will delete all files on the selected partition.</source>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="167"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="198"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="245"/>
+        <source>&lt;b&gt;Install %1 on an existing partition&lt;/b&gt;&lt;br/&gt;You will be offered a choice of which partition to erase.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="165"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="176"/>
         <source>This computer already has an operating system on it. What would you like to do?</source>
         <translation>Komputer ini sudah memiliki sistem operasi didalamnya. Apa yang akan Anda lakukan?</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="168"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="179"/>
         <source>&lt;b&gt;Install %1 alongside your current operating system&lt;/b&gt;&lt;br/&gt;Documents, music and other personal files will be kept. You can choose which operating system you want each time the computer starts up.</source>
         <translation>&lt;b&gt;Instal %1 berdampingan dengan sistem operasi anda sekarang&lt;/b&gt;&lt;br/&gt;Dokumen, musik dan berkas pribadi lainnya akan terlindungi. Anda dapat memilih sistem operasi apa yang diinginkan setiap kali komputer dijalankan.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="207"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="223"/>
         <source>This computer currently has multiple operating systems on it. What would you like to do?</source>
         <translation>Komputer ini memiliki beberapa sistem operasi di dalamnya saat ini. Apa yang akan Anda lakukan?</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="210"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="226"/>
         <source>&lt;b&gt;Install %1 alongside your current operating systems&lt;/b&gt;&lt;br/&gt;Documents, music and other personal files will be kept. You can choose which operating system you want each time the computer starts up.</source>
         <translation>&lt;b&gt;Instal %1 berdampingan dengan sistem operasi sekarang&lt;/b&gt;&lt;br/&gt;Dokumen, musik dan berkas pribadi lainnya akan terlindungi. Anda dapat memilih sistem operasi apa yang diinginkan setiap kali komputer dijalankan.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="240"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="261"/>
         <source>&lt;b&gt;Something else&lt;/b&gt;&lt;br/&gt;You can create or resize partitions yourself, or choose multiple partitions for %1.</source>
         <translation>&lt;b&gt;Lainnya&lt;/b&gt;&lt;br/&gt;Anda dapat membuat atau mengubah ukuran partisi sendiri, atau memilih beberapa partisi untuk %1.</translation>
     </message>

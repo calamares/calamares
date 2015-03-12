@@ -187,6 +187,34 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>Calamares::DebugWindow</name>
+    <message>
+        <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="24"/>
+        <source>GlobalStorage</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="34"/>
+        <source>JobQueue</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="44"/>
+        <source>Modules</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/libcalamaresui/utils/DebugWindow.cpp" line="95"/>
+        <source>Debug information</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>Calamares::InstallationViewStep</name>
     <message>
         <location filename="../src/libcalamaresui/InstallationViewStep.cpp" line="75"/>
@@ -300,7 +328,7 @@ Output:
         <translation>Il file principale dello script %1 per l&apos;attività di python %2 non è accessibile.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="305"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="306"/>
         <source>Boost.Python error in job &quot;%1&quot;.</source>
         <translation>Errore da Boost.Python nell&apos;operazione &quot;%1&quot;.</translation>
     </message>
@@ -377,9 +405,14 @@ Il programma di installazione sarà chiuso, e tutte le modifiche andranno perse.
 <context>
     <name>CalamaresWindow</name>
     <message>
-        <location filename="../src/calamares/CalamaresWindow.cpp" line="40"/>
+        <location filename="../src/calamares/CalamaresWindow.cpp" line="44"/>
         <source>%1 Installer</source>
         <translation>%1 Programma di installazione</translation>
+    </message>
+    <message>
+        <location filename="../src/calamares/CalamaresWindow.cpp" line="95"/>
+        <source>Show debug information</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -403,56 +436,64 @@ Il programma di installazione sarà chiuso, e tutte le modifiche andranno perse.
         <translation>Questo computer sembra non avere un sistema operativo installato. Cosa vuoi fare?</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="118"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="175"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="217"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="119"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="187"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="234"/>
         <source>&lt;b&gt;Erase disk and install %1&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;This will delete all of your programs, documents, photos, music, and any other files.</source>
         <translation>&lt;b&gt;Cancella il disco e installa %1&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Attenzione: &lt;/font&gt;Questo cancellerà tutti i tuoi programmi, documenti, foto, musica e ogni altro file.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="135"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="125"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="162"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="193"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="240"/>
+        <source>&lt;b&gt;Erase disk and install %1&lt;/b&gt;&lt;br/&gt;You will be offered a choice of which disk to erase.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="141"/>
         <source>This computer currently has %1 on it. What would you like to do?</source>
         <translation>Su questo computer è installato %1. Cosa vuoi fare?</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="139"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="145"/>
         <source>&lt;b&gt;Install %2 alongside %1&lt;/b&gt;&lt;br/&gt;Documents, music and other personal files will be kept. You can choose which operating system you want each time the computer starts up.</source>
         <translation>&lt;b&gt;Installa %2 accanto a %1&lt;/b&gt;&lt;br/&gt;I documenti, i file musicali e gli altri file personali verranno conservati. A ogni accensione del computer potrai scegliere quale sistema operativo avviare.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="147"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="154"/>
         <source>&lt;b&gt;Erase entire disk with %1 and install %2&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;This will erase the whole disk and delete all of your %1 programs, documents, photos, music, and any other files.</source>
         <translation>&lt;b&gt;Cancella l&apos;intero disco con %1 e installa %2&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Attenzione: &lt;/font&gt;Questo cancellerà l&apos;intero disco e tutti i %1 programmi, documenti, foto, musica, e ogni altro file.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="155"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="181"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="223"/>
-        <source>&lt;b&gt;Install %1 on an existing partition&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;This will delete all files on the selected partition.</source>
-        <translation>&lt;b&gt;Installa %1 nella partizione esistente&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Attenzione: &lt;/font&gt;Questo cancellerà tutti i file nella partizione selezionata.</translation>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="167"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="198"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="245"/>
+        <source>&lt;b&gt;Install %1 on an existing partition&lt;/b&gt;&lt;br/&gt;You will be offered a choice of which partition to erase.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="165"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="176"/>
         <source>This computer already has an operating system on it. What would you like to do?</source>
         <translation>Su questo computer è già installato un sistema operativo. Cosa vuoi fare?</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="168"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="179"/>
         <source>&lt;b&gt;Install %1 alongside your current operating system&lt;/b&gt;&lt;br/&gt;Documents, music and other personal files will be kept. You can choose which operating system you want each time the computer starts up.</source>
         <translation>&lt;b&gt;Installa %1 accanto al tuo sistema operativo attuale&lt;/b&gt;&lt;br/&gt;I documenti, i file musicali e gli altri file personali verranno conservati.  A ogni accensione del computer potrai scegliere quale sistema operativo avviare.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="207"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="223"/>
         <source>This computer currently has multiple operating systems on it. What would you like to do?</source>
         <translation>Su questo computer sono installati più sistemi operativi. Cosa vuoi fare?</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="210"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="226"/>
         <source>&lt;b&gt;Install %1 alongside your current operating systems&lt;/b&gt;&lt;br/&gt;Documents, music and other personal files will be kept. You can choose which operating system you want each time the computer starts up.</source>
         <translation>&lt;b&gt;Installa %1 assieme al tuo sistema operativo attuale&lt;/b&gt;&lt;br/&gt;I documenti, i file musicali e gli altri file personali verranno conservati. A ogni accensione del computer potrai scegliere quale sistema operativo avviare.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="240"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="261"/>
         <source>&lt;b&gt;Something else&lt;/b&gt;&lt;br/&gt;You can create or resize partitions yourself, or choose multiple partitions for %1.</source>
         <translation>&lt;b&gt;Altro&lt;/b&gt;&lt;br/&gt;Puoi creare o ridimensionare partizioni, scegliere partizioni multiple per %1.</translation>
     </message>
