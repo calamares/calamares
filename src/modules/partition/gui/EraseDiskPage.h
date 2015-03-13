@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -19,6 +19,7 @@
 #ifndef ERASEDISKPAGE_H
 #define ERASEDISKPAGE_H
 
+#include <QMutex>
 #include <QWidget>
 
 class PartitionCoreModule;
@@ -41,10 +42,13 @@ signals:
 private:
     void setNextEnabled( bool enabled );
     void doAutopartition( Device* dev );
+    void updatePreviews();
 
     QListView* m_drivesView;
     PartitionCoreModule* m_core;
     QWidget* m_previewFrame;
+
+    QMutex m_previewsMutex;
 
     bool m_nextEnabled;
 };

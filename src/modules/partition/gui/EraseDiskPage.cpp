@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -38,6 +38,7 @@
 #include <QFormLayout>
 #include <QListView>
 #include <QLabel>
+#include <QMutexLocker>
 
 EraseDiskPage::EraseDiskPage( QWidget* parent )
     : QWidget( parent )
@@ -103,6 +104,9 @@ EraseDiskPage::init( PartitionCoreModule* core )
         if ( dev )
             doAutopartition( dev );
     } );
+
+    connect( m_core, &PartitionCoreModule::isDirtyChanged,
+             this, &EraseDiskPage::updatePreviews );
 }
 
 
@@ -187,32 +191,46 @@ EraseDiskPage::doAutopartition( Device* dev )
     PartitionInfo::setFormat( rootPartition, true );
     m_core->createPartition( dev, rootPartition );
 
+    updatePreviews();
 
-    {
-        qDeleteAll( m_previewFrame->children() );
-        m_previewFrame->layout()->deleteLater();
-
-        QFormLayout* layout = new QFormLayout;
-        m_previewFrame->setLayout( layout );
-        layout->setMargin( 0 );
-
-        QList< PartitionCoreModule::SummaryInfo > list = m_core->createSummaryInfo();
-        for ( const auto& info : list )
-        {
-            PartitionPreview* preview;
-
-            layout->addRow( new QLabel( info.deviceName ) );
-
-            preview = new PartitionPreview;
-            preview->setModel( info.partitionModelBefore );
-            info.partitionModelBefore->setParent( m_previewFrame );
-            layout->addRow( tr( "Before:" ), preview );
-
-            preview = new PartitionPreview;
-            preview->setModel( info.partitionModelAfter );
-            info.partitionModelAfter->setParent( m_previewFrame );
-            layout->addRow( tr( "After:" ), preview );
-        }
-    }
     m_core->dumpQueue();
+}
+
+
+void
+EraseDiskPage::updatePreviews()
+{
+    QMutexLocker( &EraseDiskPage::m_previewsMutex );
+
+    cDebug() << "Updating partitioning preview widgets.";
+    qDeleteAll( m_previewFrame->children() );
+    m_previewFrame->layout()->deleteLater();
+
+    if ( m_drivesView->selectionModel()->currentIndex() == QModelIndex() )
+    {
+        cDebug() << "No disk selected, bailing out.";
+        return;
+    }
+
+    QFormLayout* layout = new QFormLayout;
+    m_previewFrame->setLayout( layout );
+    layout->setMargin( 0 );
+
+    QList< PartitionCoreModule::SummaryInfo > list = m_core->createSummaryInfo();
+    for ( const auto& info : list )
+    {
+        PartitionPreview* preview;
+
+        layout->addRow( new QLabel( info.deviceName ) );
+
+        preview = new PartitionPreview;
+        preview->setModel( info.partitionModelBefore );
+        info.partitionModelBefore->setParent( m_previewFrame );
+        layout->addRow( tr( "Before:" ), preview );
+
+        preview = new PartitionPreview;
+        preview->setModel( info.partitionModelAfter );
+        info.partitionModelAfter->setParent( m_previewFrame );
+        layout->addRow( tr( "After:" ), preview );
+    }
 }
