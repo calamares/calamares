@@ -191,27 +191,27 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>Formularz</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="24"/>
         <source>GlobalStorage</source>
-        <translation type="unfinished"/>
+        <translation>Ogólne przechowywanie</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="34"/>
         <source>JobQueue</source>
-        <translation type="unfinished"/>
+        <translation>Oczekujące zadania</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="44"/>
         <source>Modules</source>
-        <translation type="unfinished"/>
+        <translation>Moduły</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.cpp" line="95"/>
         <source>Debug information</source>
-        <translation type="unfinished"/>
+        <translation>Informacje debugowania</translation>
     </message>
 </context>
 <context>
@@ -412,7 +412,7 @@ Instalator zostanie zamknięty i wszystkie zmiany zostaną utracone.</translatio
     <message>
         <location filename="../src/calamares/CalamaresWindow.cpp" line="95"/>
         <source>Show debug information</source>
-        <translation type="unfinished"/>
+        <translation>Pokaż informacje debugowania</translation>
     </message>
 </context>
 <context>
@@ -448,7 +448,7 @@ Instalator zostanie zamknięty i wszystkie zmiany zostaną utracone.</translatio
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="193"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="240"/>
         <source>&lt;b&gt;Erase disk and install %1&lt;/b&gt;&lt;br/&gt;You will be offered a choice of which disk to erase.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Wymaż dysk i zainstaluj %1&lt;/b&gt;&lt;br/&gt;Zostanie Ci zaoferowany wybór dysku do wymazania.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="141"/>
@@ -470,7 +470,7 @@ Instalator zostanie zamknięty i wszystkie zmiany zostaną utracone.</translatio
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="198"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="245"/>
         <source>&lt;b&gt;Install %1 on an existing partition&lt;/b&gt;&lt;br/&gt;You will be offered a choice of which partition to erase.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Zainstaluj %1 na istniejącej partycji&lt;/b&gt;&lt;br/&gt;Zostanie Ci zaoferowany wybór partycji do wymazania.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="176"/>
@@ -1365,17 +1365,17 @@ Instalator zostanie zamknięty i wszystkie zmiany zostaną utracone.</translatio
 <context>
     <name>EraseDiskPage</name>
     <message>
-        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="52"/>
+        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="53"/>
         <source>Select drive:</source>
         <translation>Wybierz napęd:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="209"/>
+        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="229"/>
         <source>Before:</source>
         <translation>Przed:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="214"/>
+        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="234"/>
         <source>After:</source>
         <translation>Po:</translation>
     </message>

@@ -191,27 +191,27 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>Form</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="24"/>
         <source>GlobalStorage</source>
-        <translation type="unfinished"/>
+        <translation>Globale Einstellungen</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="34"/>
         <source>JobQueue</source>
-        <translation type="unfinished"/>
+        <translation>Job-Queue</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="44"/>
         <source>Modules</source>
-        <translation type="unfinished"/>
+        <translation>Module</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.cpp" line="95"/>
         <source>Debug information</source>
-        <translation type="unfinished"/>
+        <translation>Debug-Information</translation>
     </message>
 </context>
 <context>
@@ -360,7 +360,8 @@ Ausgabe:
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="80"/>
         <source>Do you really want to cancel the current install process?
 The installer will quit and all changes will be lost.</source>
-        <translation>Wollen Sie wirklich die aktuelle Installation abbrechen? Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.</translation>
+        <translation>Wollen Sie wirklich die aktuelle Installation abbrechen?
+Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="265"/>
@@ -411,7 +412,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/calamares/CalamaresWindow.cpp" line="95"/>
         <source>Show debug information</source>
-        <translation type="unfinished"/>
+        <translation>Debug-Information anzeigen</translation>
     </message>
 </context>
 <context>
@@ -447,7 +448,7 @@ The installer will quit and all changes will be lost.</source>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="193"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="240"/>
         <source>&lt;b&gt;Erase disk and install %1&lt;/b&gt;&lt;br/&gt;You will be offered a choice of which disk to erase.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Lösche den Datenträger und installiere %1&lt;/b&gt;&lt;br/&gt;Es wird ihnen eine Auswahl von möglichen löschbaren Datenträgern angeboten.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="141"/>
@@ -469,7 +470,7 @@ The installer will quit and all changes will be lost.</source>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="198"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="245"/>
         <source>&lt;b&gt;Install %1 on an existing partition&lt;/b&gt;&lt;br/&gt;You will be offered a choice of which partition to erase.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Installiere %1 auf eine existierende Partition.&lt;/b&gt;&lt;br/&gt;Es wird Ihnen eine Auswahl von möglichen löschbaren Partitionen angeboten.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="176"/>
@@ -515,17 +516,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="38"/>
         <source>Clear all temporary mounts.</source>
-        <translation type="unfinished"/>
+        <translation>Alle temporären Mount-Points leeren.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="49"/>
         <source>Cannot get list of temporary mounts.</source>
-        <translation type="unfinished"/>
+        <translation>Konnte keine Liste von temporären Mount-Points einlesen.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="88"/>
         <source>Cleared all temporary mounts.</source>
-        <translation type="unfinished"/>
+        <translation>Alle temporären Mount-Points geleert.</translation>
     </message>
 </context>
 <context>
@@ -1364,17 +1365,17 @@ The installer will quit and all changes will be lost.</source>
 <context>
     <name>EraseDiskPage</name>
     <message>
-        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="52"/>
+        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="53"/>
         <source>Select drive:</source>
         <translation>Wähle Laufwerk:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="209"/>
+        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="229"/>
         <source>Before:</source>
         <translation>Davor:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="214"/>
+        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="234"/>
         <source>After:</source>
         <translation>Danach:</translation>
     </message>
@@ -1488,7 +1489,7 @@ Einige Dateisysteme erfordern die Installation externer Programme, um unterstüt
     <message>
         <location filename="../src/modules/finished/FinishedPage.cpp" line="50"/>
         <source>&lt;h1&gt;All done.&lt;/h1&gt;&lt;br/&gt;%1 has been installed on your computer.&lt;br/&gt;You may now restart into your new system, or continue using the %2 Live environment.</source>
-        <translation>&lt;h1&gt;Alles erledigt.&lt;/h1&gt;&lt;br/&gt;%1 wurde auf Ihrem Computer installiert.&lt;br/&gt;Sie können nun in Ihr neues System rebooten oder mit der %2 Live-Umgebung fortfahren.</translation>
+        <translation>&lt;h1&gt;Alles erledigt.&lt;/h1&gt;&lt;br/&gt;%1 wurde auf Ihrem Computer installiert.&lt;br/&gt;Sie können nun in Ihr neues System neustarten oder mit der %2 Live-Umgebung fortfahren.</translation>
     </message>
 </context>
 <context>
@@ -1557,7 +1558,7 @@ Einige Dateisysteme erfordern die Installation externer Programme, um unterstüt
     <message>
         <location filename="../src/modules/greeting/GreetingPage.ui" line="102"/>
         <source>&amp;About</source>
-        <translation>&amp;über</translation>
+        <translation>&amp;Über</translation>
     </message>
 </context>
 <context>
@@ -2331,7 +2332,7 @@ Die Installation wird fortgesetzt, es werden eventuell nicht alle Funktionen ver
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="190"/>
         <source>Unknown system partition (%1)</source>
-        <translation>unbekannte Systempartition (%1)</translation>
+        <translation>Unbekannte Systempartition (%1)</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="195"/>
@@ -2733,27 +2734,27 @@ Die Installation wird fortgesetzt, es werden eventuell nicht alle Funktionen ver
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="233"/>
         <source>Your username is too long.</source>
-        <translation>Dein Nutzername ist zu lang.</translation>
+        <translation>Ihr Nutzername ist zu lang.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="243"/>
         <source>Your username contains invalid characters. Only lowercase letters and numbers are allowed.</source>
-        <translation>Dein Nutzername enthält ungültige Zeichen. Nur Kleinbuchstaben und Ziffern sind erlaubt.</translation>
+        <translation>Ihr Nutzername enthält ungültige Zeichen. Nur Kleinbuchstaben und Ziffern sind erlaubt.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="287"/>
         <source>Your hostname is too short.</source>
-        <translation>Dein Hostname ist zu kurz.</translation>
+        <translation>Ihr Hostname ist zu kurz.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="298"/>
         <source>Your hostname is too long.</source>
-        <translation>Dein Hostname ist zu lang.</translation>
+        <translation>Ihr Hostname ist zu lang.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="309"/>
         <source>Your hostname contains invalid characters. Only letters, numbers and dashes are allowed.</source>
-        <translation>Dein Hostname enthält ungültige Zeichen. Nur Buchstaben, Ziffern und Striche sind erlaubt.</translation>
+        <translation>Ihr Hostname enthält ungültige Zeichen. Nur Buchstaben, Ziffern und Striche sind erlaubt.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="340"/>
