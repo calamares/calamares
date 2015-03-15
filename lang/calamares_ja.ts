@@ -191,27 +191,27 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>Form</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="24"/>
         <source>GlobalStorage</source>
-        <translation type="unfinished"/>
+        <translation>グローバルストレージ</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="34"/>
         <source>JobQueue</source>
-        <translation type="unfinished"/>
+        <translation>ジョブキュー</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="44"/>
         <source>Modules</source>
-        <translation type="unfinished"/>
+        <translation>モジュール</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.cpp" line="95"/>
         <source>Debug information</source>
-        <translation type="unfinished"/>
+        <translation>デバッグ情報</translation>
     </message>
 </context>
 <context>
@@ -412,7 +412,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/calamares/CalamaresWindow.cpp" line="95"/>
         <source>Show debug information</source>
-        <translation type="unfinished"/>
+        <translation>デバッグ情報を表示</translation>
     </message>
 </context>
 <context>
@@ -448,7 +448,7 @@ The installer will quit and all changes will be lost.</source>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="193"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="240"/>
         <source>&lt;b&gt;Erase disk and install %1&lt;/b&gt;&lt;br/&gt;You will be offered a choice of which disk to erase.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;ディスクを消去して %1 をインストール &lt;/b&gt;&lt;br/&gt;どのディスクを消去するか、選択します。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="141"/>
@@ -470,7 +470,7 @@ The installer will quit and all changes will be lost.</source>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="198"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="245"/>
         <source>&lt;b&gt;Install %1 on an existing partition&lt;/b&gt;&lt;br/&gt;You will be offered a choice of which partition to erase.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;既存のパーティションに %1 をインストール&lt;/b&gt;&lt;br/&gt;どのパーティションを消去するか、選択します。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="176"/>
