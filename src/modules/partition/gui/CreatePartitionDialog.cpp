@@ -55,8 +55,7 @@ CreatePartitionDialog::CreatePartitionDialog( Device* device, PartitionNode* par
 {
     m_ui->setupUi( this );
 
-    QStringList mountPoints;
-    mountPoints << "/" << "/boot" << "/home" << "/opt" << "/usr" << "/var";
+    QStringList mountPoints = { "/", "/boot", "/home", "/opt", "/usr", "/var" };
     if ( QDir( "/sys/firmware/efi/efivars" ).exists() )
         mountPoints << Calamares::JobQueue::instance()->globalStorage()->value( "efiSystemPartition" ).toString();
     mountPoints.removeDuplicates();
