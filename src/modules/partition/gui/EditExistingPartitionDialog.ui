@@ -105,36 +105,6 @@
        <property name="currentIndex">
         <number>-1</number>
        </property>
-       <item>
-        <property name="text">
-         <string>/</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>/boot</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>/home</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>/opt</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>/usr</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>/var</string>
-        </property>
-       </item>
       </widget>
      </item>
      <item row="1" column="0">
