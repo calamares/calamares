@@ -200,7 +200,7 @@ EraseDiskPage::doAutopartition( Device* dev )
 void
 EraseDiskPage::updatePreviews()
 {
-    QMutexLocker( &EraseDiskPage::m_previewsMutex );
+    QMutexLocker locker( &m_previewsMutex );
 
     cDebug() << "Updating partitioning preview widgets.";
     qDeleteAll( m_previewFrame->children() );
