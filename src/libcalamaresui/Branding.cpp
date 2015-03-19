@@ -236,6 +236,12 @@ Branding::slideshowPath() const
     return m_slideshowPath;
 }
 
+QString
+Branding::style( Branding::StyleEntry styleEntry ) const
+{
+    return m_style.value( s_styleEntryStrings.value( styleEntry ) );
+}
+
 
 void
 Branding::setGlobals( GlobalStorage* globalStorage ) const
