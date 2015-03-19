@@ -49,6 +49,7 @@ PartitionSplitterWidget::init( const QList<PartitionSplitterItem>& items )
     m_itemToResizeNext = nullptr;
     m_itemToResizePath.clear();
 
+    m_items.clear();
     m_items = items;
     repaint();
     foreach ( const PartitionSplitterItem& item, items )
@@ -164,7 +165,8 @@ PartitionSplitterWidget::paintEvent( QPaintEvent* event )
     QPainter painter( this );
     painter.fillRect( rect(), palette().window() );
     painter.setRenderHint( QPainter::Antialiasing );
-    drawPartitions( &painter, rect(), m_items );
+    if ( m_itemToResize && m_itemToResizeNext )
+        drawPartitions( &painter, rect(), m_items );
 }
 
 
