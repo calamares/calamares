@@ -209,6 +209,13 @@ Branding::string( Branding::StringEntry stringEntry ) const
 
 
 QString
+Branding::styleString( Branding::StyleEntry styleEntry ) const
+{
+    return m_style.value( s_styleEntryStrings.value( styleEntry ) );
+}
+
+
+QString
 Branding::imagePath( Branding::ImageEntry imageEntry ) const
 {
     return m_images.value( s_imageEntryStrings.value( imageEntry ) );
@@ -234,12 +241,6 @@ QString
 Branding::slideshowPath() const
 {
     return m_slideshowPath;
-}
-
-QString
-Branding::style( Branding::StyleEntry styleEntry ) const
-{
-    return m_style.value( s_styleEntryStrings.value( styleEntry ) );
 }
 
 

@@ -70,10 +70,10 @@ public:
     QString componentDirectory() const;
 
     QString string( Branding::StringEntry stringEntry ) const;
+    QString styleString( Branding::StyleEntry styleEntry ) const;
     QString imagePath( Branding::ImageEntry imageEntry ) const;
     QPixmap image( Branding::ImageEntry imageEntry, const QSize& size ) const;
     QString slideshowPath() const;
-    QString style( Branding::StyleEntry styleEntry ) const;
 
     /**
      * Creates a map called "branding" in the global storage, and inserts an
