@@ -20,7 +20,7 @@
 
 #include "ProgressTreeDelegate.h"
 #include "ViewManager.h"
-#include "utils/CalamaresStyle.h"
+#include "Branding.h"
 
 ProgressTreeView* ProgressTreeView::s_instance = nullptr;
 
@@ -54,7 +54,8 @@ ProgressTreeView::ProgressTreeView( QWidget* parent )
     setItemDelegate( m_delegate );
 
     QPalette plt = palette();
-    plt.setColor( QPalette::Base, CalamaresStyle::SIDEBAR_BACKGROUND );
+    plt.setColor( QPalette::Base, Calamares::Branding::instance()->
+        styleString( Calamares::Branding::SidebarBackground ) );
     setPalette( plt );
 }
 
