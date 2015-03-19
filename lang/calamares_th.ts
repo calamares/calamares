@@ -457,8 +457,30 @@ The installer will quit and all changes will be lost.</source>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="145"/>
-        <source>&lt;b&gt;Install %2 alongside %1&lt;/b&gt;&lt;br/&gt;Documents, music and other personal files will be kept. You can choose which operating system you want each time the computer starts up.</source>
-        <translation>&lt;b&gt;ติดตั้ง %2 ควบคู่กับ %1&lt;/b&gt;&lt;br/&gt;เอกสาร เพลง และไฟล์ส่วนตัวอื่นๆ จะถูกเก็บไว้ คุณสามารถเลือกใช้ระบบปฏิบัติการใดก็ได้ในแต่ละครั้งที่ทำการเริ่มการใช้งานคอมพิวเตอร์</translation>
+        <source>&lt;b&gt;Install %2 alongside %1&lt;/b&gt;&lt;br/&gt;The installer will shrink the %1 volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="167"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="198"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="245"/>
+        <source>&lt;b&gt;Replace a partition with %1&lt;/b&gt;&lt;br/&gt;You will be offered a choice of which partition to erase.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="179"/>
+        <source>&lt;b&gt;Install %1 alongside your current operating system&lt;/b&gt;&lt;br/&gt;The installer will shrink an existing volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="226"/>
+        <source>&lt;b&gt;Install %1 alongside your current operating systems&lt;/b&gt;&lt;br/&gt;The installer will shrink an existing volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="261"/>
+        <source>&lt;b&gt;Manual partitioning&lt;/b&gt;&lt;br/&gt;You can create or resize partitions yourself, or choose multiple partitions for %1.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="154"/>
@@ -466,36 +488,14 @@ The installer will quit and all changes will be lost.</source>
         <translation>&lt;b&gt;ลบดิสก์ทั้งหมดพร้อมกับ %1 และติดตั้ง %2&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;คำเตือน: &lt;/font&gt;ตัวเลือกนี้จะลบดิสก์ทั้งหมด และลบโปรแกรม %1 เอกสาร รูปภาพ เพลง และไฟล์อื่นๆ ทั้งหมดบนดิสก์</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="167"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="198"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="245"/>
-        <source>&lt;b&gt;Install %1 on an existing partition&lt;/b&gt;&lt;br/&gt;You will be offered a choice of which partition to erase.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="176"/>
         <source>This computer already has an operating system on it. What would you like to do?</source>
         <translation>คอมพิวเตอร์เครื่องนี้มีระบบปฏิบัติติดตั้งอยู่แล้ว คุณต้องการจะทำอะไรต่อไป?</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="179"/>
-        <source>&lt;b&gt;Install %1 alongside your current operating system&lt;/b&gt;&lt;br/&gt;Documents, music and other personal files will be kept. You can choose which operating system you want each time the computer starts up.</source>
-        <translation>&lt;b&gt;ติดตั้ง %1 ควบคู่กับระบบปฏิบัติการปัจจุบันของคุณ&lt;/b&gt;&lt;br/&gt;เอกสาร เพลง และไฟล์ส่วนตัวอื่นๆ จะถูกเก็บไว้ คุณสามารถเลือกใช้ระบบปฏิบัติการใดก็ได้ในแต่ละครั้งที่ทำการเริ่มการใช้งานคอมพิวเตอร์</translation>
-    </message>
-    <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="223"/>
         <source>This computer currently has multiple operating systems on it. What would you like to do?</source>
         <translation>คอมพิวเตอร์เครื่องนี้มีระบบปฏิบัติการหลายระบบติดตั้งอยู่แล้ว คุณต้องการจะทำอะไรต่อไป?</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="226"/>
-        <source>&lt;b&gt;Install %1 alongside your current operating systems&lt;/b&gt;&lt;br/&gt;Documents, music and other personal files will be kept. You can choose which operating system you want each time the computer starts up.</source>
-        <translation>&lt;b&gt;ติดตั้ง %1 ควบคู่กับระบบปฏิบัติการปัจจุบันของคุณ&lt;/b&gt;&lt;br/&gt;เอกสาร เพลง และไฟล์ส่วนตัวอื่นๆ จะถูกเก็บไว้ คุณสามารถเลือกใช้ระบบปฏิบัติการใดก็ได้ในแต่ละครั้งที่ทำการเริ่มการใช้งานคอมพิวเตอร์</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="261"/>
-        <source>&lt;b&gt;Something else&lt;/b&gt;&lt;br/&gt;You can create or resize partitions yourself, or choose multiple partitions for %1.</source>
-        <translation>&lt;b&gt;ทางเลือกอื่น&lt;/b&gt;&lt;br/&gt;คุณสามารถสร้างหรือเปลี่ยนขนาดพาร์ทิชันด้วยตัวของคุณเอง หรือเลือกหลายพาร์ทิชันสำหรับ %1.</translation>
     </message>
 </context>
 <context>

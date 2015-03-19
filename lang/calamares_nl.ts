@@ -457,8 +457,30 @@ Het installatieprogramma zal afsluiten en alle wijzigingen zullen verloren gaan.
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="145"/>
-        <source>&lt;b&gt;Install %2 alongside %1&lt;/b&gt;&lt;br/&gt;Documents, music and other personal files will be kept. You can choose which operating system you want each time the computer starts up.</source>
-        <translation>&lt;b&gt;Installeer %2 naast %1&lt;/b&gt;&lt;br\&gt;Documenten, muziek en andere persoonlijke bestanden zullen bewaard blijven. Telkens de computer opstart kan je kiezen welk besturingssysteem je wil gebruiken.</translation>
+        <source>&lt;b&gt;Install %2 alongside %1&lt;/b&gt;&lt;br/&gt;The installer will shrink the %1 volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="167"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="198"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="245"/>
+        <source>&lt;b&gt;Replace a partition with %1&lt;/b&gt;&lt;br/&gt;You will be offered a choice of which partition to erase.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="179"/>
+        <source>&lt;b&gt;Install %1 alongside your current operating system&lt;/b&gt;&lt;br/&gt;The installer will shrink an existing volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="226"/>
+        <source>&lt;b&gt;Install %1 alongside your current operating systems&lt;/b&gt;&lt;br/&gt;The installer will shrink an existing volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="261"/>
+        <source>&lt;b&gt;Manual partitioning&lt;/b&gt;&lt;br/&gt;You can create or resize partitions yourself, or choose multiple partitions for %1.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="154"/>
@@ -466,36 +488,14 @@ Het installatieprogramma zal afsluiten en alle wijzigingen zullen verloren gaan.
         <translation>&lt;b&gt;Wis de volledige schijf met %1 en installeer %2&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Opgelet: &lt;/font&gt;Dit zal de volledige schijf wissen, en dus ook alle programma&apos;s, documenten, foto&apos;s, muziek en andere bestanden.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="167"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="198"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="245"/>
-        <source>&lt;b&gt;Install %1 on an existing partition&lt;/b&gt;&lt;br/&gt;You will be offered a choice of which partition to erase.</source>
-        <translation>&lt;b&gt;Installeer %1 op een bestaande partitie&lt;/b&gt;&lt;br/&gt;Je krijgt de keuzemogelijkheid voor de te wissen partitie.</translation>
-    </message>
-    <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="176"/>
         <source>This computer already has an operating system on it. What would you like to do?</source>
         <translation>Deze computer bevat reeds een besturingssysteem. Wat wil je doen?</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="179"/>
-        <source>&lt;b&gt;Install %1 alongside your current operating system&lt;/b&gt;&lt;br/&gt;Documents, music and other personal files will be kept. You can choose which operating system you want each time the computer starts up.</source>
-        <translation>&lt;b&gt;Installeer %1 naast je huidige besturingssysteem&lt;/b&gt;&lt;br/&gt;Documenten, muziek en andere persoonlijke bestanden zullen bewaard blijven. Telkens de computer opstart kan je kiezen welk besturingssysteem je wil gebruiken.</translation>
-    </message>
-    <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="223"/>
         <source>This computer currently has multiple operating systems on it. What would you like to do?</source>
         <translation>Deze computer bevat meerdere besturingssystemen.  Wat wil je doen?</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="226"/>
-        <source>&lt;b&gt;Install %1 alongside your current operating systems&lt;/b&gt;&lt;br/&gt;Documents, music and other personal files will be kept. You can choose which operating system you want each time the computer starts up.</source>
-        <translation>&lt;b&gt;Installeer %1 naast de huidige besturingssystemen&lt;/b&gt;&lt;br/&gt;Documenten, muziek en andere persoonlijke bestanden zullen bewaard blijven. Telkens de computer opstart kan je kiezen welk besturingssysteem je wil gebruiken.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="261"/>
-        <source>&lt;b&gt;Something else&lt;/b&gt;&lt;br/&gt;You can create or resize partitions yourself, or choose multiple partitions for %1.</source>
-        <translation>&lt;b&gt;Iets anders&lt;/b&gt;&lt;br/&gt;Zelf partities maken of aanpassen, of meerdere partities voor %1 kiezen.</translation>
     </message>
 </context>
 <context>

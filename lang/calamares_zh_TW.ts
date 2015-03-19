@@ -457,8 +457,30 @@ The installer will quit and all changes will be lost.</source>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="145"/>
-        <source>&lt;b&gt;Install %2 alongside %1&lt;/b&gt;&lt;br/&gt;Documents, music and other personal files will be kept. You can choose which operating system you want each time the computer starts up.</source>
-        <translation>&lt;b&gt;在 %1 旁邊安裝 %2&lt;/b&gt;&lt;br/&gt;文件、音樂及其他個人檔案將會被保留。您可以在每次電腦開機時，選擇要進入哪一個作業系統。</translation>
+        <source>&lt;b&gt;Install %2 alongside %1&lt;/b&gt;&lt;br/&gt;The installer will shrink the %1 volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
+        <translation>&lt;b&gt;在 %1 旁邊安裝 %2&lt;/b&gt;&lt;br/&gt;安裝程式將會縮減 %1 的容量以提供空間給 %2 使用。您可以在每次電腦開機時，選擇要進入哪一個作業系統。</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="167"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="198"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="245"/>
+        <source>&lt;b&gt;Replace a partition with %1&lt;/b&gt;&lt;br/&gt;You will be offered a choice of which partition to erase.</source>
+        <translation>&lt;b&gt;以 %1 取代一個分割區&lt;/b&gt;&lt;br/&gt;您將會被提醒要抹除哪一個分割區。</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="179"/>
+        <source>&lt;b&gt;Install %1 alongside your current operating system&lt;/b&gt;&lt;br/&gt;The installer will shrink an existing volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
+        <translation>&lt;b&gt;在您目前的作業系統旁邊安裝 %1&lt;/b&gt;&lt;br/&gt;安裝程式將會縮減 %1 的容量以提供空間給 %2 使用。您可以在每次電腦開機時，選擇要進入哪一個作業系統。</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="226"/>
+        <source>&lt;b&gt;Install %1 alongside your current operating systems&lt;/b&gt;&lt;br/&gt;The installer will shrink an existing volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
+        <translation>&lt;b&gt;在您目前的作業系統旁邊安裝 %1&lt;/b&gt;&lt;br/&gt;安裝程式將會縮減 %1 的容量以提供空間給 %2 使用。您可以在每次電腦開機時，選擇要進入哪一個作業系統。</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="261"/>
+        <source>&lt;b&gt;Manual partitioning&lt;/b&gt;&lt;br/&gt;You can create or resize partitions yourself, or choose multiple partitions for %1.</source>
+        <translation>&lt;b&gt;手動分割&lt;/b&gt;&lt;br/&gt;您可以自行建立或重新調整分割區大小，或是為 %1 選擇多個分割區。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="154"/>
@@ -466,36 +488,14 @@ The installer will quit and all changes will be lost.</source>
         <translation>&lt;b&gt;將包含 %1 的磁碟整個抹除並安裝 %2&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;警告： &lt;/font&gt;這將會抹除整個磁碟並刪除您在 %1 上所有的程式、文件、照片、音樂以及其他檔案。</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="167"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="198"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="245"/>
-        <source>&lt;b&gt;Install %1 on an existing partition&lt;/b&gt;&lt;br/&gt;You will be offered a choice of which partition to erase.</source>
-        <translation>&lt;b&gt;安裝 %1 到已存在的分割區中&lt;/b&gt;&lt;br/&gt;您將會被提醒要抹除哪一個分割區。</translation>
-    </message>
-    <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="176"/>
         <source>This computer already has an operating system on it. What would you like to do?</source>
         <translation>這台電腦已經裝有作業系統。您打算怎麼做？</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="179"/>
-        <source>&lt;b&gt;Install %1 alongside your current operating system&lt;/b&gt;&lt;br/&gt;Documents, music and other personal files will be kept. You can choose which operating system you want each time the computer starts up.</source>
-        <translation>&lt;b&gt;在您目前的作業系統旁邊安裝 %1&lt;/b&gt;&lt;br/&gt;文件、音樂及其他個人檔案將會被保留。您可以在每次電腦開機時，選擇要進入哪一個作業系統。</translation>
-    </message>
-    <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="223"/>
         <source>This computer currently has multiple operating systems on it. What would you like to do?</source>
         <translation>這臺電腦上已有多個作業系統。您想要做什麼?</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="226"/>
-        <source>&lt;b&gt;Install %1 alongside your current operating systems&lt;/b&gt;&lt;br/&gt;Documents, music and other personal files will be kept. You can choose which operating system you want each time the computer starts up.</source>
-        <translation>&lt;b&gt;在您目前的作業系統旁邊安裝 %1&lt;/b&gt;&lt;br/&gt;文件、音樂及其他個人檔案將會被保留。您可以在每次電腦開機時，選擇要進入哪一個作業系統。</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="261"/>
-        <source>&lt;b&gt;Something else&lt;/b&gt;&lt;br/&gt;You can create or resize partitions yourself, or choose multiple partitions for %1.</source>
-        <translation>&lt;b&gt;其他選項&lt;/b&gt;&lt;br/&gt;您可以自行建立或重新調整分割區大小，或是為 %1 選擇多個分割區。</translation>
     </message>
 </context>
 <context>

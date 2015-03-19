@@ -456,8 +456,30 @@ The installer will quit and all changes will be lost.</source>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="145"/>
-        <source>&lt;b&gt;Install %2 alongside %1&lt;/b&gt;&lt;br/&gt;Documents, music and other personal files will be kept. You can choose which operating system you want each time the computer starts up.</source>
-        <translation>&lt;b&gt;Установить %2 сохранив %1&lt;/b&gt;&lt;br/&gt;Документы, музыка и другие личные файлы не будут затронуты. Вы сможете выбирать операционную систему в момент старта компьютера.</translation>
+        <source>&lt;b&gt;Install %2 alongside %1&lt;/b&gt;&lt;br/&gt;The installer will shrink the %1 volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
+        <translation>&lt;b&gt;Установить %2 рядом с %1&lt;/b&gt;&lt;br/&gt;Установщик уменьшит %1 раздел, чтобы освободить место для %2. Вы сможете выбирать операционную систему в момент старта компьютера.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="167"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="198"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="245"/>
+        <source>&lt;b&gt;Replace a partition with %1&lt;/b&gt;&lt;br/&gt;You will be offered a choice of which partition to erase.</source>
+        <translation>&lt;b&gt;Заменить раздел на %1&lt;/b&gt;&lt;br/&gt;Вам будет предложено выбрать какой раздел удалить.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="179"/>
+        <source>&lt;b&gt;Install %1 alongside your current operating system&lt;/b&gt;&lt;br/&gt;The installer will shrink an existing volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
+        <translation>&lt;b&gt;Установить %1 не трогая существующую операционную систему&lt;/b&gt;&lt;br/&gt;Установщик уменьшит существующий раздел, чтобы освободить место для %2. Вы сможете выбирать операционную систему в момент старта компьютера.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="226"/>
+        <source>&lt;b&gt;Install %1 alongside your current operating systems&lt;/b&gt;&lt;br/&gt;The installer will shrink an existing volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
+        <translation>&lt;b&gt;Установить %1 не трогая существующие операционные системы&lt;/b&gt;&lt;br/&gt;Установщик уменьшит существующий раздел, чтобы освободить место для %2. Вы сможете выбирать операционную систему в момент старта компьютера.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="261"/>
+        <source>&lt;b&gt;Manual partitioning&lt;/b&gt;&lt;br/&gt;You can create or resize partitions yourself, or choose multiple partitions for %1.</source>
+        <translation>&lt;b&gt;Ручной режим&lt;/b&gt;&lt;br/&gt;Вы сможете создавать или менять размер разделов сами, или выбрать несколько разделов для %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="154"/>
@@ -465,36 +487,14 @@ The installer will quit and all changes will be lost.</source>
         <translation>&lt;b&gt;Стереть содержимое всего диска используя %1 и установить %2&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Внимание: &lt;/font&gt;Это удалит содержимое всего диска, включая все ваши %1 программы, документы, фото, музыку и прочие файлы.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="167"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="198"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="245"/>
-        <source>&lt;b&gt;Install %1 on an existing partition&lt;/b&gt;&lt;br/&gt;You will be offered a choice of which partition to erase.</source>
-        <translation>&lt;b&gt;Установить %1 на существующий раздел&lt;/b&gt;&lt;br/&gt;Вам будет предложен выбор раздела для очистки.</translation>
-    </message>
-    <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="176"/>
         <source>This computer already has an operating system on it. What would you like to do?</source>
         <translation>На компьютере уже установлена операционная система. Как Вы желаете поступить?</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="179"/>
-        <source>&lt;b&gt;Install %1 alongside your current operating system&lt;/b&gt;&lt;br/&gt;Documents, music and other personal files will be kept. You can choose which operating system you want each time the computer starts up.</source>
-        <translation>&lt;b&gt;Установить %1 не трогая существующую операционную систему&lt;/b&gt;&lt;br/&gt;Документы, музыка и прочие личные файлы не будут затронуты. Вы сможете выбирать операционную систему в момент старта компьютера.</translation>
-    </message>
-    <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="223"/>
         <source>This computer currently has multiple operating systems on it. What would you like to do?</source>
         <translation>На этом компьютере обнаружено несколько операционных систем. Как Вы желаете поступить?</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="226"/>
-        <source>&lt;b&gt;Install %1 alongside your current operating systems&lt;/b&gt;&lt;br/&gt;Documents, music and other personal files will be kept. You can choose which operating system you want each time the computer starts up.</source>
-        <translation>&lt;b&gt;Установить %1 вместе с другими операционными системами&lt;/b&gt;&lt;br/&gt;Документы, музыка и прочие личные файлы не будут затронуты. Вы сможете выбирать операционную систему в момент старта компьютера.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="261"/>
-        <source>&lt;b&gt;Something else&lt;/b&gt;&lt;br/&gt;You can create or resize partitions yourself, or choose multiple partitions for %1.</source>
-        <translation>&lt;b&gt;Ручной режим&lt;/b&gt;&lt;br/&gt;Вы сможете создавать или менять размер разделов сами, или выбрать несколько разделов для %1.</translation>
     </message>
 </context>
 <context>

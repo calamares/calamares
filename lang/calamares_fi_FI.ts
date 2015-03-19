@@ -457,8 +457,30 @@ Asennusohjelma sulkeutuu ja kaikki muutoksesi katoavat.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="145"/>
-        <source>&lt;b&gt;Install %2 alongside %1&lt;/b&gt;&lt;br/&gt;Documents, music and other personal files will be kept. You can choose which operating system you want each time the computer starts up.</source>
-        <translation>&lt;b&gt;Asenna %2 %1:n  rinnalle&lt;/b&gt;&lt;br/&gt;Asiakirjat, musiikit ja muut henkilökohtaiset tiedostot säilytetään. Voit valita minkä käyttöjärjestelmän haluat käynnistää joka kerta kun tietokone käynnistyy.</translation>
+        <source>&lt;b&gt;Install %2 alongside %1&lt;/b&gt;&lt;br/&gt;The installer will shrink the %1 volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="167"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="198"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="245"/>
+        <source>&lt;b&gt;Replace a partition with %1&lt;/b&gt;&lt;br/&gt;You will be offered a choice of which partition to erase.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="179"/>
+        <source>&lt;b&gt;Install %1 alongside your current operating system&lt;/b&gt;&lt;br/&gt;The installer will shrink an existing volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="226"/>
+        <source>&lt;b&gt;Install %1 alongside your current operating systems&lt;/b&gt;&lt;br/&gt;The installer will shrink an existing volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="261"/>
+        <source>&lt;b&gt;Manual partitioning&lt;/b&gt;&lt;br/&gt;You can create or resize partitions yourself, or choose multiple partitions for %1.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="154"/>
@@ -466,36 +488,14 @@ Asennusohjelma sulkeutuu ja kaikki muutoksesi katoavat.</translation>
         <translation>&lt;b&gt; Tyhjennä koko levy %1 ja asenna %2&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Varoitus: &lt;/font&gt;Tämä tyhjentää koko levyn ja poistaa kaikki %1 ohjelmat, asiakirjat, elokuvat, musiikit ja muut tiedostosi.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="167"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="198"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="245"/>
-        <source>&lt;b&gt;Install %1 on an existing partition&lt;/b&gt;&lt;br/&gt;You will be offered a choice of which partition to erase.</source>
-        <translation>&lt;b&gt;Asenna %1 olemassa olevaan osioon.&lt;/b&gt;&lt;br/&gt;Saat valita, mikä osio tyhjennetään.</translation>
-    </message>
-    <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="176"/>
         <source>This computer already has an operating system on it. What would you like to do?</source>
         <translation>Tällä tietokoneella on jo olemassaoleva käyttöjärjestelmä. Mitä haluaisit tehdä?</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="179"/>
-        <source>&lt;b&gt;Install %1 alongside your current operating system&lt;/b&gt;&lt;br/&gt;Documents, music and other personal files will be kept. You can choose which operating system you want each time the computer starts up.</source>
-        <translation>&lt;b&gt;Asenna %1 nykyisen käyttöjärjestelmän rinnalle&lt;/b&gt;&lt;br/&gt;Dokumentit, musiikki ja muut henkilökohtaiset tiedostot säilytetään. Voit valita halutun käyttöjärjestelmän jokaisella käynnistyskerralla.</translation>
-    </message>
-    <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="223"/>
         <source>This computer currently has multiple operating systems on it. What would you like to do?</source>
         <translation>Tällä hetkellä tietokoneessa on asennettuna monta eri käyttöjärjestelmää. Mitä haluaisit tehdä?</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="226"/>
-        <source>&lt;b&gt;Install %1 alongside your current operating systems&lt;/b&gt;&lt;br/&gt;Documents, music and other personal files will be kept. You can choose which operating system you want each time the computer starts up.</source>
-        <translation>&lt;b&gt;Asenna %1 nykyisten käyttöjärjestelmien rinnalle&lt;/b&gt;&lt;br/&gt;Asiakirjat, musiikit ja muuta henkilökohtaiset tiedostot säilytetään. Voit valita minkä käyttöjärjestelmän haluat käynnistää joka kerta kun tietokone käynnistyy.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="261"/>
-        <source>&lt;b&gt;Something else&lt;/b&gt;&lt;br/&gt;You can create or resize partitions yourself, or choose multiple partitions for %1.</source>
-        <translation>&lt;b&gt;Jokin muu&lt;/b&gt;&lt;br/&gt;Voit luoda tai muuttaa osioiden kokoja itse, tai valita useita osioita %1:lle.</translation>
     </message>
 </context>
 <context>

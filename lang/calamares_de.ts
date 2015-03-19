@@ -457,8 +457,30 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="145"/>
-        <source>&lt;b&gt;Install %2 alongside %1&lt;/b&gt;&lt;br/&gt;Documents, music and other personal files will be kept. You can choose which operating system you want each time the computer starts up.</source>
-        <translation>&lt;b&gt;Installiere %2 neben %1&lt;/b&gt;&lt;br/&gt;Dokumente, Musik und andere persönliche Dateien bleiben erhalten. Sie können bei jedem Start des Computers zwischen den Betriebssystemen wählen.</translation>
+        <source>&lt;b&gt;Install %2 alongside %1&lt;/b&gt;&lt;br/&gt;The installer will shrink the %1 volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="167"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="198"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="245"/>
+        <source>&lt;b&gt;Replace a partition with %1&lt;/b&gt;&lt;br/&gt;You will be offered a choice of which partition to erase.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="179"/>
+        <source>&lt;b&gt;Install %1 alongside your current operating system&lt;/b&gt;&lt;br/&gt;The installer will shrink an existing volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="226"/>
+        <source>&lt;b&gt;Install %1 alongside your current operating systems&lt;/b&gt;&lt;br/&gt;The installer will shrink an existing volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="261"/>
+        <source>&lt;b&gt;Manual partitioning&lt;/b&gt;&lt;br/&gt;You can create or resize partitions yourself, or choose multiple partitions for %1.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="154"/>
@@ -466,36 +488,14 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
         <translation>&lt;b&gt;Lösche die gesamte Festplatte mit %1 und installiere %2&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Achtung: &lt;/font&gt;Dies wird die gesamte Festplatte löschen und alle ihre %1 Programme, Dokumente, Bilder, Musik, und alle anderen Dateien löschen.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="167"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="198"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="245"/>
-        <source>&lt;b&gt;Install %1 on an existing partition&lt;/b&gt;&lt;br/&gt;You will be offered a choice of which partition to erase.</source>
-        <translation>&lt;b&gt;Installiere %1 auf eine existierende Partition.&lt;/b&gt;&lt;br/&gt;Es wird Ihnen eine Auswahl von möglichen löschbaren Partitionen angeboten.</translation>
-    </message>
-    <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="176"/>
         <source>This computer already has an operating system on it. What would you like to do?</source>
         <translation>Auf diesem Computer ist bereits ein Betriebssystem installiert. Was möchten Sie tun?</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="179"/>
-        <source>&lt;b&gt;Install %1 alongside your current operating system&lt;/b&gt;&lt;br/&gt;Documents, music and other personal files will be kept. You can choose which operating system you want each time the computer starts up.</source>
-        <translation>&lt;b&gt;Installiere %1 neben dem aktuellen Betriebssystem&lt;/b&gt;&lt;br/&gt;Dokumente, Musik und andere persönliche Dateien bleiben erhalten. Sie können bei jedem Start des Computers zwischen den Betriebssystemen wählen.</translation>
-    </message>
-    <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="223"/>
         <source>This computer currently has multiple operating systems on it. What would you like to do?</source>
         <translation>Auf diesem Computer sind aktuell mehrere Betriebssysteme installiert. Was möchten Sie tun?</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="226"/>
-        <source>&lt;b&gt;Install %1 alongside your current operating systems&lt;/b&gt;&lt;br/&gt;Documents, music and other personal files will be kept. You can choose which operating system you want each time the computer starts up.</source>
-        <translation>&lt;b&gt;Installiere %1 neben dem aktuellen Betriebssystem&lt;/b&gt;&lt;br/&gt;Dokumente, Musik und andere persönliche Dateien bleiben erhalten. Sie können bei jedem Start des Computers zwischen den Betriebssystemen wählen.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="261"/>
-        <source>&lt;b&gt;Something else&lt;/b&gt;&lt;br/&gt;You can create or resize partitions yourself, or choose multiple partitions for %1.</source>
-        <translation>&lt;b&gt;Etwas Anderes&lt;/b&gt;&lt;br/&gt;Sie können selbst Partitionen erstellen oder in der Grösse ändern. Sie können auch mehrere Partitionen für %1 verwenden.</translation>
     </message>
 </context>
 <context>

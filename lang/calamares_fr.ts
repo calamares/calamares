@@ -457,8 +457,30 @@ L&apos;installateur se fermera et les changements seront perdus.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="145"/>
-        <source>&lt;b&gt;Install %2 alongside %1&lt;/b&gt;&lt;br/&gt;Documents, music and other personal files will be kept. You can choose which operating system you want each time the computer starts up.</source>
-        <translation>&lt;b&gt;Installer %2 à côté de %1&lt;/b&gt;&lt;br/&gt;Les documents, musiques et autres fichiers personnels seront gardés. Vous pourrez choisir le système d&apos;exploitation à chaque démarrage.</translation>
+        <source>&lt;b&gt;Install %2 alongside %1&lt;/b&gt;&lt;br/&gt;The installer will shrink the %1 volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
+        <translation>&lt;b&gt;Installer %2 à côté de %1&lt;/b&gt;&lt;br/&gt;L&apos;installateur va réduire le volume de %1 pour faire de la place pour %2. Vous pouvez choisir quel système d&apos;exploitation utiliser au démarrage de la machine.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="167"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="198"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="245"/>
+        <source>&lt;b&gt;Replace a partition with %1&lt;/b&gt;&lt;br/&gt;You will be offered a choice of which partition to erase.</source>
+        <translation>&lt;b&gt;Remplacer une partition avec %1.&lt;/b&gt;&lt;br/&gt;Vous aurez le choix de la partition à effacer. </translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="179"/>
+        <source>&lt;b&gt;Install %1 alongside your current operating system&lt;/b&gt;&lt;br/&gt;The installer will shrink an existing volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
+        <translation>&lt;b&gt;Installer %1 à côté de votre système d&apos;exploitation actuel&lt;/b&gt;&lt;br/&gt;L&apos;installateur va réduire le volume existant pour faire de la place pour %2. Vous pouvez choisir quel système utiliser à chaque démarrage.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="226"/>
+        <source>&lt;b&gt;Install %1 alongside your current operating systems&lt;/b&gt;&lt;br/&gt;The installer will shrink an existing volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
+        <translation>&lt;b&gt;Installer %1 à côté de vos systèmes d&apos;exploitation actuels&lt;/b&gt;&lt;br/&gt;L&apos;installateur va réduire le volume existant pour faire de la place pour %2. Vous pouvez choisir quel système utiliser à chaque démarrage.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="261"/>
+        <source>&lt;b&gt;Manual partitioning&lt;/b&gt;&lt;br/&gt;You can create or resize partitions yourself, or choose multiple partitions for %1.</source>
+        <translation>&lt;b&gt;Partitionnement manuel&lt;/b&gt;&lt;br/&gt;Vous pouvez créer ou redimensionner les partitions vous-même, ou choisir plusieurs partitions pour %1. </translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="154"/>
@@ -466,36 +488,14 @@ L&apos;installateur se fermera et les changements seront perdus.</translation>
         <translation>&lt;b&gt;Remplacer %1 par %2&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Attention: &lt;/font&gt;Cela va supprimer tous les programmes, documents, photos, musiques et autres fichiers.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="167"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="198"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="245"/>
-        <source>&lt;b&gt;Install %1 on an existing partition&lt;/b&gt;&lt;br/&gt;You will be offered a choice of which partition to erase.</source>
-        <translation>&lt;b&gt;Installer %1 sur une partition existante&lt;/b&gt;&lt;br/&gt;Vous aurez le choix du disque à effacer.</translation>
-    </message>
-    <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="176"/>
         <source>This computer already has an operating system on it. What would you like to do?</source>
         <translation>Cet ordinateur possède déjà un système d&apos;exploitation. Que voulez-vous faire?</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="179"/>
-        <source>&lt;b&gt;Install %1 alongside your current operating system&lt;/b&gt;&lt;br/&gt;Documents, music and other personal files will be kept. You can choose which operating system you want each time the computer starts up.</source>
-        <translation>&lt;b&gt;Installer %1 à côté de votre système d&apos;exploitation actuel&lt;/b&gt;&lt;br/&gt;Les documents, musiques et autres fichiers personnels seront gardés. Vous pourrez choisir le système d&apos;exploitation à chaque démarrage.</translation>
-    </message>
-    <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="223"/>
         <source>This computer currently has multiple operating systems on it. What would you like to do?</source>
         <translation>Cet ordinateur possède actuellement plusieurs systèmes d&apos;exploitation. Que voulez-vous faire?</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="226"/>
-        <source>&lt;b&gt;Install %1 alongside your current operating systems&lt;/b&gt;&lt;br/&gt;Documents, music and other personal files will be kept. You can choose which operating system you want each time the computer starts up.</source>
-        <translation>&lt;b&gt;Installer %1 à côté de vos systèmes d&apos;exploitation actuel&lt;/b&gt;&lt;br/&gt;Les documents, musiques et autres fichiers personnels seront gardés. Vous pourrez choisir le système d&apos;exploitation à chaque démarrage.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="261"/>
-        <source>&lt;b&gt;Something else&lt;/b&gt;&lt;br/&gt;You can create or resize partitions yourself, or choose multiple partitions for %1.</source>
-        <translation>&lt;b&gt;Autre chose&lt;/b&gt;&lt;br/&gt;Vous pouvez créer ou redimensionner les partitions vous-même ou choisir plusieurs partitions pour %1.</translation>
     </message>
 </context>
 <context>
