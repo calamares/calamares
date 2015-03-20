@@ -459,29 +459,29 @@ Ezzel minden program, dokumentum, fotó, zene és minden egyéb fáj törlődni 
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="145"/>
         <source>&lt;b&gt;Install %2 alongside %1&lt;/b&gt;&lt;br/&gt;The installer will shrink the %1 volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%2 telepítése a jelenlegi %1 operációs rendszere mellé&lt;/b&gt;&lt;br/&gt;A telepítő helyet szabadít fel %2 számára. A számítógép indításakor választhat, hogy melyik rendszert szeretné betölteni.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="167"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="198"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="245"/>
         <source>&lt;b&gt;Replace a partition with %1&lt;/b&gt;&lt;br/&gt;You will be offered a choice of which partition to erase.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;A partíció lecserélése a következővel %1&lt;/b&gt;&lt;br/&gt;A partíció kiválaszható a telepítés előtt.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="179"/>
         <source>&lt;b&gt;Install %1 alongside your current operating system&lt;/b&gt;&lt;br/&gt;The installer will shrink an existing volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%1 telepítése a jelenlegi operációs rendszere mellé&lt;/b&gt;&lt;br/&gt;A telepítő helyet szabadít fel %2 számára. A számítógép indításakor választhat, hogy melyik rendszert szeretné betölteni.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="226"/>
         <source>&lt;b&gt;Install %1 alongside your current operating systems&lt;/b&gt;&lt;br/&gt;The installer will shrink an existing volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%1 telepítése a jelenlegi operációs rendszere mellé&lt;/b&gt;&lt;br/&gt;A telepítő helyet szabadít fel %2 számára. A számítógép indításakor választhat, hogy melyik rendszert szeretné betölteni.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="261"/>
         <source>&lt;b&gt;Manual partitioning&lt;/b&gt;&lt;br/&gt;You can create or resize partitions yourself, or choose multiple partitions for %1.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Manuális partícionálás&lt;/b&gt;&lt;br/&gt;Létrehozhat vagy átméretezhet partíciókat, vagy kiválaszthat több partíciót %1 számára.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="154"/>
