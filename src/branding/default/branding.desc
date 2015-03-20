@@ -15,3 +15,8 @@ images:
     productIcon:         "squid.png"
 
 slideshow:               "show.qml"
+
+style:
+   sidebarBackground:    "#292F34"
+   sidebarText:          "#FFFFFF"
+   sidebarTextSelect:    "#292F34"

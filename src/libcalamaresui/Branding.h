@@ -52,6 +52,13 @@ public:
         ProductLogo,
         ProductIcon
     };
+    
+    enum StyleEntry : short
+    {
+        SidebarBackground,
+        SidebarText,
+        SidebarTextSelect
+    };
 
     static Branding* instance();
 
@@ -63,6 +70,7 @@ public:
     QString componentDirectory() const;
 
     QString string( Branding::StringEntry stringEntry ) const;
+    QString styleString( Branding::StyleEntry styleEntry ) const;
     QString imagePath( Branding::ImageEntry imageEntry ) const;
     QPixmap image( Branding::ImageEntry imageEntry, const QSize& size ) const;
     QString slideshowPath() const;
@@ -79,6 +87,7 @@ private:
 
     static QStringList s_stringEntryStrings;
     static QStringList s_imageEntryStrings;
+    static QStringList s_styleEntryStrings;
 
     void bail( const QString& message );
 
@@ -86,6 +95,7 @@ private:
     QString m_componentName;
     QMap< QString, QString > m_strings;
     QMap< QString, QString > m_images;
+    QMap< QString, QString > m_style;
     QString m_slideshowPath;
 };
 
