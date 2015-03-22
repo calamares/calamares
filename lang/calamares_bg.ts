@@ -1723,7 +1723,7 @@ Some file systems need external tools to be installed for them to be supported. 
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="322"/>
         <source>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors. A good password will contain a mixture of letters, numbers and punctuation, should be at least eight characters long, and should be changed at regular intervals.&lt;/small&gt;</source>
-        <translation>&lt;small&gt;Внесете същата парола два пъти, за да може да бъде проверена за правописни грешки. Добра парола ще съдържа смесица от букви, цифри и пунктуационни знаци, трябва да бъде поне с осем знака и да бъде променяна на чести интервали&lt;/small&gt;</translation>
+        <translation>&lt;small&gt;Внесете същата парола два пъти, за да може да бъде проверена за правописни грешки. Добра парола ще съдържа смесица от букви, цифри и пунктуационни знаци, трябва да бъде поне с осем знака и да бъде променяна често.&lt;/small&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="345"/>
@@ -2287,7 +2287,7 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="220"/>
         <source>&lt;b&gt;%3&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;%1 will be installed on %2.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;all data on partition%2 will be lost.</source>
-        <translation>&lt;b&gt;%3&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;%1 ще бъде инсталиран върху %2.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Предупреждение: &lt;/font&gt;всички данни на дялът%2 ще бъдат изгубени.</translation>
+        <translation>&lt;b&gt;%3&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;%1 ще бъде инсталиран върху %2.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Предупреждение: &lt;/font&gt;всички данни на дялът %2 ще бъдат изгубени.</translation>
     </message>
 </context>
 <context>
@@ -2394,7 +2394,7 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="52"/>
         <source>Bad destination system path.</source>
-        <translation>Лоша дестинация за системна траектория.</translation>
+        <translation>Лоша дестинация за системен път.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="53"/>
@@ -2679,7 +2679,7 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="243"/>
         <source>Your username contains invalid characters. Only lowercase letters and numbers are allowed.</source>
-        <translation>Потребителското Ви име съдържа непозволени символи! Само малки букви и числа са позволени.</translation>
+        <translation>Потребителското ви име съдържа непозволени символи! Само малки букви и числа са позволени.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="287"/>
