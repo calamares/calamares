@@ -448,7 +448,7 @@ Het installatieprogramma zal afsluiten en alle wijzigingen zullen verloren gaan.
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="193"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="240"/>
         <source>&lt;b&gt;Erase disk and install %1&lt;/b&gt;&lt;br/&gt;You will be offered a choice of which disk to erase.</source>
-        <translation>&lt;b&gt;Wis een schijf en installeer %1&lt;/b&gt;&lt;br/&gt;Je krijgt de keuzemogelijkheid voor de te wissen schijf.</translation>
+        <translation>&lt;b&gt;Wis een schijf en installeer %1&lt;/b&gt;&lt;br/&gt;Je kan kiezen welke schijf je wil wissen.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="141"/>
@@ -465,7 +465,7 @@ Het installatieprogramma zal afsluiten en alle wijzigingen zullen verloren gaan.
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="198"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="245"/>
         <source>&lt;b&gt;Replace a partition with %1&lt;/b&gt;&lt;br/&gt;You will be offered a choice of which partition to erase.</source>
-        <translation>&lt;b&gt;Vervang een partitie met %1&lt;/b&gt;&lt;br/&gt;Je krijgt de keuzemogelijkheid voor de te wissen partitie.</translation>
+        <translation>&lt;b&gt;Vervang een partitie met %1&lt;/b&gt;&lt;br/&gt;Je kan kiezen welke partitie je wil wissen.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="179"/>

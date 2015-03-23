@@ -458,29 +458,29 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="145"/>
         <source>&lt;b&gt;Install %2 alongside %1&lt;/b&gt;&lt;br/&gt;The installer will shrink the %1 volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Installiere %2 neben %1&lt;/b&gt;&lt;br/&gt;Das Installationsprogramm wird das %1 Volumen verkleinern um Raum für %2 zu schaffen. Sie können bei jedem Start des Computers zwischen den Betriebssystemen wählen.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="167"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="198"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="245"/>
         <source>&lt;b&gt;Replace a partition with %1&lt;/b&gt;&lt;br/&gt;You will be offered a choice of which partition to erase.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Ersetze eine Partition mit %1&lt;/b&gt;&lt;br/&gt;Es wird ihnen eine Auswahl von möglichen löschbaren Partitionen angeboten.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="179"/>
         <source>&lt;b&gt;Install %1 alongside your current operating system&lt;/b&gt;&lt;br/&gt;The installer will shrink an existing volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Installiere %1 neben dem aktuellen Betriebssystem&lt;/b&gt;&lt;br/&gt;Das Installationsprogramm wird ein existierendes Volumen verkleinern um Raum für %2 zu schaffen. Sie können bei jedem Start des Computers zwischen den Betriebssystemen wählen.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="226"/>
         <source>&lt;b&gt;Install %1 alongside your current operating systems&lt;/b&gt;&lt;br/&gt;The installer will shrink an existing volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Installiere %1 neben den aktuellen Betriebssystemen&lt;/b&gt;&lt;br/&gt;Das Installationsprogramm wird ein existierendes Volumen verkleinern um Raum für %2 zu schaffen. Sie können bei jedem Start des Computers zwischen den Betriebssystemen wählen.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="261"/>
         <source>&lt;b&gt;Manual partitioning&lt;/b&gt;&lt;br/&gt;You can create or resize partitions yourself, or choose multiple partitions for %1.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Manuelle Partitionierung&lt;/b&gt;&lt;br/&gt;Sie können die Partitionen selbst erstellen und löschen, oder mehrere Partitionen für %1 verwenden.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="154"/>
