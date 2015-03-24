@@ -458,29 +458,29 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="145"/>
         <source>&lt;b&gt;Install %2 alongside %1&lt;/b&gt;&lt;br/&gt;The installer will shrink the %1 volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt; %1 に共存して %2 をインストール&lt;/b&gt;&lt;br/&gt;インストーラーは %2 のために %1 の容量を縮小します。コンピュータの起動時にどのオペレーティングシステムを起動させるか選択することができます。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="167"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="198"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="245"/>
         <source>&lt;b&gt;Replace a partition with %1&lt;/b&gt;&lt;br/&gt;You will be offered a choice of which partition to erase.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;パーティションを %1 に置き換える &lt;/b&gt;&lt;br/&gt;どのディスクを消去するか、選択します。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="179"/>
         <source>&lt;b&gt;Install %1 alongside your current operating system&lt;/b&gt;&lt;br/&gt;The installer will shrink an existing volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt; 現在のオペレーティングシステムに共存して %1 をインストール&lt;/b&gt;&lt;br/&gt;インストーラーは %2 のために現在のパーティションの容量を縮小します。コンピュータの起動時にどのオペレーティングシステムを起動させるか選択することができます。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="226"/>
         <source>&lt;b&gt;Install %1 alongside your current operating systems&lt;/b&gt;&lt;br/&gt;The installer will shrink an existing volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt; 現在のオペレーティングシステムに共存して %1をインストール&lt;/b&gt;&lt;br/&gt;インストーラーは %2 のために現在のパーティションの容量を縮小します。コンピュータの起動時にどのオペレーティングシステムを起動させるか選択することができます。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="261"/>
         <source>&lt;b&gt;Manual partitioning&lt;/b&gt;&lt;br/&gt;You can create or resize partitions yourself, or choose multiple partitions for %1.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;手動パーティショニング&lt;/b&gt;&lt;br/&gt;手動でのパーティションの作成およびサイズ変更、あるいは %1 のための複数のパーティションの選択を行うことができます。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="154"/>

@@ -458,29 +458,29 @@ Yükleyiciden çıkınca tüm değişiklikler kaybedilecek.</translation>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="145"/>
         <source>&lt;b&gt;Install %2 alongside %1&lt;/b&gt;&lt;br/&gt;The installer will shrink the %1 volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%1 yanına %2 yükleyin&lt;/b&gt;&lt;br/&gt;Yükleyici %2 yer açmak için %1 diskinin boyutunu küçültebilir. Bilgisayarınız başlatılırken istediğiniz işletim sistemini seçebilirsiniz.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="167"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="198"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="245"/>
         <source>&lt;b&gt;Replace a partition with %1&lt;/b&gt;&lt;br/&gt;You will be offered a choice of which partition to erase.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%1 ile bir bölümün üzerine yaz&lt;/b&gt;&lt;br/&gt;Silmek için hangi disk bölümünü seçmek istediğiniz size sorulacaktır.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="179"/>
         <source>&lt;b&gt;Install %1 alongside your current operating system&lt;/b&gt;&lt;br/&gt;The installer will shrink an existing volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Diğer işletim sisteminin yanına %1 yükle&lt;/b&gt;&lt;br/&gt;Yükleyici %2 yer açmak için mevcut disk boyutunu küçültecek. Bilgisayarınız başlatılırken istediğiniz işletim sistemini seçebilirsiniz.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="226"/>
         <source>&lt;b&gt;Install %1 alongside your current operating systems&lt;/b&gt;&lt;br/&gt;The installer will shrink an existing volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Diğer işletim sistemlerinin yanına %1 yükle&lt;/b&gt;&lt;br/&gt;Yükleyici %2 yer açmak için mevcut disk boyutunu küçültecek. Bilgisayarınız başlatılırken istediğiniz işletim sistemini seçebilirsiniz.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="261"/>
         <source>&lt;b&gt;Manual partitioning&lt;/b&gt;&lt;br/&gt;You can create or resize partitions yourself, or choose multiple partitions for %1.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;El ile bölümleme&lt;/b&gt;&lt;br/&gt;%1 için bölüm oluştur ve yeniden boyutlandır veya birden fazla bölüm seç.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="154"/>
