@@ -354,13 +354,16 @@ PartitionViewStep::canBeResized( const QString& partitionPath )
                                                 ->value( "requiredStorageGB" )
                                                 .toDouble( &ok );
 
-                qint64 availableStorageB = candidate->available() * dev->logicalSectorSize();
+                qint64 availableStorageB = candidate->available();
 
                 // We require a little more for partitioning overhead and swap file
                 // TODO: maybe make this configurable?
                 qint64 requiredStorageB = ( requiredStorageGB + 0.1 + 2.0 ) * 1024 * 1024 * 1024;
-                cDebug() << "Required  storage B:" << requiredStorageB;
-                cDebug() << "Available storage B:" << availableStorageB;
+                cDebug() << "Required  storage B:" << requiredStorageB
+                         << QString( "(%1GB)" ).arg( requiredStorageB / 1024 / 1024 / 1024 );
+                cDebug() << "Available storage B:" << availableStorageB
+                         << QString( "(%1GB)" ).arg( availableStorageB / 1024 / 1024 / 1024 );
+
                 if ( ok &&
                      availableStorageB > requiredStorageB )
                 {
