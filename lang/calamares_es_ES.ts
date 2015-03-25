@@ -458,7 +458,7 @@ El instalador se cerrará y se perderán todos los cambios.</translation>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="145"/>
         <source>&lt;b&gt;Install %2 alongside %1&lt;/b&gt;&lt;br/&gt;The installer will shrink the %1 volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Instalar %2 junto a %1&lt;/b&gt;&lt;br/&gt;El instalador reducirá el tamaño de %1 para hace sitio a %2. Puedes elegir cualquiera de los sistemas operativos cada vez que arranques el ordenador.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="167"/>
@@ -470,12 +470,12 @@ El instalador se cerrará y se perderán todos los cambios.</translation>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="179"/>
         <source>&lt;b&gt;Install %1 alongside your current operating system&lt;/b&gt;&lt;br/&gt;The installer will shrink an existing volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Instalar %1 junto a tu actual sistema operativo&lt;/b&gt;&lt;br/&gt;El instalador reducirá el tamaño de la partición para hace sitio a %2. Puedes elegir cualquiera de los sistemas operativos cada vez que arranques el ordenador.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="226"/>
         <source>&lt;b&gt;Install %1 alongside your current operating systems&lt;/b&gt;&lt;br/&gt;The installer will shrink an existing volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Instalar %1 junto al resto de sistemas operativos&lt;/b&gt;&lt;br/&gt;El instalador reducirá el tamaño de una partición para hace sitio a %2. Puedes elegir cualquiera de los sistemas operativos cada vez que arranques el ordenador.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="261"/>

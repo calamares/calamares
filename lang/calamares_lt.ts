@@ -465,22 +465,22 @@ Diegėjas užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="198"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="245"/>
         <source>&lt;b&gt;Replace a partition with %1&lt;/b&gt;&lt;br/&gt;You will be offered a choice of which partition to erase.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Pakeisti skirsnį, įrašant %1&lt;/b&gt;&lt;br/&gt;Galėsite pasirinkti kurį skirsnį norite ištrinti.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="179"/>
         <source>&lt;b&gt;Install %1 alongside your current operating system&lt;/b&gt;&lt;br/&gt;The installer will shrink an existing volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Įdiegti %1 šalia esamos operacinės sistemos&lt;/b&gt;&lt;br/&gt;Diegėjas sumažins esamą tomą, kad padarytų vietos sistemai %2. Kiekvieną kartą įjungę kompiuterį, galėsite pasirinkti, kurią sistemą naudoti.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="226"/>
         <source>&lt;b&gt;Install %1 alongside your current operating systems&lt;/b&gt;&lt;br/&gt;The installer will shrink an existing volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Įdiegti %1 šalia esamų operacinių sistemų&lt;/b&gt;&lt;br/&gt;Diegėjas sumažins esamą tomą, kad padarytų vietos sistemai %2. Kiekvieną kartą įjungę kompiuterį, galėsite pasirinkti, kurią sistemą naudoti.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="261"/>
         <source>&lt;b&gt;Manual partitioning&lt;/b&gt;&lt;br/&gt;You can create or resize partitions yourself, or choose multiple partitions for %1.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Rankinis skaidymas&lt;/b&gt;&lt;br/&gt;Galite patys kurti ar keisti skirsnių dydžius, arba pasirinkti kelis skirsnius sistemai %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="154"/>
