@@ -33,9 +33,11 @@ def modify_grub_default(partitions, root_mount_point, distributor):
     default_dir = os.path.join(root_mount_point, "etc/default")
     default_grub = os.path.join(default_dir, "grub")
     distributor_replace = distributor.replace("'", "'\\''")
-    plymouth_bin = libcalamares.utils.chroot_call("sh -c \"which plymouth\"")
+    plymouth_bin = libcalamares.utils.chroot_call(["sh", "-c", "which plymouth"])
     use_splash = ""
     swap_uuid = ""
+
+    libcalamares.utils.debug("which plymouth exit code: {!s}".format(plymouth_bin))
 
     if plymouth_bin == 0:
         use_splash = "splash"
