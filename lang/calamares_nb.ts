@@ -349,18 +349,19 @@ Output:
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="60"/>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="295"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Avbryt</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="79"/>
         <source>Cancel installation?</source>
-        <translation type="unfinished"/>
+        <translation>Avbryte installasjon?</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="80"/>
         <source>Do you really want to cancel the current install process?
 The installer will quit and all changes will be lost.</source>
-        <translation type="unfinished"/>
+        <translation>Vil du virkelig avbryte installasjonen?
+Installasjonsprogrammet vil avsluttes og alle endringer vil gå tapt.</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="265"/>
@@ -419,12 +420,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/CheckFileSystemJob.cpp" line="34"/>
         <source>Checking file system on partition %1.</source>
-        <translation type="unfinished"/>
+        <translation>Sjekker filsystemet på partisjon %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CheckFileSystemJob.cpp" line="50"/>
         <source>The file system check on partition %1 failed.</source>
-        <translation type="unfinished"/>
+        <translation>Sjekk av filsystem på partisjon %1 har feilet.</translation>
     </message>
 </context>
 <context>
