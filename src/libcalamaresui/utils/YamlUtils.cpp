@@ -20,7 +20,6 @@
 #include <yaml-cpp/yaml.h>
 
 #include <QRegExp>
-#include <QVariant>
 
 void
 operator>>( const YAML::Node& node, QStringList& v )
