@@ -465,7 +465,7 @@ Installasjonsprogrammet vil avsluttes og alle endringer vil gå tapt.</translati
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="198"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="245"/>
         <source>&lt;b&gt;Replace a partition with %1&lt;/b&gt;&lt;br/&gt;You will be offered a choice of which partition to erase.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;Erstatt en partisjon med %1&lt;/b&gt;&lt;br/&gt;Du vil bli spurt om hvilken partisjon du ønsker å slette.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="179"/>
