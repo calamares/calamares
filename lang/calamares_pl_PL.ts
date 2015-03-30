@@ -1993,7 +1993,7 @@ Niektóre z systemów plików wymagają zewnętrznych narzędzi, aby mogły być
         <translation>&amp;Instaluj boot loader na:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="129"/>
+        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="135"/>
         <source>Are you sure you want to create a new partition table on %1?</source>
         <translation>Na pewno utworzyć nową tablicę partycji na %1?</translation>
     </message>

@@ -1993,7 +1993,7 @@ Alguns sistemas de ficheiros necessitam de ferramentas externas para serem supor
         <translation>&amp;Instalar gestor de arranque em:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="129"/>
+        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="135"/>
         <source>Are you sure you want to create a new partition table on %1?</source>
         <translation>Tem certeza de que deseja criar uma nova tabela de partição em %1?</translation>
     </message>

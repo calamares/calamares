@@ -1994,7 +1994,7 @@ Anumite sisteme de fișiere au nevoie de unelte externe instalate pentru suport.
         <translation>&amp;Instalează încărcătorul de sistem pe:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="129"/>
+        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="135"/>
         <source>Are you sure you want to create a new partition table on %1?</source>
         <translation>Sigur doriți să creați o nouă tabelă de partiție pe %1?</translation>
     </message>

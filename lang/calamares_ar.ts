@@ -1993,7 +1993,7 @@ Some file systems need external tools to be installed for them to be supported. 
         <translation>&amp;تثبيت برنامج الإقلاع على:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="129"/>
+        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="135"/>
         <source>Are you sure you want to create a new partition table on %1?</source>
         <translation>هل أنت متأكد من إنشاء جدول أقسام جديد على %1؟</translation>
     </message>

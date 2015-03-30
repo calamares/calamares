@@ -1994,7 +1994,7 @@ Alcuni file system necessitano l&apos;installazione di strumenti esterni per ess
         <translation>&amp;Installa il boot loader su:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="129"/>
+        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="135"/>
         <source>Are you sure you want to create a new partition table on %1?</source>
         <translation>Sei sicuro di voler creare una nuova tabella delle partizioni su %1?</translation>
     </message>

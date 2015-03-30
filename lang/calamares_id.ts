@@ -1993,7 +1993,7 @@ Beberapa berkas sistem memerlukan penginstalan perangkat eksternal supaya diduku
         <translation>&amp;Instal boot loader pada</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="129"/>
+        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="135"/>
         <source>Are you sure you want to create a new partition table on %1?</source>
         <translation>Apakah Anda yakin ingin membuat tabel partisi baru pada %1?</translation>
     </message>

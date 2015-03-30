@@ -1994,7 +1994,7 @@ Some file systems need external tools to be installed for them to be supported. 
         <translation>&amp;I ติดตั้ง boot loader บน:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="129"/>
+        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="135"/>
         <source>Are you sure you want to create a new partition table on %1?</source>
         <translation>คุณแน่ใจว่าจะสร้างตารางพาร์ทิชันใหม่บน %1?</translation>
     </message>

@@ -1994,7 +1994,7 @@ Nogle filsystemer kræver at eksterne værktøjer skal installeres for at være 
         <translation>&amp;Installér boot loaderen på:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="129"/>
+        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="135"/>
         <source>Are you sure you want to create a new partition table on %1?</source>
         <translation>Er du sikker på at du vil oprette en ny partitionstabel på %1?</translation>
     </message>

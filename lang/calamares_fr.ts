@@ -1994,7 +1994,7 @@ Certains systèmes de fichiers nécessitent l&apos;installation d&apos;outils ex
         <translation>&amp;Installer le chargeur de démarrage sur :</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="129"/>
+        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="135"/>
         <source>Are you sure you want to create a new partition table on %1?</source>
         <translation>Êtes-vous sûr de vouloir créer une nouvelle table de partitionnement sur %1 ?</translation>
     </message>

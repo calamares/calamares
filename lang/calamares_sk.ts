@@ -1976,7 +1976,7 @@ Some file systems need external tools to be installed for them to be supported. 
         <translation>&amp;Inštalovať boot loader na:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="129"/>
+        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="135"/>
         <source>Are you sure you want to create a new partition table on %1?</source>
         <translation>Ste si istý, že chcete vytvoriť novú tabuľku partícií na %1?</translation>
     </message>

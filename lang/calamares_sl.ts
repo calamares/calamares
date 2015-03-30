@@ -1994,7 +1994,7 @@ Nekateri datotečni sistemi za podprtost zahtevajo namestitev zunanjih orodij. V
         <translation>&amp;Namesti zagonski nalagalnik na:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="129"/>
+        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="135"/>
         <source>Are you sure you want to create a new partition table on %1?</source>
         <translation>Ali ste prepričani, da želite ustvariti novo razpredelnico razdelkov na %1?</translation>
     </message>

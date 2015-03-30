@@ -1994,7 +1994,7 @@ Some file systems need external tools to be installed for them to be supported. 
         <translation>&amp;Инсталирай зареждача върху:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="129"/>
+        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="135"/>
         <source>Are you sure you want to create a new partition table on %1?</source>
         <translation>Сигурни ли сте че искате да създадете нова таблица на дяловете върху %1?</translation>
     </message>

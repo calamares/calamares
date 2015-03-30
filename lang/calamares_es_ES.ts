@@ -1994,7 +1994,7 @@ Algunos sistemas de ficheros necesitan instalar herramientas externas para ser s
         <translation>&amp;Instalar el cargador de arranque en:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="129"/>
+        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="135"/>
         <source>Are you sure you want to create a new partition table on %1?</source>
         <translation>¿Estás seguro de que quieres crear una nueva tabla de particiones en %1?</translation>
     </message>

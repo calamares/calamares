@@ -1994,7 +1994,7 @@ Some file systems need external tools to be installed for them to be supported. 
         <translation>&amp;Install boot loader on:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="129"/>
+        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="135"/>
         <source>Are you sure you want to create a new partition table on %1?</source>
         <translation>Are you sure you want to create a new partition table on %1?</translation>
     </message>

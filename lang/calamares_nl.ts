@@ -1994,7 +1994,7 @@ Sommige bestandssystemen vereisen externe programma&apos;s om ondersteund te wor
         <translation>&amp;Installeer de bootloader op:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="129"/>
+        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="135"/>
         <source>Are you sure you want to create a new partition table on %1?</source>
         <translation>Weet u zeker dat u een nieuwe partitie tabel wil maken op %1?</translation>
     </message>

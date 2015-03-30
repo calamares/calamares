@@ -1994,7 +1994,7 @@ Dellos sistemes de ficheros riquen la instalación de ferramientes esternes pa t
         <translation>&amp;Instalar xestor d&apos;arranque en:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="129"/>
+        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="135"/>
         <source>Are you sure you want to create a new partition table on %1?</source>
         <translation>¿De xuru que quies crear una tabla particiones nueva en %1?</translation>
     </message>

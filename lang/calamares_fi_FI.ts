@@ -1994,7 +1994,7 @@ Jotkin tiedostojärjestelmät vaativat ulkoisia työkaluja jotta ovat tuettuja. 
         <translation>&amp;Asenna käynnistyksenlataaja osioon:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="129"/>
+        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="135"/>
         <source>Are you sure you want to create a new partition table on %1?</source>
         <translation>Oletko varma, että haluat luoda uuden osion %1?</translation>
     </message>
