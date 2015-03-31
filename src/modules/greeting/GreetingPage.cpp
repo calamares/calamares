@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -123,11 +123,16 @@ GreetingPage::GreetingPage( QWidget* parent )
     CALAMARES_RETRANSLATE(
         ui->mainText->setText( tr( "<h1>Welcome to the %1 installer.</h1><br/>"
                              "This program will ask you some questions and "
-                             "set up %2 on your computer." )
+                             "set up %2 on your computer." 
+                             "<a href=\"%3\"> %4 </a>" )
                          .arg( Calamares::Branding::instance()->
                                string( Calamares::Branding::VersionedName ) )
                          .arg( Calamares::Branding::instance()->
-                               string( Calamares::Branding::ProductName ) ) );
+                               string( Calamares::Branding::ProductName ) ) 
+                         .arg( Calamares::Branding::instance()->
+                               string( Calamares::Branding::ProductURL ) )
+                         .arg( Calamares::Branding::instance()->
+                               string( Calamares::Branding::UrlText ) ) );
     )
 
     ui->aboutButton->setIcon( CalamaresUtils::defaultPixmap( CalamaresUtils::Information,
