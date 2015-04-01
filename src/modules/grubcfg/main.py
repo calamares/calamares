@@ -87,7 +87,7 @@ def modify_grub_default(partitions, root_mount_point, distributor):
 
                 for existing_param in existing_params:
                     existing_param_name = existing_param.split("=")[0]
-                    if existing_param_name not in ["quiet", "resume", "splash"]: #the only ones we ever add
+                    if existing_param_name not in ["quiet", "resume", "splash"]:  # the only ones we ever add
                         kernel_params.append(existing_param)
 
                 kernel_cmd = "GRUB_CMDLINE_LINUX_DEFAULT=\"{!s}\"".format(" ".join(kernel_params))
@@ -110,6 +110,7 @@ def modify_grub_default(partitions, root_mount_point, distributor):
                 lines.append("{!s}=\"{!s}\"".format(key, escaped_value))
 
     if not have_kernel_cmd:
+        kernel_cmd = "GRUB_CMDLINE_LINUX_DEFAULT=\"{!s}\"".format(" ".join(kernel_params))
         lines.append(kernel_cmd)
 
     if not have_distributor_line:
