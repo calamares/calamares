@@ -46,7 +46,9 @@ public:
         ShortProductName,
         BootloaderEntryName,
         ProductUrl,
-        ProductUrlText
+        SupportUrl,
+        KnownIssuesUrl,
+        ReleaseNotesUrl
     };
 
     enum ImageEntry : short
