@@ -77,12 +77,12 @@ def modify_grub_default(partitions, root_mount_point, distributor):
                 lines[i] = kernel_cmd
                 have_kernel_cmd = True
             elif lines[i].startswith("GRUB_CMDLINE_LINUX_DEFAULT"):
-                regex = re.compile(r"^GRUB_CMDLINE_LINUX_DEFAULT.*=")
+                regex = re.compile(r"^GRUB_CMDLINE_LINUX_DEFAULT\s*=\s*\"")
                 line = regex.sub("", lines[i])
-                line.lstrip()
-                line.lstrip("\"")
-                line.rstrip()
-                line.rstrip("\"")
+                line = line.lstrip()
+                line = line.lstrip("\"")
+                line = line.rstrip()
+                line = line.rstrip("\"")
                 existing_params = line.split()
 
                 for existing_param in existing_params:
