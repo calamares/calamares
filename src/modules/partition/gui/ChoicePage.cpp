@@ -85,21 +85,21 @@ ChoicePage::init( PartitionCoreModule* core, const OsproberEntryList& osproberEn
 
     PrettyRadioButton* alongsideButton = new PrettyRadioButton;
     alongsideButton->setIconSize( iconSize );
-    alongsideButton->setIcon( CalamaresUtils::defaultPixmap( CalamaresUtils::Information,
+    alongsideButton->setIcon( CalamaresUtils::defaultPixmap( CalamaresUtils::PartitionAlongside,
                                                              CalamaresUtils::Original,
                                                              iconSize ) );
     grp->addButton( alongsideButton->buttonWidget() );
 
     PrettyRadioButton* eraseButton = new PrettyRadioButton;
     eraseButton->setIconSize( iconSize );
-    eraseButton->setIcon( CalamaresUtils::defaultPixmap( CalamaresUtils::Magic,
+    eraseButton->setIcon( CalamaresUtils::defaultPixmap( CalamaresUtils::PartitionEraseAuto,
                                                          CalamaresUtils::Original,
                                                          iconSize ) );
     grp->addButton( eraseButton->buttonWidget() );
 
     PrettyRadioButton* replaceButton = new PrettyRadioButton;
     replaceButton->setIconSize( iconSize );
-    replaceButton->setIcon( CalamaresUtils::defaultPixmap( CalamaresUtils::Replace,
+    replaceButton->setIcon( CalamaresUtils::defaultPixmap( CalamaresUtils::PartitionReplaceOs,
                                                            CalamaresUtils::Original,
                                                            iconSize ) );
     grp->addButton( replaceButton->buttonWidget() );
@@ -265,7 +265,7 @@ ChoicePage::init( PartitionCoreModule* core, const OsproberEntryList& osproberEn
                                               string( Calamares::Branding::ShortVersionedName ) ) );
     )
     somethingElseButton->setIconSize( iconSize );
-    somethingElseButton->setIcon( CalamaresUtils::defaultPixmap( CalamaresUtils::Partitions,
+    somethingElseButton->setIcon( CalamaresUtils::defaultPixmap( CalamaresUtils::PartitionManual,
                                                                  CalamaresUtils::Original,
                                                                  iconSize ) );
     m_itemsLayout->addWidget( somethingElseButton );
