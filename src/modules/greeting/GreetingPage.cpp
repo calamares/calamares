@@ -175,6 +175,10 @@ GreetingPage::setUpLinks( bool showSupportUrl,
             ui->supportButton->setText( tr( "%1 support" )
                                         .arg( b->string( Branding::ShortProductName ) ) );
         )
+        ui->supportButton->setIcon( CalamaresUtils::defaultPixmap( CalamaresUtils::Help,
+                                                                   CalamaresUtils::Original,
+                                                                   2*QSize( CalamaresUtils::defaultFontHeight(),
+                                                                          CalamaresUtils::defaultFontHeight() ) ) );
         connect( ui->supportButton, &QPushButton::clicked, []
         {
             QDesktopServices::openUrl( Branding::instance()->string( Branding::SupportUrl ) );
@@ -187,6 +191,10 @@ GreetingPage::setUpLinks( bool showSupportUrl,
 
     if ( showKnownIssuesUrl && !b->string( Branding::KnownIssuesUrl ).isEmpty() )
     {
+        ui->knownIssuesButton->setIcon( CalamaresUtils::defaultPixmap( CalamaresUtils::Bugs,
+                                                                       CalamaresUtils::Original,
+                                                                       2*QSize( CalamaresUtils::defaultFontHeight(),
+                                                                              CalamaresUtils::defaultFontHeight() ) ) );
         connect( ui->knownIssuesButton, &QPushButton::clicked, []
         {
             QDesktopServices::openUrl( Branding::instance()->string( Branding::KnownIssuesUrl ) );
@@ -199,6 +207,10 @@ GreetingPage::setUpLinks( bool showSupportUrl,
 
     if ( showReleaseNotesUrl && !b->string( Branding::ReleaseNotesUrl ).isEmpty() )
     {
+        ui->releaseNotesButton->setIcon( CalamaresUtils::defaultPixmap( CalamaresUtils::Release,
+                                                                        CalamaresUtils::Original,
+                                                                        2*QSize( CalamaresUtils::defaultFontHeight(),
+                                                                               CalamaresUtils::defaultFontHeight() ) ) );
         connect( ui->releaseNotesButton, &QPushButton::clicked, []
         {
             QDesktopServices::openUrl( Branding::instance()->string( Branding::ReleaseNotesUrl ) );
