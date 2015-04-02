@@ -58,18 +58,6 @@ defaultPixmap( ImageType type, ImageMode mode, const QSize& size )
         pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/fail.svgz", size );
         break;
 
-    case Partitions:
-        pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/partitions.svgz", size );
-        break;
-
-    case Magic:
-        pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/magic.svgz", size );
-        break;
-
-    case Replace:
-        pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/replace.svgz", size );
-        break;
-
     case Bugs:
         pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/bugs.svg", size );
         break;
@@ -80,6 +68,22 @@ defaultPixmap( ImageType type, ImageMode mode, const QSize& size )
 
     case Release:
         pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/release.svg", size );
+        break;
+
+    case PartitionAlongside:
+        pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/partition-alongside.svg", size );
+        break;
+
+    case PartitionEraseAuto:
+        pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/partition-erase-auto.svg", size );
+        break;
+
+    case PartitionManual:
+        pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/partition-manual.svg", size );
+        break;
+
+    case PartitionReplaceOs:
+        pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/partition-replace-os.svg", size );
         break;
 
     default:

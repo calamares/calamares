@@ -35,12 +35,13 @@ enum ImageType : int
     No,
     Information,
     Fail,
-    Partitions,
-    Magic,
-    Replace,
     Bugs,
     Help,
-    Release
+    Release,
+    PartitionAlongside,
+    PartitionEraseAuto,
+    PartitionManual,
+    PartitionReplaceOs
 };
 
 enum ImageMode
