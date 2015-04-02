@@ -4,11 +4,12 @@
         <file alias="images/no.svgz">../../data/images/no.svgz</file>
         <file alias="images/information.svgz">../../data/images/information.svgz</file>
         <file alias="images/fail.svgz">../../data/images/fail.svgz</file>
-        <file alias="images/partitions.svgz">../../data/images/partitions.svgz</file>
-        <file alias="images/magic.svgz">../../data/images/magic.svgz</file>
-        <file alias="images/replace.svgz">../../data/images/replace.svgz</file>
         <file alias="images/bugs.svg">../../data/images/bugs.svg</file>
         <file alias="images/help.svg">../../data/images/help.svg</file>
         <file alias="images/release.svg">../../data/images/release.svg</file>
+        <file alias="images/partition-alongside.svg">../../data/images/partition-alongside.svg</file>
+        <file alias="images/partition-erase-auto.svg">../../data/images/partition-erase-auto.svg</file>
+        <file alias="images/partition-manual.svg">../../data/images/partition-manual.svg</file>
+        <file alias="images/partition-replace-os.svg">../../data/images/partition-replace-os.svg</file>
     </qresource>
 </RCC>
