@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -42,36 +42,48 @@ defaultPixmap( ImageType type, ImageMode mode, const QSize& size )
 
     switch ( type )
     {
-        case Yes:
-            pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/yes.svgz", size );
-            break;
+    case Yes:
+        pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/yes.svgz", size );
+        break;
 
-        case No:
-            pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/no.svgz", size );
-            break;
+    case No:
+        pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/no.svgz", size );
+        break;
 
-        case Information:
-            pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/information.svgz", size );
-            break;
+    case Information:
+        pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/information.svgz", size );
+        break;
 
-        case Fail:
-            pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/fail.svgz", size );
-            break;
+    case Fail:
+        pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/fail.svgz", size );
+        break;
 
-        case Partitions:
-            pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/partitions.svgz", size );
-            break;
+    case Partitions:
+        pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/partitions.svgz", size );
+        break;
 
-        case Magic:
-            pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/magic.svgz", size );
-            break;
+    case Magic:
+        pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/magic.svgz", size );
+        break;
 
-        case Replace:
-            pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/replace.svgz", size );
-            break;
+    case Replace:
+        pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/replace.svgz", size );
+        break;
 
-        default:
-            break;
+    case Bugs:
+        pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/bugs.svg", size );
+        break;
+
+    case Help:
+        pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/help.svg", size );
+        break;
+
+    case Release:
+        pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/release.svg", size );
+        break;
+
+    default:
+        break;
     }
 
     if ( pixmap.isNull() )
