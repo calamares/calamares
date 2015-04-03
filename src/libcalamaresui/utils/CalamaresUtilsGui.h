@@ -38,6 +38,8 @@ enum ImageType : int
     Bugs,
     Help,
     Release,
+    PartitionDisk,
+    PartitionPartition,
     PartitionAlongside,
     PartitionEraseAuto,
     PartitionManual,

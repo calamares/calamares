@@ -70,6 +70,14 @@ defaultPixmap( ImageType type, ImageMode mode, const QSize& size )
         pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/release.svg", size );
         break;
 
+    case PartitionDisk:
+        pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/partition-disk.svg", size );
+        break;
+
+    case PartitionPartition:
+        pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/partition-partition.svg", size );
+        break;
+
     case PartitionAlongside:
         pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/partition-alongside.svg", size );
         break;
