@@ -105,7 +105,7 @@ ReplacePage::onPartitionSelected()
 {
     if ( m_ui->partitionTreeView->currentIndex() == QModelIndex() )
     {
-        updateStatus( CalamaresUtils::PartitionReplaceOs,
+        updateStatus( CalamaresUtils::PartitionPartition,
                       tr( "Select where to install %1.<br/>"
                           "<font color=\"red\">Warning: </font>this will delete all files "
                           "on the selected partition." )
@@ -216,7 +216,7 @@ ReplacePage::onPartitionSelected()
             return;
         }
 
-        updateStatus( CalamaresUtils::PartitionReplaceOs,
+        updateStatus( CalamaresUtils::PartitionPartition,
                       tr( "<b>%3</b><br/><br/>"
                           "%1 will be installed on %2.<br/>"
                           "<font color=\"red\">Warning: </font>all data on partition"

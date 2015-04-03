@@ -81,7 +81,7 @@ DeviceModel::data( const QModelIndex& index, int role ) const
                    .arg( KFormat().formatByteSize( device->capacity() ) )
                    .arg( device->deviceNode() );
     case Qt::DecorationRole:
-        return CalamaresUtils::defaultPixmap( CalamaresUtils::PartitionManual,
+        return CalamaresUtils::defaultPixmap( CalamaresUtils::PartitionDisk,
                                               CalamaresUtils::Original,
                                               QSize( CalamaresUtils::defaultIconSize().width() * 3,
                                                      CalamaresUtils::defaultIconSize().height() * 3 ) );
