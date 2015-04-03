@@ -4,6 +4,7 @@
 # === This file is part of Calamares - <http://github.com/calamares> ===
 #
 #   Copyright 2014-2015, Philip Müller <philm@manjaro.org>
+#   Copyright 2015,      Teo Mrnjavac <teo@kde.org>
 #
 #   Calamares is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -20,6 +21,7 @@
 
 import libcalamares
 import os
+import re
 
 
 def modify_grub_default(partitions, root_mount_point, distributor):
@@ -46,10 +48,11 @@ def modify_grub_default(partitions, root_mount_point, distributor):
         if partition["fs"] == "linuxswap":
             swap_uuid = partition["uuid"]
 
-    if swap_uuid != "":
-        kernel_cmd = "GRUB_CMDLINE_LINUX_DEFAULT=\"resume=UUID={!s} quiet {!s}\"".format(swap_uuid, use_splash)
-    else:
-        kernel_cmd = "GRUB_CMDLINE_LINUX_DEFAULT=\"quiet {!s}\"".format(use_splash)
+    kernel_params = ["quiet"]
+    if use_splash:
+        kernel_params.append(use_splash)
+    if swap_uuid:
+        kernel_params.append("resume=UUID={!s}".format(swap_uuid))
 
     distributor_line = "GRUB_DISTRIBUTOR=\"{!s}\"".format(distributor_replace)
 
@@ -70,9 +73,26 @@ def modify_grub_default(partitions, root_mount_point, distributor):
 
         for i in range(len(lines)):
             if lines[i].startswith("#GRUB_CMDLINE_LINUX_DEFAULT"):
+                kernel_cmd = "GRUB_CMDLINE_LINUX_DEFAULT=\"{!s}\"".format(" ".join(kernel_params))
                 lines[i] = kernel_cmd
                 have_kernel_cmd = True
             elif lines[i].startswith("GRUB_CMDLINE_LINUX_DEFAULT"):
+                regex = re.compile(r"^GRUB_CMDLINE_LINUX_DEFAULT\s*=\s*")
+                line = regex.sub("", lines[i])
+                line = line.lstrip()
+                line = line.lstrip("\"")
+                line = line.lstrip("'")
+                line = line.rstrip()
+                line = line.rstrip("\"")
+                line = line.rstrip("'")
+                existing_params = line.split()
+
+                for existing_param in existing_params:
+                    existing_param_name = existing_param.split("=")[0]
+                    if existing_param_name not in ["quiet", "resume", "splash"]:  # the only ones we ever add
+                        kernel_params.append(existing_param)
+
+                kernel_cmd = "GRUB_CMDLINE_LINUX_DEFAULT=\"{!s}\"".format(" ".join(kernel_params))
                 lines[i] = kernel_cmd
                 have_kernel_cmd = True
             elif lines[i].startswith("#GRUB_DISTRIBUTOR") or lines[i].startswith("GRUB_DISTRIBUTOR"):
@@ -92,6 +112,7 @@ def modify_grub_default(partitions, root_mount_point, distributor):
                 lines.append("{!s}=\"{!s}\"".format(key, escaped_value))
 
     if not have_kernel_cmd:
+        kernel_cmd = "GRUB_CMDLINE_LINUX_DEFAULT=\"{!s}\"".format(" ".join(kernel_params))
         lines.append(kernel_cmd)
 
     if not have_distributor_line:
