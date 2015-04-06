@@ -1493,7 +1493,7 @@ Einige Dateisysteme erfordern die Installation externer Programme, um unterstüt
     <message>
         <location filename="../src/modules/greeting/GreetingPage.cpp" line="175"/>
         <source>%1 support</source>
-        <translation type="unfinished"/>
+        <translation>%1 Hilfe</translation>
     </message>
     <message>
         <location filename="../src/modules/greeting/GreetingPage.ui" line="14"/>
@@ -1503,17 +1503,17 @@ Einige Dateisysteme erfordern die Installation externer Programme, um unterstüt
     <message>
         <location filename="../src/modules/greeting/GreetingPage.ui" line="104"/>
         <source>&amp;Release notes</source>
-        <translation type="unfinished"/>
+        <translation>&amp; Anmerkungen</translation>
     </message>
     <message>
         <location filename="../src/modules/greeting/GreetingPage.ui" line="114"/>
         <source>&amp;Known issues</source>
-        <translation type="unfinished"/>
+        <translation>&amp; bekannte Probleme</translation>
     </message>
     <message>
         <location filename="../src/modules/greeting/GreetingPage.ui" line="124"/>
         <source>&amp;Support</source>
-        <translation type="unfinished"/>
+        <translation>&amp; Hilfe</translation>
     </message>
     <message>
         <location filename="../src/modules/greeting/GreetingPage.ui" line="134"/>

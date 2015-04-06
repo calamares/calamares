@@ -1493,7 +1493,7 @@ Sommige bestandssystemen vereisen externe programma&apos;s om ondersteund te wor
     <message>
         <location filename="../src/modules/greeting/GreetingPage.cpp" line="175"/>
         <source>%1 support</source>
-        <translation type="unfinished"/>
+        <translation>%1 ondersteuning</translation>
     </message>
     <message>
         <location filename="../src/modules/greeting/GreetingPage.ui" line="14"/>
@@ -1503,17 +1503,17 @@ Sommige bestandssystemen vereisen externe programma&apos;s om ondersteund te wor
     <message>
         <location filename="../src/modules/greeting/GreetingPage.ui" line="104"/>
         <source>&amp;Release notes</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Uitgave nota&apos;s</translation>
     </message>
     <message>
         <location filename="../src/modules/greeting/GreetingPage.ui" line="114"/>
         <source>&amp;Known issues</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Known issues</translation>
     </message>
     <message>
         <location filename="../src/modules/greeting/GreetingPage.ui" line="124"/>
         <source>&amp;Support</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Ondersteuning</translation>
     </message>
     <message>
         <location filename="../src/modules/greeting/GreetingPage.ui" line="134"/>

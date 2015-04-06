@@ -1493,7 +1493,7 @@ Some file systems need external tools to be installed for them to be supported. 
     <message>
         <location filename="../src/modules/greeting/GreetingPage.cpp" line="175"/>
         <source>%1 support</source>
-        <translation type="unfinished"/>
+        <translation>%1 サポート</translation>
     </message>
     <message>
         <location filename="../src/modules/greeting/GreetingPage.ui" line="14"/>
@@ -1503,17 +1503,17 @@ Some file systems need external tools to be installed for them to be supported. 
     <message>
         <location filename="../src/modules/greeting/GreetingPage.ui" line="104"/>
         <source>&amp;Release notes</source>
-        <translation type="unfinished"/>
+        <translation>リリースノート（&amp;R）</translation>
     </message>
     <message>
         <location filename="../src/modules/greeting/GreetingPage.ui" line="114"/>
         <source>&amp;Known issues</source>
-        <translation type="unfinished"/>
+        <translation>既知の問題（&amp;K）</translation>
     </message>
     <message>
         <location filename="../src/modules/greeting/GreetingPage.ui" line="124"/>
         <source>&amp;Support</source>
-        <translation type="unfinished"/>
+        <translation>サポート（&amp;S）</translation>
     </message>
     <message>
         <location filename="../src/modules/greeting/GreetingPage.ui" line="134"/>

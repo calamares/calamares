@@ -195,22 +195,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="24"/>
         <source>GlobalStorage</source>
-        <translation type="unfinished"/>
+        <translation>全局存储</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="34"/>
         <source>JobQueue</source>
-        <translation type="unfinished"/>
+        <translation>任务队列</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="44"/>
         <source>Modules</source>
-        <translation type="unfinished"/>
+        <translation>模块</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.cpp" line="95"/>
         <source>Debug information</source>
-        <translation type="unfinished"/>
+        <translation>调试信息</translation>
     </message>
 </context>
 <context>
@@ -234,7 +234,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="51"/>
         <source>Run command %1 %2</source>
-        <translation type="unfinished"/>
+        <translation>运行命令 %1 %2</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="79"/>
@@ -348,18 +348,19 @@ Output:
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="60"/>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="295"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished"/>
+        <translation>取消(&amp;C)</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="79"/>
         <source>Cancel installation?</source>
-        <translation type="unfinished"/>
+        <translation>取消安装？</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="80"/>
         <source>Do you really want to cancel the current install process?
 The installer will quit and all changes will be lost.</source>
-        <translation type="unfinished"/>
+        <translation>确定要取消当前的安装吗？
+安装程序将退出，所有修改都会丢失。</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="265"/>
@@ -410,7 +411,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/calamares/CalamaresWindow.cpp" line="96"/>
         <source>Show debug information</source>
-        <translation type="unfinished"/>
+        <translation>显示调试信息</translation>
     </message>
 </context>
 <context>
@@ -514,7 +515,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="38"/>
         <source>Clear all temporary mounts.</source>
-        <translation type="unfinished"/>
+        <translation>清除所有临时挂载点</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="49"/>
@@ -524,7 +525,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="88"/>
         <source>Cleared all temporary mounts.</source>
-        <translation type="unfinished"/>
+        <translation>所有临时挂载点都已经清除</translation>
     </message>
 </context>
 <context>
@@ -1422,7 +1423,7 @@ Some file systems need external tools to be installed for them to be supported. 
     <message>
         <location filename="../src/modules/finished/FinishedPage.ui" line="77"/>
         <source>&amp;Restart now</source>
-        <translation type="unfinished"/>
+        <translation>现在重启(&amp;R)</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedPage.cpp" line="50"/>
@@ -1435,7 +1436,7 @@ Some file systems need external tools to be installed for them to be supported. 
     <message>
         <location filename="../src/modules/finished/FinishedViewStep.cpp" line="43"/>
         <source>All done</source>
-        <translation type="unfinished"/>
+        <translation>全部完成</translation>
     </message>
 </context>
 <context>
@@ -1481,7 +1482,7 @@ Some file systems need external tools to be installed for them to be supported. 
     <message>
         <location filename="../src/modules/greeting/GreetingPage.cpp" line="143"/>
         <source>About %1 installer</source>
-        <translation type="unfinished"/>
+        <translation>关于 %1 安装程序</translation>
     </message>
     <message>
         <location filename="../src/modules/greeting/GreetingPage.cpp" line="145"/>
@@ -1491,7 +1492,7 @@ Some file systems need external tools to be installed for them to be supported. 
     <message>
         <location filename="../src/modules/greeting/GreetingPage.cpp" line="175"/>
         <source>%1 support</source>
-        <translation type="unfinished"/>
+        <translation>%1 支持</translation>
     </message>
     <message>
         <location filename="../src/modules/greeting/GreetingPage.ui" line="14"/>
@@ -1506,17 +1507,17 @@ Some file systems need external tools to be installed for them to be supported. 
     <message>
         <location filename="../src/modules/greeting/GreetingPage.ui" line="114"/>
         <source>&amp;Known issues</source>
-        <translation type="unfinished"/>
+        <translation>已知问题(&amp;K)</translation>
     </message>
     <message>
         <location filename="../src/modules/greeting/GreetingPage.ui" line="124"/>
         <source>&amp;Support</source>
-        <translation type="unfinished"/>
+        <translation>支持(&amp;S)</translation>
     </message>
     <message>
         <location filename="../src/modules/greeting/GreetingPage.ui" line="134"/>
         <source>&amp;About</source>
-        <translation type="unfinished"/>
+        <translation>关于(&amp;A)</translation>
     </message>
 </context>
 <context>
@@ -1553,7 +1554,7 @@ Some file systems need external tools to be installed for them to be supported. 
     <message>
         <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="33"/>
         <source>System locale setting</source>
-        <translation type="unfinished"/>
+        <translation>系统语言设置</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="40"/>
@@ -2105,7 +2106,7 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/calamares/progresstree/ProgressTreeModel.cpp" line="144"/>
         <source>Install</source>
-        <translation type="unfinished"/>
+        <translation>安装</translation>
     </message>
     <message>
         <location filename="../src/calamares/progresstree/ProgressTreeModel.cpp" line="150"/>
@@ -2280,17 +2281,17 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="166"/>
         <source>%1 cannot be installed on this partition.</source>
-        <translation type="unfinished"/>
+        <translation>无法安装(%1)到此分区.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="173"/>
         <source>Data partition (%1)</source>
-        <translation type="unfinished"/>
+        <translation>数据分区(%1)</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="190"/>
         <source>Unknown system partition (%1)</source>
-        <translation type="unfinished"/>
+        <translation>未知系统分区(%1)</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="195"/>
@@ -2692,7 +2693,7 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="233"/>
         <source>Your username is too long.</source>
-        <translation type="unfinished"/>
+        <translation>用户名太长。</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="243"/>
@@ -2702,12 +2703,12 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="287"/>
         <source>Your hostname is too short.</source>
-        <translation type="unfinished"/>
+        <translation>主机名太短。</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="298"/>
         <source>Your hostname is too long.</source>
-        <translation type="unfinished"/>
+        <translation>主机名太长。</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="309"/>
