@@ -196,7 +196,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="24"/>
         <source>GlobalStorage</source>
-        <translation type="unfinished"/>
+        <translation>Global Lagring</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="34"/>
@@ -371,7 +371,7 @@ Installasjonsprogrammet vil avsluttes og alle endringer vil gå tapt.</translati
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="176"/>
         <source>Error</source>
-        <translation>&amp;Feil</translation>
+        <translation>Feil</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="177"/>
