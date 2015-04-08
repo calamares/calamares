@@ -23,6 +23,7 @@
 #include "InstallationViewStep.h"
 #include "JobQueue.h"
 #include "modulesystem/ModuleManager.h"
+#include "utils/Retranslator.h"
 
 #include <QApplication>
 #include <QBoxLayout>
@@ -55,9 +56,15 @@ ViewManager::ViewManager( QObject* parent )
     m_stack->setContentsMargins( 0, 0, 0, 0 );
     mainLayout->addWidget( m_stack );
 
-    m_back = new QPushButton( tr( "&Back" ), m_widget );
-    m_next = new QPushButton( tr( "&Next" ), m_widget );
-    m_quit = new QPushButton( tr( "&Cancel" ), m_widget );
+    m_back = new QPushButton( m_widget );
+    m_next = new QPushButton( m_widget );
+    m_quit = new QPushButton( m_widget );
+
+    CALAMARES_RETRANSLATE(
+        m_back->setText( tr( "&Back" ) );
+        m_next->setText( tr( "&Next" ) );
+        m_quit->setText( tr( "&Cancel" ) );
+    )
 
     QBoxLayout* bottomLayout = new QHBoxLayout;
     mainLayout->addLayout( bottomLayout );
