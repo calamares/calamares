@@ -40,9 +40,11 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
     // Hide close button
     setWindowFlags( Qt::Window | Qt::WindowTitleHint | Qt::CustomizeWindowHint );
 
-    setWindowTitle( tr( "%1 Installer" )
-                    .arg( Calamares::Branding::instance()->
-                          string( Calamares::Branding::ProductName ) ) );
+    CALAMARES_RETRANSLATE(
+        setWindowTitle( tr( "%1 Installer" )
+                        .arg( Calamares::Branding::instance()->
+                              string( Calamares::Branding::ProductName ) ) );
+    )
 
     setMinimumSize( 1010, 520 );
     QSize availableSize = qApp->desktop()->screenGeometry( this ).size();
