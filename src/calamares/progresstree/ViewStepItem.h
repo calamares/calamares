@@ -31,6 +31,8 @@ class ViewStep;
 class ViewStepItem : public ProgressTreeItem
 {
 public:
+    // We take a std::function< QString() > instead of a QString because the view asks for
+    // new strings on LanguageChange, and tr needs to be called again in that case.
     explicit ViewStepItem( std::function< QString() > prettyName,
                            std::function< const Calamares::ViewStep*() > accessor,
                            ProgressTreeItem* parent = nullptr );
