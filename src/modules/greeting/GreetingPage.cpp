@@ -149,7 +149,7 @@ GreetingPage::GreetingPage( QWidget* parent )
                                 "Copyright 2014 Teo Mrnjavac &lt;teo@kde.org&gt;<br/>"
                                 "Thanks to: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Philip Müller, "
                                 "Pier Luigi Fiorini and Rohan Garg.<br/><br/>"
-                                "<a href=\"https://calamares.github.io/\">Calamares</a> "
+                                "<a href=\"https://calamares.io/\">Calamares</a> "
                                 "development is sponsored by <br/>"
                                 "<a href=\"http://www.blue-systems.com/\">Blue Systems</a> - "
                                 "technologies for a better world."
