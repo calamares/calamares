@@ -133,7 +133,11 @@ ProgressTreeModel::setupModelData()
     m_rootItem = new ProgressTreeRoot();
     const Calamares::ViewManager* vm = Calamares::ViewManager::instance();
 
-    TextTreeItem* prepare = new TextTreeItem( tr( "Prepare" ), m_rootItem );
+    TextTreeItem* prepare = new TextTreeItem( []() -> QString
+        {
+            return tr( "Prepare" );
+        },
+        m_rootItem );
     m_rootItem->appendChild( prepare );
 
     foreach ( const Calamares::ViewStep* step, vm->prepareSteps() )
@@ -141,13 +145,21 @@ ProgressTreeModel::setupModelData()
         prepare->appendChild( new ViewStepItem( step, prepare ) );
     }
 
-    m_rootItem->appendChild( new ViewStepItem( tr( "Install" ),
+    m_rootItem->appendChild( new ViewStepItem(
+        []() -> QString
+        {
+            return tr( "Install" );
+        },
         [vm]() -> const Calamares::ViewStep*
         {
             return vm->installationStep();
         }, m_rootItem ) );
 
-    m_rootItem->appendChild( new ViewStepItem( tr( "Finish" ),
+    m_rootItem->appendChild( new ViewStepItem(
+        []() -> QString
+        {
+            return tr( "Finish" );
+        },
         [vm]() -> const Calamares::ViewStep*
         {
             return vm->finishedStep();
