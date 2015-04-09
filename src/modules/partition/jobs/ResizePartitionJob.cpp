@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
+ *   Copyright 2015, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -184,6 +185,16 @@ ResizePartitionJob::prettyName() const
     // FIXME: Copy PM ResizeOperation code which generates a description of the
     // operation
     return tr( "Resize partition %1." ).arg( partition()->partitionPath() );
+}
+
+
+QString
+ResizePartitionJob::prettyDescription() const
+{
+    return tr( "Resize <b>%2MB</b> partition <b>%1</b> to <b>%3MB</b>." )
+            .arg( partition()->partitionPath() )
+            .arg( partition()->capacity() / 1024 / 1024 )
+            .arg( ( m_newLastSector - m_newFirstSector + 1 ) * partition()->sectorSize() / 1024 / 1024 );
 }
 
 Calamares::JobResult
