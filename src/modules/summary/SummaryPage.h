@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -22,6 +22,7 @@
 #include <QWidget>
 
 class QLabel;
+class QScrollArea;
 class QVBoxLayout;
 
 class SummaryPage : public QWidget
@@ -39,6 +40,8 @@ private:
     void createContentWidget();
     QLabel* createTitleLabel( const QString& text ) const;
     QLabel* createBodyLabel( const QString& text ) const;
+
+    QScrollArea* m_scrollArea;
 };
 
 #endif // SUMMARYPAGE_H

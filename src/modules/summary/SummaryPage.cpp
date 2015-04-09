@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -25,11 +25,14 @@
 
 #include <QBoxLayout>
 #include <QLabel>
+#include <QScrollArea>
 
 static const int SECTION_SPACING = 12;
 
 SummaryPage::SummaryPage( QWidget* parent )
     : QWidget()
+    , m_scrollArea( new QScrollArea( this ) )
+    , m_contentWidget( nullptr )
 {
     QVBoxLayout* layout = new QVBoxLayout( this );
     layout->setContentsMargins( 0, 0, 0, 0 );
@@ -40,6 +43,12 @@ SummaryPage::SummaryPage( QWidget* parent )
                                   "the install procedure." ) );
     )
     layout->addWidget( headerLabel );
+    layout->addWidget( m_scrollArea );
+    m_scrollArea->setWidgetResizable( true );
+    m_scrollArea->setHorizontalScrollBarPolicy( Qt::ScrollBarAlwaysOff );
+    m_scrollArea->setVerticalScrollBarPolicy( Qt::ScrollBarAsNeeded );
+    m_scrollArea->setFrameStyle( QFrame::NoFrame );
+    m_scrollArea->setContentsMargins( 0, 0, 0, 0 );
 }
 
 
@@ -88,7 +97,7 @@ SummaryPage::createContentWidget()
     m_contentWidget = new QWidget;
     m_layout = new QVBoxLayout( m_contentWidget );
     CalamaresUtils::unmarginLayout( m_layout );
-    layout()->addWidget( m_contentWidget );
+    m_scrollArea->setWidget( m_contentWidget );
 }
 
 QLabel*
