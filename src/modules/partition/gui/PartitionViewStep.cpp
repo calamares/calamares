@@ -177,15 +177,19 @@ PartitionViewStep::createSummaryWidget() const
     widget->setLayout( mainLayout );
     mainLayout->setMargin( 0 );
     QFormLayout* formLayout = new QFormLayout( widget );
-    formLayout->setMargin( 0 );
+    const int MARGIN = CalamaresUtils::defaultFontHeight() / 2;
+    formLayout->setContentsMargins( MARGIN, 0, MARGIN, MARGIN );
     mainLayout->addLayout( formLayout );
 
     QList< PartitionCoreModule::SummaryInfo > list = m_core->createSummaryInfo();
     for ( const auto& info : list )
     {
-        PartitionPreview* preview;
+        QLabel* diskInfoLabel = new QLabel( tr( "Disk <b>%1</b> (%2)" )
+                                            .arg( info.deviceNode )
+                                            .arg( info.deviceName ) );
+        formLayout->addRow( diskInfoLabel );
 
-        formLayout->addRow( new QLabel( info.deviceName ) );
+        PartitionPreview* preview;
 
         preview = new PartitionPreview;
         preview->setModel( info.partitionModelBefore );
@@ -205,8 +209,13 @@ PartitionViewStep::createSummaryWidget() const
         if ( !job->prettyDescription().isEmpty() )
         jobsLines.append( job->prettyDescription() );
     }
-    jobsLabel->setText( tr( "Operations:<br/>%1" )
-                        .arg( jobsLines.join( "<br/>" ) ) );
+    jobsLabel->setText( jobsLines.join( "<br/>" ) );
+    int m = CalamaresUtils::defaultFontHeight() / 2;
+    jobsLabel->setMargin( CalamaresUtils::defaultFontHeight() / 2 );
+    QPalette pal;
+    pal.setColor( QPalette::Background, pal.background().color().lighter( 108 ) );
+    jobsLabel->setAutoFillBackground( true );
+    jobsLabel->setPalette( pal );
     return widget;
 }
 
