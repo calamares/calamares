@@ -40,6 +40,7 @@
 #include "widgets/WaitingWidget.h"
 #include "GlobalStorage.h"
 #include "JobQueue.h"
+#include "Job.h"
 
 // Qt
 #include <QApplication>
@@ -172,26 +173,40 @@ QWidget*
 PartitionViewStep::createSummaryWidget() const
 {
     QWidget* widget = new QWidget;
-    QFormLayout* layout = new QFormLayout( widget );
-    layout->setMargin( 0 );
+    QVBoxLayout* mainLayout = new QVBoxLayout;
+    widget->setLayout( mainLayout );
+    mainLayout->setMargin( 0 );
+    QFormLayout* formLayout = new QFormLayout( widget );
+    formLayout->setMargin( 0 );
+    mainLayout->addLayout( formLayout );
 
     QList< PartitionCoreModule::SummaryInfo > list = m_core->createSummaryInfo();
     for ( const auto& info : list )
     {
         PartitionPreview* preview;
 
-        layout->addRow( new QLabel( info.deviceName ) );
+        formLayout->addRow( new QLabel( info.deviceName ) );
 
         preview = new PartitionPreview;
         preview->setModel( info.partitionModelBefore );
         info.partitionModelBefore->setParent( widget );
-        layout->addRow( tr( "Before:" ), preview );
+        formLayout->addRow( tr( "Before:" ), preview );
 
         preview = new PartitionPreview;
         preview->setModel( info.partitionModelAfter );
         info.partitionModelAfter->setParent( widget );
-        layout->addRow( tr( "After:" ), preview );
+        formLayout->addRow( tr( "After:" ), preview );
     }
+    QLabel* jobsLabel = new QLabel( widget );
+    mainLayout->addWidget( jobsLabel );
+    QStringList jobsLines;
+    foreach ( const Calamares::job_ptr& job, jobs() )
+    {
+        if ( !job->prettyDescription().isEmpty() )
+        jobsLines.append( job->prettyDescription() );
+    }
+    jobsLabel->setText( tr( "Operations:<br/>%1" )
+                        .arg( jobsLines.join( "<br/>" ) ) );
     return widget;
 }
 
