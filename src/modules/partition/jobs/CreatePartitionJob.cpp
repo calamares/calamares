@@ -45,20 +45,23 @@ CreatePartitionJob::CreatePartitionJob( Device* device, Partition* partition )
 QString
 CreatePartitionJob::prettyName() const
 {
-    return tr( "Create new <b>%2MB</b> partition on <b>%3</b> with file system %1." )
+    return tr( "Create new %2MB partition on %4 (%3) with file system %1." )
             .arg( m_partition->fileSystem().name() )
             .arg( m_partition->capacity() / 1024 / 1024 )
-            .arg( m_device->name() );
+            .arg( m_device->name() )
+            .arg( m_device->deviceNode() );
 }
 
 
 QString
 CreatePartitionJob::prettyDescription() const
 {
-    return tr( "Create new <b>%2MB</b> partition on <b>%3</b> with file system %1." )
-                .arg( m_partition->fileSystem().name() )
-                .arg( m_partition->capacity() / 1024 / 1024 )
-                .arg( m_device->name() );
+    return tr( "Create new <strong>%2MB</strong> partition on <strong>%4</strong> "
+               "(%3) with file system <strong>%1</strong>." )
+            .arg( m_partition->fileSystem().name() )
+            .arg( m_partition->capacity() / 1024 / 1024 )
+            .arg( m_device->name() )
+            .arg( m_device->deviceNode() );
 }
 
 Calamares::JobResult
