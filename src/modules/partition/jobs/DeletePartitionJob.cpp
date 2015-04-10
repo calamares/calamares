@@ -39,14 +39,16 @@ DeletePartitionJob::DeletePartitionJob( Device* device, Partition* partition )
 QString
 DeletePartitionJob::prettyName() const
 {
-    return tr( "Delete partition %1." ).arg( m_partition->partitionPath() );
+    return tr( "Delete partition %1." )
+            .arg( m_partition->partitionPath() );
 }
 
 
 QString
 DeletePartitionJob::prettyDescription() const
 {
-    return tr( "Delete partition <b>%1</b>." ).arg( m_partition->partitionPath() );
+    return tr( "Delete partition <strong>%1</strong>." )
+            .arg( m_partition->partitionPath() );
 }
 
 Calamares::JobResult
