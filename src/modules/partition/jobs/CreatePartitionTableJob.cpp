@@ -46,14 +46,17 @@ CreatePartitionTableJob::CreatePartitionTableJob( Device* device, PartitionTable
 QString
 CreatePartitionTableJob::prettyName() const
 {
-    return tr( "Create partition table" );
+    return tr( "Create new %1 partition table on %2." )
+            .arg( PartitionTable::tableTypeToName( m_type ) )
+            .arg( m_device->deviceNode() );
 }
 
 QString CreatePartitionTableJob::prettyDescription() const
 {
-    return tr( "Create new %1 partition table on %2." )
-            .arg( PartitionTable::tableTypeToName( m_type ) )
-            .arg( m_device->deviceNode() );
+    return tr( "Create new <strong>%1</strong> partition table on <strong>%2</strong> (%3)." )
+            .arg( PartitionTable::tableTypeToName( m_type ).toUpper() )
+            .arg( m_device->deviceNode() )
+            .arg( m_device->name() );
 }
 
 Calamares::JobResult
