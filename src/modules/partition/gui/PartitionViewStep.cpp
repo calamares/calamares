@@ -201,21 +201,24 @@ PartitionViewStep::createSummaryWidget() const
         info.partitionModelAfter->setParent( widget );
         formLayout->addRow( tr( "After:" ), preview );
     }
-    QLabel* jobsLabel = new QLabel( widget );
-    mainLayout->addWidget( jobsLabel );
     QStringList jobsLines;
     foreach ( const Calamares::job_ptr& job, jobs() )
     {
         if ( !job->prettyDescription().isEmpty() )
         jobsLines.append( job->prettyDescription() );
     }
-    jobsLabel->setText( jobsLines.join( "<br/>" ) );
-    int m = CalamaresUtils::defaultFontHeight() / 2;
-    jobsLabel->setMargin( CalamaresUtils::defaultFontHeight() / 2 );
-    QPalette pal;
-    pal.setColor( QPalette::Background, pal.background().color().lighter( 108 ) );
-    jobsLabel->setAutoFillBackground( true );
-    jobsLabel->setPalette( pal );
+    if ( !jobsLines.isEmpty() )
+    {
+        QLabel* jobsLabel = new QLabel( widget );
+        mainLayout->addWidget( jobsLabel );
+        jobsLabel->setText( jobsLines.join( "<br/>" ) );
+        int m = CalamaresUtils::defaultFontHeight() / 2;
+        jobsLabel->setMargin( CalamaresUtils::defaultFontHeight() / 2 );
+        QPalette pal;
+        pal.setColor( QPalette::Background, pal.background().color().lighter( 108 ) );
+        jobsLabel->setAutoFillBackground( true );
+        jobsLabel->setPalette( pal );
+    }
     return widget;
 }
 
