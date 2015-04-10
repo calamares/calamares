@@ -45,6 +45,7 @@ Settings::Settings( const QString& settingsFilePath,
                     QObject* parent )
     : QObject( parent )
     , m_debug( debugMode )
+    , m_promptInstall( false )
 {
     cDebug() << "Using Calamares settings file at" << settingsFilePath;
     QFile file( settingsFilePath );
@@ -93,6 +94,7 @@ Settings::Settings( const QString& settingsFilePath,
             config[ "postinstall" ] >> m_modulesPostInstallList;
             m_brandingComponentName = QString::fromStdString( config[ "branding" ]
                                                               .as< std::string >() );
+            m_promptInstall = config[ "prompt-install" ].as< bool >();
         }
         catch ( YAML::Exception& e )
         {
@@ -136,6 +138,13 @@ QString
 Settings::brandingComponentName() const
 {
     return m_brandingComponentName;
+}
+
+
+bool
+Settings::showPromptBeforeInstall() const
+{
+    return m_promptInstall;
 }
 
 

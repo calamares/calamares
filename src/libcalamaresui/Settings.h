@@ -46,6 +46,8 @@ public:
 
     QString brandingComponentName() const;
 
+    bool showPromptBeforeInstall() const;
+
     bool debugMode() const;
 
 private:
@@ -60,6 +62,8 @@ private:
     QStringList m_modulesPostInstallList;
 
     QString m_brandingComponentName;
+
+    bool m_promptInstall;
 };
 
 }
