@@ -56,7 +56,8 @@ FormatPartitionJob::prettyName() const
 QString
 FormatPartitionJob::prettyDescription() const
 {
-    return tr( "Format <b>%3MB</b> partition <b>%1</b> with file system <b>%2</b>." )
+    return tr( "Format <strong>%3MB</strong> partition <strong>%1</strong> with "
+               "file system <strong>%2</strong>." )
            .arg( m_partition->partitionPath() )
            .arg( m_partition->fileSystem().name() )
            .arg( m_partition->capacity() / 1024 / 1024 );
