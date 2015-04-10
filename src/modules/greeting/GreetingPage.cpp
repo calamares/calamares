@@ -145,8 +145,8 @@ GreetingPage::GreetingPage( QWidget* parent )
                                 .arg( CALAMARES_APPLICATION_NAME ),
                             tr(
                                 "<h1>%1</h1><br/>"
-                                "<b>%2<br/>"
-                                "for %3</b><br/><br/>"
+                                "<strong>%2<br/>"
+                                "for %3</strong><br/><br/>"
                                 "Copyright 2014 Teo Mrnjavac &lt;teo@kde.org&gt;<br/>"
                                 "Thanks to: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Philip Müller, "
                                 "Pier Luigi Fiorini and Rohan Garg.<br/><br/>"

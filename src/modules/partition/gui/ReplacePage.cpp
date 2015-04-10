@@ -203,7 +203,7 @@ ReplacePage::onPartitionSelected()
         if ( partition->capacity() < requiredSpaceB )
         {
             updateStatus( CalamaresUtils::Fail,
-                          tr( "<b>%4</b><br/><br/>"
+                          tr( "<strong>%4</strong><br/><br/>"
                               "The partition %1 is too small for %2. Please select a partition "
                               "with capacity at least %3 GiB." )
                           .arg( partition->partitionPath() )
@@ -217,7 +217,7 @@ ReplacePage::onPartitionSelected()
         }
 
         updateStatus( CalamaresUtils::PartitionPartition,
-                      tr( "<b>%3</b><br/><br/>"
+                      tr( "<strong>%3</strong><br/><br/>"
                           "%1 will be installed on %2.<br/>"
                           "<font color=\"red\">Warning: </font>all data on partition"
                           "%2 will be lost.")

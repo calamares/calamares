@@ -164,7 +164,7 @@ AlongsidePage::init( PartitionCoreModule* core , const OsproberEntryList& osprob
     connect( m_splitterWidget, &PartitionSplitterWidget::partitionResized,
              this, [ this ]( const QString& path, qint64 size, qint64 sizeNext )
     {
-        m_sizeLabel->setText( tr( "With this operation, the partition <b>%1</b> which contains "
+        m_sizeLabel->setText( tr( "With this operation, the partition <strong>%1</strong> which contains "
                                   "%4 will be shrunk "
                                   "to %2MB and a new %3MB partition will be created for %5." )
                               .arg( path )

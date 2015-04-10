@@ -184,7 +184,7 @@ PartitionViewStep::createSummaryWidget() const
     QList< PartitionCoreModule::SummaryInfo > list = m_core->createSummaryInfo();
     for ( const auto& info : list )
     {
-        QLabel* diskInfoLabel = new QLabel( tr( "Disk <b>%1</b> (%2)" )
+        QLabel* diskInfoLabel = new QLabel( tr( "Disk <strong>%1</strong> (%2)" )
                                             .arg( info.deviceNode )
                                             .arg( info.deviceName ) );
         formLayout->addRow( diskInfoLabel );
