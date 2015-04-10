@@ -191,7 +191,8 @@ ResizePartitionJob::prettyName() const
 QString
 ResizePartitionJob::prettyDescription() const
 {
-    return tr( "Resize <b>%2MB</b> partition <b>%1</b> to <b>%3MB</b>." )
+    return tr( "Resize <strong>%2MB</strong> partition <strong>%1</strong> to "
+               "<strong>%3MB</strong>." )
             .arg( partition()->partitionPath() )
             .arg( partition()->capacity() / 1024 / 1024 )
             .arg( ( m_newLastSector - m_newFirstSector + 1 ) * partition()->sectorSize() / 1024 / 1024 );
