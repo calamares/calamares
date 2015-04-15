@@ -306,14 +306,14 @@ ChoicePage::init( PartitionCoreModule* core, const OsproberEntryList& osproberEn
 
 
 bool
-ChoicePage::isNextEnabled()
+ChoicePage::isNextEnabled() const
 {
     return m_nextEnabled;
 }
 
 
 ChoicePage::Choice
-ChoicePage::currentChoice()
+ChoicePage::currentChoice() const
 {
     return m_choice;
 }
