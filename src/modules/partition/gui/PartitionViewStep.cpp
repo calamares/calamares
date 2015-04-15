@@ -41,6 +41,7 @@
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 #include "Job.h"
+#include "Branding.h"
 
 // Qt
 #include <QApplication>
@@ -176,17 +177,86 @@ PartitionViewStep::createSummaryWidget() const
     QVBoxLayout* mainLayout = new QVBoxLayout;
     widget->setLayout( mainLayout );
     mainLayout->setMargin( 0 );
+
+    ChoicePage::Choice choice = m_choicePage->currentChoice();
+
     QFormLayout* formLayout = new QFormLayout( widget );
     const int MARGIN = CalamaresUtils::defaultFontHeight() / 2;
     formLayout->setContentsMargins( MARGIN, 0, MARGIN, MARGIN );
     mainLayout->addLayout( formLayout );
 
     QList< PartitionCoreModule::SummaryInfo > list = m_core->createSummaryInfo();
+    if ( list.length() > 1 ) // There are changes on more than one disk
+    {
+        //NOTE: all of this should only happen when Manual partitioning is active.
+        //      Any other choice should result in a list.length() == 1.
+        QLabel* modeLabel = new QLabel;
+        formLayout->addRow( modeLabel );
+        QString modeText;
+        switch ( choice )
+        {
+        case ChoicePage::Alongside:
+            modeText = tr( "Install %1 <strong>alongside</strong> another operating system." )
+                       .arg( Calamares::Branding::instance()->
+                             string( Calamares::Branding::ShortVersionedName ) );
+            break;
+        case ChoicePage::Erase:
+            modeText = tr( "<strong>Erase</strong> disk and install %1." )
+                       .arg( Calamares::Branding::instance()->
+                             string( Calamares::Branding::ShortVersionedName ) );
+            break;
+        case ChoicePage::Replace:
+            modeText = tr( "<strong>Replace</strong> a partition with %1." )
+                       .arg( Calamares::Branding::instance()->
+                             string( Calamares::Branding::ShortVersionedName ) );
+            break;
+        default:
+            modeText = tr( "<strong>Manual</strong> partitioning." );
+        }
+        modeLabel->setText( modeText );
+    }
     for ( const auto& info : list )
     {
-        QLabel* diskInfoLabel = new QLabel( tr( "Disk <strong>%1</strong> (%2)" )
-                                            .arg( info.deviceNode )
-                                            .arg( info.deviceName ) );
+        QLabel* diskInfoLabel = new QLabel;
+        if ( list.length() == 1 ) // this is the only disk preview
+        {
+            QString modeText;
+            switch ( choice )
+            {
+            case ChoicePage::Alongside:
+                modeText = tr( "Install %1 <strong>alongside</strong> another operating system on disk <strong>%2</strong> (%3)." )
+                           .arg( Calamares::Branding::instance()->
+                                 string( Calamares::Branding::ShortVersionedName ) )
+                           .arg( info.deviceNode )
+                           .arg( info.deviceName );
+                break;
+            case ChoicePage::Erase:
+                modeText = tr( "<strong>Erase</strong> disk <strong>%2</strong> (%3) and install %1." )
+                           .arg( Calamares::Branding::instance()->
+                                 string( Calamares::Branding::ShortVersionedName ) )
+                           .arg( info.deviceNode )
+                           .arg( info.deviceName );
+                break;
+            case ChoicePage::Replace:
+                modeText = tr( "<strong>Replace</strong> a partition on disk <strong>%2</strong> (%3) with %1." )
+                           .arg( Calamares::Branding::instance()->
+                                 string( Calamares::Branding::ShortVersionedName ) )
+                           .arg( info.deviceNode )
+                           .arg( info.deviceName );
+                break;
+            default:
+                modeText = tr( "<strong>Manual</strong> partitioning on disk <strong>%1</strong> (%2)." )
+                           .arg( info.deviceNode )
+                           .arg( info.deviceName );
+            }
+            diskInfoLabel->setText( modeText );
+        }
+        else // multiple disk previews!
+        {
+            diskInfoLabel->setText( tr( "Disk <strong>%1</strong> (%2)" )
+                                        .arg( info.deviceNode )
+                                        .arg( info.deviceName ) );
+        }
         formLayout->addRow( diskInfoLabel );
 
         PartitionPreview* preview;
