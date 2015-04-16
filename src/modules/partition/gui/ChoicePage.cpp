@@ -104,9 +104,9 @@ ChoicePage::init( PartitionCoreModule* core, const OsproberEntryList& osproberEn
                                                            iconSize ) );
     grp->addButton( replaceButton->buttonWidget() );
 
-    m_itemsLayout->addWidget( eraseButton );
     m_itemsLayout->addWidget( alongsideButton );
     m_itemsLayout->addWidget( replaceButton );
+    m_itemsLayout->addWidget( eraseButton );
     m_itemsLayout->setSpacing( CalamaresUtils::defaultFontHeight() / 2 );
 
     if ( osproberEntries.count() == 0 )
