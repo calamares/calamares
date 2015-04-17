@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
+ *   Copyright 2015, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -19,12 +20,16 @@
 
 #include <core/PartitionModel.h>
 
+#include "utils/CalamaresUtilsGui.h"
+
 // Qt
 #include <QDebug>
 #include <QPainter>
 
+#include <functional>
 
 static const int VIEW_HEIGHT = 30;
+static const int LAYOUT_MARGIN = 8;
 static const int CORNER_RADIUS = 3;
 static const int EXTENDED_PARTITION_MARGIN = 4;
 
@@ -52,7 +57,7 @@ PartitionPreview::minimumSizeHint() const
 QSize
 PartitionPreview::sizeHint() const
 {
-    return QSize( -1, VIEW_HEIGHT );
+    return QSize( -1, VIEW_HEIGHT + LAYOUT_MARGIN + labelsHeight() );
 }
 
 
@@ -62,7 +67,15 @@ PartitionPreview::paintEvent( QPaintEvent* event )
     QPainter painter( viewport() );
     painter.fillRect( rect(), palette().window() );
     painter.setRenderHint( QPainter::Antialiasing );
-    drawPartitions( &painter, rect(), QModelIndex() );
+
+    QRect partitionsRect = rect();
+    partitionsRect.setHeight( VIEW_HEIGHT );
+    QRect labelsRect = rect().adjusted( 0, VIEW_HEIGHT + LAYOUT_MARGIN, 0, 0 );
+
+    painter.save();
+    drawPartitions( &painter, partitionsRect, QModelIndex() );
+    painter.restore();
+    drawLabels( &painter, labelsRect, QModelIndex() );
 }
 
 
@@ -150,6 +163,83 @@ PartitionPreview::drawPartitions( QPainter* painter, const QRect& rect, const QM
         }
         x += width;
     }
+}
+
+
+static void
+drawPartitionSquare( QPainter* painter, const QRect& rect, const QBrush& brush )
+{
+    painter->fillRect( rect.adjusted( 1, 1, -1, -1 ), brush );
+    painter->setRenderHint( QPainter::Antialiasing, true );
+    painter->setPen( QPalette().shadow().color() );
+    painter->translate( .5, .5 );
+    painter->drawRoundedRect( rect.adjusted( 0, 0, -1, -1 ), 2, 2 );
+    painter->translate( -.5, -.5 );
+}
+
+
+void
+PartitionPreview::drawLabels( QPainter* painter, const QRect& rect, const QModelIndex& parent )
+{
+    QAbstractItemModel* modl = model();
+    if ( !modl )
+        return;
+
+    std::function< QModelIndexList ( const QModelIndex& ) > gatherIndexes =
+        [ modl, &gatherIndexes ]( const QModelIndex& parent ) -> QModelIndexList
+    {
+        QModelIndexList list;
+
+        for ( int row = 0; row < modl->rowCount( parent ); ++row )
+        {
+            QModelIndex index = modl->index( row, 0, parent );
+            if ( modl->hasChildren( index ) )
+                list.append( gatherIndexes( index ) );
+            else
+                list.append( index );
+        }
+        return list;
+    };
+    QModelIndexList indexesToDraw = gatherIndexes( parent );
+
+    int h = rect.height();
+
+    int label_x = rect.x();
+    foreach ( const QModelIndex& index, indexesToDraw )
+    {
+        painter->setPen( Qt::black );
+
+        QStringList texts = { index.data().toString(),
+                              index.sibling( index.row(), PartitionModel::SizeColumn ).data().toString() };
+        QFont nameFont;
+        nameFont.setPointSize( CalamaresUtils::defaultFontSize() );
+
+        painter->setFont( nameFont );
+        int vertOffset = 0;
+        int width = 0;
+        foreach ( const QString& text, texts )
+        {
+            QSize textSize = painter->fontMetrics().size( Qt::TextSingleLine, text );
+            painter->drawText( label_x+18, rect.y() + vertOffset + textSize.height() / 2, text );
+            vertOffset += textSize.height();
+            painter->setFont( QFont() );
+            painter->setPen( Qt::gray );
+            width = qMax( width, textSize.width() );
+        }
+        QColor color = index.data( Qt::DecorationRole ).value< QColor >();
+        drawPartitionSquare( painter, QRect( label_x, rect.y() - 3,
+                                             13, 13 ), color );
+        label_x += width + 40; // 40 is a margin between labels
+        //FIXME: handle overflow
+    }
+
+}
+
+
+int
+PartitionPreview::labelsHeight()
+{
+    return CalamaresUtils::defaultFontHeight() * 2;
 }
 
 
