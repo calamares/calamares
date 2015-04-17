@@ -33,10 +33,7 @@ public:
     explicit PartitionPreview( QWidget* parent = 0 );
     ~PartitionPreview();
 
-    QSize minimumSizeHint() const override
-    {
-        return sizeHint();
-    }
+    QSize minimumSizeHint() const override;
 
     QSize sizeHint() const override;
 

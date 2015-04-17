@@ -36,15 +36,25 @@ PartitionPreview::PartitionPreview( QWidget* parent )
     setFrameStyle( QFrame::NoFrame );
 }
 
+
 PartitionPreview::~PartitionPreview()
 {
 }
+
+
+QSize
+PartitionPreview::minimumSizeHint() const
+{
+    return sizeHint();
+}
+
 
 QSize
 PartitionPreview::sizeHint() const
 {
     return QSize( -1, VIEW_HEIGHT );
 }
+
 
 void
 PartitionPreview::paintEvent( QPaintEvent* event )
@@ -54,6 +64,7 @@ PartitionPreview::paintEvent( QPaintEvent* event )
     painter.setRenderHint( QPainter::Antialiasing );
     drawPartitions( &painter, rect(), QModelIndex() );
 }
+
 
 static void
 drawSection( QPainter* painter, const QRect& rect_, int x, int width, const QModelIndex& index )
@@ -90,6 +101,7 @@ drawSection( QPainter* painter, const QRect& rect_, int x, int width, const QMod
 
     painter->translate( -0.5, -0.5 );
 }
+
 
 void
 PartitionPreview::drawPartitions( QPainter* painter, const QRect& rect, const QModelIndex& parent )
@@ -140,11 +152,13 @@ PartitionPreview::drawPartitions( QPainter* painter, const QRect& rect, const QM
     }
 }
 
+
 QModelIndex
 PartitionPreview::indexAt( const QPoint& point ) const
 {
     return QModelIndex();
 }
+
 
 QRect
 PartitionPreview::visualRect( const QModelIndex& index ) const
@@ -152,11 +166,13 @@ PartitionPreview::visualRect( const QModelIndex& index ) const
     return QRect();
 }
 
+
 QRegion
 PartitionPreview::visualRegionForSelection( const QItemSelection& selection ) const
 {
     return QRegion();
 }
+
 
 int
 PartitionPreview::horizontalOffset() const
@@ -164,16 +180,19 @@ PartitionPreview::horizontalOffset() const
     return 0;
 }
 
+
 int
 PartitionPreview::verticalOffset() const
 {
     return 0;
 }
 
+
 void
 PartitionPreview::scrollTo( const QModelIndex& index, ScrollHint hint )
 {
 }
+
 
 QModelIndex
 PartitionPreview::moveCursor( CursorAction cursorAction, Qt::KeyboardModifiers modifiers )
@@ -181,11 +200,13 @@ PartitionPreview::moveCursor( CursorAction cursorAction, Qt::KeyboardModifiers m
     return QModelIndex();
 }
 
+
 bool
 PartitionPreview::isIndexHidden( const QModelIndex& index ) const
 {
     return false;
 }
+
 
 void
 PartitionPreview::setSelection( const QRect& rect, QItemSelectionModel::SelectionFlags flags )
