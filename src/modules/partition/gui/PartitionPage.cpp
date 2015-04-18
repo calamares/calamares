@@ -42,6 +42,7 @@
 #include <QItemSelectionModel>
 #include <QMessageBox>
 #include <QPointer>
+#include <QDir>
 
 PartitionPage::PartitionPage( PartitionCoreModule* core, QWidget* parent )
     : QWidget( parent )
@@ -77,6 +78,11 @@ PartitionPage::PartitionPage( PartitionCoreModule* core, QWidget* parent )
     connect( m_ui->editButton, &QAbstractButton::clicked, this, &PartitionPage::onEditClicked );
     connect( m_ui->deleteButton, &QAbstractButton::clicked, this, &PartitionPage::onDeleteClicked );
 
+    if ( QDir( "/sys/firmware/efi/efivars" ).exists() ) {
+        m_ui->bootLoaderComboBox->setDisabled( true );
+        m_ui->label_3->setDisabled( true );
+    }
+    
     CALAMARES_RETRANSLATE( m_ui->retranslateUi( this ); )
 }
 

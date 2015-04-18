@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -20,17 +20,35 @@
 
 #include "ViewManager.h"
 #include "viewpages/ViewStep.h"
+#include "utils/Retranslator.h"
+#include "utils/CalamaresUtilsGui.h"
 
 #include <QBoxLayout>
 #include <QLabel>
+#include <QScrollArea>
 
 static const int SECTION_SPACING = 12;
 
 SummaryPage::SummaryPage( QWidget* parent )
     : QWidget()
+    , m_scrollArea( new QScrollArea( this ) )
+    , m_contentWidget( nullptr )
 {
     QVBoxLayout* layout = new QVBoxLayout( this );
     layout->setContentsMargins( 0, 0, 0, 0 );
+
+    QLabel* headerLabel = new QLabel( this );
+    CALAMARES_RETRANSLATE(
+        headerLabel->setText( tr( "This is an overview of what will happen once you start "
+                                  "the install procedure." ) );
+    )
+    layout->addWidget( headerLabel );
+    layout->addWidget( m_scrollArea );
+    m_scrollArea->setWidgetResizable( true );
+    m_scrollArea->setHorizontalScrollBarPolicy( Qt::ScrollBarAlwaysOff );
+    m_scrollArea->setVerticalScrollBarPolicy( Qt::ScrollBarAsNeeded );
+    m_scrollArea->setFrameStyle( QFrame::NoFrame );
+    m_scrollArea->setContentsMargins( 0, 0, 0, 0 );
 }
 
 
@@ -56,10 +74,18 @@ SummaryPage::onActivate()
             m_layout->addSpacing( SECTION_SPACING );
 
         m_layout->addWidget( createTitleLabel( step->prettyName() ) );
+        QHBoxLayout* itemBodyLayout = new QHBoxLayout;
+        m_layout->addSpacing( CalamaresUtils::defaultFontHeight() / 2 );
+        m_layout->addLayout( itemBodyLayout );
+        itemBodyLayout->addSpacing( CalamaresUtils::defaultFontHeight() * 2 );
+        QVBoxLayout* itemBodyCoreLayout = new QVBoxLayout;
+        itemBodyLayout->addLayout( itemBodyCoreLayout );
+        CalamaresUtils::unmarginLayout( itemBodyLayout );
         if ( !text.isEmpty() )
-            m_layout->addWidget( createBodyLabel( text ) );
+            itemBodyCoreLayout->addWidget( createBodyLabel( text ) );
         if ( widget )
-            m_layout->addWidget( widget );
+            itemBodyCoreLayout->addWidget( widget );
+        itemBodyLayout->addSpacing( CalamaresUtils::defaultFontHeight() * 2 );
     }
     m_layout->addStretch();
 }
@@ -70,7 +96,8 @@ SummaryPage::createContentWidget()
     delete m_contentWidget;
     m_contentWidget = new QWidget;
     m_layout = new QVBoxLayout( m_contentWidget );
-    layout()->addWidget( m_contentWidget );
+    CalamaresUtils::unmarginLayout( m_layout );
+    m_scrollArea->setWidget( m_contentWidget );
 }
 
 QLabel*
@@ -78,13 +105,23 @@ SummaryPage::createTitleLabel( const QString& text ) const
 {
     QLabel* label = new QLabel( text );
     QFont fnt = font();
-    fnt.setBold( true );
+    fnt.setWeight( QFont::Light );
+    fnt.setPointSize( CalamaresUtils::defaultFontSize() * 2 );
     label->setFont( fnt );
+    label->setContentsMargins( 0, 0, 0, 0 );
+
     return label;
 }
 
 QLabel*
 SummaryPage::createBodyLabel( const QString& text ) const
 {
-    return new QLabel( text );
+    QLabel* label = new QLabel;
+    label->setMargin( CalamaresUtils::defaultFontHeight() / 2 );
+    QPalette pal( palette() );
+    pal.setColor( QPalette::Background, palette().background().color().lighter( 108 ) );
+    label->setAutoFillBackground( true );
+    label->setPalette( pal );
+    label->setText( text );
+    return label;
 }

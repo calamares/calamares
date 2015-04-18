@@ -20,6 +20,8 @@
 
 #include "GreetingPage.h"
 
+#include <QVariant>
+
 GreetingViewStep::GreetingViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
     , m_widget( new GreetingPage() )
@@ -93,5 +95,27 @@ QList< Calamares::job_ptr >
 GreetingViewStep::jobs() const
 {
     return QList< Calamares::job_ptr >();
+}
+
+
+void
+GreetingViewStep::setConfigurationMap( const QVariantMap& configurationMap )
+{
+    bool showSupportUrl =
+        configurationMap.contains( "showSupportUrl" ) &&
+        configurationMap.value( "showSupportUrl" ).type() == QVariant::Bool &&
+        configurationMap.value( "showSupportUrl" ).toBool();
+    bool showKnownIssuesUrl =
+        configurationMap.contains( "showKnownIssuesUrl" ) &&
+        configurationMap.value( "showKnownIssuesUrl" ).type() == QVariant::Bool &&
+        configurationMap.value( "showKnownIssuesUrl" ).toBool();
+    bool showReleaseNotesUrl =
+        configurationMap.contains( "showReleaseNotesUrl" ) &&
+        configurationMap.value( "showReleaseNotesUrl" ).type() == QVariant::Bool &&
+        configurationMap.value( "showReleaseNotesUrl" ).toBool();
+
+    m_widget->setUpLinks( showSupportUrl,
+                          showKnownIssuesUrl,
+                          showReleaseNotesUrl );
 }
 

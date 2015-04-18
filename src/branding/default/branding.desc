@@ -9,9 +9,18 @@ strings:
     versionedName:       Generic GNU/Linux 1.0 LTS "Rusty Trombone"
     shortVersionedName:  Generic 1.0
     bootloaderEntryName: Generic
+    productUrl:          http://calamares.io/
+    supportUrl:          http://calamares.io/bugs/
+    knownIssuesUrl:      http://calamares.io/about/
+    releaseNotesUrl:     http://calamares.io/about/
 
 images:
     productLogo:         "squid.png"
     productIcon:         "squid.png"
 
 slideshow:               "show.qml"
+
+style:
+   sidebarBackground:    "#292F34"
+   sidebarText:          "#FFFFFF"
+   sidebarTextSelect:    "#292F34"

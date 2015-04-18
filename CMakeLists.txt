@@ -69,7 +69,7 @@ set( CALAMARES_ORGANIZATION_NAME "Calamares" )
 set( CALAMARES_ORGANIZATION_DOMAIN "github.com/calamares" )
 set( CALAMARES_APPLICATION_NAME  "Calamares" )
 set( CALAMARES_DESCRIPTION_SUMMARY "The distribution-independent installer framework" )
-set( CALAMARES_TRANSLATION_LANGUAGES ar ast ca cs_CZ da de en es_MX es fi_FI fr hr hu id it_IT ja lt nl pl pt_BR pt_PT ro ru sk sl sv tr_TR zh_CN zh_TW )
+set( CALAMARES_TRANSLATION_LANGUAGES ar ast ca cs_CZ da de en en_GB es_MX es fi_FI fr hr hu id it_IT ja lt nl pl pt_BR pt_PT ro ru sk sl sv tr_TR zh_CN zh_TW )
 
 set( CALAMARES_VERSION_MAJOR 1 )
 set( CALAMARES_VERSION_MINOR 0 )

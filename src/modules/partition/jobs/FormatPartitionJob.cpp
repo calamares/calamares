@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
+ *   Copyright 2015, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -48,7 +49,18 @@ FormatPartitionJob::prettyName() const
            .arg( m_partition->partitionPath() )
            .arg( m_partition->fileSystem().name() )
            .arg( m_partition->capacity() / 1024 / 1024 )
-           .arg( m_device->name() );
+            .arg( m_device->name() );
+}
+
+
+QString
+FormatPartitionJob::prettyDescription() const
+{
+    return tr( "Format <strong>%3MB</strong> partition <strong>%1</strong> with "
+               "file system <strong>%2</strong>." )
+           .arg( m_partition->partitionPath() )
+           .arg( m_partition->fileSystem().name() )
+           .arg( m_partition->capacity() / 1024 / 1024 );
 }
 
 Calamares::JobResult

@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -21,16 +21,19 @@
 
 #include "ProgressTreeItem.h"
 
+#include <functional>
+
 
 class TextTreeItem : public ProgressTreeItem
 {
 public:
-    explicit TextTreeItem( const QString& text, ProgressTreeItem* parent = nullptr );
+    explicit TextTreeItem( std::function< QString() > textReturner,
+                           ProgressTreeItem* parent = nullptr );
 
     virtual QVariant data( int role ) const override;
 
 private:
-    QString m_text;
+    std::function< QString() > m_textReturner;
 };
 
 #endif // TEXTTREEITEM_H

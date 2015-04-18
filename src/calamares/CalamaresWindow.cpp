@@ -21,7 +21,6 @@
 #include "ViewManager.h"
 #include "progresstree/ProgressTreeView.h"
 #include "utils/CalamaresUtilsGui.h"
-#include "utils/CalamaresStyle.h"
 #include "utils/Logger.h"
 #include "utils/DebugWindow.h"
 #include "utils/Retranslator.h"
@@ -41,9 +40,11 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
     // Hide close button
     setWindowFlags( Qt::Window | Qt::WindowTitleHint | Qt::CustomizeWindowHint );
 
-    setWindowTitle( tr( "%1 Installer" )
-                    .arg( Calamares::Branding::instance()->
-                          string( Calamares::Branding::ProductName ) ) );
+    CALAMARES_RETRANSLATE(
+        setWindowTitle( tr( "%1 Installer" )
+                        .arg( Calamares::Branding::instance()->
+                              string( Calamares::Branding::ProductName ) ) );
+    )
 
     setMinimumSize( 1010, 520 );
     QSize availableSize = qApp->desktop()->screenGeometry( this ).size();
@@ -71,8 +72,10 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
     {
         QPalette plt = sideBox->palette();
         sideBox->setAutoFillBackground( true );
-        plt.setColor( sideBox->backgroundRole(), CalamaresStyle::SIDEBAR_BACKGROUND );
-        plt.setColor( sideBox->foregroundRole(), CalamaresStyle::SIDEBAR_TEXT );
+        plt.setColor( sideBox->backgroundRole(), Calamares::Branding::instance()->
+                      styleString( Calamares::Branding::SidebarBackground ) );
+        plt.setColor( sideBox->foregroundRole(), Calamares::Branding::instance()->
+                      styleString( Calamares::Branding::SidebarText ) );
         sideBox->setPalette( plt );
         logoLabel->setPalette( plt );
     }

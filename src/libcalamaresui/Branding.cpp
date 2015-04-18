@@ -52,7 +52,11 @@ QStringList Branding::s_stringEntryStrings =
     "versionedName",
     "shortVersionedName",
     "shortProductName",
-    "bootloaderEntryName"
+    "bootloaderEntryName",
+    "productUrl",
+    "supportUrl",
+    "knownIssuesUrl",
+    "releaseNotesUrl"
 };
 
 
@@ -60,6 +64,13 @@ QStringList Branding::s_imageEntryStrings =
 {
     "productLogo",
     "productIcon"
+};
+
+QStringList Branding::s_styleEntryStrings =
+{
+    "sidebarBackground",
+    "sidebarText",
+    "sidebarTextSelect"
 };
 
 
@@ -146,6 +157,15 @@ Branding::Branding( const QString& brandingFilePath,
             }
             else
                 bail( "Syntax error in slideshow sequence." );
+            
+            if ( !doc[ "style" ].IsMap() )
+                bail( "Syntax error in style map." );
+
+            QVariantMap style =
+                CalamaresUtils::yamlMapToVariant( doc[ "style" ] ).toMap();
+            m_style.clear();
+            for ( auto it = style.constBegin(); it != style.constEnd(); ++it )
+                m_style.insert( it.key(), it.value().toString() );
 
         }
         catch ( YAML::Exception& e )
@@ -189,6 +209,13 @@ QString
 Branding::string( Branding::StringEntry stringEntry ) const
 {
     return m_strings.value( s_stringEntryStrings.value( stringEntry ) );
+}
+
+
+QString
+Branding::styleString( Branding::StyleEntry styleEntry ) const
+{
+    return m_style.value( s_styleEntryStrings.value( styleEntry ) );
 }
 
 

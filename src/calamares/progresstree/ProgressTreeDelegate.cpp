@@ -23,7 +23,7 @@
 #include "ViewStepItem.h"
 #include "ProgressTreeModel.h"
 #include "ViewManager.h"
-#include "utils/CalamaresStyle.h"
+#include "Branding.h"
 #include "utils/CalamaresUtilsGui.h"
 
 #include <QAbstractItemView>
@@ -82,8 +82,10 @@ ProgressTreeDelegate::paint( QPainter* painter,
     initStyleOption( &opt, index );
     opt.text.clear();
 
-    painter->setBrush( CalamaresStyle::SIDEBAR_BACKGROUND );
-    painter->setPen( CalamaresStyle::SIDEBAR_TEXT );
+    painter->setBrush( QColor( Calamares::Branding::instance()->
+        styleString( Calamares::Branding::SidebarBackground ) ) );
+    painter->setPen( QColor( Calamares::Branding::instance()->
+        styleString( Calamares::Branding::SidebarText ) ) );
 
     if ( isFirstLevel )
         paintCategory( painter, opt, index );
@@ -135,7 +137,8 @@ ProgressTreeDelegate::paintViewStep( QPainter* painter,
 
     if ( isCurrent )
     {
-        painter->setPen( CalamaresStyle::SIDEBAR_TEXT_SELECT );
+        painter->setPen( Calamares::Branding::instance()->
+                         styleString( Calamares::Branding::SidebarTextSelect ) );
         painter->setBrush( APP->mainWindow()->palette().background() );
     }
 

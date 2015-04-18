@@ -435,6 +435,7 @@ PartitionCoreModule::createSummaryInfo() const
             continue;
         SummaryInfo summaryInfo;
         summaryInfo.deviceName = deviceInfo->device->name();
+        summaryInfo.deviceNode = deviceInfo->device->deviceNode();
 
         Device* deviceBefore = backend->scanDevice( deviceInfo->device->deviceNode() );
         summaryInfo.partitionModelBefore = new PartitionModel;

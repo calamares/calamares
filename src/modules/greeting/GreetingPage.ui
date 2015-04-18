@@ -97,14 +97,48 @@
         </spacer>
        </item>
        <item>
-        <widget class="QPushButton" name="aboutButton">
-         <property name="text">
-          <string>&amp;About</string>
-         </property>
-         <property name="flat">
-          <bool>true</bool>
-         </property>
-        </widget>
+        <layout class="QVBoxLayout" name="verticalLayout_2">
+         <item>
+          <widget class="QPushButton" name="releaseNotesButton">
+           <property name="text">
+            <string>&amp;Release notes</string>
+           </property>
+           <property name="flat">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="knownIssuesButton">
+           <property name="text">
+            <string>&amp;Known issues</string>
+           </property>
+           <property name="flat">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="supportButton">
+           <property name="text">
+            <string>&amp;Support</string>
+           </property>
+           <property name="flat">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="aboutButton">
+           <property name="text">
+            <string>&amp;About</string>
+           </property>
+           <property name="flat">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
        <item>
         <spacer name="horizontalSpacer_2">

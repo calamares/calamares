@@ -20,6 +20,7 @@
 #define YAMLUTILS_H
 
 #include <QStringList>
+#include <QVariant>
 
 namespace YAML
 {

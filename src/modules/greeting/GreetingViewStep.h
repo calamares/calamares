@@ -24,6 +24,8 @@
 #include "viewpages/ViewStep.h"
 #include "PluginDllMacro.h"
 
+#include <QVariantMap>
+
 class GreetingPage;
 
 class PLUGINDLLEXPORT GreetingViewStep : public Calamares::ViewStep
@@ -51,6 +53,8 @@ public:
     bool isAtEnd() const override;
 
     QList< Calamares::job_ptr > jobs() const override;
+
+    void setConfigurationMap( const QVariantMap& configurationMap ) override;
 
 private:
     GreetingPage* m_widget;

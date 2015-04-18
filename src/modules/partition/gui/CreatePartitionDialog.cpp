@@ -26,6 +26,8 @@
 #include <ui_CreatePartitionDialog.h>
 
 #include <utils/Logger.h>
+#include "GlobalStorage.h"
+#include "JobQueue.h"
 
 // CalaPM
 #include <core/device.h>
@@ -35,6 +37,7 @@
 
 // Qt
 #include <QComboBox>
+#include <QDir>
 #include <QSet>
 
 static QSet< FileSystem::Type > s_unmountableFS(
@@ -52,6 +55,13 @@ CreatePartitionDialog::CreatePartitionDialog( Device* device, PartitionNode* par
 {
     m_ui->setupUi( this );
 
+    QStringList mountPoints = { "/", "/boot", "/home", "/opt", "/usr", "/var" };
+    if ( QDir( "/sys/firmware/efi/efivars" ).exists() )
+        mountPoints << Calamares::JobQueue::instance()->globalStorage()->value( "efiSystemPartition" ).toString();
+    mountPoints.removeDuplicates();
+    mountPoints.sort();
+    m_ui->mountPointComboBox->addItems( mountPoints );
+    
     if ( device->partitionTable()->type() == PartitionTable::msdos )
         initMbrPartitionTypeUi();
     else

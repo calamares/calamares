@@ -199,6 +199,8 @@ SetKeyboardLayoutJob::writeVConsoleData( const QString& vconsoleConfPath,
     stream.flush();
     file.close();
 
+    cDebug() << "Written KEYMAP=" << keymap << "to vconsole.conf";
+
     return ( stream.status() == QTextStream::Ok );
 }
 
@@ -230,6 +232,10 @@ SetKeyboardLayoutJob::writeX11Data( const QString& keyboardConfPath ) const
 
     file.close();
 
+    cDebug() << "Written XkbLayout" << m_layout <<
+                "; XkbModel" << m_model <<
+                "; XkbVariant" << m_variant << "to X.org file" << keyboardConfPath;
+
     return ( stream.status() == QTextStream::Ok );
 }
 
@@ -237,6 +243,7 @@ SetKeyboardLayoutJob::writeX11Data( const QString& keyboardConfPath ) const
 Calamares::JobResult
 SetKeyboardLayoutJob::exec()
 {
+    cDebug() << "Executing SetKeyboardLayoutJob";
     // Read the location of the destination's / in the host file system from
     // the global settings
     Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();

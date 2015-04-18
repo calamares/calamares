@@ -40,6 +40,8 @@
 #include "widgets/WaitingWidget.h"
 #include "GlobalStorage.h"
 #include "JobQueue.h"
+#include "Job.h"
+#include "Branding.h"
 
 // Qt
 #include <QApplication>
@@ -172,25 +174,120 @@ QWidget*
 PartitionViewStep::createSummaryWidget() const
 {
     QWidget* widget = new QWidget;
-    QFormLayout* layout = new QFormLayout( widget );
-    layout->setMargin( 0 );
+    QVBoxLayout* mainLayout = new QVBoxLayout;
+    widget->setLayout( mainLayout );
+    mainLayout->setMargin( 0 );
+
+    ChoicePage::Choice choice = m_choicePage->currentChoice();
+
+    QFormLayout* formLayout = new QFormLayout( widget );
+    const int MARGIN = CalamaresUtils::defaultFontHeight() / 2;
+    formLayout->setContentsMargins( MARGIN, 0, MARGIN, MARGIN );
+    mainLayout->addLayout( formLayout );
 
     QList< PartitionCoreModule::SummaryInfo > list = m_core->createSummaryInfo();
+    if ( list.length() > 1 ) // There are changes on more than one disk
+    {
+        //NOTE: all of this should only happen when Manual partitioning is active.
+        //      Any other choice should result in a list.length() == 1.
+        QLabel* modeLabel = new QLabel;
+        formLayout->addRow( modeLabel );
+        QString modeText;
+        switch ( choice )
+        {
+        case ChoicePage::Alongside:
+            modeText = tr( "Install %1 <strong>alongside</strong> another operating system." )
+                       .arg( Calamares::Branding::instance()->
+                             string( Calamares::Branding::ShortVersionedName ) );
+            break;
+        case ChoicePage::Erase:
+            modeText = tr( "<strong>Erase</strong> disk and install %1." )
+                       .arg( Calamares::Branding::instance()->
+                             string( Calamares::Branding::ShortVersionedName ) );
+            break;
+        case ChoicePage::Replace:
+            modeText = tr( "<strong>Replace</strong> a partition with %1." )
+                       .arg( Calamares::Branding::instance()->
+                             string( Calamares::Branding::ShortVersionedName ) );
+            break;
+        default:
+            modeText = tr( "<strong>Manual</strong> partitioning." );
+        }
+        modeLabel->setText( modeText );
+    }
     for ( const auto& info : list )
     {
-        PartitionPreview* preview;
+        QLabel* diskInfoLabel = new QLabel;
+        if ( list.length() == 1 ) // this is the only disk preview
+        {
+            QString modeText;
+            switch ( choice )
+            {
+            case ChoicePage::Alongside:
+                modeText = tr( "Install %1 <strong>alongside</strong> another operating system on disk <strong>%2</strong> (%3)." )
+                           .arg( Calamares::Branding::instance()->
+                                 string( Calamares::Branding::ShortVersionedName ) )
+                           .arg( info.deviceNode )
+                           .arg( info.deviceName );
+                break;
+            case ChoicePage::Erase:
+                modeText = tr( "<strong>Erase</strong> disk <strong>%2</strong> (%3) and install %1." )
+                           .arg( Calamares::Branding::instance()->
+                                 string( Calamares::Branding::ShortVersionedName ) )
+                           .arg( info.deviceNode )
+                           .arg( info.deviceName );
+                break;
+            case ChoicePage::Replace:
+                modeText = tr( "<strong>Replace</strong> a partition on disk <strong>%2</strong> (%3) with %1." )
+                           .arg( Calamares::Branding::instance()->
+                                 string( Calamares::Branding::ShortVersionedName ) )
+                           .arg( info.deviceNode )
+                           .arg( info.deviceName );
+                break;
+            default:
+                modeText = tr( "<strong>Manual</strong> partitioning on disk <strong>%1</strong> (%2)." )
+                           .arg( info.deviceNode )
+                           .arg( info.deviceName );
+            }
+            diskInfoLabel->setText( modeText );
+        }
+        else // multiple disk previews!
+        {
+            diskInfoLabel->setText( tr( "Disk <strong>%1</strong> (%2)" )
+                                        .arg( info.deviceNode )
+                                        .arg( info.deviceName ) );
+        }
+        formLayout->addRow( diskInfoLabel );
 
-        layout->addRow( new QLabel( info.deviceName ) );
+        PartitionPreview* preview;
 
         preview = new PartitionPreview;
         preview->setModel( info.partitionModelBefore );
         info.partitionModelBefore->setParent( widget );
-        layout->addRow( tr( "Before:" ), preview );
+        formLayout->addRow( tr( "Before:" ), preview );
 
         preview = new PartitionPreview;
         preview->setModel( info.partitionModelAfter );
         info.partitionModelAfter->setParent( widget );
-        layout->addRow( tr( "After:" ), preview );
+        formLayout->addRow( tr( "After:" ), preview );
+    }
+    QStringList jobsLines;
+    foreach ( const Calamares::job_ptr& job, jobs() )
+    {
+        if ( !job->prettyDescription().isEmpty() )
+        jobsLines.append( job->prettyDescription() );
+    }
+    if ( !jobsLines.isEmpty() )
+    {
+        QLabel* jobsLabel = new QLabel( widget );
+        mainLayout->addWidget( jobsLabel );
+        jobsLabel->setText( jobsLines.join( "<br/>" ) );
+        int m = CalamaresUtils::defaultFontHeight() / 2;
+        jobsLabel->setMargin( CalamaresUtils::defaultFontHeight() / 2 );
+        QPalette pal;
+        pal.setColor( QPalette::Background, pal.background().color().lighter( 108 ) );
+        jobsLabel->setAutoFillBackground( true );
+        jobsLabel->setPalette( pal );
     }
     return widget;
 }
@@ -354,13 +451,16 @@ PartitionViewStep::canBeResized( const QString& partitionPath )
                                                 ->value( "requiredStorageGB" )
                                                 .toDouble( &ok );
 
-                qint64 availableStorageB = candidate->available() * dev->logicalSectorSize();
+                qint64 availableStorageB = candidate->available();
 
                 // We require a little more for partitioning overhead and swap file
                 // TODO: maybe make this configurable?
                 qint64 requiredStorageB = ( requiredStorageGB + 0.1 + 2.0 ) * 1024 * 1024 * 1024;
-                cDebug() << "Required  storage B:" << requiredStorageB;
-                cDebug() << "Available storage B:" << availableStorageB;
+                cDebug() << "Required  storage B:" << requiredStorageB
+                         << QString( "(%1GB)" ).arg( requiredStorageB / 1024 / 1024 / 1024 );
+                cDebug() << "Available storage B:" << availableStorageB
+                         << QString( "(%1GB)" ).arg( availableStorageB / 1024 / 1024 / 1024 );
+
                 if ( ok &&
                      availableStorageB > requiredStorageB )
                 {

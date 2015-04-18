@@ -39,7 +39,7 @@ LCLocaleDialog::LCLocaleDialog( const QString& guessedLCLocale,
     upperText->setWordWrap( true );
     upperText->setText( tr( "The system locale setting affects the language and character "
                             "set for some command line user interface elements.<br/>"
-                            "The current setting is <b>%1</b>." )
+                            "The current setting is <strong>%1</strong>." )
                             .arg( guessedLCLocale ) );
     mainLayout->addWidget( upperText );
     setMinimumWidth( upperText->fontMetrics().height() * 24 );

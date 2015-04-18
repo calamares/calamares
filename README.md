@@ -1,8 +1,8 @@
 ### Calamares: Distribution-Independent Installer Framework
 ---------
 
-| [![Build Status](http://calamares.io/ci/buildStatus/icon?job=calamares-master)](http://calamares.pangea.pub/ci/job/calamares-master/) | [Report a Bug](http://calamares.io/bugs/) | [Contribute](https://github.com/calamares/calamares/blob/master/HACKING.md) | Freenode (IRC): #calamares |
-|:-----------------------------------------:|:--------------------------:|:--------------------------:|:--------------------------:|
+| [![Build Status](http://calamares.io/ci/buildStatus/icon?job=calamares-master)](http://calamares.io/ci/job/calamares-master/) | [Report a Bug](http://calamares.io/bugs/) | [Contribute](https://github.com/calamares/calamares/blob/master/HACKING.md) | [Translate](https://www.transifex.com/projects/p/calamares/) | Freenode (IRC): #calamares |
+|:-----------------------------------------:|:--------------------------:|:--------------------------:|:--------------------------:|:--------------------------:|
 
 ### Dependencies
 | Main | Partitioning Module |
@@ -14,12 +14,13 @@
 | Boost.Python >= 1.55.0 | ki18n (part of KF5) |
 
 ### Building
+Clone Calamares from GitHub and `cd` into the calamares directory, then:
 ```
 $ git submodule init
 $ git submodule update
 $ mkdir build
 $ cd build
-$ cmake -DCMAKE_BUILD_TYPE=Debug ..
+$ cmake -DCMAKE_BUILD_TYPE=Debug -DWITH_PARTITIONMANAGER=1 ..
 $ make
 ```
 

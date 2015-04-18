@@ -27,6 +27,8 @@
 #include <ui_EditExistingPartitionDialog.h>
 
 #include <utils/Logger.h>
+#include "GlobalStorage.h"
+#include "JobQueue.h"
 
 // CalaPM
 #include <core/device.h>
@@ -35,6 +37,7 @@
 
 // Qt
 #include <QComboBox>
+#include <QDir>
 
 EditExistingPartitionDialog::EditExistingPartitionDialog( Device* device, Partition* partition, QWidget* parentWidget )
     : QDialog( parentWidget )
@@ -44,6 +47,13 @@ EditExistingPartitionDialog::EditExistingPartitionDialog( Device* device, Partit
     , m_partitionSizeController( new PartitionSizeController( this ) )
 {
     m_ui->setupUi( this );
+
+    QStringList mountPoints = { "/", "/boot", "/home", "/opt", "/usr", "/var" };
+    if ( QDir( "/sys/firmware/efi/efivars" ).exists() )
+        mountPoints << Calamares::JobQueue::instance()->globalStorage()->value( "efiSystemPartition" ).toString();
+    mountPoints.removeDuplicates();
+    mountPoints.sort();
+    m_ui->mountPointComboBox->addItems( mountPoints );
 
     QColor color = ColorUtils::colorForPartition( m_partition );
     m_partitionSizeController->init( m_device, m_partition, color );
