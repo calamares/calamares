@@ -35,7 +35,8 @@ static const int EXTENDED_PARTITION_MARGIN = 4;
 
 
 PartitionPreview::PartitionPreview( QWidget* parent )
-    : QAbstractItemView( parent )
+    : m_showLabels( false )
+    , QAbstractItemView( parent )
 {
     setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Fixed );
     setFrameStyle( QFrame::NoFrame );
@@ -57,7 +58,9 @@ PartitionPreview::minimumSizeHint() const
 QSize
 PartitionPreview::sizeHint() const
 {
-    return QSize( -1, VIEW_HEIGHT + LAYOUT_MARGIN + labelsHeight() );
+    if ( m_showLabels )
+        return QSize( -1, VIEW_HEIGHT + LAYOUT_MARGIN + labelsHeight() );
+    return QSize( -1, VIEW_HEIGHT );
 }
 
 
@@ -75,7 +78,8 @@ PartitionPreview::paintEvent( QPaintEvent* event )
     painter.save();
     drawPartitions( &painter, partitionsRect, QModelIndex() );
     painter.restore();
-    drawLabels( &painter, labelsRect, QModelIndex() );
+    if ( m_showLabels )
+        drawLabels( &painter, labelsRect, QModelIndex() );
 }
 
 
@@ -281,6 +285,14 @@ PartitionPreview::verticalOffset() const
 void
 PartitionPreview::scrollTo( const QModelIndex& index, ScrollHint hint )
 {
+}
+
+
+void
+PartitionPreview::setLabelsVisible( bool visible )
+{
+    m_showLabels = visible;
+    repaint();
 }
 
 

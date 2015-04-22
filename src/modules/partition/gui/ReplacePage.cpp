@@ -42,6 +42,7 @@ ReplacePage::ReplacePage( PartitionCoreModule* core, QWidget* parent )
 {
     m_ui->setupUi( this );
     m_ui->deviceComboBox->setModel( m_core->deviceModel() );
+    m_ui->partitionPreview->setLabelsVisible( true );
 
 //    updateButtons();
 

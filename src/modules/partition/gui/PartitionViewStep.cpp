@@ -262,11 +262,13 @@ PartitionViewStep::createSummaryWidget() const
         PartitionPreview* preview;
 
         preview = new PartitionPreview;
+        preview->setLabelsVisible( true );
         preview->setModel( info.partitionModelBefore );
         info.partitionModelBefore->setParent( widget );
         formLayout->addRow( tr( "Before:" ), preview );
 
         preview = new PartitionPreview;
+        preview->setLabelsVisible( true );
         preview->setModel( info.partitionModelAfter );
         info.partitionModelAfter->setParent( widget );
         formLayout->addRow( tr( "After:" ), preview );

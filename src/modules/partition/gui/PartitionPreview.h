@@ -31,7 +31,7 @@
 class PartitionPreview : public QAbstractItemView
 {
 public:
-    explicit PartitionPreview( QWidget* parent = 0 );
+    explicit PartitionPreview( QWidget* parent = nullptr );
     ~PartitionPreview();
 
     QSize minimumSizeHint() const override;
@@ -44,6 +44,8 @@ public:
     QModelIndex indexAt( const QPoint& point ) const override;
     QRect visualRect( const QModelIndex& index ) const override;
     void scrollTo( const QModelIndex& index, ScrollHint hint = EnsureVisible ) override;
+
+    void setLabelsVisible( bool visible = true );
 
 protected:
     // QAbstractItemView API
@@ -58,6 +60,7 @@ private:
     void drawPartitions( QPainter* painter, const QRect& rect, const QModelIndex& parent );
     void drawLabels( QPainter* painter, const QRect& rect, const QModelIndex& parent );
     static int labelsHeight();
+    bool m_showLabels;
 };
 
 #endif /* PARTITIONPREVIEW_H */

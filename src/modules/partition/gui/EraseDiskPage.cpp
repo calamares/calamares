@@ -224,11 +224,13 @@ EraseDiskPage::updatePreviews()
         layout->addRow( new QLabel( info.deviceName ) );
 
         preview = new PartitionPreview;
+        preview->setLabelsVisible( true );
         preview->setModel( info.partitionModelBefore );
         info.partitionModelBefore->setParent( m_previewFrame );
         layout->addRow( tr( "Before:" ), preview );
 
         preview = new PartitionPreview;
+        preview->setLabelsVisible( true );
         preview->setModel( info.partitionModelAfter );
         info.partitionModelAfter->setParent( m_previewFrame );
         layout->addRow( tr( "After:" ), preview );
