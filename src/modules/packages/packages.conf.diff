@@ -1,0 +1,7 @@
+10a11,12
+> #  - entropy  (equo)-Sabayon or related distro's Binary Packag manger (Support is a WIP) 
+> #  - portage (emerge) -Gentoo's Src SPM (support is presently NOT YET IMPLIMENTED)
+42,43d43
+< #  - localInstall:
+< #      - /path/to/pkg8
+\ No newline at end of file
