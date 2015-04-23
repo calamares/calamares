@@ -54,6 +54,8 @@ class PackageManager:
             check_chroot_call(["apt-get", "-q", "-y", "install"] + pkgs)
         elif self.backend == "pacman":
             check_chroot_call(["pacman", "-Sy", "--noconfirm"] + pkgs)
+                    elif self.backend == "Entropy":
+            check_chroot_call(["equo", "-Sy", "install"] + pkgs)
 
     def remove(self, pkgs):
         """ Removes packages.
