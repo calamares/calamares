@@ -55,7 +55,8 @@ class PackageManager:
         elif self.backend == "pacman":
             pacman_flags = "-U" if from_local else "-Sy"
             check_chroot_call(["pacman", pacman_flags, "--noconfirm"] + pkgs)
-
+                    elif self.backend == "Entropy":
+            check_chroot_call(["equo", "-v", "install"] + pkgs)
     def remove(self, pkgs):
         """ Removes packages.
 
@@ -78,7 +79,8 @@ class PackageManager:
             check_chroot_call(["apt-get", "--purge", "-q", "-y", "autoremove"])
         elif self.backend == "pacman":
             check_chroot_call(["pacman", "-Rs", "--noconfirm"] + pkgs)
-
+        elif self.backend == "Entropy":
+            check_chroot_call(["equo", "-remove", "-v"] + pkgs)
 
 def run_operations(pkgman, entry):
     """ Call package manager with given parameters.
@@ -102,7 +104,7 @@ def run():
     :return:
     """
     backend = libcalamares.job.configuration.get("backend")
-    if backend not in ("packagekit", "zypp", "yum", "dnf", "urpmi", "apt", "pacman"):
+    if backend not in ("packagekit", "zypp", "yum", "dnf", "urpmi", "apt", "pacman", "entropy"):
         return ("Bad backend", "backend=\"{}\"".format(backend))
 
     pkgman = PackageManager(backend)
