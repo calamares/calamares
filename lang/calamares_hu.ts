@@ -376,12 +376,12 @@ Minden változtatás elveszik, ha kilépsz a telepítőből.</translation>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="260"/>
         <source>&amp;Install now</source>
-        <translation>és telepítés most</translation>
+        <translation>&amp;Telepítés most</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="261"/>
         <source>Go &amp;back</source>
-        <translation>Előre és vissza</translation>
+        <translation>Menj &amp;vissza</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="300"/>
@@ -2776,7 +2776,7 @@ Telepítés folytatható de néhány tulajdonság valószínűleg nem lesz elér
     <message>
         <location filename="../src/modules/summary/SummaryPage.cpp" line="42"/>
         <source>This is an overview of what will happen once you start the install procedure.</source>
-        <translation>Ez az előnézete annak, hogy mi fog történni, ha megkezded a telepítést.</translation>
+        <translation>Ez áttekintése annak, hogy mi fog történni, ha megkezded a telepítést.</translation>
     </message>
 </context>
 <context>
