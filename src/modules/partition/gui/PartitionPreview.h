@@ -56,10 +56,17 @@ protected:
     QModelIndex moveCursor( CursorAction cursorAction, Qt::KeyboardModifiers modifiers ) override;
     void setSelection( const QRect& rect, QItemSelectionModel::SelectionFlags flags ) override;
 
+protected slots:
+    void updateGeometries() override;
+
 private:
     void drawPartitions( QPainter* painter, const QRect& rect, const QModelIndex& parent );
     void drawLabels( QPainter* painter, const QRect& rect, const QModelIndex& parent );
-    static int labelsHeight();
+    QSize sizeForAllLabels( int maxLineWidth ) const;
+    QSize sizeForLabel( const QStringList& text ) const;
+    void drawLabel( QPainter* painter, const QStringList& text, const QColor& color, const QPoint& pos );
+    QModelIndexList getIndexesToDraw( const QModelIndex& parent ) const;
+
     bool m_showLabels;
 };
 

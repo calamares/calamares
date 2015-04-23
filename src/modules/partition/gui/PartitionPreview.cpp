@@ -32,6 +32,8 @@ static const int VIEW_HEIGHT = 30;
 static const int LAYOUT_MARGIN = 8;
 static const int CORNER_RADIUS = 3;
 static const int EXTENDED_PARTITION_MARGIN = 4;
+static const int LABELS_MARGIN = 40;
+static const int LABEL_PARTITION_SQUARE_MARGIN = 18;
 
 
 PartitionPreview::PartitionPreview( QWidget* parent )
@@ -58,8 +60,12 @@ PartitionPreview::minimumSizeHint() const
 QSize
 PartitionPreview::sizeHint() const
 {
-    if ( m_showLabels )
-        return QSize( -1, VIEW_HEIGHT + LAYOUT_MARGIN + labelsHeight() );
+    QAbstractItemModel* modl = model();
+    if ( m_showLabels && modl )
+    {
+        return QSize( -1, VIEW_HEIGHT + LAYOUT_MARGIN +
+                          sizeForAllLabels( rect().width() ).height() );
+    }
     return QSize( -1, VIEW_HEIGHT );
 }
 
@@ -182,6 +188,27 @@ drawPartitionSquare( QPainter* painter, const QRect& rect, const QBrush& brush )
 }
 
 
+QModelIndexList
+PartitionPreview::getIndexesToDraw( const QModelIndex& parent ) const
+{
+    QModelIndexList list;
+
+    QAbstractItemModel* modl = model();
+    if ( !modl )
+        return list;
+
+    for ( int row = 0; row < modl->rowCount( parent ); ++row )
+    {
+        QModelIndex index = modl->index( row, 0, parent );
+        if ( modl->hasChildren( index ) )
+            list.append( getIndexesToDraw( index ) );
+        else
+            list.append( index );
+    }
+    return list;
+}
+
+
 void
 PartitionPreview::drawLabels( QPainter* painter, const QRect& rect, const QModelIndex& parent )
 {
@@ -189,61 +216,108 @@ PartitionPreview::drawLabels( QPainter* painter, const QRect& rect, const QModel
     if ( !modl )
         return;
 
-    std::function< QModelIndexList ( const QModelIndex& ) > gatherIndexes =
-        [ modl, &gatherIndexes ]( const QModelIndex& parent ) -> QModelIndexList
-    {
-        QModelIndexList list;
-
-        for ( int row = 0; row < modl->rowCount( parent ); ++row )
-        {
-            QModelIndex index = modl->index( row, 0, parent );
-            if ( modl->hasChildren( index ) )
-                list.append( gatherIndexes( index ) );
-            else
-                list.append( index );
-        }
-        return list;
-    };
-    QModelIndexList indexesToDraw = gatherIndexes( parent );
-
-    int h = rect.height();
+    QModelIndexList indexesToDraw = getIndexesToDraw( parent );
 
     int label_x = rect.x();
+    int label_y = rect.y();
     foreach ( const QModelIndex& index, indexesToDraw )
     {
-        painter->setPen( Qt::black );
-
         QStringList texts = { index.data().toString(),
                               index.sibling( index.row(), PartitionModel::SizeColumn ).data().toString() };
-        QFont nameFont;
-        nameFont.setPointSize( CalamaresUtils::defaultFontSize() );
 
-        painter->setFont( nameFont );
-        int vertOffset = 0;
-        int width = 0;
-        foreach ( const QString& text, texts )
+        QSize labelSize = sizeForLabel( texts );
+
+        QColor labelColor = index.data( Qt::DecorationRole ).value< QColor >();
+
+        if ( label_x + labelSize.width() > rect.width() ) //wrap to new line if overflow
         {
-            QSize textSize = painter->fontMetrics().size( Qt::TextSingleLine, text );
-            painter->drawText( label_x+18, rect.y() + vertOffset + textSize.height() / 2, text );
-            vertOffset += textSize.height();
-            painter->setFont( QFont() );
-            painter->setPen( Qt::gray );
-            width = qMax( width, textSize.width() );
+            label_x = 0;
+            label_y += labelSize.height();
         }
-        QColor color = index.data( Qt::DecorationRole ).value< QColor >();
-        drawPartitionSquare( painter, QRect( label_x, rect.y() - 3,
-                                             13, 13 ), color );
-        label_x += width + 40; // 40 is a margin between labels
-        //FIXME: handle overflow
-    }
+        drawLabel( painter, texts, labelColor, QPoint( label_x, label_y ) );
 
+        label_x += labelSize.width() + LABELS_MARGIN;
+    }
 }
 
 
-int
-PartitionPreview::labelsHeight()
+QSize
+PartitionPreview::sizeForAllLabels( int maxLineWidth ) const
 {
-    return CalamaresUtils::defaultFontHeight() * 2;
+    QAbstractItemModel* modl = model();
+    if ( !modl )
+        return QSize();
+
+    QModelIndexList indexesToDraw = getIndexesToDraw( QModelIndex() );
+
+    int lineLength = 0;
+    int numLines = 1;
+    int singleLabelHeight = 0;
+    foreach ( const QModelIndex& index, indexesToDraw )
+    {
+        QStringList texts = { index.data().toString(),
+                              index.sibling( index.row(), PartitionModel::SizeColumn ).data().toString() };
+        QSize labelSize = sizeForLabel( texts );
+
+        if ( lineLength + labelSize.width() > maxLineWidth )
+        {
+            numLines++;
+            lineLength = labelSize.width();
+        }
+        else
+        {
+            lineLength += LABELS_MARGIN + labelSize.width();
+        }
+
+        singleLabelHeight = qMax( singleLabelHeight, labelSize.height() );
+    }
+
+    int totalHeight = numLines * singleLabelHeight;
+
+    return QSize( maxLineWidth, totalHeight );
+}
+
+
+QSize
+PartitionPreview::sizeForLabel( const QStringList& text ) const
+{
+    int vertOffset = 0;
+    int width = 0;
+    foreach ( const QString& textLine, text )
+    {
+        QSize textSize = fontMetrics().size( Qt::TextSingleLine, textLine );
+        if ( vertOffset == 0 )
+            vertOffset = textSize.height() / 2;
+        vertOffset += textSize.height();
+        width = qMax( width, textSize.width() );
+    }
+    width += LABEL_PARTITION_SQUARE_MARGIN; //for the color square
+    return QSize( width, vertOffset );
+}
+
+
+void
+PartitionPreview::drawLabel( QPainter* painter,
+                             const QStringList& text,
+                             const QColor& color,
+                             const QPoint& pos )
+{
+    painter->setPen( Qt::black );
+    int vertOffset = 0;
+    int width = 0;
+    foreach ( const QString& textLine, text )
+    {
+        QSize textSize = painter->fontMetrics().size( Qt::TextSingleLine, textLine );
+        painter->drawText( pos.x()+LABEL_PARTITION_SQUARE_MARGIN,
+                           pos.y() + vertOffset + textSize.height() / 2,
+                           textLine );
+        vertOffset += textSize.height();
+        painter->setPen( Qt::gray );
+        width = qMax( width, textSize.width() );
+    }
+    drawPartitionSquare( painter, QRect( pos.x(), pos.y() - 3,
+                                         13, 13 ), color );
+    painter->setPen( Qt::black );
 }
 
 
@@ -292,6 +366,7 @@ void
 PartitionPreview::setLabelsVisible( bool visible )
 {
     m_showLabels = visible;
+    updateGeometry();
     repaint();
 }
 
@@ -315,3 +390,9 @@ PartitionPreview::setSelection( const QRect& rect, QItemSelectionModel::Selectio
 {
 }
 
+
+void
+PartitionPreview::updateGeometries()
+{
+    updateGeometry(); //get a new rect() for redrawing all the labels
+}
