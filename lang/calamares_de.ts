@@ -13,8 +13,8 @@
     </message>
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="167"/>
-        <source>With this operation, the partition &lt;b&gt;%1&lt;/b&gt; which contains %4 will be shrunk to %2MB and a new %3MB partition will be created for %5.</source>
-        <translation>Mit dieser Operation wird die Partition &lt;b&gt;%1&lt;/b&gt;, welche %4 enthält, auf %2 MB verkleinert, und es wird eine neue Partition mit %3 MB für %5 erstellt.</translation>
+        <source>With this operation, the partition &lt;strong&gt;%1&lt;/strong&gt; which contains %4 will be shrunk to %2MB and a new %3MB partition will be created for %5.</source>
+        <translation>Mit dieser Operation wird die Partition &lt;strong&gt;%1&lt;/strong&gt; welche %4 enthält verringert auf %2MB und eine neue %3MB Partition für %5 erstellt werden.</translation>
     </message>
 </context>
 <context>
@@ -336,45 +336,65 @@ Ausgabe:
 <context>
     <name>Calamares::ViewManager</name>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="58"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="66"/>
         <source>&amp;Back</source>
         <translation>&amp;Zurück</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="59"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="67"/>
         <source>&amp;Next</source>
         <translation>&amp;Weiter</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="60"/>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="295"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="68"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="330"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Beenden</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="79"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="88"/>
         <source>Cancel installation?</source>
         <translation>Installation abbrechen?</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="80"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="89"/>
         <source>Do you really want to cancel the current install process?
 The installer will quit and all changes will be lost.</source>
         <translation>Wollen Sie wirklich die aktuelle Installation abbrechen?
 Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="265"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="252"/>
+        <source>Continue with setup?</source>
+        <translation>Mit dem Setup fortfahren?</translation>
+    </message>
+    <message>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="253"/>
+        <source>The %1 installer is about to make changes to your disk in order to install %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
+        <translation>Das Installationsprogramm 1% wird im Zuge der %2-Installation Veränderungen auf Ihrem Speichermedium vornehmen, &lt;br/&gt;&lt;strong&gt; die Sie nicht per &apos;rückgängig&apos;-Funktion zurücknehmen können.&lt;/strong&gt;</translation>
+    </message>
+    <message>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="260"/>
+        <source>&amp;Install now</source>
+        <translation>&amp;jetzt installieren</translation>
+    </message>
+    <message>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="261"/>
+        <source>Go &amp;back</source>
+        <translation>Gehe &amp;zurück</translation>
+    </message>
+    <message>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="300"/>
         <source>&amp;Quit</source>
         <translation>&amp;Beenden</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="176"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="185"/>
         <source>Error</source>
         <translation>Fehler</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="177"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="186"/>
         <source>Installation Failed</source>
         <translation>Die Installation ist gescheitert</translation>
     </message>
@@ -405,12 +425,12 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
 <context>
     <name>CalamaresWindow</name>
     <message>
-        <location filename="../src/calamares/CalamaresWindow.cpp" line="43"/>
+        <location filename="../src/calamares/CalamaresWindow.cpp" line="44"/>
         <source>%1 Installer</source>
         <translation>%1 Installationsprogramm</translation>
     </message>
     <message>
-        <location filename="../src/calamares/CalamaresWindow.cpp" line="96"/>
+        <location filename="../src/calamares/CalamaresWindow.cpp" line="98"/>
         <source>Show debug information</source>
         <translation>Debug-Information anzeigen</translation>
     </message>
@@ -436,56 +456,41 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
         <translation>Auf diesem Computer scheint aktuell kein Betriebssystem installiert zu sein. Was möchten Sie tun?</translation>
     </message>
     <message>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="141"/>
+        <source>This computer currently has %1 on it. What would you like to do?</source>
+        <translation>Auf diesem Computer ist aktuell %1 installiert. Was möchten Sie tun?</translation>
+    </message>
+    <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="119"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="187"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="234"/>
-        <source>&lt;b&gt;Erase disk and install %1&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;This will delete all of your programs, documents, photos, music, and any other files.</source>
-        <translation>&lt;b&gt;Lösche den Datenträger und installiere %1&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warnung: &lt;/font&gt;Alle Programme, Dokumente, Fotos, Musik und alle anderen Dateien werden dabei gelöscht.</translation>
+        <source>&lt;strong&gt;Erase disk and install %1&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;This will delete all of your programs, documents, photos, music, and any other files.</source>
+        <translation>&lt;strong&gt;Festplatte löschen und %1 installieren&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warnung: &lt;/font&gt;Sämtliche Programme, Dokumente, Fotos, Musik und sonstige Dateien werden gelöscht!</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="125"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="162"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="193"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="240"/>
-        <source>&lt;b&gt;Erase disk and install %1&lt;/b&gt;&lt;br/&gt;You will be offered a choice of which disk to erase.</source>
-        <translation>&lt;b&gt;Lösche den Datenträger und installiere %1&lt;/b&gt;&lt;br/&gt;Es wird ihnen eine Auswahl von möglichen löschbaren Datenträgern angeboten.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="141"/>
-        <source>This computer currently has %1 on it. What would you like to do?</source>
-        <translation>Auf diesem Computer ist aktuell %1 installiert. Was möchten Sie tun?</translation>
+        <source>&lt;strong&gt;Erase disk and install %1&lt;/strong&gt;&lt;br/&gt;You will be offered a choice of which disk to erase.</source>
+        <translation>&lt;strong&gt;Festplatte löschen und %1 installieren&lt;/strong&gt;&lt;br/&gt;Sie werden wählen können, welche Festplatte gelöscht wird.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="145"/>
-        <source>&lt;b&gt;Install %2 alongside %1&lt;/b&gt;&lt;br/&gt;The installer will shrink the %1 volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
-        <translation>&lt;b&gt;Installiere %2 neben %1&lt;/b&gt;&lt;br/&gt;Das Installationsprogramm wird das %1 Volumen verkleinern um Raum für %2 zu schaffen. Sie können bei jedem Start des Computers zwischen den Betriebssystemen wählen.</translation>
+        <source>&lt;strong&gt;Install %2 alongside %1&lt;/strong&gt;&lt;br/&gt;The installer will shrink the %1 volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
+        <translation>&lt;strong&gt;Installation von %2 parallel zu %1&lt;/strong&gt;&lt;br/&gt;Das Installationsprogramm wird die Partition %1 verkleinern, um Platz für %2 zu schaffen. Jeweils beim Systemstart kann dann das zu bootende Betriebssystem ausgewählt werden.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="154"/>
+        <source>&lt;strong&gt;Erase entire disk with %1 and install %2&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;This will erase the whole disk and delete all of your %1 programs, documents, photos, music, and any other files.</source>
+        <translation>&lt;strong&gt;Gesamte Festplatte mit %1 löschen und %2 installieren&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warnung: &lt;/font&gt;Die gesamte Festplatte einschließlich aller %1 Programme, Dokumente, Fotos, Musik und sonstigen Dateien wird gelöscht!.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="167"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="198"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="245"/>
-        <source>&lt;b&gt;Replace a partition with %1&lt;/b&gt;&lt;br/&gt;You will be offered a choice of which partition to erase.</source>
-        <translation>&lt;b&gt;Ersetze eine Partition mit %1&lt;/b&gt;&lt;br/&gt;Es wird ihnen eine Auswahl von möglichen löschbaren Partitionen angeboten.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="179"/>
-        <source>&lt;b&gt;Install %1 alongside your current operating system&lt;/b&gt;&lt;br/&gt;The installer will shrink an existing volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
-        <translation>&lt;b&gt;Installiere %1 neben dem aktuellen Betriebssystem&lt;/b&gt;&lt;br/&gt;Das Installationsprogramm wird ein existierendes Volumen verkleinern um Raum für %2 zu schaffen. Sie können bei jedem Start des Computers zwischen den Betriebssystemen wählen.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="226"/>
-        <source>&lt;b&gt;Install %1 alongside your current operating systems&lt;/b&gt;&lt;br/&gt;The installer will shrink an existing volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
-        <translation>&lt;b&gt;Installiere %1 neben den aktuellen Betriebssystemen&lt;/b&gt;&lt;br/&gt;Das Installationsprogramm wird ein existierendes Volumen verkleinern um Raum für %2 zu schaffen. Sie können bei jedem Start des Computers zwischen den Betriebssystemen wählen.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="261"/>
-        <source>&lt;b&gt;Manual partitioning&lt;/b&gt;&lt;br/&gt;You can create or resize partitions yourself, or choose multiple partitions for %1.</source>
-        <translation>&lt;b&gt;Manuelle Partitionierung&lt;/b&gt;&lt;br/&gt;Sie können die Partitionen selbst erstellen und löschen, oder mehrere Partitionen für %1 verwenden.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="154"/>
-        <source>&lt;b&gt;Erase entire disk with %1 and install %2&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;This will erase the whole disk and delete all of your %1 programs, documents, photos, music, and any other files.</source>
-        <translation>&lt;b&gt;Lösche die gesamte Festplatte mit %1 und installiere %2&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Achtung: &lt;/font&gt;Dies wird die gesamte Festplatte löschen und alle ihre %1 Programme, Dokumente, Bilder, Musik, und alle anderen Dateien löschen.</translation>
+        <source>&lt;strong&gt;Replace a partition with %1&lt;/strong&gt;&lt;br/&gt;You will be offered a choice of which partition to erase.</source>
+        <translation>&lt;strong&gt;Ersetze eine Partition mit %1&lt;/strong&gt;&lt;br/&gt;Du bekommst eine Auswahl welche Partition gelöscht werden soll.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="176"/>
@@ -493,9 +498,24 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
         <translation>Auf diesem Computer ist bereits ein Betriebssystem installiert. Was möchten Sie tun?</translation>
     </message>
     <message>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="179"/>
+        <source>&lt;strong&gt;Install %1 alongside your current operating system&lt;/strong&gt;&lt;br/&gt;The installer will shrink an existing volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
+        <translation>&lt;strong&gt;Installation von %1 parallel zum derzeitigen Betriebssystem&lt;/strong&gt;&lt;br/&gt;Das Installationsprogramm wird eine bestehende Partition verkleinern, um Platz für %2 zu schaffen. Jeweils beim Systemstart kann dann das zu bootende Betriebssystem ausgewählt werden.</translation>
+    </message>
+    <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="223"/>
         <source>This computer currently has multiple operating systems on it. What would you like to do?</source>
         <translation>Auf diesem Computer sind aktuell mehrere Betriebssysteme installiert. Was möchten Sie tun?</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="226"/>
+        <source>&lt;strong&gt;Install %1 alongside your current operating systems&lt;/strong&gt;&lt;br/&gt;The installer will shrink an existing volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
+        <translation>&lt;strong&gt;Installation von %1 parallel zu den derzeitigen Betriebssystemen&lt;/strong&gt;&lt;br/&gt;Das Installationsprogramm wird eine bestehende Partition verkleinern, um Platz für %2 zu schaffen. Jeweils beim Systemstart kann dann das zu bootende Betriebssystem ausgewählt werden.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="261"/>
+        <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself, or choose multiple partitions for %1.</source>
+        <translation>&lt;strong&gt;Manuelle Partitionierung&lt;/strong&gt;&lt;br/&gt;Sie können Partitionen eigenhändig erstellen oder in der Größe verändern sowie mehrere Partitionen für %1 verwenden.</translation>
     </message>
 </context>
 <context>
@@ -879,32 +899,37 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
 <context>
     <name>CreatePartitionJob</name>
     <message>
-        <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="47"/>
-        <source>Create partition (file system: %1, size: %2 MB) on %3.</source>
-        <translation>Erstelle Partition (Dateisystem: %1, Grösse: %2 MB) auf %3.</translation>
+        <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="48"/>
+        <source>Create new %2MB partition on %4 (%3) with file system %1.</source>
+        <translation>Erstelle eine neue %2MB Partition auf %4 (%3) mit Dateisystem %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="60"/>
+        <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="59"/>
+        <source>Create new &lt;strong&gt;%2MB&lt;/strong&gt; partition on &lt;strong&gt;%4&lt;/strong&gt; (%3) with file system &lt;strong&gt;%1&lt;/strong&gt;.</source>
+        <translation>Erstelle eine neue &lt;strong&gt;%2MB&lt;/strong&gt; Partition auf &lt;strong&gt;%4&lt;/strong&gt; (%3) mit Dateisystem &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="74"/>
         <source>The installer failed to create partition on disk &apos;%1&apos;.</source>
         <translation>Das Installationsprogramm scheiterte beim Erstellen der Partition auf Datenträger &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="69"/>
+        <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="83"/>
         <source>Could not open device &apos;%1&apos;.</source>
         <translation>Konnte Gerät &apos;%1&apos; nicht öffnen.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="79"/>
+        <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="93"/>
         <source>Could not open partition table.</source>
         <translation>Konnte Partitionstabelle nicht öffnen.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="103"/>
+        <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="117"/>
         <source>The installer failed to create file system on partition %1.</source>
         <translation>Das Installationsprogramm scheiterte beim Erstellen des Dateisystems auf Partition %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="111"/>
+        <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="125"/>
         <source>The installer failed to update partition table on disk &apos;%1&apos;.</source>
         <translation>Das Installationsprogramm scheiterte beim Aktualisieren der Partitionstabelle auf Datenträger &apos;%1&apos;.</translation>
     </message>
@@ -940,17 +965,22 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
 <context>
     <name>CreatePartitionTableJob</name>
     <message>
-        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="48"/>
-        <source>Create partition table</source>
-        <translation>Partitionstabelle erstellen</translation>
+        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="49"/>
+        <source>Create new %1 partition table on %2.</source>
+        <translation>Erstelle eine neue %1 Partitionstabelle auf %2.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="55"/>
+        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="56"/>
+        <source>Create new &lt;strong&gt;%1&lt;/strong&gt; partition table on &lt;strong&gt;%2&lt;/strong&gt; (%3).</source>
+        <translation>Erstelle eine neue &lt;strong&gt;%1&lt;/strong&gt; Partitionstabelle auf &lt;strong&gt;%2&lt;/strong&gt; (%3).</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="66"/>
         <source>The installer failed to create a partition table on %1.</source>
         <translation>Das Installationsprogramm konnte die Partitionstabelle auf %1 nicht erstellen.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="63"/>
+        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="74"/>
         <source>Could not open device %1.</source>
         <translation>Konnte Gerät %1 nicht öffnen.</translation>
     </message>
@@ -1057,27 +1087,32 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
 <context>
     <name>DeletePartitionJob</name>
     <message>
-        <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="41"/>
-        <source>Delete partition %1</source>
-        <translation>Lösche Partition %1</translation>
+        <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="42"/>
+        <source>Delete partition %1.</source>
+        <translation>Partition löschen %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="48"/>
+        <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="50"/>
+        <source>Delete partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
+        <translation>Lösche Partition &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="58"/>
         <source>The installer failed to delete partition %1.</source>
         <translation>Das Installationsprogramm konnte Partition %1 nicht löschen.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="54"/>
+        <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="64"/>
         <source>Partition (%1) and device (%2) do not match.</source>
         <translation>Partition (%1) und Gerät (%2) stimmen nicht überein.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="66"/>
+        <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="76"/>
         <source>Could not open device %1.</source>
         <translation>Kann Gerät %1 nicht öffnen.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="75"/>
+        <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="85"/>
         <source>Could not open partition table.</source>
         <translation>Kann Partitionstabelle nicht öffnen.</translation>
     </message>
@@ -1404,12 +1439,37 @@ Einige Dateisysteme erfordern die Installation externer Programme, um unterstüt
 <context>
     <name>FillGlobalStorageJob</name>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="75"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="77"/>
         <source>Set partition information</source>
         <translation>Setze Partitionsinformationen</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="85"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="100"/>
+        <source>Install %1 on &lt;strong&gt;new&lt;/strong&gt; %2 system partition.</source>
+        <translation>Installiere %1 auf &lt;strong&gt; neue &lt;/strong&gt; %2 Systempartition.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="105"/>
+        <source>Set up &lt;strong&gt;new&lt;/strong&gt; %2 partition with mount point &lt;strong&gt;%1&lt;/strong&gt;.</source>
+        <translation>Erstelle &lt;strong&gt;neue&lt;/strong&gt; %2 Partition mit Einhängepunkt &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="113"/>
+        <source>Install %2 on %3 system partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
+        <translation>Installiere %2 auf %3 Systempartition &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="119"/>
+        <source>Set up %3 partition &lt;strong&gt;%1&lt;/strong&gt; with mount point &lt;strong&gt;%2&lt;/strong&gt;.</source>
+        <translation>Erstelle %3 Partition &lt;strong&gt;%1&lt;/strong&gt; mit Einhängepunkt &lt;strong&gt;%2&lt;/strong&gt;.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="131"/>
+        <source>Install boot loader on &lt;strong&gt;%1&lt;/strong&gt;.</source>
+        <translation>Bootloader auf &lt;strong&gt;%1&lt;/strong&gt; installieren.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="144"/>
         <source>Failed to find path for boot loader</source>
         <translation>Pfad zum Bootloader nicht gefunden</translation>
     </message>
@@ -1443,32 +1503,37 @@ Einige Dateisysteme erfordern die Installation externer Programme, um unterstüt
 <context>
     <name>FormatPartitionJob</name>
     <message>
-        <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="47"/>
+        <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="48"/>
         <source>Format partition %1 (file system: %2, size: %3 MB) on %4.</source>
         <translation>Formatiere Partition %1 (Dateisystem: %2, Grösse: %3 MB) auf %4.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="59"/>
+        <source>Format &lt;strong&gt;%3MB&lt;/strong&gt; partition &lt;strong&gt;%1&lt;/strong&gt; with file system &lt;strong&gt;%2&lt;/strong&gt;.</source>
+        <translation>Formatiere &lt;strong&gt;%3MB&lt;/strong&gt; Partition &lt;strong&gt;%1&lt;/strong&gt; mit  Dateisystem &lt;strong&gt;%2&lt;/strong&gt;.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="71"/>
         <source>The installer failed to format partition %1 on disk &apos;%2&apos;.</source>
         <translation>Das Formatieren von Partition %1 auf Datenträger &apos;%2&apos; ist fehlgeschlagen.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="67"/>
+        <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="79"/>
         <source>Could not open device &apos;%1&apos;.</source>
         <translation>Gerät &apos;%1&apos; konnte nicht geöffnet werden.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="76"/>
+        <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="88"/>
         <source>Could not open partition table.</source>
         <translation>Partitionstabelle konnte nicht geöffnet werden. </translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="84"/>
+        <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="96"/>
         <source>The installer failed to create file system on partition %1.</source>
         <translation>Das Dateisystem auf Partition %1 konnte nicht erstellt werden.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="92"/>
+        <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="104"/>
         <source>The installer failed to update partition table on disk &apos;%1&apos;.</source>
         <translation>Das Aktualisieren der Partitionstabelle auf Datenträger &apos;%1&apos; ist fehlgeschlagen.</translation>
     </message>
@@ -1476,19 +1541,24 @@ Einige Dateisysteme erfordern die Installation externer Programme, um unterstüt
 <context>
     <name>GreetingPage</name>
     <message>
-        <location filename="../src/modules/greeting/GreetingPage.cpp" line="124"/>
+        <location filename="../src/modules/greeting/GreetingPage.cpp" line="126"/>
         <source>&lt;h1&gt;Welcome to the %1 installer.&lt;/h1&gt;&lt;br/&gt;This program will ask you some questions and set up %2 on your computer.</source>
         <translation>&lt;h1&gt;Willkommen zum %1 Installationsprogramm.&lt;/h1&gt;&lt;br/&gt;Es werden Ihnen ein paar Fragen gestellt, und %2 wird auf Ihrem Computer installiert.</translation>
     </message>
     <message>
-        <location filename="../src/modules/greeting/GreetingPage.cpp" line="141"/>
+        <location filename="../src/modules/greeting/GreetingPage.cpp" line="144"/>
         <source>About %1 installer</source>
         <translation>Über %1 das Installationsprogramm</translation>
     </message>
     <message>
-        <location filename="../src/modules/greeting/GreetingPage.cpp" line="143"/>
-        <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;b&gt;%2&lt;br/&gt;for %3&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Thanks to: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Philip Müller, Pier Luigi Fiorini and Rohan Garg.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;https://calamares.github.io/&quot;&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - technologies for a better world.</source>
-        <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;b&gt;%2&lt;br/&gt;for %3&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Danke an: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Philip Müller, Pier Luigi Fiorini and Rohan Garg.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;https://calamares.github.io/&quot;&gt;Calamares&lt;/a&gt; Entwicklung ist gesponsert von &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - technologies for a better world.</translation>
+        <location filename="../src/modules/greeting/GreetingPage.cpp" line="146"/>
+        <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2015 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Thanks to: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Philip Müller, Pier Luigi Fiorini and Rohan Garg.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;http://calamares.io/&quot;&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - Liberating Software.</source>
+        <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2015 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Dank an: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Philip Müller, Pier Luigi Fiorini and Rohan Garg.&lt;br/&gt;&lt;br/&gt;Die Entwicklung von &lt;a href=&quot;http://calamares.io/&quot;&gt;Calamares&lt;/a&gt; wird unterstützt von &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - Liberating Software.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/greeting/GreetingPage.cpp" line="176"/>
+        <source>%1 support</source>
+        <translation>%1 Hilfe</translation>
     </message>
     <message>
         <location filename="../src/modules/greeting/GreetingPage.ui" line="14"/>
@@ -1496,7 +1566,22 @@ Einige Dateisysteme erfordern die Installation externer Programme, um unterstüt
         <translation>Form</translation>
     </message>
     <message>
-        <location filename="../src/modules/greeting/GreetingPage.ui" line="102"/>
+        <location filename="../src/modules/greeting/GreetingPage.ui" line="104"/>
+        <source>&amp;Release notes</source>
+        <translation>&amp; Anmerkungen</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/greeting/GreetingPage.ui" line="114"/>
+        <source>&amp;Known issues</source>
+        <translation>&amp; bekannte Probleme</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/greeting/GreetingPage.ui" line="124"/>
+        <source>&amp;Support</source>
+        <translation>&amp; Hilfe</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/greeting/GreetingPage.ui" line="134"/>
         <source>&amp;About</source>
         <translation>&amp;Über</translation>
     </message>
@@ -1504,7 +1589,7 @@ Einige Dateisysteme erfordern die Installation externer Programme, um unterstüt
 <context>
     <name>GreetingViewStep</name>
     <message>
-        <location filename="../src/modules/greeting/GreetingViewStep.cpp" line="41"/>
+        <location filename="../src/modules/greeting/GreetingViewStep.cpp" line="43"/>
         <source>Welcome</source>
         <translation>Willkommen</translation>
     </message>
@@ -1539,8 +1624,8 @@ Einige Dateisysteme erfordern die Installation externer Programme, um unterstüt
     </message>
     <message>
         <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="40"/>
-        <source>The system locale setting affects the language and character set for some command line user interface elements.&lt;br/&gt;The current setting is &lt;b&gt;%1&lt;/b&gt;.</source>
-        <translation>Die Regions- und Spracheinstellungen beeinflussen die Sprache sowie den Zeichensatz für verschiedene Kommandozeilen-Benutzeroberflächen. &lt;br/&gt;Die aktuelle Einstellung ist &lt;b&gt;%1&lt;/b&gt;.</translation>
+        <source>The system locale setting affects the language and character set for some command line user interface elements.&lt;br/&gt;The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
+        <translation>Die Lokalisierung des Systems beeinflusst die Sprache und den Zeichensatz einiger Elemente der Kommandozeile.&lt;br/&gt;Die derzeitige Einstellung ist &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
 </context>
 <context>
@@ -2002,22 +2087,67 @@ Einige Dateisysteme erfordern die Installation externer Programme, um unterstüt
 <context>
     <name>PartitionViewStep</name>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="66"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="68"/>
         <source>Gathering system information...</source>
         <translation>Sammle Systeminformationen...</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="160"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="162"/>
         <source>Partitions</source>
         <translation>Partitionen</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="188"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="199"/>
+        <source>Install %1 &lt;strong&gt;alongside&lt;/strong&gt; another operating system.</source>
+        <translation>Installiere %1 &lt;strong&gt;neben&lt;/strong&gt; einem anderen Betriebssystem.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="204"/>
+        <source>&lt;strong&gt;Erase&lt;/strong&gt; disk and install %1.</source>
+        <translation>&lt;strong&gt;Lösche&lt;/strong&gt; Festplatte und installiere %1.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="209"/>
+        <source>&lt;strong&gt;Replace&lt;/strong&gt; a partition with %1.</source>
+        <translation>&lt;strong&gt;Ersetze&lt;/strong&gt; eine Partition durch %1.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="214"/>
+        <source>&lt;strong&gt;Manual&lt;/strong&gt; partitioning.</source>
+        <translation>&lt;strong&gt;Manuelle&lt;/strong&gt; Partitionierung.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="227"/>
+        <source>Install %1 &lt;strong&gt;alongside&lt;/strong&gt; another operating system on disk &lt;strong&gt;%2&lt;/strong&gt; (%3).</source>
+        <translation>%1 &lt;strong&gt;parallel&lt;/strong&gt; zu einem anderen Betriebssystem auf Speichermedium &lt;strong&gt;%2&lt;/strong&gt; (%3) installieren.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="234"/>
+        <source>&lt;strong&gt;Erase&lt;/strong&gt; disk &lt;strong&gt;%2&lt;/strong&gt; (%3) and install %1.</source>
+        <translation>Festplatte &lt;strong&gt;%2&lt;/strong&gt; &lt;strong&gt;löschen&lt;/strong&gt; (%3) und %1 installieren.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="241"/>
+        <source>&lt;strong&gt;Replace&lt;/strong&gt; a partition on disk &lt;strong&gt;%2&lt;/strong&gt; (%3) with %1.</source>
+        <translation>Eine Partition auf Festplatte &lt;strong&gt;%2&lt;/strong&gt; (%3) durch %1 &lt;strong&gt;ersetzen&lt;/strong&gt;.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="248"/>
+        <source>&lt;strong&gt;Manual&lt;/strong&gt; partitioning on disk &lt;strong&gt;%1&lt;/strong&gt; (%2).</source>
+        <translation>&lt;strong&gt;Manuelle&lt;/strong&gt; Partitionierung auf Festplatte &lt;strong&gt;%1&lt;/strong&gt; (%2).</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="256"/>
+        <source>Disk &lt;strong&gt;%1&lt;/strong&gt; (%2)</source>
+        <translation>Festplatte &lt;strong&gt;%1&lt;/strong&gt; (%2)</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="267"/>
         <source>Before:</source>
         <translation>Bevor:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="193"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="272"/>
         <source>After:</source>
         <translation>Danach:</translation>
     </message>
@@ -2080,17 +2210,17 @@ Die Installation wird fortgesetzt, es werden eventuell nicht alle Funktionen ver
 <context>
     <name>ProgressTreeModel</name>
     <message>
-        <location filename="../src/calamares/progresstree/ProgressTreeModel.cpp" line="136"/>
+        <location filename="../src/calamares/progresstree/ProgressTreeModel.cpp" line="138"/>
         <source>Prepare</source>
         <translation>Vorbereiten</translation>
     </message>
     <message>
-        <location filename="../src/calamares/progresstree/ProgressTreeModel.cpp" line="144"/>
+        <location filename="../src/calamares/progresstree/ProgressTreeModel.cpp" line="151"/>
         <source>Install</source>
         <translation>Installieren</translation>
     </message>
     <message>
-        <location filename="../src/calamares/progresstree/ProgressTreeModel.cpp" line="150"/>
+        <location filename="../src/calamares/progresstree/ProgressTreeModel.cpp" line="161"/>
         <source>Finish</source>
         <translation>Fertigstellen</translation>
     </message>
@@ -2281,29 +2411,29 @@ Die Installation wird fortgesetzt, es werden eventuell nicht alle Funktionen ver
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="206"/>
-        <source>&lt;b&gt;%4&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;The partition %1 is too small for %2. Please select a partition with capacity at least %3 GiB.</source>
-        <translation>&lt;b&gt;%4&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;Die Partition %1 ist zu klein für %2. Bitte wähle eine Partition mit einer Kapazität von mindestens %3 GiB.</translation>
+        <source>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;The partition %1 is too small for %2. Please select a partition with capacity at least %3 GiB.</source>
+        <translation>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Die Partition %1 ist zu klein für %2. Bitte wähle eine Partition mit einer Kapazität von mindestens %3 GiB.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="220"/>
-        <source>&lt;b&gt;%3&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;%1 will be installed on %2.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;all data on partition%2 will be lost.</source>
-        <translation>&lt;b&gt;%3&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;%1 wird installiert auf %2.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Achtung: &lt;/font&gt;alle Daten auf Partition%2 werden gelöscht.</translation>
+        <source>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 will be installed on %2.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;all data on partition%2 will be lost.</source>
+        <translation>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 wird auf %2 installiert.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warnung: &lt;/font&gt;Sämtliche Daten auf Partition%2 werden verloren gehen.</translation>
     </message>
 </context>
 <context>
     <name>ResizeFileSystemJob</name>
     <message>
-        <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="75"/>
+        <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="76"/>
         <source>Resize file system on partition %1.</source>
         <translation>Ändere Dateisystemgrösse auf Partition %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="90"/>
+        <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="91"/>
         <source>Parted failed to resize filesystem.</source>
         <translation>Parted konnte die Dateisystemgrösse nicht ändern.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="100"/>
+        <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="101"/>
         <source>Failed to resize filesystem.</source>
         <translation>Ändern der Dateisystemgrösse fehlgeschlagen.</translation>
     </message>
@@ -2311,18 +2441,23 @@ Die Installation wird fortgesetzt, es werden eventuell nicht alle Funktionen ver
 <context>
     <name>ResizePartitionJob</name>
     <message>
-        <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="186"/>
+        <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="187"/>
         <source>Resize partition %1.</source>
         <translation>Ändere die Grösse von Partition %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="208"/>
-        <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="266"/>
+        <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="194"/>
+        <source>Resize &lt;strong&gt;%2MB&lt;/strong&gt; partition &lt;strong&gt;%1&lt;/strong&gt; to &lt;strong&gt;%3MB&lt;/strong&gt;.</source>
+        <translation>Partition &lt;strong&gt;%1&lt;/strong&gt; von &lt;strong&gt;%2MB&lt;/strong&gt; auf &lt;strong&gt;%3MB&lt;/strong&gt; vergrößern.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="220"/>
+        <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="278"/>
         <source>The installer failed to resize partition %1 on disk &apos;%2&apos;.</source>
         <translation>Das Installationsprogramm konnte die Grösse von Partition %1 auf Datenträger &apos;%2&apos; nicht ändern.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="213"/>
+        <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="225"/>
         <source>Could not open device &apos;%1&apos;.</source>
         <translation>Kann Gerät &apos;%1&apos; nicht öffnen.</translation>
     </message>
@@ -2355,18 +2490,18 @@ Die Installation wird fortgesetzt, es werden eventuell nicht alle Funktionen ver
         <translation>Definiere Tastaturmodel zu %1, Layout zu %2-%3</translation>
     </message>
     <message>
-        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="277"/>
+        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="284"/>
         <source>Failed to write keyboard configuration for the virtual console.</source>
         <translation>Konnte keine Tastatur-Konfiguration für die virtuelle Konsole schreiben.</translation>
     </message>
     <message>
-        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="278"/>
-        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="282"/>
+        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="285"/>
+        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="289"/>
         <source>Failed to write to %1</source>
         <translation>Konnte nicht auf %1 schreiben</translation>
     </message>
     <message>
-        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="281"/>
+        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="288"/>
         <source>Failed to write keyboard configuration for X11.</source>
         <translation>Konnte keine Tastatur-Konfiguration für X11 schreiben.</translation>
     </message>
@@ -2374,12 +2509,12 @@ Die Installation wird fortgesetzt, es werden eventuell nicht alle Funktionen ver
 <context>
     <name>SetPartGeometryJob</name>
     <message>
-        <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="143"/>
+        <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="144"/>
         <source>Update geometry of partition %1.</source>
         <translation>Aktualisiere Struktur von Partition %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="155"/>
+        <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="156"/>
         <source>Failed to change the geometry of the partition.</source>
         <translation>Kann Struktur der Partition nicht ändern.</translation>
     </message>
@@ -2633,6 +2768,14 @@ Die Installation wird fortgesetzt, es werden eventuell nicht alle Funktionen ver
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="414"/>
         <source>Self tests:</source>
         <translation>Selbsttests:</translation>
+    </message>
+</context>
+<context>
+    <name>SummaryPage</name>
+    <message>
+        <location filename="../src/modules/summary/SummaryPage.cpp" line="42"/>
+        <source>This is an overview of what will happen once you start the install procedure.</source>
+        <translation>Dies ist ein Überblick über das was passieren wird, wenn du die Installationsprozedur startest.</translation>
     </message>
 </context>
 <context>

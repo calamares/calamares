@@ -32,6 +32,10 @@ class GreetingPage : public QWidget
 public:
     explicit GreetingPage( QWidget* parent = nullptr );
 
+    void setUpLinks( bool showSupportUrl,
+                     bool showKnownIssuesUrl,
+                     bool showReleaseNotesUrl );
+
 protected:
     void focusInEvent( QFocusEvent* e ) override; //choose the child widget to focus
 

@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -31,7 +31,9 @@ class ViewStep;
 class ViewStepItem : public ProgressTreeItem
 {
 public:
-    explicit ViewStepItem( const QString& prettyName,
+    // We take a std::function< QString() > instead of a QString because the view asks for
+    // new strings on LanguageChange, and tr needs to be called again in that case.
+    explicit ViewStepItem( std::function< QString() > prettyName,
                            std::function< const Calamares::ViewStep*() > accessor,
                            ProgressTreeItem* parent = nullptr );
 
@@ -44,7 +46,7 @@ public:
 
 private:
     std::function< const Calamares::ViewStep*() > m_accessor;
-    QString m_prettyName;
+    std::function< QString() > m_prettyName;
     const Calamares::ViewStep* m_step;
 };
 

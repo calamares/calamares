@@ -23,6 +23,9 @@
 #include "InstallationViewStep.h"
 #include "JobQueue.h"
 #include "modulesystem/ModuleManager.h"
+#include "utils/Retranslator.h"
+#include "Branding.h"
+#include "Settings.h"
 
 #include <QApplication>
 #include <QBoxLayout>
@@ -55,9 +58,15 @@ ViewManager::ViewManager( QObject* parent )
     m_stack->setContentsMargins( 0, 0, 0, 0 );
     mainLayout->addWidget( m_stack );
 
-    m_back = new QPushButton( tr( "&Back" ), m_widget );
-    m_next = new QPushButton( tr( "&Next" ), m_widget );
-    m_quit = new QPushButton( tr( "&Cancel" ), m_widget );
+    m_back = new QPushButton( m_widget );
+    m_next = new QPushButton( m_widget );
+    m_quit = new QPushButton( m_widget );
+
+    CALAMARES_RETRANSLATE(
+        m_back->setText( tr( "&Back" ) );
+        m_next->setText( tr( "&Next" ) );
+        m_quit->setText( tr( "&Cancel" ) );
+    )
 
     QBoxLayout* bottomLayout = new QHBoxLayout;
     mainLayout->addLayout( bottomLayout );
@@ -231,6 +240,32 @@ ViewManager::next()
     bool installing = false;
     if ( step->isAtEnd() )
     {
+        // Special case when the user clicks next on the very last page in the Prepare phase
+        // and right before switching to the Install phase.
+        // Depending on Calamares::Settings, we show an "are you sure" prompt or not.
+        if ( Calamares::Settings::instance()->showPromptBeforeInstall() &&
+             m_currentStep + 1 < m_steps.count() &&
+             m_steps.at( m_currentStep + 1 ) == m_installationViewStep )
+        {
+            int reply =
+                QMessageBox::question( m_widget,
+                                       tr( "Continue with setup?" ),
+                                       tr( "The %1 installer is about to make changes to your "
+                                           "disk in order to install %2.<br/><strong>You will not be able "
+                                           "to undo these changes.</strong>" )
+                                       .arg( Calamares::Branding::instance()->string(
+                                                Calamares::Branding::ShortProductName ) )
+                                       .arg( Calamares::Branding::instance()->string(
+                                                Calamares::Branding::ShortVersionedName ) ),
+                                       tr( "&Install now" ),
+                                       tr( "Go &back" ),
+                                       QString(),
+                                       0,
+                                       1 );
+            if ( reply == 1 )
+                return;
+        }
+
         m_currentStep++;
         m_stack->setCurrentIndex( m_currentStep );
         step->onLeave();

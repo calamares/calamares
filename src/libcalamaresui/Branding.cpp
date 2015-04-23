@@ -54,7 +54,9 @@ QStringList Branding::s_stringEntryStrings =
     "shortProductName",
     "bootloaderEntryName",
     "productUrl",
-    "productUrlText"
+    "supportUrl",
+    "knownIssuesUrl",
+    "releaseNotesUrl"
 };
 
 

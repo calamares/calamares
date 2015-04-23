@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
+ *   Copyright 2015, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -44,10 +45,23 @@ CreatePartitionJob::CreatePartitionJob( Device* device, Partition* partition )
 QString
 CreatePartitionJob::prettyName() const
 {
-    return tr( "Create partition (file system: %1, size: %2 MB) on %3." )
-           .arg( m_partition->fileSystem().name() )
-           .arg( m_partition->capacity() / 1024 / 1024 )
-           .arg( m_device->name() );
+    return tr( "Create new %2MB partition on %4 (%3) with file system %1." )
+            .arg( m_partition->fileSystem().name() )
+            .arg( m_partition->capacity() / 1024 / 1024 )
+            .arg( m_device->name() )
+            .arg( m_device->deviceNode() );
+}
+
+
+QString
+CreatePartitionJob::prettyDescription() const
+{
+    return tr( "Create new <strong>%2MB</strong> partition on <strong>%4</strong> "
+               "(%3) with file system <strong>%1</strong>." )
+            .arg( m_partition->fileSystem().name() )
+            .arg( m_partition->capacity() / 1024 / 1024 )
+            .arg( m_device->name() )
+            .arg( m_device->deviceNode() );
 }
 
 Calamares::JobResult

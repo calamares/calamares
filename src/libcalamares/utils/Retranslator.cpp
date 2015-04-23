@@ -60,7 +60,6 @@ Retranslator::eventFilter( QObject* obj, QEvent* e )
         {
             foreach ( std::function< void() > func, m_retranslateFuncList )
                 func();
-            return true;
         }
     }
     // pass the event on to the base

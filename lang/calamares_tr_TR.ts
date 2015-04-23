@@ -13,8 +13,8 @@
     </message>
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="167"/>
-        <source>With this operation, the partition &lt;b&gt;%1&lt;/b&gt; which contains %4 will be shrunk to %2MB and a new %3MB partition will be created for %5.</source>
-        <translation>Bu işlem ile &lt;b&gt;%1&lt;/b&gt; bölümü içeren %4 %2MB küçültülecek ve yeni bölüm %3MB oluşturulacak %5 için.</translation>
+        <source>With this operation, the partition &lt;strong&gt;%1&lt;/strong&gt; which contains %4 will be shrunk to %2MB and a new %3MB partition will be created for %5.</source>
+        <translation>Bu işlem ile &lt;strong&gt;%1&lt;/strong&gt; bölümü içeren %4 %2MB küçültülecek ve yeni bölüm %3MB oluşturulacak %5 için.</translation>
     </message>
 </context>
 <context>
@@ -336,45 +336,65 @@ Output:
 <context>
     <name>Calamares::ViewManager</name>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="58"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="66"/>
         <source>&amp;Back</source>
         <translation>&amp;Geri</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="59"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="67"/>
         <source>&amp;Next</source>
         <translation>&amp;Sonraki</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="60"/>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="295"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="68"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="330"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Vazgeç</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="79"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="88"/>
         <source>Cancel installation?</source>
         <translation>Yüklemeyi iptal et?</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="80"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="89"/>
         <source>Do you really want to cancel the current install process?
 The installer will quit and all changes will be lost.</source>
         <translation>Yükleme işlemini gerçekten iptal etmek istiyor musunuz?
 Yükleyiciden çıkınca tüm değişiklikler kaybedilecek.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="265"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="252"/>
+        <source>Continue with setup?</source>
+        <translation>Kuruluma devam et?</translation>
+    </message>
+    <message>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="253"/>
+        <source>The %1 installer is about to make changes to your disk in order to install %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
+        <translation>%1 sistem yükleyici %2 yüklemek için diskinizde değişiklik yapacak.&lt;br/&gt;&lt;strong&gt;Bu değişiklikleri geri almak mümkün olmayacak.&lt;/strong&gt;</translation>
+    </message>
+    <message>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="260"/>
+        <source>&amp;Install now</source>
+        <translation>&amp;Şimdi yükle</translation>
+    </message>
+    <message>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="261"/>
+        <source>Go &amp;back</source>
+        <translation>Geri &amp;git</translation>
+    </message>
+    <message>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="300"/>
         <source>&amp;Quit</source>
         <translation>&amp;Çıkış</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="176"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="185"/>
         <source>Error</source>
         <translation>Hata</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="177"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="186"/>
         <source>Installation Failed</source>
         <translation>Kurulum Başarısız</translation>
     </message>
@@ -405,12 +425,12 @@ Yükleyiciden çıkınca tüm değişiklikler kaybedilecek.</translation>
 <context>
     <name>CalamaresWindow</name>
     <message>
-        <location filename="../src/calamares/CalamaresWindow.cpp" line="43"/>
+        <location filename="../src/calamares/CalamaresWindow.cpp" line="44"/>
         <source>%1 Installer</source>
         <translation>%1 Yükleniyor</translation>
     </message>
     <message>
-        <location filename="../src/calamares/CalamaresWindow.cpp" line="96"/>
+        <location filename="../src/calamares/CalamaresWindow.cpp" line="98"/>
         <source>Show debug information</source>
         <translation>Hata ayıklama bilgisini göster</translation>
     </message>
@@ -436,56 +456,41 @@ Yükleyiciden çıkınca tüm değişiklikler kaybedilecek.</translation>
         <translation>Bu bilgisayar şu anda başka bir işletim sistemine sahip gibi görünmüyor. Ne yapmak istersiniz?</translation>
     </message>
     <message>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="141"/>
+        <source>This computer currently has %1 on it. What would you like to do?</source>
+        <translation>Bu bilgisayar üzerinde %1 kuruludur. Ne yapmak istersiniz?</translation>
+    </message>
+    <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="119"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="187"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="234"/>
-        <source>&lt;b&gt;Erase disk and install %1&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;This will delete all of your programs, documents, photos, music, and any other files.</source>
-        <translation>&lt;b&gt;Diski sil ve %1 yükle&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Uyarı: &lt;/font&gt;Bu işlem ile programlarınız, belgeleriniz, fotoğraflarınız, medyalarınız ve diğer tüm dosyalarınız silinecek.</translation>
+        <source>&lt;strong&gt;Erase disk and install %1&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;This will delete all of your programs, documents, photos, music, and any other files.</source>
+        <translation>&lt;strong&gt;Diski sil ve %1 yükle&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Uyarı: &lt;/font&gt;Bu işlem ile programlarınız, belgeleriniz, fotoğraflarınız, medyalarınız ve diğer tüm dosyalarınız silinecek.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="125"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="162"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="193"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="240"/>
-        <source>&lt;b&gt;Erase disk and install %1&lt;/b&gt;&lt;br/&gt;You will be offered a choice of which disk to erase.</source>
-        <translation>&lt;b&gt;%1 diskini sil ve yükle&lt;/b&gt;&lt;br/&gt;Silmek için hangi diski seçeceksiniz.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="141"/>
-        <source>This computer currently has %1 on it. What would you like to do?</source>
-        <translation>Bu bilgisayar üzerinde %1 kuruludur. Ne yapmak istersiniz?</translation>
+        <source>&lt;strong&gt;Erase disk and install %1&lt;/strong&gt;&lt;br/&gt;You will be offered a choice of which disk to erase.</source>
+        <translation>&lt;strong&gt;%1 diskini sil ve yükle&lt;/strong&gt;&lt;br/&gt;Silmek için hangi diski seçeceksiniz.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="145"/>
-        <source>&lt;b&gt;Install %2 alongside %1&lt;/b&gt;&lt;br/&gt;The installer will shrink the %1 volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
-        <translation>&lt;b&gt;%1 yanına %2 yükleyin&lt;/b&gt;&lt;br/&gt;Yükleyici %2 yer açmak için %1 diskinin boyutunu küçültebilir. Bilgisayarınız başlatılırken istediğiniz işletim sistemini seçebilirsiniz.</translation>
+        <source>&lt;strong&gt;Install %2 alongside %1&lt;/strong&gt;&lt;br/&gt;The installer will shrink the %1 volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
+        <translation>&lt;strong&gt;%1 yanına %2 yükleyin&lt;/strong&gt;&lt;br/&gt;Yükleyici %2 yer açmak için %1 diskinin boyutunu küçültebilir. Bilgisayarınız başlatılırken istediğiniz işletim sistemini seçebilirsiniz.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="154"/>
+        <source>&lt;strong&gt;Erase entire disk with %1 and install %2&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;This will erase the whole disk and delete all of your %1 programs, documents, photos, music, and any other files.</source>
+        <translation>&lt;strong&gt;%1 ile tüm diski silin ve %2 yükleyin&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Uyarı: &lt;/font&gt;Bu işlem ile programlarınız, belgeleriniz, fotoğraflarınız, medyalarınız ve diğer tüm dosyalarınız silinecek.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="167"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="198"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="245"/>
-        <source>&lt;b&gt;Replace a partition with %1&lt;/b&gt;&lt;br/&gt;You will be offered a choice of which partition to erase.</source>
-        <translation>&lt;b&gt;%1 ile bir bölümün üzerine yaz&lt;/b&gt;&lt;br/&gt;Silmek için hangi disk bölümünü seçmek istediğiniz size sorulacaktır.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="179"/>
-        <source>&lt;b&gt;Install %1 alongside your current operating system&lt;/b&gt;&lt;br/&gt;The installer will shrink an existing volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
-        <translation>&lt;b&gt;Diğer işletim sisteminin yanına %1 yükle&lt;/b&gt;&lt;br/&gt;Yükleyici %2 yer açmak için mevcut disk boyutunu küçültecek. Bilgisayarınız başlatılırken istediğiniz işletim sistemini seçebilirsiniz.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="226"/>
-        <source>&lt;b&gt;Install %1 alongside your current operating systems&lt;/b&gt;&lt;br/&gt;The installer will shrink an existing volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
-        <translation>&lt;b&gt;Diğer işletim sistemlerinin yanına %1 yükle&lt;/b&gt;&lt;br/&gt;Yükleyici %2 yer açmak için mevcut disk boyutunu küçültecek. Bilgisayarınız başlatılırken istediğiniz işletim sistemini seçebilirsiniz.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="261"/>
-        <source>&lt;b&gt;Manual partitioning&lt;/b&gt;&lt;br/&gt;You can create or resize partitions yourself, or choose multiple partitions for %1.</source>
-        <translation>&lt;b&gt;El ile bölümleme&lt;/b&gt;&lt;br/&gt;%1 için bölüm oluştur ve yeniden boyutlandır veya birden fazla bölüm seç.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="154"/>
-        <source>&lt;b&gt;Erase entire disk with %1 and install %2&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;This will erase the whole disk and delete all of your %1 programs, documents, photos, music, and any other files.</source>
-        <translation>&lt;b&gt;%1 ile tüm diski silin ve %2 yükleyin&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Uyarı: &lt;/font&gt;Bu işlem ile programlarınız, belgeleriniz, fotoğraflarınız, medyalarınız ve diğer tüm dosyalarınız silinecek.</translation>
+        <source>&lt;strong&gt;Replace a partition with %1&lt;/strong&gt;&lt;br/&gt;You will be offered a choice of which partition to erase.</source>
+        <translation>&lt;/strong&gt;%1 ile bir bölümün üzerine yaz&lt;/strong&gt;&lt;br/&gt;Silmek için hangi disk bölümünü seçmek istediğiniz size sorulacaktır.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="176"/>
@@ -493,9 +498,24 @@ Yükleyiciden çıkınca tüm değişiklikler kaybedilecek.</translation>
         <translation>Bu bilgisayarda zaten bir işletim sistemi var. Ne yapmak istersiniz?</translation>
     </message>
     <message>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="179"/>
+        <source>&lt;strong&gt;Install %1 alongside your current operating system&lt;/strong&gt;&lt;br/&gt;The installer will shrink an existing volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
+        <translation>&lt;strong&gt;Diğer işletim sisteminin yanına %1 yükle&lt;/strong&gt;&lt;br/&gt;Yükleyici %2 yer açmak için mevcut disk boyutunu küçültecek. Bilgisayarınız başlatılırken istediğiniz işletim sistemini seçebilirsiniz.</translation>
+    </message>
+    <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="223"/>
         <source>This computer currently has multiple operating systems on it. What would you like to do?</source>
         <translation>Bu bilgisayarda birden fazla işletim sistemi var. Ne yapmak istersiniz?</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="226"/>
+        <source>&lt;strong&gt;Install %1 alongside your current operating systems&lt;/strong&gt;&lt;br/&gt;The installer will shrink an existing volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
+        <translation>&lt;/strong&gt;Diğer işletim sistemlerinin yanına %1 yükle&lt;/strong&gt;&lt;br/&gt;Yükleyici %2 yer açmak için mevcut disk boyutunu küçültecek. Bilgisayarınız başlatılırken istediğiniz işletim sistemini seçebilirsiniz.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="261"/>
+        <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself, or choose multiple partitions for %1.</source>
+        <translation>&lt;strong&gt;El ile bölümleme&lt;/strong&gt;&lt;br/&gt;%1 için bölüm oluştur ve yeniden boyutlandır veya birden fazla bölüm seç.</translation>
     </message>
 </context>
 <context>
@@ -879,32 +899,37 @@ Yükleyiciden çıkınca tüm değişiklikler kaybedilecek.</translation>
 <context>
     <name>CreatePartitionJob</name>
     <message>
-        <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="47"/>
-        <source>Create partition (file system: %1, size: %2 MB) on %3.</source>
-        <translation>%3 üzerinde (dosya sistemi: %1, boyut: %2 MB) bölümleri oluşturuluyor.</translation>
+        <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="48"/>
+        <source>Create new %2MB partition on %4 (%3) with file system %1.</source>
+        <translation>%4 üzerinde (%3) ile %1 dosya sisteminde %2MB bölüm oluştur.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="60"/>
+        <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="59"/>
+        <source>Create new &lt;strong&gt;%2MB&lt;/strong&gt; partition on &lt;strong&gt;%4&lt;/strong&gt; (%3) with file system &lt;strong&gt;%1&lt;/strong&gt;.</source>
+        <translation>&lt;strong&gt;%4&lt;/strong&gt; üzerinde (%3) ile &lt;strong&gt;%1&lt;/strong&gt; dosya sisteminde &lt;strong&gt;%2MB&lt;/strong&gt; bölüm oluştur.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="74"/>
         <source>The installer failed to create partition on disk &apos;%1&apos;.</source>
         <translation>Yükleyici &apos;%1&apos; diski üzerinde yeni bölüm oluşturamadı.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="69"/>
+        <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="83"/>
         <source>Could not open device &apos;%1&apos;.</source>
         <translation>&apos;%1&apos; aygıtı açılamadı.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="79"/>
+        <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="93"/>
         <source>Could not open partition table.</source>
         <translation>Bölümleme tablosu açılamadı</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="103"/>
+        <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="117"/>
         <source>The installer failed to create file system on partition %1.</source>
         <translation>Yükleyici %1 bölümünde dosya sistemi oluşturamadı.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="111"/>
+        <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="125"/>
         <source>The installer failed to update partition table on disk &apos;%1&apos;.</source>
         <translation>Yükleyici &apos;%1&apos; diskinde bölümleme tablosunu güncelleyemedi.</translation>
     </message>
@@ -940,17 +965,22 @@ Yükleyiciden çıkınca tüm değişiklikler kaybedilecek.</translation>
 <context>
     <name>CreatePartitionTableJob</name>
     <message>
-        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="48"/>
-        <source>Create partition table</source>
-        <translation>Bölüm tablosu oluştur</translation>
+        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="49"/>
+        <source>Create new %1 partition table on %2.</source>
+        <translation>%2 üzerinde %1 yeni disk tablosu oluştur.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="55"/>
+        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="56"/>
+        <source>Create new &lt;strong&gt;%1&lt;/strong&gt; partition table on &lt;strong&gt;%2&lt;/strong&gt; (%3).</source>
+        <translation>&lt;strong&gt;%2&lt;/strong&gt; (%3) üzerinde &lt;strong&gt;%1&lt;/strong&gt; yeni disk tablosu oluştur.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="66"/>
         <source>The installer failed to create a partition table on %1.</source>
         <translation>Yükleyici %1 üzerinde yeni bir bölüm tablosu oluşturamadı.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="63"/>
+        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="74"/>
         <source>Could not open device %1.</source>
         <translation>%1 aygıtı açılamadı.</translation>
     </message>
@@ -1057,27 +1087,32 @@ Yükleyiciden çıkınca tüm değişiklikler kaybedilecek.</translation>
 <context>
     <name>DeletePartitionJob</name>
     <message>
-        <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="41"/>
-        <source>Delete partition %1</source>
-        <translation>%1 Bölümü sil</translation>
+        <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="42"/>
+        <source>Delete partition %1.</source>
+        <translation>%1 disk bölümünü sil.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="48"/>
+        <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="50"/>
+        <source>Delete partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
+        <translation>&lt;strong&gt;%1&lt;/strong&gt; disk bölümünü sil.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="58"/>
         <source>The installer failed to delete partition %1.</source>
         <translation>Yükleyici %1 bölümünü silemedi.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="54"/>
+        <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="64"/>
         <source>Partition (%1) and device (%2) do not match.</source>
         <translation>Bölüm (%1) ve aygıt (%2) eşleşmedi.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="66"/>
+        <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="76"/>
         <source>Could not open device %1.</source>
         <translation>%1 aygıtı açılamadı.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="75"/>
+        <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="85"/>
         <source>Could not open partition table.</source>
         <translation>Bölüm tablosu açılamadı.</translation>
     </message>
@@ -1404,12 +1439,37 @@ Bazı dosya sistemlerinin desteklenmesi ve düzenlenmesi için ek uygulamalar ge
 <context>
     <name>FillGlobalStorageJob</name>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="75"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="77"/>
         <source>Set partition information</source>
         <translation>Bölüm bilgilendirmesini ayarla</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="85"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="100"/>
+        <source>Install %1 on &lt;strong&gt;new&lt;/strong&gt; %2 system partition.</source>
+        <translation>%2 &lt;strong&gt;yeni&lt;/strong&gt; sistem diskine %1 yükle.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="105"/>
+        <source>Set up &lt;strong&gt;new&lt;/strong&gt; %2 partition with mount point &lt;strong&gt;%1&lt;/strong&gt;.</source>
+        <translation>%2 &lt;strong&gt;yeni&lt;/strong&gt; disk bölümünü &lt;strong&gt;%1&lt;/strong&gt; ile ayarlayıp bağla.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="113"/>
+        <source>Install %2 on %3 system partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
+        <translation>%3 &lt;strong&gt;%1&lt;/strong&gt; sistem diskine %2 yükle.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="119"/>
+        <source>Set up %3 partition &lt;strong&gt;%1&lt;/strong&gt; with mount point &lt;strong&gt;%2&lt;/strong&gt;.</source>
+        <translation>%3 diskine&lt;strong&gt;%1&lt;/strong&gt; ile &lt;strong&gt;%2&lt;/strong&gt; bağlama noktası ayarla.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="131"/>
+        <source>Install boot loader on &lt;strong&gt;%1&lt;/strong&gt;.</source>
+        <translation>&lt;strong&gt;%1&lt;/strong&gt; üzerine sistem yükleyici kur.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="144"/>
         <source>Failed to find path for boot loader</source>
         <translation>Önyükleyici yolu bulunamadı</translation>
     </message>
@@ -1443,32 +1503,37 @@ Bazı dosya sistemlerinin desteklenmesi ve düzenlenmesi için ek uygulamalar ge
 <context>
     <name>FormatPartitionJob</name>
     <message>
-        <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="47"/>
+        <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="48"/>
         <source>Format partition %1 (file system: %2, size: %3 MB) on %4.</source>
         <translation>%1 Bölümü biçimle (dosya sistemi: %2 boyut: %3) %4 üzerinde.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="59"/>
+        <source>Format &lt;strong&gt;%3MB&lt;/strong&gt; partition &lt;strong&gt;%1&lt;/strong&gt; with file system &lt;strong&gt;%2&lt;/strong&gt;.</source>
+        <translation>&lt;strong&gt;%1&lt;/strong&gt; diskine &lt;strong&gt;%2&lt;/strong&gt; dosya sistemi ile &lt;strong&gt;%3MB&lt;/strong&gt; bölüm oluştur.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="71"/>
         <source>The installer failed to format partition %1 on disk &apos;%2&apos;.</source>
         <translation>Yükleyici %1 bölümünü &apos;%2&apos; diski üzerinde biçimlendiremedi.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="67"/>
+        <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="79"/>
         <source>Could not open device &apos;%1&apos;.</source>
         <translation>&apos;%1&apos; aygıtı açılamadı.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="76"/>
+        <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="88"/>
         <source>Could not open partition table.</source>
         <translation>Bölüm tablosu açılamadı.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="84"/>
+        <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="96"/>
         <source>The installer failed to create file system on partition %1.</source>
         <translation>Yükleyici %1 bölümünde dosya sistemi oluşturamadı.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="92"/>
+        <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="104"/>
         <source>The installer failed to update partition table on disk &apos;%1&apos;.</source>
         <translation>Yükleyici &apos;%1&apos; diskinde bölümleme tablosunu güncelleyemedi.</translation>
     </message>
@@ -1476,19 +1541,24 @@ Bazı dosya sistemlerinin desteklenmesi ve düzenlenmesi için ek uygulamalar ge
 <context>
     <name>GreetingPage</name>
     <message>
-        <location filename="../src/modules/greeting/GreetingPage.cpp" line="124"/>
+        <location filename="../src/modules/greeting/GreetingPage.cpp" line="126"/>
         <source>&lt;h1&gt;Welcome to the %1 installer.&lt;/h1&gt;&lt;br/&gt;This program will ask you some questions and set up %2 on your computer.</source>
         <translation>&lt;h1&gt;%1 Sistem Yükleyiciye Hoşgeldiniz.&lt;/h1&gt;&lt;br/&gt;Bu program size bazı sorular soracak ve bilgisayarınıza %2 kuracak.</translation>
     </message>
     <message>
-        <location filename="../src/modules/greeting/GreetingPage.cpp" line="141"/>
+        <location filename="../src/modules/greeting/GreetingPage.cpp" line="144"/>
         <source>About %1 installer</source>
         <translation>%1 sistem yükleyici hakkında</translation>
     </message>
     <message>
-        <location filename="../src/modules/greeting/GreetingPage.cpp" line="143"/>
-        <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;b&gt;%2&lt;br/&gt;for %3&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Thanks to: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Philip Müller, Pier Luigi Fiorini and Rohan Garg.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;https://calamares.github.io/&quot;&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - technologies for a better world.</source>
-        <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;b&gt;%2&lt;br/&gt;for %3&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;Telif Hakkı 2014 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Teşekkürler: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Philip Müller, Pier Luigi Fiorini and Rohan Garg.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;https://calamares.github.io/&quot;&gt;Calamares&lt;/a&gt; gelişim sponsoru &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - Teknoloji ile daha iyi bir dünya.</translation>
+        <location filename="../src/modules/greeting/GreetingPage.cpp" line="146"/>
+        <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2015 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Thanks to: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Philip Müller, Pier Luigi Fiorini and Rohan Garg.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;http://calamares.io/&quot;&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - Liberating Software.</source>
+        <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Telif Hakkı 2014-2015 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Teşekkürler: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Philip Müller, Pier Luigi Fiorini and Rohan Garg.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;http://calamares.io/&quot;&gt;Calamares&lt;/a&gt;  Gelişim sponsoru: &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - Teknoloji ile daha iyi bir dünya.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/greeting/GreetingPage.cpp" line="176"/>
+        <source>%1 support</source>
+        <translation>%1 destek</translation>
     </message>
     <message>
         <location filename="../src/modules/greeting/GreetingPage.ui" line="14"/>
@@ -1496,7 +1566,22 @@ Bazı dosya sistemlerinin desteklenmesi ve düzenlenmesi için ek uygulamalar ge
         <translation>Biçim</translation>
     </message>
     <message>
-        <location filename="../src/modules/greeting/GreetingPage.ui" line="102"/>
+        <location filename="../src/modules/greeting/GreetingPage.ui" line="104"/>
+        <source>&amp;Release notes</source>
+        <translation>&amp;Sürüm notları</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/greeting/GreetingPage.ui" line="114"/>
+        <source>&amp;Known issues</source>
+        <translation>&amp;Bilinen hatalar</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/greeting/GreetingPage.ui" line="124"/>
+        <source>&amp;Support</source>
+        <translation>&amp;Destek</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/greeting/GreetingPage.ui" line="134"/>
         <source>&amp;About</source>
         <translation>&amp;Hakkında</translation>
     </message>
@@ -1504,7 +1589,7 @@ Bazı dosya sistemlerinin desteklenmesi ve düzenlenmesi için ek uygulamalar ge
 <context>
     <name>GreetingViewStep</name>
     <message>
-        <location filename="../src/modules/greeting/GreetingViewStep.cpp" line="41"/>
+        <location filename="../src/modules/greeting/GreetingViewStep.cpp" line="43"/>
         <source>Welcome</source>
         <translation>Hoşgeldiniz</translation>
     </message>
@@ -1539,8 +1624,8 @@ Bazı dosya sistemlerinin desteklenmesi ve düzenlenmesi için ek uygulamalar ge
     </message>
     <message>
         <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="40"/>
-        <source>The system locale setting affects the language and character set for some command line user interface elements.&lt;br/&gt;The current setting is &lt;b&gt;%1&lt;/b&gt;.</source>
-        <translation>Sistem yerel ayarı, bazı uçbirim, kullanıcı ayarlamaları ve başkaca dil seçeneklerini belirler ve etkiler. &lt;br/&gt;Varsayılan geçerli ayarlar &lt;b&gt;%1&lt;/b&gt;.</translation>
+        <source>The system locale setting affects the language and character set for some command line user interface elements.&lt;br/&gt;The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
+        <translation>Sistem yerel ayarı, bazı uçbirim, kullanıcı ayarlamaları ve başkaca dil seçeneklerini belirler ve etkiler. &lt;br/&gt;Varsayılan geçerli ayarlar &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
 </context>
 <context>
@@ -2002,22 +2087,67 @@ Bazı dosya sistemlerinin desteklenmesi ve düzenlenmesi için ek uygulamalar ge
 <context>
     <name>PartitionViewStep</name>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="66"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="68"/>
         <source>Gathering system information...</source>
         <translation>Sistem bilgileri toplanıyor...</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="160"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="162"/>
         <source>Partitions</source>
         <translation>Disk Bölümleme</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="188"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="199"/>
+        <source>Install %1 &lt;strong&gt;alongside&lt;/strong&gt; another operating system.</source>
+        <translation>Diğer işletim sisteminin &lt;strong&gt;yanına&lt;/strong&gt; %1 yükle.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="204"/>
+        <source>&lt;strong&gt;Erase&lt;/strong&gt; disk and install %1.</source>
+        <translation>Diski &lt;strong&gt;sil&lt;/strong&gt; ve %1 yükle.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="209"/>
+        <source>&lt;strong&gt;Replace&lt;/strong&gt; a partition with %1.</source>
+        <translation>%1 ile disk bölümünün üzerine &lt;strong&gt;yaz&lt;/strong&gt;.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="214"/>
+        <source>&lt;strong&gt;Manual&lt;/strong&gt; partitioning.</source>
+        <translation>&lt;strong&gt;Manuel&lt;/strong&gt; bölümleme.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="227"/>
+        <source>Install %1 &lt;strong&gt;alongside&lt;/strong&gt; another operating system on disk &lt;strong&gt;%2&lt;/strong&gt; (%3).</source>
+        <translation>&lt;strong&gt;%2&lt;/strong&gt; (%3) diskindeki diğer işletim sisteminin &lt;strong&gt;yanına&lt;/strong&gt; %1 yükle.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="234"/>
+        <source>&lt;strong&gt;Erase&lt;/strong&gt; disk &lt;strong&gt;%2&lt;/strong&gt; (%3) and install %1.</source>
+        <translation>&lt;strong&gt;%2&lt;/strong&gt; (%3) diski &lt;strong&gt;sil&lt;/strong&gt; ve %1 yükle.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="241"/>
+        <source>&lt;strong&gt;Replace&lt;/strong&gt; a partition on disk &lt;strong&gt;%2&lt;/strong&gt; (%3) with %1.</source>
+        <translation>&lt;strong&gt;%2&lt;/strong&gt; (%3) disk bölümünün %1 ile &lt;strong&gt;üzerine yaz&lt;/strong&gt;.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="248"/>
+        <source>&lt;strong&gt;Manual&lt;/strong&gt; partitioning on disk &lt;strong&gt;%1&lt;/strong&gt; (%2).</source>
+        <translation>&lt;strong&gt;%1&lt;/strong&gt; (%2) disk bölümünü &lt;strong&gt;manuel&lt;/strong&gt; bölümle.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="256"/>
+        <source>Disk &lt;strong&gt;%1&lt;/strong&gt; (%2)</source>
+        <translation>Disk &lt;strong&gt;%1&lt;/strong&gt; (%2)</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="267"/>
         <source>Before:</source>
         <translation>Önce:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="193"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="272"/>
         <source>After:</source>
         <translation>Sonra:</translation>
     </message>
@@ -2080,17 +2210,17 @@ Kuruluma devam edebilirsiniz fakat bazı özellikler devre dışı kalabilir.</t
 <context>
     <name>ProgressTreeModel</name>
     <message>
-        <location filename="../src/calamares/progresstree/ProgressTreeModel.cpp" line="136"/>
+        <location filename="../src/calamares/progresstree/ProgressTreeModel.cpp" line="138"/>
         <source>Prepare</source>
         <translation>Hazırlıklar</translation>
     </message>
     <message>
-        <location filename="../src/calamares/progresstree/ProgressTreeModel.cpp" line="144"/>
+        <location filename="../src/calamares/progresstree/ProgressTreeModel.cpp" line="151"/>
         <source>Install</source>
         <translation>Yükle</translation>
     </message>
     <message>
-        <location filename="../src/calamares/progresstree/ProgressTreeModel.cpp" line="150"/>
+        <location filename="../src/calamares/progresstree/ProgressTreeModel.cpp" line="161"/>
         <source>Finish</source>
         <translation>Bitir</translation>
     </message>
@@ -2281,29 +2411,29 @@ Kuruluma devam edebilirsiniz fakat bazı özellikler devre dışı kalabilir.</t
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="206"/>
-        <source>&lt;b&gt;%4&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;The partition %1 is too small for %2. Please select a partition with capacity at least %3 GiB.</source>
-        <translation>&lt;b&gt;%4&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;disk bölümü %2 için %1 daha küçük. Lütfen, en az %3 GB kapasiteli bir disk bölümü seçiniz.</translation>
+        <source>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;The partition %1 is too small for %2. Please select a partition with capacity at least %3 GiB.</source>
+        <translation>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;disk bölümü %2 için %1 daha küçük. Lütfen, en az %3 GB kapasiteli bir disk bölümü seçiniz.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="220"/>
-        <source>&lt;b&gt;%3&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;%1 will be installed on %2.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;all data on partition%2 will be lost.</source>
-        <translation>&lt;b&gt;%3&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;%2 üzerine %1 kuracak.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Uyarı: &lt;/font&gt;partition%2 üzerindeki tüm veriler kaybedilecek.</translation>
+        <source>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 will be installed on %2.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;all data on partition%2 will be lost.</source>
+        <translation>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%2 üzerine %1 kuracak.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Uyarı: &lt;/font&gt;partition%2 üzerindeki tüm veriler kaybedilecek.</translation>
     </message>
 </context>
 <context>
     <name>ResizeFileSystemJob</name>
     <message>
-        <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="75"/>
+        <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="76"/>
         <source>Resize file system on partition %1.</source>
         <translation>%1 bölümünde dosya sistemini yeniden boyutlandır.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="90"/>
+        <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="91"/>
         <source>Parted failed to resize filesystem.</source>
         <translation>Parted dosya sistemini yeniden boyutlandıramadı.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="100"/>
+        <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="101"/>
         <source>Failed to resize filesystem.</source>
         <translation>Dosya sistemi boyutlandırılamadı.</translation>
     </message>
@@ -2311,18 +2441,23 @@ Kuruluma devam edebilirsiniz fakat bazı özellikler devre dışı kalabilir.</t
 <context>
     <name>ResizePartitionJob</name>
     <message>
-        <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="186"/>
+        <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="187"/>
         <source>Resize partition %1.</source>
         <translation>%1 bölümünü yeniden boyutlandır.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="208"/>
-        <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="266"/>
+        <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="194"/>
+        <source>Resize &lt;strong&gt;%2MB&lt;/strong&gt; partition &lt;strong&gt;%1&lt;/strong&gt; to &lt;strong&gt;%3MB&lt;/strong&gt;.</source>
+        <translation>&lt;strong&gt;%2MB&lt;/strong&gt; &lt;strong&gt;%1&lt;/strong&gt; disk bölümünü &lt;strong&gt;%3MB&lt;/strong&gt; olarak yeniden boyutlandır.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="220"/>
+        <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="278"/>
         <source>The installer failed to resize partition %1 on disk &apos;%2&apos;.</source>
         <translation>Yükleyici %1 bölümünü &apos;%2&apos; diski üzerinde yeniden boyutlandırılamadı.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="213"/>
+        <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="225"/>
         <source>Could not open device &apos;%1&apos;.</source>
         <translation>&apos;%1&apos; aygıtı açılamadı.</translation>
     </message>
@@ -2355,18 +2490,18 @@ Kuruluma devam edebilirsiniz fakat bazı özellikler devre dışı kalabilir.</t
         <translation>Klavye düzeni %1 olarak, alt türevi %2-%3 olarak ayarlandı.</translation>
     </message>
     <message>
-        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="277"/>
+        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="284"/>
         <source>Failed to write keyboard configuration for the virtual console.</source>
         <translation>Uçbirim için klavye yapılandırmasını kaydetmek başarısız oldu.</translation>
     </message>
     <message>
-        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="278"/>
-        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="282"/>
+        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="285"/>
+        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="289"/>
         <source>Failed to write to %1</source>
         <translation>%1 üzerine kaydedilemedi</translation>
     </message>
     <message>
-        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="281"/>
+        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="288"/>
         <source>Failed to write keyboard configuration for X11.</source>
         <translation>X11 için klavye yapılandırmaları kaydedilemedi.</translation>
     </message>
@@ -2374,12 +2509,12 @@ Kuruluma devam edebilirsiniz fakat bazı özellikler devre dışı kalabilir.</t
 <context>
     <name>SetPartGeometryJob</name>
     <message>
-        <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="143"/>
+        <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="144"/>
         <source>Update geometry of partition %1.</source>
         <translation>%1 bölümün güncelleme grafiği.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="155"/>
+        <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="156"/>
         <source>Failed to change the geometry of the partition.</source>
         <translation>Bölüm değişiklikleri grafiklendirilemedi.</translation>
     </message>
@@ -2633,6 +2768,14 @@ Kuruluma devam edebilirsiniz fakat bazı özellikler devre dışı kalabilir.</t
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="414"/>
         <source>Self tests:</source>
         <translation>Testler:</translation>
+    </message>
+</context>
+<context>
+    <name>SummaryPage</name>
+    <message>
+        <location filename="../src/modules/summary/SummaryPage.cpp" line="42"/>
+        <source>This is an overview of what will happen once you start the install procedure.</source>
+        <translation>Yükleme işlemleri başladıktan sonra yapılacak işlere genel bir bakış.</translation>
     </message>
 </context>
 <context>

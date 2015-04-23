@@ -30,7 +30,7 @@ class PackageManager:
     def __init__(self, backend):
         self.backend = backend
 
-    def install(self, pkgs):
+    def install(self, pkgs, from_local=False):
         """ Installs packages.
 
         :param pkgs:
@@ -53,9 +53,14 @@ class PackageManager:
         elif self.backend == "apt":
             check_chroot_call(["apt-get", "-q", "-y", "install"] + pkgs)
         elif self.backend == "pacman":
+<<<<<<< HEAD
             check_chroot_call(["pacman", "-Sy", "--noconfirm"] + pkgs)
                     elif self.backend == "Entropy":
             check_chroot_call(["equo", "-v", "install"] + pkgs)
+=======
+            pacman_flags = "-U" if from_local else "-Sy"
+            check_chroot_call(["pacman", pacman_flags, "--noconfirm"] + pkgs)
+>>>>>>> 0ef8773d233138928af9d1b7e56c9733476c382d
 
     def remove(self, pkgs):
         """ Removes packages.
@@ -93,6 +98,8 @@ def run_operations(pkgman, entry):
             pkgman.install(entry[key])
         elif key == "remove":
             pkgman.remove(entry[key])
+        elif key == "localInstall":
+            pkgman.install(entry[key], from_local=True)
 
 
 def run():
