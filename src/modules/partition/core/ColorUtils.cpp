@@ -29,6 +29,7 @@
 #include <QColor>
 
 static const int NUM_PARTITION_COLORS = 5;
+static const int NUM_NEW_PARTITION_COLORS = 4;
 //Let's try to use the Breeze palette
 static QColor PARTITION_COLORS[ NUM_PARTITION_COLORS ] =
 {
@@ -37,6 +38,13 @@ static QColor PARTITION_COLORS[ NUM_PARTITION_COLORS ] =
     "#c9ce3b", //Dirty Yellow
     "#3daee9", //Plasma Blue
     "#9b59b6", //Purple
+};
+static QColor NEW_PARTITION_COLORS[ NUM_NEW_PARTITION_COLORS ] =
+{
+    "#c0392b", //Dark Icon Red
+    "#f39c1f", //Dark Icon Yellow
+    "#f1b7bc", //Light Salmon
+    "#fed999", //Light Orange
 };
 static QColor FREE_SPACE_COLOR = "#777777";
 static QColor EXTENDED_COLOR = "#aaaaaa";
@@ -74,6 +82,7 @@ colorForPartition( Partition* partition )
     PartitionTable* table = dynamic_cast< PartitionTable* >( parent );
     Q_ASSERT( table );
     int colorIdx = 0;
+    int newColorIdx = 0;
     for ( PartitionIterator it = PartitionIterator::begin( table );
           it != PartitionIterator::end( table );
           ++it )
@@ -84,13 +93,19 @@ colorForPartition( Partition* partition )
         if ( !PMUtils::isPartitionFreeSpace( child ) &&
              !child->hasChildren() )
             ++colorIdx;
+        if ( PMUtils::isPartitionNew( child ) )
+            ++newColorIdx;
     }
+
+    if ( PMUtils::isPartitionNew( partition ) )
+        return NEW_PARTITION_COLORS[ newColorIdx % NUM_NEW_PARTITION_COLORS ];
     return PARTITION_COLORS[ colorIdx % NUM_PARTITION_COLORS ];
 }
 
 QColor
 colorForPartitionInFreeSpace( Partition* partition )
 {
+    //FIXME
     PartitionNode* parent = partition->parent();
     Q_ASSERT( parent );
     int colorIdx = 0;
