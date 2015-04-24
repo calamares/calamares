@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
+ *   Copyright 2015, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -19,6 +20,7 @@
 #include <core/ColorUtils.h>
 
 #include <core/PMUtils.h>
+#include <core/PartitionIterator.h>
 
 // CalaPM
 #include <core/partition.h>
@@ -26,12 +28,15 @@
 // Qt
 #include <QColor>
 
-static QColor COLORS[ 4 ] =
+static const int NUM_PARTITION_COLORS = 5;
+//Let's try to use the Breeze palette
+static QColor PARTITION_COLORS[ NUM_PARTITION_COLORS ] =
 {
-    "#448eca",
-    "#a5cc42",
-    "#d87e30",
-    "#ffbdbd",
+    "#2980b9", //Dark Plasma Blue
+    "#27ae60", //Dark Icon Green
+    "#c9ce3b", //Dirty Yellow
+    "#3daee9", //Plasma Blue
+    "#9b59b6", //Purple
 };
 static QColor FREE_SPACE_COLOR = "#777777";
 static QColor EXTENDED_COLOR = "#aaaaaa";
@@ -45,7 +50,18 @@ QColor freeSpaceColor()
     return FREE_SPACE_COLOR;
 }
 
-QColor colorForPartition( Partition* partition )
+PartitionNode*
+_findRootForPartition( PartitionNode* partition )
+{
+    if ( partition->isRoot() ||
+         !partition->parent() )
+        return partition;
+
+    return _findRootForPartition( partition->parent() );
+}
+
+QColor
+colorForPartition( Partition* partition )
 {
     if ( PMUtils::isPartitionFreeSpace( partition ) )
         return FREE_SPACE_COLOR;
@@ -54,20 +70,26 @@ QColor colorForPartition( Partition* partition )
     // No partition-specific color needed, pick one from our list, but skip
     // free space: we don't want a partition to change colors if space before
     // it is inserted or removed
-    PartitionNode* parent = partition->parent();
-    Q_ASSERT( parent );
+    PartitionNode* parent = _findRootForPartition( partition );
+    PartitionTable* table = dynamic_cast< PartitionTable* >( parent );
+    Q_ASSERT( table );
     int colorIdx = 0;
-    for ( auto child : parent->children() )
+    for ( PartitionIterator it = PartitionIterator::begin( table );
+          it != PartitionIterator::end( table );
+          ++it )
     {
+        Partition* child = *it;
         if ( child == partition )
             break;
-        if ( !PMUtils::isPartitionFreeSpace( child ) )
+        if ( !PMUtils::isPartitionFreeSpace( child ) &&
+             !child->hasChildren() )
             ++colorIdx;
     }
-    return COLORS[ colorIdx % 4 ];
+    return PARTITION_COLORS[ colorIdx % NUM_PARTITION_COLORS ];
 }
 
-QColor colorForPartitionInFreeSpace( Partition* partition )
+QColor
+colorForPartitionInFreeSpace( Partition* partition )
 {
     PartitionNode* parent = partition->parent();
     Q_ASSERT( parent );
@@ -79,7 +101,7 @@ QColor colorForPartitionInFreeSpace( Partition* partition )
         if ( !PMUtils::isPartitionFreeSpace( child ) )
             ++colorIdx;
     }
-    return COLORS[ colorIdx % 4 ];
+    return PARTITION_COLORS[ colorIdx % NUM_PARTITION_COLORS ];
 }
 
 } // namespace
