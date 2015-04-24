@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
+ *   Copyright 2015, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -23,8 +24,8 @@
 #include <core/partition.h>
 #include <core/partitiontable.h>
 
-PartitionIterator::PartitionIterator( Device* device )
-    : m_device( device )
+PartitionIterator::PartitionIterator( PartitionTable* table )
+    : m_table( table )
 {}
 
 Partition*
@@ -70,7 +71,7 @@ PartitionIterator::operator++()
 bool
 PartitionIterator::operator==( const PartitionIterator& other ) const
 {
-    return m_device == other.m_device && m_current == other.m_current;
+    return m_table == other.m_table && m_current == other.m_current;
 }
 
 bool
@@ -82,10 +83,16 @@ PartitionIterator::operator!=( const PartitionIterator& other ) const
 PartitionIterator
 PartitionIterator::begin( Device* device )
 {
-    auto it = PartitionIterator( device );
     PartitionTable* table = device->partitionTable();
     if ( !table )
-        return it;
+        return PartitionIterator( nullptr );
+    return PartitionIterator::begin( table );
+}
+
+PartitionIterator
+PartitionIterator::begin( PartitionTable* table )
+{
+    auto it = PartitionIterator( table );
     QList< Partition* > children = table->children();
     // Does not usually happen, but it did happen on a 10MB disk with an MBR
     // partition table.
@@ -98,5 +105,15 @@ PartitionIterator::begin( Device* device )
 PartitionIterator
 PartitionIterator::end( Device* device )
 {
-    return PartitionIterator( device );
+    PartitionTable* table = device->partitionTable();
+    if ( !table )
+        return PartitionIterator( nullptr );
+
+    return PartitionIterator::end( table );
+}
+
+PartitionIterator
+PartitionIterator::end( PartitionTable* table )
+{
+    return PartitionIterator( table );
 }

@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
+ *   Copyright 2015, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -21,6 +22,7 @@
 
 class Device;
 class Partition;
+class PartitionTable;
 
 /**
  * A forward-only iterator to go through the partitions of a device,
@@ -37,12 +39,14 @@ public:
     bool operator!=( const PartitionIterator& other ) const;
 
     static PartitionIterator begin( Device* device );
+    static PartitionIterator begin( PartitionTable* table );
     static PartitionIterator end( Device* device );
+    static PartitionIterator end( PartitionTable* table );
 
 private:
-    PartitionIterator( Device* device );
+    PartitionIterator( PartitionTable* table );
 
-    Device* m_device;
+    PartitionTable* m_table;
     Partition* m_current = nullptr;
 };
 
