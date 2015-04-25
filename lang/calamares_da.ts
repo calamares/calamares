@@ -1345,12 +1345,12 @@ Installationsprogrammet vil stoppe og alle ændringer vil gå tabt.</translation
         <translation>Vælg drev:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="229"/>
+        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="230"/>
         <source>Before:</source>
         <translation>Før:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="234"/>
+        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="236"/>
         <source>After:</source>
         <translation>Efter:</translation>
     </message>
@@ -2142,12 +2142,12 @@ Nogle filsystemer kræver at eksterne værktøjer skal installeres for at være 
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="267"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="268"/>
         <source>Before:</source>
         <translation>Før:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="272"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="274"/>
         <source>After:</source>
         <translation>Efter:</translation>
     </message>
@@ -2370,52 +2370,52 @@ Installation kan fortsætte, men nogle features kan være deaktiveret.</translat
         <translation>&amp;Disk:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="109"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="110"/>
         <source>Select where to install %1.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;this will delete all files on the selected partition.</source>
         <translation>Vælg hvor %1 skal installeres.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Advarsel: &lt;/font&gt;dette vil slette alle filerne på den valgte partition.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="136"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="137"/>
         <source>The selected item does not appear to be a valid partition.</source>
         <translation>Det valgte emne ser ikke ud til at være en gyldig partition.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="144"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="145"/>
         <source>%1 cannot be installed on empty space. Please select an existing partition.</source>
         <translation>%1 kan ikke installeres på tomt plads. Vælg venligst en eksisterende partition.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="155"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="156"/>
         <source>%1 cannot be installed on an extended partition. Please select an existing primary or logical partition.</source>
         <translation>%1 kan ikke installeres på en udvidet partition. Vælg venligst en eksisterende primær eller logisk partition.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="166"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="167"/>
         <source>%1 cannot be installed on this partition.</source>
         <translation>%1 kan ikke installeres på denne partition.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="173"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="174"/>
         <source>Data partition (%1)</source>
         <translation>Data partition (%1)</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="190"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="191"/>
         <source>Unknown system partition (%1)</source>
         <translation>Ukendt system partition (%1)</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="195"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="196"/>
         <source>%1 system partition (%2)</source>
         <translation>%1 system partition (%2)</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="206"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="207"/>
         <source>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;The partition %1 is too small for %2. Please select a partition with capacity at least %3 GiB.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="220"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="221"/>
         <source>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 will be installed on %2.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;all data on partition%2 will be lost.</source>
         <translation type="unfinished"/>
     </message>

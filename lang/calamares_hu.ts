@@ -1346,12 +1346,12 @@ Ezzel minden programja, dokumentuma, fotója, zenéje és minden egyéb fájlja 
         <translation>Válassz meghajtót:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="229"/>
+        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="230"/>
         <source>Before:</source>
         <translation>Előtte:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="234"/>
+        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="236"/>
         <source>After:</source>
         <translation>Utána:</translation>
     </message>
@@ -2143,12 +2143,12 @@ Néhány fájlrendszernek külső ezközre van szüksége a telepítéshez és t
         <translation>Lemez &lt;strong&gt;%1&lt;/strong&gt; (%2)</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="267"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="268"/>
         <source>Before:</source>
         <translation>Előtte:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="272"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="274"/>
         <source>After:</source>
         <translation>Utána:</translation>
     </message>
@@ -2371,52 +2371,52 @@ Telepítés folytatható de néhány tulajdonság valószínűleg nem lesz elér
         <translation>&amp;Lemez:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="109"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="110"/>
         <source>Select where to install %1.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;this will delete all files on the selected partition.</source>
         <translation>Válaszd ki az telepítés helyét %1.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Figyelmeztetés: &lt;/font&gt;minden fájl törölve lesz a kiválasztott partíción.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="136"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="137"/>
         <source>The selected item does not appear to be a valid partition.</source>
         <translation>A kiválasztott elem nem tűnik érvényes partíciónak.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="144"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="145"/>
         <source>%1 cannot be installed on empty space. Please select an existing partition.</source>
         <translation>%1 nem telepíthető, kérlek válassz egy létező partíciót.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="155"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="156"/>
         <source>%1 cannot be installed on an extended partition. Please select an existing primary or logical partition.</source>
         <translation>%1 nem telepíthető a kiterjesztett partícióra. Kérlek, válassz egy létező elsődleges vagy logikai partíciót.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="166"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="167"/>
         <source>%1 cannot be installed on this partition.</source>
         <translation>Nem lehet telepíteni a következőt %1 erre a partícióra.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="173"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="174"/>
         <source>Data partition (%1)</source>
         <translation>Adat partíció (%1)</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="190"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="191"/>
         <source>Unknown system partition (%1)</source>
         <translation>Ismeretlen rendszer partíció (%1)</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="195"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="196"/>
         <source>%1 system partition (%2)</source>
         <translation>%1 rendszer partíció (%2)</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="206"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="207"/>
         <source>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;The partition %1 is too small for %2. Please select a partition with capacity at least %3 GiB.</source>
         <translation>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;A partíció %1 túl kicsi a következőhöz %2. Kérlek, válassz egy legalább %3 GB- os partíciót.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="220"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="221"/>
         <source>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 will be installed on %2.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;all data on partition%2 will be lost.</source>
         <translation>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 installálva lesz a következőre: %2.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Figyelmeztetés: &lt;/font&gt;a partíción %2 minden törölve lesz.</translation>
     </message>

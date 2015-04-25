@@ -473,12 +473,12 @@ Diegėjas užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="193"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="240"/>
         <source>&lt;strong&gt;Erase disk and install %1&lt;/strong&gt;&lt;br/&gt;You will be offered a choice of which disk to erase.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;Ištrinti diską ir įdiegti %1&lt;/strong&gt;&lt;br/&gt;Jums bus suteiktas pasirinkimas, kuri diską norite ištrinti.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="145"/>
         <source>&lt;strong&gt;Install %2 alongside %1&lt;/strong&gt;&lt;br/&gt;The installer will shrink the %1 volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;Įdiegti %2 šalia %1&lt;/strong&gt;&lt;br/&gt;Diegėjas sumažins %1 tomą, kad atlaisvintų vietą sistemai %2. Kaskart įjungę kompiuterį, galėsite pasirinkti, kurią operacinę sistemą naudoti.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="154"/>
@@ -500,7 +500,7 @@ Diegėjas užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="179"/>
         <source>&lt;strong&gt;Install %1 alongside your current operating system&lt;/strong&gt;&lt;br/&gt;The installer will shrink an existing volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;Įdiegti %1 šalia jūsų esamos operacinės sistemos&lt;/strong&gt;&lt;br/&gt;Diegėjas sumažins esamą tomą, kad atlaisvintų vietą sistemai %2. Kaskart įjungę kompiuterį, galėsite pasirinkti, kurią operacinę sistemą naudoti.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="223"/>
@@ -510,7 +510,7 @@ Diegėjas užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="226"/>
         <source>&lt;strong&gt;Install %1 alongside your current operating systems&lt;/strong&gt;&lt;br/&gt;The installer will shrink an existing volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;Įdiegti %1 šalia jūsų esamų operacinių sistemų&lt;/strong&gt;&lt;br/&gt;Diegėjas sumažins esamą tomą, kad atlaisvintų vietą sistemai %2. Kaskart įjungę kompiuterį, galėsite pasirinkti, kurią operacinę sistemą naudoti.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="261"/>
@@ -1345,12 +1345,12 @@ Diegėjas užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
         <translation>Pasirinkite diską:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="229"/>
+        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="230"/>
         <source>Before:</source>
         <translation>Prieš:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="234"/>
+        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="236"/>
         <source>After:</source>
         <translation>Po:</translation>
     </message>
@@ -1451,7 +1451,7 @@ Kai kurios failų sistemos tam, kad būtų palaikomos, reikalauja, kad būtų į
     <message>
         <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="105"/>
         <source>Set up &lt;strong&gt;new&lt;/strong&gt; %2 partition with mount point &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Nustatyti &lt;strong&gt;naują&lt;/strong&gt; %2 skirsnį su prijungimo tašku &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="113"/>
@@ -1461,7 +1461,7 @@ Kai kurios failų sistemos tam, kad būtų palaikomos, reikalauja, kad būtų į
     <message>
         <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="119"/>
         <source>Set up %3 partition &lt;strong&gt;%1&lt;/strong&gt; with mount point &lt;strong&gt;%2&lt;/strong&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Nustatyti %3 skirsnį &lt;strong&gt;%1&lt;/strong&gt; su prijungimo tašku &lt;strong&gt;%2&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="131"/>
@@ -1510,7 +1510,7 @@ Kai kurios failų sistemos tam, kad būtų palaikomos, reikalauja, kad būtų į
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="59"/>
         <source>Format &lt;strong&gt;%3MB&lt;/strong&gt; partition &lt;strong&gt;%1&lt;/strong&gt; with file system &lt;strong&gt;%2&lt;/strong&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Formatuoti &lt;strong&gt;%3MB&lt;/strong&gt; skirsnį &lt;strong&gt;%1&lt;/strong&gt; su failų sistema &lt;strong&gt;%2&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="71"/>
@@ -1553,7 +1553,7 @@ Kai kurios failų sistemos tam, kad būtų palaikomos, reikalauja, kad būtų į
     <message>
         <location filename="../src/modules/greeting/GreetingPage.cpp" line="146"/>
         <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2015 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Thanks to: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Philip Müller, Pier Luigi Fiorini and Rohan Garg.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;http://calamares.io/&quot;&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - Liberating Software.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;sistemai %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Autorinės Teisės 2014-2015 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Dėkojame: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Philip Müller, Pier Luigi Fiorini and Rohan Garg.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;http://calamares.io/&quot;&gt;Calamares&lt;/a&gt; kūrimą remia &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - Išlaisvinanti Programinė Įranga.</translation>
     </message>
     <message>
         <location filename="../src/modules/greeting/GreetingPage.cpp" line="176"/>
@@ -2119,7 +2119,7 @@ Kai kurios failų sistemos tam, kad būtų palaikomos, reikalauja, kad būtų į
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="227"/>
         <source>Install %1 &lt;strong&gt;alongside&lt;/strong&gt; another operating system on disk &lt;strong&gt;%2&lt;/strong&gt; (%3).</source>
-        <translation type="unfinished"/>
+        <translation>Įdiegti %1 &lt;strong&gt;šalia&lt;/strong&gt; kitos operacinės sistemos diske &lt;strong&gt;%2&lt;/strong&gt; (%3).</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="234"/>
@@ -2134,20 +2134,20 @@ Kai kurios failų sistemos tam, kad būtų palaikomos, reikalauja, kad būtų į
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="248"/>
         <source>&lt;strong&gt;Manual&lt;/strong&gt; partitioning on disk &lt;strong&gt;%1&lt;/strong&gt; (%2).</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;Rankinis&lt;/strong&gt; skaidymas diske &lt;strong&gt;%1&lt;/strong&gt; (%2).</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="256"/>
         <source>Disk &lt;strong&gt;%1&lt;/strong&gt; (%2)</source>
-        <translation type="unfinished"/>
+        <translation>Diskas &lt;strong&gt;%1&lt;/strong&gt; (%2)</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="267"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="268"/>
         <source>Before:</source>
         <translation>Prieš:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="272"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="274"/>
         <source>After:</source>
         <translation>Po:</translation>
     </message>
@@ -2370,52 +2370,52 @@ Diegimas gali būti tęsiamas, bet kai kurios funkcijos gali būti išjungtos.</
         <translation>&amp;Diskas:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="109"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="110"/>
         <source>Select where to install %1.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;this will delete all files on the selected partition.</source>
         <translation>Pasirinkite, kur norėtumėte įdiegti %1.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Įspėjimas: &lt;/font&gt;tai ištrins visus, pasirinktame skirsnyje esančius, failus.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="136"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="137"/>
         <source>The selected item does not appear to be a valid partition.</source>
         <translation>Pasirinktas elementas neatrodo kaip teisingas skirsnis.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="144"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="145"/>
         <source>%1 cannot be installed on empty space. Please select an existing partition.</source>
         <translation>%1 negali būti įdiegta laisvoje vietoje. Prašome pasirinkti esamą skirsnį.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="155"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="156"/>
         <source>%1 cannot be installed on an extended partition. Please select an existing primary or logical partition.</source>
         <translation>%1 negali būti įdiegta išplėstame skirsnyje. Prašome pasirinkti esamą pirminį ar loginį skirsnį.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="166"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="167"/>
         <source>%1 cannot be installed on this partition.</source>
         <translation>%1 negali būti įdiegta šiame skirsnyje.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="173"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="174"/>
         <source>Data partition (%1)</source>
         <translation>Duomenų skirsnis (%1)</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="190"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="191"/>
         <source>Unknown system partition (%1)</source>
         <translation>Nežinomas sistemos skirsnis (%1)</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="195"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="196"/>
         <source>%1 system partition (%2)</source>
         <translation>%1 sistemos skirsnis (%2)</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="206"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="207"/>
         <source>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;The partition %1 is too small for %2. Please select a partition with capacity at least %3 GiB.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Skirsnis %1 yra pernelyg mažas sistemai %2. Prašome pasirinkti skirsnį, kurio dydis siektų bent %3 GiB.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="220"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="221"/>
         <source>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 will be installed on %2.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;all data on partition%2 will be lost.</source>
         <translation>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 sistema bus įdiegta skirsnyje %2.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Įspėjimas: &lt;/font&gt;visi duomenys skirsnyje%2 bus prarasti.</translation>
     </message>

@@ -1345,12 +1345,12 @@ El instalador se cerrará y se perderán todos los cambios.</translation>
         <translation>Selecciona la unidad:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="229"/>
+        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="230"/>
         <source>Before:</source>
         <translation>Antes:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="234"/>
+        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="236"/>
         <source>After:</source>
         <translation>Después:</translation>
     </message>
@@ -2142,12 +2142,12 @@ Algunos sistemas de ficheros necesitan instalar herramientas externas para ser s
         <translation>Disco &lt;strong&gt;%1&lt;/strong&gt; (%2)</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="267"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="268"/>
         <source>Before:</source>
         <translation>Antes:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="272"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="274"/>
         <source>After:</source>
         <translation>Después:</translation>
     </message>
@@ -2370,52 +2370,52 @@ Se puede continuar con la instalación pero algunas de las características pued
         <translation>&amp;Disco:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="109"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="110"/>
         <source>Select where to install %1.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;this will delete all files on the selected partition.</source>
         <translation>Selecciona donde instalar %1.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Aviso: &lt;/font&gt;Se borrarán todos los archivos de la partición seleccionada.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="136"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="137"/>
         <source>The selected item does not appear to be a valid partition.</source>
         <translation>El objeto seleccionado no parece ser una particón válida.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="144"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="145"/>
         <source>%1 cannot be installed on empty space. Please select an existing partition.</source>
         <translation>%1 no se puede instalar en un sitio vacío. Selecciona una partición existente.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="155"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="156"/>
         <source>%1 cannot be installed on an extended partition. Please select an existing primary or logical partition.</source>
         <translation>%1 no se puede instalar en una partición extendida. Selecciona una partición primaria o lógica.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="166"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="167"/>
         <source>%1 cannot be installed on this partition.</source>
         <translation>No se puede instalar %1 en esta partición.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="173"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="174"/>
         <source>Data partition (%1)</source>
         <translation>Partición de datos (%1)</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="190"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="191"/>
         <source>Unknown system partition (%1)</source>
         <translation>Partición de sistema desconocida (%1)</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="195"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="196"/>
         <source>%1 system partition (%2)</source>
         <translation>%1 partición de sistema (%2)</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="206"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="207"/>
         <source>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;The partition %1 is too small for %2. Please select a partition with capacity at least %3 GiB.</source>
         <translation>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;La partición %1 no es lo suficientemente grande para %2. Selecciona otra partición que tenga al menos %3 GiB.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="220"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="221"/>
         <source>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 will be installed on %2.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;all data on partition%2 will be lost.</source>
         <translation>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 se instalará en %2.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Aviso: &lt;/font&gt;se eliminaran todos los datos de la partición %2.</translation>
     </message>

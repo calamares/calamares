@@ -1345,12 +1345,12 @@ The installer will quit and all changes will be lost.</source>
         <translation>選擇裝置：</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="229"/>
+        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="230"/>
         <source>Before:</source>
         <translation>之前：</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="234"/>
+        <location filename="../src/modules/partition/gui/EraseDiskPage.cpp" line="236"/>
         <source>After:</source>
         <translation>之後：</translation>
     </message>
@@ -2142,12 +2142,12 @@ Some file systems need external tools to be installed for them to be supported. 
         <translation>磁碟 &lt;strong&gt;%1&lt;/strong&gt; (%2)</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="267"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="268"/>
         <source>Before:</source>
         <translation>之前：</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="272"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="274"/>
         <source>After:</source>
         <translation>之後：</translation>
     </message>
@@ -2370,52 +2370,52 @@ Installation can continue, but some features might be disabled.</source>
         <translation>磁碟 (&amp;D)：</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="109"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="110"/>
         <source>Select where to install %1.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;this will delete all files on the selected partition.</source>
         <translation>&lt;b&gt;選取要安裝 %1 的地方。&lt;/b&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;警告：&lt;/font&gt;這將會刪除所有已選取的分割區上的檔案。</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="136"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="137"/>
         <source>The selected item does not appear to be a valid partition.</source>
         <translation>已選取的項目可能並不是有效的分割區。</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="144"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="145"/>
         <source>%1 cannot be installed on empty space. Please select an existing partition.</source>
         <translation>%1 無法在空白的空間中安裝。請選取一個存在的分割區。</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="155"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="156"/>
         <source>%1 cannot be installed on an extended partition. Please select an existing primary or logical partition.</source>
         <translation>%1 無法在延伸分割區上安裝。請選取一個存在的主要或邏輯分割區。</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="166"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="167"/>
         <source>%1 cannot be installed on this partition.</source>
         <translation>%1 無法在此分割區上安裝。</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="173"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="174"/>
         <source>Data partition (%1)</source>
         <translation>資料分割區 (%1)</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="190"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="191"/>
         <source>Unknown system partition (%1)</source>
         <translation>未知的系統分割區 (%1)</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="195"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="196"/>
         <source>%1 system partition (%2)</source>
         <translation>%1 系統分割區 (%2)</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="206"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="207"/>
         <source>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;The partition %1 is too small for %2. Please select a partition with capacity at least %3 GiB.</source>
         <translation>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;分割區 %1 對 %2 來說太小了。請選取一個容量至少有 %3 GiB 的分割區。</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="220"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="221"/>
         <source>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 will be installed on %2.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;all data on partition%2 will be lost.</source>
         <translation>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 將會安裝在 %2 上。&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;警告： &lt;/font&gt;所有在分割區 %2 上的資料都將會遺失。</translation>
     </message>
