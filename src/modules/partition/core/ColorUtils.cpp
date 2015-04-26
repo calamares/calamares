@@ -92,9 +92,12 @@ colorForPartition( Partition* partition )
             break;
         if ( !PMUtils::isPartitionFreeSpace( child ) &&
              !child->hasChildren() )
-            ++colorIdx;
-        if ( PMUtils::isPartitionNew( child ) )
-            ++newColorIdx;
+        {
+            if ( PMUtils::isPartitionNew( child ) )
+                ++newColorIdx;
+            else
+                ++colorIdx;
+        }
     }
 
     if ( PMUtils::isPartitionNew( partition ) )
