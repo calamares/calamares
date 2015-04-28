@@ -31,7 +31,7 @@
 static const int NUM_PARTITION_COLORS = 5;
 static const int NUM_NEW_PARTITION_COLORS = 4;
 //Let's try to use the Breeze palette
-static QColor PARTITION_COLORS[ NUM_PARTITION_COLORS ] =
+static const QColor PARTITION_COLORS[ NUM_PARTITION_COLORS ] =
 {
     "#2980b9", //Dark Plasma Blue
     "#27ae60", //Dark Icon Green
@@ -39,7 +39,7 @@ static QColor PARTITION_COLORS[ NUM_PARTITION_COLORS ] =
     "#3daee9", //Plasma Blue
     "#9b59b6", //Purple
 };
-static QColor NEW_PARTITION_COLORS[ NUM_NEW_PARTITION_COLORS ] =
+static const QColor NEW_PARTITION_COLORS[ NUM_NEW_PARTITION_COLORS ] =
 {
     "#c0392b", //Dark Icon Red
     "#f39c1f", //Dark Icon Yellow
