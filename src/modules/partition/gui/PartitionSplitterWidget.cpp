@@ -102,7 +102,7 @@ PartitionSplitterWidget::setSplitPartition( const QString& path,
         if ( m_items[ i ].itemPath == itemToResize->itemPath )
         {
             m_items.insert( i+1,
-                            { "", QColor( "#d667b7" ), false, newSize, {} } );
+                            { "", QColor( "#c0392b" ), false, newSize, {} } );
             m_itemToResizeNext = &( m_items[ i+1 ] );
             break;
         }
@@ -113,7 +113,7 @@ PartitionSplitterWidget::setSplitPartition( const QString& path,
                 if ( m_items[ i ].children[ j ].itemPath == itemToResize->itemPath )
                 {
                     m_items[ i ].children.insert( j+1,
-                                                  { "", QColor( "#d667b7" ), false, newSize, {} } );
+                                                  { "", QColor( "#c0392b" ), false, newSize, {} } );
                     m_itemToResizeNext = &( m_items[ i ].children[ j+1 ] );
                     break;
                 }
