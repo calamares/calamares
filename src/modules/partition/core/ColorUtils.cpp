@@ -105,21 +105,27 @@ colorForPartition( Partition* partition )
     return PARTITION_COLORS[ colorIdx % NUM_PARTITION_COLORS ];
 }
 
+
 QColor
 colorForPartitionInFreeSpace( Partition* partition )
 {
-    //FIXME
-    PartitionNode* parent = partition->parent();
-    Q_ASSERT( parent );
-    int colorIdx = 0;
-    for ( auto child : parent->children() )
+    PartitionNode* parent = _findRootForPartition( partition );
+    PartitionTable* table = dynamic_cast< PartitionTable* >( parent );
+    Q_ASSERT( table );
+    int newColorIdx = 0;
+    for ( PartitionIterator it = PartitionIterator::begin( table );
+          it != PartitionIterator::end( table );
+          ++it )
     {
+        Partition* child = *it;
         if ( child == partition )
             break;
-        if ( !PMUtils::isPartitionFreeSpace( child ) )
-            ++colorIdx;
+        if ( !PMUtils::isPartitionFreeSpace( child ) &&
+             !child->hasChildren() &&
+             PMUtils::isPartitionNew( child ) )
+            ++newColorIdx;
     }
-    return PARTITION_COLORS[ colorIdx % NUM_PARTITION_COLORS ];
+    return NEW_PARTITION_COLORS[ newColorIdx % NUM_NEW_PARTITION_COLORS ];
 }
 
 } // namespace
