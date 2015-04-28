@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -27,6 +27,7 @@
 #include "core/PartitionInfo.h"
 #include "core/PartitionIterator.h"
 #include "gui/PartitionSplitterWidget.h"
+#include "gui/PartitionPreview.h"
 
 #include "JobQueue.h"
 #include "GlobalStorage.h"
@@ -59,6 +60,10 @@ AlongsidePage::AlongsidePage( QWidget* parent )
     partitionsLabel->setBuddy( m_partitionsComboBox );
 
     partitionsComboLayout->addStretch();
+
+    m_previewWidget = new PartitionPreview;
+    m_previewWidget->setLabelsVisible( true );
+    mainLayout->addWidget( m_previewWidget );
 
     QLabel* allocateSpaceLabel = new QLabel();
     mainLayout->addWidget( allocateSpaceLabel );
@@ -138,6 +143,14 @@ AlongsidePage::init( PartitionCoreModule* core , const OsproberEntryList& osprob
                     }
                 }
 
+                Device* deviceBefore = m_core->createImmutableDeviceCopy( dev );
+
+                PartitionModel* partitionModelBefore = new PartitionModel;
+                partitionModelBefore->init( deviceBefore );
+                deviceBefore->setParent( partitionModelBefore );
+                partitionModelBefore->setParent( m_previewWidget );
+
+                m_previewWidget->setModel( partitionModelBefore );
                 m_splitterWidget->init( allPartitionItems );
 
                 m_splitterWidget->setSplitPartition( candidate->partitionPath(),
