@@ -65,6 +65,14 @@ public:
 
     PartitionModel* partitionModelForDevice( Device* device ) const;
 
+    //HACK: all devices change over time, and together make up the state of the CoreModule.
+    //      However this makes it hard to show the *original* state of a device.
+    //      With this horrible hack we rescan a single device node to create a Device object
+    //      that contains the current state of a disk regardless of subsequent changes.
+    //      This should probably be redone some other way.
+    //              -- Teo 4/2015
+    Device* createImmutableDeviceCopy( Device* device ) const;
+
     QAbstractItemModel* bootLoaderModel() const;
 
     void createPartitionTable( Device* device, PartitionTable::TableType type );
