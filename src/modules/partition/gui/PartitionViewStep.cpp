@@ -386,6 +386,17 @@ PartitionViewStep::isAtEnd() const
 
 
 void
+PartitionViewStep::onActivate()
+{
+    // if we're coming back to PVS from the next VS
+    if ( m_widget->currentWidget() == m_replacePage )
+    {
+        m_replacePage->reset();
+    }
+}
+
+
+void
 PartitionViewStep::onLeave()
 {
     if ( m_widget->currentWidget() == m_alongsidePage )

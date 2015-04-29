@@ -61,6 +61,7 @@ public:
     bool isAtBeginning() const override;
     bool isAtEnd() const override;
 
+    void onActivate() override;
     void onLeave() override;
 
     void setConfigurationMap( const QVariantMap& configurationMap ) override;
