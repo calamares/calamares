@@ -73,6 +73,16 @@ ReplacePage::isNextEnabled() const
 
 
 void
+ReplacePage::reset()
+{
+    int oldDeviceIndex = m_ui->deviceComboBox->currentIndex();
+    m_core->revert();
+    m_ui->deviceComboBox->setCurrentIndex( oldDeviceIndex );
+    updateFromCurrentDevice();
+}
+
+
+void
 ReplacePage::applyChanges()
 {
     PartitionModel* model = qobject_cast< PartitionModel* >( m_ui->partitionTreeView->model() );

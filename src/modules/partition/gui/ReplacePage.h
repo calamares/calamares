@@ -39,6 +39,8 @@ public:
 
     bool isNextEnabled() const;
 
+    void reset();
+
     void applyChanges();
 
 signals:
