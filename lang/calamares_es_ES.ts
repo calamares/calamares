@@ -2,17 +2,17 @@
 <context>
     <name>AlongsidePage</name>
     <message>
-        <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="67"/>
+        <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="72"/>
         <source>Choose partition to shrink:</source>
         <translation>Elige la partición a reducir:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="68"/>
+        <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="73"/>
         <source>Allocate drive space by dragging the divider below:</source>
         <translation>Asigna el espacio de disco moviendo el separado de debajo:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="167"/>
+        <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="180"/>
         <source>With this operation, the partition &lt;strong&gt;%1&lt;/strong&gt; which contains %4 will be shrunk to %2MB and a new %3MB partition will be created for %5.</source>
         <translation>Con esta operación la partición &lt;strong&gt;%1&lt;/strong&gt; que tiene %4 se va a reducir a %2MB y se va a crear una nueva partición de %3MB para %5</translation>
     </message>
@@ -972,7 +972,7 @@ El instalador se cerrará y se perderán todos los cambios.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="56"/>
         <source>Create new &lt;strong&gt;%1&lt;/strong&gt; partition table on &lt;strong&gt;%2&lt;/strong&gt; (%3).</source>
-        <translation type="unfinished"/>
+        <translation>Crear una nueva tabla de particiones &lt;strong&gt;%1&lt;/strong&gt; en &lt;strong&gt;%2&lt;/strong&gt; (%3).</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="66"/>
@@ -1510,7 +1510,7 @@ Algunos sistemas de ficheros necesitan instalar herramientas externas para ser s
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="59"/>
         <source>Format &lt;strong&gt;%3MB&lt;/strong&gt; partition &lt;strong&gt;%1&lt;/strong&gt; with file system &lt;strong&gt;%2&lt;/strong&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Formatear la partición &lt;strong&gt;%3MB&lt;/strong&gt; &lt;strong&gt;%1&lt;/strong&gt; con el sistema de ficheros &lt;strong&gt;%2&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="71"/>
@@ -2775,7 +2775,7 @@ Se puede continuar con la instalación pero algunas de las características pued
     <message>
         <location filename="../src/modules/summary/SummaryPage.cpp" line="42"/>
         <source>This is an overview of what will happen once you start the install procedure.</source>
-        <translation type="unfinished"/>
+        <translation>Este es un resumen de que pasará una vez que se inicie la instalación.</translation>
     </message>
 </context>
 <context>

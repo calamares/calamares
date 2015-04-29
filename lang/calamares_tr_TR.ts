@@ -2,17 +2,17 @@
 <context>
     <name>AlongsidePage</name>
     <message>
-        <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="67"/>
+        <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="72"/>
         <source>Choose partition to shrink:</source>
         <translation>Küçültmek için bir disk bölümü seçin:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="68"/>
+        <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="73"/>
         <source>Allocate drive space by dragging the divider below:</source>
         <translation>Aşağıdaki bölümleyiciyi sürükleyerek kullanılabilir disk alanı belirle:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="167"/>
+        <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="180"/>
         <source>With this operation, the partition &lt;strong&gt;%1&lt;/strong&gt; which contains %4 will be shrunk to %2MB and a new %3MB partition will be created for %5.</source>
         <translation>Bu işlem ile &lt;strong&gt;%1&lt;/strong&gt; bölümü içeren %4 %2MB küçültülecek ve yeni bölüm %3MB oluşturulacak %5 için.</translation>
     </message>
