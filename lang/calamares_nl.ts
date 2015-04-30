@@ -2370,52 +2370,52 @@ De installatie kan doorgaan, maar sommige functies werken mogelijk niet.</transl
         <translation>&amp;Schijf:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="110"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="120"/>
         <source>Select where to install %1.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;this will delete all files on the selected partition.</source>
         <translation>Selecteer waar %1 te installeren.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Opgelet: &lt;/font&gt;dit zal alle bestanden op deze partitie verwijderen.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="137"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="147"/>
         <source>The selected item does not appear to be a valid partition.</source>
         <translation>Het geselecteerde item lijkt geen geldige partitie te zijn.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="145"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="155"/>
         <source>%1 cannot be installed on empty space. Please select an existing partition.</source>
         <translation>% 1 kan niet op lege ruimte worden geïnstalleerd. Gelieve een bestaande partitie te selecteren.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="156"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="166"/>
         <source>%1 cannot be installed on an extended partition. Please select an existing primary or logical partition.</source>
         <translation>%1 kan niet geïnstalleerd worden op een uitgebreide partitie. Gelieve een bestaande primaire of logische partitie te selecteren.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="167"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="177"/>
         <source>%1 cannot be installed on this partition.</source>
         <translation>%1 kan niet op deze partitie geinstalleerd worden.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="174"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="184"/>
         <source>Data partition (%1)</source>
         <translation>Gegevenspartitie (%1)</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="191"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="201"/>
         <source>Unknown system partition (%1)</source>
         <translation>Onbekende systeempartitie (%1)</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="196"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="206"/>
         <source>%1 system partition (%2)</source>
         <translation>%1 systeempartitie (%2)</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="207"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="217"/>
         <source>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;The partition %1 is too small for %2. Please select a partition with capacity at least %3 GiB.</source>
         <translation>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Partitie %1 is te klein voor %2. Gelieve een partitie te selecteren met een capaciteit van minstens %3 GiB.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="221"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="231"/>
         <source>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 will be installed on %2.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;all data on partition%2 will be lost.</source>
         <translation>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 zal geïnstalleerd worden op %2.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Opgelet: &lt;/font&gt;alle gegevens op partitie %2 zullen verloren gaan.</translation>
     </message>

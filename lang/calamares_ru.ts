@@ -2369,52 +2369,52 @@ Installation can continue, but some features might be disabled.</source>
         <translation>&amp;Диск:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="110"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="120"/>
         <source>Select where to install %1.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;this will delete all files on the selected partition.</source>
         <translation>Выберите где установить %1.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Внимание: &lt;/font&gt;Это удалит все файлы на выбранном разделе.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="137"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="147"/>
         <source>The selected item does not appear to be a valid partition.</source>
         <translation>Похоже выбранный элемент не является разделом.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="145"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="155"/>
         <source>%1 cannot be installed on empty space. Please select an existing partition.</source>
         <translation>%1 не может быть установлен вне раздела. Пожалуйста выберите существующий раздел.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="156"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="166"/>
         <source>%1 cannot be installed on an extended partition. Please select an existing primary or logical partition.</source>
         <translation>%1 не может быть установлен напрямик в расширенный раздел. Пожалуйста выберите существующий основной или логический раздел.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="167"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="177"/>
         <source>%1 cannot be installed on this partition.</source>
         <translation>%1 не может быть установлен в этот раздел.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="174"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="184"/>
         <source>Data partition (%1)</source>
         <translation>Раздел данных (%1)</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="191"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="201"/>
         <source>Unknown system partition (%1)</source>
         <translation>Неизвестный системный раздел (%1)</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="196"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="206"/>
         <source>%1 system partition (%2)</source>
         <translation>%1 системный раздел (%2)</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="207"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="217"/>
         <source>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;The partition %1 is too small for %2. Please select a partition with capacity at least %3 GiB.</source>
         <translation>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Раздел %1 слишком мал для %2. Пожалуйста выберите раздел объемом от %3 ГиБ.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="221"/>
+        <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="231"/>
         <source>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 will be installed on %2.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;all data on partition%2 will be lost.</source>
         <translation>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 будет установлен в %2.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Внимание: &lt;/font&gt;все данные на разделе %2 будут потеряны.</translation>
     </message>
