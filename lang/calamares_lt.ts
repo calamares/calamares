@@ -68,7 +68,7 @@
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="20"/>
         <source>Installer</source>
-        <translation>Diegėjas</translation>
+        <translation>Diegimo Programa</translation>
     </message>
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="168"/>
@@ -361,12 +361,12 @@ Išvestis:
         <source>Do you really want to cancel the current install process?
 The installer will quit and all changes will be lost.</source>
         <translation>Ar tikrai norite atšaukti dabartinio diegimo procesą?
-Diegėjas užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
+Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="252"/>
         <source>Continue with setup?</source>
-        <translation type="unfinished"/>
+        <translation>Tęsti sąranką?</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="253"/>
@@ -427,7 +427,7 @@ Diegėjas užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
     <message>
         <location filename="../src/calamares/CalamaresWindow.cpp" line="44"/>
         <source>%1 Installer</source>
-        <translation>%1 Diegėjas</translation>
+        <translation>%1 Diegimo programa</translation>
     </message>
     <message>
         <location filename="../src/calamares/CalamaresWindow.cpp" line="98"/>
@@ -478,7 +478,7 @@ Diegėjas užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="145"/>
         <source>&lt;strong&gt;Install %2 alongside %1&lt;/strong&gt;&lt;br/&gt;The installer will shrink the %1 volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
-        <translation>&lt;strong&gt;Įdiegti %2 šalia %1&lt;/strong&gt;&lt;br/&gt;Diegėjas sumažins %1 tomą, kad atlaisvintų vietą sistemai %2. Kaskart įjungę kompiuterį, galėsite pasirinkti, kurią operacinę sistemą naudoti.</translation>
+        <translation>&lt;strong&gt;Įdiegti %2 šalia %1&lt;/strong&gt;&lt;br/&gt;Diegimo programa sumažins %1 tomą, kad atlaisvintų vietą sistemai %2. Kaskart įjungę kompiuterį, galėsite pasirinkti, kurią operacinę sistemą naudoti.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="154"/>
@@ -500,7 +500,7 @@ Diegėjas užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="179"/>
         <source>&lt;strong&gt;Install %1 alongside your current operating system&lt;/strong&gt;&lt;br/&gt;The installer will shrink an existing volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
-        <translation>&lt;strong&gt;Įdiegti %1 šalia jūsų esamos operacinės sistemos&lt;/strong&gt;&lt;br/&gt;Diegėjas sumažins esamą tomą, kad atlaisvintų vietą sistemai %2. Kaskart įjungę kompiuterį, galėsite pasirinkti, kurią operacinę sistemą naudoti.</translation>
+        <translation>&lt;strong&gt;Įdiegti %1 šalia jūsų esamos operacinės sistemos&lt;/strong&gt;&lt;br/&gt;Diegimo programa sumažins esamą tomą, kad atlaisvintų vietą sistemai %2. Kaskart įjungę kompiuterį, galėsite pasirinkti, kurią operacinę sistemą naudoti.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="223"/>
@@ -510,7 +510,7 @@ Diegėjas užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="226"/>
         <source>&lt;strong&gt;Install %1 alongside your current operating systems&lt;/strong&gt;&lt;br/&gt;The installer will shrink an existing volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
-        <translation>&lt;strong&gt;Įdiegti %1 šalia jūsų esamų operacinių sistemų&lt;/strong&gt;&lt;br/&gt;Diegėjas sumažins esamą tomą, kad atlaisvintų vietą sistemai %2. Kaskart įjungę kompiuterį, galėsite pasirinkti, kurią operacinę sistemą naudoti.</translation>
+        <translation>&lt;strong&gt;Įdiegti %1 šalia jūsų esamų operacinių sistemų&lt;/strong&gt;&lt;br/&gt;Diegimo programa sumažins esamą tomą, kad atlaisvintų vietą sistemai %2. Kaskart įjungę kompiuterį, galėsite pasirinkti, kurią operacinę sistemą naudoti.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="261"/>
@@ -911,7 +911,7 @@ Diegėjas užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="74"/>
         <source>The installer failed to create partition on disk &apos;%1&apos;.</source>
-        <translation>Diegėjui nepavyko sukurti skirsnio diske &apos;%1&apos;.</translation>
+        <translation>Diegimo programai nepavyko sukurti skirsnio diske &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="83"/>
@@ -926,12 +926,12 @@ Diegėjas užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="117"/>
         <source>The installer failed to create file system on partition %1.</source>
-        <translation>Diegėjui nepavyko sukurti failų sistemos skirsnyje %1.</translation>
+        <translation>Diegimo programai nepavyko sukurti failų sistemos skirsnyje %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="125"/>
         <source>The installer failed to update partition table on disk &apos;%1&apos;.</source>
-        <translation>Diegėjui napavyko atnaujinti skirsnio lentelės diske &apos;%1&apos;.</translation>
+        <translation>Diegimo programai napavyko atnaujinti skirsnio lentelės diske &apos;%1&apos;.</translation>
     </message>
 </context>
 <context>
@@ -977,7 +977,7 @@ Diegėjas užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="66"/>
         <source>The installer failed to create a partition table on %1.</source>
-        <translation>Diegėjui nepavyko %1 sukurti skirsnio lentelės.</translation>
+        <translation>Diegimo programai nepavyko %1 sukurti skirsnio lentelės.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="74"/>
@@ -1099,7 +1099,7 @@ Diegėjas užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="58"/>
         <source>The installer failed to delete partition %1.</source>
-        <translation>Diegėjui nepavyko ištrinti skirsnio %1.</translation>
+        <translation>Diegimo programai nepavyko ištrinti skirsnio %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="64"/>
@@ -1515,7 +1515,7 @@ Kai kurios failų sistemos tam, kad būtų palaikomos, reikalauja, kad būtų į
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="71"/>
         <source>The installer failed to format partition %1 on disk &apos;%2&apos;.</source>
-        <translation>Diegėjui nepavyko formatuoti skirsnio %1 diske &apos;%2&apos;.</translation>
+        <translation>Diegimo programai nepavyko formatuoti skirsnio %1 diske &apos;%2&apos;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="79"/>
@@ -1530,12 +1530,12 @@ Kai kurios failų sistemos tam, kad būtų palaikomos, reikalauja, kad būtų į
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="96"/>
         <source>The installer failed to create file system on partition %1.</source>
-        <translation>Diegėjui nepavyko sukurti failų sistemos skirsnyje %1.</translation>
+        <translation>Diegimo programai nepavyko sukurti failų sistemos skirsnyje %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="104"/>
         <source>The installer failed to update partition table on disk &apos;%1&apos;.</source>
-        <translation>Diegėjui nepavyko atnaujinti skirsnio lentelės diske &apos;%1&apos;.</translation>
+        <translation>Diegimo programai nepavyko atnaujinti skirsnio lentelės diske &apos;%1&apos;.</translation>
     </message>
 </context>
 <context>
@@ -1543,12 +1543,12 @@ Kai kurios failų sistemos tam, kad būtų palaikomos, reikalauja, kad būtų į
     <message>
         <location filename="../src/modules/greeting/GreetingPage.cpp" line="126"/>
         <source>&lt;h1&gt;Welcome to the %1 installer.&lt;/h1&gt;&lt;br/&gt;This program will ask you some questions and set up %2 on your computer.</source>
-        <translation>&lt;h1&gt;Sveiki atvykę į %1 diegėją.&lt;/h1&gt;&lt;br/&gt;Ši programa užduos jums kelis klausimus ir padės jūsų kompiuteryje nustatyti %2.</translation>
+        <translation>&lt;h1&gt;Sveiki atvykę į %1 diegimo programą.&lt;/h1&gt;&lt;br/&gt;Ši programa užduos jums kelis klausimus ir padės jūsų kompiuteryje nustatyti %2.</translation>
     </message>
     <message>
         <location filename="../src/modules/greeting/GreetingPage.cpp" line="144"/>
         <source>About %1 installer</source>
-        <translation>Apie %1 diegėją</translation>
+        <translation>Apie %1 diegimo programą</translation>
     </message>
     <message>
         <location filename="../src/modules/greeting/GreetingPage.cpp" line="146"/>
@@ -1591,7 +1591,7 @@ Kai kurios failų sistemos tam, kad būtų palaikomos, reikalauja, kad būtų į
     <message>
         <location filename="../src/modules/greeting/GreetingViewStep.cpp" line="43"/>
         <source>Welcome</source>
-        <translation>Sveiki</translation>
+        <translation>Pasisveikinimas</translation>
     </message>
 </context>
 <context>
@@ -2212,17 +2212,17 @@ Diegimas gali būti tęsiamas, bet kai kurios funkcijos gali būti išjungtos.</
     <message>
         <location filename="../src/calamares/progresstree/ProgressTreeModel.cpp" line="138"/>
         <source>Prepare</source>
-        <translation>Paruošti</translation>
+        <translation>Paruošimas</translation>
     </message>
     <message>
         <location filename="../src/calamares/progresstree/ProgressTreeModel.cpp" line="151"/>
         <source>Install</source>
-        <translation>Įdiegti</translation>
+        <translation>Diegimas</translation>
     </message>
     <message>
         <location filename="../src/calamares/progresstree/ProgressTreeModel.cpp" line="161"/>
         <source>Finish</source>
-        <translation>Baigti</translation>
+        <translation>Pabaiga</translation>
     </message>
 </context>
 <context>
@@ -2454,7 +2454,7 @@ Diegimas gali būti tęsiamas, bet kai kurios funkcijos gali būti išjungtos.</
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="220"/>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="278"/>
         <source>The installer failed to resize partition %1 on disk &apos;%2&apos;.</source>
-        <translation>Diegėjui nepavyko pakeisti skirsnio %1 dydį diske &apos;%2&apos;.</translation>
+        <translation>Diegimo programai nepavyko pakeisti skirsnio %1 dydį diske &apos;%2&apos;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="225"/>
