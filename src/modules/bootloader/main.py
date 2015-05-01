@@ -180,7 +180,8 @@ def install_grub(efi_directory, fw_type):
         check_chroot_call(
             [libcalamares.job.configuration["grubInstall"], "--target=x86_64-efi",
              "--efi-directory={!s}".format(efi_directory),
-             "--bootloader-id={!s}".format(efi_bootloader_id)])
+             "--bootloader-id={!s}".format(efi_bootloader_id),
+             "--force"])
         # Workaround for some UEFI firmwares
         check_chroot_call(["mkdir", "-p", "{!s}/boot".format(efi_directory_firmware)])
         check_chroot_call(["cp", "{!s}/{!s}/grubx64.efi".format(efi_directory_firmware,
