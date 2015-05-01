@@ -34,6 +34,8 @@
 #include <utils/Logger.h>
 #include <Branding.h>
 
+#include <QDir>
+
 
 ReplacePage::ReplacePage( PartitionCoreModule* core, QWidget* parent )
     : QWidget( parent )
@@ -106,6 +108,27 @@ ReplacePage::applyChanges()
             m_core->createPartition( dev, newPartition );
 
             m_core->dumpQueue();
+        }
+
+        /* Set MountPoint for EFI system partition */
+        if ( QDir( "/sys/firmware/efi/efivars" ).exists() )
+        {
+            Device* dev = model->device();
+            QString devicePath = "/dev/sda"; // FIXME: need to determine this
+
+            // Assume ESP is the first partition
+            QString partitionPath = devicePath + QString::number( 1 );
+
+            if ( partitionPath.startsWith( "/dev/" ) )
+            {
+                Partition* candidate = PMUtils::findPartitionByPath( { dev }, partitionPath );
+
+                if ( candidate )
+                {
+                    QString espMountPoint = Calamares::JobQueue::instance()->globalStorage()->value( "efiSystemPartition" ).toString();
+                    PartitionInfo::setMountPoint( candidate, espMountPoint );
+                }
+            }
         }
     }
 }
