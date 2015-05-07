@@ -46,9 +46,9 @@ ViewManager::ViewManager( QObject* parent )
     : QObject( parent )
     , m_widget( new QWidget() )
     , m_currentStep( 0 )
-    , m_installationViewStep( 0 )
+    , m_installationViewStep( nullptr )
     , m_phase( Prepare )
-    , m_finishedStep( 0 )
+    , m_finishedStep( nullptr )
 {
     s_instance = this;
     QBoxLayout* mainLayout = new QVBoxLayout;
