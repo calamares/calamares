@@ -64,7 +64,9 @@ GreetingPage::GreetingPage( QWidget* parent )
                 isTranslationAvailable = true;
                 ui->languageWidget->setCurrentRow( ui->languageWidget->count() - 1 );
                 cDebug() << "Initial locale " << thisLocale.name();
-                CalamaresUtils::installTranslator( thisLocale.name(), qApp );
+                CalamaresUtils::installTranslator( thisLocale,
+                                                   Calamares::Branding::instance()->translationsPathPrefix(),
+                                                   qApp );
             }
         }
         ui->languageWidget->sortItems();
@@ -79,7 +81,9 @@ GreetingPage::GreetingPage( QWidget* parent )
                     isTranslationAvailable = true;
                     ui->languageWidget->setCurrentRow( i );
                     cDebug() << "Initial locale " << thisLocale.name();
-                    CalamaresUtils::installTranslator( thisLocale.name(), qApp );
+                    CalamaresUtils::installTranslator( thisLocale,
+                                                       Calamares::Branding::instance()->translationsPathPrefix(),
+                                                       qApp );
                     break;
                 }
             }
@@ -95,7 +99,9 @@ GreetingPage::GreetingPage( QWidget* parent )
                     ui->languageWidget->setCurrentRow( i );
                     cDebug() << "Translation unavailable, so initial locale set to " << thisLocale.name();
                     QLocale::setDefault( thisLocale );
-                    CalamaresUtils::installTranslator( thisLocale.name(), qApp );
+                    CalamaresUtils::installTranslator( thisLocale,
+                                                       Calamares::Branding::instance()->translationsPathPrefix(),
+                                                       qApp );
                     break;
                 }
             }
@@ -108,7 +114,9 @@ GreetingPage::GreetingPage( QWidget* parent )
             cDebug() << "Selected locale" << selectedLocale.name();
 
             QLocale::setDefault( selectedLocale );
-            CalamaresUtils::installTranslator( selectedLocale.name(), qApp );
+            CalamaresUtils::installTranslator( selectedLocale,
+                                               Calamares::Branding::instance()->translationsPathPrefix(),
+                                               qApp );
         } );
 
         connect( ui->languageWidget, &QListWidget::itemDoubleClicked,
