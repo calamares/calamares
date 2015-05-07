@@ -13,6 +13,12 @@
 | Python >= 3.3 | kcoreaddons (part of KF5) |
 | Boost.Python >= 1.55.0 | ki18n (part of KF5) |
 
+### Deployment
+[Setting up branding](https://github.com/calamares/calamares/blob/master/src/branding/README.md)
+
+[Working with modules](https://github.com/calamares/calamares/blob/master/src/modules/README.md)
+
+
 ### Building
 Clone Calamares from GitHub and `cd` into the calamares directory, then:
 ```
