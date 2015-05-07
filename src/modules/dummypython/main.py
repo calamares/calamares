@@ -20,7 +20,7 @@
 
 import libcalamares
 import os
-from time import gmtime, strftime
+from time import gmtime, strftime, sleep
 
 
 def run():
@@ -55,6 +55,7 @@ def run():
     libcalamares.job.setprogress(0.1)
     libcalamares.utils.debug(accumulator)
 
+    sleep(30)
     # To indicate an error, return a tuple of:
     # (message, detailed-error-message)
     return None
