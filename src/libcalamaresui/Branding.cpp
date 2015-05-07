@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -172,6 +172,14 @@ Branding::Branding( const QString& brandingFilePath,
         {
             cDebug() << "WARNING: YAML parser error " << e.what();
         }
+
+        QDir translationsDir( componentDir.filePath( "lang" ) );
+        if ( !translationsDir.exists() )
+            cDebug() << "WARNING: the selected branding component does not ship translations.";
+        m_translationsPathPrefix = translationsDir.absolutePath();
+        m_translationsPathPrefix.append( QString( "%1calamares-%2" )
+                                            .arg( QDir::separator() )
+                                            .arg( m_componentName ) );
     }
     else
     {
@@ -202,6 +210,13 @@ Branding::componentDirectory() const
 {
     QFileInfo fi ( m_descriptorPath );
     return fi.absoluteDir().absolutePath();
+}
+
+
+QString
+Branding::translationsPathPrefix() const
+{
+    return m_translationsPathPrefix;
 }
 
 
