@@ -14,9 +14,9 @@
 | Boost.Python >= 1.55.0 | ki18n (part of KF5) |
 
 ### Deployment
-[Setting up branding](https://github.com/calamares/calamares/blob/master/src/branding/README.md)
+[__Setting up branding__](https://github.com/calamares/calamares/blob/master/src/branding/README.md)
 
-[Working with modules](https://github.com/calamares/calamares/blob/master/src/modules/README.md)
+[__Working with modules__](https://github.com/calamares/calamares/blob/master/src/modules/README.md)
 
 
 ### Building
