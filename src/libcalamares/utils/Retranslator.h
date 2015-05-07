@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -50,7 +50,9 @@ private:
 
 } // namespace CalamaresUtils
 
-#define CALAMARES_RETRANSLATE(a) \
-    CalamaresUtils::Retranslator::attachRetranslator( this, [=] { a } );
+#define CALAMARES_RETRANSLATE(body) \
+    CalamaresUtils::Retranslator::attachRetranslator( this, [=] { body } );
+#define CALAMARES_RETRANSLATE_WIDGET(widget,body) \
+    CalamaresUtils::Retranslator::attachRetranslator( widget, [=] { body } );
 
 #endif // CALAMARESUTILS_RETRANSLATOR_H
