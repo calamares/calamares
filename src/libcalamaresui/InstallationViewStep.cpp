@@ -24,6 +24,7 @@
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
 #include "Settings.h"
+#include "utils/Retranslator.h"
 
 #include <QDir>
 #include <QLabel>
@@ -55,10 +56,11 @@ InstallationViewStep::InstallationViewStep( QObject* parent )
 
     m_slideShow->engine()->addImportPath( CalamaresUtils::qmlModulesDir().absolutePath() );
 
-    if ( !Calamares::Branding::instance()->slideshowPath().isEmpty() )
-        m_slideShow->setSource( QUrl::fromLocalFile( Calamares::Branding::instance()
-                                                     ->slideshowPath() ) );
-
+    CALAMARES_RETRANSLATE_WIDGET( m_widget,
+        if ( !Calamares::Branding::instance()->slideshowPath().isEmpty() )
+            m_slideShow->setSource( QUrl::fromLocalFile( Calamares::Branding::instance()
+                                                         ->slideshowPath() ) );
+    )
     innerLayout->addSpacing( CalamaresUtils::defaultFontHeight() / 2 );
     innerLayout->addWidget( m_progressBar );
     innerLayout->addWidget( m_label );
