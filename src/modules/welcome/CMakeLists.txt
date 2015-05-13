@@ -1,12 +1,12 @@
 include_directories( ${PROJECT_BINARY_DIR}/src/libcalamaresui )
-calamares_add_plugin( greeting
+calamares_add_plugin( welcome
     TYPE viewmodule
     EXPORT_MACRO PLUGINDLLEXPORT_PRO
     SOURCES
-        GreetingViewStep.cpp
-        GreetingPage.cpp
+        WelcomeViewStep.cpp
+        WelcomePage.cpp
     UI
-        GreetingPage.ui
+        WelcomePage.ui
     LINK_LIBRARIES
         calamaresui
     SHARED_LIB

@@ -17,9 +17,9 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "GreetingPage.h"
+#include "WelcomePage.h"
 
-#include "ui_GreetingPage.h"
+#include "ui_WelcomePage.h"
 #include "CalamaresVersion.h"
 #include "utils/Logger.h"
 #include "utils/CalamaresUtilsGui.h"
@@ -31,17 +31,18 @@
 #include <QDesktopServices>
 #include <QFocusEvent>
 #include <QLabel>
-#include <QListWidget>
+#include <QComboBox>
 #include <QMessageBox>
 
 #include "Branding.h"
 
 
-GreetingPage::GreetingPage( QWidget* parent )
+WelcomePage::WelcomePage( QWidget* parent )
     : QWidget( parent )
-    , ui( new Ui::GreetingPage )
+    , ui( new Ui::WelcomePage )
 {
     ui->setupUi( this );
+    ui->languageWidget->setInsertPolicy( QComboBox::InsertAlphabetically );
 
     QLocale defaultLocale = QLocale( QLocale::system().name() );
     {
@@ -55,33 +56,30 @@ GreetingPage::GreetingPage( QWidget* parent )
                 lang.append( QString( " (%1)" )
                              .arg( QLocale::countryToString( thisLocale.country() ) ) );
 
-            ui->languageWidget->addItem( lang );
-            ui->languageWidget->item( ui->languageWidget->count() - 1 )
-                            ->setData( Qt::UserRole, thisLocale );
+            ui->languageWidget->addItem( lang, thisLocale );
             if ( thisLocale.language() == defaultLocale.language() &&
                  thisLocale.country() == defaultLocale.country() )
             {
                 isTranslationAvailable = true;
-                ui->languageWidget->setCurrentRow( ui->languageWidget->count() - 1 );
+                ui->languageWidget->setCurrentIndex( ui->languageWidget->count() - 1 );
                 cDebug() << "Initial locale " << thisLocale.name();
-                CalamaresUtils::installTranslator( thisLocale,
+                CalamaresUtils::installTranslator( thisLocale.name(),
                                                    Calamares::Branding::instance()->translationsPathPrefix(),
                                                    qApp );
             }
         }
-        ui->languageWidget->sortItems();
 
         if ( !isTranslationAvailable )
         {
             for (int i = 0; i < ui->languageWidget->count(); i++)
             {
-                QLocale thisLocale = ui->languageWidget->item(i)->data( Qt::UserRole ).toLocale();
+                QLocale thisLocale = ui->languageWidget->itemData( i, Qt::UserRole ).toLocale();
                 if ( thisLocale.language() == defaultLocale.language() )
                 {
                     isTranslationAvailable = true;
-                    ui->languageWidget->setCurrentRow( i );
+                    ui->languageWidget->setCurrentIndex( i );
                     cDebug() << "Initial locale " << thisLocale.name();
-                    CalamaresUtils::installTranslator( thisLocale,
+                    CalamaresUtils::installTranslator( thisLocale.name(),
                                                        Calamares::Branding::instance()->translationsPathPrefix(),
                                                        qApp );
                     break;
@@ -93,13 +91,13 @@ GreetingPage::GreetingPage( QWidget* parent )
         {
             for (int i = 0; i < ui->languageWidget->count(); i++)
             {
-                QLocale thisLocale = ui->languageWidget->item(i)->data( Qt::UserRole ).toLocale();
+                QLocale thisLocale = ui->languageWidget->itemData( i, Qt::UserRole ).toLocale();
                 if ( thisLocale == QLocale( QLocale::English, QLocale::UnitedStates ) )
                 {
-                    ui->languageWidget->setCurrentRow( i );
+                    ui->languageWidget->setCurrentIndex( i );
                     cDebug() << "Translation unavailable, so initial locale set to " << thisLocale.name();
                     QLocale::setDefault( thisLocale );
-                    CalamaresUtils::installTranslator( thisLocale,
+                    CalamaresUtils::installTranslator( thisLocale.name(),
                                                        Calamares::Branding::instance()->translationsPathPrefix(),
                                                        qApp );
                     break;
@@ -107,22 +105,17 @@ GreetingPage::GreetingPage( QWidget* parent )
             }
         }
 
-        connect( ui->languageWidget, &QListWidget::currentItemChanged,
-                 this, [ & ]( QListWidgetItem *current, QListWidgetItem *previous )
+        connect( ui->languageWidget,
+                 static_cast< void ( QComboBox::* )( int ) >( &QComboBox::currentIndexChanged ),
+                 this, [ & ]( int newIndex )
         {
-            QLocale selectedLocale = current->data( Qt::UserRole ).toLocale();
+            QLocale selectedLocale = ui->languageWidget->itemData( newIndex, Qt::UserRole ).toLocale();
             cDebug() << "Selected locale" << selectedLocale.name();
 
             QLocale::setDefault( selectedLocale );
             CalamaresUtils::installTranslator( selectedLocale,
                                                Calamares::Branding::instance()->translationsPathPrefix(),
                                                qApp );
-        } );
-
-        connect( ui->languageWidget, &QListWidget::itemDoubleClicked,
-                 this, []
-        {
-            Calamares::ViewManager::instance()->next();
         } );
     }
 
@@ -172,7 +165,7 @@ GreetingPage::GreetingPage( QWidget* parent )
 
 
 void
-GreetingPage::setUpLinks( bool showSupportUrl,
+WelcomePage::setUpLinks( bool showSupportUrl,
                           bool showKnownIssuesUrl,
                           bool showReleaseNotesUrl )
 {
@@ -233,7 +226,7 @@ GreetingPage::setUpLinks( bool showSupportUrl,
 
 
 void
-GreetingPage::focusInEvent( QFocusEvent* e )
+WelcomePage::focusInEvent( QFocusEvent* e )
 {
     if ( ui->languageWidget )
         ui->languageWidget->setFocus();
