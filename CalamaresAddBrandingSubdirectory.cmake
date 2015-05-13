@@ -3,9 +3,19 @@ include( CMakeColors )
 function( calamares_add_branding_subdirectory )
     set( SUBDIRECTORY ${ARGV0} )
 
-    if( EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/${SUBDIRECTORY}/branding.desc" )
+    if( EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/${SUBDIRECTORY}/CMakeLists.txt" )
+        add_subdirectory( $SUBDIRECTORY )
+        message( "-- ${BoldYellow}Found ${CALAMARES_APPLICATION_NAME} branding component: ${BoldRed}${SUBDIRECTORY}${ColorReset}" )
+
+    elseif( EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/${SUBDIRECTORY}/branding.desc" )
         set( BRANDING_DIR share/calamares/branding )
         set( BRANDING_COMPONENT_DESTINATION ${BRANDING_DIR}/${SUBDIRECTORY} )
+
+        if( IS_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/${SUBDIRECTORY}/lang" )
+            message( "-- ${BoldYellow}Warning:${ColorReset} branding component ${BoldRed}${SUBDIRECTORY}${ColorReset} has a translations subdirectory but no CMakeLists.txt." )
+            message( "" )
+            return()
+        endif()
 
         # We glob all the files inside the subdirectory, and we make sure they are
         # synced with the bindir structure and installed.
