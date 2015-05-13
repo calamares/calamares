@@ -14,7 +14,7 @@
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="180"/>
         <source>With this operation, the partition &lt;strong&gt;%1&lt;/strong&gt; which contains %4 will be shrunk to %2MB and a new %3MB partition will be created for %5.</source>
-        <translation type="unfinished"/>
+        <translation>この操作によって、%4 を含むパーティション &lt;strong&gt;%1&lt;/strong&gt;が %2MB に縮小し、%5 のための新しい %3MBのパーティションが作成されます。</translation>
     </message>
 </context>
 <context>
@@ -366,7 +366,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="252"/>
         <source>Continue with setup?</source>
-        <translation type="unfinished"/>
+        <translation>セットアップを続行しますか?</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="253"/>
