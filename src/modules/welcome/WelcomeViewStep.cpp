@@ -19,14 +19,19 @@
 #include "WelcomeViewStep.h"
 
 #include "WelcomePage.h"
+#include "checker/RequirementsChecker.h"
+
 
 #include <QVariant>
 
 WelcomeViewStep::WelcomeViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
-    , m_widget( new WelcomePage() )
+    , m_requirementsChecker( new RequirementsChecker( this ) )
 {
     emit nextStatusChanged( true );
+    m_widget = new WelcomePage( m_requirementsChecker );
+    connect( m_requirementsChecker, &RequirementsChecker::verdictChanged,
+             this, &WelcomeViewStep::nextStatusChanged );
 }
 
 
@@ -66,7 +71,7 @@ WelcomeViewStep::back()
 bool
 WelcomeViewStep::isNextEnabled() const
 {
-    return true;
+    return m_requirementsChecker->verdict();
 }
 
 
@@ -117,5 +122,9 @@ WelcomeViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     m_widget->setUpLinks( showSupportUrl,
                           showKnownIssuesUrl,
                           showReleaseNotesUrl );
+
+    if ( configurationMap.contains( "requirements" ) &&
+         configurationMap.value( "requirements" ).type() == QVariant::Map )
+        m_requirementsChecker->setConfigurationMap( configurationMap.value( "requirements" ).toMap() );
 }
 

@@ -26,11 +26,14 @@ namespace Ui
 class WelcomePage;
 }
 
+class RequirementsChecker;
+
 class WelcomePage : public QWidget
 {
     Q_OBJECT
 public:
-    explicit WelcomePage( QWidget* parent = nullptr );
+    explicit WelcomePage( RequirementsChecker* requirementsChecker,
+                          QWidget* parent = nullptr );
 
     void setUpLinks( bool showSupportUrl,
                      bool showKnownIssuesUrl,
@@ -40,7 +43,9 @@ protected:
     void focusInEvent( QFocusEvent* e ) override; //choose the child widget to focus
 
 private:
+    void initLanguages();
     Ui::WelcomePage* ui;
+    RequirementsChecker* m_requirementsChecker;
 };
 
 #endif // WELCOMEPAGE_H

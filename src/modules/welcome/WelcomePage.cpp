@@ -21,6 +21,7 @@
 
 #include "ui_WelcomePage.h"
 #include "CalamaresVersion.h"
+#include "checker/RequirementsChecker.h"
 #include "utils/Logger.h"
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Retranslator.h"
@@ -37,11 +38,65 @@
 #include "Branding.h"
 
 
-WelcomePage::WelcomePage( QWidget* parent )
+WelcomePage::WelcomePage( RequirementsChecker* requirementsChecker, QWidget* parent )
     : QWidget( parent )
     , ui( new Ui::WelcomePage )
+    , m_requirementsChecker( requirementsChecker )
 {
     ui->setupUi( this );
+
+    initLanguages();
+
+    ui->mainText->setAlignment( Qt::AlignCenter );
+    ui->mainText->setWordWrap( true );
+    ui->mainText->setOpenExternalLinks( true );
+
+    CALAMARES_RETRANSLATE(
+        ui->mainText->setText( tr( "<h1>Welcome to the %1 installer.</h1><br/>"
+                                   "This program will ask you some questions and "
+                                   "set up %2 on your computer." )
+                                .arg( Calamares::Branding::instance()->
+                                      string( Calamares::Branding::VersionedName ) )
+                                .arg( Calamares::Branding::instance()->
+                                      string( Calamares::Branding::ProductName ) ) );
+        ui->retranslateUi( this );
+    )
+
+    ui->aboutButton->setIcon( CalamaresUtils::defaultPixmap( CalamaresUtils::Information,
+                                                             CalamaresUtils::Original,
+                                                             2*QSize( CalamaresUtils::defaultFontHeight(),
+                                                                    CalamaresUtils::defaultFontHeight() ) ) );
+    connect( ui->aboutButton, &QPushButton::clicked,
+             this, [ this ]
+    {
+        QMessageBox::about( this,
+                            tr( "About %1 installer" )
+                                .arg( CALAMARES_APPLICATION_NAME ),
+                            tr(
+                                "<h1>%1</h1><br/>"
+                                "<strong>%2<br/>"
+                                "for %3</strong><br/><br/>"
+                                "Copyright 2014-2015 Teo Mrnjavac &lt;teo@kde.org&gt;<br/>"
+                                "Thanks to: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Philip Müller, "
+                                "Pier Luigi Fiorini and Rohan Garg.<br/><br/>"
+                                "<a href=\"http://calamares.io/\">Calamares</a> "
+                                "development is sponsored by <br/>"
+                                "<a href=\"http://www.blue-systems.com/\">Blue Systems</a> - "
+                                "Liberating Software."
+                            )
+                            .arg( CALAMARES_APPLICATION_NAME )
+                            .arg( CALAMARES_VERSION )
+                            .arg( Calamares::Branding::instance()->string(
+                                      Calamares::Branding::VersionedName ) ) );
+    } );
+
+    ui->verticalLayout->insertWidget( 3, m_requirementsChecker->widget() );
+}
+
+
+void
+WelcomePage::initLanguages()
+{
     ui->languageWidget->setInsertPolicy( QComboBox::InsertAlphabetically );
 
     QLocale defaultLocale = QLocale( QLocale::system().name() );
@@ -118,49 +173,6 @@ WelcomePage::WelcomePage( QWidget* parent )
                                                qApp );
         } );
     }
-
-    ui->mainText->setAlignment( Qt::AlignCenter );
-    ui->mainText->setWordWrap( true );
-    ui->mainText->setOpenExternalLinks( true );
-
-    CALAMARES_RETRANSLATE(
-        ui->mainText->setText( tr( "<h1>Welcome to the %1 installer.</h1><br/>"
-                                   "This program will ask you some questions and "
-                                   "set up %2 on your computer." )
-                                .arg( Calamares::Branding::instance()->
-                                      string( Calamares::Branding::VersionedName ) )
-                                .arg( Calamares::Branding::instance()->
-                                      string( Calamares::Branding::ProductName ) ) );
-        ui->retranslateUi( this );
-    )
-
-    ui->aboutButton->setIcon( CalamaresUtils::defaultPixmap( CalamaresUtils::Information,
-                                                             CalamaresUtils::Original,
-                                                             2*QSize( CalamaresUtils::defaultFontHeight(),
-                                                                    CalamaresUtils::defaultFontHeight() ) ) );
-    connect( ui->aboutButton, &QPushButton::clicked,
-             this, [ this ]
-    {
-        QMessageBox::about( this,
-                            tr( "About %1 installer" )
-                                .arg( CALAMARES_APPLICATION_NAME ),
-                            tr(
-                                "<h1>%1</h1><br/>"
-                                "<strong>%2<br/>"
-                                "for %3</strong><br/><br/>"
-                                "Copyright 2014-2015 Teo Mrnjavac &lt;teo@kde.org&gt;<br/>"
-                                "Thanks to: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Philip Müller, "
-                                "Pier Luigi Fiorini and Rohan Garg.<br/><br/>"
-                                "<a href=\"http://calamares.io/\">Calamares</a> "
-                                "development is sponsored by <br/>"
-                                "<a href=\"http://www.blue-systems.com/\">Blue Systems</a> - "
-                                "Liberating Software."
-                            )
-                            .arg( CALAMARES_APPLICATION_NAME )
-                            .arg( CALAMARES_VERSION )
-                            .arg( Calamares::Branding::instance()->string(
-                                      Calamares::Branding::VersionedName ) ) );
-    } );
 }
 
 
