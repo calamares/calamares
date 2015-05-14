@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -16,15 +16,15 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "PrepareCheckWidget.h"
+#include "CheckItemWidget.h"
 
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
 
 #include <QBoxLayout>
 
-PrepareCheckWidget::PrepareCheckWidget( bool checked,
-                                        QWidget* parent )
+CheckItemWidget::CheckItemWidget( bool checked,
+                                  QWidget* parent )
     : QWidget( parent )
 {
     QBoxLayout* mainLayout = new QHBoxLayout;
@@ -51,7 +51,7 @@ PrepareCheckWidget::PrepareCheckWidget( bool checked,
 
 
 void
-PrepareCheckWidget::setText( const QString& text )
+CheckItemWidget::setText( const QString& text )
 {
     m_textLabel->setText( text );
 }

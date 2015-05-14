@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -16,17 +16,17 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef PREPARECHECKWIDGET_H
-#define PREPARECHECKWIDGET_H
+#ifndef CHECKITEMWIDGET_H
+#define CHECKITEMWIDGET_H
 
 #include <QLabel>
 
-class PrepareCheckWidget : public QWidget
+class CheckItemWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit PrepareCheckWidget( bool checked,
-                                 QWidget* parent = nullptr );
+    explicit CheckItemWidget( bool checked,
+                              QWidget* parent = nullptr );
 
     void setText( const QString& text );
 private:
@@ -34,4 +34,4 @@ private:
     QLabel* m_iconLabel;
 };
 
-#endif // PREPARECHECKWIDGET_H
+#endif // CHECKITEMWIDGET_H

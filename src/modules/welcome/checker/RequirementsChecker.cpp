@@ -16,9 +16,9 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "PrepareViewStep.h"
+#include "RequirementsChecker.h"
 
-#include "PreparePage.h"
+#include "CheckerWidget.h"
 #include "partman_devices.h"
 
 #include "widgets/WaitingWidget.h"
@@ -38,11 +38,11 @@
 #include <QProcess>
 #include <QTimer>
 
-PrepareViewStep::PrepareViewStep( QObject* parent )
-    : Calamares::ViewStep( parent )
+RequirementsChecker::RequirementsChecker( QObject* parent )
+    : QObject( parent )
     , m_widget( new QWidget() )
-    , m_actualWidget( new PreparePage() )
-    , m_nextEnabled( false )
+    , m_actualWidget( new CheckerWidget() )
+    , m_verdict( false )
     , m_requiredStorageGB( -1 )
 {
     QBoxLayout* mainLayout = new QHBoxLayout;
@@ -131,8 +131,8 @@ PrepareViewStep::PrepareViewStep( QObject* parent )
                 break;
             }
         }
-        m_nextEnabled = canGoNext;
-        emit nextStatusChanged( m_nextEnabled );
+        m_verdict = canGoNext;
+        emit verdictChanged( m_verdict );
 
         if ( canGoNext )
             detectFirmwareType();
@@ -141,86 +141,26 @@ PrepareViewStep::PrepareViewStep( QObject* parent )
     } );
     timer->start( 0 );
 
-    emit nextStatusChanged( true );
+    emit verdictChanged( true );
 }
 
 
-PrepareViewStep::~PrepareViewStep()
+RequirementsChecker::~RequirementsChecker()
 {
     if ( m_widget && m_widget->parent() == nullptr )
         m_widget->deleteLater();
 }
 
 
-QString
-PrepareViewStep::prettyName() const
-{
-    return tr( "Prepare" );
-}
-
-
 QWidget*
-PrepareViewStep::widget()
+RequirementsChecker::widget() const
 {
     return m_widget;
 }
 
 
 void
-PrepareViewStep::next()
-{
-    emit done();
-}
-
-
-void
-PrepareViewStep::back()
-{}
-
-
-bool
-PrepareViewStep::isNextEnabled() const
-{
-    return m_nextEnabled;
-}
-
-
-bool
-PrepareViewStep::isBackEnabled() const
-{
-    return true;
-}
-
-
-bool
-PrepareViewStep::isAtBeginning() const
-{
-    return true;
-}
-
-
-bool
-PrepareViewStep::isAtEnd() const
-{
-    return true;
-}
-
-
-QList< Calamares::job_ptr >
-PrepareViewStep::jobs() const
-{
-    return QList< Calamares::job_ptr >();
-}
-
-
-void
-PrepareViewStep::onLeave()
-{
-}
-
-
-void
-PrepareViewStep::setConfigurationMap( const QVariantMap& configurationMap )
+RequirementsChecker::setConfigurationMap( const QVariantMap& configurationMap )
 {
     if ( configurationMap.contains( "requiredStorage" ) &&
          configurationMap.value( "requiredStorage" ).type() == QVariant::Double )
@@ -267,14 +207,21 @@ PrepareViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 
 
 bool
-PrepareViewStep::checkEnoughStorage( qint64 requiredSpace )
+RequirementsChecker::verdict() const
+{
+    return m_verdict;
+}
+
+
+bool
+RequirementsChecker::checkEnoughStorage( qint64 requiredSpace )
 {
     return check_big_enough( requiredSpace );
 }
 
 
 bool
-PrepareViewStep::checkEnoughRam( qint64 requiredRam )
+RequirementsChecker::checkEnoughRam( qint64 requiredRam )
 {
     // A line in meminfo looks like this, with {print $2} we grab the second column.
     // MemTotal:        8133432 kB
@@ -290,7 +237,7 @@ PrepareViewStep::checkEnoughRam( qint64 requiredRam )
 
 
 bool
-PrepareViewStep::checkBatteryExists()
+RequirementsChecker::checkBatteryExists()
 {
     const QFileInfo basePath( "/sys/class/power_supply" );
 
@@ -317,7 +264,7 @@ PrepareViewStep::checkBatteryExists()
 
 
 bool
-PrepareViewStep::checkHasPower()
+RequirementsChecker::checkHasPower()
 {
     const QString UPOWER_SVC_NAME( "org.freedesktop.UPower" );
     const QString UPOWER_INTF_NAME( "org.freedesktop.UPower" );
@@ -348,7 +295,7 @@ PrepareViewStep::checkHasPower()
 
 
 bool
-PrepareViewStep::checkHasInternet()
+RequirementsChecker::checkHasInternet()
 {
     const QString NM_SVC_NAME( "org.freedesktop.NetworkManager" );
     const QString NM_INTF_NAME( "org.freedesktop.NetworkManager" );
@@ -376,7 +323,7 @@ PrepareViewStep::checkHasInternet()
 
 
 void
-PrepareViewStep::detectFirmwareType()
+RequirementsChecker::detectFirmwareType()
 {
     QString fwType = QFile::exists( "/sys/firmware/efi/efivars" ) ? "efi" : "bios";
     Calamares::JobQueue::instance()->globalStorage()->insert( "firmwareType", fwType );

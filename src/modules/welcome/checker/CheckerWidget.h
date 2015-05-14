@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -16,19 +16,19 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef PREPAREPAGE_H
-#define PREPAREPAGE_H
+#ifndef CHECKERWIDGET_H
+#define CHECKERWIDGET_H
 
-#include "PrepareViewStep.h"
+#include "RequirementsChecker.h"
 
 #include <QBoxLayout>
 #include <QWidget>
 
-class PreparePage : public QWidget
+class CheckerWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit PreparePage( QWidget* parent = nullptr );
+    explicit CheckerWidget( QWidget* parent = nullptr );
 
     void init( const QList< PrepareEntry >& checkEntries );
 
@@ -36,4 +36,4 @@ private:
     QBoxLayout* m_entriesLayout;
 };
 
-#endif // PREPAREPAGE_H
+#endif // CHECKERWIDGET_H

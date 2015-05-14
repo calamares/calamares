@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -16,9 +16,9 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "PreparePage.h"
+#include "CheckerWidget.h"
 
-#include "PrepareCheckWidget.h"
+#include "CheckItemWidget.h"
 
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Retranslator.h"
@@ -28,7 +28,7 @@
 #include <QLabel>
 
 
-PreparePage::PreparePage( QWidget* parent )
+CheckerWidget::CheckerWidget( QWidget* parent )
     : QWidget()
 {
     QBoxLayout* mainLayout = new QVBoxLayout;
@@ -52,17 +52,17 @@ PreparePage::PreparePage( QWidget* parent )
 
 
 void
-PreparePage::init( const QList< PrepareEntry >& checkEntries )
+CheckerWidget::init( const QList< PrepareEntry >& checkEntries )
 {
     bool allChecked = true;
     bool requirementsSatisfied = true;
 
     for ( const PrepareEntry& entry : checkEntries )
     {
-        PrepareCheckWidget* pcw = new PrepareCheckWidget( entry.checked );
-        CALAMARES_RETRANSLATE( pcw->setText( entry.text() ); )
-        m_entriesLayout->addWidget( pcw );
-        pcw->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred );
+        CheckItemWidget* ciw = new CheckItemWidget( entry.checked );
+        CALAMARES_RETRANSLATE( ciw->setText( entry.text() ); )
+        m_entriesLayout->addWidget( ciw );
+        ciw->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred );
 
         if ( !entry.checked )
         {
