@@ -33,6 +33,8 @@ public:
     void init( const QList< PrepareEntry >& checkEntries );
 
 private:
+    void showDetailsDialog( const QList< PrepareEntry >& checkEntries );
+
     QBoxLayout* m_entriesLayout;
     int m_paddingSize;
 };

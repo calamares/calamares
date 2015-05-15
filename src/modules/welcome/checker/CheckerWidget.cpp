@@ -24,7 +24,10 @@
 #include "utils/Retranslator.h"
 #include "Branding.h"
 
+#include <QAbstractButton>
 #include <QBoxLayout>
+#include <QDialog>
+#include <QDialogButtonBox>
 #include <QLabel>
 
 
@@ -99,11 +102,19 @@ CheckerWidget::init( const QList< PrepareEntry >& checkEntries )
                                                                  iconLabel->size() ) );
             CALAMARES_RETRANSLATE(
                 textLabel->setText( tr( "This computer does not satisfy the minimum "
-                                        "requirements for installing %1.\n"
-                                        "Installation cannot continue." )
+                                        "requirements for installing %1.<br/>"
+                                        "Installation cannot continue. "
+                                        "<a href=\"#details\">Details...</a>" )
                                         .arg( Calamares::Branding::instance()->
                                               string( Calamares::Branding::ShortVersionedName ) ) );
             )
+            textLabel->setOpenExternalLinks( false );
+            connect( textLabel, &QLabel::linkActivated,
+                     this, [ this, checkEntries ]( const QString& link )
+            {
+                if ( link == "#details" )
+                    showDetailsDialog( checkEntries );
+            } );
         }
         else
         {
@@ -112,7 +123,7 @@ CheckerWidget::init( const QList< PrepareEntry >& checkEntries )
                                                                  iconLabel->size() ) );
             CALAMARES_RETRANSLATE(
                 textLabel->setText( tr( "This computer does not satisfy some of the "
-                                        "recommended requirements for installing %1.\n"
+                                        "recommended requirements for installing %1.<br/>"
                                         "Installation can continue, but some features "
                                         "might be disabled." )
                                         .arg( Calamares::Branding::instance()->
@@ -120,4 +131,47 @@ CheckerWidget::init( const QList< PrepareEntry >& checkEntries )
             )
         }
     }
+}
+
+
+void
+CheckerWidget::showDetailsDialog( const QList< PrepareEntry >& checkEntries )
+{
+    QDialog* detailsDialog = new QDialog( this );
+    QBoxLayout* mainLayout = new QVBoxLayout;
+    detailsDialog->setLayout( mainLayout );
+
+    QLabel* textLabel = new QLabel;
+    mainLayout->addWidget( textLabel );
+    CALAMARES_RETRANSLATE(
+        textLabel->setText( tr( "For best results, please ensure that this computer:" ) );
+    )
+    QBoxLayout* entriesLayout = new QVBoxLayout;
+    CalamaresUtils::unmarginLayout( entriesLayout );
+    mainLayout->addLayout( entriesLayout );
+
+    for ( const PrepareEntry& entry : checkEntries )
+    {
+        CheckItemWidget* ciw = new CheckItemWidget( entry.checked );
+        CALAMARES_RETRANSLATE( ciw->setText( entry.enumerationText() ); )
+        entriesLayout->addWidget( ciw );
+        ciw->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred );
+
+        ciw->setAutoFillBackground( true );
+        QPalette pal( ciw->palette() );
+        pal.setColor( QPalette::Background, Qt::white );
+        ciw->setPalette( pal );
+    }
+
+    QDialogButtonBox* buttonBox = new QDialogButtonBox( QDialogButtonBox::Close,
+                                                        Qt::Horizontal,
+                                                        this );
+    mainLayout->addWidget( buttonBox );
+
+    detailsDialog->setModal( true );
+
+    connect( buttonBox, &QDialogButtonBox::clicked,
+             detailsDialog, &QDialog::close );
+    detailsDialog->exec();
+    detailsDialog->deleteLater();
 }
