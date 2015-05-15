@@ -30,7 +30,10 @@ class QWidget;
 struct PrepareEntry
 {
     QString name;
-    std::function< QString() > text;
+    std::function< QString() > enumerationText; //Partial string, inserted in a
+                                                //list of requirements to satisfy.
+    std::function< QString() > negatedText;     //Complete sentence about this requirement
+                                                //not having been met.
     bool checked;
     bool required;
 };

@@ -90,6 +90,8 @@ RequirementsChecker::RequirementsChecker( QObject* parent )
                     entry,
                     [this]{ return tr( "has at least %1 GB available drive space" )
                         .arg( m_requiredStorageGB ); },
+                    [this]{ return tr( "There is not enough drive space. At least %1 GB is required." )
+                        .arg( m_requiredStorageGB ); },
                     enoughStorage,
                     m_entriesToRequire.contains( entry )
                 } );
@@ -98,6 +100,8 @@ RequirementsChecker::RequirementsChecker( QObject* parent )
                     entry,
                     [this]{ return tr( "has at least %1 GB working memory" )
                         .arg( m_requiredRamGB ); },
+                    [this]{ return tr( "The system does not have enough working memory. At least %1 GB is required." )
+                        .arg( m_requiredRamGB ); },
                     enoughRam,
                     m_entriesToRequire.contains( entry )
                 } );
@@ -105,6 +109,7 @@ RequirementsChecker::RequirementsChecker( QObject* parent )
                 checkEntries.append( {
                     entry,
                     [this]{ return tr( "is plugged in to a power source" ); },
+                    [this]{ return tr( "The system is not plugged in to a power source." ); },
                     hasPower,
                     m_entriesToRequire.contains( entry )
                 } );
@@ -112,6 +117,7 @@ RequirementsChecker::RequirementsChecker( QObject* parent )
                 checkEntries.append( {
                     entry,
                     [this]{ return tr( "is connected to the Internet" ); },
+                    [this]{ return tr( "The system is not connected to the Internet." ); },
                     hasInternet,
                     m_entriesToRequire.contains( entry )
                 } );
@@ -120,6 +126,7 @@ RequirementsChecker::RequirementsChecker( QObject* parent )
         m_actualWidget->init( checkEntries );
         m_widget->layout()->removeWidget( waitingWidget );
         waitingWidget->deleteLater();
+        m_actualWidget->setParent( m_widget );
         m_widget->layout()->addWidget( m_actualWidget );
 
         bool canGoNext = true;
