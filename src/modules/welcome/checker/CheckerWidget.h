@@ -34,6 +34,7 @@ public:
 
 private:
     QBoxLayout* m_entriesLayout;
+    int m_paddingSize;
 };
 
 #endif // CHECKERWIDGET_H

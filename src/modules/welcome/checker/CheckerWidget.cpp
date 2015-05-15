@@ -29,25 +29,21 @@
 
 
 CheckerWidget::CheckerWidget( QWidget* parent )
-    : QWidget()
+    : QWidget( parent )
 {
+    setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Minimum );
+
     QBoxLayout* mainLayout = new QVBoxLayout;
     setLayout( mainLayout );
 
-    QLabel* text = new QLabel( this );
-    CALAMARES_RETRANSLATE(
-        text->setText( tr( "For best results, please ensure that this computer:" ) );
-    )
-
-    mainLayout->addSpacing( CalamaresUtils::defaultFontHeight() );
-    mainLayout->addWidget( text );
     QHBoxLayout* spacerLayout = new QHBoxLayout;
     mainLayout->addLayout( spacerLayout );
-    spacerLayout->addSpacing( CalamaresUtils::defaultFontHeight() * 2 );
+    m_paddingSize = qBound( 32, CalamaresUtils::defaultFontHeight() * 4, 128 );
+    spacerLayout->addSpacing( m_paddingSize );
     m_entriesLayout = new QVBoxLayout;
     spacerLayout->addLayout( m_entriesLayout );
+    spacerLayout->addSpacing( m_paddingSize );
     CalamaresUtils::unmarginLayout( spacerLayout );
-    mainLayout->addStretch();
 }
 
 
@@ -59,32 +55,41 @@ CheckerWidget::init( const QList< PrepareEntry >& checkEntries )
 
     for ( const PrepareEntry& entry : checkEntries )
     {
-        CheckItemWidget* ciw = new CheckItemWidget( entry.checked );
-        CALAMARES_RETRANSLATE( ciw->setText( entry.text() ); )
-        m_entriesLayout->addWidget( ciw );
-        ciw->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred );
-
         if ( !entry.checked )
         {
+            CheckItemWidget* ciw = new CheckItemWidget( entry.checked );
+            CALAMARES_RETRANSLATE( ciw->setText( entry.negatedText() ); )
+            m_entriesLayout->addWidget( ciw );
+            ciw->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred );
+
             allChecked = false;
             if ( entry.required )
             {
                 requirementsSatisfied = false;
             }
+            ciw->setAutoFillBackground( true );
+            QPalette pal( ciw->palette() );
+            pal.setColor( QPalette::Background, Qt::white );
+            ciw->setPalette( pal );
+
         }
     }
 
     if ( !allChecked )
     {
-        QBoxLayout* mainLayout = dynamic_cast< QBoxLayout* >( layout() );
-        QBoxLayout* infoLayout = new QHBoxLayout;
         QLabel* iconLabel = new QLabel;
         QLabel* textLabel = new QLabel;
         int iconSize = qBound( 32, CalamaresUtils::defaultFontHeight() * 6, 128 );
+        QHBoxLayout* iconLayout = new QHBoxLayout;
+        iconLayout->addStretch();
+        iconLayout->addWidget( iconLabel );
+        iconLayout->addStretch();
         iconLabel->setFixedSize( iconSize, iconSize );
+        CalamaresUtils::unmarginLayout( iconLayout );
         textLabel->setWordWrap( true );
-        infoLayout->addWidget( iconLabel );
-        infoLayout->addWidget( textLabel );
+        m_entriesLayout->insertLayout( 0, iconLayout );
+        m_entriesLayout->insertWidget( 1, textLabel );
+        m_entriesLayout->insertSpacing( 2, CalamaresUtils::defaultFontHeight() / 2 );
         textLabel->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred );
 
         if ( !requirementsSatisfied )
@@ -114,7 +119,5 @@ CheckerWidget::init( const QList< PrepareEntry >& checkEntries )
                                               string( Calamares::Branding::ShortVersionedName ) ) );
             )
         }
-
-        mainLayout->insertLayout( mainLayout->count(), infoLayout );
     }
 }
