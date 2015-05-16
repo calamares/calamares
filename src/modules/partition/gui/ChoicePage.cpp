@@ -181,7 +181,9 @@ ChoicePage::init( PartitionCoreModule* core, const OsproberEntryList& osproberEn
                                               "You can choose which operating system you want each time the "
                                               "computer starts up." )
                                             .arg( Calamares::Branding::instance()->
-                                                  string( Calamares::Branding::ShortVersionedName ) ) );
+                                                  string( Calamares::Branding::ShortVersionedName ) )
+                                            .arg( Calamares::Branding::instance()->
+                                                  string( Calamares::Branding::ShortProductName ) ) );
 
                 if ( core->deviceModel()->rowCount() < 2 )
                     eraseButton->setText( tr( "<strong>Erase disk and install %1</strong><br/>"
@@ -228,7 +230,9 @@ ChoicePage::init( PartitionCoreModule* core, const OsproberEntryList& osproberEn
                                           "You can choose which operating system you want each time the "
                                           "computer starts up." )
                                         .arg( Calamares::Branding::instance()->
-                                              string( Calamares::Branding::ShortVersionedName ) ) );
+                                              string( Calamares::Branding::ShortVersionedName ) )
+                                        .arg( Calamares::Branding::instance()->
+                                              string( Calamares::Branding::ShortProductName ) ) );
 
             if ( core->deviceModel()->rowCount() < 2 )
                 eraseButton->setText( tr( "<strong>Erase disk and install %1</strong><br/>"
