@@ -14,7 +14,7 @@
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="180"/>
         <source>With this operation, the partition &lt;strong&gt;%1&lt;/strong&gt; which contains %4 will be shrunk to %2MB and a new %3MB partition will be created for %5.</source>
-        <translation type="unfinished"/>
+        <translation>Po šios operacijos, skaidinys &lt;strong&gt;%1&lt;/strong&gt; kuriame yra %4 bus sumažintas iki %2MB ir bus sukurtas naujas %3MB skaidinys sistemai %5.</translation>
     </message>
 </context>
 <context>
@@ -55,7 +55,7 @@
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/applyprogressdialogwidgetbase.ui" line="91"/>
         <source>Status</source>
-        <translation>Statusas</translation>
+        <translation>Būsena</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/applyprogressdialogwidgetbase.ui" line="107"/>
@@ -127,7 +127,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="331"/>
         <source>Reboot</source>
-        <translation>Perkrauti</translation>
+        <translation>Paleisti iš naujo</translation>
     </message>
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="410"/>
@@ -227,7 +227,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/libcalamares/JobQueue.cpp" line="88"/>
         <source>Done</source>
-        <translation>Baigta</translation>
+        <translation>Atlikta</translation>
     </message>
 </context>
 <context>
@@ -386,7 +386,7 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="300"/>
         <source>&amp;Quit</source>
-        <translation>&amp;Išeiti</translation>
+        <translation>&amp;Baigti</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="185"/>
@@ -449,6 +449,24 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
     </message>
 </context>
 <context>
+    <name>CheckerWidget</name>
+    <message>
+        <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="104"/>
+        <source>This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;Installation cannot continue. &lt;a href=&quot;#details&quot;&gt;Details...&lt;/a&gt;</source>
+        <translation>Šis kompiuteris netenkina minimalių %1 diegimo reikalavimų.&lt;br/&gt;Diegimas negali būti tęsiamas. &lt;a href=&quot;#details&quot;&gt;Išsamiau...&lt;/a&gt;</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="125"/>
+        <source>This computer does not satisfy some of the recommended requirements for installing %1.&lt;br/&gt;Installation can continue, but some features might be disabled.</source>
+        <translation>Šis kompiuteris netenkina kai kurių %1 diegimo rekomenduojamų reikalavimų.&lt;br/&gt;Diegimas gali būti tęsiamas, bet kai kurios funkcijos gali būti išjungtos.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="147"/>
+        <source>For best results, please ensure that this computer:</source>
+        <translation>Norėdami pasiekti geriausių rezultatų, įsitikinkite kad šis kompiuteris:</translation>
+    </message>
+</context>
+<context>
     <name>ChoicePage</name>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="115"/>
@@ -490,7 +508,7 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="198"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="245"/>
         <source>&lt;strong&gt;Replace a partition with %1&lt;/strong&gt;&lt;br/&gt;You will be offered a choice of which partition to erase.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;Pakeisti skadinį, įrašant %1&lt;/strong&gt;&lt;br/&gt;Galėsite pasirinkti, kurį skaidinį norite ištrinti.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="176"/>
@@ -1402,7 +1420,7 @@ Kai kurios failų sistemos tam, kad būtų palaikomos, reikalauja, kad būtų į
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/filesystemsupportdialogwidgetbase.ui" line="100"/>
         <source>Read Label</source>
-        <translation>Nuskaityti etikete</translation>
+        <translation>Nuskaityti etiketę</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/filesystemsupportdialogwidgetbase.ui" line="105"/>
@@ -1412,7 +1430,7 @@ Kai kurios failų sistemos tam, kad būtų palaikomos, reikalauja, kad būtų į
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/filesystemsupportdialogwidgetbase.ui" line="110"/>
         <source>Read Usage</source>
-        <translation>Nuskaityti apkrova</translation>
+        <translation>Nuskaityti apkrovą</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/filesystemsupportdialogwidgetbase.ui" line="115"/>
@@ -1536,62 +1554,6 @@ Kai kurios failų sistemos tam, kad būtų palaikomos, reikalauja, kad būtų į
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="104"/>
         <source>The installer failed to update partition table on disk &apos;%1&apos;.</source>
         <translation>Diegimo programai nepavyko atnaujinti skaidinių lentelės diske &apos;%1&apos;.</translation>
-    </message>
-</context>
-<context>
-    <name>GreetingPage</name>
-    <message>
-        <location filename="../src/modules/greeting/GreetingPage.cpp" line="134"/>
-        <source>&lt;h1&gt;Welcome to the %1 installer.&lt;/h1&gt;&lt;br/&gt;This program will ask you some questions and set up %2 on your computer.</source>
-        <translation>&lt;h1&gt;Sveiki atvykę į %1 diegimo programą.&lt;/h1&gt;&lt;br/&gt;Ši programa užduos jums kelis klausimus ir padės jūsų kompiuteryje nustatyti %2.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/greeting/GreetingPage.cpp" line="152"/>
-        <source>About %1 installer</source>
-        <translation>Apie %1 diegimo programą</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/greeting/GreetingPage.cpp" line="154"/>
-        <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2015 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Thanks to: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Philip Müller, Pier Luigi Fiorini and Rohan Garg.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;http://calamares.io/&quot;&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - Liberating Software.</source>
-        <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;sistemai %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Autorinės Teisės 2014-2015 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Dėkojame: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Philip Müller, Pier Luigi Fiorini and Rohan Garg.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;http://calamares.io/&quot;&gt;Calamares&lt;/a&gt; kūrimą remia &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - Išlaisvinanti Programinė Įranga.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/greeting/GreetingPage.cpp" line="184"/>
-        <source>%1 support</source>
-        <translation>%1 palaikymas</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/greeting/GreetingPage.ui" line="14"/>
-        <source>Form</source>
-        <translation>Forma</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/greeting/GreetingPage.ui" line="104"/>
-        <source>&amp;Release notes</source>
-        <translation>&amp;Laidos informacija</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/greeting/GreetingPage.ui" line="114"/>
-        <source>&amp;Known issues</source>
-        <translation>Ž&amp;inomos problemos</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/greeting/GreetingPage.ui" line="124"/>
-        <source>&amp;Support</source>
-        <translation>&amp;Palaikymas</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/greeting/GreetingPage.ui" line="134"/>
-        <source>&amp;About</source>
-        <translation>&amp;Apie</translation>
-    </message>
-</context>
-<context>
-    <name>GreetingViewStep</name>
-    <message>
-        <location filename="../src/modules/greeting/GreetingViewStep.cpp" line="43"/>
-        <source>Welcome</source>
-        <translation>Pasisveikinimas</translation>
     </message>
 </context>
 <context>
@@ -1865,7 +1827,7 @@ Kai kurios failų sistemos tam, kad būtų palaikomos, reikalauja, kad būtų į
         <location filename="../src/modules/partition/partitionmanager/src/gui/partpropswidgetbase.ui" line="92"/>
         <source>Recreate existing file system</source>
         <comment>@action:button</comment>
-        <translation>Atkurti egzistuojančia failų sistemą</translation>
+        <translation>Atkurti esamą failų sistemą</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/partpropswidgetbase.ui" line="106"/>
@@ -1883,7 +1845,7 @@ Kai kurios failų sistemos tam, kad būtų palaikomos, reikalauja, kad būtų į
         <location filename="../src/modules/partition/partitionmanager/src/gui/partpropswidgetbase.ui" line="140"/>
         <source>Status:</source>
         <comment>@label</comment>
-        <translation>Statusas:</translation>
+        <translation>Būsena:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/partpropswidgetbase.ui" line="157"/>
@@ -2109,7 +2071,7 @@ Kai kurios failų sistemos tam, kad būtų palaikomos, reikalauja, kad būtų į
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="209"/>
         <source>&lt;strong&gt;Replace&lt;/strong&gt; a partition with %1.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;Pakeisti&lt;/strong&gt; skaidinį, įrašant %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="214"/>
@@ -2129,7 +2091,7 @@ Kai kurios failų sistemos tam, kad būtų palaikomos, reikalauja, kad būtų į
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="241"/>
         <source>&lt;strong&gt;Replace&lt;/strong&gt; a partition on disk &lt;strong&gt;%2&lt;/strong&gt; (%3) with %1.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;Pakeisti&lt;/strong&gt; skaidinį diske &lt;strong&gt;%2&lt;/strong&gt; (%3), įrašant %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="248"/>
@@ -2150,61 +2112,6 @@ Kai kurios failų sistemos tam, kad būtų palaikomos, reikalauja, kad būtų į
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="274"/>
         <source>After:</source>
         <translation>Po:</translation>
-    </message>
-</context>
-<context>
-    <name>PreparePage</name>
-    <message>
-        <location filename="../src/modules/prepare/PreparePage.cpp" line="39"/>
-        <source>For best results, please ensure that this computer:</source>
-        <translation>Norint pasiekti geriausių rezultatų, įsitikinkite kad šis kompiuteris:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/prepare/PreparePage.cpp" line="96"/>
-        <source>This computer does not satisfy the minimum requirements for installing %1.
-Installation cannot continue.</source>
-        <translation>Šis kompiuteris netenkina minimalių %1 diegimo reikalavimų.
-Diegimas negali būti tęsiamas.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/prepare/PreparePage.cpp" line="109"/>
-        <source>This computer does not satisfy some of the recommended requirements for installing %1.
-Installation can continue, but some features might be disabled.</source>
-        <translation>Šis kompiuteris netenkina kai kurių %1 diegimo rekomenduojamų reikalavimų.
-Diegimas gali būti tęsiamas, bet kai kurios funkcijos gali būti išjungtos.</translation>
-    </message>
-</context>
-<context>
-    <name>PrepareViewStep</name>
-    <message>
-        <location filename="../src/modules/prepare/PrepareViewStep.cpp" line="54"/>
-        <source>Gathering system information...</source>
-        <translation>Renkama sistemos informacija...</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/prepare/PrepareViewStep.cpp" line="91"/>
-        <source>has at least %1 GB available drive space</source>
-        <translation>turi bent %1 GB laisvos disko vietos</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/prepare/PrepareViewStep.cpp" line="99"/>
-        <source>has at least %1 GB working memory</source>
-        <translation>turi bent %1 GB darbinės atminties</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/prepare/PrepareViewStep.cpp" line="107"/>
-        <source>is plugged in to a power source</source>
-        <translation>yra įjungtas į energijos šaltinį</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/prepare/PrepareViewStep.cpp" line="114"/>
-        <source>is connected to the Internet</source>
-        <translation>yra prijungtas prie Interneto</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/prepare/PrepareViewStep.cpp" line="158"/>
-        <source>Prepare</source>
-        <translation>Paruošimas</translation>
     </message>
 </context>
 <context>
@@ -2244,7 +2151,7 @@ Diegimas gali būti tęsiamas, bet kai kurios funkcijos gali būti išjungtos.</
     <message>
         <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="20"/>
         <source>KDE Release Builder</source>
-        <translation>KDE Išleidimo kurėjas</translation>
+        <translation>KDE Išleidimo kūrėjas</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="32"/>
@@ -2418,6 +2325,54 @@ Diegimas gali būti tęsiamas, bet kai kurios funkcijos gali būti išjungtos.</
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="231"/>
         <source>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 will be installed on %2.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;all data on partition%2 will be lost.</source>
         <translation>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 sistema bus įdiegta skaidinyje %2.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Įspėjimas: &lt;/font&gt;visi duomenys skaidinyje%2 bus prarasti.</translation>
+    </message>
+</context>
+<context>
+    <name>RequirementsChecker</name>
+    <message>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="54"/>
+        <source>Gathering system information...</source>
+        <translation>Renkama sistemos informacija...</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="91"/>
+        <source>has at least %1 GB available drive space</source>
+        <translation>turi bent %1 GB laisvos vietos diske</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="93"/>
+        <source>There is not enough drive space. At least %1 GB is required.</source>
+        <translation>Neužtenka vietos diske. Reikia bent %1 GB.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="101"/>
+        <source>has at least %1 GB working memory</source>
+        <translation>turi bent %1 GB darbinės atminties</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="103"/>
+        <source>The system does not have enough working memory. At least %1 GB is required.</source>
+        <translation>Sistemai neužtenka darbinės atminties. Reikia bent %1 GB.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="111"/>
+        <source>is plugged in to a power source</source>
+        <translation>yra įjungtas į maitinimo šaltinį</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="112"/>
+        <source>The system is not plugged in to a power source.</source>
+        <translation>Sistema nėra įjungta į maitinimo šaltinį.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="119"/>
+        <source>is connected to the Internet</source>
+        <translation>yra prijungtas prie Interneto</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="120"/>
+        <source>The system is not connected to the Internet.</source>
+        <translation>Sistema nėra prijungta prie Interneto.</translation>
     </message>
 </context>
 <context>
@@ -2852,6 +2807,67 @@ Diegimas gali būti tęsiamas, bet kai kurios funkcijos gali būti išjungtos.</
         <location filename="../src/modules/users/UsersViewStep.cpp" line="46"/>
         <source>Users</source>
         <translation>Vartotojai</translation>
+    </message>
+</context>
+<context>
+    <name>WelcomePage</name>
+    <message>
+        <location filename="../src/modules/welcome/WelcomePage.ui" line="14"/>
+        <source>Form</source>
+        <translation>Forma</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/WelcomePage.ui" line="104"/>
+        <source>&amp;Language:</source>
+        <translation>Ka&amp;lba:</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/WelcomePage.ui" line="175"/>
+        <source>&amp;Release notes</source>
+        <translation>Lai&amp;dos informacija</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/WelcomePage.ui" line="185"/>
+        <source>&amp;Known issues</source>
+        <translation>Ž&amp;inomos problemos</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/WelcomePage.ui" line="195"/>
+        <source>&amp;Support</source>
+        <translation>&amp;Palaikymas</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/WelcomePage.ui" line="205"/>
+        <source>&amp;About</source>
+        <translation>&amp;Apie</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/WelcomePage.cpp" line="56"/>
+        <source>&lt;h1&gt;Welcome to the %1 installer.&lt;/h1&gt;&lt;br/&gt;This program will ask you some questions and set up %2 on your computer.</source>
+        <translation>&lt;h1&gt;Sveiki atvykę į %1 diegimo programą.&lt;/h1&gt;&lt;br/&gt;Ši programa užduos jums kelis klausimus ir padės jūsų kompiuteryje nustatyti %2.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/WelcomePage.cpp" line="74"/>
+        <source>About %1 installer</source>
+        <translation>Apie %1 diegimo programą</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/WelcomePage.cpp" line="76"/>
+        <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2015 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Thanks to: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Philip Müller, Pier Luigi Fiorini and Rohan Garg.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;http://calamares.io/&quot;&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - Liberating Software.</source>
+        <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;sistemai %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Autorinės Teisės 2014-2015 Teo Mrnjavac &lt;teo@kde.org&gt;&lt;br/&gt;Dėkojame: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Philip Müller, Pier Luigi Fiorini and Rohan Garg.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;http://calamares.io/&quot;&gt;Calamares&lt;/a&gt; kūrimą remia &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - Išlaisvinanti Programinė Įranga.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/WelcomePage.cpp" line="191"/>
+        <source>%1 support</source>
+        <translation>%1 palaikymas</translation>
+    </message>
+</context>
+<context>
+    <name>WelcomeViewStep</name>
+    <message>
+        <location filename="../src/modules/welcome/WelcomeViewStep.cpp" line="48"/>
+        <source>Welcome</source>
+        <translation>Pasisveikinimas</translation>
     </message>
 </context>
 </TS>
