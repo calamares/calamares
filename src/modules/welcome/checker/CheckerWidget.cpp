@@ -169,6 +169,7 @@ CheckerWidget::showDetailsDialog( const QList< PrepareEntry >& checkEntries )
     mainLayout->addWidget( buttonBox );
 
     detailsDialog->setModal( true );
+    detailsDialog->setWindowTitle( tr( "System requirements" ) );
 
     connect( buttonBox, &QDialogButtonBox::clicked,
              detailsDialog, &QDialog::close );
