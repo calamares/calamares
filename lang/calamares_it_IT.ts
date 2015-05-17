@@ -465,6 +465,11 @@ Il programma di installazione sarà chiuso, e tutte le modifiche andranno perse.
         <source>For best results, please ensure that this computer:</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="172"/>
+        <source>System requirements</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ChoicePage</name>
@@ -480,16 +485,16 @@ Il programma di installazione sarà chiuso, e tutte le modifiche andranno perse.
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="119"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="187"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="234"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="189"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="238"/>
         <source>&lt;strong&gt;Erase disk and install %1&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;This will delete all of your programs, documents, photos, music, and any other files.</source>
         <translation>&lt;strong&gt;Cancella il disco e installa %1&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Attenzione: &lt;/font&gt;Questo cancellerà tutti i tuoi programmi, documenti, foto, musica ed ogni altro file..</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="125"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="162"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="193"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="240"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="195"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="244"/>
         <source>&lt;strong&gt;Erase disk and install %1&lt;/strong&gt;&lt;br/&gt;You will be offered a choice of which disk to erase.</source>
         <translation>&lt;strong&gt;Cancella il disco e installa %1&lt;/strong&gt;&lt;br/&gt;Ti verrà chiesto quale disco cancellare.</translation>
     </message>
@@ -505,8 +510,8 @@ Il programma di installazione sarà chiuso, e tutte le modifiche andranno perse.
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="167"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="198"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="245"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="200"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="249"/>
         <source>&lt;strong&gt;Replace a partition with %1&lt;/strong&gt;&lt;br/&gt;You will be offered a choice of which partition to erase.</source>
         <translation>&lt;strong&gt;Sostituisci una partizione con %1&lt;/strong&gt;&lt;br/&gt;Ti verrà chiesto quale partizione cancellare.</translation>
     </message>
@@ -521,17 +526,17 @@ Il programma di installazione sarà chiuso, e tutte le modifiche andranno perse.
         <translation>&lt;strong&gt;Installa %1 a fianco del tuo attuale sistema operativo&lt;/strong&gt;&lt;br/&gt;Il programma di installazione ridurrà un volume esistente per liberare spazio per %2. Potrai scegliere quale sistema operativo far partire ad ogni accensione del computer.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="223"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="225"/>
         <source>This computer currently has multiple operating systems on it. What would you like to do?</source>
         <translation>Su questo computer sono installati più sistemi operativi. Cosa vuoi fare?</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="226"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="228"/>
         <source>&lt;strong&gt;Install %1 alongside your current operating systems&lt;/strong&gt;&lt;br/&gt;The installer will shrink an existing volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
         <translation>&lt;strong&gt;Installa %1 a fianco del tuo attuale sistema operativo&lt;/strong&gt;&lt;br/&gt;Il programma di installazione ridurrà un volume esistente per liberare spazio per %2. Potrai scegliere quale sistema operativo far partire ad ogni accensione del computer.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="261"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="265"/>
         <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself, or choose multiple partitions for %1.</source>
         <translation>&lt;strong&gt;Partizionamento manuale&lt;/strong&gt;&lt;br/&gt;Puoi creare o ridurre le partizioni manualmente, o scegliere partizioni multiple per %1.</translation>
     </message>
