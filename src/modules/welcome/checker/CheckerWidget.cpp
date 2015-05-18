@@ -80,26 +80,15 @@ CheckerWidget::init( const QList< PrepareEntry >& checkEntries )
 
     if ( !allChecked )
     {
-        QLabel* iconLabel = new QLabel;
         QLabel* textLabel = new QLabel;
-        int iconSize = qBound( 32, CalamaresUtils::defaultFontHeight() * 6, 128 );
-        QHBoxLayout* iconLayout = new QHBoxLayout;
-        iconLayout->addStretch();
-        iconLayout->addWidget( iconLabel );
-        iconLayout->addStretch();
-        iconLabel->setFixedSize( iconSize, iconSize );
-        CalamaresUtils::unmarginLayout( iconLayout );
+
         textLabel->setWordWrap( true );
-        m_entriesLayout->insertLayout( 0, iconLayout );
-        m_entriesLayout->insertWidget( 1, textLabel );
-        m_entriesLayout->insertSpacing( 2, CalamaresUtils::defaultFontHeight() / 2 );
+        m_entriesLayout->insertWidget( 0, textLabel );
+        m_entriesLayout->insertSpacing( 1, CalamaresUtils::defaultFontHeight() / 2 );
         textLabel->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred );
 
         if ( !requirementsSatisfied )
         {
-            iconLabel->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::Fail,
-                                                                 CalamaresUtils::Original,
-                                                                 iconLabel->size() ) );
             CALAMARES_RETRANSLATE(
                 textLabel->setText( tr( "This computer does not satisfy the minimum "
                                         "requirements for installing %1.<br/>"
@@ -118,9 +107,6 @@ CheckerWidget::init( const QList< PrepareEntry >& checkEntries )
         }
         else
         {
-            iconLabel->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::Information,
-                                                                 CalamaresUtils::Original,
-                                                                 iconLabel->size() ) );
             CALAMARES_RETRANSLATE(
                 textLabel->setText( tr( "This computer does not satisfy some of the "
                                         "recommended requirements for installing %1.<br/>"
