@@ -191,7 +191,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="14"/>
         <source>Form</source>
-        <translation>Vorm</translation>
+        <translation>Formulier</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="24"/>
@@ -453,22 +453,22 @@ Het installatieprogramma zal afsluiten en alle wijzigingen zullen verloren gaan.
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="104"/>
         <source>This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;Installation cannot continue. &lt;a href=&quot;#details&quot;&gt;Details...&lt;/a&gt;</source>
-        <translation type="unfinished"/>
+        <translation>Deze computer voldoet niet aan de minimumvereisten om %1 te installeren.&lt;br/&gt;De installatie kan niet doorgaan. &lt;a href=&quot;#details&quot;&gt;Details...&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="125"/>
         <source>This computer does not satisfy some of the recommended requirements for installing %1.&lt;br/&gt;Installation can continue, but some features might be disabled.</source>
-        <translation type="unfinished"/>
+        <translation>Deze computer voldoet niet aan enkele van de aanbevolen specificaties om %1 te installeren.&lt;br/&gt;De installatie kan doorgaan, maar sommige functies kunnen uitgeschakeld zijn.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="147"/>
         <source>For best results, please ensure that this computer:</source>
-        <translation type="unfinished"/>
+        <translation>Voor de beste resultaten is het aangeraden dat deze computer:</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="172"/>
         <source>System requirements</source>
-        <translation type="unfinished"/>
+        <translation>Systeemvereisten</translation>
     </message>
 </context>
 <context>
@@ -1502,7 +1502,7 @@ Sommige bestandssystemen vereisen externe programma&apos;s om ondersteund te wor
     <message>
         <location filename="../src/modules/finished/FinishedPage.ui" line="14"/>
         <source>Form</source>
-        <translation>Vorm</translation>
+        <translation>Formulier</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedPage.ui" line="77"/>
@@ -1724,7 +1724,7 @@ Sommige bestandssystemen vereisen externe programma&apos;s om ondersteund te wor
     <message>
         <location filename="../src/modules/keyboard/KeyboardPage.ui" line="14"/>
         <source>Form</source>
-        <translation>Vorm</translation>
+        <translation>Formulier</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardPage.ui" line="70"/>
@@ -1742,7 +1742,7 @@ Sommige bestandssystemen vereisen externe programma&apos;s om ondersteund te wor
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="14"/>
         <source>Form</source>
-        <translation>Vorm</translation>
+        <translation>Formulier</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="33"/>
@@ -2008,7 +2008,7 @@ Sommige bestandssystemen vereisen externe programma&apos;s om ondersteund te wor
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="14"/>
         <source>Form</source>
-        <translation>Vorm</translation>
+        <translation>Formulier</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="22"/>
@@ -2274,7 +2274,7 @@ Sommige bestandssystemen vereisen externe programma&apos;s om ondersteund te wor
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.ui" line="14"/>
         <source>Form</source>
-        <translation>Vorm</translation>
+        <translation>Formulier</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.ui" line="22"/>
@@ -2337,47 +2337,47 @@ Sommige bestandssystemen vereisen externe programma&apos;s om ondersteund te wor
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="54"/>
         <source>Gathering system information...</source>
-        <translation type="unfinished"/>
+        <translation>Systeeminformatie verzamelen...</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="91"/>
         <source>has at least %1 GB available drive space</source>
-        <translation type="unfinished"/>
+        <translation>tenminste %1 GB vrije schijfruimte heeft</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="93"/>
         <source>There is not enough drive space. At least %1 GB is required.</source>
-        <translation type="unfinished"/>
+        <translation>Er is onvoldoende vrije schijfruimte. Tenminste %1 GB is vereist.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="101"/>
         <source>has at least %1 GB working memory</source>
-        <translation type="unfinished"/>
+        <translation>tenminste %1 GB werkgeheugen heeft</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="103"/>
         <source>The system does not have enough working memory. At least %1 GB is required.</source>
-        <translation type="unfinished"/>
+        <translation>Dit systeem heeft onvoldoende werkgeheugen. Tenminste %1 GB is vereist.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="111"/>
         <source>is plugged in to a power source</source>
-        <translation type="unfinished"/>
+        <translation>aangesloten is op netstroom</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="112"/>
         <source>The system is not plugged in to a power source.</source>
-        <translation type="unfinished"/>
+        <translation>Dit systeem is niet aangesloten op netstroom. </translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="119"/>
         <source>is connected to the Internet</source>
-        <translation type="unfinished"/>
+        <translation>verbonden is met het Internet</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="120"/>
         <source>The system is not connected to the Internet.</source>
-        <translation type="unfinished"/>
+        <translation>Dit systeem is niet verbonden met het Internet.</translation>
     </message>
 </context>
 <context>
@@ -2819,52 +2819,52 @@ Sommige bestandssystemen vereisen externe programma&apos;s om ondersteund te wor
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>Formulier</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="104"/>
         <source>&amp;Language:</source>
-        <translation type="unfinished"/>
+        <translation>Taa&amp;l:</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="175"/>
         <source>&amp;Release notes</source>
-        <translation type="unfinished"/>
+        <translation>Uitgaveopme&amp;rkingen</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="185"/>
         <source>&amp;Known issues</source>
-        <translation type="unfinished"/>
+        <translation>Ge&amp;kende problemen</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="195"/>
         <source>&amp;Support</source>
-        <translation type="unfinished"/>
+        <translation>Onder&amp;steuning</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="205"/>
         <source>&amp;About</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Over</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="56"/>
         <source>&lt;h1&gt;Welcome to the %1 installer.&lt;/h1&gt;&lt;br/&gt;This program will ask you some questions and set up %2 on your computer.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;h1&gt;Welkom bij het %1 installatieprogramma.&lt;/h1&gt;&lt;br/&gt;Dit programma zal u enkele vragen stellen en %2 op uw computer installeren.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="74"/>
         <source>About %1 installer</source>
-        <translation type="unfinished"/>
+        <translation>Over het %1 installatieprogramma</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="76"/>
         <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2015 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Thanks to: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Philip Müller, Pier Luigi Fiorini and Rohan Garg.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;http://calamares.io/&quot;&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - Liberating Software.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;voor %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2015 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Met dank aan: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Philip Müller, Pier Luigi Fiorini en Rohan Garg.&lt;br/&gt;&lt;br/&gt;De ontwikkeling van &lt;a href=&quot;http://calamares.io/&quot;&gt;Calamares&lt;/a&gt; is gesponsord door &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - Liberating Software.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="191"/>
         <source>%1 support</source>
-        <translation type="unfinished"/>
+        <translation>%1 ondersteuning</translation>
     </message>
 </context>
 <context>
@@ -2872,7 +2872,7 @@ Sommige bestandssystemen vereisen externe programma&apos;s om ondersteund te wor
     <message>
         <location filename="../src/modules/welcome/WelcomeViewStep.cpp" line="48"/>
         <source>Welcome</source>
-        <translation type="unfinished"/>
+        <translation>Welkom</translation>
     </message>
 </context>
 </TS>

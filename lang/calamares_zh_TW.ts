@@ -468,7 +468,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="172"/>
         <source>System requirements</source>
-        <translation type="unfinished"/>
+        <translation>系統需求</translation>
     </message>
 </context>
 <context>
