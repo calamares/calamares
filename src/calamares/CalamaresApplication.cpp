@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -46,8 +46,7 @@ CalamaresApplication::CalamaresApplication( int& argc, char* argv[] )
     setApplicationName( QLatin1String( CALAMARES_APPLICATION_NAME ) );
     setApplicationVersion( QLatin1String( CALAMARES_VERSION ) );
 
-    QString startupLocale = QLocale::system().uiLanguages().first();
-    CalamaresUtils::installTranslator( startupLocale, this );
+    CalamaresUtils::installTranslator( QLocale::system(), QString(), this );
 
     QFont f = font();
 
@@ -82,7 +81,7 @@ CalamaresApplication::init()
     setWindowIcon( QIcon( Calamares::Branding::instance()->
                           imagePath( Calamares::Branding::ProductIcon ) ) );
 
-    initPlugins();
+    initPlugins(); //also shows main window
 }
 
 

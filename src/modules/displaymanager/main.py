@@ -39,8 +39,11 @@ desktop_environments = [
     DesktopEnvironment('/usr/bin/lxsession', 'LXDE'),
     DesktopEnvironment('/usr/bin/startlxde', 'LXDE'),
     DesktopEnvironment('/usr/bin/lxqt-session', 'lxqt'),
-    DesktopEnvironment('/usr/bin/openbox-session', 'openbox'),
-    DesktopEnvironment('/usr/bin/pekwm', 'pekwm')
+    DesktopEnvironment('/usr/bin/pekwm', 'pekwm'),
+    DesktopEnvironment('/usr/bin/pantheon-session', 'pantheon'),
+    DesktopEnvironment('/usr/bin/budgie-session', 'budgie-session'),
+    DesktopEnvironment('/usr/bin/i3', 'i3'),
+    DesktopEnvironment('/usr/bin/openbox-session', 'openbox')
 ]
 
 

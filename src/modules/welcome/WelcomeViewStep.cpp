@@ -16,21 +16,26 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "GreetingViewStep.h"
+#include "WelcomeViewStep.h"
 
-#include "GreetingPage.h"
+#include "WelcomePage.h"
+#include "checker/RequirementsChecker.h"
+
 
 #include <QVariant>
 
-GreetingViewStep::GreetingViewStep( QObject* parent )
+WelcomeViewStep::WelcomeViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
-    , m_widget( new GreetingPage() )
+    , m_requirementsChecker( new RequirementsChecker( this ) )
 {
     emit nextStatusChanged( true );
+    m_widget = new WelcomePage( m_requirementsChecker );
+    connect( m_requirementsChecker, &RequirementsChecker::verdictChanged,
+             this, &WelcomeViewStep::nextStatusChanged );
 }
 
 
-GreetingViewStep::~GreetingViewStep()
+WelcomeViewStep::~WelcomeViewStep()
 {
     if ( m_widget && m_widget->parent() == nullptr )
         m_widget->deleteLater();
@@ -38,68 +43,68 @@ GreetingViewStep::~GreetingViewStep()
 
 
 QString
-GreetingViewStep::prettyName() const
+WelcomeViewStep::prettyName() const
 {
     return tr( "Welcome" );
 }
 
 
 QWidget*
-GreetingViewStep::widget()
+WelcomeViewStep::widget()
 {
     return m_widget;
 }
 
 
 void
-GreetingViewStep::next()
+WelcomeViewStep::next()
 {
     emit done();
 }
 
 
 void
-GreetingViewStep::back()
+WelcomeViewStep::back()
 {}
 
 
 bool
-GreetingViewStep::isNextEnabled() const
+WelcomeViewStep::isNextEnabled() const
 {
-    return true;
+    return m_requirementsChecker->verdict();
 }
 
 
 bool
-GreetingViewStep::isBackEnabled() const
+WelcomeViewStep::isBackEnabled() const
 {
     return false;
 }
 
 
 bool
-GreetingViewStep::isAtBeginning() const
+WelcomeViewStep::isAtBeginning() const
 {
     return true;
 }
 
 
 bool
-GreetingViewStep::isAtEnd() const
+WelcomeViewStep::isAtEnd() const
 {
     return true;
 }
 
 
 QList< Calamares::job_ptr >
-GreetingViewStep::jobs() const
+WelcomeViewStep::jobs() const
 {
     return QList< Calamares::job_ptr >();
 }
 
 
 void
-GreetingViewStep::setConfigurationMap( const QVariantMap& configurationMap )
+WelcomeViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
     bool showSupportUrl =
         configurationMap.contains( "showSupportUrl" ) &&
@@ -117,5 +122,9 @@ GreetingViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     m_widget->setUpLinks( showSupportUrl,
                           showKnownIssuesUrl,
                           showReleaseNotesUrl );
+
+    if ( configurationMap.contains( "requirements" ) &&
+         configurationMap.value( "requirements" ).type() == QVariant::Map )
+        m_requirementsChecker->setConfigurationMap( configurationMap.value( "requirements" ).toMap() );
 }
 

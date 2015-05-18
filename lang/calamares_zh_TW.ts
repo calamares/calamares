@@ -217,7 +217,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>Calamares::InstallationViewStep</name>
     <message>
-        <location filename="../src/libcalamaresui/InstallationViewStep.cpp" line="75"/>
+        <location filename="../src/libcalamaresui/InstallationViewStep.cpp" line="77"/>
         <source>Install</source>
         <translation>安裝</translation>
     </message>
@@ -449,6 +449,29 @@ The installer will quit and all changes will be lost.</source>
     </message>
 </context>
 <context>
+    <name>CheckerWidget</name>
+    <message>
+        <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="104"/>
+        <source>This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;Installation cannot continue. &lt;a href=&quot;#details&quot;&gt;Details...&lt;/a&gt;</source>
+        <translation>此電腦未滿足安裝 %1 的最低配備。&lt;br/&gt;安裝無法繼續。&lt;a href=&quot;#details&quot;&gt;詳細資訊...&lt;/a&gt;</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="125"/>
+        <source>This computer does not satisfy some of the recommended requirements for installing %1.&lt;br/&gt;Installation can continue, but some features might be disabled.</source>
+        <translation>此電腦未滿足一些安裝 %1 的推薦需求。&lt;br/&gt;安裝可以繼續，但部份功能可能會被停用。</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="147"/>
+        <source>For best results, please ensure that this computer:</source>
+        <translation>為了得到最佳的結果，請確保此電腦：</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="172"/>
+        <source>System requirements</source>
+        <translation>系統需求</translation>
+    </message>
+</context>
+<context>
     <name>ChoicePage</name>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="115"/>
@@ -462,16 +485,16 @@ The installer will quit and all changes will be lost.</source>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="119"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="187"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="234"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="189"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="238"/>
         <source>&lt;strong&gt;Erase disk and install %1&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;This will delete all of your programs, documents, photos, music, and any other files.</source>
         <translation>&lt;strong&gt;抹除磁碟並安裝 %1&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;警告：&lt;/font&gt;這將會刪除所有軟體、文件、相片、音樂以及其他任何檔案！</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="125"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="162"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="193"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="240"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="195"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="244"/>
         <source>&lt;strong&gt;Erase disk and install %1&lt;/strong&gt;&lt;br/&gt;You will be offered a choice of which disk to erase.</source>
         <translation>&lt;strong&gt;抹除磁碟並安裝 %1&lt;/strong&gt;&lt;br/&gt;您將會被提醒要抹除哪一個磁碟。</translation>
     </message>
@@ -487,8 +510,8 @@ The installer will quit and all changes will be lost.</source>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="167"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="198"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="245"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="200"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="249"/>
         <source>&lt;strong&gt;Replace a partition with %1&lt;/strong&gt;&lt;br/&gt;You will be offered a choice of which partition to erase.</source>
         <translation>&lt;strong&gt;以 %1 取代一個分割區&lt;/strong&gt;&lt;br/&gt;您將會被提醒要抹除哪一個分割區。</translation>
     </message>
@@ -503,17 +526,17 @@ The installer will quit and all changes will be lost.</source>
         <translation>&lt;strong&gt;在您目前的作業系統旁邊安裝 %1&lt;/strong&gt;&lt;br/&gt;安裝程式將會縮減 %1 的容量以提供空間給 %2 使用。您可以在每次電腦開機時，選擇要進入哪一個作業系統。</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="223"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="225"/>
         <source>This computer currently has multiple operating systems on it. What would you like to do?</source>
         <translation>這臺電腦上已有多個作業系統。您想要做什麼?</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="226"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="228"/>
         <source>&lt;strong&gt;Install %1 alongside your current operating systems&lt;/strong&gt;&lt;br/&gt;The installer will shrink an existing volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
         <translation>&lt;strong&gt;在您目前的作業系統旁邊安裝 %1&lt;/strong&gt;&lt;br/&gt;安裝程式將會縮減 %1 的容量以提供空間給 %2 使用。您可以在每次電腦開機時，選擇要進入哪一個作業系統。</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="261"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="265"/>
         <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself, or choose multiple partitions for %1.</source>
         <translation>&lt;strong&gt;手動分割&lt;/strong&gt;&lt;br/&gt;您可以自行建立或重新調整分割區大小，或是為 %1 選擇多個分割區。</translation>
     </message>
@@ -1539,62 +1562,6 @@ Some file systems need external tools to be installed for them to be supported. 
     </message>
 </context>
 <context>
-    <name>GreetingPage</name>
-    <message>
-        <location filename="../src/modules/greeting/GreetingPage.cpp" line="126"/>
-        <source>&lt;h1&gt;Welcome to the %1 installer.&lt;/h1&gt;&lt;br/&gt;This program will ask you some questions and set up %2 on your computer.</source>
-        <translation>&lt;h1&gt;歡迎使用 %1 安裝程式。&lt;/h1&gt;&lt;br/&gt;本程式將會問您一些問題並在您的電腦上安裝及設定 %2 。</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/greeting/GreetingPage.cpp" line="144"/>
-        <source>About %1 installer</source>
-        <translation>關於 %1 安裝程式</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/greeting/GreetingPage.cpp" line="146"/>
-        <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2015 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Thanks to: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Philip Müller, Pier Luigi Fiorini and Rohan Garg.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;http://calamares.io/&quot;&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - Liberating Software.</source>
-        <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;為 %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2015 Teo Mrnjavac &lt;teo@kde.org&gt;&lt;br/&gt;感謝：Anke Boersma, Aurélien Gâteau, Kevin Kofler, Philip Müller, Pier Luigi Fiorini 及 Rohan Garg。&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;http://calamares.io/&quot;&gt;Calamares&lt;/a&gt; 開發由 &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - Liberating Software 贊助。</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/greeting/GreetingPage.cpp" line="176"/>
-        <source>%1 support</source>
-        <translation>%1 支援</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/greeting/GreetingPage.ui" line="14"/>
-        <source>Form</source>
-        <translation>型式</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/greeting/GreetingPage.ui" line="104"/>
-        <source>&amp;Release notes</source>
-        <translation>發行註記(&amp;R)</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/greeting/GreetingPage.ui" line="114"/>
-        <source>&amp;Known issues</source>
-        <translation>已知問題(&amp;K)</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/greeting/GreetingPage.ui" line="124"/>
-        <source>&amp;Support</source>
-        <translation>支援(&amp;S)</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/greeting/GreetingPage.ui" line="134"/>
-        <source>&amp;About</source>
-        <translation>關於(&amp;A)</translation>
-    </message>
-</context>
-<context>
-    <name>GreetingViewStep</name>
-    <message>
-        <location filename="../src/modules/greeting/GreetingViewStep.cpp" line="43"/>
-        <source>Welcome</source>
-        <translation>歡迎</translation>
-    </message>
-</context>
-<context>
     <name>KeyboardPage</name>
     <message>
         <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="200"/>
@@ -2153,61 +2120,6 @@ Some file systems need external tools to be installed for them to be supported. 
     </message>
 </context>
 <context>
-    <name>PreparePage</name>
-    <message>
-        <location filename="../src/modules/prepare/PreparePage.cpp" line="39"/>
-        <source>For best results, please ensure that this computer:</source>
-        <translation>為了得到最佳的結果，請確保此電腦：</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/prepare/PreparePage.cpp" line="96"/>
-        <source>This computer does not satisfy the minimum requirements for installing %1.
-Installation cannot continue.</source>
-        <translation>此電腦未滿足安裝 %1 的最低配備。
-安裝無法繼續。</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/prepare/PreparePage.cpp" line="109"/>
-        <source>This computer does not satisfy some of the recommended requirements for installing %1.
-Installation can continue, but some features might be disabled.</source>
-        <translation>此電腦未滿足一些安裝 %1 的推薦需求。
-安裝可以繼續，但部份功能可能會被停用。</translation>
-    </message>
-</context>
-<context>
-    <name>PrepareViewStep</name>
-    <message>
-        <location filename="../src/modules/prepare/PrepareViewStep.cpp" line="54"/>
-        <source>Gathering system information...</source>
-        <translation>蒐集系統資訊中...</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/prepare/PrepareViewStep.cpp" line="91"/>
-        <source>has at least %1 GB available drive space</source>
-        <translation>有至少 %1 GB 的可用磁碟空間</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/prepare/PrepareViewStep.cpp" line="99"/>
-        <source>has at least %1 GB working memory</source>
-        <translation>有至少 %1 GB 的可用記憶體</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/prepare/PrepareViewStep.cpp" line="107"/>
-        <source>is plugged in to a power source</source>
-        <translation>已插入外接電源</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/prepare/PrepareViewStep.cpp" line="114"/>
-        <source>is connected to the Internet</source>
-        <translation>已連上網際網路</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/prepare/PrepareViewStep.cpp" line="158"/>
-        <source>Prepare</source>
-        <translation>準備中</translation>
-    </message>
-</context>
-<context>
     <name>ProgressTreeModel</name>
     <message>
         <location filename="../src/calamares/progresstree/ProgressTreeModel.cpp" line="138"/>
@@ -2418,6 +2330,54 @@ Installation can continue, but some features might be disabled.</source>
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="231"/>
         <source>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 will be installed on %2.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;all data on partition%2 will be lost.</source>
         <translation>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 將會安裝在 %2 上。&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;警告： &lt;/font&gt;所有在分割區 %2 上的資料都將會遺失。</translation>
+    </message>
+</context>
+<context>
+    <name>RequirementsChecker</name>
+    <message>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="54"/>
+        <source>Gathering system information...</source>
+        <translation>收集系統資訊中...</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="91"/>
+        <source>has at least %1 GB available drive space</source>
+        <translation>有至少 %1 GB 的可用磁碟空間</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="93"/>
+        <source>There is not enough drive space. At least %1 GB is required.</source>
+        <translation>沒有足夠的磁碟空間。至少需要 %1 GB。</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="101"/>
+        <source>has at least %1 GB working memory</source>
+        <translation>有至少 %1 GB 的可用記憶體</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="103"/>
+        <source>The system does not have enough working memory. At least %1 GB is required.</source>
+        <translation>系統沒有足夠的記憶體。至少需要 %1 GB。</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="111"/>
+        <source>is plugged in to a power source</source>
+        <translation>已插入外接電源</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="112"/>
+        <source>The system is not plugged in to a power source.</source>
+        <translation>系統未插入外接電源。</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="119"/>
+        <source>is connected to the Internet</source>
+        <translation>已連上網際網路</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="120"/>
+        <source>The system is not connected to the Internet.</source>
+        <translation>系統未連上網際網路</translation>
     </message>
 </context>
 <context>
@@ -2852,6 +2812,67 @@ Installation can continue, but some features might be disabled.</source>
         <location filename="../src/modules/users/UsersViewStep.cpp" line="46"/>
         <source>Users</source>
         <translation>使用者</translation>
+    </message>
+</context>
+<context>
+    <name>WelcomePage</name>
+    <message>
+        <location filename="../src/modules/welcome/WelcomePage.ui" line="14"/>
+        <source>Form</source>
+        <translation>表單</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/WelcomePage.ui" line="104"/>
+        <source>&amp;Language:</source>
+        <translation>語言(&amp;L)：</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/WelcomePage.ui" line="175"/>
+        <source>&amp;Release notes</source>
+        <translation>發行註記(&amp;R)</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/WelcomePage.ui" line="185"/>
+        <source>&amp;Known issues</source>
+        <translation>已知問題(&amp;K)</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/WelcomePage.ui" line="195"/>
+        <source>&amp;Support</source>
+        <translation>支援(&amp;S)</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/WelcomePage.ui" line="205"/>
+        <source>&amp;About</source>
+        <translation>關於(&amp;A)</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/WelcomePage.cpp" line="56"/>
+        <source>&lt;h1&gt;Welcome to the %1 installer.&lt;/h1&gt;&lt;br/&gt;This program will ask you some questions and set up %2 on your computer.</source>
+        <translation>&lt;h1&gt;歡迎使用 %1 安裝程式。&lt;/h1&gt;&lt;br/&gt;本程式將會問您一些問題並在您的電腦上安裝及設定 %2 。</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/WelcomePage.cpp" line="74"/>
+        <source>About %1 installer</source>
+        <translation>關於 %1 安裝程式</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/WelcomePage.cpp" line="76"/>
+        <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2015 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Thanks to: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Philip Müller, Pier Luigi Fiorini and Rohan Garg.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;http://calamares.io/&quot;&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - Liberating Software.</source>
+        <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;為 %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2015 Teo Mrnjavac &lt;teo@kde.org&gt;&lt;br/&gt;感謝：Anke Boersma, Aurélien Gâteau, Kevin Kofler, Philip Müller, Pier Luigi Fiorini 及 Rohan Garg。&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;http://calamares.io/&quot;&gt;Calamares&lt;/a&gt; 開發由 &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - Liberating Software 贊助。</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/WelcomePage.cpp" line="191"/>
+        <source>%1 support</source>
+        <translation>%1 支援</translation>
+    </message>
+</context>
+<context>
+    <name>WelcomeViewStep</name>
+    <message>
+        <location filename="../src/modules/welcome/WelcomeViewStep.cpp" line="48"/>
+        <source>Welcome</source>
+        <translation>歡迎</translation>
     </message>
 </context>
 </TS>

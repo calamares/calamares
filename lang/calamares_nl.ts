@@ -191,7 +191,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="14"/>
         <source>Form</source>
-        <translation>Vorm</translation>
+        <translation>Formulier</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="24"/>
@@ -217,7 +217,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>Calamares::InstallationViewStep</name>
     <message>
-        <location filename="../src/libcalamaresui/InstallationViewStep.cpp" line="75"/>
+        <location filename="../src/libcalamaresui/InstallationViewStep.cpp" line="77"/>
         <source>Install</source>
         <translation>Installeer</translation>
     </message>
@@ -449,6 +449,29 @@ Het installatieprogramma zal afsluiten en alle wijzigingen zullen verloren gaan.
     </message>
 </context>
 <context>
+    <name>CheckerWidget</name>
+    <message>
+        <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="104"/>
+        <source>This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;Installation cannot continue. &lt;a href=&quot;#details&quot;&gt;Details...&lt;/a&gt;</source>
+        <translation>Deze computer voldoet niet aan de minimumvereisten om %1 te installeren.&lt;br/&gt;De installatie kan niet doorgaan. &lt;a href=&quot;#details&quot;&gt;Details...&lt;/a&gt;</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="125"/>
+        <source>This computer does not satisfy some of the recommended requirements for installing %1.&lt;br/&gt;Installation can continue, but some features might be disabled.</source>
+        <translation>Deze computer voldoet niet aan enkele van de aanbevolen specificaties om %1 te installeren.&lt;br/&gt;De installatie kan doorgaan, maar sommige functies kunnen uitgeschakeld zijn.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="147"/>
+        <source>For best results, please ensure that this computer:</source>
+        <translation>Voor de beste resultaten is het aangeraden dat deze computer:</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="172"/>
+        <source>System requirements</source>
+        <translation>Systeemvereisten</translation>
+    </message>
+</context>
+<context>
     <name>ChoicePage</name>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="115"/>
@@ -462,16 +485,16 @@ Het installatieprogramma zal afsluiten en alle wijzigingen zullen verloren gaan.
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="119"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="187"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="234"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="189"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="238"/>
         <source>&lt;strong&gt;Erase disk and install %1&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;This will delete all of your programs, documents, photos, music, and any other files.</source>
         <translation>&lt;strong&gt;Wis schijf en installeer %1&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Opgelet: &lt;/font&gt;Dit zal alle programma&apos;s, documenten, foto&apos;s, muziek en alle andere bestanden wissen.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="125"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="162"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="193"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="240"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="195"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="244"/>
         <source>&lt;strong&gt;Erase disk and install %1&lt;/strong&gt;&lt;br/&gt;You will be offered a choice of which disk to erase.</source>
         <translation>&lt;strong&gt;Wis een schijf en installeer %1&lt;/strong&gt;&lt;br/&gt;Je krijgt de keuzemogelijkheid voor de te wissen schijf.</translation>
     </message>
@@ -487,8 +510,8 @@ Het installatieprogramma zal afsluiten en alle wijzigingen zullen verloren gaan.
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="167"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="198"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="245"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="200"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="249"/>
         <source>&lt;strong&gt;Replace a partition with %1&lt;/strong&gt;&lt;br/&gt;You will be offered a choice of which partition to erase.</source>
         <translation>&lt;strong&gt;Vervang een partitie met %1&lt;/strong&gt;&lt;br/&gt;Je krijgt de keuzemogelijkheid voor de te wissen partitie.</translation>
     </message>
@@ -503,17 +526,17 @@ Het installatieprogramma zal afsluiten en alle wijzigingen zullen verloren gaan.
         <translation>&lt;strong&gt;Installeer %1 naast je huidige besturingssysteem&lt;/strong&gt;&lt;br/&gt;Het installatieprogramma zal het bestaande volume verkleinen om plaats te maken voor %2. Telkens de computer opstart kan je kiezen welk besturingssysteem je wil gebruiken.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="223"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="225"/>
         <source>This computer currently has multiple operating systems on it. What would you like to do?</source>
         <translation>Deze computer bevat meerdere besturingssystemen.  Wat wil je doen?</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="226"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="228"/>
         <source>&lt;strong&gt;Install %1 alongside your current operating systems&lt;/strong&gt;&lt;br/&gt;The installer will shrink an existing volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
         <translation>&lt;strong&gt;Installeer %1 naast je huidige besturingssystemen&lt;/strong&gt;&lt;br/&gt;Het installatieprogramma zal een bestaand volume verkleinen om plaats te maken voor %2. Telkens de computer opstart kan je kiezen welk besturingssysteem je wil gebruiken.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="261"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="265"/>
         <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself, or choose multiple partitions for %1.</source>
         <translation>&lt;strong&gt;Handmatig partities instellen&lt;/strong&gt;&lt;br/&gt;Je kan zelf partities maken of aanpassen, of meerdere partities kiezen voor %1.</translation>
     </message>
@@ -1479,7 +1502,7 @@ Sommige bestandssystemen vereisen externe programma&apos;s om ondersteund te wor
     <message>
         <location filename="../src/modules/finished/FinishedPage.ui" line="14"/>
         <source>Form</source>
-        <translation>Vorm</translation>
+        <translation>Formulier</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedPage.ui" line="77"/>
@@ -1536,62 +1559,6 @@ Sommige bestandssystemen vereisen externe programma&apos;s om ondersteund te wor
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="104"/>
         <source>The installer failed to update partition table on disk &apos;%1&apos;.</source>
         <translation>Installatieprogramma heeft gefaald om de partitietabel bij te werken op schijf &apos;%1&apos;.</translation>
-    </message>
-</context>
-<context>
-    <name>GreetingPage</name>
-    <message>
-        <location filename="../src/modules/greeting/GreetingPage.cpp" line="126"/>
-        <source>&lt;h1&gt;Welcome to the %1 installer.&lt;/h1&gt;&lt;br/&gt;This program will ask you some questions and set up %2 on your computer.</source>
-        <translation>&lt;h1&gt;Welkom bij het %1 installatieprogramma.&lt;/h1&gt;&lt;br/&gt;Dit programma zal u enkele vragen stellen en %2 op uw computer installeren.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/greeting/GreetingPage.cpp" line="144"/>
-        <source>About %1 installer</source>
-        <translation>Over %1 installatieprogramma</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/greeting/GreetingPage.cpp" line="146"/>
-        <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2015 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Thanks to: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Philip Müller, Pier Luigi Fiorini and Rohan Garg.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;http://calamares.io/&quot;&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - Liberating Software.</source>
-        <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;voor %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2015 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Met dank aan: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Philip Müller, Pier Luigi Fiorini en Rohan Garg.&lt;br/&gt;&lt;br/&gt;De ontwikkeling van &lt;a href=&quot;http://calamares.io/&quot;&gt;Calamares&lt;/a&gt; is gesponsord door &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - Liberating Software.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/greeting/GreetingPage.cpp" line="176"/>
-        <source>%1 support</source>
-        <translation>%1 ondersteuning</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/greeting/GreetingPage.ui" line="14"/>
-        <source>Form</source>
-        <translation>Vorm</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/greeting/GreetingPage.ui" line="104"/>
-        <source>&amp;Release notes</source>
-        <translation>&amp;Uitgave nota&apos;s</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/greeting/GreetingPage.ui" line="114"/>
-        <source>&amp;Known issues</source>
-        <translation>&amp;Known issues</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/greeting/GreetingPage.ui" line="124"/>
-        <source>&amp;Support</source>
-        <translation>&amp;Ondersteuning</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/greeting/GreetingPage.ui" line="134"/>
-        <source>&amp;About</source>
-        <translation>&amp;Over</translation>
-    </message>
-</context>
-<context>
-    <name>GreetingViewStep</name>
-    <message>
-        <location filename="../src/modules/greeting/GreetingViewStep.cpp" line="43"/>
-        <source>Welcome</source>
-        <translation>Welkom</translation>
     </message>
 </context>
 <context>
@@ -1757,7 +1724,7 @@ Sommige bestandssystemen vereisen externe programma&apos;s om ondersteund te wor
     <message>
         <location filename="../src/modules/keyboard/KeyboardPage.ui" line="14"/>
         <source>Form</source>
-        <translation>Vorm</translation>
+        <translation>Formulier</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardPage.ui" line="70"/>
@@ -1775,7 +1742,7 @@ Sommige bestandssystemen vereisen externe programma&apos;s om ondersteund te wor
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="14"/>
         <source>Form</source>
-        <translation>Vorm</translation>
+        <translation>Formulier</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="33"/>
@@ -2041,7 +2008,7 @@ Sommige bestandssystemen vereisen externe programma&apos;s om ondersteund te wor
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="14"/>
         <source>Form</source>
-        <translation>Vorm</translation>
+        <translation>Formulier</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="22"/>
@@ -2150,61 +2117,6 @@ Sommige bestandssystemen vereisen externe programma&apos;s om ondersteund te wor
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="274"/>
         <source>After:</source>
         <translation>Na:</translation>
-    </message>
-</context>
-<context>
-    <name>PreparePage</name>
-    <message>
-        <location filename="../src/modules/prepare/PreparePage.cpp" line="39"/>
-        <source>For best results, please ensure that this computer:</source>
-        <translation>Voor het beste resultaat, gelieve ervoor te zorgen dat deze computer:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/prepare/PreparePage.cpp" line="96"/>
-        <source>This computer does not satisfy the minimum requirements for installing %1.
-Installation cannot continue.</source>
-        <translation>Deze computer voldoet niet aan de minimale vereisten voor het installeren van % 1.
-De installatie kan niet worden voortgezet.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/prepare/PreparePage.cpp" line="109"/>
-        <source>This computer does not satisfy some of the recommended requirements for installing %1.
-Installation can continue, but some features might be disabled.</source>
-        <translation>Deze computer voldoet niet aan alle aanbevolen vereisten voor het installeren van %1.
-De installatie kan doorgaan, maar sommige functies werken mogelijk niet.</translation>
-    </message>
-</context>
-<context>
-    <name>PrepareViewStep</name>
-    <message>
-        <location filename="../src/modules/prepare/PrepareViewStep.cpp" line="54"/>
-        <source>Gathering system information...</source>
-        <translation>Systeeminformatie verzamelen...</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/prepare/PrepareViewStep.cpp" line="91"/>
-        <source>has at least %1 GB available drive space</source>
-        <translation>over ten minste %1 GB vrije schijfruimte beschikt</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/prepare/PrepareViewStep.cpp" line="99"/>
-        <source>has at least %1 GB working memory</source>
-        <translation>over ten minste 1% GB werkgeheugen beschikt</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/prepare/PrepareViewStep.cpp" line="107"/>
-        <source>is plugged in to a power source</source>
-        <translation>aangesloten is op een stroombron</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/prepare/PrepareViewStep.cpp" line="114"/>
-        <source>is connected to the Internet</source>
-        <translation>verbonden is met het internet</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/prepare/PrepareViewStep.cpp" line="158"/>
-        <source>Prepare</source>
-        <translation>Voorbereiden</translation>
     </message>
 </context>
 <context>
@@ -2362,7 +2274,7 @@ De installatie kan doorgaan, maar sommige functies werken mogelijk niet.</transl
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.ui" line="14"/>
         <source>Form</source>
-        <translation>Vorm</translation>
+        <translation>Formulier</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.ui" line="22"/>
@@ -2418,6 +2330,54 @@ De installatie kan doorgaan, maar sommige functies werken mogelijk niet.</transl
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="231"/>
         <source>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 will be installed on %2.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;all data on partition%2 will be lost.</source>
         <translation>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 zal geïnstalleerd worden op %2.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Opgelet: &lt;/font&gt;alle gegevens op partitie %2 zullen verloren gaan.</translation>
+    </message>
+</context>
+<context>
+    <name>RequirementsChecker</name>
+    <message>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="54"/>
+        <source>Gathering system information...</source>
+        <translation>Systeeminformatie verzamelen...</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="91"/>
+        <source>has at least %1 GB available drive space</source>
+        <translation>tenminste %1 GB vrije schijfruimte heeft</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="93"/>
+        <source>There is not enough drive space. At least %1 GB is required.</source>
+        <translation>Er is onvoldoende vrije schijfruimte. Tenminste %1 GB is vereist.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="101"/>
+        <source>has at least %1 GB working memory</source>
+        <translation>tenminste %1 GB werkgeheugen heeft</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="103"/>
+        <source>The system does not have enough working memory. At least %1 GB is required.</source>
+        <translation>Dit systeem heeft onvoldoende werkgeheugen. Tenminste %1 GB is vereist.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="111"/>
+        <source>is plugged in to a power source</source>
+        <translation>aangesloten is op netstroom</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="112"/>
+        <source>The system is not plugged in to a power source.</source>
+        <translation>Dit systeem is niet aangesloten op netstroom. </translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="119"/>
+        <source>is connected to the Internet</source>
+        <translation>verbonden is met het Internet</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="120"/>
+        <source>The system is not connected to the Internet.</source>
+        <translation>Dit systeem is niet verbonden met het Internet.</translation>
     </message>
 </context>
 <context>
@@ -2852,6 +2812,67 @@ De installatie kan doorgaan, maar sommige functies werken mogelijk niet.</transl
         <location filename="../src/modules/users/UsersViewStep.cpp" line="46"/>
         <source>Users</source>
         <translation>Gebruikers</translation>
+    </message>
+</context>
+<context>
+    <name>WelcomePage</name>
+    <message>
+        <location filename="../src/modules/welcome/WelcomePage.ui" line="14"/>
+        <source>Form</source>
+        <translation>Formulier</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/WelcomePage.ui" line="104"/>
+        <source>&amp;Language:</source>
+        <translation>Taa&amp;l:</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/WelcomePage.ui" line="175"/>
+        <source>&amp;Release notes</source>
+        <translation>Uitgaveopme&amp;rkingen</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/WelcomePage.ui" line="185"/>
+        <source>&amp;Known issues</source>
+        <translation>Ge&amp;kende problemen</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/WelcomePage.ui" line="195"/>
+        <source>&amp;Support</source>
+        <translation>Onder&amp;steuning</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/WelcomePage.ui" line="205"/>
+        <source>&amp;About</source>
+        <translation>&amp;Over</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/WelcomePage.cpp" line="56"/>
+        <source>&lt;h1&gt;Welcome to the %1 installer.&lt;/h1&gt;&lt;br/&gt;This program will ask you some questions and set up %2 on your computer.</source>
+        <translation>&lt;h1&gt;Welkom bij het %1 installatieprogramma.&lt;/h1&gt;&lt;br/&gt;Dit programma zal u enkele vragen stellen en %2 op uw computer installeren.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/WelcomePage.cpp" line="74"/>
+        <source>About %1 installer</source>
+        <translation>Over het %1 installatieprogramma</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/WelcomePage.cpp" line="76"/>
+        <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2015 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Thanks to: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Philip Müller, Pier Luigi Fiorini and Rohan Garg.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;http://calamares.io/&quot;&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - Liberating Software.</source>
+        <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;voor %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2015 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Met dank aan: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Philip Müller, Pier Luigi Fiorini en Rohan Garg.&lt;br/&gt;&lt;br/&gt;De ontwikkeling van &lt;a href=&quot;http://calamares.io/&quot;&gt;Calamares&lt;/a&gt; is gesponsord door &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - Liberating Software.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/WelcomePage.cpp" line="191"/>
+        <source>%1 support</source>
+        <translation>%1 ondersteuning</translation>
+    </message>
+</context>
+<context>
+    <name>WelcomeViewStep</name>
+    <message>
+        <location filename="../src/modules/welcome/WelcomeViewStep.cpp" line="48"/>
+        <source>Welcome</source>
+        <translation>Welkom</translation>
     </message>
 </context>
 </TS>

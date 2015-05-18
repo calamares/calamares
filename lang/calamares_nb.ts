@@ -14,7 +14,7 @@
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="180"/>
         <source>With this operation, the partition &lt;strong&gt;%1&lt;/strong&gt; which contains %4 will be shrunk to %2MB and a new %3MB partition will be created for %5.</source>
-        <translation type="unfinished"/>
+        <translation>Med denne handlingen vil partisjon &lt;b&gt;%1&lt;/b&gt; som inneholder %4 bli krympet til %2MB og en ny partisjon på %3MB vil bli opprettet for %5.</translation>
     </message>
 </context>
 <context>
@@ -217,7 +217,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>Calamares::InstallationViewStep</name>
     <message>
-        <location filename="../src/libcalamaresui/InstallationViewStep.cpp" line="75"/>
+        <location filename="../src/libcalamaresui/InstallationViewStep.cpp" line="77"/>
         <source>Install</source>
         <translation>Installer</translation>
     </message>
@@ -366,22 +366,22 @@ Installasjonsprogrammet vil avsluttes og alle endringer vil gå tapt.</translati
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="252"/>
         <source>Continue with setup?</source>
-        <translation type="unfinished"/>
+        <translation>Fortsette å sette opp?</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="253"/>
         <source>The %1 installer is about to make changes to your disk in order to install %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
-        <translation type="unfinished"/>
+        <translation>%1 vil nå gjøre endringer på harddisken, for å installere %2. &lt;br/&gt;&lt;strong&gt;Du vil ikke kunne omgjøre disse endringene.&lt;/strong&gt;</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="260"/>
         <source>&amp;Install now</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Installer nå</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="261"/>
         <source>Go &amp;back</source>
-        <translation type="unfinished"/>
+        <translation>Gå &amp;tilbake</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="300"/>
@@ -409,17 +409,17 @@ Installasjonsprogrammet vil avsluttes og alle endringer vil gå tapt.</translati
     <message>
         <location filename="../src/libcalamares/PythonHelper.cpp" line="247"/>
         <source>unparseable Python error</source>
-        <translation type="unfinished"/>
+        <translation>Ikke-kjørbar Python feil</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonHelper.cpp" line="263"/>
         <source>unparseable Python traceback</source>
-        <translation type="unfinished"/>
+        <translation>Ikke-kjørbar Python tilbakesporing</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonHelper.cpp" line="267"/>
         <source>Unfetchable Python error.</source>
-        <translation type="unfinished"/>
+        <translation>Ukjent Python feil.</translation>
     </message>
 </context>
 <context>
@@ -449,6 +449,29 @@ Installasjonsprogrammet vil avsluttes og alle endringer vil gå tapt.</translati
     </message>
 </context>
 <context>
+    <name>CheckerWidget</name>
+    <message>
+        <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="104"/>
+        <source>This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;Installation cannot continue. &lt;a href=&quot;#details&quot;&gt;Details...&lt;/a&gt;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="125"/>
+        <source>This computer does not satisfy some of the recommended requirements for installing %1.&lt;br/&gt;Installation can continue, but some features might be disabled.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="147"/>
+        <source>For best results, please ensure that this computer:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="172"/>
+        <source>System requirements</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>ChoicePage</name>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="115"/>
@@ -462,16 +485,16 @@ Installasjonsprogrammet vil avsluttes og alle endringer vil gå tapt.</translati
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="119"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="187"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="234"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="189"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="238"/>
         <source>&lt;strong&gt;Erase disk and install %1&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;This will delete all of your programs, documents, photos, music, and any other files.</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="125"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="162"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="193"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="240"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="195"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="244"/>
         <source>&lt;strong&gt;Erase disk and install %1&lt;/strong&gt;&lt;br/&gt;You will be offered a choice of which disk to erase.</source>
         <translation type="unfinished"/>
     </message>
@@ -487,8 +510,8 @@ Installasjonsprogrammet vil avsluttes og alle endringer vil gå tapt.</translati
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="167"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="198"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="245"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="200"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="249"/>
         <source>&lt;strong&gt;Replace a partition with %1&lt;/strong&gt;&lt;br/&gt;You will be offered a choice of which partition to erase.</source>
         <translation type="unfinished"/>
     </message>
@@ -503,17 +526,17 @@ Installasjonsprogrammet vil avsluttes og alle endringer vil gå tapt.</translati
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="223"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="225"/>
         <source>This computer currently has multiple operating systems on it. What would you like to do?</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="226"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="228"/>
         <source>&lt;strong&gt;Install %1 alongside your current operating systems&lt;/strong&gt;&lt;br/&gt;The installer will shrink an existing volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="261"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="265"/>
         <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself, or choose multiple partitions for %1.</source>
         <translation type="unfinished"/>
     </message>
@@ -541,7 +564,7 @@ Installasjonsprogrammet vil avsluttes og alle endringer vil gå tapt.</translati
     <message>
         <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="49"/>
         <source>Cannot get list of temporary mounts.</source>
-        <translation type="unfinished"/>
+        <translation>Klarer ikke å få tak i listen over midlertidige monterte disker.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="88"/>
@@ -559,7 +582,7 @@ Installasjonsprogrammet vil avsluttes og alle endringer vil gå tapt.</translati
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="35"/>
         <source>Allow applying operations without administrator privileges</source>
-        <translation type="unfinished"/>
+        <translation>Tillat å utføre operasjoner uten administratorrettigheter</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="51"/>
@@ -627,7 +650,7 @@ Installasjonsprogrammet vil avsluttes og alle endringer vil gå tapt.</translati
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="29"/>
         <source>luks:</source>
-        <translation type="unfinished"/>
+        <translation>luks:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagefilesystemcolors.ui" line="45"/>
@@ -780,17 +803,17 @@ Installasjonsprogrammet vil avsluttes og alle endringer vil gå tapt.</translati
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="90"/>
         <source>Logging</source>
-        <translation type="unfinished"/>
+        <translation>Loggfører</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="96"/>
         <source>Hide messages below:</source>
-        <translation type="unfinished"/>
+        <translation>Skjul beskjedene nedenfor:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="107"/>
         <source>Debug</source>
-        <translation type="unfinished"/>
+        <translation>Debug</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="112"/>
@@ -858,22 +881,22 @@ Installasjonsprogrammet vil avsluttes og alle endringer vil gå tapt.</translati
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="60"/>
         <source>E&amp;xtended</source>
-        <translation type="unfinished"/>
+        <translation>U&amp;tvidet</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="89"/>
         <source>F&amp;ile System:</source>
-        <translation type="unfinished"/>
+        <translation>F&amp;ilsystem:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="118"/>
         <source>&amp;Mount Point:</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Monteringspunkt:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="164"/>
         <source>Si&amp;ze:</source>
-        <translation type="unfinished"/>
+        <translation>St&amp;ørrelse:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="174"/>
@@ -916,17 +939,17 @@ Installasjonsprogrammet vil avsluttes og alle endringer vil gå tapt.</translati
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="83"/>
         <source>Could not open device &apos;%1&apos;.</source>
-        <translation type="unfinished"/>
+        <translation>Klarte ikke å åpne enheten &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="93"/>
         <source>Could not open partition table.</source>
-        <translation type="unfinished"/>
+        <translation>Klarte ikke å åpne partisjonstabellen.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="117"/>
         <source>The installer failed to create file system on partition %1.</source>
-        <translation type="unfinished"/>
+        <translation>Lyktes ikke med å opprette filsystem på partisjon %1</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="125"/>
@@ -995,7 +1018,7 @@ Installasjonsprogrammet vil avsluttes og alle endringer vil gå tapt.</translati
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/createpartitiontablewidgetbase.ui" line="29"/>
         <source>GPT</source>
-        <translation type="unfinished"/>
+        <translation>GPT</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/createpartitiontablewidgetbase.ui" line="39"/>
@@ -1534,62 +1557,6 @@ Some file systems need external tools to be installed for them to be supported. 
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="104"/>
         <source>The installer failed to update partition table on disk &apos;%1&apos;.</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
-    <name>GreetingPage</name>
-    <message>
-        <location filename="../src/modules/greeting/GreetingPage.cpp" line="126"/>
-        <source>&lt;h1&gt;Welcome to the %1 installer.&lt;/h1&gt;&lt;br/&gt;This program will ask you some questions and set up %2 on your computer.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/modules/greeting/GreetingPage.cpp" line="144"/>
-        <source>About %1 installer</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/modules/greeting/GreetingPage.cpp" line="146"/>
-        <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2015 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Thanks to: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Philip Müller, Pier Luigi Fiorini and Rohan Garg.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;http://calamares.io/&quot;&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - Liberating Software.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/modules/greeting/GreetingPage.cpp" line="176"/>
-        <source>%1 support</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/modules/greeting/GreetingPage.ui" line="14"/>
-        <source>Form</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/modules/greeting/GreetingPage.ui" line="104"/>
-        <source>&amp;Release notes</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/modules/greeting/GreetingPage.ui" line="114"/>
-        <source>&amp;Known issues</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/modules/greeting/GreetingPage.ui" line="124"/>
-        <source>&amp;Support</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/modules/greeting/GreetingPage.ui" line="134"/>
-        <source>&amp;About</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
-    <name>GreetingViewStep</name>
-    <message>
-        <location filename="../src/modules/greeting/GreetingViewStep.cpp" line="43"/>
-        <source>Welcome</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2152,59 +2119,6 @@ Some file systems need external tools to be installed for them to be supported. 
     </message>
 </context>
 <context>
-    <name>PreparePage</name>
-    <message>
-        <location filename="../src/modules/prepare/PreparePage.cpp" line="39"/>
-        <source>For best results, please ensure that this computer:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/modules/prepare/PreparePage.cpp" line="96"/>
-        <source>This computer does not satisfy the minimum requirements for installing %1.
-Installation cannot continue.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/modules/prepare/PreparePage.cpp" line="109"/>
-        <source>This computer does not satisfy some of the recommended requirements for installing %1.
-Installation can continue, but some features might be disabled.</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
-    <name>PrepareViewStep</name>
-    <message>
-        <location filename="../src/modules/prepare/PrepareViewStep.cpp" line="54"/>
-        <source>Gathering system information...</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/modules/prepare/PrepareViewStep.cpp" line="91"/>
-        <source>has at least %1 GB available drive space</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/modules/prepare/PrepareViewStep.cpp" line="99"/>
-        <source>has at least %1 GB working memory</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/modules/prepare/PrepareViewStep.cpp" line="107"/>
-        <source>is plugged in to a power source</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/modules/prepare/PrepareViewStep.cpp" line="114"/>
-        <source>is connected to the Internet</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/modules/prepare/PrepareViewStep.cpp" line="158"/>
-        <source>Prepare</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
     <name>ProgressTreeModel</name>
     <message>
         <location filename="../src/calamares/progresstree/ProgressTreeModel.cpp" line="138"/>
@@ -2414,6 +2328,54 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="231"/>
         <source>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 will be installed on %2.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;all data on partition%2 will be lost.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>RequirementsChecker</name>
+    <message>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="54"/>
+        <source>Gathering system information...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="91"/>
+        <source>has at least %1 GB available drive space</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="93"/>
+        <source>There is not enough drive space. At least %1 GB is required.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="101"/>
+        <source>has at least %1 GB working memory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="103"/>
+        <source>The system does not have enough working memory. At least %1 GB is required.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="111"/>
+        <source>is plugged in to a power source</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="112"/>
+        <source>The system is not plugged in to a power source.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="119"/>
+        <source>is connected to the Internet</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="120"/>
+        <source>The system is not connected to the Internet.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2848,6 +2810,67 @@ Installation can continue, but some features might be disabled.</source>
     <message>
         <location filename="../src/modules/users/UsersViewStep.cpp" line="46"/>
         <source>Users</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>WelcomePage</name>
+    <message>
+        <location filename="../src/modules/welcome/WelcomePage.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/WelcomePage.ui" line="104"/>
+        <source>&amp;Language:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/WelcomePage.ui" line="175"/>
+        <source>&amp;Release notes</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/WelcomePage.ui" line="185"/>
+        <source>&amp;Known issues</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/WelcomePage.ui" line="195"/>
+        <source>&amp;Support</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/WelcomePage.ui" line="205"/>
+        <source>&amp;About</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/WelcomePage.cpp" line="56"/>
+        <source>&lt;h1&gt;Welcome to the %1 installer.&lt;/h1&gt;&lt;br/&gt;This program will ask you some questions and set up %2 on your computer.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/WelcomePage.cpp" line="74"/>
+        <source>About %1 installer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/WelcomePage.cpp" line="76"/>
+        <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2015 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Thanks to: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Philip Müller, Pier Luigi Fiorini and Rohan Garg.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;http://calamares.io/&quot;&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - Liberating Software.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/WelcomePage.cpp" line="191"/>
+        <source>%1 support</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>WelcomeViewStep</name>
+    <message>
+        <location filename="../src/modules/welcome/WelcomeViewStep.cpp" line="48"/>
+        <source>Welcome</source>
         <translation type="unfinished"/>
     </message>
 </context>

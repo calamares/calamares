@@ -70,6 +70,8 @@ def disk_name_for_partition(partition):
     :return:
     """
     name = os.path.basename(partition["device"])
+    if name.startswith("/dev/mmcblk"):
+        return re.sub("p[0-9]+$", "", name)    
     return re.sub("[0-9]+$", "", name)
 
 

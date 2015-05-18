@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2013-2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2013-2015, Teo Mrnjavac <teo@kde.org>
  *
  *   Originally from Tomahawk, portions:
  *   Copyright 2010-2011, Christian Muehlhaeuser <muesli@tomahawk-player.org>
@@ -45,6 +45,7 @@ static QDir s_appDataDir( CMAKE_INSTALL_FULL_DATADIR );
 static QDir s_qmlModulesDir( QString( CMAKE_INSTALL_FULL_DATADIR ) + "/qml" );
 static bool s_isAppDataDirOverridden = false;
 
+static QTranslator* s_brandingTranslator = nullptr;
 static QTranslator* s_translator = nullptr;
 static QTranslator* s_qtTranslator = nullptr;
 
@@ -135,23 +136,64 @@ appLogDir()
 
 
 void
-installTranslator( const QString& localeName, QObject* parent )
+installTranslator( const QLocale& locale,
+                   const QString& brandingTranslationsPrefix,
+                   QObject* parent )
 {
-    QString locale = localeName;
-    locale.replace( "-", "_" );
+    QString localeName = locale.name();
+    localeName.replace( "-", "_" );
 
-    if ( locale == "C" )
-        locale = "en";
+    if ( localeName == "C" )
+        localeName = "en";
+
+    QTranslator* translator = nullptr;
+
+    // Branding translations
+    if ( !brandingTranslationsPrefix.isEmpty() )
+    {
+        QString brandingTranslationsDirPath( brandingTranslationsPrefix );
+        brandingTranslationsDirPath.truncate( brandingTranslationsPrefix.lastIndexOf(
+                                                  QDir::separator() ) );
+        QDir brandingTranslationsDir( brandingTranslationsDirPath );
+        if ( brandingTranslationsDir.exists() )
+        {
+            QString filenameBase( brandingTranslationsPrefix );
+            filenameBase.remove( 0, brandingTranslationsPrefix.lastIndexOf(
+                                        QDir::separator() ) + 1 );
+            translator = new QTranslator( parent );
+            if ( translator->load( locale,
+                                   filenameBase,
+                                   "_",
+                                   brandingTranslationsDir.absolutePath() ) )
+            {
+                qDebug() << "Translation: Branding component: Using system locale:" << localeName;
+            }
+            else
+            {
+                qDebug() << "Translation: Branding component: Using default locale, system locale one not found:" << localeName;
+                translator->load( brandingTranslationsPrefix + "en" );
+            }
+
+            if ( s_brandingTranslator )
+            {
+                QCoreApplication::removeTranslator( s_brandingTranslator );
+                delete s_brandingTranslator;
+            }
+
+            QCoreApplication::installTranslator( translator );
+            s_brandingTranslator = translator;
+        }
+    }
 
     // Calamares translations
-    QTranslator* translator = new QTranslator( parent );
-    if ( translator->load( QString( ":/lang/calamares_" ) + locale ) )
+    translator = new QTranslator( parent );
+    if ( translator->load( QString( ":/lang/calamares_" ) + localeName ) )
     {
-        qDebug() << "Translation: Calamares: Using system locale:" << locale;
+        qDebug() << "Translation: Calamares: Using system locale:" << localeName;
     }
     else
     {
-        qDebug() << "Translation: Calamares: Using default locale, system locale one not found:" << locale;
+        qDebug() << "Translation: Calamares: Using default locale, system locale one not found:" << localeName;
         translator->load( QString( ":/lang/calamares_en" ) );
     }
 
@@ -166,13 +208,13 @@ installTranslator( const QString& localeName, QObject* parent )
 
     // Qt translations
     translator = new QTranslator( parent );
-    if ( translator->load( QString( ":/lang/qt_" ) + locale ) )
+    if ( translator->load( QString( ":/lang/qt_" ) + localeName ) )
     {
-        qDebug() << "Translation: Qt: Using system locale:" << locale;
+        qDebug() << "Translation: Qt: Using system locale:" << localeName;
     }
     else
     {
-        qDebug() << "Translation: Qt: Using default locale, system locale one not found:" << locale;
+        qDebug() << "Translation: Qt: Using default locale, system locale one not found:" << localeName;
     }
 
     if ( s_qtTranslator )

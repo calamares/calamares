@@ -16,21 +16,24 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GREETINGPAGE_H
-#define GREETINGPAGE_H
+#ifndef WELCOMEPAGE_H
+#define WELCOMEPAGE_H
 
 #include <QWidget>
 
 namespace Ui
 {
-class GreetingPage;
+class WelcomePage;
 }
 
-class GreetingPage : public QWidget
+class RequirementsChecker;
+
+class WelcomePage : public QWidget
 {
     Q_OBJECT
 public:
-    explicit GreetingPage( QWidget* parent = nullptr );
+    explicit WelcomePage( RequirementsChecker* requirementsChecker,
+                          QWidget* parent = nullptr );
 
     void setUpLinks( bool showSupportUrl,
                      bool showKnownIssuesUrl,
@@ -40,7 +43,9 @@ protected:
     void focusInEvent( QFocusEvent* e ) override; //choose the child widget to focus
 
 private:
-    Ui::GreetingPage* ui;
+    void initLanguages();
+    Ui::WelcomePage* ui;
+    RequirementsChecker* m_requirementsChecker;
 };
 
-#endif // GREETINGPAGE_H
+#endif // WELCOMEPAGE_H

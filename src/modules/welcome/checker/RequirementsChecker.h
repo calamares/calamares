@@ -16,56 +16,43 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef PREPAREPAGEPLUGIN_H
-#define PREPAREPAGEPLUGIN_H
-
-#include "viewpages/ViewStep.h"
-#include "PluginDllMacro.h"
+#ifndef REQUIREMENTSCHECKER_H
+#define REQUIREMENTSCHECKER_H
 
 #include <QObject>
 #include <QStringList>
 
 #include <functional>
 
-class PreparePage;
+class CheckerWidget;
+class QWidget;
 
 struct PrepareEntry
 {
     QString name;
-    std::function< QString() > text;
+    std::function< QString() > enumerationText; //Partial string, inserted in a
+                                                //list of requirements to satisfy.
+    std::function< QString() > negatedText;     //Complete sentence about this requirement
+                                                //not having been met.
     bool checked;
     bool required;
 };
 
-class PLUGINDLLEXPORT PrepareViewStep : public Calamares::ViewStep
+class RequirementsChecker : public QObject
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA( IID "calamares.ViewModule/1.0" )
-
-    Q_INTERFACES( Calamares::ViewStep )
-
 public:
-    explicit PrepareViewStep( QObject* parent = nullptr );
-    virtual ~PrepareViewStep();
+    explicit RequirementsChecker( QObject* parent = nullptr );
+    virtual ~RequirementsChecker();
 
-    QString prettyName() const override;
+    QWidget* widget() const;
 
-    QWidget* widget() override;
+    void setConfigurationMap( const QVariantMap& configurationMap );
 
-    void next() override;
-    void back() override;
+    bool verdict() const;
 
-    bool isNextEnabled() const override;
-    bool isBackEnabled() const override;
-
-    bool isAtBeginning() const override;
-    bool isAtEnd() const override;
-
-    QList< Calamares::job_ptr > jobs() const override;
-
-    void onLeave() override;
-
-    void setConfigurationMap( const QVariantMap& configurationMap ) override;
+signals:
+    void verdictChanged( bool );
 
 private:
     QStringList m_entriesToCheck;
@@ -82,8 +69,8 @@ private:
     qreal m_requiredStorageGB;
     qreal m_requiredRamGB;
 
-    PreparePage* m_actualWidget;
-    bool m_nextEnabled;
+    CheckerWidget* m_actualWidget;
+    bool m_verdict;
 };
 
-#endif // PREPAREPAGEPLUGIN_H
+#endif // REQUIREMENTSCHECKER_H

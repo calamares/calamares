@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2013-2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2013-2015, Teo Mrnjavac <teo@kde.org>
  *
  *   Originally from Tomahawk, portions:
  *   Copyright 2010-2011, Christian Muehlhaeuser <muesli@tomahawk-player.org>
@@ -26,6 +26,8 @@
 
 #include "DllMacro.h"
 
+#include <QLocale>
+
 #define RESPATH ":/data/"
 
 class QDir;
@@ -37,7 +39,9 @@ namespace CalamaresUtils
     DLLEXPORT QDir appDataDir();
     DLLEXPORT QDir appLogDir();
     DLLEXPORT QDir systemLibDir();
-    DLLEXPORT void installTranslator( const QString& localeName, QObject* parent );
+    DLLEXPORT void installTranslator( const QLocale& locale,
+                                      const QString& brandingTranslationsPrefix,
+                                      QObject* parent );
 
     /**
      * Override app data dir. Only for testing purposes.
