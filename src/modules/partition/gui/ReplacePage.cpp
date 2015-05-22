@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
@@ -34,15 +34,24 @@
 #include <utils/Logger.h>
 #include <Branding.h>
 
+#include <QDir>
+#include <QProcess>
+
 
 ReplacePage::ReplacePage( PartitionCoreModule* core, QWidget* parent )
     : QWidget( parent )
     , m_ui( new Ui_ReplacePage )
     , m_core( core )
+    , m_isEfi( false )
 {
     m_ui->setupUi( this );
     m_ui->deviceComboBox->setModel( m_core->deviceModel() );
     m_ui->partitionPreview->setLabelsVisible( true );
+
+    if ( Calamares::JobQueue::instance()->globalStorage()->value( "firmwareType" ) == "efi" )
+        m_isEfi = true;
+
+    loadEfiSystemPartitions();
 
 //    updateButtons();
 
@@ -77,6 +86,7 @@ ReplacePage::reset()
 {
     int oldDeviceIndex = m_ui->deviceComboBox->currentIndex();
     m_core->revert();
+    loadEfiSystemPartitions();
     m_ui->deviceComboBox->setCurrentIndex( oldDeviceIndex );
     updateFromCurrentDevice();
 }
@@ -104,6 +114,26 @@ ReplacePage::applyChanges()
 
             m_core->deletePartition( dev, partition );
             m_core->createPartition( dev, newPartition );
+
+            if ( m_isEfi )
+            {
+                if ( m_efiSystemPartitions.count() == 1 )
+                {
+                    PartitionInfo::setMountPoint(
+                            m_efiSystemPartitions.first(),
+                            Calamares::JobQueue::instance()->
+                                globalStorage()->
+                                    value( "efiSystemPartition" ).toString() );
+                }
+                else if ( m_efiSystemPartitions.count() > 1 )
+                {
+                    PartitionInfo::setMountPoint(
+                            m_efiSystemPartitions.at( m_ui->bootComboBox->currentIndex() ),
+                            Calamares::JobQueue::instance()->
+                                globalStorage()->
+                                    value( "efiSystemPartition" ).toString() );
+                }
+            }
 
             m_core->dumpQueue();
         }
@@ -227,16 +257,82 @@ ReplacePage::onPartitionSelected()
             return;
         }
 
-        updateStatus( CalamaresUtils::PartitionPartition,
-                      tr( "<strong>%3</strong><br/><br/>"
-                          "%1 will be installed on %2.<br/>"
-                          "<font color=\"red\">Warning: </font>all data on partition"
-                          "%2 will be lost.")
+        m_ui->bootComboBox->hide();
+        m_ui->bootComboBox->clear();
+        m_ui->bootStatusLabel->hide();
+        m_ui->bootStatusLabel->clear();
+
+        if ( m_isEfi )
+        {
+            if ( m_efiSystemPartitions.count() == 0 )
+            {
+                updateStatus( CalamaresUtils::Fail,
+                              tr( "<strong>%2</strong><br/><br/>"
+                                  "An EFI system partition cannot be found anywhere "
+                                  "on this system. Please go back and use manual "
+                                  "partitioning to set up %1." )
+                              .arg( Calamares::Branding::instance()->
+                                    string( Calamares::Branding::ShortProductName ) )
+                              .arg( prettyName ) );
+                setNextEnabled( false );
+            }
+            else if ( m_efiSystemPartitions.count() == 1 )
+            {
+                updateStatus( CalamaresUtils::PartitionPartition,
+                              tr( "<strong>%3</strong><br/><br/>"
+                                  "%1 will be installed on %2.<br/>"
+                                  "<font color=\"red\">Warning: </font>all data on partition "
+                                  "%2 will be lost.")
+                                .arg( Calamares::Branding::instance()->
+                                    string( Calamares::Branding::VersionedName ) )
+                                .arg( partition->partitionPath() )
+                                .arg( prettyName ) );
+                m_ui->bootStatusLabel->show();
+                m_ui->bootStatusLabel->setText(
+                    tr( "The EFI system partition at %1 will be used for starting %2." )
+                        .arg( m_efiSystemPartitions.first()->partitionPath() )
                         .arg( Calamares::Branding::instance()->
-                            string( Calamares::Branding::VersionedName ) )
-                        .arg( partition->partitionPath() )
-                        .arg( prettyName ) );
-        setNextEnabled( true );
+                              string( Calamares::Branding::ShortProductName ) ) );
+                setNextEnabled( true );
+            }
+            else
+            {
+                updateStatus( CalamaresUtils::PartitionPartition,
+                              tr( "<strong>%3</strong><br/><br/>"
+                                  "%1 will be installed on %2.<br/>"
+                                  "<font color=\"red\">Warning: </font>all data on partition "
+                                  "%2 will be lost.")
+                                .arg( Calamares::Branding::instance()->
+                                    string( Calamares::Branding::VersionedName ) )
+                                .arg( partition->partitionPath() )
+                                .arg( prettyName ) );
+                m_ui->bootStatusLabel->show();
+                m_ui->bootStatusLabel->setText( tr( "EFI system partition:" ) );
+                m_ui->bootComboBox->show();
+                for ( int i = 0; i < m_efiSystemPartitions.count(); ++i )
+                {
+                    Partition* efiPartition = m_efiSystemPartitions.at( i );
+                    m_ui->bootComboBox->addItem( efiPartition->partitionPath(), i );
+                    if ( efiPartition->devicePath() == partition->devicePath() &&
+                         efiPartition->number() == 1 )
+                        m_ui->bootComboBox->setCurrentIndex( i );
+                }
+                setNextEnabled( true );
+            }
+        }
+        else
+        {
+            updateStatus( CalamaresUtils::PartitionPartition,
+                          tr( "<strong>%3</strong><br/><br/>"
+                              "%1 will be installed on %2.<br/>"
+                              "<font color=\"red\">Warning: </font>all data on partition "
+                              "%2 will be lost.")
+                            .arg( Calamares::Branding::instance()->
+                                string( Calamares::Branding::VersionedName ) )
+                            .arg( partition->partitionPath() )
+                            .arg( prettyName ) );
+            setNextEnabled( true );
+        }
     }
 }
 
@@ -319,4 +415,46 @@ ReplacePage::onPartitionModelReset()
 {
     m_ui->partitionTreeView->expandAll();
     onPartitionSelected();
+}
+
+
+void
+ReplacePage::loadEfiSystemPartitions()
+{
+    m_efiSystemPartitions.clear();
+    m_ui->bootComboBox->hide();
+    m_ui->bootComboBox->clear();
+    m_ui->bootStatusLabel->hide();
+    m_ui->bootStatusLabel->clear();
+
+    QList< Device* > devices;
+    for ( int row = 0; row < m_core->deviceModel()->rowCount(); ++row )
+    {
+        devices.append( m_core->deviceModel()->deviceForIndex(
+                            m_core->deviceModel()->index( row ) ) );
+    }
+
+    //FIXME: Unfortunately right now we have to call sgdisk manually because
+    //       the KPM submodule does not expose the ESP flag from libparted.
+    //       The following findPartitions call and lambda should be scrapped and
+    //       rewritten based on libKPM.     -- Teo 5/2015
+    m_efiSystemPartitions =
+        PMUtils::findPartitions( devices,
+                                 []( Partition* partition ) -> bool
+    {
+        QProcess process;
+        process.setProgram( "sgdisk" );
+        process.setArguments( { "-i",
+                                QString::number( partition->number() ),
+                                partition->devicePath() } );
+        process.setProcessChannelMode( QProcess::MergedChannels );
+        process.start();
+        if ( process.waitForFinished() )
+        {
+            if ( process.readAllStandardOutput()
+                    .contains( "C12A7328-F81F-11D2-BA4B-00A0C93EC93B" ) )
+                return true;
+        }
+        return false;
+    } );
 }
