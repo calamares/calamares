@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
+ *   Copyright 2015, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -23,6 +24,8 @@
 
 // Qt
 #include <QList>
+
+#include <functional>
 
 class Device;
 class Partition;
@@ -54,6 +57,13 @@ Partition* findPartitionByMountPoint( const QList< Device* >& devices, const QSt
  * for the given path, or nullptr if a Partition for the given path cannot be found.
  */
 Partition* findPartitionByPath( const QList< Device* >& devices, const QString& path );
+
+/**
+ * Iterates on all devices and partitions and returns a list of pointers to the Partition
+ * objects that satisfy the conditions defined in the criterion function.
+ */
+QList< Partition* > findPartitions( const QList< Device* >& devices,
+                                    std::function< bool ( Partition* ) > criterionFunction );
 
 /**
  * Helper function to create a new Partition object (does not create anything

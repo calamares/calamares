@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
+ *   Copyright 2015, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -29,13 +30,15 @@ namespace PMUtils
 {
 
 
-bool isPartitionFreeSpace( Partition* partition )
+bool
+isPartitionFreeSpace( Partition* partition )
 {
     return partition->roles().has( PartitionRole::Unallocated );
 }
 
 
-bool isPartitionNew( Partition* partition )
+bool
+isPartitionNew( Partition* partition )
 {
     return partition->state() == Partition::StateNew;
 }
@@ -60,6 +63,19 @@ findPartitionByPath( const QList< Device* >& devices, const QString& path )
             if ( ( *it )->partitionPath() == path.simplified() )
                 return *it;
     return nullptr;
+}
+
+
+QList< Partition* >
+findPartitions( const QList< Device* >& devices,
+                std::function< bool ( Partition* ) > criterionFunction )
+{
+    QList< Partition* > results;
+    for ( auto device : devices )
+        for ( auto it = PartitionIterator::begin( device ); it != PartitionIterator::end( device ); ++it )
+            if ( criterionFunction( *it ) )
+                results.append( *it );
+    return results;
 }
 
 
