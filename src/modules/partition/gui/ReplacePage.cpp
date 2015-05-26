@@ -49,9 +49,6 @@ ReplacePage::ReplacePage( PartitionCoreModule* core, QWidget* parent )
     m_ui->deviceComboBox->setModel( m_core->deviceModel() );
     m_ui->partitionPreview->setLabelsVisible( true );
 
-    if ( Calamares::JobQueue::instance()->globalStorage()->value( "firmwareType" ) == "efi" )
-        m_isEfi = true;
-
     loadEfiSystemPartitions();
 
 //    updateButtons();
@@ -145,6 +142,9 @@ ReplacePage::applyChanges()
 void
 ReplacePage::onPartitionSelected()
 {
+    if ( Calamares::JobQueue::instance()->globalStorage()->value( "firmwareType" ) == "efi" )
+        m_isEfi = true;
+
     cDebug() << "Partition selected in Replace page.";
     if ( m_ui->partitionTreeView->currentIndex() == QModelIndex() )
     {
