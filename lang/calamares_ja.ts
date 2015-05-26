@@ -376,12 +376,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="260"/>
         <source>&amp;Install now</source>
-        <translation type="unfinished"/>
+        <translation>今すぐインストール（&amp;I）</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="261"/>
         <source>Go &amp;back</source>
-        <translation type="unfinished"/>
+        <translation>戻る（&amp;B）</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="300"/>
@@ -453,22 +453,23 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="93"/>
         <source>This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;Installation cannot continue. &lt;a href=&quot;#details&quot;&gt;Details...&lt;/a&gt;</source>
-        <translation type="unfinished"/>
+        <translation>このコンピュータは、 %1 をインストールするための最低要件を満たしていません。
+&lt;br/&gt;インストールが続行できません。&lt;a href=&quot;#details&quot;&gt;詳細...&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="111"/>
         <source>This computer does not satisfy some of the recommended requirements for installing %1.&lt;br/&gt;Installation can continue, but some features might be disabled.</source>
-        <translation type="unfinished"/>
+        <translation>このコンピュータは、 %1 をインストールするための推奨条件をいくつか満たしていません。&lt;br/&gt;インストールは続行しますが、一部の機能が無効になる場合があります。</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="133"/>
         <source>For best results, please ensure that this computer:</source>
-        <translation type="unfinished"/>
+        <translation>良好な結果を得るために、このコンピュータについて以下の項目を確認して下さい：</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="158"/>
         <source>System requirements</source>
-        <translation type="unfinished"/>
+        <translation>システム要件</translation>
     </message>
 </context>
 <context>
@@ -488,7 +489,7 @@ The installer will quit and all changes will be lost.</source>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="189"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="238"/>
         <source>&lt;strong&gt;Erase disk and install %1&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;This will delete all of your programs, documents, photos, music, and any other files.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;ディスクを消去して %1をインストール&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;警告: &lt;/font&gt;この操作はすべてのプログラム、文書、画像、音楽などのファイルを削除します。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="125"/>
@@ -496,24 +497,24 @@ The installer will quit and all changes will be lost.</source>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="195"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="244"/>
         <source>&lt;strong&gt;Erase disk and install %1&lt;/strong&gt;&lt;br/&gt;You will be offered a choice of which disk to erase.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;ディスクを消去して %1 をインストール &lt;/strong&gt;&lt;br/&gt;どのディスクを消去するか、選択します。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="145"/>
         <source>&lt;strong&gt;Install %2 alongside %1&lt;/strong&gt;&lt;br/&gt;The installer will shrink the %1 volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt; %1 に共存して %2 をインストール&lt;/strong&gt;&lt;br/&gt;インストーラーは %2 のために %1 の容量を縮小します。コンピュータの起動時にどのオペレーティングシステムを起動させるか選択することができます。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="154"/>
         <source>&lt;strong&gt;Erase entire disk with %1 and install %2&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;This will erase the whole disk and delete all of your %1 programs, documents, photos, music, and any other files.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;%1ディスクの全てを消去し %2 をインストール&lt;strong&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;警告: &lt;/font&gt;この操作はディスクの全てのデータを消去し、全ての %1 プログラム、文書、画像、音楽、その他ファイルを削除します。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="167"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="200"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="249"/>
         <source>&lt;strong&gt;Replace a partition with %1&lt;/strong&gt;&lt;br/&gt;You will be offered a choice of which partition to erase.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;パーティションを %1 に置き換える &lt;/strong&gt;&lt;br/&gt;どのディスクを消去するか、選択します。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="176"/>
@@ -523,7 +524,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="179"/>
         <source>&lt;strong&gt;Install %1 alongside your current operating system&lt;/strong&gt;&lt;br/&gt;The installer will shrink an existing volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt; 現在のオペレーティングシステムに共存して %1 をインストール&lt;/strong&gt;&lt;br/&gt;インストーラーは %2 のために現在のパーティションの容量を縮小します。コンピュータの起動時にどのオペレーティングシステムを起動させるか選択することができます。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="225"/>
@@ -533,12 +534,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="228"/>
         <source>&lt;strong&gt;Install %1 alongside your current operating systems&lt;/strong&gt;&lt;br/&gt;The installer will shrink an existing volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt; 現在のオペレーティングシステムに共存して %1をインストール&lt;/strong&gt;&lt;br/&gt;インストーラーは %2 のために現在のパーティションの容量を縮小します。コンピュータの起動時にどのオペレーティングシステムを起動させるか選択することができます。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="265"/>
         <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself, or choose multiple partitions for %1.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;手動パーティショニング&lt;/strong&gt;&lt;br/&gt;手動でのパーティションの作成およびサイズ変更、あるいは %1 のための複数のパーティションの選択を行うことができます。</translation>
     </message>
 </context>
 <context>
@@ -924,12 +925,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="48"/>
         <source>Create new %2MB partition on %4 (%3) with file system %1.</source>
-        <translation type="unfinished"/>
+        <translation>ファイルシステム %1で%4 (%3) 上に新しく%2MBのパーティションを作成</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="59"/>
         <source>Create new &lt;strong&gt;%2MB&lt;/strong&gt; partition on &lt;strong&gt;%4&lt;/strong&gt; (%3) with file system &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>ファイルシステム %1で &lt;strong&gt;%4&lt;/strong&gt; (%3) 上に新しく&lt;strong&gt;%2MB&lt;/strong&gt;のパーティションを作成</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="74"/>
@@ -990,12 +991,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="49"/>
         <source>Create new %1 partition table on %2.</source>
-        <translation type="unfinished"/>
+        <translation>%2 上に新しく %1 パーティションテーブルを作成</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="56"/>
         <source>Create new &lt;strong&gt;%1&lt;/strong&gt; partition table on &lt;strong&gt;%2&lt;/strong&gt; (%3).</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;%2&lt;/strong&gt; (%3) 上に新しく &lt;strong&gt;%1&lt;/strong&gt; パーティションテーブルを作成</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="66"/>
@@ -1112,12 +1113,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="42"/>
         <source>Delete partition %1.</source>
-        <translation type="unfinished"/>
+        <translation>パーティション %1 の削除</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="50"/>
         <source>Delete partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>パーティション  &lt;strong&gt;%1&lt;/strong&gt; の削除</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="58"/>
