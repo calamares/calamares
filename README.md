@@ -5,13 +5,14 @@
 |:-----------------------------------------:|:--------------------------:|:--------------------------:|:--------------------------:|:--------------------------:|
 
 ### Dependencies
-| Main | Partitioning Module |
-|:----:|:-------------------:|
-| CMake >= 2.8.12 | extra-cmake-modules |
-| Qt >= 5.3 | kconfig (part of KF5) |
-| yaml-cpp >= 0.5.1 | solid (part of KF5) |
-| Python >= 3.3 | kcoreaddons (part of KF5) |
-| Boost.Python >= 1.55.0 | ki18n (part of KF5) |
+| Main | Partitioning Module | Bootloader module |
+|:----:|:-------------------:|:-----------------:|
+| CMake >= 2.8.12 | extra-cmake-modules | gummiboot or GRUB2 |
+| Qt >= 5.3 | kconfig (part of KF5) | sgdisk |
+| yaml-cpp >= 0.5.1 | solid (part of KF5) | |
+| Python >= 3.3 | kcoreaddons (part of KF5) | |
+| Boost.Python >= 1.55.0 | ki18n (part of KF5) | |
+| | sgdisk | |
 
 ### Deployment
 [__Setting up branding__](https://github.com/calamares/calamares/blob/master/src/branding/README.md)
