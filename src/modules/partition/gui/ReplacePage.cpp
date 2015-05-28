@@ -145,7 +145,6 @@ ReplacePage::onPartitionSelected()
     if ( Calamares::JobQueue::instance()->globalStorage()->value( "firmwareType" ) == "efi" )
         m_isEfi = true;
 
-    cDebug() << "Partition selected in Replace page.";
     if ( m_ui->partitionTreeView->currentIndex() == QModelIndex() )
     {
         updateStatus( CalamaresUtils::PartitionPartition,
@@ -264,11 +263,8 @@ ReplacePage::onPartitionSelected()
         m_ui->bootStatusLabel->hide();
         m_ui->bootStatusLabel->clear();
 
-        cDebug() << "isEfi:" << m_isEfi;
         if ( m_isEfi )
         {
-            cDebug() << "Assuming there should be an EFI System Partition somewhere...";
-            cDebug() << "m_efiSystemPartitions.count() is" << m_efiSystemPartitions.count();
             if ( m_efiSystemPartitions.count() == 0 )
             {
                 updateStatus( CalamaresUtils::Fail,
@@ -327,7 +323,6 @@ ReplacePage::onPartitionSelected()
         }
         else
         {
-            cDebug() << "System is NOT EFI, bootloader will be installed on MBR.";
             updateStatus( CalamaresUtils::PartitionPartition,
                           tr( "<strong>%3</strong><br/><br/>"
                               "%1 will be installed on %2.<br/>"
@@ -427,7 +422,6 @@ ReplacePage::onPartitionModelReset()
 void
 ReplacePage::loadEfiSystemPartitions()
 {
-    cDebug() << "Searching for partitions of type EFI System Partition on all disks.";
     m_efiSystemPartitions.clear();
     m_ui->bootComboBox->hide();
     m_ui->bootComboBox->clear();
@@ -440,7 +434,6 @@ ReplacePage::loadEfiSystemPartitions()
         Device* device = m_core->deviceModel()->deviceForIndex(
                              m_core->deviceModel()->index( row ) );
         devices.append( device );
-        cDebug() << "Will look in device" << device->deviceNode();
     }
 
     //FIXME: Unfortunately right now we have to call sgdisk manually because
@@ -452,7 +445,6 @@ ReplacePage::loadEfiSystemPartitions()
                                  []( Partition* partition ) -> bool
     {
         QProcess process;
-        cDebug() << "sgdisk checking partition type for" << partition->partitionPath();
         process.setProgram( "sgdisk" );
         process.setArguments( { "-i",
                                 QString::number( partition->number() ),
@@ -464,10 +456,13 @@ ReplacePage::loadEfiSystemPartitions()
             if ( process.readAllStandardOutput()
                     .contains( "C12A7328-F81F-11D2-BA4B-00A0C93EC93B" ) )
             {
-                cDebug() << "SUCCESS! Adding" << partition->partitionPath() << "to efiSystemPartitions list.";
+                cDebug() << "Found EFI system partition at" << partition->partitionPath();
                 return true;
             }
         }
         return false;
     } );
+
+    if ( m_efiSystemPartitions.isEmpty() )
+        cDebug() << "WARNING: system is EFI but no EFI system partitions found.";
 }
