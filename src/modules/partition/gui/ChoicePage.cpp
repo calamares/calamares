@@ -32,6 +32,7 @@
 
 #include <QBoxLayout>
 #include <QButtonGroup>
+#include <QDir>
 #include <QLabel>
 
 ChoicePage::ChoicePage( QWidget* parent )
@@ -254,6 +255,17 @@ ChoicePage::init( PartitionCoreModule* core, const OsproberEntryList& osproberEn
 
         if ( !atLeastOneCanBeResized )
             alongsideButton->hide();
+    }
+
+    bool isEfi = QDir( "/sys/firmware/efi/efivars" ).exists();
+    bool efiSystemPartitionFound = !m_core->efiSystemPartitions().isEmpty();
+
+    if ( isEfi && !efiSystemPartitionFound )
+    {
+        cDebug() << "WARNING: system is EFI but there's not EFI system partition, "
+                    "DISABLING alongside and replace features.";
+        alongsideButton->hide();
+        replaceButton->hide();
     }
 
     QFrame* hLine = new QFrame;
