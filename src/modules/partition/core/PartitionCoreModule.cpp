@@ -321,6 +321,12 @@ PartitionCoreModule::jobs() const
     return lst;
 }
 
+bool
+PartitionCoreModule::hasRootMountPoint() const
+{
+    return m_hasRootMountPoint;
+}
+
 void
 PartitionCoreModule::dumpQueue() const
 {

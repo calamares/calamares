@@ -89,10 +89,7 @@ public:
 
     QList< Calamares::job_ptr > jobs() const;
 
-    bool hasRootMountPoint() const
-    {
-        return m_hasRootMountPoint;
-    }
+    bool hasRootMountPoint() const;
 
     void revert();
 
