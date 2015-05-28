@@ -371,7 +371,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="253"/>
         <source>The %1 installer is about to make changes to your disk in order to install %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
-        <translation type="unfinished"/>
+        <translation>%1 インストーラーは %2 をインストールするためにディスクの内容を変更しようとします。&lt;br/&gt;&lt;strong&gt;これらの変更は取り消しできなくなります。&lt;/strong&gt;</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="260"/>
@@ -1470,7 +1470,7 @@ Some file systems need external tools to be installed for them to be supported. 
     <message>
         <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="100"/>
         <source>Install %1 on &lt;strong&gt;new&lt;/strong&gt; %2 system partition.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;新しい&lt;/strong&gt; %2 システムパーティションに %1 をインストール。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="105"/>
@@ -1485,12 +1485,12 @@ Some file systems need external tools to be installed for them to be supported. 
     <message>
         <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="119"/>
         <source>Set up %3 partition &lt;strong&gt;%1&lt;/strong&gt; with mount point &lt;strong&gt;%2&lt;/strong&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>パーティション &lt;strong&gt;%1&lt;/strong&gt;  マウントポイント &lt;strong&gt;%2&lt;/strong&gt;  に %3 をセットアップ。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="131"/>
         <source>Install boot loader on &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;%1&lt;/strong&gt; にブートローダーをインストール</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="144"/>
@@ -1534,7 +1534,7 @@ Some file systems need external tools to be installed for them to be supported. 
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="59"/>
         <source>Format &lt;strong&gt;%3MB&lt;/strong&gt; partition &lt;strong&gt;%1&lt;/strong&gt; with file system &lt;strong&gt;%2&lt;/strong&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;%3MB&lt;/strong&gt; パーティション &lt;strong&gt;%1&lt;/strong&gt; をファイルシステム&lt;strong&gt;%2&lt;/strong&gt;でフォーマット。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="71"/>
@@ -1593,7 +1593,7 @@ Some file systems need external tools to be installed for them to be supported. 
     <message>
         <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="40"/>
         <source>The system locale setting affects the language and character set for some command line user interface elements.&lt;br/&gt;The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>システムロケールの設定はコマンドラインやインターフェース上での言語や文字の表示に影響をおよぼします。&lt;br/&gt;現在の設定 &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
 </context>
 <context>
@@ -2072,7 +2072,7 @@ Some file systems need external tools to be installed for them to be supported. 
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="204"/>
         <source>&lt;strong&gt;Erase&lt;/strong&gt; disk and install %1.</source>
-        <translation type="unfinished"/>
+        <translation>ディスクを &lt;strong&gt;消去して&lt;/strong&gt; %1 をインストール。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="209"/>

@@ -40,7 +40,7 @@
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/applyprogressdialogwidgetbase.ui" line="38"/>
         <source>Time Elapsed</source>
-        <translation type="unfinished"/>
+        <translation>Tiempu trescurríu</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/applyprogressdialogwidgetbase.ui" line="64"/>
@@ -559,7 +559,7 @@ L&apos;instalador colará y perderánse toles camudancies.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="38"/>
         <source>Clear all temporary mounts.</source>
-        <translation type="unfinished"/>
+        <translation>Llimpiar tolos montaxes temporales.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="49"/>
@@ -1474,7 +1474,7 @@ Dellos sistemes de ficheros riquen la instalación de ferramientes esternes pa t
     <message>
         <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="105"/>
         <source>Set up &lt;strong&gt;new&lt;/strong&gt; %2 partition with mount point &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Configurar la partición &lt;strong&gt;nueva&lt;/strong&gt; %2 col puntu de montaxe &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="113"/>
@@ -1690,7 +1690,7 @@ Dellos sistemes de ficheros riquen la instalación de ferramientes esternes pa t
     <message>
         <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="95"/>
         <source>Moving of partition %1 failed, changes have been rolled back.</source>
-        <translation type="unfinished"/>
+        <translation>Fallu al mover la partición %1, desfixéronse les camudancies.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="101"/>
@@ -2236,12 +2236,12 @@ Dellos sistemes de ficheros riquen la instalación de ferramientes esternes pa t
     <message>
         <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="242"/>
         <source>Get &amp;Documentation</source>
-        <translation type="unfinished"/>
+        <translation>Consiguir &amp;documentación</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="252"/>
         <source>Get &amp;Translations</source>
-        <translation type="unfinished"/>
+        <translation>Consiguir &amp;tornes</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/scripts/release/releasedialog.ui" line="262"/>
@@ -2337,7 +2337,7 @@ Dellos sistemes de ficheros riquen la instalación de ferramientes esternes pa t
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="54"/>
         <source>Gathering system information...</source>
-        <translation type="unfinished"/>
+        <translation>Axuntando información del equipu...</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="91"/>
@@ -2385,7 +2385,7 @@ Dellos sistemes de ficheros riquen la instalación de ferramientes esternes pa t
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="76"/>
         <source>Resize file system on partition %1.</source>
-        <translation type="unfinished"/>
+        <translation>Redimensionar el sistema de ficheros na partición %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="91"/>
@@ -2447,7 +2447,7 @@ Dellos sistemes de ficheros riquen la instalación de ferramientes esternes pa t
     <message>
         <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="57"/>
         <source>Set keyboard model to %1, layout to %2-%3</source>
-        <translation type="unfinished"/>
+        <translation>Afitar modelu de tecláu a %1, distribución a %2-%3</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="284"/>
@@ -2471,7 +2471,7 @@ Dellos sistemes de ficheros riquen la instalación de ferramientes esternes pa t
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="144"/>
         <source>Update geometry of partition %1.</source>
-        <translation type="unfinished"/>
+        <translation>Anovar la xeometría de la partición %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="156"/>
@@ -2484,12 +2484,12 @@ Dellos sistemes de ficheros riquen la instalación de ferramientes esternes pa t
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="42"/>
         <source>Set password for user %1</source>
-        <translation type="unfinished"/>
+        <translation>Afitar la contraseña pal usuariu %1</translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="52"/>
         <source>Bad destination system path.</source>
-        <translation type="unfinished"/>
+        <translation>Destín incorreutu del camín del sistema.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="53"/>
@@ -2712,7 +2712,7 @@ Dellos sistemes de ficheros riquen la instalación de ferramientes esternes pa t
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="329"/>
         <source>Assessment</source>
-        <translation type="unfinished"/>
+        <translation>Valoración</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="334"/>
@@ -2722,7 +2722,7 @@ Dellos sistemes de ficheros riquen la instalación de ferramientes esternes pa t
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="385"/>
         <source>Overall assessment:</source>
-        <translation type="unfinished"/>
+        <translation>Valoración xeneral:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/smartdialogwidgetbase.ui" line="414"/>
@@ -2752,7 +2752,7 @@ Dellos sistemes de ficheros riquen la instalación de ferramientes esternes pa t
         <location filename="../src/modules/partition/partitionmanager/src/gui/treelogbase.ui" line="54"/>
         <source>Sev.</source>
         <comment>@title:column Severity of a log entry / log level. Text must be very short.</comment>
-        <translation type="unfinished"/>
+        <translation>Sev.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/treelogbase.ui" line="57"/>
