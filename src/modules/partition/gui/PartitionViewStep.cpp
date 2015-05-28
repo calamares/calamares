@@ -31,7 +31,6 @@
 #include <gui/PartitionPage.h>
 #include <gui/ReplacePage.h>
 #include <gui/PartitionPreview.h>
-#include "OsproberEntry.h"
 
 #include "CalamaresVersion.h"
 #include "utils/CalamaresUtilsGui.h"
@@ -72,51 +71,7 @@ PartitionViewStep::PartitionViewStep( QObject* parent )
     connect( timer, &QTimer::timeout,
              [=]()
     {
-        QString osproberOutput;
-        QProcess osprober;
-        osprober.setProgram( "os-prober" );
-        osprober.setProcessChannelMode( QProcess::SeparateChannels );
-        osprober.start();
-        if ( !osprober.waitForStarted() )
-        {
-            cDebug() << "ERROR: os-prober cannot start.";
-        }
-        else if ( !osprober.waitForFinished( 60000 ) )
-        {
-            cDebug() << "ERROR: os-prober timed out.";
-        }
-        else
-        {
-            osproberOutput.append(
-                QString::fromLocal8Bit(
-                    osprober.readAllStandardOutput() ).trimmed() );
-        }
-
-        QString osProberReport( "Osprober lines, clean:\n" );
-        QStringList osproberCleanLines;
-        OsproberEntryList osproberEntries;
-        foreach ( const QString& line, osproberOutput.split( '\n' ) )
-        {
-            if ( !line.simplified().isEmpty() )
-            {
-                QStringList lineColumns = line.split( ':' );
-                QString prettyName;
-                if ( !lineColumns.value( 1 ).simplified().isEmpty() )
-                    prettyName = lineColumns.value( 1 ).simplified();
-                else if ( !lineColumns.value( 2 ).simplified().isEmpty() )
-                    prettyName = lineColumns.value( 2 ).simplified();
-
-                QString path = lineColumns.value( 0 ).simplified();
-                if ( !path.startsWith( "/dev/" ) ) //basic sanity check
-                    continue;
-
-                osproberEntries.append( { prettyName, path, canBeResized( path ), lineColumns } );
-                osproberCleanLines.append( line );
-            }
-        }
-        osProberReport.append( osproberCleanLines.join( '\n' ) );
-        cDebug() << osProberReport;
-        Calamares::JobQueue::instance()->globalStorage()->insert( "osproberLines", osproberCleanLines );
+        OsproberEntryList osproberEntries = runOsprober();
 
         m_choicePage->init( m_core, osproberEntries );
         m_erasePage->init( m_core );
@@ -153,6 +108,60 @@ PartitionViewStep::~PartitionViewStep()
         m_choicePage->deleteLater();
     if ( m_manualPartitionPage && m_manualPartitionPage->parent() == nullptr )
         m_manualPartitionPage->deleteLater();
+}
+
+
+OsproberEntryList
+PartitionViewStep::runOsprober()
+{
+    QString osproberOutput;
+    QProcess osprober;
+    osprober.setProgram( "os-prober" );
+    osprober.setProcessChannelMode( QProcess::SeparateChannels );
+    osprober.start();
+    if ( !osprober.waitForStarted() )
+    {
+        cDebug() << "ERROR: os-prober cannot start.";
+    }
+    else if ( !osprober.waitForFinished( 60000 ) )
+    {
+        cDebug() << "ERROR: os-prober timed out.";
+    }
+    else
+    {
+        osproberOutput.append(
+            QString::fromLocal8Bit(
+                osprober.readAllStandardOutput() ).trimmed() );
+    }
+
+    QString osProberReport( "Osprober lines, clean:\n" );
+    QStringList osproberCleanLines;
+    OsproberEntryList osproberEntries;
+    foreach ( const QString& line, osproberOutput.split( '\n' ) )
+    {
+        if ( !line.simplified().isEmpty() )
+        {
+            QStringList lineColumns = line.split( ':' );
+            QString prettyName;
+            if ( !lineColumns.value( 1 ).simplified().isEmpty() )
+                prettyName = lineColumns.value( 1 ).simplified();
+            else if ( !lineColumns.value( 2 ).simplified().isEmpty() )
+                prettyName = lineColumns.value( 2 ).simplified();
+
+            QString path = lineColumns.value( 0 ).simplified();
+            if ( !path.startsWith( "/dev/" ) ) //basic sanity check
+                continue;
+
+            osproberEntries.append( { prettyName, path, canBeResized( path ), lineColumns } );
+            osproberCleanLines.append( line );
+        }
+    }
+    osProberReport.append( osproberCleanLines.join( '\n' ) );
+    cDebug() << osProberReport;
+
+    Calamares::JobQueue::instance()->globalStorage()->insert( "osproberLines", osproberCleanLines );
+
+    return osproberEntries;
 }
 
 

@@ -24,6 +24,7 @@
 
 #include "viewpages/ViewStep.h"
 #include "PluginDllMacro.h"
+#include "OsproberEntry.h"
 
 class ChoicePage;
 class EraseDiskPage;
@@ -69,6 +70,7 @@ public:
     QList< Calamares::job_ptr > jobs() const override;
 
 private:
+    OsproberEntryList runOsprober();
     bool canBeResized( const QString& partitionPath );
 
     PartitionCoreModule* m_core;
