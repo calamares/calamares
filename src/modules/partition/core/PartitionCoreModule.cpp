@@ -47,6 +47,8 @@
 
 // Qt
 #include <QStandardItemModel>
+#include <QDir>
+#include <QProcess>
 
 static bool
 hasRootPartition( Device* device )
@@ -124,6 +126,10 @@ PartitionCoreModule::init()
     m_deviceModel->init( devices );
 
     m_bootLoaderModel->init( devices );
+
+    if ( QDir( "/sys/firmware/efi/efivars" ).exists() )
+        scanForEfiSystemPartitions(); //FIXME: this should be removed in favor of
+                                      //       proper KPM support for EFI
 }
 
 PartitionCoreModule::~PartitionCoreModule()
@@ -327,6 +333,12 @@ PartitionCoreModule::hasRootMountPoint() const
     return m_hasRootMountPoint;
 }
 
+QList< Partition* >
+PartitionCoreModule::efiSystemPartitions() const
+{
+    return m_efiSystemPartitions;
+}
+
 void
 PartitionCoreModule::dumpQueue() const
 {
@@ -382,6 +394,52 @@ PartitionCoreModule::updateIsDirty()
         }
     if ( oldValue != m_isDirty )
         isDirtyChanged( m_isDirty );
+}
+
+void
+PartitionCoreModule::scanForEfiSystemPartitions()
+{
+    m_efiSystemPartitions.clear();
+
+    QList< Device* > devices;
+    for ( int row = 0; row < deviceModel()->rowCount(); ++row )
+    {
+        Device* device = deviceModel()->deviceForIndex(
+                             deviceModel()->index( row ) );
+        devices.append( device );
+    }
+
+    //FIXME: Unfortunately right now we have to call sgdisk manually because
+    //       the KPM submodule does not expose the ESP flag from libparted.
+    //       The following findPartitions call and lambda should be scrapped and
+    //       rewritten based on libKPM.     -- Teo 5/2015
+    QList< Partition* > efiSystemPartitions =
+        PMUtils::findPartitions( devices,
+                                 []( Partition* partition ) -> bool
+    {
+        QProcess process;
+        process.setProgram( "sgdisk" );
+        process.setArguments( { "-i",
+                                QString::number( partition->number() ),
+                                partition->devicePath() } );
+        process.setProcessChannelMode( QProcess::MergedChannels );
+        process.start();
+        if ( process.waitForFinished() )
+        {
+            if ( process.readAllStandardOutput()
+                    .contains( "C12A7328-F81F-11D2-BA4B-00A0C93EC93B" ) )
+            {
+                cDebug() << "Found EFI system partition at" << partition->partitionPath();
+                return true;
+            }
+        }
+        return false;
+    } );
+
+    if ( efiSystemPartitions.isEmpty() )
+        cDebug() << "WARNING: system is EFI but no EFI system partitions found.";
+
+    m_efiSystemPartitions = efiSystemPartitions;
 }
 
 PartitionCoreModule::DeviceInfo*

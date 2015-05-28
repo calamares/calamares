@@ -91,6 +91,8 @@ public:
 
     bool hasRootMountPoint() const;
 
+    QList< Partition* > efiSystemPartitions() const;
+
     void revert();
 
     void clearJobs();
@@ -134,6 +136,7 @@ private:
         bool isDirty() const;
     };
     QList< DeviceInfo* > m_deviceInfos;
+    QList< Partition* > m_efiSystemPartitions;
 
     DeviceModel* m_deviceModel;
     BootLoaderModel* m_bootLoaderModel;
@@ -144,6 +147,7 @@ private:
     void init();
     void updateHasRootMountPoint();
     void updateIsDirty();
+    void scanForEfiSystemPartitions();
 
     DeviceInfo* infoForDevice( Device* ) const;
 
