@@ -62,12 +62,10 @@ private:
     bool m_nextEnabled;
 
     bool m_isEfi;
-    QList< Partition* > m_efiSystemPartitions;
 
     void updateFromCurrentDevice();
     void onPartitionViewActivated();
     void onPartitionModelReset();
-    void loadEfiSystemPartitions();
 };
 
 #endif // REPLACEPAGE_H
