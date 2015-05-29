@@ -143,7 +143,7 @@ EraseDiskPage::doAutopartition( Device* dev )
     int empty_space_size = 0;
     if ( isEfi )
     {
-        uefisys_part_size = 100;
+        uefisys_part_size = 300;
         empty_space_size = 2;
     }
     else
