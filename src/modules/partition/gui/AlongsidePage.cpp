@@ -94,85 +94,7 @@ AlongsidePage::init( PartitionCoreModule* core , const OsproberEntryList& osprob
 
     connect( m_partitionsComboBox,
              static_cast< void ( QComboBox::* )( int ) >( &QComboBox::currentIndexChanged ),
-             this, [ this ]( int index )
-    {
-        QString path = m_partitionsComboBox->itemData( index ).toString();
-        cDebug() << "Current index changed:" << path;
-
-        DeviceModel* dm = m_core->deviceModel();
-        for ( int i = 0; i < dm->rowCount(); ++i )
-        {
-            Device* dev = dm->deviceForIndex( dm->index( i ) );
-            Partition* candidate = PMUtils::findPartitionByPath( { dev }, path );
-            if ( candidate )
-            {
-                // store candidate->partitionPath() here!
-
-                bool ok = false;
-                double requiredStorageGB = Calamares::JobQueue::instance()
-                                                ->globalStorage()
-                                                ->value( "requiredStorageGB" )
-                                                .toDouble( &ok );
-
-                qint64 usedStorageB = candidate->sectorsUsed() * dev->logicalSectorSize();
-                qint64 requiredStorageB = ( requiredStorageGB + 0.1 + 2.0 ) * 1024 * 1024 * 1024;
-
-                // set up splitter widget here, then set up the split position
-                QList< PartitionSplitterItem > allPartitionItems;
-                {
-                    PartitionSplitterItem* extendedPartitionItem = nullptr;
-                    for ( auto it = PartitionIterator::begin( dev );
-                          it != PartitionIterator::end( dev ); ++it )
-                    {
-                        PartitionSplitterItem newItem = {
-                            ( *it )->partitionPath(),
-                            ColorUtils::colorForPartition( *it ),
-                            false,
-                            ( *it )->capacity(),
-                            {}
-                        };
-
-                        if ( ( *it )->roles().has( PartitionRole::Logical ) && extendedPartitionItem )
-                            extendedPartitionItem->children.append( newItem );
-                        else
-                        {
-                            allPartitionItems.append( newItem );
-                            if ( ( *it )->roles().has( PartitionRole::Extended ) )
-                                extendedPartitionItem = &allPartitionItems.last();
-                        }
-                    }
-                }
-
-                Device* deviceBefore = m_core->createImmutableDeviceCopy( dev );
-
-                PartitionModel* partitionModelBefore = new PartitionModel;
-                partitionModelBefore->init( deviceBefore );
-                deviceBefore->setParent( partitionModelBefore );
-                partitionModelBefore->setParent( m_previewWidget );
-
-                m_previewWidget->setModel( partitionModelBefore );
-                m_splitterWidget->init( allPartitionItems );
-
-                m_splitterWidget->setSplitPartition( candidate->partitionPath(),
-                                                     candidate->used() * 1.1,
-                                                     candidate->capacity() - requiredStorageB,
-                                                     candidate->capacity() / 2,
-                                                     Calamares::Branding::instance()->
-                                                         string( Calamares::Branding::ProductName ) );
-
-                m_splitterWidget->setFixedHeight( qMax< int >( CalamaresUtils::defaultFontHeight() * 1.5, 30 ) );
-                if ( ok )
-                {
-
-
-
-                }
-
-                setNextEnabled( true );
-                return;
-            }
-        }
-    } );
+             this, &AlongsidePage::onPartitionSelected );
 
     connect( m_splitterWidget, &PartitionSplitterWidget::partitionResized,
              this, [ this ]( const QString& path, qint64 size, qint64 sizeNext )
@@ -194,6 +116,88 @@ AlongsidePage::init( PartitionCoreModule* core , const OsproberEntryList& osprob
             m_partitionsComboBox->addItem( e.prettyName + " (" + e.path + ")", e.path );
     }
     setNextEnabled( true );
+}
+
+
+void
+AlongsidePage::onPartitionSelected( int comboBoxIndex )
+{
+    QString path = m_partitionsComboBox->itemData( comboBoxIndex ).toString();
+    cDebug() << "Current index changed:" << path;
+
+    DeviceModel* dm = m_core->deviceModel();
+    for ( int i = 0; i < dm->rowCount(); ++i )
+    {
+        Device* dev = dm->deviceForIndex( dm->index( i ) );
+        Partition* candidate = PMUtils::findPartitionByPath( { dev }, path );
+        if ( candidate )
+        {
+            // store candidate->partitionPath() here!
+
+            bool ok = false;
+            double requiredStorageGB = Calamares::JobQueue::instance()
+                                            ->globalStorage()
+                                            ->value( "requiredStorageGB" )
+                                            .toDouble( &ok );
+
+            qint64 usedStorageB = candidate->sectorsUsed() * dev->logicalSectorSize();
+            qint64 requiredStorageB = ( requiredStorageGB + 0.1 + 2.0 ) * 1024 * 1024 * 1024;
+
+            // set up splitter widget here, then set up the split position
+            QList< PartitionSplitterItem > allPartitionItems;
+            {
+                PartitionSplitterItem* extendedPartitionItem = nullptr;
+                for ( auto it = PartitionIterator::begin( dev );
+                      it != PartitionIterator::end( dev ); ++it )
+                {
+                    PartitionSplitterItem newItem = {
+                        ( *it )->partitionPath(),
+                        ColorUtils::colorForPartition( *it ),
+                        false,
+                        ( *it )->capacity(),
+                        {}
+                    };
+
+                    if ( ( *it )->roles().has( PartitionRole::Logical ) && extendedPartitionItem )
+                        extendedPartitionItem->children.append( newItem );
+                    else
+                    {
+                        allPartitionItems.append( newItem );
+                        if ( ( *it )->roles().has( PartitionRole::Extended ) )
+                            extendedPartitionItem = &allPartitionItems.last();
+                    }
+                }
+            }
+
+            Device* deviceBefore = m_core->createImmutableDeviceCopy( dev );
+
+            PartitionModel* partitionModelBefore = new PartitionModel;
+            partitionModelBefore->init( deviceBefore );
+            deviceBefore->setParent( partitionModelBefore );
+            partitionModelBefore->setParent( m_previewWidget );
+
+            m_previewWidget->setModel( partitionModelBefore );
+            m_splitterWidget->init( allPartitionItems );
+
+            m_splitterWidget->setSplitPartition( candidate->partitionPath(),
+                                                 candidate->used() * 1.1,
+                                                 candidate->capacity() - requiredStorageB,
+                                                 candidate->capacity() / 2,
+                                                 Calamares::Branding::instance()->
+                                                     string( Calamares::Branding::ProductName ) );
+
+            m_splitterWidget->setFixedHeight( qMax< int >( CalamaresUtils::defaultFontHeight() * 1.5, 30 ) );
+            if ( ok )
+            {
+
+
+
+            }
+
+            setNextEnabled( true );
+            return;
+        }
+    }
 }
 
 

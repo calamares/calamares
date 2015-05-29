@@ -46,6 +46,9 @@ public:
 signals:
     void nextStatusChanged( bool );
 
+private slots:
+    void onPartitionSelected( int comboBoxIndex );
+
 private:
     void setNextEnabled( bool enabled );
 
@@ -55,6 +58,8 @@ private:
     QLabel* m_sizeLabel;
 
     PartitionCoreModule* m_core;
+
+    bool m_isEfi;
 
     bool m_nextEnabled;
 };
