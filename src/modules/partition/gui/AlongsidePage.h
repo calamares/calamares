@@ -57,6 +57,9 @@ private:
     PartitionPreview* m_previewWidget;
     QLabel* m_sizeLabel;
 
+    QLabel* m_efiLabel;
+    QComboBox* m_efiComboBox;
+
     PartitionCoreModule* m_core;
 
     bool m_isEfi;

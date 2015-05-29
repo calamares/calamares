@@ -39,6 +39,7 @@
 #include <QBoxLayout>
 #include <QComboBox>
 #include <QLabel>
+#include <QDir>
 
 
 AlongsidePage::AlongsidePage( QWidget* parent )
@@ -79,6 +80,20 @@ AlongsidePage::AlongsidePage( QWidget* parent )
     m_sizeLabel = new QLabel;
     m_sizeLabel->setWordWrap( true );
     mainLayout->addWidget( m_sizeLabel );
+
+    QBoxLayout* efiLayout = new QHBoxLayout;
+    m_efiLabel = new QLabel;
+    m_efiComboBox = new QComboBox;
+    efiLayout->addWidget( m_efiLabel );
+    efiLayout->addWidget( m_efiComboBox );
+    m_efiLabel->setBuddy( m_efiComboBox );
+    efiLayout->addStretch();
+    mainLayout->addLayout( efiLayout );
+
+    m_efiLabel->hide();
+    m_efiComboBox->hide();
+
+    m_isEfi = QDir( "/sys/firmware/efi/efivars" ).exists();
 
     mainLayout->addStretch();
 }
@@ -187,14 +202,54 @@ AlongsidePage::onPartitionSelected( int comboBoxIndex )
                                                      string( Calamares::Branding::ProductName ) );
 
             m_splitterWidget->setFixedHeight( qMax< int >( CalamaresUtils::defaultFontHeight() * 1.5, 30 ) );
-            if ( ok )
+
+            m_efiComboBox->hide();
+            m_efiLabel->hide();
+
+            if ( m_isEfi )
             {
+                QList< Partition* > efiSystemPartitions = m_core->efiSystemPartitions();
+                m_efiLabel->show();
 
-
-
+                if ( efiSystemPartitions.count() == 0 )
+                {
+                    m_efiLabel->setText(
+                                tr( "An EFI system partition cannot be found anywhere "
+                                    "on this system. Please go back and use manual "
+                                    "partitioning to set up %1." )
+                                .arg( Calamares::Branding::instance()->
+                                      string( Calamares::Branding::ShortProductName ) ) );
+                    setNextEnabled( false );
+                }
+                else if ( efiSystemPartitions.count() == 1 )
+                {
+                    m_efiLabel->setText(
+                                tr( "The EFI system partition at %1 will be used for "
+                                    "starting %2." )
+                                .arg( efiSystemPartitions.first()->partitionPath() )
+                                .arg( Calamares::Branding::instance()->
+                                      string( Calamares::Branding::ShortProductName ) ) );
+                    setNextEnabled( true );
+                }
+                else
+                {
+                    m_efiComboBox->show();
+                    m_efiLabel->setText( tr( "EFI system partition:" ) );
+                    for ( int i = 0; i < efiSystemPartitions.count(); ++i )
+                    {
+                        Partition* efiPartition = efiSystemPartitions.at( i );
+                        m_efiComboBox->addItem( efiPartition->partitionPath(), i );
+                        if ( efiPartition->devicePath() == candidate->devicePath() &&
+                             efiPartition->number() == 1 )
+                            m_efiComboBox->setCurrentIndex( i );
+                    }
+                    setNextEnabled( true );
+                }
             }
-
-            setNextEnabled( true );
+            else
+            {
+                setNextEnabled( true );
+            }
             return;
         }
     }
@@ -244,6 +299,27 @@ AlongsidePage::applyChanges()
 
             m_core->createPartition( dev, newPartition );
             m_core->setBootLoaderInstallPath( dev->deviceNode() );
+
+            if ( m_isEfi )
+            {
+                QList< Partition* > efiSystemPartitions = m_core->efiSystemPartitions();
+                if ( efiSystemPartitions.count() == 1 )
+                {
+                    PartitionInfo::setMountPoint(
+                            efiSystemPartitions.first(),
+                            Calamares::JobQueue::instance()->
+                                globalStorage()->
+                                    value( "efiSystemPartition" ).toString() );
+                }
+                else if ( efiSystemPartitions.count() > 1 )
+                {
+                    PartitionInfo::setMountPoint(
+                            efiSystemPartitions.at( m_efiComboBox->currentIndex() ),
+                            Calamares::JobQueue::instance()->
+                                globalStorage()->
+                                    value( "efiSystemPartition" ).toString() );
+                }
+            }
 
             m_core->dumpQueue();
 
