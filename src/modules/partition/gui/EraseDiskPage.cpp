@@ -167,11 +167,11 @@ EraseDiskPage::doAutopartition( Device* dev )
             lastSector
         );
         m_core->createPartition( dev, efiPartition );
+        PartitionInfo::setFormat( efiPartition, true );
         PartitionInfo::setMountPoint( efiPartition, Calamares::JobQueue::instance()
                                                         ->globalStorage()
                                                         ->value( "efiSystemPartition" )
                                                         .toString() );
-        PartitionInfo::setFormat( efiPartition, true );
         first_free_sector = lastSector + 1;
     }
     else
@@ -187,9 +187,9 @@ EraseDiskPage::doAutopartition( Device* dev )
         first_free_sector,
         dev->totalSectors() - 1 //last sector
     );
-    PartitionInfo::setMountPoint( rootPartition, "/" );
-    PartitionInfo::setFormat( rootPartition, true );
     m_core->createPartition( dev, rootPartition );
+    PartitionInfo::setFormat( rootPartition, true );
+    PartitionInfo::setMountPoint( rootPartition, "/" );
 
     updatePreviews();
 
