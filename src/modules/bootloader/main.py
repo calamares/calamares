@@ -211,8 +211,10 @@ def prepare_bootloader(fw_type):
         partitions = libcalamares.globalstorage.value("partitions")
         boot_p = ""
         device = ""
+        efi_partition_found = False
         for partition in partitions:
             if partition["mountPoint"] == efi_directory:
+                efi_partition_found = True
                 boot_device = partition["device"]
                 boot_p = boot_device[-1:]
                 device = boot_device[:-1]
@@ -224,8 +226,13 @@ def prepare_bootloader(fw_type):
                     print("EFI directory: \"{!s}\"".format(efi_directory))
                     print("Boot partition: \"{!s}\"".format(boot_p))
                     print("Boot device: \"{!s}\"".format(device))
-        print("Set 'EF00' flag")
-        subprocess.call(["sgdisk", "--typecode={!s}:EF00".format(boot_p), "{!s}".format(device)])       
+        if efi_partition_found == True:
+            print("Set 'EF00' flag")
+            subprocess.call(["sgdisk", "--typecode={!s}:EF00".format(boot_p), "{!s}".format(device)])
+        else:
+            print("Warning: There's no efi system partition selected!")
+            print("Bootloader installation will probably fail!")
+
     if (efi_boot_loader == "gummiboot" and fw_type == "efi"):
         install_gummiboot(efi_directory)
     else:
