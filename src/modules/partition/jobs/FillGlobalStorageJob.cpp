@@ -25,6 +25,7 @@
 #include <core/PartitionIterator.h>
 #include <core/PMUtils.h>
 #include "Branding.h"
+#include "utils/Logger.h"
 
 // CalaPM
 #include <core/device.h>
@@ -43,6 +44,7 @@ static const char* UUID_DIR = "/dev/disk/by-uuid";
 static UuidForPartitionHash
 findPartitionUuids()
 {
+    cDebug() << "Gathering UUIDs for partitions that exist now.";
     QDir dir( UUID_DIR );
     UuidForPartitionHash hash;
     for ( auto info : dir.entryInfoList( QDir::Files ) )
@@ -51,6 +53,7 @@ findPartitionUuids()
         QString path = info.canonicalFilePath();
         hash.insert( path, uuid );
     }
+    cDebug() << hash;
     return hash;
 }
 
@@ -62,6 +65,10 @@ mapForPartition( Partition* partition, const QString& uuid )
     map[ "mountPoint" ] = PartitionInfo::mountPoint( partition );
     map[ "fs" ] = partition->fileSystem().name();
     map[ "uuid" ] = uuid;
+    cDebug() << partition->partitionPath()
+             << "mtpoint:" << PartitionInfo::mountPoint( partition )
+             << "fs:" << partition->fileSystem().name()
+             << uuid;
     return map;
 }
 
@@ -151,9 +158,15 @@ FillGlobalStorageJob::createPartitionList() const
 {
     UuidForPartitionHash hash = findPartitionUuids();
     QVariantList lst;
+    cDebug() << "Writing to GlobalStorage[\"partitions\"]";
     for ( auto device : m_devices )
-        for ( auto it = PartitionIterator::begin( device ); it != PartitionIterator::end( device ); ++it )
+    {
+        for ( auto it = PartitionIterator::begin( device );
+              it != PartitionIterator::end( device ); ++it )
+        {
             lst << mapForPartition( *it, hash.value( ( *it )->partitionPath() ) );
+        }
+    }
     return lst;
 }
 
