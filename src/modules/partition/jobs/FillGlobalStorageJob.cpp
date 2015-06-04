@@ -42,16 +42,20 @@ typedef QHash<QString, QString> UuidForPartitionHash;
 static const char* UUID_DIR = "/dev/disk/by-uuid";
 
 static UuidForPartitionHash
-findPartitionUuids()
+findPartitionUuids( QList < Device* > devices )
 {
     cDebug() << "Gathering UUIDs for partitions that exist now.";
-    QDir dir( UUID_DIR );
     UuidForPartitionHash hash;
-    for ( auto info : dir.entryInfoList( QDir::Files ) )
+    foreach ( Device* device, devices )
     {
-        QString uuid = info.fileName();
-        QString path = info.canonicalFilePath();
-        hash.insert( path, uuid );
+        for ( auto it = PartitionIterator::begin( device );
+              it != PartitionIterator::end( device ); ++it )
+        {
+            Partition* p = *it;
+            QString path = p->partitionPath();
+            QString uuid = p->fileSystem().readUUID( p->partitionPath() );
+            hash.insert( path, uuid );
+        }
     }
     cDebug() << hash;
     return hash;
@@ -156,7 +160,7 @@ FillGlobalStorageJob::exec()
 QVariant
 FillGlobalStorageJob::createPartitionList() const
 {
-    UuidForPartitionHash hash = findPartitionUuids();
+    UuidForPartitionHash hash = findPartitionUuids( m_devices );
     QVariantList lst;
     cDebug() << "Writing to GlobalStorage[\"partitions\"]";
     for ( auto device : m_devices )
