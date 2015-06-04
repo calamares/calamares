@@ -1,4 +1,4 @@
-project( calamares )
+project( calamares CXX )
 
 # The partition manager uses ECM but ECMConfig.cmake
 # will complain if we require CMake less than 2.8.13,
@@ -6,8 +6,29 @@ project( calamares )
 cmake_minimum_required( VERSION 2.8.12 )
 
 set( CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/CMakeModules" )
-set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wl,--no-undefined" )
-set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wl,--fatal-warnings -Wnon-virtual-dtor -Woverloaded-virtual -Werror=return-type" )
+
+if( CMAKE_CXX_COMPILER_ID MATCHES "Clang" )
+    message( STATUS "Found Clang ${CMAKE_CXX_COMPILER_VERSION}, setting up Clang-specific compiler flags." )
+    set( CMAKE_C_FLAGS                  "${CMAKE_C_FLAGS} -Wall -std=c99" )
+    set( CMAKE_C_FLAGS_DEBUG            "-g" )
+    set( CMAKE_C_FLAGS_MINSIZEREL       "-Os -DNDEBUG" )
+    set( CMAKE_C_FLAGS_RELEASE          "-O4 -DNDEBUG" )
+    set( CMAKE_C_FLAGS_RELWITHDEBINFO   "-O2 -g" )
+
+    set( CMAKE_CXX_FLAGS                "${CMAKE_CXX_FLAGS} -Wall -std=c++11" )
+    set( CMAKE_CXX_FLAGS_DEBUG          "-g" )
+    set( CMAKE_CXX_FLAGS_MINSIZEREL     "-Os -DNDEBUG" )
+    set( CMAKE_CXX_FLAGS_RELEASE        "-O4 -DNDEBUG" )
+    set( CMAKE_CXX_FLAGS_RELWITHDEBINFO "-O2 -g" )
+
+    set( CMAKE_TOOLCHAIN_PREFIX "llvm-" )
+
+    set( CMAKE_SHARED_LINKER_FLAGS "-Wl,--no-undefined" )
+else()
+    set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c99" )
+    set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wl,--no-undefined" )
+    set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wl,--fatal-warnings -Wnon-virtual-dtor -Woverloaded-virtual -Werror=return-type" )
+endif()
 
 if( CMAKE_COMPILER_IS_GNUCXX )
     if( CMAKE_CXX_COMPILER_VERSION VERSION_GREATER 4.9 OR
