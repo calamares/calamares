@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
+ *   Copyright 2015, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -100,5 +101,16 @@ BootLoaderModel::update()
             createBootLoaderItem( partitionText, PartitionInfo::mountPoint( partition ), true )
         );
     }
+}
+
+
+QVariant
+BootLoaderModel::data( const QModelIndex& index, int role ) const
+{
+    if ( role == Qt::DisplayRole )
+        return tr( "%1 (%2)" )
+                .arg( QStandardItemModel::data( index, Qt::DisplayRole ).toString() )
+                .arg( QStandardItemModel::data( index, BootLoaderModel::BootLoaderPathRole ).toString() );
+    return QStandardItemModel::data( index, role );
 }
 
