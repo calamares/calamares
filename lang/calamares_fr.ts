@@ -186,19 +186,24 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>BootLoaderModel</name>
     <message>
-        <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="57"/>
+        <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="58"/>
         <source>Master Boot Record of %1</source>
         <translation>Master Boot Record de %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="71"/>
+        <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="72"/>
         <source>Boot Partition</source>
         <translation>Partition de démarrage</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="76"/>
+        <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="77"/>
         <source>System Partition</source>
         <translation>Partition Système</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="111"/>
+        <source>%1 (%2)</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -919,17 +924,17 @@ L&apos;installateur se fermera et les changements seront perdus.</translation>
         <translation>Mo</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="95"/>
+        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="96"/>
         <source>Logical</source>
         <translation>Logique</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="100"/>
+        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="101"/>
         <source>Primary</source>
         <translation>Primaire</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="117"/>
+        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="118"/>
         <source>GPT</source>
         <translation>GPT</translation>
     </message>
