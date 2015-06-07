@@ -62,7 +62,8 @@ CreatePartitionDialog::CreatePartitionDialog( Device* device, PartitionNode* par
     mountPoints.sort();
     m_ui->mountPointComboBox->addItems( mountPoints );
     
-    if ( device->partitionTable()->type() == PartitionTable::msdos )
+    if ( device->partitionTable()->type() == PartitionTable::msdos ||
+         device->partitionTable()->type() == PartitionTable::msdos_sectorbased )
         initMbrPartitionTypeUi();
     else
         initGptPartitionTypeUi();
