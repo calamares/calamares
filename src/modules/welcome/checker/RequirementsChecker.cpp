@@ -239,7 +239,7 @@ RequirementsChecker::checkEnoughRam( qint64 requiredRam )
     QString memoryLine = p.readAllStandardOutput().simplified();
     qint64 availableRam = memoryLine.toLongLong() * 1024;
 
-    return availableRam >= requiredRam;
+    return availableRam >= requiredRam * 0.95; // because MemTotal is variable
 }
 
 
