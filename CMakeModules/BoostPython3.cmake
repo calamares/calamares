@@ -40,7 +40,7 @@ macro( find_boost_python3 boost_version python_version found_var )
             break()
         endif()
     endforeach()
-    # The following loop chage the searched name for Gentoo based distributions 
+    # The following loop chages the searched name for Gentoo based distributions
     # turns "3.4.123abc" into "3.4"
     string( REGEX REPLACE "([0-9]+)\\.([0-9]+)\\..*" "\\1.\\2" _fbp_python_short_version ${python_version} )
     foreach( _fbp_name ${CALAMARES_BOOST_PYTHON3_COMPONENT} python-${_fbp_python_short_version} )
