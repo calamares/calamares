@@ -1,0 +1,21 @@
+56,60d55
+< 
+<             check_chroot_call(["pacman", "-Sy", "--noconfirm"] + pkgs)
+<                     elif self.backend == "Entropy":
+<             check_chroot_call(["equo", "-v", "install"] + pkgs)
+< =======
+63,64d57
+<                     elif self.backend == "Entropy":
+<             check_chroot_call(["equo", "-v", "install"] + pkgs)
+88,89c81
+<         elif self.backend == "Entropy":
+<             check_chroot_call(["equo", "-v", "remove"] + pkgs)
+---
+> 
+113c105
+<     if backend not in ("packagekit", "zypp", "yum", "dnf", "urpmi", "apt", "pacman", "entropy"):
+---
+>     if backend not in ("packagekit", "zypp", "yum", "dnf", "urpmi", "apt", "pacman"):
+128d119
+< 	
+\ No newline at end of file
