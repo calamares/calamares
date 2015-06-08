@@ -8,7 +8,7 @@
 # what FindBoost.cmake is looking for. It looks for a library named
 # "libboost_${component}.so".
 #
-# On Gentoo instead, the >=dev-libs/boost-1.54 package provides boost library 
+# On Gentoo instead, the >=dev-libs/boost-1.54 package provides boost library
 # with a name like:
 # libboost_python-2.7.so
 # libboost_python-3.3.so
@@ -16,9 +16,9 @@
 # depending on what python's targets you selected during install
 #
 # find_boost_python3() tries to find the package with different component
-# names. By default it tries "python3", "python-py$suffix" and 
-# "python-$dotsuffix", where suffix is based on the `python_version` argument. 
-# One can supply a custom component name by setting the 
+# names. By default it tries "python3", "python-py$suffix" and
+# "python-$dotsuffix", where suffix is based on the `python_version` argument.
+# One can supply a custom component name by setting the
 # `CALAMARES_BOOST_PYTHON3_COMPONENT` variable at CMake time.
 
 set( CALAMARES_BOOST_PYTHON3_COMPONENT python3 CACHE STRING
@@ -40,7 +40,7 @@ macro( find_boost_python3 boost_version python_version found_var )
             break()
         endif()
     endforeach()
-    # The following loop chage the searched name for Gentoo based distributions 
+    # The following loop changes the searched name for Gentoo based distributions
     # turns "3.4.123abc" into "3.4"
     string( REGEX REPLACE "([0-9]+)\\.([0-9]+)\\..*" "\\1.\\2" _fbp_python_short_version ${python_version} )
     foreach( _fbp_name ${CALAMARES_BOOST_PYTHON3_COMPONENT} python-${_fbp_python_short_version} )
