@@ -5,7 +5,7 @@
 |:-----------------------------------------:|:--------------------------:|:--------------------------:|:--------------------------:|:--------------------------:|
 
 ### Dependencies
-| Main | Welcome Module | Partitioning Module | Bootloader module |
+| Main | Welcome module | Partitioning module | Bootloader module |
 |:----:|:--------------:|:-------------------:|:-----------------:|
 | CMake >= 2.8.12 | NetworkManager | extra-cmake-modules | gummiboot or GRUB2 |
 | Qt >= 5.3 | UPower | kconfig (part of KF5) | sgdisk |
