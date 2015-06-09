@@ -10,6 +10,7 @@ The Calamares release process
 #### (1) Preparation
 * Check `README.md` and everything in `hacking`, make sure it's all still relevant.
 * Update `CHANGELOG.md`.
+* Update submodules.
 * Pull latest translations from Transifex.
 * Bump version in `CMakeLists.txt`, commit.
 
