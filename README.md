@@ -7,12 +7,12 @@
 ### Dependencies
 | Main | Welcome Module | Partitioning Module | Bootloader module |
 |:----:|:--------------:|:-------------------:|:-----------------:|
-| CMake >= 2.8.12 | dmidecode | extra-cmake-modules | gummiboot or GRUB2 |
+| CMake >= 2.8.12 | NetworkManager | extra-cmake-modules | gummiboot or GRUB2 |
 | Qt >= 5.3 | UPower | kconfig (part of KF5) | sgdisk |
-| yaml-cpp >= 0.5.1 | NetworkManager | solid (part of KF5) | |
+| yaml-cpp >= 0.5.1 | | solid (part of KF5) | |
 | Python >= 3.3 | | kcoreaddons (part of KF5) | |
 | Boost.Python >= 1.55.0 | | ki18n (part of KF5) | |
-| | | sgdisk | |
+| dmidecode | | sgdisk | |
 
 ### Deployment
 [__Setting up branding__](https://github.com/calamares/calamares/blob/master/src/branding/README.md)
