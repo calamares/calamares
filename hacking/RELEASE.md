@@ -10,10 +10,11 @@ The Calamares release process
 #### (1) Preparation
 * Check `README.md` and everything in `hacking`, make sure it's all still relevant.
 * Update `CHANGELOG.md`.
+* Pull latest translations from Transifex.
 * Bump version in `CMakeLists.txt`, commit.
 
 #### (2) Tarball
-* Run release script.
+* Create tarball with `git-archive-all`.
 * Test tarball.
 
 #### (3) Tag
