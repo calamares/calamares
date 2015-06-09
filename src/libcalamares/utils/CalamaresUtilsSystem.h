@@ -65,6 +65,10 @@ DLLEXPORT int chrootOutput( const QString& command,
                             const QString& workingPath = QString(),
                             const QString& stdInput = QString(),
                             int timeoutSec = 0 );
+
+DLLEXPORT qint64 getPhysicalMemoryB();  //Better guess, doesn't work in VirualBox
+
+DLLEXPORT qint64 getTotalMemoryB();     //Always underguessed, but always works on Linux
 }
 
 #endif // CALAMARESUTILSSYSTEM_H

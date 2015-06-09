@@ -24,6 +24,7 @@
 
 #include <QDir>
 #include <QProcess>
+#include <QRegularExpression>
 
 namespace CalamaresUtils
 {
@@ -175,6 +176,53 @@ chrootOutput( const QString& command,
                          workingPath,
                          stdInput,
                          timeoutSec );
+}
+
+
+qint64
+getPhysicalMemoryB()
+{
+        QProcess p;
+        p.start( "dmidecode", { "-t", "17" } );
+        p.waitForFinished();
+        QStringList lines = QString::fromLocal8Bit( p.readAllStandardOutput() ).split( '\n' );
+        lines = lines.filter( QRegularExpression( "^\\W*Size:\\W\\d*\\WMB" ) );
+        if ( !lines.isEmpty() )
+            return 0;
+
+        qint64 availableRamMb = 0;
+        foreach( const QString& line, lines )
+        {
+            bool ok = false;
+            availableRamMb += line.simplified()
+                                  .split( ' ' )
+                                  .value( 1 )
+                                  .toInt( &ok );
+            if ( !ok )
+                return 0;
+        }
+        qint64 availableRam = availableRamMb * 1024 * 1024;
+        return availableRam;
+}
+
+
+qint64
+getTotalMemoryB()
+{
+    // A line in meminfo looks like this, with {print $2} we grab the second column.
+    // MemTotal:        8133432 kB
+
+    QProcess p;
+    p.start( "awk", { "/MemTotal/ {print $2}", "/proc/meminfo" } );
+    p.waitForFinished();
+    QString memoryLine = p.readAllStandardOutput().simplified();
+
+    bool ok = false;
+    qint64 availableRam = memoryLine.toLongLong( &ok ) * 1024;
+    if ( !ok )
+        return 0;
+
+    return availableRam;
 }
 
 
