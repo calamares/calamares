@@ -141,16 +141,16 @@ EraseDiskPage::doAutopartition( Device* dev )
 
     // If there is enough room for ESP + root + swap, create swap, otherwise don't.
     // Physical memory      Swap
-    // <4 GiB               2 * memory (min. 2 GiB) + overprovisioning
-    // 4-8 GiB              8 GiB + overprovisioning
-    // >8 GiB               = memory + overprovisioning
+    // <4 GiB               2 * memory (min. 2 GiB) + overallocation
+    // 4-8 GiB              8 GiB + overallocation
+    // >8 GiB               = memory + overallocation
     qint64 suggestedSwapSizeB = 0;
     qint64 availableRamB = CalamaresUtils::getPhysicalMemoryB();
-    qreal overprovisionFactor = 1.01;
+    qreal overestimationFactor = 1.01;
     if ( !availableRamB )
     {
         availableRamB = CalamaresUtils::getTotalMemoryB();
-        overprovisionFactor = 1.10;
+        overestimationFactor = 1.10;
     }
 
     if ( availableRamB < 4 GiB )
@@ -160,7 +160,7 @@ EraseDiskPage::doAutopartition( Device* dev )
     else
         suggestedSwapSizeB = availableRamB;
 
-    suggestedSwapSizeB *= overprovisionFactor;
+    suggestedSwapSizeB *= overestimationFactor;
 
     cDebug() << "Suggested swap size:" << suggestedSwapSizeB / 1024. / 1024. /1024. << "GiB";
 
