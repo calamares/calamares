@@ -25,6 +25,7 @@
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
+#include "utils/CalamaresUtilsSystem.h"
 #include "JobQueue.h"
 #include "GlobalStorage.h"
 
@@ -245,15 +246,9 @@ RequirementsChecker::checkEnoughStorage( qint64 requiredSpace )
 bool
 RequirementsChecker::checkEnoughRam( qint64 requiredRam )
 {
-    // A line in meminfo looks like this, with {print $2} we grab the second column.
-    // MemTotal:        8133432 kB
-
-    QProcess p;
-    p.start( "awk", { "/MemTotal/ {print $2}", "/proc/meminfo" } );
-    p.waitForFinished();
-    QString memoryLine = p.readAllStandardOutput().simplified();
-    qint64 availableRam = memoryLine.toLongLong() * 1024;
-
+    qint64 availableRam = CalamaresUtils::getPhysicalMemoryB();
+    if ( !availableRam )
+        availableRam = CalamaresUtils::getTotalMemoryB();
     return availableRam >= requiredRam * 0.95; // because MemTotal is variable
 }
 
