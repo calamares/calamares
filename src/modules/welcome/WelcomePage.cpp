@@ -53,13 +53,9 @@ WelcomePage::WelcomePage( RequirementsChecker* requirementsChecker, QWidget* par
     ui->mainText->setOpenExternalLinks( true );
 
     CALAMARES_RETRANSLATE(
-        ui->mainText->setText( tr( "<h1>Welcome to the %1 installer.</h1><br/>"
-                                   "This program will ask you some questions and "
-                                   "set up %2 on your computer." )
+        ui->mainText->setText( tr( "<h1>Welcome to the %1 installer.</h1>" )
                                 .arg( Calamares::Branding::instance()->
-                                      string( Calamares::Branding::VersionedName ) )
-                                .arg( Calamares::Branding::instance()->
-                                      string( Calamares::Branding::ProductName ) ) );
+                                      string( Calamares::Branding::VersionedName ) ) );
         ui->retranslateUi( this );
     )
 
@@ -91,8 +87,8 @@ WelcomePage::WelcomePage( RequirementsChecker* requirementsChecker, QWidget* par
                                       Calamares::Branding::VersionedName ) ) );
     } );
 
-    ui->verticalLayout->insertStretch( 4 );
-    ui->verticalLayout->insertWidget( 5, m_requirementsChecker->widget() );
+    ui->verticalLayout->insertStretch( 3 );
+    ui->verticalLayout->insertWidget( 4, m_requirementsChecker->widget() );
 }
 
 
