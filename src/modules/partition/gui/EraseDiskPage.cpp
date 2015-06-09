@@ -30,6 +30,7 @@
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
+#include "utils/CalamaresUtilsSystem.h"
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 
@@ -135,7 +136,33 @@ EraseDiskPage::doAutopartition( Device* dev )
     if ( QDir( "/sys/firmware/efi/efivars" ).exists() )
         isEfi = true;
 
-#define MiB * 1024 * 1024
+#define MiB * static_cast< qint64 >( 1024 ) * 1024
+#define GiB * static_cast< qint64 >( 1024 ) * 1024 * 1024
+
+    // If there is enough room for ESP + root + swap, create swap, otherwise don't.
+    // Physical memory      Swap
+    // <4 GiB               2 * memory (min. 2 GiB) + overprovisioning
+    // 4-8 GiB              8 GiB + overprovisioning
+    // >8 GiB               = memory + overprovisioning
+    qint64 suggestedSwapSizeB = 0;
+    qint64 availableRamB = CalamaresUtils::getPhysicalMemoryB();
+    qreal overprovisionFactor = 1.01;
+    if ( !availableRamB )
+    {
+        availableRamB = CalamaresUtils::getTotalMemoryB();
+        overprovisionFactor = 1.10;
+    }
+
+    if ( availableRamB < 4 GiB )
+        suggestedSwapSizeB = qMax( 2 GiB, availableRamB * 2 );
+    else if ( availableRamB >= 4 GiB && availableRamB < 8 GiB )
+        suggestedSwapSizeB = 8 GiB;
+    else
+        suggestedSwapSizeB = availableRamB;
+
+    suggestedSwapSizeB *= overprovisionFactor;
+
+    cDebug() << "Suggested swap size:" << suggestedSwapSizeB / 1024. / 1024. /1024. << "GiB";
 
     // Partition sizes are expressed in MiB, should be multiples of
     // the logical sector size (usually 512B).
@@ -152,18 +179,18 @@ EraseDiskPage::doAutopartition( Device* dev )
         empty_space_size = 1;
     }
 
-    qint64 first_free_sector = empty_space_size MiB / dev->logicalSectorSize() + 1;
+    qint64 firstFreeSector = empty_space_size MiB / dev->logicalSectorSize() + 1;
 
     if ( isEfi )
     {
-        qint64 lastSector = first_free_sector + ( uefisys_part_size MiB / dev->logicalSectorSize() );
+        qint64 lastSector = firstFreeSector + ( uefisys_part_size MiB / dev->logicalSectorSize() );
         m_core->createPartitionTable( dev, PartitionTable::gpt );
         Partition* efiPartition = PMUtils::createNewPartition(
             dev->partitionTable(),
             *dev,
             PartitionRole( PartitionRole::Primary ),
             FileSystem::Fat32,
-            first_free_sector,
+            firstFreeSector,
             lastSector
         );
         PartitionInfo::setFormat( efiPartition, true );
@@ -172,11 +199,27 @@ EraseDiskPage::doAutopartition( Device* dev )
                                                         ->value( "efiSystemPartition" )
                                                         .toString() );
         m_core->createPartition( dev, efiPartition );
-        first_free_sector = lastSector + 1;
+        firstFreeSector = lastSector + 1;
     }
     else
     {
         m_core->createPartitionTable( dev, PartitionTable::msdos );
+    }
+
+    bool shouldCreateSwap = false;
+    qint64 availableSpaceB = ( dev->totalSectors() - firstFreeSector ) * dev->logicalSectorSize();
+    qint64 requiredSpaceB =
+            ( Calamares::JobQueue::instance()->
+              globalStorage()->
+              value( "requiredStorageGB" ).toDouble() + 0.1 + 2.0 ) GiB +
+            suggestedSwapSizeB;
+
+    shouldCreateSwap = availableSpaceB > requiredSpaceB;
+
+    qint64 lastSectorForRoot = dev->totalSectors() - 1; //last sector of the device
+    if ( shouldCreateSwap )
+    {
+        lastSectorForRoot -= suggestedSwapSizeB / dev->logicalSectorSize() + 1;
     }
 
     Partition* rootPartition = PMUtils::createNewPartition(
@@ -184,12 +227,26 @@ EraseDiskPage::doAutopartition( Device* dev )
         *dev,
         PartitionRole( PartitionRole::Primary ),
         FileSystem::Ext4,
-        first_free_sector,
-        dev->totalSectors() - 1 //last sector
+        firstFreeSector,
+        lastSectorForRoot
     );
     PartitionInfo::setFormat( rootPartition, true );
     PartitionInfo::setMountPoint( rootPartition, "/" );
     m_core->createPartition( dev, rootPartition );
+
+    if ( shouldCreateSwap )
+    {
+        Partition* swapPartition = PMUtils::createNewPartition(
+            dev->partitionTable(),
+            *dev,
+            PartitionRole( PartitionRole::Primary ),
+            FileSystem::LinuxSwap,
+            lastSectorForRoot + 1,
+            dev->totalSectors() - 1
+        );
+        PartitionInfo::setFormat( swapPartition, true );
+        m_core->createPartition( dev, swapPartition );
+    }
 
     updatePreviews();
 
