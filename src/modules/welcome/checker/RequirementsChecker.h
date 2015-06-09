@@ -63,6 +63,7 @@ private:
     bool checkBatteryExists();
     bool checkHasPower();
     bool checkHasInternet();
+    bool checkIsRoot();
     void detectFirmwareType();
 
     QWidget* m_widget;

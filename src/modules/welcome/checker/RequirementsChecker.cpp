@@ -38,6 +38,8 @@
 #include <QProcess>
 #include <QTimer>
 
+#include <unistd.h> //geteuid
+
 RequirementsChecker::RequirementsChecker( QObject* parent )
     : QObject( parent )
     , m_widget( new QWidget() )
@@ -62,6 +64,7 @@ RequirementsChecker::RequirementsChecker( QObject* parent )
         bool enoughRam = false;
         bool hasPower = false;
         bool hasInternet = false;
+        bool isRoot = false;
 
         qint64 requiredStorageB = m_requiredStorageGB * 1073741824L; /*powers of 2*/
         cDebug() << "Need at least storage bytes:" << requiredStorageB;
@@ -79,8 +82,11 @@ RequirementsChecker::RequirementsChecker( QObject* parent )
         if ( m_entriesToCheck.contains( "internet" ) )
             hasInternet = checkHasInternet();
 
-        cDebug() << "enoughStorage, enoughRam, hasPower, hasInternet: "
-                 << enoughStorage << enoughRam << hasPower << hasInternet;
+        if ( m_entriesToCheck.contains( "root" ) )
+            isRoot = checkIsRoot();
+
+        cDebug() << "enoughStorage, enoughRam, hasPower, hasInternet, isRoot: "
+                 << enoughStorage << enoughRam << hasPower << hasInternet << isRoot;
 
         QList< PrepareEntry > checkEntries;
         foreach ( const QString& entry, m_entriesToCheck )
@@ -121,6 +127,15 @@ RequirementsChecker::RequirementsChecker( QObject* parent )
                     hasInternet,
                     m_entriesToRequire.contains( entry )
                 } );
+            else if ( entry == "root" )
+                checkEntries.append( {
+                    entry,
+                    [this]{ return QString(); }, //we hide it
+                    [this]{ return tr( "The installer is not running with administrator rights." ); },
+                    isRoot,
+                    m_entriesToRequire.contains( entry )
+                } );
+
         }
 
         m_actualWidget->init( checkEntries );
@@ -326,6 +341,13 @@ RequirementsChecker::checkHasInternet()
     }
 
     return nmState == NM_STATE_CONNECTED_GLOBAL;
+}
+
+
+bool
+RequirementsChecker::checkIsRoot()
+{
+    return !geteuid();
 }
 
 
