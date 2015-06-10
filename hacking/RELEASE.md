@@ -13,6 +13,7 @@ The Calamares release process
 * Update submodules.
 * Check defaults in `settings.conf` and other configuration files.
 * Pull latest translations from Transifex.
+* Update the list of enabled translation languages in `CMakeLists.txt`.
 * Bump version in `CMakeLists.txt`, commit.
 
 #### (2) Tarball
