@@ -16,7 +16,7 @@ The Calamares release process
 * Bump version in `CMakeLists.txt`, commit.
 
 #### (2) Tarball
-* Create tarball with `git-archive-all`.
+* Create tarball: `../git-archive-all/git-archive-all -v calamares-1.1-rc1.tar.gz`
 * Test tarball.
 
 #### (3) Tag
