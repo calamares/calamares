@@ -1,1 +1,3 @@
 .tx/* export-ignore
+hacking/* export-ignore
+HACKING.md export-ignore
