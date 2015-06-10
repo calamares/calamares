@@ -77,8 +77,8 @@ def get_kernel_line(kernel_type):
             return ""
 
 
-def create_conf(uuid, conf_path, kernel_line):
-    """ Creates gummiboot configuration files based on given parameters.
+def create_systemd_boot_conf(uuid, conf_path, kernel_line):
+    """ Creates systemd-boot configuration files based on given parameters.
 
     :param uuid:
     :param conf_path:
@@ -129,12 +129,12 @@ def create_loader(loader_path):
     f.close()
 
 
-def install_gummiboot(efi_directory):
-    """ Installs gummiboot as bootloader for EFI setups.
+def install_systemd_boot(efi_directory):
+    """ Installs systemd-boot as bootloader for EFI setups.
 
     :param efi_directory:
     """
-    print("Bootloader: gummiboot")
+    print("Bootloader: systemd-boot")
     install_path = libcalamares.globalstorage.value("rootMountPoint")
     install_efi_directory = install_path + efi_directory
     fallback_kernel_line = libcalamares.job.configuration["fallbackKernelLine"]
@@ -150,13 +150,13 @@ def install_gummiboot(efi_directory):
         "{!s}-fallback.conf".format(distribution_translated))
     loader_path = os.path.join(
         install_efi_directory, "loader", "loader.conf")
-    subprocess.call(["gummiboot", "--path={!s}".format(install_efi_directory), "install"])
+    subprocess.call(["bootctl", "--path={!s}".format(install_efi_directory), "install"])
     kernel_line = get_kernel_line("default")
     print("Configure: \"{!s}\"".format(kernel_line))
-    create_conf(uuid, conf_path, kernel_line)
+    create_systemd_boot_conf(uuid, conf_path, kernel_line)
     kernel_line = get_kernel_line("fallback")
     print("Configure: \"{!s}\"".format(kernel_line))
-    create_conf(uuid, fallback_path, kernel_line)
+    create_systemd_boot_conf(uuid, fallback_path, kernel_line)
     create_loader(loader_path)
 
 
@@ -200,7 +200,7 @@ def install_grub(efi_directory, fw_type):
 
 def prepare_bootloader(fw_type):
     """ Prepares bootloader and set proper flags to EFI boot partition (esp,boot).
-    Based on value 'efi_boot_loader', it either calls gummiboot or grub to be installed.
+    Based on value 'efi_boot_loader', it either calls systemd-boot or grub to be installed.
 
     :param fw_type:
     :return:
@@ -226,8 +226,8 @@ def prepare_bootloader(fw_type):
                     print("Boot device: \"{!s}\"".format(device))
         print("Set 'EF00' flag")
         subprocess.call(["sgdisk", "--typecode={!s}:EF00".format(boot_p), "{!s}".format(device)])       
-    if (efi_boot_loader == "gummiboot" and fw_type == "efi"):
-        install_gummiboot(efi_directory)
+    if (efi_boot_loader == "systemd-boot" and fw_type == "efi"):
+        install_systemd_boot(efi_directory)
     else:
         install_grub(efi_directory, fw_type)
 
