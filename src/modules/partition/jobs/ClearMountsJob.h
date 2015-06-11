@@ -35,6 +35,7 @@ public:
     QString prettyName() const override;
     Calamares::JobResult exec() override;
 private:
+    QString tryUmount( const QString& partPath );
     Device* m_device;
 };
 
