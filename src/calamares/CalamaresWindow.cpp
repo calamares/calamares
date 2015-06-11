@@ -107,7 +107,7 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
             {
                 m_debugWindow = new Calamares::DebugWindow();
                 m_debugWindow->show();
-                connect( m_debugWindow, &Calamares::DebugWindow::closed,
+                connect( m_debugWindow.data(), &Calamares::DebugWindow::closed,
                          this, [ = ]()
                 {
                     m_debugWindow->deleteLater();
