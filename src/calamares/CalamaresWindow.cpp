@@ -108,7 +108,7 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
                 m_debugWindow = new Calamares::DebugWindow();
                 m_debugWindow->show();
                 connect( m_debugWindow, &Calamares::DebugWindow::closed,
-                         this, [ = ]
+                         this, [ = ]()
                 {
                     m_debugWindow->deleteLater();
                     debugWindowBtn->setChecked( false );
