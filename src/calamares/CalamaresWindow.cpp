@@ -101,14 +101,14 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
         debugWindowBtn->setFlat( true );
         debugWindowBtn->setCheckable( true );
         connect( debugWindowBtn, &QPushButton::clicked,
-                 [ this, debugWindowBtn ]( bool checked )
+                 this, [ = ]( bool checked )
         {
             if ( checked )
             {
                 m_debugWindow = new Calamares::DebugWindow();
                 m_debugWindow->show();
                 connect( m_debugWindow, &Calamares::DebugWindow::closed,
-                         [ this, debugWindowBtn ]
+                         this, [ = ]
                 {
                     m_debugWindow->deleteLater();
                     debugWindowBtn->setChecked( false );
