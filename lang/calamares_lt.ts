@@ -574,7 +574,7 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
         <translation>Išvalyti prijungimus, siekiant atlikti skaidymo operacijas skaidiniuose %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="81"/>
+        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="129"/>
         <source>Cleared all mounts for %1</source>
         <translation>Visi %1 prijungimai išvalyti</translation>
     </message>
@@ -1824,13 +1824,13 @@ Kai kurios failų sistemos tam, kad būtų palaikomos, reikalauja, kad būtų į
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="596"/>
-        <source>Log in automatically</source>
-        <translation>Prijungti automatiškai</translation>
+        <source>&amp;Log in automatically</source>
+        <translation>&amp;Prijungti automatiškai</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="606"/>
-        <source>Require my password to log in</source>
-        <translation>Reikalauti įvesti slaptažodį prisijungimo metu</translation>
+        <source>Require &amp;my password to log in</source>
+        <translation>&amp;Norint prisijungti, reikalauti slaptažodžio</translation>
     </message>
 </context>
 <context>
@@ -2822,33 +2822,33 @@ Kai kurios failų sistemos tam, kad būtų palaikomos, reikalauja, kad būtų į
 <context>
     <name>UsersPage</name>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="233"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="253"/>
         <source>Your username is too long.</source>
         <translation>Jūsų vartotojo vardas yra pernelyg ilgas.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="243"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="263"/>
         <source>Your username contains invalid characters. Only lowercase letters and numbers are allowed.</source>
         <translation>Jūsų vartotojo varde yra neleistinų simbolių. Leidžiamos tik mažosios raidės ir skaičiai.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="287"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="307"/>
         <source>Your hostname is too short.</source>
         <translation>Jūsų kompiuterio vardas yra pernelyg trumpas.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="298"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="318"/>
         <source>Your hostname is too long.</source>
         <translation>Jūsų kompiuterio vardas yra pernelyg ilgas.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="309"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="329"/>
         <source>Your hostname contains invalid characters. Only letters, numbers and dashes are allowed.</source>
         <translation>Jūsų kompiuterio varde yra neleistinų simbolių. Kompiuterio varde gali būti tik raidės, skaičiai ir brūkšniai.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="340"/>
-        <location filename="../src/modules/users/UsersPage.cpp" line="373"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="360"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="393"/>
         <source>Your passwords do not match!</source>
         <translation>Jūsų slaptažodžiai nesutampa!</translation>
     </message>

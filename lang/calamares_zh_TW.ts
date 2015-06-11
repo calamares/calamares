@@ -574,7 +574,7 @@ The installer will quit and all changes will be lost.</source>
         <translation>為了準備分割區操作而完全卸載 %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="81"/>
+        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="129"/>
         <source>Cleared all mounts for %1</source>
         <translation>已清除所有與 %1 相關的掛載</translation>
     </message>
@@ -1824,13 +1824,13 @@ Some file systems need external tools to be installed for them to be supported. 
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="596"/>
-        <source>Log in automatically</source>
-        <translation>自動登入</translation>
+        <source>&amp;Log in automatically</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="606"/>
-        <source>Require my password to log in</source>
-        <translation>密碼登入</translation>
+        <source>Require &amp;my password to log in</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2822,33 +2822,33 @@ Some file systems need external tools to be installed for them to be supported. 
 <context>
     <name>UsersPage</name>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="233"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="253"/>
         <source>Your username is too long.</source>
         <translation>您的使用者名稱太長了。</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="243"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="263"/>
         <source>Your username contains invalid characters. Only lowercase letters and numbers are allowed.</source>
         <translation>您的使用者名稱含有無效的字元。只能使用小寫字母及數字。</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="287"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="307"/>
         <source>Your hostname is too short.</source>
         <translation>您的主機名稱太短了。</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="298"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="318"/>
         <source>Your hostname is too long.</source>
         <translation>您的主機名稱太長了。</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="309"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="329"/>
         <source>Your hostname contains invalid characters. Only letters, numbers and dashes are allowed.</source>
         <translation>您的主機名稱含有無效的字元。只能使用字母、數字及破折號。</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="340"/>
-        <location filename="../src/modules/users/UsersPage.cpp" line="373"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="360"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="393"/>
         <source>Your passwords do not match!</source>
         <translation>密碼不符！</translation>
     </message>

@@ -574,7 +574,7 @@ Asennusohjelma sulkeutuu ja kaikki muutoksesi katoavat.</translation>
         <translation>Poista osiointitoimenpiteitä varten tehdyt liitokset kohteesta %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="81"/>
+        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="129"/>
         <source>Cleared all mounts for %1</source>
         <translation>Kaikki liitokset poistettu kohteesta %1</translation>
     </message>
@@ -1824,13 +1824,13 @@ Jotkin tiedostojärjestelmät vaativat ulkoisia työkaluja jotta ovat tuettuja. 
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="596"/>
-        <source>Log in automatically</source>
-        <translation>Kirjaudu sisään automaattisesti</translation>
+        <source>&amp;Log in automatically</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="606"/>
-        <source>Require my password to log in</source>
-        <translation>Vaadi salasana kirjautuakseni</translation>
+        <source>Require &amp;my password to log in</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2822,33 +2822,33 @@ Jotkin tiedostojärjestelmät vaativat ulkoisia työkaluja jotta ovat tuettuja. 
 <context>
     <name>UsersPage</name>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="233"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="253"/>
         <source>Your username is too long.</source>
         <translation>Käyttäjänimesi on liian pitkä.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="243"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="263"/>
         <source>Your username contains invalid characters. Only lowercase letters and numbers are allowed.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="287"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="307"/>
         <source>Your hostname is too short.</source>
         <translation>Isäntänimesi on liian lyhyt.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="298"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="318"/>
         <source>Your hostname is too long.</source>
         <translation>Isäntänimesi on liian pitkä.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="309"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="329"/>
         <source>Your hostname contains invalid characters. Only letters, numbers and dashes are allowed.</source>
         <translation>Isäntänimesi sisältää epäkelpoja merkkejä. Vain kirjaimet, numerot ja väliviivat ovat sallittuja.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="340"/>
-        <location filename="../src/modules/users/UsersPage.cpp" line="373"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="360"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="393"/>
         <source>Your passwords do not match!</source>
         <translation>Salasanasi eivät täsmää!</translation>
     </message>

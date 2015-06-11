@@ -482,7 +482,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="125"/>
         <source>This program will ask you some questions and set up %2 on your computer.</source>
-        <translation type="unfinished"/>
+        <translation>Este programa vai fazer-lhe algumas perguntas e configurar %2 no seu computador.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="145"/>
@@ -573,7 +573,7 @@ The installer will quit and all changes will be lost.</source>
         <translation>Limpar montagens para operações de particionamento em %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="81"/>
+        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="129"/>
         <source>Cleared all mounts for %1</source>
         <translation>Limpar todas as montagens para %1</translation>
     </message>
@@ -1823,13 +1823,13 @@ Alguns sistemas de ficheiros necessitam de ferramentas externas para serem supor
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="596"/>
-        <source>Log in automatically</source>
-        <translation>Início de sessão automático </translation>
+        <source>&amp;Log in automatically</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="606"/>
-        <source>Require my password to log in</source>
-        <translation>Pedir a minha palavra-passe ao iniciar sessão</translation>
+        <source>Require &amp;my password to log in</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2423,7 +2423,7 @@ Alguns sistemas de ficheiros necessitam de ferramentas externas para serem supor
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="135"/>
         <source>The installer is not running with administrator rights.</source>
-        <translation type="unfinished"/>
+        <translation>O instalador não está a correr com permissões de administrador.</translation>
     </message>
 </context>
 <context>
@@ -2821,33 +2821,33 @@ Alguns sistemas de ficheiros necessitam de ferramentas externas para serem supor
 <context>
     <name>UsersPage</name>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="233"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="253"/>
         <source>Your username is too long.</source>
         <translation>O seu nome de utilizador é demasiado longo.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="243"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="263"/>
         <source>Your username contains invalid characters. Only lowercase letters and numbers are allowed.</source>
         <translation>O seu nome de utilizador contem caractéres inválidos. Apenas letras minúsculas e números são permitidos.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="287"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="307"/>
         <source>Your hostname is too short.</source>
         <translation>O seu nome de anfitrião é demasiado curto.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="298"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="318"/>
         <source>Your hostname is too long.</source>
         <translation>O seu nome de anfitrião é demasiado longo.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="309"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="329"/>
         <source>Your hostname contains invalid characters. Only letters, numbers and dashes are allowed.</source>
         <translation>O seu nome de anfitrião contém caractéres inválidos, Apenas letras, números e traços são permitidos.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="340"/>
-        <location filename="../src/modules/users/UsersPage.cpp" line="373"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="360"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="393"/>
         <source>Your passwords do not match!</source>
         <translation>As suas passwords não coincidem!</translation>
     </message>
@@ -2895,7 +2895,7 @@ Alguns sistemas de ficheiros necessitam de ferramentas externas para serem supor
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="56"/>
         <source>&lt;h1&gt;Welcome to the %1 installer.&lt;/h1&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;h1&gt;Bem vindo ao %1 instalador.&lt;/h1&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="70"/>

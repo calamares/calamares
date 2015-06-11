@@ -575,7 +575,7 @@ The installer will quit and all changes will be lost.</source>
         <translation>%1 のパーティション操作のため、マウントを解除</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="81"/>
+        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="129"/>
         <source>Cleared all mounts for %1</source>
         <translation>%1 の全てのマウントを解除</translation>
     </message>
@@ -1825,13 +1825,13 @@ Some file systems need external tools to be installed for them to be supported. 
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="596"/>
-        <source>Log in automatically</source>
-        <translation>自動的にログインする</translation>
+        <source>&amp;Log in automatically</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="606"/>
-        <source>Require my password to log in</source>
-        <translation>ログインする時にパスワードを要求する</translation>
+        <source>Require &amp;my password to log in</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2823,33 +2823,33 @@ Some file systems need external tools to be installed for them to be supported. 
 <context>
     <name>UsersPage</name>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="233"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="253"/>
         <source>Your username is too long.</source>
         <translation>ユーザー名が長すぎます。</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="243"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="263"/>
         <source>Your username contains invalid characters. Only lowercase letters and numbers are allowed.</source>
         <translation>ユーザー名に不適切な文字が含まれています。アルファベットの小文字と数字のみが使用できます。</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="287"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="307"/>
         <source>Your hostname is too short.</source>
         <translation>ホスト名が短すぎます。</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="298"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="318"/>
         <source>Your hostname is too long.</source>
         <translation>ホスト名が長過ぎます。</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="309"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="329"/>
         <source>Your hostname contains invalid characters. Only letters, numbers and dashes are allowed.</source>
         <translation>ホスト名に不適切な文字が含まれています。アルファベット、数字及びハイフンのみが使用できます。</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="340"/>
-        <location filename="../src/modules/users/UsersPage.cpp" line="373"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="360"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="393"/>
         <source>Your passwords do not match!</source>
         <translation>パスワードが一致していません！</translation>
     </message>

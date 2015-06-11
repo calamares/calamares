@@ -24,12 +24,12 @@
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="227"/>
         <source>The EFI system partition at %1 will be used for starting %2.</source>
-        <translation type="unfinished"/>
+        <translation>La partición del sistema EFI en %1 usaráse p&apos;aniciar %2.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="237"/>
         <source>EFI system partition:</source>
-        <translation type="unfinished"/>
+        <translation>Partición del sistema EFI:</translation>
     </message>
 </context>
 <context>
@@ -216,12 +216,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="24"/>
         <source>GlobalStorage</source>
-        <translation type="unfinished"/>
+        <translation>Almacenamientu global</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="34"/>
         <source>JobQueue</source>
-        <translation type="unfinished"/>
+        <translation>Cola de trabayu</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="44"/>
@@ -483,7 +483,7 @@ L&apos;instalador colará y perderánse toles camudancies.</translation>
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="125"/>
         <source>This program will ask you some questions and set up %2 on your computer.</source>
-        <translation type="unfinished"/>
+        <translation>Esti programa fadráte delles entrugues y configurará %2 nel to ordenador.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="145"/>
@@ -574,7 +574,7 @@ L&apos;instalador colará y perderánse toles camudancies.</translation>
         <translation>Llimpiar montaxes pa les opciones de particionáu en %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="81"/>
+        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="129"/>
         <source>Cleared all mounts for %1</source>
         <translation>Llimpiáronse tolos montaxes pa %1</translation>
     </message>
@@ -1824,13 +1824,13 @@ Dellos sistemes de ficheros riquen la instalación de ferramientes esternes pa t
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="596"/>
-        <source>Log in automatically</source>
-        <translation>Aniciar sesión automáticamente</translation>
+        <source>&amp;Log in automatically</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="606"/>
-        <source>Require my password to log in</source>
-        <translation>Riquir la mio contraseña p&apos;aniciar sesión</translation>
+        <source>Require &amp;my password to log in</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2822,33 +2822,33 @@ Dellos sistemes de ficheros riquen la instalación de ferramientes esternes pa t
 <context>
     <name>UsersPage</name>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="233"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="253"/>
         <source>Your username is too long.</source>
         <translation>El to nome d&apos;usuariu ye perllargu.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="243"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="263"/>
         <source>Your username contains invalid characters. Only lowercase letters and numbers are allowed.</source>
         <translation>El to nome d&apos;usuariu contien carauteres non válidos. Almítense namái lletres en minúscula y númberos.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="287"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="307"/>
         <source>Your hostname is too short.</source>
         <translation>El to nome d&apos;agospiu ye percurtiu</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="298"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="318"/>
         <source>Your hostname is too long.</source>
         <translation>El to nome d&apos;agospiu ye perllargu</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="309"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="329"/>
         <source>Your hostname contains invalid characters. Only letters, numbers and dashes are allowed.</source>
         <translation>El to nome d&apos;agospiu contien carauteres non válidos. Almítense namái lletres en minúscula y númberos.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="340"/>
-        <location filename="../src/modules/users/UsersPage.cpp" line="373"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="360"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="393"/>
         <source>Your passwords do not match!</source>
         <translation>¡Les tos contraseñes nun concasen!</translation>
     </message>

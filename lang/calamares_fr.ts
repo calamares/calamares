@@ -574,7 +574,7 @@ L&apos;installateur se fermera et les changements seront perdus.</translation>
         <translation>Retirer les montages pour les opérations de partitionnement sur %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="81"/>
+        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="129"/>
         <source>Cleared all mounts for %1</source>
         <translation>Tous les montages ont été retirés pour %1</translation>
     </message>
@@ -1824,13 +1824,13 @@ Certains systèmes de fichiers nécessitent l&apos;installation d&apos;outils ex
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="596"/>
-        <source>Log in automatically</source>
-        <translation>Se connecter automatiquement</translation>
+        <source>&amp;Log in automatically</source>
+        <translation>&amp;Se connecter automatiquement</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="606"/>
-        <source>Require my password to log in</source>
-        <translation>Demander mon mot de passe à la connexion</translation>
+        <source>Require &amp;my password to log in</source>
+        <translation>Nécessite &amp;mon mot de passe pour la connexion</translation>
     </message>
 </context>
 <context>
@@ -2822,33 +2822,33 @@ Certains systèmes de fichiers nécessitent l&apos;installation d&apos;outils ex
 <context>
     <name>UsersPage</name>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="233"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="253"/>
         <source>Your username is too long.</source>
         <translation>Votre nom d&apos;utilisateur est trop long.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="243"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="263"/>
         <source>Your username contains invalid characters. Only lowercase letters and numbers are allowed.</source>
         <translation>Votre nom d&apos;utilisateur contient des caractères invalides. Seuls les lettres minuscules et les chiffres sont autorisés.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="287"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="307"/>
         <source>Your hostname is too short.</source>
         <translation>Le nom d&apos;hôte est trop petit.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="298"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="318"/>
         <source>Your hostname is too long.</source>
         <translation>Le nom d&apos;hôte est trop long.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="309"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="329"/>
         <source>Your hostname contains invalid characters. Only letters, numbers and dashes are allowed.</source>
         <translation>Le nom d&apos;hôte contient des caractères invalides. Seules les lettres, nombres et tirets sont autorisés.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="340"/>
-        <location filename="../src/modules/users/UsersPage.cpp" line="373"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="360"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="393"/>
         <source>Your passwords do not match!</source>
         <translation>Vos mots de passe ne correspondent pas !</translation>
     </message>

@@ -19,17 +19,17 @@
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="217"/>
         <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
-        <translation type="unfinished"/>
+        <translation>Er werd geen EFI systeempartitie gevonden op dit systeem. Gelieve terug te gaan en manueel te partitioneren om %1 in te stellen.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="227"/>
         <source>The EFI system partition at %1 will be used for starting %2.</source>
-        <translation type="unfinished"/>
+        <translation>De EFI systeempartitie op %1 zal gebruikt worden om %2 te starten.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="237"/>
         <source>EFI system partition:</source>
-        <translation type="unfinished"/>
+        <translation>EFI systeempartitie:</translation>
     </message>
 </context>
 <context>
@@ -203,7 +203,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="111"/>
         <source>%1 (%2)</source>
-        <translation type="unfinished"/>
+        <translation>%1 (%2)</translation>
     </message>
 </context>
 <context>
@@ -483,7 +483,7 @@ Het installatieprogramma zal afsluiten en alle wijzigingen zullen verloren gaan.
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="125"/>
         <source>This program will ask you some questions and set up %2 on your computer.</source>
-        <translation type="unfinished"/>
+        <translation>Dit programma stelt je enkele vragen en installeert %2 op jouw computer.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="145"/>
@@ -574,7 +574,7 @@ Het installatieprogramma zal afsluiten en alle wijzigingen zullen verloren gaan.
         <translation>Aankoppelpunten vrijgeven voor het partitioneren van %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="81"/>
+        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="129"/>
         <source>Cleared all mounts for %1</source>
         <translation>Alle aankoppelpunten voor %1 vrijgegeven</translation>
     </message>
@@ -1824,13 +1824,13 @@ Sommige bestandssystemen vereisen externe programma&apos;s om ondersteund te wor
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="596"/>
-        <source>Log in automatically</source>
-        <translation>Log automatisch in</translation>
+        <source>&amp;Log in automatically</source>
+        <translation>Automatisch in&amp;loggen</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="606"/>
-        <source>Require my password to log in</source>
-        <translation>Vereis mijn wachtwoord om in te loggen</translation>
+        <source>Require &amp;my password to log in</source>
+        <translation>Vraag &amp;mijn wachtwoord om in te loggen</translation>
     </message>
 </context>
 <context>
@@ -2304,7 +2304,7 @@ Sommige bestandssystemen vereisen externe programma&apos;s om ondersteund te wor
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.ui" line="22"/>
         <source>Dis&amp;k:</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Schijf:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="160"/>
@@ -2354,24 +2354,24 @@ Sommige bestandssystemen vereisen externe programma&apos;s om ondersteund te wor
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="281"/>
         <source>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Er werd geen EFI systeempartite gevonden op dit systeem. Gelieve terug te keren en manueel te partitioneren om %1 in te stellen.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="293"/>
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="312"/>
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="337"/>
         <source>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 will be installed on %2.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;all data on partition %2 will be lost.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 zal geïnstalleerd worden op %2.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Opgelet: &lt;/font&gt;alle gegevens op partitie %2 zullen verloren gaan.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="303"/>
         <source>The EFI system partition at %1 will be used for starting %2.</source>
-        <translation type="unfinished"/>
+        <translation>De EFI systeempartitie op %1 zal gebruikt worden om %2 te starten.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="321"/>
         <source>EFI system partition:</source>
-        <translation type="unfinished"/>
+        <translation>EFI systeempartitie:</translation>
     </message>
 </context>
 <context>
@@ -2424,7 +2424,7 @@ Sommige bestandssystemen vereisen externe programma&apos;s om ondersteund te wor
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="135"/>
         <source>The installer is not running with administrator rights.</source>
-        <translation type="unfinished"/>
+        <translation>Het installatieprogramma draait zonder administratorrechten.</translation>
     </message>
 </context>
 <context>
@@ -2822,33 +2822,33 @@ Sommige bestandssystemen vereisen externe programma&apos;s om ondersteund te wor
 <context>
     <name>UsersPage</name>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="233"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="253"/>
         <source>Your username is too long.</source>
         <translation>De gebruikersnaam is te lang.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="243"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="263"/>
         <source>Your username contains invalid characters. Only lowercase letters and numbers are allowed.</source>
         <translation>De gebruikersnaam bevat ongeldige tekens.  Enkel kleine letters en nummers zijn toegelaten.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="287"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="307"/>
         <source>Your hostname is too short.</source>
         <translation>De hostnaam is te kort.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="298"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="318"/>
         <source>Your hostname is too long.</source>
         <translation>De hostnaam is te lang.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="309"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="329"/>
         <source>Your hostname contains invalid characters. Only letters, numbers and dashes are allowed.</source>
         <translation>De hostnaam bevat ongeldige tekens.  Enkel letters, cijfers en liggende streepjes zijn toegelaten.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="340"/>
-        <location filename="../src/modules/users/UsersPage.cpp" line="373"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="360"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="393"/>
         <source>Your passwords do not match!</source>
         <translation>Je wachtwoorden komen niet overeen!</translation>
     </message>
@@ -2896,7 +2896,7 @@ Sommige bestandssystemen vereisen externe programma&apos;s om ondersteund te wor
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="56"/>
         <source>&lt;h1&gt;Welcome to the %1 installer.&lt;/h1&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;h1&gt;Welkom in het %1 installatieprogramma.&lt;/h1&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="70"/>

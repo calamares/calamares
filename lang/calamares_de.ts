@@ -575,7 +575,7 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
         <translation>Leere Mount-Points für Partitioning-Operation auf %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="81"/>
+        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="129"/>
         <source>Cleared all mounts for %1</source>
         <translation>Alle Mount-Points für %1 geleert</translation>
     </message>
@@ -1825,13 +1825,13 @@ Einige Dateisysteme erfordern die Installation externer Programme, um unterstüt
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="596"/>
-        <source>Log in automatically</source>
-        <translation>Automatisches Anmelden</translation>
+        <source>&amp;Log in automatically</source>
+        <translation>&amp;Automatisch anmelden</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="606"/>
-        <source>Require my password to log in</source>
-        <translation>Passworteingabe erforderlich zum Anmelden</translation>
+        <source>Require &amp;my password to log in</source>
+        <translation>Benötigt &amp;mein Passwort zur Anmeldung</translation>
     </message>
 </context>
 <context>
@@ -2823,33 +2823,33 @@ Einige Dateisysteme erfordern die Installation externer Programme, um unterstüt
 <context>
     <name>UsersPage</name>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="233"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="253"/>
         <source>Your username is too long.</source>
         <translation>Ihr Nutzername ist zu lang.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="243"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="263"/>
         <source>Your username contains invalid characters. Only lowercase letters and numbers are allowed.</source>
         <translation>Ihr Nutzername enthält ungültige Zeichen. Nur Kleinbuchstaben und Ziffern sind erlaubt.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="287"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="307"/>
         <source>Your hostname is too short.</source>
         <translation>Ihr Hostname ist zu kurz.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="298"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="318"/>
         <source>Your hostname is too long.</source>
         <translation>Ihr Hostname ist zu lang.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="309"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="329"/>
         <source>Your hostname contains invalid characters. Only letters, numbers and dashes are allowed.</source>
         <translation>Ihr Hostname enthält ungültige Zeichen. Nur Buchstaben, Ziffern und Striche sind erlaubt.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="340"/>
-        <location filename="../src/modules/users/UsersPage.cpp" line="373"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="360"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="393"/>
         <source>Your passwords do not match!</source>
         <translation>Ihre Passwörter stimmen nicht überein!</translation>
     </message>
@@ -2897,7 +2897,7 @@ Einige Dateisysteme erfordern die Installation externer Programme, um unterstüt
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="56"/>
         <source>&lt;h1&gt;Welcome to the %1 installer.&lt;/h1&gt;</source>
-        <translation>&lt;h1&gt;Wilkommen im %1 installationsprogramm.&lt;/h1&gt;</translation>
+        <translation>&lt;h1&gt;Willkommen im %1 Installationsprogramm.&lt;/h1&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="70"/>
