@@ -446,7 +446,7 @@
     </spacer>
    </item>
    <item>
-    <widget class="QLabel" name="root_password_label_2">
+    <widget class="QLabel" name="labelChooseRootPassword">
      <property name="text">
       <string>Choose a password for the administrator account.</string>
      </property>
@@ -548,7 +548,7 @@
     </layout>
    </item>
    <item>
-    <widget class="QLabel" name="password_extra_label_4">
+    <widget class="QLabel" name="labelExtraRootPassword">
      <property name="styleSheet">
       <string>font-weight: normal</string>
      </property>
@@ -593,7 +593,7 @@
         <item row="0" column="1">
          <widget class="QRadioButton" name="checkBoxLoginAuto">
           <property name="text">
-           <string>Log in automatically</string>
+           <string>&amp;Log in automatically</string>
           </property>
           <property name="checked">
            <bool>false</bool>
@@ -603,7 +603,7 @@
         <item row="0" column="0">
          <widget class="QRadioButton" name="checkBoxLoginNormal">
           <property name="text">
-           <string>Require my password to log in</string>
+           <string>Require &amp;my password to log in</string>
           </property>
           <property name="checked">
            <bool>true</bool>
