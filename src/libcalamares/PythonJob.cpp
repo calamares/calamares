@@ -231,10 +231,15 @@ PythonJob::~PythonJob()
 QString
 PythonJob::prettyName() const
 {
-    return tr( "Run script %1" )
-                .arg( QDir( m_workingPath ).dirName() +
-                      QDir::separator() +
-                      m_scriptFile );
+    return QDir( m_workingPath ).dirName();
+}
+
+
+QString
+PythonJob::prettyDescription() const
+{
+    return tr( "Run %1 operation." )
+                .arg( QDir( m_workingPath ).dirName() );
 }
 
 
