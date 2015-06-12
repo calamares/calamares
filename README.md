@@ -8,14 +8,14 @@
 
 Compiler with C++11 support: GCC >= 4.8.4 or Clang >= 3.5.1
 
-| Main | Welcome module | Partitioning module | Bootloader module |
-|:----:|:--------------:|:-------------------:|:-----------------:|
-| CMake >= 2.8.12 | NetworkManager | extra-cmake-modules | gummiboot or GRUB2 |
-| Qt >= 5.3 | UPower | kconfig (part of KF5) | sgdisk |
-| yaml-cpp >= 0.5.1 | | solid (part of KF5) | |
-| Python >= 3.3 | | kcoreaddons (part of KF5) | |
-| Boost.Python >= 1.55.0 | | ki18n (part of KF5) | |
-| dmidecode | | sgdisk | |
+| Main | Welcome module | Partitioning module | Bootloader module | Unpackfs module |
+|:----:|:--------------:|:-------------------:|:-----------------:|:---------------:|
+| CMake >= 2.8.12 | NetworkManager | extra-cmake-modules | gummiboot or GRUB2 | squashfs-tools |
+| Qt >= 5.3 | UPower | kconfig (part of KF5) | sgdisk | rsync |
+| yaml-cpp >= 0.5.1 | | solid (part of KF5) | | |
+| Python >= 3.3 | | kcoreaddons (part of KF5) | | |
+| Boost.Python >= 1.55.0 | | ki18n (part of KF5) | | |
+| dmidecode | | sgdisk | | |
 
 ### Deployment
 [__Setting up branding__](https://github.com/calamares/calamares/blob/master/src/branding/README.md)
