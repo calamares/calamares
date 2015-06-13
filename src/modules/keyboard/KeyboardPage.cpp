@@ -40,6 +40,7 @@ KeyboardPage::KeyboardPage( QWidget* parent )
     : QWidget()
     , ui( new Ui::Page_Keyboard )
     , m_keyboardPreview( new KeyBoardPreview( this ) )
+    , m_defaultIndex( 0 )
 {
     ui->setupUi( this );
 
