@@ -35,6 +35,7 @@ public:
     virtual ~ProcessJob();
 
     QString prettyName() const override;
+    QString prettyStatusMessage() const override;
     JobResult exec() override;
 
 private:

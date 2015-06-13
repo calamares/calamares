@@ -50,7 +50,16 @@ ProcessJob::prettyName() const
     //TODO: show something more meaningful
     return tr( "Run command %1 %2" )
             .arg( m_command )
-            .arg( m_runInChroot ? "in chroot" : "" );
+            .arg( m_runInChroot ? "in chroot." : " ." );
+}
+
+
+QString
+ProcessJob::prettyStatusMessage() const
+{
+    return tr( "Running command %1 %2" )
+            .arg( m_command )
+            .arg( m_runInChroot ? "in chroot." : " ." );
 }
 
 

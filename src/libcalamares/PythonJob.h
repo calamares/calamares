@@ -42,7 +42,7 @@ public:
     virtual ~PythonJob();
 
     QString prettyName() const override;
-    QString prettyDescription() const override;
+    QString prettyStatusMessage() const override;
     JobResult exec() override;
 
 private:
