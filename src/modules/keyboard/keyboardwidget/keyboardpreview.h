@@ -40,7 +40,7 @@ class KeyBoardPreview : public QWidget
 {
     Q_OBJECT
 public:
-    explicit KeyBoardPreview(QWidget* parent = 0);
+    explicit KeyBoardPreview( QWidget* parent = nullptr );
     
     void setLayout(QString layout);
     void setVariant(QString variant);
