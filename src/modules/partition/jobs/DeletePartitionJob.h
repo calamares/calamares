@@ -51,7 +51,6 @@ public:
 
 private:
     Device* m_device;
-    FileSystem* m_fs;
 };
 
 #endif /* DELETEPARTITIONJOB_H */
