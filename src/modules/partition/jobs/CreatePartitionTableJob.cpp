@@ -59,6 +59,16 @@ QString CreatePartitionTableJob::prettyDescription() const
             .arg( m_device->name() );
 }
 
+
+QString
+CreatePartitionTableJob::prettyStatusMessage() const
+{
+    return tr( "Creating new %1 partition table on %2." )
+            .arg( PartitionTable::tableTypeToName( m_type ).toUpper() )
+            .arg( m_device->deviceNode() );
+}
+
+
 Calamares::JobResult
 CreatePartitionTableJob::exec()
 {

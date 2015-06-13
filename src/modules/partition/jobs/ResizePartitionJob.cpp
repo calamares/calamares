@@ -198,6 +198,18 @@ ResizePartitionJob::prettyDescription() const
             .arg( ( m_newLastSector - m_newFirstSector + 1 ) * partition()->sectorSize() / 1024 / 1024 );
 }
 
+
+QString
+ResizePartitionJob::prettyStatusMessage() const
+{
+    return tr( "Resizing %2MB partition %1 to "
+               "%3MB." )
+            .arg( partition()->partitionPath() )
+            .arg( partition()->capacity() / 1024 / 1024 )
+            .arg( ( m_newLastSector - m_newFirstSector + 1 ) * partition()->sectorSize() / 1024 / 1024 );
+}
+
+
 Calamares::JobResult
 ResizePartitionJob::exec()
 {

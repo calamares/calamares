@@ -64,6 +64,15 @@ CreatePartitionJob::prettyDescription() const
             .arg( m_device->deviceNode() );
 }
 
+
+QString
+CreatePartitionJob::prettyStatusMessage() const
+{
+    return tr( "Creating new %1 partition on %2." )
+            .arg( m_partition->fileSystem().name() )
+            .arg( m_device->deviceNode() );
+}
+
 Calamares::JobResult
 CreatePartitionJob::exec()
 {

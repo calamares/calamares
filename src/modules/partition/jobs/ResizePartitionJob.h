@@ -38,6 +38,7 @@ public:
     ResizePartitionJob( Device* device, Partition* partition, qint64 firstSector, qint64 lastSector );
     QString prettyName() const override;
     QString prettyDescription() const override;
+    QString prettyStatusMessage() const override;
     Calamares::JobResult exec() override;
 
     void updatePreview();

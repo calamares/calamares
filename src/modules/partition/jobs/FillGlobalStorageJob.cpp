@@ -145,6 +145,13 @@ FillGlobalStorageJob::prettyDescription() const
     return lines.join( "<br/>" );
 }
 
+
+QString
+FillGlobalStorageJob::prettyStatusMessage() const
+{
+    return tr( "Setting up mount points." );
+}
+
 Calamares::JobResult
 FillGlobalStorageJob::exec()
 {

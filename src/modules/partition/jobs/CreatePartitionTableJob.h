@@ -40,6 +40,7 @@ public:
     CreatePartitionTableJob( Device* device, PartitionTable::TableType type );
     QString prettyName() const override;
     QString prettyDescription() const override;
+    QString prettyStatusMessage() const override;
     Calamares::JobResult exec() override;
 
     void updatePreview();

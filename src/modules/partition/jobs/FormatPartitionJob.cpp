@@ -60,8 +60,19 @@ FormatPartitionJob::prettyDescription() const
                "file system <strong>%2</strong>." )
            .arg( m_partition->partitionPath() )
            .arg( m_partition->fileSystem().name() )
-           .arg( m_partition->capacity() / 1024 / 1024 );
+            .arg( m_partition->capacity() / 1024 / 1024 );
 }
+
+
+QString
+FormatPartitionJob::prettyStatusMessage() const
+{
+    return tr( "Formatting partition %1 with "
+               "file system %2." )
+           .arg( m_partition->partitionPath() )
+           .arg( m_partition->fileSystem().name() );
+}
+
 
 Calamares::JobResult
 FormatPartitionJob::exec()

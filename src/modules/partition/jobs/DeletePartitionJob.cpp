@@ -51,6 +51,15 @@ DeletePartitionJob::prettyDescription() const
             .arg( m_partition->partitionPath() );
 }
 
+
+QString
+DeletePartitionJob::prettyStatusMessage() const
+{
+    return tr( "Deleting partition %1." )
+            .arg( m_partition->partitionPath() );
+}
+
+
 Calamares::JobResult
 DeletePartitionJob::exec()
 {
