@@ -90,6 +90,8 @@ ProcessJobModule::initFrom( const YAML::Node& node )
 
 ProcessJobModule::ProcessJobModule()
     : Module()
+    , m_secondsTimeout( 30 )
+    , m_runInChroot( false )
 {}
 
 
