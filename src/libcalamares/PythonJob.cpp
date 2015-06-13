@@ -311,8 +311,6 @@ PythonJob::exec()
         return JobResult::error( tr( "Boost.Python error in job \"%1\"." ).arg( prettyName() ),
                                  msg );
     }
-
-    return JobResult::ok();
 }
 
 
