@@ -101,7 +101,8 @@ ModuleManager::loadModules( Phase phase )
     {
         foreach ( const QString& moduleName, Settings::instance()->modules( phase ) )
         {
-            if ( !m_availableModules.contains( moduleName ) )
+            if ( !m_availableModules.contains( moduleName ) ||
+                 !m_availableModules.value( moduleName ) )
             {
                 cDebug() << "Module" << moduleName << "not found in module search paths."
                          << "\nCalamares will now quit.";
