@@ -49,6 +49,7 @@ PartitionModel::ResetHelper::~ResetHelper()
 //- PartitionModel -----------------------------------------
 PartitionModel::PartitionModel( QObject* parent )
     : QAbstractItemModel( parent )
+    , m_device( nullptr )
 {
 }
 
