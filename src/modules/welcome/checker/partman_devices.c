@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *
  *   Based on parted_devices.c, from partman-base.
  *   <http://anonscm.debian.org/cgit/d-i/partman-base.git>
@@ -48,8 +48,11 @@ is_cdrom(const char *path)
     int ret;
 
     fd = open(path, O_RDONLY | O_NONBLOCK);
-    ret = ioctl(fd, CDROM_GET_CAPABILITY, NULL);
-    close(fd);
+    if (fd >= 0)
+    {
+        ret = ioctl(fd, CDROM_GET_CAPABILITY, NULL);
+        close(fd);
+    }
 
     if (ret >= 0)
         return 1;
