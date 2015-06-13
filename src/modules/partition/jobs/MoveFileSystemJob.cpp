@@ -170,10 +170,10 @@ MoveFileSystemJob::copyBlocks( Report& report, CopyTargetDevice& target, CopySou
     // copy the remainder
     if ( rval && lastBlock > 0 )
     {
-        Q_ASSERT( lastBlock < blockSize );
-
         if ( lastBlock >= blockSize )
             cLog() << "warning: lastBlock: " << lastBlock << ", blockSize: " << blockSize;
+
+        Q_ASSERT( lastBlock < blockSize );
 
         const qint64 lastBlockReadOffset = copyDir > 0 ? readOffset + blockSize * blocksCopied : source.firstSector();
         const qint64 lastBlockWriteOffset = copyDir > 0 ? writeOffset + blockSize * blocksCopied : target.firstSector();
