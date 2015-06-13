@@ -196,6 +196,12 @@ void
 ModuleManager::doLoad( const QString& moduleName )
 {
     Module* thisModule = m_availableModules.value( moduleName );
+    if ( !thisModule )
+    {
+        cDebug() << "Module" << moduleName << "loading IMPOSSIBLE, module does not exist";
+        return;
+    }
+
     thisModule->loadSelf();
     if ( !thisModule->isLoaded() )
         cDebug() << "Module" << moduleName << "loading FAILED";
