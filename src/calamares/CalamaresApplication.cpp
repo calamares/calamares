@@ -39,7 +39,9 @@
 
 CalamaresApplication::CalamaresApplication( int& argc, char* argv[] )
     : QApplication( argc, argv )
-    , m_mainwindow( 0 )
+    , m_mainwindow( nullptr )
+    , m_moduleManager( nullptr )
+    , m_debugMode( false )
 {
     setOrganizationName( QLatin1String( CALAMARES_ORGANIZATION_NAME ) );
     setOrganizationDomain( QLatin1String( CALAMARES_ORGANIZATION_DOMAIN ) );
