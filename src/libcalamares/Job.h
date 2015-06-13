@@ -65,6 +65,7 @@ public:
 
     virtual QString prettyName() const = 0;
     virtual QString prettyDescription() const;
+    virtual QString prettyStatusMessage() const;
     virtual JobResult exec() = 0;
 signals:
     void progress( qreal percent );

@@ -94,4 +94,11 @@ Job::prettyDescription() const
 }
 
 
+QString
+Job::prettyStatusMessage() const
+{
+    return QString();
+}
+
+
 } // namespace Calamares
