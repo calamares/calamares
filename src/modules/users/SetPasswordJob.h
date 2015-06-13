@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -29,6 +29,7 @@ public:
     SetPasswordJob( const QString& userName,
                     const QString& newPassword );
     QString prettyName() const override;
+    QString prettyStatusMessage() const override;
     Calamares::JobResult exec() override;
 
 private:

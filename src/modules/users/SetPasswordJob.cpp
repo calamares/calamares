@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -40,6 +40,13 @@ QString
 SetPasswordJob::prettyName() const
 {
     return tr( "Set password for user %1" ).arg( m_userName );
+}
+
+
+QString
+SetPasswordJob::prettyStatusMessage() const
+{
+    return tr( "Setting password for user %1." ).arg( m_userName );
 }
 
 

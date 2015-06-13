@@ -1,19 +1,20 @@
-/*
- * Copyright (C) 2014  Rohan Garg <rohan@kde.org>
+/* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ *   Copyright 2014, Rohan Garg <rohan@kde.org>
+ *   Copyright 2015, Teo Mrnjavac <teo@kde.org>
  *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
+ *   Calamares is free software: you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation, either version 3 of the License, or
+ *   (at your option) any later version.
  *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *   Calamares is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ *   GNU General Public License for more details.
  *
+ *   You should have received a copy of the GNU General Public License
+ *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include "SetHostNameJob.h"
@@ -34,6 +35,20 @@ SetHostNameJob::SetHostNameJob( const QString& hostname )
 QString SetHostNameJob::prettyName() const
 {
     return tr( "Set hostname %1" ).arg( m_hostname );
+}
+
+
+QString
+SetHostNameJob::prettyDescription() const
+{
+    return tr( "Set hostname <strong>%1</strong>." ).arg( m_hostname );
+}
+
+
+QString
+SetHostNameJob::prettyStatusMessage() const
+{
+    return tr( "Setting hostname %1." ).arg( m_hostname );
 }
 
 Calamares::JobResult SetHostNameJob::exec()
