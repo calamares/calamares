@@ -37,8 +37,9 @@ class JobThread : public QThread
     Q_OBJECT
 public:
     JobThread( JobQueue* queue )
-    : QThread( queue )
-    , m_queue( queue )
+        : QThread( queue )
+        , m_queue( queue )
+        , m_jobIndex( 0 )
     {
 #ifdef WITH_PYTHON
         new CalamaresPython::Helper( this );
