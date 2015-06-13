@@ -84,7 +84,7 @@ private:
 
         int jobCount = m_jobs.size();
         QString message = m_jobIndex < jobCount
-            ? m_jobs.at( m_jobIndex )->prettyDescription()
+            ? m_jobs.at( m_jobIndex )->prettyStatusMessage()
             : tr( "Done" );
 
         qreal percent = ( m_jobIndex + jobPercent ) / qreal( jobCount );
