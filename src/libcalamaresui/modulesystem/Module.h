@@ -84,8 +84,6 @@ protected:
 private:
     void loadConfigurationFile(); //throws YAML::Exception
     QString m_name;
-    Type m_type;
-    Interface m_interface;
     QStringList m_requiredModules;
     QString m_directory;
 
