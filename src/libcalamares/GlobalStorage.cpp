@@ -68,8 +68,9 @@ GlobalStorage::keys() const
 int
 GlobalStorage::remove( const QString& key )
 {
-    return m.remove( key );
+    int nItems = m.remove( key );
     emit changed();
+    return nItems;
 }
 
 
