@@ -36,6 +36,13 @@ QJsonModel::QJsonModel(QObject *parent) :
 
 }
 
+
+QJsonModel::~QJsonModel()
+{
+    delete mRootItem;
+}
+
+
 bool QJsonModel::load(const QString &fileName)
 {
     QFile file(fileName);
