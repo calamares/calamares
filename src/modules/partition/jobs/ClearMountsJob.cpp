@@ -44,6 +44,14 @@ ClearMountsJob::prettyName() const
 }
 
 
+QString
+ClearMountsJob::prettyStatusMessage() const
+{
+    return tr( "Clearing mounts for partitioning operations on %1." )
+            .arg( m_device->deviceNode() );
+}
+
+
 Calamares::JobResult
 ClearMountsJob::exec()
 {

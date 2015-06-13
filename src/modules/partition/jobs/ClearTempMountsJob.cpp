@@ -39,6 +39,13 @@ ClearTempMountsJob::prettyName() const
 }
 
 
+QString
+ClearTempMountsJob::prettyStatusMessage() const
+{
+    return tr( "Clearing all temporary mounts." );
+}
+
+
 Calamares::JobResult
 ClearTempMountsJob::exec()
 {

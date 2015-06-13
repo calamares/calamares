@@ -34,6 +34,14 @@ CheckFileSystemJob::prettyName() const
     return tr( "Checking file system on partition %1." ).arg( path );
 }
 
+
+QString
+CheckFileSystemJob::prettyStatusMessage() const
+{
+    return prettyName();
+}
+
+
 Calamares::JobResult
 CheckFileSystemJob::exec()
 {

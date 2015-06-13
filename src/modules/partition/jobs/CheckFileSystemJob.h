@@ -31,6 +31,7 @@ public:
     CheckFileSystemJob( Partition* partition );
 
     QString prettyName() const override;
+    QString prettyStatusMessage() const override;
     Calamares::JobResult exec() override;
 };
 

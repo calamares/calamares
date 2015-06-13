@@ -33,6 +33,7 @@ class ClearTempMountsJob : public Calamares::Job
 public:
     explicit ClearTempMountsJob();
     QString prettyName() const override;
+    QString prettyStatusMessage() const override;
     Calamares::JobResult exec() override;
 };
 
