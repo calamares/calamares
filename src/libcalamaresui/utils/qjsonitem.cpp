@@ -21,6 +21,7 @@
 #include "qjsonitem.h"
 
 QJsonTreeItem::QJsonTreeItem(QJsonTreeItem *parent)
+    : mType( QJsonValue::Null )
 {
 
     mParent = parent;
