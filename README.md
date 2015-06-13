@@ -1,9 +1,10 @@
 ### Calamares: Distribution-Independent Installer Framework
 ---------
 
-[![GitHub release](https://img.shields.io/github/release/calamares/calamares.svg)]()
+[![GitHub release](https://img.shields.io/github/release/calamares/calamares.svg)](https://github.com/calamares/calamares/releases)
 [![Build Status](http://calamares.io/ci/buildStatus/icon?job=calamares-master)](http://calamares.io/ci/job/calamares-master/)
 [![Coverity Scan Build Status](https://scan.coverity.com/projects/5389/badge.svg)](https://scan.coverity.com/projects/5389)
+[![GitHub license](https://img.shields.io/github/license/calamares/calamares.svg)](https://github.com/calamares/calamares/blob/master/LICENSE)
 
 | [Report a Bug](http://calamares.io/bugs/) | [Contribute](https://github.com/calamares/calamares/blob/master/HACKING.md) | [Translate](https://www.transifex.com/projects/p/calamares/) | Freenode (IRC): #calamares |
 |:-----------------------------------------:|:----------------------:|:-----------------------:|:--------------------------:|
