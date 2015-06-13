@@ -39,6 +39,7 @@ ChoicePage::ChoicePage( QWidget* parent )
     : QWidget( parent )
     , m_choice( NoChoice )
     , m_nextEnabled( false )
+    , m_core( nullptr )
 {
     QBoxLayout* mainLayout = new QVBoxLayout;
     setLayout( mainLayout );
