@@ -31,7 +31,7 @@ def cpuinfo():
     cpu_info['proc0']={...}
     cpu_info['proc1']={...}
     """
-    cpuinfo = OrderedDict()
+    cpu_info = OrderedDict()
     procinfo = OrderedDict()
 
     nprocs = 0
@@ -40,7 +40,7 @@ def cpuinfo():
         for line in f:
             if not line.strip():
                 # end of one processor
-                cpuinfo["proc{!s}".format(nprocs)] = procinfo
+                cpu_info["proc{!s}".format(nprocs)] = procinfo
                 nprocs += 1
                 # Reset
                 procinfo = OrderedDict()
@@ -50,7 +50,7 @@ def cpuinfo():
                 else:
                     procinfo[line.split(':')[0].strip()] = ''
 
-    return cpuinfo
+    return cpu_info
 
 
 def set_mkinitcpio_hooks_and_modules(hooks, modules, root_mount_point):
