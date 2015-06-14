@@ -264,18 +264,14 @@ def run():
         fs_is_supported = False
 
         if os.path.isfile(PATH_PROCFS) and os.access(PATH_PROCFS, os.R_OK):
-            procfile = open(PATH_PROCFS, 'r')
-            filesystems = procfile.read()
-            procfile.close()
+            with open(PATH_PROCFS, 'r') as procfile:
+                filesystems = procfile.read()
+                filesystems = filesystems.replace("nodev", "").replace("\t", "").splitlines()
 
-            filesystems = filesystems.replace("nodev", "")
-            filesystems = filesystems.replace("\t", "")
-            filesystems = filesystems.splitlines()
-
-            # Check if the source filesystem is supported
-            for fs in filesystems:
-                if fs == sourcefs:
-                    fs_is_supported = True
+                # Check if the source filesystem is supported
+                for fs in filesystems:
+                    if fs == sourcefs:
+                        fs_is_supported = True
 
         if not fs_is_supported:
             return "Bad filesystem", "sourcefs=\"{}\"".format(sourcefs)
