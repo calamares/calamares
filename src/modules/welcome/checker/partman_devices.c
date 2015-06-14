@@ -44,8 +44,8 @@
 static int
 is_cdrom(const char *path)
 {
-    int fd;
-    int ret;
+    int fd = -1;
+    int ret = -1;
 
     fd = open(path, O_RDONLY | O_NONBLOCK);
     if (fd >= 0)
