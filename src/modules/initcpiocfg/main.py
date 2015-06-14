@@ -35,6 +35,7 @@ def cpuinfo():
     procinfo = OrderedDict()
 
     nprocs = 0
+
     with open('/proc/cpuinfo') as f:
         for line in f:
             if not line.strip():
@@ -71,6 +72,7 @@ def set_mkinitcpio_hooks_and_modules(hooks, modules, root_mount_point):
             mklins[i] = "MODULES=\"{!s}\"".format(joined_modules)
 
     path = os.path.join(root_mount_point, "etc/mkinitcpio.conf")
+
     with open(path, "w") as mkinitcpio_file:
         mkinitcpio_file.write("\n".join(mklins) + "\n")
 
@@ -95,6 +97,7 @@ def modify_mkinitcpio_conf(partitions, root_mount_point):
     for partition in partitions:
         if partition["fs"] == "linuxswap":
             swap_uuid = partition["uuid"]
+
         if partition["fs"] == "btrfs":
             btrfs = "yes"
 
@@ -121,4 +124,5 @@ def run():
     partitions = libcalamares.globalstorage.value("partitions")
     root_mount_point = libcalamares.globalstorage.value("rootMountPoint")
     modify_mkinitcpio_conf(partitions, root_mount_point)
+
     return None

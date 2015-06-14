@@ -56,9 +56,11 @@ def is_ssd_disk(disk_name):
     :return:
     """
     filename = os.path.join("/sys/block", disk_name, "queue/rotational")
+
     if not os.path.exists(filename):
         # Should not happen unless sysfs changes, but better safe than sorry
         return False
+
     with open(filename) as f:
         return f.read() == "0\n"
 
@@ -70,8 +72,10 @@ def disk_name_for_partition(partition):
     :return:
     """
     name = os.path.basename(partition["device"])
+
     if name.startswith("/dev/mmcblk"):
-        return re.sub("p[0-9]+$", "", name)    
+        return re.sub("p[0-9]+$", "", name)
+
     return re.sub("[0-9]+$", "", name)
 
 
@@ -83,9 +87,7 @@ class FstabGenerator(object):
     :param mount_options:
     :param ssd_extra_mount_options:
     """
-
-    def __init__(self, partitions, root_mount_point, mount_options,
-                 ssd_extra_mount_options):
+    def __init__(self, partitions, root_mount_point, mount_options, ssd_extra_mount_options):
         self.partitions = partitions
         self.root_mount_point = root_mount_point
         self.mount_options = mount_options
@@ -101,6 +103,7 @@ class FstabGenerator(object):
         self.find_ssd_disks()
         self.generate_fstab()
         self.create_mount_points()
+
         return None
 
     def find_ssd_disks(self):
@@ -112,22 +115,24 @@ class FstabGenerator(object):
         """ Create fstab. """
         mkdir_p(os.path.join(self.root_mount_point, "etc"))
         fstab_path = os.path.join(self.root_mount_point, "etc", "fstab")
+
         with open(fstab_path, "w") as fl:
             print(HEADER, file=fl)
+
             for partition in self.partitions:
                 dct = self.generate_fstab_line_info(partition)
+
                 if dct:
                     self.print_fstab_line(dct, file=fl)
 
             if self.root_is_ssd:
                 # Mount /tmp on a tmpfs
-                dct = dict(
-                    device="tmpfs",
-                    mount_point="/tmp",
-                    fs="tmpfs",
-                    options="defaults,noatime,mode=1777",
-                    check=0,
-                )
+                dct = dict(device="tmpfs",
+                           mount_point="/tmp",
+                           fs="tmpfs",
+                           options="defaults,noatime,mode=1777",
+                           check=0,
+                           )
                 self.print_fstab_line(dct, file=fl)
 
     def generate_fstab_line_info(self, partition):
@@ -140,7 +145,6 @@ class FstabGenerator(object):
         mount_point = partition["mountPoint"]
         disk_name = disk_name_for_partition(partition)
         is_ssd = disk_name in self.ssd_disks
-
         fs = FS_MAP.get(fs, fs)
 
         if not mount_point and not fs == "swap":
@@ -149,6 +153,7 @@ class FstabGenerator(object):
         options = self.mount_options.get(fs, self.mount_options["default"])
         if is_ssd:
             extra = self.ssd_extra_mount_options.get(fs)
+
             if extra:
                 options += "," + extra
 
@@ -162,12 +167,12 @@ class FstabGenerator(object):
         if mount_point == "/":
             self.root_is_ssd = is_ssd
 
-        return dict(
-            device="UUID=" + partition["uuid"],
-            mount_point=mount_point or "swap",
-            fs=fs,
-            options=options,
-            check=check)
+        return dict(device="UUID=" + partition["uuid"],
+                    mount_point=mount_point or "swap",
+                    fs=fs,
+                    options=options,
+                    check=check,
+                    )
 
     def print_fstab_line(self, dct, file=None):
         """ Prints line to '/etc/fstab' file.
@@ -175,12 +180,12 @@ class FstabGenerator(object):
         :param dct:
         :param file:
         """
-        line = "{:41} {:<14} {:<7} {:<10} 0       {}".format(
-            dct["device"],
-            dct["mount_point"],
-            dct["fs"],
-            dct["options"],
-            dct["check"])
+        line = "{:41} {:<14} {:<7} {:<10} 0       {}".format(dct["device"],
+                                                             dct["mount_point"],
+                                                             dct["fs"],
+                                                             dct["options"],
+                                                             dct["check"],
+                                                             )
         print(line, file=file)
 
     def create_mount_points(self):
@@ -199,10 +204,8 @@ def run():
     conf = libcalamares.job.configuration
     partitions = gs.value("partitions")
     root_mount_point = gs.value("rootMountPoint")
-
     mount_options = conf["mountOptions"]
     ssd_extra_mount_options = conf.get("ssdExtraMountOptions", {})
+    generator = FstabGenerator(partitions, root_mount_point, mount_options, ssd_extra_mount_options)
 
-    generator = FstabGenerator(partitions, root_mount_point,
-                               mount_options, ssd_extra_mount_options)
     return generator.run()

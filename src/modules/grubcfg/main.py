@@ -49,8 +49,10 @@ def modify_grub_default(partitions, root_mount_point, distributor):
             swap_uuid = partition["uuid"]
 
     kernel_params = ["quiet"]
+
     if use_splash:
         kernel_params.append(use_splash)
+
     if swap_uuid:
         kernel_params.append("resume=UUID={!s}".format(swap_uuid))
 
@@ -89,6 +91,7 @@ def modify_grub_default(partitions, root_mount_point, distributor):
 
                 for existing_param in existing_params:
                     existing_param_name = existing_param.split("=")[0]
+
                     if existing_param_name not in ["quiet", "resume", "splash"]:  # the only ones we ever add
                         kernel_params.append(existing_param)
 
@@ -100,6 +103,7 @@ def modify_grub_default(partitions, root_mount_point, distributor):
                 have_distributor_line = True
     else:
         lines = []
+
         if "defaults" in libcalamares.job.configuration:
             for key, value in libcalamares.job.configuration["defaults"].items():
                 if value.__class__.__name__ == "bool":
@@ -109,6 +113,7 @@ def modify_grub_default(partitions, root_mount_point, distributor):
                         escaped_value = "false"
                 else:
                     escaped_value = str(value).replace("'", "'\\''")
+
                 lines.append("{!s}=\"{!s}\"".format(key, escaped_value))
 
     if not have_kernel_cmd:
@@ -133,4 +138,5 @@ def run():
     root_mount_point = libcalamares.globalstorage.value("rootMountPoint")
     branding = libcalamares.globalstorage.value("branding")
     distributor = branding["bootloaderEntryName"]
+
     return modify_grub_default(partitions, root_mount_point, distributor)
