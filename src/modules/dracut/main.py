@@ -36,6 +36,7 @@ def run():
 
     :return:
     """
-    returnCode = run_dracut()
-    if returnCode != 0:
-        return ("Failed to run dracut on the target", "The exit code was {}".format(returnCode))
+    return_code = run_dracut()
+
+    if return_code != 0:
+        return "Failed to run dracut on the target", "The exit code was {}".format(return_code)
