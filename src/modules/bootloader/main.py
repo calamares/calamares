@@ -106,7 +106,6 @@ def create_systemd_boot_conf(uuid, conf_path, kernel_line):
     with open(conf_path, 'w') as f:
         for l in lines:
             f.write(l)
-    f.close()
 
 
 def create_loader(loader_path):
@@ -126,7 +125,6 @@ def create_loader(loader_path):
     with open(loader_path, 'w') as f:
         for l in lines:
             f.write(l)
-    f.close()
 
 
 def install_systemd_boot(efi_directory):
