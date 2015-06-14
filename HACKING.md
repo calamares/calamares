@@ -70,6 +70,8 @@ You can use the `hacking/calamaresstyle` script to run
 [astyle](http://astyle.sf.net) on your code and have it formatted the right
 way.
 
+**NOTE:** An .editorconfig file is included to assist with formatting. In order to take advantage of this functionality you will need to acquire the [EditorConfig](http://editorconfig.org/#download) plug-in for your editor.
+
 Naming
 ------
 * Use CamelCase for everything.
