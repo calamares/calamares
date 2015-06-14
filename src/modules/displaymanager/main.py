@@ -140,9 +140,9 @@ def set_autologin(username, displaymanagers, default_desktop_environment, root_m
 
                 if do_autologin:
                     gdm_conf.write("AutomaticLogin={!s}\n".format(username))
-                    mdm_conf.write('AutomaticLoginEnable=True\n')
+                    gdm_conf.write('AutomaticLoginEnable=True\n')
                 else:
-                    mdm_conf.write('AutomaticLoginEnable=False\n')
+                    gdm_conf.write('AutomaticLoginEnable=False\n')
 
         if do_autologin and os.path.exists("{!s}/var/lib/AccountsService/users".format(root_mount_point)):
             os.system("echo \"[User]\" > {!s}/var/lib/AccountsService/users/{!s}".format(root_mount_point, username))
