@@ -26,7 +26,6 @@ import shutil
 import subprocess
 import sys
 import tempfile
-from collections import namedtuple
 
 from libcalamares import *
 

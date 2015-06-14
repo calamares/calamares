@@ -26,7 +26,7 @@ def run():
 
     :return:
     """
-    returnCode = chroot_call(["update-initramfs", "-k", "all", "-u"])
+    return_code = chroot_call(["update-initramfs", "-k", "all", "-u"])
 
-    if returnCode != 0:
-        return "Failed to run update-initramfs on the target", "The exit code was {}".format(returnCode)
+    if return_code != 0:
+        return "Failed to run update-initramfs on the target", "The exit code was {}".format(return_code)
