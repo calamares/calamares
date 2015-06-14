@@ -31,10 +31,13 @@ def list_mounts(root_mount_point):
     :return:
     """
     lst = []
+
     for line in open("/etc/mtab").readlines():
         device, mount_point, _ = line.split(" ", 2)
+
         if mount_point.startswith(root_mount_point):
             lst.append((device, mount_point))
+
     return lst
 
 
@@ -44,10 +47,12 @@ def run():
     :return:
     """
     root_mount_point = libcalamares.globalstorage.value("rootMountPoint")
+
     if not root_mount_point:
         return ("No mount point for root partition in globalstorage",
                 "globalstorage does not contain a \"rootMountPoint\" key, "
                 "doing nothing")
+
     if not os.path.exists(root_mount_point):
         return ("Bad mount point for root partition in globalstorage",
                 "globalstorage[\"rootMountPoint\"] is \"{}\", which does not "
@@ -62,4 +67,5 @@ def run():
         subprocess.check_call(["umount", "-lv", mount_point])
 
     os.rmdir(root_mount_point)
+
     return None

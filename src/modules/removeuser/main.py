@@ -24,12 +24,11 @@ import libcalamares
 
 def run():
     """ Remove live user from target system """
+    username = libcalamares.job.configuration["username"]
 
-    username = libcalamares.job.configuration[("username")]
     try:
         libcalamares.utils.check_chroot_call(["userdel", "-f", "-r", username])
     except subprocess.CalledProcessError as e:
-        libcalamares.utils.debug( "Cannot remove user. " +
-                                  "userdel terminated with exit code {}.".format(e.returncode))
+        libcalamares.utils.debug("Cannot remove user.", "'userdel' terminated with exit code {}.".format(e.returncode))
 
     return None
