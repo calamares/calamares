@@ -30,8 +30,7 @@ def run():
 
     root_mount_point = libcalamares.globalstorage.value("rootMountPoint")
     source_nm = "/etc/NetworkManager/system-connections/"
-    target_nm = os.path.join(root_mount_point,
-                             "etc/NetworkManager/system-connections/")
+    target_nm = os.path.join(root_mount_point, "etc/NetworkManager/system-connections/")
 
     # Sanity checks.  We don't want to do anything if a network
     # configuration already exists on the target
@@ -50,8 +49,7 @@ def run():
             try:
                 shutil.copy(source_network, target_network)
             except FileNotFoundError:
-                libcalamares.utils.debug(
-                    "Can't copy network configuration files in {}".format(source_network))
+                libcalamares.utils.debug("Can't copy network configuration files in {}".format(source_network))
             except FileExistsError:
                 pass
 
