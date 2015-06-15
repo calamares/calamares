@@ -27,9 +27,9 @@ import libcalamares
 
 def run():
     """ Create locale """
-
     us = '#en_US'
     locale = libcalamares.globalstorage.value("lcLocale")
+
     if not locale:
         locale = 'en_US.UTF-8 UTF-8'
 
@@ -43,6 +43,7 @@ def run():
     # run locale-gen if detected
     if os.path.exists('/etc/locale.gen'):
         text = []
+
         with open("{!s}/etc/locale.gen".format(install_path), "r") as gen:
             text = gen.readlines()
 
@@ -52,15 +53,18 @@ def run():
                 if us in line and line[0] == "#":
                     # uncomment line
                     line = line[1:]
+
                 if locale in line and line[0] == "#":
                     # uncomment line
                     line = line[1:]
+
                 gen.write(line)
 
         libcalamares.utils.chroot_call(['locale-gen'])
         print('locale.gen done')
 
     locale_conf_path = os.path.join(install_path, "etc/locale.conf")
+
     with open(locale_conf_path, "w") as locale_conf:
         locale_split = locale.split(' ')[0]
         locale_conf.write("LANG={!s}\n".format(locale_split))

@@ -34,4 +34,5 @@ def run():
     :return:
     """
     run_mkinitcpio()
+
     return None

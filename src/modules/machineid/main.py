@@ -33,16 +33,22 @@ def run():
     enable_dbus = libcalamares.job.configuration["dbus"]
     enable_symlink = libcalamares.job.configuration["symlink"]
     target_systemd_machineid_file = "{}/etc/machine-id".format(root_mount_point)
+
     if enable_systemd:
         if os.path.exists(target_systemd_machineid_file):
             os.remove(target_systemd_machineid_file)
+
         check_chroot_call("systemd-machine-id-setup")
+
     if enable_dbus:
         target_dbus_machineid_file = "{}/var/lib/dbus/machine-id".format(root_mount_point)
+
         if os.path.exists(target_dbus_machineid_file):
             os.remove(target_dbus_machineid_file)
+
         if enable_symlink and os.path.exists(target_systemd_machineid_file):
             check_chroot_call(["ln", "-s", "/etc/machine-id", "/var/lib/dbus/machine-id"])
         else:
             check_chroot_call(["dbus-uuidgen", "--ensure"])
+
     return None

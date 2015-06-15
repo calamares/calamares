@@ -26,7 +26,6 @@ import shutil
 import subprocess
 import sys
 import tempfile
-from collections import namedtuple
 
 from libcalamares import *
 
@@ -59,10 +58,13 @@ def list_excludes(destination):
     """
     lst = []
     extra_mounts = globalstorage.value("extraMounts")
+
     for extra_mount in extra_mounts:
         mount_point = extra_mount["mountPoint"]
+
         if mount_point:
             lst.extend(['--exclude', mount_point + '/'])
+
     return lst
 
 
@@ -87,11 +89,7 @@ def file_copy(source, dest, progress_cb):
     args = ['rsync', '-aHAXr']
     args.extend(list_excludes(dest))
     args.extend(['--progress', source, dest])
-    process = subprocess.Popen(args,
-                               env=at_env,
-                               bufsize=1,
-                               stdout=subprocess.PIPE,
-                               close_fds=ON_POSIX)
+    process = subprocess.Popen(args, env=at_env, bufsize=1, stdout=subprocess.PIPE, close_fds=ON_POSIX)
 
     for line in iter(process.stdout.readline, b''):
         # small comment on this regexp.
@@ -107,6 +105,7 @@ def file_copy(source, dest, progress_cb):
         # therefore we can easily subtract x from y in order to get real files
         # copied / processed count.
         m = re.findall(r'xfr#(\d+), ir-chk=(\d+)/(\d+)', line.decode())
+
         if m:
             # we've got a percentage update
             num_files_remaining = int(m[0][1])
@@ -117,9 +116,12 @@ def file_copy(source, dest, progress_cb):
             # I guess we're updating every 100 files...
             if num_files_copied % 100 == 0:
                 progress_cb(num_files_copied)
+
     process.wait()
+
     if process.returncode != 0:
         return "rsync failed with error code {}.".format(process.returncode)
+
     return None
 
 
@@ -128,6 +130,7 @@ class UnpackOperation:
 
     :param entries:
     """
+
     def __init__(self, entries):
         self.entries = entries
         self.entry_for_source = dict((x.source, x) for x in self.entries)
@@ -135,6 +138,7 @@ class UnpackOperation:
     def report_progress(self):
         """ Pass progress to user interface """
         progress = float(0)
+
         for entry in self.entries:
             if entry.total == 0:
                 continue
@@ -152,10 +156,10 @@ class UnpackOperation:
         :return:
         """
         source_mount_path = tempfile.mkdtemp()
+
         try:
             for entry in self.entries:
-                imgbasename = os.path.splitext(
-                    os.path.basename(entry.source))[0]
+                imgbasename = os.path.splitext(os.path.basename(entry.source))[0]
                 imgmountdir = os.path.join(source_mount_path, imgbasename)
                 os.mkdir(imgmountdir)
 
@@ -169,20 +173,19 @@ class UnpackOperation:
                                 "Failed to find unsquashfs, make sure you have "
                                 "the squashfs-tools package installed")
 
-                    fslist = subprocess.check_output(["unsquashfs",
-                                                      "-l",
-                                                      entry.source])
+                    fslist = subprocess.check_output(["unsquashfs", "-l", entry.source])
+
                 if entry.sourcefs == "ext4":
-                    fslist = subprocess.check_output(["find",
-                                                      imgmountdir,
-                                                      "-type", "f"])
+                    fslist = subprocess.check_output(["find", imgmountdir, "-type", "f"])
+
                 entry.total = len(fslist.splitlines())
 
                 self.report_progress()
                 error_msg = self.unpack_image(entry, imgmountdir)
+
                 if error_msg:
-                    return ("Failed to unpack image {}".format(entry.source),
-                            error_msg)
+                    return "Failed to unpack image {}".format(entry.source), error_msg
+
             return None
         finally:
             shutil.rmtree(source_mount_path)
@@ -193,12 +196,7 @@ class UnpackOperation:
         :param entry:
         :param imgmountdir:
         """
-        subprocess.check_call(["mount",
-                               entry.source,
-                               imgmountdir,
-                               "-t",
-                               entry.sourcefs,
-                               "-o", "loop"])
+        subprocess.check_call(["mount", entry.source, imgmountdir, "-t", entry.sourcefs, "-o", "loop"])
 
     def unpack_image(self, entry, imgmountdir):
         """ Unpacks image.
@@ -207,7 +205,6 @@ class UnpackOperation:
         :param imgmountdir:
         :return:
         """
-
         def progress_cb(copied):
             """ Copies file to given destination target.
 
@@ -217,9 +214,7 @@ class UnpackOperation:
             self.report_progress()
 
         try:
-            return file_copy(imgmountdir,
-                             entry.destination,
-                             progress_cb)
+            return file_copy(imgmountdir, entry.destination, progress_cb)
         finally:
             subprocess.check_call(["umount", "-l", imgmountdir])
 
@@ -245,14 +240,17 @@ def run():
     PATH_PROCFS = '/proc/filesystems'
 
     root_mount_point = globalstorage.value("rootMountPoint")
+
     if not root_mount_point:
         return ("No mount point for root partition in globalstorage",
                 "globalstorage does not contain a \"rootMountPoint\" key, "
                 "doing nothing")
+
     if not os.path.exists(root_mount_point):
         return ("Bad mount point for root partition in globalstorage",
                 "globalstorage[\"rootMountPoint\"] is \"{}\", which does not "
                 "exist, doing nothing".format(root_mount_point))
+
     unpack = list()
 
     for entry in job.configuration["unpack"]:
@@ -279,12 +277,13 @@ def run():
         destination = os.path.abspath(root_mount_point + entry["destination"])
 
         if not os.path.exists(source) or os.path.isdir(source):
-            return ("Bad source", "source=\"{}\"".format(source))
+            return "Bad source", "source=\"{}\"".format(source)
+
         if not os.path.isdir(destination):
-            return ("Bad destination",
-                    "destination=\"{}\"".format(destination))
+            return "Bad destination", "destination=\"{}\"".format(destination)
 
         unpack.append(UnpackEntry(source, sourcefs, destination))
 
     unpackop = UnpackOperation(unpack)
+
     return unpackop.run()

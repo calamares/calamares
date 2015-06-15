@@ -215,7 +215,7 @@ def prepare_bootloader(fw_type):
                 boot_p = boot_device[-1:]
                 device = boot_device[:-1]
 
-                if (not boot_p or not device):
+                if not boot_p or not device:
                     return ("EFI directory \"{!s}\" not found!",
                             "Boot partition: \"{!s}\"",
                             "Boot device: \"{!s}\"".format(efi_directory, boot_p, device))
