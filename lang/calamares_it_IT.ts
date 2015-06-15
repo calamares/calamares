@@ -29,7 +29,7 @@
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="237"/>
         <source>EFI system partition:</source>
-        <translation type="unfinished"/>
+        <translation>Partizione EFI:</translation>
     </message>
 </context>
 <context>
@@ -493,7 +493,7 @@ Il programma di installazione sarà chiuso, e tutte le modifiche andranno perse.
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="145"/>
         <source>For best results, please ensure that this computer:</source>
-        <translation type="unfinished"/>
+        <translation>Per ottenere prestazioni ottimali, assicurarsi che questo computer:</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="173"/>
@@ -1096,7 +1096,7 @@ Il programma di installazione sarà chiuso, e tutte le modifiche andranno perse.
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="58"/>
         <source>Create user &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Crea utente &lt;strong&gt;%1&lt;/strong&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="65"/>
@@ -1875,12 +1875,12 @@ Alcuni file system necessitano l&apos;installazione di strumenti esterni per ess
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="596"/>
         <source>&amp;Log in automatically</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Accedi automaticamente</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="606"/>
         <source>Require &amp;my password to log in</source>
-        <translation type="unfinished"/>
+        <translation>Richiedi la password per accedere</translation>
     </message>
 </context>
 <context>
@@ -2354,7 +2354,7 @@ Alcuni file system necessitano l&apos;installazione di strumenti esterni per ess
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.ui" line="22"/>
         <source>Dis&amp;k:</source>
-        <translation type="unfinished"/>
+        <translation>Disco:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="160"/>
