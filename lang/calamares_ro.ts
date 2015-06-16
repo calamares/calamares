@@ -2979,7 +2979,7 @@ Anumite sisteme de fișiere au nevoie de unelte externe instalate pentru suport.
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/welcome/WelcomePage.cpp" line="187"/>
+        <location filename="../src/modules/welcome/WelcomePage.cpp" line="194"/>
         <source>%1 support</source>
         <translation type="unfinished"/>
     </message>

@@ -2982,7 +2982,7 @@ Sistem güç kaynağına bağlı değil.</translation>
         <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Telif Hakkı 2014-2015 Teo Mrnjavac &lt;teo@kde.org&gt;&lt;br/&gt;Teşekkürler: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Philip Müller, Pier Luigi Fiorini and Rohan Garg.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;http://calamares.io/&quot;&gt;Calamares&lt;/a&gt;  Gelişim sponsoru: &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - Özgür Yazılım.</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/WelcomePage.cpp" line="187"/>
+        <location filename="../src/modules/welcome/WelcomePage.cpp" line="194"/>
         <source>%1 support</source>
         <translation>%1 destek</translation>
     </message>
