@@ -66,25 +66,32 @@ WelcomePage::WelcomePage( RequirementsChecker* requirementsChecker, QWidget* par
     connect( ui->aboutButton, &QPushButton::clicked,
              this, [ this ]
     {
-        QMessageBox::about( this,
-                            tr( "About %1 installer" )
-                                .arg( CALAMARES_APPLICATION_NAME ),
-                            tr(
-                                "<h1>%1</h1><br/>"
-                                "<strong>%2<br/>"
-                                "for %3</strong><br/><br/>"
-                                "Copyright 2014-2015 Teo Mrnjavac &lt;teo@kde.org&gt;<br/>"
-                                "Thanks to: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Philip Müller, "
-                                "Pier Luigi Fiorini and Rohan Garg.<br/><br/>"
-                                "<a href=\"http://calamares.io/\">Calamares</a> "
-                                "development is sponsored by <br/>"
-                                "<a href=\"http://www.blue-systems.com/\">Blue Systems</a> - "
-                                "Liberating Software."
-                            )
-                            .arg( CALAMARES_APPLICATION_NAME )
-                            .arg( CALAMARES_VERSION )
-                            .arg( Calamares::Branding::instance()->string(
-                                      Calamares::Branding::VersionedName ) ) );
+        QMessageBox mb( QMessageBox::Information,
+                        tr( "About %1 installer" )
+                            .arg( CALAMARES_APPLICATION_NAME ),
+                        tr(
+                            "<h1>%1</h1><br/>"
+                            "<strong>%2<br/>"
+                            "for %3</strong><br/><br/>"
+                            "Copyright 2014-2015 Teo Mrnjavac &lt;teo@kde.org&gt;<br/>"
+                            "Thanks to: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Philip Müller, "
+                            "Pier Luigi Fiorini and Rohan Garg.<br/><br/>"
+                            "<a href=\"http://calamares.io/\">Calamares</a> "
+                            "development is sponsored by <br/>"
+                            "<a href=\"http://www.blue-systems.com/\">Blue Systems</a> - "
+                            "Liberating Software."
+                        )
+                        .arg( CALAMARES_APPLICATION_NAME )
+                        .arg( CALAMARES_VERSION )
+                        .arg( Calamares::Branding::instance()->string(
+                                  Calamares::Branding::VersionedName ) ),
+                        QMessageBox::Ok,
+                        this );
+        mb.setIconPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::Squid,
+                                                         CalamaresUtils::Original,
+                                                         QSize( CalamaresUtils::defaultFontHeight() * 6,
+                                                                CalamaresUtils::defaultFontHeight() * 6 ) ) );
+        mb.exec();
     } );
 
     ui->verticalLayout->insertStretch( 3 );

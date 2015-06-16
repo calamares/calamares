@@ -43,7 +43,8 @@ enum ImageType : int
     PartitionAlongside,
     PartitionEraseAuto,
     PartitionManual,
-    PartitionReplaceOs
+    PartitionReplaceOs,
+    Squid
 };
 
 enum ImageMode
