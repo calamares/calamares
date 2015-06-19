@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -30,8 +30,7 @@
 #include <QPainter>
 
 #define ITEM_MARGIN 12
-#define VS_FONTSIZE CalamaresUtils::defaultFontSize() + 2
-#define CAT_FONTSIZE CalamaresUtils::defaultFontSize() + 5
+#define VS_FONTSIZE CalamaresUtils::defaultFontSize() + 4
 
 ProgressTreeDelegate::ProgressTreeDelegate( QAbstractItemView* parent )
     : QStyledItemDelegate( parent )
@@ -47,18 +46,9 @@ ProgressTreeDelegate::sizeHint( const QStyleOptionViewItem& option,
     if ( !index.isValid() )
         return option.rect.size();
 
-    bool isFirstLevel = !index.parent().isValid();
-
     QFont font = qApp->font();
 
-    if ( isFirstLevel )
-    {
-        font.setPointSize( CAT_FONTSIZE );
-    }
-    else
-    {
-        font.setPointSize( VS_FONTSIZE );
-    }
+    font.setPointSize( VS_FONTSIZE );
     QFontMetrics fm( font );
     int height = fm.height();
 
@@ -87,34 +77,9 @@ ProgressTreeDelegate::paint( QPainter* painter,
     painter->setPen( QColor( Calamares::Branding::instance()->
         styleString( Calamares::Branding::SidebarText ) ) );
 
-    if ( isFirstLevel )
-        paintCategory( painter, opt, index );
-    else
-        paintViewStep( painter, opt, index );
+    paintViewStep( painter, opt, index );
 
     painter->restore();
-}
-
-
-void
-ProgressTreeDelegate::paintCategory( QPainter* painter,
-                                     const QStyleOptionViewItem& option,
-                                     const QModelIndex& index ) const
-{
-    QRect textRect = option.rect.adjusted( ITEM_MARGIN,
-                                           ITEM_MARGIN,
-                                           ITEM_MARGIN,
-                                           ITEM_MARGIN );
-
-    bool isCurrent = index.data( ProgressTreeModel::ProgressTreeItemCurrentRole ).toBool();
-
-    QFont font = qApp->font();
-    font.setPointSize( CAT_FONTSIZE );
-    font.setBold( false );
-    font.setUnderline( isCurrent ); // FIXME: Figure out a nicer way to highlight the current category step
-    painter->setFont( font );
-
-    painter->drawText( textRect, index.data().toString() );
 }
 
 
@@ -123,7 +88,7 @@ ProgressTreeDelegate::paintViewStep( QPainter* painter,
                                      const QStyleOptionViewItem& option,
                                      const QModelIndex& index ) const
 {
-    QRect textRect = option.rect.adjusted( ITEM_MARGIN + 32 /*indentation*/,
+    QRect textRect = option.rect.adjusted( ITEM_MARGIN,
                                            ITEM_MARGIN,
                                            ITEM_MARGIN,
                                            ITEM_MARGIN );
