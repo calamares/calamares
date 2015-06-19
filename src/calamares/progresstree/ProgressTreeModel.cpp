@@ -18,7 +18,6 @@
 
 #include "ProgressTreeModel.h"
 
-#include "progresstree/TextTreeItem.h"
 #include "progresstree/ViewStepItem.h"
 #include "ViewManager.h"
 
