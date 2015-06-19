@@ -152,21 +152,11 @@
         </spacer>
        </item>
        <item>
-        <layout class="QVBoxLayout" name="verticalLayout_2">
+        <layout class="QHBoxLayout" name="horizontalLayout_4">
          <item>
-          <widget class="QPushButton" name="releaseNotesButton">
+          <widget class="QPushButton" name="aboutButton">
            <property name="text">
-            <string>&amp;Release notes</string>
-           </property>
-           <property name="flat">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="knownIssuesButton">
-           <property name="text">
-            <string>&amp;Known issues</string>
+            <string>&amp;About</string>
            </property>
            <property name="flat">
             <bool>true</bool>
@@ -184,9 +174,19 @@
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="aboutButton">
+          <widget class="QPushButton" name="knownIssuesButton">
            <property name="text">
-            <string>&amp;About</string>
+            <string>&amp;Known issues</string>
+           </property>
+           <property name="flat">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="releaseNotesButton">
+           <property name="text">
+            <string>&amp;Release notes</string>
            </property>
            <property name="flat">
             <bool>true</bool>
