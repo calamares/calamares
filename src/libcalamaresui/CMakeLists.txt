@@ -18,6 +18,7 @@ list( APPEND ${CALAMARESUI_LIBRARY_TARGET}_SOURCES
     viewpages/ViewStep.cpp
 
     widgets/ClickableLabel.cpp
+    widgets/FixedAspectRatioLabel.cpp
     widgets/QtWaitingSpinner.cpp
     widgets/WaitingWidget.cpp
 
