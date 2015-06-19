@@ -54,7 +54,8 @@ public:
     enum ImageEntry : short
     {
         ProductLogo,
-        ProductIcon
+        ProductIcon,
+        ProductWelcome
     };
     
     enum StyleEntry : short

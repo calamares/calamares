@@ -63,7 +63,8 @@ QStringList Branding::s_stringEntryStrings =
 QStringList Branding::s_imageEntryStrings =
 {
     "productLogo",
-    "productIcon"
+    "productIcon",
+    "productWelcome"
 };
 
 QStringList Branding::s_styleEntryStrings =
