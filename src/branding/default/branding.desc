@@ -17,6 +17,7 @@ strings:
 images:
     productLogo:         "squid.png"
     productIcon:         "squid.png"
+    productWelcome:      "languages.png"
 
 slideshow:               "show.qml"
 
