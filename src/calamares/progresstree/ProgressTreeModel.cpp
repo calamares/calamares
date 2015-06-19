@@ -133,16 +133,9 @@ ProgressTreeModel::setupModelData()
     m_rootItem = new ProgressTreeRoot();
     const Calamares::ViewManager* vm = Calamares::ViewManager::instance();
 
-    TextTreeItem* prepare = new TextTreeItem( []() -> QString
-        {
-            return tr( "Prepare" );
-        },
-        m_rootItem );
-    m_rootItem->appendChild( prepare );
-
     foreach ( const Calamares::ViewStep* step, vm->prepareSteps() )
     {
-        prepare->appendChild( new ViewStepItem( step, prepare ) );
+        m_rootItem->appendChild( new ViewStepItem( step, m_rootItem ) );
     }
 
     m_rootItem->appendChild( new ViewStepItem(
