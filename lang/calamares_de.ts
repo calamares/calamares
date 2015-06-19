@@ -14,23 +14,23 @@
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="117"/>
         <source>With this operation, the partition &lt;strong&gt;%1&lt;/strong&gt; which contains %4 will be shrunk to %2MB and a new %3MB partition will be created for %5.</source>
-        <translation>Mit dieser Operation wird die Partition &lt;strong&gt;%1&lt;/strong&gt; welche %4 enthält verringert auf %2MB und eine neue %3MB Partition für %5 erstellt werden.</translation>
+        <translation>Mit dieser Operation wird die Partition &lt;strong&gt;%1&lt;/strong&gt;, welche %4 enthält, auf %2MB verkleinert, und für %5 wird eine neue Partition mit %3MB erstellt.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="217"/>
         <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
         <translation>Es wurde keine EFI-Systempartition auf diesem System gefunden.
-Bitte gehen Sie zurück und nutzen Sie die manuelle Partitionierung um %1 aufzusetzen.</translation>
+Bitte gehen Sie zurück, und nutzen Sie die manuelle Partitionierung, um %1 aufzusetzen.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="227"/>
         <source>The EFI system partition at %1 will be used for starting %2.</source>
-        <translation>Die EFI Systempartition  %1 wird benutzt um %2 zu starten.</translation>
+        <translation>Die EFI-Systempartition %1 wird benutzt, um %2 zu starten.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="237"/>
         <source>EFI system partition:</source>
-        <translation>EFI Systempartition:</translation>
+        <translation>EFI-Systempartition:</translation>
     </message>
 </context>
 <context>
@@ -261,7 +261,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="60"/>
         <source>Running command %1 %2</source>
-        <translation>Führe Befehl %1%2 aus</translation>
+        <translation>Befehl %1 %2 wird ausgeführt</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="88"/>
@@ -331,7 +331,7 @@ Ausgabe:
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="241"/>
         <source>Running %1 operation.</source>
-        <translation>Führe %1 Anwendung aus.</translation>
+        <translation>Operation %1 wird ausgeführt.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="254"/>
@@ -397,12 +397,12 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="253"/>
         <source>The %1 installer is about to make changes to your disk in order to install %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
-        <translation>Das Installationsprogramm 1% wird im Zuge der %2-Installation Veränderungen auf Ihrem Speichermedium vornehmen, &lt;br/&gt;&lt;strong&gt; die Sie nicht per &apos;rückgängig&apos;-Funktion zurücknehmen können.&lt;/strong&gt;</translation>
+        <translation>Das Installationsprogramm %1 wird im Zuge der %2-Installation Aenderungen auf Ihrer Festplatte vornehmen.&lt;br/&gt;&lt;strong&gt;Diese Aenderungen können Sie nicht rückgängig machen.&lt;/strong&gt;</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="260"/>
         <source>&amp;Install now</source>
-        <translation>&amp;jetzt installieren</translation>
+        <translation>Jetzt &amp;installieren</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="261"/>
@@ -479,17 +479,17 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="94"/>
         <source>This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;Installation cannot continue. &lt;a href=&quot;#details&quot;&gt;Details...&lt;/a&gt;</source>
-        <translation>Dieser Computer erfüllt nicht die Mindestvoraussetzungen für die Installation von %1. &lt;br/&gt;IInstallation kann nicht fortgesetzt werden.&lt;a href=&quot;#details&quot;&gt;Details...&lt;/a&gt;</translation>
+        <translation>Dieser Computer erfüllt nicht die Mindestvoraussetzungen für die Installation von %1.&lt;br/&gt;Die Installation kann nicht fortgesetzt werden. &lt;a href=&quot;#details&quot;&gt;Details...&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="112"/>
         <source>This computer does not satisfy some of the recommended requirements for installing %1.&lt;br/&gt;Installation can continue, but some features might be disabled.</source>
-        <translation>Dieser Computer erfüllt nicht nicht alle Voraussetzungen von %1. &lt;br/&gt;Die Installation wird fortgesetzt, es werden eventuell nicht alle Funktionen verfügbar sein.</translation>
+        <translation>Dieser Computer erfüllt nicht alle Voraussetzungen für die Installation von %1.&lt;br/&gt;Die Installation wird fortgesetzt, aber es werden eventuell nicht alle Funktionen verfügbar sein.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="125"/>
         <source>This program will ask you some questions and set up %2 on your computer.</source>
-        <translation>Dieses Programm wird Ihnen einige Fragen stellen und %2 wird auf Ihrem Computer installiert.</translation>
+        <translation>Dieses Programm wird Ihnen einige Fragen stellen, um %2 auf Ihrem Computer zu installieren.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="145"/>
@@ -537,14 +537,14 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="156"/>
         <source>&lt;strong&gt;Erase entire disk with %1 and install %2&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;This will erase the whole disk and delete all of your %1 programs, documents, photos, music, and any other files.</source>
-        <translation>&lt;strong&gt;Gesamte Festplatte mit %1 löschen und %2 installieren&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warnung: &lt;/font&gt;Die gesamte Festplatte einschließlich aller %1 Programme, Dokumente, Fotos, Musik und sonstigen Dateien wird gelöscht!.</translation>
+        <translation>&lt;strong&gt;Gesamte Festplatte mit %1 löschen und %2 installieren&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warnung: &lt;/font&gt;Die gesamte Festplatte einschliesslich aller %1 Programme, Dokumente, Fotos, Musik und sonstigen Dateien wird gelöscht.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="169"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="202"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="251"/>
         <source>&lt;strong&gt;Replace a partition with %1&lt;/strong&gt;&lt;br/&gt;You will be offered a choice of which partition to erase.</source>
-        <translation>&lt;strong&gt;Ersetze eine Partition mit %1&lt;/strong&gt;&lt;br/&gt;Du bekommst eine Auswahl welche Partition gelöscht werden soll.</translation>
+        <translation>&lt;strong&gt;Eine bestehende Partition für %1 verwenden&lt;/strong&gt;&lt;br/&gt;Sie können auswählen, welche Partition gelöscht werden soll.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="178"/>
@@ -569,7 +569,7 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="278"/>
         <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself, or choose multiple partitions for %1.</source>
-        <translation>&lt;strong&gt;Manuelle Partitionierung&lt;/strong&gt;&lt;br/&gt;Sie können Partitionen eigenhändig erstellen oder in der Größe verändern sowie mehrere Partitionen für %1 verwenden.</translation>
+        <translation>&lt;strong&gt;Manuelle Partitionierung&lt;/strong&gt;&lt;br/&gt;Sie können Partitionen eigenhändig erstellen oder in der Grösse verändern sowie mehrere Partitionen für %1 verwenden.</translation>
     </message>
 </context>
 <context>
@@ -965,12 +965,12 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="48"/>
         <source>Create new %2MB partition on %4 (%3) with file system %1.</source>
-        <translation>Erstelle eine neue %2MB Partition auf %4 (%3) mit Dateisystem %1.</translation>
+        <translation>Erstelle eine neue Partition mit %2MB auf %4 (%3) mit Dateisystem %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="59"/>
         <source>Create new &lt;strong&gt;%2MB&lt;/strong&gt; partition on &lt;strong&gt;%4&lt;/strong&gt; (%3) with file system &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation>Erstelle eine neue &lt;strong&gt;%2MB&lt;/strong&gt; Partition auf &lt;strong&gt;%4&lt;/strong&gt; (%3) mit Dateisystem &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+        <translation>Erstelle eine neue Partition mit &lt;strong&gt;%2MB&lt;/strong&gt; auf &lt;strong&gt;%4&lt;/strong&gt; (%3) mit Dateisystem &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="71"/>
@@ -1173,7 +1173,7 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="42"/>
         <source>Delete partition %1.</source>
-        <translation>Partition löschen %1.</translation>
+        <translation>Lösche Partition %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="50"/>
@@ -1183,7 +1183,7 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="58"/>
         <source>Deleting partition %1.</source>
-        <translation>Lösche Partition %1</translation>
+        <translation>Partition %1 wird gelöscht.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="67"/>
@@ -1535,7 +1535,7 @@ Einige Dateisysteme erfordern die Installation externer Programme, um unterstüt
     <message>
         <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="111"/>
         <source>Install %1 on &lt;strong&gt;new&lt;/strong&gt; %2 system partition.</source>
-        <translation>Installiere %1 auf &lt;strong&gt; neue &lt;/strong&gt; %2 Systempartition.</translation>
+        <translation>Installiere %1 auf &lt;strong&gt;neue&lt;/strong&gt; %2 Systempartition.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="116"/>
@@ -1555,7 +1555,7 @@ Einige Dateisysteme erfordern die Installation externer Programme, um unterstüt
     <message>
         <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="142"/>
         <source>Install boot loader on &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation>Bootloader auf &lt;strong&gt;%1&lt;/strong&gt; installieren.</translation>
+        <translation>Installiere Bootloader auf &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="152"/>
@@ -2355,7 +2355,7 @@ Einige Dateisysteme erfordern die Installation externer Programme, um unterstüt
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.ui" line="22"/>
         <source>Dis&amp;k:</source>
-        <translation>Laufwerk&amp;:</translation>
+        <translation>Fest&amp;platte:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="160"/>
@@ -2400,29 +2400,29 @@ Einige Dateisysteme erfordern die Installation externer Programme, um unterstüt
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="257"/>
         <source>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;The partition %1 is too small for %2. Please select a partition with capacity at least %3 GiB.</source>
-        <translation>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Die Partition %1 ist zu klein für %2. Bitte wähle eine Partition mit einer Kapazität von mindestens %3 GiB.</translation>
+        <translation>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Die Partition %1 ist zu klein für %2. Bitte wählen Sie eine Partition mit einer Kapazität von mindestens %3 GiB.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="281"/>
         <source>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
-        <translation>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Es wurde keine EFI-Systempartition auf diesem System gefunden. Bitte gehen Sie zurück und nutzen Sie die manuelle Partitionierung um %1 aufzusetzen.</translation>
+        <translation>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Es wurde keine EFI-Systempartition auf diesem System gefunden. Bitte gehen Sie zurück, und nutzen Sie die manuelle Partitionierung um %1 aufzusetzen.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="293"/>
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="312"/>
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="337"/>
         <source>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 will be installed on %2.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;all data on partition %2 will be lost.</source>
-        <translation>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 wird installiert auf %2.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warnung: &lt;/font&gt;alle Daten auf  Partition %2 werden gelöscht.</translation>
+        <translation>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 wird installiert auf %2.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warnung:&lt;/font&gt; Alle Daten auf  Partition %2 werden gelöscht.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="303"/>
         <source>The EFI system partition at %1 will be used for starting %2.</source>
-        <translation>Die EFI Systempartition %1 wird benutzt um %2 zu starten.</translation>
+        <translation>Die EFI-Systempartition %1 wird benutzt um %2 zu starten.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="321"/>
         <source>EFI system partition:</source>
-        <translation>EFI Systempartition:</translation>
+        <translation>EFI-Systempartition:</translation>
     </message>
 </context>
 <context>
@@ -2435,17 +2435,17 @@ Einige Dateisysteme erfordern die Installation externer Programme, um unterstüt
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="98"/>
         <source>has at least %1 GB available drive space</source>
-        <translation>mindestens %1GB freien Festplattenplatz hat</translation>
+        <translation>mindestens %1 GB freien Festplattenplatz hat</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="100"/>
         <source>There is not enough drive space. At least %1 GB is required.</source>
-        <translation>Das System hat nicht genug Arbeitsspeicher. Mindestens %1GB werden benötigt.</translation>
+        <translation>Das System hat nicht genug Festplattenplatz. Mindestens %1 GB werden benötigt.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="108"/>
         <source>has at least %1 GB working memory</source>
-        <translation>hat mindestens %1GB Arbeitsspeicher</translation>
+        <translation>hat mindestens %1 GB Arbeitsspeicher</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="110"/>
@@ -2972,7 +2972,7 @@ Einige Dateisysteme erfordern die Installation externer Programme, um unterstüt
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="70"/>
         <source>About %1 installer</source>
-        <translation>Über %1 das Installationsprogramm</translation>
+        <translation>Über das Installationsprogramm %1</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="72"/>

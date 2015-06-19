@@ -330,7 +330,7 @@ Saída:
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="241"/>
         <source>Running %1 operation.</source>
-        <translation type="unfinished"/>
+        <translation>1% da operação foi concluído.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="254"/>
@@ -498,7 +498,7 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="173"/>
         <source>System requirements</source>
-        <translation type="unfinished"/>
+        <translation>Requisitos do sistema</translation>
     </message>
 </context>
 <context>
@@ -2989,7 +2989,7 @@ Alguns sistemas de arquivos necessitam de ferramentas externas para serem suport
     <message>
         <location filename="../src/modules/welcome/WelcomeViewStep.cpp" line="48"/>
         <source>Welcome</source>
-        <translation type="unfinished"/>
+        <translation>Bem vindo</translation>
     </message>
 </context>
 </TS>
