@@ -121,6 +121,22 @@ CheckerWidget::init( const QList< PrepareEntry >& checkEntries )
 
     if ( allChecked && requirementsSatisfied )
     {
+        if ( !Calamares::Branding::instance()->
+             imagePath( Calamares::Branding::ProductWelcome ).isEmpty() )
+        {
+            QPixmap theImage = QPixmap( Calamares::Branding::instance()->
+                               imagePath( Calamares::Branding::ProductWelcome ) );
+            if ( !theImage.isNull() )
+            {
+                QLabel* imageLabel = new QLabel;
+                imageLabel->setContentsMargins( 4, CalamaresUtils::defaultFontHeight(), 4, 4 );
+                m_entriesLayout->addWidget( imageLabel );
+                imageLabel->setAlignment( Qt::AlignCenter );
+                imageLabel->setScaledContents( false );
+
+                imageLabel->setPixmap( theImage );
+            }
+        }
         CALAMARES_RETRANSLATE(
             textLabel->setText( tr( "This program will ask you some questions and "
                                     "set up %2 on your computer." )
