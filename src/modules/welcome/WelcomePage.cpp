@@ -94,8 +94,7 @@ WelcomePage::WelcomePage( RequirementsChecker* requirementsChecker, QWidget* par
         mb.exec();
     } );
 
-    ui->verticalLayout->insertStretch( 3 );
-    ui->verticalLayout->insertWidget( 4, m_requirementsChecker->widget() );
+    ui->verticalLayout->insertWidget( 3, m_requirementsChecker->widget() );
 }
 
 

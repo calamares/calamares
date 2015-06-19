@@ -35,6 +35,7 @@ public:
 private:
     void showDetailsDialog( const QList< PrepareEntry >& checkEntries );
 
+    QBoxLayout* m_mainLayout;
     QBoxLayout* m_entriesLayout;
     int m_paddingSize;
 };

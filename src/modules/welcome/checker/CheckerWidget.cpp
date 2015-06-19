@@ -20,9 +20,10 @@
 
 #include "CheckItemWidget.h"
 
+#include "Branding.h"
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Retranslator.h"
-#include "Branding.h"
+#include "widgets/FixedAspectRatioLabel.h"
 
 #include <QAbstractButton>
 #include <QBoxLayout>
@@ -34,13 +35,13 @@
 CheckerWidget::CheckerWidget( QWidget* parent )
     : QWidget( parent )
 {
-    setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Minimum );
+    setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
 
-    QBoxLayout* mainLayout = new QVBoxLayout;
-    setLayout( mainLayout );
+    m_mainLayout = new QVBoxLayout;
+    setLayout( m_mainLayout );
 
     QHBoxLayout* spacerLayout = new QHBoxLayout;
-    mainLayout->addLayout( spacerLayout );
+    m_mainLayout->addLayout( spacerLayout );
     m_paddingSize = qBound( 32, CalamaresUtils::defaultFontHeight() * 4, 128 );
     spacerLayout->addSpacing( m_paddingSize );
     m_entriesLayout = new QVBoxLayout;
@@ -128,11 +129,11 @@ CheckerWidget::init( const QList< PrepareEntry >& checkEntries )
                                imagePath( Calamares::Branding::ProductWelcome ) );
             if ( !theImage.isNull() )
             {
-                QLabel* imageLabel = new QLabel;
-                imageLabel->setContentsMargins( 4, CalamaresUtils::defaultFontHeight(), 4, 4 );
-                m_entriesLayout->addWidget( imageLabel );
+                FixedAspectRatioLabel* imageLabel = new FixedAspectRatioLabel;
+                imageLabel->setContentsMargins( 4, CalamaresUtils::defaultFontHeight()*0.75, 4, 4 );
+                m_mainLayout->addWidget( imageLabel );
                 imageLabel->setAlignment( Qt::AlignCenter );
-                imageLabel->setScaledContents( false );
+                imageLabel->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
 
                 imageLabel->setPixmap( theImage );
             }
@@ -144,6 +145,10 @@ CheckerWidget::init( const QList< PrepareEntry >& checkEntries )
                                       string( Calamares::Branding::ProductName ) ) );
             textLabel->setAlignment( Qt::AlignCenter );
         )
+    }
+    else
+    {
+        m_mainLayout->addStretch();
     }
 }
 
