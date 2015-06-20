@@ -9,7 +9,6 @@ The Calamares release process
 
 #### (1) Preparation
 * Check `README.md` and everything in `hacking`, make sure it's all still relevant.
-* Update `CHANGELOG.md`.
 * Update submodules.
 * Check defaults in `settings.conf` and other configuration files.
 * Pull latest translations from Transifex.
