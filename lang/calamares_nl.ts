@@ -14,7 +14,7 @@
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="117"/>
         <source>With this operation, the partition &lt;strong&gt;%1&lt;/strong&gt; which contains %4 will be shrunk to %2MB and a new %3MB partition will be created for %5.</source>
-        <translation>Tijdens deze operatie zal partitie &lt;strong&gt;%1&lt;/strong&gt;, die %4 bevat, verkleind worden tot %2MB en zal een nieuwe %3MB partitie aangemaakt worden voor %5.</translation>
+        <translation>Tijdens deze bewerking zal partitie &lt;strong&gt;%1&lt;/strong&gt;, die %4 bevat, verkleind worden tot %2MB en zal een nieuwe %3MB partitie aangemaakt worden voor %5.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="217"/>
@@ -50,7 +50,7 @@
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/applyprogressdialogwidgetbase.ui" line="33"/>
         <source>Operations and Jobs</source>
-        <translation>Acties en Taken</translation>
+        <translation>Bewerkingen en Taken</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/applyprogressdialogwidgetbase.ui" line="38"/>
@@ -65,7 +65,7 @@
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/applyprogressdialogwidgetbase.ui" line="81"/>
         <source>Operation: %p%</source>
-        <translation>Actie: %p%</translation>
+        <translation>Bewerking: %p%</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/applyprogressdialogwidgetbase.ui" line="91"/>
@@ -255,24 +255,24 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="51"/>
         <source>Run command %1 %2</source>
-        <translation>Voer commando %1 %2 uit</translation>
+        <translation>Voer opdracht %1 %2 uit</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="60"/>
         <source>Running command %1 %2</source>
-        <translation>Uitvoeren van %1 %2</translation>
+        <translation>Uitvoeren van opdracht %1 %2</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="88"/>
         <source>External command crashed</source>
-        <translation>Externe opdracht is gecrashed</translation>
+        <translation>Externe opdracht is vastgelopen</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="89"/>
         <source>Command %1 crashed.
 Output:
 %2</source>
-        <translation>Opdracht %1 is gecrashed.
+        <translation>Opdracht %1 is vastglopen.
 Output:
 %2</translation>
     </message>
@@ -330,7 +330,7 @@ Uitvoer:
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="241"/>
         <source>Running %1 operation.</source>
-        <translation>Uitvoeren van %1.</translation>
+        <translation>Bewerking %1 uitvoeren.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="254"/>
@@ -476,27 +476,27 @@ Het installatieprogramma zal afsluiten en alle wijzigingen zullen verloren gaan.
 <context>
     <name>CheckerWidget</name>
     <message>
-        <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="94"/>
+        <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="95"/>
         <source>This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;Installation cannot continue. &lt;a href=&quot;#details&quot;&gt;Details...&lt;/a&gt;</source>
         <translation>Deze computer voldoet niet aan de minimumvereisten om %1 te installeren.&lt;br/&gt;De installatie kan niet doorgaan. &lt;a href=&quot;#details&quot;&gt;Details...&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="112"/>
+        <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="113"/>
         <source>This computer does not satisfy some of the recommended requirements for installing %1.&lt;br/&gt;Installation can continue, but some features might be disabled.</source>
         <translation>Deze computer voldoet niet aan enkele van de aanbevolen specificaties om %1 te installeren.&lt;br/&gt;De installatie kan doorgaan, maar sommige functies kunnen uitgeschakeld zijn.</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="125"/>
+        <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="142"/>
         <source>This program will ask you some questions and set up %2 on your computer.</source>
         <translation>Dit programma stelt je enkele vragen en installeert %2 op jouw computer.</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="145"/>
+        <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="166"/>
         <source>For best results, please ensure that this computer:</source>
         <translation>Voor de beste resultaten is het aangeraden dat deze computer:</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="173"/>
+        <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="194"/>
         <source>System requirements</source>
         <translation>Systeemvereisten</translation>
     </message>
@@ -576,17 +576,17 @@ Het installatieprogramma zal afsluiten en alle wijzigingen zullen verloren gaan.
     <message>
         <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="42"/>
         <source>Clear mounts for partitioning operations on %1</source>
-        <translation>Aankoppelpunten vrijgeven voor het partitioneren van %1</translation>
+        <translation>Geef aankoppelpunten vrij voor partitiebewerkingen op %1</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="50"/>
         <source>Clearing mounts for partitioning operations on %1.</source>
-        <translation>Koppelpunten afkoppelen voor partitiebewerkingen op %1.</translation>
+        <translation>Aankoppelpunten vrijgeven voor partitiebewerkingen op %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="137"/>
         <source>Cleared all mounts for %1</source>
-        <translation>Alle aankoppelpunten voor %1 vrijgegeven</translation>
+        <translation>Alle aankoppelpunten voor %1 zijn vrijgegeven</translation>
     </message>
 </context>
 <context>
@@ -594,12 +594,12 @@ Het installatieprogramma zal afsluiten en alle wijzigingen zullen verloren gaan.
     <message>
         <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="38"/>
         <source>Clear all temporary mounts.</source>
-        <translation>Alle tijdelijke aankoppelpunten vrijgeven.</translation>
+        <translation>Geef alle tijdelijke aankoppelpunten vrij.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="45"/>
         <source>Clearing all temporary mounts.</source>
-        <translation>Tijdelijke bestandssystemen afkoppelen.</translation>
+        <translation>Alle tijdelijke aankoppelpunten vrijgeven.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="56"/>
@@ -609,7 +609,7 @@ Het installatieprogramma zal afsluiten en alle wijzigingen zullen verloren gaan.
     <message>
         <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="95"/>
         <source>Cleared all temporary mounts.</source>
-        <translation>Alle tijdelijke aankoppelpunten vrijgegeven.</translation>
+        <translation>Alle tijdelijke aankoppelpunten zijn vrijgegeven.</translation>
     </message>
 </context>
 <context>
@@ -622,7 +622,7 @@ Het installatieprogramma zal afsluiten en alle wijzigingen zullen verloren gaan.
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="35"/>
         <source>Allow applying operations without administrator privileges</source>
-        <translation>Sta toe om acties zonder administratorrechten uit te voeren</translation>
+        <translation>Sta toe om bewerkingen zonder administratorrechten uit te voeren</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="51"/>
@@ -1045,7 +1045,7 @@ Het installatieprogramma zal afsluiten en alle wijzigingen zullen verloren gaan.
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="66"/>
         <source>Creating new %1 partition table on %2.</source>
-        <translation>Nieuwe %1-partitietabel aanmaken op %2.</translation>
+        <translation>Nieuwe %1 partitietabel aanmaken op %2.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="76"/>
@@ -1182,7 +1182,7 @@ Het installatieprogramma zal afsluiten en alle wijzigingen zullen verloren gaan.
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="58"/>
         <source>Deleting partition %1.</source>
-        <translation>Verwijderen van partitie %1.</translation>
+        <translation>Partitie %1 verwijderen.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="67"/>
@@ -1449,7 +1449,7 @@ Het installatieprogramma zal afsluiten en alle wijzigingen zullen verloren gaan.
         <location filename="../src/modules/partition/partitionmanager/src/gui/filesystemsupportdialogwidgetbase.ui" line="17"/>
         <source>This table shows which file systems are supported and which specific operations can be performed on them.
 Some file systems need external tools to be installed for them to be supported. But not all operations can be performed on all file systems, even if all required tools are installed. Please see the documentation for details. </source>
-        <translation>Deze tabel toont de ondersteunde bestandssystemen en de specifieke acties die hierop kunnen uitgevoerd worden.
+        <translation>Deze tabel toont de ondersteunde bestandssystemen en de specifieke bewerkingen die hierop kunnen uitgevoerd worden.
 Sommige bestandssystemen vereisen externe programma&apos;s om ondersteund te worden.  Niet alle acties kunnen worden uitgevoerd op alle bestandsystemen, zelfs niet als alle hulpprogramma&apos;s geïnstalleerd zijn.  Raadpleeg de documentatie voor details.</translation>
     </message>
     <message>
@@ -1559,7 +1559,7 @@ Sommige bestandssystemen vereisen externe programma&apos;s om ondersteund te wor
     <message>
         <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="152"/>
         <source>Setting up mount points.</source>
-        <translation>Aankoppelingspunten instellen.</translation>
+        <translation>Aankoppelpunten instellen.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="162"/>
@@ -1880,7 +1880,7 @@ Sommige bestandssystemen vereisen externe programma&apos;s om ondersteund te wor
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="606"/>
         <source>Require &amp;my password to log in</source>
-        <translation>Vraag &amp;mijn wachtwoord om in te loggen</translation>
+        <translation>Vereis &amp;mijn wachtwoord om in te loggen</translation>
     </message>
 </context>
 <context>
@@ -2197,17 +2197,12 @@ Sommige bestandssystemen vereisen externe programma&apos;s om ondersteund te wor
 <context>
     <name>ProgressTreeModel</name>
     <message>
-        <location filename="../src/calamares/progresstree/ProgressTreeModel.cpp" line="138"/>
-        <source>Prepare</source>
-        <translation>Voorbereiden</translation>
-    </message>
-    <message>
-        <location filename="../src/calamares/progresstree/ProgressTreeModel.cpp" line="151"/>
+        <location filename="../src/calamares/progresstree/ProgressTreeModel.cpp" line="143"/>
         <source>Install</source>
         <translation>Installeren</translation>
     </message>
     <message>
-        <location filename="../src/calamares/progresstree/ProgressTreeModel.cpp" line="161"/>
+        <location filename="../src/calamares/progresstree/ProgressTreeModel.cpp" line="153"/>
         <source>Finish</source>
         <translation>Klaar</translation>
     </message>
@@ -2510,7 +2505,7 @@ Sommige bestandssystemen vereisen externe programma&apos;s om ondersteund te wor
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="205"/>
         <source>Resizing %2MB partition %1 to %3MB.</source>
-        <translation>Partitie %1 met omvang %2MB vergroten/verkleinen naar %3MB.</translation>
+        <translation>Pas de %2MB partitie %1 aan naar %3MB.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="232"/>
@@ -2534,12 +2529,12 @@ Sommige bestandssystemen vereisen externe programma&apos;s om ondersteund te wor
     <message>
         <location filename="../src/modules/users/SetHostNameJob.cpp" line="44"/>
         <source>Set hostname &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation>Computernaam instellen op &lt;strong&gt;%1&lt;/strong&gt;</translation>
+        <translation>Instellen hostnaam &lt;strong&gt;%1&lt;/strong&gt; </translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetHostNameJob.cpp" line="51"/>
         <source>Setting hostname %1.</source>
-        <translation>Computernaam %1 instellen.</translation>
+        <translation>Hostnaam %1 instellen.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetHostNameJob.cpp" line="61"/>
@@ -2939,27 +2934,27 @@ Sommige bestandssystemen vereisen externe programma&apos;s om ondersteund te wor
         <translation>Formulier</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/WelcomePage.ui" line="88"/>
+        <location filename="../src/modules/welcome/WelcomePage.ui" line="75"/>
         <source>&amp;Language:</source>
         <translation>Taa&amp;l:</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/WelcomePage.ui" line="159"/>
+        <location filename="../src/modules/welcome/WelcomePage.ui" line="176"/>
         <source>&amp;Release notes</source>
         <translation>Uitgaveopme&amp;rkingen</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/WelcomePage.ui" line="169"/>
+        <location filename="../src/modules/welcome/WelcomePage.ui" line="166"/>
         <source>&amp;Known issues</source>
         <translation>Ge&amp;kende problemen</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/WelcomePage.ui" line="179"/>
+        <location filename="../src/modules/welcome/WelcomePage.ui" line="156"/>
         <source>&amp;Support</source>
         <translation>Onder&amp;steuning</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/WelcomePage.ui" line="189"/>
+        <location filename="../src/modules/welcome/WelcomePage.ui" line="146"/>
         <source>&amp;About</source>
         <translation>&amp;Over</translation>
     </message>
@@ -2979,7 +2974,7 @@ Sommige bestandssystemen vereisen externe programma&apos;s om ondersteund te wor
         <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;voor %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2015 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Met dank aan: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Philip Müller, Pier Luigi Fiorini en Rohan Garg.&lt;br/&gt;&lt;br/&gt;De ontwikkeling van &lt;a href=&quot;http://calamares.io/&quot;&gt;Calamares&lt;/a&gt; is gesponsord door &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - Liberating Software.</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/WelcomePage.cpp" line="194"/>
+        <location filename="../src/modules/welcome/WelcomePage.cpp" line="193"/>
         <source>%1 support</source>
         <translation>%1 ondersteuning</translation>
     </message>
