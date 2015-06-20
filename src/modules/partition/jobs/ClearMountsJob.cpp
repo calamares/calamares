@@ -72,6 +72,31 @@ ClearMountsJob::exec()
     QString partitions = process.readAllStandardOutput();
     QStringList partitionsList = partitions.simplified().split( ' ' );
 
+    // Build a list of partitions of type 82 (Linux swap / Solaris).
+    // We then need to clear them just in case they contain something resumable from a
+    // previous suspend-to-disk.
+    QStringList swapPartitions;
+    process.start( "sfdisk", { "-d", m_device->deviceNode() } );
+    process.waitForFinished();
+    // Sample output:
+    //    % sudo sfdisk -d /dev/sda
+    //    label: dos
+    //    label-id: 0x000ced89
+    //    device: /dev/sda
+    //    unit: sectors
+
+    //    /dev/sda1 : start=          63, size=    29329345, type=83, bootable
+    //    /dev/sda2 : start=    29331456, size=     2125824, type=82
+
+    swapPartitions = QString::fromLocal8Bit( process.readAllStandardOutput() )
+                        .split( '\n' );
+    swapPartitions = swapPartitions.filter( "type=82" );
+    for ( QStringList::iterator it = swapPartitions.begin();
+          it != swapPartitions.end(); ++it )
+    {
+        *it = (*it).simplified().split( ' ' ).first();
+    }
+
     // First we umount all LVM logical volumes we can find
     process.start( "lvscan", { "-a" } );
     process.waitForFinished();
@@ -133,6 +158,13 @@ ClearMountsJob::exec()
             goodNews.append( news );
     }
 
+    foreach ( QString p, swapPartitions )
+    {
+        QString news = tryClearSwap( p );
+        if ( !news.isEmpty() )
+            goodNews.append( news );
+    }
+
     Calamares::JobResult ok = Calamares::JobResult::ok();
     ok.setMessage( tr( "Cleared all mounts for %1" )
                         .arg( m_device->deviceNode() ) );
@@ -156,13 +188,20 @@ ClearMountsJob::tryUmount( const QString& partPath )
     process.start( "swapoff", { partPath } );
     process.waitForFinished();
     if ( process.exitCode() == 0 )
-    {
-        process.start( "mkswap", { partPath } );
-        process.waitForFinished();
-        if ( process.exitCode() == 0 )
-            return QString( "Successfully disabled and cleared swap %1." ).arg( partPath );
-        return QString( "Successfully disabled but not cleared swap %1." ).arg( partPath );
-    }
+        return QString( "Successfully disabled swap %1." ).arg( partPath );
+
+    return QString();
+}
+
+
+QString
+ClearMountsJob::tryClearSwap( const QString& partPath )
+{
+    QProcess process;
+    process.start( "mkswap", { partPath } );
+    process.waitForFinished();
+    if ( process.exitCode() == 0 )
+        return QString( "Successfully cleared swap %1." ).arg( partPath );
 
     return QString();
 }
