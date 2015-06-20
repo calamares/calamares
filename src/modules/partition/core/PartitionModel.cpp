@@ -100,6 +100,8 @@ PartitionModel::parent( const QModelIndex& child ) const
     if ( !child.isValid() )
         return QModelIndex();
     Partition* partition = partitionForIndex( child );
+    if ( !partition )
+        return QModelIndex();
     PartitionNode* parentNode = partition->parent();
     if ( parentNode == m_device->partitionTable() )
         return QModelIndex();
