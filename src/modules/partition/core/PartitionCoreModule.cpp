@@ -172,14 +172,17 @@ void
 PartitionCoreModule::createPartitionTable( Device* device, PartitionTable::TableType type )
 {
     DeviceInfo* info = infoForDevice( device );
-    // Creating a partition table wipes all the disk, so there is no need to
-    // keep previous changes
-    info->forgetChanges();
+    if ( info )
+    {
+        // Creating a partition table wipes all the disk, so there is no need to
+        // keep previous changes
+        info->forgetChanges();
 
-    PartitionModel::ResetHelper helper( partitionModelForDevice( device ) );
-    CreatePartitionTableJob* job = new CreatePartitionTableJob( device, type );
-    job->updatePreview();
-    info->jobs << Calamares::job_ptr( job );
+        PartitionModel::ResetHelper helper( partitionModelForDevice( device ) );
+        CreatePartitionTableJob* job = new CreatePartitionTableJob( device, type );
+        job->updatePreview();
+        info->jobs << Calamares::job_ptr( job );
+    }
 
     refresh();
 }
