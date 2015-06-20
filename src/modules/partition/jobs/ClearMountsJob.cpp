@@ -156,7 +156,13 @@ ClearMountsJob::tryUmount( const QString& partPath )
     process.start( "swapoff", { partPath } );
     process.waitForFinished();
     if ( process.exitCode() == 0 )
-        return QString( "Successfully disabled swap %1." ).arg( partPath );
+    {
+        process.start( "mkswap", { partPath } );
+        process.waitForFinished();
+        if ( process.exitCode() == 0 )
+            return QString( "Successfully disabled and cleared swap %1." ).arg( partPath );
+        return QString( "Successfully disabled but not cleared swap %1." ).arg( partPath );
+    }
 
     return QString();
 }
