@@ -109,7 +109,8 @@ ModuleManager::loadModules( Phase phase )
                 qApp->exit( 1 );
                 return;
             }
-            if ( m_availableModules.value( moduleName )->isLoaded() )
+            Module* thisModule = m_availableModules.value( moduleName );
+            if ( thisModule && thisModule->isLoaded() )
             {
                 cDebug() << "Module" << moduleName << "already loaded.";
                 continue;
