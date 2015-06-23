@@ -9,17 +9,17 @@
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="74"/>
         <source>Allocate drive space by dragging the divider below:</source>
-        <translation>Agulla l&apos;espaciu del discu arrastrando&apos;l divisor d&apos;embaxo:</translation>
+        <translation>Alluga l&apos;espaciu del discu arrastrando&apos;l divisor d&apos;embaxo:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="117"/>
         <source>With this operation, the partition &lt;strong&gt;%1&lt;/strong&gt; which contains %4 will be shrunk to %2MB and a new %3MB partition will be created for %5.</source>
-        <translation type="unfinished"/>
+        <translation>Con esta operación, redimensionaráse a %2MB la partición &lt;strong&gt;%1&lt;/strong&gt; que caltién %4 y crearáse una partición nueva de %3MB pa %5.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="217"/>
         <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
-        <translation type="unfinished"/>
+        <translation>Nun pue alcontrase per nenyures una partición del sistema EFI nesti ordenador. Por favor, vuelvi atrás y usa&apos;l particionáu manual pa configurar %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="227"/>
@@ -330,7 +330,7 @@ Salida:
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="241"/>
         <source>Running %1 operation.</source>
-        <translation type="unfinished"/>
+        <translation>Executando operación %1.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="254"/>
@@ -406,7 +406,7 @@ L&apos;instalador colará y perderánse toles camudancies.</translation>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="261"/>
         <source>Go &amp;back</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Tornar</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="300"/>
@@ -518,7 +518,7 @@ L&apos;instalador colará y perderánse toles camudancies.</translation>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="191"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="240"/>
         <source>&lt;strong&gt;Erase disk and install %1&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;This will delete all of your programs, documents, photos, music, and any other files.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;Desaniciar discu ya instalar %1&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Avisu: &lt;/font&gt;Esto desanciará tolos tos programes, documentos, semeyes, música y cualesquier otru ficheru.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="127"/>
@@ -526,7 +526,7 @@ L&apos;instalador colará y perderánse toles camudancies.</translation>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="197"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="246"/>
         <source>&lt;strong&gt;Erase disk and install %1&lt;/strong&gt;&lt;br/&gt;You will be offered a choice of which disk to erase.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;Desaniciar discu ya instalar %1&lt;/strong&gt;&lt;br/&gt;Ufrirásete una escoyeta de que discu desaniciar.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="147"/>
@@ -536,14 +536,14 @@ L&apos;instalador colará y perderánse toles camudancies.</translation>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="156"/>
         <source>&lt;strong&gt;Erase entire disk with %1 and install %2&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;This will erase the whole disk and delete all of your %1 programs, documents, photos, music, and any other files.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;Desaniciar tol discu con %1 ya instalar %2&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Avisu: &lt;/font&gt;Esto desanciará tol discu y tolos tos programes, documentos, semeyes, música y cualesquier otru ficheru de %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="169"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="202"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="251"/>
         <source>&lt;strong&gt;Replace a partition with %1&lt;/strong&gt;&lt;br/&gt;You will be offered a choice of which partition to erase.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;Tocar una partición con %1&lt;/strong&gt;&lt;br/&gt;Ufrirásete una escoyeta de que partición desaniciar.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="178"/>
@@ -568,7 +568,7 @@ L&apos;instalador colará y perderánse toles camudancies.</translation>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="278"/>
         <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself, or choose multiple partitions for %1.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;Particionáu manual&lt;/strong&gt;&lt;br/&gt;Pues crear o redimensionar particiones tu mesmu, o escoyer múltiples puntos de montaxe pa %1.</translation>
     </message>
 </context>
 <context>
@@ -581,7 +581,7 @@ L&apos;instalador colará y perderánse toles camudancies.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="50"/>
         <source>Clearing mounts for partitioning operations on %1.</source>
-        <translation type="unfinished"/>
+        <translation>Llimpiando los montaxes pa les opciones de particionáu en %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="169"/>
@@ -599,7 +599,7 @@ L&apos;instalador colará y perderánse toles camudancies.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="45"/>
         <source>Clearing all temporary mounts.</source>
-        <translation type="unfinished"/>
+        <translation>Llimpiando tolos montaxes temporales.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="56"/>
@@ -974,7 +974,7 @@ L&apos;instalador colará y perderánse toles camudancies.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="71"/>
         <source>Creating new %1 partition on %2.</source>
-        <translation type="unfinished"/>
+        <translation>Creando la partición nueva %1 en %2.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="83"/>
@@ -1045,7 +1045,7 @@ L&apos;instalador colará y perderánse toles camudancies.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="66"/>
         <source>Creating new %1 partition table on %2.</source>
-        <translation type="unfinished"/>
+        <translation>Creando la tabla de particiones nueva %1 en %2</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="76"/>
@@ -1096,12 +1096,12 @@ L&apos;instalador colará y perderánse toles camudancies.</translation>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="58"/>
         <source>Create user &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Crearáse l&apos;usuariu &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="65"/>
         <source>Creating user %1.</source>
-        <translation type="unfinished"/>
+        <translation>Creando l&apos;usuariu %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="81"/>
@@ -1182,7 +1182,7 @@ L&apos;instalador colará y perderánse toles camudancies.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="58"/>
         <source>Deleting partition %1.</source>
-        <translation type="unfinished"/>
+        <translation>Desaniciando partición %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="67"/>
@@ -1465,12 +1465,12 @@ Dellos sistemes de ficheros riquen la instalación de ferramientes esternes pa t
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/filesystemsupportdialogwidgetbase.ui" line="75"/>
         <source>Grow</source>
-        <translation type="unfinished"/>
+        <translation>Aumentar</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/filesystemsupportdialogwidgetbase.ui" line="80"/>
         <source>Shrink</source>
-        <translation type="unfinished"/>
+        <translation>Amenorgar</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/filesystemsupportdialogwidgetbase.ui" line="85"/>
@@ -1539,7 +1539,7 @@ Dellos sistemes de ficheros riquen la instalación de ferramientes esternes pa t
     <message>
         <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="116"/>
         <source>Set up &lt;strong&gt;new&lt;/strong&gt; %2 partition with mount point &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation>Configurar la partición &lt;strong&gt;nueva&lt;/strong&gt; %2 col puntu de montaxe &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+        <translation>Configuraráse la partición &lt;strong&gt;nueva&lt;/strong&gt; %2 col puntu montaxe &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="124"/>
@@ -1549,7 +1549,7 @@ Dellos sistemes de ficheros riquen la instalación de ferramientes esternes pa t
     <message>
         <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="130"/>
         <source>Set up %3 partition &lt;strong&gt;%1&lt;/strong&gt; with mount point &lt;strong&gt;%2&lt;/strong&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Configuraráse la partición %3 de &lt;strong&gt;%1&lt;/strong&gt; col puntu montaxe &lt;strong&gt;%2&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="142"/>
@@ -1559,7 +1559,7 @@ Dellos sistemes de ficheros riquen la instalación de ferramientes esternes pa t
     <message>
         <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="152"/>
         <source>Setting up mount points.</source>
-        <translation type="unfinished"/>
+        <translation>Configurando puntos de montaxe.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="162"/>
@@ -1582,7 +1582,7 @@ Dellos sistemes de ficheros riquen la instalación de ferramientes esternes pa t
     <message>
         <location filename="../src/modules/finished/FinishedPage.cpp" line="50"/>
         <source>&lt;h1&gt;All done.&lt;/h1&gt;&lt;br/&gt;%1 has been installed on your computer.&lt;br/&gt;You may now restart into your new system, or continue using the %2 Live environment.</source>
-        <translation>&lt;h1&gt;Too fecho.&lt;/h1&gt;&lt;br/&gt;%1 instalóse nel to ordenador.&lt;br/&gt;Podríes querer reaniciar agora al to sistema nuevu, o siguir usando l&apos;entornu live %2.</translation>
+        <translation>&lt;h1&gt;Too fecho.&lt;/h1&gt;&lt;br/&gt;%1 instalóse nel to ordenador.&lt;br/&gt;Quiciabes quies reaniciar agora al to sistema nuevu, o siguir usando l&apos;entornu live %2.</translation>
     </message>
 </context>
 <context>
@@ -1603,12 +1603,12 @@ Dellos sistemes de ficheros riquen la instalación de ferramientes esternes pa t
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="59"/>
         <source>Format &lt;strong&gt;%3MB&lt;/strong&gt; partition &lt;strong&gt;%1&lt;/strong&gt; with file system &lt;strong&gt;%2&lt;/strong&gt;.</source>
-        <translation>Formatiar la partición &lt;strong&gt;%3MB&lt;/strong&gt; de &lt;strong&gt;%1&lt;/strong&gt; col sistema de ficheros &lt;strong&gt;%2&lt;/strong&gt;.</translation>
+        <translation>Formatiaráse la partición &lt;strong&gt;%3MB&lt;/strong&gt; de &lt;strong&gt;%1&lt;/strong&gt; col sistema de ficheros &lt;strong&gt;%2&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="70"/>
         <source>Formatting partition %1 with file system %2.</source>
-        <translation type="unfinished"/>
+        <translation>Formateando partición %1 col sistema de ficheros %2.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="82"/>
@@ -1667,7 +1667,7 @@ Dellos sistemes de ficheros riquen la instalación de ferramientes esternes pa t
     <message>
         <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="40"/>
         <source>The system locale setting affects the language and character set for some command line user interface elements.&lt;br/&gt;The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation>Los axustes de locale del sistema afeuten a la llingua y al conxuntu de carauteres afitáu pa dellos elementos de la interfaz d&apos;usuaru de llinia comandos.&lt;br/&gt;L&apos;axuste actual ye &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+        <translation>Los axustes de locale del sistema afeuten a la llingua y al conxuntu de caráuteres afitáu pa dellos elementos de la interfaz d&apos;usuaru de llinia comandos.&lt;br/&gt;L&apos;axuste actual ye &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
 </context>
 <context>
@@ -1750,7 +1750,7 @@ Dellos sistemes de ficheros riquen la instalación de ferramientes esternes pa t
     <message>
         <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="66"/>
         <source>Move file system of partition %1.</source>
-        <translation type="unfinished"/>
+        <translation>Moviendo&apos;l sistema de ficheros de la partción %1</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="80"/>
@@ -1850,7 +1850,7 @@ Dellos sistemes de ficheros riquen la instalación de ferramientes esternes pa t
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="322"/>
         <source>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors. A good password will contain a mixture of letters, numbers and punctuation, should be at least eight characters long, and should be changed at regular intervals.&lt;/small&gt;</source>
-        <translation>&lt;small&gt;Introduz la mesma contraseña dos vegaes pa qu&apos;asina pueas comprobar fallos d&apos;escritura. Una bona contraseña tien un mestu de lletres, númberos y signos de puntuación, debería camudase davezu y ser polo menos de 8 carauteres de llargor&lt;/small&gt;</translation>
+        <translation>&lt;small&gt;Introduz la mesma contraseña dos vegaes pa qu&apos;asina pueas comprobar fallos d&apos;escritura. Una bona contraseña tien un mestu de lletres, númberos y signos de puntuación, debería camudase davezu y ser polo menos de 8 caráuteres de llargor&lt;/small&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="345"/>
@@ -1875,12 +1875,12 @@ Dellos sistemes de ficheros riquen la instalación de ferramientes esternes pa t
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="596"/>
         <source>&amp;Log in automatically</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Aniciar sesión automáticamente</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="606"/>
         <source>Require &amp;my password to log in</source>
-        <translation type="unfinished"/>
+        <translation>Riquir la mio &amp;contraseña p&apos;aniciar sesión</translation>
     </message>
 </context>
 <context>
@@ -2166,7 +2166,7 @@ Dellos sistemes de ficheros riquen la instalación de ferramientes esternes pa t
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="243"/>
         <source>&lt;strong&gt;Erase&lt;/strong&gt; disk &lt;strong&gt;%2&lt;/strong&gt; (%3) and install %1.</source>
-        <translation>&lt;strong&gt;Desaniciar&lt;/strong&gt; discu &lt;strong&gt;%2&lt;/strong&gt; (%3) ya instalar %1.</translation>
+        <translation>&lt;strong&gt;Desaniciaráse&lt;/strong&gt;&apos;l discu &lt;strong&gt;%2&lt;/strong&gt; (%3) ya instalaráse %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="250"/>
@@ -2349,12 +2349,12 @@ Dellos sistemes de ficheros riquen la instalación de ferramientes esternes pa t
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.ui" line="22"/>
         <source>Dis&amp;k:</source>
-        <translation type="unfinished"/>
+        <translation>Dis&amp;cu:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="160"/>
         <source>Select where to install %1.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;this will delete all files on the selected partition.</source>
-        <translation>Esbilla u quies instalar %1. &lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Avisu: &lt;/font&gt;esto desaniciará tolos ficheros na partición esbillada.</translation>
+        <translation>Esbillar u instalar %1.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Avisu: &lt;/font&gt;esto desaniciará tolos ficheros na segunda particíon.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="187"/>
@@ -2399,24 +2399,24 @@ Dellos sistemes de ficheros riquen la instalación de ferramientes esternes pa t
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="281"/>
         <source>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Nun pue alcontrase per nenyures una partición del sistema EFI nesti ordenador. Por favor, vuelvi atrás y usa&apos;l particionáu manual pa configurar %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="293"/>
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="312"/>
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="337"/>
         <source>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 will be installed on %2.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;all data on partition %2 will be lost.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 instalaráse en %2.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Avisu: &lt;/font&gt;perderánse tolos datos na partición %2.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="303"/>
         <source>The EFI system partition at %1 will be used for starting %2.</source>
-        <translation type="unfinished"/>
+        <translation>La partición del sistema EFi en %1 usaráse p&apos;aniciar %2</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="321"/>
         <source>EFI system partition:</source>
-        <translation type="unfinished"/>
+        <translation>Partición del sistema EFI:</translation>
     </message>
 </context>
 <context>
@@ -2469,7 +2469,7 @@ Dellos sistemes de ficheros riquen la instalación de ferramientes esternes pa t
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="135"/>
         <source>The installer is not running with administrator rights.</source>
-        <translation type="unfinished"/>
+        <translation>L&apos;instalador nun ta executándose con drechos alministrativos.</translation>
     </message>
 </context>
 <context>
@@ -2500,12 +2500,12 @@ Dellos sistemes de ficheros riquen la instalación de ferramientes esternes pa t
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="194"/>
         <source>Resize &lt;strong&gt;%2MB&lt;/strong&gt; partition &lt;strong&gt;%1&lt;/strong&gt; to &lt;strong&gt;%3MB&lt;/strong&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Redimensionaráse la partición &lt;strong&gt;%2MB&lt;/strong&gt; de &lt;strong&gt;%1&lt;/strong&gt; a &lt;strong&gt;%3MB&lt;/strong&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="205"/>
         <source>Resizing %2MB partition %1 to %3MB.</source>
-        <translation type="unfinished"/>
+        <translation>Redimensionando %2MB de la partición %1 a %3MB.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="232"/>
@@ -2529,12 +2529,12 @@ Dellos sistemes de ficheros riquen la instalación de ferramientes esternes pa t
     <message>
         <location filename="../src/modules/users/SetHostNameJob.cpp" line="44"/>
         <source>Set hostname &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Afitaráse&apos;l nome d&apos;agospiu a &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetHostNameJob.cpp" line="51"/>
         <source>Setting hostname %1.</source>
-        <translation type="unfinished"/>
+        <translation>Afitando&apos;l nome d&apos;agospiu %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetHostNameJob.cpp" line="61"/>
@@ -2596,7 +2596,7 @@ Dellos sistemes de ficheros riquen la instalación de ferramientes esternes pa t
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="49"/>
         <source>Setting password for user %1.</source>
-        <translation type="unfinished"/>
+        <translation>Afitando la contraseña pal usuariu%1.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="59"/>
@@ -2875,7 +2875,7 @@ Dellos sistemes de ficheros riquen la instalación de ferramientes esternes pa t
         <location filename="../src/modules/partition/partitionmanager/src/gui/treelogbase.ui" line="62"/>
         <source>Time</source>
         <comment>@title:column a time stamp of a log entry</comment>
-        <translation type="unfinished"/>
+        <translation>Tiempu</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/treelogbase.ui" line="67"/>
@@ -2894,7 +2894,7 @@ Dellos sistemes de ficheros riquen la instalación de ferramientes esternes pa t
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="263"/>
         <source>Your username contains invalid characters. Only lowercase letters and numbers are allowed.</source>
-        <translation>El to nome d&apos;usuariu contien carauteres non válidos. Almítense namái lletres en minúscula y númberos.</translation>
+        <translation>El to nome d&apos;usuariu contien caráuteres non válidos. Almítense namái lletres en minúscula y númberos.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="307"/>
@@ -2909,7 +2909,7 @@ Dellos sistemes de ficheros riquen la instalación de ferramientes esternes pa t
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="329"/>
         <source>Your hostname contains invalid characters. Only letters, numbers and dashes are allowed.</source>
-        <translation>El to nome d&apos;agospiu contien carauteres non válidos. Almítense namái lletres en minúscula y númberos.</translation>
+        <translation>El to nome d&apos;agospiu contien caráuteres non válidos. Almítense namái lletres en minúscula y númberos.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="360"/>
@@ -2961,7 +2961,7 @@ Dellos sistemes de ficheros riquen la instalación de ferramientes esternes pa t
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="56"/>
         <source>&lt;h1&gt;Welcome to the %1 installer.&lt;/h1&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;h1&gt;Bienllegáu al instalador %1.&lt;/h1&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="70"/>
@@ -2971,12 +2971,12 @@ Dellos sistemes de ficheros riquen la instalación de ferramientes esternes pa t
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="72"/>
         <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2015 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Thanks to: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Philip Müller, Pier Luigi Fiorini and Rohan Garg.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;http://calamares.io/&quot;&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - Liberating Software.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;pa %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2015 Teo Mrnjavac &lt;teo@kde.org&gt;&lt;br/&gt;Gracies a: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Philip Müller, Pier Luigi Fiorini y Rohan Garg.&lt;br/&gt;&lt;br/&gt;El desendolcu de &lt;a href=&quot;http://calamares.io/&quot;&gt;Calamares&lt;/a&gt; ta sofitáu por &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - Liberating Software.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="193"/>
         <source>%1 support</source>
-        <translation type="unfinished"/>
+        <translation>Sofitu %1</translation>
     </message>
 </context>
 <context>
