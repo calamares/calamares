@@ -260,7 +260,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="60"/>
         <source>Running command %1 %2</source>
-        <translation type="unfinished"/>
+        <translation>Parancs futtatása %1 %2</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="88"/>
@@ -583,7 +583,7 @@ Ezzel minden programja, dokumentuma, fotója, zenéje és minden egyéb fájlja 
     <message>
         <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="50"/>
         <source>Clearing mounts for partitioning operations on %1.</source>
-        <translation type="unfinished"/>
+        <translation>%1 csatolás törlése partícionáláshoz</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="169"/>
@@ -601,7 +601,7 @@ Ezzel minden programja, dokumentuma, fotója, zenéje és minden egyéb fájlja 
     <message>
         <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="45"/>
         <source>Clearing all temporary mounts.</source>
-        <translation type="unfinished"/>
+        <translation>Minden ideiglenes csatolás törlése</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="56"/>
@@ -976,7 +976,7 @@ Ezzel minden programja, dokumentuma, fotója, zenéje és minden egyéb fájlja 
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="71"/>
         <source>Creating new %1 partition on %2.</source>
-        <translation type="unfinished"/>
+        <translation>Új %1 partíció létrehozása a következőn: %2.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="83"/>
@@ -1047,7 +1047,7 @@ Ezzel minden programja, dokumentuma, fotója, zenéje és minden egyéb fájlja 
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="66"/>
         <source>Creating new %1 partition table on %2.</source>
-        <translation type="unfinished"/>
+        <translation>Új %1 partíciós tábla létrehozása a következőn: %2.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="76"/>
@@ -1103,7 +1103,7 @@ Ezzel minden programja, dokumentuma, fotója, zenéje és minden egyéb fájlja 
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="65"/>
         <source>Creating user %1.</source>
-        <translation type="unfinished"/>
+        <translation>%1 nevű felhasználó létrehozása</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="81"/>
@@ -1184,7 +1184,7 @@ Ezzel minden programja, dokumentuma, fotója, zenéje és minden egyéb fájlja 
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="58"/>
         <source>Deleting partition %1.</source>
-        <translation type="unfinished"/>
+        <translation>%1 partíció törlése</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="67"/>
@@ -1877,12 +1877,12 @@ Néhány fájlrendszernek külső ezközre van szüksége a telepítéshez és t
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="596"/>
         <source>&amp;Log in automatically</source>
-        <translation type="unfinished"/>
+        <translation>Automatikus bejelentkezés</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="606"/>
         <source>Require &amp;my password to log in</source>
-        <translation type="unfinished"/>
+        <translation>A jelszavam kérése bejelentkezéskor</translation>
     </message>
 </context>
 <context>
@@ -2536,7 +2536,7 @@ Néhány fájlrendszernek külső ezközre van szüksége a telepítéshez és t
     <message>
         <location filename="../src/modules/users/SetHostNameJob.cpp" line="51"/>
         <source>Setting hostname %1.</source>
-        <translation type="unfinished"/>
+        <translation>Hálózati név beállítása a %1 -hez</translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetHostNameJob.cpp" line="61"/>
@@ -2598,7 +2598,7 @@ Néhány fájlrendszernek külső ezközre van szüksége a telepítéshez és t
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="49"/>
         <source>Setting password for user %1.</source>
-        <translation type="unfinished"/>
+        <translation>%1 felhasználói jelszó beállítása</translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="59"/>
