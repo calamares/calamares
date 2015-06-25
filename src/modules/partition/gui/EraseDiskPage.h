@@ -43,6 +43,7 @@ private:
     void setNextEnabled( bool enabled );
     void doAutopartition( Device* dev );
     void updatePreviews();
+    qint64 swapSuggestion( const qint64 availableSpaceB ) const;
 
     QListView* m_drivesView;
     PartitionCoreModule* m_core;

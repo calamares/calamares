@@ -139,31 +139,6 @@ EraseDiskPage::doAutopartition( Device* dev )
 #define MiB * static_cast< qint64 >( 1024 ) * 1024
 #define GiB * static_cast< qint64 >( 1024 ) * 1024 * 1024
 
-    // If there is enough room for ESP + root + swap, create swap, otherwise don't.
-    // Physical memory      Swap
-    // <4 GiB               2 * memory (min. 2 GiB) + overallocation
-    // 4-8 GiB              8 GiB + overallocation
-    // >8 GiB               = memory + overallocation
-    qint64 suggestedSwapSizeB = 0;
-    qint64 availableRamB = CalamaresUtils::getPhysicalMemoryB();
-    qreal overestimationFactor = 1.01;
-    if ( !availableRamB )
-    {
-        availableRamB = CalamaresUtils::getTotalMemoryB();
-        overestimationFactor = 1.10;
-    }
-
-    if ( availableRamB < 4 GiB )
-        suggestedSwapSizeB = qMax( 2 GiB, availableRamB * 2 );
-    else if ( availableRamB >= 4 GiB && availableRamB < 8 GiB )
-        suggestedSwapSizeB = 8 GiB;
-    else
-        suggestedSwapSizeB = availableRamB;
-
-    suggestedSwapSizeB *= overestimationFactor;
-
-    cDebug() << "Suggested swap size:" << suggestedSwapSizeB / 1024. / 1024. /1024. << "GiB";
-
     // Partition sizes are expressed in MiB, should be multiples of
     // the logical sector size (usually 512B).
     int uefisys_part_size = 0;
@@ -208,12 +183,14 @@ EraseDiskPage::doAutopartition( Device* dev )
 
     bool shouldCreateSwap = false;
     qint64 availableSpaceB = ( dev->totalSectors() - firstFreeSector ) * dev->logicalSectorSize();
+    qint64 suggestedSwapSizeB = swapSuggestion( availableSpaceB );
     qint64 requiredSpaceB =
             ( Calamares::JobQueue::instance()->
               globalStorage()->
               value( "requiredStorageGB" ).toDouble() + 0.1 + 2.0 ) GiB +
             suggestedSwapSizeB;
 
+    // If there is enough room for ESP + root + swap, create swap, otherwise don't.
     shouldCreateSwap = availableSpaceB > requiredSpaceB;
 
     qint64 lastSectorForRoot = dev->totalSectors() - 1; //last sector of the device
@@ -292,4 +269,47 @@ EraseDiskPage::updatePreviews()
         info.partitionModelAfter->setParent( m_previewFrame );
         layout->addRow( tr( "After:" ), preview );
     }
+}
+
+
+qint64
+EraseDiskPage::swapSuggestion( const qint64 availableSpaceB ) const {
+
+#define MiB * static_cast< qint64 >( 1024 ) * 1024
+#define GiB * static_cast< qint64 >( 1024 ) * 1024 * 1024
+
+    // swap(mem) = max(2, 2 * mem), if mem < 2 GiB
+    //           = mem,             if 2 GiB <= mem < 8 GiB
+    //           = mem / 2,         if 8 GIB <= mem < 64 GiB
+    //           = 4 GiB,           if mem >= 64 GiB
+
+    qint64 suggestedSwapSizeB = 0;
+    qint64 availableRamB = CalamaresUtils::getPhysicalMemoryB();
+    qreal overestimationFactor = 1.01;
+    if ( !availableRamB )
+    {
+        availableRamB = CalamaresUtils::getTotalMemoryB();
+        overestimationFactor = 1.10;
+    }
+
+    if ( availableRamB < 2 GiB )
+        suggestedSwapSizeB = qMax( 2 GiB, availableRamB * 2 );
+    else if ( availableRamB >= 2 GiB && availableRamB < 8 GiB )
+        suggestedSwapSizeB = availableRamB;
+    else if ( availableRamB >= 8 GiB && availableRamB < 64 GiB )
+        suggestedSwapSizeB = availableRamB / 2;
+    else
+        suggestedSwapSizeB = 4 GiB;
+
+    suggestedSwapSizeB *= overestimationFactor;
+
+    // don't use more 10% of available space
+    qreal maxSwapDiskRatio = 1.10;
+    qint64 maxSwapSizeB = availableSpaceB * maxSwapDiskRatio;
+    if ( suggestedSwapSizeB > maxSwapSizeB )
+        suggestedSwapSizeB = maxSwapSizeB;
+
+    cDebug() << "Suggested swap size:" << suggestedSwapSizeB / 1024. / 1024. /1024. << "GiB";
+
+    return suggestedSwapSizeB;
 }
