@@ -435,6 +435,16 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     {
         gs->insert( "efiSystemPartition", QStringLiteral( "/boot/efi" ) );
     }
+
+    if ( configurationMap.contains( "ensureSuspendToDisk" ) &&
+         configurationMap.value( "ensureSuspendToDisk" ).type() == QVariant::Bool )
+    {
+        gs->insert( "ensureSuspendToDisk", configurationMap.value( "ensureSuspendToDisk" ).toBool() );
+    }
+    else
+    {
+        gs->insert( "ensureSuspendToDisk", true );
+    }
 }
 
 
