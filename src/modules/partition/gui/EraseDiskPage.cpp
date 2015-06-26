@@ -292,22 +292,40 @@ EraseDiskPage::swapSuggestion( const qint64 availableSpaceB ) const {
         overestimationFactor = 1.10;
     }
 
-    if ( availableRamB < 2 GiB )
-        suggestedSwapSizeB = qMax( 2 GiB, availableRamB * 2 );
-    else if ( availableRamB >= 2 GiB && availableRamB < 8 GiB )
-        suggestedSwapSizeB = availableRamB;
-    else if ( availableRamB >= 8 GiB && availableRamB < 64 GiB )
-        suggestedSwapSizeB = availableRamB / 2;
-    else
-        suggestedSwapSizeB = 4 GiB;
+    bool ensureSuspendToDisk =
+        Calamares::JobQueue::instance()->globalStorage()->
+            value( "ensureSuspendToDisk" ).toBool();
 
-    suggestedSwapSizeB *= overestimationFactor;
+    if ( ensureSuspendToDisk )
+    {
+        if ( availableRamB < 4 GiB )
+            suggestedSwapSizeB = qMax( 2 GiB, availableRamB * 2 );
+        else if ( availableRamB >= 4 GiB && availableRamB < 8 GiB )
+            suggestedSwapSizeB = 8 GiB;
+        else
+            suggestedSwapSizeB = availableRamB;
 
-    // don't use more 10% of available space
-    qreal maxSwapDiskRatio = 1.10;
-    qint64 maxSwapSizeB = availableSpaceB * maxSwapDiskRatio;
-    if ( suggestedSwapSizeB > maxSwapSizeB )
-        suggestedSwapSizeB = maxSwapSizeB;
+        suggestedSwapSizeB *= overestimationFactor;
+    }
+    else //if we don't care about suspend to disk
+    {
+        if ( availableRamB < 2 GiB )
+            suggestedSwapSizeB = qMax( 2 GiB, availableRamB * 2 );
+        else if ( availableRamB >= 2 GiB && availableRamB < 8 GiB )
+            suggestedSwapSizeB = availableRamB;
+        else if ( availableRamB >= 8 GiB && availableRamB < 64 GiB )
+            suggestedSwapSizeB = availableRamB / 2;
+        else
+            suggestedSwapSizeB = 4 GiB;
+
+        suggestedSwapSizeB *= overestimationFactor;
+
+        // don't use more than 10% of available space
+        qreal maxSwapDiskRatio = 1.10;
+        qint64 maxSwapSizeB = availableSpaceB * maxSwapDiskRatio;
+        if ( suggestedSwapSizeB > maxSwapSizeB )
+            suggestedSwapSizeB = maxSwapSizeB;
+    }
 
     cDebug() << "Suggested swap size:" << suggestedSwapSizeB / 1024. / 1024. /1024. << "GiB";
 
