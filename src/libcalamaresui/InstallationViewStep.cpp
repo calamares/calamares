@@ -33,6 +33,7 @@
 #include <QtQuickWidgets/QQuickWidget>
 #include <QQmlEngine>
 
+
 namespace Calamares
 {
 
@@ -56,26 +57,20 @@ InstallationViewStep::InstallationViewStep( QObject* parent )
 
     m_slideShow->engine()->addImportPath( CalamaresUtils::qmlModulesDir().absolutePath() );
 
-    CALAMARES_RETRANSLATE_WIDGET( m_widget,
-        if ( !Calamares::Branding::instance()->slideshowPath().isEmpty() )
-            m_slideShow->setSource( QUrl::fromLocalFile( Calamares::Branding::instance()
-                                                         ->slideshowPath() ) );
-    )
     innerLayout->addSpacing( CalamaresUtils::defaultFontHeight() / 2 );
     innerLayout->addWidget( m_progressBar );
     innerLayout->addWidget( m_label );
 
-    connect( JobQueue::instance(), &JobQueue::progress,
-             this, &InstallationViewStep::updateFromJobQueue );
-
     cDebug() << "QML import paths:" << m_slideShow->engine()->importPathList();
 }
+
 
 QString
 InstallationViewStep::prettyName() const
 {
     return tr( "Install" );
 }
+
 
 QWidget*
 InstallationViewStep::widget()
@@ -89,10 +84,12 @@ InstallationViewStep::next()
 {
 }
 
+
 void
 InstallationViewStep::back()
 {
 }
+
 
 bool
 InstallationViewStep::isNextEnabled() const
@@ -114,17 +111,34 @@ InstallationViewStep::isAtBeginning() const
     return true;
 }
 
+
 bool
 InstallationViewStep::isAtEnd() const
 {
     return true;
 }
 
+
+void
+InstallationViewStep::onActivate()
+{
+    CALAMARES_RETRANSLATE_WIDGET( m_widget,
+        if ( !Calamares::Branding::instance()->slideshowPath().isEmpty() )
+            m_slideShow->setSource( QUrl::fromLocalFile( Calamares::Branding::instance()
+                                                         ->slideshowPath() ) );
+    )
+
+    connect( JobQueue::instance(), &JobQueue::progress,
+             this, &InstallationViewStep::updateFromJobQueue );
+}
+
+
 QList< Calamares::job_ptr >
 InstallationViewStep::jobs() const
 {
     return QList< Calamares::job_ptr >();
 }
+
 
 void
 InstallationViewStep::updateFromJobQueue( qreal percent, const QString& message )
