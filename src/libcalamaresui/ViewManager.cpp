@@ -76,13 +76,18 @@ ViewManager::ViewManager( QObject* parent )
     bottomLayout->addSpacing( 12 );
     bottomLayout->addWidget( m_quit );
 
+    connect( m_next, &QPushButton::clicked, this, &ViewManager::next );
+    connect( m_back, &QPushButton::clicked, this, &ViewManager::back );
+    m_back->setEnabled( false );
+
+    m_installationViewStep = new InstallationViewStep( this );
+
     connect( m_quit, &QPushButton::clicked,
              this, [this]()
     {
-        if ( m_currentStep == m_steps.count() -1 &&
-             m_steps.last()->isAtEnd() )
-            qApp->quit();
-        else
+        if ( m_steps.at( m_currentStep ) == m_installationViewStep ||
+             !( m_currentStep == m_steps.count() -1 &&
+                m_steps.last()->isAtEnd() ) )
         {
             int response = QMessageBox::question( m_widget,
                             tr( "Cancel installation?" ),
@@ -93,12 +98,11 @@ ViewManager::ViewManager( QObject* parent )
             if ( response == QMessageBox::Yes )
                 qApp->quit();
         }
+        else //we're at the end
+        {
+            qApp->quit();
+        }
     } );
-    connect( m_next, &QPushButton::clicked, this, &ViewManager::next );
-    connect( m_back, &QPushButton::clicked, this, &ViewManager::back );
-    m_back->setEnabled( false );
-
-    m_installationViewStep = new InstallationViewStep( this );
 }
 
 
