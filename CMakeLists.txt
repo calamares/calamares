@@ -39,6 +39,7 @@ if( CMAKE_COMPILER_IS_GNUCXX )
 endif()
 
 cmake_policy( SET CMP0023 OLD )
+cmake_policy( SET CMP0028 NEW ) # double colons in KF5::Foo and Qt5::Foo are necessarily IMPORTED or ALIAS targets, don't search further
 
 # Keep cmake 3.0 quiet
 if( POLICY CMP0043 )
