@@ -1,4 +1,0 @@
-[submodule "src/libcalamares/partitionmanager"]
-	path = src/modules/partition/partitionmanager
-	url = https://github.com/calamares/partitionmanager.git
-	branch = calamares
