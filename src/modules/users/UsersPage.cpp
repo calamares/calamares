@@ -88,7 +88,7 @@ UsersPage::isReady()
     return m_readyFullName &&
            m_readyHostname &&
            m_readyPassword &&
-           m_readyRootPassword &&
+           ( !m_showRootPassword || m_readyRootPassword ) &&
            m_readyUsername;
 }
 
