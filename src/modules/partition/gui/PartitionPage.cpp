@@ -19,22 +19,22 @@
 #include "PartitionPage.h"
 
 // Local
-#include <core/BootLoaderModel.h>
-#include <core/DeviceModel.h>
-#include <core/PartitionCoreModule.h>
-#include <core/PartitionModel.h>
-#include <core/PMUtils.h>
-#include <gui/CreatePartitionDialog.h>
-#include <gui/EditExistingPartitionDialog.h>
+#include "core/BootLoaderModel.h"
+#include "core/DeviceModel.h"
+#include "core/PartitionCoreModule.h"
+#include "core/PartitionModel.h"
+#include "core/PMUtils.h"
+#include "gui/CreatePartitionDialog.h"
+#include "gui/EditExistingPartitionDialog.h"
 
-#include <ui_PartitionPage.h>
-#include <ui_CreatePartitionTableDialog.h>
-
-// CalaPM
-#include <core/device.h>
-#include <core/partition.h>
+#include "ui_PartitionPage.h"
+#include "ui_CreatePartitionTableDialog.h"
 
 #include "utils/Retranslator.h"
+
+// KPMcore
+#include <kpmcore/core/device.h>
+#include <kpmcore/core/partition.h>
 
 // Qt
 #include <QDebug>

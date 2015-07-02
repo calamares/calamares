@@ -17,20 +17,18 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <gui/PartitionViewStep.h>
+#include "gui/PartitionViewStep.h"
 
-#include <core/DeviceModel.h>
-#include <core/PartitionCoreModule.h>
-#include <core/PartitionModel.h>
-#include <core/PMUtils.h>
-#include "core/partition.h"
-#include "core/device.h"
-#include <gui/ChoicePage.h>
-#include <gui/EraseDiskPage.h>
-#include <gui/AlongsidePage.h>
-#include <gui/PartitionPage.h>
-#include <gui/ReplacePage.h>
-#include <gui/PartitionPreview.h>
+#include "core/DeviceModel.h"
+#include "core/PartitionCoreModule.h"
+#include "core/PartitionModel.h"
+#include "core/PMUtils.h"
+#include "gui/ChoicePage.h"
+#include "gui/EraseDiskPage.h"
+#include "gui/AlongsidePage.h"
+#include "gui/PartitionPage.h"
+#include "gui/ReplacePage.h"
+#include "gui/PartitionPreview.h"
 
 #include "CalamaresVersion.h"
 #include "utils/CalamaresUtilsGui.h"
@@ -41,6 +39,9 @@
 #include "JobQueue.h"
 #include "Job.h"
 #include "Branding.h"
+
+#include <kpmcore/core/device.h>
+#include <kpmcore/core/partition.h>
 
 // Qt
 #include <QApplication>

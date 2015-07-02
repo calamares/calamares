@@ -17,14 +17,14 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <core/PMUtils.h>
+#include "core/PMUtils.h"
 
-#include <core/PartitionInfo.h>
-#include <core/PartitionIterator.h>
+#include "core/PartitionInfo.h"
+#include "core/PartitionIterator.h"
 
-// CalaPM
-#include <core/partition.h>
-#include <fs/filesystemfactory.h>
+// KPMcore
+#include <kpmcore/core/partition.h>
+#include <kpmcore/fs/filesystemfactory.h>
 
 namespace PMUtils
 {

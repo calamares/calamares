@@ -16,17 +16,17 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <gui/PartitionSizeController.h>
+#include "gui/PartitionSizeController.h"
 
-#include <core/ColorUtils.h>
-#include <core/PMUtils.h>
+#include "core/ColorUtils.h"
+#include "core/PMUtils.h"
 
 // Qt
 #include <QSpinBox>
 
-// CalaPM
-#include <core/device.h>
-#include <gui/partresizerwidget.h>
+// KPMcore
+#include <kpmcore/core/device.h>
+#include <kpmcore/gui/partresizerwidget.h>
 
 // stdc++
 #include <limits>

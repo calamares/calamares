@@ -20,11 +20,8 @@
 
 #include "core/DeviceModel.h"
 #include "core/PartitionCoreModule.h"
-#include "core/partition.h"
 #include "core/PMUtils.h"
 #include "core/PartitionInfo.h"
-#include "core/device.h"
-#include "fs/filesystem.h"
 #include "gui/PartitionPreview.h"
 
 #include "utils/CalamaresUtilsGui.h"
@@ -33,6 +30,11 @@
 #include "utils/CalamaresUtilsSystem.h"
 #include "GlobalStorage.h"
 #include "JobQueue.h"
+
+// KPMcore
+#include <kpmcore/core/device.h>
+#include <kpmcore/core/partition.h>
+#include <kpmcore/fs/filesystem.h>
 
 #include <QBoxLayout>
 #include <QDir>

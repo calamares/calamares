@@ -20,20 +20,21 @@
 #include "ReplacePage.h"
 #include "ui_ReplacePage.h"
 
-#include <core/PartitionCoreModule.h>
-#include <core/device.h>
-#include <core/DeviceModel.h>
-#include <core/partition.h>
-#include <fs/filesystem.h>
-#include <core/PMUtils.h>
-#include <core/PartitionInfo.h>
+#include "core/PartitionCoreModule.h"
+#include "core/PMUtils.h"
+#include "core/PartitionInfo.h"
+#include "core/DeviceModel.h"
 
-#include <JobQueue.h>
-#include <GlobalStorage.h>
-#include <utils/Retranslator.h>
-#include <utils/CalamaresUtilsGui.h>
-#include <utils/Logger.h>
-#include <Branding.h>
+#include "JobQueue.h"
+#include "GlobalStorage.h"
+#include "utils/Retranslator.h"
+#include "utils/CalamaresUtilsGui.h"
+#include "utils/Logger.h"
+#include "Branding.h"
+
+#include <kpmcore/core/device.h>
+#include <kpmcore/core/partition.h>
+#include <kpmcore/fs/filesystem.h>
 
 #include <QDir>
 #include <QProcess>

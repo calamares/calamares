@@ -39,21 +39,21 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA            *
  ***************************************************************************/
 
-#include <jobs/ResizePartitionJob.h>
+#include "jobs/ResizePartitionJob.h"
 
-#include <jobs/CheckFileSystemJob.h>
-#include <jobs/MoveFileSystemJob.h>
-#include <utils/Logger.h>
+#include "jobs/CheckFileSystemJob.h"
+#include "jobs/MoveFileSystemJob.h"
+#include "utils/Logger.h"
 
-// CalaPM
-#include <backend/corebackend.h>
-#include <backend/corebackendmanager.h>
-#include <backend/corebackenddevice.h>
-#include <backend/corebackendpartition.h>
-#include <backend/corebackendpartitiontable.h>
-#include <core/device.h>
-#include <core/partition.h>
-#include <util/report.h>
+// KPMcore
+#include <kpmcore/backend/corebackend.h>
+#include <kpmcore/backend/corebackendmanager.h>
+#include <kpmcore/backend/corebackenddevice.h>
+#include <kpmcore/backend/corebackendpartition.h>
+#include <kpmcore/backend/corebackendpartitiontable.h>
+#include <kpmcore/core/device.h>
+#include <kpmcore/core/partition.h>
+#include <kpmcore/util/report.h>
 
 // Qt
 #include <QScopedPointer>

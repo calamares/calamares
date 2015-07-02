@@ -17,21 +17,21 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <jobs/FormatPartitionJob.h>
+#include "jobs/FormatPartitionJob.h"
 
-#include <utils/Logger.h>
+#include "utils/Logger.h"
 
-// CalaPM
-#include <backend/corebackend.h>
-#include <backend/corebackendmanager.h>
-#include <backend/corebackenddevice.h>
-#include <backend/corebackendpartition.h>
-#include <backend/corebackendpartitiontable.h>
-#include <core/device.h>
-#include <core/partition.h>
-#include <core/partitiontable.h>
-#include <fs/filesystem.h>
-#include <util/report.h>
+// KPMcore
+#include <kpmcore/backend/corebackend.h>
+#include <kpmcore/backend/corebackendmanager.h>
+#include <kpmcore/backend/corebackenddevice.h>
+#include <kpmcore/backend/corebackendpartition.h>
+#include <kpmcore/backend/corebackendpartitiontable.h>
+#include <kpmcore/core/device.h>
+#include <kpmcore/core/partition.h>
+#include <kpmcore/core/partitiontable.h>
+#include <kpmcore/fs/filesystem.h>
+#include <kpmcore/util/report.h>
 
 // Qt
 #include <QScopedPointer>

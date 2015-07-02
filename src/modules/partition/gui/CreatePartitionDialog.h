@@ -19,11 +19,12 @@
 #ifndef CREATEPARTITIONDIALOG_H
 #define CREATEPARTITIONDIALOG_H
 
+// KPMcore
+#include <kpmcore/core/partitionrole.h>
+
 #include <QDialog>
 #include <QScopedPointer>
 
-// CalaPM
-#include <core/partitionrole.h>
 
 class Device;
 class Partition;

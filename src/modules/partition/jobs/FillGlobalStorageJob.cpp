@@ -17,20 +17,20 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <jobs/FillGlobalStorageJob.h>
+#include "jobs/FillGlobalStorageJob.h"
 
-#include <GlobalStorage.h>
-#include <JobQueue.h>
-#include <core/PartitionInfo.h>
-#include <core/PartitionIterator.h>
-#include <core/PMUtils.h>
+#include "GlobalStorage.h"
+#include "JobQueue.h"
+#include "core/PartitionInfo.h"
+#include "core/PartitionIterator.h"
+#include "core/PMUtils.h"
 #include "Branding.h"
 #include "utils/Logger.h"
 
 // CalaPM
-#include <core/device.h>
-#include <core/partition.h>
-#include <fs/filesystem.h>
+#include <kpmcore/core/device.h>
+#include <kpmcore/core/partition.h>
+#include <kpmcore/fs/filesystem.h>
 
 // Qt
 #include <QDebug>

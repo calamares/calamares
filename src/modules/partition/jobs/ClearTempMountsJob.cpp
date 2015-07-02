@@ -18,8 +18,10 @@
 
 #include "ClearTempMountsJob.h"
 
-#include <util/report.h>
-#include <utils/Logger.h>
+#include "utils/Logger.h"
+
+// KPMcore
+#include <kpmcore/util/report.h>
 
 #include <QFile>
 #include <QProcess>

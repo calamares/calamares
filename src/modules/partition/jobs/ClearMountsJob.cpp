@@ -18,12 +18,14 @@
 
 #include "ClearMountsJob.h"
 
-#include <core/device.h>
-#include <core/partition.h>
-#include <core/PartitionInfo.h>
-#include <core/PartitionIterator.h>
-#include <util/report.h>
-#include <utils/Logger.h>
+#include "core/PartitionInfo.h"
+#include "core/PartitionIterator.h"
+#include "utils/Logger.h"
+
+// KPMcore
+#include <kpmcore/core/device.h>
+#include <kpmcore/core/partition.h>
+#include <kpmcore/util/report.h>
 
 #include <QProcess>
 #include <QStringList>
