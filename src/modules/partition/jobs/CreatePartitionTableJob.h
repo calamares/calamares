@@ -22,8 +22,8 @@
 
 #include <Job.h>
 
-// CalaPM
-#include <core/partitiontable.h>
+// KPMcore
+#include <kpmcore/core/partitiontable.h>
 
 class Device;
 

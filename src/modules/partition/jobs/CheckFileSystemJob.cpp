@@ -16,12 +16,12 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <jobs/CheckFileSystemJob.h>
+#include "jobs/CheckFileSystemJob.h"
 
-// CalaPM
-#include <core/partition.h>
-#include <fs/filesystem.h>
-#include <util/report.h>
+// KPMcore
+#include <kpmcore/core/partition.h>
+#include <kpmcore/fs/filesystem.h>
+#include <kpmcore/util/report.h>
 
 CheckFileSystemJob::CheckFileSystemJob( Partition* partition )
     : PartitionJob( partition )

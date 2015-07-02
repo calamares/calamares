@@ -16,13 +16,14 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
-#include <core/BootLoaderModel.h>
 
-#include <core/PartitionInfo.h>
-#include <core/PMUtils.h>
+#include "core/BootLoaderModel.h"
 
-// CalaPM
-#include <core/device.h>
+#include "core/PartitionInfo.h"
+#include "core/PMUtils.h"
+
+// KPMcore
+#include <kpmcore/core/device.h>
 
 static QStandardItem*
 createBootLoaderItem( const QString& description, const QString& path, bool isPartition )

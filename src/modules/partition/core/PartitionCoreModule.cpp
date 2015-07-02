@@ -37,13 +37,13 @@
 #include <Typedefs.h>
 #include <utils/Logger.h>
 
-// CalaPM
+// KPMcore
 #include <CalaPM.h>
-#include <core/device.h>
-#include <core/partition.h>
-#include <backend/corebackend.h>
-#include <backend/corebackendmanager.h>
-#include <fs/filesystemfactory.h>
+#include <kpmcore/core/device.h>
+#include <kpmcore/core/partition.h>
+#include <kpmcore/backend/corebackend.h>
+#include <kpmcore/backend/corebackendmanager.h>
+#include <kpmcore/fs/filesystemfactory.h>
 
 // Qt
 #include <QStandardItemModel>

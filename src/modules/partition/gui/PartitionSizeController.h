@@ -19,8 +19,8 @@
 #ifndef PARTITIONSIZECONTROLLER_H
 #define PARTITIONSIZECONTROLLER_H
 
-// CalaPM
-#include <core/partition.h>
+// KPMcore
+#include <kpmcore/core/partition.h>
 
 // Qt
 #include <QColor>

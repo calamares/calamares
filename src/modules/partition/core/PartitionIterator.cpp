@@ -19,10 +19,10 @@
 
 #include <core/PartitionIterator.h>
 
-// CalaPM
-#include <core/device.h>
-#include <core/partition.h>
-#include <core/partitiontable.h>
+// KPMcore
+#include <kpmcore/core/device.h>
+#include <kpmcore/core/partition.h>
+#include <kpmcore/core/partitiontable.h>
 
 PartitionIterator::PartitionIterator( PartitionTable* table )
     : m_table( table )

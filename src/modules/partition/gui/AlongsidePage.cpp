@@ -22,8 +22,6 @@
 #include "core/PartitionCoreModule.h"
 #include "core/DeviceModel.h"
 #include "core/PMUtils.h"
-#include "core/device.h"
-#include "core/partition.h"
 #include "core/PartitionInfo.h"
 #include "core/PartitionIterator.h"
 #include "gui/PartitionSplitterWidget.h"
@@ -35,6 +33,10 @@
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Retranslator.h"
 #include "Branding.h"
+
+// KPMcore
+#include <kpmcore/core/device.h>
+#include <kpmcore/core/partition.h>
 
 #include <QBoxLayout>
 #include <QComboBox>

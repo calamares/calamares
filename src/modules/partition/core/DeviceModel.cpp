@@ -16,14 +16,14 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
-#include <core/DeviceModel.h>
+#include "core/DeviceModel.h"
 
-#include <core/PartitionModel.h>
+#include "core/PartitionModel.h"
 
 #include "utils/CalamaresUtilsGui.h"
 
-// CalaPM
-#include <core/device.h>
+// KPMcore
+#include <kpmcore/core/device.h>
 
 // KF5
 #include <KFormat>

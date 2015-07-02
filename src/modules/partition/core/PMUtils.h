@@ -19,8 +19,8 @@
 #ifndef PMUTILS_H
 #define PMUTILS_H
 
-// CalaPM
-#include <fs/filesystem.h>
+// KPMcore
+#include <kpmcore/fs/filesystem.h>
 
 // Qt
 #include <QList>

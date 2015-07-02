@@ -44,13 +44,13 @@
 
 #include <utils/Logger.h>
 
-// CalaPM
-#include <core/copysourcedevice.h>
-#include <core/copytargetdevice.h>
-#include <core/device.h>
-#include <core/partition.h>
-#include <fs/filesystem.h>
-#include <util/report.h>
+// KPMcore
+#include <kpmcore/core/copysourcedevice.h>
+#include <kpmcore/core/copytargetdevice.h>
+#include <kpmcore/core/device.h>
+#include <kpmcore/core/partition.h>
+#include <kpmcore/fs/filesystem.h>
+#include <kpmcore/util/report.h>
 
 MoveFileSystemJob::MoveFileSystemJob( Device* device, Partition* partition, qint64 oldFirstSector, qint64 newFirstSector, qint64 length )
     : PartitionJob( partition )

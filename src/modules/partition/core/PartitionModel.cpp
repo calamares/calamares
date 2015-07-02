@@ -15,18 +15,19 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
-#include <core/PartitionModel.h>
 
-#include <core/ColorUtils.h>
-#include <core/PartitionInfo.h>
-#include <core/PMUtils.h>
-#include <utils/Logger.h>
+#include "core/PartitionModel.h"
+
+#include "core/ColorUtils.h"
+#include "core/PartitionInfo.h"
+#include "core/PMUtils.h"
+#include "utils/Logger.h"
 
 // CalaPM
-#include <core/device.h>
-#include <core/partition.h>
-#include <core/partitiontable.h>
-#include <fs/filesystem.h>
+#include <kpmcore/core/device.h>
+#include <kpmcore/core/partition.h>
+#include <kpmcore/core/partitiontable.h>
+#include <kpmcore/fs/filesystem.h>
 
 // KF5
 #include <KFormat>

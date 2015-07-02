@@ -20,11 +20,11 @@
 #ifndef PARTITIONCOREMODULE_H
 #define PARTITIONCOREMODULE_H
 
-#include <core/PartitionModel.h>
-#include <Typedefs.h>
+#include "core/PartitionModel.h"
+#include "Typedefs.h"
 
-// CalaPM
-#include <core/partitiontable.h>
+// KPMcore
+#include <kpmcore/core/partitiontable.h>
 
 // Qt
 #include <QList>
