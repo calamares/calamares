@@ -160,6 +160,8 @@ CreatePartitionDialog::updateMountPointUi()
     }
     m_ui->mountPointLabel->setEnabled( enabled );
     m_ui->mountPointComboBox->setEnabled( enabled );
+    if ( !enabled )
+        m_ui->mountPointComboBox->setCurrentText( QString() );
 }
 
 void
