@@ -17,28 +17,27 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <core/PartitionCoreModule.h>
+#include "core/PartitionCoreModule.h"
 
-#include <core/BootLoaderModel.h>
-#include <core/DeviceModel.h>
-#include <core/PartitionInfo.h>
-#include <core/PartitionIterator.h>
-#include <core/PartitionModel.h>
-#include <core/PMUtils.h>
-#include <jobs/ClearMountsJob.h>
-#include <jobs/ClearTempMountsJob.h>
-#include <jobs/CreatePartitionJob.h>
-#include <jobs/CreatePartitionTableJob.h>
-#include <jobs/DeletePartitionJob.h>
-#include <jobs/FillGlobalStorageJob.h>
-#include <jobs/FormatPartitionJob.h>
-#include <jobs/ResizePartitionJob.h>
+#include "core/BootLoaderModel.h"
+#include "core/DeviceModel.h"
+#include "core/PartitionInfo.h"
+#include "core/PartitionIterator.h"
+#include "core/PartitionModel.h"
+#include "core/PMUtils.h"
+#include "jobs/ClearMountsJob.h"
+#include "jobs/ClearTempMountsJob.h"
+#include "jobs/CreatePartitionJob.h"
+#include "jobs/CreatePartitionTableJob.h"
+#include "jobs/DeletePartitionJob.h"
+#include "jobs/FillGlobalStorageJob.h"
+#include "jobs/FormatPartitionJob.h"
+#include "jobs/ResizePartitionJob.h"
 
-#include <Typedefs.h>
-#include <utils/Logger.h>
+#include "Typedefs.h"
+#include "utils/Logger.h"
 
 // KPMcore
-#include <CalaPM.h>
 #include <kpmcore/core/device.h>
 #include <kpmcore/core/partition.h>
 #include <kpmcore/backend/corebackend.h>
@@ -97,8 +96,8 @@ PartitionCoreModule::PartitionCoreModule( QObject* parent )
     , m_deviceModel( new DeviceModel( this ) )
     , m_bootLoaderModel( new BootLoaderModel( this ) )
 {
-    if ( !CalaPM::init() )
-        qFatal( "Failed to init CalaPM" );
+    if ( !PMUtils::initKPMcore() )
+        qFatal( "Failed to initialize KPMcore backend" );
     FileSystemFactory::init();
     init();
 }
