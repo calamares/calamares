@@ -25,9 +25,34 @@
 // KPMcore
 #include <kpmcore/core/partition.h>
 #include <kpmcore/fs/filesystemfactory.h>
+#include <kpmcore/backend/corebackendmanager.h>
+
+#include <QDebug>
+
 
 namespace PMUtils
 {
+
+static bool s_KPMcoreInited = false;
+
+bool
+initKPMcore()
+{
+    if ( s_KPMcoreInited )
+        return true;
+
+    QByteArray backendName = qgetenv( "KPMCORE_BACKEND" );
+    if ( backendName.isEmpty() )
+        backendName = "libparted";
+
+    if ( !CoreBackendManager::self()->load( backendName ) )
+    {
+        qWarning() << "Failed to load backend plugin" << backendName;
+        return false;
+    }
+    s_KPMcoreInited = true;
+    return true;
+}
 
 
 bool
@@ -114,6 +139,5 @@ clonePartition( Device* device, Partition* partition )
                partition->partitionPath()
                 );
 }
-
 
 } // namespace
