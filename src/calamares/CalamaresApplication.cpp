@@ -48,6 +48,8 @@ CalamaresApplication::CalamaresApplication( int& argc, char* argv[] )
     setApplicationName( QLatin1String( CALAMARES_APPLICATION_NAME ) );
     setApplicationVersion( QLatin1String( CALAMARES_VERSION ) );
 
+    cDebug() << "Calamares version:" << CALAMARES_VERSION;
+
     CalamaresUtils::installTranslator( QLocale::system(), QString(), this );
 
     QFont f = font();
