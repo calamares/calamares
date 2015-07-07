@@ -47,7 +47,7 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
     )
 
     setMinimumSize( 1010, 520 );
-    QSize availableSize = qApp->desktop()->screenGeometry( this ).size();
+    QSize availableSize = qApp->desktop()->availableGeometry( this ).size();
     int w = qBound( 1010, CalamaresUtils::defaultFontHeight() * 60, availableSize.width() );
     int h = qBound( 520,  CalamaresUtils::defaultFontHeight() * 36, availableSize.height() );
 
