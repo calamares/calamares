@@ -134,6 +134,9 @@ def run():
 
     :return:
     """
+    if libcalamares.globalstorage.value("bootLoader") is None:
+        return None
+
     partitions = libcalamares.globalstorage.value("partitions")
     root_mount_point = libcalamares.globalstorage.value("rootMountPoint")
     branding = libcalamares.globalstorage.value("branding")
