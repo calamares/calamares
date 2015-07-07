@@ -237,6 +237,9 @@ def run():
 
     :return:
     """
+    if libcalamares.globalstorage.value("bootLoader") is None:
+        return None
+
     fw_type = libcalamares.globalstorage.value("firmwareType")
     prepare_bootloader(fw_type)
 
