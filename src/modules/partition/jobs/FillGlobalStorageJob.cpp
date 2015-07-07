@@ -157,10 +157,17 @@ FillGlobalStorageJob::exec()
 {
     Calamares::GlobalStorage* storage = Calamares::JobQueue::instance()->globalStorage();
     storage->insert( "partitions", createPartitionList() );
-    QVariant var = createBootLoaderMap();
-    if ( !var.isValid() )
-        return Calamares::JobResult::error( tr( "Failed to find path for boot loader" ) );
-    storage->insert( "bootLoader", var );
+    if ( !m_bootLoaderPath.isEmpty() )
+    {
+        QVariant var = createBootLoaderMap();
+        if ( !var.isValid() )
+            cDebug() << "Failed to find path for boot loader";
+        storage->insert( "bootLoader", var );
+    }
+    else
+    {
+        storage->insert( "bootLoader", QVariant() );
+    }
     return Calamares::JobResult::ok();
 }
 
