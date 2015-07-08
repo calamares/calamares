@@ -30,10 +30,10 @@
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 
-// CalaPM
-#include <core/device.h>
-#include <core/partition.h>
-#include <fs/filesystemfactory.h>
+// KPMcore
+#include <kpmcore/core/device.h>
+#include <kpmcore/core/partition.h>
+#include <kpmcore/fs/filesystemfactory.h>
 
 // Qt
 #include <QComboBox>
