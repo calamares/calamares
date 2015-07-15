@@ -71,6 +71,9 @@ EditExistingPartitionDialog::EditExistingPartitionDialog( Device* device, Partit
         m_ui->fileSystemLabel->setEnabled( doFormat );
         m_ui->fileSystemComboBox->setEnabled( doFormat );
 
+        if ( !doFormat )
+            m_ui->fileSystemComboBox->setCurrentText( m_partition->fileSystem().name() );
+
         updateMountPointPicker();
     } );
 
