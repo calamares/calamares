@@ -70,6 +70,14 @@ EditExistingPartitionDialog::EditExistingPartitionDialog( Device* device, Partit
 
         m_ui->fileSystemLabel->setEnabled( doFormat );
         m_ui->fileSystemComboBox->setEnabled( doFormat );
+
+        updateMountPointPicker();
+    } );
+
+    connect( m_ui->fileSystemComboBox, &QComboBox::currentTextChanged,
+             [ this ]( QString )
+    {
+        updateMountPointPicker();
     } );
 
     // File system
@@ -184,4 +192,33 @@ EditExistingPartitionDialog::replacePartResizerWidget()
     m_ui->partResizerWidget = widget;
 
     m_partitionSizeController->setPartResizerWidget( widget, m_ui->formatRadioButton->isChecked() );
+}
+
+void
+EditExistingPartitionDialog::updateMountPointPicker()
+{
+    bool doFormat = m_ui->formatRadioButton->isChecked();
+    FileSystem::Type fsType = FileSystem::Unknown;
+    if ( doFormat )
+    {
+        fsType = FileSystem::typeForName( m_ui->fileSystemComboBox->currentText() );
+    }
+    else
+    {
+        fsType = m_partition->fileSystem().type();
+    }
+    bool canMount = true;
+    if ( fsType == FileSystem::Extended ||
+         fsType == FileSystem::LinuxSwap ||
+         fsType == FileSystem::Unformatted ||
+         fsType == FileSystem::Unknown ||
+         fsType == FileSystem::Lvm2_PV )
+    {
+        canMount = false;
+    }
+
+    m_ui->mountPointLabel->setEnabled( canMount );
+    m_ui->mountPointComboBox->setEnabled( canMount );
+    if ( !canMount )
+        m_ui->mountPointComboBox->setCurrentText( QString() );
 }

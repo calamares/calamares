@@ -50,6 +50,7 @@ private:
     PartitionSizeController* m_partitionSizeController;
 
     void replacePartResizerWidget();
+    void updateMountPointPicker();
 };
 
 #endif /* EDITEXISTINGPARTITIONDIALOG_H */
