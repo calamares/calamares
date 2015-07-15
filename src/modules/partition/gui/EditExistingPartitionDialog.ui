@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>437</width>
+    <width>450</width>
     <height>430</height>
    </rect>
   </property>
@@ -78,6 +78,12 @@
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>300</width>
+         <height>0</height>
+        </size>
        </property>
        <property name="text">
         <string>Warning: Formatting the partition will erase all existing data.</string>
@@ -151,7 +157,7 @@
   <customwidget>
    <class>PartResizerWidget</class>
    <extends>QWidget</extends>
-   <header location="global">gui/partresizerwidget.h</header>
+   <header>gui/partresizerwidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
