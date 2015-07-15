@@ -43,7 +43,8 @@ DebugWindow::DebugWindow()
     globalStorageView->setModel( jsonModel );
     GlobalStorage* gs = JobQueue::instance()->globalStorage();
 
-    connect( gs, &GlobalStorage::changed, [ = ]
+    connect( gs, &GlobalStorage::changed,
+             this, [ = ]
     {
         jsonModel->loadJson( QJsonDocument::fromVariant( gs->m ).toJson() );
         globalStorageView->expandAll();
@@ -54,7 +55,7 @@ DebugWindow::DebugWindow()
     // JobQueue page
     jobQueueText->setReadOnly( true );
     connect( JobQueue::instance(), &JobQueue::queueChanged,
-             [ this ]( const QList< Calamares::job_ptr >& jobs )
+             this, [ this ]( const QList< Calamares::job_ptr >& jobs )
     {
         QStringList text;
         foreach( auto job, jobs )
@@ -79,7 +80,7 @@ DebugWindow::DebugWindow()
     moduleConfigView->setModel( moduleConfigModel );
 
     connect( modulesListView->selectionModel(), &QItemSelectionModel::selectionChanged,
-             [ this, moduleConfigModel ]
+             this, [ this, moduleConfigModel ]
     {
         QString moduleName = modulesListView->currentIndex().data().toString();
         Module* module = ModuleManager::instance()->module( moduleName );
