@@ -50,6 +50,7 @@ public:
 private:
     QString guessLCLocale();
     QString prettyLCLocale( const QString& lcLocale );
+    void updateGlobalStorage();
 
     TimeZoneWidget* m_tzWidget;
     QComboBox* m_regionCombo;

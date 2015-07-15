@@ -116,6 +116,8 @@ LocalePage::LocalePage( QWidget* parent )
         if ( !m_blockTzWidgetSet )
             m_tzWidget->setCurrentLocation( m_regionCombo->currentData().toString(),
                                             m_zoneCombo->currentData().toString() );
+
+        updateGlobalStorage();
     } );
 
     connect( m_tzWidget, &TimeZoneWidget::locationChanged,
@@ -139,10 +141,7 @@ LocalePage::LocalePage( QWidget* parent )
 
         m_blockTzWidgetSet = false;
 
-        Calamares::JobQueue::instance()->globalStorage()
-                ->insert( "locationRegion", location.region );
-        Calamares::JobQueue::instance()->globalStorage()
-                ->insert( "locationZone", location.zone );
+        updateGlobalStorage();
     } );
 
     connect( m_localeChangeButton, &QPushButton::clicked,
@@ -369,4 +368,14 @@ LocalePage::prettyLCLocale( const QString& lcLocale )
     if ( localeString.endsWith( " UTF-8" ) )
         localeString.remove( " UTF-8" );
     return localeString;
+}
+
+void
+LocalePage::updateGlobalStorage()
+{
+    LocaleGlobal::Location location = m_tzWidget->getCurrentLocation();
+    Calamares::JobQueue::instance()->globalStorage()
+            ->insert( "locationRegion", location.region );
+    Calamares::JobQueue::instance()->globalStorage()
+            ->insert( "locationZone", location.zone );
 }
