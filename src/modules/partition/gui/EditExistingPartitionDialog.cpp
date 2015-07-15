@@ -63,10 +63,31 @@ EditExistingPartitionDialog::EditExistingPartitionDialog( Device* device, Partit
 
     replacePartResizerWidget();
 
-    connect( m_ui->formatRadioButton, &QAbstractButton::toggled, [ this ]( bool )
+    connect( m_ui->formatRadioButton, &QAbstractButton::toggled,
+             [ this ]( bool doFormat )
     {
         replacePartResizerWidget();
+
+        m_ui->fileSystemLabel->setEnabled( doFormat );
+        m_ui->fileSystemComboBox->setEnabled( doFormat );
     } );
+
+    // File system
+    QStringList fsNames;
+    for ( auto fs : FileSystemFactory::map() )
+    {
+        if ( fs->supportCreate() != FileSystem::cmdSupportNone && fs->type() != FileSystem::Extended )
+            fsNames << fs->name();
+    }
+    m_ui->fileSystemComboBox->addItems( fsNames );
+
+    if ( fsNames.contains( m_partition->fileSystem().name() ) )
+        m_ui->fileSystemComboBox->setCurrentText( m_partition->fileSystem().name() );
+    else
+        m_ui->fileSystemComboBox->setCurrentText( FileSystem::nameForType( FileSystem::Ext4 ) );
+
+    m_ui->fileSystemLabel->setEnabled( m_ui->formatRadioButton->isChecked() );
+    m_ui->fileSystemComboBox->setEnabled( m_ui->formatRadioButton->isChecked() );
 }
 
 EditExistingPartitionDialog::~EditExistingPartitionDialog()
@@ -81,6 +102,14 @@ EditExistingPartitionDialog::applyChanges( PartitionCoreModule* core )
     qint64 newLastSector = m_partitionSizeController->lastSector();
     bool partitionChanged = newFirstSector != m_partition->firstSector() || newLastSector != m_partition->lastSector();
 
+    FileSystem::Type fsType = FileSystem::Unknown;
+    if ( m_ui->formatRadioButton->isChecked() )
+    {
+        fsType = m_partition->roles().has( PartitionRole::Extended )
+                ? FileSystem::Extended
+                : FileSystem::typeForName( m_ui->fileSystemComboBox->currentText() );
+    }
+
     if ( partitionChanged )
     {
         if ( m_ui->formatRadioButton->isChecked() )
@@ -89,7 +118,7 @@ EditExistingPartitionDialog::applyChanges( PartitionCoreModule* core )
                                           m_partition->parent(),
                                           *m_device,
                                           m_partition->roles(),
-                                          m_partition->fileSystem().type(),
+                                          fsType,
                                           newFirstSector,
                                           newLastSector );
             PartitionInfo::setMountPoint( newPartition, PartitionInfo::mountPoint( m_partition ) );
@@ -99,15 +128,43 @@ EditExistingPartitionDialog::applyChanges( PartitionCoreModule* core )
             core->createPartition( m_device, newPartition );
         }
         else
-            core->resizePartition( m_device, m_partition, newFirstSector, newLastSector );
+        {
+            core->resizePartition( m_device,
+                                   m_partition,
+                                   newFirstSector,
+                                   newLastSector );
+        }
     }
     else
     {
         // No size changes
         if ( m_ui->formatRadioButton->isChecked() )
-            core->formatPartition( m_device, m_partition );
+        {
+            // if the FS type is unchanged, we just format
+            if ( m_partition->fileSystem().type() == fsType )
+            {
+                core->formatPartition( m_device, m_partition );
+            }
+            else // otherwise, we delete and recreate the partition with new fs type
+            {
+                Partition* newPartition = PMUtils::createNewPartition(
+                                              m_partition->parent(),
+                                              *m_device,
+                                              m_partition->roles(),
+                                              fsType,
+                                              m_partition->firstSector(),
+                                              m_partition->lastSector() );
+                PartitionInfo::setMountPoint( newPartition, PartitionInfo::mountPoint( m_partition ) );
+                PartitionInfo::setFormat( newPartition, true );
+
+                core->deletePartition( m_device, m_partition );
+                core->createPartition( m_device, newPartition );
+            }
+        }
         else
+        {
             core->refreshPartition( m_device, m_partition );
+        }
     }
 }
 
