@@ -43,7 +43,7 @@ initKPMcore()
 
     QByteArray backendName = qgetenv( "KPMCORE_BACKEND" );
     if ( backendName.isEmpty() )
-        backendName = "libparted";
+        backendName = "pmlibpartedbackendplugin";
 
     if ( !CoreBackendManager::self()->load( backendName ) )
     {
