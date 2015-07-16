@@ -234,7 +234,7 @@ p, li { white-space: pre-wrap; }
         <translation>Modul</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/utils/DebugWindow.cpp" line="95"/>
+        <location filename="../src/libcalamaresui/utils/DebugWindow.cpp" line="96"/>
         <source>Debug information</source>
         <translation>Informasi debug</translation>
     </message>
@@ -951,17 +951,17 @@ Penginstalan dapat dilanjutkan, namun beberapa fitur akan ditiadakan.</translati
         <translation>MB</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="96"/>
+        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="99"/>
         <source>Logical</source>
         <translation>Logikal</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="101"/>
+        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="104"/>
         <source>Primary</source>
         <translation>Utama</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="118"/>
+        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="121"/>
         <source>GPT</source>
         <translation>GPT</translation>
     </message>
@@ -1297,8 +1297,8 @@ Penginstalan dapat dilanjutkan, namun beberapa fitur akan ditiadakan.</translati
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="60"/>
-        <source>Keep</source>
-        <translation>Jaga</translation>
+        <source>&amp;Keep</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="70"/>
@@ -1306,19 +1306,24 @@ Penginstalan dapat dilanjutkan, namun beberapa fitur akan ditiadakan.</translati
         <translation>Format</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="83"/>
+        <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="89"/>
         <source>Warning: Formatting the partition will erase all existing data.</source>
         <translation>Peringatan: Memformat partisi akan menghapus semua data yang ada.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="93"/>
+        <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="99"/>
         <source>&amp;Mount Point:</source>
         <translation>Lokasi Mount:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="113"/>
-        <source>Size:</source>
-        <translation>Ukuran:</translation>
+        <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="119"/>
+        <source>Si&amp;ze:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="132"/>
+        <source>Fi&amp;le System:</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1675,28 +1680,28 @@ Beberapa berkas sistem memerlukan penginstalan perangkat eksternal supaya diduku
 <context>
     <name>LocalePage</name>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="159"/>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="170"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="158"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="169"/>
         <source>The system locale is set to %1.</source>
         <translation>Lokal sistem diatur ke %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="167"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="166"/>
         <source>Region:</source>
         <translation>Wilayah:</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="168"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="167"/>
         <source>Zone:</source>
         <translation>Zona:</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="173"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="172"/>
         <source>&amp;Change...</source>
         <translation>Ubah</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="267"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="266"/>
         <source>Set timezone to %1/%2.&lt;br/&gt;</source>
         <translation>Setel zona waktu ke %1/%2.&lt;br/&gt;</translation>
     </message>

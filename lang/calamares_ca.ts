@@ -234,7 +234,7 @@ p, li { white-space: pre-wrap; }
         <translation>Mòduls</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/utils/DebugWindow.cpp" line="95"/>
+        <location filename="../src/libcalamaresui/utils/DebugWindow.cpp" line="96"/>
         <source>Debug information</source>
         <translation>Informació de depuració</translation>
     </message>
@@ -949,17 +949,17 @@ L&apos;instal·lador es tancarà i tots els canvis es perdran.</translation>
         <translation>MB</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="96"/>
+        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="99"/>
         <source>Logical</source>
         <translation>Lògica</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="101"/>
+        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="104"/>
         <source>Primary</source>
         <translation>Primària</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="118"/>
+        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="121"/>
         <source>GPT</source>
         <translation>GPT</translation>
     </message>
@@ -1295,8 +1295,8 @@ L&apos;instal·lador es tancarà i tots els canvis es perdran.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="60"/>
-        <source>Keep</source>
-        <translation>Mantén</translation>
+        <source>&amp;Keep</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="70"/>
@@ -1304,19 +1304,24 @@ L&apos;instal·lador es tancarà i tots els canvis es perdran.</translation>
         <translation>Formatar</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="83"/>
+        <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="89"/>
         <source>Warning: Formatting the partition will erase all existing data.</source>
         <translation>Advertència: formatar la partició esborrarà totes les dades existents.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="93"/>
+        <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="99"/>
         <source>&amp;Mount Point:</source>
         <translation>&amp;Punt de muntatge:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="113"/>
-        <source>Size:</source>
-        <translation>Mida:</translation>
+        <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="119"/>
+        <source>Si&amp;ze:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="132"/>
+        <source>Fi&amp;le System:</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1673,28 +1678,28 @@ Alguns sistemes de fitxers requereixen la instal·lació d&apos;eines externes p
 <context>
     <name>LocalePage</name>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="159"/>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="170"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="158"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="169"/>
         <source>The system locale is set to %1.</source>
         <translation>S&apos;ha triat %1 com a localització del sistema.</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="167"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="166"/>
         <source>Region:</source>
         <translation>Regió:</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="168"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="167"/>
         <source>Zone:</source>
         <translation>Zona:</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="173"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="172"/>
         <source>&amp;Change...</source>
         <translation>&amp;Canvi...</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="267"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="266"/>
         <source>Set timezone to %1/%2.&lt;br/&gt;</source>
         <translation>Assigna la zona horària a %1/%2.&lt;br/&gt;</translation>
     </message>

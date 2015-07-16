@@ -234,7 +234,7 @@ p, li { white-space: pre-wrap; }
         <translation>Moduli</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/utils/DebugWindow.cpp" line="95"/>
+        <location filename="../src/libcalamaresui/utils/DebugWindow.cpp" line="96"/>
         <source>Debug information</source>
         <translation>Informazioni debug</translation>
     </message>
@@ -949,17 +949,17 @@ Il programma di installazione sarà chiuso, e tutte le modifiche andranno perse.
         <translation> MB</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="96"/>
+        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="99"/>
         <source>Logical</source>
         <translation>Logica</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="101"/>
+        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="104"/>
         <source>Primary</source>
         <translation>Primaria</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="118"/>
+        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="121"/>
         <source>GPT</source>
         <translation>GPT</translation>
     </message>
@@ -1295,8 +1295,8 @@ Il programma di installazione sarà chiuso, e tutte le modifiche andranno perse.
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="60"/>
-        <source>Keep</source>
-        <translation>Mantieni</translation>
+        <source>&amp;Keep</source>
+        <translation>&amp;Mantieni</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="70"/>
@@ -1304,19 +1304,24 @@ Il programma di installazione sarà chiuso, e tutte le modifiche andranno perse.
         <translation>Formatta</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="83"/>
+        <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="89"/>
         <source>Warning: Formatting the partition will erase all existing data.</source>
         <translation>Attenzione: la formattazione della partizione cancellerà tutti i dati!</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="93"/>
+        <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="99"/>
         <source>&amp;Mount Point:</source>
         <translation>Punto di &amp;Mount:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="113"/>
-        <source>Size:</source>
-        <translation>Dimensioni:</translation>
+        <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="119"/>
+        <source>Si&amp;ze:</source>
+        <translation>Di&amp;mensione:</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="132"/>
+        <source>Fi&amp;le System:</source>
+        <translation>Fi&amp;le System:</translation>
     </message>
 </context>
 <context>
@@ -1673,28 +1678,28 @@ Alcuni file system necessitano l&apos;installazione di strumenti esterni per ess
 <context>
     <name>LocalePage</name>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="159"/>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="170"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="158"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="169"/>
         <source>The system locale is set to %1.</source>
         <translation>La localizzazione di sistema è impostata a %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="167"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="166"/>
         <source>Region:</source>
         <translation>Area:</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="168"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="167"/>
         <source>Zone:</source>
         <translation>Zona:</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="173"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="172"/>
         <source>&amp;Change...</source>
         <translation>&amp;Cambia...</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="267"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="266"/>
         <source>Set timezone to %1/%2.&lt;br/&gt;</source>
         <translation>Imposta il fuso orario a %1%2.&lt;br/&gt;</translation>
     </message>
