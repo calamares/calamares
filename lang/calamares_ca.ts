@@ -1296,7 +1296,7 @@ L&apos;instal·lador es tancarà i tots els canvis es perdran.</translation>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="60"/>
         <source>&amp;Keep</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Mantén</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="70"/>
@@ -1316,12 +1316,12 @@ L&apos;instal·lador es tancarà i tots els canvis es perdran.</translation>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="119"/>
         <source>Si&amp;ze:</source>
-        <translation type="unfinished"/>
+        <translation>Mi&amp;da:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="132"/>
         <source>Fi&amp;le System:</source>
-        <translation type="unfinished"/>
+        <translation>S&amp;istema de fitxers:</translation>
     </message>
 </context>
 <context>
