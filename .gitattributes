@@ -1,3 +1,4 @@
 .tx/* export-ignore
 hacking/* export-ignore
 HACKING.md export-ignore
+.editorconfig export-ignore
