@@ -1296,7 +1296,7 @@ Het installatieprogramma zal afsluiten en alle wijzigingen zullen verloren gaan.
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="60"/>
         <source>&amp;Keep</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Behouden</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="70"/>
@@ -1316,12 +1316,12 @@ Het installatieprogramma zal afsluiten en alle wijzigingen zullen verloren gaan.
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="119"/>
         <source>Si&amp;ze:</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Grootte:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="132"/>
         <source>Fi&amp;le System:</source>
-        <translation type="unfinished"/>
+        <translation>Bestands&amp;systeem</translation>
     </message>
 </context>
 <context>

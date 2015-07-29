@@ -604,7 +604,7 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
     <message>
         <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="45"/>
         <source>Clearing all temporary mounts.</source>
-        <translation type="unfinished"/>
+        <translation>Limpar todos os pontos de montagem temporários.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="56"/>
@@ -979,7 +979,7 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="71"/>
         <source>Creating new %1 partition on %2.</source>
-        <translation type="unfinished"/>
+        <translation>Criando nova partição  %1 em %2</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="83"/>
@@ -1106,7 +1106,7 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="65"/>
         <source>Creating user %1.</source>
-        <translation type="unfinished"/>
+        <translation>Criando usuário %1</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="81"/>
@@ -1177,7 +1177,7 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="42"/>
         <source>Delete partition %1.</source>
-        <translation type="unfinished"/>
+        <translation>Apagar partição %1</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="50"/>
@@ -1187,7 +1187,7 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="58"/>
         <source>Deleting partition %1.</source>
-        <translation type="unfinished"/>
+        <translation>Apagando partição %1</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="67"/>
@@ -2936,7 +2936,7 @@ Alguns sistemas de arquivos necessitam de ferramentas externas para serem suport
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>Formulário</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="75"/>
@@ -2966,7 +2966,7 @@ Alguns sistemas de arquivos necessitam de ferramentas externas para serem suport
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="56"/>
         <source>&lt;h1&gt;Welcome to the %1 installer.&lt;/h1&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;h1&gt;Bem vindo ao instalador %1 .&lt;/h1&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="70"/>
