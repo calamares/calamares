@@ -203,7 +203,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="110"/>
         <source>Do not install a boot loader</source>
-        <translation type="unfinished"/>
+        <translation>No instalar el gestor de arranque</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="124"/>
@@ -265,7 +265,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="60"/>
         <source>Running command %1 %2</source>
-        <translation type="unfinished"/>
+        <translation>Ejecutando comando %1 %2</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="88"/>
@@ -335,7 +335,7 @@ Salida:
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="241"/>
         <source>Running %1 operation.</source>
-        <translation type="unfinished"/>
+        <translation>Ejecutando %1 operación.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="254"/>
@@ -396,7 +396,7 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="256"/>
         <source>Continue with setup?</source>
-        <translation type="unfinished"/>
+        <translation>¿Continuar con la configuración?</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="257"/>
@@ -406,7 +406,7 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="264"/>
         <source>&amp;Install now</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Instalar ahora</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="265"/>
@@ -483,12 +483,12 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="95"/>
         <source>This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;Installation cannot continue. &lt;a href=&quot;#details&quot;&gt;Details...&lt;/a&gt;</source>
-        <translation type="unfinished"/>
+        <translation>Este ordenador no cumple los requisitos mínimos para la instalación. %1.&lt;br/&gt;La instalación no puede continuar. &lt;a href=&quot;#details&quot;&gt;Detalles...&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="113"/>
         <source>This computer does not satisfy some of the recommended requirements for installing %1.&lt;br/&gt;Installation can continue, but some features might be disabled.</source>
-        <translation type="unfinished"/>
+        <translation>Este ordenador no cumple alguno de los requisitos recomendados para la instalación %1.&lt;br/&gt;La instalación puede continuar, pero algunas funcionalidades podrían ser deshabilitadas.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="142"/>
@@ -498,12 +498,12 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="166"/>
         <source>For best results, please ensure that this computer:</source>
-        <translation type="unfinished"/>
+        <translation>Para obtener los mejores resultados, por favor asegúrese que este ordenador:</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="194"/>
         <source>System requirements</source>
-        <translation type="unfinished"/>
+        <translation>Requisitos del sistema</translation>
     </message>
 </context>
 <context>
@@ -969,7 +969,7 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="48"/>
         <source>Create new %2MB partition on %4 (%3) with file system %1.</source>
-        <translation type="unfinished"/>
+        <translation>Crear nueva %2MB partición en  %4 (%3) con el sistema de archivos %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="59"/>
@@ -979,7 +979,7 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="71"/>
         <source>Creating new %1 partition on %2.</source>
-        <translation type="unfinished"/>
+        <translation>Creando nueva %1 partición en %2</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="83"/>
@@ -1106,7 +1106,7 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="65"/>
         <source>Creating user %1.</source>
-        <translation type="unfinished"/>
+        <translation>Creando usuario %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="81"/>
@@ -1177,17 +1177,17 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="42"/>
         <source>Delete partition %1.</source>
-        <translation type="unfinished"/>
+        <translation>Eliminar partición %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="50"/>
         <source>Delete partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Eliminar partición &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="58"/>
         <source>Deleting partition %1.</source>
-        <translation type="unfinished"/>
+        <translation>Eliminando partición %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="67"/>
@@ -1564,7 +1564,7 @@ Algunos sistemas de archivos requieren de la instalación de herramientas extern
     <message>
         <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="142"/>
         <source>Install boot loader on &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Instalar gestor de arranque en &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="152"/>
@@ -2429,7 +2429,7 @@ Algunos sistemas de archivos requieren de la instalación de herramientas extern
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="57"/>
         <source>Gathering system information...</source>
-        <translation type="unfinished"/>
+        <translation>Obteniendo información del sistema...</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="98"/>
@@ -2439,7 +2439,7 @@ Algunos sistemas de archivos requieren de la instalación de herramientas extern
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="100"/>
         <source>There is not enough drive space. At least %1 GB is required.</source>
-        <translation type="unfinished"/>
+        <translation>No hay suficiente espació en el disco duro. Se requiere al menos %1 GB libre.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="108"/>
@@ -2469,7 +2469,7 @@ Algunos sistemas de archivos requieren de la instalación de herramientas extern
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="127"/>
         <source>The system is not connected to the Internet.</source>
-        <translation type="unfinished"/>
+        <translation>El sistema no esta conectado a Internet</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="135"/>
@@ -2601,7 +2601,7 @@ Algunos sistemas de archivos requieren de la instalación de herramientas extern
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="49"/>
         <source>Setting password for user %1.</source>
-        <translation type="unfinished"/>
+        <translation>Configurando contraseña para el usuario %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="59"/>
@@ -2989,7 +2989,7 @@ Algunos sistemas de archivos requieren de la instalación de herramientas extern
     <message>
         <location filename="../src/modules/welcome/WelcomeViewStep.cpp" line="48"/>
         <source>Welcome</source>
-        <translation type="unfinished"/>
+        <translation>Bienvenido</translation>
     </message>
 </context>
 </TS>
