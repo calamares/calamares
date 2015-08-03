@@ -39,6 +39,10 @@ $ cmake -DCMAKE_BUILD_TYPE=Debug ..
 $ make
 ```
 
+#### Supported variables for CMake
+ * `WITH_PYTHON` - if this is set to false, the Python module interface will not be built. Default is true.
+ * `SKIP_MODULES` - takes a space-separated list of module names that should not be built even if present in `src/modules` (e.g. `cmake -DSKIP_MODULES="partition mount umount welcome" ..`). Default is empty.
+
 ### Design Notes
 Calamares is currently split as follows:
  1. __libcalamares__ - The back-end library.
