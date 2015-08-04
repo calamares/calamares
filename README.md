@@ -11,7 +11,7 @@
 
 ### Dependencies
 
-Compiler with C++11 support: GCC >= 4.8.4 or Clang >= 3.5.1
+Compiler with C++11 support: GCC >= 4.9.0 or Clang >= 3.5.1
 
 | Main | Welcome module | Partitioning module | Bootloader module | Unpackfs module |
 |:----:|:--------------:|:-------------------:|:-----------------:|:---------------:|
