@@ -203,12 +203,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="110"/>
         <source>Do not install a boot loader</source>
-        <translation type="unfinished"/>
+        <translation>Nun instalar un cargador d&apos;arranque</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="124"/>
         <source>%1 (%2)</source>
-        <translation type="unfinished"/>
+        <translation>%1 (%2)</translation>
     </message>
 </context>
 <context>
