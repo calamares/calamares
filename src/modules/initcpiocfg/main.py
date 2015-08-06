@@ -22,7 +22,7 @@
 import libcalamares
 import os
 from collections import OrderedDict
-from libcalamares.utils import check_chroot_call
+from libcalamares.utils import check_target_env_call
 
 
 def cpuinfo():

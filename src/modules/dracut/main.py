@@ -20,7 +20,7 @@
 #   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
 
 import libcalamares
-from libcalamares.utils import chroot_call
+from libcalamares.utils import target_env_call
 
 
 def run_dracut():
@@ -28,7 +28,7 @@ def run_dracut():
 
     :return:
     """
-    return chroot_call(['dracut', '-f'])
+    return target_env_call(['dracut', '-f'])
 
 
 def run():

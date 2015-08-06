@@ -28,7 +28,7 @@ import libcalamares
 import os
 import subprocess
 
-from libcalamares.utils import check_chroot_call
+from libcalamares.utils import check_target_env_call
 
 
 def get_uuid():
@@ -167,7 +167,7 @@ def install_grub(efi_directory, fw_type):
     if fw_type == "efi":
         print("Bootloader: grub (efi)")
         efi_directory_firmware = efi_directory + "/EFI"
-        check_chroot_call(["mkdir", "-p", "{!s}".format(efi_directory)])
+        check_target_env_call(["mkdir", "-p", "{!s}".format(efi_directory)])
 
         if "efiBootloaderId" in libcalamares.job.configuration:
             efi_bootloader_id = libcalamares.job.configuration["efiBootloaderId"]
@@ -176,21 +176,21 @@ def install_grub(efi_directory, fw_type):
             distribution = branding["bootloaderEntryName"]
             file_name_sanitizer = str.maketrans(" /", "_-")
             efi_bootloader_id = distribution.translate(file_name_sanitizer)
-        check_chroot_call([libcalamares.job.configuration["grubInstall"], "--target=x86_64-efi",
+        check_target_env_call([libcalamares.job.configuration["grubInstall"], "--target=x86_64-efi",
                            "--efi-directory={!s}".format(efi_directory),
                            "--bootloader-id={!s}".format(efi_bootloader_id),
                            "--force"])
         # Workaround for some UEFI firmwares
-        check_chroot_call(["mkdir", "-p", "{!s}/boot".format(efi_directory_firmware)])
-        check_chroot_call(["cp", "{!s}/{!s}/grubx64.efi".format(efi_directory_firmware, efi_bootloader_id),
+        check_target_env_call(["mkdir", "-p", "{!s}/boot".format(efi_directory_firmware)])
+        check_target_env_call(["cp", "{!s}/{!s}/grubx64.efi".format(efi_directory_firmware, efi_bootloader_id),
                            "{!s}/boot/bootx64.efi".format(efi_directory_firmware)])
     else:
         print("Bootloader: grub (bios)")
         boot_loader = libcalamares.globalstorage.value("bootLoader")
-        check_chroot_call([libcalamares.job.configuration["grubInstall"], "--target=i386-pc",
+        check_target_env_call([libcalamares.job.configuration["grubInstall"], "--target=i386-pc",
                            "--recheck", "--force", boot_loader["installPath"]])
 
-    check_chroot_call([libcalamares.job.configuration["grubMkconfig"], "-o",
+    check_target_env_call([libcalamares.job.configuration["grubMkconfig"], "-o",
                        libcalamares.job.configuration["grubCfg"]])
 
 

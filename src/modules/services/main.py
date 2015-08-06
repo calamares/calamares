@@ -30,7 +30,7 @@ def run():
 
     # enable services
     for svc in services:
-        ec = libcalamares.utils.chroot_call(['systemctl', 'enable', '{}.service'.format(svc['name'])])
+        ec = libcalamares.utils.target_env_call(['systemctl', 'enable', '{}.service'.format(svc['name'])])
 
         if ec != 0:
             if svc['mandatory']:
@@ -42,7 +42,7 @@ def run():
 
     # enable targets
     for tgt in targets:
-        ec = libcalamares.utils.chroot_call(['systemctl', 'enable', '{}.target'.format(tgt['name'])])
+        ec = libcalamares.utils.target_env_call(['systemctl', 'enable', '{}.target'.format(tgt['name'])])
 
         if ec != 0:
             if tgt['mandatory']:

@@ -19,7 +19,7 @@
 #   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
 
 import libcalamares
-from libcalamares.utils import check_chroot_call, chroot_call
+from libcalamares.utils import check_target_env_call, target_env_call
 
 
 class PackageManager:
@@ -38,30 +38,30 @@ class PackageManager:
         """
         if self.backend == "packagekit":
             for pkg in pkgs:
-                check_chroot_call(["pkcon", "-py", "install", pkg])
+                check_target_env_call(["pkcon", "-py", "install", pkg])
         elif self.backend == "zypp":
-            check_chroot_call(["zypper", "--non-interactive", "--quiet-install", "install",
+            check_target_env_call(["zypper", "--non-interactive", "--quiet-install", "install",
                                "--auto-agree-with-licenses", "install"] + pkgs)
         elif self.backend == "yum":
-            check_chroot_call(["yum", "install", "-y"] + pkgs)
+            check_target_env_call(["yum", "install", "-y"] + pkgs)
         elif self.backend == "dnf":
-            check_chroot_call(["dnf", "install", "-y"] + pkgs)
+            check_target_env_call(["dnf", "install", "-y"] + pkgs)
         elif self.backend == "urpmi":
-            check_chroot_call(["urpmi", "--download-all", "--no-suggests", "--no-verify-rpm",
+            check_target_env_call(["urpmi", "--download-all", "--no-suggests", "--no-verify-rpm",
                                "--fastunsafe", "--ignoresize", "--nolock", "--auto"] + pkgs)
         elif self.backend == "apt":
-            check_chroot_call(["apt-get", "-q", "-y", "install"] + pkgs)
+            check_target_env_call(["apt-get", "-q", "-y", "install"] + pkgs)
         elif self.backend == "pacman":
             if from_local:
                 pacman_flags = "-U"
             else:
                 pacman_flags = "-Sy"
 
-            check_chroot_call(["pacman", pacman_flags, "--noconfirm"] + pkgs)
+            check_target_env_call(["pacman", pacman_flags, "--noconfirm"] + pkgs)
         elif self.backend == "portage":
-            check_chroot_call(["emerge", "-v"] + pkgs)
+            check_target_env_call(["emerge", "-v"] + pkgs)
         elif self.backend == "entropy":
-            check_chroot_call(["equo", "i"] + pkgs)
+            check_target_env_call(["equo", "i"] + pkgs)
 
     def remove(self, pkgs):
         """ Removes packages.
@@ -70,25 +70,25 @@ class PackageManager:
         """
         if self.backend == "packagekit":
             for pkg in pkgs:
-                check_chroot_call(["pkcon", "-py", "remove", pkg])
+                check_target_env_call(["pkcon", "-py", "remove", pkg])
         elif self.backend == "zypp":
-            check_chroot_call(["zypper", "--non-interactive", "remove"] + pkgs)
+            check_target_env_call(["zypper", "--non-interactive", "remove"] + pkgs)
         elif self.backend == "yum":
-            check_chroot_call(["yum", "--disablerepo=*", "-C", "-y", "remove"] + pkgs)
+            check_target_env_call(["yum", "--disablerepo=*", "-C", "-y", "remove"] + pkgs)
         elif self.backend == "dnf":
             # ignore the error code for now because dnf thinks removing a nonexistent package is an error
-            chroot_call(["dnf", "--disablerepo=*", "-C", "-y", "remove"] + pkgs)
+            target_env_call(["dnf", "--disablerepo=*", "-C", "-y", "remove"] + pkgs)
         elif self.backend == "urpmi":
-            check_chroot_call(["urpme", "--auto"] + pkgs)
+            check_target_env_call(["urpme", "--auto"] + pkgs)
         elif self.backend == "apt":
-            check_chroot_call(["apt-get", "--purge", "-q", "-y", "remove"] + pkgs)
-            check_chroot_call(["apt-get", "--purge", "-q", "-y", "autoremove"])
+            check_target_env_call(["apt-get", "--purge", "-q", "-y", "remove"] + pkgs)
+            check_target_env_call(["apt-get", "--purge", "-q", "-y", "autoremove"])
         elif self.backend == "pacman":
-            check_chroot_call(["pacman", "-Rs", "--noconfirm"] + pkgs)
+            check_target_env_call(["pacman", "-Rs", "--noconfirm"] + pkgs)
         elif self.backend == "portage":
-            check_chroot_call(["emerge", "-C"] + pkgs)
+            check_target_env_call(["emerge", "-C"] + pkgs)
         elif self.backend == "entropy":
-            check_chroot_call(["equo", "rm"] + pkgs)
+            check_target_env_call(["equo", "rm"] + pkgs)
 
 
 def run_operations(pkgman, entry):

@@ -60,7 +60,7 @@ def run():
 
                 gen.write(line)
 
-        libcalamares.utils.chroot_call(['locale-gen'])
+        libcalamares.utils.target_env_call(['locale-gen'])
         print('locale.gen done')
 
     locale_conf_path = os.path.join(install_path, "etc/locale.conf")
