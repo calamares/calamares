@@ -44,23 +44,23 @@ DLLEXPORT int mount( const QString& devicePath,
   *             -3 = bad arguments
   *             -4 = QProcess timeout
   */
-DLLEXPORT int chrootCall( const QStringList& args,
+DLLEXPORT int targetEnvCall( const QStringList& args,
                           const QString& workingPath = QString(),
                           const QString& stdInput = QString(),
                           int timeoutSec = 0 );
 
-DLLEXPORT int chrootCall( const QString& command,
+DLLEXPORT int targetEnvCall( const QString& command,
                           const QString& workingPath = QString(),
                           const QString& stdInput = QString(),
                           int timeoutSec = 0 );
 
-DLLEXPORT int chrootOutput( const QStringList& args,
+DLLEXPORT int targetEnvOutput( const QStringList& args,
                             QString& output,
                             const QString& workingPath = QString(),
                             const QString& stdInput = QString(),
                             int timeoutSec = 0 );
 
-DLLEXPORT int chrootOutput( const QString& command,
+DLLEXPORT int targetEnvOutput( const QString& command,
                             QString& output,
                             const QString& workingPath = QString(),
                             const QString& stdInput = QString(),

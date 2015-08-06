@@ -37,23 +37,23 @@ namespace bp = boost::python;
 BOOST_PYTHON_FUNCTION_OVERLOADS( mount_overloads,
                                  CalamaresPython::mount,
                                  2, 4 );
-BOOST_PYTHON_FUNCTION_OVERLOADS( chroot_call_str_overloads,
-                                 CalamaresPython::chroot_call,
+BOOST_PYTHON_FUNCTION_OVERLOADS( target_env_call_str_overloads,
+                                 CalamaresPython::target_env_call,
                                  1, 3 );
-BOOST_PYTHON_FUNCTION_OVERLOADS( chroot_call_list_overloads,
-                                 CalamaresPython::chroot_call,
+BOOST_PYTHON_FUNCTION_OVERLOADS( target_env_call_list_overloads,
+                                 CalamaresPython::target_env_call,
                                  1, 3 );
-BOOST_PYTHON_FUNCTION_OVERLOADS( check_chroot_call_str_overloads,
-                                 CalamaresPython::check_chroot_call,
+BOOST_PYTHON_FUNCTION_OVERLOADS( check_target_env_call_str_overloads,
+                                 CalamaresPython::check_target_env_call,
                                  1, 3 );
-BOOST_PYTHON_FUNCTION_OVERLOADS( check_chroot_call_list_overloads,
-                                 CalamaresPython::check_chroot_call,
+BOOST_PYTHON_FUNCTION_OVERLOADS( check_target_env_call_list_overloads,
+                                 CalamaresPython::check_target_env_call,
                                  1, 3 );
-BOOST_PYTHON_FUNCTION_OVERLOADS( check_chroot_output_str_overloads,
-                                 CalamaresPython::check_chroot_output,
+BOOST_PYTHON_FUNCTION_OVERLOADS( check_target_env_output_str_overloads,
+                                 CalamaresPython::check_target_env_output,
                                  1, 3 );
-BOOST_PYTHON_FUNCTION_OVERLOADS( check_chroot_output_list_overloads,
-                                 CalamaresPython::check_chroot_output,
+BOOST_PYTHON_FUNCTION_OVERLOADS( check_target_env_output_list_overloads,
+                                 CalamaresPython::check_target_env_output,
                                  1, 3 );
 BOOST_PYTHON_MODULE( libcalamares )
 {
@@ -115,11 +115,11 @@ BOOST_PYTHON_MODULE( libcalamares )
         )
     );
     bp::def(
-        "chroot_call",
+        "target_env_call",
         static_cast< int (*)( const std::string&,
                               const std::string&,
-                              int ) >( &CalamaresPython::chroot_call ),
-        chroot_call_str_overloads(
+                              int ) >( &CalamaresPython::target_env_call ),
+        target_env_call_str_overloads(
             bp::args( "command",
                       "stdin",
                       "timeout" ),
@@ -132,11 +132,11 @@ BOOST_PYTHON_MODULE( libcalamares )
         )
     );
     bp::def(
-        "chroot_call",
+        "target_env_call",
         static_cast< int (*)( const bp::list&,
                               const std::string&,
-                              int ) >( &CalamaresPython::chroot_call ),
-        chroot_call_list_overloads(
+                              int ) >( &CalamaresPython::target_env_call ),
+        target_env_call_list_overloads(
             bp::args( "args",
                       "stdin",
                       "timeout" ),
@@ -150,11 +150,11 @@ BOOST_PYTHON_MODULE( libcalamares )
     );
 
     bp::def(
-        "check_chroot_call",
+        "check_target_env_call",
         static_cast< int (*)( const std::string&,
                               const std::string&,
-                              int ) >( &CalamaresPython::check_chroot_call ),
-        check_chroot_call_str_overloads(
+                              int ) >( &CalamaresPython::check_target_env_call ),
+        check_target_env_call_str_overloads(
             bp::args( "command",
                       "stdin",
                       "timeout" ),
@@ -164,11 +164,11 @@ BOOST_PYTHON_MODULE( libcalamares )
         )
     );
     bp::def(
-        "check_chroot_call",
+        "check_target_env_call",
         static_cast< int (*)( const bp::list&,
                               const std::string&,
-                              int ) >( &CalamaresPython::check_chroot_call ),
-        check_chroot_call_list_overloads(
+                              int ) >( &CalamaresPython::check_target_env_call ),
+        check_target_env_call_list_overloads(
             bp::args( "args",
                       "stdin",
                       "timeout" ),
@@ -179,11 +179,11 @@ BOOST_PYTHON_MODULE( libcalamares )
     );
 
     bp::def(
-        "check_chroot_output",
+        "check_target_env_output",
         static_cast< std::string (*)( const std::string&,
                                       const std::string&,
-                                      int ) >( &CalamaresPython::check_chroot_output ),
-        check_chroot_output_str_overloads(
+                                      int ) >( &CalamaresPython::check_target_env_output ),
+        check_target_env_output_str_overloads(
             bp::args( "command",
                       "stdin",
                       "timeout" ),
@@ -193,11 +193,11 @@ BOOST_PYTHON_MODULE( libcalamares )
         )
     );
     bp::def(
-        "check_chroot_output",
+        "check_target_env_output",
         static_cast< std::string (*)( const bp::list&,
                                       const std::string&,
-                                      int ) >( &CalamaresPython::check_chroot_output ),
-        check_chroot_output_list_overloads(
+                                      int ) >( &CalamaresPython::check_target_env_output ),
+        check_target_env_output_list_overloads(
             bp::args( "args",
                       "stdin",
                       "timeout" ),

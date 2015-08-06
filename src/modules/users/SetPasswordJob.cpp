@@ -61,7 +61,7 @@ SetPasswordJob::exec()
 
     QByteArray data = crypt( m_newPassword.toLatin1(), QString( "$6$%1$" ).arg( m_userName ).toLatin1() );
 
-    int ec = CalamaresUtils::chrootCall( { "usermod",
+    int ec = CalamaresUtils::targetEnvCall( { "usermod",
                                            "-p",
                                            QString::fromLatin1( data ),
                                            m_userName } );

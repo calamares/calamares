@@ -57,11 +57,11 @@ SetTimezoneJob::exec()
                                             tr( "Bad path: %1" ).arg( zoneFile.absolutePath() ) );
 
     // Make sure /etc/localtime doesn't exist, otherwise symlinking will fail
-    CalamaresUtils::chrootCall( { "rm",
+    CalamaresUtils::targetEnvCall( { "rm",
                                   "-f",
                                   localtimeSlink } );
 
-    int ec = CalamaresUtils::chrootCall( { "ln",
+    int ec = CalamaresUtils::targetEnvCall( { "ln",
                                            "-s",
                                            zoneinfoPath,
                                            localtimeSlink } );

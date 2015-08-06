@@ -46,11 +46,11 @@ mount( const std::string& device_path,
 
 
 int
-chroot_call( const std::string& command,
+target_env_call( const std::string& command,
              const std::string& stdin,
              int timeout )
 {
-    return CalamaresUtils::chrootCall( QString::fromStdString( command ),
+    return CalamaresUtils::targetEnvCall( QString::fromStdString( command ),
                                        QString(),
                                        QString::fromStdString( stdin ),
                                        timeout );
@@ -58,7 +58,7 @@ chroot_call( const std::string& command,
 
 
 int
-chroot_call( const bp::list& args,
+target_env_call( const bp::list& args,
              const std::string& stdin,
              int timeout )
 {
@@ -69,7 +69,7 @@ chroot_call( const bp::list& args,
             bp::extract< std::string >( args[ i ] ) ) );
     }
 
-    return CalamaresUtils::chrootCall( list,
+    return CalamaresUtils::targetEnvCall( list,
                                        QString(),
                                        QString::fromStdString( stdin ),
                                        timeout );
@@ -77,21 +77,21 @@ chroot_call( const bp::list& args,
 
 
 int
-check_chroot_call( const std::string& command,
+check_target_env_call( const std::string& command,
                    const std::string& stdin,
                    int timeout )
 {
-    int ec = chroot_call( command, stdin, timeout );
-    return _handle_check_chroot_call_error( ec, QString::fromStdString( command ) );
+    int ec = target_env_call( command, stdin, timeout );
+    return _handle_check_target_env_call_error( ec, QString::fromStdString( command ) );
 }
 
 
 int
-check_chroot_call( const bp::list& args,
+check_target_env_call( const bp::list& args,
                    const std::string& stdin,
                    int timeout )
 {
-    int ec = chroot_call( args, stdin, timeout );
+    int ec = target_env_call( args, stdin, timeout );
     if ( !ec )
         return ec;
 
@@ -102,28 +102,28 @@ check_chroot_call( const bp::list& args,
             bp::extract< std::string >( args[ i ] ) ) );
     }
 
-    return _handle_check_chroot_call_error( ec, failedCmdList.join( ' ' ) );
+    return _handle_check_target_env_call_error( ec, failedCmdList.join( ' ' ) );
 }
 
 
 std::string
-check_chroot_output( const std::string& command,
+check_target_env_output( const std::string& command,
                      const std::string& stdin,
                      int timeout )
 {
     QString output;
-    int ec = CalamaresUtils::chrootOutput( QString::fromStdString( command ),
+    int ec = CalamaresUtils::targetEnvOutput( QString::fromStdString( command ),
                                            output,
                                            QString(),
                                            QString::fromStdString( stdin ),
                                            timeout );
-    _handle_check_chroot_call_error( ec, QString::fromStdString( command ) );
+    _handle_check_target_env_call_error( ec, QString::fromStdString( command ) );
     return output.toStdString();
 }
 
 
 std::string
-check_chroot_output( const bp::list& args,
+check_target_env_output( const bp::list& args,
                      const std::string& stdin,
                      int timeout )
 {
@@ -135,18 +135,18 @@ check_chroot_output( const bp::list& args,
             bp::extract< std::string >( args[ i ] ) ) );
     }
 
-    int ec = CalamaresUtils::chrootOutput( list,
+    int ec = CalamaresUtils::targetEnvOutput( list,
                                            output,
                                            QString(),
                                            QString::fromStdString( stdin ),
                                            timeout );
-    _handle_check_chroot_call_error( ec, list.join( ' ' ) );
+    _handle_check_target_env_call_error( ec, list.join( ' ' ) );
     return output.toStdString();
 }
 
 
 int
-_handle_check_chroot_call_error( int ec, const QString& cmd )
+_handle_check_target_env_call_error( int ec, const QString& cmd )
 {
     if ( !ec )
         return ec;
