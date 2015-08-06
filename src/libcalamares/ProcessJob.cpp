@@ -69,7 +69,7 @@ ProcessJob::exec()
     int ec = 0;
     QString output;
     if ( m_runInChroot )
-        ec = CalamaresUtils::chrootOutput( m_command,
+        ec = CalamaresUtils::targetEnvOutput( m_command,
                                            output,
                                            m_workingPath,
                                            QString(),

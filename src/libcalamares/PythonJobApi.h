@@ -34,32 +34,32 @@ int mount( const std::string& device_path,
            const std::string& filesystem_name = std::string(),
            const std::string& options = std::string() );
 
-int chroot_call( const std::string& command,
+int target_env_call( const std::string& command,
                  const std::string& stdin = std::string(),
                  int timeout = 0 );
 
-int chroot_call( const boost::python::list& args,
+int target_env_call( const boost::python::list& args,
                  const std::string& stdin = std::string(),
                  int timeout = 0 );
 
-int check_chroot_call( const std::string& command,
+int check_target_env_call( const std::string& command,
                        const std::string& stdin = std::string(),
                        int timeout = 0 );
 
-int check_chroot_call( const boost::python::list& args,
+int check_target_env_call( const boost::python::list& args,
                        const std::string& stdin = std::string(),
                        int timeout = 0 );
 
-std::string check_chroot_output( const std::string& command,
+std::string check_target_env_output( const std::string& command,
                                  const std::string& stdin = std::string(),
                                  int timeout = 0 );
 
-std::string check_chroot_output( const boost::python::list& args,
+std::string check_target_env_output( const boost::python::list& args,
                                  const std::string& stdin = std::string(),
                                  int timeout = 0 );
 
 
-inline int _handle_check_chroot_call_error( int ec, const QString& cmd );
+inline int _handle_check_target_env_call_error( int ec, const QString& cmd );
 
 void debug( const std::string& s );
 

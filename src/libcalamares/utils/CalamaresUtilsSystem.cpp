@@ -59,13 +59,13 @@ mount( const QString& devicePath,
 }
 
 int
-chrootCall( const QStringList& args,
+targetEnvCall( const QStringList& args,
             const QString& workingPath,
             const QString& stdInput,
             int timeoutSec )
 {
     QString discard;
-    return chrootOutput( args,
+    return targetEnvOutput( args,
                          discard,
                          workingPath,
                          stdInput,
@@ -74,12 +74,12 @@ chrootCall( const QStringList& args,
 
 
 int
-chrootCall( const QString& command,
+targetEnvCall( const QString& command,
             const QString& workingPath,
             const QString& stdInput,
             int timeoutSec )
 {
-    return chrootCall( QStringList{ command },
+    return targetEnvCall( QStringList{ command },
                        workingPath,
                        stdInput,
                        timeoutSec );
@@ -87,7 +87,7 @@ chrootCall( const QString& command,
 
 
 int
-chrootOutput( const QStringList& args,
+targetEnvOutput( const QStringList& args,
               QString& output,
               const QString& workingPath,
               const QString& stdInput,
@@ -165,13 +165,13 @@ chrootOutput( const QStringList& args,
 
 
 int
-chrootOutput( const QString& command,
+targetEnvOutput( const QString& command,
               QString& output,
               const QString& workingPath,
               const QString& stdInput,
               int timeoutSec )
 {
-    return chrootOutput( QStringList{ command },
+    return targetEnvOutput( QStringList{ command },
                          output,
                          workingPath,
                          stdInput,
