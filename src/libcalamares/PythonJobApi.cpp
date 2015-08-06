@@ -38,10 +38,11 @@ mount( const std::string& device_path,
        const std::string& filesystem_name,
        const std::string& options )
 {
-    return CalamaresUtils::mount( QString::fromStdString( device_path ),
-                                  QString::fromStdString( mount_point ),
-                                  QString::fromStdString( filesystem_name ),
-                                  QString::fromStdString( options ) );
+    return CalamaresUtils::System::instance()->
+            mount( QString::fromStdString( device_path ),
+                   QString::fromStdString( mount_point ),
+                   QString::fromStdString( filesystem_name ),
+                   QString::fromStdString( options ) );
 }
 
 
@@ -50,10 +51,11 @@ target_env_call( const std::string& command,
              const std::string& stdin,
              int timeout )
 {
-    return CalamaresUtils::targetEnvCall( QString::fromStdString( command ),
-                                       QString(),
-                                       QString::fromStdString( stdin ),
-                                       timeout );
+    return CalamaresUtils::System::instance()->
+            targetEnvCall( QString::fromStdString( command ),
+                           QString(),
+                           QString::fromStdString( stdin ),
+                           timeout );
 }
 
 
@@ -69,10 +71,11 @@ target_env_call( const bp::list& args,
             bp::extract< std::string >( args[ i ] ) ) );
     }
 
-    return CalamaresUtils::targetEnvCall( list,
-                                       QString(),
-                                       QString::fromStdString( stdin ),
-                                       timeout );
+    return CalamaresUtils::System::instance()->
+            targetEnvCall( list,
+                           QString(),
+                           QString::fromStdString( stdin ),
+                           timeout );
 }
 
 
@@ -112,11 +115,12 @@ check_target_env_output( const std::string& command,
                      int timeout )
 {
     QString output;
-    int ec = CalamaresUtils::targetEnvOutput( QString::fromStdString( command ),
-                                           output,
-                                           QString(),
-                                           QString::fromStdString( stdin ),
-                                           timeout );
+    int ec = CalamaresUtils::System::instance()->
+             targetEnvOutput( QString::fromStdString( command ),
+                              output,
+                              QString(),
+                              QString::fromStdString( stdin ),
+                              timeout );
     _handle_check_target_env_call_error( ec, QString::fromStdString( command ) );
     return output.toStdString();
 }
@@ -135,11 +139,12 @@ check_target_env_output( const bp::list& args,
             bp::extract< std::string >( args[ i ] ) ) );
     }
 
-    int ec = CalamaresUtils::targetEnvOutput( list,
-                                           output,
-                                           QString(),
-                                           QString::fromStdString( stdin ),
-                                           timeout );
+    int ec = CalamaresUtils::System::instance()->
+             targetEnvOutput( list,
+                              output,
+                              QString(),
+                              QString::fromStdString( stdin ),
+                              timeout );
     _handle_check_target_env_call_error( ec, list.join( ' ' ) );
     return output.toStdString();
 }

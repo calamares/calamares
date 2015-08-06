@@ -69,11 +69,12 @@ ProcessJob::exec()
     int ec = 0;
     QString output;
     if ( m_runInChroot )
-        ec = CalamaresUtils::targetEnvOutput( m_command,
-                                           output,
-                                           m_workingPath,
-                                           QString(),
-                                           m_timeoutSec );
+        ec = CalamaresUtils::System::instance()->
+             targetEnvOutput( m_command,
+                              output,
+                              m_workingPath,
+                              QString(),
+                              m_timeoutSec );
     else
         ec = callOutput( m_command,
                          output,

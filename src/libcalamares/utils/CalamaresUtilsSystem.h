@@ -20,57 +20,73 @@
 
 #include "DllMacro.h"
 
+#include <QObject>
 #include <QString>
 
 namespace CalamaresUtils
 {
-static bool doChroot = true;
 
-/**
-  * Runs the mount utility with the specified parameters.
-  * @returns the program's exit code, or:
-  *             -1 = QProcess crash
-  *             -2 = QProcess cannot start
-  *             -3 = bad arguments
-  */
-DLLEXPORT int mount( const QString& devicePath,
-                     const QString& mountPoint,
-                     const QString& filesystemName = QString(),
-                     const QString& options = QString() );
+class DLLEXPORT System : public QObject
+{
+    Q_OBJECT
+public:
+    explicit System( bool doChroot, QObject* parent = nullptr );
+    virtual ~System();
 
-/**
-  * Runs the specified command in the chroot of the target system.
-  * @returns the program's exit code, or:
-  *             -1 = QProcess crash
-  *             -2 = QProcess cannot start
-  *             -3 = bad arguments
-  *             -4 = QProcess timeout
-  */
-DLLEXPORT int targetEnvCall( const QStringList& args,
-                          const QString& workingPath = QString(),
-                          const QString& stdInput = QString(),
-                          int timeoutSec = 0 );
+    static System* instance();
 
-DLLEXPORT int targetEnvCall( const QString& command,
-                          const QString& workingPath = QString(),
-                          const QString& stdInput = QString(),
-                          int timeoutSec = 0 );
+    /**
+      * Runs the mount utility with the specified parameters.
+      * @returns the program's exit code, or:
+      *             -1 = QProcess crash
+      *             -2 = QProcess cannot start
+      *             -3 = bad arguments
+      */
+    DLLEXPORT int mount( const QString& devicePath,
+                         const QString& mountPoint,
+                         const QString& filesystemName = QString(),
+                         const QString& options = QString() );
 
-DLLEXPORT int targetEnvOutput( const QStringList& args,
-                            QString& output,
-                            const QString& workingPath = QString(),
-                            const QString& stdInput = QString(),
-                            int timeoutSec = 0 );
+    /**
+      * Runs the specified command in the chroot of the target system.
+      * @returns the program's exit code, or:
+      *             -1 = QProcess crash
+      *             -2 = QProcess cannot start
+      *             -3 = bad arguments
+      *             -4 = QProcess timeout
+      */
+    DLLEXPORT int targetEnvCall( const QStringList& args,
+                              const QString& workingPath = QString(),
+                              const QString& stdInput = QString(),
+                              int timeoutSec = 0 );
 
-DLLEXPORT int targetEnvOutput( const QString& command,
-                            QString& output,
-                            const QString& workingPath = QString(),
-                            const QString& stdInput = QString(),
-                            int timeoutSec = 0 );
+    DLLEXPORT int targetEnvCall( const QString& command,
+                              const QString& workingPath = QString(),
+                              const QString& stdInput = QString(),
+                              int timeoutSec = 0 );
 
-DLLEXPORT qint64 getPhysicalMemoryB();  //Better guess, doesn't work in VirualBox
+    DLLEXPORT int targetEnvOutput( const QStringList& args,
+                                QString& output,
+                                const QString& workingPath = QString(),
+                                const QString& stdInput = QString(),
+                                int timeoutSec = 0 );
 
-DLLEXPORT qint64 getTotalMemoryB();     //Always underguessed, but always works on Linux
+    DLLEXPORT int targetEnvOutput( const QString& command,
+                                QString& output,
+                                const QString& workingPath = QString(),
+                                const QString& stdInput = QString(),
+                                int timeoutSec = 0 );
+
+    DLLEXPORT qint64 getPhysicalMemoryB();  //Better guess, doesn't work in VirualBox
+
+    DLLEXPORT qint64 getTotalMemoryB();     //Always underguessed, but always works on Linux
+
+private:
+    static System* s_instance;
+
+    bool m_doChroot;
+};
+
 }
 
 #endif // CALAMARESUTILSSYSTEM_H

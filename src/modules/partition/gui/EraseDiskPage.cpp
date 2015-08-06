@@ -286,11 +286,11 @@ EraseDiskPage::swapSuggestion( const qint64 availableSpaceB ) const {
     //           = 4 GiB,           if mem >= 64 GiB
 
     qint64 suggestedSwapSizeB = 0;
-    qint64 availableRamB = CalamaresUtils::getPhysicalMemoryB();
+    qint64 availableRamB = CalamaresUtils::System::instance()->getPhysicalMemoryB();
     qreal overestimationFactor = 1.01;
     if ( !availableRamB )
     {
-        availableRamB = CalamaresUtils::getTotalMemoryB();
+        availableRamB = CalamaresUtils::System::instance()->getTotalMemoryB();
         overestimationFactor = 1.10;
     }
 

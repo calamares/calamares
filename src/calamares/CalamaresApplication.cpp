@@ -26,6 +26,7 @@
 
 #include "modulesystem/ModuleManager.h"
 #include "utils/CalamaresUtilsGui.h"
+#include "utils/CalamaresUtilsSystem.h"
 #include "utils/Logger.h"
 #include "JobQueue.h"
 #include "Branding.h"
@@ -384,5 +385,6 @@ void
 CalamaresApplication::initJobQueue()
 {
     Calamares::JobQueue* jobQueue = new Calamares::JobQueue( this );
+    new CalamaresUtils::System( Calamares::Settings::instance()->doChroot(), this );
     Calamares::Branding::instance()->setGlobals( jobQueue->globalStorage() );
 }

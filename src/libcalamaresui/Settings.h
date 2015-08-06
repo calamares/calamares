@@ -50,10 +50,13 @@ public:
 
     bool debugMode() const;
 
+    bool doChroot() const;
+
 private:
     static Settings* s_instance;
 
     bool m_debug;
+    bool m_doChroot;
 
     QStringList m_modulesSearchPaths;
 
