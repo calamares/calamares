@@ -24,6 +24,8 @@
 
 namespace CalamaresUtils
 {
+static bool doChroot = true;
+
 /**
   * Runs the mount utility with the specified parameters.
   * @returns the program's exit code, or:

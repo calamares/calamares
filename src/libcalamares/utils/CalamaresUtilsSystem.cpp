@@ -99,24 +99,37 @@ targetEnvOutput( const QStringList& args,
         return -3;
 
     Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
-    if ( !gs || !gs->contains( "rootMountPoint" ) )
+    if ( !gs ||
+         ( doChroot && !gs->contains( "rootMountPoint" ) ) )
     {
         cLog() << "No rootMountPoint in global storage";
         return -3;
     }
 
-    QString destDir = gs->value( "rootMountPoint" ).toString();
-    if ( !QDir( destDir ).exists() )
+    QProcess process;
+    QString program;
+    QStringList arguments;
+
+    if ( doChroot )
     {
-        cLog() << "rootMountPoint points to a dir which does not exist";
-        return -3;
+        QString destDir = gs->value( "rootMountPoint" ).toString();
+        if ( !QDir( destDir ).exists() )
+        {
+            cLog() << "rootMountPoint points to a dir which does not exist";
+            return -3;
+        }
+
+        program = "chroot";
+        arguments = QStringList( { destDir } );
+        arguments << args;
+    }
+    else
+    {
+        program = "sh";
+        arguments = QStringList( { "-c" } );
+        arguments << args;
     }
 
-    QString program( "chroot" );
-    QStringList arguments = { destDir };
-    arguments << args;
-
-    QProcess process;
     process.setProgram( program );
     process.setArguments( arguments );
     process.setProcessChannelMode( QProcess::MergedChannels );
