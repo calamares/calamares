@@ -19,6 +19,7 @@
 #include "Settings.h"
 
 #include "utils/CalamaresUtils.h"
+#include "utils/CalamaresUtilsSystem.h"
 #include "utils/Logger.h"
 #include "utils/YamlUtils.h"
 
@@ -95,6 +96,9 @@ Settings::Settings( const QString& settingsFilePath,
             m_brandingComponentName = QString::fromStdString( config[ "branding" ]
                                                               .as< std::string >() );
             m_promptInstall = config[ "prompt-install" ].as< bool >();
+
+            bool doChroot = !config[ "dont-chroot" ].as< bool >();
+            CalamaresUtils::doChroot = doChroot;
         }
         catch ( YAML::Exception& e )
         {
