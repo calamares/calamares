@@ -29,8 +29,30 @@
 namespace CalamaresUtils
 {
 
+System* System::s_instance = nullptr;
+
+
+System::System( bool doChroot, QObject* parent )
+    : QObject( parent )
+    , m_doChroot( doChroot )
+{
+    Q_ASSERT( !s_instance );
+    s_instance = this;
+}
+
+
+System::~System()
+{}
+
+
+System*System::instance()
+{
+    return s_instance;
+}
+
+
 int
-mount( const QString& devicePath,
+System::mount( const QString& devicePath,
        const QString& mountPoint,
        const QString& filesystemName,
        const QString& options )
@@ -59,7 +81,7 @@ mount( const QString& devicePath,
 }
 
 int
-targetEnvCall( const QStringList& args,
+System::targetEnvCall( const QStringList& args,
             const QString& workingPath,
             const QString& stdInput,
             int timeoutSec )
@@ -74,7 +96,7 @@ targetEnvCall( const QStringList& args,
 
 
 int
-targetEnvCall( const QString& command,
+System::targetEnvCall( const QString& command,
             const QString& workingPath,
             const QString& stdInput,
             int timeoutSec )
@@ -87,7 +109,7 @@ targetEnvCall( const QString& command,
 
 
 int
-targetEnvOutput( const QStringList& args,
+System::targetEnvOutput( const QStringList& args,
               QString& output,
               const QString& workingPath,
               const QString& stdInput,
@@ -100,7 +122,7 @@ targetEnvOutput( const QStringList& args,
 
     Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
     if ( !gs ||
-         ( doChroot && !gs->contains( "rootMountPoint" ) ) )
+         ( m_doChroot && !gs->contains( "rootMountPoint" ) ) )
     {
         cLog() << "No rootMountPoint in global storage";
         return -3;
@@ -110,7 +132,7 @@ targetEnvOutput( const QStringList& args,
     QString program;
     QStringList arguments;
 
-    if ( doChroot )
+    if ( m_doChroot )
     {
         QString destDir = gs->value( "rootMountPoint" ).toString();
         if ( !QDir( destDir ).exists() )
@@ -177,7 +199,7 @@ targetEnvOutput( const QStringList& args,
 
 
 int
-targetEnvOutput( const QString& command,
+System::targetEnvOutput( const QString& command,
               QString& output,
               const QString& workingPath,
               const QString& stdInput,
@@ -192,7 +214,7 @@ targetEnvOutput( const QString& command,
 
 
 qint64
-getPhysicalMemoryB()
+System::getPhysicalMemoryB()
 {
         QProcess p;
         p.start( "dmidecode", { "-t", "17" } );
@@ -219,7 +241,7 @@ getPhysicalMemoryB()
 
 
 qint64
-getTotalMemoryB()
+System::getTotalMemoryB()
 {
     // A line in meminfo looks like this, with {print $2} we grab the second column.
     // MemTotal:        8133432 kB

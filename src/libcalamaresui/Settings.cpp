@@ -19,7 +19,6 @@
 #include "Settings.h"
 
 #include "utils/CalamaresUtils.h"
-#include "utils/CalamaresUtilsSystem.h"
 #include "utils/Logger.h"
 #include "utils/YamlUtils.h"
 
@@ -97,8 +96,7 @@ Settings::Settings( const QString& settingsFilePath,
                                                               .as< std::string >() );
             m_promptInstall = config[ "prompt-install" ].as< bool >();
 
-            bool doChroot = !config[ "dont-chroot" ].as< bool >();
-            CalamaresUtils::doChroot = doChroot;
+            m_doChroot = !config[ "dont-chroot" ].as< bool >();
         }
         catch ( YAML::Exception& e )
         {
@@ -156,6 +154,12 @@ bool
 Settings::debugMode() const
 {
     return m_debug;
+}
+
+bool
+Settings::doChroot() const
+{
+    return m_doChroot;
 }
 
 
