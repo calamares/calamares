@@ -19,13 +19,13 @@
 #   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
 
 import libcalamares
-from libcalamares.utils import check_chroot_call
+from libcalamares.utils import check_target_env_call
 
 
 def run_mkinitcpio():
     """ Runs mkinitcpio with given kernel profile """
     kernel = libcalamares.job.configuration['kernel']
-    check_chroot_call(['mkinitcpio', '-p', kernel])
+    check_target_env_call(['mkinitcpio', '-p', kernel])
 
 
 def run():

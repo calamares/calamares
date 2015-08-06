@@ -20,7 +20,7 @@
 
 import libcalamares
 import os
-from libcalamares.utils import check_chroot_call
+from libcalamares.utils import check_target_env_call
 
 
 def run():
@@ -38,7 +38,7 @@ def run():
         if os.path.exists(target_systemd_machineid_file):
             os.remove(target_systemd_machineid_file)
 
-        check_chroot_call("systemd-machine-id-setup")
+        check_target_env_call("systemd-machine-id-setup")
 
     if enable_dbus:
         target_dbus_machineid_file = "{}/var/lib/dbus/machine-id".format(root_mount_point)
@@ -47,8 +47,8 @@ def run():
             os.remove(target_dbus_machineid_file)
 
         if enable_symlink and os.path.exists(target_systemd_machineid_file):
-            check_chroot_call(["ln", "-s", "/etc/machine-id", "/var/lib/dbus/machine-id"])
+            check_target_env_call(["ln", "-s", "/etc/machine-id", "/var/lib/dbus/machine-id"])
         else:
-            check_chroot_call(["dbus-uuidgen", "--ensure"])
+            check_target_env_call(["dbus-uuidgen", "--ensure"])
 
     return None
