@@ -121,14 +121,13 @@ targetEnvOutput( const QStringList& args,
 
         program = "chroot";
         arguments = QStringList( { destDir } );
-        arguments << args;
     }
     else
     {
         program = "sh";
         arguments = QStringList( { "-c" } );
-        arguments << args;
     }
+    arguments << args;
 
     process.setProgram( program );
     process.setArguments( arguments );
