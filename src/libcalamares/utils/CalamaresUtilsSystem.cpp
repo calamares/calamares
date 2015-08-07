@@ -143,13 +143,14 @@ System::targetEnvOutput( const QStringList& args,
 
         program = "chroot";
         arguments = QStringList( { destDir } );
+        arguments << args;
     }
     else
     {
         program = "sh";
         arguments = QStringList( { "-c" } );
+        arguments << QString( "\"%1\"" ).arg( args.join( ' ' ) );
     }
-    arguments << args;
 
     process.setProgram( program );
     process.setArguments( arguments );
