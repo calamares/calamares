@@ -82,5 +82,16 @@ SetTimezoneJob::exec()
                                                 .arg( zoneinfoPath )
                                                 .arg( "/etc/localtime" ) );
 
+    QFile timezoneFile( "/etc/timezone" );
+    if ( timezoneFile.exists() )
+    {
+      if (!timezoneFile.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate))
+          return Calamares::JobResult::error( tr( "Cannot set timezone,"),
+                                              tr( "Cannot open /etc/timezone for writing"));
+
+        QTextStream out(&timezoneFile);
+        out << m_region << '/' << m_zone << "\n";
+        timezoneFile.close();
+    }
     return Calamares::JobResult::ok();
 }
