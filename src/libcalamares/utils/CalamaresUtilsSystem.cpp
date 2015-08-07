@@ -149,7 +149,7 @@ System::targetEnvOutput( const QStringList& args,
     {
         program = "sh";
         arguments = QStringList( { "-c" } );
-        arguments << QString( "\"%1\"" ).arg( args.join( ' ' ) );
+        arguments << args.join( ' ' );
     }
 
     process.setProgram( program );
