@@ -14,7 +14,7 @@
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="117"/>
         <source>With this operation, the partition &lt;strong&gt;%1&lt;/strong&gt; which contains %4 will be shrunk to %2MB and a new %3MB partition will be created for %5.</source>
-        <translation type="unfinished"/>
+        <translation>Con esta operación, la partición &lt;strong&gt;%1&lt;/strong&gt; que contiene %4 será reducida a %2MB y una nueva partición de %3MB será creada para %5</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="217"/>
@@ -493,7 +493,7 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="142"/>
         <source>This program will ask you some questions and set up %2 on your computer.</source>
-        <translation type="unfinished"/>
+        <translation>El programa le preguntará algunas cuestiones y configurará %2 en su ordenador.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="166"/>
