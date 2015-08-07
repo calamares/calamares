@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2015, Rohan Garg <rohan@garg.io>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -45,6 +46,14 @@ SetTimezoneJob::prettyName() const
 Calamares::JobResult
 SetTimezoneJob::exec()
 {
+    int ec = CalamaresUtils::System::instance()->
+                          targetEnvCall( { "timedatectl",
+                                           "set-timezone",
+                                           m_region + '/' + m_zone } );
+
+    if ( !ec )
+        return Calamares::JobResult::ok();
+
     QString localtimeSlink( "/etc/localtime" );
     QString zoneinfoPath( "/usr/share/zoneinfo" );
     zoneinfoPath.append( QDir::separator() + m_region );
@@ -62,7 +71,7 @@ SetTimezoneJob::exec()
                                   "-f",
                                   localtimeSlink } );
 
-    int ec = CalamaresUtils::System::instance()->
+    ec = CalamaresUtils::System::instance()->
                           targetEnvCall( { "ln",
                                            "-s",
                                            zoneinfoPath,
