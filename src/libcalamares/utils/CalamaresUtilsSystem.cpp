@@ -38,6 +38,8 @@ System::System( bool doChroot, QObject* parent )
 {
     Q_ASSERT( !s_instance );
     s_instance = this;
+    if ( !doChroot )
+        Calamares::JobQueue::instance()->globalStorage()->insert( "rootMountPoint", "/" );
 }
 
 
