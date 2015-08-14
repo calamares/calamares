@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2015, Rohan Garg <rohan@garg.io>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -72,7 +72,7 @@ WebViewStep::isNextEnabled() const
 bool
 WebViewStep::isBackEnabled() const
 {
-    return false;
+    return true;
 }
 
 
