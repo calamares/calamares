@@ -533,7 +533,7 @@ Kuruluma devam edebilirsiniz fakat bazı özellikler devre dışı kalabilir.</t
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="197"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="246"/>
         <source>&lt;strong&gt;Erase disk and install %1&lt;/strong&gt;&lt;br/&gt;You will be offered a choice of which disk to erase.</source>
-        <translation>&lt;strong&gt;%1 diskini sil ve yükle&lt;/strong&gt;&lt;br/&gt;Silmek için hangi diski seçeceksiniz.</translation>
+        <translation>&lt;strong&gt;Tüm diski sil ve %1 yükle&lt;/strong&gt;&lt;br/&gt;Şimdi, kurulum yapmak istediğiniz diski belirleyeceksiniz.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="147"/>
@@ -550,7 +550,7 @@ Kuruluma devam edebilirsiniz fakat bazı özellikler devre dışı kalabilir.</t
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="202"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="251"/>
         <source>&lt;strong&gt;Replace a partition with %1&lt;/strong&gt;&lt;br/&gt;You will be offered a choice of which partition to erase.</source>
-        <translation>&lt;/strong&gt;%1 ile bir bölümün üzerine yaz&lt;/strong&gt;&lt;br/&gt;Silmek için hangi disk bölümünü seçmek istediğiniz size sorulacaktır.</translation>
+        <translation>&lt;strong&gt;%1 ile bir bölüm üzerine kurulum yap.&lt;/strong&gt;Kurulum için hangi disk bölümünü seçmek istediğiniz size sorulacaktır.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="178"/>
@@ -575,7 +575,7 @@ Kuruluma devam edebilirsiniz fakat bazı özellikler devre dışı kalabilir.</t
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="278"/>
         <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself, or choose multiple partitions for %1.</source>
-        <translation>&lt;strong&gt;El ile bölümleme&lt;/strong&gt;&lt;br/&gt;%1 için bölüm oluştur ve yeniden boyutlandır veya birden fazla bölüm seç.</translation>
+        <translation>&lt;strong&gt;El ile bölümleme&lt;/strong&gt;&lt;br/&gt;%1 kurulumu için bir bölüm oluştur ve yeniden boyutlandır veya birden fazla bölüm seç. *Gelişmiş Kurulum*</translation>
     </message>
 </context>
 <context>
@@ -1887,7 +1887,7 @@ Bazı dosya sistemlerinin desteklenmesi ve düzenlenmesi için ek uygulamalar ge
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="606"/>
         <source>Require &amp;my password to log in</source>
-        <translation>Giriş için &amp;şifrem gerekli</translation>
+        <translation>Girişte &amp;şifre sorulsun.</translation>
     </message>
 </context>
 <context>
@@ -2361,7 +2361,7 @@ Bazı dosya sistemlerinin desteklenmesi ve düzenlenmesi için ek uygulamalar ge
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="160"/>
         <source>Select where to install %1.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;this will delete all files on the selected partition.</source>
-        <translation>%1 yüklenecek yeri seçin.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Uyarı: &lt;/font&gt;Bu işlem seçili disk üzerindeki tüm dosyaları silecek.</translation>
+        <translation>%1 kurulacak diski seçin.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Uyarı: &lt;/font&gt;Bu işlem seçili disk üzerindeki tüm dosyaları silecek.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="187"/>
