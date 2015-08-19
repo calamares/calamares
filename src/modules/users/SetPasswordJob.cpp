@@ -59,12 +59,17 @@ SetPasswordJob::exec()
         return Calamares::JobResult::error( tr( "Bad destination system path." ),
                                             tr( "rootMountPoint is %1" ).arg( destDir.absolutePath() ) );
 
-    QByteArray data = crypt( m_newPassword.toLatin1(), QString( "\\$6\\$%1\\$" ).arg( m_userName ).toLatin1() );
+    QString encrypted = QString::fromLatin1(
+                            crypt( m_newPassword.toLatin1(),
+                                   QString( "$6$%1$" )
+                                .arg( m_userName )
+                                .toLatin1() ) );
+    encrypted = encrypted.replace( '$', "\\$" );
 
     int ec = CalamaresUtils::System::instance()->
                           targetEnvCall( { "usermod",
                                            "-p",
-                                           QString::fromLatin1( data ),
+                                           encrypted,
                                            m_userName } );
     if ( ec )
         return Calamares::JobResult::error( tr( "Cannot set password for user %1." )
