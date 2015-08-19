@@ -150,7 +150,7 @@ System::targetEnvOutput( const QStringList& args,
     else
     {
         program = "env";
-        arguments << args.join( ' ' );
+        arguments << args;
     }
 
     process.setProgram( program );
