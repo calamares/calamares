@@ -407,3 +407,11 @@ UsersPage::onRootPasswordTextChanged( const QString& )
 
     emit checkReady( isReady() );
 }
+
+
+void
+UsersPage::setAutologinDefault( bool checked )
+{
+    ui->checkBoxLoginAuto->setChecked( checked );
+    ui->checkBoxLoginNormal->setChecked( !checked );
+}

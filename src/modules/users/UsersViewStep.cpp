@@ -159,5 +159,11 @@ UsersViewStep::setConfigurationMap( const QVariantMap& configurationMap )
                         configurationMap.value( "setRootPassword" ).toBool() );
         m_widget->setShowRootPassword( configurationMap.value( "setRootPassword" ).toBool() );
     }
+
+    if ( configurationMap.contains( "doAutologin" ) &&
+         configurationMap.value( "doAutologin" ).type() == QVariant::Bool )
+    {
+        m_widget->setAutologinDefault( configurationMap.value( "doAutologin" ).toBool() );
+    }
 }
 
