@@ -103,59 +103,68 @@ LicenseViewStep::jobs() const
 void
 LicenseViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
-    bool showNvidiaUrl =
-        configurationMap.contains( "showNvidiaUrl" ) &&
-        configurationMap.value( "showNvidiaUrl" ).type() == QVariant::Bool &&
-        configurationMap.value( "showNvidiaUrl" ).toBool();
-    bool showCatalystUrl =
-        configurationMap.contains( "showCatalystUrl" ) &&
-        configurationMap.value( "showCatalystUrl" ).type() == QVariant::Bool &&
-        configurationMap.value( "showCatalystUrl" ).toBool();
-    bool showFlashUrl =
-        configurationMap.contains( "showFlashUrl" ) &&
-        configurationMap.value( "showFlashUrl" ).type() == QVariant::Bool &&
-        configurationMap.value( "showFlashUrl" ).toBool();
-    bool showLicenseUrl =
-        configurationMap.contains( "showLicenseUrl" ) &&
-        configurationMap.value( "showLicenseUrl" ).type() == QVariant::Bool &&
-        configurationMap.value( "showLicenseUrl" ).toBool();
+    bool showLicense1Url =
+        configurationMap.contains( "showLicense1Url" ) &&
+        configurationMap.value( "showLicense1Url" ).type() == QVariant::Bool &&
+        configurationMap.value( "showLicense1Url" ).toBool();
+    bool showLicense2Url =
+        configurationMap.contains( "showLicense2Url" ) &&
+        configurationMap.value( "showLicense2Url" ).type() == QVariant::Bool &&
+        configurationMap.value( "showLicense2Url" ).toBool();
+    bool showLicense3Url =
+        configurationMap.contains( "showLicense3Url" ) &&
+        configurationMap.value( "showLicense3Url" ).type() == QVariant::Bool &&
+        configurationMap.value( "showLicense3Url" ).toBool();
+    bool showLicense4Url =
+        configurationMap.contains( "showLicense4Url" ) &&
+        configurationMap.value( "showLicense4Url" ).type() == QVariant::Bool &&
+        configurationMap.value( "showLicense4Url" ).toBool();
         
-    QString nvidiaUrl;
-    if ( configurationMap.contains( "nvidiaUrl" ) &&
-         configurationMap.value( "nvidiaUrl" ).type() == QVariant::String )
+    QString license1Url;
+    if ( configurationMap.contains( "license1Url" ) &&
+         configurationMap.value( "license1Url" ).type() == QVariant::String )
     {
-        nvidiaUrl = configurationMap.value( "nvidiaUrl" ).toString();
-        cDebug() << "Read: " << nvidiaUrl;
+        license1Url = configurationMap.value( "license1Url" ).toString();
+        cDebug() << "Read: " << license1Url;
     }
     
-    QString catalystUrl;
-    if ( configurationMap.contains( "catalystUrl" ) &&
-         configurationMap.value( "catalystUrl" ).type() == QVariant::String )
+    QString license2Url;
+    if ( configurationMap.contains( "license2Url" ) &&
+         configurationMap.value( "license2Url" ).type() == QVariant::String )
     {
-        catalystUrl = configurationMap.value( "catalystUrl" ).toString();
+        license2Url = configurationMap.value( "license2Url" ).toString();
     }
     
-    QString flashUrl;
-    if ( configurationMap.contains( "flashUrl" ) &&
-         configurationMap.value( "flashUrl" ).type() == QVariant::String )
+    QString license3Url;
+    if ( configurationMap.contains( "license3Url" ) &&
+         configurationMap.value( "license3Url" ).type() == QVariant::String )
     {
-        flashUrl = configurationMap.value( "flashUrl" ).toString();
+        license3Url = configurationMap.value( "license3Url" ).toString();
     }
     
-    QString licenseUrl;
-    if ( configurationMap.contains( "licenseUrl" ) &&
-         configurationMap.value( "licenseUrl" ).type() == QVariant::String )
+    QString license4Url;
+    if ( configurationMap.contains( "license4Url" ) &&
+         configurationMap.value( "license4Url" ).type() == QVariant::String )
     {
-        licenseUrl = configurationMap.value( "licenseUrl" ).toString();
+        license4Url = configurationMap.value( "license4Url" ).toString();
+    }
+    
+    QString license1Button;
+    if ( configurationMap.contains( "license1Button" ) &&
+         configurationMap.value( "license1Button" ).type() == QVariant::String )
+    {
+        license1Button = configurationMap.value( "license1Button" ).toString();
+        cDebug() << "Read: " << license1Button;
     }
 
-    m_widget->showNvidiaUrl( showNvidiaUrl );
-    m_widget->showCatalystUrl( showCatalystUrl );
-    m_widget->showFlashUrl( showFlashUrl );
-    m_widget->showLicenseUrl( showLicenseUrl );
-    m_widget->setNvidiaUrl(nvidiaUrl);
-    m_widget->setCatalystUrl(catalystUrl);
-    m_widget->setFlashUrl(flashUrl);
-    m_widget->setLicenseUrl(licenseUrl);
+    m_widget->showLicense1Url( showLicense1Url );
+    m_widget->showLicense2Url( showLicense2Url );
+    m_widget->showLicense3Url( showLicense3Url );
+    m_widget->showLicense4Url( showLicense4Url );
+    m_widget->setLicense1Url(license1Url);
+    m_widget->setLicense2Url(license2Url);
+    m_widget->setLicense3Url(license3Url);
+    m_widget->setLicense4Url(license4Url);
+    m_widget->setLicense1Button(license1Button);
                           
 }
