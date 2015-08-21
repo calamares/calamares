@@ -50,7 +50,8 @@ LicensePage::LicensePage(QWidget *parent)
     CALAMARES_RETRANSLATE(
         ui->mainText->setText( tr( "<h1>License Approval</h1>" 
                                 "In case non-free was selected, this installer will install proprietary <br/>"
-                                "packages that have additional EULA's attached to them, do you accept these terms? <br/>"
+                                "packages that have additional End User License Agreements (EULAs) <br/>"
+                                "attached to them, do you accept these terms? <br/>"
                                 "If declined a free version will be used (when available)." ) );
         ui->retranslateUi( this );
     )
@@ -62,94 +63,110 @@ LicensePage::LicensePage(QWidget *parent)
 }
 
 void
-LicensePage::showNvidiaUrl( bool enabled )
+LicensePage::showLicense1Url( bool enabled )
 {
-    ui->nvidiaButton->setVisible( enabled );
+    ui->license1Button->setVisible( enabled );
+    ui->license1Button->setText( "Nvidia License" );
+    //ui->license1Button->setText( m_license1Button );
     
-    ui->nvidiaButton->setIcon( CalamaresUtils::defaultPixmap( CalamaresUtils::Release,
+    ui->license1Button->setIcon( CalamaresUtils::defaultPixmap( CalamaresUtils::Release,
                                                                    CalamaresUtils::Original,
                                                                    2*QSize( CalamaresUtils::defaultFontHeight(),
                                                                           CalamaresUtils::defaultFontHeight() ) ) );
     
-    connect( ui->nvidiaButton, &QPushButton::clicked,
+    connect( ui->license1Button, &QPushButton::clicked,
              this, [ this ]
     {
-        QDesktopServices::openUrl(QUrl(m_nvidiaUrl));
-        cDebug() << "Is: " << m_nvidiaUrl;
+        QDesktopServices::openUrl(QUrl(m_license1Url));
+        cDebug() << "Is: " << m_license1Url;
     } );
 }
 
 void
-LicensePage::showCatalystUrl( bool enabled )
+LicensePage::showLicense2Url( bool enabled )
 {
-    ui->catalystButton->setVisible( enabled );
+    ui->license2Button->setVisible( enabled );
+    ui->license2Button->setText( "Some License" );
     
-    ui->catalystButton->setIcon( CalamaresUtils::defaultPixmap( CalamaresUtils::Release,
+    ui->license2Button->setIcon( CalamaresUtils::defaultPixmap( CalamaresUtils::Release,
                                                                        CalamaresUtils::Original,
                                                                        2*QSize( CalamaresUtils::defaultFontHeight(),
                                                                               CalamaresUtils::defaultFontHeight() ) ) );
     
-    connect( ui->catalystButton, &QPushButton::clicked,
+    connect( ui->license2Button, &QPushButton::clicked,
              this, [ this ]
     {
-        QDesktopServices::openUrl(QUrl(m_catalystUrl));
+        QDesktopServices::openUrl(QUrl(m_license2Url));
     } );
 }
 
 void
-LicensePage::showFlashUrl( bool enabled )
+LicensePage::showLicense3Url( bool enabled )
 {
-    ui->flashButton->setVisible( enabled );
+    ui->license3Button->setVisible( enabled );
+    ui->license3Button->setText( "Flash License" );
     
-    ui->flashButton->setIcon( CalamaresUtils::defaultPixmap( CalamaresUtils::Release,
+    ui->license3Button->setIcon( CalamaresUtils::defaultPixmap( CalamaresUtils::Release,
                                                                         CalamaresUtils::Original,
                                                                         2*QSize( CalamaresUtils::defaultFontHeight(),
                                                                                CalamaresUtils::defaultFontHeight() ) ) );
     
-    connect( ui->flashButton, &QPushButton::clicked,
+    connect( ui->license3Button, &QPushButton::clicked,
              this, [ this ]
     {
-        QDesktopServices::openUrl(QUrl(m_flashUrl));
+        QDesktopServices::openUrl(QUrl(m_license3Url));
     } );
 }
 
 void
-LicensePage::showLicenseUrl( bool enabled )
+LicensePage::showLicense4Url( bool enabled )
 {
-    ui->licenseButton->setVisible( enabled );
+    ui->license4Button->setVisible( enabled );
+    ui->license4Button->setText( "License" );
     
-    ui->licenseButton->setIcon( CalamaresUtils::defaultPixmap( CalamaresUtils::Release,
+    ui->license4Button->setIcon( CalamaresUtils::defaultPixmap( CalamaresUtils::Release,
                                                                         CalamaresUtils::Original,
                                                                         2*QSize( CalamaresUtils::defaultFontHeight(),
                                                                                CalamaresUtils::defaultFontHeight() ) ) );
     
-    connect( ui->licenseButton, &QPushButton::clicked,
+    connect( ui->license4Button, &QPushButton::clicked,
              this, [ this ]
     {
-        QDesktopServices::openUrl(QUrl(m_licenseUrl));
+        QDesktopServices::openUrl(QUrl(m_license4Url));
     } );
 }
 
 void
-LicensePage::setNvidiaUrl( const QString& url )
+LicensePage::setLicense1Url( const QString& url )
 {
-    m_nvidiaUrl = url;
+    m_license1Url = url;
 }
 
 void
-LicensePage::setCatalystUrl( const QString& url )
+LicensePage::setLicense2Url( const QString& url )
 {
-    m_catalystUrl = url;
+    m_license2Url = url;
 }
 
 void
-LicensePage::setFlashUrl( const QString& url )
+LicensePage::setLicense3Url( const QString& url )
 {
-    m_flashUrl = url;
+    m_license3Url = url;
 }
 
 void
-LicensePage::setLicenseUrl( const QString& url )
+LicensePage::setLicense4Url( const QString& url )
 {
-    m_licenseUrl = url;
+    m_license4Url = url;
 }
+
+void
+LicensePage::setLicense1Button( const QString& text )
+{
+    m_license1Button = text;
+}
+/*QString
+LicensePage::setLicense1Button() const
+{
+    return m_license1Button;
+}*/

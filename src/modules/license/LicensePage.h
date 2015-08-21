@@ -34,21 +34,23 @@ class LicensePage : public QWidget
 public:
     explicit LicensePage( QWidget* parent = nullptr );
     
-    void showNvidiaUrl( bool enabled );
-    void showCatalystUrl( bool enabled );
-    void showFlashUrl( bool enabled );
-    void showLicenseUrl( bool enabled );
-    void setNvidiaUrl( const QString& url );
-    void setCatalystUrl( const QString& url );
-    void setFlashUrl( const QString& url );
-    void setLicenseUrl( const QString& url );
+    void showLicense1Url( bool enabled );
+    void showLicense2Url( bool enabled );
+    void showLicense3Url( bool enabled );
+    void showLicense4Url( bool enabled );
+    void setLicense1Url( const QString& url );
+    void setLicense2Url( const QString& url );
+    void setLicense3Url( const QString& url );
+    void setLicense4Url( const QString& url );
+    void setLicense1Button( const QString& text );
 
 private:
     Ui::LicensePage* ui;
-    QString m_nvidiaUrl;
-    QString m_catalystUrl;
-    QString m_flashUrl;
-    QString m_licenseUrl;
+    QString m_license1Url;
+    QString m_license2Url;
+    QString m_license3Url;
+    QString m_license4Url;
+    QString m_license1Button;
 };
 
 #endif //LICENSEPAGE_H

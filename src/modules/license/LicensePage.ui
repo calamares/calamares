@@ -61,30 +61,30 @@
         </spacer>
        </item>
        <item>
-        <widget class="QPushButton" name="nvidiaButton">
+        <widget class="QPushButton" name="license1Button">
          <property name="text">
-          <string>Nvidia License</string>
+          <string notr="true">&lt; license1 text&gt;</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="catalystButton">
+        <widget class="QPushButton" name="license2Button">
          <property name="text">
-          <string>Catalyst License</string>
+          <string notr="true">&lt;license2 text&gt;</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="flashButton">
+        <widget class="QPushButton" name="license3Button">
          <property name="text">
-          <string>Flash License</string>
+          <string notr="true">&lt;license3 text&gt;</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="licenseButton">
+        <widget class="QPushButton" name="license4Button">
          <property name="text">
-          <string>License</string>
+          <string>&lt;license4 text&gt;</string>
          </property>
         </widget>
        </item>
