@@ -66,3 +66,8 @@ install( TARGETS calamares_bin
     BUNDLE DESTINATION .
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
+
+install( FILES ${CMAKE_SOURCE_DIR}/data/images/squid.svg
+    RENAME calamares.svg
+    DESTINATION ${CMAKE_INSTALL_DATADIR}/icons/hicolor/scalable/apps
+)
