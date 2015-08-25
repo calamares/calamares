@@ -64,7 +64,7 @@ ModuleManager::~ModuleManager()
 void
 ModuleManager::init()
 {
-    QTimer::singleShot( 0, this, SLOT( doInit() ) );
+    QTimer::singleShot( 0, this, &ModuleManager::doInit );
 }
 
 
