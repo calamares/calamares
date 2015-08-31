@@ -26,6 +26,7 @@ def run():
     """ Setup systemd services """
     services = libcalamares.job.configuration['services']
     targets = libcalamares.job.configuration['targets']
+    disable = libcalamares.job.configuration['disable']
 
     # enable services
     for svc in services:
@@ -50,5 +51,16 @@ def run():
             else:
                 libcalamares.utils.debug("Cannot enable systemd target {}".format(tgt['name']))
                 libcalamares.utils.debug("systemctl enable call in chroot returned error code {}".format(ec))
+
+    for dbl in disable:
+        ec = libcalamares.utils.chroot_call(['systemctl', 'disable', '{}.service'.format(dbl['name'])])
+
+        if ec != 0:
+            if dbl['mandatory']:
+                return "Cannot disable systemd service {}".format(dbl['name']), \
+                       "systemctl disable call in chroot returned error code {}".format(ec)
+            else:
+                libcalamares.utils.debug("Cannot disable systemd service {}".format(dbl['name']))
+                libcalamares.utils.debug("systemctl disable call in chroot returned error code {}".format(ec))
 
     return None
