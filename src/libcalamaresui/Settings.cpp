@@ -24,6 +24,7 @@
 
 #include <QDir>
 #include <QFile>
+#include <QPair>
 
 #include <yaml-cpp/yaml.h>
 
@@ -89,9 +90,60 @@ Settings::Settings( const QString& settingsFilePath,
                 }
             }
 
-            config[ "prepare" ] >> m_modulesPrepareList;
-            config[ "install" ] >> m_modulesInstallList;
-            config[ "postinstall" ] >> m_modulesPostInstallList;
+            // Parse the custom instances section
+            if ( config[ "instances" ] )
+            {
+                QVariant instancesV
+                        = CalamaresUtils::yamlToVariant( config[ "instances" ] ).toList();
+                if ( instancesV.type() == QVariant::List )
+                {
+                    foreach ( const QVariant& instancesVListItem, instancesV.toList() )
+                    {
+                        if ( instancesVListItem.type() != QVariant::Map )
+                            continue;
+                        QVariantMap instancesVListItemMap =
+                                instancesVListItem.toMap();
+                        QMap< QString, QString > instanceMap;
+                        for ( auto it = instancesVListItemMap.constBegin();
+                              it != instancesVListItemMap.constEnd(); ++it )
+                        {
+                            if ( it.value().type() != QVariant::String )
+                                continue;
+                            instanceMap.insert( it.key(), it.value().toString() );
+                        }
+                        m_customModuleInstances.append( instanceMap );
+                    }
+                }
+            }
+
+            // Parse the modules sequence section
+            Q_ASSERT( config[ "sequence" ] ); // It better exist!
+            {
+                QVariant sequenceV
+                        = CalamaresUtils::yamlToVariant( config[ "sequence" ] );
+                Q_ASSERT( sequenceV.type() == QVariant::List );
+                foreach ( const QVariant& sequenceVListItem, sequenceV.toList() )
+                {
+                    if ( sequenceVListItem.type() != QVariant::Map )
+                        continue;
+                    QString thisActionS = sequenceVListItem.toMap().firstKey();
+                    ModuleAction thisAction;
+                    if ( thisActionS == "show" )
+                        thisAction = ModuleAction::Show;
+                    else if ( thisActionS == "exec" )
+                        thisAction = ModuleAction::Exec;
+                    else
+                        continue;
+
+                    QStringList thisActionRoster = sequenceVListItem
+                                                   .toMap()
+                                                   .value( thisActionS )
+                                                   .toStringList();
+                    m_modulesSequence.append( qMakePair( thisAction,
+                                                         thisActionRoster ) );
+                }
+            }
+
             m_brandingComponentName = QString::fromStdString( config[ "branding" ]
                                                               .as< std::string >() );
             m_promptInstall = config[ "prompt-install" ].as< bool >();
@@ -119,20 +171,17 @@ Settings::modulesSearchPaths() const
 }
 
 
-QStringList
-Settings::modules( Phase phase ) const
+QList<QMap<QString, QString> >
+Settings::customModuleInstances() const
 {
-    switch ( phase )
-    {
-    case Prepare:
-        return m_modulesPrepareList;
-    case Install:
-        return m_modulesInstallList;
-    case PostInstall:
-        return m_modulesPostInstallList;
-    default:
-        return QStringList();
-    }
+    return m_customModuleInstances;
+}
+
+
+QList< QPair< ModuleAction, QStringList > >
+Settings::modulesSequence() const
+{
+    return m_modulesSequence;
 }
 
 
@@ -144,7 +193,7 @@ Settings::brandingComponentName() const
 
 
 bool
-Settings::showPromptBeforeInstall() const
+Settings::showPromptBeforeExecution() const
 {
     return m_promptInstall;
 }
