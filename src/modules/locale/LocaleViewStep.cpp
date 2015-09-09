@@ -31,6 +31,9 @@
 #include <QLabel>
 #include <QtConcurrent/QtConcurrentRun>
 
+
+CALAMARES_PLUGIN_FACTORY_DEFINITION( LocaleViewStepFactory, registerPlugin<LocaleViewStep>(); )
+
 LocaleViewStep::LocaleViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
     , m_widget( new QWidget() )

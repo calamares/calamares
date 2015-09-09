@@ -21,8 +21,10 @@
 
 #include <QObject>
 
-#include "viewpages/ViewStep.h"
-#include "PluginDllMacro.h"
+#include <utils/PluginFactory.h>
+#include <viewpages/ViewStep.h>
+
+#include <PluginDllMacro.h>
 
 #include <QFutureWatcher>
 
@@ -31,9 +33,6 @@ class LocalePage;
 class PLUGINDLLEXPORT LocaleViewStep : public Calamares::ViewStep
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA( IID "calamares.ViewModule/1.0" )
-
-    Q_INTERFACES( Calamares::ViewStep )
 
 public:
     explicit LocaleViewStep( QObject* parent = nullptr );
@@ -73,5 +72,7 @@ private:
 
     QList< Calamares::job_ptr > m_jobs;
 };
+
+CALAMARES_PLUGIN_FACTORY_DECLARATION( LocaleViewStepFactory )
 
 #endif // LOCALEVIEWSTEP_H
