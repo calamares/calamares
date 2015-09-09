@@ -23,6 +23,8 @@
 #include "JobQueue.h"
 #include "GlobalStorage.h"
 
+CALAMARES_PLUGIN_FACTORY_DEFINITION( UsersViewStepFactory, registerPlugin<UsersViewStep>(); )
+
 UsersViewStep::UsersViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
     , m_widget( new UsersPage() )

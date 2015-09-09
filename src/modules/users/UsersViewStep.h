@@ -21,8 +21,10 @@
 
 #include <QObject>
 
-#include "viewpages/ViewStep.h"
-#include "PluginDllMacro.h"
+#include <utils/PluginFactory.h>
+#include <viewpages/ViewStep.h>
+
+#include <PluginDllMacro.h>
 
 #include <QVariant>
 
@@ -31,9 +33,6 @@ class UsersPage;
 class PLUGINDLLEXPORT UsersViewStep : public Calamares::ViewStep
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA( IID "calamares.ViewModule/1.0" )
-
-    Q_INTERFACES( Calamares::ViewStep )
 
 public:
     explicit UsersViewStep( QObject* parent = nullptr );
@@ -66,5 +65,7 @@ private:
     QString m_userGroup;
     QStringList m_defaultGroups;
 };
+
+CALAMARES_PLUGIN_FACTORY_DECLARATION( UsersViewStepFactory )
 
 #endif // USERSPAGEPLUGIN_H
