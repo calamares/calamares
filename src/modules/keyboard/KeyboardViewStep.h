@@ -21,17 +21,16 @@
 
 #include <QObject>
 
-#include "viewpages/ViewStep.h"
-#include "PluginDllMacro.h"
+#include <utils/PluginFactory.h>
+#include <viewpages/ViewStep.h>
+
+#include <PluginDllMacro.h>
 
 class KeyboardPage;
 
 class PLUGINDLLEXPORT KeyboardViewStep : public Calamares::ViewStep
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA( IID "calamares.ViewModule/1.0" )
-
-    Q_INTERFACES( Calamares::ViewStep )
 
 public:
     explicit KeyboardViewStep( QObject* parent = nullptr );
@@ -68,5 +67,7 @@ private:
 
     QList< Calamares::job_ptr > m_jobs;
 };
+
+CALAMARES_PLUGIN_FACTORY_DECLARATION( KeyboardViewStepFactory )
 
 #endif // KEYBOARDVIEWSTEP_H

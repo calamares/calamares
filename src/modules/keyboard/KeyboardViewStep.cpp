@@ -23,6 +23,7 @@
 
 #include "KeyboardPage.h"
 
+CALAMARES_PLUGIN_FACTORY_DEFINITION( KeyboardViewStepFactory, registerPlugin<KeyboardViewStep>(); )
 
 KeyboardViewStep::KeyboardViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
