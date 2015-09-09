@@ -21,6 +21,8 @@
 #include <QVariant>
 #include <QWebView>
 
+CALAMARES_PLUGIN_FACTORY_DEFINITION( WebViewStepFactory, registerPlugin<WebViewStep>(); )
+
 WebViewStep::WebViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
 {

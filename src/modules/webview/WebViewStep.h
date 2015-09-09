@@ -21,8 +21,10 @@
 
 #include <QObject>
 
-#include "viewpages/ViewStep.h"
-#include "PluginDllMacro.h"
+#include <utils/PluginFactory.h>
+#include <viewpages/ViewStep.h>
+
+#include <PluginDllMacro.h>
 
 #include <QVariantMap>
 
@@ -31,9 +33,6 @@ class QWebView;
 class PLUGINDLLEXPORT WebViewStep : public Calamares::ViewStep
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA( IID "calamares.ViewModule/1.0" )
-
-    Q_INTERFACES( Calamares::ViewStep )
 
 public:
     explicit WebViewStep( QObject* parent = nullptr );
@@ -62,5 +61,7 @@ private:
     QString m_url;
     QString m_prettyName;
 };
+
+CALAMARES_PLUGIN_FACTORY_DECLARATION( WebViewStepFactory )
 
 #endif // WEBVIEWPLUGIN_H
