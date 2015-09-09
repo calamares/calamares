@@ -20,11 +20,14 @@
 #ifndef PARTITIONVIEWSTEP_H
 #define PARTITIONVIEWSTEP_H
 
-#include <QObject>
-
-#include "viewpages/ViewStep.h"
-#include "PluginDllMacro.h"
 #include "OsproberEntry.h"
+
+#include <utils/PluginFactory.h>
+#include <viewpages/ViewStep.h>
+
+#include <PluginDllMacro.h>
+
+#include <QObject>
 
 class ChoicePage;
 class EraseDiskPage;
@@ -41,8 +44,6 @@ class QStackedWidget;
 class PLUGINDLLEXPORT PartitionViewStep : public Calamares::ViewStep
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA( IID "calamares.ViewModule/1.0" )
-    Q_INTERFACES( Calamares::ViewStep )
 
 public:
     explicit PartitionViewStep( QObject* parent = 0 );
@@ -81,5 +82,7 @@ private:
     PartitionPage*    m_manualPartitionPage;
     ReplacePage*      m_replacePage;
 };
+
+CALAMARES_PLUGIN_FACTORY_DECLARATION( PartitionViewStepFactory )
 
 #endif // PARTITIONVIEWSTEP_H

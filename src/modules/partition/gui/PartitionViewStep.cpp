@@ -508,3 +508,5 @@ PartitionViewStep::canBeResized( const QString& partitionPath )
     cDebug() << "Partition" << partitionWithOs << "CANNOT BE RESIZED FOR AUTOINSTALL.";
     return false;
 }
+
+CALAMARES_PLUGIN_FACTORY_DEFINITION( PartitionViewStepFactory, registerPlugin<PartitionViewStep>(); )
