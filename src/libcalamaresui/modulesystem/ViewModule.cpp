@@ -18,11 +18,10 @@
 
 #include "ViewModule.h"
 
+#include "utils/PluginFactory.h"
 #include "utils/Logger.h"
 #include "viewpages/ViewStep.h"
 #include "ViewManager.h"
-
-#include <yaml-cpp/yaml.h>
 
 #include <QDir>
 #include <QPluginLoader>
@@ -49,12 +48,25 @@ ViewModule::loadSelf()
 {
     if ( m_loader )
     {
-        m_viewStep = qobject_cast< ViewStep* >( m_loader->instance() );
-        if ( !m_viewStep )
+        PluginFactory* pf = qobject_cast< PluginFactory* >( m_loader->instance() );
+        if ( !pf )
         {
-            cLog() << Q_FUNC_INFO << m_loader->errorString();
+            cDebug() << Q_FUNC_INFO << m_loader->errorString();
             return;
         }
+
+        m_viewStep = pf->create< Calamares::ViewStep >();
+        if ( !m_viewStep )
+        {
+            cDebug() << Q_FUNC_INFO << m_loader->errorString();
+            return;
+        }
+        cDebug() << "ViewModule loading self for instance" << instanceKey()
+                 << "\nViewModule at address" << this
+                 << "\nCalamares::PluginFactory at address" << pf
+                 << "\nViewStep at address" << m_viewStep;
+
+        m_viewStep->setModuleInstanceKey( instanceKey() );
         m_viewStep->setConfigurationMap( m_configurationMap );
         ViewManager::instance()->addViewStep( m_viewStep );
         m_loaded = true;
@@ -70,14 +82,14 @@ ViewModule::jobs() const
 
 
 void
-ViewModule::initFrom( const YAML::Node& node )
+ViewModule::initFrom( const QVariantMap& moduleDescriptor )
 {
-    Module::initFrom( node );
+    Module::initFrom( moduleDescriptor );
     QDir directory( location() );
     QString load;
-    if ( node[ "load" ] )
+    if ( !moduleDescriptor.value( "load" ).toString().isEmpty() )
     {
-        load = QString::fromStdString( node[ "load" ].as< std::string >() );
+        load = moduleDescriptor.value( "load" ).toString();
         load = directory.absoluteFilePath( load );
     }
     // If a load path is not specified, we look for a plugin to load in the directory.

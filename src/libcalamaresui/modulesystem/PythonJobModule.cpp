@@ -20,8 +20,6 @@
 
 #include "PythonJob.h"
 
-#include <yaml-cpp/yaml.h>
-
 #include <QDir>
 
 
@@ -63,15 +61,15 @@ PythonJobModule::jobs() const
 
 
 void
-PythonJobModule::initFrom( const YAML::Node& node )
+PythonJobModule::initFrom( const QVariantMap& moduleDescriptor )
 {
-    Module::initFrom( node );
+    Module::initFrom( moduleDescriptor );
     QDir directory( location() );
     m_workingPath = directory.absolutePath();
 
-    if ( node[ "script" ] )
+    if ( !moduleDescriptor.value( "script" ).toString().isEmpty() )
     {
-        m_scriptFileName = QString::fromStdString( node[ "script" ].as< std::string >() );
+        m_scriptFileName = moduleDescriptor.value( "script" ).toString();
     }
 }
 

@@ -19,12 +19,11 @@
 #ifndef MODULELOADER_H
 #define MODULELOADER_H
 
-#include "Module.h"
 #include "Typedefs.h"
 
-#include <QMap>
 #include <QObject>
 #include <QStringList>
+#include <QVariantMap>
 
 namespace Calamares
 {
@@ -47,27 +46,27 @@ public:
      */
     void init();
 
-    QStringList availableModules();
-    Module* module( const QString& name );
+    QStringList loadedInstanceKeys();
+    QVariantMap moduleDescriptor( const QString& name );
 
-    Phase currentPhase();
+    Module* moduleInstance( const QString& instanceKey );
 
-    void loadModules( Phase phase );
+    void loadModules();
 
 signals:
     void initDone();
-    void modulesLoaded( Phase );
+    void modulesLoaded();
 
 private slots:
     void doInit();
 
 private:
-    void doLoad( const QString& moduleName );
     void checkDependencies();
 
-    QMap< QString, Module* > m_availableModules;
+    QMap< QString, QVariantMap > m_availableDescriptorsByModuleName;
+    QMap< QString, QString > m_moduleDirectoriesByModuleName;
+    QMap< QString, Module* > m_loadedModulesByInstanceKey;
     QStringList m_paths;
-    Phase m_lastPhaseLoaded;
 
     static ModuleManager* s_instance;
 };

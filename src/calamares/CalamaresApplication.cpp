@@ -86,7 +86,7 @@ CalamaresApplication::init()
     setWindowIcon( QIcon( Calamares::Branding::instance()->
                           imagePath( Calamares::Branding::ProductIcon ) ) );
 
-    initPlugins(); //also shows main window
+    initModuleManager(); //also shows main window
 }
 
 
@@ -130,13 +130,6 @@ CalamaresWindow*
 CalamaresApplication::mainWindow()
 {
     return m_mainwindow;
-}
-
-
-void
-CalamaresApplication::startPhase( Calamares::Phase phase )
-{
-    m_moduleManager->loadModules( phase );
 }
 
 
@@ -322,62 +315,40 @@ CalamaresApplication::initBranding()
 
 
 void
-CalamaresApplication::initPlugins()
+CalamaresApplication::initModuleManager()
 {
     m_moduleManager = new Calamares::ModuleManager(
         Calamares::Settings::instance()->modulesSearchPaths(), this );
     connect( m_moduleManager, &Calamares::ModuleManager::initDone,
-             this,            &CalamaresApplication::onPluginsReady );
+             this,            &CalamaresApplication::initView );
     m_moduleManager->init();
-
-    connect( m_moduleManager, &Calamares::ModuleManager::modulesLoaded,
-             this, [this]( Calamares::Phase phase )
-    {
-        if ( phase == Calamares::Prepare )
-        {
-            m_mainwindow->show();
-
-            ProgressTreeModel* m = new ProgressTreeModel( this );
-            ProgressTreeView::instance()->setModel( m );
-
-            Calamares::ViewManager::instance()->setUpInstallationStep();
-        }
-        else if ( phase == Calamares::Install )
-        {
-            Calamares::ViewManager* vm = Calamares::ViewManager::instance();
-            Calamares::JobQueue* queue = Calamares::JobQueue::instance();
-
-            for( const QString& name : Calamares::Settings::instance()->modules( Calamares::Install ) )
-            {
-                Calamares::Module* module = m_moduleManager->module( name );
-                queue->enqueue( module->jobs() );
-            }
-            connect( queue, &Calamares::JobQueue::failed,
-                     vm, &Calamares::ViewManager::onInstallationFailed );
-
-            queue->start();
-        }
-        else if ( phase == Calamares::PostInstall )
-        {
-            Calamares::ViewManager::instance()->next();
-        }
-    });
 }
 
 
 void
-CalamaresApplication::onPluginsReady()
+CalamaresApplication::initView()
 {
     initJobQueue();
 
     m_mainwindow = new CalamaresWindow(); //also creates ViewManager
-    connect( Calamares::ViewManager::instance(), &Calamares::ViewManager::phaseChangeRequested,
-             this, &CalamaresApplication::startPhase );
 
-    startPhase( Calamares::Prepare );
+    connect( m_moduleManager, &Calamares::ModuleManager::modulesLoaded,
+             this, &CalamaresApplication::initViewSteps );
+
+    m_moduleManager->loadModules();
+
     m_mainwindow->move(
-        this->desktop()->availableGeometry().center() - m_mainwindow->rect().center()
-    );
+        this->desktop()->availableGeometry().center() -
+        m_mainwindow->rect().center() );
+}
+
+
+void
+CalamaresApplication::initViewSteps()
+{
+    m_mainwindow->show();
+    ProgressTreeModel* m = new ProgressTreeModel( this );
+    ProgressTreeView::instance()->setModel( m );
 }
 
 

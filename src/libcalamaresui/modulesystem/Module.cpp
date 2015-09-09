@@ -46,12 +46,6 @@ name:      "foo"      #the module name. must be unique and same as the parent di
 interface: "qtplugin" #can be: qtplugin, python, process, ...
 */
 
-void
-operator>>( const YAML::Node& node, Calamares::Module* m )
-{
-    m->m_name = QString::fromStdString( node[ "name" ].as< std::string >() );
-}
-
 namespace Calamares
 {
 
@@ -59,83 +53,76 @@ Module::~Module()
 {}
 
 Module*
-Module::fromDescriptorFile( const QString& path )
+Module::fromDescriptor( const QVariantMap& moduleDescriptor,
+                        const QString& instanceId,
+                        const QString& configFileName,
+                        const QString& moduleDirectory )
 {
     Module* m = nullptr;
-    QFile descriptorFile( path );
-    if ( descriptorFile.exists() && descriptorFile.open( QFile::ReadOnly | QFile::Text ) )
+
+    QString typeString = moduleDescriptor.value( "type" ).toString();
+    QString intfString = moduleDescriptor.value( "interface" ).toString();
+
+    if ( typeString.isEmpty() ||
+         intfString.isEmpty() )
     {
-        QByteArray ba = descriptorFile.readAll();
-        cDebug() << "Loading module.desc for" << QFileInfo( descriptorFile ).dir().dirName();
-
-        try
+        cLog() << Q_FUNC_INFO << "bad module descriptor format"
+               << instanceId;
+        return nullptr;
+    }
+    if ( typeString == "view" && intfString == "qtplugin" )
+    {
+        m = new ViewModule();
+    }
+    else if ( typeString == "job" )
+    {
+        if ( intfString == "process" )
         {
-            YAML::Node doc = YAML::Load( ba.constData() );
-            if ( !doc.IsMap() )
-            {
-                cLog() << Q_FUNC_INFO << "bad module descriptor format"
-                         << path;
-                return nullptr;
-            }
-
-            if ( !doc[ "type" ] ||
-                 !doc[ "interface" ] )
-            {
-                cLog() << Q_FUNC_INFO << "bad module descriptor format"
-                         << path;
-                return nullptr;
-            }
-
-            QString typeString = QString::fromStdString( doc[ "type" ].as< std::string >() );
-            QString intfString = QString::fromStdString( doc[ "interface" ].as< std::string >() );
-
-            if ( typeString == "view" && intfString == "qtplugin" )
-            {
-                m = new ViewModule();
-            }
-            else if ( typeString == "job" )
-            {
-                if ( intfString == "process" )
-                {
-                    m = new ProcessJobModule();
-                }
+            m = new ProcessJobModule();
+        }
 #ifdef WITH_PYTHON
-                else if ( intfString == "python" )
-                {
-                    m = new PythonJobModule();
-                }
-#endif
-            }
-
-            if ( !m )
-            {
-                cLog() << Q_FUNC_INFO << "bad module type or interface string"
-                         << path << typeString << intfString;
-                return nullptr;
-            }
-
-            QFileInfo mfi( path );
-            m->m_directory = mfi.absoluteDir().absolutePath();
-
-            m->initFrom( doc );
-            m->loadConfigurationFile();
-
-            return m;
-        }
-        catch ( YAML::Exception& e )
+        else if ( intfString == "python" )
         {
-            cDebug() << "WARNING: YAML parser error " << e.what();
-            delete m;
-            return nullptr;
+            m = new PythonJobModule();
         }
+#endif
+    }
+    if ( !m )
+    {
+        cLog() << Q_FUNC_INFO << "bad module type or interface string"
+               << instanceId << typeString << intfString;
+        return nullptr;
     }
 
-    return nullptr;
+    QDir moduleDir( moduleDirectory );
+    if ( moduleDir.exists() && moduleDir.isReadable() )
+        m->m_directory = moduleDir.absolutePath();
+    else
+    {
+        cLog() << Q_FUNC_INFO << "bad module directory"
+               << instanceId;
+        return nullptr;
+    }
+
+    m->m_instanceId = instanceId;
+
+    m->initFrom( moduleDescriptor );
+    try
+    {
+        m->loadConfigurationFile( configFileName );
+    }
+    catch ( YAML::Exception& e )
+    {
+        cDebug() << "WARNING: YAML parser error " << e.what();
+        delete m;
+        return nullptr;
+    }
+    return m;
 }
 
 
 void
-Module::loadConfigurationFile() //throws YAML::Exception
+Module::loadConfigurationFile( const QString& configFileName ) //throws YAML::Exception
 {
     QStringList configFilesByPriority;
 
@@ -143,7 +130,7 @@ Module::loadConfigurationFile() //throws YAML::Exception
     {
         configFilesByPriority.append(
             CalamaresUtils::appDataDir().absoluteFilePath(
-                QString( "modules/%1.conf" ).arg( m_name ) ) );
+                QString( "modules/%1" ).arg( configFileName ) ) );
     }
     else
     {
@@ -151,14 +138,15 @@ Module::loadConfigurationFile() //throws YAML::Exception
         {
             configFilesByPriority.append(
                 QDir( QDir::currentPath() ).absoluteFilePath(
-                    QString( "src/modules/%1/%1.conf" ).arg( m_name ) ) );
+                    QString( "src/modules/%1/%2" ).arg( m_name )
+                                                  .arg( configFileName ) ) );
         }
 
         configFilesByPriority.append(
-            QString( "/etc/calamares/modules/%1.conf" ).arg( m_name ) );
+            QString( "/etc/calamares/modules/%1" ).arg( configFileName ) );
         configFilesByPriority.append(
             CalamaresUtils::appDataDir().absoluteFilePath(
-                QString( "modules/%1.conf" ).arg( m_name ) ) );
+                QString( "modules/%2" ).arg( configFileName ) ) );
     }
 
     foreach ( const QString& path, configFilesByPriority )
@@ -189,6 +177,21 @@ QString
 Module::name() const
 {
     return m_name;
+}
+
+
+QString
+Module::instanceId() const
+{
+    return m_instanceId;
+}
+
+
+QString
+Module::instanceKey() const
+{
+    return QString( "%1@%2" ).arg( m_name )
+                             .arg( m_instanceId );
 }
 
 
@@ -226,9 +229,9 @@ Module::Module()
 
 
 void
-Module::initFrom( const YAML::Node& node )
+Module::initFrom( const QVariantMap& moduleDescriptor )
 {
-    node >> this;
+    m_name = moduleDescriptor.value( "name" ).toString();
 }
 
 } //ns

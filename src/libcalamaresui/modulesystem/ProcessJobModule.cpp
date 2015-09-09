@@ -22,8 +22,6 @@
 
 #include <QDir>
 
-#include <yaml-cpp/yaml.h>
-
 namespace Calamares {
 
 
@@ -47,10 +45,10 @@ ProcessJobModule::loadSelf()
     if ( m_loaded )
         return;
 
-    m_job = Calamares::job_ptr( new ProcessJob( m_command,
-                                                m_workingPath,
-                                                m_runInChroot,
-                                                m_secondsTimeout ) );
+    m_job = job_ptr( new ProcessJob( m_command,
+                                     m_workingPath,
+                                     m_runInChroot,
+                                     m_secondsTimeout ) );
     m_loaded = true;
 }
 
@@ -63,27 +61,29 @@ ProcessJobModule::jobs() const
 
 
 void
-ProcessJobModule::initFrom( const YAML::Node& node )
+ProcessJobModule::initFrom( const QVariantMap& moduleDescriptor )
 {
-    Module::initFrom( node );
+    Module::initFrom( moduleDescriptor );
     QDir directory( location() );
     m_workingPath = directory.absolutePath();
 
-    if ( node[ "command" ] )
+    if ( !moduleDescriptor.value( "command" ).toString().isEmpty() )
     {
-        m_command = QString::fromStdString( node[ "command" ].as< std::string >() );
+        m_command = moduleDescriptor.value( "command" ).toString();
     }
 
     m_secondsTimeout = 30;
-    if ( node[ "timeout" ] )
+    if ( moduleDescriptor.contains( "timeout" ) &&
+         !moduleDescriptor.value( "timeout" ).isNull() )
     {
-        m_secondsTimeout = node[ "timeout" ].as< int >();
+        m_secondsTimeout = moduleDescriptor.value( "timeout" ).toInt();
     }
 
     m_runInChroot = false;
-    if ( node[ "chroot" ] )
+    if ( moduleDescriptor.contains( "chroot" )&&
+         !moduleDescriptor.value( "chroot" ).isNull() )
     {
-        m_runInChroot = node[ "chroot" ].as< bool >();
+        m_runInChroot = moduleDescriptor.value( "chroot" ).toBool();
     }
 }
 

@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -47,16 +47,15 @@ public:
 
     CalamaresWindow* mainWindow();
 
-    void startPhase( Calamares::Phase phase );
-
 private slots:
-    void onPluginsReady();
+    void initView();
+    void initViewSteps();
 
 private:
     void initQmlPath();
     void initSettings();
     void initBranding();
-    void initPlugins();
+    void initModuleManager();
     void initJobQueue();
 
     CalamaresWindow* m_mainwindow;

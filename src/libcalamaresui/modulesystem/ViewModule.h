@@ -38,7 +38,7 @@ public:
     QList< job_ptr > jobs() const override;
 
 protected:
-    void initFrom( const YAML::Node& node ) override;
+    void initFrom( const QVariantMap& moduleDescriptor ) override;
 
 private:
     friend class Module; //so only the superclass can instantiate

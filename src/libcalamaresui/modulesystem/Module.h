@@ -27,17 +27,12 @@
 #include <QVariant>
 
 
-namespace YAML
-{
-class Node;
-}
-
 namespace Calamares
 {
 class Module;
 }
 
-void operator>>( const YAML::Node& node, Calamares::Module* m );
+void operator>>( const QVariantMap& moduleDescriptor, Calamares::Module* m );
 
 namespace Calamares
 {
@@ -59,11 +54,16 @@ public:
     };
     virtual ~Module();
 
-    static Module* fromDescriptorFile( const QString& path );
+    static Module* fromDescriptor( const QVariantMap& moduleDescriptor,
+                                   const QString& instanceId,
+                                   const QString& configFileName,
+                                   const QString& moduleDirectory );
 
-    virtual QString name() const;
+    virtual QString name() const final;
+    virtual QString instanceId() const final;
+    virtual QString instanceKey() const final;
     virtual QStringList requiredModules() const;
-    virtual QString location() const;
+    virtual QString location() const final;
     virtual Type type() const = 0;
     virtual Interface interface() const = 0;
 
@@ -77,17 +77,19 @@ public:
 
 protected:
     explicit Module();
-    virtual void initFrom( const YAML::Node& node );
+    virtual void initFrom( const QVariantMap& moduleDescriptor );
     bool m_loaded;
     QVariantMap m_configurationMap;
 
 private:
-    void loadConfigurationFile(); //throws YAML::Exception
+    void loadConfigurationFile( const QString& configFileName ); //throws YAML::Exception
     QString m_name;
     QStringList m_requiredModules;
     QString m_directory;
+    QString m_instanceId;
 
-    friend void ::operator>>( const YAML::Node& node, Calamares::Module* m );
+    friend void ::operator>>( const QVariantMap& moduleDescriptor,
+                              Calamares::Module* m );
 };
 
 }
