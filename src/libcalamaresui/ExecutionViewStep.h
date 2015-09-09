@@ -17,10 +17,12 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef INSTALLATIONVIEWSTEP_H
-#define INSTALLATIONVIEWSTEP_H
+#ifndef EXECUTIONVIEWSTEP_H
+#define EXECUTIONVIEWSTEP_H
 
 #include <viewpages/ViewStep.h>
+
+#include <QStringList>
 
 class QLabel;
 class QProgressBar;
@@ -29,11 +31,11 @@ class QQuickWidget;
 namespace Calamares
 {
 
-class InstallationViewStep : public ViewStep
+class ExecutionViewStep : public ViewStep
 {
     Q_OBJECT
 public:
-    explicit InstallationViewStep( QObject* parent = nullptr );
+    explicit ExecutionViewStep( QObject* parent = nullptr );
 
     QString prettyName() const override;
 
@@ -50,7 +52,9 @@ public:
 
     void onActivate() override;
 
-    QList< Calamares::job_ptr > jobs() const override;
+    QList< job_ptr > jobs() const override;
+
+    void appendJobModuleInstanceKey( const QString& instanceKey );
 
 private:
     QWidget* m_widget;
@@ -58,9 +62,11 @@ private:
     QLabel* m_label;
     QQuickWidget* m_slideShow;
 
+    QStringList m_jobInstanceKeys;
+
     void updateFromJobQueue( qreal percent, const QString& message );
 };
 
 }
 
-#endif /* INSTALLATIONVIEWSTEP_H */
+#endif /* EXECUTIONVIEWSTEP_H */

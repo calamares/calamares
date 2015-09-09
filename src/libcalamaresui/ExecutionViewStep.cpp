@@ -17,14 +17,17 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <InstallationViewStep.h>
+#include <ExecutionViewStep.h>
 
-#include "JobQueue.h"
 #include "Branding.h"
+#include "JobQueue.h"
+#include "modulesystem/Module.h"
+#include "modulesystem/ModuleManager.h"
+#include "Settings.h"
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
-#include "Settings.h"
 #include "utils/Retranslator.h"
+#include "ViewManager.h"
 
 #include <QDir>
 #include <QLabel>
@@ -37,7 +40,7 @@
 namespace Calamares
 {
 
-InstallationViewStep::InstallationViewStep( QObject* parent )
+ExecutionViewStep::ExecutionViewStep( QObject* parent )
     : ViewStep( parent )
     , m_widget( new QWidget )
 {
@@ -62,65 +65,68 @@ InstallationViewStep::InstallationViewStep( QObject* parent )
     innerLayout->addWidget( m_label );
 
     cDebug() << "QML import paths:" << m_slideShow->engine()->importPathList();
+
+    connect( JobQueue::instance(), &JobQueue::progress,
+             this, &ExecutionViewStep::updateFromJobQueue );
 }
 
 
 QString
-InstallationViewStep::prettyName() const
+ExecutionViewStep::prettyName() const
 {
     return tr( "Install" );
 }
 
 
 QWidget*
-InstallationViewStep::widget()
+ExecutionViewStep::widget()
 {
     return m_widget;
 }
 
 
 void
-InstallationViewStep::next()
+ExecutionViewStep::next()
 {
 }
 
 
 void
-InstallationViewStep::back()
+ExecutionViewStep::back()
 {
 }
 
 
 bool
-InstallationViewStep::isNextEnabled() const
+ExecutionViewStep::isNextEnabled() const
 {
     return false;
 }
 
 
 bool
-InstallationViewStep::isBackEnabled() const
+ExecutionViewStep::isBackEnabled() const
 {
     return false;
 }
 
 
 bool
-InstallationViewStep::isAtBeginning() const
+ExecutionViewStep::isAtBeginning() const
 {
     return true;
 }
 
 
 bool
-InstallationViewStep::isAtEnd() const
+ExecutionViewStep::isAtEnd() const
 {
     return true;
 }
 
 
 void
-InstallationViewStep::onActivate()
+ExecutionViewStep::onActivate()
 {
     CALAMARES_RETRANSLATE_WIDGET( m_widget,
         if ( !Calamares::Branding::instance()->slideshowPath().isEmpty() )
@@ -128,20 +134,36 @@ InstallationViewStep::onActivate()
                                                          ->slideshowPath() ) );
     )
 
-    connect( JobQueue::instance(), &JobQueue::progress,
-             this, &InstallationViewStep::updateFromJobQueue );
+
+    JobQueue* queue = JobQueue::instance();
+    foreach ( const QString& instanceKey, m_jobInstanceKeys )
+    {
+        Calamares::Module* module = Calamares::ModuleManager::instance()
+                                    ->moduleInstance( instanceKey );
+        if ( module )
+            queue->enqueue( module->jobs() );
+    }
+
+    queue->start();
 }
 
 
 QList< Calamares::job_ptr >
-InstallationViewStep::jobs() const
+ExecutionViewStep::jobs() const
 {
     return QList< Calamares::job_ptr >();
 }
 
 
 void
-InstallationViewStep::updateFromJobQueue( qreal percent, const QString& message )
+ExecutionViewStep::appendJobModuleInstanceKey( const QString& instanceKey )
+{
+    m_jobInstanceKeys.append( instanceKey );
+}
+
+
+void
+ExecutionViewStep::updateFromJobQueue( qreal percent, const QString& message )
 {
     m_progressBar->setValue( percent * m_progressBar->maximum() );
     m_label->setText( message );
