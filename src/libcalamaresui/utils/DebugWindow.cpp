@@ -72,7 +72,7 @@ DebugWindow::DebugWindow()
     splitter->addWidget( modulesListView );
     splitter->addWidget( moduleConfigView );
 
-    QStringListModel* modulesModel = new QStringListModel( ModuleManager::instance()->availableModules() );
+    QStringListModel* modulesModel = new QStringListModel( ModuleManager::instance()->loadedInstanceKeys() );
     modulesListView->setModel( modulesModel );
     modulesListView->setSelectionMode( QAbstractItemView::SingleSelection );
 
@@ -83,7 +83,7 @@ DebugWindow::DebugWindow()
              this, [ this, moduleConfigModel ]
     {
         QString moduleName = modulesListView->currentIndex().data().toString();
-        Module* module = ModuleManager::instance()->module( moduleName );
+        Module* module = ModuleManager::instance()->moduleInstance( moduleName );
         if ( module )
         {
             moduleConfigModel->loadJson( QJsonDocument::fromVariant( module->configurationMap() ).toJson() );
