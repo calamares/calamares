@@ -18,10 +18,12 @@
 
 #include "SummaryPage.h"
 
-#include "ViewManager.h"
-#include "viewpages/ViewStep.h"
+#include "SummaryViewStep.h"
+
+#include "ExecutionViewStep.h"
 #include "utils/Retranslator.h"
 #include "utils/CalamaresUtilsGui.h"
+#include "ViewManager.h"
 
 #include <QBoxLayout>
 #include <QLabel>
@@ -29,11 +31,13 @@
 
 static const int SECTION_SPACING = 12;
 
-SummaryPage::SummaryPage( QWidget* parent )
+SummaryPage::SummaryPage( const SummaryViewStep* thisViewStep, QWidget* parent )
     : QWidget()
+    , m_thisViewStep( thisViewStep )
     , m_scrollArea( new QScrollArea( this ) )
     , m_contentWidget( nullptr )
 {
+    Q_ASSERT( m_thisViewStep );
     QVBoxLayout* layout = new QVBoxLayout( this );
     layout->setContentsMargins( 0, 0, 0, 0 );
 
@@ -59,8 +63,10 @@ SummaryPage::onActivate()
 
     QString text;
     bool first = true;
-    foreach ( Calamares::ViewStep* step,
-              Calamares::ViewManager::instance()->prepareSteps() )
+    Calamares::ViewStepList steps =
+        stepsForSummary( Calamares::ViewManager::instance()->viewSteps() );
+
+    foreach ( Calamares::ViewStep* step, steps )
     {
         QString text = step->prettyStatus();
         QWidget* widget = step->createSummaryWidget();
@@ -89,6 +95,35 @@ SummaryPage::onActivate()
     }
     m_layout->addStretch();
 }
+
+
+Calamares::ViewStepList
+SummaryPage::stepsForSummary( const Calamares::ViewStepList& allSteps ) const
+{
+    Calamares::ViewStepList steps;
+    foreach ( Calamares::ViewStep* step, allSteps )
+    {
+        // We start from the beginning of the complete steps list. If we encounter any
+        // ExecutionViewStep, it means there was an execution phase in the past, and any
+        // jobs from before that phase were already executed, so we can safely clear the
+        // list of steps to summarize and start collecting from scratch.
+        if ( qobject_cast< Calamares::ExecutionViewStep* >( step ) )
+        {
+            steps.clear();
+            continue;
+        }
+
+        // If we reach the parent step of this page, we're done collecting the list of
+        // steps to summarize.
+        if ( m_thisViewStep == step )
+            break;
+
+        steps.append( step );
+    }
+
+    return steps;
+}
+
 
 void
 SummaryPage::createContentWidget()

@@ -19,21 +19,28 @@
 #ifndef SUMMARYPAGE_H
 #define SUMMARYPAGE_H
 
+#include "Typedefs.h"
+
 #include <QWidget>
 
 class QLabel;
 class QScrollArea;
 class QVBoxLayout;
+class SummaryViewStep;
 
 class SummaryPage : public QWidget
 {
     Q_OBJECT
 public:
-    explicit SummaryPage( QWidget* parent = nullptr );
+    explicit SummaryPage( const SummaryViewStep* thisViewStep, QWidget* parent = nullptr );
 
     void onActivate();
 
 private:
+    Calamares::ViewStepList stepsForSummary( const Calamares::ViewStepList& allSteps ) const;
+
+    const SummaryViewStep* m_thisViewStep;
+
     QVBoxLayout* m_layout = nullptr;
     QWidget* m_contentWidget = nullptr;
 
