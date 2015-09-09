@@ -14,6 +14,8 @@ list( APPEND ${CALAMARESUI_LIBRARY_TARGET}_SOURCES
     utils/qjsonmodel.cpp
     utils/qjsonitem.cpp
 
+    utils/PluginFactory.cpp
+
     viewpages/AbstractPage.cpp
     viewpages/ViewStep.cpp
 
@@ -22,7 +24,7 @@ list( APPEND ${CALAMARESUI_LIBRARY_TARGET}_SOURCES
     widgets/QtWaitingSpinner.cpp
     widgets/WaitingWidget.cpp
 
-    InstallationViewStep.cpp
+    ExecutionViewStep.cpp
     Branding.cpp
     Settings.cpp
     ViewManager.cpp
