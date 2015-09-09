@@ -21,8 +21,10 @@
 
 #include <QObject>
 
-#include "viewpages/ViewStep.h"
-#include "PluginDllMacro.h"
+#include <utils/PluginFactory.h>
+#include <viewpages/ViewStep.h>
+
+#include <PluginDllMacro.h>
 
 #include <QVariantMap>
 
@@ -32,9 +34,6 @@ class RequirementsChecker;
 class PLUGINDLLEXPORT WelcomeViewStep : public Calamares::ViewStep
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA( IID "calamares.ViewModule/1.0" )
-
-    Q_INTERFACES( Calamares::ViewStep )
 
 public:
     explicit WelcomeViewStep( QObject* parent = nullptr );
@@ -62,5 +61,7 @@ private:
 
     RequirementsChecker* m_requirementsChecker;
 };
+
+CALAMARES_PLUGIN_FACTORY_DECLARATION( WelcomeViewStepFactory )
 
 #endif // WELCOMEPAGEPLUGIN_H

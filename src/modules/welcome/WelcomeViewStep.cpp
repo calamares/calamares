@@ -24,6 +24,8 @@
 
 #include <QVariant>
 
+CALAMARES_PLUGIN_FACTORY_DEFINITION( WelcomeViewStepFactory, registerPlugin<WelcomeViewStep>(); )
+
 WelcomeViewStep::WelcomeViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
     , m_requirementsChecker( new RequirementsChecker( this ) )
