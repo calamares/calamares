@@ -46,7 +46,7 @@ public:
 #endif
     }
 
-    void setJobs( const QList< Calamares::job_ptr >& jobs )
+    void setJobs( const QList< job_ptr >& jobs )
     {
         m_jobs = jobs;
     }
@@ -73,7 +73,7 @@ public:
     }
 
 private:
-    QList< Calamares::job_ptr > m_jobs;
+    QList< job_ptr > m_jobs;
     JobQueue* m_queue;
     int m_jobIndex;
 
@@ -155,7 +155,7 @@ JobQueue::start()
 
 
 void
-JobQueue::enqueue( const Calamares::job_ptr& job )
+JobQueue::enqueue( const job_ptr& job )
 {
     Q_ASSERT( !m_thread->isRunning() );
     m_jobs.append( job );

@@ -22,7 +22,7 @@ namespace Calamares
 {
 
 
-Calamares::JobResult::operator bool() const
+JobResult::operator bool() const
 {
     return m_ok;
 }

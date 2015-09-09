@@ -41,12 +41,12 @@ public:
 
     GlobalStorage* globalStorage() const;
 
-    void enqueue( const Calamares::job_ptr& job );
-    void enqueue( const QList< Calamares::job_ptr >& jobs );
+    void enqueue( const job_ptr& job );
+    void enqueue( const QList< job_ptr >& jobs );
     void start();
 
 signals:
-    void queueChanged( const QList< Calamares::job_ptr >& jobs );
+    void queueChanged( const QList< job_ptr >& jobs );
     void progress( qreal percent, const QString& prettyName );
     void finished();
     void failed( const QString& message, const QString& details );
@@ -54,7 +54,7 @@ signals:
 private:
     static JobQueue* s_instance;
 
-    QList< Calamares::job_ptr > m_jobs;
+    QList< job_ptr > m_jobs;
     JobThread* m_thread;
     GlobalStorage* m_storage;
 };
