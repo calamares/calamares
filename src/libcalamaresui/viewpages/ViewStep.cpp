@@ -53,6 +53,13 @@ ViewStep::onLeave()
 
 
 void
+ViewStep::setModuleInstanceKey( const QString& instanceKey )
+{
+    m_instanceKey = instanceKey;
+}
+
+
+void
 ViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {}
 

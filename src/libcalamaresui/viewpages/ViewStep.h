@@ -69,17 +69,21 @@ public:
      */
     virtual void onLeave();
 
-    virtual QList< Calamares::job_ptr > jobs() const = 0;
+    virtual QList< job_ptr > jobs() const = 0;
+
+    void setModuleInstanceKey( const QString& instanceKey );
+    QString moduleInstanceKey() const { return m_instanceKey; }
 
     virtual void setConfigurationMap( const QVariantMap& configurationMap );
 
 signals:
     void nextStatusChanged( bool status );
     void done();
+
+protected:
+    QString m_instanceKey;
 };
 
 }
-
-Q_DECLARE_INTERFACE( Calamares::ViewStep, "calamares.ViewModule/1.0" )
 
 #endif // VIEWSTEP_H
