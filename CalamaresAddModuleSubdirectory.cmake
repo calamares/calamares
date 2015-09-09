@@ -1,5 +1,7 @@
 include( CMakeColors )
 
+set( MODULE_DATA_DESTINATION share/calamares/modules )
+
 function( calamares_add_module_subdirectory )
     set( SUBDIRECTORY ${ARGV0} )
 
@@ -10,7 +12,6 @@ function( calamares_add_module_subdirectory )
     elseif( EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/${SUBDIRECTORY}/module.desc" )
         set( MODULES_DIR ${CMAKE_INSTALL_LIBDIR}/calamares/modules )
         set( MODULE_DESTINATION ${MODULES_DIR}/${SUBDIRECTORY} )
-        set( MODULE_CONFIG_FILE ${SUBDIRECTORY}.conf )
 
         # We glob all the files inside the subdirectory, and we make sure they are
         # synced with the bindir structure and installed.
@@ -19,9 +20,11 @@ function( calamares_add_module_subdirectory )
             if( NOT IS_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/${SUBDIRECTORY}/${MODULE_FILE} )
                 configure_file( ${SUBDIRECTORY}/${MODULE_FILE} ${SUBDIRECTORY}/${MODULE_FILE} COPYONLY )
 
-                if( "${MODULE_FILE}" STREQUAL "${MODULE_CONFIG_FILE}" )
+                get_filename_component( FLEXT ${MODULE_FILE} EXT )
+                if( "${FLEXT}" STREQUAL ".conf" )
                     install( FILES ${CMAKE_CURRENT_BINARY_DIR}/${SUBDIRECTORY}/${MODULE_FILE}
-                             DESTINATION share/calamares/modules )
+                             DESTINATION ${MODULE_DATA_DESTINATION} )
+                    list( APPEND MODULE_CONFIG_FILES ${MODULE_FILE} )
                 else()
                     install( FILES ${CMAKE_CURRENT_BINARY_DIR}/${SUBDIRECTORY}/${MODULE_FILE}
                              DESTINATION ${MODULE_DESTINATION} )
@@ -34,6 +37,9 @@ function( calamares_add_module_subdirectory )
             message( "   ${Green}TYPE:${ColorReset} jobmodule" )
 #            message( "   ${Green}FILES:${ColorReset} ${MODULE_FILES}" )
             message( "   ${Green}MODULE_DESTINATION:${ColorReset} ${MODULE_DESTINATION}" )
+            if( MODULE_CONFIG_FILES )
+                message( "   ${Green}CONFIGURATION_FILES:${ColorReset} ${MODULE_CONFIG_FILES} => ${MODULE_DATA_DESTINATION}" )
+            endif()
             message( "" )
         endif()
     else()
