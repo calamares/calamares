@@ -22,6 +22,8 @@
 
 #include <QVariant>
 
+CALAMARES_PLUGIN_FACTORY_DEFINITION( InteractiveTerminalViewStepFactory, registerPlugin<InteractiveTerminalViewStep>(); )
+
 InteractiveTerminalViewStep::InteractiveTerminalViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
     , m_widget( new InteractiveTerminalPage() )

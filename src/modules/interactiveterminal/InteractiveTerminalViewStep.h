@@ -21,17 +21,16 @@
 
 #include <QObject>
 
-#include "viewpages/ViewStep.h"
-#include "PluginDllMacro.h"
+#include <utils/PluginFactory.h>
+#include <viewpages/ViewStep.h>
+
+#include <PluginDllMacro.h>
 
 class InteractiveTerminalPage;
 
 class PLUGINDLLEXPORT InteractiveTerminalViewStep : public Calamares::ViewStep
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA( IID "calamares.ViewModule/1.0" )
-
-    Q_INTERFACES( Calamares::ViewStep )
 
 public:
     explicit InteractiveTerminalViewStep( QObject* parent = nullptr );
@@ -60,5 +59,7 @@ protected:
 private:
     InteractiveTerminalPage* m_widget;
 };
+
+CALAMARES_PLUGIN_FACTORY_DECLARATION( InteractiveTerminalViewStepFactory )
 
 #endif // INTERACTIVETERMINALPAGEPLUGIN_H
