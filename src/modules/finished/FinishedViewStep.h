@@ -21,17 +21,16 @@
 
 #include <QObject>
 
-#include "viewpages/ViewStep.h"
-#include "PluginDllMacro.h"
+#include <utils/PluginFactory.h>
+#include <viewpages/ViewStep.h>
+
+#include <PluginDllMacro.h>
 
 class FinishedPage;
 
 class PLUGINDLLEXPORT FinishedViewStep : public Calamares::ViewStep
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA( IID "calamares.ViewModule/1.0" )
-
-    Q_INTERFACES( Calamares::ViewStep )
 
 public:
     explicit FinishedViewStep( QObject* parent = nullptr );
@@ -59,5 +58,7 @@ public:
 private:
     FinishedPage* m_widget;
 };
+
+CALAMARES_PLUGIN_FACTORY_DECLARATION( FinishedViewStepFactory )
 
 #endif // FINISHEDPAGEPLUGIN_H

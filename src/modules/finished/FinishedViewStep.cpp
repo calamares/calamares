@@ -40,7 +40,7 @@ FinishedViewStep::~FinishedViewStep()
 QString
 FinishedViewStep::prettyName() const
 {
-    return tr( "All done" );
+    return tr( "Finish" );
 }
 
 
@@ -129,3 +129,4 @@ FinishedViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     }
 }
 
+CALAMARES_PLUGIN_FACTORY_DEFINITION( FinishedViewStepFactory, registerPlugin<FinishedViewStep>(); )
