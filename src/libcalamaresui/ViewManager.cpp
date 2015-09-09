@@ -20,9 +20,8 @@
 
 #include "utils/Logger.h"
 #include "viewpages/ViewStep.h"
-#include "InstallationViewStep.h"
+#include "ExecutionViewStep.h"
 #include "JobQueue.h"
-#include "modulesystem/ModuleManager.h"
 #include "utils/Retranslator.h"
 #include "Branding.h"
 #include "Settings.h"
@@ -30,6 +29,7 @@
 #include <QApplication>
 #include <QBoxLayout>
 #include <QMessageBox>
+#include <QMetaObject>
 
 namespace Calamares
 {
@@ -46,11 +46,10 @@ ViewManager::ViewManager( QObject* parent )
     : QObject( parent )
     , m_widget( new QWidget() )
     , m_currentStep( 0 )
-    , m_installationViewStep( nullptr )
-    , m_phase( Prepare )
-    , m_finishedStep( nullptr )
 {
+    Q_ASSERT( !s_instance );
     s_instance = this;
+
     QBoxLayout* mainLayout = new QVBoxLayout;
     m_widget->setLayout( mainLayout );
 
@@ -80,13 +79,11 @@ ViewManager::ViewManager( QObject* parent )
     connect( m_back, &QPushButton::clicked, this, &ViewManager::back );
     m_back->setEnabled( false );
 
-    m_installationViewStep = new InstallationViewStep( this );
-
     connect( m_quit, &QPushButton::clicked,
              this, [this]()
     {
-        if ( m_steps.at( m_currentStep ) == m_installationViewStep ||
-             !( m_currentStep == m_steps.count() -1 &&
+        // If it's NOT the last page of the last step, we ask for confirmation
+        if ( !( m_currentStep == m_steps.count() -1 &&
                 m_steps.last()->isAtEnd() ) )
         {
             int response = QMessageBox::question( m_widget,
@@ -98,11 +95,16 @@ ViewManager::ViewManager( QObject* parent )
             if ( response == QMessageBox::Yes )
                 qApp->quit();
         }
-        else //we're at the end
+        else // Means we're at the end, no need to confirm.
         {
             qApp->quit();
         }
     } );
+
+    connect( JobQueue::instance(), &JobQueue::failed,
+             this, &ViewManager::onInstallationFailed );
+    connect( JobQueue::instance(), &JobQueue::finished,
+             this, &ViewManager::next );
 }
 
 
@@ -123,30 +125,9 @@ void
 ViewManager::addViewStep( ViewStep* step )
 {
     insertViewStep( m_steps.size(), step );
-
-    if ( m_phase == Prepare )
-    {
-        m_prepareSteps.append( step );
-        // If this is the first inserted view step, update status of "Next" button
-        if ( m_prepareSteps.count() == 1 )
-            m_next->setEnabled( step->isNextEnabled() );
-    }
-    else if ( m_phase == PostInstall )
-    {
-        //FIXME: allow multiple postinstall pages
-        if ( !m_finishedStep )
-            m_finishedStep = step;
-    }
-}
-
-
-void
-ViewManager::setUpInstallationStep()
-{
-    if ( m_installationViewStep && !m_steps.contains( m_installationViewStep ) )
-    {
-        insertViewStep( m_steps.count(), m_installationViewStep );
-    }
+    // If this is the first inserted view step, update status of "Next" button
+    if ( m_steps.count() == 1 )
+        m_next->setEnabled( step->isNextEnabled() );
 }
 
 
@@ -198,21 +179,15 @@ ViewManager::onInstallationFailed( const QString& message, const QString& detail
     msgBox.setInformativeText( text );
 
     msgBox.exec();
-    QApplication::quit();
+    cLog() << "Calamares will now quit.";
+    qApp->quit();
 }
 
 
-QList< ViewStep* >
-ViewManager::prepareSteps() const
+ViewStepList
+ViewManager::viewSteps() const
 {
-    return m_prepareSteps;
-}
-
-
-ViewStep*
-ViewManager::installationStep() const
-{
-    return m_installationViewStep;
+    return m_steps;
 }
 
 
@@ -220,13 +195,6 @@ ViewStep*
 ViewManager::currentStep() const
 {
     return m_steps.value( m_currentStep );
-}
-
-
-ViewStep*
-ViewManager::finishedStep() const
-{
-    return m_finishedStep;
 }
 
 
@@ -241,15 +209,15 @@ void
 ViewManager::next()
 {
     ViewStep* step = m_steps.at( m_currentStep );
-    bool installing = false;
+    bool executing = false;
     if ( step->isAtEnd() )
     {
-        // Special case when the user clicks next on the very last page in the Prepare phase
-        // and right before switching to the Install phase.
+        // Special case when the user clicks next on the very last page in a view phase
+        // and right before switching to an execution phase.
         // Depending on Calamares::Settings, we show an "are you sure" prompt or not.
-        if ( Calamares::Settings::instance()->showPromptBeforeInstall() &&
+        if ( Calamares::Settings::instance()->showPromptBeforeExecution() &&
              m_currentStep + 1 < m_steps.count() &&
-             m_steps.at( m_currentStep + 1 ) == m_installationViewStep )
+             qobject_cast< ExecutionViewStep* >( m_steps.at( m_currentStep + 1 ) ) )
         {
             int reply =
                 QMessageBox::question( m_widget,
@@ -274,19 +242,15 @@ ViewManager::next()
         m_stack->setCurrentIndex( m_currentStep );
         step->onLeave();
         m_steps.at( m_currentStep )->onActivate();
-        installing = m_steps.at( m_currentStep ) == m_installationViewStep;
+        executing = qobject_cast< ExecutionViewStep* >( m_steps.at( m_currentStep ) ) != nullptr;
         emit currentStepChanged();
-        if ( installing )
+        if ( executing )
         {
-            emit phaseChangeRequested( Calamares::Install );
-            m_phase = Install;
             m_back->setEnabled( false );
             m_next->setEnabled( false );
             connect( Calamares::JobQueue::instance(), &Calamares::JobQueue::finished,
                      this, [this]
             {
-                emit phaseChangeRequested( Calamares::PostInstall );
-                m_phase = PostInstall;
                 m_next->setEnabled( true );
             } );
         }
@@ -296,8 +260,8 @@ ViewManager::next()
         step->next();
     }
 
-    m_next->setEnabled( !installing && m_steps.at( m_currentStep )->isNextEnabled() );
-    m_back->setEnabled( !installing && m_steps.at( m_currentStep )->isBackEnabled() );
+    m_next->setEnabled( !executing && m_steps.at( m_currentStep )->isNextEnabled() );
+    m_back->setEnabled( !executing && m_steps.at( m_currentStep )->isBackEnabled() );
 
     if ( m_currentStep == m_steps.count() -1 &&
          m_steps.last()->isAtEnd() )
