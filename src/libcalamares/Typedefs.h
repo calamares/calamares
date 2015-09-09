@@ -27,13 +27,14 @@ class Job;
 
 typedef QSharedPointer< Job > job_ptr;
 
-enum Phase
+enum ModuleAction : char
 {
-    Phase_NULL = 0,
-    Prepare,
-    Install,
-    PostInstall
+    Show,
+    Exec
 };
+
+class ViewStep;
+typedef QList< ViewStep* > ViewStepList;
 
 } //ns
 
