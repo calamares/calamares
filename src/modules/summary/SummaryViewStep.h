@@ -21,17 +21,16 @@
 
 #include <QObject>
 
-#include "viewpages/ViewStep.h"
-#include "PluginDllMacro.h"
+#include <utils/PluginFactory.h>
+#include <viewpages/ViewStep.h>
+
+#include <PluginDllMacro.h>
 
 class SummaryPage;
 
 class PLUGINDLLEXPORT SummaryViewStep : public Calamares::ViewStep
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA( IID "calamares.ViewModule/1.0" )
-
-    Q_INTERFACES( Calamares::ViewStep )
 
 public:
     explicit SummaryViewStep( QObject* parent = nullptr );
@@ -57,5 +56,7 @@ public:
 private:
     SummaryPage* m_widget;
 };
+
+CALAMARES_PLUGIN_FACTORY_DECLARATION( SummaryViewStepFactory )
 
 #endif // SUMMARYPAGEPLUGIN_H
