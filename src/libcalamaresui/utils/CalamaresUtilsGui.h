@@ -60,6 +60,7 @@ UIDLLEXPORT QPixmap defaultPixmap( ImageType type, ImageMode mode = CalamaresUti
 UIDLLEXPORT QPixmap createRoundedImage( const QPixmap& avatar, const QSize& size, float frameWidthPct = 0.20 );
 
 UIDLLEXPORT void unmarginLayout( QLayout* layout );
+UIDLLEXPORT void clearLayout( QLayout* layout );
 
 UIDLLEXPORT void setDefaultFontSize( int points );
 UIDLLEXPORT int defaultFontSize();
