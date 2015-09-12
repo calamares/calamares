@@ -9,17 +9,17 @@
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="74"/>
         <source>Allocate drive space by dragging the divider below:</source>
-        <translation>Присвойте место на диске, путем перемещения ползунка снизу: </translation>
+        <translation>Выделите дисковое пространство, перемещая ползунок:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="117"/>
         <source>With this operation, the partition &lt;strong&gt;%1&lt;/strong&gt; which contains %4 will be shrunk to %2MB and a new %3MB partition will be created for %5.</source>
-        <translation>Этим действием, раздел &lt;strong&gt;%1&lt;/strong&gt;, который содержит %4 будет уменьшен на %2 MB и будет создан новый раздел в %3 MB для %5.</translation>
+        <translation>Это действие уменьшит раздел &lt;strong&gt;%1&lt;/strong&gt;, содержащий %4, до %2 MB, и создаст новый раздел %3 MB для %5.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="217"/>
         <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
-        <translation>Не найдено системного раздела EFI. Пожалуйста, вернитесь назад и выполните ручную разметку %1.</translation>
+        <translation>Не удалось найти системный раздел EFI в этой системе. Пожалуйста, вернитесь назад и выполните ручную разметку для установки %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="227"/>
