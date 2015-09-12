@@ -53,7 +53,7 @@ def run():
                 libcalamares.utils.debug("systemctl enable call in chroot returned error code {}".format(ec))
 
     for dbl in disable:
-        ec = libcalamares.utils.chroot_call(['systemctl', 'disable', '{}.service'.format(dbl['name'])])
+        ec = libcalamares.utils.target_env_call(['systemctl', 'disable', '{}.service'.format(dbl['name'])])
 
         if ec != 0:
             if dbl['mandatory']:
