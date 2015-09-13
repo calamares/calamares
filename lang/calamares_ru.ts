@@ -50,7 +50,7 @@
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/applyprogressdialogwidgetbase.ui" line="33"/>
         <source>Operations and Jobs</source>
-        <translation>Действия и Задачи</translation>
+        <translation>Действия и задачи</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/applyprogressdialogwidgetbase.ui" line="38"/>
@@ -70,7 +70,7 @@
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/applyprogressdialogwidgetbase.ui" line="91"/>
         <source>Status</source>
-        <translation>Статус</translation>
+        <translation>Состояние</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/applyprogressdialogwidgetbase.ui" line="107"/>
@@ -83,7 +83,7 @@
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="20"/>
         <source>Installer</source>
-        <translation>Установщик</translation>
+        <translation>Программа установки</translation>
     </message>
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="168"/>
@@ -152,12 +152,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="443"/>
         <source>User Info</source>
-        <translation>Информация о пользователях</translation>
+        <translation>Сведения о пользователе</translation>
     </message>
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="469"/>
         <source>Summary</source>
-        <translation>Итог</translation>
+        <translation>Сводка</translation>
     </message>
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="514"/>
@@ -221,12 +221,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="24"/>
         <source>GlobalStorage</source>
-        <translation>Глобальное Хранилище</translation>
+        <translation>Глобальное хранилище</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="34"/>
         <source>JobQueue</source>
-        <translation>Очередь Выполнения</translation>
+        <translation>Очередь заданий</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="44"/>
@@ -265,31 +265,31 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="60"/>
         <source>Running command %1 %2</source>
-        <translation>Выполняю команду %1 %2</translation>
+        <translation>Выполняется команда %1 %2</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="88"/>
         <source>External command crashed</source>
-        <translation>Вызов внешней команды завершился неудачей</translation>
+        <translation>Во внешней команде произошел сбой</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="89"/>
         <source>Command %1 crashed.
 Output:
 %2</source>
-        <translation>Команда %1 завершилась неудачей.
+        <translation>В команде %1 произошел сбой.
 Вывод:
 %2</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="94"/>
         <source>External command failed to start</source>
-        <translation>Невозможно выполнить внешнюю команду</translation>
+        <translation>Невозможно запустить внешнюю команду</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="95"/>
         <source>Command %1 failed to start.</source>
-        <translation>Ошибка запуска команды %1.</translation>
+        <translation>Невозможно запустить команду %1.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="99"/>
@@ -311,7 +311,7 @@ Output:
         <source>Command %1 failed to finish in %2s.
 Output:
 %3</source>
-        <translation>Команда %1 не могла быть завершена в течении %2 сек.
+        <translation>Команда %1 не завершилась за %2 с.
 Вывод:
 %3</translation>
     </message>
@@ -335,27 +335,27 @@ Output:
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="241"/>
         <source>Running %1 operation.</source>
-        <translation>Выполняю действие %1.</translation>
+        <translation>Выполняется действие %1.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="254"/>
         <source>Bad working directory path</source>
-        <translation>Неверный путь рабочей директории</translation>
+        <translation>Неверный путь к рабочему каталогу</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="255"/>
         <source>Working directory %1 for python job %2 is not readable.</source>
-        <translation>Рабочая директория %1 для задачи python %2 не доступна для чтения.</translation>
+        <translation>Рабочий каталог %1 для задачи python %2 недоступен для чтения.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="265"/>
         <source>Bad main script file</source>
-        <translation>Ошибочный файл сценария</translation>
+        <translation>Ошибочный главный файл сценария</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="266"/>
         <source>Main script file %1 for python job %2 is not readable.</source>
-        <translation>Главный файл сценария %1 для задачи python %2 не доступен для чтения.</translation>
+        <translation>Главный файл сценария %1 для задачи python %2 недоступен для чтения.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="311"/>
@@ -390,7 +390,7 @@ Output:
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="94"/>
         <source>Do you really want to cancel the current install process?
 The installer will quit and all changes will be lost.</source>
-        <translation>Вы действительно желаете прервать процесс установки? Установщик незамедлительно прекратит свою работу, все изменения будут потеряны.</translation>
+        <translation>Действительно прервать процесс установки? Программа установки сразу прекратит работу, все изменения будут потеряны.</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="256"/>
@@ -400,7 +400,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="257"/>
         <source>The %1 installer is about to make changes to your disk in order to install %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
-        <translation>Установщик %1 сейчас применит изменения к диску, чтобы установить %2.&lt;br/&gt;&lt;strong&gt;Откат этих изменений назад не возможен.&lt;/strong&gt;</translation>
+        <translation>Программа установки %1 готова внести изменения на Ваш диск, чтобы установить %2.&lt;br/&gt;&lt;strong&gt;Отменить эти изменения будет невозможно.&lt;/strong&gt;</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="264"/>
@@ -456,7 +456,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/calamares/CalamaresWindow.cpp" line="44"/>
         <source>%1 Installer</source>
-        <translation>%1 Установщик</translation>
+        <translation>Программа установки %1</translation>
     </message>
     <message>
         <location filename="../src/calamares/CalamaresWindow.cpp" line="98"/>
@@ -482,12 +482,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="95"/>
         <source>This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;Installation cannot continue. &lt;a href=&quot;#details&quot;&gt;Details...&lt;/a&gt;</source>
-        <translation>Этот компьютер не удовлетворяет минимальным требованиям для установки %1.&lt;br/&gt;Установка не может быть продолжена.&lt;a href=&quot;#details&quot;&gt;Подробнее...&lt;/a&gt;</translation>
+        <translation>Этот компьютер не соответствует минимальным требованиям для установки %1.&lt;br/&gt;Невозможно продолжить установку. &lt;a href=&quot;#details&quot;&gt;Подробнее...&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="113"/>
         <source>This computer does not satisfy some of the recommended requirements for installing %1.&lt;br/&gt;Installation can continue, but some features might be disabled.</source>
-        <translation>Этот компьютер не удовлетворяет некоторым рекомендуемым требованиям для установки %1.&lt;br/&gt;Установка может быть продолжена, но некоторые возможности могут быть недоступны.</translation>
+        <translation>Этот компьютер соответствует не всем рекомендуемым требованиям для установки %1.&lt;br/&gt;Можно продолжить установку, но некоторые возможности могут быть недоступны.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="142"/>
@@ -510,19 +510,19 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="117"/>
         <source>This computer currently does not seem to have an operating system on it. What would you like to do?</source>
-        <translation>Похоже этот компьютер не содержит операционных систем. Как Вы желаете поступить?</translation>
+        <translation>Похоже, сейчас на этом компьютере нет операционной системы. Как Вы желаете поступить?</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="143"/>
         <source>This computer currently has %1 on it. What would you like to do?</source>
-        <translation>На этом компьютере обнаружен %1. Как Вы желаете поступить?</translation>
+        <translation>На этом компьютере уже установлена ОС %1. Как Вы желаете поступить?</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="121"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="191"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="240"/>
         <source>&lt;strong&gt;Erase disk and install %1&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;This will delete all of your programs, documents, photos, music, and any other files.</source>
-        <translation>&lt;strong&gt;Очистить диск и установить %1&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Внимание: &lt;/font&gt;Это удалит все ваши приложения, документы, фотографии, музыку и любые другие файлы.</translation>
+        <translation>&lt;strong&gt;Очистить диск и установить %1&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Внимание: &lt;/font&gt;Это удалит все Ваши приложения, документы, фотографии, музыку и все остальные файлы.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="127"/>
@@ -530,34 +530,34 @@ The installer will quit and all changes will be lost.</source>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="197"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="246"/>
         <source>&lt;strong&gt;Erase disk and install %1&lt;/strong&gt;&lt;br/&gt;You will be offered a choice of which disk to erase.</source>
-        <translation>&lt;strong&gt;Очистить диск и установить %1&lt;/strong&gt;&lt;br/&gt;Вам будут предложен выбор диска для очистки.</translation>
+        <translation>&lt;strong&gt;Очистить диск и установить %1&lt;/strong&gt;&lt;br/&gt;Вы сможете выбрать, какой диск очистить.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="147"/>
         <source>&lt;strong&gt;Install %2 alongside %1&lt;/strong&gt;&lt;br/&gt;The installer will shrink the %1 volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
-        <translation>&lt;strong&gt;Установить %2 рядом с %1&lt;/strong&gt;&lt;br/&gt;Установщик уменьшит %1 раздел, чтобы освободить место для %2. Вы сможете выбирать операционную систему в момент старта компьютера.</translation>
+        <translation>&lt;strong&gt;Установить %2 рядом с %1&lt;/strong&gt;&lt;br/&gt;Установщик уменьшит раздел %1, чтобы освободить место для %2. Вы сможете выбирать операционную систему при каждой загрузке компьютера.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="156"/>
         <source>&lt;strong&gt;Erase entire disk with %1 and install %2&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;This will erase the whole disk and delete all of your %1 programs, documents, photos, music, and any other files.</source>
-        <translation>&lt;strong&gt;Стереть содержимое всего диска используя %1 и установить %2&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Внимание: &lt;/font&gt;Это удалит содержимое всего диска, включая все ваши %1 программы, документы, фото, музыку и прочие файлы.</translation>
+        <translation>&lt;strong&gt;Очистить весь диск с %1 и установить %2&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Внимание: &lt;/font&gt;Это удалит все, что есть на диске, включая все Ваши %1 программы, документы, фото, музыку и все остальные файлы.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="169"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="202"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="251"/>
         <source>&lt;strong&gt;Replace a partition with %1&lt;/strong&gt;&lt;br/&gt;You will be offered a choice of which partition to erase.</source>
-        <translation>&lt;strong&gt;Заменить раздел на %1&lt;/strong&gt;&lt;br/&gt;Вам будет предложено выбрать какой раздел удалить.</translation>
+        <translation>&lt;strong&gt;Заменить один из разделов на %1&lt;/strong&gt;&lt;br/&gt;Вы сможете выбрать, какой раздел очистить.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="178"/>
         <source>This computer already has an operating system on it. What would you like to do?</source>
-        <translation>На компьютере уже установлена операционная система. Как Вы желаете поступить?</translation>
+        <translation>На этом компьютере уже установлена операционная система. Как Вы желаете поступить?</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="181"/>
         <source>&lt;strong&gt;Install %1 alongside your current operating system&lt;/strong&gt;&lt;br/&gt;The installer will shrink an existing volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
-        <translation>&lt;strong&gt;Установить %1 не трогая существующую операционную систему&lt;/strong&gt;&lt;br/&gt;Установщик уменьшит существующий раздел, чтобы освободить место для %2. Вы сможете выбирать операционную систему в момент старта компьютера.</translation>
+        <translation>&lt;strong&gt;Установить %1, сохранив существующую операционную систему&lt;/strong&gt;&lt;br/&gt;Программа установки уменьшит существующий раздел, чтобы освободить место для %2. Вы сможете выбирать операционную систему при каждой загрузке компьютера.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="227"/>
@@ -567,12 +567,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="230"/>
         <source>&lt;strong&gt;Install %1 alongside your current operating systems&lt;/strong&gt;&lt;br/&gt;The installer will shrink an existing volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
-        <translation>&lt;strong&gt;Установить %1 не трогая существующие операционные системы&lt;/strong&gt;&lt;br/&gt;Установщик уменьшит существующий раздел, чтобы освободить место для %2. Вы сможете выбирать операционную систему в момент старта компьютера.</translation>
+        <translation>&lt;strong&gt;Установить %1, сохранив существующие операционные системы&lt;/strong&gt;&lt;br/&gt;Программа установки уменьшит существующий раздел, чтобы освободить место для %2. Вы сможете выбирать операционную систему при каждой загрузке компьютера.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="278"/>
         <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself, or choose multiple partitions for %1.</source>
-        <translation>&lt;strong&gt;Ручной режим&lt;/strong&gt;&lt;br/&gt;Вы сможете создавать или менять размер разделов сами, или выбрать несколько разделов для %1.</translation>
+        <translation>&lt;strong&gt;Ручная разметка&lt;/strong&gt;&lt;br/&gt;Вы сможете самостоятельно создать разделы, изменить их размеры, а также выбрать несколько разделов для %1.</translation>
     </message>
 </context>
 <context>
@@ -580,17 +580,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="42"/>
         <source>Clear mounts for partitioning operations on %1</source>
-        <translation>Снять точки монтирования для операций над разделами %1</translation>
+        <translation>Освободить точки монтирования для выполнения разметки на %1</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="50"/>
         <source>Clearing mounts for partitioning operations on %1.</source>
-        <translation>Снятие точек монтирования для операций над разделами на %1.</translation>
+        <translation>Освобождаются точки монтирования для выполнения разметки на %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="169"/>
         <source>Cleared all mounts for %1</source>
-        <translation>Все точки %1 отмонтированы</translation>
+        <translation>Освобождены все точки монтирования для %1</translation>
     </message>
 </context>
 <context>
@@ -598,22 +598,22 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="38"/>
         <source>Clear all temporary mounts.</source>
-        <translation>Отмонтировать все временные точки.</translation>
+        <translation>Освободить все временные точки монтирования.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="45"/>
         <source>Clearing all temporary mounts.</source>
-        <translation>Отмонтировать все временные точки.</translation>
+        <translation>Освобождаются все временные точки монтирования.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="56"/>
         <source>Cannot get list of temporary mounts.</source>
-        <translation>Невозможно получить список всех временных точек монтирования.</translation>
+        <translation>Невозможно получить список временных точек монтирования.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="95"/>
         <source>Cleared all temporary mounts.</source>
-        <translation>Все временные точки успешно отмонтированы.</translation>
+        <translation>Освобождены все временные точки монтирования.</translation>
     </message>
 </context>
 <context>
@@ -626,7 +626,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="35"/>
         <source>Allow applying operations without administrator privileges</source>
-        <translation>Разрешить выполнение действий без запроса административных полномочий</translation>
+        <translation>Разрешить выполнение действий без прав администратора</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepageadvanced.ui" line="51"/>
@@ -847,12 +847,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="90"/>
         <source>Logging</source>
-        <translation>Протоколирование</translation>
+        <translation>Журналирование</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="96"/>
         <source>Hide messages below:</source>
-        <translation>Спрятать сообщения внизу:</translation>
+        <translation>Скрыть сообщения внизу:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="107"/>
@@ -862,7 +862,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="112"/>
         <source>Information</source>
-        <translation>Информация</translation>
+        <translation>Сведения</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="117"/>
@@ -892,12 +892,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="173"/>
         <source>Overwrite with:</source>
-        <translation>Перезаписать:</translation>
+        <translation>Поверх записать:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="180"/>
         <source>Random data</source>
-        <translation>Произвольные данные</translation>
+        <translation>Случайные данные</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/config/configurepagegeneral.ui" line="190"/>
@@ -968,42 +968,42 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="48"/>
         <source>Create new %2MB partition on %4 (%3) with file system %1.</source>
-        <translation>Создать новый раздел, размером в %2MB на %4 (%3) с файловой системой %1.</translation>
+        <translation>Создать новый раздел %2 MB на %4 (%3) с файловой системой %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="59"/>
         <source>Create new &lt;strong&gt;%2MB&lt;/strong&gt; partition on &lt;strong&gt;%4&lt;/strong&gt; (%3) with file system &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation>Создать новый раздел, размером в &lt;strong&gt;%2MB&lt;/strong&gt; на &lt;strong&gt;%4&lt;/strong&gt; (%3) с файловой системой &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+        <translation>Создать новый раздел &lt;strong&gt;%2 MB&lt;/strong&gt; на &lt;strong&gt;%4&lt;/strong&gt; (%3) с файловой системой &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="71"/>
         <source>Creating new %1 partition on %2.</source>
-        <translation>Создаю новый %1 раздел на %2.</translation>
+        <translation>Создается новый %1 раздел на %2.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="83"/>
         <source>The installer failed to create partition on disk &apos;%1&apos;.</source>
-        <translation>Установщик не смог создать раздел на диске &apos;%1&apos;.</translation>
+        <translation>Программа установки не смогла создать раздел на диске &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="92"/>
         <source>Could not open device &apos;%1&apos;.</source>
-        <translation>Невозможно открыть устройство &apos;%1&apos;.</translation>
+        <translation>Не удалось открыть устройство &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="102"/>
         <source>Could not open partition table.</source>
-        <translation>Не возможно прочитать таблицу разделов.</translation>
+        <translation>Не удалось открыть таблицу разделов.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="126"/>
         <source>The installer failed to create file system on partition %1.</source>
-        <translation>Установщик не смог создать файловую систему на разделе %1.</translation>
+        <translation>Программа установки не смогла создать файловую систему на разделе %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="134"/>
         <source>The installer failed to update partition table on disk &apos;%1&apos;.</source>
-        <translation>Установщик не смог обновить таблицу разделов на диске &apos;%1&apos;.</translation>
+        <translation>Программа установки не смогла обновить таблицу разделов на диске &apos;%1&apos;.</translation>
     </message>
 </context>
 <context>
@@ -1016,7 +1016,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="39"/>
         <source>Creating a new partition table will delete all existing data on the disk.</source>
-        <translation>Создание новой таблицы разделов удалит все существующие данные на диске.</translation>
+        <translation>При создании новой таблицы разделов будут удалены все данные на диске.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="65"/>
@@ -1031,7 +1031,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="82"/>
         <source>GUID Partition Table (GPT)</source>
-        <translation>Таблица Разделов GUID (GPT)</translation>
+        <translation>Таблица разделов GUID (GPT)</translation>
     </message>
 </context>
 <context>
@@ -1039,27 +1039,27 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="49"/>
         <source>Create new %1 partition table on %2.</source>
-        <translation>Создать новую %1 таблицу разделов на %2.</translation>
+        <translation>Создать новую таблицу разделов %1 на %2.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="56"/>
         <source>Create new &lt;strong&gt;%1&lt;/strong&gt; partition table on &lt;strong&gt;%2&lt;/strong&gt; (%3).</source>
-        <translation>создать новую &lt;strong&gt;%1&lt;/strong&gt; таблицу разделов на &lt;strong&gt;%2&lt;/strong&gt; (%3).</translation>
+        <translation>Создать новую таблицу разделов &lt;strong&gt;%1&lt;/strong&gt; на &lt;strong&gt;%2&lt;/strong&gt; (%3).</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="66"/>
         <source>Creating new %1 partition table on %2.</source>
-        <translation>Создаю новую %1 таблицу разделов на %2.</translation>
+        <translation>Создается новая таблица разделов %1 на %2.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="76"/>
         <source>The installer failed to create a partition table on %1.</source>
-        <translation>Установщик не смог создать таблицу разделов на %1.</translation>
+        <translation>Программа установки не смогла создать таблицу разделов на %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="84"/>
         <source>Could not open device %1.</source>
-        <translation>Невозможно открыть устройство %1.</translation>
+        <translation>Не удалось открыть устройство %1.</translation>
     </message>
 </context>
 <context>
@@ -1067,7 +1067,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/createpartitiontablewidgetbase.ui" line="20"/>
         <source>Choose the type of partition table you want to create:</source>
-        <translation>Выберите тип таблицы разделов для создания:</translation>
+        <translation>Выберите, таблицу разделов какого типа Вы желаете создать:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/createpartitiontablewidgetbase.ui" line="29"/>
@@ -1087,7 +1087,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/partitionmanager/src/gui/createpartitiontablewidgetbase.ui" line="79"/>
         <source>&lt;b&gt;Warning:&lt;/b&gt; This will destroy all data on the device!</source>
-        <translation>&lt;b&gt;Внимание:&lt;/b&gt;Это уничтожит все данные на устройстве!</translation>
+        <translation>&lt;b&gt;Внимание:&lt;/b&gt; Это уничтожит все данные на устройстве!</translation>
     </message>
 </context>
 <context>
@@ -1095,7 +1095,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="51"/>
         <source>Create user %1</source>
-        <translation>Создать пользователя %1</translation>
+        <translation>Создать учетную запись %1</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="58"/>
@@ -1105,12 +1105,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="65"/>
         <source>Creating user %1.</source>
-        <translation>Создаю учетную запись %1.</translation>
+        <translation>Создается учетная запись %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="81"/>
         <source>Sudoers dir is not writable.</source>
-        <translation>Директория sudoers не доступна для записи.</translation>
+        <translation>Каталог sudoers не доступен для записи.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="85"/>
@@ -1130,7 +1130,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="137"/>
         <source>Cannot create user %1.</source>
-        <translation>Невозможно создать пользователя %1.</translation>
+        <translation>Невозможно создать учетную запись %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="139"/>
