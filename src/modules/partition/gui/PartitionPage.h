@@ -41,6 +41,7 @@ class PartitionPage : public QWidget
 public:
     explicit PartitionPage( PartitionCoreModule* core, QWidget* parent = nullptr );
     ~PartitionPage();
+    QList<QString> getUsedMountPoints();
 
 private:
     QScopedPointer< Ui_PartitionPage > m_ui;

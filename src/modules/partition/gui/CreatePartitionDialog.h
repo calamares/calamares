@@ -24,6 +24,7 @@
 
 // CalaPM
 #include <core/partitionrole.h>
+#include "PartitionPage.h"
 
 class Device;
 class Partition;
@@ -53,6 +54,7 @@ public:
      */
     void initFromPartitionToCreate( Partition* partition );
     Partition* createPartition();
+    virtual int exec();
 
 private Q_SLOTS:
     void updateMountPointUi();
@@ -63,10 +65,12 @@ private:
     Device* m_device;
     PartitionNode* m_parent;
     PartitionRole m_role = PartitionRole( PartitionRole::None );
+    QList<QString> m_used_mountpoints;
 
     void initGptPartitionTypeUi();
     void initMbrPartitionTypeUi();
     void initPartResizerWidget( Partition* );
+    bool validate();
 };
 
 #endif /* CREATEPARTITIONDIALOG_H */
