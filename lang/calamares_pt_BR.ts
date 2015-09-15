@@ -1676,6 +1676,84 @@ Alguns sistemas de arquivos necessitam de ferramentas externas para serem suport
     </message>
 </context>
 <context>
+    <name>LicensePage</name>
+    <message>
+        <location filename="../src/modules/license/LicensePage.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/license/LicensePage.cpp" line="88"/>
+        <source>I accept the terms and conditions above.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/license/LicensePage.cpp" line="115"/>
+        <source>&lt;h1&gt;License Agreement&lt;/h1&gt;This setup procedure will install proprietary software that is subject to licensing terms.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/license/LicensePage.cpp" line="118"/>
+        <source>Please review the End User License Agreements (EULAs) above.&lt;br/&gt;If you do not agree with the terms, the setup procedure cannot continue.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/license/LicensePage.cpp" line="124"/>
+        <source>&lt;h1&gt;License Agreement&lt;/h1&gt;This setup procedure can install proprietary software that is subject to licensing terms in order to provide additional features and enhance the user experience.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/license/LicensePage.cpp" line="129"/>
+        <source>Please review the End User License Agreements (EULAs) above.&lt;br/&gt;If you do not agree with the terms, proprietary software will not be installed, and open source alternatives will be used instead.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/license/LicensePage.cpp" line="159"/>
+        <source>&lt;strong&gt;%1 driver&lt;/strong&gt;&lt;br/&gt;by %2</source>
+        <extracomment>%1 is an untranslatable product name, example: Creative Audigy driver</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/license/LicensePage.cpp" line="165"/>
+        <source>&lt;strong&gt;%1 graphics driver&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;by %2&lt;/font&gt;</source>
+        <extracomment>%1 is usually a vendor name, example: Nvidia graphics driver</extracomment>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/license/LicensePage.cpp" line="171"/>
+        <source>&lt;strong&gt;%1 browser plugin&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;by %2&lt;/font&gt;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/license/LicensePage.cpp" line="177"/>
+        <source>&lt;strong&gt;%1 codec&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;by %2&lt;/font&gt;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/license/LicensePage.cpp" line="183"/>
+        <source>&lt;strong&gt;%1 package&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;by %2&lt;/font&gt;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/license/LicensePage.cpp" line="189"/>
+        <source>&lt;strong&gt;%1&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;by %2&lt;/font&gt;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/license/LicensePage.cpp" line="201"/>
+        <source>&lt;a href=&quot;%1&quot;&gt;view license agreement&lt;/a&gt;</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>LicenseViewStep</name>
+    <message>
+        <location filename="../src/modules/license/LicenseViewStep.cpp" line="49"/>
+        <source>License</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>LocalePage</name>
     <message>
         <location filename="../src/modules/locale/LocalePage.cpp" line="158"/>

@@ -1676,6 +1676,84 @@ Kai kurios failų sistemos tam, kad būtų palaikomos, reikalauja, kad būtų į
     </message>
 </context>
 <context>
+    <name>LicensePage</name>
+    <message>
+        <location filename="../src/modules/license/LicensePage.ui" line="14"/>
+        <source>Form</source>
+        <translation>Forma</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/license/LicensePage.cpp" line="88"/>
+        <source>I accept the terms and conditions above.</source>
+        <translation>Aš sutinku su aukščiau išdėstytomis nuostatomis ir sąlygomis.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/license/LicensePage.cpp" line="115"/>
+        <source>&lt;h1&gt;License Agreement&lt;/h1&gt;This setup procedure will install proprietary software that is subject to licensing terms.</source>
+        <translation>&lt;h1&gt;Licencijos Sutartis&lt;/h1&gt;Ši sąrankos procedūra įdiegs nuosavybinę programinę įrangą, kuriai yra taikomos licencijavimo nuostatos.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/license/LicensePage.cpp" line="118"/>
+        <source>Please review the End User License Agreements (EULAs) above.&lt;br/&gt;If you do not agree with the terms, the setup procedure cannot continue.</source>
+        <translation>Prašome aukščiau peržiūrėti Galutinio Vartotojo Licencijos Sutartis (angl. EULA).&lt;br/&gt;Jeigu nesutiksite su nuostatomis, sąrankos procedūra negalės būti tęsiama.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/license/LicensePage.cpp" line="124"/>
+        <source>&lt;h1&gt;License Agreement&lt;/h1&gt;This setup procedure can install proprietary software that is subject to licensing terms in order to provide additional features and enhance the user experience.</source>
+        <translation>&lt;h1&gt;Licencijos Sutartis&lt;/h1&gt;Tam, kad pateiktų papildomas ypatybes ir pagerintų naudotojo patirtį, ši sąrankos procedūra gali įdiegti nuosavybinę programinę įrangą, kuriai yra taikomos licencijavimo nuostatos.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/license/LicensePage.cpp" line="129"/>
+        <source>Please review the End User License Agreements (EULAs) above.&lt;br/&gt;If you do not agree with the terms, proprietary software will not be installed, and open source alternatives will be used instead.</source>
+        <translation>Prašome aukščiau peržiūrėti Galutinio Vartotojo Licencijos Sutartis (angl. EULA).&lt;br/&gt;Jeigu nesutiksite su nuostatomis, tuomet nuosavybinė programinė įranga nebus įdiegta, o vietoj jos, bus naudojamos atviro kodo alternatyvos.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/license/LicensePage.cpp" line="159"/>
+        <source>&lt;strong&gt;%1 driver&lt;/strong&gt;&lt;br/&gt;by %2</source>
+        <extracomment>%1 is an untranslatable product name, example: Creative Audigy driver</extracomment>
+        <translation>&lt;strong&gt;%1 tvarkyklė&lt;/strong&gt;&lt;br/&gt;iš %2</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/license/LicensePage.cpp" line="165"/>
+        <source>&lt;strong&gt;%1 graphics driver&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;by %2&lt;/font&gt;</source>
+        <extracomment>%1 is usually a vendor name, example: Nvidia graphics driver</extracomment>
+        <translation>&lt;strong&gt;%1 grafikos tvarkyklė&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;iš %2&lt;/font&gt;</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/license/LicensePage.cpp" line="171"/>
+        <source>&lt;strong&gt;%1 browser plugin&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;by %2&lt;/font&gt;</source>
+        <translation>&lt;strong&gt;%1 naršyklės papildinys&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;iš %2&lt;/font&gt;</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/license/LicensePage.cpp" line="177"/>
+        <source>&lt;strong&gt;%1 codec&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;by %2&lt;/font&gt;</source>
+        <translation>&lt;strong&gt;%1 kodekas&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;iš %2&lt;/font&gt;</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/license/LicensePage.cpp" line="183"/>
+        <source>&lt;strong&gt;%1 package&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;by %2&lt;/font&gt;</source>
+        <translation>&lt;strong&gt;%1 paketas&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;iš %2&lt;/font&gt;</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/license/LicensePage.cpp" line="189"/>
+        <source>&lt;strong&gt;%1&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;by %2&lt;/font&gt;</source>
+        <translation>&lt;strong&gt;%1&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;iš %2&lt;/font&gt;</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/license/LicensePage.cpp" line="201"/>
+        <source>&lt;a href=&quot;%1&quot;&gt;view license agreement&lt;/a&gt;</source>
+        <translation>&lt;a href=&quot;%1&quot;&gt;žiūrėti licencijos sutartį&lt;/a&gt;</translation>
+    </message>
+</context>
+<context>
+    <name>LicenseViewStep</name>
+    <message>
+        <location filename="../src/modules/license/LicenseViewStep.cpp" line="49"/>
+        <source>License</source>
+        <translation>Licencija</translation>
+    </message>
+</context>
+<context>
     <name>LocalePage</name>
     <message>
         <location filename="../src/modules/locale/LocalePage.cpp" line="158"/>
