@@ -26,6 +26,8 @@
 
 #include <QVariantMap>
 
+CALAMARES_PLUGIN_FACTORY_DEFINITION( LicenseViewStepFactory, registerPlugin<LicenseViewStep>(); )
+
 LicenseViewStep::LicenseViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
     , m_widget( new LicensePage )
