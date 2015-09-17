@@ -200,10 +200,17 @@ QString
 ClearMountsJob::tryClearSwap( const QString& partPath )
 {
     QProcess process;
-    process.start( "mkswap", { partPath } );
+    process.start( "blkid", { "-s", "UUID", "-o", "value", partPath } );
     process.waitForFinished();
-    if ( process.exitCode() == 0 )
-        return QString( "Successfully cleared swap %1." ).arg( partPath );
+    QString swapPartUuid = QString::fromLocal8Bit( process.readAllStandardOutput() ).simplified();
+    if ( process.exitCode() != 0 ||
+         swapPartUuid.isEmpty() )
+        return QString();
 
-    return QString();
+    process.start( "mkswap", { "-U", swapPartUuid, partPath } );
+    process.waitForFinished();
+    if ( process.exitCode() != 0 )
+        return QString();
+
+    return QString( "Successfully cleared swap %1." ).arg( partPath );
 }
