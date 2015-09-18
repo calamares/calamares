@@ -24,11 +24,12 @@ calamares_add_plugin( partition
         core/BootLoaderModel.cpp
         core/ColorUtils.cpp
         core/DeviceModel.cpp
+        core/KPMHelpers.cpp
         core/PartitionCoreModule.cpp
         core/PartitionInfo.cpp
         core/PartitionIterator.cpp
         core/PartitionModel.cpp
-        core/PMUtils.cpp
+        core/PartUtils.cpp
         gui/ChoicePage.cpp
         gui/CreatePartitionDialog.cpp
         gui/EditExistingPartitionDialog.cpp

@@ -21,7 +21,7 @@
 #include "core/ColorUtils.h"
 #include "core/PartitionCoreModule.h"
 #include "core/DeviceModel.h"
-#include "core/PMUtils.h"
+#include "core/KPMHelpers.h"
 #include "core/PartitionInfo.h"
 #include "core/PartitionIterator.h"
 #include "gui/PartitionSplitterWidget.h"
@@ -146,7 +146,7 @@ AlongsidePage::onPartitionSelected( int comboBoxIndex )
     for ( int i = 0; i < dm->rowCount(); ++i )
     {
         Device* dev = dm->deviceForIndex( dm->index( i ) );
-        Partition* candidate = PMUtils::findPartitionByPath( { dev }, path );
+        Partition* candidate = KPMHelpers::findPartitionByPath( { dev }, path );
         if ( candidate )
         {
             // store candidate->partitionPath() here!
@@ -280,7 +280,7 @@ AlongsidePage::applyChanges()
     for ( int i = 0; i < dm->rowCount(); ++i )
     {
         Device* dev = dm->deviceForIndex( dm->index( i ) );
-        Partition* candidate = PMUtils::findPartitionByPath( { dev }, path );
+        Partition* candidate = KPMHelpers::findPartitionByPath( { dev }, path );
         if ( candidate )
         {
             qint64 firstSector = candidate->firstSector();
@@ -289,7 +289,7 @@ AlongsidePage::applyChanges()
                                    dev->logicalSectorSize();
 
             m_core->resizePartition( dev, candidate, firstSector, newLastSector );
-            Partition* newPartition = PMUtils::createNewPartition(
+            Partition* newPartition = KPMHelpers::createNewPartition(
                                           candidate->parent(),
                                           *dev,
                                           candidate->roles(),

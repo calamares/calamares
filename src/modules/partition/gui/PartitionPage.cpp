@@ -23,7 +23,7 @@
 #include "core/DeviceModel.h"
 #include "core/PartitionCoreModule.h"
 #include "core/PartitionModel.h"
-#include "core/PMUtils.h"
+#include "core/KPMHelpers.h"
 #include "gui/CreatePartitionDialog.h"
 #include "gui/EditExistingPartitionDialog.h"
 
@@ -102,7 +102,7 @@ PartitionPage::updateButtons()
         Q_ASSERT( model );
         Partition* partition = model->partitionForIndex( index );
         Q_ASSERT( partition );
-        bool isFree = PMUtils::isPartitionFreeSpace( partition );
+        bool isFree = KPMHelpers::isPartitionFreeSpace( partition );
         bool isExtended = partition->roles().has( PartitionRole::Extended );
 
         create = isFree;
@@ -169,7 +169,7 @@ PartitionPage::onEditClicked()
     Partition* partition = model->partitionForIndex( index );
     Q_ASSERT( partition );
 
-    if ( PMUtils::isPartitionNew( partition ) )
+    if ( KPMHelpers::isPartitionNew( partition ) )
         updatePartitionToCreate( model->device(), partition );
     else
         editExistingPartition( model->device(), partition );
@@ -214,7 +214,7 @@ PartitionPage::onPartitionViewActivated()
     // but I don't expect there will be other occurences of triggering the same
     // action from multiple UI elements in this page, so it does not feel worth
     // the price.
-    if ( PMUtils::isPartitionFreeSpace( partition ) )
+    if ( KPMHelpers::isPartitionFreeSpace( partition ) )
         m_ui->createButton->click();
     else
         m_ui->editButton->click();

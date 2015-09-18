@@ -20,8 +20,6 @@
 #ifndef PARTITIONVIEWSTEP_H
 #define PARTITIONVIEWSTEP_H
 
-#include "OsproberEntry.h"
-
 #include <utils/PluginFactory.h>
 #include <viewpages/ViewStep.h>
 
@@ -71,9 +69,6 @@ public:
     QList< Calamares::job_ptr > jobs() const override;
 
 private:
-    OsproberEntryList runOsprober();
-    bool canBeResized( const QString& partitionPath );
-
     PartitionCoreModule* m_core;
     QStackedWidget*   m_widget;
     ChoicePage*       m_choicePage;

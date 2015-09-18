@@ -20,7 +20,7 @@
 
 #include "core/DeviceModel.h"
 #include "core/PartitionCoreModule.h"
-#include "core/PMUtils.h"
+#include "core/KPMHelpers.h"
 #include "core/PartitionInfo.h"
 #include "gui/PartitionPreview.h"
 
@@ -162,7 +162,7 @@ EraseDiskPage::doAutopartition( Device* dev )
     {
         qint64 lastSector = firstFreeSector + ( uefisys_part_size MiB / dev->logicalSectorSize() );
         m_core->createPartitionTable( dev, PartitionTable::gpt );
-        Partition* efiPartition = PMUtils::createNewPartition(
+        Partition* efiPartition = KPMHelpers::createNewPartition(
             dev->partitionTable(),
             *dev,
             PartitionRole( PartitionRole::Primary ),
@@ -201,7 +201,7 @@ EraseDiskPage::doAutopartition( Device* dev )
         lastSectorForRoot -= suggestedSwapSizeB / dev->logicalSectorSize() + 1;
     }
 
-    Partition* rootPartition = PMUtils::createNewPartition(
+    Partition* rootPartition = KPMHelpers::createNewPartition(
         dev->partitionTable(),
         *dev,
         PartitionRole( PartitionRole::Primary ),
@@ -215,7 +215,7 @@ EraseDiskPage::doAutopartition( Device* dev )
 
     if ( shouldCreateSwap )
     {
-        Partition* swapPartition = PMUtils::createNewPartition(
+        Partition* swapPartition = KPMHelpers::createNewPartition(
             dev->partitionTable(),
             *dev,
             PartitionRole( PartitionRole::Primary ),

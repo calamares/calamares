@@ -16,8 +16,8 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef PMUTILS_H
-#define PMUTILS_H
+#ifndef KPMHELPERS_H
+#define KPMHELPERS_H
 
 // KPMcore
 #include <kpmcore/fs/filesystem.h>
@@ -35,7 +35,7 @@ class PartitionRole;
 /**
  * Helper functions to manipulate partitions
  */
-namespace PMUtils
+namespace KPMHelpers
 {
 
 /**
@@ -87,4 +87,4 @@ Partition* createNewPartition( PartitionNode* parent, const Device& device, cons
 Partition* clonePartition( Device* device, Partition* partition );
 }
 
-#endif /* PMUTILS_H */
+#endif /* KPMHELPERS_H */

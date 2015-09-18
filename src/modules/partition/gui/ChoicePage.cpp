@@ -21,7 +21,7 @@
 #include "core/PartitionCoreModule.h"
 #include "core/DeviceModel.h"
 #include "core/PartitionModel.h"
-#include "OsproberEntry.h"
+#include "core/OsproberEntry.h"
 
 #include "PrettyRadioButton.h"
 

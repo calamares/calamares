@@ -24,7 +24,7 @@
 #include "core/PartitionInfo.h"
 #include "core/PartitionIterator.h"
 #include "core/PartitionModel.h"
-#include "core/PMUtils.h"
+#include "core/KPMHelpers.h"
 #include "jobs/ClearMountsJob.h"
 #include "jobs/ClearTempMountsJob.h"
 #include "jobs/CreatePartitionJob.h"
@@ -96,7 +96,7 @@ PartitionCoreModule::PartitionCoreModule( QObject* parent )
     , m_deviceModel( new DeviceModel( this ) )
     , m_bootLoaderModel( new BootLoaderModel( this ) )
 {
-    if ( !PMUtils::initKPMcore() )
+    if ( !KPMHelpers::initKPMcore() )
         qFatal( "Failed to initialize KPMcore backend" );
     FileSystemFactory::init();
     init();
@@ -216,7 +216,7 @@ PartitionCoreModule::deletePartition( Device* device, Partition* partition )
         // deleting them, so let's play it safe and keep our own list.
         QList< Partition* > lst;
         for ( auto childPartition : partition->children() )
-            if ( !PMUtils::isPartitionFreeSpace( childPartition ) )
+            if ( !KPMHelpers::isPartitionFreeSpace( childPartition ) )
                 lst << childPartition;
 
         for ( auto partition : lst )
@@ -416,7 +416,7 @@ PartitionCoreModule::scanForEfiSystemPartitions()
     //       The following findPartitions call and lambda should be scrapped and
     //       rewritten based on libKPM.     -- Teo 5/2015
     QList< Partition* > efiSystemPartitions =
-        PMUtils::findPartitions( devices,
+        KPMHelpers::findPartitions( devices,
                                  []( Partition* partition ) -> bool
     {
         QProcess process;

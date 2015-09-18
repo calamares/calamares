@@ -22,7 +22,9 @@
 #include "core/DeviceModel.h"
 #include "core/PartitionCoreModule.h"
 #include "core/PartitionModel.h"
-#include "core/PMUtils.h"
+#include "core/KPMHelpers.h"
+#include "core/OsproberEntry.h"
+#include "core/PartUtils.h"
 #include "gui/ChoicePage.h"
 #include "gui/EraseDiskPage.h"
 #include "gui/AlongsidePage.h"
@@ -72,7 +74,7 @@ PartitionViewStep::PartitionViewStep( QObject* parent )
     connect( timer, &QTimer::timeout,
              [=]()
     {
-        OsproberEntryList osproberEntries = runOsprober();
+        OsproberEntryList osproberEntries = PartUtils::runOsprober( m_core );
 
         m_choicePage->init( m_core, osproberEntries );
         m_erasePage->init( m_core );
@@ -109,60 +111,6 @@ PartitionViewStep::~PartitionViewStep()
         m_choicePage->deleteLater();
     if ( m_manualPartitionPage && m_manualPartitionPage->parent() == nullptr )
         m_manualPartitionPage->deleteLater();
-}
-
-
-OsproberEntryList
-PartitionViewStep::runOsprober()
-{
-    QString osproberOutput;
-    QProcess osprober;
-    osprober.setProgram( "os-prober" );
-    osprober.setProcessChannelMode( QProcess::SeparateChannels );
-    osprober.start();
-    if ( !osprober.waitForStarted() )
-    {
-        cDebug() << "ERROR: os-prober cannot start.";
-    }
-    else if ( !osprober.waitForFinished( 60000 ) )
-    {
-        cDebug() << "ERROR: os-prober timed out.";
-    }
-    else
-    {
-        osproberOutput.append(
-            QString::fromLocal8Bit(
-                osprober.readAllStandardOutput() ).trimmed() );
-    }
-
-    QString osProberReport( "Osprober lines, clean:\n" );
-    QStringList osproberCleanLines;
-    OsproberEntryList osproberEntries;
-    foreach ( const QString& line, osproberOutput.split( '\n' ) )
-    {
-        if ( !line.simplified().isEmpty() )
-        {
-            QStringList lineColumns = line.split( ':' );
-            QString prettyName;
-            if ( !lineColumns.value( 1 ).simplified().isEmpty() )
-                prettyName = lineColumns.value( 1 ).simplified();
-            else if ( !lineColumns.value( 2 ).simplified().isEmpty() )
-                prettyName = lineColumns.value( 2 ).simplified();
-
-            QString path = lineColumns.value( 0 ).simplified();
-            if ( !path.startsWith( "/dev/" ) ) //basic sanity check
-                continue;
-
-            osproberEntries.append( { prettyName, path, canBeResized( path ), lineColumns } );
-            osproberCleanLines.append( line );
-        }
-    }
-    osProberReport.append( osproberCleanLines.join( '\n' ) );
-    cDebug() << osProberReport;
-
-    Calamares::JobQueue::instance()->globalStorage()->insert( "osproberLines", osproberCleanLines );
-
-    return osproberEntries;
 }
 
 
@@ -455,58 +403,5 @@ PartitionViewStep::jobs() const
     return m_core->jobs();
 }
 
-
-bool
-PartitionViewStep::canBeResized( const QString& partitionPath )
-{
-    //FIXME: check for max partitions count on DOS MBR
-    cDebug() << "checking if" << partitionPath << "can be resized.";
-    QString partitionWithOs = partitionPath;
-    if ( partitionWithOs.startsWith( "/dev/" ) )
-    {
-        cDebug() << partitionWithOs << "seems like a good path";
-        bool canResize = false;
-        DeviceModel* dm = m_core->deviceModel();
-        for ( int i = 0; i < dm->rowCount(); ++i )
-        {
-            Device* dev = dm->deviceForIndex( dm->index( i ) );
-            Partition* candidate = PMUtils::findPartitionByPath( { dev }, partitionWithOs );
-            if ( candidate )
-            {
-                cDebug() << "found Partition* for" << partitionWithOs;
-                if ( !candidate->fileSystem().supportGrow() ||
-                     !candidate->fileSystem().supportShrink() )
-                    return false;
-
-                bool ok = false;
-                double requiredStorageGB = Calamares::JobQueue::instance()
-                                                ->globalStorage()
-                                                ->value( "requiredStorageGB" )
-                                                .toDouble( &ok );
-
-                qint64 availableStorageB = candidate->available();
-
-                // We require a little more for partitioning overhead and swap file
-                // TODO: maybe make this configurable?
-                qint64 requiredStorageB = ( requiredStorageGB + 0.1 + 2.0 ) * 1024 * 1024 * 1024;
-                cDebug() << "Required  storage B:" << requiredStorageB
-                         << QString( "(%1GB)" ).arg( requiredStorageB / 1024 / 1024 / 1024 );
-                cDebug() << "Available storage B:" << availableStorageB
-                         << QString( "(%1GB)" ).arg( availableStorageB / 1024 / 1024 / 1024 );
-
-                if ( ok &&
-                     availableStorageB > requiredStorageB )
-                {
-                    cDebug() << "Partition" << partitionWithOs << "authorized for resize + autopartition install.";
-
-                    return true;
-                }
-            }
-        }
-    }
-
-    cDebug() << "Partition" << partitionWithOs << "CANNOT BE RESIZED FOR AUTOINSTALL.";
-    return false;
-}
 
 CALAMARES_PLUGIN_FACTORY_DEFINITION( PartitionViewStepFactory, registerPlugin<PartitionViewStep>(); )

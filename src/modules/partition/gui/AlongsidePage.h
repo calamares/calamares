@@ -21,7 +21,7 @@
 
 #include <QWidget>
 
-#include "OsproberEntry.h"
+#include "core/OsproberEntry.h"
 
 class QComboBox;
 class QLabel;

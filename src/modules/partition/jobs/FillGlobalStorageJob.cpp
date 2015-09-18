@@ -23,7 +23,7 @@
 #include "JobQueue.h"
 #include "core/PartitionInfo.h"
 #include "core/PartitionIterator.h"
-#include "core/PMUtils.h"
+#include "core/KPMHelpers.h"
 #include "Branding.h"
 #include "utils/Logger.h"
 
@@ -195,7 +195,7 @@ FillGlobalStorageJob::createBootLoaderMap() const
     QString path = m_bootLoaderPath;
     if ( !path.startsWith( "/dev/" ) )
     {
-        Partition* partition = PMUtils::findPartitionByMountPoint( m_devices, path );
+        Partition* partition = KPMHelpers::findPartitionByMountPoint( m_devices, path );
         if ( !partition )
             return QVariant();
         path = partition->partitionPath();

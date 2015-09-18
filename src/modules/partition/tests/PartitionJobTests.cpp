@@ -21,7 +21,7 @@
 #include <jobs/CreatePartitionJob.h>
 #include <jobs/CreatePartitionTableJob.h>
 #include <jobs/ResizePartitionJob.h>
-#include <core/PMUtils.h>
+#include <core/KPMHelpers.h>
 
 // CalaPM
 #include <CalaPM.h>
@@ -113,7 +113,7 @@ static Partition*
 firstFreePartition( PartitionNode* parent )
 {
     for( auto child : parent->children() )
-        if ( PMUtils::isPartitionFreeSpace( child ) )
+        if ( KPMHelpers::isPartitionFreeSpace( child ) )
             return child;
     return nullptr;
 }
@@ -353,7 +353,7 @@ PartitionJobTests::testResizePartition()
 
         Partition* freePartition = firstFreePartition( m_device->partitionTable() );
         QVERIFY( freePartition );
-        Partition* partition = PMUtils::createNewPartition( freePartition->parent(), *m_device, PartitionRole( PartitionRole::Primary ), FileSystem::Ext4, oldFirst, oldLast );
+        Partition* partition = KPMHelpers::createNewPartition( freePartition->parent(), *m_device, PartitionRole( PartitionRole::Primary ), FileSystem::Ext4, oldFirst, oldLast );
         CreatePartitionJob* job = new CreatePartitionJob( m_device.data(), partition );
         job->updatePreview();
         m_queue.enqueue( job_ptr( job ) );

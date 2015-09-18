@@ -20,7 +20,7 @@
 
 #include "core/ColorUtils.h"
 #include "core/PartitionInfo.h"
-#include "core/PMUtils.h"
+#include "core/KPMHelpers.h"
 #include "gui/PartitionSizeController.h"
 
 #include "ui_CreatePartitionDialog.h"
@@ -141,7 +141,7 @@ CreatePartitionDialog::createPartition()
     FileSystem::Type fsType = m_role.has( PartitionRole::Extended )
                               ? FileSystem::Extended
                               : FileSystem::typeForName( m_ui->fsComboBox->currentText() );
-    Partition* partition = PMUtils::createNewPartition(
+    Partition* partition = KPMHelpers::createNewPartition(
                                m_parent,
                                *m_device,
                                m_role,
@@ -170,7 +170,7 @@ CreatePartitionDialog::updateMountPointUi()
 void
 CreatePartitionDialog::initPartResizerWidget( Partition* partition )
 {
-    QColor color = PMUtils::isPartitionFreeSpace( partition )
+    QColor color = KPMHelpers::isPartitionFreeSpace( partition )
                    ? ColorUtils::colorForPartitionInFreeSpace( partition )
                    : ColorUtils::colorForPartition( partition );
     m_partitionSizeController->init( m_device, partition, color );

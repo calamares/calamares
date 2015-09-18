@@ -20,7 +20,7 @@
 
 #include "core/ColorUtils.h"
 #include "core/PartitionInfo.h"
-#include "core/PMUtils.h"
+#include "core/KPMHelpers.h"
 #include "utils/Logger.h"
 
 // CalaPM
@@ -132,11 +132,11 @@ PartitionModel::data( const QModelIndex& index, int role ) const
         int col = index.column();
         if ( col == NameColumn )
         {
-            if ( PMUtils::isPartitionFreeSpace( partition ) )
+            if ( KPMHelpers::isPartitionFreeSpace( partition ) )
                 return tr( "Free Space" );
             else
             {
-                return PMUtils::isPartitionNew( partition )
+                return KPMHelpers::isPartitionNew( partition )
                        ? tr( "New partition" )
                        : partition->partitionPath();
             }
@@ -161,7 +161,7 @@ PartitionModel::data( const QModelIndex& index, int role ) const
     case SizeRole:
         return ( partition->lastSector() - partition->firstSector() + 1 ) * m_device->logicalSectorSize();
     case IsFreeSpaceRole:
-        return PMUtils::isPartitionFreeSpace( partition );
+        return KPMHelpers::isPartitionFreeSpace( partition );
     default:
         return QVariant();
     }

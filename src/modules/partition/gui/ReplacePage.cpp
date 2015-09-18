@@ -21,7 +21,7 @@
 #include "ui_ReplacePage.h"
 
 #include "core/PartitionCoreModule.h"
-#include "core/PMUtils.h"
+#include "core/KPMHelpers.h"
 #include "core/PartitionInfo.h"
 #include "core/DeviceModel.h"
 
@@ -109,7 +109,7 @@ ReplacePage::applyChanges()
         if ( partition )
         {
             Device* dev = model->device();
-            Partition* newPartition = PMUtils::createNewPartition(
+            Partition* newPartition = KPMHelpers::createNewPartition(
                                           partition->parent(),
                                           *dev,
                                           partition->roles(),

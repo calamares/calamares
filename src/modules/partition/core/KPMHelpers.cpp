@@ -17,7 +17,7 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "core/PMUtils.h"
+#include "core/KPMHelpers.h"
 
 #include "core/PartitionInfo.h"
 #include "core/PartitionIterator.h"
@@ -30,7 +30,7 @@
 #include <QDebug>
 
 
-namespace PMUtils
+namespace KPMHelpers
 {
 
 static bool s_KPMcoreInited = false;

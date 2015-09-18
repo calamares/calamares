@@ -21,7 +21,7 @@
 #include <core/ColorUtils.h>
 #include <core/PartitionCoreModule.h>
 #include <core/PartitionInfo.h>
-#include <core/PMUtils.h>
+#include <core/KPMHelpers.h>
 #include <gui/PartitionSizeController.h>
 
 #include <ui_EditExistingPartitionDialog.h>
@@ -125,7 +125,7 @@ EditExistingPartitionDialog::applyChanges( PartitionCoreModule* core )
     {
         if ( m_ui->formatRadioButton->isChecked() )
         {
-            Partition* newPartition = PMUtils::createNewPartition(
+            Partition* newPartition = KPMHelpers::createNewPartition(
                                           m_partition->parent(),
                                           *m_device,
                                           m_partition->roles(),
@@ -158,7 +158,7 @@ EditExistingPartitionDialog::applyChanges( PartitionCoreModule* core )
             }
             else // otherwise, we delete and recreate the partition with new fs type
             {
-                Partition* newPartition = PMUtils::createNewPartition(
+                Partition* newPartition = KPMHelpers::createNewPartition(
                                               m_partition->parent(),
                                               *m_device,
                                               m_partition->roles(),

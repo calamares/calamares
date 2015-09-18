@@ -19,7 +19,7 @@
 
 #include "core/ColorUtils.h"
 
-#include "core/PMUtils.h"
+#include "core/KPMHelpers.h"
 #include "core/PartitionIterator.h"
 
 // KPMcore
@@ -74,7 +74,7 @@ _findRootForPartition( PartitionNode* partition )
 QColor
 colorForPartition( Partition* partition )
 {
-    if ( PMUtils::isPartitionFreeSpace( partition ) )
+    if ( KPMHelpers::isPartitionFreeSpace( partition ) )
         return FREE_SPACE_COLOR;
     if ( partition->roles().has( PartitionRole::Extended ) )
         return EXTENDED_COLOR;
@@ -96,17 +96,17 @@ colorForPartition( Partition* partition )
         Partition* child = *it;
         if ( child == partition )
             break;
-        if ( !PMUtils::isPartitionFreeSpace( child ) &&
+        if ( !KPMHelpers::isPartitionFreeSpace( child ) &&
              !child->hasChildren() )
         {
-            if ( PMUtils::isPartitionNew( child ) )
+            if ( KPMHelpers::isPartitionNew( child ) )
                 ++newColorIdx;
             else
                 ++colorIdx;
         }
     }
 
-    if ( PMUtils::isPartitionNew( partition ) )
+    if ( KPMHelpers::isPartitionNew( partition ) )
         return NEW_PARTITION_COLORS[ newColorIdx % NUM_NEW_PARTITION_COLORS ];
 
     s_partitionColorsCache.insert( partition->partitionPath(),
@@ -129,9 +129,9 @@ colorForPartitionInFreeSpace( Partition* partition )
         Partition* child = *it;
         if ( child == partition )
             break;
-        if ( !PMUtils::isPartitionFreeSpace( child ) &&
+        if ( !KPMHelpers::isPartitionFreeSpace( child ) &&
              !child->hasChildren() &&
-             PMUtils::isPartitionNew( child ) )
+             KPMHelpers::isPartitionNew( child ) )
             ++newColorIdx;
     }
     return NEW_PARTITION_COLORS[ newColorIdx % NUM_NEW_PARTITION_COLORS ];
