@@ -23,8 +23,11 @@
 
 #include "core/OsproberEntry.h"
 
+#include <QMutex>
+
 class QBoxLayout;
 class QLabel;
+class QListView;
 
 class PartitionCoreModule;
 
@@ -55,11 +58,16 @@ signals:
 
 private:
     void setNextEnabled( bool enabled );
+    void updatePreviews();
 
     bool m_nextEnabled;
     PartitionCoreModule* m_core;
     QBoxLayout* m_itemsLayout;
     QLabel* m_messageLabel;
+
+    QListView* m_drivesView;
+    QWidget* m_previewFrame;
+    QMutex m_previewsMutex;
 
     Choice m_choice;
 };
