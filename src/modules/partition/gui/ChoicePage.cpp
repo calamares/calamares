@@ -24,16 +24,20 @@
 #include "core/OsproberEntry.h"
 
 #include "PrettyRadioButton.h"
+#include "PartitionPreview.h"
 
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
 #include "Branding.h"
 
+#include <kpmcore/core/device.h>
+
 #include <QBoxLayout>
 #include <QButtonGroup>
 #include <QDir>
 #include <QLabel>
+#include <QListView>
 
 ChoicePage::ChoicePage( QWidget* parent )
     : QWidget( parent )
@@ -50,7 +54,35 @@ ChoicePage::ChoicePage( QWidget* parent )
     m_itemsLayout = new QVBoxLayout;
     CalamaresUtils::unmarginLayout( m_itemsLayout );
 
-    mainLayout->addSpacing( CalamaresUtils::defaultFontHeight() );
+    /// Drive selector + preview
+    QLabel* driveLabel = new QLabel( this );
+    mainLayout->addWidget( driveLabel );
+    CALAMARES_RETRANSLATE( driveLabel->setText( tr( "Select drive:" ) ); )
+
+    m_drivesView = new QListView;
+    mainLayout->addWidget( m_drivesView );
+    m_drivesView->setViewMode( QListView::IconMode );
+    m_drivesView->setWrapping( false );
+    m_drivesView->setFlow( QListView::LeftToRight );
+    m_drivesView->setSelectionRectVisible( false );
+    m_drivesView->setWordWrap( true );
+    m_drivesView->setUniformItemSizes( true );
+    m_drivesView->setSelectionMode( QAbstractItemView::SingleSelection );
+
+    m_drivesView->setIconSize( CalamaresUtils::defaultIconSize() * 3 );
+    m_drivesView->setGridSize( QSize( CalamaresUtils::defaultFontHeight() * 8,
+                                      m_drivesView->iconSize().height() +
+                                      CalamaresUtils::defaultFontHeight() * 4 ) );
+    m_drivesView->setMinimumHeight( m_drivesView->gridSize().height() +
+                                    CalamaresUtils::defaultFontHeight() / 2 );
+    m_drivesView->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred );
+
+    m_previewFrame = new QWidget;
+    m_previewFrame->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Expanding );
+    mainLayout->addWidget( m_previewFrame );
+    // end
+
+    //mainLayout->addSpacing( CalamaresUtils::defaultFontHeight() );
     mainLayout->addWidget( m_messageLabel );
     mainLayout->addLayout( m_itemsLayout );
     mainLayout->addStretch();
@@ -62,9 +94,50 @@ ChoicePage::~ChoicePage()
 
 
 void
+ChoicePage::updatePreviews()
+{
+    QMutexLocker locker( &m_previewsMutex );
+
+    cDebug() << "Updating partitioning preview widgets.";
+    qDeleteAll( m_previewFrame->children() );
+    m_previewFrame->layout()->deleteLater();
+
+    if ( m_drivesView->selectionModel()->currentIndex() == QModelIndex() )
+    {
+        cDebug() << "No disk selected, bailing out.";
+        return;
+    }
+
+    Device* dev = m_core->deviceModel()->deviceForIndex( m_drivesView->selectionModel()->currentIndex() );
+
+    QVBoxLayout* layout = new QVBoxLayout;
+    m_previewFrame->setLayout( layout );
+    layout->setMargin( 0 );
+
+    PartitionPreview* preview = new PartitionPreview( m_previewFrame );
+    preview->setLabelsVisible( true );
+    PartitionModel* model = new PartitionModel( m_previewFrame );
+    model->init( dev );
+    preview->setModel( model );
+    layout->addWidget( preview );
+}
+
+
+void
 ChoicePage::init( PartitionCoreModule* core, const OsproberEntryList& osproberEntries )
 {
     m_core = core;
+
+    // Drive selector + preview
+    m_drivesView->setModel( core->deviceModel() );
+
+    connect( m_drivesView->selectionModel(), &QItemSelectionModel::currentChanged,
+             this, [ this ]( const QModelIndex& index,
+                             const QModelIndex& oldIndex )
+    {
+        updatePreviews();
+    } );
+    // end
 
     // sample os-prober output:
     // /dev/sda2:Windows 7 (loader):Windows:chain
