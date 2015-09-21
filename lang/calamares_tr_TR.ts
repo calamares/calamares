@@ -244,7 +244,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/libcalamaresui/ExecutionViewStep.cpp" line="77"/>
         <source>Install</source>
-        <translation type="unfinished"/>
+        <translation>Sistem Kuruluyor</translation>
     </message>
 </context>
 <context>
@@ -335,7 +335,7 @@ Output:
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="241"/>
         <source>Running %1 operation.</source>
-        <translation>İşlemler yapılıyor %1.</translation>
+        <translation>%1 işlemleri yapılıyor.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="254"/>
@@ -1597,7 +1597,7 @@ Bazı dosya sistemlerinin desteklenmesi ve düzenlenmesi için ek uygulamalar ge
     <message>
         <location filename="../src/modules/finished/FinishedViewStep.cpp" line="43"/>
         <source>Finish</source>
-        <translation type="unfinished"/>
+        <translation>Kurulum Tamamlanıyor</translation>
     </message>
 </context>
 <context>
@@ -1650,19 +1650,19 @@ Bazı dosya sistemlerinin desteklenmesi ve düzenlenmesi için ek uygulamalar ge
         <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="84"/>
         <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="96"/>
         <source>Konsole not installed</source>
-        <translation type="unfinished"/>
+        <translation>Konsole uygulaması yüklü değil</translation>
     </message>
     <message>
         <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="70"/>
         <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="85"/>
         <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="97"/>
         <source>Please install the kde konsole and try again!</source>
-        <translation type="unfinished"/>
+        <translation>Lütfen kde konsole uygulamasını yükleyin ve tekrar deneyin!</translation>
     </message>
     <message>
         <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="122"/>
         <source>Executing script: &amp;nbsp;&lt;code&gt;%1&lt;/code&gt;</source>
-        <translation type="unfinished"/>
+        <translation>Komut durumu: &amp;nbsp;&lt;code&gt;%1&lt;/code&gt;</translation>
     </message>
 </context>
 <context>
@@ -1670,7 +1670,7 @@ Bazı dosya sistemlerinin desteklenmesi ve düzenlenmesi için ek uygulamalar ge
     <message>
         <location filename="../src/modules/interactiveterminal/InteractiveTerminalViewStep.cpp" line="45"/>
         <source>Script</source>
-        <translation type="unfinished"/>
+        <translation>Betik</translation>
     </message>
 </context>
 <context>
@@ -1712,69 +1712,69 @@ Bazı dosya sistemlerinin desteklenmesi ve düzenlenmesi için ek uygulamalar ge
     <message>
         <location filename="../src/modules/license/LicensePage.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>Form</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="88"/>
         <source>I accept the terms and conditions above.</source>
-        <translation type="unfinished"/>
+        <translation>Yukarıdaki şartları ve koşulları kabul ediyorum.</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="115"/>
         <source>&lt;h1&gt;License Agreement&lt;/h1&gt;This setup procedure will install proprietary software that is subject to licensing terms.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;h1&gt;Lisans Anlaşması&lt;/h1&gt; Sistem yükleyici uygulaması belli lisans şartlarına bağlıdır ve şimdi sisteminizi kuracaktır.</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="118"/>
         <source>Please review the End User License Agreements (EULAs) above.&lt;br/&gt;If you do not agree with the terms, the setup procedure cannot continue.</source>
-        <translation type="unfinished"/>
+        <translation>Yukarıdaki son kullanıcı lisans sözleşmesini (EULA) gözden geçiriniz.&lt;br/&gt;Şartları kabul etmiyorsanız kurulum devam etmeyecektir.</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="124"/>
         <source>&lt;h1&gt;License Agreement&lt;/h1&gt;This setup procedure can install proprietary software that is subject to licensing terms in order to provide additional features and enhance the user experience.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;h1&gt;Lisans Sözleşmesi&lt;/h1&gt;Bu kurulum işlemi kullanıcı deneyimini ölçümlemek, ek özellikler sağlamak ve geliştirmek amacıyla lisansa tabi özel yazılım yükleyebilir.</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="129"/>
         <source>Please review the End User License Agreements (EULAs) above.&lt;br/&gt;If you do not agree with the terms, proprietary software will not be installed, and open source alternatives will be used instead.</source>
-        <translation type="unfinished"/>
+        <translation>Yukarıdaki Son Kullanıcı Lisans Sözleşmelerini (EULA) gözden geçirin.&lt;br/&gt;Eğer şartları kabul etmiyorsanız kapalı kaynak yazılımların yerine açık kaynak alternatifleri yüklenecektir.</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="159"/>
         <source>&lt;strong&gt;%1 driver&lt;/strong&gt;&lt;br/&gt;by %2</source>
         <extracomment>%1 is an untranslatable product name, example: Creative Audigy driver</extracomment>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;%1 sürücü&lt;/strong&gt;&lt;br/&gt;by %2</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="165"/>
         <source>&lt;strong&gt;%1 graphics driver&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;by %2&lt;/font&gt;</source>
         <extracomment>%1 is usually a vendor name, example: Nvidia graphics driver</extracomment>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;%1 grafik sürücü&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;by %2&lt;/font&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="171"/>
         <source>&lt;strong&gt;%1 browser plugin&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;by %2&lt;/font&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;%1 tarayıcı eklentisi&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;by %2&lt;/font&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="177"/>
         <source>&lt;strong&gt;%1 codec&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;by %2&lt;/font&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;%1 kodek&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;by %2&lt;/font&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="183"/>
         <source>&lt;strong&gt;%1 package&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;by %2&lt;/font&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;%1 paketi&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;by %2&lt;/font&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="189"/>
         <source>&lt;strong&gt;%1&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;by %2&lt;/font&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;%1&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;by %2&lt;/font&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="201"/>
         <source>&lt;a href=&quot;%1&quot;&gt;view license agreement&lt;/a&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;a href=&quot;%1&quot;&gt;lisans şartlarını incele&lt;/a&gt;</translation>
     </message>
 </context>
 <context>
@@ -1782,7 +1782,7 @@ Bazı dosya sistemlerinin desteklenmesi ve düzenlenmesi için ek uygulamalar ge
     <message>
         <location filename="../src/modules/license/LicenseViewStep.cpp" line="51"/>
         <source>License</source>
-        <translation type="unfinished"/>
+        <translation>Lisans</translation>
     </message>
 </context>
 <context>
@@ -2752,12 +2752,12 @@ Sistem güç kaynağına bağlı değil.</translation>
     <message>
         <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="89"/>
         <source>Cannot set timezone,</source>
-        <translation type="unfinished"/>
+        <translation>Bölge ve zaman dilimi ayarlanmadı,</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="90"/>
         <source>Cannot open /etc/timezone for writing</source>
-        <translation type="unfinished"/>
+        <translation>/etc/timezone açılamadığından düzenlenemedi</translation>
     </message>
 </context>
 <context>
@@ -2968,7 +2968,7 @@ Sistem güç kaynağına bağlı değil.</translation>
     <message>
         <location filename="../src/modules/summary/SummaryViewStep.cpp" line="43"/>
         <source>Summary</source>
-        <translation>Özet:</translation>
+        <translation>Kurulum Bilgileri</translation>
     </message>
 </context>
 <context>
