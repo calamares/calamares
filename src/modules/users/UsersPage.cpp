@@ -128,6 +128,7 @@ UsersPage::createJobs( const QString& defaultUserGroup, const QStringList& defau
         gs->insert( "autologinUser", ui->textBoxUsername->text() );
 
     gs->insert( "username", ui->textBoxUsername->text() );
+    gs->insert( "password", CalamaresUtils::obscure( ui->textBoxUserPassword->text() ) );
 
     return list;
 }

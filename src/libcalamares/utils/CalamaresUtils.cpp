@@ -291,4 +291,42 @@ removeDiacritics( const QString& string )
 }
 
 
+// Function CalamaresUtils::obscure based on KStringHandler::obscure,
+// part of KDElibs by KDE, file kstringhandler.cpp.
+// Original copyright statement follows.
+/* This file is part of the KDE libraries
+   Copyright (C) 1999 Ian Zepp (icszepp@islc.net)
+   Copyright (C) 2006 by Dominic Battre <dominic@battre.de>
+   Copyright (C) 2006 by Martin Pool <mbp@canonical.com>
+
+   This library is free software; you can redistribute it and/or
+   modify it under the terms of the GNU Library General Public
+   License as published by the Free Software Foundation; either
+   version 2 of the License, or (at your option) any later version.
+
+   This library is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+   Library General Public License for more details.
+
+   You should have received a copy of the GNU Library General Public License
+   along with this library; see the file COPYING.LIB.  If not, write to
+   the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+   Boston, MA 02110-1301, USA.
+*/
+QString
+obscure( const QString& string )
+{
+    QString result;
+    const QChar *unicode = string.unicode();
+    for ( int i = 0; i < string.length(); ++i )
+        // yes, no typo. can't encode ' ' or '!' because
+        // they're the unicode BOM. stupid scrambling. stupid.
+        result += ( unicode[ i ].unicode() <= 0x21 ) ?
+                      unicode[ i ] :
+                      QChar( 0x1001F - unicode[ i ].unicode() );
+    return result;
+}
+
+
 }

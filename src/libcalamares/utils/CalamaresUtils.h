@@ -52,6 +52,8 @@ namespace CalamaresUtils
     DLLEXPORT void setQmlModulesDir( const QDir& dir );
 
     DLLEXPORT QString removeDiacritics( const QString& string );
+
+    DLLEXPORT QString obscure( const QString& string );
 }
 
 #endif // CALAMARESUTILS_H
