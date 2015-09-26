@@ -1026,7 +1026,7 @@ Ezzel minden programja, dokumentuma, fotója, zenéje és minden egyéb fájlja 
         <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="85"/>
         <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="97"/>
         <source>Please install the kde konsole and try again!</source>
-        <translation type="unfinished"/>
+        <translation>Kérem installáld a KDE konzolt és próbáld újra!</translation>
     </message>
     <message>
         <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="122"/>
@@ -1086,7 +1086,7 @@ Ezzel minden programja, dokumentuma, fotója, zenéje és minden egyéb fájlja 
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="88"/>
         <source>I accept the terms and conditions above.</source>
-        <translation type="unfinished"/>
+        <translation>Elfogadom a fentebbi felhasználási feltételeket.</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="115"/>
