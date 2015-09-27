@@ -22,6 +22,8 @@
 #include "core/DeviceModel.h"
 #include "core/PartitionModel.h"
 #include "OsproberEntry.h"
+#include "core/partitiontable.h"
+#include "core/device.h"
 
 #include "PrettyRadioButton.h"
 
@@ -111,6 +113,24 @@ ChoicePage::init( PartitionCoreModule* core, const OsproberEntryList& osproberEn
     m_itemsLayout->addWidget( eraseButton );
     m_itemsLayout->setSpacing( CalamaresUtils::defaultFontHeight() / 2 );
 
+    // TODO 2.0: move this to a Utils namespace.
+    // Iterate over devices in devicemodel, foreach device, if it's DOS MBR and limit is
+    // reached and we have an osprober entry inside it, then disable alongside.
+    QStringList pathsOfDevicesWithPrimariesLimitReached;
+    for ( int row = 0; row < m_core->deviceModel()->rowCount(); ++row )
+    {
+        const QModelIndex& deviceIndex = m_core->deviceModel()->index( row );
+
+        Device* dev = m_core->deviceModel()->deviceForIndex( deviceIndex );
+        if ( ( dev->partitionTable()->type() == PartitionTable::msdos ||
+               dev->partitionTable()->type() == PartitionTable::msdos_sectorbased ) &&
+             dev->partitionTable()->numPrimaries() == dev->partitionTable()->maxPrimaries() )
+        {
+            // Primaries limit reached!
+            pathsOfDevicesWithPrimariesLimitReached.append( dev->deviceNode() );
+        }
+    }
+
     if ( osproberEntries.count() == 0 )
     {
         CALAMARES_RETRANSLATE(
@@ -136,6 +156,18 @@ ChoicePage::init( PartitionCoreModule* core, const OsproberEntryList& osproberEn
     else if ( osproberEntries.count() == 1 )
     {
         QString osName = osproberEntries.first().prettyName;
+
+        // Find out if our osprober entry (which is the shrink candidate) is on a
+        // device that can accommodate more partitions.
+        bool cantCreatePartitions = false;
+        foreach ( const QString& devicePath, pathsOfDevicesWithPrimariesLimitReached )
+        {
+            if ( osproberEntries.first().path.startsWith( devicePath ) )
+            {
+                cantCreatePartitions = true;
+                break;
+            }
+        }
 
         if ( !osName.isEmpty() )
         {
@@ -207,6 +239,8 @@ ChoicePage::init( PartitionCoreModule* core, const OsproberEntryList& osproberEn
         }
         if ( !osproberEntries.first().canBeResized )
             alongsideButton->hide();
+        if ( cantCreatePartitions )
+            alongsideButton->hide();
     }
     else
     {
@@ -219,6 +253,27 @@ ChoicePage::init( PartitionCoreModule* core, const OsproberEntryList& osproberEn
             if ( entry.canBeResized )
             {
                 atLeastOneCanBeResized = true;
+                break;
+            }
+        }
+
+        // Find out if at least one of our osprober entries is on a
+        // device that can accommodate more partitions.
+        bool atLeastOneCanCreatePartitions = false;
+        foreach ( const OsproberEntry& entry, osproberEntries )
+        {
+            bool cantCreatePartitions = false;
+            foreach ( const QString& devicePath, pathsOfDevicesWithPrimariesLimitReached )
+            {
+                if ( entry.path.startsWith( devicePath ) )
+                {
+                    cantCreatePartitions = true;
+                    break;
+                }
+            }
+            if ( !cantCreatePartitions )
+            {
+                atLeastOneCanCreatePartitions = true;
                 break;
             }
         }
