@@ -125,9 +125,40 @@ AlongsidePage::init( PartitionCoreModule* core , const OsproberEntryList& osprob
                                         string( Calamares::Branding::ProductName ) ) );
     } );
 
+    // TODO 2.0: move this to a Utils namespace.
+    // Iterate over devices in devicemodel, foreach device, if it's DOS MBR and limit is
+    // reached and we have an osprober entry inside it, then disable alongside.
+    QStringList pathsOfDevicesWithPrimariesLimitReached;
+    for ( int row = 0; row < m_core->deviceModel()->rowCount(); ++row )
+    {
+        const QModelIndex& deviceIndex = m_core->deviceModel()->index( row );
+
+        Device* dev = m_core->deviceModel()->deviceForIndex( deviceIndex );
+        if ( ( dev->partitionTable()->type() == PartitionTable::msdos ||
+               dev->partitionTable()->type() == PartitionTable::msdos_sectorbased ) &&
+             dev->partitionTable()->numPrimaries() == dev->partitionTable()->maxPrimaries() )
+        {
+            // Primaries limit reached!
+            pathsOfDevicesWithPrimariesLimitReached.append( dev->deviceNode() );
+        }
+    }
+    // End MBR primary limit check.
+
     foreach ( const OsproberEntry& e, osproberEntries )
     {
-        if ( e.canBeResized )
+        // TODO 2.0: move this to a Utils namespace.
+        bool cantCreatePartitions = false;
+        foreach ( const QString& devicePath, pathsOfDevicesWithPrimariesLimitReached )
+        {
+            if ( e.path.startsWith( devicePath ) )
+            {
+                cantCreatePartitions = true;
+                break;
+            }
+        }
+        // End partition creatable check.
+
+        if ( e.canBeResized && !cantCreatePartitions )
             m_partitionsComboBox->addItem( e.prettyName + " (" + e.path + ")", e.path );
     }
     setNextEnabled( true );
