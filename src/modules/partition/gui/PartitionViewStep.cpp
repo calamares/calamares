@@ -458,7 +458,6 @@ PartitionViewStep::jobs() const
 bool
 PartitionViewStep::canBeResized( const QString& partitionPath )
 {
-    //FIXME: check for max partitions count on DOS MBR
     cDebug() << "checking if" << partitionPath << "can be resized.";
     QString partitionWithOs = partitionPath;
     if ( partitionWithOs.startsWith( "/dev/" ) )
