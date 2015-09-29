@@ -144,8 +144,11 @@ AlongsidePage::init( PartitionCoreModule* core , const OsproberEntryList& osprob
     }
     // End MBR primary limit check.
 
+    cDebug() << "Devices with limit reached:" << pathsOfDevicesWithPrimariesLimitReached;
+    cDebug() << "Osprober entries:";
     foreach ( const OsproberEntry& e, osproberEntries )
     {
+        cDebug() << "     *" << e.path << e.line;
         // TODO 2.0: move this to a Utils namespace.
         bool cantCreatePartitions = false;
         foreach ( const QString& devicePath, pathsOfDevicesWithPrimariesLimitReached )
