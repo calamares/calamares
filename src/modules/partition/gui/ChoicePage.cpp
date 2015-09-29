@@ -130,6 +130,7 @@ ChoicePage::init( PartitionCoreModule* core, const OsproberEntryList& osproberEn
             pathsOfDevicesWithPrimariesLimitReached.append( dev->deviceNode() );
         }
     }
+    cDebug() << "Devices with limit reached:" << pathsOfDevicesWithPrimariesLimitReached;
 
     if ( osproberEntries.count() == 0 )
     {
@@ -271,7 +272,7 @@ ChoicePage::init( PartitionCoreModule* core, const OsproberEntryList& osproberEn
                     break;
                 }
             }
-            if ( !cantCreatePartitions )
+            if ( entry.canBeResized && !cantCreatePartitions )
             {
                 atLeastOneCanCreatePartitions = true;
                 break;
@@ -309,7 +310,7 @@ ChoicePage::init( PartitionCoreModule* core, const OsproberEntryList& osproberEn
                                           string( Calamares::Branding::ShortVersionedName ) ) );
         )
 
-        if ( !atLeastOneCanBeResized )
+        if ( !( atLeastOneCanBeResized && atLeastOneCanCreatePartitions ) )
             alongsideButton->hide();
     }
 
