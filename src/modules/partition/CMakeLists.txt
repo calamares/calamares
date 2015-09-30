@@ -54,6 +54,7 @@ calamares_add_plugin( partition
         jobs/PartitionJob.cpp
         jobs/ResizePartitionJob.cpp
     UI
+        gui/ChoicePage.ui
         gui/CreatePartitionDialog.ui
         gui/CreatePartitionTableDialog.ui
         gui/EditExistingPartitionDialog.ui

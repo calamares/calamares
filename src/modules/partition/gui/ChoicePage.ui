@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ChoicePage</class>
+ <widget class="QWidget" name="ChoicePage">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>743</width>
+    <height>512</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QHBoxLayout" name="horizontalLayout">
+   <item>
+    <layout class="QVBoxLayout" name="m_drivesLayout">
+     <item>
+      <widget class="QLabel" name="m_drivesLabel">
+       <property name="toolTip">
+        <string notr="true"/>
+       </property>
+       <property name="text">
+        <string notr="true">&lt;m_drivesLabel&gt;</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QListView" name="m_drivesView"/>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QVBoxLayout" name="m_leftLayout">
+     <item>
+      <widget class="QLabel" name="m_messageLabel">
+       <property name="toolTip">
+        <string notr="true"/>
+       </property>
+       <property name="text">
+        <string notr="true">&lt;m_messageLabel&gt;</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" name="m_itemsLayout"/>
+     </item>
+     <item>
+      <widget class="QWidget" name="m_previewFrame" native="true"/>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
