@@ -19,6 +19,8 @@
 #ifndef CHOICEPAGE_H
 #define CHOICEPAGE_H
 
+#include "ui_ChoicePage.h"
+
 #include <QWidget>
 
 #include "core/OsproberEntry.h"
@@ -31,7 +33,7 @@ class QListView;
 
 class PartitionCoreModule;
 
-class ChoicePage : public QWidget
+class ChoicePage : public QWidget, private Ui::ChoicePage
 {
     Q_OBJECT
 public:
@@ -62,11 +64,7 @@ private:
 
     bool m_nextEnabled;
     PartitionCoreModule* m_core;
-    QBoxLayout* m_itemsLayout;
-    QLabel* m_messageLabel;
 
-    QListView* m_drivesView;
-    QWidget* m_previewFrame;
     QMutex m_previewsMutex;
 
     Choice m_choice;

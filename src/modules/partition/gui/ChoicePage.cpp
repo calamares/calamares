@@ -45,47 +45,32 @@ ChoicePage::ChoicePage( QWidget* parent )
     , m_nextEnabled( false )
     , m_core( nullptr )
 {
-    QBoxLayout* mainLayout = new QVBoxLayout;
-    setLayout( mainLayout );
+    setupUi( this );
 
-    m_messageLabel = new QLabel;
     m_messageLabel->setWordWrap( true );
 
-    m_itemsLayout = new QVBoxLayout;
     CalamaresUtils::unmarginLayout( m_itemsLayout );
 
-    /// Drive selector + preview
-    QLabel* driveLabel = new QLabel( this );
-    mainLayout->addWidget( driveLabel );
-    CALAMARES_RETRANSLATE( driveLabel->setText( tr( "Select drive:" ) ); )
+    // Drive selector + preview
+    CALAMARES_RETRANSLATE( m_drivesLabel->setText( tr( "Select drive:" ) ); )
 
-    m_drivesView = new QListView;
-    mainLayout->addWidget( m_drivesView );
-    m_drivesView->setViewMode( QListView::IconMode );
+    m_drivesView->setViewMode( QListView::ListMode );
     m_drivesView->setWrapping( false );
-    m_drivesView->setFlow( QListView::LeftToRight );
+    m_drivesView->setFlow( QListView::TopToBottom );
     m_drivesView->setSelectionRectVisible( false );
     m_drivesView->setWordWrap( true );
     m_drivesView->setUniformItemSizes( true );
     m_drivesView->setSelectionMode( QAbstractItemView::SingleSelection );
 
-    m_drivesView->setIconSize( CalamaresUtils::defaultIconSize() * 3 );
-    m_drivesView->setGridSize( QSize( CalamaresUtils::defaultFontHeight() * 8,
-                                      m_drivesView->iconSize().height() +
-                                      CalamaresUtils::defaultFontHeight() * 4 ) );
-    m_drivesView->setMinimumHeight( m_drivesView->gridSize().height() +
-                                    CalamaresUtils::defaultFontHeight() / 2 );
-    m_drivesView->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred );
+    m_drivesView->setIconSize( CalamaresUtils::defaultIconSize() / 2 );
+//    m_drivesView->setGridSize( QSize( CalamaresUtils::defaultFontHeight() * 8,
+//                                      m_drivesView->iconSize().height() +
+//                                      CalamaresUtils::defaultFontHeight() * 4 ) );
+//    m_drivesView->setMinimumHeight( m_drivesView->gridSize().height() +
+//                                    CalamaresUtils::defaultFontHeight() / 2 );
 
-    m_previewFrame = new QWidget;
     m_previewFrame->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Expanding );
-    mainLayout->addWidget( m_previewFrame );
     // end
-
-    //mainLayout->addSpacing( CalamaresUtils::defaultFontHeight() );
-    mainLayout->addWidget( m_messageLabel );
-    mainLayout->addLayout( m_itemsLayout );
-    mainLayout->addStretch();
 }
 
 
