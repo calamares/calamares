@@ -122,7 +122,8 @@ ChoicePage::init( PartitionCoreModule* core, const OsproberEntryList& osproberEn
         const QModelIndex& deviceIndex = m_core->deviceModel()->index( row );
 
         Device* dev = m_core->deviceModel()->deviceForIndex( deviceIndex );
-        if ( ( dev->partitionTable()->type() == PartitionTable::msdos ||
+        if ( dev->partitionTable() &&
+             ( dev->partitionTable()->type() == PartitionTable::msdos ||
                dev->partitionTable()->type() == PartitionTable::msdos_sectorbased ) &&
              dev->partitionTable()->numPrimaries() == dev->partitionTable()->maxPrimaries() )
         {
