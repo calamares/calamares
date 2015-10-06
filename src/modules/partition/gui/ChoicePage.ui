@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QHBoxLayout" name="horizontalLayout">
+  <layout class="QHBoxLayout" name="m_mainLayout" stretch="1,2">
    <item>
     <layout class="QVBoxLayout" name="m_drivesLayout">
      <item>
@@ -26,13 +26,10 @@
        </property>
       </widget>
      </item>
-     <item>
-      <widget class="QListView" name="m_drivesView"/>
-     </item>
     </layout>
    </item>
    <item>
-    <layout class="QVBoxLayout" name="m_leftLayout">
+    <layout class="QVBoxLayout" name="m_rightLayout">
      <item>
       <widget class="QLabel" name="m_messageLabel">
        <property name="toolTip">
