@@ -57,40 +57,43 @@ PartitionViewStep::PartitionViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
     , m_widget( new QStackedWidget() )
     , m_core( new PartitionCoreModule( this ) )
-    , m_choicePage( new ChoicePage() )
+    , m_choicePage( nullptr )
     , m_erasePage( new EraseDiskPage() )
     , m_alongsidePage( new AlongsidePage() )
     , m_manualPartitionPage( new PartitionPage( m_core ) )
     , m_replacePage( new ReplacePage( m_core ) )
+    , m_compactMode( true )
 {
     m_widget->setContentsMargins( 0, 0, 0, 0 );
 
-    WaitingWidget* waitingWidget = new WaitingWidget( QString() );
-    m_widget->addWidget( waitingWidget );
-    CALAMARES_RETRANSLATE( waitingWidget->setText( tr( "Gathering system information..." ) ); )
+    m_waitingWidget = new WaitingWidget( QString() );
+    m_widget->addWidget( m_waitingWidget );
+    CALAMARES_RETRANSLATE( qobject_cast< WaitingWidget* >( m_waitingWidget )->setText( tr( "Gathering system information..." ) ); )
 
-    QTimer* timer = new QTimer;
-    timer->setSingleShot( true );
-    connect( timer, &QTimer::timeout,
-             [=]()
-    {
-        OsproberEntryList osproberEntries = PartUtils::runOsprober( m_core );
+    // We're not done loading, but we need the configuration map first.
+}
 
-        m_choicePage->init( m_core, osproberEntries );
-        m_erasePage->init( m_core );
-        m_alongsidePage->init( m_core, osproberEntries );
 
-        m_widget->addWidget( m_choicePage );
-        m_widget->addWidget( m_manualPartitionPage );
-        m_widget->addWidget( m_alongsidePage );
-        m_widget->addWidget( m_erasePage );
-        m_widget->addWidget( m_replacePage );
-        m_widget->removeWidget( waitingWidget );
-        waitingWidget->deleteLater();
+void
+PartitionViewStep::continueLoading()
+{
+    OsproberEntryList osproberEntries = PartUtils::runOsprober( m_core );
 
-        timer->deleteLater();
-    } );
-    timer->start( 0 );
+    Q_ASSERT( !m_choicePage );
+    m_choicePage = new ChoicePage( m_compactMode );
+
+    m_choicePage->init( m_core, osproberEntries );
+    m_erasePage->init( m_core );
+    m_alongsidePage->init( m_core, osproberEntries );
+
+    m_widget->addWidget( m_choicePage );
+    m_widget->addWidget( m_manualPartitionPage );
+    m_widget->addWidget( m_alongsidePage );
+    m_widget->addWidget( m_erasePage );
+    m_widget->addWidget( m_replacePage );
+    m_widget->removeWidget( m_waitingWidget );
+    m_waitingWidget->deleteLater();
+    m_waitingWidget = nullptr;
 
     connect( m_core,            &PartitionCoreModule::hasRootMountPointChanged,
              this,              &PartitionViewStep::nextStatusChanged );
@@ -394,6 +397,14 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     {
         gs->insert( "ensureSuspendToDisk", true );
     }
+
+    if ( configurationMap.contains( "compactMode" ) &&
+         configurationMap.value( "compactMode" ).type() == QVariant::Bool )
+    {
+        m_compactMode = configurationMap.value( "compactMode", true ).toBool();
+    }
+
+    QTimer::singleShot( 0, this, &PartitionViewStep::continueLoading );
 }
 
 
