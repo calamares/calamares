@@ -224,14 +224,14 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="89"/>
         <source>External command crashed</source>
-        <translation>El comandu esternu cayó</translation>
+        <translation>Cascó&apos;l comandu esternu</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="90"/>
         <source>Command %1 crashed.
 Output:
 %2</source>
-        <translation>Cayó&apos;l comandu %1.
+        <translation>Cascó&apos;l comandu %1.
 Salida:
 %2</translation>
     </message>
@@ -314,7 +314,7 @@ Salida:
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="311"/>
         <source>Boost.Python error in job &quot;%1&quot;.</source>
-        <translation>Fallu Boost.Python nel trabayu &quot;%1&quot;.</translation>
+        <translation>Fallu Boost.Python nel trabayu «%1».</translation>
     </message>
 </context>
 <context>
@@ -649,12 +649,12 @@ L&apos;instalador colará y perderánse toles camudancies.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="83"/>
         <source>The installer failed to create partition on disk &apos;%1&apos;.</source>
-        <translation>L&apos;instalador falló al crear la partición nel discu &apos;%1&apos;.</translation>
+        <translation>L&apos;instalador falló al crear la partición nel discu «%1».</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="92"/>
         <source>Could not open device &apos;%1&apos;.</source>
-        <translation>Nun pudo abrise&apos;l preséu &apos;%1&apos;.</translation>
+        <translation>Nun pudo abrise&apos;l preséu «%1».</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="102"/>
@@ -664,12 +664,12 @@ L&apos;instalador colará y perderánse toles camudancies.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="126"/>
         <source>The installer failed to create file system on partition %1.</source>
-        <translation>L&apos;instalador falló al crear el sistema ficheros na partición &apos;%1&apos;.</translation>
+        <translation>L&apos;instalador falló al crear el sistema ficheros na partición «%1».</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="134"/>
         <source>The installer failed to update partition table on disk &apos;%1&apos;.</source>
-        <translation>L&apos;instalador falló al anovar la tabla particiones nel discu &apos;%1&apos;.</translation>
+        <translation>L&apos;instalador falló al anovar la tabla particiones nel discu «%1».</translation>
     </message>
 </context>
 <context>
@@ -987,12 +987,12 @@ L&apos;instalador colará y perderánse toles camudancies.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="82"/>
         <source>The installer failed to format partition %1 on disk &apos;%2&apos;.</source>
-        <translation>L&apos;instalador falló al formatiar la partición %1 nel discu &apos;%2&apos;.</translation>
+        <translation>L&apos;instalador falló al formatiar la partición %1 nel discu «%2».</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="90"/>
         <source>Could not open device &apos;%1&apos;.</source>
-        <translation>Nun pudo abrise&apos;l preséu &apos;%1&apos;.</translation>
+        <translation>Nun pudo abrise&apos;l preséu «%1».</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="99"/>
@@ -1002,12 +1002,12 @@ L&apos;instalador colará y perderánse toles camudancies.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="107"/>
         <source>The installer failed to create file system on partition %1.</source>
-        <translation>L&apos;instalador falló al crear el sistema ficheros na partición &apos;%1&apos;.</translation>
+        <translation>L&apos;instalador falló al crear el sistema ficheros na partición «%1».</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="115"/>
         <source>The installer failed to update partition table on disk &apos;%1&apos;.</source>
-        <translation>L&apos;instalador falló al anovar la tabla particiones nel discu &apos;%1&apos;.</translation>
+        <translation>L&apos;instalador falló al anovar la tabla particiones nel discu «%1».</translation>
     </message>
 </context>
 <context>
@@ -1066,12 +1066,12 @@ L&apos;instalador colará y perderánse toles camudancies.</translation>
     <message>
         <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="33"/>
         <source>System locale setting</source>
-        <translation>Axustes de locale del sistema</translation>
+        <translation>Axuste de locale del sistema</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="40"/>
         <source>The system locale setting affects the language and character set for some command line user interface elements.&lt;br/&gt;The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation>Los axustes de locale del sistema afeuten a la llingua y al conxuntu de caráuteres afitáu pa dellos elementos de la interfaz d&apos;usuaru de llinia comandos.&lt;br/&gt;L&apos;axuste actual ye &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+        <translation>L&apos;axustes de locale del sistema afeuta a la llingua y al conxuntu de caráuteres afitáu pa dellos elementos de la interfaz d&apos;usuaru de llinia comandos.&lt;br/&gt;L&apos;axuste actual ye &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
 </context>
 <context>
@@ -1204,7 +1204,7 @@ L&apos;instalador colará y perderánse toles camudancies.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="80"/>
         <source>Could not open file system on partition %1 for moving.</source>
-        <translation>Nun pudo abrise&apos;l sistema de ficheros na partición %1 pa mover.</translation>
+        <translation>Nun pudo abrise&apos;l sistema de ficheros na partición %1 pa moción.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="86"/>
@@ -1667,7 +1667,7 @@ L&apos;instalador colará y perderánse toles camudancies.</translation>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="232"/>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="290"/>
         <source>The installer failed to resize partition %1 on disk &apos;%2&apos;.</source>
-        <translation>L&apos;instalador falló al redimensionar la partición %1 nel discu &apos;%2&apos;.</translation>
+        <translation>L&apos;instalador falló al redimensionar la partición %1 nel discu «%2».</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="237"/>
