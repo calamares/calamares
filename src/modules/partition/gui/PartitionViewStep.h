@@ -47,6 +47,8 @@ public:
     explicit PartitionViewStep( QObject* parent = 0 );
     virtual ~PartitionViewStep();
 
+    void continueLoading();
+
     QString prettyName() const override;
     QWidget* createSummaryWidget() const override;
 
@@ -76,6 +78,10 @@ private:
     AlongsidePage*    m_alongsidePage;
     PartitionPage*    m_manualPartitionPage;
     ReplacePage*      m_replacePage;
+
+    QWidget*          m_waitingWidget;
+
+    bool m_compactMode;
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( PartitionViewStepFactory )
