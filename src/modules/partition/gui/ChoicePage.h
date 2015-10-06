@@ -32,6 +32,7 @@ class QLabel;
 class QListView;
 
 class PartitionCoreModule;
+class PrettyRadioButton;
 
 class ChoicePage : public QWidget, private Ui::ChoicePage
 {
@@ -46,10 +47,11 @@ public:
         Manual
     };
 
-    explicit ChoicePage( QWidget* parent = nullptr );
+    explicit ChoicePage( bool compactMode = false, QWidget* parent = nullptr );
     virtual ~ChoicePage();
 
-    void init( PartitionCoreModule* core, const OsproberEntryList& osproberEntries );
+    void init( PartitionCoreModule* core,
+               const OsproberEntryList& osproberEntries );
 
     bool isNextEnabled() const;
 
@@ -59,15 +61,26 @@ signals:
     void nextStatusChanged( bool );
 
 private:
+    bool compact();
     void setNextEnabled( bool enabled );
-    void updatePreviews();
+    void setupChoices();
+    void applyDeviceChoice();
 
     bool m_nextEnabled;
     PartitionCoreModule* m_core;
+    OsproberEntryList m_osproberEntries;
 
     QMutex m_previewsMutex;
 
     Choice m_choice;
+
+    bool m_compactMode;
+    QWidget* m_drivesView;
+
+    PrettyRadioButton* m_alongsideButton;
+    PrettyRadioButton* m_eraseButton;
+    PrettyRadioButton* m_replaceButton;
+    PrettyRadioButton* m_somethingElseButton;
 };
 
 #endif // CHOICEPAGE_H
