@@ -956,7 +956,7 @@ L&apos;instalador colará y perderánse toles camudancies.</translation>
     <message>
         <location filename="../src/modules/finished/FinishedPage.cpp" line="50"/>
         <source>&lt;h1&gt;All done.&lt;/h1&gt;&lt;br/&gt;%1 has been installed on your computer.&lt;br/&gt;You may now restart into your new system, or continue using the %2 Live environment.</source>
-        <translation>&lt;h1&gt;Too fecho.&lt;/h1&gt;&lt;br/&gt;%1 instalóse nel to ordenador.&lt;br/&gt;Quiciabes quies reaniciar agora al to sistema nuevu, o siguir usando l&apos;entornu live %2.</translation>
+        <translation>&lt;h1&gt;Too fecho.&lt;/h1&gt;&lt;br/&gt;%1 instalóse nel to ordenador.&lt;br/&gt;Quiciabes quieras reaniciar agora al to sistema nuevu, o siguir usando l&apos;entornu live %2.</translation>
     </message>
 </context>
 <context>
@@ -972,7 +972,7 @@ L&apos;instalador colará y perderánse toles camudancies.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="48"/>
         <source>Format partition %1 (file system: %2, size: %3 MB) on %4.</source>
-        <translation>Formatear partición %1 (sistema de ficheros: %2, tamañu: %3 MB) en %4.</translation>
+        <translation>Formatiar partición %1 (sistema de ficheros: %2, tamañu: %3 MB) en %4.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="59"/>
@@ -982,7 +982,7 @@ L&apos;instalador colará y perderánse toles camudancies.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="70"/>
         <source>Formatting partition %1 with file system %2.</source>
-        <translation>Formateando la partición %1 col sistema de ficheros %2.</translation>
+        <translation>Formatiando la partición %1 col sistema de ficheros %2.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="82"/>
