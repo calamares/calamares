@@ -1085,27 +1085,27 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="88"/>
         <source>I accept the terms and conditions above.</source>
-        <translation type="unfinished"/>
+        <translation>上記の項目及び条件に同意します。</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="115"/>
         <source>&lt;h1&gt;License Agreement&lt;/h1&gt;This setup procedure will install proprietary software that is subject to licensing terms.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;h1&gt;ライセンス契約条項&lt;/h1&gt; このセットアップはライセンス条項に従うことが必要なプロプライエタリなソフトウェアをインストールします。</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="118"/>
         <source>Please review the End User License Agreements (EULAs) above.&lt;br/&gt;If you do not agree with the terms, the setup procedure cannot continue.</source>
-        <translation type="unfinished"/>
+        <translation>上記のエンドユーザーライセンス条項 (EULAs) を確認してください。&lt;br/&gt;もしライセンス条項に同意できない場合、セットアップを続行することはできません。</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="124"/>
         <source>&lt;h1&gt;License Agreement&lt;/h1&gt;This setup procedure can install proprietary software that is subject to licensing terms in order to provide additional features and enhance the user experience.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;h1&gt;ライセンス契約条項&lt;/h1&gt; このセットアップは、機能を追加し、ユーザーの使いやすさを向上させるために、ライセンス条項に従うことが必要なプロプライエタリなソフトウェアをインストールします。</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="129"/>
         <source>Please review the End User License Agreements (EULAs) above.&lt;br/&gt;If you do not agree with the terms, proprietary software will not be installed, and open source alternatives will be used instead.</source>
-        <translation type="unfinished"/>
+        <translation>上記のエンドユーザーライセンス条項 (EULAs) を確認してください。&lt;br/&gt;もしライセンス条項に同意できない場合、プロプライエタリなソフトウェアはインストールされず、代わりにオープンソースのソフトウェアが使用されます。</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="159"/>
