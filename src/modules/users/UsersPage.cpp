@@ -102,7 +102,9 @@ UsersPage::createJobs( const QString& defaultUserGroup, const QStringList& defau
 
     Calamares::Job* j;
     j = new CreateUserJob( ui->textBoxUsername->text(),
-                           QString(),
+                           ui->textBoxFullName->text().isEmpty() ?
+                               ui->textBoxUsername->text() :
+                               ui->textBoxFullName->text(),
                            ui->checkBoxLoginAuto->isChecked(),
                            defaultUserGroup,
                            defaultGroupsList );
