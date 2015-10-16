@@ -128,8 +128,7 @@ CreateUserJob::exec()
                                            "-m",
                                            "-s",
                                            "/bin/bash",
-                                           "-g",
-                                           "users",
+                                           "-U,
                                            "-G",
                                            defaultGroups,
                                            m_userName } );
