@@ -766,32 +766,32 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
         <translation>Nepavyko skaitymui atverti grupių failo.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="139"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="138"/>
         <source>Cannot create user %1.</source>
         <translation>Nepavyko sukurti naudotojo %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="141"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="140"/>
         <source>useradd terminated with error code %1.</source>
         <translation>komanda useradd nutraukė darbą dėl klaidos kodo %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="146"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="145"/>
         <source>Cannot set full name for user %1.</source>
         <translation>Neįmanoma nustatyti pilno vardo naudotojui %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="148"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="147"/>
         <source>chfn terminated with error code %1.</source>
         <translation>komanda chfn nutraukė darbą dėl klaidos kodo %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="158"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="157"/>
         <source>Cannot set home directory ownership for user %1.</source>
         <translation>Nepavyko nustatyti home katalogo nuosavybės naudotojui %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="160"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="159"/>
         <source>chown terminated with error code %1.</source>
         <translation>komanda chown nutraukė darbą dėl klaidos kodo %1.</translation>
     </message>
@@ -1269,67 +1269,67 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
         <translation>Forma</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="33"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="36"/>
         <source>What is your name?</source>
         <translation>Koks jūsų vardas?</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="111"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="117"/>
         <source>What name do you want to use to log in?</source>
         <translation>Kokį vardą norite naudoti prisijungimui?</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="191"/>
-        <location filename="../src/modules/users/page_usersetup.ui" line="319"/>
-        <location filename="../src/modules/users/page_usersetup.ui" line="425"/>
-        <location filename="../src/modules/users/page_usersetup.ui" line="553"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="197"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="306"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="437"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="582"/>
         <source>font-weight: normal</source>
         <translation>šrifto ryškumas: normalus</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="194"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="200"/>
         <source>&lt;small&gt;If more than one person will use this computer, you can set up multiple accounts after installation.&lt;/small&gt;</source>
         <translation>&lt;small&gt;Jei šiuo kompiuteriu naudosis keli žmonės, po diegimo galite sukurti papildomas paskyras.&lt;/small&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="217"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="335"/>
         <source>Choose a password to keep your account safe.</source>
         <translation>Apsaugokite savo paskyrą slaptažodžiu</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="322"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="440"/>
         <source>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors. A good password will contain a mixture of letters, numbers and punctuation, should be at least eight characters long, and should be changed at regular intervals.&lt;/small&gt;</source>
         <translation>&lt;small&gt;Norint įsitikinti, kad rašydami slaptažodį nesuklydote, įrašykite tą patį slaptažodį du kartus. Stiprus slaptažodis yra raidžių, skaičių ir punktuacijos ženklų mišinys, jis turi būti mažiausiai aštuonių simbolių, be to, turėtų būti reguliariai keičiamas.&lt;/small&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="345"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="226"/>
         <source>What is the name of this computer?</source>
         <translation>Koks šio kompiuterio vardas?</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="428"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="309"/>
         <source>&lt;small&gt;This name will be used if you make the computer visible to others on a network.&lt;/small&gt;</source>
         <translation>&lt;small&gt;Šis vardas bus naudojamas, jeigu padarysite savo kompiuterį matomą kitiems naudotojams tinkle.&lt;/small&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="451"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="450"/>
+        <source>Log in automatically without asking for the password.</source>
+        <translation>Prisijungti automatiškai, neklausiant slaptažodžio.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/users/page_usersetup.ui" line="457"/>
+        <source>Use the same password for the administrator account.</source>
+        <translation>Naudoti tokį patį slaptažodį administratoriaus paskyrai.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/users/page_usersetup.ui" line="480"/>
         <source>Choose a password for the administrator account.</source>
         <translation>Pasirinkite slaptažodį administratoriaus paskyrai.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="556"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="585"/>
         <source>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors.&lt;/small&gt;</source>
         <translation>&lt;small&gt;Norint įsitikinti, kad rašydami slaptažodį nesuklydote, įrašykite tą patį slaptažodį du kartus.&lt;/small&gt;</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="596"/>
-        <source>&amp;Log in automatically</source>
-        <translation>&amp;Prijungti automatiškai</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="606"/>
-        <source>Require &amp;my password to log in</source>
-        <translation>&amp;Norint prisijungti, reikalauti slaptažodžio</translation>
     </message>
 </context>
 <context>
@@ -1832,33 +1832,33 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
 <context>
     <name>UsersPage</name>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="256"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="265"/>
         <source>Your username is too long.</source>
         <translation>Jūsų naudotojo vardas yra pernelyg ilgas.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="266"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="275"/>
         <source>Your username contains invalid characters. Only lowercase letters and numbers are allowed.</source>
         <translation>Jūsų naudotojo varde yra neleistinų simbolių. Leidžiamos tik mažosios raidės ir skaičiai.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="310"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="319"/>
         <source>Your hostname is too short.</source>
         <translation>Jūsų kompiuterio vardas yra pernelyg trumpas.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="321"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="330"/>
         <source>Your hostname is too long.</source>
         <translation>Jūsų kompiuterio vardas yra pernelyg ilgas.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="332"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="341"/>
         <source>Your hostname contains invalid characters. Only letters, numbers and dashes are allowed.</source>
         <translation>Jūsų kompiuterio varde yra neleistinų simbolių. Kompiuterio varde gali būti tik raidės, skaičiai ir brūkšniai.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="363"/>
-        <location filename="../src/modules/users/UsersPage.cpp" line="396"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="372"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="405"/>
         <source>Your passwords do not match!</source>
         <translation>Jūsų slaptažodžiai nesutampa!</translation>
     </message>

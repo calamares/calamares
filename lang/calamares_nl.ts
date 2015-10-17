@@ -766,32 +766,32 @@ Het installatieprogramma zal afsluiten en alle wijzigingen zullen verloren gaan.
         <translation>Kan het bestand groups niet lezen.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="139"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="138"/>
         <source>Cannot create user %1.</source>
         <translation>Kan gebruiker %1 niet aanmaken.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="141"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="140"/>
         <source>useradd terminated with error code %1.</source>
         <translation>useradd is gestopt met foutcode %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="146"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="145"/>
         <source>Cannot set full name for user %1.</source>
         <translation>Kan de volledige naam voor gebruiker %1 niet instellen.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="148"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="147"/>
         <source>chfn terminated with error code %1.</source>
         <translation>chfn is gestopt met foutcode %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="158"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="157"/>
         <source>Cannot set home directory ownership for user %1.</source>
         <translation>Kan eigendomsrecht gebruikersmap niet instellen voor gebruiker %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="160"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="159"/>
         <source>chown terminated with error code %1.</source>
         <translation>chown is gestopt met foutcode %1.</translation>
     </message>
@@ -1269,67 +1269,67 @@ Het installatieprogramma zal afsluiten en alle wijzigingen zullen verloren gaan.
         <translation>Formulier</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="33"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="36"/>
         <source>What is your name?</source>
         <translation>Wat is je naam?</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="111"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="117"/>
         <source>What name do you want to use to log in?</source>
         <translation>Welke naam wil je gebruiken om in te loggen?</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="191"/>
-        <location filename="../src/modules/users/page_usersetup.ui" line="319"/>
-        <location filename="../src/modules/users/page_usersetup.ui" line="425"/>
-        <location filename="../src/modules/users/page_usersetup.ui" line="553"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="197"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="306"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="437"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="582"/>
         <source>font-weight: normal</source>
         <translation>afronding lettertype: normaal</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="194"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="200"/>
         <source>&lt;small&gt;If more than one person will use this computer, you can set up multiple accounts after installation.&lt;/small&gt;</source>
         <translation>&lt;small&gt;Indien meer dan één persoon deze computer gebruikt, kunt u meerdere accounts instellen na de installatie.&lt;/ small&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="217"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="335"/>
         <source>Choose a password to keep your account safe.</source>
         <translation>Kies een wachtwoord om uw account veilig te houden.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="322"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="440"/>
         <source>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors. A good password will contain a mixture of letters, numbers and punctuation, should be at least eight characters long, and should be changed at regular intervals.&lt;/small&gt;</source>
         <translation>&lt;small&gt;Voer hetzelfde wachtwoord twee keer in, zodat het gecontroleerd kan worden op typefouten. Een goed wachtwoord bevat een combinatie van letters, cijfers en leestekens, is ten minste acht tekens lang en moet regelmatig worden gewijzigd.&lt;/ small&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="345"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="226"/>
         <source>What is the name of this computer?</source>
         <translation>Wat is de naam van deze computer?</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="428"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="309"/>
         <source>&lt;small&gt;This name will be used if you make the computer visible to others on a network.&lt;/small&gt;</source>
         <translation>&lt;small&gt;Deze naam zal worden gebruikt als u de computer zichtbaar maakt voor anderen op een netwerk.&lt;/ small&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="451"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="450"/>
+        <source>Log in automatically without asking for the password.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/users/page_usersetup.ui" line="457"/>
+        <source>Use the same password for the administrator account.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/users/page_usersetup.ui" line="480"/>
         <source>Choose a password for the administrator account.</source>
         <translation>Kies een wachtwoord voor het administrator account.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="556"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="585"/>
         <source>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors.&lt;/small&gt;</source>
         <translation>&lt;small&gt;Voer hetzelfde wachtwoord twee keer in, zodat het gecontroleerd kan worden op typefouten.&lt;/ small&gt;</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="596"/>
-        <source>&amp;Log in automatically</source>
-        <translation>Automatisch in&amp;loggen</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="606"/>
-        <source>Require &amp;my password to log in</source>
-        <translation>Vereis &amp;mijn wachtwoord om in te loggen</translation>
     </message>
 </context>
 <context>
@@ -1832,33 +1832,33 @@ Het installatieprogramma zal afsluiten en alle wijzigingen zullen verloren gaan.
 <context>
     <name>UsersPage</name>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="256"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="265"/>
         <source>Your username is too long.</source>
         <translation>De gebruikersnaam is te lang.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="266"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="275"/>
         <source>Your username contains invalid characters. Only lowercase letters and numbers are allowed.</source>
         <translation>De gebruikersnaam bevat ongeldige tekens.  Enkel kleine letters en nummers zijn toegelaten.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="310"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="319"/>
         <source>Your hostname is too short.</source>
         <translation>De hostnaam is te kort.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="321"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="330"/>
         <source>Your hostname is too long.</source>
         <translation>De hostnaam is te lang.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="332"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="341"/>
         <source>Your hostname contains invalid characters. Only letters, numbers and dashes are allowed.</source>
         <translation>De hostnaam bevat ongeldige tekens.  Enkel letters, cijfers en liggende streepjes zijn toegelaten.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="363"/>
-        <location filename="../src/modules/users/UsersPage.cpp" line="396"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="372"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="405"/>
         <source>Your passwords do not match!</source>
         <translation>Je wachtwoorden komen niet overeen!</translation>
     </message>

@@ -768,32 +768,32 @@ Ezzel minden programja, dokumentuma, fotója, zenéje és minden egyéb fájlja 
         <translation>Nem lehet a groups fájlt megnyitni olvasásra.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="139"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="138"/>
         <source>Cannot create user %1.</source>
         <translation>Nem lehet a %1 felhasználót létrehozni.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="141"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="140"/>
         <source>useradd terminated with error code %1.</source>
         <translation>useradd megszakítva %1 hibakóddal.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="146"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="145"/>
         <source>Cannot set full name for user %1.</source>
         <translation>Nem lehet a teljes nevet beállítani a %1 felhasználónak.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="148"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="147"/>
         <source>chfn terminated with error code %1.</source>
         <translation>chfn megszakítva %1 hibakóddal.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="158"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="157"/>
         <source>Cannot set home directory ownership for user %1.</source>
         <translation>Nem lehet a home könyvtár tulajdonos jogosultságát beállítani %1 felhasználónak.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="160"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="159"/>
         <source>chown terminated with error code %1.</source>
         <translation>chown megszakítva %1 hibakóddal.</translation>
     </message>
@@ -1271,67 +1271,67 @@ Ezzel minden programja, dokumentuma, fotója, zenéje és minden egyéb fájlja 
         <translation>Adatlap</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="33"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="36"/>
         <source>What is your name?</source>
         <translation>Mi a neved?</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="111"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="117"/>
         <source>What name do you want to use to log in?</source>
         <translation>Milyen felhasználónévvel szeretnél bejelentkezni?</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="191"/>
-        <location filename="../src/modules/users/page_usersetup.ui" line="319"/>
-        <location filename="../src/modules/users/page_usersetup.ui" line="425"/>
-        <location filename="../src/modules/users/page_usersetup.ui" line="553"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="197"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="306"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="437"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="582"/>
         <source>font-weight: normal</source>
         <translation>betű-súly: normál</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="194"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="200"/>
         <source>&lt;small&gt;If more than one person will use this computer, you can set up multiple accounts after installation.&lt;/small&gt;</source>
         <translation>&lt;small&gt;Ha több mint egy személy használja a számítógépet akkor létrehozhatsz több felhasználói fiókot a telepítés után.&lt;/small&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="217"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="335"/>
         <source>Choose a password to keep your account safe.</source>
         <translation>Adj meg jelszót a felhasználói fiókod védelmére.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="322"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="440"/>
         <source>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors. A good password will contain a mixture of letters, numbers and punctuation, should be at least eight characters long, and should be changed at regular intervals.&lt;/small&gt;</source>
         <translation>&lt;small&gt;Írd be a jelszót kétszer így ellenőrizve lesznek a gépelési hibák. A jó jelszó tartalmazzon kis és nagy betűket, számokat és legalább 8 karakter hosszúságú. Ajánlott megváltoztatni rendszeres időközönként.&lt;/small&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="345"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="226"/>
         <source>What is the name of this computer?</source>
         <translation>Mi legyen a számítógép neve?</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="428"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="309"/>
         <source>&lt;small&gt;This name will be used if you make the computer visible to others on a network.&lt;/small&gt;</source>
         <translation>&lt;small&gt;Ez a név lesz használva ha a számítógép látható a hálózaton.&lt;/small&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="451"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="450"/>
+        <source>Log in automatically without asking for the password.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/users/page_usersetup.ui" line="457"/>
+        <source>Use the same password for the administrator account.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/users/page_usersetup.ui" line="480"/>
         <source>Choose a password for the administrator account.</source>
         <translation>Adj meg jelszót az adminisztrátor felhasználói fiókhoz.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="556"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="585"/>
         <source>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors.&lt;/small&gt;</source>
         <translation>&lt;small&gt;Írd be a jelszót kétszer így ellenőrizve lesznek a gépelési hibák.&lt;/small&gt;</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="596"/>
-        <source>&amp;Log in automatically</source>
-        <translation>Automatikus bejelentkezés</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="606"/>
-        <source>Require &amp;my password to log in</source>
-        <translation>A jelszavam kérése bejelentkezéskor</translation>
     </message>
 </context>
 <context>
@@ -1834,33 +1834,33 @@ Ezzel minden programja, dokumentuma, fotója, zenéje és minden egyéb fájlja 
 <context>
     <name>UsersPage</name>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="256"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="265"/>
         <source>Your username is too long.</source>
         <translation>A felhasználónév túl hosszú.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="266"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="275"/>
         <source>Your username contains invalid characters. Only lowercase letters and numbers are allowed.</source>
         <translation>A felhasználónév érvénytelen karaktereket tartalmaz. Csak kis kezdőbetűk és számok érvényesek.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="310"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="319"/>
         <source>Your hostname is too short.</source>
         <translation>A hálózati név túl rövid.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="321"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="330"/>
         <source>Your hostname is too long.</source>
         <translation>A hálózati név túl hosszú.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="332"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="341"/>
         <source>Your hostname contains invalid characters. Only letters, numbers and dashes are allowed.</source>
         <translation>A hálózati név érvénytelen karaktereket tartalmaz. Csak betűk, számok és kötőjel érvényes.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="363"/>
-        <location filename="../src/modules/users/UsersPage.cpp" line="396"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="372"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="405"/>
         <source>Your passwords do not match!</source>
         <translation>A két jelszó nem egyezik!</translation>
     </message>

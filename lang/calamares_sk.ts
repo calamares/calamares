@@ -758,32 +758,32 @@ Inštalátor bude ukončený a všetky zmeny stratené.</translation>
         <translation>Nedá sa otvoriť skupina súborov na čítanie.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="139"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="138"/>
         <source>Cannot create user %1.</source>
         <translation>Nedá sa vytvoriť používateľ %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="141"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="140"/>
         <source>useradd terminated with error code %1.</source>
         <translation>useradd ukončený s chybovým kódom %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="146"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="145"/>
         <source>Cannot set full name for user %1.</source>
         <translation>Nedá sa nastaviť plné meno pre používateľa %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="148"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="147"/>
         <source>chfn terminated with error code %1.</source>
         <translation>chfn ukončený s chybovým kódom %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="158"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="157"/>
         <source>Cannot set home directory ownership for user %1.</source>
         <translation>Nedá sa nastaviť vlastný home adresár pre používateľa %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="160"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="159"/>
         <source>chown terminated with error code %1.</source>
         <translation>chown ukončený s chybovým kódom %1.</translation>
     </message>
@@ -1261,66 +1261,66 @@ Inštalátor bude ukončený a všetky zmeny stratené.</translation>
         <translation>Forma</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="33"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="36"/>
         <source>What is your name?</source>
         <translation>Aké je Vaše meno?</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="111"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="117"/>
         <source>What name do you want to use to log in?</source>
         <translation>Aké meno si prajete použiť pri prihlásení?</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="191"/>
-        <location filename="../src/modules/users/page_usersetup.ui" line="319"/>
-        <location filename="../src/modules/users/page_usersetup.ui" line="425"/>
-        <location filename="../src/modules/users/page_usersetup.ui" line="553"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="197"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="306"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="437"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="582"/>
         <source>font-weight: normal</source>
         <translation>font-weight: normal</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="194"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="200"/>
         <source>&lt;small&gt;If more than one person will use this computer, you can set up multiple accounts after installation.&lt;/small&gt;</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="217"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="335"/>
         <source>Choose a password to keep your account safe.</source>
         <translation>Zvoľte si heslo pre zachovanie vášho účtu v bezpečí.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="322"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="440"/>
         <source>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors. A good password will contain a mixture of letters, numbers and punctuation, should be at least eight characters long, and should be changed at regular intervals.&lt;/small&gt;</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="345"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="226"/>
         <source>What is the name of this computer?</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="428"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="309"/>
         <source>&lt;small&gt;This name will be used if you make the computer visible to others on a network.&lt;/small&gt;</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="451"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="450"/>
+        <source>Log in automatically without asking for the password.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/users/page_usersetup.ui" line="457"/>
+        <source>Use the same password for the administrator account.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/users/page_usersetup.ui" line="480"/>
         <source>Choose a password for the administrator account.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="556"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="585"/>
         <source>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors.&lt;/small&gt;</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="596"/>
-        <source>&amp;Log in automatically</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="606"/>
-        <source>Require &amp;my password to log in</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1824,33 +1824,33 @@ Inštalátor bude ukončený a všetky zmeny stratené.</translation>
 <context>
     <name>UsersPage</name>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="256"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="265"/>
         <source>Your username is too long.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="266"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="275"/>
         <source>Your username contains invalid characters. Only lowercase letters and numbers are allowed.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="310"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="319"/>
         <source>Your hostname is too short.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="321"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="330"/>
         <source>Your hostname is too long.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="332"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="341"/>
         <source>Your hostname contains invalid characters. Only letters, numbers and dashes are allowed.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="363"/>
-        <location filename="../src/modules/users/UsersPage.cpp" line="396"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="372"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="405"/>
         <source>Your passwords do not match!</source>
         <translation>Vaše heslo nesúhlasí!</translation>
     </message>

@@ -766,32 +766,32 @@ L&apos;installateur se fermera et les changements seront perdus.</translation>
         <translation>Impossible d&apos;ouvrir le fichier groups en lecture.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="139"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="138"/>
         <source>Cannot create user %1.</source>
         <translation>Impossible de créer l&apos;utilisateur %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="141"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="140"/>
         <source>useradd terminated with error code %1.</source>
         <translation>useradd s&apos;est terminé avec le code erreur %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="146"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="145"/>
         <source>Cannot set full name for user %1.</source>
         <translation>Impossible de renseigner le nom complet pour l&apos;utilisateur %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="148"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="147"/>
         <source>chfn terminated with error code %1.</source>
         <translation>chfn s&apos;est terminé avec le code erreur %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="158"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="157"/>
         <source>Cannot set home directory ownership for user %1.</source>
         <translation>Impossible de définir le propriétaire du répertoire home pour l&apos;utilisateur %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="160"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="159"/>
         <source>chown terminated with error code %1.</source>
         <translation>chown s&apos;est terminé avec le code erreur %1.</translation>
     </message>
@@ -1269,67 +1269,67 @@ L&apos;installateur se fermera et les changements seront perdus.</translation>
         <translation>Formulaire</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="33"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="36"/>
         <source>What is your name?</source>
         <translation>Quel est vote nom ?</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="111"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="117"/>
         <source>What name do you want to use to log in?</source>
         <translation>Quel nom souhaitez-vous utiliser pour la connexion ?</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="191"/>
-        <location filename="../src/modules/users/page_usersetup.ui" line="319"/>
-        <location filename="../src/modules/users/page_usersetup.ui" line="425"/>
-        <location filename="../src/modules/users/page_usersetup.ui" line="553"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="197"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="306"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="437"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="582"/>
         <source>font-weight: normal</source>
         <translation>style de police : normal</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="194"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="200"/>
         <source>&lt;small&gt;If more than one person will use this computer, you can set up multiple accounts after installation.&lt;/small&gt;</source>
         <translation>&lt;small&gt;si plusieurs personnes utilisent cet ordinateur, vous pourrez créer plusieurs comptes après l&apos;installation.&lt;/small&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="217"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="335"/>
         <source>Choose a password to keep your account safe.</source>
         <translation>Veuillez saisir le mot de passe pour sécuriser votre compte.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="322"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="440"/>
         <source>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors. A good password will contain a mixture of letters, numbers and punctuation, should be at least eight characters long, and should be changed at regular intervals.&lt;/small&gt;</source>
         <translation>&lt;small&gt;Veuillez entrer le même mot de passe deux fois afin de vérifier qu&apos;il n&apos;y ait pas d&apos;erreur de frappe. Un bon mot de passe doit contenir un mélange de lettres, de nombres et de caractères de ponctuation, contenir au moins huit caractères et être changé à des intervalles réguliers.&lt;/small&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="345"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="226"/>
         <source>What is the name of this computer?</source>
         <translation>Quel est le nom de votre ordinateur ?</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="428"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="309"/>
         <source>&lt;small&gt;This name will be used if you make the computer visible to others on a network.&lt;/small&gt;</source>
         <translation>&lt;small&gt;Ce nom sera utilisé pour rendre l&apos;ordinateur visible des autres sur le réseau.&lt;/small&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="451"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="450"/>
+        <source>Log in automatically without asking for the password.</source>
+        <translation>Démarrer la session sans demander de mot de passe.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/users/page_usersetup.ui" line="457"/>
+        <source>Use the same password for the administrator account.</source>
+        <translation>Utiliser le même mot de passe pour le compte administrateur.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/users/page_usersetup.ui" line="480"/>
         <source>Choose a password for the administrator account.</source>
         <translation>Choisir un mot de passe pour le compte administrateur.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="556"/>
+        <location filename="../src/modules/users/page_usersetup.ui" line="585"/>
         <source>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors.&lt;/small&gt;</source>
         <translation>&lt;small&gt;Veuillez entrer le même mot de passe deux fois, afin de vérifier qu&apos;ils n&apos;y ait pas d&apos;erreur de frappe.&lt;/small&gt;</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="596"/>
-        <source>&amp;Log in automatically</source>
-        <translation>&amp;Se connecter automatiquement</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="606"/>
-        <source>Require &amp;my password to log in</source>
-        <translation>Nécessite &amp;mon mot de passe pour la connexion</translation>
     </message>
 </context>
 <context>
@@ -1832,33 +1832,33 @@ L&apos;installateur se fermera et les changements seront perdus.</translation>
 <context>
     <name>UsersPage</name>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="256"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="265"/>
         <source>Your username is too long.</source>
         <translation>Votre nom d&apos;utilisateur est trop long.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="266"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="275"/>
         <source>Your username contains invalid characters. Only lowercase letters and numbers are allowed.</source>
         <translation>Votre nom d&apos;utilisateur contient des caractères invalides. Seuls les lettres minuscules et les chiffres sont autorisés.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="310"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="319"/>
         <source>Your hostname is too short.</source>
         <translation>Le nom d&apos;hôte est trop petit.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="321"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="330"/>
         <source>Your hostname is too long.</source>
         <translation>Le nom d&apos;hôte est trop long.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="332"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="341"/>
         <source>Your hostname contains invalid characters. Only letters, numbers and dashes are allowed.</source>
         <translation>Le nom d&apos;hôte contient des caractères invalides. Seules les lettres, nombres et tirets sont autorisés.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="363"/>
-        <location filename="../src/modules/users/UsersPage.cpp" line="396"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="372"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="405"/>
         <source>Your passwords do not match!</source>
         <translation>Vos mots de passe ne correspondent pas !</translation>
     </message>
