@@ -1036,7 +1036,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/interactiveterminal/InteractiveTerminalViewStep.cpp" line="45"/>
         <source>Script</source>
-        <translation>Сценарий</translation>
+        <translation>Скрипт</translation>
     </message>
 </context>
 <context>
@@ -1093,7 +1093,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="118"/>
         <source>Please review the End User License Agreements (EULAs) above.&lt;br/&gt;If you do not agree with the terms, the setup procedure cannot continue.</source>
-        <translation>Пожалуйста, ознакомьтесь с приведенными выше Лицензионными соглашениями пользователя (EULA).&lt;br/&gt;Если вы вы не согласны с этими условиями, продолжить установку невозможно.</translation>
+        <translation>Ознакомьтесь с приведенными выше Лицензионными соглашениями пользователя (EULA).&lt;br/&gt;Если не согласны с условиями, продолжение установки невозможно.</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="124"/>
@@ -1103,7 +1103,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="129"/>
         <source>Please review the End User License Agreements (EULAs) above.&lt;br/&gt;If you do not agree with the terms, proprietary software will not be installed, and open source alternatives will be used instead.</source>
-        <translation>Пожалуйста, ознакомьтесь с приведенными выше Лицензионными соглашениями пользователя (EULA).&lt;br/&gt;Если вы не согласны с этими условиями, проприетарное программное обеспечение не будет установлено, а вместо него будут использованы эквиваленты из открытого программного обеспечения.</translation>
+        <translation>Ознакомьтесь выше, с Лицензионными соглашениями конечного пользователя (EULA).&lt;br/&gt;Если вы не согласны с условиями, проприетарное программное обеспечение будет заменено на альтернативное открытое программное обеспечение.</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="159"/>
@@ -1115,7 +1115,7 @@ The installer will quit and all changes will be lost.</source>
         <location filename="../src/modules/license/LicensePage.cpp" line="165"/>
         <source>&lt;strong&gt;%1 graphics driver&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;by %2&lt;/font&gt;</source>
         <extracomment>%1 is usually a vendor name, example: Nvidia graphics driver</extracomment>
-        <translation>&lt;strong&gt;драйвер графики %1&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;от %2&lt;/font&gt;</translation>
+        <translation>&lt;strong&gt;видео драйвер %1&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;от %2&lt;/font&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="171"/>
@@ -1313,12 +1313,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="450"/>
         <source>Log in automatically without asking for the password.</source>
-        <translation type="unfinished"/>
+        <translation>Автоматический вход, без запроса пароля.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="457"/>
         <source>Use the same password for the administrator account.</source>
-        <translation type="unfinished"/>
+        <translation>Использовать тот же пароль для аккаунта администратора.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="480"/>
@@ -1804,7 +1804,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="89"/>
         <source>Cannot set timezone,</source>
-        <translation>Невозможно установить часовой пояс,</translation>
+        <translation>Часовой пояс не установлен,</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="90"/>
