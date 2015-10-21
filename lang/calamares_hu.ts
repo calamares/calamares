@@ -1316,12 +1316,12 @@ Ezzel minden programja, dokumentuma, fotója, zenéje és minden egyéb fájlja 
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="450"/>
         <source>Log in automatically without asking for the password.</source>
-        <translation type="unfinished"/>
+        <translation>Jelszó megkérdezése nélküli automatikus bejelentkezés.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="457"/>
         <source>Use the same password for the administrator account.</source>
-        <translation type="unfinished"/>
+        <translation>Ugyanaz a jelszó használata az adminisztrátor felhasználóhoz.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="480"/>

@@ -524,7 +524,7 @@ Kuruluma devam edebilirsiniz fakat bazı özellikler devre dışı kalabilir.</t
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="230"/>
         <source>&lt;strong&gt;Install %1 alongside your current operating systems&lt;/strong&gt;&lt;br/&gt;The installer will shrink an existing volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
-        <translation>&lt;/strong&gt;Diğer işletim sistemlerinin yanına %1 yükle&lt;/strong&gt;&lt;br/&gt;Yükleyici %2 yer açmak için mevcut disk boyutunu küçültecek. Bilgisayarınız başlatılırken istediğiniz işletim sistemini seçebilirsiniz.</translation>
+        <translation>&lt;strong&gt;Diğer işletim sistemlerinin yanına %1 yükle&lt;/strong&gt;&lt;br/&gt;Yükleyici %2 yer açmak için mevcut disk boyutunu küçültecek. Bilgisayarınız başlatılırken istediğiniz işletim sistemini seçebilirsiniz.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="278"/>
@@ -1316,12 +1316,12 @@ Kuruluma devam edebilirsiniz fakat bazı özellikler devre dışı kalabilir.</t
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="450"/>
         <source>Log in automatically without asking for the password.</source>
-        <translation type="unfinished"/>
+        <translation>Şifre sormadan otomatik olarak giriş yap.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="457"/>
         <source>Use the same password for the administrator account.</source>
-        <translation type="unfinished"/>
+        <translation>Yönetici ile kullanıcı aynı şifreyi kullansın.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="480"/>
