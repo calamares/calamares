@@ -59,9 +59,11 @@ ChoicePage::ChoicePage( bool compactMode, QWidget* parent )
     if ( m_compactMode )
     {
         m_mainLayout->setDirection( QBoxLayout::TopToBottom );
+        m_drivesLayout->setDirection( QBoxLayout::LeftToRight );
         m_drivesView = new QComboBox( this );
         m_mainLayout->setStretchFactor( m_drivesLayout, 0 );
         m_mainLayout->setStretchFactor( m_rightLayout, 1 );
+        m_drivesLabel->setBuddy( m_drivesView );
     }
     else
     {
@@ -78,14 +80,18 @@ ChoicePage::ChoicePage( bool compactMode, QWidget* parent )
 
         drivesList->setIconSize( CalamaresUtils::defaultIconSize() / 2 );
     }
+
     m_drivesLayout->addWidget( m_drivesView );
+
+    if ( m_compactMode )
+        m_drivesLayout->addStretch();
 
     m_messageLabel->setWordWrap( true );
 
     CalamaresUtils::unmarginLayout( m_itemsLayout );
 
     // Drive selector + preview
-    CALAMARES_RETRANSLATE( m_drivesLabel->setText( tr( "Select drive:" ) ); )
+    CALAMARES_RETRANSLATE( m_drivesLabel->setText( tr( "Storage de&vice:" ) ); )
 
     m_previewFrame->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Expanding );
     // end
