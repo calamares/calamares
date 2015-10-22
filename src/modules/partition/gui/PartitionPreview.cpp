@@ -19,8 +19,13 @@
 #include <gui/PartitionPreview.h>
 
 #include <core/PartitionModel.h>
+#include <core/ColorUtils.h>
+
+#include <kpmcore/core/device.h>
 
 #include "utils/CalamaresUtilsGui.h"
+
+#include <KFormat>
 
 // Qt
 #include <QDebug>
@@ -35,6 +40,13 @@ static const int EXTENDED_PARTITION_MARGIN = 4;
 static const int LABELS_MARGIN = 40;
 static const int LABEL_PARTITION_SQUARE_MARGIN = 18;
 
+QStringList
+buildUnknownDisklabelTexts( Device* dev )
+{
+    QStringList texts = { QObject::tr( "Unpartitioned space or unknown partition table" ),
+                          KFormat().formatByteSize( dev->totalSectors() * dev->logicalSectorSize() ) };
+    return texts;
+}
 
 PartitionPreview::PartitionPreview( QWidget* parent )
     : m_showLabels( false )
@@ -92,8 +104,12 @@ PartitionPreview::paintEvent( QPaintEvent* event )
 static void
 drawSection( QPainter* painter, const QRect& rect_, int x, int width, const QModelIndex& index )
 {
-    QColor color = index.data( Qt::DecorationRole ).value< QColor >();
-    bool isFreeSpace = index.data( PartitionModel::IsFreeSpaceRole ).toBool();
+    QColor color = index.isValid() ?
+                   index.data( Qt::DecorationRole ).value< QColor >() :
+                   ColorUtils::unknownDisklabelColor();
+    bool isFreeSpace = index.isValid() ?
+                       index.data( PartitionModel::IsFreeSpaceRole ).toBool() :
+                       true;
 
     QRect rect = rect_;
     const int y = rect.y();
@@ -129,11 +145,12 @@ drawSection( QPainter* painter, const QRect& rect_, int x, int width, const QMod
 void
 PartitionPreview::drawPartitions( QPainter* painter, const QRect& rect, const QModelIndex& parent )
 {
-    QAbstractItemModel* modl = model();
+    PartitionModel* modl = qobject_cast< PartitionModel* >( model() );
     if ( !modl )
         return;
     const int count = modl->rowCount( parent );
     const int totalWidth = rect.width();
+    qDebug() << "count:" << count << "totalWidth:" << totalWidth;
     struct Item
     {
         qreal size;
@@ -172,6 +189,13 @@ PartitionPreview::drawPartitions( QPainter* painter, const QRect& rect, const QM
             drawPartitions( painter, subRect, item.index );
         }
         x += width;
+    }
+
+    if ( !count &&
+         !modl->device()->partitionTable() ) // No disklabel or unknown
+    {
+        int width = rect.right() - rect.x() + 1;
+        drawSection( painter, rect, rect.x(), width, QModelIndex() );
     }
 }
 
@@ -212,7 +236,7 @@ PartitionPreview::getIndexesToDraw( const QModelIndex& parent ) const
 void
 PartitionPreview::drawLabels( QPainter* painter, const QRect& rect, const QModelIndex& parent )
 {
-    QAbstractItemModel* modl = model();
+    PartitionModel* modl = qobject_cast< PartitionModel* >( model() );
     if ( !modl )
         return;
 
@@ -231,12 +255,21 @@ PartitionPreview::drawLabels( QPainter* painter, const QRect& rect, const QModel
 
         if ( label_x + labelSize.width() > rect.width() ) //wrap to new line if overflow
         {
-            label_x = 0;
+            label_x = rect.x();
             label_y += labelSize.height();
         }
         drawLabel( painter, texts, labelColor, QPoint( label_x, label_y ) );
 
         label_x += labelSize.width() + LABELS_MARGIN;
+    }
+
+    if ( !modl->rowCount() &&
+         !modl->device()->partitionTable() ) // No disklabel or unknown
+    {
+        QStringList texts = buildUnknownDisklabelTexts( modl->device() );
+        QSize labelSize = sizeForLabel( texts );
+        QColor labelColor = ColorUtils::unknownDisklabelColor();
+        drawLabel( painter, texts, labelColor, QPoint( rect.x(), rect.y() ) );
     }
 }
 
@@ -244,7 +277,7 @@ PartitionPreview::drawLabels( QPainter* painter, const QRect& rect, const QModel
 QSize
 PartitionPreview::sizeForAllLabels( int maxLineWidth ) const
 {
-    QAbstractItemModel* modl = model();
+    PartitionModel* modl = qobject_cast< PartitionModel* >( model() );
     if ( !modl )
         return QSize();
 
@@ -270,6 +303,13 @@ PartitionPreview::sizeForAllLabels( int maxLineWidth ) const
         }
 
         singleLabelHeight = qMax( singleLabelHeight, labelSize.height() );
+    }
+
+    if ( !modl->rowCount() &&
+         !modl->device()->partitionTable() ) // Unknown or no disklabel
+    {
+        singleLabelHeight = sizeForLabel( buildUnknownDisklabelTexts( modl->device() ) )
+                            .height();
     }
 
     int totalHeight = numLines * singleLabelHeight;
