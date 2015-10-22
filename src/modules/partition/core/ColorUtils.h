@@ -31,6 +31,8 @@ namespace ColorUtils
 
 QColor freeSpaceColor();
 
+QColor unknownDisklabelColor();
+
 QColor colorForPartition( Partition* partition );
 
 /**

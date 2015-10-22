@@ -49,6 +49,7 @@ static const QColor NEW_PARTITION_COLORS[ NUM_NEW_PARTITION_COLORS ] =
 };
 static QColor FREE_SPACE_COLOR = "#777777";
 static QColor EXTENDED_COLOR = "#aaaaaa";
+static QColor UNKNOWN_DISKLABEL_COLOR = "#4d4151";
 
 static QMap< QString, QColor > s_partitionColorsCache;
 
@@ -59,6 +60,11 @@ namespace ColorUtils
 QColor freeSpaceColor()
 {
     return FREE_SPACE_COLOR;
+}
+
+QColor unknownDisklabelColor()
+{
+    return UNKNOWN_DISKLABEL_COLOR;
 }
 
 PartitionNode*
