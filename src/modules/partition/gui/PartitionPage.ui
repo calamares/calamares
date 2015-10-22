@@ -19,7 +19,7 @@
      <item>
       <widget class="QLabel" name="label_2">
        <property name="text">
-        <string>&amp;Disk:</string>
+        <string>Storage de&amp;vice:</string>
        </property>
        <property name="buddy">
         <cstring>deviceComboBox</cstring>
@@ -142,7 +142,7 @@
      <item>
       <widget class="QLabel" name="label_3">
        <property name="text">
-        <string>&amp;Install boot loader on:</string>
+        <string>Install boot &amp;loader on:</string>
        </property>
        <property name="buddy">
         <cstring>bootLoaderComboBox</cstring>
