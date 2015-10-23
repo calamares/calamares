@@ -169,7 +169,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>表单</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="24"/>
@@ -197,7 +197,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/libcalamaresui/ExecutionViewStep.cpp" line="77"/>
         <source>Install</source>
-        <translation type="unfinished"/>
+        <translation>安装</translation>
     </message>
 </context>
 <context>
@@ -359,12 +359,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="232"/>
         <source>&amp;Install now</source>
-        <translation type="unfinished"/>
+        <translation>现在安装 (&amp;I)</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="233"/>
         <source>Go &amp;back</source>
-        <translation type="unfinished"/>
+        <translation>返回 (&amp;B)</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="268"/>
@@ -544,7 +544,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="171"/>
         <source>Cleared all mounts for %1</source>
-        <translation type="unfinished"/>
+        <translation>已清理 %1 的所有挂载点</translation>
     </message>
 </context>
 <context>
@@ -557,12 +557,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="47"/>
         <source>Clearing all temporary mounts.</source>
-        <translation type="unfinished"/>
+        <translation>正在清除所有临时挂载点</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="58"/>
         <source>Cannot get list of temporary mounts.</source>
-        <translation type="unfinished"/>
+        <translation>无法获取临时挂载点列表</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="97"/>
@@ -742,7 +742,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="65"/>
         <source>Creating user %1.</source>
-        <translation type="unfinished"/>
+        <translation>正在创建用户 %1。</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="81"/>
@@ -800,17 +800,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="42"/>
         <source>Delete partition %1.</source>
-        <translation type="unfinished"/>
+        <translation>删除分区 %1。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="50"/>
         <source>Delete partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>删除分区 &lt;strong&gt;%1&lt;/strong&gt;。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="58"/>
         <source>Deleting partition %1.</source>
-        <translation type="unfinished"/>
+        <translation>正在删除分区 %1。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="67"/>
@@ -856,7 +856,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="60"/>
         <source>&amp;Keep</source>
-        <translation type="unfinished"/>
+        <translation>保留 (&amp;K)</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="70"/>
@@ -876,12 +876,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="119"/>
         <source>Si&amp;ze:</source>
-        <translation type="unfinished"/>
+        <translation>尺寸 (&amp;Z)：</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="132"/>
         <source>Fi&amp;le System:</source>
-        <translation type="unfinished"/>
+        <translation>文件系统 (&amp;L)：</translation>
     </message>
 </context>
 <context>
@@ -945,7 +945,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/finished/FinishedPage.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>表单</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedPage.ui" line="77"/>
@@ -981,7 +981,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="70"/>
         <source>Formatting partition %1 with file system %2.</source>
-        <translation type="unfinished"/>
+        <translation>正在使用 %2 文件系统格式化分区 %1。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="82"/>
@@ -1016,14 +1016,14 @@ The installer will quit and all changes will be lost.</source>
         <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="84"/>
         <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="96"/>
         <source>Konsole not installed</source>
-        <translation type="unfinished"/>
+        <translation>未安装 Konsole</translation>
     </message>
     <message>
         <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="70"/>
         <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="85"/>
         <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="97"/>
         <source>Please install the kde konsole and try again!</source>
-        <translation type="unfinished"/>
+        <translation>请安装 KDE Konsole 然后重试！</translation>
     </message>
     <message>
         <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="122"/>
@@ -1036,7 +1036,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/interactiveterminal/InteractiveTerminalViewStep.cpp" line="45"/>
         <source>Script</source>
-        <translation type="unfinished"/>
+        <translation>脚本</translation>
     </message>
 </context>
 <context>
@@ -1078,12 +1078,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/license/LicensePage.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>表单</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="88"/>
         <source>I accept the terms and conditions above.</source>
-        <translation type="unfinished"/>
+        <translation>我同意如上条款</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="115"/>
@@ -1148,7 +1148,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/license/LicenseViewStep.cpp" line="51"/>
         <source>License</source>
-        <translation type="unfinished"/>
+        <translation>许可证</translation>
     </message>
 </context>
 <context>
@@ -1157,7 +1157,7 @@ The installer will quit and all changes will be lost.</source>
         <location filename="../src/modules/locale/LocalePage.cpp" line="158"/>
         <location filename="../src/modules/locale/LocalePage.cpp" line="169"/>
         <source>The system locale is set to %1.</source>
-        <translation type="unfinished"/>
+        <translation>系统地域已设定为 %1。</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/LocalePage.cpp" line="166"/>
@@ -1172,7 +1172,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/locale/LocalePage.cpp" line="172"/>
         <source>&amp;Change...</source>
-        <translation type="unfinished"/>
+        <translation>更改 (&amp;C) ...</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/LocalePage.cpp" line="266"/>
@@ -1467,7 +1467,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="214"/>
         <source>Disk &lt;strong&gt;%1&lt;/strong&gt; (%2)</source>
-        <translation type="unfinished"/>
+        <translation>磁盘 &lt;strong&gt;%1&lt;/strong&gt; (%2)</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="226"/>
@@ -1499,12 +1499,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>表单</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.ui" line="22"/>
         <source>Dis&amp;k:</source>
-        <translation type="unfinished"/>
+        <translation>磁盘 (&amp;K)：</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="161"/>
@@ -1514,7 +1514,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="188"/>
         <source>The selected item does not appear to be a valid partition.</source>
-        <translation type="unfinished"/>
+        <translation>选中项似乎不是有效分区。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="196"/>
@@ -1571,7 +1571,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="322"/>
         <source>EFI system partition:</source>
-        <translation type="unfinished"/>
+        <translation>EFI 系统分区：</translation>
     </message>
 </context>
 <context>
@@ -1579,12 +1579,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="57"/>
         <source>Gathering system information...</source>
-        <translation type="unfinished"/>
+        <translation>正在收集系统信息 ...</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="98"/>
         <source>has at least %1 GB available drive space</source>
-        <translation type="unfinished"/>
+        <translation>至少 %1 GB 可用磁盘空间</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="100"/>
@@ -1594,7 +1594,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="108"/>
         <source>has at least %1 GB working memory</source>
-        <translation type="unfinished"/>
+        <translation>至少 %1 GB 可用内存</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="110"/>
@@ -1604,27 +1604,27 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="118"/>
         <source>is plugged in to a power source</source>
-        <translation type="unfinished"/>
+        <translation>已连接到电源</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="119"/>
         <source>The system is not plugged in to a power source.</source>
-        <translation type="unfinished"/>
+        <translation>系统未连接到电源。</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="126"/>
         <source>is connected to the Internet</source>
-        <translation type="unfinished"/>
+        <translation>已连接到互联网</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="127"/>
         <source>The system is not connected to the Internet.</source>
-        <translation type="unfinished"/>
+        <translation>系统未连接到互联网。</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="135"/>
         <source>The installer is not running with administrator rights.</source>
-        <translation type="unfinished"/>
+        <translation>安装器未以管理员权限运行</translation>
     </message>
 </context>
 <context>
@@ -1655,12 +1655,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="194"/>
         <source>Resize &lt;strong&gt;%2MB&lt;/strong&gt; partition &lt;strong&gt;%1&lt;/strong&gt; to &lt;strong&gt;%3MB&lt;/strong&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>正将 &lt;strong&gt;%2MB&lt;/strong&gt; 的分区&lt;strong&gt;%1&lt;/strong&gt;为 &lt;strong&gt;%3MB&lt;/strong&gt;。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="205"/>
         <source>Resizing %2MB partition %1 to %3MB.</source>
-        <translation type="unfinished"/>
+        <translation>正将 %2MB 的分区%1为 %3MB。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="232"/>
@@ -1684,12 +1684,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/SetHostNameJob.cpp" line="44"/>
         <source>Set hostname &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>设置主机名 &lt;strong&gt;%1&lt;/strong&gt;。</translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetHostNameJob.cpp" line="51"/>
         <source>Setting hostname %1.</source>
-        <translation type="unfinished"/>
+        <translation>正在设置主机名 %1。</translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetHostNameJob.cpp" line="61"/>
@@ -1709,23 +1709,23 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="57"/>
         <source>Set keyboard model to %1, layout to %2-%3</source>
-        <translation type="unfinished"/>
+        <translation>将键盘型号设置为 %1，布局设置为 %2-%3</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="284"/>
         <source>Failed to write keyboard configuration for the virtual console.</source>
-        <translation type="unfinished"/>
+        <translation>无法将键盘配置写入到虚拟控制台。</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="285"/>
         <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="289"/>
         <source>Failed to write to %1</source>
-        <translation type="unfinished"/>
+        <translation>写入到 %1 失败</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="288"/>
         <source>Failed to write keyboard configuration for X11.</source>
-        <translation type="unfinished"/>
+        <translation>无法为 X11 写入键盘配置。</translation>
     </message>
 </context>
 <context>
@@ -1751,7 +1751,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="49"/>
         <source>Setting password for user %1.</source>
-        <translation type="unfinished"/>
+        <translation>正在为用户 %1 设置密码。</translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="59"/>
@@ -1804,12 +1804,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="89"/>
         <source>Cannot set timezone,</source>
-        <translation type="unfinished"/>
+        <translation>无法设置时区，</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="90"/>
         <source>Cannot open /etc/timezone for writing</source>
-        <translation type="unfinished"/>
+        <translation>无法打开要写入的 /etc/timezone</translation>
     </message>
 </context>
 <context>
@@ -1875,7 +1875,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>表单</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="75"/>
