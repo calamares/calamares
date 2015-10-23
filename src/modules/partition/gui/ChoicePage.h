@@ -34,6 +34,8 @@ class QListView;
 class PartitionCoreModule;
 class PrettyRadioButton;
 
+class Device;
+
 class ChoicePage : public QWidget, private Ui::ChoicePage
 {
     Q_OBJECT
@@ -65,6 +67,8 @@ private:
     void setNextEnabled( bool enabled );
     void setupChoices();
     void applyDeviceChoice();
+    void updateDeviceStatePreview( Device* currentDevice );
+    void setupActions( Device* currentDevice );
 
     bool m_nextEnabled;
     PartitionCoreModule* m_core;

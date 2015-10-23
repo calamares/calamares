@@ -238,12 +238,6 @@ ChoicePage::setupChoices()
 void
 ChoicePage::applyDeviceChoice()
 {
-    QMutexLocker locker( &m_previewsMutex );
-
-    cDebug() << "Updating partitioning preview widgets.";
-    qDeleteAll( m_previewFrame->children() );
-    m_previewFrame->layout()->deleteLater();
-
     if ( !compact() &&
          drivesList->selectionModel()->currentIndex() == QModelIndex() )
     {
@@ -251,20 +245,37 @@ ChoicePage::applyDeviceChoice()
         return;
     }
 
-    Device* dev = nullptr;
+    Device* currentDevice = nullptr;
     if ( compact() )
     {
-        dev = m_core->deviceModel()->deviceForIndex(
+        currentDevice = m_core->deviceModel()->deviceForIndex(
                   m_core->deviceModel()->index(
                       drivesCombo->currentIndex() ) );
     }
     else
     {
-        dev = m_core->deviceModel()->deviceForIndex(
+        currentDevice = m_core->deviceModel()->deviceForIndex(
                   drivesList->selectionModel()->currentIndex() );
     }
-    if ( !dev )
+    if ( !currentDevice )
         return;
+
+    updateDeviceStatePreview( currentDevice );
+    // Preview setup done. Now we show/hide choices as needed.
+
+    setupActions( currentDevice );
+}
+
+
+void
+ChoicePage::updateDeviceStatePreview( Device* currentDevice )
+{
+    Q_ASSERT( currentDevice );
+    QMutexLocker locker( &m_previewsMutex );
+
+    cDebug() << "Updating partitioning preview widgets.";
+    qDeleteAll( m_previewFrame->children() );
+    m_previewFrame->layout()->deleteLater();
 
     QVBoxLayout* layout = new QVBoxLayout;
     m_previewFrame->setLayout( layout );
@@ -272,30 +283,38 @@ ChoicePage::applyDeviceChoice()
 
     PartitionPreview* preview = new PartitionPreview( m_previewFrame );
     preview->setLabelsVisible( true );
-    PartitionModel* model = new PartitionModel( m_previewFrame );
-    model->init( dev );
+
+    Device* deviceBefore = m_core->createImmutableDeviceCopy( currentDevice );
+
+    PartitionModel* model = new PartitionModel( preview );
+    model->init( deviceBefore );
+
+    // The QObject parents tree is meaningful for memory management here,
+    // see qDeleteAll above.
+    deviceBefore->setParent( model );
+    model->setParent( preview );
+
     preview->setModel( model );
     layout->addWidget( preview );
+}
 
-    // Preview setup done. Now we show/hide choices as needed.
 
+void
+ChoicePage::setupActions( Device *currentDevice )
+{
     if ( m_osproberEntries.count() == 0 )
     {
         CALAMARES_RETRANSLATE(
             m_messageLabel->setText( tr( "This computer currently does not seem to have an operating system on it. "
                                          "What would you like to do?" ) );
 
-            if ( m_core->deviceModel()->rowCount() < 2 )
-                m_eraseButton->setText( tr( "<strong>Erase disk and install %1</strong><br/>"
-                                            "<font color=\"red\">Warning: </font>This will delete all of your programs, "
-                                            "documents, photos, music, and any other files." )
-                                        .arg( Calamares::Branding::instance()->
-                                              string( Calamares::Branding::ShortVersionedName ) ) );
-            else
-                m_eraseButton->setText( tr( "<strong>Erase disk and install %1</strong><br/>"
-                                            "You will be offered a choice of which disk to erase." )
-                                        .arg( Calamares::Branding::instance()->
-                                              string( Calamares::Branding::ShortVersionedName ) ) );
+            m_eraseButton->setText( tr( "<strong>Erase disk and install %1</strong><br/>"
+                                        "<font color=\"red\">Warning: </font>This will delete all the data "
+                                        "currently present on %2 (if any), including programs, "
+                                        "documents, photos, music, and other files." )
+                                    .arg( Calamares::Branding::instance()->
+                                          string( Calamares::Branding::ShortVersionedName ) )
+                                    .arg( currentDevice->deviceNode() ) );
         )
 
         m_replaceButton->hide();
@@ -320,19 +339,14 @@ ChoicePage::applyDeviceChoice()
                                             .arg( Calamares::Branding::instance()->
                                                   string( Calamares::Branding::ShortVersionedName ) ) );
 
-                if ( m_core->deviceModel()->rowCount() < 2 )
-                    m_eraseButton->setText( tr( "<strong>Erase entire disk with %1 and install %2</strong><br/>"
-                                                "<font color=\"red\">Warning: </font>This will erase the whole disk and "
-                                                "delete all of your %1 programs, "
-                                                "documents, photos, music, and any other files." )
-                                            .arg( osName )
-                                            .arg( Calamares::Branding::instance()->
-                                                  string( Calamares::Branding::ShortVersionedName ) ) );
-                else
-                    m_eraseButton->setText( tr( "<strong>Erase disk and install %1</strong><br/>"
-                                                "You will be offered a choice of which disk to erase." )
-                                            .arg( Calamares::Branding::instance()->
-                                                  string( Calamares::Branding::ShortVersionedName ) ) );
+                m_eraseButton->setText( tr( "<strong>Erase disk with %3 and install %1</strong><br/>"
+                                            "<font color=\"red\">Warning: </font>This will delete all the data "
+                                            "currently present on %2 (if any), including programs, "
+                                            "documents, photos, music, and other files." )
+                                        .arg( Calamares::Branding::instance()->
+                                              string( Calamares::Branding::ShortVersionedName ) )
+                                        .arg( currentDevice->deviceNode() )
+                                        .arg( osName ) );
 
                 m_replaceButton->setText( tr( "<strong>Replace a partition with %1</strong><br/>"
                                               "You will be offered a choice of which partition to erase." )
@@ -355,17 +369,13 @@ ChoicePage::applyDeviceChoice()
                                             .arg( Calamares::Branding::instance()->
                                                   string( Calamares::Branding::ShortProductName ) ) );
 
-                if ( m_core->deviceModel()->rowCount() < 2 )
-                    m_eraseButton->setText( tr( "<strong>Erase disk and install %1</strong><br/>"
-                                                "<font color=\"red\">Warning: </font>This will delete all of your programs, "
-                                                "documents, photos, music, and any other files." )
-                                            .arg( Calamares::Branding::instance()->
-                                                  string( Calamares::Branding::ShortVersionedName ) ) );
-                else
-                    m_eraseButton->setText( tr( "<strong>Erase disk and install %1</strong><br/>"
-                                                "You will be offered a choice of which disk to erase." )
-                                            .arg( Calamares::Branding::instance()->
-                                                  string( Calamares::Branding::ShortVersionedName ) ) );
+                m_eraseButton->setText( tr( "<strong>Erase disk and install %1</strong><br/>"
+                                            "<font color=\"red\">Warning: </font>This will delete all the data "
+                                            "currently present on %2 (if any), including programs, "
+                                            "documents, photos, music, and other files." )
+                                        .arg( Calamares::Branding::instance()->
+                                              string( Calamares::Branding::ShortVersionedName ) )
+                                        .arg( currentDevice->deviceNode() ) );
 
                 m_replaceButton->setText( tr( "<strong>Replace a partition with %1</strong><br/>"
                                               "You will be offered a choice of which partition to erase." )
@@ -404,17 +414,13 @@ ChoicePage::applyDeviceChoice()
                                         .arg( Calamares::Branding::instance()->
                                               string( Calamares::Branding::ShortProductName ) ) );
 
-            if ( m_core->deviceModel()->rowCount() < 2 )
-                m_eraseButton->setText( tr( "<strong>Erase disk and install %1</strong><br/>"
-                                            "<font color=\"red\">Warning: </font>This will delete all of your programs, "
-                                            "documents, photos, music, and any other files." )
-                                        .arg( Calamares::Branding::instance()->
-                                              string( Calamares::Branding::ShortVersionedName ) ) );
-            else
-                m_eraseButton->setText( tr( "<strong>Erase disk and install %1</strong><br/>"
-                                            "You will be offered a choice of which disk to erase." )
-                                        .arg( Calamares::Branding::instance()->
-                                              string( Calamares::Branding::ShortVersionedName ) ) );
+            m_eraseButton->setText( tr( "<strong>Erase disk and install %1</strong><br/>"
+                                        "<font color=\"red\">Warning: </font>This will delete all the data "
+                                        "currently present on %2 (if any), including programs, "
+                                        "documents, photos, music, and other files." )
+                                    .arg( Calamares::Branding::instance()->
+                                          string( Calamares::Branding::ShortVersionedName ) )
+                                    .arg( currentDevice->deviceNode() ) );
 
             m_replaceButton->setText( tr( "<strong>Replace a partition with %1</strong><br/>"
                                           "You will be offered a choice of which partition to erase." )
