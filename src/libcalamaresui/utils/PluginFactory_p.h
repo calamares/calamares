@@ -36,10 +36,11 @@ class PluginFactoryPrivate
 protected:
     typedef QPair<const QMetaObject *, PluginFactory::CreateInstanceFunction> Plugin;
 
-    PluginFactoryPrivate() : catalogInitialized(false) {}
-    ~PluginFactoryPrivate()
-    {
-    }
+    PluginFactoryPrivate()
+        : catalogInitialized( false )
+        , q_ptr( nullptr )
+    {}
+    ~PluginFactoryPrivate() {}
 
     QHash<QString, Plugin> createInstanceHash;
     QString catalogName;
