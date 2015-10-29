@@ -61,13 +61,16 @@ public:
 
 signals:
     void nextStatusChanged( bool );
+    void actionChosen();
 
 private:
     bool compact();
     void setNextEnabled( bool enabled );
     void setupChoices();
+    Device* selectedDevice();
     void applyDeviceChoice();
     void updateDeviceStatePreview( Device* currentDevice );
+    void updateActionChoicePreview( Device* currentDevice, ChoicePage::Choice choice );
     void setupActions( Device* currentDevice );
 
     bool m_nextEnabled;
