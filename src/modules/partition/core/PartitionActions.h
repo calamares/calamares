@@ -16,42 +16,15 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef ERASEDISKPAGE_H
-#define ERASEDISKPAGE_H
-
-#include <QMutex>
-#include <QWidget>
+#ifndef PARTITIONACTIONS_H
+#define PARTITIONACTIONS_H
 
 class PartitionCoreModule;
-class QListView;
 class Device;
 
-class EraseDiskPage : public QWidget
+namespace PartitionActions
 {
-    Q_OBJECT
-public:
-    explicit EraseDiskPage( QWidget* parent = nullptr );
+void doAutopartition( PartitionCoreModule* core, Device* dev );
+}
 
-    void init( PartitionCoreModule* core );
-
-    bool isNextEnabled() const;
-
-signals:
-    void nextStatusChanged( bool );
-
-private:
-    void setNextEnabled( bool enabled );
-    void doAutopartition( Device* dev );
-    void updatePreviews();
-    qint64 swapSuggestion( const qint64 availableSpaceB ) const;
-
-    QListView* m_drivesView;
-    PartitionCoreModule* m_core;
-    QWidget* m_previewFrame;
-
-    QMutex m_previewsMutex;
-
-    bool m_nextEnabled;
-};
-
-#endif // ERASEDISKPAGE_H
+#endif // PARTITIONACTIONS_H
