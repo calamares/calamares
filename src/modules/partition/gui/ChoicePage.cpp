@@ -18,6 +18,7 @@
 
 #include "ChoicePage.h"
 
+#include "core/PartitionActions.h"
 #include "core/PartitionCoreModule.h"
 #include "core/DeviceModel.h"
 #include "core/PartitionModel.h"
@@ -44,6 +45,13 @@
 #define drivesList  qobject_cast< QListView* >( m_drivesView )
 #define drivesCombo qobject_cast< QComboBox* >( m_drivesView )
 
+/**
+ * @brief ChoicePage::ChoicePage is the default constructor. Called on startup as part of
+ *      the module loading code path.
+ * @param compactMode if true, the drive selector will be a combo box on top, otherwise it
+ *      will show up as a list view.
+ * @param parent the QWidget parent.
+ */
 ChoicePage::ChoicePage( bool compactMode, QWidget* parent )
     : QWidget( parent )
     , m_compactMode( compactMode )
@@ -93,7 +101,9 @@ ChoicePage::ChoicePage( bool compactMode, QWidget* parent )
     // Drive selector + preview
     CALAMARES_RETRANSLATE( m_drivesLabel->setText( tr( "Storage de&vice:" ) ); )
 
-    m_previewFrame->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Expanding );
+    m_previewBeforeFrame->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Expanding );
+    m_previewAfterFrame->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Expanding );
+    m_previewAfterFrame->hide();
     // end
 }
 
@@ -102,6 +112,12 @@ ChoicePage::~ChoicePage()
 {}
 
 
+/**
+ * @brief ChoicePage::init runs when the PartitionViewStep and the PartitionCoreModule are
+ *      ready. Sets up the rest of the UI based on os-prober output.
+ * @param core the PartitionCoreModule pointer.
+ * @param osproberEntries the output of os-prober, cleaned up and structured.
+ */
 void
 ChoicePage::init( PartitionCoreModule* core,
                   const OsproberEntryList& osproberEntries )
@@ -125,10 +141,20 @@ ChoicePage::init( PartitionCoreModule* core,
                  &QItemSelectionModel::currentChanged,
                  this, &ChoicePage::applyDeviceChoice );
     }
+
     ChoicePage::applyDeviceChoice();
 }
 
 
+/**
+ * @brief ChoicePage::setupChoices creates PrettyRadioButton objects for the action
+ *      choices.
+ * @warning This must only run ONCE because it creates signal-slot connections for the
+ *      actions. When an action is triggered, it runs action-specific code that may
+ *      change the internal state of the PCM, and it updates the bottom preview (or
+ *      split) widget.
+ *      Synchronous loading ends here.
+ */
 void
 ChoicePage::setupChoices()
 {
@@ -147,8 +173,8 @@ ChoicePage::setupChoices()
     //  3) Manual
     //  TBD: upgrade option?
 
-    QSize iconSize( CalamaresUtils::defaultIconSize().width() * 3,
-                    CalamaresUtils::defaultIconSize().height() * 3 );
+    QSize iconSize( CalamaresUtils::defaultIconSize().width() * 2,
+                    CalamaresUtils::defaultIconSize().height() * 2 );
     QButtonGroup* grp = new QButtonGroup( this );
 
     m_alongsideButton = new PrettyRadioButton;
@@ -202,47 +228,82 @@ ChoicePage::setupChoices()
              this, [ this ]( bool checked )
     {
         if ( checked )
+        {
             m_choice = Alongside;
-        setNextEnabled( true );
+            setNextEnabled( true );
+            emit actionChosen();
+        }
     } );
 
     connect( m_eraseButton->buttonWidget(), &QRadioButton::toggled,
              this, [ this ]( bool checked )
     {
         if ( checked )
+        {
             m_choice = Erase;
-        setNextEnabled( true );
+
+            if ( m_core->isDirty() )
+                m_core->clearJobs();
+
+            PartitionActions::doAutopartition( m_core, selectedDevice() );
+
+            setNextEnabled( true );
+            emit actionChosen();
+        }
     } );
 
     connect( m_replaceButton->buttonWidget(), &QRadioButton::toggled,
              this, [ this ]( bool checked )
     {
         if ( checked )
+        {
             m_choice = Replace;
-        setNextEnabled( true );
+            setNextEnabled( true );
+            emit actionChosen();
+        }
     } );
 
     connect( m_somethingElseButton->buttonWidget(), &QRadioButton::toggled,
              this, [ this ]( bool checked )
     {
         if ( checked )
+        {
             m_choice = Manual;
-        setNextEnabled( true );
+            setNextEnabled( true );
+            emit actionChosen();
+        }
     } );
 
     m_rightLayout->setStretchFactor( m_itemsLayout, 1 );
-    m_rightLayout->setStretchFactor( m_previewFrame, 0 );
+    m_rightLayout->setStretchFactor( m_previewBeforeFrame, 0 );
+    m_rightLayout->setStretchFactor( m_previewAfterFrame, 0 );
+
+    connect( this, &ChoicePage::actionChosen,
+             this, [=]
+    {
+        Device* currd = selectedDevice();
+        if ( currd )
+        {
+            updateActionChoicePreview( currd, currentChoice() );
+        }
+    } );
 }
 
 
-void
-ChoicePage::applyDeviceChoice()
+/**
+ * @brief ChoicePage::selectedDevice queries the device picker (which may be a combo or
+ *      a list view) to get a pointer to the currently selected Device.
+ * @return a Device pointer, valid in the current state of the PCM, or nullptr if
+ *      something goes wrong.
+ */
+Device*
+ChoicePage::selectedDevice()
 {
     if ( !compact() &&
          drivesList->selectionModel()->currentIndex() == QModelIndex() )
     {
         cDebug() << "No disk selected, bailing out.";
-        return;
+        return nullptr;
     }
 
     Device* currentDevice = nullptr;
@@ -257,31 +318,53 @@ ChoicePage::applyDeviceChoice()
         currentDevice = m_core->deviceModel()->deviceForIndex(
                   drivesList->selectionModel()->currentIndex() );
     }
-    if ( !currentDevice )
-        return;
 
-    updateDeviceStatePreview( currentDevice );
-    // Preview setup done. Now we show/hide choices as needed.
-
-    setupActions( currentDevice );
+    return currentDevice;
 }
 
 
+/**
+ * @brief ChoicePage::applyDeviceChoice handler for the selected event of the device
+ *      picker. Calls ChoicePage::selectedDevice() to get the current Device*, then
+ *      updates the preview widget for the on-disk state (calls ChoicePage::
+ *      updateDeviceStatePreview()) and finally sets up the available actions and their
+ *      text by calling ChoicePage::setupActions().
+ */
+void
+ChoicePage::applyDeviceChoice()
+{
+    Device* currd = selectedDevice();
+
+    updateDeviceStatePreview( currd );
+    // Preview setup done. Now we show/hide choices as needed.
+
+    setupActions( currd );
+}
+
+
+/**
+ * @brief ChoicePage::updateDeviceStatePreview clears and rebuilds the contents of the
+ *      preview widget for the current on-disk state. This also triggers a rescan in the
+ *      PCM to get a Device* copy that's unaffected by subsequent PCM changes.
+ * @param currentDevice a pointer to the selected Device.
+ */
 void
 ChoicePage::updateDeviceStatePreview( Device* currentDevice )
 {
+    //FIXME: this needs to be made async because the rescan can block the UI thread for
+    //       a while. --Teo 10/2015
     Q_ASSERT( currentDevice );
     QMutexLocker locker( &m_previewsMutex );
 
-    cDebug() << "Updating partitioning preview widgets.";
-    qDeleteAll( m_previewFrame->children() );
-    m_previewFrame->layout()->deleteLater();
+    cDebug() << "Updating partitioning state widgets.";
+    qDeleteAll( m_previewBeforeFrame->children() );
+    m_previewBeforeFrame->layout()->deleteLater();
 
     QVBoxLayout* layout = new QVBoxLayout;
-    m_previewFrame->setLayout( layout );
+    m_previewBeforeFrame->setLayout( layout );
     layout->setMargin( 0 );
 
-    PartitionPreview* preview = new PartitionPreview( m_previewFrame );
+    PartitionPreview* preview = new PartitionPreview( m_previewBeforeFrame );
     preview->setLabelsVisible( true );
 
     Device* deviceBefore = m_core->createImmutableDeviceCopy( currentDevice );
@@ -299,6 +382,65 @@ ChoicePage::updateDeviceStatePreview( Device* currentDevice )
 }
 
 
+/**
+ * @brief ChoicePage::updateActionChoicePreview clears and rebuilds the contents of the
+ *      preview widget for the current PCM-proposed state. No rescans here, this should
+ *      be immediate.
+ * @param currentDevice a pointer to the selected Device.
+ * @param choice the chosen partitioning action.
+ */
+void
+ChoicePage::updateActionChoicePreview( Device* currentDevice, ChoicePage::Choice choice )
+{
+    Q_ASSERT( currentDevice );
+    QMutexLocker locker( &m_previewsMutex );
+
+    cDebug() << "Updating partitioning preview widgets.";
+    qDeleteAll( m_previewAfterFrame->children() );
+    m_previewAfterFrame->layout()->deleteLater();
+
+    QVBoxLayout* layout = new QVBoxLayout;
+    m_previewAfterFrame->setLayout( layout );
+    layout->setMargin( 0 );
+
+    switch ( choice )
+    {
+    case Alongside:
+        // split widget goes here
+
+        break;
+    case Erase:
+    case Replace:
+        {
+            PartitionPreview* preview = new PartitionPreview( m_previewAfterFrame );
+            preview->setLabelsVisible( true );
+
+            PartitionModel* model = new PartitionModel( preview );
+            model->init( currentDevice );
+
+            // The QObject parents tree is meaningful for memory management here,
+            // see qDeleteAll above.
+            model->setParent( preview );
+            preview->setModel( model );
+            layout->addWidget( preview );
+
+            m_previewAfterFrame->show();
+            break;
+        }
+    case NoChoice:
+    case Manual:
+        m_previewAfterFrame->hide();
+        break;
+    }
+}
+
+
+/**
+ * @brief ChoicePage::setupActions happens every time a new Device* is selected in the
+ *      device picker. Sets up the text and visibility of the partitioning actions based
+ *      on the currently selected Device*, bootloader and os-prober output.
+ * @param currentDevice
+ */
 void
 ChoicePage::setupActions( Device *currentDevice )
 {
@@ -309,9 +451,11 @@ ChoicePage::setupActions( Device *currentDevice )
                                          "What would you like to do?" ) );
 
             m_eraseButton->setText( tr( "<strong>Erase disk and install %1</strong><br/>"
-                                        "<font color=\"red\">Warning: </font>This will delete all the data "
+                                        "This will <font color=\"red\">delete</font> all the data "
                                         "currently present on %2 (if any), including programs, "
-                                        "documents, photos, music, and other files." )
+                                        "documents, photos, music, and other files.<br/>"
+                                        "You will be able to review and confirm your choice "
+                                        "before proceeding." )
                                     .arg( Calamares::Branding::instance()->
                                           string( Calamares::Branding::ShortVersionedName ) )
                                     .arg( currentDevice->deviceNode() ) );
@@ -340,13 +484,16 @@ ChoicePage::setupActions( Device *currentDevice )
                                                   string( Calamares::Branding::ShortVersionedName ) ) );
 
                 m_eraseButton->setText( tr( "<strong>Erase disk with %3 and install %1</strong><br/>"
-                                            "<font color=\"red\">Warning: </font>This will delete all the data "
+                                            "This will <font color=\"red\">delete</font> all the data "
                                             "currently present on %2 (if any), including programs, "
-                                            "documents, photos, music, and other files." )
+                                            "documents, photos, music, and other files.<br/>"
+                                            "You will be able to review and confirm your choice "
+                                            "before proceeding." )
                                         .arg( Calamares::Branding::instance()->
                                               string( Calamares::Branding::ShortVersionedName ) )
                                         .arg( currentDevice->deviceNode() )
                                         .arg( osName ) );
+
 
                 m_replaceButton->setText( tr( "<strong>Replace a partition with %1</strong><br/>"
                                               "You will be offered a choice of which partition to erase." )
@@ -370,9 +517,11 @@ ChoicePage::setupActions( Device *currentDevice )
                                                   string( Calamares::Branding::ShortProductName ) ) );
 
                 m_eraseButton->setText( tr( "<strong>Erase disk and install %1</strong><br/>"
-                                            "<font color=\"red\">Warning: </font>This will delete all the data "
+                                            "This will <font color=\"red\">delete</font> all the data "
                                             "currently present on %2 (if any), including programs, "
-                                            "documents, photos, music, and other files." )
+                                            "documents, photos, music, and other files.<br/>"
+                                            "You will be able to review and confirm your choice "
+                                            "before proceeding." )
                                         .arg( Calamares::Branding::instance()->
                                               string( Calamares::Branding::ShortVersionedName ) )
                                         .arg( currentDevice->deviceNode() ) );
@@ -415,9 +564,11 @@ ChoicePage::setupActions( Device *currentDevice )
                                               string( Calamares::Branding::ShortProductName ) ) );
 
             m_eraseButton->setText( tr( "<strong>Erase disk and install %1</strong><br/>"
-                                        "<font color=\"red\">Warning: </font>This will delete all the data "
+                                        "This will <font color=\"red\">delete</font> all the data "
                                         "currently present on %2 (if any), including programs, "
-                                        "documents, photos, music, and other files." )
+                                        "documents, photos, music, and other files.<br/>"
+                                        "You will be able to review and confirm your choice "
+                                        "before proceeding." )
                                     .arg( Calamares::Branding::instance()->
                                           string( Calamares::Branding::ShortVersionedName ) )
                                     .arg( currentDevice->deviceNode() ) );

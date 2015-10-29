@@ -31,7 +31,7 @@
    <item>
     <layout class="QVBoxLayout" name="m_rightLayout">
      <item>
-      <widget class="QWidget" name="m_previewFrame" native="true"/>
+      <widget class="QWidget" name="m_previewBeforeFrame" native="true"/>
      </item>
      <item>
       <widget class="QLabel" name="m_messageLabel">
@@ -45,6 +45,9 @@
      </item>
      <item>
       <layout class="QVBoxLayout" name="m_itemsLayout"/>
+     </item>
+     <item>
+      <widget class="QWidget" name="m_previewAfterFrame" native="true"/>
      </item>
     </layout>
    </item>
