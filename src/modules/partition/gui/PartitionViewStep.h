@@ -28,7 +28,6 @@
 #include <QObject>
 
 class ChoicePage;
-class EraseDiskPage;
 class AlongsidePage;
 class PartitionPage;
 class ReplacePage;
@@ -74,7 +73,6 @@ private:
     PartitionCoreModule* m_core;
     QStackedWidget*   m_widget;
     ChoicePage*       m_choicePage;
-    EraseDiskPage*    m_erasePage;
     AlongsidePage*    m_alongsidePage;
     PartitionPage*    m_manualPartitionPage;
     ReplacePage*      m_replacePage;
