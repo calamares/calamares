@@ -25,6 +25,7 @@ calamares_add_plugin( partition
         core/ColorUtils.cpp
         core/DeviceModel.cpp
         core/KPMHelpers.cpp
+        core/PartitionActions.cpp
         core/PartitionCoreModule.cpp
         core/PartitionInfo.cpp
         core/PartitionIterator.cpp
@@ -34,7 +35,6 @@ calamares_add_plugin( partition
         gui/CreatePartitionDialog.cpp
         gui/EditExistingPartitionDialog.cpp
         gui/AlongsidePage.cpp
-        gui/EraseDiskPage.cpp
         gui/PartitionPage.cpp
         gui/PartitionPreview.cpp
         gui/PartitionSizeController.cpp
