@@ -62,6 +62,7 @@ ChoicePage::ChoicePage( bool compactMode, QWidget* parent )
     , m_eraseButton( nullptr )
     , m_replaceButton( nullptr )
     , m_somethingElseButton( nullptr )
+    , m_lastSelectedDeviceIndex( -1 )
 {
     setupUi( this );
     if ( m_compactMode )
@@ -129,13 +130,29 @@ ChoicePage::init( PartitionCoreModule* core,
 
     if ( compact() )
     {
+        // We need to do this because a PCM revert invalidates the deviceModel.
+        connect( core, &PartitionCoreModule::reverted,
+                 this, [=]
+        {
+            drivesCombo->setModel( core->deviceModel() );
+            drivesCombo->setCurrentIndex( m_lastSelectedDeviceIndex );
+        } );
         drivesCombo->setModel( core->deviceModel() );
+
         connect( drivesCombo,
                  static_cast< void ( QComboBox::* )( int ) >( &QComboBox::currentIndexChanged ),
                  this, &ChoicePage::applyDeviceChoice );
     }
     else
     {
+        // Same as above.
+        connect( core, &PartitionCoreModule::reverted,
+                 this, [=]
+        {
+            drivesList->setModel( core->deviceModel() );
+            drivesList->selectionModel()->setCurrentIndex(
+                        core->deviceModel()->index( m_lastSelectedDeviceIndex ), QItemSelectionModel::ClearAndSelect );
+        } );
         drivesList->setModel( core->deviceModel() );
         connect( drivesList->selectionModel(),
                  &QItemSelectionModel::currentChanged,
@@ -335,10 +352,21 @@ ChoicePage::applyDeviceChoice()
 {
     Device* currd = selectedDevice();
 
+    // The device should only be nullptr immediately after a PCM reset.
+    // applyDeviceChoice() will be called again momentarily as soon as we handle the
+    // PartitionCoreModule::reverted signal.
+    if ( !currd )
+        return;
+
     updateDeviceStatePreview( currd );
     // Preview setup done. Now we show/hide choices as needed.
 
     setupActions( currd );
+
+    if ( compact() )
+        m_lastSelectedDeviceIndex = drivesCombo->currentIndex();
+    else
+        m_lastSelectedDeviceIndex = drivesList->selectionModel()->currentIndex().row();
 }
 
 
