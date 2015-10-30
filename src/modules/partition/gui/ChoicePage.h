@@ -88,6 +88,8 @@ private:
     PrettyRadioButton* m_eraseButton;
     PrettyRadioButton* m_replaceButton;
     PrettyRadioButton* m_somethingElseButton;
+
+    int m_lastSelectedDeviceIndex;
 };
 
 #endif // CHOICEPAGE_H
