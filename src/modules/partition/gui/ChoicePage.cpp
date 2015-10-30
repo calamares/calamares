@@ -403,15 +403,20 @@ ChoicePage::updateActionChoicePreview( Device* currentDevice, ChoicePage::Choice
     m_previewAfterFrame->setLayout( layout );
     layout->setMargin( 0 );
 
+    QLabel* label = new QLabel;
+    layout->addWidget( label );
+
     switch ( choice )
     {
     case Alongside:
         // split widget goes here
+        label->setText( tr( "Drag to split:" ) );
 
         break;
     case Erase:
     case Replace:
         {
+            label->setText( tr( "Preview:" ) );
             PartitionPreview* preview = new PartitionPreview( m_previewAfterFrame );
             preview->setLabelsVisible( true );
 
