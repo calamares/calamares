@@ -327,7 +327,11 @@ bool
 PartitionViewStep::isAtEnd() const
 {
     if ( m_choicePage == m_widget->currentWidget() )
+    {
+        if ( m_choicePage->currentChoice() == ChoicePage::Erase )
+            return true;
         return false;
+    }
     return true;
 }
 
