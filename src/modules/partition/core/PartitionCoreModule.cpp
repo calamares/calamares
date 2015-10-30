@@ -481,6 +481,7 @@ PartitionCoreModule::revert()
     m_deviceInfos.clear();
     init();
     updateIsDirty();
+    emit reverted();
 }
 
 

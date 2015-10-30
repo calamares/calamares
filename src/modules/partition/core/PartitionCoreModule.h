@@ -117,6 +117,7 @@ public:
 Q_SIGNALS:
     void hasRootMountPointChanged( bool value );
     void isDirtyChanged( bool value );
+    void reverted();
 
 private:
     void refresh();
