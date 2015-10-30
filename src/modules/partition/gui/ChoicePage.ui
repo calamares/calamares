@@ -29,7 +29,7 @@
     </layout>
    </item>
    <item>
-    <layout class="QVBoxLayout" name="m_rightLayout">
+    <layout class="QVBoxLayout" name="m_rightLayout" stretch="0,0,1,0">
      <item>
       <widget class="QWidget" name="m_previewBeforeFrame" native="true"/>
      </item>
@@ -44,7 +44,44 @@
       </widget>
      </item>
      <item>
-      <layout class="QVBoxLayout" name="m_itemsLayout"/>
+      <widget class="QScrollArea" name="m_itemsScrollArea">
+       <property name="frameShape">
+        <enum>QFrame::NoFrame</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Plain</enum>
+       </property>
+       <property name="lineWidth">
+        <number>0</number>
+       </property>
+       <property name="widgetResizable">
+        <bool>true</bool>
+       </property>
+       <widget class="QWidget" name="scrollAreaWidgetContents">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>481</width>
+          <height>456</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="m_itemsLayout">
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+        </layout>
+       </widget>
+      </widget>
      </item>
      <item>
       <widget class="QWidget" name="m_previewAfterFrame" native="true"/>
