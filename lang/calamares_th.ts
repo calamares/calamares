@@ -9,27 +9,27 @@
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="76"/>
         <source>Allocate drive space by dragging the divider below:</source>
-        <translation>แบ่งพื้นที่ไดรฟ์โดยการเลื่อนตัวแบ่งพื้นที่ที่ด้านล่าง:</translation>
+        <translation>จองพื้นที่ในไดรฟ์โดยการเลื่อนตัวแบ่งพื้นที่ที่ด้านล่าง:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="119"/>
         <source>With this operation, the partition &lt;strong&gt;%1&lt;/strong&gt; which contains %4 will be shrunk to %2MB and a new %3MB partition will be created for %5.</source>
-        <translation type="unfinished"/>
+        <translation>ในการปฏิบัติการนี้ พาร์ทิชัน &lt;strong&gt;%1&lt;/strong&gt; ซึ่งมี %4 จะถูกทำการ shrunk ไปเป็น %2MB และพาร์ทิชัน %3MB ใหม่จะถูกสร้างขึ้นสำหรับ %5</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="219"/>
         <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
-        <translation type="unfinished"/>
+        <translation>ไม่พบพาร์ทิชันสำหรับระบบ EFI อยู่ที่ไหนเลยในระบบนี้ กรุณากลับไปเลือกใช้การแบ่งพาร์ทิชันด้วยตนเอง เพื่อติดตั้ง %1</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="229"/>
         <source>The EFI system partition at %1 will be used for starting %2.</source>
-        <translation type="unfinished"/>
+        <translation>พาร์ทิชันสำหรับระบบ EFI ที่ %1 จะถูกใช้เพื่อเริ่มต้น %2</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="239"/>
         <source>EFI system partition:</source>
-        <translation type="unfinished"/>
+        <translation>พาร์ทิชันสำหรับระบบ EFI:</translation>
     </message>
 </context>
 <context>
@@ -157,12 +157,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="111"/>
         <source>Do not install a boot loader</source>
-        <translation type="unfinished"/>
+        <translation>ไม่ต้องติดตั้งบูตโหลดเดอร์</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="125"/>
         <source>%1 (%2)</source>
-        <translation type="unfinished"/>
+        <translation>%1 (%2)</translation>
     </message>
 </context>
 <context>
@@ -170,27 +170,27 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>ฟอร์ม</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="24"/>
         <source>GlobalStorage</source>
-        <translation type="unfinished"/>
+        <translation>GlobalStorage</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="34"/>
         <source>JobQueue</source>
-        <translation type="unfinished"/>
+        <translation>JobQueue</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="44"/>
         <source>Modules</source>
-        <translation type="unfinished"/>
+        <translation>Modules</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.cpp" line="96"/>
         <source>Debug information</source>
-        <translation type="unfinished"/>
+        <translation>ข้อมูลดีบั๊ก</translation>
     </message>
 </context>
 <context>
@@ -198,7 +198,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/libcalamaresui/ExecutionViewStep.cpp" line="77"/>
         <source>Install</source>
-        <translation type="unfinished"/>
+        <translation>ติดตั้ง</translation>
     </message>
 </context>
 <context>
@@ -219,7 +219,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="60"/>
         <source>Running command %1 %2</source>
-        <translation type="unfinished"/>
+        <translation>กำลังเรียกใช้คำสั่ง %1 %2</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="89"/>
@@ -289,7 +289,7 @@ Output:
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="241"/>
         <source>Running %1 operation.</source>
-        <translation type="unfinished"/>
+        <translation>การปฏิบัติการ %1 กำลังทำงาน</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="254"/>
@@ -350,22 +350,22 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="224"/>
         <source>Continue with setup?</source>
-        <translation type="unfinished"/>
+        <translation>ดำเนินการติดตั้งต่อหรือไม่?</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="225"/>
         <source>The %1 installer is about to make changes to your disk in order to install %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
-        <translation type="unfinished"/>
+        <translation>ตัวติดตั้ง %1 กำลังพยายามที่จะทำการเปลี่ยนแปลงในดิสก์ของคุณเพื่อติดตั้ง %2&lt;br/&gt;&lt;strong&gt;คุณจะไม่สามารถยกเลิกการเปลี่ยนแปลงเหล่านี้ได้&lt;/strong&gt;</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="232"/>
         <source>&amp;Install now</source>
-        <translation type="unfinished"/>
+        <translation>&amp;ติดตั้งตอนนี้</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="233"/>
         <source>Go &amp;back</source>
-        <translation type="unfinished"/>
+        <translation>กลั&amp;บไป</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="268"/>
@@ -416,7 +416,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/calamares/CalamaresWindow.cpp" line="98"/>
         <source>Show debug information</source>
-        <translation type="unfinished"/>
+        <translation>แสดงข้อมูลการดีบั๊ก</translation>
     </message>
 </context>
 <context>
@@ -437,27 +437,27 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="95"/>
         <source>This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;Installation cannot continue. &lt;a href=&quot;#details&quot;&gt;Details...&lt;/a&gt;</source>
-        <translation type="unfinished"/>
+        <translation>ขณะที่กำลังติดตั้ง ตัวติดตั้งฟ้องว่า คอมพิวเตอร์นี้มีความต้องการไม่เพียงพอที่จะติดตั้ง %1.&lt;br/&gt;ไม่สามารถทำการติดตั้งต่อไปได้ &lt;a href=&quot;#details&quot;&gt;รายละเอียด...&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="113"/>
         <source>This computer does not satisfy some of the recommended requirements for installing %1.&lt;br/&gt;Installation can continue, but some features might be disabled.</source>
-        <translation type="unfinished"/>
+        <translation>ขณะที่กำลังติดตั้ง ตัวติดตั้งฟ้องว่า คอมพิวเตอร์มีความต้องการไม่เพียงพอที่จะติดตั้ง %1&lt;br/&gt;ไม่สามารถทำการติดตั้งต่อไปได้ และฟีเจอร์บางอย่างจะถูกปิดไว้</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="142"/>
         <source>This program will ask you some questions and set up %2 on your computer.</source>
-        <translation type="unfinished"/>
+        <translation>โปรแกรมนี้จะถามคุณบางอย่าง เพื่อติดตั้ง %2 ไว้ในคอมพิวเตอร์ของคุณ</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="166"/>
         <source>For best results, please ensure that this computer:</source>
-        <translation type="unfinished"/>
+        <translation>สำหรับผลลัพธ์ที่ดีขึ้น โปรดตรวจสอบให้แน่ใจว่าคอมพิวเตอร์เครื่องนี้:</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="194"/>
         <source>System requirements</source>
-        <translation type="unfinished"/>
+        <translation>ความต้องการของระบบ</translation>
     </message>
 </context>
 <context>
@@ -477,7 +477,7 @@ The installer will quit and all changes will be lost.</source>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="191"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="240"/>
         <source>&lt;strong&gt;Erase disk and install %1&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;This will delete all of your programs, documents, photos, music, and any other files.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;ลบดิสก์แล้วติดตั้ง %1&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;ระวัง: &lt;/font&gt;นี่จะทำการลบโปรแกรม เอกสาร รูป เพลง และไฟล์ทั้งหมดของคุณ</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="127"/>
@@ -490,19 +490,19 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="147"/>
         <source>&lt;strong&gt;Install %2 alongside %1&lt;/strong&gt;&lt;br/&gt;The installer will shrink the %1 volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;ติดตั้ง %2 คู่กับ %1&lt;/strong&gt;&lt;br/&gt;โดยตัวติดตั้งจะทำการย่อขนาดในโวลุ่ม %1 เพื่อให้มีพื้นที่ว่างเพียงพอสำหรับติดตั้ง %2 นอกจากนี้คุณยังสามารถเลือกระบบปฏิบัติการที่คุณต้องการใช้งานในแต่ละครั้งที่เปิดเครื่องคอมพิวเตอร์ด้วย</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="156"/>
         <source>&lt;strong&gt;Erase entire disk with %1 and install %2&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;This will erase the whole disk and delete all of your %1 programs, documents, photos, music, and any other files.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;ล้างข้อมูลทั้งดิสก์ %1 แล้วติดตั้ง %2&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;โปรดระวัง: &lt;/font&gt;การกระทำแบบนี้จะล้างข้อมูลหมดทั้งดิสก์ และลบโปรแกรม เอกสาร รูป เพลง รวมทั้งไฟล์ทั้งหมดของคุณด้วย</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="169"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="202"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="251"/>
         <source>&lt;strong&gt;Replace a partition with %1&lt;/strong&gt;&lt;br/&gt;You will be offered a choice of which partition to erase.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;แทนที่พาร์ทิชันด้วย %1&lt;/strong&gt;&lt;br/&gt;คุณจะถูกถามว่า ต้องการให้ล้างข้อมูลในพาร์ทิชันไหน</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="178"/>
@@ -512,7 +512,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="181"/>
         <source>&lt;strong&gt;Install %1 alongside your current operating system&lt;/strong&gt;&lt;br/&gt;The installer will shrink an existing volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;ติดตั้ง %1 คู่กับระบบปฏิบัติการของคุณ&lt;/strong&gt;&lt;br/&gt;ตัวติดตั้งจะย่อขนาดโวลุ่มที่มีอยู่เพื่อให้มีพื้นที่เพียงพอสำหรับติดตั้ง %2.นอกจากนี้คุณยังสามารถเลือกระบบปฏิบัติการที่คุณจะใช้ได้ เมื่อคุณเปิดเครื่องคอมพิวเตอร์แล้ว</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="227"/>
@@ -522,12 +522,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="230"/>
         <source>&lt;strong&gt;Install %1 alongside your current operating systems&lt;/strong&gt;&lt;br/&gt;The installer will shrink an existing volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;ติดตั้ง %1 คู่กับระบบปฏิบัติการที่คุณใช้อยู่&lt;/strong&gt;&lt;br/&gt;ตัวติดตั้งจะย่อขนาดโวลุ่มที่มีอยู่เพื่อให้มีพื้นที่เพียงพอสำหรับ %2. นอกจากนี้คุณยังสามารถเลือกระบบปฏิบัติการที่คุณจะใช้ได้เมื่อคุณเปิดเครื่องคอมพิวเตอร์แล้ว</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="278"/>
         <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself, or choose multiple partitions for %1.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;กำหนดพาร์ติชันเอง&lt;/strong&gt;&lt;br/&gt;คุณสามารถสร้างหรือปรับขนาดพาร์ติชันเองได้ หรือเลือกหลายพาร์ติชันใน %1.</translation>
     </message>
 </context>
 <context>
@@ -540,7 +540,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="52"/>
         <source>Clearing mounts for partitioning operations on %1.</source>
-        <translation type="unfinished"/>
+        <translation>กำลังล้างจุดเชื่อมต่อสำหรับการดำเนินงานเกี่ยวกับพาร์ทิชันบน %1</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="171"/>
@@ -558,7 +558,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="47"/>
         <source>Clearing all temporary mounts.</source>
-        <translation type="unfinished"/>
+        <translation>กำลังล้างจุดเชื่อมต่อชั่วคราวทุกจุด</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="58"/>
@@ -1079,7 +1079,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/license/LicensePage.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>แบบฟอร์ม</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="88"/>
@@ -1567,12 +1567,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="304"/>
         <source>The EFI system partition at %1 will be used for starting %2.</source>
-        <translation type="unfinished"/>
+        <translation>พาร์ทิชันสำหรับระบบ EFI ที่ %1 จะถูกใช้เพื่อเริ่มต้น %2</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="322"/>
         <source>EFI system partition:</source>
-        <translation type="unfinished"/>
+        <translation>พาร์ทิชันสำหรับระบบ EFI:</translation>
     </message>
 </context>
 <context>
@@ -1876,7 +1876,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>แบบฟอร์ม</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="75"/>
