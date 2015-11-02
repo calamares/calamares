@@ -9,7 +9,7 @@
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="76"/>
         <source>Allocate drive space by dragging the divider below:</source>
-        <translation>Reserveer schijfruimte door de verdelers hieronder te verslepen:</translation>
+        <translation>Reserveer schijfruimte door de balkjes hieronder te verslepen:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="119"/>
