@@ -54,6 +54,8 @@ namespace CalamaresUtils
     DLLEXPORT QString removeDiacritics( const QString& string );
 
     DLLEXPORT QString obscure( const QString& string );
+
+    DLLEXPORT void crash();
 }
 
 #endif // CALAMARESUTILS_H
