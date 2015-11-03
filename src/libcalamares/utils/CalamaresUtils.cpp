@@ -329,4 +329,12 @@ obscure( const QString& string )
 }
 
 
+void
+crash()
+{
+    volatile int* a = (int*)(NULL);
+    *a = 1;
+}
+
+
 }
