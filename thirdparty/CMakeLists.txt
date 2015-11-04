@@ -1,0 +1,6 @@
+if( WITH_CRASHREPORTER )
+    macro( qt_wrap_ui )
+        qt5_wrap_ui( ${ARGN} )
+    endmacro()
+    add_subdirectory( libcrashreporter-qt )
+endif()
