@@ -72,14 +72,14 @@ PrettyRadioButton::setIcon( const QIcon& icon )
 
 
 QSize
-PrettyRadioButton::iconSize()
+PrettyRadioButton::iconSize() const
 {
     return m_radio->iconSize();
 }
 
 
 QRadioButton*
-PrettyRadioButton::buttonWidget()
+PrettyRadioButton::buttonWidget() const
 {
     return m_radio;
 }
