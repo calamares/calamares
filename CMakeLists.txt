@@ -158,6 +158,8 @@ file( COPY CalamaresAddBrandingSubdirectory.cmake DESTINATION "${PROJECT_BINARY_
 
 set( CALAMARES_LIBRARIES calamares )
 
+set( THIRDPARTY_DIR "${CMAKE_SOURCE_DIR}/thirdparty" )
+
 add_subdirectory( thirdparty )
 add_subdirectory( src )
 
