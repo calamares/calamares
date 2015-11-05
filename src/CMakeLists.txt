@@ -25,3 +25,6 @@ add_subdirectory( modules )
 # branding components
 add_subdirectory( branding )
 
+if( WITH_CRASHREPORTER )
+    add_subdirectory( crashreporter )
+endif()
