@@ -70,6 +70,7 @@ private:
     Device* selectedDevice();
     void applyDeviceChoice();
     void updateDeviceStatePreview( Device* currentDevice );
+    void applyActionChoice( Device* currentDevice, ChoicePage::Choice choice );
     void updateActionChoicePreview( Device* currentDevice, ChoicePage::Choice choice );
     void setupActions( Device* currentDevice );
 
