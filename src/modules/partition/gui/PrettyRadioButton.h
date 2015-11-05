@@ -25,20 +25,22 @@ class ClickableLabel;
 
 class PrettyRadioButton : public QWidget
 {
+    Q_OBJECT
 public:
-    PrettyRadioButton( QWidget* parent = nullptr );
+    explicit PrettyRadioButton( QWidget* parent = nullptr );
+    virtual ~PrettyRadioButton() {}
 
-    void setText( const QString& text );
+    virtual void setText( const QString& text );
 
-    void setIconSize( const QSize& size );
+    virtual void setIconSize( const QSize& size );
 
-    void setIcon( const QIcon& icon );
+    virtual void setIcon( const QIcon& icon );
 
-    QSize iconSize();
+    virtual QSize iconSize() const;
 
-    QRadioButton* buttonWidget();
+    virtual QRadioButton* buttonWidget() const;
 
-private:
+protected:
     ClickableLabel* m_label;
     QRadioButton* m_radio;
 };
