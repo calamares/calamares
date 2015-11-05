@@ -258,12 +258,6 @@ ChoicePage::setupChoices()
         if ( checked )
         {
             m_choice = Erase;
-
-            if ( m_core->isDirty() )
-                m_core->clearJobs();
-
-            PartitionActions::doAutopartition( m_core, selectedDevice() );
-
             setNextEnabled( true );
             emit actionChosen();
         }
@@ -301,6 +295,7 @@ ChoicePage::setupChoices()
         Device* currd = selectedDevice();
         if ( currd )
         {
+            applyActionChoice( currd, currentChoice() );
             updateActionChoicePreview( currd, currentChoice() );
         }
     } );
@@ -352,6 +347,9 @@ ChoicePage::applyDeviceChoice()
 {
     Device* currd = selectedDevice();
 
+    if ( m_core->isDirty() )
+        m_core->clearJobs();
+
     // The device should only be nullptr immediately after a PCM reset.
     // applyDeviceChoice() will be called again momentarily as soon as we handle the
     // PartitionCoreModule::reverted signal.
@@ -367,6 +365,27 @@ ChoicePage::applyDeviceChoice()
         m_lastSelectedDeviceIndex = drivesCombo->currentIndex();
     else
         m_lastSelectedDeviceIndex = drivesList->selectionModel()->currentIndex().row();
+
+    emit actionChosen();
+}
+
+
+void
+ChoicePage::applyActionChoice( Device* currentDevice, ChoicePage::Choice choice )
+{
+    switch ( choice )
+    {
+    case Erase:
+        if ( m_core->isDirty() )
+            m_core->clearJobs();
+
+        PartitionActions::doAutopartition( m_core, selectedDevice() );
+        break;
+    case Replace:
+    case NoChoice:
+    case Manual:
+        break;
+    }
 }
 
 
