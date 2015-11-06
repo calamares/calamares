@@ -40,9 +40,6 @@ PrettyRadioButton::PrettyRadioButton( QWidget* parent )
 
     m_label->setWordWrap( true );
     m_label->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred );
-    QMargins labelMargins = m_label->contentsMargins();
-    labelMargins.setLeft( labelMargins.left() + CalamaresUtils::defaultFontHeight() * 0.8 );
-    m_label->setContentsMargins( labelMargins );
 
     mainLayout->addWidget( m_radio );
     mainLayout->addWidget( m_label );
