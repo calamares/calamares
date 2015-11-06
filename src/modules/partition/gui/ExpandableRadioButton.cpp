@@ -22,7 +22,7 @@
 #include <utils/CalamaresUtilsGui.h>
 #include <widgets/ClickableLabel.h>
 
-#include <QBoxLayout>
+#include <QGridLayout>
 
 
 ExpandableRadioButton::ExpandableRadioButton( QWidget* parent )
@@ -32,10 +32,10 @@ ExpandableRadioButton::ExpandableRadioButton( QWidget* parent )
     QBoxLayout* mainLayout = qobject_cast< QBoxLayout* >( layout() );
     mainLayout->setDirection( QBoxLayout::TopToBottom );
     mainLayout->setContentsMargins( 0, 0, 0, 0 );
-    QBoxLayout* prettyRadioButtonLayout = new QHBoxLayout;
-    prettyRadioButtonLayout->addWidget( m_radio );
-    prettyRadioButtonLayout->addWidget( m_label );
-    mainLayout->addLayout( prettyRadioButtonLayout );
+    m_gridLayout = new QGridLayout;
+    m_gridLayout->addWidget( m_radio, 0, 0 );
+    m_gridLayout->addWidget( m_label, 0, 1 );
+    mainLayout->addLayout( m_gridLayout );
 }
 
 
@@ -51,13 +51,13 @@ ExpandableRadioButton::setExpandableWidget( QWidget* widget )
 {
     if ( m_expandableWidget )
     {
-        layout()->removeWidget( m_expandableWidget );
+        m_gridLayout->removeWidget( m_expandableWidget );
         m_expandableWidget->deleteLater();
     }
 
     m_expandableWidget = widget;
     m_expandableWidget->setVisible( m_radio->isChecked() );
-    layout()->addWidget( m_expandableWidget );
+    m_gridLayout->addWidget( m_expandableWidget, 1, 1 );
     updateGeometry();
 
     connect( m_radio, &QRadioButton::toggled,
