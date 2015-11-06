@@ -22,6 +22,8 @@
 
 #include "PrettyRadioButton.h"
 
+class QGridLayout;
+
 class ExpandableRadioButton : public PrettyRadioButton
 {
     Q_OBJECT
@@ -37,6 +39,8 @@ public:
 private:
     QWidget* m_expandableWidget;
     bool m_expanded;
+
+    QGridLayout* m_gridLayout;
 };
 
 #endif // EXPANDABLERADIOBUTTON_H
