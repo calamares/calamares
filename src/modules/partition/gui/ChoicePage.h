@@ -31,6 +31,7 @@ class QBoxLayout;
 class QLabel;
 class QListView;
 
+class ExpandableRadioButton;
 class PartitionCoreModule;
 class PrettyRadioButton;
 
@@ -83,10 +84,11 @@ private:
     Choice m_choice;
 
     bool m_compactMode;
+    bool m_isEfi;
     QWidget* m_drivesView;
 
     PrettyRadioButton* m_alongsideButton;
-    PrettyRadioButton* m_eraseButton;
+    ExpandableRadioButton* m_eraseButton;
     PrettyRadioButton* m_replaceButton;
     PrettyRadioButton* m_somethingElseButton;
 
