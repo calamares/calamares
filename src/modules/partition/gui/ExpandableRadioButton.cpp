@@ -61,7 +61,11 @@ ExpandableRadioButton::setExpandableWidget( QWidget* widget )
     updateGeometry();
 
     connect( m_radio, &QRadioButton::toggled,
-             m_expandableWidget, &QWidget::setVisible );
+             this, [this]( bool visible )
+    {
+        m_expandableWidget->setVisible( visible );
+        emit expanded( visible );
+    } );
 }
 
 
