@@ -36,6 +36,9 @@ public:
     void setExpandableWidget( QWidget* widget );
     QWidget* expandableWidget() const;
 
+signals:
+    void expanded( bool );
+
 private:
     QWidget* m_expandableWidget;
     bool m_expanded;
