@@ -63,6 +63,7 @@ public:
 signals:
     void nextStatusChanged( bool );
     void actionChosen();
+    void deviceChosen( Device* );
 
 private:
     bool compact();
