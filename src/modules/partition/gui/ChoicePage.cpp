@@ -210,22 +210,56 @@ ChoicePage::setupChoices()
     {
         QWidget* eraseWidget = new QWidget;
         {
-            eraseWidget->setLayout( new QHBoxLayout );
+            QHBoxLayout* eraseLayout = new QHBoxLayout;
+            eraseWidget->setLayout( eraseLayout );
+            eraseLayout->setContentsMargins( 0, 0, 0, 0 );
             QLabel* eraseBootloaderLabel = new QLabel( eraseWidget );
-            eraseWidget->layout()->addWidget( eraseBootloaderLabel );
+            eraseLayout->addWidget( eraseBootloaderLabel );
             eraseBootloaderLabel->setText( tr( "Boot loader location:" ) );
             QComboBox* eraseBootloaderCombo = new QComboBox;
-            eraseWidget->layout()->addWidget( eraseBootloaderCombo );
+            eraseLayout->addWidget( eraseBootloaderCombo );
             eraseBootloaderLabel->setBuddy( eraseBootloaderCombo );
             eraseBootloaderCombo->setModel( m_core->bootLoaderModel() );
+            eraseLayout->addStretch();
+
+            // When the chosen bootloader device changes, we update the choice in the PCM
             connect( eraseBootloaderCombo, static_cast< void (QComboBox::*)(int) >( &QComboBox::currentIndexChanged ),
-                     [=]( int /* index */ )
+                     [=]( int newIndex )
             {
-                QVariant var = eraseBootloaderCombo->currentData( BootLoaderModel::BootLoaderPathRole );
+                QVariant var = eraseBootloaderCombo->itemData( newIndex, BootLoaderModel::BootLoaderPathRole );
                 if ( !var.isValid() )
                     return;
                 m_core->setBootLoaderInstallPath( var.toString() );
             } );
+
+            // If the user picks a new device, we update the bootloader choice to that
+            // same device automatically.
+            auto updateBootloaderDevice = [eraseBootloaderCombo]( Device* currd )
+            {
+                if ( !currd )
+                    return;
+                QString devPath = currd->deviceNode();
+                for ( int i = 0; i < eraseBootloaderCombo->count(); ++i )
+                {
+                    QVariant var = eraseBootloaderCombo->itemData( i , BootLoaderModel::BootLoaderPathRole );
+                    if ( !var.isValid() )
+                        continue;
+                    if ( var.toString() == devPath )
+                    {
+                        eraseBootloaderCombo->setCurrentIndex( i );
+                        return;
+                    }
+                }
+            };
+            connect( this, &ChoicePage::deviceChosen,
+                     this, updateBootloaderDevice );
+            connect( m_eraseButton, &ExpandableRadioButton::expanded,
+                     this, [=]( bool expanded )
+            {
+                if ( expanded )
+                    updateBootloaderDevice( selectedDevice() );
+            }, Qt::QueuedConnection );
+            // ^ Must be Queued so it's sure to run when the widget is already visible.
         }
         m_eraseButton->setExpandableWidget( eraseWidget );
     }
@@ -394,6 +428,7 @@ ChoicePage::applyDeviceChoice()
         m_lastSelectedDeviceIndex = drivesList->selectionModel()->currentIndex().row();
 
     emit actionChosen();
+    emit deviceChosen( currd );
 }
 
 
