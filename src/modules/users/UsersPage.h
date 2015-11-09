@@ -47,6 +47,7 @@ public:
 
     void setShowRootPassword( bool show );
     void setAutologinDefault( bool checked );
+    void setBoxReusePassword( bool checked );
 
 protected slots:
     void onFullNameTextEdited( const QString& );
