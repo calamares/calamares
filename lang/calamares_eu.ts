@@ -1311,17 +1311,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="450"/>
         <source>Log in automatically without asking for the password.</source>
-        <translation type="unfinished"/>
+        <translation>Hasi saioa automatikoki pasahitza eskatu gabe.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="457"/>
         <source>Use the same password for the administrator account.</source>
-        <translation type="unfinished"/>
+        <translation>Erabili pasahitz bera administratzaile kontuan.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="480"/>
         <source>Choose a password for the administrator account.</source>
-        <translation type="unfinished"/>
+        <translation>Aukeratu pasahitz bat administratzaile kontuarentzat.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="585"/>
@@ -1415,7 +1415,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="70"/>
         <source>Gathering system information...</source>
-        <translation type="unfinished"/>
+        <translation>Sistemaren informazioa eskuratzen...</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="120"/>
@@ -1489,7 +1489,7 @@ The installer will quit and all changes will be lost.</source>
         <location filename="../src/modules/keyboard/keyboardwidget/keyboardglobal.cpp" line="127"/>
         <location filename="../src/modules/keyboard/keyboardwidget/keyboardglobal.cpp" line="163"/>
         <source>Default</source>
-        <translation type="unfinished"/>
+        <translation>Lehenetsia</translation>
     </message>
 </context>
 <context>
@@ -1577,7 +1577,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="57"/>
         <source>Gathering system information...</source>
-        <translation type="unfinished"/>
+        <translation>Sistemaren informazioa eskuratzen...</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="98"/>
@@ -1718,7 +1718,7 @@ The installer will quit and all changes will be lost.</source>
         <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="285"/>
         <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="289"/>
         <source>Failed to write to %1</source>
-        <translation type="unfinished"/>
+        <translation>Ezin izan da %1 partizioan idatzi</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="288"/>
@@ -1736,7 +1736,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="156"/>
         <source>Failed to change the geometry of the partition.</source>
-        <translation type="unfinished"/>
+        <translation>Ezin izan da partizioaren geometria aldatu.</translation>
     </message>
 </context>
 <context>
@@ -1787,7 +1787,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="66"/>
         <source>Bad path: %1</source>
-        <translation type="unfinished"/>
+        <translation>Bide okerra: %1</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="80"/>
@@ -1903,7 +1903,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="56"/>
         <source>&lt;h1&gt;Welcome to the %1 installer.&lt;/h1&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;h1&gt;Ongi etorri %1 instalatzailera.&lt;/h1&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="70"/>
@@ -1918,7 +1918,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="193"/>
         <source>%1 support</source>
-        <translation type="unfinished"/>
+        <translation>%1 euskarria</translation>
     </message>
 </context>
 <context>
