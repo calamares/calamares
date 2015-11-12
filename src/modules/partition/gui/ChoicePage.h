@@ -69,6 +69,7 @@ private:
     bool compact();
     void setNextEnabled( bool enabled );
     void setupChoices();
+    ExpandableRadioButton* createEraseButton();
     Device* selectedDevice();
     void applyDeviceChoice();
     void updateDeviceStatePreview( Device* currentDevice );
