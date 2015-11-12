@@ -1845,7 +1845,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/UsersViewStep.cpp" line="48"/>
         <source>Users</source>
-        <translation type="unfinished"/>
+        <translation>Пайдаланушылар</translation>
     </message>
 </context>
 <context>
@@ -1858,7 +1858,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="75"/>
         <source>&amp;Language:</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Тіл:</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="176"/>
@@ -1898,7 +1898,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="193"/>
         <source>%1 support</source>
-        <translation type="unfinished"/>
+        <translation>%1 қолдауы</translation>
     </message>
 </context>
 <context>
@@ -1906,7 +1906,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/welcome/WelcomeViewStep.cpp" line="50"/>
         <source>Welcome</source>
-        <translation type="unfinished"/>
+        <translation>Қош келдіңіз</translation>
     </message>
 </context>
 </TS>
