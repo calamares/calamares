@@ -163,7 +163,7 @@ UsersViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     if ( configurationMap.contains( "doReusePassword" ) &&
          configurationMap.value( "doReusePassword" ).type() == QVariant::Bool )
     {
-        m_widget->setBoxReusePassword( configurationMap.value( "doReusePassword" ).toBool() );
+        m_widget->setReusePasswordDefault( configurationMap.value( "doReusePassword" ).toBool() );
     }
 }
 
