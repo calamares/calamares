@@ -428,7 +428,7 @@ UsersPage::setAutologinDefault( bool checked )
 }
 
 void
-UsersPage::setBoxReusePassword( bool checked )
+UsersPage::setReusePasswordDefault( bool checked )
 {
     ui->checkBoxReusePassword->setChecked( checked );
 }
