@@ -1324,7 +1324,7 @@ L&apos;instal·lador es tancarà i tots els canvis es perdran.</translation>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="480"/>
         <source>Choose a password for the administrator account.</source>
-        <translation>Escolliu una contrasenya per al compte d&apos;administrador.</translation>
+        <translation>Escolliu una contrasenya per al compte d&apos;administració.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="585"/>
@@ -1747,7 +1747,7 @@ L&apos;instal·lador es tancarà i tots els canvis es perdran.</translation>
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="42"/>
         <source>Set password for user %1</source>
-        <translation>Assigneu una contrasenya per l&apos;usuari %1</translation>
+        <translation>Assigneu una contrasenya per a l&apos;usuari %1</translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="49"/>
