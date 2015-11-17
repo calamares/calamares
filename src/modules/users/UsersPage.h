@@ -40,8 +40,7 @@ public:
 
     bool isReady();
 
-    QList< Calamares::job_ptr > createJobs( const QString& defaultUserGroup,
-                                            const QStringList& defaultGroupsList );
+    QList< Calamares::job_ptr > createJobs( const QStringList& defaultGroupsList );
 
     void onActivate();
 
