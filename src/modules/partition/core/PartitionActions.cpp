@@ -28,6 +28,7 @@
 #include "GlobalStorage.h"
 
 #include <kpmcore/core/device.h>
+#include <kpmcore/core/partition.h>
 
 #include <QDir>
 
@@ -191,6 +192,27 @@ doAutopartition( PartitionCoreModule* core, Device* dev )
         PartitionInfo::setFormat( swapPartition, true );
         core->createPartition( dev, swapPartition );
     }
+
+    core->dumpQueue();
+}
+
+
+void
+doReplacePartition( PartitionCoreModule* core, Device* dev, Partition* partition )
+{
+
+    Partition* newPartition = KPMHelpers::createNewPartition(
+                                  partition->parent(),
+                                  *dev,
+                                  partition->roles(),
+                                  FileSystem::Ext4,
+                                  partition->firstSector(),
+                                  partition->lastSector() );
+    PartitionInfo::setMountPoint( newPartition, "/" );
+    PartitionInfo::setFormat( newPartition, true );
+
+    core->deletePartition( dev, partition );
+    core->createPartition( dev, newPartition );
 
     core->dumpQueue();
 }

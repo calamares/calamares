@@ -24,6 +24,7 @@
 #include "core/KPMHelpers.h"
 #include "core/PartitionInfo.h"
 #include "core/DeviceModel.h"
+#include "core/PartitionActions.h"
 
 #include "JobQueue.h"
 #include "GlobalStorage.h"
@@ -109,18 +110,8 @@ ReplacePage::applyChanges()
         if ( partition )
         {
             Device* dev = model->device();
-            Partition* newPartition = KPMHelpers::createNewPartition(
-                                          partition->parent(),
-                                          *dev,
-                                          partition->roles(),
-                                          FileSystem::Ext4,
-                                          partition->firstSector(),
-                                          partition->lastSector() );
-            PartitionInfo::setMountPoint( newPartition, "/" );
-            PartitionInfo::setFormat( newPartition, true );
 
-            m_core->deletePartition( dev, partition );
-            m_core->createPartition( dev, newPartition );
+            PartitionActions::doReplacePartition( m_core, dev, partition );
 
             if ( m_isEfi )
             {
