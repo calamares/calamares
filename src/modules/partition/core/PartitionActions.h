@@ -21,10 +21,12 @@
 
 class PartitionCoreModule;
 class Device;
+class Partition;
 
 namespace PartitionActions
 {
 void doAutopartition( PartitionCoreModule* core, Device* dev );
+void doReplacePartition( PartitionCoreModule* core, Device* dev, Partition* partition );
 }
 
 #endif // PARTITIONACTIONS_H
