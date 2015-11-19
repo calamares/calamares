@@ -29,7 +29,7 @@
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="239"/>
         <source>EFI system partition:</source>
-        <translation type="unfinished"/>
+        <translation>Partycja systemowa EFI:</translation>
     </message>
 </context>
 <context>
@@ -185,12 +185,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="44"/>
         <source>Modules</source>
-        <translation type="unfinished"/>
+        <translation>Moduły</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.cpp" line="96"/>
         <source>Debug information</source>
-        <translation type="unfinished"/>
+        <translation>Informacje debugowania</translation>
     </message>
 </context>
 <context>
@@ -198,7 +198,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/libcalamaresui/ExecutionViewStep.cpp" line="77"/>
         <source>Install</source>
-        <translation type="unfinished"/>
+        <translation>Zainstaluj</translation>
     </message>
 </context>
 <context>
@@ -214,7 +214,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="51"/>
         <source>Run command %1 %2</source>
-        <translation type="unfinished"/>
+        <translation>Uruchom polecenie %1 %2</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="60"/>
@@ -333,23 +333,24 @@ Wyjście:
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="67"/>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="298"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Anuluj</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="90"/>
         <source>Cancel installation?</source>
-        <translation type="unfinished"/>
+        <translation>Przerwać instalację?</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="91"/>
         <source>Do you really want to cancel the current install process?
 The installer will quit and all changes will be lost.</source>
-        <translation type="unfinished"/>
+        <translation>Czy naprawdę chcesz przerwać instalację?
+Instalator zakończy działanie i wszystkie zmiany zostaną utracone.</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="224"/>
         <source>Continue with setup?</source>
-        <translation type="unfinished"/>
+        <translation>Kontynuować instalację?</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="225"/>
@@ -359,12 +360,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="232"/>
         <source>&amp;Install now</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Zainstaluj</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="233"/>
         <source>Go &amp;back</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Wstecz</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="268"/>
@@ -415,7 +416,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/calamares/CalamaresWindow.cpp" line="98"/>
         <source>Show debug information</source>
-        <translation type="unfinished"/>
+        <translation>Pokaż informację debugowania</translation>
     </message>
 </context>
 <context>
@@ -456,7 +457,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="194"/>
         <source>System requirements</source>
-        <translation type="unfinished"/>
+        <translation>Wymagania systemowe</translation>
     </message>
 </context>
 <context>
@@ -1571,7 +1572,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/ReplacePage.cpp" line="322"/>
         <source>EFI system partition:</source>
-        <translation type="unfinished"/>
+        <translation>Partycja systemowa EFI:</translation>
     </message>
 </context>
 <context>
