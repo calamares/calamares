@@ -28,6 +28,7 @@
 #include <QMutex>
 
 class QBoxLayout;
+class QComboBox;
 class QLabel;
 class QListView;
 
@@ -69,7 +70,9 @@ private:
     bool compact();
     void setNextEnabled( bool enabled );
     void setupChoices();
+    QComboBox* createBootloaderComboBox( ExpandableRadioButton* parentButton );
     ExpandableRadioButton* createEraseButton();
+    ExpandableRadioButton* createReplaceButton();
     Device* selectedDevice();
     void applyDeviceChoice();
     void updateDeviceStatePreview( Device* currentDevice );
@@ -91,7 +94,7 @@ private:
 
     PrettyRadioButton* m_alongsideButton;
     ExpandableRadioButton* m_eraseButton;
-    PrettyRadioButton* m_replaceButton;
+    ExpandableRadioButton* m_replaceButton;
     PrettyRadioButton* m_somethingElseButton;
 
     int m_lastSelectedDeviceIndex;
