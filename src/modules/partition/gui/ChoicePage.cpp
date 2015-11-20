@@ -25,6 +25,7 @@
 #include "core/PartitionModel.h"
 #include "core/OsproberEntry.h"
 
+#include "ReplaceWidget.h"
 #include "PrettyRadioButton.h"
 #include "ExpandableRadioButton.h"
 #include "PartitionPreview.h"
@@ -213,7 +214,8 @@ ChoicePage::setupChoices()
                                                            iconSize ) );
     grp->addButton( m_eraseButton->buttonWidget() );
 
-    m_replaceButton = new PrettyRadioButton;
+    m_replaceButton = createReplaceButton();
+
     m_replaceButton->setIconSize( iconSize );
     m_replaceButton->setIcon( CalamaresUtils::defaultPixmap( CalamaresUtils::PartitionReplaceOs,
                                                              CalamaresUtils::Original,
@@ -307,6 +309,55 @@ ChoicePage::setupChoices()
 }
 
 
+QComboBox*
+ChoicePage::createBootloaderComboBox( ExpandableRadioButton* parentButton )
+{
+    QComboBox* bcb = new QComboBox;
+    bcb->setModel( m_core->bootLoaderModel() );
+
+    // When the chosen bootloader device changes, we update the choice in the PCM
+    connect( bcb, static_cast< void (QComboBox::*)(int) >( &QComboBox::currentIndexChanged ),
+             [=]( int newIndex )
+    {
+        QVariant var = bcb->itemData( newIndex, BootLoaderModel::BootLoaderPathRole );
+        if ( !var.isValid() )
+            return;
+        m_core->setBootLoaderInstallPath( var.toString() );
+    } );
+
+    // If the user picks a new device, we update the bootloader choice to that
+    // same device automatically.
+    auto updateBootloaderDevice = [bcb]( Device* currd )
+    {
+        if ( !currd )
+            return;
+        QString devPath = currd->deviceNode();
+        for ( int i = 0; i < bcb->count(); ++i )
+        {
+            QVariant var = bcb->itemData( i , BootLoaderModel::BootLoaderPathRole );
+            if ( !var.isValid() )
+                continue;
+            if ( var.toString() == devPath )
+            {
+                bcb->setCurrentIndex( i );
+                return;
+            }
+        }
+    };
+    connect( this, &ChoicePage::deviceChosen,
+             this, updateBootloaderDevice );
+    connect( parentButton, &ExpandableRadioButton::expanded,
+             this, [=]( bool expanded )
+    {
+        if ( expanded )
+            updateBootloaderDevice( selectedDevice() );
+    }, Qt::QueuedConnection );
+    // ^ Must be Queued so it's sure to run when the widget is already visible.
+
+    return bcb;
+}
+
+
 ExpandableRadioButton*
 ChoicePage::createEraseButton()
 {
@@ -321,54 +372,48 @@ ChoicePage::createEraseButton()
         QLabel* eraseBootloaderLabel = new QLabel( eraseWidget );
         eraseLayout->addWidget( eraseBootloaderLabel );
         eraseBootloaderLabel->setText( tr( "Boot loader location:" ) );
-        QComboBox* eraseBootloaderCombo = new QComboBox;
+
+        QComboBox* eraseBootloaderCombo = createBootloaderComboBox( eraseButton );
         eraseLayout->addWidget( eraseBootloaderCombo );
         eraseBootloaderLabel->setBuddy( eraseBootloaderCombo );
-        eraseBootloaderCombo->setModel( m_core->bootLoaderModel() );
         eraseLayout->addStretch();
-
-        // When the chosen bootloader device changes, we update the choice in the PCM
-        connect( eraseBootloaderCombo, static_cast< void (QComboBox::*)(int) >( &QComboBox::currentIndexChanged ),
-                 [=]( int newIndex )
-        {
-            QVariant var = eraseBootloaderCombo->itemData( newIndex, BootLoaderModel::BootLoaderPathRole );
-            if ( !var.isValid() )
-                return;
-            m_core->setBootLoaderInstallPath( var.toString() );
-        } );
-
-        // If the user picks a new device, we update the bootloader choice to that
-        // same device automatically.
-        auto updateBootloaderDevice = [eraseBootloaderCombo]( Device* currd )
-        {
-            if ( !currd )
-                return;
-            QString devPath = currd->deviceNode();
-            for ( int i = 0; i < eraseBootloaderCombo->count(); ++i )
-            {
-                QVariant var = eraseBootloaderCombo->itemData( i , BootLoaderModel::BootLoaderPathRole );
-                if ( !var.isValid() )
-                    continue;
-                if ( var.toString() == devPath )
-                {
-                    eraseBootloaderCombo->setCurrentIndex( i );
-                    return;
-                }
-            }
-        };
-        connect( this, &ChoicePage::deviceChosen,
-                 this, updateBootloaderDevice );
-        connect( eraseButton, &ExpandableRadioButton::expanded,
-                 this, [=]( bool expanded )
-        {
-            if ( expanded )
-                updateBootloaderDevice( selectedDevice() );
-        }, Qt::QueuedConnection );
-        // ^ Must be Queued so it's sure to run when the widget is already visible.
 
         eraseButton->setExpandableWidget( eraseWidget );
     }
     return eraseButton;
+}
+
+
+ExpandableRadioButton*
+ChoicePage::createReplaceButton()
+{
+    ExpandableRadioButton* replaceButton = new ExpandableRadioButton;
+    QWidget* replaceContainer = new QWidget;
+    QVBoxLayout* mainReplaceLayout = new QVBoxLayout;
+    replaceContainer->setLayout( mainReplaceLayout );
+    CalamaresUtils::unmarginLayout( mainReplaceLayout );
+    ReplaceWidget* replaceWidget = new ReplaceWidget( m_core, drivesCombo );
+    mainReplaceLayout->addWidget( replaceWidget );
+
+    if ( !m_isEfi )
+    {
+        QHBoxLayout* bootloaderLayout = new QHBoxLayout;
+        bootloaderLayout->setContentsMargins( 0, 0, 0, 0 );
+        QLabel* eraseBootloaderLabel = new QLabel( replaceButton );
+        bootloaderLayout->addWidget( eraseBootloaderLabel );
+        eraseBootloaderLabel->setText( tr( "Boot loader location:" ) );
+
+        QComboBox* eraseBootloaderCombo = createBootloaderComboBox( replaceButton );
+        bootloaderLayout->addWidget( eraseBootloaderCombo );
+        eraseBootloaderLabel->setBuddy( eraseBootloaderCombo );
+        bootloaderLayout->addStretch();
+
+        mainReplaceLayout->addLayout( bootloaderLayout );
+    }
+
+    replaceButton->setExpandableWidget( replaceContainer );
+
+    return replaceButton;
 }
 
 
