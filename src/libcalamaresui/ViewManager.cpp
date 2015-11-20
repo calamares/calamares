@@ -248,15 +248,6 @@ ViewManager::next()
         {
             m_back->setEnabled( false );
             m_next->setEnabled( false );
-            connect( Calamares::JobQueue::instance(), &Calamares::JobQueue::finished,
-                     this, [this]
-            {
-                if ( m_currentStep != m_steps.count() -1 &&
-                     m_steps.last()->isAtEnd() )
-                    m_next->setEnabled( false );
-                else
-                    m_next->setEnabled( true );
-            } );
         }
     }
     else
@@ -270,7 +261,6 @@ ViewManager::next()
     if ( m_currentStep == m_steps.count() -1 &&
          m_steps.last()->isAtEnd() )
     {
-        m_next->setEnabled( false );
         m_quit->setText( tr( "&Quit" ) );
     }
 }
