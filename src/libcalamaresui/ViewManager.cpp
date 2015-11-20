@@ -251,7 +251,11 @@ ViewManager::next()
             connect( Calamares::JobQueue::instance(), &Calamares::JobQueue::finished,
                      this, [this]
             {
-                m_next->setEnabled( true );
+                if ( m_currentStep != m_steps.count() -1 &&
+                     m_steps.last()->isAtEnd() )
+                    m_next->setEnabled( false );
+                else
+                    m_next->setEnabled( true );
             } );
         }
     }
