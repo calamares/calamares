@@ -17,91 +17,73 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "ReplacePage.h"
-#include "ui_ReplacePage.h"
+#include "ReplaceWidget.h"
+#include "ui_ReplaceWidget.h"
 
-#include "core/PartitionCoreModule.h"
-#include "core/KPMHelpers.h"
-#include "core/PartitionInfo.h"
 #include "core/DeviceModel.h"
+#include "core/PartitionCoreModule.h"
 #include "core/PartitionActions.h"
+#include "core/PartitionInfo.h"
 
-#include "JobQueue.h"
-#include "GlobalStorage.h"
-#include "utils/Retranslator.h"
-#include "utils/CalamaresUtilsGui.h"
-#include "utils/Logger.h"
 #include "Branding.h"
+#include "GlobalStorage.h"
+#include "JobQueue.h"
+#include "utils/CalamaresUtilsGui.h"
+#include "utils/Retranslator.h"
 
-#include <kpmcore/core/device.h>
 #include <kpmcore/core/partition.h>
 #include <kpmcore/fs/filesystem.h>
 
-#include <QDir>
-#include <QProcess>
+#include <QComboBox>
 
-
-ReplacePage::ReplacePage( PartitionCoreModule* core, QWidget* parent )
+ReplaceWidget::ReplaceWidget( PartitionCoreModule* core,
+                              QComboBox* devicesComboBox,
+                              QWidget* parent )
     : QWidget( parent )
-    , m_ui( new Ui_ReplacePage )
+    , m_ui( new Ui_ReplaceWidget )
     , m_core( core )
     , m_isEfi( false )
 {
     m_ui->setupUi( this );
-    m_ui->deviceComboBox->setModel( m_core->deviceModel() );
-    m_ui->partitionPreview->setLabelsVisible( true );
 
     m_ui->bootComboBox->hide();
     m_ui->bootComboBox->clear();
     m_ui->bootStatusLabel->hide();
     m_ui->bootStatusLabel->clear();
 
-//    updateButtons();
-
-    updateFromCurrentDevice();
-
-    connect( m_ui->deviceComboBox, &QComboBox::currentTextChanged,
-             [ this ]( const QString& /* text */ )
+    updateFromCurrentDevice( devicesComboBox );
+    connect( devicesComboBox, &QComboBox::currentTextChanged,
+             this, [=]( const QString& /* text */ )
     {
-        updateFromCurrentDevice();
+        updateFromCurrentDevice( devicesComboBox );
     } );
 
     CALAMARES_RETRANSLATE(
-        m_ui->retranslateUi( this );
         onPartitionSelected();
     )
 }
 
 
-ReplacePage::~ReplacePage()
+ReplaceWidget::~ReplaceWidget()
 {}
 
 
 bool
-ReplacePage::isNextEnabled() const
+ReplaceWidget::isNextEnabled() const
 {
     return m_nextEnabled;
 }
 
 
 void
-ReplacePage::reset()
+ReplaceWidget::reset()
 {
-    int oldDeviceIndex = m_ui->deviceComboBox->currentIndex();
-    m_core->revert();
-
-    m_ui->bootComboBox->hide();
-    m_ui->bootComboBox->clear();
-    m_ui->bootStatusLabel->hide();
-    m_ui->bootStatusLabel->clear();
-
-    m_ui->deviceComboBox->setCurrentIndex( oldDeviceIndex );
-    updateFromCurrentDevice();
+    //moo;
 }
 
 
 void
-ReplacePage::applyChanges()
+ReplaceWidget::applyChanges()
 {
     PartitionModel* model = qobject_cast< PartitionModel* >( m_ui->partitionTreeView->model() );
     if ( model )
@@ -141,7 +123,7 @@ ReplacePage::applyChanges()
 
 
 void
-ReplacePage::onPartitionSelected()
+ReplaceWidget::onPartitionSelected()
 {
     if ( Calamares::JobQueue::instance()->globalStorage()->value( "firmwareType" ) == "efi" )
         m_isEfi = true;
@@ -341,7 +323,7 @@ ReplacePage::onPartitionSelected()
 
 
 void
-ReplacePage::setNextEnabled( bool enabled )
+ReplaceWidget::setNextEnabled( bool enabled )
 {
     if ( enabled == m_nextEnabled )
         return;
@@ -352,7 +334,7 @@ ReplacePage::setNextEnabled( bool enabled )
 
 
 void
-ReplacePage::updateStatus( CalamaresUtils::ImageType imageType, const QString& text )
+ReplaceWidget::updateStatus( CalamaresUtils::ImageType imageType, const QString& text )
 {
     int iconSize = CalamaresUtils::defaultFontHeight() * 8;
     m_ui->selectedIconLabel->setPixmap( CalamaresUtils::defaultPixmap( imageType,
@@ -363,10 +345,11 @@ ReplacePage::updateStatus( CalamaresUtils::ImageType imageType, const QString& t
 }
 
 
+
 void
-ReplacePage::updateFromCurrentDevice()
+ReplaceWidget::updateFromCurrentDevice( QComboBox* devicesComboBox )
 {
-    QModelIndex index = m_core->deviceModel()->index( m_ui->deviceComboBox->currentIndex(), 0 );
+    QModelIndex index = m_core->deviceModel()->index( devicesComboBox->currentIndex(), 0 );
     if ( !index.isValid() )
         return;
 
@@ -377,7 +360,6 @@ ReplacePage::updateFromCurrentDevice()
         disconnect( oldModel, 0, this, 0 );
 
     PartitionModel* model = m_core->partitionModelForDevice( device );
-    m_ui->partitionPreview->setModel( model );
     m_ui->partitionTreeView->setModel( model );
     m_ui->partitionTreeView->expandAll();
 
@@ -391,14 +373,14 @@ ReplacePage::updateFromCurrentDevice()
     // Establish connection here because selection model is destroyed when
     // model changes
     connect( m_ui->partitionTreeView->selectionModel(), &QItemSelectionModel::currentRowChanged,
-             this, &ReplacePage::onPartitionViewActivated );
+             this, &ReplaceWidget::onPartitionViewActivated );
 
-    connect( model, &QAbstractItemModel::modelReset, this, &ReplacePage::onPartitionModelReset );
+    connect( model, &QAbstractItemModel::modelReset, this, &ReplaceWidget::onPartitionModelReset );
 }
 
 
 void
-ReplacePage::onPartitionViewActivated()
+ReplaceWidget::onPartitionViewActivated()
 {
     QModelIndex index = m_ui->partitionTreeView->currentIndex();
     if ( !index.isValid() )
@@ -414,7 +396,7 @@ ReplacePage::onPartitionViewActivated()
 
 
 void
-ReplacePage::onPartitionModelReset()
+ReplaceWidget::onPartitionModelReset()
 {
     m_ui->partitionTreeView->expandAll();
     onPartitionSelected();

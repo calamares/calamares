@@ -42,7 +42,7 @@ calamares_add_plugin( partition
         gui/PartitionViewStep.cpp
         gui/PrettyRadioButton.cpp
         gui/ExpandableRadioButton.cpp
-        gui/ReplacePage.cpp
+        gui/ReplaceWidget.cpp
         jobs/CheckFileSystemJob.cpp
         jobs/ClearMountsJob.cpp
         jobs/ClearTempMountsJob.cpp
@@ -60,7 +60,7 @@ calamares_add_plugin( partition
         gui/CreatePartitionTableDialog.ui
         gui/EditExistingPartitionDialog.ui
         gui/PartitionPage.ui
-        gui/ReplacePage.ui
+        gui/ReplaceWidget.ui
     LINK_LIBRARIES
         kpmcore
         calamaresui
