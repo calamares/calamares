@@ -19,6 +19,7 @@
 #include "PartitionSplitterWidget.h"
 
 #include "utils/Logger.h"
+#include "utils/CalamaresUtilsGui.h"
 
 #include <QApplication>
 #include <QPainter>
@@ -26,7 +27,7 @@
 #include <QStyleOption>
 
 
-static const int VIEW_HEIGHT = 30;
+static const int VIEW_HEIGHT = CalamaresUtils::defaultFontHeight() * 1.5;
 static const int CORNER_RADIUS = 3;
 static const int EXTENDED_PARTITION_MARGIN = 4;
 
