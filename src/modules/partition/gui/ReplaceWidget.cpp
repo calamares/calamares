@@ -149,6 +149,9 @@ ReplaceWidget::onPartitionSelected()
     PartitionModel* model = qobject_cast< PartitionModel* >( m_ui->partitionTreeView->model() );
     if ( model && ok )
     {
+        // Remove any previously appended changes from m_core state.
+        m_core->clearJobs();
+
         QStringList osproberLines = Calamares::JobQueue::instance()
                                     ->globalStorage()
                                     ->value( "osproberLines" ).toStringList();
@@ -318,6 +321,9 @@ ReplaceWidget::onPartitionSelected()
                             .arg( prettyName ) );
             setNextEnabled( true );
         }
+
+        // Check and preview operations done.
+        applyChanges();
     }
 }
 
@@ -336,7 +342,7 @@ ReplaceWidget::setNextEnabled( bool enabled )
 void
 ReplaceWidget::updateStatus( CalamaresUtils::ImageType imageType, const QString& text )
 {
-    int iconSize = CalamaresUtils::defaultFontHeight() * 8;
+    int iconSize = CalamaresUtils::defaultFontHeight() * 6;
     m_ui->selectedIconLabel->setPixmap( CalamaresUtils::defaultPixmap( imageType,
                                                                        CalamaresUtils::Original,
                                                                        QSize( iconSize, iconSize ) ) );
