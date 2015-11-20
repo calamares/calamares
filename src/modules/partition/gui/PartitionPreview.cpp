@@ -33,7 +33,7 @@
 
 #include <functional>
 
-static const int VIEW_HEIGHT = 30;
+static const int VIEW_HEIGHT = CalamaresUtils::defaultFontHeight() * 1.5;
 static const int LAYOUT_MARGIN = 8;
 static const int CORNER_RADIUS = 3;
 static const int EXTENDED_PARTITION_MARGIN = 4;
