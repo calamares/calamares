@@ -17,13 +17,14 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef REPLACEPAGE_H
-#define REPLACEPAGE_H
+#ifndef REPLACEWIDGET_H
+#define REPLACEWIDGET_H
 
 #include <QWidget>
 #include <QScopedPointer>
 
-class Ui_ReplacePage;
+class Ui_ReplaceWidget;
+class QComboBox;
 class PartitionCoreModule;
 class Partition;
 
@@ -32,12 +33,14 @@ namespace CalamaresUtils
 enum ImageType : int;
 }
 
-class ReplacePage : public QWidget
+class ReplaceWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit ReplacePage( PartitionCoreModule* core , QWidget* parent = nullptr );
-    virtual ~ReplacePage();
+    explicit ReplaceWidget( PartitionCoreModule* core,
+                            QComboBox* devicesComboBox,
+                            QWidget* parent = nullptr );
+    virtual ~ReplaceWidget();
 
     bool isNextEnabled() const;
 
@@ -52,7 +55,7 @@ private slots:
     void onPartitionSelected();
 
 private:
-    QScopedPointer< Ui_ReplacePage > m_ui;
+    QScopedPointer< Ui_ReplaceWidget > m_ui;
     void setNextEnabled( bool enabled );
 
     void updateStatus( CalamaresUtils::ImageType imageType, const QString& text );
@@ -63,9 +66,9 @@ private:
 
     bool m_isEfi;
 
-    void updateFromCurrentDevice();
+    void updateFromCurrentDevice( QComboBox* devicesComboBox );
     void onPartitionViewActivated();
     void onPartitionModelReset();
 };
 
-#endif // REPLACEPAGE_H
+#endif // REPLACEWIDGET_H

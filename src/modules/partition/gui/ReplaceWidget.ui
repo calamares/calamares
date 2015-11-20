@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>ReplacePage</class>
- <widget class="QWidget" name="ReplacePage">
+ <class>ReplaceWidget</class>
+ <widget class="QWidget" name="ReplaceWidget">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -14,39 +14,6 @@
    <string>Form</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
-   <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_2">
-     <item>
-      <widget class="QLabel" name="label_2">
-       <property name="text">
-        <string>Dis&amp;k:</string>
-       </property>
-       <property name="buddy">
-        <cstring>deviceComboBox</cstring>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QComboBox" name="deviceComboBox"/>
-     </item>
-     <item>
-      <spacer name="horizontalSpacer_2">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-    </layout>
-   </item>
-   <item>
-    <widget class="PartitionPreview" name="partitionPreview"/>
-   </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
@@ -144,17 +111,6 @@
    </item>
   </layout>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>PartitionPreview</class>
-   <extends>QFrame</extends>
-   <header location="global">gui/PartitionPreview.h</header>
-   <container>1</container>
-  </customwidget>
- </customwidgets>
- <tabstops>
-  <tabstop>deviceComboBox</tabstop>
- </tabstops>
  <resources/>
  <connections/>
 </ui>
