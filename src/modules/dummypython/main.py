@@ -55,7 +55,7 @@ def run():
     libcalamares.job.setprogress(0.1)
     libcalamares.utils.debug(accumulator)
 
-    sleep(30)
+    sleep(3)
     # To indicate an error, return a tuple of:
     # (message, detailed-error-message)
     return None
