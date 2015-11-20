@@ -44,7 +44,7 @@ public:
 
     void onActivate();
 
-    void setShowRootPassword( bool show );
+    void setWriteRootPassword( bool show );
     void setAutologinDefault( bool checked );
     void setReusePasswordDefault( bool checked );
 
@@ -78,7 +78,7 @@ private:
     bool m_readyPassword;
     bool m_readyRootPassword;
 
-    bool m_showRootPassword;
+    bool m_writeRootPassword;
 };
 
 #endif // USERSPAGE_H

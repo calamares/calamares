@@ -47,7 +47,7 @@ UsersPage::UsersPage( QWidget* parent )
     , m_readyHostname( false )
     , m_readyPassword( false )
     , m_readyRootPassword( false )
-    , m_showRootPassword( true )
+    , m_writeRootPassword( true )
 {
     ui->setupUi( this );
 
@@ -75,12 +75,13 @@ UsersPage::UsersPage( QWidget* parent )
         ui->labelRootPasswordError->setVisible( !checked );
         ui->textBoxRootPassword->setVisible( !checked );
         ui->textBoxVerifiedRootPassword->setVisible( !checked );
+        checkReady( isReady() );
     } );
 
     m_customUsername = false;
     m_customHostname = false;
 
-    setShowRootPassword( true );
+    setWriteRootPassword( true );
     ui->checkBoxReusePassword->setChecked( true );
 
     CALAMARES_RETRANSLATE( ui->retranslateUi( this ); )
@@ -96,11 +97,14 @@ UsersPage::~UsersPage()
 bool
 UsersPage::isReady()
 {
-    return m_readyFullName &&
-           m_readyHostname &&
-           m_readyPassword &&
-           ( !m_showRootPassword || ( ui->checkBoxReusePassword->isChecked() || m_readyRootPassword ) ) &&
-           m_readyUsername;
+    bool readyFields = m_readyFullName &&
+                       m_readyHostname &&
+                       m_readyPassword &&
+                       m_readyUsername;
+    if ( !m_writeRootPassword || ui->checkBoxReusePassword->isChecked() )
+        return readyFields;
+
+    return readyFields && m_readyRootPassword;
 }
 
 
@@ -124,7 +128,7 @@ UsersPage::createJobs( const QStringList& defaultGroupsList )
                             ui->textBoxUserPassword->text() );
     list.append( Calamares::job_ptr( j ) );
 
-    if ( m_showRootPassword )
+    if ( m_writeRootPassword )
     {
         if ( ui->checkBoxReusePassword->isChecked() )
             j = new SetPasswordJob( "root",
@@ -158,10 +162,10 @@ UsersPage::onActivate()
 
 
 void
-UsersPage::setShowRootPassword( bool show )
+UsersPage::setWriteRootPassword( bool write )
 {
-    ui->checkBoxReusePassword->setVisible( show );
-    m_showRootPassword = show;
+    ui->checkBoxReusePassword->setVisible( write );
+    m_writeRootPassword = write;
 }
 
 
@@ -424,10 +428,12 @@ void
 UsersPage::setAutologinDefault( bool checked )
 {
     ui->checkBoxAutoLogin->setChecked( checked );
+    emit checkReady( isReady() );
 }
 
 void
 UsersPage::setReusePasswordDefault( bool checked )
 {
     ui->checkBoxReusePassword->setChecked( checked );
+    emit checkReady( isReady() );
 }
