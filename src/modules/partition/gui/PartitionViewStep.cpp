@@ -28,7 +28,6 @@
 #include "gui/ChoicePage.h"
 #include "gui/AlongsidePage.h"
 #include "gui/PartitionPage.h"
-#include "gui/ReplacePage.h"
 #include "gui/PartitionPreview.h"
 
 #include "CalamaresVersion.h"
@@ -59,7 +58,6 @@ PartitionViewStep::PartitionViewStep( QObject* parent )
     , m_choicePage( nullptr )
     , m_alongsidePage( new AlongsidePage() )
     , m_manualPartitionPage( new PartitionPage( m_core ) )
-    , m_replacePage( new ReplacePage( m_core ) )
     , m_compactMode( true )
 {
     m_widget->setContentsMargins( 0, 0, 0, 0 );
@@ -86,7 +84,6 @@ PartitionViewStep::continueLoading()
     m_widget->addWidget( m_choicePage );
     m_widget->addWidget( m_manualPartitionPage );
     m_widget->addWidget( m_alongsidePage );
-    m_widget->addWidget( m_replacePage );
     m_widget->removeWidget( m_waitingWidget );
     m_waitingWidget->deleteLater();
     m_waitingWidget = nullptr;
@@ -96,8 +93,6 @@ PartitionViewStep::continueLoading()
     connect( m_choicePage,      &ChoicePage::nextStatusChanged,
              this,              &PartitionViewStep::nextStatusChanged );
     connect( m_alongsidePage,   &AlongsidePage::nextStatusChanged,
-             this,              &PartitionViewStep::nextStatusChanged );
-    connect( m_replacePage,     &ReplacePage::nextStatusChanged,
              this,              &PartitionViewStep::nextStatusChanged );
 }
 
@@ -270,9 +265,8 @@ PartitionViewStep::next()
         }
         else if ( m_choicePage->currentChoice() == ChoicePage::Replace )
         {
-            if ( m_core->isDirty() )
-                m_core->revert();
-            m_widget->setCurrentWidget( m_replacePage );
+            emit done();
+            return;
         }
         cDebug() << "Choice applied: " << m_choicePage->currentChoice();
         return;
@@ -316,8 +310,7 @@ bool
 PartitionViewStep::isAtBeginning() const
 {
     if ( m_widget->currentWidget() == m_manualPartitionPage ||
-         m_widget->currentWidget() == m_alongsidePage ||
-         m_widget->currentWidget() == m_replacePage )
+         m_widget->currentWidget() == m_alongsidePage )
         return false;
     return true;
 }
@@ -340,9 +333,10 @@ void
 PartitionViewStep::onActivate()
 {
     // if we're coming back to PVS from the next VS
-    if ( m_widget->currentWidget() == m_replacePage )
+    if ( m_widget->currentWidget() == m_choicePage )
     {
-        m_replacePage->reset();
+//        m_choicePage->reset();
+        //FIXME: ReplaceWidget should be reset maybe?
     }
 }
 
@@ -353,10 +347,6 @@ PartitionViewStep::onLeave()
     if ( m_widget->currentWidget() == m_alongsidePage )
     {
         m_alongsidePage->applyChanges();
-    }
-    else if ( m_widget->currentWidget() == m_replacePage )
-    {
-        m_replacePage->applyChanges();
     }
 }
 

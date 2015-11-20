@@ -30,7 +30,6 @@
 class ChoicePage;
 class AlongsidePage;
 class PartitionPage;
-class ReplacePage;
 class PartitionCoreModule;
 class QStackedWidget;
 
@@ -75,7 +74,6 @@ private:
     ChoicePage*       m_choicePage;
     AlongsidePage*    m_alongsidePage;
     PartitionPage*    m_manualPartitionPage;
-    ReplacePage*      m_replacePage;
 
     QWidget*          m_waitingWidget;
 
