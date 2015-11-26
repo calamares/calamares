@@ -45,8 +45,6 @@
 #include <QListView>
 
 
-#define drivesList  qobject_cast< QListView* >( m_drivesView )
-#define drivesCombo qobject_cast< QComboBox* >( m_drivesView )
 
 /**
  * @brief ChoicePage::ChoicePage is the default constructor. Called on startup as part of
@@ -55,9 +53,8 @@
  *      will show up as a list view.
  * @param parent the QWidget parent.
  */
-ChoicePage::ChoicePage( bool compactMode, QWidget* parent )
+ChoicePage::ChoicePage( QWidget* parent )
     : QWidget( parent )
-    , m_compactMode( compactMode )
     , m_choice( NoChoice )
     , m_nextEnabled( false )
     , m_core( nullptr )
@@ -69,42 +66,30 @@ ChoicePage::ChoicePage( bool compactMode, QWidget* parent )
     , m_isEfi( false )
 {
     setupUi( this );
-    if ( m_compactMode )
-    {
-        m_mainLayout->setDirection( QBoxLayout::TopToBottom );
-        m_drivesLayout->setDirection( QBoxLayout::LeftToRight );
-        m_drivesView = new QComboBox( this );
-        m_mainLayout->setStretchFactor( m_drivesLayout, 0 );
-        m_mainLayout->setStretchFactor( m_rightLayout, 1 );
-        m_drivesLabel->setBuddy( m_drivesView );
-    }
-    else
-    {
-        m_drivesView = new QListView( this );
 
-        drivesList->setViewMode( QListView::ListMode );
-        drivesList->setWrapping( false );
-        drivesList->setFlow( QListView::TopToBottom );
-        drivesList->setSelectionRectVisible( false );
-        drivesList->setWordWrap( true );
-        drivesList->setUniformItemSizes( true );
-        drivesList->setSelectionMode( QAbstractItemView::SingleSelection );
-        drivesList->setHorizontalScrollBarPolicy( Qt::ScrollBarAlwaysOff );
+    // Set up drives combo
+    m_mainLayout->setDirection( QBoxLayout::TopToBottom );
+    m_drivesLayout->setDirection( QBoxLayout::LeftToRight );
+    m_drivesCombo = new QComboBox( this );
+    m_mainLayout->setStretchFactor( m_drivesLayout, 0 );
+    m_mainLayout->setStretchFactor( m_rightLayout, 1 );
+    m_drivesLabel->setBuddy( m_drivesCombo );
 
-        drivesList->setIconSize( CalamaresUtils::defaultIconSize() / 2 );
-    }
+    m_drivesLayout->addWidget( m_drivesCombo );
 
-    m_drivesLayout->addWidget( m_drivesView );
-
-    if ( m_compactMode )
-        m_drivesLayout->addStretch();
+    m_drivesLayout->addStretch();
 
     m_messageLabel->setWordWrap( true );
 
     CalamaresUtils::unmarginLayout( m_itemsLayout );
 
     // Drive selector + preview
-    CALAMARES_RETRANSLATE( m_drivesLabel->setText( tr( "Storage de&vice:" ) ); )
+    CALAMARES_RETRANSLATE(
+        retranslateUi( this );
+        m_drivesLabel->setText( tr( "Storage de&vice:" ) );
+        m_previewBeforeLabel->setText( tr( "Current state:" ) );
+        m_previewAfterLabel->setText(  tr( "Your changes:" ) );
+    )
 
     m_previewBeforeFrame->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Expanding );
     m_previewAfterFrame->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Expanding );
@@ -133,36 +118,19 @@ ChoicePage::init( PartitionCoreModule* core,
 
     setupChoices();
 
-    if ( compact() )
-    {
-        // We need to do this because a PCM revert invalidates the deviceModel.
-        connect( core, &PartitionCoreModule::reverted,
-                 this, [=]
-        {
-            drivesCombo->setModel( core->deviceModel() );
-            drivesCombo->setCurrentIndex( m_lastSelectedDeviceIndex );
-        } );
-        drivesCombo->setModel( core->deviceModel() );
 
-        connect( drivesCombo,
-                 static_cast< void ( QComboBox::* )( int ) >( &QComboBox::currentIndexChanged ),
-                 this, &ChoicePage::applyDeviceChoice );
-    }
-    else
+    // We need to do this because a PCM revert invalidates the deviceModel.
+    connect( core, &PartitionCoreModule::reverted,
+             this, [=]
     {
-        // Same as above.
-        connect( core, &PartitionCoreModule::reverted,
-                 this, [=]
-        {
-            drivesList->setModel( core->deviceModel() );
-            drivesList->selectionModel()->setCurrentIndex(
-                        core->deviceModel()->index( m_lastSelectedDeviceIndex ), QItemSelectionModel::ClearAndSelect );
-        } );
-        drivesList->setModel( core->deviceModel() );
-        connect( drivesList->selectionModel(),
-                 &QItemSelectionModel::currentChanged,
-                 this, &ChoicePage::applyDeviceChoice );
-    }
+        m_drivesCombo->setModel( core->deviceModel() );
+        m_drivesCombo->setCurrentIndex( m_lastSelectedDeviceIndex );
+    } );
+    m_drivesCombo->setModel( core->deviceModel() );
+
+    connect( m_drivesCombo,
+             static_cast< void ( QComboBox::* )( int ) >( &QComboBox::currentIndexChanged ),
+             this, &ChoicePage::applyDeviceChoice );
 
     ChoicePage::applyDeviceChoice();
 }
@@ -392,7 +360,7 @@ ChoicePage::createReplaceButton()
     QVBoxLayout* mainReplaceLayout = new QVBoxLayout;
     replaceContainer->setLayout( mainReplaceLayout );
     CalamaresUtils::unmarginLayout( mainReplaceLayout );
-    ReplaceWidget* replaceWidget = new ReplaceWidget( m_core, drivesCombo );
+    ReplaceWidget* replaceWidget = new ReplaceWidget( m_core, m_drivesCombo );
     mainReplaceLayout->addWidget( replaceWidget );
 
     if ( !m_isEfi )
@@ -426,25 +394,10 @@ ChoicePage::createReplaceButton()
 Device*
 ChoicePage::selectedDevice()
 {
-    if ( !compact() &&
-         drivesList->selectionModel()->currentIndex() == QModelIndex() )
-    {
-        cDebug() << "No disk selected, bailing out.";
-        return nullptr;
-    }
-
     Device* currentDevice = nullptr;
-    if ( compact() )
-    {
-        currentDevice = m_core->deviceModel()->deviceForIndex(
-                  m_core->deviceModel()->index(
-                      drivesCombo->currentIndex() ) );
-    }
-    else
-    {
-        currentDevice = m_core->deviceModel()->deviceForIndex(
-                  drivesList->selectionModel()->currentIndex() );
-    }
+    currentDevice = m_core->deviceModel()->deviceForIndex(
+              m_core->deviceModel()->index(
+                  m_drivesCombo->currentIndex() ) );
 
     return currentDevice;
 }
@@ -476,10 +429,7 @@ ChoicePage::applyDeviceChoice()
 
     setupActions( currd );
 
-    if ( compact() )
-        m_lastSelectedDeviceIndex = drivesCombo->currentIndex();
-    else
-        m_lastSelectedDeviceIndex = drivesList->selectionModel()->currentIndex().row();
+    m_lastSelectedDeviceIndex = m_drivesCombo->currentIndex();
 
     emit actionChosen();
     emit deviceChosen( currd );
@@ -566,20 +516,16 @@ ChoicePage::updateActionChoicePreview( Device* currentDevice, ChoicePage::Choice
     m_previewAfterFrame->setLayout( layout );
     layout->setMargin( 0 );
 
-    QLabel* label = new QLabel;
-    layout->addWidget( label );
-
     switch ( choice )
     {
     case Alongside:
         // split widget goes here
-        label->setText( tr( "Drag to split:" ) );
+        //label->setText( tr( "Drag to split:" ) );
 
         break;
     case Erase:
     case Replace:
         {
-            label->setText( tr( "Preview:" ) );
             PartitionPreview* preview = new PartitionPreview( m_previewAfterFrame );
             preview->setLabelsVisible( true );
 
@@ -775,24 +721,6 @@ ChoicePage::Choice
 ChoicePage::currentChoice() const
 {
     return m_choice;
-}
-
-
-bool
-ChoicePage::compact()
-{
-    if ( m_compactMode )
-    {
-        Q_ASSERT( drivesCombo );
-        Q_ASSERT( !drivesList );
-        return true;
-    }
-    else
-    {
-        Q_ASSERT( drivesList );
-        Q_ASSERT( !drivesCombo );
-        return false;
-    }
 }
 
 
