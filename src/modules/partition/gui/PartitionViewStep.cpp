@@ -76,7 +76,7 @@ PartitionViewStep::continueLoading()
     OsproberEntryList osproberEntries = PartUtils::runOsprober( m_core );
 
     Q_ASSERT( !m_choicePage );
-    m_choicePage = new ChoicePage( m_compactMode );
+    m_choicePage = new ChoicePage();
 
     m_choicePage->init( m_core, osproberEntries );
     m_alongsidePage->init( m_core, osproberEntries );
