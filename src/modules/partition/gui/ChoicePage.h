@@ -35,6 +35,7 @@ class QListView;
 class ExpandableRadioButton;
 class PartitionCoreModule;
 class PrettyRadioButton;
+class DeviceInfoWidget;
 
 class Device;
 
@@ -95,6 +96,8 @@ private:
     ExpandableRadioButton* m_eraseButton;
     ExpandableRadioButton* m_replaceButton;
     PrettyRadioButton* m_somethingElseButton;
+
+    DeviceInfoWidget* m_deviceInfoWidget;
 
     int m_lastSelectedDeviceIndex;
 };

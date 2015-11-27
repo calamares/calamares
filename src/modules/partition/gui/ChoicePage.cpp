@@ -29,6 +29,7 @@
 #include "PrettyRadioButton.h"
 #include "ExpandableRadioButton.h"
 #include "PartitionPreview.h"
+#include "DeviceInfoWidget.h"
 
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
@@ -62,6 +63,7 @@ ChoicePage::ChoicePage( QWidget* parent )
     , m_eraseButton( nullptr )
     , m_replaceButton( nullptr )
     , m_somethingElseButton( nullptr )
+    , m_deviceInfoWidget( nullptr )
     , m_lastSelectedDeviceIndex( -1 )
     , m_isEfi( false )
 {
@@ -78,6 +80,8 @@ ChoicePage::ChoicePage( QWidget* parent )
     m_drivesLayout->addWidget( m_drivesCombo );
 
     m_drivesLayout->addStretch();
+    m_deviceInfoWidget = new DeviceInfoWidget;
+    m_drivesLayout->addWidget( m_deviceInfoWidget );
 
     m_messageLabel->setWordWrap( true );
 
@@ -560,6 +564,11 @@ ChoicePage::setupActions( Device *currentDevice )
 {
     OsproberEntryList osproberEntriesForCurrentDevice =
             getOsproberEntriesForDevice( currentDevice );
+
+    if ( currentDevice->partitionTable() )
+        m_deviceInfoWidget->setPartitionTableType( currentDevice->partitionTable()->type() );
+    else
+        m_deviceInfoWidget->setPartitionTableType( PartitionTable::unknownTableType );
 
     if ( osproberEntriesForCurrentDevice.count() == 0 )
     {
