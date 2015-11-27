@@ -95,6 +95,14 @@ defaultPixmap( ImageType type, ImageMode mode, const QSize& size )
         pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/partition-replace-os.svg", size );
         break;
 
+    case PartitionTable:
+        pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/partition-table.svg", size );
+        break;
+
+    case BootEnvironment:
+        pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/boot-environment.svg", size );
+        break;
+
     case Squid:
         pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/squid.svg", size );
         break;
