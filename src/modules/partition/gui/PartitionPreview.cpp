@@ -33,7 +33,7 @@
 
 #include <functional>
 
-static const int VIEW_HEIGHT = CalamaresUtils::defaultFontHeight() * 1.5;
+static const int VIEW_HEIGHT = CalamaresUtils::defaultFontHeight() + 8;
 static const int LAYOUT_MARGIN = 8;
 static const int CORNER_RADIUS = 3;
 static const int EXTENDED_PARTITION_MARGIN = 4;
@@ -289,7 +289,9 @@ PartitionPreview::sizeForAllLabels( int maxLineWidth ) const
     foreach ( const QModelIndex& index, indexesToDraw )
     {
         QStringList texts = { index.data().toString(),
-                              index.sibling( index.row(), PartitionModel::SizeColumn ).data().toString() };
+                              index.sibling( index.row(),
+                                             PartitionModel::SizeColumn )
+                                   .data().toString() };
         QSize labelSize = sizeForLabel( texts );
 
         if ( lineLength + labelSize.width() > maxLineWidth )
