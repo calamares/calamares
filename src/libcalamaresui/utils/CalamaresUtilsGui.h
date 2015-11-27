@@ -44,6 +44,8 @@ enum ImageType : int
     PartitionEraseAuto,
     PartitionManual,
     PartitionReplaceOs,
+    PartitionTable,
+    BootEnvironment,
     Squid
 };
 
