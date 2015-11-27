@@ -558,10 +558,13 @@ ChoicePage::updateActionChoicePreview( Device* currentDevice, ChoicePage::Choice
 void
 ChoicePage::setupActions( Device *currentDevice )
 {
-    if ( m_osproberEntries.count() == 0 )
+    OsproberEntryList osproberEntriesForCurrentDevice =
+            getOsproberEntriesForDevice( currentDevice );
+
+    if ( osproberEntriesForCurrentDevice.count() == 0 )
     {
         CALAMARES_RETRANSLATE(
-            m_messageLabel->setText( tr( "This computer currently does not seem to have an operating system on it. "
+            m_messageLabel->setText( tr( "This storage device does not seem to have an operating system on it. "
                                          "What would you like to do?" ) );
 
             m_eraseButton->setText( tr( "<strong>Erase disk and install %1</strong><br/>"
@@ -578,14 +581,14 @@ ChoicePage::setupActions( Device *currentDevice )
         m_replaceButton->hide();
         m_alongsideButton->hide();
     }
-    else if ( m_osproberEntries.count() == 1 )
+    else if ( osproberEntriesForCurrentDevice.count() == 1 )
     {
-        QString osName = m_osproberEntries.first().prettyName;
+        QString osName = osproberEntriesForCurrentDevice.first().prettyName;
 
         if ( !osName.isEmpty() )
         {
             CALAMARES_RETRANSLATE(
-                m_messageLabel->setText( tr( "This computer currently has %1 on it. "
+                m_messageLabel->setText( tr( "This storage device has %1 on it. "
                                              "What would you like to do?" )
                                             .arg( osName ) );
 
@@ -618,7 +621,7 @@ ChoicePage::setupActions( Device *currentDevice )
         else
         {
             CALAMARES_RETRANSLATE(
-                m_messageLabel->setText( tr( "This computer already has an operating system on it. "
+                m_messageLabel->setText( tr( "This storage device already has an operating system on it. "
                                              "What would you like to do?" ) );
 
                 m_alongsideButton->setText( tr( "<strong>Install %1 alongside your current operating system</strong><br/>"
@@ -646,16 +649,16 @@ ChoicePage::setupActions( Device *currentDevice )
                                               string( Calamares::Branding::ShortVersionedName ) ) );
             )
         }
-        if ( !m_osproberEntries.first().canBeResized )
+        if ( !osproberEntriesForCurrentDevice.first().canBeResized )
             m_alongsideButton->hide();
     }
     else
     {
-        // m_osproberLines has at least 2 items.
+        // osproberEntriesForCurrentDevice has at least 2 items.
 
         bool atLeastOneCanBeResized = false;
 
-        foreach ( const OsproberEntry& entry, m_osproberEntries )
+        foreach ( const OsproberEntry& entry, osproberEntriesForCurrentDevice )
         {
             if ( entry.canBeResized )
             {
@@ -665,7 +668,7 @@ ChoicePage::setupActions( Device *currentDevice )
         }
 
         CALAMARES_RETRANSLATE(
-            m_messageLabel->setText( tr( "This computer currently has multiple operating systems on it. "
+            m_messageLabel->setText( tr( "This storage device has multiple operating systems on it. "
                                          "What would you like to do?" ) );
 
             m_alongsideButton->setText( tr( "<strong>Install %1 alongside your current operating systems</strong><br/>"
@@ -707,6 +710,19 @@ ChoicePage::setupActions( Device *currentDevice )
         m_alongsideButton->hide();
         m_replaceButton->hide();
     }
+}
+
+
+OsproberEntryList
+ChoicePage::getOsproberEntriesForDevice( Device* device ) const
+{
+    OsproberEntryList eList;
+    foreach ( const OsproberEntry& entry, m_osproberEntries )
+    {
+        if ( entry.path.startsWith( device->deviceNode() ) )
+            eList.append( entry );
+    }
+    return eList;
 }
 
 

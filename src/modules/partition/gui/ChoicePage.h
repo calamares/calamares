@@ -78,6 +78,7 @@ private:
     void applyActionChoice( Device* currentDevice, ChoicePage::Choice choice );
     void updateActionChoicePreview( Device* currentDevice, ChoicePage::Choice choice );
     void setupActions( Device* currentDevice );
+    OsproberEntryList getOsproberEntriesForDevice( Device* device ) const;
 
     bool m_nextEnabled;
     PartitionCoreModule* m_core;
