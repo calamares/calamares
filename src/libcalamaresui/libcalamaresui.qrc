@@ -13,6 +13,8 @@
         <file alias="images/partition-erase-auto.svg">../../data/images/partition-erase-auto.svg</file>
         <file alias="images/partition-manual.svg">../../data/images/partition-manual.svg</file>
         <file alias="images/partition-replace-os.svg">../../data/images/partition-replace-os.svg</file>
+        <file alias="images/boot-environment.svg">../../data/images/boot-environment.svg</file>
+        <file alias="images/partition-table.svg">../../data/images/partition-table.svg</file>
         <file alias="images/squid.svg">../../data/images/squid.svg</file>
     </qresource>
 </RCC>
