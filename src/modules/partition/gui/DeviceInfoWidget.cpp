@@ -41,20 +41,11 @@ DeviceInfoWidget::DeviceInfoWidget( QWidget* parent )
 
     mainLayout->addWidget( m_bootIcon );
     mainLayout->addWidget( m_bootLabel );
+    mainLayout->addSpacing( CalamaresUtils::defaultFontHeight() / 4 );
     mainLayout->addWidget( m_ptIcon );
     mainLayout->addWidget( m_ptLabel );
 
-    bool isEfi = false;
-    if ( QDir( "/sys/firmware/efi/efivars" ).exists() )
-        isEfi = true;
-
-    if ( isEfi )
-        m_bootLabel->setText( "EFI " );
-    else
-        m_bootLabel->setText( "BIOS" );
-
-    QSize iconSize = QSize( CalamaresUtils::defaultFontHeight(),
-                            CalamaresUtils::defaultFontHeight() );
+    QSize iconSize = CalamaresUtils::defaultIconSize();
 
     m_bootIcon->setMargin( 0 );
     m_bootIcon->setFixedSize( iconSize );
@@ -68,14 +59,20 @@ DeviceInfoWidget::DeviceInfoWidget( QWidget* parent )
                                                         iconSize ) );
 
     QFontMetrics fm = QFontMetrics( QFont() );
-    m_ptLabel->setMinimumWidth( fm.boundingRect( "MSDOS" ).width() +2 );
-    m_bootLabel->setMinimumWidth( fm.boundingRect( "BIOS" ).width() +2 );
+    m_ptLabel->setMinimumWidth( fm.boundingRect( "MSDOS" ).width() + CalamaresUtils::defaultFontHeight() / 2 );
+    m_bootLabel->setMinimumWidth( fm.boundingRect( "BIOS" ).width() + CalamaresUtils::defaultFontHeight() / 2 );
     m_ptLabel->setAlignment( Qt::AlignCenter );
     m_bootLabel->setAlignment( Qt::AlignCenter );
 
     QPalette palette;
     palette.setBrush( QPalette::Foreground, QColor( "#4D4D4D" ) ); //dark grey
 
+    m_ptIcon->setAutoFillBackground( true );
+    m_bootIcon->setAutoFillBackground( true );
+    m_ptLabel->setAutoFillBackground( true );
+    m_bootLabel->setAutoFillBackground( true );
+    m_ptIcon->setPalette( palette );
+    m_bootIcon->setPalette( palette );
     m_ptLabel->setPalette( palette );
     m_bootLabel->setPalette( palette );
 
@@ -86,19 +83,66 @@ DeviceInfoWidget::DeviceInfoWidget( QWidget* parent )
                                 "environment runs in compatibility mode.<br>"
                                 "Relevant entries in the system setup utility "
                                 "include: CSM, compatibility support module, "
-                                "Legacy boot, BIOS boot, etc." ) );
+                                "Legacy boot mode, BIOS mode, etc." ) );
     m_ptIcon->setToolTip( tr( "The type of <strong>partition table</strong> currently "
                               "present on the selected storage device.<br><br>"
                               "Common values on x86-compatible systems include "
                               "<strong>GPT</strong> and <strong>MSDOS</strong>.<br>"
                               "Some systems may use other, less common partition table "
-                              "types, like BSD or Sun."
+                              "types, like BSD or Sun.<br>"
                               "The only way to change the partition table type is to "
                               "erase and recreate the partition table from scratch, "
                               "which destroys all data on the storage device.<br>"
                               "This installer will keep the current partition table "
                               "unless you explicitly choose otherwise.<br>"
                               "If unsure, on modern systems GPT is preferred." ) );
+
+    bool isEfi = false;
+    if ( QDir( "/sys/firmware/efi/efivars" ).exists() )
+        isEfi = true;
+
+    QString bootToolTip;
+    if ( isEfi )
+    {
+        m_bootLabel->setText( "EFI " );
+        bootToolTip = tr( "This system was started with an <strong>EFI</strong> "
+                          "boot environment.<br><br>"
+                          "Most consumer systems nowadays use EFI, along with a "
+                          "GPT partition table.<br>"
+                          "Current versions of other operating systems, like Windows "
+                          "and Mac OS X also support EFI, and dual boot is possible.<br>"
+                          "In order to boot from an EFI environment, this installer "
+                          "must deploy a boot loader application, like <strong>GRUB"
+                          "</strong> or <strong>systemd-boot</strong> on an <strong>"
+                          "EFI System Partition</strong>. This is automatic, unless "
+                          "you choose manual partitioning, in which case you must "
+                          "choose it or create it on your own." );
+    }
+    else
+    {
+        m_bootLabel->setText( "BIOS" );
+        bootToolTip = tr( "This system was started with a <strong>BIOS</strong> "
+                          "boot environment.<br><br>"
+                          "Older systems which do not support EFI start from BIOS.<br>"
+                          "New systems that support EFI can also start in BIOS mode "
+                          "through a compatibility layer, sometimes known as "
+                          "CSM, Legacy boot mode or BIOS mode. On such systems "
+                          "EFI should be preferred, unless you wish to dual boot "
+                          "with an old operating system, like Windows XP. In that "
+                          "case, a MSDOS partition table should also be used instead "
+                          "of GPT.<br>"
+                          "In order to boot from a BIOS environment, this installer "
+                          "must install a boot loader, like <strong>GRUB"
+                          "</strong>, either at the beginning of a partition or "
+                          "on the <strong>Master Boot Record</strong> near the "
+                          "beginning of the partition table (preferred). "
+                          "This is automatic, unless "
+                          "you choose manual partitioning, in which case you must "
+                          "set it up on your own." );
+
+    }
+    m_bootLabel->setToolTip( bootToolTip );
+
 }
 
 
@@ -106,6 +150,7 @@ void
 DeviceInfoWidget::setPartitionTableType( PartitionTable::TableType type )
 {
     QString typeString = PartitionTable::tableTypeToName( type ).toUpper();
+
     // fix up if the name shouldn't be uppercase:
     switch ( type )
     {
@@ -125,6 +170,54 @@ DeviceInfoWidget::setPartitionTableType( PartitionTable::TableType type )
         typeString = " ? ";
     }
 
+
+    QString toolTipString = tr( "The selected storage device has a partition "
+                                "table. The partition table type is <strong>%1</strong>." )
+                            .arg( typeString );
+
+    switch ( type )
+    {
+    case PartitionTable::loop:
+        toolTipString = tr( "The selected storage device is a <strong>loop</strong> "
+                            "device.<br><br>"
+                            "This is not an actual partition table, it is "
+                            "a pseudo-device that makes a file accessible as a block device. "
+                            "This kind of setup usually only contains a single filesystem." );
+        break;
+    case PartitionTable::unknownTableType:
+        toolTipString = tr( "This installer <strong>cannot detect a partition table</strong> on the "
+                            "selected storage device.<br><br>"
+                            "The device either has no partition "
+                            "table, or the partition table is corrupted or of an unknown "
+                            "type.<br>"
+                            "This installer can create a new partition table for you, "
+                            "either automatically, or through the manual partitioning "
+                            "page." );
+        break;
+    case PartitionTable::gpt:
+        toolTipString += tr( "<br><br>This is the recommended partition table type for modern "
+                             "systems which start from an <strong>EFI</strong> boot "
+                             "environment." );
+        break;
+    case PartitionTable::msdos:
+    case PartitionTable::msdos_sectorbased:
+        toolTipString += tr( "<br><br>This partition table type is only advisable on older "
+                             "systems which start from a <strong>BIOS</strong> boot "
+                             "environment. For most uses GPT should be preferred "
+                             "instead.<br>"
+                             "<strong>Warning:</strong> the MSDOS partition table "
+                             "is an obsolete standard with important drawbacks.<br>"
+                             "Only 4 <em>primary</em> partitions may be created, and of "
+                             "those 4, one can be an <em>extended</em> partition, which "
+                             "may in turn contain many <em>logical</em> partitions."
+                             "<br>For compatibility reasons, it is recommended for a "
+                             "setup based on an MSDOS partition table to have a "
+                             "separate boot partition. This installer can create "
+                             "the boot partition for you automatically, or you may "
+                             "set it up yourself on the manual partitioning page." );
+    }
+
     m_ptLabel->setText( typeString );
+    m_ptLabel->setToolTip( toolTipString );
 }
 
