@@ -62,7 +62,6 @@ private:
     UsersPage* m_widget;
     QList< Calamares::job_ptr > m_jobs;
 
-    QString m_userGroup;
     QStringList m_defaultGroups;
 };
 

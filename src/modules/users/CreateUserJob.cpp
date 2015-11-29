@@ -33,13 +33,11 @@
 CreateUserJob::CreateUserJob( const QString& userName,
                               const QString& fullName,
                               bool autologin,
-                              const QString& userGroup,
                               const QStringList& defaultGroups )
     : Calamares::Job()
     , m_userName( userName )
     , m_fullName( fullName )
     , m_autologin( autologin )
-    , m_userGroup( userGroup )
     , m_defaultGroups( defaultGroups )
 {
 }
@@ -151,7 +149,7 @@ CreateUserJob::exec()
                       targetEnvCall( { "chown",
                                        "-R",
                                        QString( "%1:%2" ).arg( m_userName )
-                                                         .arg( m_userGroup ),
+                                                         .arg( m_userName ),
                                        QString( "/home/%1" ).arg( m_userName ) } );
     if ( ec )
         return Calamares::JobResult::error( tr( "Cannot set home directory ownership for user %1." )

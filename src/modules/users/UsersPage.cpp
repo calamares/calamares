@@ -105,7 +105,7 @@ UsersPage::isReady()
 
 
 QList< Calamares::job_ptr >
-UsersPage::createJobs( const QString& defaultUserGroup, const QStringList& defaultGroupsList )
+UsersPage::createJobs( const QStringList& defaultGroupsList )
 {
     QList< Calamares::job_ptr > list;
     if ( !isReady() )
@@ -117,7 +117,6 @@ UsersPage::createJobs( const QString& defaultUserGroup, const QStringList& defau
                                ui->textBoxUsername->text() :
                                ui->textBoxFullName->text(),
                            ui->checkBoxAutoLogin->isChecked(),
-                           defaultUserGroup,
                            defaultGroupsList );
     list.append( Calamares::job_ptr( j ) );
 

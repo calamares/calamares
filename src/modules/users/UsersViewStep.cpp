@@ -115,21 +115,13 @@ UsersViewStep::onLeave()
 {
     m_jobs.clear();
 
-    m_jobs.append( m_widget->createJobs( m_userGroup, m_defaultGroups ) );
+    m_jobs.append( m_widget->createJobs( m_defaultGroups ) );
 }
 
 
 void
 UsersViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
-    if ( configurationMap.contains( "userGroup" ) &&
-         configurationMap.value( "userGroup" ).type() == QVariant::String )
-    {
-        m_userGroup = configurationMap.value( "userGroup" ).toString();
-    }
-    if ( m_userGroup.isEmpty() )
-        m_userGroup = QStringLiteral( "users" );
-
     if ( configurationMap.contains( "defaultGroups" ) &&
          configurationMap.value( "defaultGroups" ).type() == QVariant::List )
     {
