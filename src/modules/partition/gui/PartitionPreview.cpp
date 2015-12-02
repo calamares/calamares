@@ -329,8 +329,7 @@ PartitionPreview::sizeForLabel( const QStringList& text ) const
     foreach ( const QString& textLine, text )
     {
         QSize textSize = fontMetrics().size( Qt::TextSingleLine, textLine );
-        if ( vertOffset == 0 )
-            vertOffset = textSize.height() / 2;
+
         vertOffset += textSize.height();
         width = qMax( width, textSize.width() );
     }
