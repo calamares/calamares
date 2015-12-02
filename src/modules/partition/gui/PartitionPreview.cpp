@@ -38,7 +38,8 @@ static const int LAYOUT_MARGIN = 8;
 static const int CORNER_RADIUS = 3;
 static const int EXTENDED_PARTITION_MARGIN = 4;
 static const int LABELS_MARGIN = 40;
-static const int LABEL_PARTITION_SQUARE_MARGIN = 18;
+static const int LABEL_PARTITION_SQUARE_MARGIN =
+        qMax( QFontMetrics( CalamaresUtils::defaultFont() ).ascent() - 2, 18 );
 
 QStringList
 buildUnknownDisklabelTexts( Device* dev )
@@ -357,8 +358,11 @@ PartitionPreview::drawLabel( QPainter* painter,
         painter->setPen( Qt::gray );
         width = qMax( width, textSize.width() );
     }
-    drawPartitionSquare( painter, QRect( pos.x(), pos.y() - 3,
-                                         13, 13 ), color );
+    drawPartitionSquare( painter, QRect( pos.x(),
+                                         pos.y() - 3,
+                                         LABEL_PARTITION_SQUARE_MARGIN - 5,
+                                         LABEL_PARTITION_SQUARE_MARGIN - 5 ),
+                          color );
     painter->setPen( Qt::black );
 }
 
