@@ -206,6 +206,15 @@ defaultFontHeight()
 }
 
 
+QFont
+defaultFont()
+{
+    QFont f;
+    f.setPointSize( defaultFontSize() );
+    return f;
+}
+
+
 void
 setDefaultFontSize( int points )
 {
