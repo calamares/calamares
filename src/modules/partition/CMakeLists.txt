@@ -38,6 +38,7 @@ calamares_add_plugin( partition
         gui/DeviceInfoWidget.cpp
         gui/PartitionPage.cpp
         gui/PartitionBarsView.cpp
+        gui/PartitionLabelsView.cpp
         gui/PartitionSizeController.cpp
         gui/PartitionSplitterWidget.cpp
         gui/PartitionViewStep.cpp

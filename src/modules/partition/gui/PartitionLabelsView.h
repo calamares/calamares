@@ -16,23 +16,24 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef PARTITIONPREVIEW_H
-#define PARTITIONPREVIEW_H
+
+#ifndef PARTITIONLABELSVIEW_H
+#define PARTITIONLABELSVIEW_H
 
 #include <QAbstractItemView>
 
 /**
- * A Qt model view which displays the partitions inside a device as a colored bar.
+ * A Qt model view which displays colored labels for partitions.
  *
  * It has been created to be used with a PartitionModel instance, but does not
  * call any PartitionModel-specific methods: it should be usable with other
  * models as long as they provide the same roles PartitionModel provides.
  */
-class PartitionBarsView : public QAbstractItemView
+class PartitionLabelsView : public QAbstractItemView
 {
 public:
-    explicit PartitionBarsView( QWidget* parent = nullptr );
-    virtual ~PartitionBarsView();
+    explicit PartitionLabelsView( QWidget* parent = nullptr );
+    virtual ~PartitionLabelsView();
 
     QSize minimumSizeHint() const override;
 
@@ -44,6 +45,8 @@ public:
     QModelIndex indexAt( const QPoint& point ) const override;
     QRect visualRect( const QModelIndex& index ) const override;
     void scrollTo( const QModelIndex& index, ScrollHint hint = EnsureVisible ) override;
+
+    void setLabelsVisible( bool visible = true );
 
 protected:
     // QAbstractItemView API
@@ -58,7 +61,11 @@ protected slots:
     void updateGeometries() override;
 
 private:
-    void drawPartitions( QPainter* painter, const QRect& rect, const QModelIndex& parent );
+    void drawLabels( QPainter* painter, const QRect& rect, const QModelIndex& parent );
+    QSize sizeForAllLabels( int maxLineWidth ) const;
+    QSize sizeForLabel( const QStringList& text ) const;
+    void drawLabel( QPainter* painter, const QStringList& text, const QColor& color, const QPoint& pos );
+    QModelIndexList getIndexesToDraw( const QModelIndex& parent ) const;
 };
 
-#endif /* PARTITIONPREVIEW_H */
+#endif // PARTITIONLABELSVIEW_H
