@@ -16,7 +16,7 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
-#include <gui/PartitionBarsView.h>
+#include "gui/PartitionBarsView.h"
 
 #include <core/PartitionModel.h>
 #include <core/ColorUtils.h>
@@ -25,33 +25,19 @@
 
 #include "utils/CalamaresUtilsGui.h"
 
-#include <KFormat>
 
 // Qt
 #include <QDebug>
 #include <QPainter>
 
-#include <functional>
 
 static const int VIEW_HEIGHT = CalamaresUtils::defaultFontHeight() + 8;
-static const int LAYOUT_MARGIN = 8;
 static const int CORNER_RADIUS = 3;
 static const int EXTENDED_PARTITION_MARGIN = 4;
-static const int LABELS_MARGIN = 40;
-static const int LABEL_PARTITION_SQUARE_MARGIN =
-        qMax( QFontMetrics( CalamaresUtils::defaultFont() ).ascent() - 2, 18 );
 
-QStringList
-buildUnknownDisklabelTexts( Device* dev )
-{
-    QStringList texts = { QObject::tr( "Unpartitioned space or unknown partition table" ),
-                          KFormat().formatByteSize( dev->totalSectors() * dev->logicalSectorSize() ) };
-    return texts;
-}
 
 PartitionBarsView::PartitionBarsView( QWidget* parent )
-    : m_showLabels( false )
-    , QAbstractItemView( parent )
+    : QAbstractItemView( parent )
 {
     setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Fixed );
     setFrameStyle( QFrame::NoFrame );
@@ -73,12 +59,6 @@ PartitionBarsView::minimumSizeHint() const
 QSize
 PartitionBarsView::sizeHint() const
 {
-    QAbstractItemModel* modl = model();
-    if ( m_showLabels && modl )
-    {
-        return QSize( -1, VIEW_HEIGHT + LAYOUT_MARGIN +
-                          sizeForAllLabels( rect().width() ).height() );
-    }
     return QSize( -1, VIEW_HEIGHT );
 }
 
@@ -92,13 +72,10 @@ PartitionBarsView::paintEvent( QPaintEvent* event )
 
     QRect partitionsRect = rect();
     partitionsRect.setHeight( VIEW_HEIGHT );
-    QRect labelsRect = rect().adjusted( 0, VIEW_HEIGHT + LAYOUT_MARGIN, 0, 0 );
 
     painter.save();
     drawPartitions( &painter, partitionsRect, QModelIndex() );
     painter.restore();
-    if ( m_showLabels )
-        drawLabels( &painter, labelsRect, QModelIndex() );
 }
 
 
@@ -201,171 +178,6 @@ PartitionBarsView::drawPartitions( QPainter* painter, const QRect& rect, const Q
 }
 
 
-static void
-drawPartitionSquare( QPainter* painter, const QRect& rect, const QBrush& brush )
-{
-    painter->fillRect( rect.adjusted( 1, 1, -1, -1 ), brush );
-    painter->setRenderHint( QPainter::Antialiasing, true );
-    painter->setPen( QPalette().shadow().color() );
-    painter->translate( .5, .5 );
-    painter->drawRoundedRect( rect.adjusted( 0, 0, -1, -1 ), 2, 2 );
-    painter->translate( -.5, -.5 );
-}
-
-
-QModelIndexList
-PartitionBarsView::getIndexesToDraw( const QModelIndex& parent ) const
-{
-    QModelIndexList list;
-
-    QAbstractItemModel* modl = model();
-    if ( !modl )
-        return list;
-
-    for ( int row = 0; row < modl->rowCount( parent ); ++row )
-    {
-        QModelIndex index = modl->index( row, 0, parent );
-        if ( modl->hasChildren( index ) )
-            list.append( getIndexesToDraw( index ) );
-        else
-            list.append( index );
-    }
-    return list;
-}
-
-
-void
-PartitionBarsView::drawLabels( QPainter* painter, const QRect& rect, const QModelIndex& parent )
-{
-    PartitionModel* modl = qobject_cast< PartitionModel* >( model() );
-    if ( !modl )
-        return;
-
-    QModelIndexList indexesToDraw = getIndexesToDraw( parent );
-
-    int label_x = rect.x();
-    int label_y = rect.y();
-    foreach ( const QModelIndex& index, indexesToDraw )
-    {
-        QStringList texts = { index.data().toString(),
-                              index.sibling( index.row(), PartitionModel::SizeColumn ).data().toString() };
-
-        QSize labelSize = sizeForLabel( texts );
-
-        QColor labelColor = index.data( Qt::DecorationRole ).value< QColor >();
-
-        if ( label_x + labelSize.width() > rect.width() ) //wrap to new line if overflow
-        {
-            label_x = rect.x();
-            label_y += labelSize.height();
-        }
-        drawLabel( painter, texts, labelColor, QPoint( label_x, label_y ) );
-
-        label_x += labelSize.width() + LABELS_MARGIN;
-    }
-
-    if ( !modl->rowCount() &&
-         !modl->device()->partitionTable() ) // No disklabel or unknown
-    {
-        QStringList texts = buildUnknownDisklabelTexts( modl->device() );
-        QSize labelSize = sizeForLabel( texts );
-        QColor labelColor = ColorUtils::unknownDisklabelColor();
-        drawLabel( painter, texts, labelColor, QPoint( rect.x(), rect.y() ) );
-    }
-}
-
-
-QSize
-PartitionBarsView::sizeForAllLabels( int maxLineWidth ) const
-{
-    PartitionModel* modl = qobject_cast< PartitionModel* >( model() );
-    if ( !modl )
-        return QSize();
-
-    QModelIndexList indexesToDraw = getIndexesToDraw( QModelIndex() );
-
-    int lineLength = 0;
-    int numLines = 1;
-    int singleLabelHeight = 0;
-    foreach ( const QModelIndex& index, indexesToDraw )
-    {
-        QStringList texts = { index.data().toString(),
-                              index.sibling( index.row(),
-                                             PartitionModel::SizeColumn )
-                                   .data().toString() };
-        QSize labelSize = sizeForLabel( texts );
-
-        if ( lineLength + labelSize.width() > maxLineWidth )
-        {
-            numLines++;
-            lineLength = labelSize.width();
-        }
-        else
-        {
-            lineLength += LABELS_MARGIN + labelSize.width();
-        }
-
-        singleLabelHeight = qMax( singleLabelHeight, labelSize.height() );
-    }
-
-    if ( !modl->rowCount() &&
-         !modl->device()->partitionTable() ) // Unknown or no disklabel
-    {
-        singleLabelHeight = sizeForLabel( buildUnknownDisklabelTexts( modl->device() ) )
-                            .height();
-    }
-
-    int totalHeight = numLines * singleLabelHeight;
-
-    return QSize( maxLineWidth, totalHeight );
-}
-
-
-QSize
-PartitionBarsView::sizeForLabel( const QStringList& text ) const
-{
-    int vertOffset = 0;
-    int width = 0;
-    foreach ( const QString& textLine, text )
-    {
-        QSize textSize = fontMetrics().size( Qt::TextSingleLine, textLine );
-
-        vertOffset += textSize.height();
-        width = qMax( width, textSize.width() );
-    }
-    width += LABEL_PARTITION_SQUARE_MARGIN; //for the color square
-    return QSize( width, vertOffset );
-}
-
-
-void
-PartitionBarsView::drawLabel( QPainter* painter,
-                             const QStringList& text,
-                             const QColor& color,
-                             const QPoint& pos )
-{
-    painter->setPen( Qt::black );
-    int vertOffset = 0;
-    int width = 0;
-    foreach ( const QString& textLine, text )
-    {
-        QSize textSize = painter->fontMetrics().size( Qt::TextSingleLine, textLine );
-        painter->drawText( pos.x()+LABEL_PARTITION_SQUARE_MARGIN,
-                           pos.y() + vertOffset + textSize.height() / 2,
-                           textLine );
-        vertOffset += textSize.height();
-        painter->setPen( Qt::gray );
-        width = qMax( width, textSize.width() );
-    }
-    drawPartitionSquare( painter, QRect( pos.x(),
-                                         pos.y() - 3,
-                                         LABEL_PARTITION_SQUARE_MARGIN - 5,
-                                         LABEL_PARTITION_SQUARE_MARGIN - 5 ),
-                          color );
-    painter->setPen( Qt::black );
-}
-
-
 QModelIndex
 PartitionBarsView::indexAt( const QPoint& point ) const
 {
@@ -404,15 +216,6 @@ PartitionBarsView::verticalOffset() const
 void
 PartitionBarsView::scrollTo( const QModelIndex& index, ScrollHint hint )
 {
-}
-
-
-void
-PartitionBarsView::setLabelsVisible( bool visible )
-{
-    m_showLabels = visible;
-    updateGeometry();
-    repaint();
 }
 
 
