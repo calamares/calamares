@@ -29,6 +29,7 @@
 #include "PrettyRadioButton.h"
 #include "ExpandableRadioButton.h"
 #include "PartitionBarsView.h"
+#include "PartitionLabelsView.h"
 #include "DeviceInfoWidget.h"
 
 #include "utils/CalamaresUtilsGui.h"
@@ -479,10 +480,11 @@ ChoicePage::updateDeviceStatePreview( Device* currentDevice )
 
     QVBoxLayout* layout = new QVBoxLayout;
     m_previewBeforeFrame->setLayout( layout );
-    layout->setMargin( 0 );
+    CalamaresUtils::unmarginLayout( layout );
+    layout->setSpacing( 6 );
 
     PartitionBarsView* preview = new PartitionBarsView( m_previewBeforeFrame );
-    preview->setLabelsVisible( true );
+    PartitionLabelsView* previewLabels = new PartitionLabelsView( m_previewBeforeFrame );
 
     Device* deviceBefore = m_core->createImmutableDeviceCopy( currentDevice );
 
@@ -495,7 +497,9 @@ ChoicePage::updateDeviceStatePreview( Device* currentDevice )
     model->setParent( preview );
 
     preview->setModel( model );
+    previewLabels->setModel( model );
     layout->addWidget( preview );
+    layout->addWidget( previewLabels );
 }
 
 
@@ -518,7 +522,8 @@ ChoicePage::updateActionChoicePreview( Device* currentDevice, ChoicePage::Choice
 
     QVBoxLayout* layout = new QVBoxLayout;
     m_previewAfterFrame->setLayout( layout );
-    layout->setMargin( 0 );
+    CalamaresUtils::unmarginLayout( layout );
+    layout->setSpacing( 6 );
 
     switch ( choice )
     {
@@ -531,7 +536,7 @@ ChoicePage::updateActionChoicePreview( Device* currentDevice, ChoicePage::Choice
     case Replace:
         {
             PartitionBarsView* preview = new PartitionBarsView( m_previewAfterFrame );
-            preview->setLabelsVisible( true );
+            PartitionLabelsView* previewLabels = new PartitionLabelsView( m_previewAfterFrame );
 
             PartitionModel* model = new PartitionModel( preview );
             model->init( currentDevice );
@@ -540,7 +545,9 @@ ChoicePage::updateActionChoicePreview( Device* currentDevice, ChoicePage::Choice
             // see qDeleteAll above.
             model->setParent( preview );
             preview->setModel( model );
+            previewLabels->setModel( model );
             layout->addWidget( preview );
+            layout->addWidget( previewLabels );
 
             m_previewAfterFrame->show();
             break;

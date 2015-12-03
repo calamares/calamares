@@ -29,6 +29,7 @@
 #include "gui/AlongsidePage.h"
 #include "gui/PartitionPage.h"
 #include "gui/PartitionBarsView.h"
+#include "gui/PartitionLabelsView.h"
 
 #include "CalamaresVersion.h"
 #include "utils/CalamaresUtilsGui.h"
@@ -210,18 +211,32 @@ PartitionViewStep::createSummaryWidget() const
         formLayout->addRow( diskInfoLabel );
 
         PartitionBarsView* preview;
+        PartitionLabelsView* previewLabels;
+        QVBoxLayout* field;
 
         preview = new PartitionBarsView;
-        preview->setLabelsVisible( true );
+        previewLabels = new PartitionLabelsView;
         preview->setModel( info.partitionModelBefore );
+        previewLabels->setModel( info.partitionModelBefore );
         info.partitionModelBefore->setParent( widget );
-        formLayout->addRow( tr( "Before:" ), preview );
+        field = new QVBoxLayout;
+        CalamaresUtils::unmarginLayout( field );
+        field->setSpacing( 6 );
+        field->addWidget( preview );
+        field->addWidget( previewLabels );
+        formLayout->addRow( tr( "Current state:" ), field );
 
         preview = new PartitionBarsView;
-        preview->setLabelsVisible( true );
+        previewLabels = new PartitionLabelsView;
         preview->setModel( info.partitionModelAfter );
+        previewLabels->setModel( info.partitionModelAfter );
         info.partitionModelAfter->setParent( widget );
-        formLayout->addRow( tr( "After:" ), preview );
+        field = new QVBoxLayout;
+        CalamaresUtils::unmarginLayout( field );
+        field->setSpacing( 6 );
+        field->addWidget( preview );
+        field->addWidget( previewLabels );
+        formLayout->addRow( tr( "Your changes:" ), field );
     }
     QStringList jobsLines;
     foreach ( const Calamares::job_ptr& job, jobs() )
