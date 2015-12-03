@@ -63,7 +63,7 @@
           <x>0</x>
           <y>0</y>
           <width>729</width>
-          <height>386</height>
+          <height>366</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="m_itemsLayout">
@@ -88,15 +88,71 @@
        <property name="verticalSpacing">
         <number>0</number>
        </property>
-       <item row="1" column="1">
-        <widget class="QWidget" name="m_previewAfterFrame" native="true">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
+       <item row="2" column="0">
+        <layout class="QVBoxLayout" name="verticalLayout_2">
+         <property name="spacing">
+          <number>0</number>
          </property>
-        </widget>
+         <item>
+          <spacer name="verticalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Fixed</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>8</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QLabel" name="m_previewAfterLabel">
+           <property name="text">
+            <string notr="true">After:</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="0" column="0">
+        <layout class="QVBoxLayout" name="verticalLayout">
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <item>
+          <spacer name="verticalSpacer">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Fixed</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>8</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QLabel" name="m_previewBeforeLabel">
+           <property name="text">
+            <string notr="true">Before:</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
        <item row="0" column="1">
         <widget class="QWidget" name="m_previewBeforeFrame" native="true">
@@ -108,23 +164,13 @@
          </property>
         </widget>
        </item>
-       <item row="0" column="0">
-        <widget class="QLabel" name="m_previewBeforeLabel">
-         <property name="text">
-          <string notr="true">Before:</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QLabel" name="m_previewAfterLabel">
-         <property name="text">
-          <string notr="true">After:</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+       <item row="2" column="1">
+        <widget class="QWidget" name="m_previewAfterFrame" native="true">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
          </property>
         </widget>
        </item>
