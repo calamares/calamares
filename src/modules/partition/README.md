@@ -98,7 +98,7 @@ this:
 - Use os-prober to find out the installed OS. This information could then be
   used in PartitionModel and in the partition views.
 
-- PartitionPreview
+- PartitionBarsView
     - Show used space
     - Highlight selected partition
     - Make the partitions clickable

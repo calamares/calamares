@@ -16,7 +16,7 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
-#include <gui/PartitionPreview.h>
+#include <gui/PartitionBarsView.h>
 
 #include <core/PartitionModel.h>
 #include <core/ColorUtils.h>
@@ -49,7 +49,7 @@ buildUnknownDisklabelTexts( Device* dev )
     return texts;
 }
 
-PartitionPreview::PartitionPreview( QWidget* parent )
+PartitionBarsView::PartitionBarsView( QWidget* parent )
     : m_showLabels( false )
     , QAbstractItemView( parent )
 {
@@ -58,20 +58,20 @@ PartitionPreview::PartitionPreview( QWidget* parent )
 }
 
 
-PartitionPreview::~PartitionPreview()
+PartitionBarsView::~PartitionBarsView()
 {
 }
 
 
 QSize
-PartitionPreview::minimumSizeHint() const
+PartitionBarsView::minimumSizeHint() const
 {
     return sizeHint();
 }
 
 
 QSize
-PartitionPreview::sizeHint() const
+PartitionBarsView::sizeHint() const
 {
     QAbstractItemModel* modl = model();
     if ( m_showLabels && modl )
@@ -84,7 +84,7 @@ PartitionPreview::sizeHint() const
 
 
 void
-PartitionPreview::paintEvent( QPaintEvent* event )
+PartitionBarsView::paintEvent( QPaintEvent* event )
 {
     QPainter painter( viewport() );
     painter.fillRect( rect(), palette().window() );
@@ -144,7 +144,7 @@ drawSection( QPainter* painter, const QRect& rect_, int x, int width, const QMod
 
 
 void
-PartitionPreview::drawPartitions( QPainter* painter, const QRect& rect, const QModelIndex& parent )
+PartitionBarsView::drawPartitions( QPainter* painter, const QRect& rect, const QModelIndex& parent )
 {
     PartitionModel* modl = qobject_cast< PartitionModel* >( model() );
     if ( !modl )
@@ -214,7 +214,7 @@ drawPartitionSquare( QPainter* painter, const QRect& rect, const QBrush& brush )
 
 
 QModelIndexList
-PartitionPreview::getIndexesToDraw( const QModelIndex& parent ) const
+PartitionBarsView::getIndexesToDraw( const QModelIndex& parent ) const
 {
     QModelIndexList list;
 
@@ -235,7 +235,7 @@ PartitionPreview::getIndexesToDraw( const QModelIndex& parent ) const
 
 
 void
-PartitionPreview::drawLabels( QPainter* painter, const QRect& rect, const QModelIndex& parent )
+PartitionBarsView::drawLabels( QPainter* painter, const QRect& rect, const QModelIndex& parent )
 {
     PartitionModel* modl = qobject_cast< PartitionModel* >( model() );
     if ( !modl )
@@ -276,7 +276,7 @@ PartitionPreview::drawLabels( QPainter* painter, const QRect& rect, const QModel
 
 
 QSize
-PartitionPreview::sizeForAllLabels( int maxLineWidth ) const
+PartitionBarsView::sizeForAllLabels( int maxLineWidth ) const
 {
     PartitionModel* modl = qobject_cast< PartitionModel* >( model() );
     if ( !modl )
@@ -322,7 +322,7 @@ PartitionPreview::sizeForAllLabels( int maxLineWidth ) const
 
 
 QSize
-PartitionPreview::sizeForLabel( const QStringList& text ) const
+PartitionBarsView::sizeForLabel( const QStringList& text ) const
 {
     int vertOffset = 0;
     int width = 0;
@@ -339,7 +339,7 @@ PartitionPreview::sizeForLabel( const QStringList& text ) const
 
 
 void
-PartitionPreview::drawLabel( QPainter* painter,
+PartitionBarsView::drawLabel( QPainter* painter,
                              const QStringList& text,
                              const QColor& color,
                              const QPoint& pos )
@@ -367,48 +367,48 @@ PartitionPreview::drawLabel( QPainter* painter,
 
 
 QModelIndex
-PartitionPreview::indexAt( const QPoint& point ) const
+PartitionBarsView::indexAt( const QPoint& point ) const
 {
     return QModelIndex();
 }
 
 
 QRect
-PartitionPreview::visualRect( const QModelIndex& index ) const
+PartitionBarsView::visualRect( const QModelIndex& index ) const
 {
     return QRect();
 }
 
 
 QRegion
-PartitionPreview::visualRegionForSelection( const QItemSelection& selection ) const
+PartitionBarsView::visualRegionForSelection( const QItemSelection& selection ) const
 {
     return QRegion();
 }
 
 
 int
-PartitionPreview::horizontalOffset() const
+PartitionBarsView::horizontalOffset() const
 {
     return 0;
 }
 
 
 int
-PartitionPreview::verticalOffset() const
+PartitionBarsView::verticalOffset() const
 {
     return 0;
 }
 
 
 void
-PartitionPreview::scrollTo( const QModelIndex& index, ScrollHint hint )
+PartitionBarsView::scrollTo( const QModelIndex& index, ScrollHint hint )
 {
 }
 
 
 void
-PartitionPreview::setLabelsVisible( bool visible )
+PartitionBarsView::setLabelsVisible( bool visible )
 {
     m_showLabels = visible;
     updateGeometry();
@@ -417,27 +417,27 @@ PartitionPreview::setLabelsVisible( bool visible )
 
 
 QModelIndex
-PartitionPreview::moveCursor( CursorAction cursorAction, Qt::KeyboardModifiers modifiers )
+PartitionBarsView::moveCursor( CursorAction cursorAction, Qt::KeyboardModifiers modifiers )
 {
     return QModelIndex();
 }
 
 
 bool
-PartitionPreview::isIndexHidden( const QModelIndex& index ) const
+PartitionBarsView::isIndexHidden( const QModelIndex& index ) const
 {
     return false;
 }
 
 
 void
-PartitionPreview::setSelection( const QRect& rect, QItemSelectionModel::SelectionFlags flags )
+PartitionBarsView::setSelection( const QRect& rect, QItemSelectionModel::SelectionFlags flags )
 {
 }
 
 
 void
-PartitionPreview::updateGeometries()
+PartitionBarsView::updateGeometries()
 {
     updateGeometry(); //get a new rect() for redrawing all the labels
 }

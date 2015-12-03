@@ -28,7 +28,7 @@
 #include "ReplaceWidget.h"
 #include "PrettyRadioButton.h"
 #include "ExpandableRadioButton.h"
-#include "PartitionPreview.h"
+#include "PartitionBarsView.h"
 #include "DeviceInfoWidget.h"
 
 #include "utils/CalamaresUtilsGui.h"
@@ -481,7 +481,7 @@ ChoicePage::updateDeviceStatePreview( Device* currentDevice )
     m_previewBeforeFrame->setLayout( layout );
     layout->setMargin( 0 );
 
-    PartitionPreview* preview = new PartitionPreview( m_previewBeforeFrame );
+    PartitionBarsView* preview = new PartitionBarsView( m_previewBeforeFrame );
     preview->setLabelsVisible( true );
 
     Device* deviceBefore = m_core->createImmutableDeviceCopy( currentDevice );
@@ -530,7 +530,7 @@ ChoicePage::updateActionChoicePreview( Device* currentDevice, ChoicePage::Choice
     case Erase:
     case Replace:
         {
-            PartitionPreview* preview = new PartitionPreview( m_previewAfterFrame );
+            PartitionBarsView* preview = new PartitionBarsView( m_previewAfterFrame );
             preview->setLabelsVisible( true );
 
             PartitionModel* model = new PartitionModel( preview );

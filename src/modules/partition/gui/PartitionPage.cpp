@@ -266,7 +266,7 @@ PartitionPage::updateFromCurrentDevice()
         disconnect( oldModel, 0, this, 0 );
 
     PartitionModel* model = m_core->partitionModelForDevice( device );
-    m_ui->partitionPreview->setModel( model );
+    m_ui->partitionBarsView->setModel( model );
     m_ui->partitionTreeView->setModel( model );
     m_ui->partitionTreeView->expandAll();
 

@@ -55,7 +55,7 @@
     </layout>
    </item>
    <item>
-    <widget class="PartitionPreview" name="partitionPreview"/>
+    <widget class="PartitionBarsView" name="partitionBarsView"/>
    </item>
    <item>
     <widget class="QTreeView" name="partitionTreeView">
@@ -175,9 +175,9 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>PartitionPreview</class>
+   <class>PartitionBarsView</class>
    <extends>QFrame</extends>
-   <header location="global">gui/PartitionPreview.h</header>
+   <header location="global">gui/PartitionBarsView.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

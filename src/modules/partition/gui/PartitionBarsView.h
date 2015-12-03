@@ -28,11 +28,11 @@
  * call any PartitionModel-specific methods: it should be usable with other
  * models as long as they provide the same roles PartitionModel provides.
  */
-class PartitionPreview : public QAbstractItemView
+class PartitionBarsView : public QAbstractItemView
 {
 public:
-    explicit PartitionPreview( QWidget* parent = nullptr );
-    ~PartitionPreview();
+    explicit PartitionBarsView( QWidget* parent = nullptr );
+    ~PartitionBarsView();
 
     QSize minimumSizeHint() const override;
 
