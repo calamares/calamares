@@ -28,7 +28,7 @@ class QLabel;
 class PartitionCoreModule;
 class PartitionSplitterWidget;
 class Partition;
-class PartitionPreview;
+class PartitionBarsView;
 class Device;
 
 class AlongsidePage : public QWidget
@@ -54,7 +54,7 @@ private:
 
     QComboBox* m_partitionsComboBox;
     PartitionSplitterWidget* m_splitterWidget;
-    PartitionPreview* m_previewWidget;
+    PartitionBarsView* m_previewWidget;
     QLabel* m_sizeLabel;
 
     QLabel* m_efiLabel;

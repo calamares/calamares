@@ -28,7 +28,7 @@
 #include "gui/ChoicePage.h"
 #include "gui/AlongsidePage.h"
 #include "gui/PartitionPage.h"
-#include "gui/PartitionPreview.h"
+#include "gui/PartitionBarsView.h"
 
 #include "CalamaresVersion.h"
 #include "utils/CalamaresUtilsGui.h"
@@ -209,15 +209,15 @@ PartitionViewStep::createSummaryWidget() const
         }
         formLayout->addRow( diskInfoLabel );
 
-        PartitionPreview* preview;
+        PartitionBarsView* preview;
 
-        preview = new PartitionPreview;
+        preview = new PartitionBarsView;
         preview->setLabelsVisible( true );
         preview->setModel( info.partitionModelBefore );
         info.partitionModelBefore->setParent( widget );
         formLayout->addRow( tr( "Before:" ), preview );
 
-        preview = new PartitionPreview;
+        preview = new PartitionBarsView;
         preview->setLabelsVisible( true );
         preview->setModel( info.partitionModelAfter );
         info.partitionModelAfter->setParent( widget );

@@ -25,7 +25,7 @@
 #include "core/PartitionInfo.h"
 #include "core/PartitionIterator.h"
 #include "gui/PartitionSplitterWidget.h"
-#include "gui/PartitionPreview.h"
+#include "gui/PartitionBarsView.h"
 
 #include "JobQueue.h"
 #include "GlobalStorage.h"
@@ -64,7 +64,7 @@ AlongsidePage::AlongsidePage( QWidget* parent )
 
     partitionsComboLayout->addStretch();
 
-    m_previewWidget = new PartitionPreview;
+    m_previewWidget = new PartitionBarsView;
     m_previewWidget->setLabelsVisible( true );
     mainLayout->addWidget( m_previewWidget );
 
