@@ -54,11 +54,24 @@ protected:
     QModelIndex moveCursor( CursorAction cursorAction, Qt::KeyboardModifiers modifiers ) override;
     void setSelection( const QRect& rect, QItemSelectionModel::SelectionFlags flags ) override;
 
+    void mouseMoveEvent( QMouseEvent* event ) override;
+    void leaveEvent( QEvent* event ) override;
+
 protected slots:
     void updateGeometries() override;
 
 private:
     void drawPartitions( QPainter* painter, const QRect& rect, const QModelIndex& parent );
+    void drawSection( QPainter* painter, const QRect& rect_, int x, int width, const QModelIndex& index );
+    QModelIndex indexAt( const QPoint& point, const QRect& rect, const QModelIndex& parent ) const;
+
+    struct Item
+    {
+        qreal size;
+        QModelIndex index;
+    };
+    inline QPair< QVector< Item >, qreal > computeItemsVector( const QModelIndex& parent ) const;
+    int m_hoveredRow;
 };
 
 #endif /* PARTITIONPREVIEW_H */
