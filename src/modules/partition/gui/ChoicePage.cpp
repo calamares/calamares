@@ -605,7 +605,9 @@ ChoicePage::setupActions( Device *currentDevice )
         {
             CALAMARES_RETRANSLATE(
                 m_messageLabel->setText( tr( "This storage device has %1 on it. "
-                                             "What would you like to do?" )
+                                             "What would you like to do?<br/>"
+                                             "You will be able to review and confirm your choices "
+                                             "before any change is made to the storage device." )
                                             .arg( osName ) );
 
                 m_alongsideButton->setText( tr( "<strong>Install %2 alongside %1</strong><br/>"
@@ -636,7 +638,9 @@ ChoicePage::setupActions( Device *currentDevice )
         {
             CALAMARES_RETRANSLATE(
                 m_messageLabel->setText( tr( "This storage device already has an operating system on it. "
-                                             "What would you like to do?" ) );
+                                             "What would you like to do?<br/>"
+                                             "You will be able to review and confirm your choices "
+                                             "before any change is made to the storage device." ) );
 
                 m_alongsideButton->setText( tr( "<strong>Install %1 alongside your current operating system</strong><br/>"
                                                 "The installer will shrink an existing volume to make room for %2. "
@@ -681,7 +685,9 @@ ChoicePage::setupActions( Device *currentDevice )
 
         CALAMARES_RETRANSLATE(
             m_messageLabel->setText( tr( "This storage device has multiple operating systems on it. "
-                                         "What would you like to do?" ) );
+                                         "What would you like to do?<br/>"
+                                         "You will be able to review and confirm your choices "
+                                         "before any change is made to the storage device." ) );
 
             m_alongsideButton->setText( tr( "<strong>Install %1 alongside your current operating systems</strong><br/>"
                                             "The installer will shrink an existing volume to make room for %2. "
