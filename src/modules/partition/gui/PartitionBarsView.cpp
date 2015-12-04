@@ -23,11 +23,13 @@
 
 #include <kpmcore/core/device.h>
 
-#include "utils/CalamaresUtilsGui.h"
+#include <utils/CalamaresUtilsGui.h>
+#include <utils/Logger.h>
 
 
 // Qt
 #include <QDebug>
+#include <QMouseEvent>
 #include <QPainter>
 
 
@@ -38,9 +40,18 @@ static const int EXTENDED_PARTITION_MARGIN = 4;
 
 PartitionBarsView::PartitionBarsView( QWidget* parent )
     : QAbstractItemView( parent )
+    , m_hoveredRow( -1 )
 {
     setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Fixed );
     setFrameStyle( QFrame::NoFrame );
+
+    // Debug
+    connect( this, &PartitionBarsView::clicked,
+             this, [=]( const QModelIndex& index )
+    {
+        cDebug() << "Clicked row" << index.row();
+    } );
+    setMouseTracking( true );
 }
 
 
@@ -79,8 +90,8 @@ PartitionBarsView::paintEvent( QPaintEvent* event )
 }
 
 
-static void
-drawSection( QPainter* painter, const QRect& rect_, int x, int width, const QModelIndex& index )
+void
+PartitionBarsView::drawSection( QPainter* painter, const QRect& rect_, int x, int width, const QModelIndex& index )
 {
     QColor color = index.isValid() ?
                    index.data( Qt::DecorationRole ).value< QColor >() :
@@ -99,7 +110,13 @@ drawSection( QPainter* painter, const QRect& rect_, int x, int width, const QMod
     rect.adjust( 0, 0, -1, -1 );
     const QColor borderColor = color.darker();
     painter->setPen( borderColor );
-    painter->setBrush( color );
+
+
+    if ( index.row() == m_hoveredRow )
+        painter->setBrush( color.lighter( 105 ) );
+    else
+        painter->setBrush( color );
+
     painter->drawRoundedRect( rect, radius, radius );
 
     // Draw shade
@@ -129,21 +146,10 @@ PartitionBarsView::drawPartitions( QPainter* painter, const QRect& rect, const Q
     const int count = modl->rowCount( parent );
     const int totalWidth = rect.width();
     qDebug() << "count:" << count << "totalWidth:" << totalWidth;
-    struct Item
-    {
-        qreal size;
-        QModelIndex index;
-    };
-    QVector< Item > items( count );
-    qreal total = 0;
-    for ( int row = 0; row < count; ++row )
-    {
-        QModelIndex index = modl->index( row, 0, parent );
-        qreal size = index.data( PartitionModel::SizeRole ).toLongLong();
-        total += size;
-        items[ row ] = { size, index };
-    }
 
+    auto pair = computeItemsVector( parent );
+    QVector< PartitionBarsView::Item >& items = pair.first;
+    qreal& total = pair.second;
     int x = rect.x();
     for ( int row = 0; row < count; ++row )
     {
@@ -181,6 +187,54 @@ PartitionBarsView::drawPartitions( QPainter* painter, const QRect& rect, const Q
 QModelIndex
 PartitionBarsView::indexAt( const QPoint& point ) const
 {
+    return indexAt( point, rect(), QModelIndex() );
+}
+
+
+QModelIndex
+PartitionBarsView::indexAt( const QPoint &point, const QRect &rect, const QModelIndex& parent ) const
+{
+    PartitionModel* modl = qobject_cast< PartitionModel* >( model() );
+    if ( !modl )
+        return QModelIndex();
+    const int count = modl->rowCount( parent );
+    const int totalWidth = rect.width();
+
+    auto pair = computeItemsVector( parent );
+    QVector< PartitionBarsView::Item >& items = pair.first;
+    qreal& total = pair.second;
+    int x = rect.x();
+    for ( int row = 0; row < count; ++row )
+    {
+        const auto& item = items[ row ];
+        int width;
+        if ( row < count - 1 )
+            width = totalWidth * ( item.size / total );
+        else
+            // Make sure we fill the last pixel column
+            width = rect.right() - x + 1;
+
+        QRect thisItemRect( x, rect.y(), width, rect.height() );
+        if ( thisItemRect.contains( point ) )
+        {
+            if ( modl->hasChildren( item.index ) )
+            {
+                QRect subRect(
+                    x + EXTENDED_PARTITION_MARGIN,
+                    rect.y() + EXTENDED_PARTITION_MARGIN,
+                    width - 2 * EXTENDED_PARTITION_MARGIN,
+                    rect.height() - 2 * EXTENDED_PARTITION_MARGIN
+                );
+                if ( subRect.contains( point ) )
+                    return indexAt( point, subRect, item.index );
+                return item.index;
+            }
+            else // contains but no children, we win
+                return item.index;
+        }
+        x += width;
+    }
+
     return QModelIndex();
 }
 
@@ -240,7 +294,57 @@ PartitionBarsView::setSelection( const QRect& rect, QItemSelectionModel::Selecti
 
 
 void
+PartitionBarsView::mouseMoveEvent( QMouseEvent* event )
+{
+    QModelIndex candidateIndex = indexAt( event->pos() );
+    int oldHoveredRow = m_hoveredRow;
+    if ( candidateIndex.isValid() )
+    {
+        m_hoveredRow = candidateIndex.row();
+    }
+    else
+        m_hoveredRow = -1;
+
+    if ( oldHoveredRow != m_hoveredRow )
+    {
+        viewport()->repaint();
+    }
+}
+
+
+void
+PartitionBarsView::leaveEvent( QEvent* event )
+{
+    if ( m_hoveredRow > -1 )
+    {
+        m_hoveredRow = -1;
+        viewport()->repaint();
+    }
+}
+
+
+void
 PartitionBarsView::updateGeometries()
 {
     updateGeometry(); //get a new rect() for redrawing all the labels
 }
+
+
+QPair< QVector< PartitionBarsView::Item >, qreal >
+PartitionBarsView::computeItemsVector( const QModelIndex& parent ) const
+{
+    const int count = model()->rowCount( parent );
+    QVector< PartitionBarsView::Item > items( count );
+
+    qreal total = 0;
+    for ( int row = 0; row < count; ++row )
+    {
+        QModelIndex index = model()->index( row, 0, parent );
+        qreal size = index.data( PartitionModel::SizeRole ).toLongLong();
+        total += size;
+        items[ row ] = { size, index };
+    }
+
+    return qMakePair( items, total );
+}
+
