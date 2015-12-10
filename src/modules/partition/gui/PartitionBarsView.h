@@ -64,6 +64,7 @@ private:
     void drawPartitions( QPainter* painter, const QRect& rect, const QModelIndex& parent );
     void drawSection( QPainter* painter, const QRect& rect_, int x, int width, const QModelIndex& index );
     QModelIndex indexAt( const QPoint& point, const QRect& rect, const QModelIndex& parent ) const;
+    QRect visualRect( const QModelIndex& index, const QRect& rect, const QModelIndex& parent ) const;
 
     struct Item
     {

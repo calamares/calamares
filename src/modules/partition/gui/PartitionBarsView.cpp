@@ -44,6 +44,8 @@ PartitionBarsView::PartitionBarsView( QWidget* parent )
 {
     setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Fixed );
     setFrameStyle( QFrame::NoFrame );
+    setSelectionBehavior( QAbstractItemView::SelectRows );
+    setSelectionMode( QAbstractItemView::SingleSelection );
 
     // Debug
     connect( this, &PartitionBarsView::clicked,
@@ -108,14 +110,21 @@ PartitionBarsView::drawSection( QPainter* painter, const QRect& rect_, int x, in
     painter->translate( 0.5, 0.5 );
 
     rect.adjust( 0, 0, -1, -1 );
-    const QColor borderColor = color.darker();
-    painter->setPen( borderColor );
 
 
+    QColor borderColor;
     if ( index.row() == m_hoveredRow )
-        painter->setBrush( color.lighter( 105 ) );
+    {
+        borderColor = palette().highlight().color();
+        painter->setBrush( color.lighter( 115 ) );
+    }
     else
+    {
+        borderColor = color.darker();
         painter->setBrush( color );
+    }
+
+    painter->setPen( borderColor );
 
     painter->drawRoundedRect( rect, radius, radius );
 
@@ -192,7 +201,9 @@ PartitionBarsView::indexAt( const QPoint& point ) const
 
 
 QModelIndex
-PartitionBarsView::indexAt( const QPoint &point, const QRect &rect, const QModelIndex& parent ) const
+PartitionBarsView::indexAt( const QPoint &point,
+                            const QRect &rect,
+                            const QModelIndex& parent ) const
 {
     PartitionModel* modl = qobject_cast< PartitionModel* >( model() );
     if ( !modl )
@@ -242,6 +253,56 @@ PartitionBarsView::indexAt( const QPoint &point, const QRect &rect, const QModel
 QRect
 PartitionBarsView::visualRect( const QModelIndex& index ) const
 {
+    return visualRect( index, rect(), QModelIndex() );
+}
+
+
+QRect
+PartitionBarsView::visualRect( const QModelIndex& index,
+                               const QRect& rect,
+                               const QModelIndex& parent ) const
+{
+    PartitionModel* modl = qobject_cast< PartitionModel* >( model() );
+    if ( !modl )
+        return QRect();
+    const int count = modl->rowCount( parent );
+    const int totalWidth = rect.width();
+
+    auto pair = computeItemsVector( parent );
+    QVector< PartitionBarsView::Item >& items = pair.first;
+    qreal& total = pair.second;
+    int x = rect.x();
+    for ( int row = 0; row < count; ++row )
+    {
+        const auto& item = items[ row ];
+        int width;
+        if ( row < count - 1 )
+            width = totalWidth * ( item.size / total );
+        else
+            // Make sure we fill the last pixel column
+            width = rect.right() - x + 1;
+
+        QRect thisItemRect( x, rect.y(), width, rect.height() );
+        if ( item.index == index )
+            return thisItemRect;
+
+        if ( modl->hasChildren( item.index ) &&
+             index.parent() == item.index )
+        {
+            QRect subRect(
+                x + EXTENDED_PARTITION_MARGIN,
+                rect.y() + EXTENDED_PARTITION_MARGIN,
+                width - 2 * EXTENDED_PARTITION_MARGIN,
+                rect.height() - 2 * EXTENDED_PARTITION_MARGIN
+            );
+            QRect candidateVisualRect = visualRect( index, subRect, item.index );
+            if ( !candidateVisualRect.isNull() )
+                return candidateVisualRect;
+        }
+
+        x += width;
+    }
+
     return QRect();
 }
 
@@ -270,6 +331,8 @@ PartitionBarsView::verticalOffset() const
 void
 PartitionBarsView::scrollTo( const QModelIndex& index, ScrollHint hint )
 {
+    Q_UNUSED( index )
+    Q_UNUSED( hint )
 }
 
 
@@ -290,6 +353,8 @@ PartitionBarsView::isIndexHidden( const QModelIndex& index ) const
 void
 PartitionBarsView::setSelection( const QRect& rect, QItemSelectionModel::SelectionFlags flags )
 {
+    selectionModel()->select( indexAt( rect.topLeft() ), flags );
+    cDebug() << "selected items:" << selectedIndexes();
 }
 
 
