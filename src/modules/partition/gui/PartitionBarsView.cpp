@@ -238,11 +238,24 @@ PartitionBarsView::indexAt( const QPoint &point,
                     rect.height() - 2 * EXTENDED_PARTITION_MARGIN
                 );
                 if ( subRect.contains( point ) )
+                {
+                    cDebug() << "point:" << point
+                             << "\t\trect:" << subRect
+                             << "\t\tindex:" << item.index.data();
                     return indexAt( point, subRect, item.index );
+                }
+                cDebug() << "point:" << point
+                         << "\t\trect:" << thisItemRect
+                         << "\t\tindex:" << item.index.data();
                 return item.index;
             }
             else // contains but no children, we win
+            {
+                cDebug() << "point:" << point
+                         << "\t\trect:" << thisItemRect
+                         << "\t\tindex:" << item.index.data();
                 return item.index;
+            }
         }
         x += width;
     }
