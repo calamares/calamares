@@ -72,7 +72,7 @@ private:
         QModelIndex index;
     };
     inline QPair< QVector< Item >, qreal > computeItemsVector( const QModelIndex& parent ) const;
-    int m_hoveredRow;
+    QPersistentModelIndex m_hoveredIndex;
 };
 
 #endif /* PARTITIONPREVIEW_H */

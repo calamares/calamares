@@ -40,7 +40,7 @@ static const int EXTENDED_PARTITION_MARGIN = 4;
 
 PartitionBarsView::PartitionBarsView( QWidget* parent )
     : QAbstractItemView( parent )
-    , m_hoveredRow( -1 )
+    , m_hoveredIndex( QModelIndex() )
 {
     setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Fixed );
     setFrameStyle( QFrame::NoFrame );
@@ -113,7 +113,8 @@ PartitionBarsView::drawSection( QPainter* painter, const QRect& rect_, int x, in
 
 
     QColor borderColor;
-    if ( index.row() == m_hoveredRow )
+    if ( m_hoveredIndex.isValid() &&
+         index == m_hoveredIndex )
     {
         borderColor = palette().highlight().color();
         painter->setBrush( color.lighter( 115 ) );
@@ -362,15 +363,15 @@ void
 PartitionBarsView::mouseMoveEvent( QMouseEvent* event )
 {
     QModelIndex candidateIndex = indexAt( event->pos() );
-    int oldHoveredRow = m_hoveredRow;
+    QPersistentModelIndex oldHoveredIndex = m_hoveredIndex;
     if ( candidateIndex.isValid() )
     {
-        m_hoveredRow = candidateIndex.row();
+        m_hoveredIndex = candidateIndex;
     }
     else
-        m_hoveredRow = -1;
+        m_hoveredIndex = QModelIndex();
 
-    if ( oldHoveredRow != m_hoveredRow )
+    if ( oldHoveredIndex != m_hoveredIndex )
     {
         viewport()->repaint();
     }
@@ -380,9 +381,9 @@ PartitionBarsView::mouseMoveEvent( QMouseEvent* event )
 void
 PartitionBarsView::leaveEvent( QEvent* event )
 {
-    if ( m_hoveredRow > -1 )
+    if ( m_hoveredIndex.isValid() )
     {
-        m_hoveredRow = -1;
+        m_hoveredIndex = QModelIndex();
         viewport()->repaint();
     }
 }
