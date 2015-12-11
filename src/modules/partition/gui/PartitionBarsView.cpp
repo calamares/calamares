@@ -413,7 +413,15 @@ void
 PartitionBarsView::setSelection( const QRect& rect, QItemSelectionModel::SelectionFlags flags )
 {
     selectionModel()->select( indexAt( rect.topLeft() ), flags );
-    cDebug() << "selected items:" << selectedIndexes();
+    cDebug() << "selected items count:" << selectedIndexes().count();
+    QStringList itemstrings;
+    foreach( const QModelIndex& ind, selectedIndexes() )
+    {
+        if ( ind.column() == 0 )
+            itemstrings.append( ind.data().toString() );
+    }
+
+    cDebug() << "selected items:\n" << itemstrings.join( "\n");
 }
 
 
