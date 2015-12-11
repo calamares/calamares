@@ -416,19 +416,23 @@ PartitionBarsView::isIndexHidden( const QModelIndex& index ) const
 void
 PartitionBarsView::setSelection( const QRect& rect, QItemSelectionModel::SelectionFlags flags )
 {
+    //HACK: this is an utterly awful workaround, which is unfortunately necessary.
+    //      QAbstractItemView::mousePressedEvent calls setSelection, but before that,
+    //      for some mental reason, it works under the assumption that every item is a
+    //      rectangle. This rectangle is provided by visualRect, and the idea mostly
+    //      works, except when the item is an extended partition item, which is of course
+    //      a rectangle with a rectangular hole in the middle.
+    //      QAbstractItemView::mousePressEvent builds a QRect with x1, y1 in the center
+    //      of said visualRect, and x2, y2 in the real QMouseEvent position.
+    //      This may very well yield a QRect with negative size, which is meaningless.
+    //      Therefore the QRect we get here is totally bogus, and its topLeft is outside
+    //      the actual area of the item we need.
+    //      What we need are the real coordinates of the QMouseEvent, and the only way to
+    //      get them is by fetching the private x2, y2 from the rect.
+    //      TL;DR: this sucks, look away. -- Teo 12/2015
     int x1, y1, x2, y2;
     rect.getCoords( &x1, &y1, &x2, &y2 );
-    cDebug() << "Actual click point is" << x2 << y2;
-    selectionModel()->setCurrentIndex( indexAt( QPoint( x2, y2 ) ), flags );
-    cDebug() << "selected items count:" << selectedIndexes().count();
-    QStringList itemstrings;
-    foreach( const QModelIndex& ind, selectedIndexes() )
-    {
-        if ( ind.column() == 0 )
-            itemstrings.append( ind.data().toString() );
-    }
-
-    cDebug() << "selected items:\n" << itemstrings.join( "\n");
+    selectionModel()->select( indexAt( QPoint( x2, y2 ) ), flags );
 }
 
 
