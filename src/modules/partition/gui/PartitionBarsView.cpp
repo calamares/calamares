@@ -416,8 +416,10 @@ PartitionBarsView::isIndexHidden( const QModelIndex& index ) const
 void
 PartitionBarsView::setSelection( const QRect& rect, QItemSelectionModel::SelectionFlags flags )
 {
-    cDebug() << "About to call indexAt with point" << rect.topLeft();
-    selectionModel()->setCurrentIndex( indexAt( rect.topLeft() ), flags );
+    int x1, y1, x2, y2;
+    rect.getCoords( &x1, &y1, &x2, &y2 );
+    cDebug() << "Actual click point is" << x2 << y2;
+    selectionModel()->setCurrentIndex( indexAt( QPoint( x2, y2 ) ), flags );
     cDebug() << "selected items count:" << selectedIndexes().count();
     QStringList itemstrings;
     foreach( const QModelIndex& ind, selectedIndexes() )
