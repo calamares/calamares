@@ -156,6 +156,7 @@ PartitionBarsView::drawSection( QPainter* painter, const QRect& rect_, int x, in
     painter->drawRoundedRect( rect, radius, radius );
 
     if ( index.isValid() &&
+         selectionModel() &&
          !selectionModel()->selectedIndexes().isEmpty() &&
          selectionModel()->selectedIndexes().first() == index )
     {
