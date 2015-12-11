@@ -156,7 +156,8 @@ PartitionBarsView::drawSection( QPainter* painter, const QRect& rect_, int x, in
     painter->drawRoundedRect( rect, radius, radius );
 
     if ( index.isValid() &&
-         currentIndex() == index )
+         !selectionModel()->selectedIndexes().isEmpty() &&
+         selectionModel()->selectedIndexes().first() == index )
     {
         painter->setPen( QPen( borderColor, 1 ) );
         QColor highlightColor = QPalette().highlight().color();
