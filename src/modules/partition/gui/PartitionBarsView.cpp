@@ -152,7 +152,7 @@ PartitionBarsView::drawSection( QPainter* painter, const QRect& rect_, int x, in
         highlightColor.setAlpha( 120 );
         painter->setBrush( highlightColor );
 
-        const int SEL_PADDING = 2;
+        const int SEL_PADDING = 1;
 
         QRect selectionRect = rect;
         selectionRect.setX( x + 1 );
