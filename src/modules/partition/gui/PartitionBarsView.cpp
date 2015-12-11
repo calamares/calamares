@@ -200,7 +200,6 @@ PartitionBarsView::drawPartitions( QPainter* painter, const QRect& rect, const Q
         return;
     const int count = modl->rowCount( parent );
     const int totalWidth = rect.width();
-    qDebug() << "count:" << count << "totalWidth:" << totalWidth;
 
     auto pair = computeItemsVector( parent );
     QVector< PartitionBarsView::Item >& items = pair.first;
@@ -282,27 +281,14 @@ PartitionBarsView::indexAt( const QPoint &point,
                     width - 2 * EXTENDED_PARTITION_MARGIN,
                     rect.height() - 2 * EXTENDED_PARTITION_MARGIN
                 );
-                cDebug() << "Item" << item.index.data().toString() << "has children;"
-                         << "its children subrect is" << subRect << ". We look for point"
-                         << point;
                 if ( subRect.contains( point ) )
                 {
-                    cDebug() << "EXTENDED partition subrect contains point!";
-                    cDebug() << "point:" << point
-                             << "\t\trect:" << subRect
-                             << "\t\tindex:" << item.index.data().toString();
                     return indexAt( point, subRect, item.index );
                 }
-                cDebug() << "point:" << point
-                         << "\t\trect:" << thisItemRect
-                         << "\t\tindex:" << item.index.data().toString();
                 return item.index;
             }
             else // contains but no children, we win
             {
-                cDebug() << "point:" << point
-                         << "\t\trect:" << thisItemRect
-                         << "\t\tindex:" << item.index.data().toString();
                 return item.index;
             }
         }
