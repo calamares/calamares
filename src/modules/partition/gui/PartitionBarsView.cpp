@@ -35,7 +35,8 @@
 
 static const int VIEW_HEIGHT = CalamaresUtils::defaultFontHeight() + 8;
 static const int CORNER_RADIUS = 3;
-static const int EXTENDED_PARTITION_MARGIN = 4;
+static const int EXTENDED_PARTITION_MARGIN = qMax( 4, VIEW_HEIGHT / 6 );
+static const int SELECTION_MARGIN = ( EXTENDED_PARTITION_MARGIN - 2 ) / 2;
 
 
 PartitionBarsView::PartitionBarsView( QWidget* parent )
@@ -152,8 +153,6 @@ PartitionBarsView::drawSection( QPainter* painter, const QRect& rect_, int x, in
         highlightColor.setAlpha( 120 );
         painter->setBrush( highlightColor );
 
-        const int SEL_PADDING = 1;
-
         QRect selectionRect = rect;
         selectionRect.setX( x + 1 );
         selectionRect.setWidth( width - 3 ); //account for the previous rect.adjust
@@ -164,10 +163,10 @@ PartitionBarsView::drawSection( QPainter* painter, const QRect& rect_, int x, in
         if ( rect.right() < selectionRect.right() ) //hack for last item
             selectionRect.adjust( 0, 0, - ( selectionRect.right() - rect.right() ), 0 );
 
-        selectionRect.adjust( SEL_PADDING,
-                              SEL_PADDING,
-                              -SEL_PADDING,
-                              -SEL_PADDING );
+        selectionRect.adjust( SELECTION_MARGIN,
+                              SELECTION_MARGIN,
+                              -SELECTION_MARGIN,
+                              -SELECTION_MARGIN );
 
         painter->drawRoundedRect( selectionRect,
                                   radius - 1,
