@@ -112,18 +112,17 @@ PartitionBarsView::drawSection( QPainter* painter, const QRect& rect_, int x, in
     rect.adjust( 0, 0, -1, -1 );
 
 
-    QColor borderColor;
     if ( m_hoveredIndex.isValid() &&
          index == m_hoveredIndex )
     {
-        borderColor = palette().highlight().color();
         painter->setBrush( color.lighter( 115 ) );
     }
     else
     {
-        borderColor = color.darker();
         painter->setBrush( color );
     }
+
+    QColor borderColor = color.darker();
 
     painter->setPen( borderColor );
 
@@ -140,8 +139,40 @@ PartitionBarsView::drawSection( QPainter* painter, const QRect& rect_, int x, in
     gradient.setColorAt( 1, QColor::fromRgbF( c, c, c, 0 ) );
 
     painter->setPen( Qt::NoPen );
+
     painter->setBrush( gradient );
     painter->drawRoundedRect( rect, radius, radius );
+
+    if ( index.isValid() &&
+         currentIndex() == index )
+    {
+        painter->setPen( QPen( borderColor, 1 ) );
+        QColor highlightColor = QPalette().highlight().color();
+        highlightColor = highlightColor.lighter( 500 );
+        highlightColor.setAlpha( 120 );
+        painter->setBrush( highlightColor );
+
+        const int SEL_PADDING = 2;
+
+        QRect selectionRect = rect;
+        selectionRect.setX( x + 1 );
+        selectionRect.setWidth( width - 3 ); //account for the previous rect.adjust
+
+        if ( rect.x() > selectionRect.x() ) //hack for first item
+            selectionRect.adjust( rect.x() - selectionRect.x(), 0, 0, 0 );
+
+        if ( rect.right() < selectionRect.right() ) //hack for last item
+            selectionRect.adjust( 0, 0, - ( selectionRect.right() - rect.right() ), 0 );
+
+        selectionRect.adjust( SEL_PADDING,
+                              SEL_PADDING,
+                              -SEL_PADDING,
+                              -SEL_PADDING );
+
+        painter->drawRoundedRect( selectionRect,
+                                  radius - 1,
+                                  radius - 1 );
+    }
 
     painter->translate( -0.5, -0.5 );
 }
