@@ -36,7 +36,17 @@
 static const int VIEW_HEIGHT = CalamaresUtils::defaultFontHeight() + 8;
 static const int CORNER_RADIUS = 3;
 static const int EXTENDED_PARTITION_MARGIN = qMax( 4, VIEW_HEIGHT / 6 );
-static const int SELECTION_MARGIN = EXTENDED_PARTITION_MARGIN / 2 - 1;
+
+// The SELECTION_MARGIN is applied within a hardcoded 2px padding anyway, so
+// we start from EXTENDED_PARTITION_MARGIN - 2 in all cases.
+// Then we try to ensure the selection rectangle fits exactly between the extended
+// rectangle and the outer frame (the "/ 2" part), unless that's not possible, and in
+// that case we at least make sure we have a 1px gap between the selection rectangle
+// and the extended partition box (the "- 2" part).
+// At worst, on low DPI systems, this will mean in order:
+// 1px outer rect, 1 px gap, 1px selection rect, 1px gap, 1px extended partition rect.
+static const int SELECTION_MARGIN = qMin( ( EXTENDED_PARTITION_MARGIN - 2 ) / 2,
+                                          ( EXTENDED_PARTITION_MARGIN - 2 ) - 2 );
 
 
 PartitionBarsView::PartitionBarsView( QWidget* parent )
