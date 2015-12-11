@@ -36,7 +36,7 @@
 static const int VIEW_HEIGHT = CalamaresUtils::defaultFontHeight() + 8;
 static const int CORNER_RADIUS = 3;
 static const int EXTENDED_PARTITION_MARGIN = qMax( 4, VIEW_HEIGHT / 6 );
-static const int SELECTION_MARGIN = ( EXTENDED_PARTITION_MARGIN - 2 ) / 2;
+static const int SELECTION_MARGIN = EXTENDED_PARTITION_MARGIN / 2 - 1;
 
 
 PartitionBarsView::PartitionBarsView( QWidget* parent )
