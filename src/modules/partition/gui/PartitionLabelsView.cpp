@@ -128,10 +128,9 @@ PartitionLabelsView::getIndexesToDraw( const QModelIndex& parent ) const
     for ( int row = 0; row < modl->rowCount( parent ); ++row )
     {
         QModelIndex index = modl->index( row, 0, parent );
+        list.append( index );
         if ( modl->hasChildren( index ) )
             list.append( getIndexesToDraw( index ) );
-        else
-            list.append( index );
     }
     return list;
 }
