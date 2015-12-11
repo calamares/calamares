@@ -23,6 +23,7 @@
 #include <core/ColorUtils.h>
 
 #include <utils/CalamaresUtilsGui.h>
+#include <utils/Logger.h>
 
 #include <kpmcore/core/device.h>
 
@@ -52,6 +53,16 @@ PartitionLabelsView::PartitionLabelsView( QWidget* parent )
 {
     setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Fixed );
     setFrameStyle( QFrame::NoFrame );
+    setSelectionBehavior( QAbstractItemView::SelectRows );
+    setSelectionMode( QAbstractItemView::SingleSelection );
+
+    // Debug
+    connect( this, &PartitionLabelsView::clicked,
+             this, [=]( const QModelIndex& index )
+    {
+        cDebug() << "Clicked row" << index.row();
+    } );
+    setMouseTracking( true );
 }
 
 
