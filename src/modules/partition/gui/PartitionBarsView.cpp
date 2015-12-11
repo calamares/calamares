@@ -124,7 +124,8 @@ PartitionBarsView::drawSection( QPainter* painter, const QRect& rect_, int x, in
     rect.adjust( 0, 0, -1, -1 );
 
 
-    if ( m_hoveredIndex.isValid() &&
+    if ( selectionMode() != QAbstractItemView::NoSelection && // no hover without selection
+         m_hoveredIndex.isValid() &&
          index == m_hoveredIndex )
     {
         painter->setBrush( color.lighter( 115 ) );
@@ -155,7 +156,8 @@ PartitionBarsView::drawSection( QPainter* painter, const QRect& rect_, int x, in
     painter->setBrush( gradient );
     painter->drawRoundedRect( rect, radius, radius );
 
-    if ( index.isValid() &&
+    if ( selectionMode() != QAbstractItemView::NoSelection &&
+         index.isValid() &&
          selectionModel() &&
          !selectionModel()->selectedIndexes().isEmpty() &&
          selectionModel()->selectedIndexes().first() == index )
