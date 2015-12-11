@@ -412,7 +412,7 @@ PartitionBarsView::isIndexHidden( const QModelIndex& index ) const
 void
 PartitionBarsView::setSelection( const QRect& rect, QItemSelectionModel::SelectionFlags flags )
 {
-    selectionModel()->select( indexAt( rect.topLeft() ), flags );
+    selectionModel()->setCurrentIndex( indexAt( rect.topLeft() ), flags );
     cDebug() << "selected items count:" << selectedIndexes().count();
     QStringList itemstrings;
     foreach( const QModelIndex& ind, selectedIndexes() )
