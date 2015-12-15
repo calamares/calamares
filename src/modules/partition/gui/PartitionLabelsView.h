@@ -66,6 +66,7 @@ private:
     QSize sizeForLabel( const QStringList& text ) const;
     void drawLabel( QPainter* painter, const QStringList& text, const QColor& color, const QPoint& pos );
     QModelIndexList getIndexesToDraw( const QModelIndex& parent ) const;
+    QStringList buildTexts( const QModelIndex& index ) const;
 };
 
 #endif // PARTITIONLABELSVIEW_H
