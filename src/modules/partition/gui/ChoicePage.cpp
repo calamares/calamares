@@ -609,11 +609,8 @@ ChoicePage::setupActions( Device *currentDevice )
                                              "before any change is made to the storage device." )
                                             .arg( osName ) );
 
-                m_alongsideButton->setText( tr( "<strong>Install %2 alongside %1</strong><br/>"
-                                                "The installer will shrink the %1 volume to make room for %2. "
-                                                "You can choose which operating system you want each time the "
-                                                "computer starts up." )
-                                            .arg( osName )
+                m_alongsideButton->setText( tr( "<strong>Install alongside</strong><br/>"
+                                                "The installer will shrink a volume to make room for %1." )
                                             .arg( Calamares::Branding::instance()->
                                                   string( Calamares::Branding::ShortVersionedName ) ) );
 
@@ -638,14 +635,10 @@ ChoicePage::setupActions( Device *currentDevice )
                                              "You will be able to review and confirm your choices "
                                              "before any change is made to the storage device." ) );
 
-                m_alongsideButton->setText( tr( "<strong>Install %1 alongside your current operating system</strong><br/>"
-                                                "The installer will shrink an existing volume to make room for %2. "
-                                                "You can choose which operating system you want each time the "
-                                                "computer starts up." )
+                m_alongsideButton->setText( tr( "<strong>Install alongside</strong><br/>"
+                                                "The installer will shrink a volume to make room for %1." )
                                             .arg( Calamares::Branding::instance()->
-                                                  string( Calamares::Branding::ShortVersionedName ) )
-                                            .arg( Calamares::Branding::instance()->
-                                                  string( Calamares::Branding::ShortProductName ) ) );
+                                                  string( Calamares::Branding::ShortVersionedName ) ) );
 
                 m_eraseButton->setText( tr( "<strong>Erase disk</strong><br/>"
                                             "This will <font color=\"red\">delete</font> all the data "
@@ -683,14 +676,10 @@ ChoicePage::setupActions( Device *currentDevice )
                                          "You will be able to review and confirm your choices "
                                          "before any change is made to the storage device." ) );
 
-            m_alongsideButton->setText( tr( "<strong>Install %1 alongside your current operating systems</strong><br/>"
-                                            "The installer will shrink an existing volume to make room for %2. "
-                                            "You can choose which operating system you want each time the "
-                                            "computer starts up." )
+            m_alongsideButton->setText( tr( "<strong>Install alongside</strong><br/>"
+                                            "The installer will shrink a volume to make room for %1." )
                                         .arg( Calamares::Branding::instance()->
-                                              string( Calamares::Branding::ShortVersionedName ) )
-                                        .arg( Calamares::Branding::instance()->
-                                              string( Calamares::Branding::ShortProductName ) ) );
+                                              string( Calamares::Branding::ShortVersionedName ) ) );
 
             m_eraseButton->setText( tr( "<strong>Erase disk</strong><br/>"
                                         "This will <font color=\"red\">delete</font> all the data "
