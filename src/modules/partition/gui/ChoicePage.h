@@ -55,8 +55,7 @@ public:
     explicit ChoicePage( QWidget* parent = nullptr );
     virtual ~ChoicePage();
 
-    void init( PartitionCoreModule* core,
-               const OsproberEntryList& osproberEntries );
+    void init( PartitionCoreModule* core );
 
     bool isNextEnabled() const;
 
@@ -83,7 +82,6 @@ private:
 
     bool m_nextEnabled;
     PartitionCoreModule* m_core;
-    OsproberEntryList m_osproberEntries;
 
     QMutex m_previewsMutex;
 

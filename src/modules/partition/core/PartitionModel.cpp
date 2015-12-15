@@ -55,10 +55,11 @@ PartitionModel::PartitionModel( QObject* parent )
 }
 
 void
-PartitionModel::init( Device* device )
+PartitionModel::init( Device* device , const OsproberEntryList& osproberEntries )
 {
     beginResetModel();
     m_device = device;
+    m_osproberEntries = osproberEntries;
     endResetModel();
 }
 
@@ -162,6 +163,30 @@ PartitionModel::data( const QModelIndex& index, int role ) const
         return ( partition->lastSector() - partition->firstSector() + 1 ) * m_device->logicalSectorSize();
     case IsFreeSpaceRole:
         return KPMHelpers::isPartitionFreeSpace( partition );
+
+    // Osprober roles:
+    case OsproberNameRole:
+        foreach ( const OsproberEntry& osproberEntry, m_osproberEntries )
+            if ( osproberEntry.path == partition->partitionPath() )
+                return osproberEntry.prettyName;
+        return QVariant();
+    case OsproberPathRole:
+        foreach ( const OsproberEntry& osproberEntry, m_osproberEntries )
+            if ( osproberEntry.path == partition->partitionPath() )
+                return osproberEntry.path;
+        return QVariant();
+    case OsproberCanBeResizedRole:
+        foreach ( const OsproberEntry& osproberEntry, m_osproberEntries )
+            if ( osproberEntry.path == partition->partitionPath() )
+                return osproberEntry.canBeResized;
+        return QVariant();
+    case OsproberRawLineRole:
+        foreach ( const OsproberEntry& osproberEntry, m_osproberEntries )
+            if ( osproberEntry.path == partition->partitionPath() )
+                return osproberEntry.line;
+        return QVariant();
+    // end Osprober roles.
+
     default:
         return QVariant();
     }

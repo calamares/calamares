@@ -114,6 +114,8 @@ public:
 
     void dumpQueue() const;
 
+    OsproberEntryList osproberEntries() const;
+
 Q_SIGNALS:
     void hasRootMountPointChanged( bool value );
     void isDirtyChanged( bool value );
@@ -153,6 +155,8 @@ private:
     DeviceInfo* infoForDevice( Device* ) const;
 
     Partition* findPartitionByMountPoint( const QString& mountPoint ) const;
+
+    OsproberEntryList m_osproberLines;
 };
 
 #endif /* PARTITIONCOREMODULE_H */

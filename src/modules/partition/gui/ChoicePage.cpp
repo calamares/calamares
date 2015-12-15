@@ -114,11 +114,9 @@ ChoicePage::~ChoicePage()
  * @param osproberEntries the output of os-prober, cleaned up and structured.
  */
 void
-ChoicePage::init( PartitionCoreModule* core,
-                  const OsproberEntryList& osproberEntries )
+ChoicePage::init( PartitionCoreModule* core )
 {
     m_core = core;
-    m_osproberEntries = osproberEntries;
     m_isEfi = QDir( "/sys/firmware/efi/efivars" ).exists();
 
     setupChoices();
@@ -489,7 +487,7 @@ ChoicePage::updateDeviceStatePreview( Device* currentDevice )
     Device* deviceBefore = m_core->createImmutableDeviceCopy( currentDevice );
 
     PartitionModel* model = new PartitionModel( preview );
-    model->init( deviceBefore );
+    model->init( deviceBefore, m_core->osproberEntries() );
 
     // The QObject parents tree is meaningful for memory management here,
     // see qDeleteAll above.
@@ -539,7 +537,7 @@ ChoicePage::updateActionChoicePreview( Device* currentDevice, ChoicePage::Choice
             PartitionLabelsView* previewLabels = new PartitionLabelsView( m_previewAfterFrame );
 
             PartitionModel* model = new PartitionModel( preview );
-            model->init( currentDevice );
+            model->init( currentDevice, m_core->osproberEntries() );
 
             // The QObject parents tree is meaningful for memory management here,
             // see qDeleteAll above.
@@ -733,7 +731,7 @@ OsproberEntryList
 ChoicePage::getOsproberEntriesForDevice( Device* device ) const
 {
     OsproberEntryList eList;
-    foreach ( const OsproberEntry& entry, m_osproberEntries )
+    foreach ( const OsproberEntry& entry, m_core->osproberEntries() )
     {
         if ( entry.path.startsWith( device->deviceNode() ) )
             eList.append( entry );

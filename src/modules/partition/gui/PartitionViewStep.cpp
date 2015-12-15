@@ -74,13 +74,11 @@ PartitionViewStep::PartitionViewStep( QObject* parent )
 void
 PartitionViewStep::continueLoading()
 {
-    OsproberEntryList osproberEntries = PartUtils::runOsprober( m_core );
-
     Q_ASSERT( !m_choicePage );
     m_choicePage = new ChoicePage();
 
-    m_choicePage->init( m_core, osproberEntries );
-    m_alongsidePage->init( m_core, osproberEntries );
+    m_choicePage->init( m_core );
+    m_alongsidePage->init( m_core );
 
     m_widget->addWidget( m_choicePage );
     m_widget->addWidget( m_manualPartitionPage );

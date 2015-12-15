@@ -25,6 +25,7 @@
 #include "core/PartitionIterator.h"
 #include "core/PartitionModel.h"
 #include "core/KPMHelpers.h"
+#include "core/PartUtils.h"
 #include "jobs/ClearMountsJob.h"
 #include "jobs/ClearTempMountsJob.h"
 #include "jobs/CreatePartitionJob.h"
@@ -108,6 +109,8 @@ PartitionCoreModule::init()
     CoreBackend* backend = CoreBackendManager::self()->backend();
     auto devices = backend->scanDevices( true );
 
+    m_osproberLines = PartUtils::runOsprober( this );
+
     // Remove the device which contains / from the list
     for ( auto it = devices.begin(); it != devices.end(); )
         if ( hasRootPartition( *it ) )
@@ -120,7 +123,7 @@ PartitionCoreModule::init()
         auto deviceInfo = new DeviceInfo( device );
         m_deviceInfos << deviceInfo;
 
-        deviceInfo->partitionModel->init( device );
+        deviceInfo->partitionModel->init( device, m_osproberLines );
     }
     m_deviceModel->init( devices );
 
@@ -353,6 +356,13 @@ PartitionCoreModule::dumpQueue() const
     }
 }
 
+
+OsproberEntryList
+PartitionCoreModule::osproberEntries() const
+{
+    return m_osproberLines;
+}
+
 void
 PartitionCoreModule::refreshPartition( Device* device, Partition* partition )
 {
@@ -517,13 +527,13 @@ PartitionCoreModule::createSummaryInfo() const
 
         Device* deviceBefore = backend->scanDevice( deviceInfo->device->deviceNode() );
         summaryInfo.partitionModelBefore = new PartitionModel;
-        summaryInfo.partitionModelBefore->init( deviceBefore );
+        summaryInfo.partitionModelBefore->init( deviceBefore, m_osproberLines );
         // Make deviceBefore a child of partitionModelBefore so that it is not
         // leaked (as long as partitionModelBefore is deleted)
         deviceBefore->setParent( summaryInfo.partitionModelBefore );
 
         summaryInfo.partitionModelAfter = new PartitionModel;
-        summaryInfo.partitionModelAfter->init( deviceInfo->device.data() );
+        summaryInfo.partitionModelAfter->init( deviceInfo->device.data(), m_osproberLines );
 
         lst << summaryInfo;
     }
