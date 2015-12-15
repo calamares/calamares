@@ -136,6 +136,51 @@ PartitionLabelsView::getIndexesToDraw( const QModelIndex& parent ) const
 }
 
 
+QStringList
+PartitionLabelsView::buildTexts( const QModelIndex& index ) const
+{
+    QString firstLine, secondLine;
+
+    if ( index.data( PartitionModel::IsPartitionNewRole ).toBool() )
+    {
+        QString mountPoint = index.sibling( index.row(),
+                                            PartitionModel::MountPointColumn )
+                                  .data().toString();
+        if ( mountPoint == "/" )
+            firstLine = tr( "New root partition" );
+        else if ( mountPoint == "/home" )
+            firstLine = tr( "New home partition" );
+        else if ( mountPoint == "/boot" )
+            firstLine = tr( "New boot partition" );
+        else if ( mountPoint.contains( "/efi" ) &&
+                  index.sibling( index.row(),
+                                 PartitionModel::FileSystemColumn )
+                       .data().toString() == "fat32" )
+            firstLine = tr( "New EFI system partition" );
+        else if ( index.sibling( index.row(),
+                                 PartitionModel::FileSystemColumn )
+                       .data().toString() == "linuxswap" )
+            firstLine = tr( "New swap partition" );
+        else
+            firstLine = tr( "New partition for %1" ).arg( mountPoint );
+    }
+    else if ( index.data( PartitionModel::OsproberNameRole ).toString().isEmpty() )
+        firstLine = index.data().toString();
+    else
+        firstLine = index.data( PartitionModel::OsproberNameRole ).toString();
+
+    secondLine = tr( "%1  %2" )
+                 .arg( index.sibling( index.row(),
+                                      PartitionModel::SizeColumn )
+                            .data().toString() )
+                 .arg( index.sibling( index.row(),
+                                      PartitionModel::FileSystemColumn )
+                            .data().toString() );
+
+    return { firstLine, secondLine };
+}
+
+
 void
 PartitionLabelsView::drawLabels( QPainter* painter,
                                  const QRect& rect,
@@ -151,46 +196,7 @@ PartitionLabelsView::drawLabels( QPainter* painter,
     int label_y = rect.y();
     foreach ( const QModelIndex& index, indexesToDraw )
     {
-        QString firstLine, secondLine;
-
-        if ( index.data( PartitionModel::IsPartitionNewRole ).toBool() )
-        {
-            QString mountPoint = index.sibling( index.row(),
-                                                PartitionModel::MountPointColumn )
-                                      .data().toString();
-            if ( mountPoint == "/" )
-                firstLine = tr( "New root partition" );
-            else if ( mountPoint == "/home" )
-                firstLine = tr( "New home partition" );
-            else if ( mountPoint == "/boot" )
-                firstLine = tr( "New boot partition" );
-            else if ( mountPoint.contains( "/efi" ) &&
-                      index.sibling( index.row(),
-                                     PartitionModel::FileSystemColumn )
-                           .data().toString() == "fat32" )
-                firstLine = tr( "New EFI system partition" );
-            else if ( index.sibling( index.row(),
-                                     PartitionModel::FileSystemColumn )
-                           .data().toString() == "linuxswap" )
-                firstLine = tr( "New swap partition" );
-            else
-                firstLine = tr( "New partition for %1" ).arg( mountPoint );
-        }
-        else if ( index.data( PartitionModel::OsproberNameRole ).toString().isEmpty() )
-            firstLine = index.data().toString();
-        else
-            firstLine = index.data( PartitionModel::OsproberNameRole ).toString();
-
-        secondLine = tr( "%1  %2" )
-                     .arg( index.sibling( index.row(),
-                                          PartitionModel::SizeColumn )
-                                .data().toString() )
-                     .arg( index.sibling( index.row(),
-                                          PartitionModel::FileSystemColumn )
-                                .data().toString() );
-
-        QStringList texts = { firstLine,
-                              secondLine };
+        QStringList texts = buildTexts( index );
 
         QSize labelSize = sizeForLabel( texts );
 
@@ -231,10 +237,8 @@ PartitionLabelsView::sizeForAllLabels( int maxLineWidth ) const
     int singleLabelHeight = 0;
     foreach ( const QModelIndex& index, indexesToDraw )
     {
-        QStringList texts = { index.data().toString(),
-                              index.sibling( index.row(),
-                                             PartitionModel::SizeColumn )
-                                   .data().toString() };
+        QStringList texts = buildTexts( index );
+
         QSize labelSize = sizeForLabel( texts );
 
         if ( lineLength + labelSize.width() > maxLineWidth )
