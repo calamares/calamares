@@ -34,9 +34,9 @@
 
 
 static const int LAYOUT_MARGIN = 4;
-static const int LABELS_MARGIN = 40;
 static const int LABEL_PARTITION_SQUARE_MARGIN =
         qMax( QFontMetrics( CalamaresUtils::defaultFont() ).ascent() - 2, 18 );
+static const int LABELS_MARGIN = LABEL_PARTITION_SQUARE_MARGIN;
 
 
 QStringList
