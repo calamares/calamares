@@ -69,6 +69,7 @@ public:
         // SizeColumn, which is a human-readable string.
         SizeRole = Qt::UserRole + 1,
         IsFreeSpaceRole,
+        IsPartitionNewRole,
         FileSystemLabelRole,
         OsproberNameRole,
         OsproberPathRole,
