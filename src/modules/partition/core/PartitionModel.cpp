@@ -164,6 +164,12 @@ PartitionModel::data( const QModelIndex& index, int role ) const
     case IsFreeSpaceRole:
         return KPMHelpers::isPartitionFreeSpace( partition );
 
+    case FileSystemLabelRole:
+        if ( partition->fileSystem().supportGetLabel() != FileSystem::cmdSupportNone &&
+             !partition->fileSystem().label().isEmpty() )
+            return partition->fileSystem().label();
+        return QVariant();
+
     // Osprober roles:
     case OsproberNameRole:
         foreach ( const OsproberEntry& osproberEntry, m_osproberEntries )
