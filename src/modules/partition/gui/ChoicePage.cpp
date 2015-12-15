@@ -584,10 +584,10 @@ ChoicePage::setupActions( Device *currentDevice )
                                          "You will be able to review and confirm your choices "
                                          "before any change is made to the storage device." ) );
 
-            m_eraseButton->setText( tr( "<strong>Erase disk and install %1</strong><br/>"
+            m_eraseButton->setText( tr( "<strong>Erase disk</strong><br/>"
                                         "This will <font color=\"red\">delete</font> all the data "
                                         "currently present on %2 (if any), including programs, "
-                                        "documents, photos, music, and other files." )
+                                        "documents, photos, music, and other files and install %1." )
                                     .arg( Calamares::Branding::instance()->
                                           string( Calamares::Branding::ShortVersionedName ) )
                                     .arg( currentDevice->deviceNode() ) );
@@ -617,14 +617,13 @@ ChoicePage::setupActions( Device *currentDevice )
                                             .arg( Calamares::Branding::instance()->
                                                   string( Calamares::Branding::ShortVersionedName ) ) );
 
-                m_eraseButton->setText( tr( "<strong>Erase disk with %3 and install %1</strong><br/>"
+                m_eraseButton->setText( tr( "<strong>Erase disk</strong><br/>"
                                             "This will <font color=\"red\">delete</font> all the data "
                                             "currently present on %2 (if any), including programs, "
-                                            "documents, photos, music, and other files." )
+                                            "documents, photos, music, and other files and install %1." )
                                         .arg( Calamares::Branding::instance()->
                                               string( Calamares::Branding::ShortVersionedName ) )
-                                        .arg( currentDevice->deviceNode() )
-                                        .arg( osName ) );
+                                        .arg( currentDevice->deviceNode() ) );
 
 
                 m_replaceButton->setText( tr( "<strong>Replace a partition with %1</strong><br/>"
@@ -650,10 +649,10 @@ ChoicePage::setupActions( Device *currentDevice )
                                             .arg( Calamares::Branding::instance()->
                                                   string( Calamares::Branding::ShortProductName ) ) );
 
-                m_eraseButton->setText( tr( "<strong>Erase disk and install %1</strong><br/>"
+                m_eraseButton->setText( tr( "<strong>Erase disk</strong><br/>"
                                             "This will <font color=\"red\">delete</font> all the data "
                                             "currently present on %2 (if any), including programs, "
-                                            "documents, photos, music, and other files." )
+                                            "documents, photos, music, and other files and install %1." )
                                         .arg( Calamares::Branding::instance()->
                                               string( Calamares::Branding::ShortVersionedName ) )
                                         .arg( currentDevice->deviceNode() ) );
@@ -697,10 +696,10 @@ ChoicePage::setupActions( Device *currentDevice )
                                         .arg( Calamares::Branding::instance()->
                                               string( Calamares::Branding::ShortProductName ) ) );
 
-            m_eraseButton->setText( tr( "<strong>Erase disk and install %1</strong><br/>"
+            m_eraseButton->setText( tr( "<strong>Erase disk</strong><br/>"
                                         "This will <font color=\"red\">delete</font> all the data "
                                         "currently present on %2 (if any), including programs, "
-                                        "documents, photos, music, and other files." )
+                                        "documents, photos, music, and other files and install %1." )
                                     .arg( Calamares::Branding::instance()->
                                           string( Calamares::Branding::ShortVersionedName ) )
                                     .arg( currentDevice->deviceNode() ) );
