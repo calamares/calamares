@@ -38,7 +38,7 @@ class AlongsidePage : public QWidget
 public:
     explicit AlongsidePage( QWidget* parent = nullptr );
 
-    void init( PartitionCoreModule* core, const OsproberEntryList& osproberEntries );
+    void init( PartitionCoreModule* core );
 
     bool isNextEnabled() const;
 

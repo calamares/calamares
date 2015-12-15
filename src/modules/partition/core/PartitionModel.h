@@ -18,6 +18,8 @@
 #ifndef PARTITIONMODEL_H
 #define PARTITIONMODEL_H
 
+#include "OsproberEntry.h"
+
 // Qt
 #include <QAbstractItemModel>
 
@@ -66,7 +68,11 @@ public:
         // The raw size, as a qlonglong. This is different from the DisplayRole of
         // SizeColumn, which is a human-readable string.
         SizeRole = Qt::UserRole + 1,
-        IsFreeSpaceRole
+        IsFreeSpaceRole,
+        OsproberNameRole,
+        OsproberPathRole,
+        OsproberCanBeResizedRole,
+        OsproberRawLineRole
     };
 
     enum Column
@@ -82,7 +88,7 @@ public:
     /**
      * device must remain alive for the life of PartitionModel
      */
-    void init( Device* device );
+    void init( Device* device, const OsproberEntryList& osproberEntries );
 
     // QAbstractItemModel API
     QModelIndex index( int row, int column, const QModelIndex& parent = QModelIndex() ) const override;
@@ -101,6 +107,7 @@ public:
 
 private:
     Device* m_device;
+    OsproberEntryList m_osproberEntries;
 };
 
 #endif /* PARTITIONMODEL_H */

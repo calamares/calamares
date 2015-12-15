@@ -104,7 +104,7 @@ AlongsidePage::AlongsidePage( QWidget* parent )
 
 
 void
-AlongsidePage::init( PartitionCoreModule* core , const OsproberEntryList& osproberEntries )
+AlongsidePage::init( PartitionCoreModule* core )
 {
     if ( m_core != core )
         m_core = core;
@@ -129,7 +129,7 @@ AlongsidePage::init( PartitionCoreModule* core , const OsproberEntryList& osprob
                                         string( Calamares::Branding::ProductName ) ) );
     } );
 
-    foreach ( const OsproberEntry& e, osproberEntries )
+    foreach ( const OsproberEntry& e, m_core->osproberEntries() )
     {
         if ( e.canBeResized )
             m_partitionsComboBox->addItem( e.prettyName + " (" + e.path + ")", e.path );
@@ -191,7 +191,7 @@ AlongsidePage::onPartitionSelected( int comboBoxIndex )
             Device* deviceBefore = m_core->createImmutableDeviceCopy( dev );
 
             PartitionModel* partitionModelBefore = new PartitionModel;
-            partitionModelBefore->init( deviceBefore );
+            partitionModelBefore->init( deviceBefore, m_core->osproberEntries() );
             deviceBefore->setParent( partitionModelBefore );
             partitionModelBefore->setParent( m_previewWidget );
 
