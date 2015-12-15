@@ -109,8 +109,6 @@ PartitionCoreModule::init()
     CoreBackend* backend = CoreBackendManager::self()->backend();
     auto devices = backend->scanDevices( true );
 
-    m_osproberLines = PartUtils::runOsprober( this );
-
     // Remove the device which contains / from the list
     for ( auto it = devices.begin(); it != devices.end(); )
         if ( hasRootPartition( *it ) )
@@ -122,10 +120,17 @@ PartitionCoreModule::init()
     {
         auto deviceInfo = new DeviceInfo( device );
         m_deviceInfos << deviceInfo;
-
-        deviceInfo->partitionModel->init( device, m_osproberLines );
     }
     m_deviceModel->init( devices );
+
+    // The following PartUtils::runOsprober call in turn calls PartUtils::canBeResized,
+    // which relies on a working DeviceModel.
+    m_osproberLines = PartUtils::runOsprober( this );
+
+    for ( auto deviceInfo : m_deviceInfos )
+    {
+        deviceInfo->partitionModel->init( deviceInfo->device.data(), m_osproberLines );
+    }
 
     m_bootLoaderModel->init( devices );
 
