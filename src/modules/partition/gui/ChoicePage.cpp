@@ -85,6 +85,7 @@ ChoicePage::ChoicePage( QWidget* parent )
     m_drivesLayout->addWidget( m_deviceInfoWidget );
 
     m_messageLabel->setWordWrap( true );
+    m_messageLabel->hide();
 
     CalamaresUtils::unmarginLayout( m_itemsLayout );
 
