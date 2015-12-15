@@ -91,6 +91,7 @@ canBeResized( PartitionCoreModule* core, const QString& partitionPath )
 OsproberEntryList
 runOsprober( PartitionCoreModule* core )
 {
+    cDebug() << "BEGIN" << Q_FUNC_INFO;
     QString osproberOutput;
     QProcess osprober;
     osprober.setProgram( "os-prober" );
@@ -141,6 +142,7 @@ runOsprober( PartitionCoreModule* core )
 
     Calamares::JobQueue::instance()->globalStorage()->insert( "osproberLines", osproberCleanLines );
 
+    cDebug() << "END" << Q_FUNC_INFO;
     return osproberEntries;
 }
 
