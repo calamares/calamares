@@ -586,10 +586,8 @@ ChoicePage::setupActions( Device *currentDevice )
 
             m_eraseButton->setText( tr( "<strong>Erase disk</strong><br/>"
                                         "This will <font color=\"red\">delete</font> all the data "
-                                        "currently present on %2 (if any), including programs, "
-                                        "documents, photos, music, and other files and install %1." )
-                                    .arg( Calamares::Branding::instance()->
-                                          string( Calamares::Branding::ShortVersionedName ) )
+                                        "currently present on %1 (if any), including programs, "
+                                        "documents, photos, music, and other files." )
                                     .arg( currentDevice->deviceNode() ) );
         )
 
@@ -616,10 +614,8 @@ ChoicePage::setupActions( Device *currentDevice )
 
                 m_eraseButton->setText( tr( "<strong>Erase disk</strong><br/>"
                                             "This will <font color=\"red\">delete</font> all the data "
-                                            "currently present on %2 (if any), including programs, "
-                                            "documents, photos, music, and other files and install %1." )
-                                        .arg( Calamares::Branding::instance()->
-                                              string( Calamares::Branding::ShortVersionedName ) )
+                                            "currently present on %1 (if any), including programs, "
+                                            "documents, photos, music, and other files." )
                                         .arg( currentDevice->deviceNode() ) );
 
 
@@ -642,10 +638,8 @@ ChoicePage::setupActions( Device *currentDevice )
 
                 m_eraseButton->setText( tr( "<strong>Erase disk</strong><br/>"
                                             "This will <font color=\"red\">delete</font> all the data "
-                                            "currently present on %2 (if any), including programs, "
-                                            "documents, photos, music, and other files and install %1." )
-                                        .arg( Calamares::Branding::instance()->
-                                              string( Calamares::Branding::ShortVersionedName ) )
+                                            "currently present on %1 (if any), including programs, "
+                                            "documents, photos, music, and other files." )
                                         .arg( currentDevice->deviceNode() ) );
 
                 m_replaceButton->setText( tr( "<strong>Replace a partition</strong><br/>"
@@ -683,10 +677,8 @@ ChoicePage::setupActions( Device *currentDevice )
 
             m_eraseButton->setText( tr( "<strong>Erase disk</strong><br/>"
                                         "This will <font color=\"red\">delete</font> all the data "
-                                        "currently present on %2 (if any), including programs, "
-                                        "documents, photos, music, and other files and install %1." )
-                                    .arg( Calamares::Branding::instance()->
-                                          string( Calamares::Branding::ShortVersionedName ) )
+                                        "currently present on %1 (if any), including programs, "
+                                        "documents, photos, music, and other files." )
                                     .arg( currentDevice->deviceNode() ) );
 
             m_replaceButton->setText( tr( "<strong>Replace a partition</strong><br/>"
