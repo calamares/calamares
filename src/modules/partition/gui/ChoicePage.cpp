@@ -91,9 +91,9 @@ ChoicePage::ChoicePage( QWidget* parent )
     // Drive selector + preview
     CALAMARES_RETRANSLATE(
         retranslateUi( this );
-        m_drivesLabel->setText( tr( "Storage de&vice:" ) );
-        m_previewBeforeLabel->setText( tr( "Current state:" ) );
-        m_previewAfterLabel->setText(  tr( "Your changes:" ) );
+        m_drivesLabel->setText( tr( "Pick a storage de&vice:" ) );
+        m_previewBeforeLabel->setText( tr( "Before:" ) );
+        m_previewAfterLabel->setText(  tr( "After:" ) );
     )
 
     m_previewBeforeFrame->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Expanding );
