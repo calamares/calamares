@@ -164,6 +164,9 @@ PartitionModel::data( const QModelIndex& index, int role ) const
     case IsFreeSpaceRole:
         return KPMHelpers::isPartitionFreeSpace( partition );
 
+    case IsPartitionNewRole:
+        return KPMHelpers::isPartitionNew( partition );
+
     case FileSystemLabelRole:
         if ( partition->fileSystem().supportGetLabel() != FileSystem::cmdSupportNone &&
              !partition->fileSystem().label().isEmpty() )
