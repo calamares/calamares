@@ -205,7 +205,7 @@ PartitionLabelsView::drawLabels( QPainter* painter,
         if ( label_x + labelSize.width() > rect.width() ) //wrap to new line if overflow
         {
             label_x = rect.x();
-            label_y += labelSize.height();
+            label_y += labelSize.height() + labelSize.height() / 4;
         }
         drawLabel( painter, texts, labelColor, QPoint( label_x, label_y ) );
 
@@ -261,7 +261,8 @@ PartitionLabelsView::sizeForAllLabels( int maxLineWidth ) const
                             .height();
     }
 
-    int totalHeight = numLines * singleLabelHeight;
+    int totalHeight = numLines * singleLabelHeight +
+                      ( numLines - 1 ) * singleLabelHeight / 4; //spacings
 
     return QSize( maxLineWidth, totalHeight );
 }
