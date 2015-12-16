@@ -85,6 +85,8 @@ QList< Partition* > findPartitions( const QList< Device* >& devices,
 Partition* createNewPartition( PartitionNode* parent, const Device& device, const PartitionRole& role, FileSystem::Type fsType, qint64 firstSector, qint64 lastSector );
 
 Partition* clonePartition( Device* device, Partition* partition );
+
+QString prettyNameForFileSystemType( FileSystem::Type t );
 }
 
 #endif /* KPMHELPERS_H */

@@ -140,4 +140,48 @@ clonePartition( Device* device, Partition* partition )
                 );
 }
 
+
+QString
+prettyNameForFileSystemType( FileSystem::Type t )
+{
+    switch ( t )
+    {
+    case FileSystem::Unknown:
+        return QObject::tr( "unknown" );
+    case FileSystem::Extended:
+        return QObject::tr( "extended" );
+    case FileSystem::Unformatted:
+        return QObject::tr( "unformatted" );
+    case FileSystem::LinuxSwap:
+        return "swap";
+    case FileSystem::Fat16:
+    case FileSystem::Fat32:
+    case FileSystem::Ntfs:
+    case FileSystem::Xfs:
+    case FileSystem::Jfs:
+    case FileSystem::Hfs:
+    case FileSystem::Ufs:
+    case FileSystem::Hpfs:
+    case FileSystem::Luks:
+    case FileSystem::Ocfs2:
+    case FileSystem::Zfs:
+    case FileSystem::Nilfs2:
+        return FileSystem::nameForType( t ).toUpper();
+    case FileSystem::ReiserFS:
+        return "ReiserFS";
+    case FileSystem::Reiser4:
+        return "Reiser4";
+    case FileSystem::HfsPlus:
+        return "HFS+";
+    case FileSystem::Btrfs:
+        return "Btrfs";
+    case FileSystem::Exfat:
+        return "exFAT";
+    case FileSystem::Lvm2_PV:
+        return "LVM PV";
+    default:
+        return FileSystem::nameForType( t );
+    }
+}
+
 } // namespace
