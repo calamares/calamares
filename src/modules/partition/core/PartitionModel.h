@@ -71,6 +71,7 @@ public:
         IsFreeSpaceRole,
         IsPartitionNewRole,
         FileSystemLabelRole,
+        FileSystemTypeRole,
         OsproberNameRole,
         OsproberPathRole,
         OsproberCanBeResizedRole,
