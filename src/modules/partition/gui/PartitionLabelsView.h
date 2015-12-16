@@ -46,7 +46,7 @@ public:
     QRect visualRect( const QModelIndex& index ) const override;
     void scrollTo( const QModelIndex& index, ScrollHint hint = EnsureVisible ) override;
 
-    void setLabelsVisible( bool visible = true );
+    void setCustomNewRootLabel( const QString& text );
 
 protected:
     // QAbstractItemView API
@@ -67,6 +67,7 @@ private:
     void drawLabel( QPainter* painter, const QStringList& text, const QColor& color, const QPoint& pos );
     QModelIndexList getIndexesToDraw( const QModelIndex& parent ) const;
     QStringList buildTexts( const QModelIndex& index ) const;
+    QString m_customNewRootLabel;
 };
 
 #endif // PARTITIONLABELSVIEW_H

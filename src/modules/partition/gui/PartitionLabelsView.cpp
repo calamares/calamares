@@ -147,20 +147,22 @@ PartitionLabelsView::buildTexts( const QModelIndex& index ) const
                                             PartitionModel::MountPointColumn )
                                   .data().toString();
         if ( mountPoint == "/" )
-            firstLine = tr( "New root partition" );
+            firstLine = m_customNewRootLabel.isEmpty() ?
+                            tr( "Root" ) :
+                            m_customNewRootLabel;
         else if ( mountPoint == "/home" )
-            firstLine = tr( "New home partition" );
+            firstLine = tr( "Home" );
         else if ( mountPoint == "/boot" )
-            firstLine = tr( "New boot partition" );
+            firstLine = tr( "Boot" );
         else if ( mountPoint.contains( "/efi" ) &&
                   index.sibling( index.row(),
                                  PartitionModel::FileSystemColumn )
                        .data().toString() == "fat32" )
-            firstLine = tr( "New EFI system partition" );
+            firstLine = tr( "EFI system" );
         else if ( index.sibling( index.row(),
                                  PartitionModel::FileSystemColumn )
                        .data().toString() == "linuxswap" )
-            firstLine = tr( "New swap partition" );
+            firstLine = tr( "Swap" );
         else
             firstLine = tr( "New partition for %1" ).arg( mountPoint );
     }
@@ -351,6 +353,14 @@ PartitionLabelsView::verticalOffset() const
 void
 PartitionLabelsView::scrollTo( const QModelIndex& index, ScrollHint hint )
 {
+}
+
+
+void
+PartitionLabelsView::setCustomNewRootLabel( const QString& text )
+{
+    m_customNewRootLabel = text;
+    viewport()->repaint();
 }
 
 
