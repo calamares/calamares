@@ -497,6 +497,7 @@ ChoicePage::updateDeviceStatePreview( Device* currentDevice )
 
     preview->setModel( model );
     previewLabels->setModel( model );
+
     layout->addWidget( preview );
     layout->addWidget( previewLabels );
 }
@@ -547,6 +548,12 @@ ChoicePage::updateActionChoicePreview( Device* currentDevice, ChoicePage::Choice
             model->setParent( preview );
             preview->setModel( model );
             previewLabels->setModel( model );
+
+            // Make the bars and labels view use the same selectionModel.
+            auto sm = previewLabels->selectionModel();
+            previewLabels->setSelectionModel( preview->selectionModel() );
+            sm->deleteLater();
+
             layout->addWidget( preview );
             layout->addWidget( previewLabels );
 
