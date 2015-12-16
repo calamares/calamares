@@ -496,7 +496,9 @@ ChoicePage::updateDeviceStatePreview( Device* currentDevice )
     model->setParent( preview );
 
     preview->setModel( model );
+    preview->setSelectionMode( QAbstractItemView::NoSelection );
     previewLabels->setModel( model );
+    previewLabels->setSelectionMode( QAbstractItemView::NoSelection );
 
     layout->addWidget( preview );
     layout->addWidget( previewLabels );
@@ -553,6 +555,12 @@ ChoicePage::updateActionChoicePreview( Device* currentDevice, ChoicePage::Choice
             auto sm = previewLabels->selectionModel();
             previewLabels->setSelectionModel( preview->selectionModel() );
             sm->deleteLater();
+
+            if ( choice == Erase )
+            {
+                preview->setSelectionMode( QAbstractItemView::NoSelection );
+                previewLabels->setSelectionMode( QAbstractItemView::NoSelection );
+            }
 
             layout->addWidget( preview );
             layout->addWidget( previewLabels );
