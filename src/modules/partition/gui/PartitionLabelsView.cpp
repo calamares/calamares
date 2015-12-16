@@ -31,6 +31,7 @@
 #include <KFormat>
 
 // Qt
+#include <QMouseEvent>
 #include <QPainter>
 
 
@@ -38,6 +39,7 @@ static const int LAYOUT_MARGIN = 4;
 static const int LABEL_PARTITION_SQUARE_MARGIN =
         qMax( QFontMetrics( CalamaresUtils::defaultFont() ).ascent() - 2, 18 );
 static const int LABELS_MARGIN = LABEL_PARTITION_SQUARE_MARGIN;
+static const int CORNER_RADIUS = 2;
 
 
 QStringList
@@ -99,9 +101,16 @@ PartitionLabelsView::paintEvent( QPaintEvent* event )
     painter.fillRect( rect(), palette().window() );
     painter.setRenderHint( QPainter::Antialiasing );
 
-    QRect labelsRect = rect().adjusted( 0, LAYOUT_MARGIN, 0, 0 );
+    QRect lRect = labelsRect();
 
-    drawLabels( &painter, labelsRect, QModelIndex() );
+    drawLabels( &painter, lRect, QModelIndex() );
+}
+
+
+QRect
+PartitionLabelsView::labelsRect() const
+{
+    return rect().adjusted( 0, LAYOUT_MARGIN, 0, 0 );
 }
 
 
@@ -112,7 +121,21 @@ drawPartitionSquare( QPainter* painter, const QRect& rect, const QBrush& brush )
     painter->setRenderHint( QPainter::Antialiasing, true );
     painter->setPen( QPalette().shadow().color() );
     painter->translate( .5, .5 );
-    painter->drawRoundedRect( rect.adjusted( 0, 0, -1, -1 ), 2, 2 );
+    painter->drawRoundedRect( rect.adjusted( 0, 0, -1, -1 ), CORNER_RADIUS, CORNER_RADIUS );
+    painter->translate( -.5, -.5 );
+}
+
+
+static void
+drawSelectionSquare( QPainter* painter, const QRect& rect, const QBrush& brush )
+{
+    painter->setPen( QPen( brush.color().darker(), 1 ) );
+    QColor highlightColor = QPalette().highlight().color();
+    highlightColor = highlightColor.lighter( 500 );
+    highlightColor.setAlpha( 120 );
+    painter->setBrush( highlightColor );
+    painter->translate( .5, .5 );
+    painter->drawRoundedRect( rect.adjusted( 0, 0, -1, -1 ), CORNER_RADIUS, CORNER_RADIUS );
     painter->translate( -.5, -.5 );
 }
 
@@ -212,7 +235,33 @@ PartitionLabelsView::drawLabels( QPainter* painter,
             label_x = rect.x();
             label_y += labelSize.height() + labelSize.height() / 4;
         }
-        drawLabel( painter, texts, labelColor, QPoint( label_x, label_y ) );
+
+        // Draw hover
+        if ( selectionMode() != QAbstractItemView::NoSelection && // no hover without selection
+             m_hoveredIndex.isValid() &&
+             index == m_hoveredIndex )
+        {
+            painter->save();
+            QRect labelRect( QPoint( label_x, label_y ), labelSize );
+            labelRect.adjust( 0, -LAYOUT_MARGIN, 0, -2*LAYOUT_MARGIN );
+            painter->translate( 0.5, 0.5 );
+            QRect hoverRect = labelRect.adjusted( 0, 0, -1, -1 );
+            painter->setBrush( QPalette().background().color().lighter( 102 ) );
+            painter->setPen( Qt::NoPen );
+            painter->drawRoundedRect( hoverRect, CORNER_RADIUS, CORNER_RADIUS );
+
+            painter->translate( -0.5, -0.5 );
+            painter->restore();
+        }
+
+        // Is this element the selected one?
+        bool sel = selectionMode() != QAbstractItemView::NoSelection &&
+                   index.isValid() &&
+                   selectionModel() &&
+                   !selectionModel()->selectedIndexes().isEmpty() &&
+                   selectionModel()->selectedIndexes().first() == index;
+
+        drawLabel( painter, texts, labelColor, QPoint( label_x, label_y ), sel );
 
         label_x += labelSize.width() + LABELS_MARGIN;
     }
@@ -223,7 +272,7 @@ PartitionLabelsView::drawLabels( QPainter* painter,
         QStringList texts = buildUnknownDisklabelTexts( modl->device() );
         QSize labelSize = sizeForLabel( texts );
         QColor labelColor = ColorUtils::unknownDisklabelColor();
-        drawLabel( painter, texts, labelColor, QPoint( rect.x(), rect.y() ) );
+        drawLabel( painter, texts, labelColor, QPoint( rect.x(), rect.y() ), false /*can't be selected*/ );
     }
 }
 
@@ -294,7 +343,8 @@ void
 PartitionLabelsView::drawLabel( QPainter* painter,
                                 const QStringList& text,
                                 const QColor& color,
-                                const QPoint& pos )
+                                const QPoint& pos,
+                                bool selected )
 {
     painter->setPen( Qt::black );
     int vertOffset = 0;
@@ -309,11 +359,16 @@ PartitionLabelsView::drawLabel( QPainter* painter,
         painter->setPen( Qt::gray );
         width = qMax( width, textSize.width() );
     }
-    drawPartitionSquare( painter, QRect( pos.x(),
-                                         pos.y() - 3,
-                                         LABEL_PARTITION_SQUARE_MARGIN - 5,
-                                         LABEL_PARTITION_SQUARE_MARGIN - 5 ),
-                          color );
+
+    QRect partitionSquareRect( pos.x(),
+                               pos.y() - 3,
+                               LABEL_PARTITION_SQUARE_MARGIN - 5,
+                               LABEL_PARTITION_SQUARE_MARGIN - 5 );
+    drawPartitionSquare( painter, partitionSquareRect, color );
+
+    if ( selected )
+        drawSelectionSquare( painter, partitionSquareRect.adjusted( 2, 2, -2, -2 ), color );
+
     painter->setPen( Qt::black );
 }
 
@@ -321,13 +376,68 @@ PartitionLabelsView::drawLabel( QPainter* painter,
 QModelIndex
 PartitionLabelsView::indexAt( const QPoint& point ) const
 {
+    PartitionModel* modl = qobject_cast< PartitionModel* >( model() );
+    if ( !modl )
+        return QModelIndex();
+
+    QModelIndexList indexesToDraw = getIndexesToDraw( QModelIndex() );
+
+    QRect rect = this->rect();
+    int label_x = rect.x();
+    int label_y = rect.y();
+    foreach ( const QModelIndex& index, indexesToDraw )
+    {
+        QStringList texts = buildTexts( index );
+
+        QSize labelSize = sizeForLabel( texts );
+
+        if ( label_x + labelSize.width() > rect.width() ) //wrap to new line if overflow
+        {
+            label_x = rect.x();
+            label_y += labelSize.height() + labelSize.height() / 4;
+        }
+
+        QRect labelRect( QPoint( label_x, label_y ), labelSize );
+        if ( labelRect.contains( point ) )
+            return index;
+
+        label_x += labelSize.width() + LABELS_MARGIN;
+    }
+
     return QModelIndex();
 }
 
 
 QRect
-PartitionLabelsView::visualRect( const QModelIndex& index ) const
+PartitionLabelsView::visualRect( const QModelIndex& idx ) const
 {
+    PartitionModel* modl = qobject_cast< PartitionModel* >( model() );
+    if ( !modl )
+        return QRect();
+
+    QModelIndexList indexesToDraw = getIndexesToDraw( QModelIndex() );
+
+    QRect rect = this->rect();
+    int label_x = rect.x();
+    int label_y = rect.y();
+    foreach ( const QModelIndex& index, indexesToDraw )
+    {
+        QStringList texts = buildTexts( index );
+
+        QSize labelSize = sizeForLabel( texts );
+
+        if ( label_x + labelSize.width() > rect.width() ) //wrap to new line if overflow
+        {
+            label_x = rect.x();
+            label_y += labelSize.height() + labelSize.height() / 4;
+        }
+
+        if ( idx.isValid() && idx == index )
+            return QRect( QPoint( label_x, label_y ), labelSize );
+
+        label_x += labelSize.width() + LABELS_MARGIN;
+    }
+
     return QRect();
 }
 
@@ -356,6 +466,8 @@ PartitionLabelsView::verticalOffset() const
 void
 PartitionLabelsView::scrollTo( const QModelIndex& index, ScrollHint hint )
 {
+    Q_UNUSED( index )
+    Q_UNUSED( hint )
 }
 
 
@@ -384,6 +496,37 @@ PartitionLabelsView::isIndexHidden( const QModelIndex& index ) const
 void
 PartitionLabelsView::setSelection( const QRect& rect, QItemSelectionModel::SelectionFlags flags )
 {
+    selectionModel()->select( indexAt( rect.topLeft() ), flags );
+}
+
+
+void
+PartitionLabelsView::mouseMoveEvent( QMouseEvent* event )
+{
+    QModelIndex candidateIndex = indexAt( event->pos() );
+    QPersistentModelIndex oldHoveredIndex = m_hoveredIndex;
+    if ( candidateIndex.isValid() )
+    {
+        m_hoveredIndex = candidateIndex;
+    }
+    else
+        m_hoveredIndex = QModelIndex();
+
+    if ( oldHoveredIndex != m_hoveredIndex )
+    {
+        viewport()->repaint();
+    }
+}
+
+
+void
+PartitionLabelsView::leaveEvent( QEvent* event )
+{
+    if ( m_hoveredIndex.isValid() )
+    {
+        m_hoveredIndex = QModelIndex();
+        viewport()->repaint();
+    }
 }
 
 

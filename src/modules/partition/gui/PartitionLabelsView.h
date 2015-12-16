@@ -43,7 +43,7 @@ public:
 
     // QAbstractItemView API
     QModelIndex indexAt( const QPoint& point ) const override;
-    QRect visualRect( const QModelIndex& index ) const override;
+    QRect visualRect( const QModelIndex& idx ) const override;
     void scrollTo( const QModelIndex& index, ScrollHint hint = EnsureVisible ) override;
 
     void setCustomNewRootLabel( const QString& text );
@@ -57,17 +57,23 @@ protected:
     QModelIndex moveCursor( CursorAction cursorAction, Qt::KeyboardModifiers modifiers ) override;
     void setSelection( const QRect& rect, QItemSelectionModel::SelectionFlags flags ) override;
 
+    void mouseMoveEvent( QMouseEvent* event ) override;
+    void leaveEvent( QEvent* event ) override;
+
 protected slots:
     void updateGeometries() override;
 
 private:
+    QRect labelsRect() const;
     void drawLabels( QPainter* painter, const QRect& rect, const QModelIndex& parent );
     QSize sizeForAllLabels( int maxLineWidth ) const;
     QSize sizeForLabel( const QStringList& text ) const;
-    void drawLabel( QPainter* painter, const QStringList& text, const QColor& color, const QPoint& pos );
+    void drawLabel( QPainter* painter, const QStringList& text, const QColor& color,
+                    const QPoint& pos , bool selected );
     QModelIndexList getIndexesToDraw( const QModelIndex& parent ) const;
     QStringList buildTexts( const QModelIndex& index ) const;
     QString m_customNewRootLabel;
+    QPersistentModelIndex m_hoveredIndex;
 };
 
 #endif // PARTITIONLABELSVIEW_H
