@@ -537,7 +537,7 @@ ChoicePage::updateActionChoicePreview( Device* currentDevice, ChoicePage::Choice
             PartitionBarsView* preview = new PartitionBarsView( m_previewAfterFrame );
             PartitionLabelsView* previewLabels = new PartitionLabelsView( m_previewAfterFrame );
             previewLabels->setCustomNewRootLabel( Calamares::Branding::instance()->
-                                                  string( Calamares::Branding::ShortProductName ) );
+                                                  string( Calamares::Branding::BootloaderEntryName ) );
 
             PartitionModel* model = new PartitionModel( preview );
             model->init( currentDevice, m_core->osproberEntries() );
