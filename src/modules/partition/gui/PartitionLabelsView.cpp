@@ -26,6 +26,7 @@
 #include <utils/Logger.h>
 
 #include <kpmcore/core/device.h>
+#include <kpmcore/fs/filesystem.h>
 
 #include <KFormat>
 
@@ -155,13 +156,9 @@ PartitionLabelsView::buildTexts( const QModelIndex& index ) const
         else if ( mountPoint == "/boot" )
             firstLine = tr( "Boot" );
         else if ( mountPoint.contains( "/efi" ) &&
-                  index.sibling( index.row(),
-                                 PartitionModel::FileSystemColumn )
-                       .data().toString() == "fat32" )
+                  index.data( PartitionModel::FileSystemTypeRole ).toInt() == FileSystem::Fat32 )
             firstLine = tr( "EFI system" );
-        else if ( index.sibling( index.row(),
-                                 PartitionModel::FileSystemColumn )
-                       .data().toString() == "linuxswap" )
+        else if ( index.data( PartitionModel::FileSystemTypeRole ).toInt() == FileSystem::LinuxSwap )
             firstLine = tr( "Swap" );
         else
             firstLine = tr( "New partition for %1" ).arg( mountPoint );
@@ -171,13 +168,19 @@ PartitionLabelsView::buildTexts( const QModelIndex& index ) const
     else
         firstLine = index.data( PartitionModel::OsproberNameRole ).toString();
 
-    secondLine = tr( "%1  %2" )
-                 .arg( index.sibling( index.row(),
-                                      PartitionModel::SizeColumn )
-                            .data().toString() )
-                 .arg( index.sibling( index.row(),
-                                      PartitionModel::FileSystemColumn )
-                            .data().toString() );
+    if ( index.data( PartitionModel::IsFreeSpaceRole ).toBool() ||
+         index.data( PartitionModel::FileSystemTypeRole ).toInt() == FileSystem::Extended )
+        secondLine = index.sibling( index.row(),
+                                    PartitionModel::SizeColumn )
+                          .data().toString();
+    else
+        secondLine = tr( "%1  %2" )
+                     .arg( index.sibling( index.row(),
+                                          PartitionModel::SizeColumn )
+                                .data().toString() )
+                     .arg( index.sibling( index.row(),
+                                          PartitionModel::FileSystemColumn )
+                                .data().toString() );
 
     return { firstLine, secondLine };
 }
