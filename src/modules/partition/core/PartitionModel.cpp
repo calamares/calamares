@@ -143,7 +143,7 @@ PartitionModel::data( const QModelIndex& index, int role ) const
             }
         }
         if ( col == FileSystemColumn )
-            return partition->fileSystem().name();
+            return KPMHelpers::prettyNameForFileSystemType( partition->fileSystem().type() );
         if ( col == MountPointColumn )
             return PartitionInfo::mountPoint( partition );
         if ( col == SizeColumn )
@@ -172,6 +172,9 @@ PartitionModel::data( const QModelIndex& index, int role ) const
              !partition->fileSystem().label().isEmpty() )
             return partition->fileSystem().label();
         return QVariant();
+
+    case FileSystemTypeRole:
+        return partition->fileSystem().type();
 
     // Osprober roles:
     case OsproberNameRole:
