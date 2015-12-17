@@ -129,6 +129,7 @@ drawPartitionSquare( QPainter* painter, const QRect& rect, const QBrush& brush )
 static void
 drawSelectionSquare( QPainter* painter, const QRect& rect, const QBrush& brush )
 {
+    painter->save();
     painter->setPen( QPen( brush.color().darker(), 1 ) );
     QColor highlightColor = QPalette().highlight().color();
     highlightColor = highlightColor.lighter( 500 );
@@ -137,6 +138,7 @@ drawSelectionSquare( QPainter* painter, const QRect& rect, const QBrush& brush )
     painter->translate( .5, .5 );
     painter->drawRoundedRect( rect.adjusted( 0, 0, -1, -1 ), CORNER_RADIUS, CORNER_RADIUS );
     painter->translate( -.5, -.5 );
+    painter->restore();
 }
 
 
