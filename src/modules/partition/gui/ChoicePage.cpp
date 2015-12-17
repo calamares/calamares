@@ -574,8 +574,7 @@ ChoicePage::updateActionChoicePreview( ChoicePage::Choice choice )
             previewLabels->setCustomNewRootLabel( Calamares::Branding::instance()->
                                                   string( Calamares::Branding::BootloaderEntryName ) );
 
-            PartitionModel* model = new PartitionModel( preview );
-            model->init( currentDevice, m_core->osproberEntries() );
+            PartitionModel* model = m_core->partitionModelForDevice( selectedDevice() );
 
             // The QObject parents tree is meaningful for memory management here,
             // see qDeleteAll above.
