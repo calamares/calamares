@@ -94,6 +94,7 @@ public:
     QList< Partition* > efiSystemPartitions() const;
 
     void revert();
+    void revertDevice( Device* dev );
 
     void clearJobs();
 
