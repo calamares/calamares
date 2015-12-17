@@ -360,30 +360,8 @@ ExpandableRadioButton*
 ChoicePage::createReplaceButton()
 {
     ExpandableRadioButton* replaceButton = new ExpandableRadioButton;
-    QWidget* replaceContainer = new QWidget;
-    QVBoxLayout* mainReplaceLayout = new QVBoxLayout;
-    replaceContainer->setLayout( mainReplaceLayout );
-    CalamaresUtils::unmarginLayout( mainReplaceLayout );
-    ReplaceWidget* replaceWidget = new ReplaceWidget( m_core, m_drivesCombo );
-    mainReplaceLayout->addWidget( replaceWidget );
-
-    if ( !m_isEfi )
-    {
-        QHBoxLayout* bootloaderLayout = new QHBoxLayout;
-        bootloaderLayout->setContentsMargins( 0, 0, 0, 0 );
-        QLabel* eraseBootloaderLabel = new QLabel( replaceButton );
-        bootloaderLayout->addWidget( eraseBootloaderLabel );
-        eraseBootloaderLabel->setText( tr( "Boot loader location:" ) );
-
-        QComboBox* eraseBootloaderCombo = createBootloaderComboBox( replaceButton );
-        bootloaderLayout->addWidget( eraseBootloaderCombo );
-        eraseBootloaderLabel->setBuddy( eraseBootloaderCombo );
-        bootloaderLayout->addStretch();
-
-        mainReplaceLayout->addLayout( bootloaderLayout );
-    }
-
-    replaceButton->setExpandableWidget( replaceContainer );
+    replaceButton->setExpandableWidget(
+                new QLabel( tr( "Select which OS to replace below." ) ) );
 
     return replaceButton;
 }
@@ -452,6 +430,7 @@ ChoicePage::applyActionChoice( Device* currentDevice, ChoicePage::Choice choice 
         PartitionActions::doAutopartition( m_core, selectedDevice() );
         break;
     case Replace:
+
     case NoChoice:
     case Manual:
         break;
