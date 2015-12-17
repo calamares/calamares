@@ -90,6 +90,7 @@ DeviceModel::data( const QModelIndex& index, int role ) const
     }
 }
 
+
 Device*
 DeviceModel::deviceForIndex( const QModelIndex& index ) const
 {
@@ -97,4 +98,21 @@ DeviceModel::deviceForIndex( const QModelIndex& index ) const
     if ( row < 0 || row >= m_devices.count() )
         return nullptr;
     return m_devices.at( row );
+}
+
+
+void
+DeviceModel::swapDevice( Device* oldDevice, Device* newDevice )
+{
+    Q_ASSERT( oldDevice );
+    Q_ASSERT( newDevice );
+    Q_ASSERT( oldDevice->deviceNode() == newDevice->deviceNode() );
+
+    int indexOfOldDevice = m_devices.indexOf( oldDevice );
+    if ( indexOfOldDevice < 0 )
+        return;
+
+    m_devices[ indexOfOldDevice ] = newDevice;
+
+    emit dataChanged( index( indexOfOldDevice ), index( indexOfOldDevice ) );
 }
