@@ -578,7 +578,6 @@ ChoicePage::updateActionChoicePreview( ChoicePage::Choice choice )
 
             // The QObject parents tree is meaningful for memory management here,
             // see qDeleteAll above.
-            model->setParent( preview );
             preview->setModel( model );
             previewLabels->setModel( model );
             preview->setSelectionMode( QAbstractItemView::NoSelection );
