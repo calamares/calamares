@@ -30,6 +30,7 @@
  */
 class PartitionBarsView : public QAbstractItemView
 {
+    Q_OBJECT
 public:
     explicit PartitionBarsView( QWidget* parent = nullptr );
     virtual ~PartitionBarsView();
