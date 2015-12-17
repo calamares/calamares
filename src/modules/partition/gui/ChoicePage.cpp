@@ -36,6 +36,7 @@
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
 #include "Branding.h"
+#include "core/KPMHelpers.h"
 
 #include <kpmcore/core/device.h>
 
@@ -438,9 +439,15 @@ ChoicePage::applyActionChoice( Device* currentDevice, ChoicePage::Choice choice 
             if ( m_core->isDirty() )
                 m_core->clearJobs();
 
-            PartitionActions::doReplacePartition( m_core,
-                                                  selectedDevice(),
-                                                  ( Partition* )( current.data( PartitionModel::PartitionPtrRole ).value< void* >() ) );
+            // We can't use the PartitionPtrRole because we need to make changes to the
+            // main DeviceModel, not the immutable copy.
+            QString partPath = current.data( PartitionModel::PartitionPathRole ).toString();
+            Partition* partition = KPMHelpers::findPartitionByPath( { selectedDevice() },
+                                                                    partPath );
+            if ( partition )
+                PartitionActions::doReplacePartition( m_core,
+                                                      selectedDevice(),
+                                                      partition );
         } );
 
     case NoChoice:
