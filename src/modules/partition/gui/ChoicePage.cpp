@@ -67,6 +67,8 @@ ChoicePage::ChoicePage( QWidget* parent )
     , m_deviceInfoWidget( nullptr )
     , m_lastSelectedDeviceIndex( -1 )
     , m_isEfi( false )
+    , m_beforePartitionBarsView( nullptr )
+    , m_beforePartitionLabelsView( nullptr )
 {
     setupUi( this );
 
@@ -430,6 +432,16 @@ ChoicePage::applyActionChoice( Device* currentDevice, ChoicePage::Choice choice 
         PartitionActions::doAutopartition( m_core, selectedDevice() );
         break;
     case Replace:
+        connect( m_beforePartitionBarsView->selectionModel(), &QItemSelectionModel::currentRowChanged,
+                 this, [ this ]( const QModelIndex& current, const QModelIndex& previous )
+        {
+            if ( m_core->isDirty() )
+                m_core->clearJobs();
+
+            PartitionActions::doReplacePartition( m_core,
+                                                  selectedDevice(),
+                                                  ( Partition* )( current.data( PartitionModel::PartitionPtrRole ).value< void* >() ) );
+        } );
 
     case NoChoice:
     case Manual:
@@ -461,41 +473,41 @@ ChoicePage::updateDeviceStatePreview( Device* currentDevice )
     CalamaresUtils::unmarginLayout( layout );
     layout->setSpacing( 6 );
 
-    PartitionBarsView* preview = new PartitionBarsView( m_previewBeforeFrame );
-    PartitionLabelsView* previewLabels = new PartitionLabelsView( m_previewBeforeFrame );
+    m_beforePartitionBarsView = new PartitionBarsView( m_previewBeforeFrame );
+    m_beforePartitionLabelsView = new PartitionLabelsView( m_previewBeforeFrame );
 
     Device* deviceBefore = m_core->createImmutableDeviceCopy( currentDevice );
 
-    PartitionModel* model = new PartitionModel( preview );
+    PartitionModel* model = new PartitionModel( m_beforePartitionBarsView );
     model->init( deviceBefore, m_core->osproberEntries() );
 
     // The QObject parents tree is meaningful for memory management here,
     // see qDeleteAll above.
     deviceBefore->setParent( model );
-    model->setParent( preview );
+    model->setParent( m_beforePartitionBarsView );
 
-    preview->setModel( model );
-    previewLabels->setModel( model );
+    m_beforePartitionBarsView->setModel( model );
+    m_beforePartitionLabelsView->setModel( model );
 
     // Make the bars and labels view use the same selectionModel.
-    auto sm = previewLabels->selectionModel();
-    previewLabels->setSelectionModel( preview->selectionModel() );
+    auto sm = m_beforePartitionLabelsView->selectionModel();
+    m_beforePartitionLabelsView->setSelectionModel( m_beforePartitionBarsView->selectionModel() );
     sm->deleteLater();
 
     switch ( m_choice )
     {
     case Replace:
     case Alongside:
-        preview->setSelectionMode( QAbstractItemView::SingleSelection );
-        previewLabels->setSelectionMode( QAbstractItemView::SingleSelection );
+        m_beforePartitionBarsView->setSelectionMode( QAbstractItemView::SingleSelection );
+        m_beforePartitionLabelsView->setSelectionMode( QAbstractItemView::SingleSelection );
         break;
     default:
-        preview->setSelectionMode( QAbstractItemView::NoSelection );
-        previewLabels->setSelectionMode( QAbstractItemView::NoSelection );
+        m_beforePartitionBarsView->setSelectionMode( QAbstractItemView::NoSelection );
+        m_beforePartitionLabelsView->setSelectionMode( QAbstractItemView::NoSelection );
     }
 
-    layout->addWidget( preview );
-    layout->addWidget( previewLabels );
+    layout->addWidget( m_beforePartitionBarsView );
+    layout->addWidget( m_beforePartitionLabelsView );
 }
 
 

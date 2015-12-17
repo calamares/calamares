@@ -26,6 +26,7 @@
 #include "core/OsproberEntry.h"
 
 #include <QMutex>
+#include <QPointer>
 
 class QBoxLayout;
 class QComboBox;
@@ -33,6 +34,8 @@ class QLabel;
 class QListView;
 
 class ExpandableRadioButton;
+class PartitionBarsView;
+class PartitionLabelsView;
 class PartitionCoreModule;
 class PrettyRadioButton;
 class DeviceInfoWidget;
@@ -96,6 +99,9 @@ private:
     PrettyRadioButton* m_somethingElseButton;
 
     DeviceInfoWidget* m_deviceInfoWidget;
+
+    QPointer< PartitionBarsView > m_beforePartitionBarsView;
+    QPointer< PartitionLabelsView > m_beforePartitionLabelsView;
 
     int m_lastSelectedDeviceIndex;
 };
