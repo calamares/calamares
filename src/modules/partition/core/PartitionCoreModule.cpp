@@ -501,6 +501,30 @@ PartitionCoreModule::revert()
 
 
 void
+PartitionCoreModule::revertDevice( Device* dev )
+{
+    DeviceInfo* devInfo = infoForDevice( dev );
+    if ( !devInfo )
+        return;
+    devInfo->forgetChanges();
+    CoreBackend* backend = CoreBackendManager::self()->backend();
+    Device *newDev = backend->scanDevice( devInfo->device->deviceNode() );
+    devInfo->device.reset( newDev );
+    m_deviceModel->swapDevice( dev, newDev );
+
+    QList< Device* > devices;
+    foreach ( auto info, m_deviceInfos )
+        devices.append( info->device.data() );
+
+    m_bootLoaderModel->init( devices );
+
+    devInfo->partitionModel->init( newDev, m_osproberLines );
+
+    updateIsDirty();
+}
+
+
+void
 PartitionCoreModule::clearJobs()
 {
     foreach ( DeviceInfo* deviceInfo, m_deviceInfos )
