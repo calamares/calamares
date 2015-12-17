@@ -51,6 +51,8 @@ public:
 
     QVariant data( const QModelIndex& index, int role = Qt::DisplayRole ) const override;
 
+    void swapDevice( Device* oldDevice, Device* newDevice );
+
 private:
     QList< Device* > m_devices;
 
