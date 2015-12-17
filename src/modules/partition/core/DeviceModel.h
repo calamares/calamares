@@ -46,6 +46,8 @@ public:
 
     Device* deviceForIndex( const QModelIndex& index ) const;
 
+    void swapDevice( Device* oldDevice, Device* newDevice );
+
 private:
     QList< Device* > m_devices;
 };
