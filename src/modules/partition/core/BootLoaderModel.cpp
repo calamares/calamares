@@ -128,19 +128,3 @@ BootLoaderModel::data( const QModelIndex& index, int role ) const
     }
     return QStandardItemModel::data( index, role );
 }
-
-
-void
-BootLoaderModel::swapDevice( Device* oldDevice, Device* newDevice )
-{
-    Q_ASSERT( oldDevice );
-    Q_ASSERT( newDevice );
-    Q_ASSERT( oldDevice->deviceNode() == newDevice->deviceNode() );
-
-    int indexOfOldDevice = m_devices.indexOf( oldDevice );
-    if ( indexOfOldDevice < 0 )
-        return;
-
-    m_devices[ indexOfOldDevice ] = newDevice;
-}
-
