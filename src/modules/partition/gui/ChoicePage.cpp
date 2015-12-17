@@ -277,8 +277,8 @@ ChoicePage::setupChoices()
         Device* currd = selectedDevice();
         if ( currd )
         {
-            applyActionChoice( currd, currentChoice() );
-            updateActionChoicePreview( currd, currentChoice() );
+            applyActionChoice( currentChoice() );
+            updateActionChoicePreview( currentChoice() );
         }
     } );
 }
@@ -302,8 +302,9 @@ ChoicePage::createBootloaderComboBox( ExpandableRadioButton* parentButton )
 
     // If the user picks a new device, we update the bootloader choice to that
     // same device automatically.
-    auto updateBootloaderDevice = [bcb]( Device* currd )
+    auto updateBootloaderDevice = [bcb, this]()
     {
+        Device* currd = selectedDevice();
         if ( !currd )
             return;
         QString devPath = currd->deviceNode();
@@ -325,7 +326,7 @@ ChoicePage::createBootloaderComboBox( ExpandableRadioButton* parentButton )
              this, [=]( bool expanded )
     {
         if ( expanded )
-            updateBootloaderDevice( selectedDevice() );
+            updateBootloaderDevice();
     }, Qt::QueuedConnection );
     // ^ Must be Queued so it's sure to run when the widget is already visible.
 
@@ -398,10 +399,17 @@ ChoicePage::selectedDevice()
 void
 ChoicePage::applyDeviceChoice()
 {
-    Device* currd = selectedDevice();
+    if ( !selectedDevice() )
+        return;
 
     if ( m_core->isDirty() )
+    {
+        m_core->revertDevice( selectedDevice() );
         m_core->clearJobs();
+    }
+
+    Device* currd = selectedDevice();
+
 
     // The device should only be nullptr immediately after a PCM reset.
     // applyDeviceChoice() will be called again momentarily as soon as we handle the
@@ -409,35 +417,43 @@ ChoicePage::applyDeviceChoice()
     if ( !currd )
         return;
 
-    updateDeviceStatePreview( currd );
+    updateDeviceStatePreview();
     // Preview setup done. Now we show/hide choices as needed.
 
-    setupActions( currd );
+    setupActions();
 
     m_lastSelectedDeviceIndex = m_drivesCombo->currentIndex();
 
     emit actionChosen();
-    emit deviceChosen( currd );
+    emit deviceChosen();
 }
 
 
 void
-ChoicePage::applyActionChoice( Device* currentDevice, ChoicePage::Choice choice )
+ChoicePage::applyActionChoice( ChoicePage::Choice choice )
 {
     switch ( choice )
     {
     case Erase:
         if ( m_core->isDirty() )
+        {
+            m_core->revertDevice( selectedDevice() );
             m_core->clearJobs();
+        }
 
         PartitionActions::doAutopartition( m_core, selectedDevice() );
         break;
     case Replace:
+        if ( m_core->isDirty() )
+        {
+            m_core->revertDevice( selectedDevice() );
+            m_core->clearJobs();
+        }
+
         connect( m_beforePartitionBarsView->selectionModel(), &QItemSelectionModel::currentRowChanged,
                  this, [ this ]( const QModelIndex& current, const QModelIndex& previous )
         {
-            if ( m_core->isDirty() )
-                m_core->clearJobs();
+            m_core->revertDevice( selectedDevice() );
 
             // We can't use the PartitionPtrRole because we need to make changes to the
             // main DeviceModel, not the immutable copy.
@@ -464,10 +480,11 @@ ChoicePage::applyActionChoice( Device* currentDevice, ChoicePage::Choice choice 
  * @param currentDevice a pointer to the selected Device.
  */
 void
-ChoicePage::updateDeviceStatePreview( Device* currentDevice )
+ChoicePage::updateDeviceStatePreview()
 {
     //FIXME: this needs to be made async because the rescan can block the UI thread for
     //       a while. --Teo 10/2015
+    Device* currentDevice = selectedDevice();
     Q_ASSERT( currentDevice );
     QMutexLocker locker( &m_previewsMutex );
 
@@ -526,8 +543,9 @@ ChoicePage::updateDeviceStatePreview( Device* currentDevice )
  * @param choice the chosen partitioning action.
  */
 void
-ChoicePage::updateActionChoicePreview( Device* currentDevice, ChoicePage::Choice choice )
+ChoicePage::updateActionChoicePreview( ChoicePage::Choice choice )
 {
+    Device* currentDevice = selectedDevice();
     Q_ASSERT( currentDevice );
 
     QMutexLocker locker( &m_previewsMutex );
@@ -610,8 +628,9 @@ ChoicePage::updateActionChoicePreview( Device* currentDevice, ChoicePage::Choice
  * @param currentDevice
  */
 void
-ChoicePage::setupActions( Device *currentDevice )
+ChoicePage::setupActions()
 {
+    Device* currentDevice = selectedDevice();
     OsproberEntryList osproberEntriesForCurrentDevice =
             getOsproberEntriesForDevice( currentDevice );
 
