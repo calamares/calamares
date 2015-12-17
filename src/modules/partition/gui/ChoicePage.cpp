@@ -496,9 +496,24 @@ ChoicePage::updateDeviceStatePreview( Device* currentDevice )
     model->setParent( preview );
 
     preview->setModel( model );
-    preview->setSelectionMode( QAbstractItemView::NoSelection );
     previewLabels->setModel( model );
-    previewLabels->setSelectionMode( QAbstractItemView::NoSelection );
+
+    // Make the bars and labels view use the same selectionModel.
+    auto sm = previewLabels->selectionModel();
+    previewLabels->setSelectionModel( preview->selectionModel() );
+    sm->deleteLater();
+
+    switch ( m_choice )
+    {
+    case Replace:
+    case Alongside:
+        preview->setSelectionMode( QAbstractItemView::SingleSelection );
+        previewLabels->setSelectionMode( QAbstractItemView::SingleSelection );
+        break;
+    default:
+        preview->setSelectionMode( QAbstractItemView::NoSelection );
+        previewLabels->setSelectionMode( QAbstractItemView::NoSelection );
+    }
 
     layout->addWidget( preview );
     layout->addWidget( previewLabels );
@@ -516,6 +531,7 @@ void
 ChoicePage::updateActionChoicePreview( Device* currentDevice, ChoicePage::Choice choice )
 {
     Q_ASSERT( currentDevice );
+
     QMutexLocker locker( &m_previewsMutex );
 
     cDebug() << "Updating partitioning preview widgets.";
@@ -550,17 +566,8 @@ ChoicePage::updateActionChoicePreview( Device* currentDevice, ChoicePage::Choice
             model->setParent( preview );
             preview->setModel( model );
             previewLabels->setModel( model );
-
-            // Make the bars and labels view use the same selectionModel.
-            auto sm = previewLabels->selectionModel();
-            previewLabels->setSelectionModel( preview->selectionModel() );
-            sm->deleteLater();
-
-            if ( choice == Erase )
-            {
-                preview->setSelectionMode( QAbstractItemView::NoSelection );
-                previewLabels->setSelectionMode( QAbstractItemView::NoSelection );
-            }
+            preview->setSelectionMode( QAbstractItemView::NoSelection );
+            previewLabels->setSelectionMode( QAbstractItemView::NoSelection );
 
             layout->addWidget( preview );
             layout->addWidget( previewLabels );
@@ -572,6 +579,28 @@ ChoicePage::updateActionChoicePreview( Device* currentDevice, ChoicePage::Choice
     case Manual:
         m_previewAfterFrame->hide();
         break;
+    }
+
+    // Also handle selection behavior on beforeFrame.
+    QAbstractItemView::SelectionMode previewSelectionMode;
+    switch ( m_choice )
+    {
+    case Replace:
+    case Alongside:
+        previewSelectionMode = QAbstractItemView::SingleSelection;
+        break;
+    default:
+        previewSelectionMode = QAbstractItemView::NoSelection;
+    }
+
+    foreach ( QObject* child, m_previewBeforeFrame->children() )
+    {
+        PartitionBarsView* pbv = qobject_cast< PartitionBarsView* >( child );
+        if ( pbv )
+            pbv->setSelectionMode( previewSelectionMode );
+        PartitionLabelsView* plv = qobject_cast< PartitionLabelsView* >( child );
+        if ( plv )
+            plv->setSelectionMode( previewSelectionMode );
     }
 }
 
