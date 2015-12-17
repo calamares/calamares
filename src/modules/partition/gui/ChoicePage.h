@@ -67,7 +67,7 @@ public:
 signals:
     void nextStatusChanged( bool );
     void actionChosen();
-    void deviceChosen( Device* );
+    void deviceChosen();
 
 private:
     void setNextEnabled( bool enabled );
@@ -77,10 +77,10 @@ private:
     ExpandableRadioButton* createReplaceButton();
     Device* selectedDevice();
     void applyDeviceChoice();
-    void updateDeviceStatePreview( Device* currentDevice );
-    void applyActionChoice( Device* currentDevice, ChoicePage::Choice choice );
-    void updateActionChoicePreview( Device* currentDevice, ChoicePage::Choice choice );
-    void setupActions( Device* currentDevice );
+    void updateDeviceStatePreview();
+    void applyActionChoice( ChoicePage::Choice choice );
+    void updateActionChoicePreview( ChoicePage::Choice choice );
+    void setupActions();
     OsproberEntryList getOsproberEntriesForDevice( Device* device ) const;
 
     bool m_nextEnabled;
