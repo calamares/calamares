@@ -510,6 +510,8 @@ PartitionCoreModule::revertDevice( Device* dev )
     CoreBackend* backend = CoreBackendManager::self()->backend();
     Device *newDev = backend->scanDevice( devInfo->device->deviceNode() );
     devInfo->device.reset( newDev );
+    devInfo->partitionModel->init( newDev, m_osproberLines );
+
     m_deviceModel->swapDevice( dev, newDev );
 
     QList< Device* > devices;
@@ -517,8 +519,6 @@ PartitionCoreModule::revertDevice( Device* dev )
         devices.append( info->device.data() );
 
     m_bootLoaderModel->init( devices );
-
-    devInfo->partitionModel->init( newDev, m_osproberLines );
 
     updateIsDirty();
 }
