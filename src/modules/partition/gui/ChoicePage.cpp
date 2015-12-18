@@ -453,7 +453,8 @@ ChoicePage::applyActionChoice( ChoicePage::Choice choice )
         connect( m_beforePartitionBarsView->selectionModel(), &QItemSelectionModel::currentRowChanged,
                  this, [ this ]( const QModelIndex& current, const QModelIndex& previous )
         {
-            m_core->revertDevice( selectedDevice() );
+            if ( m_core->isDirty() )
+                m_core->clearJobs();
 
             // We can't use the PartitionPtrRole because we need to make changes to the
             // main DeviceModel, not the immutable copy.
@@ -465,7 +466,7 @@ ChoicePage::applyActionChoice( ChoicePage::Choice choice )
                                                       selectedDevice(),
                                                       partition );
         } );
-
+        break;
     case NoChoice:
     case Manual:
         break;
