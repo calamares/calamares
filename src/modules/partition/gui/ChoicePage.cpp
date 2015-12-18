@@ -453,23 +453,21 @@ ChoicePage::applyActionChoice( ChoicePage::Choice choice )
         connect( m_beforePartitionBarsView->selectionModel(), &QItemSelectionModel::currentRowChanged,
                  this, [ this ]( const QModelIndex& current, const QModelIndex& previous )
         {
-            cDebug() << Q_FUNC_INFO;
-            cDebug() << "lambda in applyActionChoice for Replace, on selection changed.";
             if ( m_core->isDirty() )
+            {
+                m_core->revertDevice( selectedDevice() );
                 m_core->clearJobs();
+            }
 
             // We can't use the PartitionPtrRole because we need to make changes to the
             // main DeviceModel, not the immutable copy.
             QString partPath = current.data( PartitionModel::PartitionPathRole ).toString();
             Partition* partition = KPMHelpers::findPartitionByPath( { selectedDevice() },
                                                                     partPath );
-            cDebug() << "partPath is" << partPath;
             if ( partition )
                 PartitionActions::doReplacePartition( m_core,
                                                       selectedDevice(),
                                                       partition );
-            else
-                cDebug() << "Partition is nullptr!";
         } );
         break;
     case NoChoice:
