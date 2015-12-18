@@ -177,7 +177,7 @@ PartitionModel::data( const QModelIndex& index, int role ) const
         return partition->fileSystem().type();
 
     case PartitionPathRole:
-        return partition->devicePath();
+        return partition->partitionPath();
 
     case PartitionPtrRole:
         return qVariantFromValue( (void*)partition );
