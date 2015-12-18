@@ -465,6 +465,7 @@ ChoicePage::applyActionChoice( ChoicePage::Choice choice )
                 PartitionActions::doReplacePartition( m_core,
                                                       selectedDevice(),
                                                       partition );
+            updateActionChoicePreview( Replace );
         } );
         break;
     case NoChoice:
