@@ -453,6 +453,8 @@ ChoicePage::applyActionChoice( ChoicePage::Choice choice )
         connect( m_beforePartitionBarsView->selectionModel(), &QItemSelectionModel::currentRowChanged,
                  this, [ this ]( const QModelIndex& current, const QModelIndex& previous )
         {
+            cDebug() << Q_FUNC_INFO;
+            cDebug() << "lambda in applyActionChoice for Replace, on selection changed.";
             if ( m_core->isDirty() )
                 m_core->clearJobs();
 
@@ -461,10 +463,13 @@ ChoicePage::applyActionChoice( ChoicePage::Choice choice )
             QString partPath = current.data( PartitionModel::PartitionPathRole ).toString();
             Partition* partition = KPMHelpers::findPartitionByPath( { selectedDevice() },
                                                                     partPath );
+            cDebug() << "partPath is" << partPath;
             if ( partition )
                 PartitionActions::doReplacePartition( m_core,
                                                       selectedDevice(),
                                                       partition );
+            else
+                cDebug() << "Partition is nullptr!";
         } );
         break;
     case NoChoice:
