@@ -75,6 +75,7 @@ PartitionCoreModule::DeviceInfo::forgetChanges()
     jobs.clear();
     for ( auto it = PartitionIterator::begin( device.data() ); it != PartitionIterator::end( device.data() ); ++it )
         PartitionInfo::reset( *it );
+    partitionModel->revert();
 }
 
 
