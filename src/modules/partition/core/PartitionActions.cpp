@@ -200,6 +200,7 @@ doAutopartition( PartitionCoreModule* core, Device* dev )
 void
 doReplacePartition( PartitionCoreModule* core, Device* dev, Partition* partition )
 {
+    cDebug() << "doReplacePartition for device" << partition->partitionPath();
     Partition* newPartition = KPMHelpers::createNewPartition(
                                   partition->parent(),
                                   *dev,
