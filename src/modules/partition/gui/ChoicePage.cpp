@@ -685,7 +685,9 @@ ChoicePage::setupActions()
 
 
                 m_replaceButton->setText( tr( "<strong>Replace a partition</strong><br/>"
-                                              "You will be offered a choice of which partition to erase." ) );
+                                              "Replaces a partition with %1." )
+                                          .arg( Calamares::Branding::instance()->
+                                                string( Calamares::Branding::ShortVersionedName ) ) );
             )
         }
         else
@@ -708,7 +710,9 @@ ChoicePage::setupActions()
                                         .arg( currentDevice->deviceNode() ) );
 
                 m_replaceButton->setText( tr( "<strong>Replace a partition</strong><br/>"
-                                              "You will be offered a choice of which partition to erase." ) );
+                                              "Replaces a partition with %1." )
+                                          .arg( Calamares::Branding::instance()->
+                                                string( Calamares::Branding::ShortVersionedName ) ) );
             )
         }
         if ( !osproberEntriesForCurrentDevice.first().canBeResized )
@@ -747,7 +751,9 @@ ChoicePage::setupActions()
                                     .arg( currentDevice->deviceNode() ) );
 
             m_replaceButton->setText( tr( "<strong>Replace a partition</strong><br/>"
-                                          "You will be offered a choice of which partition to erase." ) );
+                                          "Replaces a partition with %1." )
+                                      .arg( Calamares::Branding::instance()->
+                                            string( Calamares::Branding::ShortVersionedName ) ) );
         )
 
         if ( !atLeastOneCanBeResized )
