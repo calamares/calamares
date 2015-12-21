@@ -650,10 +650,8 @@ ChoicePage::setupActions()
                                          "before any change is made to the storage device." ) );
 
             m_eraseButton->setText( tr( "<strong>Erase disk</strong><br/>"
-                                        "This will <font color=\"red\">delete</font> all the data "
-                                        "currently present on %1 (if any), including programs, "
-                                        "documents, photos, music, and other files." )
-                                    .arg( currentDevice->deviceNode() ) );
+                                        "This will <font color=\"red\">delete</font> all data "
+                                        "currently present on the selected storage device." ) );
         )
 
         m_replaceButton->hide();
@@ -678,10 +676,8 @@ ChoicePage::setupActions()
                                                   string( Calamares::Branding::ShortVersionedName ) ) );
 
                 m_eraseButton->setText( tr( "<strong>Erase disk</strong><br/>"
-                                            "This will <font color=\"red\">delete</font> all the data "
-                                            "currently present on %1 (if any), including programs, "
-                                            "documents, photos, music, and other files." )
-                                        .arg( currentDevice->deviceNode() ) );
+                                            "This will <font color=\"red\">delete</font> all data "
+                                            "currently present on the selected storage device." ) );
 
 
                 m_replaceButton->setText( tr( "<strong>Replace a partition</strong><br/>"
@@ -704,10 +700,8 @@ ChoicePage::setupActions()
                                                   string( Calamares::Branding::ShortVersionedName ) ) );
 
                 m_eraseButton->setText( tr( "<strong>Erase disk</strong><br/>"
-                                            "This will <font color=\"red\">delete</font> all the data "
-                                            "currently present on %1 (if any), including programs, "
-                                            "documents, photos, music, and other files." )
-                                        .arg( currentDevice->deviceNode() ) );
+                                            "This will <font color=\"red\">delete</font> all data "
+                                            "currently present on the selected storage device." ) );
 
                 m_replaceButton->setText( tr( "<strong>Replace a partition</strong><br/>"
                                               "Replaces a partition with %1." )
@@ -745,10 +739,8 @@ ChoicePage::setupActions()
                                               string( Calamares::Branding::ShortVersionedName ) ) );
 
             m_eraseButton->setText( tr( "<strong>Erase disk</strong><br/>"
-                                        "This will <font color=\"red\">delete</font> all the data "
-                                        "currently present on %1 (if any), including programs, "
-                                        "documents, photos, music, and other files." )
-                                    .arg( currentDevice->deviceNode() ) );
+                                        "This will <font color=\"red\">delete</font> all data "
+                                        "currently present on the selected storage device." ) );
 
             m_replaceButton->setText( tr( "<strong>Replace a partition</strong><br/>"
                                           "Replaces a partition with %1." )
