@@ -673,7 +673,7 @@ ChoicePage::setupActions()
                                             .arg( osName ) );
 
                 m_alongsideButton->setText( tr( "<strong>Install alongside</strong><br/>"
-                                                "The installer will shrink a volume to make room for %1." )
+                                                "The installer will shrink a partition to make room for %1." )
                                             .arg( Calamares::Branding::instance()->
                                                   string( Calamares::Branding::ShortVersionedName ) ) );
 
@@ -697,7 +697,7 @@ ChoicePage::setupActions()
                                              "before any change is made to the storage device." ) );
 
                 m_alongsideButton->setText( tr( "<strong>Install alongside</strong><br/>"
-                                                "The installer will shrink a volume to make room for %1." )
+                                                "The installer will shrink a partition to make room for %1." )
                                             .arg( Calamares::Branding::instance()->
                                                   string( Calamares::Branding::ShortVersionedName ) ) );
 
@@ -736,7 +736,7 @@ ChoicePage::setupActions()
                                          "before any change is made to the storage device." ) );
 
             m_alongsideButton->setText( tr( "<strong>Install alongside</strong><br/>"
-                                            "The installer will shrink a volume to make room for %1." )
+                                            "The installer will shrink a partition to make room for %1." )
                                         .arg( Calamares::Branding::instance()->
                                               string( Calamares::Branding::ShortVersionedName ) ) );
 
