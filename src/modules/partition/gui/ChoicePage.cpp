@@ -202,15 +202,10 @@ ChoicePage::setupChoices()
     m_itemsLayout->addWidget( m_eraseButton );
     m_itemsLayout->setSpacing( CalamaresUtils::defaultFontHeight() / 2 );
 
-    QFrame* hLine = new QFrame;
-    hLine->setFrameStyle( QFrame::HLine );
-    m_itemsLayout->addWidget( hLine );
-
     m_somethingElseButton = new PrettyRadioButton;
     CALAMARES_RETRANSLATE(
         m_somethingElseButton->setText( tr( "<strong>Manual partitioning</strong><br/>"
-                                            "You can create or resize partitions yourself, or choose "
-                                            "multiple partitions for %1." )
+                                            "You can create or resize partitions yourself." )
                                         .arg( Calamares::Branding::instance()->
                                               string( Calamares::Branding::ShortVersionedName ) ) );
     )
@@ -568,6 +563,7 @@ ChoicePage::updateActionChoicePreview( ChoicePage::Choice choice )
     case Alongside:
         // split widget goes here
         //label->setText( tr( "Drag to split:" ) );
+        m_selectLabel->hide();
 
         break;
     case Erase:
@@ -591,10 +587,20 @@ ChoicePage::updateActionChoicePreview( ChoicePage::Choice choice )
             layout->addWidget( previewLabels );
 
             m_previewAfterFrame->show();
+
+            if ( m_choice == Erase )
+                m_selectLabel->hide();
+            else
+            {
+                m_selectLabel->show();
+                m_selectLabel->setText( tr( "Select which partition to replace" ) );
+            }
+
             break;
         }
     case NoChoice:
     case Manual:
+        m_selectLabel->hide();
         m_previewAfterFrame->hide();
         break;
     }
