@@ -189,7 +189,7 @@ ChoicePage::setupChoices()
                                                            iconSize ) );
     grp->addButton( m_eraseButton->buttonWidget() );
 
-    m_replaceButton = createReplaceButton();
+    m_replaceButton = new PrettyRadioButton;
 
     m_replaceButton->setIconSize( iconSize );
     m_replaceButton->setIcon( CalamaresUtils::defaultPixmap( CalamaresUtils::PartitionReplaceOs,
@@ -352,17 +352,6 @@ ChoicePage::createEraseButton()
         eraseButton->setExpandableWidget( eraseWidget );
     }
     return eraseButton;
-}
-
-
-ExpandableRadioButton*
-ChoicePage::createReplaceButton()
-{
-    ExpandableRadioButton* replaceButton = new ExpandableRadioButton;
-    replaceButton->setExpandableWidget(
-                new QLabel( tr( "Select which OS to replace below." ) ) );
-
-    return replaceButton;
 }
 
 
