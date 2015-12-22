@@ -154,6 +154,15 @@ PartitionLabelsView::getIndexesToDraw( const QModelIndex& parent ) const
     for ( int row = 0; row < modl->rowCount( parent ); ++row )
     {
         QModelIndex index = modl->index( row, 0, parent );
+
+        //HACK: horrible special casing follows.
+        //      To save vertical space, we choose to hide short instances of free space.
+        //      Arbitrary limit: 10MB.
+        const qint64 maxHiddenB = 10'000'000;
+        if ( index.data( PartitionModel::IsFreeSpaceRole ).toBool() &&
+             index.data( PartitionModel::SizeRole ).toLongLong() <  maxHiddenB )
+            continue;
+
         list.append( index );
         if ( modl->hasChildren( index ) )
             list.append( getIndexesToDraw( index ) );
