@@ -74,7 +74,6 @@ private:
     void setupChoices();
     QComboBox* createBootloaderComboBox( ExpandableRadioButton* parentButton );
     ExpandableRadioButton* createEraseButton();
-    ExpandableRadioButton* createReplaceButton();
     Device* selectedDevice();
     void applyDeviceChoice();
     void updateDeviceStatePreview();
@@ -95,7 +94,7 @@ private:
 
     PrettyRadioButton* m_alongsideButton;
     ExpandableRadioButton* m_eraseButton;
-    ExpandableRadioButton* m_replaceButton;
+    PrettyRadioButton* m_replaceButton;
     PrettyRadioButton* m_somethingElseButton;
 
     DeviceInfoWidget* m_deviceInfoWidget;
