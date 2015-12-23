@@ -49,6 +49,8 @@
 #include <QStandardItemModel>
 #include <QDir>
 #include <QProcess>
+#include <QFutureWatcher>
+#include <QtConcurrent/QtConcurrent>
 
 static bool
 hasRootPartition( Device* device )
@@ -505,6 +507,7 @@ PartitionCoreModule::revert()
 void
 PartitionCoreModule::revertDevice( Device* dev )
 {
+    QMutexLocker locker( &m_revertMutex );
     DeviceInfo* devInfo = infoForDevice( dev );
     if ( !devInfo )
         return;
@@ -523,6 +526,18 @@ PartitionCoreModule::revertDevice( Device* dev )
     m_bootLoaderModel->init( devices );
 
     updateIsDirty();
+}
+
+
+void
+PartitionCoreModule::asyncRevertDevice( Device* dev, std::function< void() > callback )
+{
+    QFutureWatcher< void > watcher;
+    connect( &watcher, &QFutureWatcher< void >::finished,
+             callback );
+
+    QFuture< void > future = QtConcurrent::run( this, &PartitionCoreModule::revertDevice, dev );
+    watcher.setFuture( future );
 }
 
 
