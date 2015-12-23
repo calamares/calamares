@@ -456,7 +456,11 @@ ChoicePage::applyActionChoice( ChoicePage::Choice choice )
             {
                 QFutureWatcher< void > watcher;
                 connect( &watcher, &QFutureWatcher< void >::finished,
-                         this, doReplace );
+                         this, [=]
+                {
+                    doReplace();
+                    updateActionChoicePreview( currentChoice() );
+                } );
 
                 QFuture< void > future = QtConcurrent::run( [=]
                 {
