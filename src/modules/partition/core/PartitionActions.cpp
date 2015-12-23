@@ -29,6 +29,7 @@
 
 #include <kpmcore/core/device.h>
 #include <kpmcore/core/partition.h>
+#include <kpmcore/fs/filesystemfactory.h>
 
 #include <QDir>
 
@@ -201,18 +202,15 @@ void
 doReplacePartition( PartitionCoreModule* core, Device* dev, Partition* partition )
 {
     cDebug() << "doReplacePartition for device" << partition->partitionPath();
-    Partition* newPartition = KPMHelpers::createNewPartition(
-                                  partition->parent(),
-                                  *dev,
-                                  partition->roles(),
-                                  FileSystem::Ext4,
-                                  partition->firstSector(),
-                                  partition->lastSector() );
-    PartitionInfo::setMountPoint( newPartition, "/" );
-    PartitionInfo::setFormat( newPartition, true );
 
-    core->deletePartition( dev, partition );
-    core->createPartition( dev, newPartition );
+    //HACK: setFileSystem is private in Partition for whatever reason, making the clone
+    //      with new type feature in FSF unusable outside Partition and friends.
+    //      Dragons be here.
+    FileSystem* innerFs = (FileSystem*)( &( partition->fileSystem() ) );
+    innerFs = FileSystemFactory::cloneWithNewType( FileSystem::Ext4, partition->fileSystem() );
+    PartitionInfo::setMountPoint( partition, "/" );
+    PartitionInfo::setFormat( partition, true );
+    core->formatPartition( dev, partition );
 
     core->dumpQueue();
 }
