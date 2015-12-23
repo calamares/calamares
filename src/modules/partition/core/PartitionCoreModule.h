@@ -28,7 +28,10 @@
 
 // Qt
 #include <QList>
+#include <QMutex>
 #include <QObject>
+
+#include <functional>
 
 class BootLoaderModel;
 class CreatePartitionJob;
@@ -96,6 +99,7 @@ public:
 
     void revert();
     void revertDevice( Device* dev );
+    void asyncRevertDevice( Device* dev, std::function< void() > callback );
 
     void clearJobs();
 
@@ -159,6 +163,8 @@ private:
     Partition* findPartitionByMountPoint( const QString& mountPoint ) const;
 
     OsproberEntryList m_osproberLines;
+
+    QMutex m_revertMutex;
 };
 
 #endif /* PARTITIONCOREMODULE_H */
