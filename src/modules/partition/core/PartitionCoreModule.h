@@ -71,7 +71,8 @@ public:
     //      that contains the current state of a disk regardless of subsequent changes.
     //      This should probably be redone some other way.
     //              -- Teo 4/2015
-    Device* createImmutableDeviceCopy( Device* device ) const;
+    //FIXME: make this horrible method private. -- Teo 12/2015
+    static Device* createImmutableDeviceCopy( Device* device );
 
     QAbstractItemModel* bootLoaderModel() const;
 
