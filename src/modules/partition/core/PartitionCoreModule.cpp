@@ -69,6 +69,7 @@ PartitionCoreModule::DeviceInfo::~DeviceInfo()
 {
 }
 
+
 void
 PartitionCoreModule::DeviceInfo::forgetChanges()
 {
@@ -167,7 +168,7 @@ PartitionCoreModule::partitionModelForDevice( Device* device ) const
 
 
 Device*
-PartitionCoreModule::createImmutableDeviceCopy( Device* device ) const
+PartitionCoreModule::createImmutableDeviceCopy( Device* device )
 {
     CoreBackend* backend = CoreBackendManager::self()->backend();
 
