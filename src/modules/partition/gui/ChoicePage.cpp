@@ -442,22 +442,22 @@ ChoicePage::applyActionChoice( ChoicePage::Choice choice )
                 watcher->deleteLater();
             } );
 
-            auto doReplace = [ this, current, dev = selectedDevice() ]
+            auto doReplace = [ this, current ]
             {
                 QMutexLocker( &( this->m_coreMutex ) );
 
                 if ( m_core->isDirty() )
                 {
-                    m_core->revertDevice( dev );
+                    m_core->revertDevice( selectedDevice() );
                 }
                 // We can't use the PartitionPtrRole because we need to make changes to the
                 // main DeviceModel, not the immutable copy.
                 QString partPath = current.data( PartitionModel::PartitionPathRole ).toString();
-                Partition* partition = KPMHelpers::findPartitionByPath( { dev },
+                Partition* partition = KPMHelpers::findPartitionByPath( { selectedDevice() },
                                                                         partPath );
                 if ( partition )
                     PartitionActions::doReplacePartition( m_core,
-                                                          dev,
+                                                          selectedDevice(),
                                                           partition );
             };
 
