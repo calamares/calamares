@@ -105,6 +105,8 @@ private:
     QPointer< PartitionLabelsView > m_afterPartitionLabelsView;
 
     int m_lastSelectedDeviceIndex;
+
+    QMutex m_coreMutex;
 };
 
 #endif // CHOICEPAGE_H
