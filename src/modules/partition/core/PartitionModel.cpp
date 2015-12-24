@@ -239,3 +239,10 @@ PartitionModel::partitionForIndex( const QModelIndex& index ) const
         return nullptr;
     return reinterpret_cast< Partition* >( index.internalPointer() );
 }
+
+
+void
+PartitionModel::update()
+{
+    emit dataChanged( index( 0, 0 ), index( rowCount() - 1, columnCount() - 1 ) );
+}
