@@ -587,7 +587,7 @@ ChoicePage::updateActionChoicePreview( ChoicePage::Choice choice )
             else
             {
                 m_selectLabel->show();
-                m_selectLabel->setText( tr( "Select which partition to replace" ) );
+                m_selectLabel->setText( tr( "<strong>Select which partition to replace</strong>" ) );
             }
 
             break;
