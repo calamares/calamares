@@ -388,7 +388,6 @@ ChoicePage::applyDeviceChoice()
     if ( m_core->isDirty() )
     {
         m_core->revertDevice( selectedDevice() );
-        m_core->clearJobs();
     }
 
     Device* currd = selectedDevice();
@@ -421,7 +420,6 @@ ChoicePage::applyActionChoice( ChoicePage::Choice choice )
         if ( m_core->isDirty() )
         {
             m_core->revertDevice( selectedDevice() );
-            m_core->clearJobs();
         }
 
         PartitionActions::doAutopartition( m_core, selectedDevice() );
@@ -430,7 +428,6 @@ ChoicePage::applyActionChoice( ChoicePage::Choice choice )
         if ( m_core->isDirty() )
         {
             m_core->revertDevice( selectedDevice() );
-            m_core->clearJobs();
         }
 
         connect( m_beforePartitionBarsView->selectionModel(), &QItemSelectionModel::currentRowChanged,
@@ -452,7 +449,6 @@ ChoicePage::applyActionChoice( ChoicePage::Choice choice )
             if ( m_core->isDirty() )
             {
                 m_core->asyncRevertDevice( selectedDevice(), doReplace );
-                m_core->clearJobs();
             }
             else
                 doReplace();
