@@ -444,7 +444,8 @@ ChoicePage::applyActionChoice( ChoicePage::Choice choice )
 
             auto doReplace = [ this, current ]
             {
-                QMutexLocker( &( this->m_coreMutex ) );
+                cDebug() << "begin doReplace";
+                QMutexLocker( &( ChoicePage::m_coreMutex ) );
 
                 if ( m_core->isDirty() )
                 {
@@ -459,6 +460,7 @@ ChoicePage::applyActionChoice( ChoicePage::Choice choice )
                     PartitionActions::doReplacePartition( m_core,
                                                           selectedDevice(),
                                                           partition );
+                cDebug() << "end doReplace";
             };
 
             QFuture< void > future = QtConcurrent::run( doReplace );
