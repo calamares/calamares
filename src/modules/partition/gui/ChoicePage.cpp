@@ -442,28 +442,7 @@ ChoicePage::applyActionChoice( ChoicePage::Choice choice )
                 watcher->deleteLater();
             } );
 
-            auto doReplace = [ this, current ]
-            {
-                cDebug() << "begin doReplace";
-                QMutexLocker( &( ChoicePage::m_coreMutex ) );
-
-                if ( m_core->isDirty() )
-                {
-                    m_core->revertDevice( selectedDevice() );
-                }
-                // We can't use the PartitionPtrRole because we need to make changes to the
-                // main DeviceModel, not the immutable copy.
-                QString partPath = current.data( PartitionModel::PartitionPathRole ).toString();
-                Partition* partition = KPMHelpers::findPartitionByPath( { selectedDevice() },
-                                                                        partPath );
-                if ( partition )
-                    PartitionActions::doReplacePartition( m_core,
-                                                          selectedDevice(),
-                                                          partition );
-                cDebug() << "end doReplace";
-            };
-
-            QFuture< void > future = QtConcurrent::run( doReplace );
+            QFuture< void > future = QtConcurrent::run( this, &ChoicePage::doReplaceSelectedPartition, current );
             watcher->setFuture( future );
         } );
         break;
@@ -472,6 +451,29 @@ ChoicePage::applyActionChoice( ChoicePage::Choice choice )
         break;
     }
     updateActionChoicePreview( currentChoice() );
+}
+
+
+void
+ChoicePage::doReplaceSelectedPartition( const QModelIndex& current )
+{
+    cDebug() << "begin doReplace";
+    QMutexLocker locker( &m_coreMutex );
+
+    if ( m_core->isDirty() )
+    {
+        m_core->revertDevice( selectedDevice() );
+    }
+    // We can't use the PartitionPtrRole because we need to make changes to the
+    // main DeviceModel, not the immutable copy.
+    QString partPath = current.data( PartitionModel::PartitionPathRole ).toString();
+    Partition* partition = KPMHelpers::findPartitionByPath( { selectedDevice() },
+                                                            partPath );
+    if ( partition )
+        PartitionActions::doReplacePartition( m_core,
+                                              selectedDevice(),
+                                              partition );
+    cDebug() << "end doReplace";
 }
 
 
