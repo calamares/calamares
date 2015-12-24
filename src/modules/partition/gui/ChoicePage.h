@@ -76,6 +76,7 @@ private:
     ExpandableRadioButton* createEraseButton();
     Device* selectedDevice();
     void applyDeviceChoice();
+    void doReplaceSelectedPartition( const QModelIndex& current );
     void updateDeviceStatePreview();
     void applyActionChoice( ChoicePage::Choice choice );
     void updateActionChoicePreview( ChoicePage::Choice choice );
