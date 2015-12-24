@@ -559,22 +559,22 @@ ChoicePage::updateActionChoicePreview( ChoicePage::Choice choice )
     case Erase:
     case Replace:
         {
-            PartitionBarsView* preview = new PartitionBarsView( m_previewAfterFrame );
-            PartitionLabelsView* previewLabels = new PartitionLabelsView( m_previewAfterFrame );
-            previewLabels->setCustomNewRootLabel( Calamares::Branding::instance()->
+            m_afterPartitionBarsView = new PartitionBarsView( m_previewAfterFrame );
+            m_afterPartitionLabelsView = new PartitionLabelsView( m_previewAfterFrame );
+            m_afterPartitionLabelsView->setCustomNewRootLabel( Calamares::Branding::instance()->
                                                   string( Calamares::Branding::BootloaderEntryName ) );
 
             PartitionModel* model = m_core->partitionModelForDevice( selectedDevice() );
 
             // The QObject parents tree is meaningful for memory management here,
             // see qDeleteAll above.
-            preview->setModel( model );
-            previewLabels->setModel( model );
-            preview->setSelectionMode( QAbstractItemView::NoSelection );
-            previewLabels->setSelectionMode( QAbstractItemView::NoSelection );
+            m_afterPartitionBarsView->setModel( model );
+            m_afterPartitionLabelsView->setModel( model );
+            m_afterPartitionBarsView->setSelectionMode( QAbstractItemView::NoSelection );
+            m_afterPartitionLabelsView->setSelectionMode( QAbstractItemView::NoSelection );
 
-            layout->addWidget( preview );
-            layout->addWidget( previewLabels );
+            layout->addWidget( m_afterPartitionBarsView );
+            layout->addWidget( m_afterPartitionLabelsView );
 
             m_previewAfterFrame->show();
 

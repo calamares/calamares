@@ -101,6 +101,8 @@ private:
 
     QPointer< PartitionBarsView > m_beforePartitionBarsView;
     QPointer< PartitionLabelsView > m_beforePartitionLabelsView;
+    QPointer< PartitionBarsView > m_afterPartitionBarsView;
+    QPointer< PartitionLabelsView > m_afterPartitionLabelsView;
 
     int m_lastSelectedDeviceIndex;
 };
