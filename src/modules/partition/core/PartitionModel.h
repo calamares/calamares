@@ -110,6 +110,8 @@ public:
         return m_device;
     }
 
+    void update();
+
 private:
     Device* m_device;
     OsproberEntryList m_osproberEntries;

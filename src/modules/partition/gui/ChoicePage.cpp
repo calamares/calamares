@@ -444,6 +444,9 @@ ChoicePage::applyActionChoice( ChoicePage::Choice choice )
                     PartitionActions::doReplacePartition( m_core,
                                                           selectedDevice(),
                                                           partition );
+                PartitionModel* m = qobject_cast< PartitionModel* >( m_afterPartitionBarsView->model() );
+                if ( m )
+                    m->update();
             };
 
             if ( m_core->isDirty() )
