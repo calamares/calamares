@@ -170,7 +170,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="14"/>
         <source>Form</source>
-        <translation>Formulir</translation>
+        <translation>Isian</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="24"/>
@@ -180,7 +180,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="34"/>
         <source>JobQueue</source>
-        <translation>AntrianPekerjaan</translation>
+        <translation>AntrianTugas</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="44"/>
@@ -198,7 +198,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/libcalamaresui/ExecutionViewStep.cpp" line="77"/>
         <source>Install</source>
-        <translation>instal</translation>
+        <translation>Instal</translation>
     </message>
 </context>
 <context>
@@ -294,7 +294,7 @@ Keluaran:
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="254"/>
         <source>Bad working directory path</source>
-        <translation>Jalur lokasi direktori kerja buruk</translation>
+        <translation>Jalur lokasi direktori tidak berjalan baik</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="255"/>
@@ -322,23 +322,23 @@ Keluaran:
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="65"/>
         <source>&amp;Back</source>
-        <translation>Kembali</translation>
+        <translation>&amp;Kembali</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="66"/>
         <source>&amp;Next</source>
-        <translation>Berikutnya</translation>
+        <translation>&amp;Berikutnya</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="67"/>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="298"/>
         <source>&amp;Cancel</source>
-        <translation>Batal</translation>
+        <translation>&amp;Batal</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="90"/>
         <source>Cancel installation?</source>
-        <translation>Batalkan instalasi:</translation>
+        <translation>Batalkan instalasi?</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="91"/>
@@ -360,17 +360,17 @@ Penginstal akan ditutup dan semua perubahan akan hilang.</translation>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="232"/>
         <source>&amp;Install now</source>
-        <translation>%Instal sekarang</translation>
+        <translation>&amp;Instal sekarang</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="233"/>
         <source>Go &amp;back</source>
-        <translation>Kem&amp;bali</translation>
+        <translation>&amp;Kembali</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="268"/>
         <source>&amp;Quit</source>
-        <translation>Keluar</translation>
+        <translation>&amp;Keluar</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="170"/>
@@ -437,7 +437,7 @@ Penginstal akan ditutup dan semua perubahan akan hilang.</translation>
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="95"/>
         <source>This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;Installation cannot continue. &lt;a href=&quot;#details&quot;&gt;Details...&lt;/a&gt;</source>
-        <translation>Komputer ini tidak dapat memenuhi syarat minimum untuk menginstal %1.
+        <translation>Komputer ini tidak memenuhi syarat minimum untuk menginstal %1.
 Penginstalan tidak dapat dilanjutkan. &lt;a href=&quot;</translation>
     </message>
     <message>
@@ -467,12 +467,12 @@ Penginstalan dapat dilanjutkan, namun beberapa fitur akan ditiadakan.</translati
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="117"/>
         <source>This computer currently does not seem to have an operating system on it. What would you like to do?</source>
-        <translation>Komputer ini tampaknya tidak memiliki sistem operasi di atasnya saat ini. Apa yang akan Anda lakukan?</translation>
+        <translation>Komputer ini tampaknya tidak memiliki sistem operasi yang berjalan saat ini. Apa yang akan Anda lakukan?</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="143"/>
         <source>This computer currently has %1 on it. What would you like to do?</source>
-        <translation>Komputer ini memiliki %1 didalamnya saat ini. Apa yang akan Anda lakukan?</translation>
+        <translation>Komputer ini memiliki %1 di dalamnya saat ini. Apa yang akan Anda lakukan?</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="121"/>
@@ -487,12 +487,12 @@ Penginstalan dapat dilanjutkan, namun beberapa fitur akan ditiadakan.</translati
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="197"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="246"/>
         <source>&lt;strong&gt;Erase disk and install %1&lt;/strong&gt;&lt;br/&gt;You will be offered a choice of which disk to erase.</source>
-        <translation>&lt;strong&gt;Hapus disk dan pasang %1&lt;/strong&gt;&lt;br/&gt;Anda akan diberikan pilihan disk yang akan dihapus.</translation>
+        <translation>&lt;strong&gt;Hapus disk dan pasang %1&lt;/strong&gt;&lt;br/&gt;Anda akan diberi pilihan disk yang akan dihapus.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="147"/>
         <source>&lt;strong&gt;Install %2 alongside %1&lt;/strong&gt;&lt;br/&gt;The installer will shrink the %1 volume to make room for %2. You can choose which operating system you want each time the computer starts up.</source>
-        <translation>&lt;strong&gt;Instal %2 berdampingan dengan %1&lt;/strong&gt;&lt;br/&gt;Penginstal akan menciutkan volume %1 untuk membuat ruang bagi %2. Anda dapat memilih sistem operasi yang inginkan setiap komputer dihidupkan.</translation>
+        <translation>&lt;strong&gt;Instal %2 berdampingan dengan %1&lt;/strong&gt;&lt;br/&gt;Penginstal akan menciutkan volume %1 untuk membuat ruang bagi %2. Anda dapat memilih sistem operasi yang diinginkan setiap komputer dihidupkan.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="156"/>
@@ -504,12 +504,12 @@ Penginstalan dapat dilanjutkan, namun beberapa fitur akan ditiadakan.</translati
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="202"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="251"/>
         <source>&lt;strong&gt;Replace a partition with %1&lt;/strong&gt;&lt;br/&gt;You will be offered a choice of which partition to erase.</source>
-        <translation>&lt;strong&gt;Ganti sebuah partisi dengan %1&lt;/strong&gt;&lt;br/&gt;Anda akan diberikan pilihan partisi yang akan dihapus.</translation>
+        <translation>&lt;strong&gt;Ganti sebuah partisi dengan %1&lt;/strong&gt;&lt;br/&gt;Anda akan diberi pilihan partisi yang akan dihapus.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="178"/>
         <source>This computer already has an operating system on it. What would you like to do?</source>
-        <translation>Komputer ini sudah memiliki sistem operasi didalamnya. Apa yang akan Anda lakukan?</translation>
+        <translation>Komputer ini sudah memiliki sistem operasi yang berjalan. Apa yang akan Anda lakukan?</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="181"/>
@@ -598,17 +598,17 @@ Penginstalan dapat dilanjutkan, namun beberapa fitur akan ditiadakan.</translati
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="89"/>
         <source>F&amp;ile System:</source>
-        <translation>Sistem Berkas:</translation>
+        <translation>Si&amp;stem Berkas:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="118"/>
         <source>&amp;Mount Point:</source>
-        <translation>Lokasi &amp;Mount</translation>
+        <translation>&amp;Titik Kait:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="164"/>
         <source>Si&amp;ze:</source>
-        <translation>Ukuran:</translation>
+        <translation>Uku&amp;ran:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="174"/>
@@ -636,7 +636,7 @@ Penginstalan dapat dilanjutkan, namun beberapa fitur akan ditiadakan.</translati
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="48"/>
         <source>Create new %2MB partition on %4 (%3) with file system %1.</source>
-        <translation>Membuat partisi %2MB baru pada %4 (%3) dengan sistem berkas %1.</translation>
+        <translation>Buat partisi %2MB baru pada %4 (%3) dengan sistem berkas %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="59"/>
@@ -765,7 +765,7 @@ Penginstalan dapat dilanjutkan, namun beberapa fitur akan ditiadakan.</translati
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="97"/>
         <source>Cannot open groups file for reading.</source>
-        <translation>Tidak dapat membuka grup berkas untuk dibaca.</translation>
+        <translation>Tidak dapat membuka berkas groups untuk dibaca.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="136"/>
@@ -1096,7 +1096,7 @@ Penginstalan dapat dilanjutkan, namun beberapa fitur akan ditiadakan.</translati
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="118"/>
         <source>Please review the End User License Agreements (EULAs) above.&lt;br/&gt;If you do not agree with the terms, the setup procedure cannot continue.</source>
-        <translation>Mohon periksa Persetujuan Lisensi Pengguna (EULA) di atas.&lt;br/&gt;Bila Anda tidak setuju, maka prosedur tidak bisa dilanjutkan.</translation>
+        <translation>Mohon periksa End User License Agreements (EULA) di atas.&lt;br/&gt;Bila Anda tidak setuju, maka prosedur tidak bisa dilanjutkan.</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="124"/>
@@ -1106,7 +1106,7 @@ Penginstalan dapat dilanjutkan, namun beberapa fitur akan ditiadakan.</translati
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="129"/>
         <source>Please review the End User License Agreements (EULAs) above.&lt;br/&gt;If you do not agree with the terms, proprietary software will not be installed, and open source alternatives will be used instead.</source>
-        <translation>Mohon periksa Persetujuan Lisensi Pengguna (EULA) di atas.&lt;br/&gt;Bila Anda tidak setuju, perangkat lunak proprietary tidak akan dipasang, dan alternatif open source akan dipasang sebagai gantinya </translation>
+        <translation>Mohon periksa End User License Agreements(EULA) di atas.&lt;br/&gt;Bila Anda tidak setuju, perangkat lunak proprietary tidak akan dipasang, dan alternatif open source akan dipasang sebagai gantinya </translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="159"/>
@@ -1175,7 +1175,7 @@ Penginstalan dapat dilanjutkan, namun beberapa fitur akan ditiadakan.</translati
     <message>
         <location filename="../src/modules/locale/LocalePage.cpp" line="172"/>
         <source>&amp;Change...</source>
-        <translation>Ubah</translation>
+        <translation>&amp;Ubah...</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/LocalePage.cpp" line="266"/>
@@ -1188,7 +1188,7 @@ Penginstalan dapat dilanjutkan, namun beberapa fitur akan ditiadakan.</translati
     <message>
         <location filename="../src/modules/locale/LocaleViewStep.cpp" line="48"/>
         <source>Loading location data...</source>
-        <translation>Memuat lokasi data...</translation>
+        <translation>Memuat data lokasi...</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/LocaleViewStep.cpp" line="82"/>
@@ -1878,32 +1878,32 @@ Penginstalan dapat dilanjutkan, namun beberapa fitur akan ditiadakan.</translati
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="14"/>
         <source>Form</source>
-        <translation>Formulir</translation>
+        <translation>Isian</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="75"/>
         <source>&amp;Language:</source>
-        <translation>Bahasa:</translation>
+        <translation>&amp;Bahasa:</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="176"/>
         <source>&amp;Release notes</source>
-        <translation>Catatan %rilis</translation>
+        <translation>&amp;Catatan rilis</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="166"/>
         <source>&amp;Known issues</source>
-        <translation>Isu-isu yang Diketahui</translation>
+        <translation>&amp;Isu-isu yang diketahui</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="156"/>
         <source>&amp;Support</source>
-        <translation>Dukungan</translation>
+        <translation>&amp;Dukungan</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="146"/>
         <source>&amp;About</source>
-        <translation>Tent%ang</translation>
+        <translation>&amp;Tentang</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="56"/>
