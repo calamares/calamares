@@ -159,6 +159,26 @@ PartitionModel::data( const QModelIndex& index, int role ) const
             return ColorUtils::colorForPartition( partition );
         else
             return QVariant();
+    case Qt::ToolTipRole:
+    {
+        int col = index.column();
+        QString name;
+        if ( col == NameColumn )
+        {
+            if ( KPMHelpers::isPartitionFreeSpace( partition ) )
+                name = tr( "Free Space" );
+            else
+            {
+                name = KPMHelpers::isPartitionNew( partition )
+                        ? tr( "New partition" )
+                        : partition->partitionPath();
+            }
+        }
+        QString prettyFileSystem = KPMHelpers::prettyNameForFileSystemType( partition->fileSystem().type() );
+        qint64 size = ( partition->lastSector() - partition->firstSector() + 1 ) * m_device->logicalSectorSize();
+        QString prettySize = KFormat().formatByteSize( size );
+        return QVariant(name + " " + prettyFileSystem + " " + prettySize);
+    }
     case SizeRole:
         return ( partition->lastSector() - partition->firstSector() + 1 ) * m_device->logicalSectorSize();
     case IsFreeSpaceRole:
