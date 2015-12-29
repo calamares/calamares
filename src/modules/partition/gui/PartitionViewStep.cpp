@@ -264,7 +264,11 @@ PartitionViewStep::next()
     if ( m_choicePage == m_widget->currentWidget() )
     {
         if ( m_choicePage->currentChoice() == ChoicePage::Manual )
+        {
             m_widget->setCurrentWidget( m_manualPartitionPage );
+            if ( m_core->isDirty() )
+                m_manualPartitionPage->onRevertClicked();
+        }
         else if ( m_choicePage->currentChoice() == ChoicePage::Erase )
         {
             emit done();
