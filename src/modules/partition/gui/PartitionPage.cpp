@@ -293,6 +293,26 @@ PartitionPage::updateFromCurrentDevice()
     m_ui->partitionTreeView->setModel( model );
     m_ui->partitionTreeView->expandAll();
 
+    // Make both views use the same selection model.
+    if ( m_ui->partitionBarsView->selectionModel() !=
+         m_ui->partitionTreeView->selectionModel() )
+    {
+        QItemSelectionModel* selectionModel = m_ui->partitionTreeView->selectionModel();
+        m_ui->partitionTreeView->setSelectionModel( m_ui->partitionBarsView->selectionModel() );
+        selectionModel->deleteLater();
+    }
+
+    // This is necessary because even with the same selection model it might happen that
+    // a !=0 column is selected in the tree view, which for some reason doesn't trigger a
+    // timely repaint in the bars view.
+    connect( m_ui->partitionBarsView->selectionModel(), &QItemSelectionModel::currentChanged,
+             this, [=]
+    {
+        QModelIndex selectedIndex = m_ui->partitionBarsView->selectionModel()->currentIndex();
+        selectedIndex = selectedIndex.sibling( selectedIndex.row(), 0 );
+        m_ui->partitionBarsView->setCurrentIndex( selectedIndex );
+    }, Qt::UniqueConnection );
+
     // Must be done here because we need to have a model set to define
     // individual column resize mode
     QHeaderView* header = m_ui->partitionTreeView->header();
