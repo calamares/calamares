@@ -98,6 +98,7 @@ public:
     QList< Partition* > efiSystemPartitions() const;
 
     void revert();
+    void revertAllDevices();
     void revertDevice( Device* dev );
     void asyncRevertDevice( Device* dev, std::function< void() > callback );
 

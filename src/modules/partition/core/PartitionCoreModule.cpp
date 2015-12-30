@@ -496,11 +496,22 @@ PartitionCoreModule::setBootLoaderInstallPath( const QString& path )
 void
 PartitionCoreModule::revert()
 {
+    QMutexLocker locker( &m_revertMutex );
     qDeleteAll( m_deviceInfos );
     m_deviceInfos.clear();
     init();
     updateIsDirty();
     emit reverted();
+}
+
+
+void
+PartitionCoreModule::revertAllDevices()
+{
+    foreach ( DeviceInfo* devInfo, m_deviceInfos )
+    {
+        revertDevice( devInfo->device.data() );
+    }
 }
 
 
