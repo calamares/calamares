@@ -21,6 +21,7 @@
 
 #include <QWidget>
 #include <QScopedPointer>
+#include <QMutex>
 
 class PartitionCoreModule;
 class Ui_PartitionPage;
@@ -59,6 +60,8 @@ private:
     void editExistingPartition( Device*, Partition* );
     void updateBootLoaderInstallPath();
     void updateFromCurrentDevice();
+
+    QMutex m_revertMutex;
 };
 
 #endif // PARTITIONPAGE_H

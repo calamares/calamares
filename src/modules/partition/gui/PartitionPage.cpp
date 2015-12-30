@@ -26,6 +26,7 @@
 #include "core/KPMHelpers.h"
 #include "gui/CreatePartitionDialog.h"
 #include "gui/EditExistingPartitionDialog.h"
+#include "gui/ScanningDialog.h"
 
 #include "ui_PartitionPage.h"
 #include "ui_CreatePartitionTableDialog.h"
@@ -43,6 +44,8 @@
 #include <QMessageBox>
 #include <QPointer>
 #include <QDir>
+#include <QFutureWatcher>
+#include <QtConcurrent/QtConcurrent>
 
 PartitionPage::PartitionPage( PartitionCoreModule* core, QWidget* parent )
     : QWidget( parent )
@@ -188,13 +191,33 @@ PartitionPage::onDeleteClicked()
     m_core->deletePartition( model->device(), partition );
 }
 
+
 void
 PartitionPage::onRevertClicked()
 {
-    int oldIndex = m_ui->deviceComboBox->currentIndex();
-    m_core->revert();
-    m_ui->deviceComboBox->setCurrentIndex( oldIndex );
-    updateFromCurrentDevice();
+    ScanningDialog* rescanningDialog =
+            new ScanningDialog( tr( "Scanning storage devices..." ), this );
+    rescanningDialog->show();
+
+    QFutureWatcher< void >* watcher = new QFutureWatcher< void >();
+    connect( watcher, &QFutureWatcher< void >::finished,
+             this, [ watcher, rescanningDialog ]
+    {
+        watcher->deleteLater();
+        rescanningDialog->hide();
+        rescanningDialog->deleteLater();
+    } );
+
+    QFuture< void > future = QtConcurrent::run( [ this ]
+    {
+        QMutexLocker locker( &m_revertMutex );
+
+        int oldIndex = m_ui->deviceComboBox->currentIndex();
+        m_core->revertAllDevices();
+        m_ui->deviceComboBox->setCurrentIndex( oldIndex );
+        updateFromCurrentDevice();
+    } );
+    watcher->setFuture( future );
 }
 
 void
