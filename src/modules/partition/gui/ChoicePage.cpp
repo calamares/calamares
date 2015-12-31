@@ -451,7 +451,9 @@ ChoicePage::applyActionChoice( ChoicePage::Choice choice )
             []{},
             this );
         }
+        cDebug() << "next enabled:" << isNextEnabled();
         setNextEnabled( !m_beforePartitionBarsView->selectionModel()->selectedRows().isEmpty() );
+        cDebug() << "next enabled:" << isNextEnabled();
 
         connect( m_beforePartitionBarsView->selectionModel(), SIGNAL( currentRowChanged( QModelIndex, QModelIndex ) ),
                  this, SLOT( doReplaceSelectedPartition( QModelIndex, QModelIndex ) ),
@@ -490,7 +492,7 @@ ChoicePage::doReplaceSelectedPartition( const QModelIndex& current,
                                                   selectedDevice(),
                                                   partition );
     } ),
-    []
+    [=]
     {
         setNextEnabled( !m_beforePartitionBarsView->selectionModel()->selectedRows().isEmpty() );
     }, this );
