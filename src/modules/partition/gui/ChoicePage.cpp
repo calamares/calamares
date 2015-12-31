@@ -437,6 +437,9 @@ ChoicePage::applyActionChoice( ChoicePage::Choice choice )
             {
                 QMutexLocker locker( &m_coreMutex );
                 m_core->revertDevice( selectedDevice() );
+
+                m_beforePartitionBarsView->selectionModel()->clearSelection();
+                m_beforePartitionBarsView->selectionModel()->clearCurrentIndex();
             } ),
             this );
         }
