@@ -20,6 +20,8 @@
 
 #include "widgets/QtWaitingSpinner.h"
 
+#include "Branding.h"
+
 #include <QBoxLayout>
 #include <QLabel>
 #include <QFutureWatcher>
@@ -69,6 +71,18 @@ ScanningDialog::run( const QFuture< void >& future,
     } );
 
     watcher->setFuture( future );
+}
+
+
+void
+ScanningDialog::run( const QFuture< void >& future, QWidget* parent )
+{
+    ScanningDialog::run( future,
+                         tr( "Scanning storage devices..." ),
+                         tr( "%1 Partitioning" )
+                             .arg( Calamares::Branding::instance()->
+                                   string( Calamares::Branding::ShortProductName ) ),
+                         parent );
 }
 
 void ScanningDialog::setVisible(bool visible)

@@ -35,6 +35,9 @@ public:
                      const QString& windowTitle,
                      QWidget* parent = nullptr );
 
+    static void run( const QFuture< void >& future,
+                     QWidget* parent = nullptr );
+
 public slots:
     void setVisible( bool visible ) override;
 
