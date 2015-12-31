@@ -451,7 +451,7 @@ ChoicePage::applyActionChoice( ChoicePage::Choice choice )
             []{},
             this );
         }
-        setNextEnabled( m_beforePartitionBarsView->selectionModel()->currentIndex().isValid() );
+        setNextEnabled( !m_beforePartitionBarsView->selectionModel()->selection().isEmpty() );
 
         connect( m_beforePartitionBarsView->selectionModel(), SIGNAL( currentRowChanged( QModelIndex, QModelIndex ) ),
                  this, SLOT( doReplaceSelectedPartition( QModelIndex, QModelIndex ) ),
@@ -492,7 +492,7 @@ ChoicePage::doReplaceSelectedPartition( const QModelIndex& current,
     } ),
     []
     {
-        setNextEnabled( m_beforePartitionBarsView->selectionModel()->currentIndex().isValid() );
+        setNextEnabled( !m_beforePartitionBarsView->selectionModel()->selection().isEmpty() );
     }, this );
 }
 
