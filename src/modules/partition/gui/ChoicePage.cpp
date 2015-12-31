@@ -415,6 +415,7 @@ ChoicePage::applyDeviceChoice()
 void
 ChoicePage::applyActionChoice( ChoicePage::Choice choice )
 {
+    m_beforePartitionBarsView->disconnect( SIGNAL( currentRowChanged( QModelIndex, QModelIndex ) ) );
     switch ( choice )
     {
     case Erase:
@@ -444,8 +445,8 @@ ChoicePage::applyActionChoice( ChoicePage::Choice choice )
             this );
         }
 
-        connect( m_beforePartitionBarsView->selectionModel(), &QItemSelectionModel::currentRowChanged,
-                 this, &ChoicePage::doReplaceSelectedPartition,
+        connect( m_beforePartitionBarsView->selectionModel(), SIGNAL( currentRowChanged( QModelIndex, QModelIndex ) ),
+                 this, SLOT( doReplaceSelectedPartition( QModelIndex, QModelIndex ) ),
                  Qt::UniqueConnection );
         break;
     case NoChoice:
@@ -627,8 +628,6 @@ ChoicePage::updateActionChoicePreview( ChoicePage::Choice choice )
         break;
     default:
         previewSelectionMode = QAbstractItemView::NoSelection;
-        m_beforePartitionBarsView->disconnect( SIGNAL( clicked() ) );
-        m_beforePartitionLabelsView->disconnect( SIGNAL( clicked() ) );
     }
 
     m_beforePartitionBarsView->setSelectionMode( previewSelectionMode );

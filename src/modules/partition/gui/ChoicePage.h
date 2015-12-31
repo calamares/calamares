@@ -69,6 +69,9 @@ signals:
     void actionChosen();
     void deviceChosen();
 
+private slots:
+    void doReplaceSelectedPartition( const QModelIndex& current, const QModelIndex& previous );
+
 private:
     void setNextEnabled( bool enabled );
     void setupChoices();
@@ -76,7 +79,6 @@ private:
     ExpandableRadioButton* createEraseButton();
     Device* selectedDevice();
     void applyDeviceChoice();
-    void doReplaceSelectedPartition( const QModelIndex& current, const QModelIndex& previous );
     void updateDeviceStatePreview();
     void applyActionChoice( ChoicePage::Choice choice );
     void updateActionChoicePreview( ChoicePage::Choice choice );
