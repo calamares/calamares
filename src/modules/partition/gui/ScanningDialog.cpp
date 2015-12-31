@@ -22,12 +22,17 @@
 
 #include <QBoxLayout>
 #include <QLabel>
+#include <QFutureWatcher>
+#include <QtConcurrent/QtConcurrent>
 
 
-ScanningDialog::ScanningDialog(const QString& text, QWidget* parent)
+ScanningDialog::ScanningDialog( const QString& text,
+                                const QString& windowTitle,
+                                QWidget* parent )
     : QDialog( parent )
 {
     setModal( true );
+    setWindowTitle( windowTitle );
 
     QHBoxLayout* dialogLayout = new QHBoxLayout;
     setLayout( dialogLayout );
@@ -39,6 +44,31 @@ ScanningDialog::ScanningDialog(const QString& text, QWidget* parent)
     QLabel* rescanningLabel = new QLabel( text,
                                           this );
     dialogLayout->addWidget( rescanningLabel );
+}
+
+
+void
+ScanningDialog::run( const QFuture< void >& future,
+                     const QString& text,
+                     const QString& windowTitle,
+                     QWidget* parent )
+{
+    ScanningDialog* theDialog =
+            new ScanningDialog( text,
+                                windowTitle,
+                                parent );
+    theDialog->show();
+
+    QFutureWatcher< void >* watcher = new QFutureWatcher< void >();
+    connect( watcher, &QFutureWatcher< void >::finished,
+             theDialog, [ watcher, theDialog ]
+    {
+        watcher->deleteLater();
+        theDialog->hide();
+        theDialog->deleteLater();
+    } );
+
+    watcher->setFuture( future );
 }
 
 void ScanningDialog::setVisible(bool visible)
