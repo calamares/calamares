@@ -31,6 +31,7 @@
 #include "PartitionBarsView.h"
 #include "PartitionLabelsView.h"
 #include "DeviceInfoWidget.h"
+#include "ScanningDialog.h"
 
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
@@ -433,11 +434,17 @@ ChoicePage::applyActionChoice( ChoicePage::Choice choice )
         connect( m_beforePartitionBarsView->selectionModel(), &QItemSelectionModel::currentRowChanged,
                  this, [ this ]( const QModelIndex& current, const QModelIndex& previous )
         {
+            ScanningDialog* rescanningDialog =
+                    new ScanningDialog( tr( "Scanning storage devices..." ), this );
+            rescanningDialog->show();
+
             QFutureWatcher< void >* watcher = new QFutureWatcher< void >();
             connect( watcher, &QFutureWatcher< void >::finished,
-                     this, [ watcher ]
+                     this, [ watcher, rescanningDialog ]
             {
                 watcher->deleteLater();
+                rescanningDialog->hide();
+                rescanningDialog->deleteLater();
             } );
 
             QFuture< void > future = QtConcurrent::run( this, &ChoicePage::doReplaceSelectedPartition, current );
