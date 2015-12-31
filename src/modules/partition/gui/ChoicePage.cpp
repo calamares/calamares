@@ -452,7 +452,6 @@ void
 ChoicePage::doReplaceSelectedPartition( const QModelIndex& current,
                                         const QModelIndex& previous )
 {
-    cDebug() << "selectionModel reaction, sender is" << sender();
     ScanningDialog::run( QtConcurrent::run( [ = ]
     {
         QMutexLocker locker( &m_coreMutex );
