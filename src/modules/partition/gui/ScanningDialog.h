@@ -22,6 +22,8 @@
 #include <QDialog>
 #include <QFuture>
 
+#include <functional>
+
 class ScanningDialog : public QDialog
 {
     Q_OBJECT
@@ -33,9 +35,11 @@ public:
     static void run( const QFuture< void >& future,
                      const QString& text,
                      const QString& windowTitle,
+                     const std::function< void() >& callback = []{},
                      QWidget* parent = nullptr );
 
     static void run( const QFuture< void >& future,
+                     const std::function< void() >& callback = []{},
                      QWidget* parent = nullptr );
 
 public slots:

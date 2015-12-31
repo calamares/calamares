@@ -51,6 +51,7 @@ void
 ScanningDialog::run( const QFuture< void >& future,
                      const QString& text,
                      const QString& windowTitle,
+                     const std::function< void() >& callback,
                      QWidget* parent )
 {
     ScanningDialog* theDialog =
@@ -61,11 +62,12 @@ ScanningDialog::run( const QFuture< void >& future,
 
     QFutureWatcher< void >* watcher = new QFutureWatcher< void >();
     connect( watcher, &QFutureWatcher< void >::finished,
-             theDialog, [ watcher, theDialog ]
+             theDialog, [ watcher, theDialog, callback ]
     {
         watcher->deleteLater();
         theDialog->hide();
         theDialog->deleteLater();
+        callback();
     } );
 
     watcher->setFuture( future );
@@ -73,11 +75,14 @@ ScanningDialog::run( const QFuture< void >& future,
 
 
 void
-ScanningDialog::run( const QFuture< void >& future, QWidget* parent )
+ScanningDialog::run( const QFuture< void >& future,
+                     const std::function< void() >& callback,
+                     QWidget* parent )
 {
     ScanningDialog::run( future,
                          tr( "Scanning storage devices..." ),
                          tr( "Partitioning" ),
+                         callback,
                          parent );
 }
 
