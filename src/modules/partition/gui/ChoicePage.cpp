@@ -627,17 +627,12 @@ ChoicePage::updateActionChoicePreview( ChoicePage::Choice choice )
         break;
     default:
         previewSelectionMode = QAbstractItemView::NoSelection;
+        m_beforePartitionBarsView->disconnect( SIGNAL( clicked() ) );
+        m_beforePartitionLabelsView->disconnect( SIGNAL( clicked() ) );
     }
 
-    foreach ( QObject* child, m_previewBeforeFrame->children() )
-    {
-        PartitionBarsView* pbv = qobject_cast< PartitionBarsView* >( child );
-        if ( pbv )
-            pbv->setSelectionMode( previewSelectionMode );
-        PartitionLabelsView* plv = qobject_cast< PartitionLabelsView* >( child );
-        if ( plv )
-            plv->setSelectionMode( previewSelectionMode );
-    }
+    m_beforePartitionBarsView->setSelectionMode( previewSelectionMode );
+    m_beforePartitionLabelsView->setSelectionMode( previewSelectionMode );
 }
 
 
