@@ -32,6 +32,7 @@
 #include "ui_CreatePartitionTableDialog.h"
 
 #include "utils/Retranslator.h"
+#include "Branding.h"
 
 // KPMcore
 #include <kpmcore/core/device.h>
@@ -195,29 +196,21 @@ PartitionPage::onDeleteClicked()
 void
 PartitionPage::onRevertClicked()
 {
-    ScanningDialog* rescanningDialog =
-            new ScanningDialog( tr( "Scanning storage devices..." ), this );
-    rescanningDialog->show();
+    ScanningDialog::run(
+        QtConcurrent::run( [ this ]
+        {
+            QMutexLocker locker( &m_revertMutex );
 
-    QFutureWatcher< void >* watcher = new QFutureWatcher< void >();
-    connect( watcher, &QFutureWatcher< void >::finished,
-             this, [ watcher, rescanningDialog ]
-    {
-        watcher->deleteLater();
-        rescanningDialog->hide();
-        rescanningDialog->deleteLater();
-    } );
-
-    QFuture< void > future = QtConcurrent::run( [ this ]
-    {
-        QMutexLocker locker( &m_revertMutex );
-
-        int oldIndex = m_ui->deviceComboBox->currentIndex();
-        m_core->revertAllDevices();
-        m_ui->deviceComboBox->setCurrentIndex( oldIndex );
-        updateFromCurrentDevice();
-    } );
-    watcher->setFuture( future );
+            int oldIndex = m_ui->deviceComboBox->currentIndex();
+            m_core->revertAllDevices();
+            m_ui->deviceComboBox->setCurrentIndex( oldIndex );
+            updateFromCurrentDevice();
+        } ),
+        tr( "Scanning storage devices..." ),
+        tr( "%1 Partitioning" )
+            .arg( Calamares::Branding::instance()->
+                string( Calamares::Branding::ShortProductName ) ),
+        this );
 }
 
 void
