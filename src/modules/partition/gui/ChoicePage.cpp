@@ -427,8 +427,11 @@ ChoicePage::applyActionChoice( ChoicePage::Choice choice )
                 QMutexLocker locker( &m_coreMutex );
                 m_core->revertDevice( selectedDevice() );
 
-                PartitionActions::doAutopartition( m_core, selectedDevice() );
             } ),
+            [=]
+            {
+                PartitionActions::doAutopartition( m_core, selectedDevice() );
+            },
             this );
         }
 
@@ -444,6 +447,7 @@ ChoicePage::applyActionChoice( ChoicePage::Choice choice )
                 QMutexLocker locker( &m_coreMutex );
                 m_core->revertDevice( selectedDevice() );
             } ),
+            []{},
             this );
         }
 
@@ -483,7 +487,7 @@ ChoicePage::doReplaceSelectedPartition( const QModelIndex& current,
             PartitionActions::doReplacePartition( m_core,
                                                   selectedDevice(),
                                                   partition );
-    } ), this );
+    } ), []{}, this );
 }
 
 

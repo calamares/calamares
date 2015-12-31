@@ -206,6 +206,7 @@ PartitionPage::onRevertClicked()
             m_ui->deviceComboBox->setCurrentIndex( oldIndex );
             updateFromCurrentDevice();
         } ),
+        []{},
         this );
 }
 
