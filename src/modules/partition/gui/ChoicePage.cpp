@@ -439,6 +439,7 @@ ChoicePage::applyActionChoice( ChoicePage::Choice choice )
         connect( m_beforePartitionBarsView->selectionModel(), &QItemSelectionModel::currentRowChanged,
                  this, [ this ]( const QModelIndex& current, const QModelIndex& previous )
         {
+            cDebug() << "selectionModel reaction, sender is" << sender() << sender()->metaObject()->className();
             ScanningDialog::run( QtConcurrent::run( this,
                                                     &ChoicePage::doReplaceSelectedPartition,
                                                     current ),
