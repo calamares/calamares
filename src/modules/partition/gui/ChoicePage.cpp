@@ -437,14 +437,8 @@ ChoicePage::applyActionChoice( ChoicePage::Choice choice )
         }
 
         connect( m_beforePartitionBarsView->selectionModel(), &QItemSelectionModel::currentRowChanged,
-                 this, [ this ]( const QModelIndex& current, const QModelIndex& previous )
-        {
-            cDebug() << "selectionModel reaction, sender is" << sender() << sender()->metaObject()->className();
-            ScanningDialog::run( QtConcurrent::run( this,
-                                                    &ChoicePage::doReplaceSelectedPartition,
-                                                    current ),
-                                 this );
-        }, Qt::UniqueConnection );
+                 this, &ChoicePage::doReplaceSelectedPartition,
+                 Qt::UniqueConnection );
         break;
     case NoChoice:
     case Manual:
@@ -455,25 +449,28 @@ ChoicePage::applyActionChoice( ChoicePage::Choice choice )
 
 
 void
-ChoicePage::doReplaceSelectedPartition( const QModelIndex& current )
+ChoicePage::doReplaceSelectedPartition( const QModelIndex& current,
+                                        const QModelIndex& previous )
 {
-    cDebug() << "begin doReplace";
-    QMutexLocker locker( &m_coreMutex );
-
-    if ( m_core->isDirty() )
+    cDebug() << "selectionModel reaction, sender is" << sender();
+    ScanningDialog::run( QtConcurrent::run( [ = ]
     {
-        m_core->revertDevice( selectedDevice() );
-    }
-    // We can't use the PartitionPtrRole because we need to make changes to the
-    // main DeviceModel, not the immutable copy.
-    QString partPath = current.data( PartitionModel::PartitionPathRole ).toString();
-    Partition* partition = KPMHelpers::findPartitionByPath( { selectedDevice() },
-                                                            partPath );
-    if ( partition )
-        PartitionActions::doReplacePartition( m_core,
-                                              selectedDevice(),
-                                              partition );
-    cDebug() << "end doReplace";
+        QMutexLocker locker( &m_coreMutex );
+
+        if ( m_core->isDirty() )
+        {
+            m_core->revertDevice( selectedDevice() );
+        }
+        // We can't use the PartitionPtrRole because we need to make changes to the
+        // main DeviceModel, not the immutable copy.
+        QString partPath = current.data( PartitionModel::PartitionPathRole ).toString();
+        Partition* partition = KPMHelpers::findPartitionByPath( { selectedDevice() },
+                                                                partPath );
+        if ( partition )
+            PartitionActions::doReplacePartition( m_core,
+                                                  selectedDevice(),
+                                                  partition );
+    } ), this );
 }
 
 
