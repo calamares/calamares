@@ -415,7 +415,8 @@ ChoicePage::applyDeviceChoice()
 void
 ChoicePage::applyActionChoice( ChoicePage::Choice choice )
 {
-    m_beforePartitionBarsView->disconnect( SIGNAL( currentRowChanged( QModelIndex, QModelIndex ) ) );
+    m_beforePartitionBarsView->selectionModel()->
+            disconnect( SIGNAL( currentRowChanged( QModelIndex, QModelIndex ) ) );
     switch ( choice )
     {
     case Erase:
