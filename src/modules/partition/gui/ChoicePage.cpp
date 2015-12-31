@@ -428,7 +428,12 @@ ChoicePage::applyActionChoice( ChoicePage::Choice choice )
     case Replace:
         if ( m_core->isDirty() )
         {
-            m_core->revertDevice( selectedDevice() );
+            ScanningDialog::run( QtConcurrent::run( [ = ]
+            {
+                QMutexLocker locker( &m_coreMutex );
+                m_core->revertDevice( selectedDevice() );
+            } ),
+            this );
         }
 
         connect( m_beforePartitionBarsView->selectionModel(), &QItemSelectionModel::currentRowChanged,
@@ -437,10 +442,6 @@ ChoicePage::applyActionChoice( ChoicePage::Choice choice )
             ScanningDialog::run( QtConcurrent::run( this,
                                                     &ChoicePage::doReplaceSelectedPartition,
                                                     current ),
-                                 tr( "Scanning storage devices..." ),
-                                 tr( "%1 Partitioning" )
-                                     .arg( Calamares::Branding::instance()->
-                                           string( Calamares::Branding::ShortProductName ) ),
                                  this );
         } );
         break;
