@@ -443,7 +443,7 @@ ChoicePage::applyActionChoice( ChoicePage::Choice choice )
                                                     &ChoicePage::doReplaceSelectedPartition,
                                                     current ),
                                  this );
-        } );
+        }, Qt::UniqueConnection );
         break;
     case NoChoice:
     case Manual:
