@@ -418,6 +418,9 @@ ChoicePage::applyActionChoice( ChoicePage::Choice choice )
 {
     m_beforePartitionBarsView->selectionModel()->
             disconnect( SIGNAL( currentRowChanged( QModelIndex, QModelIndex ) ) );
+    m_beforePartitionBarsView->selectionModel()->clearSelection();
+    m_beforePartitionBarsView->selectionModel()->clearCurrentIndex();
+
     switch ( choice )
     {
     case Erase:
@@ -441,9 +444,6 @@ ChoicePage::applyActionChoice( ChoicePage::Choice choice )
     case Replace:
         if ( m_core->isDirty() )
         {
-            m_beforePartitionBarsView->selectionModel()->clearSelection();
-            m_beforePartitionBarsView->selectionModel()->clearCurrentIndex();
-
             ScanningDialog::run( QtConcurrent::run( [ = ]
             {
                 QMutexLocker locker( &m_coreMutex );
