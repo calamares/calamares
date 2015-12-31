@@ -420,7 +420,12 @@ ChoicePage::applyActionChoice( ChoicePage::Choice choice )
     case Erase:
         if ( m_core->isDirty() )
         {
-            m_core->revertDevice( selectedDevice() );
+            ScanningDialog::run( QtConcurrent::run( [ = ]
+            {
+                QMutexLocker locker( &m_coreMutex );
+                m_core->revertDevice( selectedDevice() );
+            } ),
+            this );
         }
 
         PartitionActions::doAutopartition( m_core, selectedDevice() );
