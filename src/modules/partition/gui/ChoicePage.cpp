@@ -426,14 +426,15 @@ ChoicePage::applyActionChoice( ChoicePage::Choice choice )
             {
                 QMutexLocker locker( &m_coreMutex );
                 m_core->revertDevice( selectedDevice() );
-
             } ),
-            [=]
+            [ = ]
             {
                 PartitionActions::doAutopartition( m_core, selectedDevice() );
             },
             this );
         }
+        else
+            PartitionActions::doAutopartition( m_core, selectedDevice() );
 
         break;
     case Replace:
