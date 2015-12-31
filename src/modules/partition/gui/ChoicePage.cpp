@@ -99,12 +99,13 @@ ChoicePage::ChoicePage( QWidget* parent )
     CALAMARES_RETRANSLATE(
         retranslateUi( this );
         m_drivesLabel->setText( tr( "Pick a storage de&vice:" ) );
-        m_previewBeforeLabel->setText( tr( "Before:" ) );
+        m_previewBeforeLabel->setText( tr( "Device:" ) );
         m_previewAfterLabel->setText(  tr( "After:" ) );
     )
 
     m_previewBeforeFrame->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Expanding );
     m_previewAfterFrame->setSizePolicy( QSizePolicy::Preferred, QSizePolicy::Expanding );
+    m_previewAfterLabel->hide();
     m_previewAfterFrame->hide();
     // end
 }
@@ -586,6 +587,8 @@ ChoicePage::updateActionChoicePreview( ChoicePage::Choice choice )
     switch ( choice )
     {
     case Alongside:
+        m_previewBeforeLabel->setText( tr( "Device:" ) );
+        m_previewAfterLabel->hide();
         // split widget goes here
         //label->setText( tr( "Drag to split:" ) );
         m_selectLabel->hide();
@@ -594,6 +597,7 @@ ChoicePage::updateActionChoicePreview( ChoicePage::Choice choice )
     case Erase:
     case Replace:
         {
+            m_previewBeforeLabel->setText( tr( "Before:" ) );
             m_afterPartitionBarsView = new PartitionBarsView( m_previewAfterFrame );
             m_afterPartitionLabelsView = new PartitionLabelsView( m_previewAfterFrame );
             m_afterPartitionLabelsView->setCustomNewRootLabel( Calamares::Branding::instance()->
@@ -612,6 +616,7 @@ ChoicePage::updateActionChoicePreview( ChoicePage::Choice choice )
             layout->addWidget( m_afterPartitionLabelsView );
 
             m_previewAfterFrame->show();
+            m_previewAfterLabel->show();
 
             if ( m_choice == Erase )
                 m_selectLabel->hide();
@@ -627,6 +632,8 @@ ChoicePage::updateActionChoicePreview( ChoicePage::Choice choice )
     case Manual:
         m_selectLabel->hide();
         m_previewAfterFrame->hide();
+        m_previewBeforeLabel->setText( tr( "Device:" ) );
+        m_previewAfterLabel->hide();
         break;
     }
 
