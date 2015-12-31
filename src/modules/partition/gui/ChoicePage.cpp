@@ -247,7 +247,7 @@ ChoicePage::setupChoices()
         if ( checked )
         {
             m_choice = Replace;
-            setNextEnabled( true );
+            setNextEnabled( false );
             emit actionChosen();
         }
     } );
