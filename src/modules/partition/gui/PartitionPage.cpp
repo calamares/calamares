@@ -206,10 +206,6 @@ PartitionPage::onRevertClicked()
             m_ui->deviceComboBox->setCurrentIndex( oldIndex );
             updateFromCurrentDevice();
         } ),
-        tr( "Scanning storage devices..." ),
-        tr( "%1 Partitioning" )
-            .arg( Calamares::Branding::instance()->
-                string( Calamares::Branding::ShortProductName ) ),
         this );
 }
 
