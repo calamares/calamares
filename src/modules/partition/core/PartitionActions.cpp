@@ -201,10 +201,14 @@ void
 doReplacePartition( PartitionCoreModule* core, Device* dev, Partition* partition )
 {
     cDebug() << "doReplacePartition for device" << partition->partitionPath();
+    PartitionRole newRoles( partition->roles() );
+    if ( partition->roles().has( PartitionRole::Extended ) )
+        newRoles = PartitionRole( PartitionRole::Primary );
+
     Partition* newPartition = KPMHelpers::createNewPartition(
                                   partition->parent(),
                                   *dev,
-                                  partition->roles(),
+                                  newRoles,
                                   FileSystem::Ext4,
                                   partition->firstSector(),
                                   partition->lastSector() );
