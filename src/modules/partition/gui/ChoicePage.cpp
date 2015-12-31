@@ -434,21 +434,14 @@ ChoicePage::applyActionChoice( ChoicePage::Choice choice )
         connect( m_beforePartitionBarsView->selectionModel(), &QItemSelectionModel::currentRowChanged,
                  this, [ this ]( const QModelIndex& current, const QModelIndex& previous )
         {
-            ScanningDialog* rescanningDialog =
-                    new ScanningDialog( tr( "Scanning storage devices..." ), this );
-            rescanningDialog->show();
-
-            QFutureWatcher< void >* watcher = new QFutureWatcher< void >();
-            connect( watcher, &QFutureWatcher< void >::finished,
-                     this, [ watcher, rescanningDialog ]
-            {
-                watcher->deleteLater();
-                rescanningDialog->hide();
-                rescanningDialog->deleteLater();
-            } );
-
-            QFuture< void > future = QtConcurrent::run( this, &ChoicePage::doReplaceSelectedPartition, current );
-            watcher->setFuture( future );
+            ScanningDialog::run( QtConcurrent::run( this,
+                                                    &ChoicePage::doReplaceSelectedPartition,
+                                                    current ),
+                                 tr( "Scanning storage devices..." ),
+                                 tr( "%1 Partitioning" )
+                                     .arg( Calamares::Branding::instance()->
+                                           string( Calamares::Branding::ShortProductName ) ),
+                                 this );
         } );
         break;
     case NoChoice:
