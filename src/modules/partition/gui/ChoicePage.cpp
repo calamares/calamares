@@ -451,6 +451,7 @@ ChoicePage::applyActionChoice( ChoicePage::Choice choice )
             []{},
             this );
         }
+        setNextEnabled( m_beforePartitionBarsView->selectionModel()->currentIndex().isValid() );
 
         connect( m_beforePartitionBarsView->selectionModel(), SIGNAL( currentRowChanged( QModelIndex, QModelIndex ) ),
                  this, SLOT( doReplaceSelectedPartition( QModelIndex, QModelIndex ) ),
@@ -488,7 +489,11 @@ ChoicePage::doReplaceSelectedPartition( const QModelIndex& current,
             PartitionActions::doReplacePartition( m_core,
                                                   selectedDevice(),
                                                   partition );
-    } ), []{}, this );
+    } ),
+    []
+    {
+        setNextEnabled( m_beforePartitionBarsView->selectionModel()->currentIndex().isValid() );
+    }, this );
 }
 
 
