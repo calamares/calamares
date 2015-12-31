@@ -433,13 +433,13 @@ ChoicePage::applyActionChoice( ChoicePage::Choice choice )
     case Replace:
         if ( m_core->isDirty() )
         {
+            m_beforePartitionBarsView->selectionModel()->clearSelection();
+            m_beforePartitionBarsView->selectionModel()->clearCurrentIndex();
+
             ScanningDialog::run( QtConcurrent::run( [ = ]
             {
                 QMutexLocker locker( &m_coreMutex );
                 m_core->revertDevice( selectedDevice() );
-
-                m_beforePartitionBarsView->selectionModel()->clearSelection();
-                m_beforePartitionBarsView->selectionModel()->clearCurrentIndex();
             } ),
             this );
         }
