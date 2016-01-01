@@ -487,7 +487,7 @@ Instalatorul va ieși, iar toate modificările vor fi pierdute.</translation>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="590"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="635"/>
         <source>Device:</source>
-        <translation type="unfinished"/>
+        <translation>Dispozitiv:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="211"/>

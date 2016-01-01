@@ -529,24 +529,24 @@ Kuruluma devam edebilirsiniz fakat bazı özellikler devre dışı kalabilir.</t
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="728"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="767"/>
         <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;Yanına yükleyin&lt;/strong&gt;&lt;br/&gt;Sistem yükleyici disk bölümünü küçülterek %1 için yer açacak.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="714"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="737"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="776"/>
         <source>&lt;strong&gt;Replace a partition&lt;/strong&gt;&lt;br/&gt;Replaces a partition with %1.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;Disk bölümü üzerine yaz&lt;/strong&gt;&lt;br/&gt;Disk bölümü üzerinde %1 ile yaz.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="723"/>
         <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-        <translation type="unfinished"/>
+        <translation>Bu depolama aygıtı üzerinde bir işletim sistemi yüklü. Ne yapmak istersiniz? &lt;br/&gt;Yaptığınız değişiklikler disk bölümü üzerine uygulanmadan önce gözden geçirme fırsatınız olacak.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="762"/>
         <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-        <translation type="unfinished"/>
+        <translation>Bu depolama aygıtı üzerinde birden fazla işletim sistemi var. Ne yapmak istersiniz? &lt;br/&gt;Yaptığınız değişiklikler disk bölümü üzerine uygulanmadan önce gözden geçirme fırsatınız olacak.</translation>
     </message>
 </context>
 <context>
@@ -858,47 +858,47 @@ Kuruluma devam edebilirsiniz fakat bazı özellikler devre dışı kalabilir.</t
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="79"/>
         <source>The &lt;strong&gt;boot environment&lt;/strong&gt; of this system.&lt;br&gt;&lt;br&gt;Older x86 systems only support &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Modern systems usually use &lt;strong&gt;EFI&lt;/strong&gt;, but may also show up as BIOS if the boot environment runs in compatibility mode.&lt;br&gt;Relevant entries in the system setup utility include: CSM, compatibility support module, Legacy boot mode, BIOS mode, etc.</source>
-        <translation type="unfinished"/>
+        <translation>Bu sistemdeki&lt;br&gt; &lt;strong&gt;önyükleme arayüzü&lt;/strong&gt; sadece eski x86 sistem ve &lt;strong&gt;BIOS&lt;/strong&gt; destekler. &lt;br&gt;Modern sistemler genellikle &lt;strong&gt;EFI&lt;/strong&gt; kullanır fakat önyükleme arayüzü uyumlu modda ise BIOS seçilebilir.&lt;br&gt;Sistem kurulum arayüzünde ilgili girişler şunlardır: CSM, compatibility support module, Legacy boot mode, BIOS mode, vb.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="87"/>
         <source>The type of &lt;strong&gt;partition table&lt;/strong&gt; currently present on the selected storage device.&lt;br&gt;&lt;br&gt;Common values on x86-compatible systems include &lt;strong&gt;GPT&lt;/strong&gt; and &lt;strong&gt;MSDOS&lt;/strong&gt;.&lt;br&gt;Some systems may use other, less common partition table types, like BSD or Sun.&lt;br&gt;The only way to change the partition table type is to erase and recreate the partition table from scratch, which destroys all data on the storage device.&lt;br&gt;This installer will keep the current partition table unless you explicitly choose otherwise.&lt;br&gt;If unsure, on modern systems GPT is preferred.</source>
-        <translation type="unfinished"/>
+        <translation>Depolama aygıtı üzerinde bir &lt;strong&gt;bölümleme tablosu&lt;/strong&gt; mevcut.&lt;br&gt;&lt;br&gt;x86-compatible yani uyumlu sistemler &lt;strong&gt;GPT&lt;/strong&gt; ve &lt;strong&gt;MSDOS&lt;/strong&gt; desteği içerir.&lt;br&gt;BSD veya Sun gibi sistemlerde daha az yaygın bölümleme tabloları kullanabilirsiniz.&lt;br&gt;Bölümleme tablosu türünü değiştirmek için tek yol silmek ve sıfırdan bölümleme tablosunu yeniden oluşturmaktır, bu işlem depolama aygıtındaki tüm verileri yok eder.&lt;br&gt;Sistem yükleyici aksi bir seçeneğe başvurmaz iseniz geçerli bölümlemeyi koruyacaktır.&lt;br&gt;Emin değilseniz, modern sistemler için GPT tercih edebilirsiniz.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="108"/>
         <source>This system was started with an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;Most consumer systems nowadays use EFI, along with a GPT partition table.&lt;br&gt;Current versions of other operating systems, like Windows and Mac OS X also support EFI, and dual boot is possible.&lt;br&gt;In order to boot from an EFI environment, this installer must deploy a boot loader application, like &lt;strong&gt;GRUB&lt;/strong&gt; or &lt;strong&gt;systemd-boot&lt;/strong&gt; on an &lt;strong&gt;EFI System Partition&lt;/strong&gt;. This is automatic, unless you choose manual partitioning, in which case you must choose it or create it on your own.</source>
-        <translation type="unfinished"/>
+        <translation>Bu sistem, bir &lt;strong&gt;EFI&lt;/strong&gt; önyükleme arayüzü ile başladı.&lt;br&gt;&lt;br&gt;Çoğu tüketici sistemleri günümüzde GPT bölümleme tablosu ile birlikte, EFI kullanıyor.&lt;br&gt;Windows ve Mac OS X gibi diğer işletim sistemlerinin güncel versiyonları da EFI destekleyen ve dual boot seçeneği vardır.&lt;br&gt;EFI arayüzü önyüklemesi için, bu yükleyici bir &lt;strong&gt;EFI Sistem Bölümü&lt;/strong&gt; üzerinde &lt;strong&gt;GRUB&lt;/strong&gt; veya &lt;strong&gt;systemd-boot&lt;/strong&gt; gibi bir önyükleyici kurmalıdır. Bunu otomatik olarak yapabileceğiniz gibi elle disk bölümleri oluşturarak ta yapabilirsiniz.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="124"/>
         <source>This system was started with a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;Older systems which do not support EFI start from BIOS.&lt;br&gt;New systems that support EFI can also start in BIOS mode through a compatibility layer, sometimes known as CSM, Legacy boot mode or BIOS mode. On such systems EFI should be preferred, unless you wish to dual boot with an old operating system, like Windows XP. In that case, a MSDOS partition table should also be used instead of GPT.&lt;br&gt;In order to boot from a BIOS environment, this installer must install a boot loader, like &lt;strong&gt;GRUB&lt;/strong&gt;, either at the beginning of a partition or on the &lt;strong&gt;Master Boot Record&lt;/strong&gt; near the beginning of the partition table (preferred). This is automatic, unless you choose manual partitioning, in which case you must set it up on your own.</source>
-        <translation type="unfinished"/>
+        <translation>Bu sistem, bir &lt;strong&gt;BIOS&lt;/strong&gt; önyükleme arayüzü ile başladı.&lt;br&gt;&lt;br&gt;Eski BIOS sistemler EFI başlangıç seçeneklerini desteklemezler. &lt;br&gt;Yeni sistemler EFI desteği verdiği gibi uyumluluk modunda BIOS desteği de sağlar, CSM seçeneği size eski BIOS önyükleme modunu sağlayabilir, örneğin Windows XP seviyorsanız. Bu durumda, GPT bölüm tablosu yerine de MSDOS kullanılmalıdır.&lt;br&gt;BIOS ortamında önyükleme için, yükleyici bölümün başında veya bölüm tablosu başlangıcına yakın &lt;strong&gt;Master Boot Record&lt;/strong&gt; üzerine &lt;strong&gt;GRUB&lt;/strong&gt; gibi bir önyükleyici yüklemeniz gerekir (tercihen). Eğer bu işlemin otomatik olarak yapılmasını istemez iseniz elle bölümleme yapabilirsiniz.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="174"/>
         <source>The selected storage device has a partition table. The partition table type is &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Seçilen depolama aygıtı bir disk bölümü tablosuna sahip. Bu disk bölümü tablosu &lt;strong&gt;%1&lt;/strong&gt; tipindedir.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="181"/>
         <source>The selected storage device is a &lt;strong&gt;loop&lt;/strong&gt; device.&lt;br&gt;&lt;br&gt;This is not an actual partition table, it is a pseudo-device that makes a file accessible as a block device. This kind of setup usually only contains a single filesystem.</source>
-        <translation type="unfinished"/>
+        <translation>Seçilen depolama aygıtı bir &lt;strong&gt;döngüsel&lt;/strong&gt; aygıttır.&lt;br&gt;&lt;br&gt;Bu gerçek bir bölüm tablosu değil, bu aygıt erişilebilir bir yığın depolama pseudo-aygıttır. </translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="188"/>
         <source>This installer &lt;strong&gt;cannot detect a partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The device either has no partition table, or the partition table is corrupted or of an unknown type.&lt;br&gt;This installer can create a new partition table for you, either automatically, or through the manual partitioning page.</source>
-        <translation type="unfinished"/>
+        <translation>Sistem yükleyici seçili depolama aygıtında bir bölümleme tablosu tespit edemedi.&lt;br&gt;&lt;br&gt;Aygıt üzerinde bir disk bölümleme tablosu hiç oluşturulmamış ya da disk yapısı bilinmeyen bir tiptedir.&lt;br&gt;Sistem yükleyiciyi kullanarak elle ya da otomatik olarak bir disk bölümü tablosu oluşturabilirsiniz.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="198"/>
         <source>&lt;br&gt;&lt;br&gt;This is the recommended partition table type for modern systems which start from an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;br&gt;&lt;br&gt;Bu  bölümleme tablosu modern sistemlerdeki &lt;strong&gt;EFI&lt;/strong&gt; önyükleme arayüzünü başlatmak için önerilir.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="204"/>
         <source>&lt;br&gt;&lt;br&gt;This partition table type is only advisable on older systems which start from a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment. For most uses GPT should be preferred instead.&lt;br&gt;&lt;strong&gt;Warning:&lt;/strong&gt; the MSDOS partition table is an obsolete standard with important drawbacks.&lt;br&gt;Only 4 &lt;em&gt;primary&lt;/em&gt; partitions may be created, and of those 4, one can be an &lt;em&gt;extended&lt;/em&gt; partition, which may in turn contain many &lt;em&gt;logical&lt;/em&gt; partitions.&lt;br&gt;For compatibility reasons, it is recommended for a setup based on an MSDOS partition table to have a separate boot partition. This installer can create the boot partition for you automatically, or you may set it up yourself on the manual partitioning page.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;br&gt;&lt;br&gt;Bu bölümleme tablosu &lt;strong&gt;BIOS&lt;/strong&gt;önyükleme arayüzü kullanan eski sistemlerde tercih edilir. Birçok seçenek ile birlikte kullanım için GPT yerine bu tercih edilmelidir.&lt;br&gt;&lt;strong&gt;Uyarı:&lt;/strong&gt; MSDOS bölümleme tablosu önemli riskler barındıran eski bir standarttır.&lt;br&gt;Sadece 4 &lt;em&gt;birincil&lt;/em&gt; birim oluşturulabilir ve  4 ten fazla bölüm için &lt;em&gt;uzatılmış&lt;/em&gt; bölümler oluşturulmalıdır, böylece daha çok &lt;em&gt;mantıksal&lt;/em&gt; bölüm oluşturulabilir.&lt;br&gt;Uyumluluk nedeniyle, ayrı bir önyükleme bölümü için bir MSDOS bölüm tablosuna dayalı bir kurulum tavsiye edilir. Bu yükleyici, otomatik olarak sizin için önyükleme bölümünü oluşturabilir veya elle bölümlendirme aşamasında kendiniz önyükleme bölümünü seçip kurabilirsiniz.</translation>
     </message>
 </context>
 <context>
@@ -1386,37 +1386,37 @@ Kuruluma devam edebilirsiniz fakat bazı özellikler devre dışı kalabilir.</t
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="186"/>
         <source>Root</source>
-        <translation type="unfinished"/>
+        <translation>Root</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="189"/>
         <source>Home</source>
-        <translation type="unfinished"/>
+        <translation>Home</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="191"/>
         <source>Boot</source>
-        <translation type="unfinished"/>
+        <translation>Boot</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="194"/>
         <source>EFI system</source>
-        <translation type="unfinished"/>
+        <translation>EFI sistem</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="196"/>
         <source>Swap</source>
-        <translation type="unfinished"/>
+        <translation>Swap-Takas</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="198"/>
         <source>New partition for %1</source>
-        <translation type="unfinished"/>
+        <translation>%1 için yeni disk bölümü</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="215"/>
         <source>%1  %2</source>
-        <translation type="unfinished"/>
+        <translation>%1  %2</translation>
     </message>
 </context>
 <context>
@@ -1464,7 +1464,7 @@ Kuruluma devam edebilirsiniz fakat bazı özellikler devre dışı kalabilir.</t
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="22"/>
         <source>Storage de&amp;vice:</source>
-        <translation type="unfinished"/>
+        <translation>Depolama ay&amp;gıtı:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="51"/>
@@ -1494,7 +1494,7 @@ Kuruluma devam edebilirsiniz fakat bazı özellikler devre dışı kalabilir.</t
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="145"/>
         <source>Install boot &amp;loader on:</source>
-        <translation type="unfinished"/>
+        <translation>Şuraya ön &amp;yükleyici kur:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="139"/>
@@ -1562,12 +1562,12 @@ Kuruluma devam edebilirsiniz fakat bazı özellikler devre dışı kalabilir.</t
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="225"/>
         <source>Current state:</source>
-        <translation type="unfinished"/>
+        <translation>Güncel konum:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="237"/>
         <source>Your changes:</source>
-        <translation type="unfinished"/>
+        <translation>Yaptığınız değişiklikler:</translation>
     </message>
 </context>
 <context>
@@ -1586,22 +1586,22 @@ Kuruluma devam edebilirsiniz fakat bazı özellikler devre dışı kalabilir.</t
     <message>
         <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="150"/>
         <source>unknown</source>
-        <translation type="unfinished"/>
+        <translation>bilinmeyen</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="152"/>
         <source>extended</source>
-        <translation type="unfinished"/>
+        <translation>uzatılmış</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="154"/>
         <source>unformatted</source>
-        <translation type="unfinished"/>
+        <translation>biçimlenmemiş</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="48"/>
         <source>Unpartitioned space or unknown partition table</source>
-        <translation type="unfinished"/>
+        <translation>Bölümlenmemiş alan veya bilinmeyen bölüm tablosu</translation>
     </message>
 </context>
 <context>
@@ -1614,69 +1614,69 @@ Kuruluma devam edebilirsiniz fakat bazı özellikler devre dışı kalabilir.</t
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="134"/>
         <source>Select where to install %1.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;this will delete all files on the selected partition.</source>
-        <translation type="unfinished"/>
+        <translation>%1 kurulacak diski seçin.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Uyarı: &lt;/font&gt;Bu işlem seçili disk üzerindeki tüm dosyaları silecek.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="161"/>
         <source>The selected item does not appear to be a valid partition.</source>
-        <translation type="unfinished"/>
+        <translation>Seçili nesne, geçerli bir disk bölümü olarak görünmüyor.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="169"/>
         <source>%1 cannot be installed on empty space. Please select an existing partition.</source>
-        <translation type="unfinished"/>
+        <translation>%1 tanımlanmamış boş bir alana kurulamaz. Lütfen geçerli bir disk bölümü seçin.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="180"/>
         <source>%1 cannot be installed on an extended partition. Please select an existing primary or logical partition.</source>
-        <translation type="unfinished"/>
+        <translation>%1 uzatılmış bir disk bölümüne kurulamaz. Geçerli bir, birincil disk ya da mantıksal disk bölümü seçiniz.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="191"/>
         <source>%1 cannot be installed on this partition.</source>
-        <translation type="unfinished"/>
+        <translation>%1 bu disk bölümüne yüklenemedi.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="198"/>
         <source>Data partition (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Veri diski (%1)</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="215"/>
         <source>Unknown system partition (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Bilinmeyen sistem bölümü (%1)</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="220"/>
         <source>%1 system partition (%2)</source>
-        <translation type="unfinished"/>
+        <translation>%1 sistem bölümü (%2)</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="231"/>
         <source>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;The partition %1 is too small for %2. Please select a partition with capacity at least %3 GiB.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;disk bölümü %2 için %1 daha küçük. Lütfen, en az %3 GB kapasiteli bir disk bölümü seçiniz.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="255"/>
         <source>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Bu sistemde EFI disk bölümü bulamadı. Lütfen geri dönün ve %1 kurmak için gelişmiş kurulum seçeneğini kullanın.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="267"/>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="286"/>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="311"/>
         <source>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 will be installed on %2.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;all data on partition %2 will be lost.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%2 üzerine %1 kuracak.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Uyarı: &lt;/font&gt;%2 diskindeki tüm veriler kaybedilecek.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="277"/>
         <source>The EFI system partition at %1 will be used for starting %2.</source>
-        <translation type="unfinished"/>
+        <translation>%1 EFI sistem bölümü %2 başlatmak için kullanılacaktır.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="295"/>
         <source>EFI system partition:</source>
-        <translation type="unfinished"/>
+        <translation>EFI sistem bölümü:</translation>
     </message>
 </context>
 <context>
@@ -1785,12 +1785,12 @@ Sistem güç kaynağına bağlı değil.</translation>
     <message>
         <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="83"/>
         <source>Scanning storage devices...</source>
-        <translation type="unfinished"/>
+        <translation>Depolama aygıtları taranıyor...</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="84"/>
         <source>Partitioning</source>
-        <translation type="unfinished"/>
+        <translation>Bölümleme</translation>
     </message>
 </context>
 <context>
