@@ -42,6 +42,7 @@ desktop_environments = [
     DesktopEnvironment('/usr/bin/pekwm', 'pekwm'),
     DesktopEnvironment('/usr/bin/pantheon-session', 'pantheon'),
     DesktopEnvironment('/usr/bin/budgie-session', 'budgie-session'),
+    DesktopEnvironment('/usr/bin/budgie-desktop', 'budgie-desktop'),
     DesktopEnvironment('/usr/bin/i3', 'i3'),
     DesktopEnvironment('/usr/bin/openbox-session', 'openbox')
 ]
