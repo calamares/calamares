@@ -19,7 +19,7 @@
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="222"/>
         <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
-        <translation>Nun pue alcontrase per nenyures una partición del sistema EFI nesti ordenador. Por favor, vuelvi atrás y usa&apos;l particionáu manual pa configurar %1.</translation>
+        <translation>Nun pue alcontrase per nenyures una partición del sistema EFI nesti ordenador. Vuelvi atrás y usa&apos;l particionáu manual pa configurar %1, por favor.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="232"/>
@@ -470,34 +470,34 @@ L&apos;instalador colará y perderánse toles camudancies.</translation>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="101"/>
         <source>Pick a storage de&amp;vice:</source>
-        <translation type="unfinished"/>
+        <translation>Escueyi un preséu d&apos;almac&amp;enamientu:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="600"/>
         <source>Before:</source>
-        <translation type="unfinished"/>
+        <translation>Enantes:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="103"/>
         <source>After:</source>
-        <translation type="unfinished"/>
+        <translation>Dempués:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="102"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="590"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="635"/>
         <source>Device:</source>
-        <translation type="unfinished"/>
+        <translation>Preséu:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="211"/>
         <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;Particionáu manual&lt;/strong&gt;&lt;br/&gt;Pues crear o redimensionar particiones tu mesmu.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="346"/>
         <source>Boot loader location:</source>
-        <translation type="unfinished"/>
+        <translation>Allugamientu del xestor d&apos;arranque:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="626"/>
@@ -1071,7 +1071,7 @@ L&apos;instalador colará y perderánse toles camudancies.</translation>
         <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="85"/>
         <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="97"/>
         <source>Please install the kde konsole and try again!</source>
-        <translation>¡Por favor, instala konsole ya inténtalo de nueves!</translation>
+        <translation>¡Instala konsole ya inténtalo de nueves, por favor!</translation>
     </message>
     <message>
         <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="122"/>
@@ -1141,7 +1141,7 @@ L&apos;instalador colará y perderánse toles camudancies.</translation>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="118"/>
         <source>Please review the End User License Agreements (EULAs) above.&lt;br/&gt;If you do not agree with the terms, the setup procedure cannot continue.</source>
-        <translation>Por favor, revisa los Alcuerdos de Llicencia del Usuariu Final (EULAs) d&apos;enriba.&lt;br/&gt;Si nun tas acordies colos términos, el procedimientu nun pue siguir.</translation>
+        <translation>Revisa los Alcuerdos de Llicencia del Usuariu Final (EULAs) d&apos;enriba, por favor.&lt;br/&gt;Si nun tas acordies colos términos, el procedimientu nun pue siguir.</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="124"/>
@@ -1151,7 +1151,7 @@ L&apos;instalador colará y perderánse toles camudancies.</translation>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="129"/>
         <source>Please review the End User License Agreements (EULAs) above.&lt;br/&gt;If you do not agree with the terms, proprietary software will not be installed, and open source alternatives will be used instead.</source>
-        <translation>Por favor, revisa los Alcuerdos de Llicencia del Usuariu Final (EULAs) d&apos;enriba.&lt;br/&gt;Si nun tas acordies colos términos, nun s&apos;instalará&apos;l software propietariu y usaránse, nel so llugar, alternatives de códigu abiertu.</translation>
+        <translation>Revisa los Alcuerdos de Llicencia del Usuariu Final (EULAs) d&apos;enriba, por favor.&lt;br/&gt;Si nun tas acordies colos términos, nun s&apos;instalará&apos;l software propietariu y usaránse, nel so llugar, alternatives de códigu abiertu.</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="159"/>
@@ -1617,7 +1617,7 @@ L&apos;instalador colará y perderánse toles camudancies.</translation>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="161"/>
         <source>The selected item does not appear to be a valid partition.</source>
-        <translation type="unfinished"/>
+        <translation>L&apos;ementu esbilláu nun paez ser una partición válida.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="169"/>
@@ -1627,7 +1627,7 @@ L&apos;instalador colará y perderánse toles camudancies.</translation>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="180"/>
         <source>%1 cannot be installed on an extended partition. Please select an existing primary or logical partition.</source>
-        <translation type="unfinished"/>
+        <translation>%1 nun pue instalase nuna partición estendida. Esbilla una partición llóxica o primaria esistente, por favor.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="191"/>
