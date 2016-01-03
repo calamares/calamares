@@ -31,8 +31,6 @@ DesktopEnvironment = collections.namedtuple('DesktopEnvironment', ['executable',
 desktop_environments = [
     DesktopEnvironment('/usr/bin/startkde', 'plasma'),  # KDE Plasma 5
     DesktopEnvironment('/usr/bin/startkde', 'kde-plasma'),  # KDE Plasma 4
-    DesktopEnvironment('/usr/bin/budgie-desktop', 'budgie-desktop'), # Budgie v10.x
-    DesktopEnvironment('/usr/bin/budgie-session', 'budgie-desktop'), # Budgie v8.x
     DesktopEnvironment('/usr/bin/gnome-session', 'gnome'),
     DesktopEnvironment('/usr/bin/startxfce4', 'xfce'),
     DesktopEnvironment('/usr/bin/cinnamon-session-cinnamon', 'cinnamon'),
@@ -43,6 +41,8 @@ desktop_environments = [
     DesktopEnvironment('/usr/bin/lxqt-session', 'lxqt'),
     DesktopEnvironment('/usr/bin/pekwm', 'pekwm'),
     DesktopEnvironment('/usr/bin/pantheon-session', 'pantheon'),
+    DesktopEnvironment('/usr/bin/budgie-session', 'budgie-session'),
+    DesktopEnvironment('/usr/bin/budgie-desktop', 'budgie-desktop'),
     DesktopEnvironment('/usr/bin/i3', 'i3'),
     DesktopEnvironment('/usr/bin/openbox-session', 'openbox')
 ]
