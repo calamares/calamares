@@ -127,6 +127,7 @@ Q_SIGNALS:
     void hasRootMountPointChanged( bool value );
     void isDirtyChanged( bool value );
     void reverted();
+    void deviceReverted( Device* device );
 
 private:
     void refresh();

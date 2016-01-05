@@ -537,6 +537,7 @@ PartitionCoreModule::revertDevice( Device* dev )
     m_bootLoaderModel->init( devices );
 
     updateIsDirty();
+    emit deviceReverted( newDev );
 }
 
 
