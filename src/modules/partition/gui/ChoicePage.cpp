@@ -324,6 +324,13 @@ ChoicePage::createBootloaderComboBox( ExpandableRadioButton* parentButton )
         if ( expanded )
             updateBootloaderDevice();
     }, Qt::QueuedConnection );
+    connect( m_core, &PartitionCoreModule::deviceReverted,
+             this, [ this, bcb ]( Device* dev )
+    {
+        if ( bcb->model() != m_core->bootLoaderModel() )
+            bcb->setModel( m_core->bootLoaderModel() );
+        bcb->setCurrentIndex( m_lastSelectedDeviceIndex );
+    } );
     // ^ Must be Queued so it's sure to run when the widget is already visible.
 
     return bcb;
