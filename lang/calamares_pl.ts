@@ -465,7 +465,7 @@ Instalator zostanie zamknięty i wszystkie zmiany zostaną utracone.</translatio
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>Formularz</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="101"/>
@@ -475,34 +475,34 @@ Instalator zostanie zamknięty i wszystkie zmiany zostaną utracone.</translatio
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="600"/>
         <source>Before:</source>
-        <translation type="unfinished"/>
+        <translation>Przed:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="103"/>
         <source>After:</source>
-        <translation type="unfinished"/>
+        <translation>Po:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="102"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="590"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="635"/>
         <source>Device:</source>
-        <translation type="unfinished"/>
+        <translation>Urządzenie:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="211"/>
         <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;Ręczne partycjonowanie&lt;/strong&gt;&lt;br/&gt;Możesz samodzielnie utworzyć lub zmienić rozmiar istniejących partycji.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="346"/>
         <source>Boot loader location:</source>
-        <translation type="unfinished"/>
+        <translation>Położenie programu rozruchowego:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="626"/>
         <source>&lt;strong&gt;Select which partition to replace&lt;/strong&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;Wybierz którą partycję zastapić&lt;/strong&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="678"/>
@@ -534,7 +534,7 @@ Instalator zostanie zamknięty i wszystkie zmiany zostaną utracone.</translatio
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="737"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="776"/>
         <source>&lt;strong&gt;Replace a partition&lt;/strong&gt;&lt;br/&gt;Replaces a partition with %1.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;Zastąp partycję&lt;/strong&gt;&lt;br/&gt;Zastępowanie partycji poprzez %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="723"/>
@@ -1384,37 +1384,37 @@ Instalator zostanie zamknięty i wszystkie zmiany zostaną utracone.</translatio
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="186"/>
         <source>Root</source>
-        <translation type="unfinished"/>
+        <translation>Systemowa</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="189"/>
         <source>Home</source>
-        <translation type="unfinished"/>
+        <translation>Domowa</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="191"/>
         <source>Boot</source>
-        <translation type="unfinished"/>
+        <translation>Rozruchowa</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="194"/>
         <source>EFI system</source>
-        <translation type="unfinished"/>
+        <translation>System EFI</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="196"/>
         <source>Swap</source>
-        <translation type="unfinished"/>
+        <translation>Przestrzeń wymiany</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="198"/>
         <source>New partition for %1</source>
-        <translation type="unfinished"/>
+        <translation>Nowa partycja dla %1</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="215"/>
         <source>%1  %2</source>
-        <translation type="unfinished"/>
+        <translation>%1  %2</translation>
     </message>
 </context>
 <context>
@@ -1462,7 +1462,7 @@ Instalator zostanie zamknięty i wszystkie zmiany zostaną utracone.</translatio
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="22"/>
         <source>Storage de&amp;vice:</source>
-        <translation type="unfinished"/>
+        <translation>Urządzenie przecho&amp;wywania:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="51"/>
@@ -1492,7 +1492,7 @@ Instalator zostanie zamknięty i wszystkie zmiany zostaną utracone.</translatio
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="145"/>
         <source>Install boot &amp;loader on:</source>
-        <translation type="unfinished"/>
+        <translation>Zainsta&amp;luj program rozruchowy na:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="139"/>
@@ -1560,12 +1560,12 @@ Instalator zostanie zamknięty i wszystkie zmiany zostaną utracone.</translatio
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="225"/>
         <source>Current state:</source>
-        <translation type="unfinished"/>
+        <translation>Bieżący stan:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="237"/>
         <source>Your changes:</source>
-        <translation type="unfinished"/>
+        <translation>Twoje zmiany:</translation>
     </message>
 </context>
 <context>
@@ -1584,22 +1584,22 @@ Instalator zostanie zamknięty i wszystkie zmiany zostaną utracone.</translatio
     <message>
         <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="150"/>
         <source>unknown</source>
-        <translation type="unfinished"/>
+        <translation>nieznany</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="152"/>
         <source>extended</source>
-        <translation type="unfinished"/>
+        <translation>rozszerzona</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="154"/>
         <source>unformatted</source>
-        <translation type="unfinished"/>
+        <translation>niesformatowany</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="48"/>
         <source>Unpartitioned space or unknown partition table</source>
-        <translation type="unfinished"/>
+        <translation>Przestrzeń bez partycji lub nieznana tabela partycji</translation>
     </message>
 </context>
 <context>
@@ -1607,74 +1607,74 @@ Instalator zostanie zamknięty i wszystkie zmiany zostaną utracone.</translatio
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>Formularz</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="134"/>
         <source>Select where to install %1.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;this will delete all files on the selected partition.</source>
-        <translation type="unfinished"/>
+        <translation>Wskaż gdzie zainstalować %1.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Uwaga: &lt;/font&gt;na wybranej partycji zostaną usunięte wszystkie pliki.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="161"/>
         <source>The selected item does not appear to be a valid partition.</source>
-        <translation type="unfinished"/>
+        <translation>Wybrany element zdaje się nie być poprawną partycją.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="169"/>
         <source>%1 cannot be installed on empty space. Please select an existing partition.</source>
-        <translation type="unfinished"/>
+        <translation>Nie można zainstalować %1 na pustej przestrzeni. Prosimy wybrać istniejącą partycję.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="180"/>
         <source>%1 cannot be installed on an extended partition. Please select an existing primary or logical partition.</source>
-        <translation type="unfinished"/>
+        <translation>Nie można zainstalować %1 na rozszerzonej partycji. Prosimy wybrać istniejącą partycję podstawową lub logiczną.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="191"/>
         <source>%1 cannot be installed on this partition.</source>
-        <translation type="unfinished"/>
+        <translation>%1 nie może zostać zainstalowany na tej partycji.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="198"/>
         <source>Data partition (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Partycja z danymi (%1)</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="215"/>
         <source>Unknown system partition (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Nieznana partycja systemowa (%1)</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="220"/>
         <source>%1 system partition (%2)</source>
-        <translation type="unfinished"/>
+        <translation>%1 partycja systemowa (%2)</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="231"/>
         <source>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;The partition %1 is too small for %2. Please select a partition with capacity at least %3 GiB.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Partycja %1 jest zbyt mała dla %2. Prosimy wybrać partycję o pojemności przynajmniej %3 GB.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="255"/>
         <source>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Nigdzie w tym systemie nie można odnaleźć partycji systemowej EFI. Prosimy się cofnąć i użyć ręcznego partycjonowania dysku do ustawienia %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="267"/>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="286"/>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="311"/>
         <source>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 will be installed on %2.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;all data on partition %2 will be lost.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 zostanie zainstalowany na %2.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Uwaga: &lt;/font&gt;wszystkie dane znajdujące się na partycji %2 zostaną utracone.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="277"/>
         <source>The EFI system partition at %1 will be used for starting %2.</source>
-        <translation type="unfinished"/>
+        <translation>Partycja systemowa EFI na %1 będzie użyta do uruchamiania %2.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="295"/>
         <source>EFI system partition:</source>
-        <translation type="unfinished"/>
+        <translation>Partycja systemowa EFI:</translation>
     </message>
 </context>
 <context>
@@ -1782,12 +1782,12 @@ Instalator zostanie zamknięty i wszystkie zmiany zostaną utracone.</translatio
     <message>
         <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="83"/>
         <source>Scanning storage devices...</source>
-        <translation type="unfinished"/>
+        <translation>Skanowanie urządzeń przechowywania...</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="84"/>
         <source>Partitioning</source>
-        <translation type="unfinished"/>
+        <translation>Partycjonowanie</translation>
     </message>
 </context>
 <context>

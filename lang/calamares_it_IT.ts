@@ -19,17 +19,17 @@
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="222"/>
         <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
-        <translation>Non è stato possibile trovare alcuna partizione EFI su questo sistema. Torna indietro e usa il partizionamento manuale per impostarla %1.</translation>
+        <translation>Non è stato possibile trovare alcuna partizione EFI su questo sistema. Torna indietro e usa il partizionamento manuale per configurarla %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="232"/>
         <source>The EFI system partition at %1 will be used for starting %2.</source>
-        <translation>La partizione EFI su %1 verrà usata per avviare il sistema %2</translation>
+        <translation>La partizione EFI a %1 verrà usata per avviare %2.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="242"/>
         <source>EFI system partition:</source>
-        <translation>Partizione EFI:</translation>
+        <translation>Partizione EFI di sistema:</translation>
     </message>
 </context>
 <context>
@@ -162,7 +162,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="125"/>
         <source>%1 (%2)</source>
-        <translation>%1(%2)</translation>
+        <translation>%1 (%2)</translation>
     </message>
 </context>
 <context>
@@ -180,7 +180,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="34"/>
         <source>JobQueue</source>
-        <translation>Coda dei lavori</translation>
+        <translation>JobQueue</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="44"/>
@@ -190,7 +190,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.cpp" line="96"/>
         <source>Debug information</source>
-        <translation>Informazioni debug</translation>
+        <translation>Informazioni di debug</translation>
     </message>
 </context>
 <context>
@@ -214,12 +214,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="51"/>
         <source>Run command %1 %2</source>
-        <translation>Esegui comando %1 %2</translation>
+        <translation>Esegui il comando %1 %2</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="60"/>
         <source>Running command %1 %2</source>
-        <translation>Esegui comando %1 %2</translation>
+        <translation>Comando in esecuzione %1 %2</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="89"/>
@@ -344,18 +344,18 @@ Output:
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="91"/>
         <source>Do you really want to cancel the current install process?
 The installer will quit and all changes will be lost.</source>
-        <translation>Vuoi davvero annullare l&apos;installazione in corso?
-Il programma di installazione sarà chiuso, e tutte le modifiche andranno perse.</translation>
+        <translation>Si vuole davvero annullare l&apos;installazione in corso?
+Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno perse.</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="224"/>
         <source>Continue with setup?</source>
-        <translation>Procedere con il setup?</translation>
+        <translation>Procedere con la configurazione?</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="225"/>
         <source>The %1 installer is about to make changes to your disk in order to install %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
-        <translation>Il programma di installazione %1 sta per effettuare delle modifiche al tuo hard disk per installare %2.&lt;br/&gt;&lt;strong&gt; Non sarà possibile annullare tali modifiche.&lt;/strong&gt;</translation>
+        <translation>Il programma d&apos;nstallazione %1 sta per eseguire delle modifiche al tuo disco per poter installare %2.&lt;br/&gt;&lt;strong&gt; Non sarà possibile annullare tali modifiche.&lt;/strong&gt;</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="232"/>
@@ -416,7 +416,7 @@ Il programma di installazione sarà chiuso, e tutte le modifiche andranno perse.
     <message>
         <location filename="../src/calamares/CalamaresWindow.cpp" line="98"/>
         <source>Show debug information</source>
-        <translation>Mostra informazioni debug</translation>
+        <translation>Mostra le informazioni di debug</translation>
     </message>
 </context>
 <context>
@@ -447,7 +447,7 @@ Il programma di installazione sarà chiuso, e tutte le modifiche andranno perse.
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="142"/>
         <source>This program will ask you some questions and set up %2 on your computer.</source>
-        <translation>Questo programma chiederà alcune informazioni e imposterà %2 sul computer.</translation>
+        <translation>Questo programma chiederà alcune informazioni e configurerà %2 sul computer.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="166"/>
@@ -470,7 +470,7 @@ Il programma di installazione sarà chiuso, e tutte le modifiche andranno perse.
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="101"/>
         <source>Pick a storage de&amp;vice:</source>
-        <translation>Sce&amp;gli un dispositivo di memoria:</translation>
+        <translation>Sce&amp;gliere un dispositivo di memoria:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="600"/>
@@ -492,7 +492,7 @@ Il programma di installazione sarà chiuso, e tutte le modifiche andranno perse.
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="211"/>
         <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself.</source>
-        <translation>&lt;strong&gt;Partizionamento manuale&lt;/strong&gt;&lt;br/&gt;Puoi creare o ridimensionare le partizioni manualmente.</translation>
+        <translation>&lt;strong&gt;Partizionamento manuale&lt;/strong&gt;&lt;br/&gt;Si possono creare o ridimensionare le partizioni manualmente.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="346"/>
@@ -552,17 +552,17 @@ Il programma di installazione sarà chiuso, e tutte le modifiche andranno perse.
     <message>
         <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="44"/>
         <source>Clear mounts for partitioning operations on %1</source>
-        <translation>Rimuovi i punti di montaggio per operazioni di partizionamento su %1</translation>
+        <translation>Rimuovi i punti di mount per operazioni di partizionamento su %1</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="52"/>
         <source>Clearing mounts for partitioning operations on %1.</source>
-        <translation>Rimozione punti di mount per le operazioni di partizionamento su %1.</translation>
+        <translation>Rimozione dei punti di mount per le operazioni di partizionamento su %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="171"/>
         <source>Cleared all mounts for %1</source>
-        <translation>Rimossi tutti i punti di montaggio per %1</translation>
+        <translation>Rimossi tutti i punti di mount per %1</translation>
     </message>
 </context>
 <context>
@@ -570,22 +570,22 @@ Il programma di installazione sarà chiuso, e tutte le modifiche andranno perse.
     <message>
         <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="40"/>
         <source>Clear all temporary mounts.</source>
-        <translation>Rimuovi tutti i punti di montaggio temporanei</translation>
+        <translation>Rimuovi tutti i punti di mount temporanei.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="47"/>
         <source>Clearing all temporary mounts.</source>
-        <translation>Rimozione dei punti di mount temporanei.</translation>
+        <translation>Rimozione di tutti i punti di mount temporanei.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="58"/>
         <source>Cannot get list of temporary mounts.</source>
-        <translation>Non è possibile ottenere la lista dei punti di montaggio temporanei.</translation>
+        <translation>Non è possibile ottenere la lista dei punti di mount temporanei.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="97"/>
         <source>Cleared all temporary mounts.</source>
-        <translation>Rimossi tutti i punti di montaggio temporanei</translation>
+        <translation>Rimossi tutti i punti di mount temporanei.</translation>
     </message>
 </context>
 <context>
@@ -863,42 +863,42 @@ Il programma di installazione sarà chiuso, e tutte le modifiche andranno perse.
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="87"/>
         <source>The type of &lt;strong&gt;partition table&lt;/strong&gt; currently present on the selected storage device.&lt;br&gt;&lt;br&gt;Common values on x86-compatible systems include &lt;strong&gt;GPT&lt;/strong&gt; and &lt;strong&gt;MSDOS&lt;/strong&gt;.&lt;br&gt;Some systems may use other, less common partition table types, like BSD or Sun.&lt;br&gt;The only way to change the partition table type is to erase and recreate the partition table from scratch, which destroys all data on the storage device.&lt;br&gt;This installer will keep the current partition table unless you explicitly choose otherwise.&lt;br&gt;If unsure, on modern systems GPT is preferred.</source>
-        <translation type="unfinished"/>
+        <translation>Il tipo di &lt;strong&gt;tabella delle partizioni&lt;/strong&gt; attualmente presente sul dispositivo di memoria selezionato.&lt;br&gt;&lt;br&gt;Tipi di tabella comuni sui sistemi compatibili x86 includono &lt;strong&gt;GPT&lt;/strong&gt; e &lt;strong&gt;MSDOS&lt;/strong&gt;.&lt;br&gt;Alcuni sistemi possono usare altri tipi di tabella meno comuni come BSD o Sun.&lt;br&gt;L&apos;unico modo per cambiare il tipo di tabella delle partizioni è quello di cancellarla e ricrearla da capo, distruggendo tutti i dati sul dispositivo di memoria.&lt;br&gt; Il programma di installazione conserverà l&apos;attuale tabella a meno che no si scelga diversamente.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="108"/>
         <source>This system was started with an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;Most consumer systems nowadays use EFI, along with a GPT partition table.&lt;br&gt;Current versions of other operating systems, like Windows and Mac OS X also support EFI, and dual boot is possible.&lt;br&gt;In order to boot from an EFI environment, this installer must deploy a boot loader application, like &lt;strong&gt;GRUB&lt;/strong&gt; or &lt;strong&gt;systemd-boot&lt;/strong&gt; on an &lt;strong&gt;EFI System Partition&lt;/strong&gt;. This is automatic, unless you choose manual partitioning, in which case you must choose it or create it on your own.</source>
-        <translation type="unfinished"/>
+        <translation>Il sistema è stato avviato con un ambiente di boot &lt;strong&gt;EFI&lt;/strong&gt;.&lt;br&gt;&lt;br&gt;La maggior parte dei sistemi oggi usa EFI con una tabella delle partizioni GPT.&lt;br&gt;Anche versioni attuali di altri sistemi operativi, come Windows e Mac OS X, usano un ambiente EFI ed è possibile fare il dual boot.&lt;br&gt;Per poter avviare da un ambiente di boot EFI, il programma d&apos;installazione deve inserire un&apos;applicazione boot loader, come &lt;strong&gt;GRUB&lt;/strong&gt; o &lt;strong&gt;systemd-boot&lt;/strong&gt; su una &lt;strong&gt;Partizione di Sistema EFI&lt;/strong&gt;. Ciò avviene automaticamente, a meno che non si scelga di partizionare manualmente e quindi scegliere il tipo di boot loader o crearne uno per conto proprio.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="124"/>
         <source>This system was started with a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;Older systems which do not support EFI start from BIOS.&lt;br&gt;New systems that support EFI can also start in BIOS mode through a compatibility layer, sometimes known as CSM, Legacy boot mode or BIOS mode. On such systems EFI should be preferred, unless you wish to dual boot with an old operating system, like Windows XP. In that case, a MSDOS partition table should also be used instead of GPT.&lt;br&gt;In order to boot from a BIOS environment, this installer must install a boot loader, like &lt;strong&gt;GRUB&lt;/strong&gt;, either at the beginning of a partition or on the &lt;strong&gt;Master Boot Record&lt;/strong&gt; near the beginning of the partition table (preferred). This is automatic, unless you choose manual partitioning, in which case you must set it up on your own.</source>
-        <translation type="unfinished"/>
+        <translation>Il sistema è stato avviato con un ambiente di boot &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;&lt;br&gt;I nuovi sistemi che supportano EFI possono anche avviare in modalità BIOS attraverso un layer di compatibilità, a volte chiamato CSM, modalità Legacy o modalità BIOS. Su tali sistemi la scelta da preferire dovrebbe essere EFI, a meno che non si desideri fare il dual boot con un vecchio sistema operativo come Windows XP. In tal caso, una tabella delle partizioni MSDOS dovrebbe essere usata al posto di GPT.&lt;br&gt;Per avviare da un ambiente di boot BIOS, questo programma d&apos;installazione deve installare un boot loader come &lt;strong&gt;GRUB&lt;/strong&gt;, all&apos;inizio di una partizione o sul &lt;strong&gt;Master Boot Record&lt;/strong&gt; all&apos;inizio della tabella delle partizioni (preferito). Ciò avviene automaticamente, a meno che non si scelga di partizionare a mano e in tal caso si deve installare a mano anche il boot loader.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="174"/>
         <source>The selected storage device has a partition table. The partition table type is &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Il dispositivo di memoria selezionato ha una tabella delle partizioni. Il tipo di tabella è &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="181"/>
         <source>The selected storage device is a &lt;strong&gt;loop&lt;/strong&gt; device.&lt;br&gt;&lt;br&gt;This is not an actual partition table, it is a pseudo-device that makes a file accessible as a block device. This kind of setup usually only contains a single filesystem.</source>
-        <translation type="unfinished"/>
+        <translation>Il dispositivo di memoria selezionato è di tipo &lt;strong&gt;loop&lt;/strong&gt;. &lt;br&gt;&lt;br&gt;Questo non ha una tabella delle partizioni reale, si tratta di uno pseudo-dispositivo che rende un file accessibile come un dispositivo a blocchi - block device.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="188"/>
         <source>This installer &lt;strong&gt;cannot detect a partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The device either has no partition table, or the partition table is corrupted or of an unknown type.&lt;br&gt;This installer can create a new partition table for you, either automatically, or through the manual partitioning page.</source>
-        <translation type="unfinished"/>
+        <translation>Il programma d&apos;installazione &lt;strong&gt;non riesce a rilevare una tabella delle partizioni&lt;/strong&gt; sul dispositivo di memoria selezionato.&lt;br&gt;&lt;br&gt;Il dispositivo o non ha una tabella delle partizioni o questa è corrotta, oppure è di tipo sconosciuto.&lt;br&gt;Il programma può creare una nuova tabella delle partizioni, automaticamente o attraverso la sezione del partizionamento manuale.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="198"/>
         <source>&lt;br&gt;&lt;br&gt;This is the recommended partition table type for modern systems which start from an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;br&gt;&lt;br&gt;Questo è il tipo raccomandato di tabella delle partizioni per i sistemi moderni che si avviano da un ambiente di boot &lt;strong&gt;EFI&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="204"/>
         <source>&lt;br&gt;&lt;br&gt;This partition table type is only advisable on older systems which start from a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment. For most uses GPT should be preferred instead.&lt;br&gt;&lt;strong&gt;Warning:&lt;/strong&gt; the MSDOS partition table is an obsolete standard with important drawbacks.&lt;br&gt;Only 4 &lt;em&gt;primary&lt;/em&gt; partitions may be created, and of those 4, one can be an &lt;em&gt;extended&lt;/em&gt; partition, which may in turn contain many &lt;em&gt;logical&lt;/em&gt; partitions.&lt;br&gt;For compatibility reasons, it is recommended for a setup based on an MSDOS partition table to have a separate boot partition. This installer can create the boot partition for you automatically, or you may set it up yourself on the manual partitioning page.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;br&gt;&lt;br&gt;Questo tipo di tabella delle partizioni è consigliabile solo su sistemi più vecchi che si avviano da un ambiente di boot &lt;strong&gt;BIOS&lt;/strong&gt;. Per la maggior parte degli usi invece dovrebbe essere preferito GPT.&lt;br&gt;&lt;strong&gt;Attenzione:&lt;/strong&gt; La tabella delle partizioni MSDOS è uno standard obsoleto che porta notevoli inconvenienti.&lt;br&gt;Solo 4 partizioni &lt;em&gt;primarie&lt;/em&gt; possono essere create, e di queste 4 una può essere una partizione &lt;em&gt;estesa&lt;/em&gt;, che può a sua volta contenere molte partizioni &lt;em&gt;logiche&lt;/em&gt;.&lt;br&gt;Per motivi di compatibilità, è raccomandato per una configurazione basata su una tabella delle partizioni MSDOS, di avere una partizione di boot separata. Questo programma d&apos;installazione può creare la partizione di boot automaticamente, o la si può creare manualmente nella sezione del partizionamento manuale.</translation>
     </message>
 </context>
 <context>
@@ -967,7 +967,7 @@ Il programma di installazione sarà chiuso, e tutte le modifiche andranno perse.
     <message>
         <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="116"/>
         <source>Set up &lt;strong&gt;new&lt;/strong&gt; %2 partition with mount point &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation>Imposta la &lt;strong&gt;nuova&lt;/strong&gt; %2 partizione con punto di montaggio &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+        <translation>Imposta la &lt;strong&gt;nuova&lt;/strong&gt; %2 partizione con punto di mount &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="124"/>
@@ -1026,7 +1026,7 @@ Il programma di installazione sarà chiuso, e tutte le modifiche andranno perse.
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="59"/>
         <source>Format &lt;strong&gt;%3MB&lt;/strong&gt; partition &lt;strong&gt;%1&lt;/strong&gt; with file system &lt;strong&gt;%2&lt;/strong&gt;.</source>
-        <translation>Formatta la partizione &lt;strong&gt;%1&lt;/strong&gt; da &lt;strong&gt;%3MB&lt;/strong&gt; con il file system &lt;strong&gt;%2&lt;/strong&gt;.</translation>
+        <translation>Formatta la partizione &lt;strong&gt;%1&lt;/strong&gt; da &lt;strong&gt;%3MB&lt;/strong&gt; con file system &lt;strong&gt;%2&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="70"/>
@@ -1066,14 +1066,14 @@ Il programma di installazione sarà chiuso, e tutte le modifiche andranno perse.
         <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="84"/>
         <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="96"/>
         <source>Konsole not installed</source>
-        <translation>Konsole non è installato</translation>
+        <translation>Konsole non installato</translation>
     </message>
     <message>
         <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="70"/>
         <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="85"/>
         <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="97"/>
         <source>Please install the kde konsole and try again!</source>
-        <translation>Installa Konsole e riprova!</translation>
+        <translation>Si prega di installare kde konsole a riprovare!</translation>
     </message>
     <message>
         <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="122"/>
@@ -1386,37 +1386,37 @@ Il programma di installazione sarà chiuso, e tutte le modifiche andranno perse.
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="186"/>
         <source>Root</source>
-        <translation type="unfinished"/>
+        <translation>Root</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="189"/>
         <source>Home</source>
-        <translation type="unfinished"/>
+        <translation>Home</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="191"/>
         <source>Boot</source>
-        <translation type="unfinished"/>
+        <translation>Boot</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="194"/>
         <source>EFI system</source>
-        <translation type="unfinished"/>
+        <translation>Sistema EFI</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="196"/>
         <source>Swap</source>
-        <translation type="unfinished"/>
+        <translation>Swap</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="198"/>
         <source>New partition for %1</source>
-        <translation type="unfinished"/>
+        <translation>Nuova partizione per %1</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="215"/>
         <source>%1  %2</source>
-        <translation type="unfinished"/>
+        <translation>%1 %2</translation>
     </message>
 </context>
 <context>
@@ -1464,7 +1464,7 @@ Il programma di installazione sarà chiuso, e tutte le modifiche andranno perse.
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="22"/>
         <source>Storage de&amp;vice:</source>
-        <translation type="unfinished"/>
+        <translation>Dispositivo di me&amp;moria:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="51"/>
@@ -1494,7 +1494,7 @@ Il programma di installazione sarà chiuso, e tutte le modifiche andranno perse.
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="145"/>
         <source>Install boot &amp;loader on:</source>
-        <translation type="unfinished"/>
+        <translation>Installa il boot &amp;loader su:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="139"/>
@@ -1562,12 +1562,12 @@ Il programma di installazione sarà chiuso, e tutte le modifiche andranno perse.
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="225"/>
         <source>Current state:</source>
-        <translation type="unfinished"/>
+        <translation>Stato attuale:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="237"/>
         <source>Your changes:</source>
-        <translation type="unfinished"/>
+        <translation>I cambiamenti:</translation>
     </message>
 </context>
 <context>
@@ -1586,22 +1586,22 @@ Il programma di installazione sarà chiuso, e tutte le modifiche andranno perse.
     <message>
         <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="150"/>
         <source>unknown</source>
-        <translation type="unfinished"/>
+        <translation>sconosciuto</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="152"/>
         <source>extended</source>
-        <translation type="unfinished"/>
+        <translation>estesa</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="154"/>
         <source>unformatted</source>
-        <translation type="unfinished"/>
+        <translation>non formattata</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="48"/>
         <source>Unpartitioned space or unknown partition table</source>
-        <translation type="unfinished"/>
+        <translation>Spazio non partizionato o tabella delle partizioni sconosciuta</translation>
     </message>
 </context>
 <context>
@@ -1614,69 +1614,69 @@ Il programma di installazione sarà chiuso, e tutte le modifiche andranno perse.
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="134"/>
         <source>Select where to install %1.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;this will delete all files on the selected partition.</source>
-        <translation type="unfinished"/>
+        <translation>Selezionare dove installare %1.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Attenzione: &lt;/font&gt;questo eliminerà tutti i file dalla partizione selezionata.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="161"/>
         <source>The selected item does not appear to be a valid partition.</source>
-        <translation type="unfinished"/>
+        <translation>L&apos;elemento selezionato non sembra essere una partizione valida.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="169"/>
         <source>%1 cannot be installed on empty space. Please select an existing partition.</source>
-        <translation type="unfinished"/>
+        <translation>%1 non può essere installato su spazio non partizionato. Si prega di selezionare una partizione esistente.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="180"/>
         <source>%1 cannot be installed on an extended partition. Please select an existing primary or logical partition.</source>
-        <translation type="unfinished"/>
+        <translation>%1 non può essere installato su una partizione estesa. Si prega di selezionare una partizione primaria o logica esistente.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="191"/>
         <source>%1 cannot be installed on this partition.</source>
-        <translation type="unfinished"/>
+        <translation>%1 non può essere installato su questa partizione.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="198"/>
         <source>Data partition (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Partizione dati (%1)</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="215"/>
         <source>Unknown system partition (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Partizione di sistema sconosciuta (%1)</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="220"/>
         <source>%1 system partition (%2)</source>
-        <translation type="unfinished"/>
+        <translation>%1 partizione di sistema (%2)</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="231"/>
         <source>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;The partition %1 is too small for %2. Please select a partition with capacity at least %3 GiB.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;La partizione %1 è troppo piccola per %2. Si prega di selezionare una partizione con capacità di almeno %3 GiB.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="255"/>
         <source>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Nessuna partizione EFI di sistema rilevata. Si prega di tornare indietro e usare il partizionamento manuale per configurare %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="267"/>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="286"/>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="311"/>
         <source>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 will be installed on %2.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;all data on partition %2 will be lost.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 sarà installato su %2.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Attenzione: &lt;/font&gt;tutti i dati sulla partizione %2 saranno persi.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="277"/>
         <source>The EFI system partition at %1 will be used for starting %2.</source>
-        <translation type="unfinished"/>
+        <translation>La partizione EFI di sistema a %1 sarà usata per avviare %2.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="295"/>
         <source>EFI system partition:</source>
-        <translation type="unfinished"/>
+        <translation>Partizione EFI di sistema:</translation>
     </message>
 </context>
 <context>
@@ -1760,7 +1760,7 @@ Il programma di installazione sarà chiuso, e tutte le modifiche andranno perse.
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="194"/>
         <source>Resize &lt;strong&gt;%2MB&lt;/strong&gt; partition &lt;strong&gt;%1&lt;/strong&gt; to &lt;strong&gt;%3MB&lt;/strong&gt;.</source>
-        <translation>Ridimensiona la partizione &lt;strong&gt;%1&lt;/strong&gt; con &lt;strong&gt;%2MB&lt;/strong&gt; a &lt;strong&gt;%3MB&lt;/strong&gt;.</translation>
+        <translation>Ridimensiona la partizione &lt;strong&gt;%1&lt;/strong&gt; da &lt;strong&gt;%2MB&lt;/strong&gt; a &lt;strong&gt;%3MB&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="205"/>
@@ -1784,12 +1784,12 @@ Il programma di installazione sarà chiuso, e tutte le modifiche andranno perse.
     <message>
         <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="83"/>
         <source>Scanning storage devices...</source>
-        <translation type="unfinished"/>
+        <translation>Rilevamento dei dispositivi di memoria...</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="84"/>
         <source>Partitioning</source>
-        <translation type="unfinished"/>
+        <translation>Partizionamento</translation>
     </message>
 </context>
 <context>
@@ -1827,23 +1827,23 @@ Il programma di installazione sarà chiuso, e tutte le modifiche andranno perse.
     <message>
         <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="57"/>
         <source>Set keyboard model to %1, layout to %2-%3</source>
-        <translation>Imposta tastiera a %1, con layout %2-%3</translation>
+        <translation>Imposta il modello di tastiera a %1, con layout %2-%3</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="284"/>
         <source>Failed to write keyboard configuration for the virtual console.</source>
-        <translation>Non è stato possibile scrivere la configurazione della tastiera per la console virtuale.</translation>
+        <translation>Impossibile scrivere la configurazione della tastiera per la console virtuale.</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="285"/>
         <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="289"/>
         <source>Failed to write to %1</source>
-        <translation>Non è stato possibile scrivere su %1</translation>
+        <translation>Impossibile scrivere su %1</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="288"/>
         <source>Failed to write keyboard configuration for X11.</source>
-        <translation>Non è stato possibile scrivere la configurazione della tastiera per X11.</translation>
+        <translation>Impossibile scrivere la configurazione della tastiera per X11.</translation>
     </message>
 </context>
 <context>
@@ -1935,7 +1935,7 @@ Il programma di installazione sarà chiuso, e tutte le modifiche andranno perse.
     <message>
         <location filename="../src/modules/summary/SummaryPage.cpp" line="46"/>
         <source>This is an overview of what will happen once you start the install procedure.</source>
-        <translation>Questo è un riassunto di quello che verrà effettuato una volta che verrà avviata la procedura di installazione.</translation>
+        <translation>Ecco una panoramica delle modifiche che saranno effettuate una volta avviata la procedura di installazione.</translation>
     </message>
 </context>
 <context>
@@ -2023,7 +2023,7 @@ Il programma di installazione sarà chiuso, e tutte le modifiche andranno perse.
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="56"/>
         <source>&lt;h1&gt;Welcome to the %1 installer.&lt;/h1&gt;</source>
-        <translation>&lt;h1&gt;Benvenuto nell&apos;installazione di %1.&lt;/h1&gt;</translation>
+        <translation>&lt;h1&gt;Benvenuto nel programma d&apos;installazione di %1.&lt;/h1&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="70"/>
@@ -2046,7 +2046,7 @@ Il programma di installazione sarà chiuso, e tutte le modifiche andranno perse.
     <message>
         <location filename="../src/modules/welcome/WelcomeViewStep.cpp" line="50"/>
         <source>Welcome</source>
-        <translation>Benvenuto</translation>
+        <translation>Benvenuti</translation>
     </message>
 </context>
 </TS>
