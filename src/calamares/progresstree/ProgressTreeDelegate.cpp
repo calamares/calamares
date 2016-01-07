@@ -104,7 +104,8 @@ ProgressTreeDelegate::paintViewStep( QPainter* painter,
     {
         painter->setPen( Calamares::Branding::instance()->
                          styleString( Calamares::Branding::SidebarTextSelect ) );
-        painter->setBrush( APP->mainWindow()->palette().background() );
+        painter->setBrush( QColor( Calamares::Branding::instance()->
+                           styleString( Calamares::Branding::SidebarTextHighlight ) ) );
     }
 
     painter->fillRect( option.rect, painter->brush().color() );
