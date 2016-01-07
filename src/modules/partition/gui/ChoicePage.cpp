@@ -330,7 +330,7 @@ ChoicePage::createBootloaderComboBox( ExpandableRadioButton* parentButton )
         if ( bcb->model() != m_core->bootLoaderModel() )
             bcb->setModel( m_core->bootLoaderModel() );
         bcb->setCurrentIndex( m_lastSelectedDeviceIndex );
-    } );
+    }, Qt::QueuedConnection );
     // ^ Must be Queued so it's sure to run when the widget is already visible.
 
     return bcb;
@@ -441,11 +441,15 @@ ChoicePage::applyActionChoice( ChoicePage::Choice choice )
             [ = ]
             {
                 PartitionActions::doAutopartition( m_core, selectedDevice() );
+                emit deviceChosen();
             },
             this );
         }
         else
+        {
             PartitionActions::doAutopartition( m_core, selectedDevice() );
+            emit deviceChosen();
+        }
 
         break;
     case Replace:
