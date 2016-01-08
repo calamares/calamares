@@ -239,8 +239,8 @@ ChoicePage::setupChoices()
         else    // An action was unpicked, either on its own or because of another selection.
         {
             if ( m_grp->checkedButton() == nullptr )  // If no other action is chosen, we must
-            {                                       // set m_choice to NoChoice and reset previews.
-                m_choice == NoChoice;
+            {                                         // set m_choice to NoChoice and reset previews.
+                m_choice = NoChoice;
                 setNextEnabled( false );
                 emit actionChosen();
             }
