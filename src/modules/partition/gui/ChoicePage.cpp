@@ -681,8 +681,10 @@ ChoicePage::setupActions()
 
         m_replaceButton->hide();
         m_alongsideButton->hide();
+        m_grp->setExclusive( false );
         m_replaceButton->buttonWidget()->setChecked( false );
         m_alongsideButton->buttonWidget()->setChecked( false );
+        m_grp->setExclusive( true );
     }
     else if ( osproberEntriesForCurrentDevice.count() == 1 )
     {
@@ -744,7 +746,9 @@ ChoicePage::setupActions()
         else
         {
             m_alongsideButton->hide();
+            m_grp->setExclusive( false );
             m_alongsideButton->buttonWidget()->setChecked( false );
+            m_grp->setExclusive( true );
         }
     }
     else
@@ -790,7 +794,9 @@ ChoicePage::setupActions()
         else
         {
             m_alongsideButton->hide();
+            m_grp->setExclusive( false );
             m_alongsideButton->buttonWidget()->setChecked( false );
+            m_grp->setExclusive( true );
         }
     }
 
