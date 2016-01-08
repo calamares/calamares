@@ -176,14 +176,14 @@ ChoicePage::setupChoices()
 
     QSize iconSize( CalamaresUtils::defaultIconSize().width() * 2.5,
                     CalamaresUtils::defaultIconSize().height() * 2.5 );
-    QButtonGroup* grp = new QButtonGroup( this );
+    m_grp = new QButtonGroup( this );
 
     m_alongsideButton = new PrettyRadioButton;
     m_alongsideButton->setIconSize( iconSize );
     m_alongsideButton->setIcon( CalamaresUtils::defaultPixmap( CalamaresUtils::PartitionAlongside,
                                                                CalamaresUtils::Original,
                                                                iconSize ) );
-    grp->addButton( m_alongsideButton->buttonWidget(), Alongside );
+    m_grp->addButton( m_alongsideButton->buttonWidget(), Alongside );
 
     m_eraseButton = createEraseButton();
 
@@ -191,7 +191,7 @@ ChoicePage::setupChoices()
     m_eraseButton->setIcon( CalamaresUtils::defaultPixmap( CalamaresUtils::PartitionEraseAuto,
                                                            CalamaresUtils::Original,
                                                            iconSize ) );
-    grp->addButton( m_eraseButton->buttonWidget(), Erase );
+    m_grp->addButton( m_eraseButton->buttonWidget(), Erase );
 
     m_replaceButton = new PrettyRadioButton;
 
@@ -199,7 +199,7 @@ ChoicePage::setupChoices()
     m_replaceButton->setIcon( CalamaresUtils::defaultPixmap( CalamaresUtils::PartitionReplaceOs,
                                                              CalamaresUtils::Original,
                                                              iconSize ) );
-    grp->addButton( m_replaceButton->buttonWidget(), Replace );
+    m_grp->addButton( m_replaceButton->buttonWidget(), Replace );
 
     m_itemsLayout->addWidget( m_alongsideButton );
     m_itemsLayout->addWidget( m_replaceButton );
@@ -216,12 +216,12 @@ ChoicePage::setupChoices()
                                                                    CalamaresUtils::Original,
                                                                    iconSize ) );
     m_itemsLayout->addWidget( m_somethingElseButton );
-    grp->addButton( m_somethingElseButton->buttonWidget(), Manual );
+    m_grp->addButton( m_somethingElseButton->buttonWidget(), Manual );
 
     m_itemsLayout->addStretch();
 
-    connect( grp, static_cast< void( QButtonGroup::* )( int, bool ) >( &QButtonGroup::buttonToggled ),
-             this, [ this, grp ]( int id, bool checked )
+    connect( m_grp, static_cast< void( QButtonGroup::* )( int, bool ) >( &QButtonGroup::buttonToggled ),
+             this, [ this, m_grp ]( int id, bool checked )
     {
         if ( checked )  // An action was picked.
         {
@@ -238,7 +238,7 @@ ChoicePage::setupChoices()
         }
         else    // An action was unpicked, either on its own or because of another selection.
         {
-            if ( grp->checkedButton() == nullptr )  // If no other action is chosen, we must
+            if ( m_grp->checkedButton() == nullptr )  // If no other action is chosen, we must
             {                                       // set m_choice to NoChoice and reset previews.
                 m_choice == NoChoice;
                 setNextEnabled( false );

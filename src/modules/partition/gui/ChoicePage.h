@@ -95,6 +95,7 @@ private:
     bool m_isEfi;
     QComboBox* m_drivesCombo;
 
+    QButtonGroup* m_grp;
     PrettyRadioButton* m_alongsideButton;
     ExpandableRadioButton* m_eraseButton;
     PrettyRadioButton* m_replaceButton;
