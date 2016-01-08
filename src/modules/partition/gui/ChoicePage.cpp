@@ -183,7 +183,7 @@ ChoicePage::setupChoices()
     m_alongsideButton->setIcon( CalamaresUtils::defaultPixmap( CalamaresUtils::PartitionAlongside,
                                                                CalamaresUtils::Original,
                                                                iconSize ) );
-    grp->addButton( m_alongsideButton->buttonWidget() );
+    grp->addButton( m_alongsideButton->buttonWidget(), Alongside );
 
     m_eraseButton = createEraseButton();
 
@@ -191,7 +191,7 @@ ChoicePage::setupChoices()
     m_eraseButton->setIcon( CalamaresUtils::defaultPixmap( CalamaresUtils::PartitionEraseAuto,
                                                            CalamaresUtils::Original,
                                                            iconSize ) );
-    grp->addButton( m_eraseButton->buttonWidget() );
+    grp->addButton( m_eraseButton->buttonWidget(), Erase );
 
     m_replaceButton = new PrettyRadioButton;
 
@@ -199,7 +199,7 @@ ChoicePage::setupChoices()
     m_replaceButton->setIcon( CalamaresUtils::defaultPixmap( CalamaresUtils::PartitionReplaceOs,
                                                              CalamaresUtils::Original,
                                                              iconSize ) );
-    grp->addButton( m_replaceButton->buttonWidget() );
+    grp->addButton( m_replaceButton->buttonWidget(), Replace );
 
     m_itemsLayout->addWidget( m_alongsideButton );
     m_itemsLayout->addWidget( m_replaceButton );
@@ -216,51 +216,34 @@ ChoicePage::setupChoices()
                                                                    CalamaresUtils::Original,
                                                                    iconSize ) );
     m_itemsLayout->addWidget( m_somethingElseButton );
-    grp->addButton( m_somethingElseButton->buttonWidget() );
+    grp->addButton( m_somethingElseButton->buttonWidget(), Manual );
 
     m_itemsLayout->addStretch();
 
-    connect( m_alongsideButton->buttonWidget(), &QRadioButton::toggled,
-             this, [ this ]( bool checked )
+    connect( grp, static_cast< void( QButtonGroup::* )( int, bool ) >( &QButtonGroup::buttonToggled ),
+             this, [ this, grp ]( int id, bool checked )
     {
-        if ( checked )
+        if ( checked )  // An action was picked.
         {
-            m_choice = Alongside;
-            setNextEnabled( true );
+            m_choice = static_cast< Choice >( id );
+            if ( m_choice == Replace )
+            {
+                setNextEnabled( false );
+            }
+            else
+            {
+                setNextEnabled( true );
+            }
             emit actionChosen();
         }
-    } );
-
-    connect( m_eraseButton->buttonWidget(), &QRadioButton::toggled,
-             this, [ this ]( bool checked )
-    {
-        if ( checked )
+        else    // An action was unpicked, either on its own or because of another selection.
         {
-            m_choice = Erase;
-            setNextEnabled( true );
-            emit actionChosen();
-        }
-    } );
-
-    connect( m_replaceButton->buttonWidget(), &QRadioButton::toggled,
-             this, [ this ]( bool checked )
-    {
-        if ( checked )
-        {
-            m_choice = Replace;
-            setNextEnabled( false );
-            emit actionChosen();
-        }
-    } );
-
-    connect( m_somethingElseButton->buttonWidget(), &QRadioButton::toggled,
-             this, [ this ]( bool checked )
-    {
-        if ( checked )
-        {
-            m_choice = Manual;
-            setNextEnabled( true );
-            emit actionChosen();
+            if ( grp->checkedButton() == nullptr )  // If no other action is chosen, we must
+            {                                       // set m_choice to NoChoice and reset previews.
+                m_choice == NoChoice;
+                setNextEnabled( false );
+                emit actionChosen();
+            }
         }
     } );
 
