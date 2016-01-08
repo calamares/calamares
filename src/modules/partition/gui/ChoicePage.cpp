@@ -698,6 +698,8 @@ ChoicePage::setupActions()
 
         m_replaceButton->hide();
         m_alongsideButton->hide();
+        m_replaceButton->buttonWidget()->setChecked( false );
+        m_alongsideButton->buttonWidget()->setChecked( false );
     }
     else if ( osproberEntriesForCurrentDevice.count() == 1 )
     {
@@ -757,7 +759,10 @@ ChoicePage::setupActions()
         if ( osproberEntriesForCurrentDevice.first().canBeResized )
             m_alongsideButton->show();
         else
+        {
             m_alongsideButton->hide();
+            m_alongsideButton->buttonWidget()->setChecked( false );
+        }
     }
     else
     {
@@ -800,7 +805,10 @@ ChoicePage::setupActions()
         if ( atLeastOneCanBeResized )
             m_alongsideButton->show();
         else
+        {
             m_alongsideButton->hide();
+            m_alongsideButton->buttonWidget()->setChecked( false );
+        }
     }
 
     bool isEfi = QDir( "/sys/firmware/efi/efivars" ).exists();
