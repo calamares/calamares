@@ -221,7 +221,7 @@ ChoicePage::setupChoices()
     m_itemsLayout->addStretch();
 
     connect( m_grp, static_cast< void( QButtonGroup::* )( int, bool ) >( &QButtonGroup::buttonToggled ),
-             this, [ this, m_grp ]( int id, bool checked )
+             this, [ this ]( int id, bool checked )
     {
         if ( checked )  // An action was picked.
         {
