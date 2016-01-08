@@ -751,7 +751,12 @@ ChoicePage::setupActions()
                                                 string( Calamares::Branding::ShortVersionedName ) ) );
             )
         }
-        if ( !osproberEntriesForCurrentDevice.first().canBeResized )
+
+        m_replaceButton->show();
+
+        if ( osproberEntriesForCurrentDevice.first().canBeResized )
+            m_alongsideButton->show();
+        else
             m_alongsideButton->hide();
     }
     else
@@ -790,7 +795,11 @@ ChoicePage::setupActions()
                                             string( Calamares::Branding::ShortVersionedName ) ) );
         )
 
-        if ( !atLeastOneCanBeResized )
+        m_replaceButton->show();
+
+        if ( atLeastOneCanBeResized )
+            m_alongsideButton->show();
+        else
             m_alongsideButton->hide();
     }
 
