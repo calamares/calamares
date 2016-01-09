@@ -14,7 +14,7 @@
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="121"/>
         <source>With this operation, the partition &lt;strong&gt;%1&lt;/strong&gt; which contains %4 will be shrunk to %2MB and a new %3MB partition will be created for %5.</source>
-        <translation>Com esta operação, a partição &lt;strong&gt;%1&lt;/strong&gt; que contém %4 será reduzido para %2MB e uma nova partição %3MB será criado para %5.</translation>
+        <translation>Com esta operação, a partição &lt;strong&gt;%1&lt;/strong&gt; que contém %4 será reduzida para %2MB e uma nova partição %3MB será criada para %5.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="222"/>
@@ -24,12 +24,12 @@
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="232"/>
         <source>The EFI system partition at %1 will be used for starting %2.</source>
-        <translation>A partição do sistema EFI em %1 vai ser utilizado para iniciar %2.</translation>
+        <translation>A partição do sistema EFI em %1 será utilizada para iniciar %2.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="242"/>
         <source>EFI system partition:</source>
-        <translation>Partição do sistema EFI</translation>
+        <translation>Partição do sistema EFI:</translation>
     </message>
 </context>
 <context>
@@ -365,7 +365,7 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="233"/>
         <source>Go &amp;back</source>
-        <translation>Voltar</translation>
+        <translation>&amp;Voltar</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="264"/>
@@ -472,29 +472,29 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="101"/>
         <source>Pick a storage de&amp;vice:</source>
-        <translation type="unfinished"/>
+        <translation>Escolha um dispositi&amp;vo de armazenamento:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="594"/>
         <source>Before:</source>
-        <translation>Antes</translation>
+        <translation>Antes:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="103"/>
         <source>After:</source>
-        <translation>Depois</translation>
+        <translation>Depois:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="102"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="584"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="629"/>
         <source>Device:</source>
-        <translation>Dispositivo</translation>
+        <translation>Dispositivo:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="211"/>
         <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself.</source>
-        <translation>&lt;strong&gt;Particionamento manual&lt;/strong&gt;&lt;br/&gt;Você pode criar ou redimensionar partições</translation>
+        <translation>&lt;strong&gt;Particionamento manual&lt;/strong&gt;&lt;br/&gt;Você pode criar ou redimensionar partições.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="336"/>
@@ -509,7 +509,7 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="672"/>
         <source>This storage device does not seem to have an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-        <translation type="unfinished"/>
+        <translation>Parece que não há um sistema operacional neste dispositivo de armazenamento. O que gostaria de fazer?&lt;br/&gt;Você poderá revisar e confirmar suas opções antes que as alterações sejam feitas no dispositivo de armazenamento.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="677"/>
@@ -517,36 +517,36 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="731"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="780"/>
         <source>&lt;strong&gt;Erase disk&lt;/strong&gt;&lt;br/&gt;This will &lt;font color=&quot;red&quot;&gt;delete&lt;/font&gt; all data currently present on the selected storage device.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;Apagar o disco&lt;/strong&gt;&lt;br/&gt;Isto &lt;font color=&quot;red&quot;&gt;excluirá&lt;/font&gt; todos os dados que estiverem armazenados no dispositivo selecionado.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="696"/>
         <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-        <translation type="unfinished"/>
+        <translation>Este dispositivo de armazenamento possui %1 nele. O que gostaria de fazer?&lt;br/&gt;Você poderá revisar e confirmar suas opções antes que as alterações sejam feitas no dispositivo de armazenamento.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="702"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="726"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="775"/>
         <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;Instalar ao lado de&lt;/strong&gt;&lt;br/&gt;O instalador irá reduzir uma partição para liberar espaço para %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="712"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="735"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="784"/>
         <source>&lt;strong&gt;Replace a partition&lt;/strong&gt;&lt;br/&gt;Replaces a partition with %1.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;Substituir uma partição&lt;/strong&gt;&lt;br/&gt;Substitui uma partição com %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="721"/>
         <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-        <translation type="unfinished"/>
+        <translation>Parece que já há um sistema operacional neste dispositivo de armazenamento. O que gostaria de fazer?&lt;br/&gt;Você poderá revisar e confirmar suas opções antes que as alterações sejam feitas no dispositivo de armazenamento.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="770"/>
         <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-        <translation type="unfinished"/>
+        <translation>Há diversos sistemas operacionais neste dispositivo de armazenamento. O que gostaria de fazer?&lt;br/&gt;Você poderá revisar e confirmar suas opções antes que as alterações sejam feitas no dispositivo de armazenamento.</translation>
     </message>
 </context>
 <context>
@@ -653,17 +653,17 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="48"/>
         <source>Create new %2MB partition on %4 (%3) with file system %1.</source>
-        <translation>Criar nova %2MB partição em %4 (%3) com sistema de arquivos %1.</translation>
+        <translation>Criar nova partição de %2MB em %4 (%3) com o sistema de arquivos %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="59"/>
         <source>Create new &lt;strong&gt;%2MB&lt;/strong&gt; partition on &lt;strong&gt;%4&lt;/strong&gt; (%3) with file system &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation>Criar nova &lt;strong&gt;%2MB&lt;/strong&gt; partição em &lt;strong&gt;%4&lt;/strong&gt; (%3) com sistema de arquivos &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+        <translation>Criar nova partição de &lt;strong&gt;%2MB&lt;/strong&gt; em &lt;strong&gt;%4&lt;/strong&gt; (%3) com o sistema de arquivos &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="71"/>
         <source>Creating new %1 partition on %2.</source>
-        <translation>Criando nova partição  %1 em %2</translation>
+        <translation>Criando nova partição %1 em %2</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="83"/>
@@ -688,7 +688,7 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="134"/>
         <source>The installer failed to update partition table on disk &apos;%1&apos;.</source>
-        <translation>O instalador falhou ao atualizar a tabela de partição no disco &apos;%1&apos;.</translation>
+        <translation>O instalador falhou ao atualizar a tabela de partições no disco &apos;%1&apos;.</translation>
     </message>
 </context>
 <context>
@@ -701,7 +701,7 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="39"/>
         <source>Creating a new partition table will delete all existing data on the disk.</source>
-        <translation>Criando uma nova tabela de partição irá apagar todos os dados existentes no disco.</translation>
+        <translation>A criação de uma nova tabela de partições irá apagar todos os dados existentes no disco.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="65"/>
@@ -724,17 +724,17 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="49"/>
         <source>Create new %1 partition table on %2.</source>
-        <translation>Criando nova partição  %1 em %2</translation>
+        <translation>Criando nova partição %1 em %2</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="56"/>
         <source>Create new &lt;strong&gt;%1&lt;/strong&gt; partition table on &lt;strong&gt;%2&lt;/strong&gt; (%3).</source>
-        <translation>Criar nova &lt;strong&gt;%1&lt;/strong&gt; tabela de partição em &lt;strong&gt;%2&lt;/strong&gt; (%3).</translation>
+        <translation>Criar nova tabela de partições &lt;strong&gt;%1&lt;/strong&gt; em &lt;strong&gt;%2&lt;/strong&gt; (%3).</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="66"/>
         <source>Creating new %1 partition table on %2.</source>
-        <translation>Criando nova tabela de partição %1 em %2</translation>
+        <translation>Criando nova tabela de partições %1 em %2.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="76"/>
@@ -757,12 +757,12 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="56"/>
         <source>Create user &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation>Criar usuário %1</translation>
+        <translation>Criar usuário &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="63"/>
         <source>Creating user %1.</source>
-        <translation>Criando usuário %1</translation>
+        <translation>Criando usuário %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="79"/>
@@ -820,22 +820,22 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="42"/>
         <source>Delete partition %1.</source>
-        <translation>Apagar partição %1</translation>
+        <translation>Excluir a partição %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="50"/>
         <source>Delete partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation>Deletar partição &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+        <translation>Excluir a partição &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="58"/>
         <source>Deleting partition %1.</source>
-        <translation>Apagando partição %1</translation>
+        <translation>Excluindo a partição %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="67"/>
         <source>The installer failed to delete partition %1.</source>
-        <translation>O instalador não conseguiu apagar a partição %1.</translation>
+        <translation>O instalador não conseguiu excluir a partição %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="73"/>
@@ -878,7 +878,7 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="174"/>
         <source>The selected storage device has a partition table. The partition table type is &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>O dispositivo de armazenamento selecionado possui uma tabela de partições. O tipo de tabela é &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="181"/>
@@ -893,7 +893,7 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="198"/>
         <source>&lt;br&gt;&lt;br&gt;This is the recommended partition table type for modern systems which start from an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;br&gt;&lt;br&gt;Este é o tipo de tabela de partições recomendado para sistemas modernos que inicializam a partir de um ambiente &lt;strong&gt;EFI&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="204"/>
@@ -1005,7 +1005,7 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
     <message>
         <location filename="../src/modules/finished/FinishedPage.cpp" line="50"/>
         <source>&lt;h1&gt;All done.&lt;/h1&gt;&lt;br/&gt;%1 has been installed on your computer.&lt;br/&gt;You may now restart into your new system, or continue using the %2 Live environment.</source>
-        <translation>&lt;h1&gt;Tudo pronto.&lt;/h1&gt;&lt;br/&gt;%1 foi instalado no seu computador.&lt;br/&gt;Agora você pode reiniciar seu novo sistema, ou continuar usando o %2 o ambiente Live.</translation>
+        <translation>&lt;h1&gt;Tudo pronto.&lt;/h1&gt;&lt;br/&gt;%1 foi instalado no seu computador.&lt;br/&gt;Agora você pode reiniciar seu novo sistema ou continuar usando ambiente Live %2.</translation>
     </message>
 </context>
 <context>
@@ -1013,7 +1013,7 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
     <message>
         <location filename="../src/modules/finished/FinishedViewStep.cpp" line="43"/>
         <source>Finish</source>
-        <translation>Finalizar</translation>
+        <translation>Concluir</translation>
     </message>
 </context>
 <context>
@@ -1026,12 +1026,12 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="59"/>
         <source>Format &lt;strong&gt;%3MB&lt;/strong&gt; partition &lt;strong&gt;%1&lt;/strong&gt; with file system &lt;strong&gt;%2&lt;/strong&gt;.</source>
-        <translation>Formatar &lt;strong&gt;%3MB&lt;/strong&gt; partição &lt;strong&gt;%1&lt;/strong&gt; com o sistema de arquivos &lt;strong&gt;%2&lt;/strong&gt;.</translation>
+        <translation>Formatar a partição de &lt;strong&gt;%3MB&lt;/strong&gt; &lt;strong&gt;%1&lt;/strong&gt; com o sistema de arquivos &lt;strong&gt;%2&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="70"/>
         <source>Formatting partition %1 with file system %2.</source>
-        <translation>Formatando partição %1 com sistema de arquivos %2.</translation>
+        <translation>Formatando partição %1 com o sistema de arquivos %2.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="82"/>
@@ -1051,7 +1051,7 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="107"/>
         <source>The installer failed to create file system on partition %1.</source>
-        <translation>O instalador falhou ao criar o sistema de aquivos na partição %1.</translation>
+        <translation>O instalador falhou ao criar o sistema de arquivos na partição %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="115"/>
@@ -1073,7 +1073,7 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
         <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="85"/>
         <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="97"/>
         <source>Please install the kde konsole and try again!</source>
-        <translation>Por favor instale o konsole kde e tente novamente! </translation>
+        <translation>Instale o Konsole do KDE e tente novamente!</translation>
     </message>
     <message>
         <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="122"/>
@@ -1133,12 +1133,12 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="88"/>
         <source>I accept the terms and conditions above.</source>
-        <translation>Eu aceito os termos e condições acima</translation>
+        <translation>Aceito os termos e condições acima.</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="115"/>
         <source>&lt;h1&gt;License Agreement&lt;/h1&gt;This setup procedure will install proprietary software that is subject to licensing terms.</source>
-        <translation>&lt;h1&gt;Termos de licença&lt;/h1&gt;Este procedimento de configuração irá instalar software proprietário, que está sujeita aos termos de licenciamento.</translation>
+        <translation>&lt;h1&gt;Termos de licença&lt;/h1&gt;Este procedimento de configuração irá instalar software proprietário, que está sujeito aos termos de licenciamento.</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="118"/>
@@ -1153,7 +1153,7 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="129"/>
         <source>Please review the End User License Agreements (EULAs) above.&lt;br/&gt;If you do not agree with the terms, proprietary software will not be installed, and open source alternatives will be used instead.</source>
-        <translation>Por favor, revise os acordos de licença de usuário final (EULAs) acima.&lt;br/&gt;Se você não concordar com os termos, o software proprietário não será instalado, e as alternativas de código aberto será utilizado em seu lugar.</translation>
+        <translation>Por favor, revise os acordos de licença de usuário final (EULAs) acima.&lt;br/&gt;Se você não concordar com os termos, o software proprietário não será instalado e as alternativas de código aberto serão utilizadas em seu lugar.</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="159"/>
@@ -1190,7 +1190,7 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="201"/>
         <source>&lt;a href=&quot;%1&quot;&gt;view license agreement&lt;/a&gt;</source>
-        <translation>&lt;a href=&quot;%1&quot;&gt;view contrato de licença&lt;/a&gt;</translation>
+        <translation>&lt;a href=&quot;%1&quot;&gt;mostrar contrato de licença&lt;/a&gt;</translation>
     </message>
 </context>
 <context>
@@ -1378,7 +1378,7 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="585"/>
         <source>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors.&lt;/small&gt;</source>
-        <translation>&lt;small&gt;Digite a mesma senha duas vezes para que possa ser checada contra erros de digitação.&lt;/small&gt;</translation>
+        <translation>&lt;small&gt;Digite a mesma senha duas vezes para que possa ser verificada contra erros de digitação.&lt;/small&gt;</translation>
     </message>
 </context>
 <context>
@@ -1386,37 +1386,37 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="186"/>
         <source>Root</source>
-        <translation type="unfinished"/>
+        <translation>Root</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="189"/>
         <source>Home</source>
-        <translation type="unfinished"/>
+        <translation>Home</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="191"/>
         <source>Boot</source>
-        <translation type="unfinished"/>
+        <translation>Boot</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="194"/>
         <source>EFI system</source>
-        <translation type="unfinished"/>
+        <translation>Sistema EFI</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="196"/>
         <source>Swap</source>
-        <translation type="unfinished"/>
+        <translation>Swap</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="198"/>
         <source>New partition for %1</source>
-        <translation type="unfinished"/>
+        <translation>Nova partição para %1</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="215"/>
         <source>%1  %2</source>
-        <translation type="unfinished"/>
+        <translation>%1  %2</translation>
     </message>
 </context>
 <context>
@@ -1464,7 +1464,7 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="22"/>
         <source>Storage de&amp;vice:</source>
-        <translation type="unfinished"/>
+        <translation>Dispositi&amp;vo de armazenamento:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="51"/>
@@ -1557,17 +1557,17 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="205"/>
         <source>Disk &lt;strong&gt;%1&lt;/strong&gt; (%2)</source>
-        <translation>Disco&lt;strong&gt;%1&lt;/strong&gt; (%2)</translation>
+        <translation>Disco &lt;strong&gt;%1&lt;/strong&gt; (%2)</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="225"/>
         <source>Current state:</source>
-        <translation>Estado atual</translation>
+        <translation>Estado atual:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="237"/>
         <source>Your changes:</source>
-        <translation>Suas alterações</translation>
+        <translation>Suas alterações:</translation>
     </message>
 </context>
 <context>
@@ -1591,7 +1591,7 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
     <message>
         <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="152"/>
         <source>extended</source>
-        <translation type="unfinished"/>
+        <translation>estendida</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="154"/>
@@ -1601,7 +1601,7 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="48"/>
         <source>Unpartitioned space or unknown partition table</source>
-        <translation type="unfinished"/>
+        <translation>Espaço não particionado ou tabela de partições desconhecida</translation>
     </message>
 </context>
 <context>
@@ -1614,69 +1614,69 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="134"/>
         <source>Select where to install %1.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;this will delete all files on the selected partition.</source>
-        <translation type="unfinished"/>
+        <translation>Selecione onde instalar %1.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Atenção: &lt;/font&gt;Isto excluirá todos os arquivos existentes na partição selecionada.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="161"/>
         <source>The selected item does not appear to be a valid partition.</source>
-        <translation type="unfinished"/>
+        <translation>O item selecionado não parece ser uma partição válida.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="169"/>
         <source>%1 cannot be installed on empty space. Please select an existing partition.</source>
-        <translation type="unfinished"/>
+        <translation>%1 não pode ser instalado no espaço vazio. Selecione uma partição existente.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="180"/>
         <source>%1 cannot be installed on an extended partition. Please select an existing primary or logical partition.</source>
-        <translation type="unfinished"/>
+        <translation>%1 não pode ser instalado em uma partição estendida. Selecione uma partição primária ou lógica existente.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="191"/>
         <source>%1 cannot be installed on this partition.</source>
-        <translation type="unfinished"/>
+        <translation>%1 não pode ser instalado nesta partição.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="198"/>
         <source>Data partition (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Partição de dados (%1)</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="215"/>
         <source>Unknown system partition (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Partição de sistema desconhecida (%1)</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="220"/>
         <source>%1 system partition (%2)</source>
-        <translation type="unfinished"/>
+        <translation>Partição de sistema %1 (%2)</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="231"/>
         <source>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;The partition %1 is too small for %2. Please select a partition with capacity at least %3 GiB.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;A partição %1 é muito pequena para %2. Selecione uma partição com capacidade mínima de %3 GiB.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="255"/>
         <source>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Não foi encontrada uma partição de sistema EFI no sistema. Volte e use o particionamento manual para configurar %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="267"/>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="286"/>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="311"/>
         <source>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 will be installed on %2.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;all data on partition %2 will be lost.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 será instalado em %2.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Atenção: &lt;/font&gt;todos os dados da partição %2 serão perdidos.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="277"/>
         <source>The EFI system partition at %1 will be used for starting %2.</source>
-        <translation type="unfinished"/>
+        <translation>A partição do sistema EFI em %1 será utilizada para iniciar %2.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="295"/>
         <source>EFI system partition:</source>
-        <translation type="unfinished"/>
+        <translation>Partição do sistema EFI:</translation>
     </message>
 </context>
 <context>
@@ -1724,12 +1724,12 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="127"/>
         <source>The system is not connected to the Internet.</source>
-        <translation>O sistema não está conectado com a Internet. </translation>
+        <translation>O sistema não está conectado com a Internet.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="135"/>
         <source>The installer is not running with administrator rights.</source>
-        <translation>O instalador não está executanto com  permissões de administrador.</translation>
+        <translation>O instalador não está executando com permissões de administrador.</translation>
     </message>
 </context>
 <context>
@@ -1784,12 +1784,12 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
     <message>
         <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="83"/>
         <source>Scanning storage devices...</source>
-        <translation type="unfinished"/>
+        <translation>Localizando dispositivos de armazenamento...</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="84"/>
         <source>Partitioning</source>
-        <translation type="unfinished"/>
+        <translation>Particionando</translation>
     </message>
 </context>
 <context>
@@ -1856,7 +1856,7 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="156"/>
         <source>Failed to change the geometry of the partition.</source>
-        <translation>Falha ao alterar a geometria da partição</translation>
+        <translation>Falha ao alterar a geometria da partição.</translation>
     </message>
 </context>
 <context>
@@ -1935,7 +1935,7 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
     <message>
         <location filename="../src/modules/summary/SummaryPage.cpp" line="46"/>
         <source>This is an overview of what will happen once you start the install procedure.</source>
-        <translation>Isso é um resumo do que acontecerá assim que você iniciar o processo de insntalação</translation>
+        <translation>Isso é um resumo do que acontecerá assim que iniciar o processo de instalação.</translation>
     </message>
 </context>
 <context>
@@ -2023,12 +2023,12 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="56"/>
         <source>&lt;h1&gt;Welcome to the %1 installer.&lt;/h1&gt;</source>
-        <translation>&lt;h1&gt;Bem vindo ao instalador %1 .&lt;/h1&gt;</translation>
+        <translation>&lt;h1&gt;Bem-vindo ao instalador %1 .&lt;/h1&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="70"/>
         <source>About %1 installer</source>
-        <translation>Sobre instalador %1</translation>
+        <translation>Sobre o instalador %1</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="72"/>
@@ -2046,7 +2046,7 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
     <message>
         <location filename="../src/modules/welcome/WelcomeViewStep.cpp" line="50"/>
         <source>Welcome</source>
-        <translation>Bem vindo</translation>
+        <translation>Bem-vindo</translation>
     </message>
 </context>
 </TS>
