@@ -163,30 +163,6 @@ AlongsidePage::onPartitionSelected( int comboBoxIndex )
             qint64 requiredStorageB = ( requiredStorageGB + 0.1 + 2.0 ) * 1024 * 1024 * 1024;
 
             // set up splitter widget here, then set up the split position
-            QList< PartitionSplitterItem > allPartitionItems;
-            {
-                PartitionSplitterItem* extendedPartitionItem = nullptr;
-                for ( auto it = PartitionIterator::begin( dev );
-                      it != PartitionIterator::end( dev ); ++it )
-                {
-                    PartitionSplitterItem newItem = {
-                        ( *it )->partitionPath(),
-                        ColorUtils::colorForPartition( *it ),
-                        false,
-                        ( *it )->capacity(),
-                        {}
-                    };
-
-                    if ( ( *it )->roles().has( PartitionRole::Logical ) && extendedPartitionItem )
-                        extendedPartitionItem->children.append( newItem );
-                    else
-                    {
-                        allPartitionItems.append( newItem );
-                        if ( ( *it )->roles().has( PartitionRole::Extended ) )
-                            extendedPartitionItem = &allPartitionItems.last();
-                    }
-                }
-            }
 
             Device* deviceBefore = m_core->createImmutableDeviceCopy( dev );
 
@@ -197,7 +173,7 @@ AlongsidePage::onPartitionSelected( int comboBoxIndex )
 
             m_previewWidget->setModel( partitionModelBefore );
             m_previewLabels->setModel( partitionModelBefore );
-            m_splitterWidget->init( allPartitionItems );
+            m_splitterWidget->init( dev );
 
             m_splitterWidget->setSplitPartition( candidate->partitionPath(),
                                                  candidate->used() * 1.1,

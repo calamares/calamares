@@ -21,6 +21,7 @@
 
 #include <QWidget>
 
+class Device;
 
 struct PartitionSplitterItem
 {
@@ -38,7 +39,7 @@ class PartitionSplitterWidget : public QWidget
 public:
     explicit PartitionSplitterWidget( QWidget* parent = nullptr );
 
-    void init( const QList< PartitionSplitterItem >& items );
+    void init( Device* dev );
 
     void setSplitPartition( const QString& path,
                             qint64 minSize,
@@ -61,6 +62,8 @@ protected:
     void mouseReleaseEvent( QMouseEvent* event ) override;
 
 private:
+    void setupItems( const QList< PartitionSplitterItem >& items );
+
     void drawPartitions( QPainter* painter,
                          const QRect& rect,
                          const QList< PartitionSplitterItem >& items );

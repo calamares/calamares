@@ -18,8 +18,14 @@
 
 #include "PartitionSplitterWidget.h"
 
+#include "core/ColorUtils.h"
+#include "core/PartitionIterator.h"
+
 #include "utils/Logger.h"
 #include "utils/CalamaresUtilsGui.h"
+
+#include <kpmcore/core/device.h>
+#include <kpmcore/core/partition.h>
 
 #include <QApplication>
 #include <QPainter>
@@ -48,7 +54,36 @@ PartitionSplitterWidget::PartitionSplitterWidget( QWidget* parent )
 
 
 void
-PartitionSplitterWidget::init( const QList<PartitionSplitterItem>& items )
+PartitionSplitterWidget::init( Device* dev )
+{
+    QList< PartitionSplitterItem > allPartitionItems;
+    PartitionSplitterItem* extendedPartitionItem = nullptr;
+    for ( auto it = PartitionIterator::begin( dev );
+          it != PartitionIterator::end( dev ); ++it )
+    {
+        PartitionSplitterItem newItem = {
+            ( *it )->partitionPath(),
+            ColorUtils::colorForPartition( *it ),
+            false,
+            ( *it )->capacity(),
+            {}
+        };
+
+        if ( ( *it )->roles().has( PartitionRole::Logical ) && extendedPartitionItem )
+            extendedPartitionItem->children.append( newItem );
+        else
+        {
+            allPartitionItems.append( newItem );
+            if ( ( *it )->roles().has( PartitionRole::Extended ) )
+                extendedPartitionItem = &allPartitionItems.last();
+        }
+    }
+
+    setupItems( allPartitionItems );
+}
+
+void
+PartitionSplitterWidget::setupItems( const QList<PartitionSplitterItem>& items )
 {
     m_itemToResize = nullptr;
     m_itemToResizeNext = nullptr;
