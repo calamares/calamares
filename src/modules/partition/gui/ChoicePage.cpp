@@ -622,10 +622,10 @@ ChoicePage::updateActionChoicePreview( ChoicePage::Choice choice )
                                         "then drag to resize</strong>" ) );
             m_selectLabel->show();
 
-            m_afterPartitionSplitterWidget = new PartitionSplitterWidget;
+            m_afterPartitionSplitterWidget = new PartitionSplitterWidget( m_previewAfterFrame );
             layout->addWidget( m_afterPartitionSplitterWidget );
 
-            QLabel* sizeLabel = new QLabel;
+            QLabel* sizeLabel = new QLabel( m_previewAfterFrame );
             layout->addWidget( sizeLabel );
             sizeLabel->setWordWrap( true );
             connect( m_afterPartitionSplitterWidget, &PartitionSplitterWidget::partitionResized,
