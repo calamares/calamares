@@ -344,8 +344,8 @@ Output:
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="91"/>
         <source>Do you really want to cancel the current install process?
 The installer will quit and all changes will be lost.</source>
-        <translation>本当に現在の作業をキャンセルしますか？
-全ての変更が取り消されます。</translation>
+        <translation>本当に現在の作業を中止しますか？
+すべての変更が取り消されます。</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="224"/>
@@ -507,7 +507,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="672"/>
         <source>This storage device does not seem to have an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-        <translation>このストレージデバイスは、オペレーティングシステムを持っていないようです。どうしますか？&lt;br/&gt;ストレージデバイスに対する変更を行う前に、レビューし確認することが可能になります。</translation>
+        <translation>このストレージデバイスは、オペレーティングシステムを持っていないようです。どうしますか？&lt;br/&gt;ストレージデバイスに対する変更が実施される前に、変更点をレビューし、確認することができます。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="677"/>
@@ -520,14 +520,14 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="696"/>
         <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-        <translation>この記憶装置は %1 を有しています。&lt;br/&gt;ストレージデバイスを選択する前に確認し、必要なら変更してください。</translation>
+        <translation>このストレージデバイスは %1 を有しています。どうしますか?&lt;br/&gt;ストレージデバイスに対する変更が実施される前に、変更点をレビューし、確認することができます。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="702"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="726"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="775"/>
         <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
-        <translation>&lt;strong&gt;一緒にインストール&lt;/strong&gt;&lt;br/&gt;インストーラは %1 用の空きスペースを確保するため、パーティションを縮小します。</translation>
+        <translation>&lt;strong&gt;共存してインストール&lt;/strong&gt;&lt;br/&gt;インストーラは %1 用の空きスペースを確保するため、パーティションを縮小します。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="712"/>
@@ -539,12 +539,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="721"/>
         <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-        <translation>この記憶装置は、すでにオペレーティングシステムが存在します。&lt;br/&gt;ストレージデバイスを選択する前に確認し、必要なら変更してください。</translation>
+        <translation>この記憶装置は、すでにオペレーティングシステムが存在します。どうしますか?&lt;br/&gt;ストレージデバイスに対する変更が実施される前に、変更点をレビューし、確認することができます。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="770"/>
         <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-        <translation>このストレージデバイスには、複数のオペレーティングシステムが存在します。どうしますか？&lt;br /&gt;ストレージデバイスに対して変更を行う前に、レビューし確認することが可能になります。</translation>
+        <translation>このストレージデバイスには、複数のオペレーティングシステムが存在します。どうしますか？&lt;br /&gt;ストレージデバイスに対する変更が実施される前に、変更点をレビューし、確認することができます。</translation>
     </message>
 </context>
 <context>
@@ -562,7 +562,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="171"/>
         <source>Cleared all mounts for %1</source>
-        <translation>%1 の全てのマウントを解除</translation>
+        <translation>%1 のすべてのマウントを解除</translation>
     </message>
 </context>
 <context>
@@ -580,12 +580,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="58"/>
         <source>Cannot get list of temporary mounts.</source>
-        <translation>一時的なマウントの一覧を取得できません。</translation>
+        <translation>一時的なマウントのリストを取得できません。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="97"/>
         <source>Cleared all temporary mounts.</source>
-        <translation>一時的なマウントはすべて解除しました。</translation>
+        <translation>すべての一時的なマウントを解除しました。</translation>
     </message>
 </context>
 <context>
@@ -681,7 +681,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="126"/>
         <source>The installer failed to create file system on partition %1.</source>
-        <translation>インストーラーは %1 パーティションのシステム作成に失敗しました。</translation>
+        <translation>インストーラーは %1 パーティション上でのファイルシステムの作成に失敗しました。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="134"/>
@@ -699,7 +699,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="39"/>
         <source>Creating a new partition table will delete all existing data on the disk.</source>
-        <translation>パーティションテーブルを作成によって、ディスク上のデータがすねて削除されます。</translation>
+        <translation>パーティションテーブルを作成することによって、ディスク上のデータがすべて削除されます。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="65"/>
@@ -805,7 +805,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="155"/>
         <source>Cannot set home directory ownership for user %1.</source>
-        <translation>ユーザー %1 ホームディレクトリの所有者が設定できません。</translation>
+        <translation>ユーザー %1 のホームディレクトリの所有者を設定できません。</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="157"/>
@@ -856,47 +856,47 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="79"/>
         <source>The &lt;strong&gt;boot environment&lt;/strong&gt; of this system.&lt;br&gt;&lt;br&gt;Older x86 systems only support &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Modern systems usually use &lt;strong&gt;EFI&lt;/strong&gt;, but may also show up as BIOS if the boot environment runs in compatibility mode.&lt;br&gt;Relevant entries in the system setup utility include: CSM, compatibility support module, Legacy boot mode, BIOS mode, etc.</source>
-        <translation>このシステムの&lt;strong&gt;起動環境&lt;/strong&gt;&lt;br&gt;&lt;br&gt;起動環境は、古い x86 システムに限って &lt;strong&gt;BIOS&lt;/strong&gt; に対応しています。最近のシステムは通常 &lt;strong&gt;EFI&lt;/strong&gt; を使用しますが、起動環境が互換モードで実行された場合、BIOS として表示される場合があります。&lt;br&gt;システムセットアップユーティリティでこれらの関連エントリが含まれます: CSM、互換性サポートモジュール、旧起動モード、BIOS モードなど</translation>
+        <translation>このシステムの&lt;strong&gt;ブート環境。&lt;/strong&gt;&lt;br&gt;&lt;br&gt;古いx86システムは&lt;strong&gt;BIOS&lt;/strong&gt;のみサポートしています。&lt;br&gt;比較的新しいシステムは通常&lt;strong&gt;EFI&lt;/strong&gt;を使用しますが、互換モードでブート環境を実行した場合、BIOSとして表示される場合もあります。&lt;br&gt;システムセットアップユーティリティでこれらの関連エントリが含まれます: CSM、互換性サポートモジュール、レガシーな起動モード、BIOS モードなど</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="87"/>
         <source>The type of &lt;strong&gt;partition table&lt;/strong&gt; currently present on the selected storage device.&lt;br&gt;&lt;br&gt;Common values on x86-compatible systems include &lt;strong&gt;GPT&lt;/strong&gt; and &lt;strong&gt;MSDOS&lt;/strong&gt;.&lt;br&gt;Some systems may use other, less common partition table types, like BSD or Sun.&lt;br&gt;The only way to change the partition table type is to erase and recreate the partition table from scratch, which destroys all data on the storage device.&lt;br&gt;This installer will keep the current partition table unless you explicitly choose otherwise.&lt;br&gt;If unsure, on modern systems GPT is preferred.</source>
-        <translation>選択ストレージデバイス上に現在存在する&lt;strong&gt;パーティションテーブル&lt;/strong&gt;の種類&lt;br&gt;&lt;br&gt;x86 互換システムでは通常 &lt;strong&gt;GPT&lt;/strong&gt; および &lt;strong&gt;MS-DOS&lt;/strong&gt; が含まれます。&lt;br&gt;一部のシステムでは、BSD や Sun などの他、あまり一般的でないパーティションテーブルの種類を使用することができます。&lt;br&gt;パーティションテーブルの種類を変更する唯一の方法は、消去を行ってストレージデバイス上のデータをすべて消去し、改めてパーティションテーブルを作成することです。&lt;br&gt;明示的に選択しない限り、このインストーラは現在のパーティションテーブルを維持します。&lt;br&gt;よくわからない場合は、近代的なシステム GPT が好ましいでしょう。</translation>
+        <translation>選択されたストレージデバイス上にある、現在の&lt;strong&gt;パーティションテーブル&lt;/strong&gt;の種類。 &lt;br&gt;&lt;br&gt;&lt;strong&gt;GPT&lt;/strong&gt; および&lt;strong&gt;MSDOS&lt;/strong&gt;はx86-互換システム上では共通して含まれています。BSDやSunのように、他の互換性の低いパーティションテーブルが使用されるシステムもあります。&lt;br&gt;パーティションテーブルの種類を変更する唯一の手段は、一旦テーブルを消去し、ゼロからパーティションテーブルを再度作成することになりますが、この操作はストレージデバイス上のすべてのデータを消去します。&lt;br&gt;このインストーラーは明示的に他の種類を選択しない限り、現在のパーティションテーブルを保持します。&lt;br&gt;良く分からない場合は、比較的新しいシステムであるGPTが好ましいです。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="108"/>
         <source>This system was started with an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;Most consumer systems nowadays use EFI, along with a GPT partition table.&lt;br&gt;Current versions of other operating systems, like Windows and Mac OS X also support EFI, and dual boot is possible.&lt;br&gt;In order to boot from an EFI environment, this installer must deploy a boot loader application, like &lt;strong&gt;GRUB&lt;/strong&gt; or &lt;strong&gt;systemd-boot&lt;/strong&gt; on an &lt;strong&gt;EFI System Partition&lt;/strong&gt;. This is automatic, unless you choose manual partitioning, in which case you must choose it or create it on your own.</source>
-        <translation>このシステムは、&lt;strong&gt;EFI&lt;/strong&gt; 起動環境で起動します。&lt;br&gt;&lt;br&gt;多くのシステムは、GPT パーティションテーブルと共に EFI を使用します。&lt;br&gt;Windows、Mac OS X のような他のオペレーティングシステムでは最新バージョンで EFI をサポートしデュアルブートする事が可能です。&lt;br&gt;EFI 環境から起動するためには、EFI システムパーティションに &lt;strong&gt;GRUB&lt;strong&gt; またはに &lt;Strong&gt;systemd-boot&lt;/strong&gt; などのブートローダーアプリケーションをインストールする必要があります。それは選択するか、自分でそれを作成する必要がありますが、手動パーティションを選択しなければ、それを自動的に行います。</translation>
+        <translation>このシステムは、&lt;strong&gt;EFI&lt;/strong&gt; ブート環境で起動します。&lt;br&gt;&lt;br&gt;多くのシステムは、GPT パーティションテーブルと共に EFI を使用します。&lt;br&gt;Windows、Mac OS X のような他のオペレーティングシステムでは最新バージョンで EFI をサポートしデュアルブートする事が可能です。&lt;br&gt;EFI 環境からブートするためには、 &lt;strong&gt;EFI システムパーティション &lt;/strong&gt;に &lt;strong&gt;GRUB&lt;/strong&gt;、 &lt;Strong&gt;systemd-boot&lt;/strong&gt; といったブートローダーアプリケーションを配置する必要があります。ユーザー自身が手動でパーティション分割し、自身で選択・作成をしない限り、これは自動的に行われます。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="124"/>
         <source>This system was started with a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;Older systems which do not support EFI start from BIOS.&lt;br&gt;New systems that support EFI can also start in BIOS mode through a compatibility layer, sometimes known as CSM, Legacy boot mode or BIOS mode. On such systems EFI should be preferred, unless you wish to dual boot with an old operating system, like Windows XP. In that case, a MSDOS partition table should also be used instead of GPT.&lt;br&gt;In order to boot from a BIOS environment, this installer must install a boot loader, like &lt;strong&gt;GRUB&lt;/strong&gt;, either at the beginning of a partition or on the &lt;strong&gt;Master Boot Record&lt;/strong&gt; near the beginning of the partition table (preferred). This is automatic, unless you choose manual partitioning, in which case you must set it up on your own.</source>
-        <translation>このシステムは &lt;strong&gt;BIOS&lt;/strong&gt; の起動環境で起動しています。&lt;br&gt;&lt;br&gt;BIOS は EFI の起動に対応していない古いシステムです。&lt;br&gt;時々、CSM として知られている EFI は互換モード、新しいシステムではレガシーブートモードまたは BIOS モードを介して BIOS モードで起動することができます。Windows XP などの古いオペレーティングシステムとデュアルブートしたい場合を除き、EFI を優先して使用すべきです。その場合 MSDOS パーティションテーブル代わりに GPT を使用する必要があります。BIOS 環境から起動するために、パーティションの先頭またはパーティションテーブルの先頭近くにある&lt;strong&gt;マスターブートレコード (MBR)&lt;/strong&gt; のいずれかで &lt;strong&gt;GRUB&lt;/strong&gt; などのブートローダーをインストールする必要があります (推奨)。手動パーティション分割を選択し、それを設定する必要がありますが、そうでなければ自動的に行われます。</translation>
+        <translation>このシステムは &lt;strong&gt;BIOS&lt;/strong&gt; のブート環境で起動しています。&lt;br&gt;&lt;br&gt;EFIに対応していない古いシステムではBIOSで起動します。&lt;br&gt;EFIをサポートしている比較的新しいシステムにおいても、CSM、レガシーブートモードあるいはBIOSブートモードとして知られる互換レイヤーを通してBIOSモードで起動させることは可能です。Windows XPのようなGPTではなくMSDOSが使用されるWindows XPのような古いオペレーティングシステムとのデュアルブートを行いたい場合以外はEFIを使用することが望ましいです。&lt;br&gt;BIOS環境からブートするためには、パーティションの始点あるいはパーティションテーブルの始点近傍にある&lt;strong&gt;マスターブートレコード（MBR）&lt;/strong&gt;上（推奨）に、&lt;strong&gt;GRUB&lt;/strong&gt;のようなブートローダーをインストールする必要があります。ユーザー自身がパーティションを分割し、ユーザー自身でセットアップをしない限り、これは自動的に行われます。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="174"/>
         <source>The selected storage device has a partition table. The partition table type is &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation>選択された記憶装置にはパーティションテーブルが存在します。パーティションテーブルの種類は &lt;strong&gt;%1&lt;/strong&gt; です。</translation>
+        <translation>選択されたストレージデバイスにはパーティションテーブルが存在します。パーティションテーブルの種類は &lt;strong&gt;%1&lt;/strong&gt; です。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="181"/>
         <source>The selected storage device is a &lt;strong&gt;loop&lt;/strong&gt; device.&lt;br&gt;&lt;br&gt;This is not an actual partition table, it is a pseudo-device that makes a file accessible as a block device. This kind of setup usually only contains a single filesystem.</source>
-        <translation>選択したストレージデバイスは &lt;strong&gt;loop&lt;/strong&gt; デバイスです。&lt;br&gt;これは、ブロックデバイスとしてアクセス可能なファイルを生成する擬似的なデバイスであり、実際のパーティションテーブルではありません。通常単一のファイルシステムがセットアップ時に使用されます。</translation>
+        <translation>選択したストレージデバイスは &lt;strong&gt;loop&lt;/strong&gt; デバイスです。&lt;br&gt;&lt;br&gt;これは、実際のパーティションテーブルではなく、ブロックデバイスとしてアクセス可能なファイルを生成する擬似デバイスです。この種類のセットアップは通常、単一のファイルシステムのみ含みます。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="188"/>
         <source>This installer &lt;strong&gt;cannot detect a partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The device either has no partition table, or the partition table is corrupted or of an unknown type.&lt;br&gt;This installer can create a new partition table for you, either automatically, or through the manual partitioning page.</source>
-        <translation>このインストーラは、選択したストレージデバイス上の&lt;strong&gt;パーティションテーブルを検出することができません。&lt;strong&gt;&lt;br&gt;&lt;br&gt;デバイスにはパーティションテーブルが存在しないか、パーティションテーブルが未知のタイプまたは破損しています。&lt;br&gt;自動または手動パーティションページを介して、新しいパーティションテーブルを生成することができます。</translation>
+        <translation>インストーラが、選択したストレージデバイス上の&lt;strong&gt;パーティションテーブルを検出することができません。&lt;/strong&gt;&lt;br&gt;&lt;br&gt;デバイスにはパーティションテーブルが存在しないか、パーティションテーブルが未知のタイプまたは破損しています。&lt;br&gt;このインストーラーでは、自動であるいは、パーティションページによって手動で、新しいパーティションテーブルを作成することができます。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="198"/>
         <source>&lt;br&gt;&lt;br&gt;This is the recommended partition table type for modern systems which start from an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.</source>
-        <translation>&lt;br&gt;&lt;br&gt;これは &lt;strong&gt;EFI&lt;/ strong&gt; 起動環境から起動する現在のシステムで推奨されるパーティションテーブルの種類です。</translation>
+        <translation>&lt;br&gt;&lt;br&gt;これは &lt;strong&gt;EFI&lt;/ strong&gt; ブート環境から起動する現在のシステムで推奨されるパーティションテーブルの種類です。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="204"/>
         <source>&lt;br&gt;&lt;br&gt;This partition table type is only advisable on older systems which start from a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment. For most uses GPT should be preferred instead.&lt;br&gt;&lt;strong&gt;Warning:&lt;/strong&gt; the MSDOS partition table is an obsolete standard with important drawbacks.&lt;br&gt;Only 4 &lt;em&gt;primary&lt;/em&gt; partitions may be created, and of those 4, one can be an &lt;em&gt;extended&lt;/em&gt; partition, which may in turn contain many &lt;em&gt;logical&lt;/em&gt; partitions.&lt;br&gt;For compatibility reasons, it is recommended for a setup based on an MSDOS partition table to have a separate boot partition. This installer can create the boot partition for you automatically, or you may set it up yourself on the manual partitioning page.</source>
-        <translation>&lt;br&gt;&lt;br&gt;このパーティションテーブルタイプは &lt;strong&gt;BIOS&lt;/strong&gt; 起動環境から起動します。古いシステムでの使用をおすすめします。&lt;br&gt;&lt;strong&gt;警告:&lt;/strong&gt;MSDOS パーティションテーブルは、重大な欠点によって廃止された規格です。&lt;br&gt;&lt;em&gt;プライマリ&lt;/em&gt;パーティションの作成はわずか 4 つだけで、そのうち一つは順番にいくつかの&lt;em&gt;論理&lt;/em&gt;パーティションを含むことができる&lt;em&gt;拡張&lt;/em&gt;パーティションにすることができます。&lt;br&gt;互換性の理由から、MSDOS のパーティションテーブルに基づいて別の起動パーティションを持つように設定することをおすすめします。自動的に boot パーティションを作成したり、手動パーティションページでそれを設定することができます。</translation>
+        <translation>&lt;br&gt;&lt;br&gt;このパーティションテーブルの種類は &lt;strong&gt;BIOS&lt;/strong&gt; ブート環境から起動する古いシステムにおいて望ましい唯一のものです。&lt;br&gt;&lt;strong&gt;警告:&lt;/strong&gt;MSDOS パーティションテーブルは、重大な欠点があるためもはや用いられていません。&lt;br&gt;わずか4つだけの&lt;em&gt;プライマリ&lt;/em&gt;パーティションが作成され、そのうち1つについては、多くの&lt;em&gt;論理&lt;/em&gt;パーティションを含む&lt;em&gt;拡張&lt;/em&gt;パーティションにすることができます。&lt;br&gt;互換性の理由から、MSDOS パーティションテーブルに基づいたセットアップではブートパーティションを分離することが推奨されます。このインストーラーでは、自動的にブートパーティションを作成したり、手動パーティショニングページでユーザー自身でセットアップすることができます。</translation>
     </message>
 </context>
 <context>
@@ -912,7 +912,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="20"/>
         <source>Edit Existing Partition</source>
-        <translation>既存パーティションの編集</translation>
+        <translation>既存のパーティションの編集</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="50"/>
@@ -1003,7 +1003,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/finished/FinishedPage.cpp" line="50"/>
         <source>&lt;h1&gt;All done.&lt;/h1&gt;&lt;br/&gt;%1 has been installed on your computer.&lt;br/&gt;You may now restart into your new system, or continue using the %2 Live environment.</source>
-        <translation>&lt;h1&gt;全て完了しました。&lt;/h1&gt;&lt;br/&gt;%1 はコンピュータにインストールされました。&lt;br/&gt;再起動して新しいシステムを立ち上げるか、%2 Live環境を使用し続けることができます。</translation>
+        <translation>&lt;h1&gt;すべて完了しました。&lt;/h1&gt;&lt;br/&gt;%1 はコンピュータにインストールされました。&lt;br/&gt;再起動して新しいシステムを立ち上げるか、%2 Live環境を使用し続けることができます。</translation>
     </message>
 </context>
 <context>
@@ -1131,7 +1131,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="88"/>
         <source>I accept the terms and conditions above.</source>
-        <translation>上記の項目・条件に同意します。</translation>
+        <translation>上記の項目及び条件に同意します。</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="115"/>
@@ -1233,7 +1233,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/locale/LocaleViewStep.cpp" line="48"/>
         <source>Loading location data...</source>
-        <translation>ロケーションデータを読込中...</translation>
+        <translation>ロケーションデータをロード中...</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/LocaleViewStep.cpp" line="82"/>
@@ -1246,7 +1246,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="66"/>
         <source>Move file system of partition %1.</source>
-        <translation>パーティション %1 のファイルシステム移動</translation>
+        <translation>パーティション %1 のファイルシステムを移動</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="80"/>
@@ -1256,7 +1256,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="86"/>
         <source>Could not create target for moving file system on partition %1.</source>
-        <translation>ファイルシステム移動先になるパーティション %1 を作成できませんでした。</translation>
+        <translation>パーティション %1 上のファイルシステムを移動させるためのターゲットを作成できませんでした。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="95"/>
@@ -1271,23 +1271,23 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="113"/>
         <source>Updating boot sector after the moving of partition %1 failed.</source>
-        <translation>ブートセクターを更新中パーティション %1 の移動に失敗しました。</translation>
+        <translation>パーティション %1 の移動後のブートセクターの更新に失敗しました。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="127"/>
         <source>The logical sector sizes in the source and target for copying are not the same. This is currently unsupported.</source>
-        <translation>元と先の論理セクタサイズが異なります。これは現在対応していません。</translation>
+        <translation>ソースとターゲットの論理セクタサイズが異なります。これは現在サポートされていません。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="197"/>
         <source>Source and target for copying do not overlap: Rollback is not required.</source>
-        <translation>コピーの元と先は領域が重なりません。作業を戻す必要はありません。</translation>
+        <translation>コピーのためのソースとターゲットは領域が重なりません。ロールバックを行う必要はありません。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="221"/>
         <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="229"/>
         <source>Could not open device %1 to rollback copying.</source>
-        <translation>作業戻し用のデバイス %1 を開く事ができませんでした。</translation>
+        <translation>ロールバック用のデバイス %1 を開く事ができませんでした。</translation>
     </message>
 </context>
 <context>
@@ -1305,7 +1305,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/keyboard/KeyboardPage.ui" line="131"/>
         <source>Type here to test your keyboard</source>
-        <translation>ここで入力してキーボードをテストしてください</translation>
+        <translation>ここでタイプしてキーボードをテストしてください</translation>
     </message>
 </context>
 <context>
@@ -1404,12 +1404,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="196"/>
         <source>Swap</source>
-        <translation>Swap</translation>
+        <translation>スワップ</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="198"/>
         <source>New partition for %1</source>
-        <translation>新規パーティション %1</translation>
+        <translation>新しいパーティション %1</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="215"/>
@@ -1468,7 +1468,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="51"/>
         <source>&amp;Revert All Changes</source>
-        <translation>全ての変更を元に戻す (&amp;R)</translation>
+        <translation>すべての変更を元に戻す (&amp;R)</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="84"/>
@@ -1516,42 +1516,42 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="148"/>
         <source>Install %1 &lt;strong&gt;alongside&lt;/strong&gt; another operating system.</source>
-        <translation>他のオペレーティングシステムに&lt;strong&gt;共存して&lt;/strong&gt; %1 をインストール</translation>
+        <translation>他のオペレーティングシステムに&lt;strong&gt;共存して&lt;/strong&gt; %1 をインストール。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="153"/>
         <source>&lt;strong&gt;Erase&lt;/strong&gt; disk and install %1.</source>
-        <translation>ディスクを&lt;strong&gt;消去&lt;/strong&gt;し %1 をインストール</translation>
+        <translation>ディスクを&lt;strong&gt;消去&lt;/strong&gt;し %1 をインストール。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="158"/>
         <source>&lt;strong&gt;Replace&lt;/strong&gt; a partition with %1.</source>
-        <translation>パーティションを %1 に&lt;strong&gt;置き換え&lt;/strong&gt;る</translation>
+        <translation>パーティションを %1 に&lt;strong&gt;置き換える。&lt;/strong&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="163"/>
         <source>&lt;strong&gt;Manual&lt;/strong&gt; partitioning.</source>
-        <translation>&lt;strong&gt;手動&lt;/strong&gt;でパーティションを設定する</translation>
+        <translation>&lt;strong&gt;手動&lt;/strong&gt;でパーティションを設定する。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="176"/>
         <source>Install %1 &lt;strong&gt;alongside&lt;/strong&gt; another operating system on disk &lt;strong&gt;%2&lt;/strong&gt; (%3).</source>
-        <translation>ディスク &lt;strong&gt;%2&lt;/strong&gt; (%3) 上ののオペレーティングシステムと&lt;strong&gt;共存&lt;/strong&gt;して %1 をインストール</translation>
+        <translation>ディスク &lt;strong&gt;%2&lt;/strong&gt; (%3) 上ののオペレーティングシステムと&lt;strong&gt;共存&lt;/strong&gt;して %1 をインストール。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="183"/>
         <source>&lt;strong&gt;Erase&lt;/strong&gt; disk &lt;strong&gt;%2&lt;/strong&gt; (%3) and install %1.</source>
-        <translation> ディスク &lt;strong&gt;%2&lt;/strong&gt; (%3) を&lt;strong&gt;消去&lt;/strong&gt;して %1 をインストール</translation>
+        <translation> ディスク &lt;strong&gt;%2&lt;/strong&gt; (%3) を&lt;strong&gt;消去して&lt;/strong&gt; %1 をインストール。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="190"/>
         <source>&lt;strong&gt;Replace&lt;/strong&gt; a partition on disk &lt;strong&gt;%2&lt;/strong&gt; (%3) with %1.</source>
-        <translation>ディスク &lt;strong&gt;%2&lt;/strong&gt; (%3) 上のパーティションを %1 に&lt;strong&gt;置き換え&lt;/strong&gt;る。</translation>
+        <translation>ディスク &lt;strong&gt;%2&lt;/strong&gt; (%3) 上のパーティションを %1 に&lt;strong&gt;置き換える。&lt;/strong&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="197"/>
         <source>&lt;strong&gt;Manual&lt;/strong&gt; partitioning on disk &lt;strong&gt;%1&lt;/strong&gt; (%2).</source>
-        <translation>ディスク &lt;strong&gt;%1&lt;/strong&gt; (%2) を &lt;strong&gt;手動&lt;/strong&gt;でパーティション設定する</translation>
+        <translation>ディスク &lt;strong&gt;%1&lt;/strong&gt; (%2) 上で &lt;strong&gt;手動で&lt;/strong&gt;パーティショニングする。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="205"/>
@@ -1613,7 +1613,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="134"/>
         <source>Select where to install %1.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;this will delete all files on the selected partition.</source>
-        <translation>%1 をインストールする場所を選択します。&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;警告: &lt;/font&gt;選択したパーティション内の全ファイルは削除されます。</translation>
+        <translation>%1 をインストールする場所を選択します。&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;警告: &lt;/font&gt;選択したパーティション内のすべてのファイルが削除されます。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="161"/>
@@ -1643,7 +1643,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="215"/>
         <source>Unknown system partition (%1)</source>
-        <translation>不明システムパーティション (%1)</translation>
+        <translation>不明なシステムパーティション (%1)</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="220"/>
@@ -1653,24 +1653,24 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="231"/>
         <source>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;The partition %1 is too small for %2. Please select a partition with capacity at least %3 GiB.</source>
-        <translation>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;パーティション %1 は、%2 には小さすぎます。容量は最小 %3 GB のパーティションを選択してください。</translation>
+        <translation>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;パーティション %1 は、%2 には小さすぎます。少なくとも %3 GB 以上のパーティションを選択してください。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="255"/>
         <source>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
-        <translation>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;EFI システムパーティションがシステムに見つかりません。戻って %1 を設定するために手動パーティションを使用してください。</translation>
+        <translation>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;EFI システムパーティションがシステムに見つかりません。%1 を設定するために一旦戻って手動パーティショニングを使用してください。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="267"/>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="286"/>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="311"/>
         <source>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 will be installed on %2.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;all data on partition %2 will be lost.</source>
-        <translation>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 は %2 にインストールします。&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;警告: &lt;/font&gt;パーティション %2 の全データは失われます。</translation>
+        <translation>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 は %2 にインストールされます。&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;警告: &lt;/font&gt;パーティション %2 のすべてのデータは失われます。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="277"/>
         <source>The EFI system partition at %1 will be used for starting %2.</source>
-        <translation>%1 上の EFI システムパーテイションは %2 開始時に使用します。</translation>
+        <translation>%1 上の EFI システムパーティションは %2 開始時に使用されます。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="295"/>
@@ -1698,12 +1698,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="108"/>
         <source>has at least %1 GB working memory</source>
-        <translation>最低 %1 GB の作業メモリーがあること</translation>
+        <translation>最低 %1 GB のワーキングメモリーがあること</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="110"/>
         <source>The system does not have enough working memory. At least %1 GB is required.</source>
-        <translation>システムには十分な作業メモリがありません。少なくとも %1 GB 必要です。</translation>
+        <translation>システムには十分なワーキングメモリがありません。少なくとも %1 GB 必要です。</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="118"/>
@@ -1754,17 +1754,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="187"/>
         <source>Resize partition %1.</source>
-        <translation>パーティション %1 のサイズを変更する</translation>
+        <translation>パーティション %1 のサイズを変更する。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="194"/>
         <source>Resize &lt;strong&gt;%2MB&lt;/strong&gt; partition &lt;strong&gt;%1&lt;/strong&gt; to &lt;strong&gt;%3MB&lt;/strong&gt;.</source>
-        <translation> &lt;strong&gt;%2MB&lt;/strong&gt; のパーティション &lt;strong&gt;%1&lt;/strong&gt; を&lt;strong&gt;%3MB&lt;/strong&gt; へサイズを変更。</translation>
+        <translation> &lt;strong&gt;%2MB&lt;/strong&gt; のパーティション &lt;strong&gt;%1&lt;/strong&gt; を&lt;strong&gt;%3MB&lt;/strong&gt; にサイズを変更。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="205"/>
         <source>Resizing %2MB partition %1 to %3MB.</source>
-        <translation> %2MB のパーティション %1 を %3MB へサイズ変更中。</translation>
+        <translation> %2MB のパーティション %1 を %3MB にサイズ変更中。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="232"/>
@@ -1783,12 +1783,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="83"/>
         <source>Scanning storage devices...</source>
-        <translation>ストレージデバイスの検索中...</translation>
+        <translation>ストレージデバイスのスキャン中...</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="84"/>
         <source>Partitioning</source>
-        <translation>パーティション処理中</translation>
+        <translation>パーティショニング中</translation>
     </message>
 </context>
 <context>
@@ -1842,7 +1842,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="288"/>
         <source>Failed to write keyboard configuration for X11.</source>
-        <translation>X11 キーボード設定の書き込みに失敗しました。</translation>
+        <translation>X11 のためのキーボード設定の書き込みに失敗しました。</translation>
     </message>
 </context>
 <context>
