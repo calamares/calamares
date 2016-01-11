@@ -209,7 +209,7 @@ PartitionSplitterWidget::minimumSizeHint() const
 void
 PartitionSplitterWidget::paintEvent( QPaintEvent* event )
 {
-    QPainter painter( viewport() );
+    QPainter painter( this );
     painter.fillRect( rect(), palette().window() );
     painter.setRenderHint( QPainter::Antialiasing );
 
