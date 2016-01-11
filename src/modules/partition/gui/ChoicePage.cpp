@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2016, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -30,6 +30,7 @@
 #include "ExpandableRadioButton.h"
 #include "PartitionBarsView.h"
 #include "PartitionLabelsView.h"
+#include "PartitionSplitterWidget.h"
 #include "DeviceInfoWidget.h"
 #include "ScanningDialog.h"
 
@@ -452,6 +453,24 @@ ChoicePage::applyActionChoice( ChoicePage::Choice choice )
                  this, SLOT( doReplaceSelectedPartition( QModelIndex, QModelIndex ) ),
                  Qt::UniqueConnection );
         break;
+
+    case Alongside:
+        if ( m_core->isDirty() )
+        {
+            ScanningDialog::run( QtConcurrent::run( [ = ]
+            {
+                QMutexLocker locker( &m_coreMutex );
+                m_core->revertDevice( selectedDevice() );
+            } ),
+            []{},
+            this );
+        }
+        setNextEnabled( !m_beforePartitionBarsView->selectionModel()->selectedRows().isEmpty() );
+
+        connect( m_beforePartitionBarsView->selectionModel(), SIGNAL( currentRowChanged( QModelIndex, QModelIndex ) ),
+                 this, SLOT( doAlongsideSelectedPartition( QModelIndex, QModelIndex ) ),
+                 Qt::UniqueConnection );
+        break;
     case NoChoice:
     case Manual:
         break;
@@ -461,9 +480,25 @@ ChoicePage::applyActionChoice( ChoicePage::Choice choice )
 
 
 void
+ChoicePage::doAlongsideSelectedPartition( const QModelIndex& current,
+                                        const QModelIndex& previous )
+{
+    Q_UNUSED( previous );
+    if ( !current.isValid() )
+        return;
+
+
+
+    cDebug() << "Partition selected for Alongside.";
+
+}
+
+
+void
 ChoicePage::doReplaceSelectedPartition( const QModelIndex& current,
                                         const QModelIndex& previous )
 {
+    Q_UNUSED( previous );
     if ( !current.isValid() )
         return;
 
@@ -581,13 +616,35 @@ ChoicePage::updateActionChoicePreview( ChoicePage::Choice choice )
     switch ( choice )
     {
     case Alongside:
-        m_previewBeforeLabel->setText( tr( "Device:" ) );
-        m_previewAfterLabel->hide();
-        // split widget goes here
-        //label->setText( tr( "Drag to split:" ) );
-        m_selectLabel->hide();
+        {
+            m_previewBeforeLabel->setText( tr( "Before:" ) );
+            m_selectLabel->setText( tr( "<strong>Select which partition to shrink, "
+                                        "then drag to resize</strong>" ) );
+            m_selectLabel->show();
 
-        break;
+            m_afterPartitionSplitterWidget = new PartitionSplitterWidget;
+            layout->addWidget( m_afterPartitionSplitterWidget );
+
+            QLabel* sizeLabel = new QLabel;
+            layout->addWidget( sizeLabel );
+            sizeLabel->setWordWrap( true );
+            connect( m_afterPartitionSplitterWidget, &PartitionSplitterWidget::partitionResized,
+                     this, [ this, sizeLabel ]( const QString& path, qint64 size, qint64 sizeNext )
+            {
+                sizeLabel->setText( tr( "%1 will be shrunk to %2MB and a new "
+                                        "%3MB partition will be created for %4." )
+                                    .arg( m_beforePartitionBarsView->selectionModel()->currentIndex().data().toString() )
+                                    .arg( size / ( 1024 * 1024 ) )
+                                    .arg( sizeNext / ( 1024 * 1024 ) )
+                                    .arg( Calamares::Branding::instance()->
+                                        string( Calamares::Branding::ShortProductName ) ) );
+            } );
+
+            m_previewAfterFrame->show();
+            m_previewAfterLabel->show();
+
+            break;
+        }
     case Erase:
     case Replace:
         {
