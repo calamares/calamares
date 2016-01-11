@@ -623,6 +623,7 @@ ChoicePage::updateActionChoicePreview( ChoicePage::Choice choice )
             m_selectLabel->show();
 
             m_afterPartitionSplitterWidget = new PartitionSplitterWidget( m_previewAfterFrame );
+            m_afterPartitionSplitterWidget->init( selectedDevice() );
             layout->addWidget( m_afterPartitionSplitterWidget );
 
             QLabel* sizeLabel = new QLabel( m_previewAfterFrame );
