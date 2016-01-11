@@ -33,10 +33,10 @@
 #include <QStyleOption>
 
 
-static const int VIEW_HEIGHT = CalamaresUtils::defaultFontHeight() + 8;
+static const int VIEW_HEIGHT = qMax( CalamaresUtils::defaultFontHeight() + 8, // wins out with big fonts
+                                     (int)( CalamaresUtils::defaultFontHeight() * 0.6 ) + 22 ); // wins out with small fonts
 static const int CORNER_RADIUS = 3;
-static const int EXTENDED_PARTITION_MARGIN = 4;
-
+static const int EXTENDED_PARTITION_MARGIN = qMax( 4, VIEW_HEIGHT / 6 );
 
 PartitionSplitterWidget::PartitionSplitterWidget( QWidget* parent )
     : QWidget( parent )
@@ -199,12 +199,20 @@ PartitionSplitterWidget::sizeHint() const
 }
 
 
+QSize
+PartitionSplitterWidget::minimumSizeHint() const
+{
+    return sizeHint();
+}
+
+
 void
 PartitionSplitterWidget::paintEvent( QPaintEvent* event )
 {
-    QPainter painter( this );
+    QPainter painter( viewport() );
     painter.fillRect( rect(), palette().window() );
     painter.setRenderHint( QPainter::Antialiasing );
+
     if ( m_itemToResize && m_itemToResizeNext )
         drawPartitions( &painter, rect(), m_items );
 }

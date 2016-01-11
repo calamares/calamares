@@ -51,6 +51,7 @@ public:
     qint64 newPartitionSize() const;
 
     QSize sizeHint() const override;
+    QSize minimumSizeHint() const override;
 
 signals:
     void partitionResized( const QString&, qint64, qint64 );
