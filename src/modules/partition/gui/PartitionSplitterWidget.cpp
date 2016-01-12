@@ -245,15 +245,16 @@ PartitionSplitterWidget::paintEvent( QPaintEvent* event )
     painter.fillRect( rect(), palette().window() );
     painter.setRenderHint( QPainter::Antialiasing );
 
-    if ( m_itemToResize && m_itemToResizeNext )
-        drawPartitions( &painter, rect(), m_items );
+    drawPartitions( &painter, rect(), m_items );
 }
 
 
 void
 PartitionSplitterWidget::mousePressEvent( QMouseEvent* event )
 {
-    if ( event->button() == Qt::LeftButton )
+    if ( m_itemToResize &&
+         m_itemToResizeNext &&
+         event->button() == Qt::LeftButton )
     {
         if ( qAbs( event->x() - m_resizeHandleX ) < HANDLE_SNAP )
             m_resizing = true;
@@ -328,7 +329,7 @@ PartitionSplitterWidget::mouseMoveEvent( QMouseEvent* event )
     }
     else
     {
-        if ( m_itemToResize )
+        if ( m_itemToResize && m_itemToResizeNext )
         {
             if ( qAbs( event->x() - m_resizeHandleX ) < HANDLE_SNAP )
                 setCursor( Qt::SplitHCursor );
@@ -474,12 +475,14 @@ PartitionSplitterWidget::drawPartitions( QPainter* painter,
             drawPartitions( painter, subRect, item.children );
         }
 
-        if ( item.itemPath == m_itemToResize->itemPath )
+        if ( m_itemToResize &&
+             item.itemPath == m_itemToResize->itemPath )
             m_resizeHandleX = x + width;
 
         x += width;
     }
-    drawResizeHandle( painter, rect, m_resizeHandleX );
+    if ( m_itemToResize && m_itemToResizeNext )
+        drawResizeHandle( painter, rect, m_resizeHandleX );
 }
 
 
