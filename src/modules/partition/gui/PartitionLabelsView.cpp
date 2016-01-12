@@ -527,10 +527,7 @@ PartitionLabelsView::mouseMoveEvent( QMouseEvent* event )
     else
         m_hoveredIndex = QModelIndex();
 
-    if ( oldHoveredIndex != m_hoveredIndex )
-    {
-        viewport()->repaint();
-    }
+    viewport()->repaint();
 }
 
 
