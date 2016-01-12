@@ -39,8 +39,11 @@
 #include "utils/Retranslator.h"
 #include "Branding.h"
 #include "core/KPMHelpers.h"
+#include "JobQueue.h"
+#include "GlobalStorage.h"
 
 #include <kpmcore/core/device.h>
+#include <kpmcore/core/partition.h>
 
 #include <QBoxLayout>
 #include <QButtonGroup>
@@ -487,7 +490,29 @@ ChoicePage::doAlongsideSelectedPartition( const QModelIndex& current,
     if ( !current.isValid() )
         return;
 
+    if ( !m_afterPartitionSplitterWidget )
+        return;
 
+    const PartitionModel* modl = qobject_cast< const PartitionModel* >( current.model() );
+    if ( !modl )
+        return;
+
+    Partition* part = modl->partitionForIndex( current );
+
+    double requiredStorageGB = Calamares::JobQueue::instance()
+                                    ->globalStorage()
+                                    ->value( "requiredStorageGB" )
+                                    .toDouble();
+
+    qint64 requiredStorageB = ( requiredStorageGB + 0.1 + 2.0 ) * 1024 * 1024 * 1024;
+
+    m_afterPartitionSplitterWidget->setSplitPartition(
+                part->partitionPath(),
+                part->used() * 1.1,
+                part->capacity() - requiredStorageB,
+                part->capacity() / 2,
+                Calamares::Branding::instance()->
+                    string( Calamares::Branding::ProductName ) );
 
     cDebug() << "Partition selected for Alongside.";
 
