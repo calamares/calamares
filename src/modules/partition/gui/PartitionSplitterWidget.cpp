@@ -145,8 +145,6 @@ PartitionSplitterWidget::setSplitPartition( const QString& path,
 
         m_itemToResize = nullptr;
         m_itemToResizePath.clear();
-
-        return;
     }
 
     PartitionSplitterItem* itemToResize = _findItem( m_items,
