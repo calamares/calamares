@@ -471,7 +471,7 @@ ChoicePage::applyActionChoice( ChoicePage::Choice choice )
         setNextEnabled( !m_beforePartitionBarsView->selectionModel()->selectedRows().isEmpty() );
 
         connect( m_beforePartitionBarsView->selectionModel(), SIGNAL( currentRowChanged( QModelIndex, QModelIndex ) ),
-                 this, SLOT( doAlongsideSelectedPartition( QModelIndex, QModelIndex ) ),
+                 this, SLOT( doAlongsideSetupSplitter( QModelIndex, QModelIndex ) ),
                  Qt::UniqueConnection );
         break;
     case NoChoice:
@@ -483,8 +483,8 @@ ChoicePage::applyActionChoice( ChoicePage::Choice choice )
 
 
 void
-ChoicePage::doAlongsideSelectedPartition( const QModelIndex& current,
-                                        const QModelIndex& previous )
+ChoicePage::doAlongsideSetupSplitter( const QModelIndex& current,
+                                      const QModelIndex& previous )
 {
     Q_UNUSED( previous );
     if ( !current.isValid() )

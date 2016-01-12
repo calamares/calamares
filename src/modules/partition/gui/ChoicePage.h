@@ -72,7 +72,7 @@ signals:
 
 private slots:
     void doReplaceSelectedPartition( const QModelIndex& current, const QModelIndex& previous );
-    void doAlongsideSelectedPartition( const QModelIndex& current, const QModelIndex& previous );
+    void doAlongsideSetupSplitter( const QModelIndex& current, const QModelIndex& previous );
 
 private:
     void setNextEnabled( bool enabled );
