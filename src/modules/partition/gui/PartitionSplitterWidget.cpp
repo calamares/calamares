@@ -119,6 +119,7 @@ PartitionSplitterWidget::setSplitPartition( const QString& path,
             if ( m_items[ i ].itemPath == m_itemToResize->itemPath &&
                  i + 1 < m_items.count() )
             {
+                m_items[ i ].size = m_items[ i ].size + m_itemToResizeNext->size;
                 m_items.removeAt( i + 1 );
                 m_itemToResizeNext = nullptr;
                 break;
@@ -130,6 +131,8 @@ PartitionSplitterWidget::setSplitPartition( const QString& path,
                     if ( m_items[ i ].children[ j ].itemPath == m_itemToResize->itemPath &&
                          j + 1 < m_items[ i ].children.count() )
                     {
+                        m_items[ i ].children[ j ].size =
+                                m_items[ i ].children[ j ].size + m_itemToResizeNext->size;
                         m_items[ i ].children.removeAt( j + 1 );
                         m_itemToResizeNext = nullptr;
                         break;
