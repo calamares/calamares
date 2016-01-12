@@ -111,7 +111,38 @@ PartitionSplitterWidget::setSplitPartition( const QString& path,
 
     if ( m_itemToResize || m_itemToResizeNext || !m_itemToResizePath.isEmpty() )
     {
-        cDebug() << "ERROR: trying to split partition but partition to split is already set.";
+        cDebug() << "NOTICE: trying to split partition but partition to split is already set.";
+
+        // We need to remove the itemToResizeNext from wherever it is
+        for ( int i = 0; i < m_items.count(); ++i )
+        {
+            if ( m_items[ i ].itemPath == m_itemToResize->itemPath &&
+                 i + 1 < m_items.count() )
+            {
+                m_items.removeAt( i + 1 );
+                m_itemToResizeNext = nullptr;
+                break;
+            }
+            else if ( !m_items[ i ].children.isEmpty() )
+            {
+                for ( int j = 0; j < m_items[ i ].children.count(); ++j )
+                {
+                    if ( m_items[ i ].children[ j ].itemPath == m_itemToResize->itemPath &&
+                         j + 1 < m_items[ i ].children.count() )
+                    {
+                        m_items[ i ].children.removeAt( j + 1 );
+                        m_itemToResizeNext = nullptr;
+                        break;
+                    }
+                }
+                if ( !m_itemToResizeNext )
+                    break;
+            }
+        }
+
+        m_itemToResize = nullptr;
+        m_itemToResizePath.clear();
+
         return;
     }
 
