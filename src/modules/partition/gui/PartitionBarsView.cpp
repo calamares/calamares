@@ -419,6 +419,7 @@ PartitionBarsView::setSelection( const QRect& rect, QItemSelectionModel::Selecti
     int x1, y1, x2, y2;
     rect.getCoords( &x1, &y1, &x2, &y2 );
     selectionModel()->select( indexAt( QPoint( x2, y2 ) ), flags );
+    viewport()->repaint();
 }
 
 
