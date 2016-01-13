@@ -469,91 +469,91 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
         <translation>Form</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="102"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="105"/>
         <source>Pick a storage de&amp;vice:</source>
         <translation>Speiche&amp;rmedium Auswahl:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="620"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="652"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="645"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="677"/>
         <source>Before:</source>
         <translation>Davor:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="104"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="107"/>
         <source>After:</source>
         <translation>Danach:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="103"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="687"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="106"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="712"/>
         <source>Device:</source>
         <translation>Gerät:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="212"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="215"/>
         <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself.</source>
         <translation>&lt;strong&gt;Manuelle Partitionierung&lt;/strong&gt;&lt;br/&gt;Sie können Partitionen eigenhändig erstellen oder in der Grösse verändern.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="337"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="340"/>
         <source>Boot loader location:</source>
         <translation>Bootloader Installationsziel:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="621"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="646"/>
         <source>&lt;strong&gt;Select which partition to shrink, then drag to resize&lt;/strong&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;Wählen Sie die zu verkleinernde Partition, dann ziehen Sie umm die Größe zu ändern&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="635"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="660"/>
         <source>%1 will be shrunk to %2MB and a new %3MB partition will be created for %4.</source>
-        <translation type="unfinished"/>
+        <translation>%1 wird verkleinert werden auf %2MB und eine neue %3MB Partition wiird erstellt werden für %4.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="678"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="703"/>
         <source>&lt;strong&gt;Select which partition to replace&lt;/strong&gt;</source>
         <translation>&lt;strong&gt;Die zu ersetzende Partition auswählen&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="730"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="755"/>
         <source>This storage device does not seem to have an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>Dieses Speichermedium scheint kein Betriebssystem zu haben. Was möchten Sie tun?&lt;br/&gt;Sie können Ihre Auswahl überprüfen und bestätigen bevor Änderungen auf diesem Speichermedium vorgenommen werden.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="735"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="765"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="789"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="838"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="760"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="790"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="814"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="863"/>
         <source>&lt;strong&gt;Erase disk&lt;/strong&gt;&lt;br/&gt;This will &lt;font color=&quot;red&quot;&gt;delete&lt;/font&gt; all data currently present on the selected storage device.</source>
         <translation>&lt;strong&gt;Festplatte löschen&lt;/strong&gt;&lt;br/&gt;Dies wird alle vorhandenen Daten auf dem gewählten Speichermedium &lt;font color=&quot;red&quot;&gt;löschen&lt;/font&gt; </translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="754"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="779"/>
         <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>Das Speichermedium enthält% 1. Was möchten Sie tun? &lt;br/&gt; Sie können Ihre Auswahl überprüfen und bestätigen bevor eine Änderung an dem Speichermedium vorgenommen wird.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="760"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="784"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="833"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="785"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="809"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="858"/>
         <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
         <translation>&lt;strong&gt;Parallel-Installation&lt;/strong&gt;&lt;br/&gt;Das Installationsprogramm wird eine Partition verkleinern, um Platz für %1 zu schaffen.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="770"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="793"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="842"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="795"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="818"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="867"/>
         <source>&lt;strong&gt;Replace a partition&lt;/strong&gt;&lt;br/&gt;Replaces a partition with %1.</source>
         <translation>&lt;strong&gt;Ersetze&lt;/strong&gt; eine Partition durch %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="779"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="804"/>
         <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>Dieses Speichermediumenthältbereits ein Betriebssystem. Was möchten Sie tun? &lt;br/&gt; Sie können Ihre Auswahl überprüfen und bestätigen bevor eine Änderung an dem Speichermedium vorgenommen wird.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="828"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="853"/>
         <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>Dieses Speichermedium verfügt über mehrere Betriebssysteme. Was möchten Sie tun? &lt;br/&gt; Sie können Ihre Auswahl überprüfen und bestätigen bevor eine Änderung an dem Speichermedium vorgenommen wird.</translation>
     </message>
