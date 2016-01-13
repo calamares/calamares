@@ -210,25 +210,29 @@ PartitionViewStep::createSummaryWidget() const
         previewLabels = new PartitionLabelsView;
         preview->setModel( info.partitionModelBefore );
         previewLabels->setModel( info.partitionModelBefore );
+        preview->setSelectionMode( QAbstractItemView::NoSelection );
+        previewLabels->setSelectionMode( QAbstractItemView::NoSelection );
         info.partitionModelBefore->setParent( widget );
         field = new QVBoxLayout;
         CalamaresUtils::unmarginLayout( field );
         field->setSpacing( 6 );
         field->addWidget( preview );
         field->addWidget( previewLabels );
-        formLayout->addRow( tr( "Current state:" ), field );
+        formLayout->addRow( tr( "Before:" ), field );
 
         preview = new PartitionBarsView;
         previewLabels = new PartitionLabelsView;
         preview->setModel( info.partitionModelAfter );
         previewLabels->setModel( info.partitionModelAfter );
+        preview->setSelectionMode( QAbstractItemView::NoSelection );
+        previewLabels->setSelectionMode( QAbstractItemView::NoSelection );
         info.partitionModelAfter->setParent( widget );
         field = new QVBoxLayout;
         CalamaresUtils::unmarginLayout( field );
         field->setSpacing( 6 );
         field->addWidget( preview );
         field->addWidget( previewLabels );
-        formLayout->addRow( tr( "Your changes:" ), field );
+        formLayout->addRow( tr( "After:" ), field );
     }
     QStringList jobsLines;
     foreach ( const Calamares::job_ptr& job, jobs() )
