@@ -65,6 +65,8 @@ public:
 
     Choice currentChoice() const;
 
+    void doAlongsideApply();
+
 signals:
     void nextStatusChanged( bool );
     void actionChosen();
@@ -73,7 +75,6 @@ signals:
 private slots:
     void doReplaceSelectedPartition( const QModelIndex& current, const QModelIndex& previous );
     void doAlongsideSetupSplitter( const QModelIndex& current, const QModelIndex& previous );
-    void doAlongsideApply();
 
 private:
     void setNextEnabled( bool enabled );
