@@ -41,6 +41,7 @@
 #include "core/KPMHelpers.h"
 #include "JobQueue.h"
 #include "GlobalStorage.h"
+#include "core/PartitionInfo.h"
 
 #include <kpmcore/core/device.h>
 #include <kpmcore/core/partition.h>
@@ -514,8 +515,74 @@ ChoicePage::doAlongsideSetupSplitter( const QModelIndex& current,
                 Calamares::Branding::instance()->
                     string( Calamares::Branding::ProductName ) );
 
-    cDebug() << "Partition selected for Alongside.";
+    setNextEnabled( !m_beforePartitionBarsView->selectionModel()->selectedRows().isEmpty() );
 
+    cDebug() << "Partition selected for Alongside.";
+}
+
+
+void
+ChoicePage::doAlongsideApply()
+{
+    Q_ASSERT( m_afterPartitionSplitterWidget->splitPartitionSize() >= 0 );
+    Q_ASSERT( m_afterPartitionSplitterWidget->newPartitionSize()   >= 0 );
+
+    QString path = m_beforePartitionBarsView->
+                   selectionModel()->
+                   currentIndex().data( PartitionModel::PartitionPathRole ).toString();
+
+    DeviceModel* dm = m_core->deviceModel();
+    for ( int i = 0; i < dm->rowCount(); ++i )
+    {
+        Device* dev = dm->deviceForIndex( dm->index( i ) );
+        Partition* candidate = KPMHelpers::findPartitionByPath( { dev }, path );
+        if ( candidate )
+        {
+            qint64 firstSector = candidate->firstSector();
+            qint64 oldLastSector = candidate->lastSector();
+            qint64 newLastSector = m_afterPartitionSplitterWidget->splitPartitionSize() /
+                                   dev->logicalSectorSize();
+
+            m_core->resizePartition( dev, candidate, firstSector, newLastSector );
+            Partition* newPartition = KPMHelpers::createNewPartition(
+                                          candidate->parent(),
+                                          *dev,
+                                          candidate->roles(),
+                                          FileSystem::Ext4,
+                                          newLastSector + 1,
+                                          oldLastSector );
+            PartitionInfo::setMountPoint( newPartition, "/" );
+            PartitionInfo::setFormat( newPartition, true );
+
+            m_core->createPartition( dev, newPartition );
+            m_core->setBootLoaderInstallPath( dev->deviceNode() );
+
+            /*if ( m_isEfi )
+            {
+                QList< Partition* > efiSystemPartitions = m_core->efiSystemPartitions();
+                if ( efiSystemPartitions.count() == 1 )
+                {
+                    PartitionInfo::setMountPoint(
+                            efiSystemPartitions.first(),
+                            Calamares::JobQueue::instance()->
+                                globalStorage()->
+                                    value( "efiSystemPartition" ).toString() );
+                }
+                else if ( efiSystemPartitions.count() > 1 )
+                {
+                    PartitionInfo::setMountPoint(
+                            efiSystemPartitions.at( m_efiComboBox->currentIndex() ),
+                            Calamares::JobQueue::instance()->
+                                globalStorage()->
+                                    value( "efiSystemPartition" ).toString() );
+                }
+            }*/
+
+            m_core->dumpQueue();
+
+            break;
+        }
+    }
 }
 
 
