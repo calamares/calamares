@@ -194,7 +194,7 @@ ResizePartitionJob::prettyDescription() const
     return tr( "Resize <strong>%2MB</strong> partition <strong>%1</strong> to "
                "<strong>%3MB</strong>." )
             .arg( partition()->partitionPath() )
-            .arg( partition()->capacity() / 1024 / 1024 )
+            .arg( ( m_oldLastSector - m_oldFirstSector ) * partition()->sectorSize() / 1024 / 1024 )
             .arg( ( m_newLastSector - m_newFirstSector + 1 ) * partition()->sectorSize() / 1024 / 1024 );
 }
 
@@ -205,7 +205,7 @@ ResizePartitionJob::prettyStatusMessage() const
     return tr( "Resizing %2MB partition %1 to "
                "%3MB." )
             .arg( partition()->partitionPath() )
-            .arg( partition()->capacity() / 1024 / 1024 )
+            .arg( ( m_oldLastSector - m_oldFirstSector ) * partition()->sectorSize() / 1024 / 1024 )
             .arg( ( m_newLastSector - m_newFirstSector + 1 ) * partition()->sectorSize() / 1024 / 1024 );
 }
 
