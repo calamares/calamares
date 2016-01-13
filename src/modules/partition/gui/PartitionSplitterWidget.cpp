@@ -475,8 +475,12 @@ PartitionSplitterWidget::drawPartitions( QPainter* painter,
             drawPartitions( painter, subRect, item.children );
         }
 
+        // If an item to resize and the following new item both exist,
+        // and this is not the very first partition,
+        // and the partition preceding this one is the item to resize...
         if ( m_itemToResize &&
              m_itemToResizeNext &&
+             row > 0 &&
              items[ row - 1 ].itemPath == m_itemToResize->itemPath )
             m_resizeHandleX = x;
 
