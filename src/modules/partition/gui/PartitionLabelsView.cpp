@@ -497,6 +497,7 @@ PartitionLabelsView::setCustomNewRootLabel( const QString& text )
 void
 PartitionLabelsView::setSelectionModel( QItemSelectionModel* selectionModel )
 {
+    QAbstractItemView::setSelectionModel( selectionModel );
     connect( selectionModel, &QItemSelectionModel::selectionChanged,
              this, [=]
     {
