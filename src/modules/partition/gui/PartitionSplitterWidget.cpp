@@ -398,7 +398,7 @@ PartitionSplitterWidget::drawResizeHandle( QPainter* painter,
 
     painter->setRenderHint( QPainter::Antialiasing, true );
 
-    qreal h = rect_.height();
+    qreal h = VIEW_HEIGHT; // Put the arrow in the center regardless of inner box height
     int scaleFactor = qRound( height() / static_cast< qreal >( VIEW_HEIGHT ) );
     QList< QPair< qreal, qreal > > arrow_offsets = {
         qMakePair( 0, h / 2 - 1 ),
