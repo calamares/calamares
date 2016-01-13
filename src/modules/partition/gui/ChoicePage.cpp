@@ -515,7 +515,7 @@ ChoicePage::doAlongsideSetupSplitter( const QModelIndex& current,
                 Calamares::Branding::instance()->
                     string( Calamares::Branding::ProductName ) );
 
-    setNextEnabled( !m_beforePartitionBarsView->selectionModel()->selectedRows().isEmpty() );
+    setNextEnabled( m_beforePartitionBarsView->selectionModel()->currentIndex().isValid() );
 
     cDebug() << "Partition selected for Alongside.";
 }
