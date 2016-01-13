@@ -4,6 +4,7 @@
 # === This file is part of Calamares - <http://github.com/calamares> ===
 #
 #   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
+#   Copyright 2016, Anke Boersma <demm@kaosx.us>
 #
 #   Calamares is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -20,6 +21,7 @@
 
 import os
 import subprocess
+import shutil
 
 import libcalamares
 
@@ -47,6 +49,13 @@ def run():
     :return:
     """
     root_mount_point = libcalamares.globalstorage.value("rootMountPoint")
+    log_source = libcalamares.job.configuration["srcLog"]
+    log_destination = libcalamares.job.configuration["destLog"]
+    
+    # copy installation log before umount
+    if(os.path.exists('{!s}'.format(log_source))):
+        shutil.copy2('{!s}'.format(log_source), '{!s}/{!s}'.format(
+            root_mount_point, log_destination))
 
     if not root_mount_point:
         return ("No mount point for root partition in globalstorage",
