@@ -476,13 +476,16 @@ PartitionSplitterWidget::drawPartitions( QPainter* painter,
         }
 
         if ( m_itemToResize &&
-             item.itemPath == m_itemToResize->itemPath )
-            m_resizeHandleX = x + width;
+             m_itemToResizeNext &&
+             items[ row - 1 ] == m_itemToResize->itemPath )
+            m_resizeHandleX = x;
 
         x += width;
     }
     if ( m_itemToResize && m_itemToResizeNext )
+    {
         drawResizeHandle( painter, rect, m_resizeHandleX );
+    }
 }
 
 
