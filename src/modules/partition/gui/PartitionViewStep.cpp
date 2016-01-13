@@ -26,7 +26,6 @@
 #include "core/OsproberEntry.h"
 #include "core/PartUtils.h"
 #include "gui/ChoicePage.h"
-#include "gui/AlongsidePage.h"
 #include "gui/PartitionPage.h"
 #include "gui/PartitionBarsView.h"
 #include "gui/PartitionLabelsView.h"
@@ -57,7 +56,6 @@ PartitionViewStep::PartitionViewStep( QObject* parent )
     , m_widget( new QStackedWidget() )
     , m_core( new PartitionCoreModule( this ) )
     , m_choicePage( nullptr )
-    , m_alongsidePage( new AlongsidePage() )
     , m_manualPartitionPage( new PartitionPage( m_core ) )
     , m_compactMode( true )
 {
@@ -78,11 +76,9 @@ PartitionViewStep::continueLoading()
     m_choicePage = new ChoicePage();
 
     m_choicePage->init( m_core );
-    m_alongsidePage->init( m_core );
 
     m_widget->addWidget( m_choicePage );
     m_widget->addWidget( m_manualPartitionPage );
-    m_widget->addWidget( m_alongsidePage );
     m_widget->removeWidget( m_waitingWidget );
     m_waitingWidget->deleteLater();
     m_waitingWidget = nullptr;
@@ -90,8 +86,6 @@ PartitionViewStep::continueLoading()
     connect( m_core,            &PartitionCoreModule::hasRootMountPointChanged,
              this,              &PartitionViewStep::nextStatusChanged );
     connect( m_choicePage,      &ChoicePage::nextStatusChanged,
-             this,              &PartitionViewStep::nextStatusChanged );
-    connect( m_alongsidePage,   &AlongsidePage::nextStatusChanged,
              this,              &PartitionViewStep::nextStatusChanged );
 }
 
@@ -276,9 +270,9 @@ PartitionViewStep::next()
         }
         else if ( m_choicePage->currentChoice() == ChoicePage::Alongside )
         {
-            if ( m_core->isDirty() )
-                m_core->revert();
-            m_widget->setCurrentWidget( m_alongsidePage );
+            m_choicePage->doAlongsideApply();
+            emit done();
+            return;
         }
         else if ( m_choicePage->currentChoice() == ChoicePage::Replace )
         {
@@ -306,9 +300,6 @@ PartitionViewStep::isNextEnabled() const
     if ( m_choicePage && m_choicePage == m_widget->currentWidget() )
         return m_choicePage->isNextEnabled();
 
-    if ( m_alongsidePage && m_alongsidePage == m_widget->currentWidget() )
-        return m_alongsidePage->isNextEnabled();
-
     if ( m_manualPartitionPage && m_manualPartitionPage == m_widget->currentWidget() )
         return m_core->hasRootMountPoint();
 
@@ -326,8 +317,7 @@ PartitionViewStep::isBackEnabled() const
 bool
 PartitionViewStep::isAtBeginning() const
 {
-    if ( m_widget->currentWidget() == m_manualPartitionPage ||
-         m_widget->currentWidget() == m_alongsidePage )
+    if ( m_widget->currentWidget() == m_manualPartitionPage )
         return false;
     return true;
 }
@@ -339,7 +329,8 @@ PartitionViewStep::isAtEnd() const
     if ( m_choicePage == m_widget->currentWidget() )
     {
         if ( m_choicePage->currentChoice() == ChoicePage::Erase ||
-             m_choicePage->currentChoice() == ChoicePage::Replace )
+             m_choicePage->currentChoice() == ChoicePage::Replace ||
+             m_choicePage->currentChoice() == ChoicePage::Alongside )
             return true;
         return false;
     }
@@ -362,10 +353,7 @@ PartitionViewStep::onActivate()
 void
 PartitionViewStep::onLeave()
 {
-    if ( m_widget->currentWidget() == m_alongsidePage )
-    {
-        m_alongsidePage->applyChanges();
-    }
+
 }
 
 

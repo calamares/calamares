@@ -28,7 +28,6 @@
 #include <QObject>
 
 class ChoicePage;
-class AlongsidePage;
 class PartitionPage;
 class PartitionCoreModule;
 class QStackedWidget;
@@ -72,7 +71,6 @@ private:
     PartitionCoreModule* m_core;
     QStackedWidget*   m_widget;
     ChoicePage*       m_choicePage;
-    AlongsidePage*    m_alongsidePage;
     PartitionPage*    m_manualPartitionPage;
 
     QWidget*          m_waitingWidget;
