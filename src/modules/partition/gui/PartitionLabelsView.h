@@ -49,6 +49,8 @@ public:
 
     void setCustomNewRootLabel( const QString& text );
 
+    void setSelectionModel( QItemSelectionModel* selectionModel ) override;
+
 protected:
     // QAbstractItemView API
     QRegion visualRegionForSelection( const QItemSelection& selection ) const override;

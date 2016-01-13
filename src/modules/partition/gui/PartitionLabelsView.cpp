@@ -494,6 +494,17 @@ PartitionLabelsView::setCustomNewRootLabel( const QString& text )
 }
 
 
+void
+PartitionLabelsView::setSelectionModel( QItemSelectionModel* selectionModel )
+{
+    connect( selectionModel, &QItemSelectionModel::selectionChanged,
+             this, [=]
+    {
+        viewport()->repaint();
+    } );
+}
+
+
 QModelIndex
 PartitionLabelsView::moveCursor( CursorAction cursorAction, Qt::KeyboardModifiers modifiers )
 {
