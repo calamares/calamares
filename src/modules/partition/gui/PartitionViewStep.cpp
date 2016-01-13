@@ -270,7 +270,6 @@ PartitionViewStep::next()
         }
         else if ( m_choicePage->currentChoice() == ChoicePage::Alongside )
         {
-            m_choicePage->doAlongsideApply();
             emit done();
             return;
         }
@@ -353,7 +352,9 @@ PartitionViewStep::onActivate()
 void
 PartitionViewStep::onLeave()
 {
-
+    if ( m_widget->currentWidget() == m_choicePage &&
+         m_choicePage->currentChoice() == ChoicePage::Alongside )
+        m_choicePage->doAlongsideApply();
 }
 
 
