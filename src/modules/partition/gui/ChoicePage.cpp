@@ -540,7 +540,8 @@ ChoicePage::doAlongsideApply()
         {
             qint64 firstSector = candidate->firstSector();
             qint64 oldLastSector = candidate->lastSector();
-            qint64 newLastSector = m_afterPartitionSplitterWidget->splitPartitionSize() /
+            qint64 newLastSector = firstSector +
+                                   m_afterPartitionSplitterWidget->splitPartitionSize() /
                                    dev->logicalSectorSize();
 
             m_core->resizePartition( dev, candidate, firstSector, newLastSector );
