@@ -150,6 +150,8 @@ setupLogfile()
         }
     }
 
+    cDebug() << "Using log file:" << logFile();
+
     logfile.open( logFile().toLocal8Bit(), ios::app );
     qInstallMessageHandler( CalamaresLogHandler );
 }
