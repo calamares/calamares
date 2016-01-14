@@ -555,10 +555,13 @@ ChoicePage::doAlongsideApply()
                                           *dev,
                                           candidate->roles(),
                                           FileSystem::Ext4,
-                                          newLastSector + 1,
+                                          newLastSector + 2, // *
                                           oldLastSector );
             PartitionInfo::setMountPoint( newPartition, "/" );
             PartitionInfo::setFormat( newPartition, true );
+            // * for some reason ped_disk_add_partition refuses to create a new partition
+            //   if it starts on the sector immediately after the last used sector, so we
+            //   have to push it one sector further, therefore + 2 instead of + 1.
 
             m_core->createPartition( dev, newPartition );
             m_core->setBootLoaderInstallPath( dev->deviceNode() );
