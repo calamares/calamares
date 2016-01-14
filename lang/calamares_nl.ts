@@ -468,91 +468,91 @@ Het installatieprogramma zal afsluiten en alle wijzigingen zullen verloren gaan.
         <translation>Formulier</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="105"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="106"/>
         <source>Pick a storage de&amp;vice:</source>
         <translation>Kies een opslag&amp;medium:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="645"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="677"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="713"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="745"/>
         <source>Before:</source>
         <translation>Voor:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="107"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="108"/>
         <source>After:</source>
         <translation>Na:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="106"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="712"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="107"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="780"/>
         <source>Device:</source>
         <translation>Apparaat:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="215"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="216"/>
         <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself.</source>
         <translation>&lt;strong&gt;Handmatig partitioneren&lt;/strong&gt;&lt;br/&gt;Je maakt of wijzigt zelf de partitites.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="340"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="341"/>
         <source>Boot loader location:</source>
         <translation>Bootloader locatie:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="646"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="714"/>
         <source>&lt;strong&gt;Select which partition to shrink, then drag to resize&lt;/strong&gt;</source>
         <translation>&lt;strong&gt;Selecteer de te verkleinen partitie en versleep om te herschalen&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="660"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="728"/>
         <source>%1 will be shrunk to %2MB and a new %3MB partition will be created for %4.</source>
         <translation>%1 zal verkleind worden tot %2MB en een nieuwe %3MB partitie zal worden aangemaakt voor %4.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="703"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="771"/>
         <source>&lt;strong&gt;Select which partition to replace&lt;/strong&gt;</source>
         <translation>&lt;strong&gt;Selecteer de te vervangen partitie&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="755"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="823"/>
         <source>This storage device does not seem to have an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>Dit opslagmedium lijkt geen besturingssysteem te bevatten. Wat wil je doen?&lt;br/&gt;Je zal jouw keuzes kunnen nazien en bevestigen voordat er iets aan het opslagmedium wordt veranderd.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="760"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="790"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="814"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="863"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="828"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="858"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="882"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="931"/>
         <source>&lt;strong&gt;Erase disk&lt;/strong&gt;&lt;br/&gt;This will &lt;font color=&quot;red&quot;&gt;delete&lt;/font&gt; all data currently present on the selected storage device.</source>
         <translation>&lt;strong&gt;Wis schijf&lt;/strong&gt;&lt;br/&gt;Dit zal alle huidige gegevens op de geselecteerd opslagmedium &lt;font color=&quot;red&quot;&gt;verwijderen&lt;/font&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="779"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="847"/>
         <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>Dit opslagmedium bevat %1. Wat wil je doen?&lt;br/&gt;Je zal jouw keuzes kunnen nazien en bevestigen voordat er iets aan het opslagmedium wordt veranderd.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="785"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="809"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="858"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="853"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="877"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="926"/>
         <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
         <translation>&lt;strong&gt;Installeer ernaast&lt;/strong&gt;&lt;br/&gt;Het installatieprogramma zal een partitie verkleinen om plaats te maken voor %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="795"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="818"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="867"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="863"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="886"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="935"/>
         <source>&lt;strong&gt;Replace a partition&lt;/strong&gt;&lt;br/&gt;Replaces a partition with %1.</source>
         <translation>&lt;strong&gt;Vervang een partitie&lt;/strong&gt;&lt;br/&gt;Vervangt een partitie met %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="804"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="872"/>
         <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>Dit opslagmedium bevat reeds een besturingssysteem. Wat wil je doen?&lt;br/&gt;Je zal jouw keuzes kunnen nazien en bevestigen voordat er iets aan het opslagmedium wordt veranderd.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="853"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="921"/>
         <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>Dit opslagmedium bevat meerdere besturingssystemen. Wat wil je doen?&lt;br/&gt;Je zal jouw keuzes kunnen nazien en bevestigen voordat er iets aan het opslagmedium wordt veranderd.</translation>
     </message>
@@ -1513,69 +1513,69 @@ Het installatieprogramma zal afsluiten en alle wijzigingen zullen verloren gaan.
 <context>
     <name>PartitionViewStep</name>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="68"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="66"/>
         <source>Gathering system information...</source>
         <translation>Systeeminformatie verzamelen...</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="111"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="105"/>
         <source>Partitions</source>
         <translation>Partities</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="148"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="142"/>
         <source>Install %1 &lt;strong&gt;alongside&lt;/strong&gt; another operating system.</source>
         <translation>Installeer %1 &lt;strong&gt;naast&lt;/strong&gt; een ander besturingssysteem.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="153"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="147"/>
         <source>&lt;strong&gt;Erase&lt;/strong&gt; disk and install %1.</source>
         <translation>&lt;strong&gt;Wis&lt;/strong&gt; schijf en installeer %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="158"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="152"/>
         <source>&lt;strong&gt;Replace&lt;/strong&gt; a partition with %1.</source>
         <translation>&lt;strong&gt;Vervang&lt;/strong&gt; een partitie met %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="163"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="157"/>
         <source>&lt;strong&gt;Manual&lt;/strong&gt; partitioning.</source>
         <translation>&lt;strong&gt;Handmatig&lt;/strong&gt; partitioneren.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="176"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="170"/>
         <source>Install %1 &lt;strong&gt;alongside&lt;/strong&gt; another operating system on disk &lt;strong&gt;%2&lt;/strong&gt; (%3).</source>
         <translation>Installeer %1 &lt;strong&gt;naast&lt;/strong&gt; een ander besturingssysteem op schijf &lt;strong&gt;%2&lt;/strong&gt; (%3).</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="183"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="177"/>
         <source>&lt;strong&gt;Erase&lt;/strong&gt; disk &lt;strong&gt;%2&lt;/strong&gt; (%3) and install %1.</source>
         <translation>&lt;strong&gt;Wis&lt;/strong&gt; schijf &lt;strong&gt;%2&lt;/strong&gt; (%3) en installeer %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="190"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="184"/>
         <source>&lt;strong&gt;Replace&lt;/strong&gt; a partition on disk &lt;strong&gt;%2&lt;/strong&gt; (%3) with %1.</source>
         <translation>&lt;strong&gt;Vervang&lt;/strong&gt; een partitie op schijf &lt;strong&gt;%2&lt;/strong&gt; (%3) met %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="197"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="191"/>
         <source>&lt;strong&gt;Manual&lt;/strong&gt; partitioning on disk &lt;strong&gt;%1&lt;/strong&gt; (%2).</source>
         <translation>&lt;strong&gt;Handmatig&lt;/strong&gt; partitioneren van schijf &lt;strong&gt;%1&lt;/strong&gt; (%2).</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="205"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="199"/>
         <source>Disk &lt;strong&gt;%1&lt;/strong&gt; (%2)</source>
         <translation>Schijf &lt;strong&gt;%1&lt;/strong&gt; (%2)</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="225"/>
-        <source>Current state:</source>
-        <translation>Huidige toestand:</translation>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="221"/>
+        <source>Before:</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="237"/>
-        <source>Your changes:</source>
-        <translation>Jouw aanpassingen:</translation>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="235"/>
+        <source>After:</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
