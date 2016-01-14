@@ -466,7 +466,12 @@ ChoicePage::applyActionChoice( ChoicePage::Choice choice )
                 QMutexLocker locker( &m_coreMutex );
                 m_core->revertDevice( selectedDevice() );
             } ),
-            []{},
+            [this]
+            {
+                // We need to reupdate after reverting because the splitter widget is
+                // not a true view.
+                updateActionChoicePreview( currentChoice() );
+            },
             this );
         }
         setNextEnabled( !m_beforePartitionBarsView->selectionModel()->selectedRows().isEmpty() );
