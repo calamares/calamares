@@ -478,6 +478,17 @@ PartitionBarsView::leaveEvent( QEvent* event )
 
 
 void
+PartitionBarsView::mousePressEvent( QMouseEvent* event )
+{
+    QModelIndex candidateIndex = indexAt( event->pos() );
+    if ( canBeSelected( candidateIndex ) )
+        QAbstractItemView::mousePressEvent( event );
+    else
+        event->accept();
+}
+
+
+void
 PartitionBarsView::updateGeometries()
 {
     updateGeometry(); //get a new rect() for redrawing all the labels
