@@ -21,6 +21,7 @@
 
 #include "JobQueue.h"
 #include "GlobalStorage.h"
+#include "Settings.h"
 #include "utils/Logger.h"
 #include "utils/CalamaresUtilsSystem.h"
 
@@ -46,13 +47,18 @@ SetTimezoneJob::prettyName() const
 Calamares::JobResult
 SetTimezoneJob::exec()
 {
-    int ec = CalamaresUtils::System::instance()->
-                          targetEnvCall( { "timedatectl",
-                                           "set-timezone",
-                                           m_region + '/' + m_zone } );
+    // do not call timedatectl in a chroot, it is not safe (timedatectl talks
+    // to a running timedated over D-Bus), and we have code that works
+    if ( !Calamares::Settings::instance()->doChroot() )
+    {
+        int ec = CalamaresUtils::System::instance()->
+                              targetEnvCall( { "timedatectl",
+                                               "set-timezone",
+                                               m_region + '/' + m_zone } );
 
-    if ( !ec )
-        return Calamares::JobResult::ok();
+        if ( !ec )
+            return Calamares::JobResult::ok();
+    }
 
     QString localtimeSlink( "/etc/localtime" );
     QString zoneinfoPath( "/usr/share/zoneinfo" );
@@ -71,7 +77,7 @@ SetTimezoneJob::exec()
                                   "-f",
                                   localtimeSlink } );
 
-    ec = CalamaresUtils::System::instance()->
+    int ec = CalamaresUtils::System::instance()->
                           targetEnvCall( { "ln",
                                            "-s",
                                            zoneinfoPath,
