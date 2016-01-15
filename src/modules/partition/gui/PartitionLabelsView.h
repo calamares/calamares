@@ -66,6 +66,7 @@ protected:
 
     void mouseMoveEvent( QMouseEvent* event ) override;
     void leaveEvent( QEvent* event ) override;
+    void mousePressEvent( QMouseEvent* event ) override;
 
 protected slots:
     void updateGeometries() override;
