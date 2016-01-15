@@ -677,21 +677,9 @@ ChoicePage::updateDeviceStatePreview()
     switch ( m_choice )
     {
     case Replace:
-        m_beforePartitionBarsView->setSelectionMode( QAbstractItemView::SingleSelection );
-        m_beforePartitionLabelsView->setSelectionMode( QAbstractItemView::SingleSelection );
-        break;
     case Alongside:
         m_beforePartitionBarsView->setSelectionMode( QAbstractItemView::SingleSelection );
         m_beforePartitionLabelsView->setSelectionMode( QAbstractItemView::SingleSelection );
-        {
-            SelectionFilter filter = [ this ]( const QModelIndex& index )
-            {
-                return PartUtils::canBeResized( m_core,
-                                                index.data( PartitionModel::PartitionPathRole ).toString() );
-            };
-            m_beforePartitionBarsView->setSelectionFilter( filter );
-            m_beforePartitionLabelsView->setSelectionFilter( filter );
-        }
         break;
     default:
         m_beforePartitionBarsView->setSelectionMode( QAbstractItemView::NoSelection );
@@ -757,6 +745,14 @@ ChoicePage::updateActionChoicePreview( ChoicePage::Choice choice )
 
             m_previewAfterFrame->show();
             m_previewAfterLabel->show();
+
+            SelectionFilter filter = [ this ]( const QModelIndex& index )
+            {
+                return PartUtils::canBeResized( m_core,
+                                                index.data( PartitionModel::PartitionPathRole ).toString() );
+            };
+            m_beforePartitionBarsView->setSelectionFilter( filter );
+            m_beforePartitionLabelsView->setSelectionFilter( filter );
 
             break;
         }
