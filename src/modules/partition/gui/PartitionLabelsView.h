@@ -20,6 +20,8 @@
 #ifndef PARTITIONLABELSVIEW_H
 #define PARTITIONLABELSVIEW_H
 
+#include "PartitionViewSelectionFilter.h"
+
 #include <QAbstractItemView>
 
 /**
@@ -51,6 +53,8 @@ public:
 
     void setSelectionModel( QItemSelectionModel* selectionModel ) override;
 
+    void setSelectionFilter( SelectionFilter canBeSelected );
+
 protected:
     // QAbstractItemView API
     QRegion visualRegionForSelection( const QItemSelection& selection ) const override;
@@ -75,6 +79,9 @@ private:
                     const QPoint& pos , bool selected );
     QModelIndexList getIndexesToDraw( const QModelIndex& parent ) const;
     QStringList buildTexts( const QModelIndex& index ) const;
+
+    SelectionFilter canBeSelected;
+
     QString m_customNewRootLabel;
     QPersistentModelIndex m_hoveredIndex;
 };

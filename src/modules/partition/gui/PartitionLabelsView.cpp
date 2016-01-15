@@ -53,6 +53,7 @@ buildUnknownDisklabelTexts( Device* dev )
 
 PartitionLabelsView::PartitionLabelsView( QWidget* parent )
     : QAbstractItemView( parent )
+    , canBeSelected( []( const QModelIndex& ) { return true; } )
 {
     setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Fixed );
     setFrameStyle( QFrame::NoFrame );
@@ -523,7 +524,9 @@ PartitionLabelsView::isIndexHidden( const QModelIndex& index ) const
 void
 PartitionLabelsView::setSelection( const QRect& rect, QItemSelectionModel::SelectionFlags flags )
 {
-    selectionModel()->select( indexAt( rect.topLeft() ), flags );
+    QModelIndex eventIndex = indexAt( rect.topLeft() );
+    if ( canBeSelected( eventIndex ) )
+        selectionModel()->select( eventIndex, flags );
 }
 
 

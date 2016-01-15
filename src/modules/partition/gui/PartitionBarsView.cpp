@@ -53,6 +53,7 @@ static const int SELECTION_MARGIN = qMin( ( EXTENDED_PARTITION_MARGIN - 2 ) / 2,
 PartitionBarsView::PartitionBarsView( QWidget* parent )
     : QAbstractItemView( parent )
     , m_hoveredIndex( QModelIndex() )
+    , canBeSelected( []( const QModelIndex& ) { return true; } )
 {
     setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Fixed );
     setFrameStyle( QFrame::NoFrame );
@@ -397,6 +398,13 @@ PartitionBarsView::setSelectionModel( QItemSelectionModel* selectionModel )
 }
 
 
+void
+PartitionBarsView::setSelectionFilter( std::function< bool ( const QModelIndex& ) > canBeSelected )
+{
+    this->canBeSelected = canBeSelected;
+}
+
+
 QModelIndex
 PartitionBarsView::moveCursor( CursorAction cursorAction, Qt::KeyboardModifiers modifiers )
 {
@@ -430,7 +438,11 @@ PartitionBarsView::setSelection( const QRect& rect, QItemSelectionModel::Selecti
     //      TL;DR: this sucks, look away. -- Teo 12/2015
     int x1, y1, x2, y2;
     rect.getCoords( &x1, &y1, &x2, &y2 );
-    selectionModel()->select( indexAt( QPoint( x2, y2 ) ), flags );
+
+    QModelIndex eventIndex = indexAt( QPoint( x2, y2 ) );
+    if ( canBeSelected( eventIndex ) )
+        selectionModel()->select( eventIndex, flags );
+
     viewport()->repaint();
 }
 

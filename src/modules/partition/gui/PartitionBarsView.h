@@ -19,7 +19,10 @@
 #ifndef PARTITIONPREVIEW_H
 #define PARTITIONPREVIEW_H
 
+#include "PartitionViewSelectionFilter.h"
+
 #include <QAbstractItemView>
+
 
 /**
  * A Qt model view which displays the partitions inside a device as a colored bar.
@@ -48,6 +51,8 @@ public:
 
     void setSelectionModel( QItemSelectionModel* selectionModel ) override;
 
+    void setSelectionFilter( SelectionFilter canBeSelected );
+
 protected:
     // QAbstractItemView API
     QRegion visualRegionForSelection( const QItemSelection& selection ) const override;
@@ -68,6 +73,8 @@ private:
     void drawSection( QPainter* painter, const QRect& rect_, int x, int width, const QModelIndex& index );
     QModelIndex indexAt( const QPoint& point, const QRect& rect, const QModelIndex& parent ) const;
     QRect visualRect( const QModelIndex& index, const QRect& rect, const QModelIndex& parent ) const;
+
+    SelectionFilter canBeSelected;
 
     struct Item
     {
