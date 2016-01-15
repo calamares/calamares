@@ -28,6 +28,11 @@ def run():
     targets = libcalamares.job.configuration['targets']
     disable = libcalamares.job.configuration['disable']
 
+    # note that the "systemctl enable" and "systemctl disable" commands used
+    # here will work in a chroot; in fact, they are the only systemctl commands
+    # that support that, see:
+    # http://0pointer.de/blog/projects/changing-roots.html
+
     # enable services
     for svc in services:
         ec = libcalamares.utils.target_env_call(['systemctl', 'enable', '{}.service'.format(svc['name'])])
