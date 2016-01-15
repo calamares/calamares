@@ -14,18 +14,18 @@
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="121"/>
         <source>With this operation, the partition &lt;strong&gt;%1&lt;/strong&gt; which contains %4 will be shrunk to %2MB and a new %3MB partition will be created for %5.</source>
-        <translation>Mit dieser Operation wird die Partition &lt;strong&gt;%1&lt;/strong&gt;, welche %4 enthält, auf %2MB verkleinert, und für %5 wird eine neue Partition mit %3MB erstellt.</translation>
+        <translation>Durch diesen Vorgang wird die Partition &lt;strong&gt;%1&lt;/strong&gt;, welche %4 enthält, auf %2MB verkleinert, und für %5 wird eine neue Partition mit %3MB erstellt.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="198"/>
         <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
         <translation>Es wurde keine EFI-Systempartition auf diesem System gefunden.
-Bitte gehen Sie zurück, und nutzen Sie die manuelle Partitionierung, um %1 aufzusetzen.</translation>
+Bitte gehen Sie zurück und nutzen Sie die manuelle Partitionierung, um %1 aufzusetzen.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="208"/>
         <source>The EFI system partition at %1 will be used for starting %2.</source>
-        <translation>Die EFI-Systempartition %1 wird benutzt, um %2 zu starten.</translation>
+        <translation>Die EFI-Systempartition auf %1 wird benutzt, um %2 zu starten.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="218"/>
@@ -356,7 +356,7 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="225"/>
         <source>The %1 installer is about to make changes to your disk in order to install %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
-        <translation>Das Installationsprogramm %1 wird im Zuge der %2-Installation Aenderungen auf Ihrer Festplatte vornehmen.&lt;br/&gt;&lt;strong&gt;Diese Aenderungen können Sie nicht rückgängig machen.&lt;/strong&gt;</translation>
+        <translation>Das %1 Installationsprogramm wird Änderungen an Ihrer Festplatte vornehmen, um %2 zu installieren.&lt;br/&gt;&lt;strong&gt;Diese Änderungen können nicht rückgängig gemacht werden.&lt;/strong&gt;</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="232"/>
@@ -526,19 +526,19 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="890"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="939"/>
         <source>&lt;strong&gt;Erase disk&lt;/strong&gt;&lt;br/&gt;This will &lt;font color=&quot;red&quot;&gt;delete&lt;/font&gt; all data currently present on the selected storage device.</source>
-        <translation>&lt;strong&gt;Festplatte löschen&lt;/strong&gt;&lt;br/&gt;Dies wird alle vorhandenen Daten auf dem gewählten Speichermedium &lt;font color=&quot;red&quot;&gt;löschen&lt;/font&gt; </translation>
+        <translation>&lt;strong&gt;Festplatte löschen&lt;/strong&gt;&lt;br/&gt;Dies wird alle vorhandenen Daten auf dem gewählten Speichermedium &lt;font color=&quot;red&quot;&gt;löschen&lt;/font&gt;. </translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="855"/>
         <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-        <translation>Das Speichermedium enthält% 1. Was möchten Sie tun? &lt;br/&gt; Sie können Ihre Auswahl überprüfen und bestätigen bevor eine Änderung an dem Speichermedium vorgenommen wird.</translation>
+        <translation>Auf diesem Speichermedium ist %1 installiert. Was möchten Sie tun?&lt;br/&gt;Sie können Ihre Auswahl überprüfen und bestätigen, bevor Änderungen an dem Speichermedium vorgenommen werden.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="861"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="885"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="934"/>
         <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
-        <translation>&lt;strong&gt;Parallel-Installation&lt;/strong&gt;&lt;br/&gt;Das Installationsprogramm wird eine Partition verkleinern, um Platz für %1 zu schaffen.</translation>
+        <translation>&lt;strong&gt;Parallel dazu installieren&lt;/strong&gt;&lt;br/&gt;Das Installationsprogramm wird eine Partition verkleinern, um Platz für %1 zu schaffen.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="871"/>
@@ -555,7 +555,7 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="929"/>
         <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-        <translation>Dieses Speichermedium verfügt über mehrere Betriebssysteme. Was möchten Sie tun? &lt;br/&gt; Sie können Ihre Auswahl überprüfen und bestätigen bevor eine Änderung an dem Speichermedium vorgenommen wird.</translation>
+        <translation>Auf diesem Speichermedium sind mehrere Betriebssysteme installiert. Was möchten Sie tun?&lt;br/&gt;Sie können Ihre Auswahl überprüfen und bestätigen, bevor Änderungen an dem Speichermedium vorgenommen werden.</translation>
     </message>
 </context>
 <context>
@@ -1410,7 +1410,7 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="194"/>
         <source>EFI system</source>
-        <translation>EFI System</translation>
+        <translation>EFI-System</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="196"/>
@@ -1633,17 +1633,17 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="169"/>
         <source>%1 cannot be installed on empty space. Please select an existing partition.</source>
-        <translation>%1 kann nicht auf einer freien Fläche installiert werden. Wählen Sie bitte eine existierende Partition aus.</translation>
+        <translation>%1 kann nicht in einem unpartitionierten Bereich installiert werden. Bitte wählen Sie eine existierende Partition aus.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="180"/>
         <source>%1 cannot be installed on an extended partition. Please select an existing primary or logical partition.</source>
-        <translation>%1 kann nicht auf einer erweiterten Partition installiert werden. Wählen Sie bitte eine primäre oder logische Partition aus.</translation>
+        <translation>%1 kann nicht auf einer erweiterten Partition installiert werden. Bitte wählen Sie eine primäre oder logische Partition aus.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="191"/>
         <source>%1 cannot be installed on this partition.</source>
-        <translation>%1 kann auf dieser Partition nicht installiert werden</translation>
+        <translation>%1 kann auf dieser Partition nicht installiert werden.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="198"/>
@@ -1668,19 +1668,19 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="255"/>
         <source>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
-        <translation>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Es wurde keine EFI-Systempartition auf diesem System gefunden. Bitte gehen Sie zurück, und nutzen Sie die manuelle Partitionierung um %1 aufzusetzen.</translation>
+        <translation>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Es wurde keine EFI-Systempartition auf diesem System gefunden. Bitte gehen Sie zurück, und nutzen Sie die manuelle Partitionierung, um %1 aufzusetzen.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="267"/>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="286"/>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="311"/>
         <source>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 will be installed on %2.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;all data on partition %2 will be lost.</source>
-        <translation>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 wird installiert auf %2.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warnung:&lt;/font&gt; Alle Daten auf  Partition %2 werden gelöscht.</translation>
+        <translation>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 wird installiert auf %2.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warnung: &lt;/font&gt; Alle Daten auf der Partition %2 werden gelöscht.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="277"/>
         <source>The EFI system partition at %1 will be used for starting %2.</source>
-        <translation>Die EFI-Systempartition %1 wird benutzt, um %2 zu starten.</translation>
+        <translation>Die EFI-Systempartition auf %1 wird benutzt, um %2 zu starten.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="295"/>
@@ -1703,7 +1703,7 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="100"/>
         <source>There is not enough drive space. At least %1 GB is required.</source>
-        <translation>Das System hat nicht genug Festplattenplatz. Mindestens %1 GB werden benötigt.</translation>
+        <translation>Der Speicherplatz auf der Festplatte ist unzureichend. Es wird mindestens %1 GB benötigt.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="108"/>
@@ -1713,7 +1713,7 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="110"/>
         <source>The system does not have enough working memory. At least %1 GB is required.</source>
-        <translation>Das System hat nicht genug Arbeitsspeicher. Mindestens %1GB werden benötigt.</translation>
+        <translation>Das System hat nicht genug Arbeitsspeicher. Es wird mindestens %1GB benötigt.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="118"/>
@@ -1811,12 +1811,12 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
     <message>
         <location filename="../src/modules/users/SetHostNameJob.cpp" line="44"/>
         <source>Set hostname &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation>Setze Computername auf &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+        <translation>Setze Computernamen &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetHostNameJob.cpp" line="51"/>
         <source>Setting hostname %1.</source>
-        <translation>Setze Computername auf %1</translation>
+        <translation>Setze Computernamen %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetHostNameJob.cpp" line="61"/>
@@ -1878,7 +1878,7 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="49"/>
         <source>Setting password for user %1.</source>
-        <translation>Setze Passwort für Benutzer %1</translation>
+        <translation>Setze Passwort für Benutzer %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="59"/>
@@ -1904,39 +1904,39 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
 <context>
     <name>SetTimezoneJob</name>
     <message>
-        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="42"/>
+        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="43"/>
         <source>Set timezone to %1/%2</source>
         <translation>Setze Zeitzone auf %1/%2</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="65"/>
+        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="71"/>
         <source>Cannot access selected timezone path.</source>
         <translation>Zugriff auf den Pfad der gewählten Zeitzone fehlgeschlagen.</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="66"/>
+        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="72"/>
         <source>Bad path: %1</source>
         <translation>Ungültiger Pfad: %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="80"/>
+        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="86"/>
         <source>Cannot set timezone.</source>
         <translation>Zeitzone kann nicht gesetzt werden.</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="81"/>
+        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="87"/>
         <source>Link creation failed, target: %1; link name: %2</source>
         <translation>Erstellen der Verknüpfung fehlgeschlagen, Ziel: %1; Verknüpfung: %2</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="89"/>
+        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="95"/>
         <source>Cannot set timezone,</source>
-        <translation>Kann die Zeitzone nicht setzen</translation>
+        <translation>Kann die Zeitzone nicht setzen,</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="90"/>
+        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="96"/>
         <source>Cannot open /etc/timezone for writing</source>
-        <translation>Kann nicht /etc/timezone zum schreiben öffnen</translation>
+        <translation>Kein Schreibzugriff auf /etc/timezone</translation>
     </message>
 </context>
 <context>
@@ -1944,7 +1944,7 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
     <message>
         <location filename="../src/modules/summary/SummaryPage.cpp" line="46"/>
         <source>This is an overview of what will happen once you start the install procedure.</source>
-        <translation>Dies ist ein Überblick über das was passieren wird, wenn du die Installationsprozedur startest.</translation>
+        <translation>Dies ist eine Übersicht der Aktionen, die nach dem Starten des Installationsprozesses durchgeführt werden.</translation>
     </message>
 </context>
 <context>
@@ -2012,12 +2012,12 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="176"/>
         <source>&amp;Release notes</source>
-        <translation>&amp; Anmerkungen</translation>
+        <translation>&amp;Veröffentlichungshinweise</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="166"/>
         <source>&amp;Known issues</source>
-        <translation>&amp;Bekannte Fehler</translation>
+        <translation>&amp;Bekannte Probleme</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="156"/>
@@ -2037,7 +2037,7 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="70"/>
         <source>About %1 installer</source>
-        <translation>Über das Installationsprogramm %1</translation>
+        <translation>Über das %1 Installationsprogramm</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="72"/>
@@ -2047,7 +2047,7 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="193"/>
         <source>%1 support</source>
-        <translation>%1 Hilfe</translation>
+        <translation>Unterstützung für %1</translation>
     </message>
 </context>
 <context>
