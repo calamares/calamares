@@ -507,6 +507,13 @@ PartitionLabelsView::setSelectionModel( QItemSelectionModel* selectionModel )
 }
 
 
+void
+PartitionLabelsView::setSelectionFilter( SelectionFilter canBeSelected )
+{
+    this->canBeSelected = canBeSelected;
+}
+
+
 QModelIndex
 PartitionLabelsView::moveCursor( CursorAction cursorAction, Qt::KeyboardModifiers modifiers )
 {
