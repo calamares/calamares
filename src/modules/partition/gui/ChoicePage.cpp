@@ -24,6 +24,7 @@
 #include "core/DeviceModel.h"
 #include "core/PartitionModel.h"
 #include "core/OsproberEntry.h"
+#include "core/PartUtils.h"
 
 #include "ReplaceWidget.h"
 #include "PrettyRadioButton.h"
@@ -676,9 +677,17 @@ ChoicePage::updateDeviceStatePreview()
     switch ( m_choice )
     {
     case Replace:
+        m_beforePartitionBarsView->setSelectionMode( QAbstractItemView::SingleSelection );
+        m_beforePartitionLabelsView->setSelectionMode( QAbstractItemView::SingleSelection );
+        break;
     case Alongside:
         m_beforePartitionBarsView->setSelectionMode( QAbstractItemView::SingleSelection );
         m_beforePartitionLabelsView->setSelectionMode( QAbstractItemView::SingleSelection );
+        m_beforePartitionBarsView->setSelectionFilter( [ this ]( const QModelIndex& index )
+        {
+            return PartUtils::canBeResized( m_core,
+                                            index.data( PartitionModel::PartitionPathRole ).toString() );
+        });
         break;
     default:
         m_beforePartitionBarsView->setSelectionMode( QAbstractItemView::NoSelection );
