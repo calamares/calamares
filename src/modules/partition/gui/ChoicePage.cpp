@@ -683,11 +683,15 @@ ChoicePage::updateDeviceStatePreview()
     case Alongside:
         m_beforePartitionBarsView->setSelectionMode( QAbstractItemView::SingleSelection );
         m_beforePartitionLabelsView->setSelectionMode( QAbstractItemView::SingleSelection );
-        m_beforePartitionBarsView->setSelectionFilter( [ this ]( const QModelIndex& index )
         {
-            return PartUtils::canBeResized( m_core,
-                                            index.data( PartitionModel::PartitionPathRole ).toString() );
-        });
+            SelectionFilter filter = [ this ]( const QModelIndex& index )
+            {
+                return PartUtils::canBeResized( m_core,
+                                                index.data( PartitionModel::PartitionPathRole ).toString() );
+            };
+            m_beforePartitionBarsView->setSelectionFilter( filter );
+            m_beforePartitionLabelsView->setSelectionFilter( filter );
+        }
         break;
     default:
         m_beforePartitionBarsView->setSelectionMode( QAbstractItemView::NoSelection );
