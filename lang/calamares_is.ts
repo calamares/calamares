@@ -1162,7 +1162,7 @@ The installer will quit and all changes will be lost.</source>
         <location filename="../src/modules/license/LicensePage.cpp" line="159"/>
         <source>&lt;strong&gt;%1 driver&lt;/strong&gt;&lt;br/&gt;by %2</source>
         <extracomment>%1 is an untranslatable product name, example: Creative Audigy driver</extracomment>
-        <translation>&lt;strong&gt;%1 rekill&lt;/strong&gt;&lt;br/&gt;frá %2</translation>
+        <translation>&lt;strong&gt;%1 rekill&lt;/strong&gt;&lt;br/&gt;hjá %2</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="165"/>
