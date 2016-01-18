@@ -866,22 +866,22 @@ Het installatieprogramma zal afsluiten en alle wijzigingen zullen verloren gaan.
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="79"/>
         <source>The &lt;strong&gt;boot environment&lt;/strong&gt; of this system.&lt;br&gt;&lt;br&gt;Older x86 systems only support &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Modern systems usually use &lt;strong&gt;EFI&lt;/strong&gt;, but may also show up as BIOS if the boot environment runs in compatibility mode.&lt;br&gt;Relevant entries in the system setup utility include: CSM, compatibility support module, Legacy boot mode, BIOS mode, etc.</source>
-        <translation type="unfinished"/>
+        <translation>De &lt;strong&gt;opstartomgeving&lt;/strong&gt; van dit systeem.&lt;br&gt;&lt;br&gt;Oudere x86-system ondersteunen enkel &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Moderne systemen gebruiken meestal &lt;strong&gt;EFI&lt;/strong&gt;, maar kan ook BIOS gebruiken als de opstartomgeving in compatibiliteitsmodus draait.&lt;br&gt;Relevante items in de systeemconfiguratie omvatten: CSM, compatibiliteitsondersteuning module, Legacy opstartmodus, BIOS mode, etc.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="87"/>
         <source>The type of &lt;strong&gt;partition table&lt;/strong&gt; currently present on the selected storage device.&lt;br&gt;&lt;br&gt;Common values on x86-compatible systems include &lt;strong&gt;GPT&lt;/strong&gt; and &lt;strong&gt;MSDOS&lt;/strong&gt;.&lt;br&gt;Some systems may use other, less common partition table types, like BSD or Sun.&lt;br&gt;The only way to change the partition table type is to erase and recreate the partition table from scratch, which destroys all data on the storage device.&lt;br&gt;This installer will keep the current partition table unless you explicitly choose otherwise.&lt;br&gt;If unsure, on modern systems GPT is preferred.</source>
-        <translation type="unfinished"/>
+        <translation>Het type van &lt;strong&gt;partitietabel&lt;/strong&gt; dat momenteel aanwezig is op het opslagmedium.&lt;br&gt;&lt;br&gt;Vaak voorkomende waarden op x86-compatibele systemen zijn &lt;strong&gt;GPT&lt;/strong&gt; en &lt;strong&gt;MSDOS&lt;/strong&gt;.&lt;br&gt;Sommige systemen kunnen andere, minder voorkomende types partitietabellen gebruiken, zoals BSD of Sun.&lt;br&gt;De enige manier om het type partitietabel te wijzigen is deze volledig te wissen en opnieuw te maken, wat alle gegevens op het opslagmedium vernietigt.&lt;br&gt;Het installatieprogramma zal de huidige partitietabel behouden, tenzij je expliciet anders kiest.&lt;br&gt;Bij twijfel kies je op moderne systemen best voor GPT.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="108"/>
         <source>This system was started with an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;Most consumer systems nowadays use EFI, along with a GPT partition table.&lt;br&gt;Current versions of other operating systems, like Windows and Mac OS X also support EFI, and dual boot is possible.&lt;br&gt;In order to boot from an EFI environment, this installer must deploy a boot loader application, like &lt;strong&gt;GRUB&lt;/strong&gt; or &lt;strong&gt;systemd-boot&lt;/strong&gt; on an &lt;strong&gt;EFI System Partition&lt;/strong&gt;. This is automatic, unless you choose manual partitioning, in which case you must choose it or create it on your own.</source>
-        <translation type="unfinished"/>
+        <translation>Dit systeem is opgestart met een &lt;strong&gt;EFI&lt;/strong&gt; opstartomgeving.&lt;br&gt;&lt;br&gt;De meeste consumentensystemen gebruiken tegenwoordig EFI, samen met een GPT partitietabel.&lt;br&gt;Huidige versies van andere besturingssystemen zoals Windows en Mac OS X ondersteunen ook EFI, en dual-boot is mogelijk.&lt;br&gt;Om vanaf een EFI omgeving op te starten moet het installatieprogramma een bootloader instellen, zoals &lt;strong&gt;GRUB&lt;/strong&gt; of &lt;strong&gt;systemd-boot&lt;/strong&gt;, op een &lt;strong&gt;EFI systeempartitie&lt;/strong&gt;. Dit gebeurt automatisch, tenzij je voor manueel partitioneren kiest, waar je dit moet kiezen of zelf moet maken.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="124"/>
         <source>This system was started with a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;Older systems which do not support EFI start from BIOS.&lt;br&gt;New systems that support EFI can also start in BIOS mode through a compatibility layer, sometimes known as CSM, Legacy boot mode or BIOS mode. On such systems EFI should be preferred, unless you wish to dual boot with an old operating system, like Windows XP. In that case, a MSDOS partition table should also be used instead of GPT.&lt;br&gt;In order to boot from a BIOS environment, this installer must install a boot loader, like &lt;strong&gt;GRUB&lt;/strong&gt;, either at the beginning of a partition or on the &lt;strong&gt;Master Boot Record&lt;/strong&gt; near the beginning of the partition table (preferred). This is automatic, unless you choose manual partitioning, in which case you must set it up on your own.</source>
-        <translation type="unfinished"/>
+        <translation>Dit systeem is opgestart met een &lt;strong&gt;BIOS&lt;/strong&gt;-opstartomgeving.&lt;br&gt;&lt;br&gt;Oudere systemen die nog geen EFI ondersteunen starten vanaf BIOS.&lt;br&gt;Nieuwe systemen die wel EFI ondersteunen kunnen ook in BIOS-modus starten met behulp van een compatibiliteitslaag, ook gekend als CSM, Legacy boot-modus of BIOS-modus. Op dergelijke systemen zou EFI verkozen moeten worden, tenzij dual-boot noodzakelijk is met een ouder besturingssysteem zoals Windows XP. In dit geval moet ook een MSDOS-partitietabel gebruikt worden in plaats van GPT.&lt;br&gt;Om van een BIOS-opstartomgeving op te starten moet het installatieprogramma een boatloader installeren, zoals &lt;strong&gt;GRUB&lt;/strong&gt;, ofwel op het begin van een partitie, ofwel op de &lt;strong&gt;Master Boot Record&lt;/strong&gt; dicht bij het begin van de partitietabel (voorkeur). Dit gebeurt automatisch, tenzij je voor manueel partitioneren kiest, waar je dit zelf moet instellen.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="174"/>
@@ -1570,12 +1570,12 @@ Het installatieprogramma zal afsluiten en alle wijzigingen zullen verloren gaan.
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="221"/>
         <source>Before:</source>
-        <translation type="unfinished"/>
+        <translation>Voor:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="235"/>
         <source>After:</source>
-        <translation type="unfinished"/>
+        <translation>Na:</translation>
     </message>
 </context>
 <context>
