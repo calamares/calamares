@@ -464,7 +464,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>Форма</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="107"/>
@@ -501,12 +501,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="723"/>
         <source>&lt;strong&gt;Select which partition to shrink, then drag to resize&lt;/strong&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;Выберите, какой раздел уменьшить, затем перетащите для изменения размера&lt;/strong&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="737"/>
         <source>%1 will be shrunk to %2MB and a new %3MB partition will be created for %4.</source>
-        <translation type="unfinished"/>
+        <translation>%1 будет уменьшен до %2MB и новый раздел %3MB будет создан для %4.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="788"/>
@@ -865,7 +865,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="79"/>
         <source>The &lt;strong&gt;boot environment&lt;/strong&gt; of this system.&lt;br&gt;&lt;br&gt;Older x86 systems only support &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Modern systems usually use &lt;strong&gt;EFI&lt;/strong&gt;, but may also show up as BIOS if the boot environment runs in compatibility mode.&lt;br&gt;Relevant entries in the system setup utility include: CSM, compatibility support module, Legacy boot mode, BIOS mode, etc.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;Среда загрузки&lt;/strong&gt; данной системы.&lt;br&gt;&lt;br&gt;Старые системы x86 поддерживают только &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Современные системы обычно используют &lt;strong&gt;EFI&lt;/strong&gt;, но также могут имитировать BIOS, если среда загрузки запущена в режиме совместимости.&lt;br&gt;Соответствующие пункты в утилите системной настройки могут называться так: CSM, модуль совместимости, устаревший режим загрузки, режим BIOS, и т.д.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="87"/>
@@ -880,7 +880,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="124"/>
         <source>This system was started with a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;Older systems which do not support EFI start from BIOS.&lt;br&gt;New systems that support EFI can also start in BIOS mode through a compatibility layer, sometimes known as CSM, Legacy boot mode or BIOS mode. On such systems EFI should be preferred, unless you wish to dual boot with an old operating system, like Windows XP. In that case, a MSDOS partition table should also be used instead of GPT.&lt;br&gt;In order to boot from a BIOS environment, this installer must install a boot loader, like &lt;strong&gt;GRUB&lt;/strong&gt;, either at the beginning of a partition or on the &lt;strong&gt;Master Boot Record&lt;/strong&gt; near the beginning of the partition table (preferred). This is automatic, unless you choose manual partitioning, in which case you must set it up on your own.</source>
-        <translation type="unfinished"/>
+        <translation>Эта система запущена в &lt;strong&gt;BIOS&lt;/strong&gt; среде загрузки.&lt;br&gt;&lt;br&gt;Старые системы, не поддерживающие EFI, стартуют из BIOS.&lt;br&gt;Современные системы, которые поддерживают EFI, так же могут быть запущены в режиме  BIOS через слой совместимости, известный как CSM,  режим Legacy boot или режим BIOS. В таких системах следует отдать предпочтение EFI, если не хотите двойной загрузки со старой ОС, например Windows XP. В этом случае, вместо GPT таблицы разделов, должна использоваться MSDOS.&lt;br&gt;Чтобы загрузится из среды BIOS, этот установщик, должен установить загрузчик, например &lt;strong&gt;GRUB&lt;/strong&gt;, либо в начало раздела, либо в &lt;strong&gt;Master Boot Record&lt;/strong&gt; недалеко от начала таблицы разделов (предпочтительно). Это делается автоматически, если Вы не выбирали ручное редактирование разделов, где его придётся установить самостоятельно.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="174"/>
@@ -890,12 +890,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="181"/>
         <source>The selected storage device is a &lt;strong&gt;loop&lt;/strong&gt; device.&lt;br&gt;&lt;br&gt;This is not an actual partition table, it is a pseudo-device that makes a file accessible as a block device. This kind of setup usually only contains a single filesystem.</source>
-        <translation type="unfinished"/>
+        <translation>Выбранное устройство представляет собой устройство в режиме &lt;strong&gt;loop&lt;/strong&gt;.&lt;br&gt;&lt;br&gt;Это не настоящая таблица разделов, а псевдо-устройство, дающее доступ к файлу как к блочному устройству. При таком виде подключения обычно только одна файловая система.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="188"/>
         <source>This installer &lt;strong&gt;cannot detect a partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The device either has no partition table, or the partition table is corrupted or of an unknown type.&lt;br&gt;This installer can create a new partition table for you, either automatically, or through the manual partitioning page.</source>
-        <translation type="unfinished"/>
+        <translation>Программа установки &lt;strong&gt;не обнаружила таблицы разделов&lt;/strong&gt; на выбранном устройстве.&lt;br&gt;&lt;br&gt;На этом устройстве либо нет таблицы разделов, либо она повреждена, либо неизвестного типа.&lt;br&gt;Эта программа установки может создать для Вас новую таблицу разделов автоматически или на странице ручной разметки.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="198"/>
@@ -905,7 +905,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="204"/>
         <source>&lt;br&gt;&lt;br&gt;This partition table type is only advisable on older systems which start from a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment. For most uses GPT should be preferred instead.&lt;br&gt;&lt;strong&gt;Warning:&lt;/strong&gt; the MSDOS partition table is an obsolete standard with important drawbacks.&lt;br&gt;Only 4 &lt;em&gt;primary&lt;/em&gt; partitions may be created, and of those 4, one can be an &lt;em&gt;extended&lt;/em&gt; partition, which may in turn contain many &lt;em&gt;logical&lt;/em&gt; partitions.&lt;br&gt;For compatibility reasons, it is recommended for a setup based on an MSDOS partition table to have a separate boot partition. This installer can create the boot partition for you automatically, or you may set it up yourself on the manual partitioning page.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;br&gt;&lt;br&gt;Этот тип таблицы разделов рекомендуется только для старых систем, запускаемых из среды загрузки &lt;strong&gt;BIOS&lt;/strong&gt;. В большинстве случаев вместо этого лучше использовать GPT.&lt;br&gt;&lt;strong&gt;Внимание:&lt;/strong&gt; стандарт таблицы разделов MSDOS устарел и имеет существенные недостатки.&lt;br&gt;Можно создать только 4 &lt;em&gt;первичных&lt;/em&gt; раздела, один из них может быть &lt;em&gt;расширенным&lt;/em&gt;, который в свою очередь может содержать много &lt;em&gt;логических&lt;/em&gt; разделов.&lt;br&gt;Ради совместимости при установке системы с использованием таблицы разделов MSDOS рекомендуется создавать отдельный раздел boot. Эта программа установки может автоматически создать раздел boot, или же Вы сами можете создать его на странице ручной разметки разделов.</translation>
     </message>
 </context>
 <context>
@@ -1569,12 +1569,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="221"/>
         <source>Before:</source>
-        <translation type="unfinished"/>
+        <translation>До:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="235"/>
         <source>After:</source>
-        <translation type="unfinished"/>
+        <translation>После:</translation>
     </message>
 </context>
 <context>
@@ -1616,7 +1616,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>Форма</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="134"/>
