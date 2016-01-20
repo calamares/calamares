@@ -504,12 +504,12 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="723"/>
         <source>&lt;strong&gt;Select which partition to shrink, then drag to resize&lt;/strong&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;Selecione a partição que será reduzida e arraste para redimensioná-la&lt;/strong&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="737"/>
         <source>%1 will be shrunk to %2MB and a new %3MB partition will be created for %4.</source>
-        <translation type="unfinished"/>
+        <translation>%1 será reduzida para %2MB e uma nova partição de %3MB será criada para %4.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="788"/>
@@ -868,17 +868,17 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="79"/>
         <source>The &lt;strong&gt;boot environment&lt;/strong&gt; of this system.&lt;br&gt;&lt;br&gt;Older x86 systems only support &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Modern systems usually use &lt;strong&gt;EFI&lt;/strong&gt;, but may also show up as BIOS if the boot environment runs in compatibility mode.&lt;br&gt;Relevant entries in the system setup utility include: CSM, compatibility support module, Legacy boot mode, BIOS mode, etc.</source>
-        <translation type="unfinished"/>
+        <translation>O &lt;strong&gt;ambiente de inicialização&lt;/strong&gt; deste sistema.&lt;br&gt;&lt;br&gt;Sistemas x86 antigos apenas tem suporte a &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Sistemas modernos normalmente usam &lt;strong&gt;EFI&lt;/strong&gt;, mas também poderão mostrar como BIOS se o ambiente de inicialização estiver executando em modo de compatibilidade.&lt;br&gt;Os itens relevantes do utilitário de configuração do sistema incluem: CSM, módulo de suporte para compatibilidade, modo de boot &quot;Legacy&quot;, modo de BIOS, etc.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="87"/>
         <source>The type of &lt;strong&gt;partition table&lt;/strong&gt; currently present on the selected storage device.&lt;br&gt;&lt;br&gt;Common values on x86-compatible systems include &lt;strong&gt;GPT&lt;/strong&gt; and &lt;strong&gt;MSDOS&lt;/strong&gt;.&lt;br&gt;Some systems may use other, less common partition table types, like BSD or Sun.&lt;br&gt;The only way to change the partition table type is to erase and recreate the partition table from scratch, which destroys all data on the storage device.&lt;br&gt;This installer will keep the current partition table unless you explicitly choose otherwise.&lt;br&gt;If unsure, on modern systems GPT is preferred.</source>
-        <translation type="unfinished"/>
+        <translation>Tipo de &lt;strong&gt;tabela de partições&lt;/strong&gt; presente no dispositivo de armazenamento selecionado.&lt;br&gt;&lt;br&gt;Valores comuns em sistemas compatíveis com x86 incluem &lt;strong&gt;GPT&lt;/strong&gt; e &lt;strong&gt;MSDOS&lt;/strong&gt;.&lt;br&gt;Alguns sistemas podem usar outros tipos de tabelas de partições menos comuns, como BSD ou Sun.&lt;br&gt;A única maneira de alterar o tipo de tabela de partições é apagá-la e depois recriá-la desde o início, o que destruirá todos os dados do dispositivo de armazenamento.&lt;br&gt;Este instalador manterá a tabela de partições atual, a menos que você escolha outra explicitamente.&lt;br&gt;Se não tiver certeza, prefira o GPT para sistemas modernos.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="108"/>
         <source>This system was started with an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;Most consumer systems nowadays use EFI, along with a GPT partition table.&lt;br&gt;Current versions of other operating systems, like Windows and Mac OS X also support EFI, and dual boot is possible.&lt;br&gt;In order to boot from an EFI environment, this installer must deploy a boot loader application, like &lt;strong&gt;GRUB&lt;/strong&gt; or &lt;strong&gt;systemd-boot&lt;/strong&gt; on an &lt;strong&gt;EFI System Partition&lt;/strong&gt;. This is automatic, unless you choose manual partitioning, in which case you must choose it or create it on your own.</source>
-        <translation type="unfinished"/>
+        <translation>Este sistema foi iniciado com um ambiente de inicialização &lt;strong&gt;EFI&lt;/strong&gt;.&lt;br&gt;&lt;br&gt;A maior parte dos sistemas atuais usam EFI, com uma tabela de partições GPT.&lt;br&gt;Versões atuais de outros sistemas operacionais, como Windows e Mac OS X, também têm suporte a EFI, permitindo inicializar em &quot;dual boot&quot;.&lt;br&gt;Para inicializar em um ambiente EFI, este instalador precisa implantar um aplicativo para carregar a inicialização, como o &lt;strong&gt;GRUB&lt;/strong&gt; ou o &lt;strong&gt;systemd-boot&lt;/strong&gt;, em uma &lt;strong&gt;Partição de Sistema EFI&lt;/strong&gt;. Isso é automático, a menos que você escolha o particionamento manual, caso em que você deverá escolher ou criar o seu próprio.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="124"/>
@@ -1572,12 +1572,12 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="221"/>
         <source>Before:</source>
-        <translation type="unfinished"/>
+        <translation>Antes:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="235"/>
         <source>After:</source>
-        <translation type="unfinished"/>
+        <translation>Depois:</translation>
     </message>
 </context>
 <context>

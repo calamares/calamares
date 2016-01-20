@@ -1419,7 +1419,7 @@ L&apos;instalador colará y perderánse toles camudancies.</translation>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="199"/>
         <source>New partition for %1</source>
-        <translation type="unfinished"/>
+        <translation>Partición nueva pa %1</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="216"/>
@@ -1570,12 +1570,12 @@ L&apos;instalador colará y perderánse toles camudancies.</translation>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="221"/>
         <source>Before:</source>
-        <translation type="unfinished"/>
+        <translation>Enantes:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="235"/>
         <source>After:</source>
-        <translation type="unfinished"/>
+        <translation>Dempués:</translation>
     </message>
 </context>
 <context>
@@ -1679,7 +1679,7 @@ L&apos;instalador colará y perderánse toles camudancies.</translation>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="277"/>
         <source>The EFI system partition at %1 will be used for starting %2.</source>
-        <translation type="unfinished"/>
+        <translation>La partición del sistema EFI en %1 usaráse p&apos;aniciar %2.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="295"/>

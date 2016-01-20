@@ -1009,7 +1009,7 @@ Uppsetning mun hætta og allar breytingar tapast.</translation>
     <message>
         <location filename="../src/modules/finished/FinishedPage.cpp" line="50"/>
         <source>&lt;h1&gt;All done.&lt;/h1&gt;&lt;br/&gt;%1 has been installed on your computer.&lt;br/&gt;You may now restart into your new system, or continue using the %2 Live environment.</source>
-        <translation>&lt;h1&gt;Allt búið.&lt;/h1&gt;&lt;br/&gt;%1 hefur verið sett upp á tölvunni þinni.&lt;br/&gt;Yþú getur nú endurræst í nýja kerfið, eða halda áfram að nota %2 Lifandi umhverfi.</translation>
+        <translation>&lt;h1&gt;Allt búið.&lt;/h1&gt;&lt;br/&gt;%1 hefur verið sett upp á tölvunni þinni.&lt;br/&gt;Þú getur nú endurræst í nýja kerfið, eða halda áfram að nota %2 Lifandi umhverfi.</translation>
     </message>
 </context>
 <context>
@@ -1342,7 +1342,7 @@ Uppsetning mun hætta og allar breytingar tapast.</translation>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="200"/>
         <source>&lt;small&gt;If more than one person will use this computer, you can set up multiple accounts after installation.&lt;/small&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;small&gt;Ef fleiri en ein manneskja mun nota þessa tölvu, getur þú sett upp marga reikninga eftir uppsetningu.&lt;/small&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="335"/>
@@ -1362,7 +1362,7 @@ Uppsetning mun hætta og allar breytingar tapast.</translation>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="309"/>
         <source>&lt;small&gt;This name will be used if you make the computer visible to others on a network.&lt;/small&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;small&gt;Þetta nafn verður notað ef þú gerir tölvuna sýnilega öðrum á neti.&lt;/small&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="450"/>
@@ -1503,7 +1503,7 @@ Uppsetning mun hætta og allar breytingar tapast.</translation>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="139"/>
         <source>Are you sure you want to create a new partition table on %1?</source>
-        <translation type="unfinished"/>
+        <translation>Ertu viss um að þú viljir búa til nýja disksneið á %1?</translation>
     </message>
 </context>
 <context>
@@ -1693,7 +1693,7 @@ Uppsetning mun hætta og allar breytingar tapast.</translation>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="98"/>
         <source>has at least %1 GB available drive space</source>
-        <translation type="unfinished"/>
+        <translation>hefur að minnsta kosti %1 GB laus á harðadisk</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="100"/>
@@ -1713,12 +1713,12 @@ Uppsetning mun hætta og allar breytingar tapast.</translation>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="118"/>
         <source>is plugged in to a power source</source>
-        <translation type="unfinished"/>
+        <translation>er í sambandi við aflgjafa</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="119"/>
         <source>The system is not plugged in to a power source.</source>
-        <translation type="unfinished"/>
+        <translation>Kerfið er ekki í sambandi við aflgjafa.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="126"/>
@@ -2032,7 +2032,7 @@ Uppsetning mun hætta og allar breytingar tapast.</translation>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="70"/>
         <source>About %1 installer</source>
-        <translation type="unfinished"/>
+        <translation>Um %1 uppsetningarforrrit</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="72"/>
