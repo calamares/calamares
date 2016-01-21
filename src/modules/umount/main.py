@@ -51,11 +51,12 @@ def run():
     root_mount_point = libcalamares.globalstorage.value("rootMountPoint")
     log_source = libcalamares.job.configuration["srcLog"]
     log_destination = libcalamares.job.configuration["destLog"]
-    
+
     # copy installation log before umount
-    if(os.path.exists('{!s}'.format(log_source))):
-        shutil.copy2('{!s}'.format(log_source), '{!s}/{!s}'.format(
-            root_mount_point, log_destination))
+    if(log_source)
+        if(os.path.exists('{!s}'.format(log_source))):
+            shutil.copy2('{!s}'.format(log_source), '{!s}/{!s}'.format(
+                root_mount_point, log_destination))
 
     if not root_mount_point:
         return ("No mount point for root partition in globalstorage",
