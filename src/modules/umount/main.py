@@ -53,7 +53,7 @@ def run():
     log_destination = libcalamares.job.configuration["destLog"]
 
     # copy installation log before umount
-    if(log_source)
+    if(log_source):
         if(os.path.exists('{!s}'.format(log_source))):
             shutil.copy2('{!s}'.format(log_source), '{!s}/{!s}'.format(
                 root_mount_point, log_destination))
