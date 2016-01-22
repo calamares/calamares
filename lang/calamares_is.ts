@@ -258,19 +258,21 @@ Framleiðsla:
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="104"/>
         <source>External command failed to finish</source>
-        <translation type="unfinished"/>
+        <translation>Ytri stjórn mistókst að ljúka</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="105"/>
         <source>Command %1 failed to finish in %2s.
 Output:
 %3</source>
-        <translation type="unfinished"/>
+        <translation>Stjórn %1 mistókst að klára í %2
+FramleiðslaÞ:
+%3</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="111"/>
         <source>External command finished with errors</source>
-        <translation type="unfinished"/>
+        <translation>Ytri stjórn skipun kláruð með villum</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="112"/>
@@ -285,7 +287,7 @@ Output:
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="241"/>
         <source>Running %1 operation.</source>
-        <translation type="unfinished"/>
+        <translation>Keyra %1 aðgerð.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="254"/>
@@ -351,7 +353,7 @@ Uppsetning mun hætta og allar breytingar tapast.</translation>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="225"/>
         <source>The %1 installer is about to make changes to your disk in order to install %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
-        <translation type="unfinished"/>
+        <translation>%1 Uppsetningin er um að gera breytingar á diskinum til að setja upp %2.&lt;br/&gt;&lt;strong&gt;Þú munt ekki vera fær um að losa þessar breytingar.&lt;/strong&gt;</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="232"/>
@@ -384,7 +386,7 @@ Uppsetning mun hætta og allar breytingar tapast.</translation>
     <message>
         <location filename="../src/libcalamares/PythonHelper.cpp" line="234"/>
         <source>Unknown exception type</source>
-        <translation type="unfinished"/>
+        <translation>Óþekkt undantekning gerð</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonHelper.cpp" line="247"/>
@@ -425,7 +427,7 @@ Uppsetning mun hætta og allar breytingar tapast.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/CheckFileSystemJob.cpp" line="58"/>
         <source>The file system check on partition %1 failed.</source>
-        <translation type="unfinished"/>
+        <translation>Skráakerfis athugun á skiptingu %1 mistókst.</translation>
     </message>
 </context>
 <context>
@@ -438,17 +440,17 @@ Uppsetning mun hætta og allar breytingar tapast.</translation>
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="113"/>
         <source>This computer does not satisfy some of the recommended requirements for installing %1.&lt;br/&gt;Installation can continue, but some features might be disabled.</source>
-        <translation type="unfinished"/>
+        <translation>Þessi tölva uppfyllir ekki lágmarkskröfur um uppsetningu %1.&lt;br/&gt;Uppsetningin getur haldið áfram, en sumir eiginleikar gætu verið óvirk.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="142"/>
         <source>This program will ask you some questions and set up %2 on your computer.</source>
-        <translation type="unfinished"/>
+        <translation>Þetta forrit mun spyrja þig nokkurra spurninga og setja upp %2 á tölvunni þinni.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="166"/>
         <source>For best results, please ensure that this computer:</source>
-        <translation type="unfinished"/>
+        <translation>Fyrir bestu niðurstöður, skaltu tryggja að þessi tölva:</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="194"/>
@@ -498,7 +500,7 @@ Uppsetning mun hætta og allar breytingar tapast.</translation>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="723"/>
         <source>&lt;strong&gt;Select which partition to shrink, then drag to resize&lt;/strong&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;Veldu hvaða skipting að skreppa saman, þá draga að endurstækka&lt;/strong&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="737"/>
@@ -508,12 +510,12 @@ Uppsetning mun hætta og allar breytingar tapast.</translation>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="788"/>
         <source>&lt;strong&gt;Select which partition to replace&lt;/strong&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;Veldu hvaða disksneið til að skipta&lt;/strong&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="840"/>
         <source>This storage device does not seem to have an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-        <translation type="unfinished"/>
+        <translation>Þetta geymslu tæki hefur mörg stýrikerfi á sér. Hvað viltu gera?&lt;br/&gt;Þú verður að vera fær um að yfirfara og staðfesta val þitt áður en breytingar eru gerðar til geymslu tæki.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="845"/>
@@ -526,7 +528,7 @@ Uppsetning mun hætta og allar breytingar tapast.</translation>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="864"/>
         <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-        <translation type="unfinished"/>
+        <translation>Þetta geymslu tæki hefur %1 á sér. Hvað viltu gera?&lt;br/&gt;Þú verður að vera fær um að yfirfara og staðfesta val þitt áður en breytingar eru gerðar til geymslu tæki.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="870"/>
@@ -545,7 +547,7 @@ Uppsetning mun hætta og allar breytingar tapast.</translation>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="889"/>
         <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-        <translation type="unfinished"/>
+        <translation>Þetta geymslu tæki hefur stýrikerfi á sér. Hvað viltu gera?&lt;br/&gt;Þú verður að vera fær um að yfirfara og staðfesta val þitt áður en breytingar eru gerðar til geymslu tæki.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="938"/>
@@ -667,7 +669,7 @@ Uppsetning mun hætta og allar breytingar tapast.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="71"/>
         <source>Creating new %1 partition on %2.</source>
-        <translation type="unfinished"/>
+        <translation>Búa til nýja %1 disksneiðatöflu á %2.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="83"/>
@@ -682,7 +684,7 @@ Uppsetning mun hætta og allar breytingar tapast.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="102"/>
         <source>Could not open partition table.</source>
-        <translation type="unfinished"/>
+        <translation>Gat ekki opnað disksneiðatöflu.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="126"/>
@@ -738,7 +740,7 @@ Uppsetning mun hætta og allar breytingar tapast.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="66"/>
         <source>Creating new %1 partition table on %2.</source>
-        <translation type="unfinished"/>
+        <translation>Búa til nýja %1 disksneiðatöflu á %2.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="76"/>
@@ -811,7 +813,7 @@ Uppsetning mun hætta og allar breytingar tapast.</translation>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="155"/>
         <source>Cannot set home directory ownership for user %1.</source>
-        <translation type="unfinished"/>
+        <translation>Get ekki stillt heimasvæðis eignarhald fyrir notandann %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="157"/>
@@ -854,7 +856,7 @@ Uppsetning mun hætta og allar breytingar tapast.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="94"/>
         <source>Could not open partition table.</source>
-        <translation type="unfinished"/>
+        <translation>Gat ekki opnað disksneiðatöflu.</translation>
     </message>
 </context>
 <context>
@@ -1050,7 +1052,7 @@ Uppsetning mun hætta og allar breytingar tapast.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="99"/>
         <source>Could not open partition table.</source>
-        <translation type="unfinished"/>
+        <translation>Gat ekki opnað disksneiðatöflu.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="107"/>
@@ -1070,14 +1072,14 @@ Uppsetning mun hætta og allar breytingar tapast.</translation>
         <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="84"/>
         <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="96"/>
         <source>Konsole not installed</source>
-        <translation type="unfinished"/>
+        <translation>Konsole ekki uppsett</translation>
     </message>
     <message>
         <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="70"/>
         <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="85"/>
         <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="97"/>
         <source>Please install the kde konsole and try again!</source>
-        <translation type="unfinished"/>
+        <translation>Settu upp kde Konsole og reyndu aftur!</translation>
     </message>
     <message>
         <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="122"/>
@@ -1306,7 +1308,7 @@ Uppsetning mun hætta og allar breytingar tapast.</translation>
     <message>
         <location filename="../src/modules/keyboard/KeyboardPage.ui" line="70"/>
         <source>Keyboard Model:</source>
-        <translation type="unfinished"/>
+        <translation>Lyklaborðs tegund:</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardPage.ui" line="131"/>
@@ -1352,7 +1354,7 @@ Uppsetning mun hætta og allar breytingar tapast.</translation>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="440"/>
         <source>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors. A good password will contain a mixture of letters, numbers and punctuation, should be at least eight characters long, and should be changed at regular intervals.&lt;/small&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;small&gt;Sláðu inn sama lykilorðið tvisvar, þannig að það geta verið athugað fyrir innsláttarvillur. Góð lykilorð mun innihalda blöndu af stöfum, númerum og greinarmerki, ætti að vera að minnsta kosti átta stafir að lengd, og ætti að vera breytt með reglulegu millibili.&lt;/small&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="226"/>
@@ -1367,17 +1369,17 @@ Uppsetning mun hætta og allar breytingar tapast.</translation>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="450"/>
         <source>Log in automatically without asking for the password.</source>
-        <translation type="unfinished"/>
+        <translation>Skrá inn sjálfkrafa án þess að biðja um lykilorð.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="457"/>
         <source>Use the same password for the administrator account.</source>
-        <translation type="unfinished"/>
+        <translation>Nota sama lykilorð fyrir kerfisstjóra reikning.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="480"/>
         <source>Choose a password for the administrator account.</source>
-        <translation type="unfinished"/>
+        <translation>Veldu lykilorð fyrir kerfisstjóra reikning.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="585"/>
@@ -1498,7 +1500,7 @@ Uppsetning mun hætta og allar breytingar tapast.</translation>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="145"/>
         <source>Install boot &amp;loader on:</source>
-        <translation type="unfinished"/>
+        <translation>Setja upp ræsistjóran á:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="139"/>
@@ -1521,7 +1523,7 @@ Uppsetning mun hætta og allar breytingar tapast.</translation>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="142"/>
         <source>Install %1 &lt;strong&gt;alongside&lt;/strong&gt; another operating system.</source>
-        <translation type="unfinished"/>
+        <translation>Setja upp %1 &lt;strong&gt;ásamt&lt;/strong&gt; ásamt öðru stýrikerfi.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="147"/>
@@ -1698,12 +1700,12 @@ Uppsetning mun hætta og allar breytingar tapast.</translation>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="100"/>
         <source>There is not enough drive space. At least %1 GB is required.</source>
-        <translation type="unfinished"/>
+        <translation>Það er ekki nóg diskapláss. Að minnsta kosti %1 GB eru þörf.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="108"/>
         <source>has at least %1 GB working memory</source>
-        <translation type="unfinished"/>
+        <translation>hefur að minnsta kosti %1 GB vinnsluminni</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="110"/>
@@ -1788,7 +1790,7 @@ Uppsetning mun hætta og allar breytingar tapast.</translation>
     <message>
         <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="83"/>
         <source>Scanning storage devices...</source>
-        <translation type="unfinished"/>
+        <translation>Skönnun geymslu tæki...</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="84"/>
@@ -1842,7 +1844,7 @@ Uppsetning mun hætta og allar breytingar tapast.</translation>
         <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="285"/>
         <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="289"/>
         <source>Failed to write to %1</source>
-        <translation type="unfinished"/>
+        <translation>Tókst ekki að skrifa %1</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="288"/>
@@ -1888,7 +1890,7 @@ Uppsetning mun hætta og allar breytingar tapast.</translation>
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="74"/>
         <source>Cannot set password for user %1.</source>
-        <translation type="unfinished"/>
+        <translation>Get ekki sett lykilorð fyrir notanda %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="76"/>
@@ -1939,7 +1941,7 @@ Uppsetning mun hætta og allar breytingar tapast.</translation>
     <message>
         <location filename="../src/modules/summary/SummaryPage.cpp" line="46"/>
         <source>This is an overview of what will happen once you start the install procedure.</source>
-        <translation type="unfinished"/>
+        <translation>Þetta er yfirlit yfir það sem mun gerast þegar þú byrjar að setja upp aðferð.</translation>
     </message>
 </context>
 <context>
