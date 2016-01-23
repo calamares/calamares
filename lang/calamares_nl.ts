@@ -492,7 +492,7 @@ Het installatieprogramma zal afsluiten en alle wijzigingen zullen verloren gaan.
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="217"/>
         <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself.</source>
-        <translation>&lt;strong&gt;Handmatig partitioneren&lt;/strong&gt;&lt;br/&gt;Je maakt of wijzigt zelf de partitites.</translation>
+        <translation>&lt;strong&gt;Handmatig partitioneren&lt;/strong&gt;&lt;br/&gt;Je maakt of wijzigt zelf de partities.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="342"/>
@@ -866,7 +866,7 @@ Het installatieprogramma zal afsluiten en alle wijzigingen zullen verloren gaan.
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="79"/>
         <source>The &lt;strong&gt;boot environment&lt;/strong&gt; of this system.&lt;br&gt;&lt;br&gt;Older x86 systems only support &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Modern systems usually use &lt;strong&gt;EFI&lt;/strong&gt;, but may also show up as BIOS if the boot environment runs in compatibility mode.&lt;br&gt;Relevant entries in the system setup utility include: CSM, compatibility support module, Legacy boot mode, BIOS mode, etc.</source>
-        <translation>De &lt;strong&gt;opstartomgeving&lt;/strong&gt; van dit systeem.&lt;br&gt;&lt;br&gt;Oudere x86-system ondersteunen enkel &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Moderne systemen gebruiken meestal &lt;strong&gt;EFI&lt;/strong&gt;, maar kan ook BIOS gebruiken als de opstartomgeving in compatibiliteitsmodus draait.&lt;br&gt;Relevante items in de systeemconfiguratie omvatten: CSM, compatibiliteitsondersteuning module, Legacy opstartmodus, BIOS mode, etc.</translation>
+        <translation>De &lt;strong&gt;opstartomgeving&lt;/strong&gt; van dit systeem.&lt;br&gt;&lt;br&gt;Oudere x86-systemen ondersteunen enkel &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Moderne systemen gebruiken meestal &lt;strong&gt;EFI&lt;/strong&gt;, maar kan ook BIOS gebruiken als de opstartomgeving in compatibiliteitsmodus draait.&lt;br&gt;Relevante items in de systeemconfiguratie omvatten: compatibiliteitsondersteuning (CSM), legacy-opstartmodus, BIOS modus, etc.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="87"/>
@@ -881,7 +881,7 @@ Het installatieprogramma zal afsluiten en alle wijzigingen zullen verloren gaan.
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="124"/>
         <source>This system was started with a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;Older systems which do not support EFI start from BIOS.&lt;br&gt;New systems that support EFI can also start in BIOS mode through a compatibility layer, sometimes known as CSM, Legacy boot mode or BIOS mode. On such systems EFI should be preferred, unless you wish to dual boot with an old operating system, like Windows XP. In that case, a MSDOS partition table should also be used instead of GPT.&lt;br&gt;In order to boot from a BIOS environment, this installer must install a boot loader, like &lt;strong&gt;GRUB&lt;/strong&gt;, either at the beginning of a partition or on the &lt;strong&gt;Master Boot Record&lt;/strong&gt; near the beginning of the partition table (preferred). This is automatic, unless you choose manual partitioning, in which case you must set it up on your own.</source>
-        <translation>Dit systeem is opgestart met een &lt;strong&gt;BIOS&lt;/strong&gt;-opstartomgeving.&lt;br&gt;&lt;br&gt;Oudere systemen die nog geen EFI ondersteunen starten vanaf BIOS.&lt;br&gt;Nieuwe systemen die wel EFI ondersteunen kunnen ook in BIOS-modus starten met behulp van een compatibiliteitslaag, ook gekend als CSM, Legacy boot-modus of BIOS-modus. Op dergelijke systemen zou EFI verkozen moeten worden, tenzij dual-boot noodzakelijk is met een ouder besturingssysteem zoals Windows XP. In dit geval moet ook een MSDOS-partitietabel gebruikt worden in plaats van GPT.&lt;br&gt;Om van een BIOS-opstartomgeving op te starten moet het installatieprogramma een boatloader installeren, zoals &lt;strong&gt;GRUB&lt;/strong&gt;, ofwel op het begin van een partitie, ofwel op de &lt;strong&gt;Master Boot Record&lt;/strong&gt; dicht bij het begin van de partitietabel (voorkeur). Dit gebeurt automatisch, tenzij je voor manueel partitioneren kiest, waar je dit zelf moet instellen.</translation>
+        <translation>Dit systeem is opgestart met een &lt;strong&gt;BIOS&lt;/strong&gt;-opstartomgeving.&lt;br&gt;&lt;br&gt;Oudere systemen die nog geen EFI ondersteunen starten vanaf BIOS.&lt;br&gt;Nieuwe systemen die wel EFI ondersteunen kunnen ook in BIOS-modus starten met behulp van een compatibiliteitslaag (CSM), legacy-bootmodus of BIOS-modus. Op dergelijke systemen zou EFI verkozen moeten worden, tenzij dual-boot noodzakelijk is met een ouder besturingssysteem zoals Windows XP. In dit geval moet ook een MSDOS-partitietabel gebruikt worden in plaats van GPT.&lt;br&gt;Om vanaf een BIOS-opstartomgeving op te starten moet het installatieprogramma een bootloader installeren, zoals &lt;strong&gt;GRUB&lt;/strong&gt;, ofwel op het begin van een partitie, ofwel op de &lt;strong&gt;Master Boot Record&lt;/strong&gt; dicht bij het begin van de partitietabel (voorkeur). Dit gebeurt automatisch, tenzij je voor manueel partitioneren kiest, waar je dit zelf moet instellen.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="174"/>
@@ -891,12 +891,12 @@ Het installatieprogramma zal afsluiten en alle wijzigingen zullen verloren gaan.
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="181"/>
         <source>The selected storage device is a &lt;strong&gt;loop&lt;/strong&gt; device.&lt;br&gt;&lt;br&gt;This is not an actual partition table, it is a pseudo-device that makes a file accessible as a block device. This kind of setup usually only contains a single filesystem.</source>
-        <translation>Het geselecteerde opslagmedium is een &lt;strong&gt;loop&lt;/strong&gt;-apparaat.&lt;br&gt;&lt;br&gt;Dit is geen echte partitietabel, maar een pseudo-apparaat dat een bestand beschikbaar maakt als block-apparaat. Dit soort configuratie bevat meestal een enkel bestandssysteem.</translation>
+        <translation>Het geselecteerde opslagmedium is een &lt;strong&gt;loop&lt;/strong&gt;-apparaat.&lt;br&gt;&lt;br&gt;Dit is geen echte partitietabel, maar een pseudo-apparaat dat een bestand beschikbaar maakt als blokapparaat. Dit soort configuratie bevat meestal een enkel bestandssysteem.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="188"/>
         <source>This installer &lt;strong&gt;cannot detect a partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The device either has no partition table, or the partition table is corrupted or of an unknown type.&lt;br&gt;This installer can create a new partition table for you, either automatically, or through the manual partitioning page.</source>
-        <translation>Het installatieprogramma &lt;strong&gt;kon geen partitietabel vinden&lt;/strong&gt; op het geselecteerde opslagmedium.&lt;br&gt;&lt;br&gt;Dit apparaat heeft ofwel geen partitietabel, ofwel is de partititabel ongeldig of van een onbekend type.&lt;br&gt;Het installatieprogramma kan een nieuwe partitietabel aanmaken, ofwel automatisch, ofwel via de manuele partitioneringspagina.</translation>
+        <translation>Het installatieprogramma &lt;strong&gt;kon geen partitietabel vinden&lt;/strong&gt; op het geselecteerde opslagmedium.&lt;br&gt;&lt;br&gt;Dit apparaat heeft ofwel geen partitietabel, ofwel is deze ongeldig of van een onbekend type.&lt;br&gt;Het installatieprogramma kan een nieuwe partitietabel aanmaken, ofwel automatisch, ofwel via de manuele partitioneringspagina.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="198"/>
@@ -906,7 +906,7 @@ Het installatieprogramma zal afsluiten en alle wijzigingen zullen verloren gaan.
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="204"/>
         <source>&lt;br&gt;&lt;br&gt;This partition table type is only advisable on older systems which start from a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment. For most uses GPT should be preferred instead.&lt;br&gt;&lt;strong&gt;Warning:&lt;/strong&gt; the MSDOS partition table is an obsolete standard with important drawbacks.&lt;br&gt;Only 4 &lt;em&gt;primary&lt;/em&gt; partitions may be created, and of those 4, one can be an &lt;em&gt;extended&lt;/em&gt; partition, which may in turn contain many &lt;em&gt;logical&lt;/em&gt; partitions.&lt;br&gt;For compatibility reasons, it is recommended for a setup based on an MSDOS partition table to have a separate boot partition. This installer can create the boot partition for you automatically, or you may set it up yourself on the manual partitioning page.</source>
-        <translation>&lt;br&gt;&lt;br&gt;Dit type partitietabel is enkel aan te bevelen op oudere systemen die starten vanaf een &lt;strong&gt;BIOS&lt;/strong&gt; opstartomgeving. In de meeste gevallen moet echter GPT verkozen worden.&lt;br&gt;&lt;strong&gt;Opgelet:&lt;/strong&gt; de MSDOS partitietabel is een achterhaalde standaard met belangrijke nadelen.&lt;br&gt;Slechts 4 &lt;em&gt;primaire&lt;/em&gt; partities kunnen aangemaakt worden, en van deze 4 kan er één een &lt;em&gt;uitgebreide&lt;/em&gt; partitie zijn, die op zijn beurt veel &lt;em&gt;logische&lt;/em&gt; partities kan bevatten.&lt;br&gt;Voor compatibiliteitsredenen is het aan te raden om in een configuratie met een MSDOS partitiesysteem een aparte boot-partitie te voorzien. Het installatieprogramma kan dit automatisch doen, of je kan dit zelf instellen op de manuele partitioneringspagina.</translation>
+        <translation>&lt;br&gt;&lt;br&gt;Dit type partitietabel is enkel aan te bevelen op oudere systemen die starten vanaf een &lt;strong&gt;BIOS&lt;/strong&gt; opstartomgeving. In de meeste gevallen moet echter GPT verkozen worden.&lt;br&gt;&lt;strong&gt;Opgelet:&lt;/strong&gt; de MSDOS partitietabel is een achterhaalde standaard met belangrijke nadelen.&lt;br&gt;Slechts 4 &lt;em&gt;primaire&lt;/em&gt; partities kunnen aangemaakt worden, en van deze 4 kan er één een &lt;em&gt;uitgebreide&lt;/em&gt; partitie zijn, die op zijn beurt veel &lt;em&gt;logische&lt;/em&gt; partities kan bevatten.&lt;br&gt;Om compatibiliteitsredenen is het aan te raden om een aparte boot-partitie te voorzien in een configuratie met een MSDOS partitiesysteem. Het installatieprogramma kan dit automatisch doen, of je kan dit zelf instellen op de manuele partitioneringspagina.</translation>
     </message>
 </context>
 <context>
@@ -1604,12 +1604,12 @@ Het installatieprogramma zal afsluiten en alle wijzigingen zullen verloren gaan.
     <message>
         <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="154"/>
         <source>unformatted</source>
-        <translation>ongeformateerd</translation>
+        <translation>niet-geformateerd</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="48"/>
         <source>Unpartitioned space or unknown partition table</source>
-        <translation>Niet-gepartitioneerde ruimte of onbekende parititietabel</translation>
+        <translation>Niet-gepartitioneerde ruimte of onbekende partitietabel</translation>
     </message>
 </context>
 <context>

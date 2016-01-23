@@ -162,7 +162,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="125"/>
         <source>%1 (%2)</source>
-        <translation type="unfinished"/>
+        <translation>%1 (%2)</translation>
     </message>
 </context>
 <context>
@@ -198,7 +198,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/libcalamaresui/ExecutionViewStep.cpp" line="77"/>
         <source>Install</source>
-        <translation type="unfinished"/>
+        <translation>Εγκατάσταση</translation>
     </message>
 </context>
 <context>
@@ -214,12 +214,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="51"/>
         <source>Run command %1 %2</source>
-        <translation type="unfinished"/>
+        <translation>Εκτέλεση εντολής %1 %2</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="60"/>
         <source>Running command %1 %2</source>
-        <translation type="unfinished"/>
+        <translation>Εκτελείται η εντολή  </translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="89"/>
@@ -333,12 +333,12 @@ Output:
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="67"/>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="295"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Ακύρωση</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="90"/>
         <source>Cancel installation?</source>
-        <translation type="unfinished"/>
+        <translation>Ακύρωση εγκατάστασης;</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="91"/>
@@ -359,7 +359,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="232"/>
         <source>&amp;Install now</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Εγκατάσταση τώρα</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="233"/>
@@ -451,12 +451,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="166"/>
         <source>For best results, please ensure that this computer:</source>
-        <translation type="unfinished"/>
+        <translation>Για τα καλύτερα αποτελέσματα, παρακαλούμε βεβαιωθείτε ότι αυτός ο υπολογιστής:</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="194"/>
         <source>System requirements</source>
-        <translation type="unfinished"/>
+        <translation>Απαιτήσεις συστήματος</translation>
     </message>
 </context>
 <context>
@@ -475,18 +475,18 @@ The installer will quit and all changes will be lost.</source>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="722"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="762"/>
         <source>Before:</source>
-        <translation type="unfinished"/>
+        <translation>Πριν:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="109"/>
         <source>After:</source>
-        <translation type="unfinished"/>
+        <translation>Μετά:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="108"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="797"/>
         <source>Device:</source>
-        <translation type="unfinished"/>
+        <translation>Συσκευή:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="217"/>
@@ -764,12 +764,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="56"/>
         <source>Create user &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Δημιουργία χρήστη &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="63"/>
         <source>Creating user %1.</source>
-        <translation type="unfinished"/>
+        <translation>Δημιουργείται ο χρήστης %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="79"/>
@@ -827,17 +827,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="42"/>
         <source>Delete partition %1.</source>
-        <translation type="unfinished"/>
+        <translation>Διαγραφή κατάτμησης </translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="50"/>
         <source>Delete partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Διαγραφή κατάτμησης </translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="58"/>
         <source>Deleting partition %1.</source>
-        <translation type="unfinished"/>
+        <translation>Διαγράφεται η κατάτμηση </translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="67"/>
@@ -1114,7 +1114,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/keyboard/KeyboardViewStep.cpp" line="49"/>
         <source>Keyboard</source>
-        <translation type="unfinished"/>
+        <translation>Πληκτρολόγιο</translation>
     </message>
 </context>
 <context>
@@ -1140,7 +1140,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="88"/>
         <source>I accept the terms and conditions above.</source>
-        <translation type="unfinished"/>
+        <translation>Δέχομαι τους παραπάνω όρους και προϋποθέσεις.</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="115"/>
@@ -1205,7 +1205,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/license/LicenseViewStep.cpp" line="51"/>
         <source>License</source>
-        <translation type="unfinished"/>
+        <translation>Άδεια</translation>
     </message>
 </context>
 <context>
@@ -1219,17 +1219,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/locale/LocalePage.cpp" line="166"/>
         <source>Region:</source>
-        <translation type="unfinished"/>
+        <translation>Περιοχή:</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/LocalePage.cpp" line="167"/>
         <source>Zone:</source>
-        <translation type="unfinished"/>
+        <translation>Ζώνη:</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/LocalePage.cpp" line="172"/>
         <source>&amp;Change...</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Αλλαγή...</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/LocalePage.cpp" line="266"/>
@@ -1242,12 +1242,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/locale/LocaleViewStep.cpp" line="48"/>
         <source>Loading location data...</source>
-        <translation type="unfinished"/>
+        <translation>Φόρτωση δεδομένων τοποθεσίας...</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/LocaleViewStep.cpp" line="82"/>
         <source>Location</source>
-        <translation type="unfinished"/>
+        <translation>Τοποθεσία</translation>
     </message>
 </context>
 <context>
@@ -1309,12 +1309,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/keyboard/KeyboardPage.ui" line="70"/>
         <source>Keyboard Model:</source>
-        <translation type="unfinished"/>
+        <translation>Μοντέλο Πληκτρολογίου:</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardPage.ui" line="131"/>
         <source>Type here to test your keyboard</source>
-        <translation type="unfinished"/>
+        <translation>Πληκτρολογείστε εδώ για να δοκιμάσετε το πληκτρολόγιο σας</translation>
     </message>
 </context>
 <context>
@@ -1327,12 +1327,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="36"/>
         <source>What is your name?</source>
-        <translation type="unfinished"/>
+        <translation>Ποιό είναι το όνομά σας;</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="117"/>
         <source>What name do you want to use to log in?</source>
-        <translation type="unfinished"/>
+        <translation>Ποιό όνομα θα θέλατε να χρησιμοποιείτε για σύνδεση;</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="197"/>
@@ -1350,7 +1350,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="335"/>
         <source>Choose a password to keep your account safe.</source>
-        <translation type="unfinished"/>
+        <translation>Επιλέξτε ένα κωδικό για να διατηρήσετε το λογαριασμό σας ασφαλή.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="440"/>
@@ -1370,7 +1370,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="450"/>
         <source>Log in automatically without asking for the password.</source>
-        <translation type="unfinished"/>
+        <translation>Σύνδεση αυτόματα χωρίς να ζητείται κωδικός πρόσβασης.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="457"/>
@@ -1423,7 +1423,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="216"/>
         <source>%1  %2</source>
-        <translation type="unfinished"/>
+        <translation>%1  %2</translation>
     </message>
 </context>
 <context>
@@ -1432,18 +1432,18 @@ The installer will quit and all changes will be lost.</source>
         <location filename="../src/modules/partition/core/PartitionModel.cpp" line="137"/>
         <location filename="../src/modules/partition/core/PartitionModel.cpp" line="169"/>
         <source>Free Space</source>
-        <translation type="unfinished"/>
+        <translation>Ελεύθερος Χώρος</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/core/PartitionModel.cpp" line="141"/>
         <location filename="../src/modules/partition/core/PartitionModel.cpp" line="173"/>
         <source>New partition</source>
-        <translation type="unfinished"/>
+        <translation>Καινούρια κατάτμηση</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/core/PartitionModel.cpp" line="242"/>
         <source>Name</source>
-        <translation type="unfinished"/>
+        <translation>Όνομα</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/core/PartitionModel.cpp" line="244"/>
@@ -1458,7 +1458,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/core/PartitionModel.cpp" line="248"/>
         <source>Size</source>
-        <translation type="unfinished"/>
+        <translation>Μέγεθος</translation>
     </message>
 </context>
 <context>
@@ -1486,17 +1486,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="104"/>
         <source>&amp;Create</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Δημιουργία</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="111"/>
         <source>&amp;Edit</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Επεξεργασία</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="118"/>
         <source>&amp;Delete</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Διαγραφή</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="145"/>
@@ -1514,12 +1514,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="66"/>
         <source>Gathering system information...</source>
-        <translation type="unfinished"/>
+        <translation>Συλλογή πληροφοριών συστήματος...</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="105"/>
         <source>Partitions</source>
-        <translation type="unfinished"/>
+        <translation>Κατατμήσεις</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="142"/>
@@ -1569,12 +1569,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="221"/>
         <source>Before:</source>
-        <translation type="unfinished"/>
+        <translation>Πριν: </translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="235"/>
         <source>After:</source>
-        <translation type="unfinished"/>
+        <translation>Μετά: </translation>
     </message>
 </context>
 <context>
@@ -1691,7 +1691,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="57"/>
         <source>Gathering system information...</source>
-        <translation type="unfinished"/>
+        <translation>Συλλογή πληροφοριών συστήματος...</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="98"/>
