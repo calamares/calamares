@@ -248,7 +248,7 @@ Framleiðsla:
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="100"/>
         <source>Internal error when starting command</source>
-        <translation type="unfinished"/>
+        <translation>Innri villa við að ræsa skipun</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="101"/>
@@ -292,7 +292,7 @@ Output:
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="254"/>
         <source>Bad working directory path</source>
-        <translation type="unfinished"/>
+        <translation>Röng slóð á vinnumöppu</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="255"/>
@@ -302,12 +302,12 @@ Output:
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="265"/>
         <source>Bad main script file</source>
-        <translation type="unfinished"/>
+        <translation>Röng aðal-skriftuskrá</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="266"/>
         <source>Main script file %1 for python job %2 is not readable.</source>
-        <translation type="unfinished"/>
+        <translation>Aðal-skriftuskrá %1 fyrir python verkið %2 er ekki lesanleg.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="311"/>
@@ -391,7 +391,7 @@ Uppsetning mun hætta og allar breytingar tapast.</translation>
     <message>
         <location filename="../src/libcalamares/PythonHelper.cpp" line="247"/>
         <source>unparseable Python error</source>
-        <translation type="unfinished"/>
+        <translation>óþáttanleg Python villa</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonHelper.cpp" line="263"/>
