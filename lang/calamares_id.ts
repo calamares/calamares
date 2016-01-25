@@ -504,12 +504,12 @@ Penginstalan dapat dilanjutkan, namun beberapa fitur akan ditiadakan.</translati
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="723"/>
         <source>&lt;strong&gt;Select which partition to shrink, then drag to resize&lt;/strong&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;Pilih partisi mana yang akan disusutkan, kemudian geser untuk mengubah ukurannya&lt;/strong&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="737"/>
         <source>%1 will be shrunk to %2MB and a new %3MB partition will be created for %4.</source>
-        <translation type="unfinished"/>
+        <translation>%1 akan disusutkan menjadi %2MB dan partisi baru %3MB akan dibuat untuk %4.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="788"/>
@@ -1572,12 +1572,12 @@ Penginstalan dapat dilanjutkan, namun beberapa fitur akan ditiadakan.</translati
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="221"/>
         <source>Before:</source>
-        <translation type="unfinished"/>
+        <translation>Sebelum:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="235"/>
         <source>After:</source>
-        <translation type="unfinished"/>
+        <translation>Sesudah:</translation>
     </message>
 </context>
 <context>

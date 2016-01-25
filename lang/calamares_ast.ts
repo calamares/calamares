@@ -512,7 +512,7 @@ L&apos;instalador colará y perderánse toles camudancies.</translation>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="788"/>
         <source>&lt;strong&gt;Select which partition to replace&lt;/strong&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;Esbilla que partición trocar&lt;/strong&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="840"/>
@@ -525,7 +525,7 @@ L&apos;instalador colará y perderánse toles camudancies.</translation>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="899"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="948"/>
         <source>&lt;strong&gt;Erase disk&lt;/strong&gt;&lt;br/&gt;This will &lt;font color=&quot;red&quot;&gt;delete&lt;/font&gt; all data currently present on the selected storage device.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;Desaniciar discu&lt;/strong&gt;&lt;br/&gt;Esto &lt;font color=&quot;red&quot;&gt;desaniciará&lt;/font&gt; tolos datos anguaño presentes nel preséu d&apos;almacenamientu esbilláu.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="864"/>
@@ -544,17 +544,17 @@ L&apos;instalador colará y perderánse toles camudancies.</translation>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="903"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="952"/>
         <source>&lt;strong&gt;Replace a partition&lt;/strong&gt;&lt;br/&gt;Replaces a partition with %1.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;Tocar una partición&lt;/strong&gt;&lt;br/&gt;Troca una partición con %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="889"/>
         <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-        <translation type="unfinished"/>
+        <translation>Esti preséu d&apos;almacenamientu yá tien un sistema operativu nelli. ¿Qué te prestaría facer?&lt;br/&gt;Sedrás capaz a revisar y confirmar les tos escoyetes enantes de facer cualesquier camudancia al preséu d&apos;almacenamientu.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="938"/>
         <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-        <translation type="unfinished"/>
+        <translation>Esti preséu d&apos;almacenamientu tien múltiples sistemes operativos nelli. ¿Qué te prestaría facer?&lt;br/&gt;Sedrás capaz a revisar y confirmar les tos escoyetes enantes de facer cualesquier camudancia al preséu d&apos;almacenamientu.</translation>
     </message>
 </context>
 <context>
@@ -896,12 +896,12 @@ L&apos;instalador colará y perderánse toles camudancies.</translation>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="188"/>
         <source>This installer &lt;strong&gt;cannot detect a partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The device either has no partition table, or the partition table is corrupted or of an unknown type.&lt;br&gt;This installer can create a new partition table for you, either automatically, or through the manual partitioning page.</source>
-        <translation type="unfinished"/>
+        <translation>L&apos;instalador &lt;strong&gt;nun pue deteutar una tabla de particiones&lt;/strong&gt; nel preséu d&apos;almacenamientu esbilláu.&lt;br&gt;&lt;br&gt;El preséu o nun tien denguna , o ta toyida o ye d&apos;una triba desconocida.&lt;br&gt;Esti instalador pue crear una tabla de particiones por ti, o automáticamente o pente la páxina de particionáu manual.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="198"/>
         <source>&lt;br&gt;&lt;br&gt;This is the recommended partition table type for modern systems which start from an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;br&gt;&lt;br&gt;Esta ye la triba de tabla de particiones pa sistemes modernos qu&apos;anicien dende l&apos;entornu d&apos;arranque &lt;strong&gt;EFI&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="204"/>
@@ -1394,17 +1394,17 @@ L&apos;instalador colará y perderánse toles camudancies.</translation>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="187"/>
         <source>Root</source>
-        <translation type="unfinished"/>
+        <translation>Raigañu</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="190"/>
         <source>Home</source>
-        <translation type="unfinished"/>
+        <translation>Home</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="192"/>
         <source>Boot</source>
-        <translation type="unfinished"/>
+        <translation>Arranque</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="195"/>
@@ -1472,7 +1472,7 @@ L&apos;instalador colará y perderánse toles camudancies.</translation>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="22"/>
         <source>Storage de&amp;vice:</source>
-        <translation type="unfinished"/>
+        <translation>Pr&amp;eséu d&apos;almacenamientu:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="51"/>
@@ -1502,7 +1502,7 @@ L&apos;instalador colará y perderánse toles camudancies.</translation>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="145"/>
         <source>Install boot &amp;loader on:</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Instalar xestor d&apos;arranque en:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="139"/>
@@ -1609,7 +1609,7 @@ L&apos;instalador colará y perderánse toles camudancies.</translation>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="48"/>
         <source>Unpartitioned space or unknown partition table</source>
-        <translation type="unfinished"/>
+        <translation>Espaciu non particionáu o tabla de particiones desconocida</translation>
     </message>
 </context>
 <context>
@@ -1622,7 +1622,7 @@ L&apos;instalador colará y perderánse toles camudancies.</translation>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="134"/>
         <source>Select where to install %1.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;this will delete all files on the selected partition.</source>
-        <translation type="unfinished"/>
+        <translation>Esbilla u instalar %1.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Alvertencia: &lt;/font&gt; esto desaniciará tolos ficheros na partición esbillada.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="161"/>
@@ -1632,7 +1632,7 @@ L&apos;instalador colará y perderánse toles camudancies.</translation>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="169"/>
         <source>%1 cannot be installed on empty space. Please select an existing partition.</source>
-        <translation type="unfinished"/>
+        <translation>%1 nun pue instalase nel espaciu baleru. Esbilla una partición esistente, por favor.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="180"/>
@@ -1647,12 +1647,12 @@ L&apos;instalador colará y perderánse toles camudancies.</translation>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="198"/>
         <source>Data partition (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Partición de datos (%1)</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="215"/>
         <source>Unknown system partition (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Partición del sistema desconocida (%1)</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="220"/>

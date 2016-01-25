@@ -9,7 +9,7 @@
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="78"/>
         <source>Allocate drive space by dragging the divider below:</source>
-        <translation>Eκχωρήσετε χώρο στο δίσκο σύροντας το διαχωριστικό παρακάτω:</translation>
+        <translation>Δεσμεύστε χώρο στο δίσκο έλκοντάς το διαχωριστικό παρακάτω:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="121"/>
@@ -91,7 +91,7 @@ p, li { white-space: pre-wrap; }
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600; color:#343434;&quot;&gt; Rύθμιση παραμέτρων&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600; color:#343434;&quot;&gt;Διαμόρφωση&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="331"/>
@@ -142,7 +142,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="59"/>
         <source>Master Boot Record of %1</source>
-        <translation>Master Boot Record of %1</translation>
+        <translation>Master Boot Record του %1</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="76"/>
@@ -322,12 +322,12 @@ Output:
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="65"/>
         <source>&amp;Back</source>
-        <translation>Προηγούμενο</translation>
+        <translation>&amp;Προηγούμενο</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="66"/>
         <source>&amp;Next</source>
-        <translation>Επόμενο</translation>
+        <translation>&amp;Επόμενο</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="67"/>
@@ -359,7 +359,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="232"/>
         <source>&amp;Install now</source>
-        <translation>&amp;Εγκατάσταση τώρα</translation>
+        <translation>Ε&amp;γκατάσταση τώρα</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="233"/>
@@ -369,7 +369,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="264"/>
         <source>&amp;Quit</source>
-        <translation>Τερματισμός</translation>
+        <translation>&amp;Τερματισμός</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="170"/>
@@ -607,7 +607,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="38"/>
         <source>Partition &amp;Type:</source>
-        <translation>Κατάτμηση &amp;Type:</translation>
+        <translation>Τύ&amp;πος κατάτμησης:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="50"/>
@@ -1438,7 +1438,7 @@ The installer will quit and all changes will be lost.</source>
         <location filename="../src/modules/partition/core/PartitionModel.cpp" line="141"/>
         <location filename="../src/modules/partition/core/PartitionModel.cpp" line="173"/>
         <source>New partition</source>
-        <translation>Καινούρια κατάτμηση</translation>
+        <translation>Νέα κατάτμηση</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/core/PartitionModel.cpp" line="242"/>
