@@ -218,7 +218,7 @@ PartitionViewStep::createSummaryWidget() const
         field->setSpacing( 6 );
         field->addWidget( preview );
         field->addWidget( previewLabels );
-        formLayout->addRow( tr( "Before:" ), field );
+        formLayout->addRow( tr( "Current:" ), field );
 
         preview = new PartitionBarsView;
         previewLabels = new PartitionLabelsView;

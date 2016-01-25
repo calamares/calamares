@@ -104,8 +104,8 @@ ChoicePage::ChoicePage( QWidget* parent )
     // Drive selector + preview
     CALAMARES_RETRANSLATE(
         retranslateUi( this );
-        m_drivesLabel->setText( tr( "Pick a storage de&vice:" ) );
-        m_previewBeforeLabel->setText( tr( "Device:" ) );
+        m_drivesLabel->setText( tr( "Select storage de&vice:" ) );
+        m_previewBeforeLabel->setText( tr( "Current:" ) );
         m_previewAfterLabel->setText(  tr( "After:" ) );
     )
 
@@ -719,9 +719,9 @@ ChoicePage::updateActionChoicePreview( ChoicePage::Choice choice )
     {
     case Alongside:
         {
-            m_previewBeforeLabel->setText( tr( "Before:" ) );
-            m_selectLabel->setText( tr( "<strong>Select which partition to shrink, "
-                                        "then drag to resize</strong>" ) );
+            m_previewBeforeLabel->setText( tr( "Current:" ) );
+            m_selectLabel->setText( tr( "<strong>Select a partition to shrink, "
+                                        "then drag the bottom bar to resize</strong>" ) );
             m_selectLabel->show();
 
             m_afterPartitionSplitterWidget = new PartitionSplitterWidget( m_previewAfterFrame );
@@ -759,7 +759,7 @@ ChoicePage::updateActionChoicePreview( ChoicePage::Choice choice )
     case Erase:
     case Replace:
         {
-            m_previewBeforeLabel->setText( tr( "Before:" ) );
+            m_previewBeforeLabel->setText( tr( "Current:" ) );
             m_afterPartitionBarsView = new PartitionBarsView( m_previewAfterFrame );
             m_afterPartitionLabelsView = new PartitionLabelsView( m_previewAfterFrame );
             m_afterPartitionLabelsView->setCustomNewRootLabel( Calamares::Branding::instance()->
@@ -785,7 +785,7 @@ ChoicePage::updateActionChoicePreview( ChoicePage::Choice choice )
             else
             {
                 m_selectLabel->show();
-                m_selectLabel->setText( tr( "<strong>Select which partition to replace</strong>" ) );
+                m_selectLabel->setText( tr( "<strong>Select a partition to install on</strong>" ) );
             }
 
             break;
@@ -794,7 +794,7 @@ ChoicePage::updateActionChoicePreview( ChoicePage::Choice choice )
     case Manual:
         m_selectLabel->hide();
         m_previewAfterFrame->hide();
-        m_previewBeforeLabel->setText( tr( "Device:" ) );
+        m_previewBeforeLabel->setText( tr( "Current:" ) );
         m_previewAfterLabel->hide();
         break;
     }
