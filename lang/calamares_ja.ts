@@ -437,7 +437,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="95"/>
         <source>This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;Installation cannot continue. &lt;a href=&quot;#details&quot;&gt;Details...&lt;/a&gt;</source>
-        <translation>このコンピュータは %1 をインストールするための最低要件を満たしていません。&lt;br/&gt;インストールが続行できません。&lt;a href=&quot;#details&quot;&gt;詳細...&lt;/a&gt;</translation>
+        <translation>このコンピュータは %1 をインストールするための最低要件を満たしていません。&lt;br/&gt;インストールは続行できません。&lt;a href=&quot;#details&quot;&gt;詳細...&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="113"/>
@@ -508,7 +508,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="788"/>
         <source>&lt;strong&gt;Select a partition to install on&lt;/strong&gt;</source>
-        <translation>&lt;strong&gt;選択したインストールパーティション&lt;/strong&gt;</translation>
+        <translation>&lt;strong&gt;インストールするパーティションの選択&lt;/strong&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="840"/>
@@ -1382,7 +1382,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="585"/>
         <source>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors.&lt;/small&gt;</source>
-        <translation>&lt;small&gt;入力ミスを確認することができるよう、同じパスワードを 2 回入力します。&lt;/small&gt;</translation>
+        <translation>&lt;small&gt;入力ミスを確認することができるように、同じパスワードを 2 回入力します。&lt;/small&gt;</translation>
     </message>
 </context>
 <context>

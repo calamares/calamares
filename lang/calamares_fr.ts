@@ -490,7 +490,7 @@ L&apos;installateur se fermera et les changements seront perdus.</translation>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="107"/>
         <source>Select storage de&amp;vice:</source>
-        <translation type="unfinished"/>
+        <translation>Sélectionnez le support de sto&amp;ckage :</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="108"/>
@@ -498,17 +498,17 @@ L&apos;installateur se fermera et les changements seront perdus.</translation>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="762"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="797"/>
         <source>Current:</source>
-        <translation type="unfinished"/>
+        <translation>Actuel :</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="723"/>
         <source>&lt;strong&gt;Select a partition to shrink, then drag the bottom bar to resize&lt;/strong&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;Sélectionnez une partition à réduire, puis faites glisser la barre du bas pour redimensionner&lt;/strong&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="788"/>
         <source>&lt;strong&gt;Select a partition to install on&lt;/strong&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;Sélectionner une partition pour l&apos;installation&lt;/strong&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="840"/>
@@ -1566,7 +1566,7 @@ L&apos;installateur se fermera et les changements seront perdus.</translation>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="221"/>
         <source>Current:</source>
-        <translation type="unfinished"/>
+        <translation>Actuel :</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="235"/>

@@ -489,7 +489,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="107"/>
         <source>Select storage de&amp;vice:</source>
-        <translation type="unfinished"/>
+        <translation>Выбрать устройство &amp;хранения:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="108"/>
@@ -497,17 +497,17 @@ The installer will quit and all changes will be lost.</source>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="762"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="797"/>
         <source>Current:</source>
-        <translation type="unfinished"/>
+        <translation>Текущий:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="723"/>
         <source>&lt;strong&gt;Select a partition to shrink, then drag the bottom bar to resize&lt;/strong&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;Выбрать раздел для уменьшения, затем сдвиньте ползунок для изменения размера&lt;/strong&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="788"/>
         <source>&lt;strong&gt;Select a partition to install on&lt;/strong&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;Выбрать раздела для установки на&lt;/strong&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="840"/>
@@ -861,7 +861,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="79"/>
         <source>The &lt;strong&gt;boot environment&lt;/strong&gt; of this system.&lt;br&gt;&lt;br&gt;Older x86 systems only support &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Modern systems usually use &lt;strong&gt;EFI&lt;/strong&gt;, but may also show up as BIOS if the boot environment runs in compatibility mode.&lt;br&gt;Relevant entries in the system setup utility include: CSM, compatibility support module, Legacy boot mode, BIOS mode, etc.</source>
-        <translation>&lt;strong&gt;Среда загрузки&lt;/strong&gt; данной системы.&lt;br&gt;&lt;br&gt;Старые системы x86 поддерживают только &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Современные системы обычно используют &lt;strong&gt;EFI&lt;/strong&gt;, но также могут имитировать BIOS, если среда загрузки запущена в режиме совместимости.&lt;br&gt;Соответствующие пункты в утилите системной настройки могут называться так: CSM, модуль совместимости, устаревший режим загрузки, режим BIOS, и т.д.</translation>
+        <translation>&lt;strong&gt;Среда загрузки&lt;/strong&gt; данной системы.&lt;br&gt;&lt;br&gt;Старые системы x86 поддерживают только &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Современные системы обычно используют &lt;strong&gt;EFI&lt;/strong&gt;, но также могут имитировать BIOS, если среда загрузки запущена в режиме совместимости.&lt;br&gt;Соответствующие пункты утилит  настройки системывключают в себя: CSM, модуль совместимости, Legacy boot mode, режим BIOS и т.д.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="87"/>
@@ -881,17 +881,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="174"/>
         <source>The selected storage device has a partition table. The partition table type is &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation>На выбранном устройстве есть таблица разделов. Тип таблицы разделов - &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+        <translation>На выбранном устройстве есть таблица разделов. Тип этой таблицы разделов &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="181"/>
         <source>The selected storage device is a &lt;strong&gt;loop&lt;/strong&gt; device.&lt;br&gt;&lt;br&gt;This is not an actual partition table, it is a pseudo-device that makes a file accessible as a block device. This kind of setup usually only contains a single filesystem.</source>
-        <translation>Выбранное устройство представляет собой устройство в режиме &lt;strong&gt;loop&lt;/strong&gt;.&lt;br&gt;&lt;br&gt;Это не настоящая таблица разделов, а псевдо-устройство, дающее доступ к файлу как к блочному устройству. При таком виде подключения обычно только одна файловая система.</translation>
+        <translation>Выбранное устройство хранения является &lt;strong&gt;loop&lt;/strong&gt; устройством.&lt;br&gt;&lt;br&gt;Это не реальная таблица разделов, а псевдо-устройство, дающее доступ к файлу как к блочному устройству. Этот вид установки, обычно содержит единственную файловую систему.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="188"/>
         <source>This installer &lt;strong&gt;cannot detect a partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The device either has no partition table, or the partition table is corrupted or of an unknown type.&lt;br&gt;This installer can create a new partition table for you, either automatically, or through the manual partitioning page.</source>
-        <translation>Программа установки &lt;strong&gt;не обнаружила таблицы разделов&lt;/strong&gt; на выбранном устройстве.&lt;br&gt;&lt;br&gt;На этом устройстве либо нет таблицы разделов, либо она повреждена, либо неизвестного типа.&lt;br&gt;Эта программа установки может создать для Вас новую таблицу разделов автоматически или на странице ручной разметки.</translation>
+        <translation>Программа установки &lt;strong&gt;не обнаружила таблицы разделов&lt;/strong&gt; на выбранном устройстве хранения.&lt;br&gt;&lt;br&gt;На этом устройстве либо нет таблицы разделов, либо она повреждена, либо неизвестного типа.&lt;br&gt;Эта программа установки может создать для Вас новую таблицу разделов автоматически или через страницу ручной разметки.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="198"/>
@@ -1497,7 +1497,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="145"/>
         <source>Install boot &amp;loader on:</source>
-        <translation>Уст&amp;ановить загрузчик в:</translation>
+        <translation>Установить &amp;загрузчик в:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="139"/>
@@ -1565,7 +1565,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="221"/>
         <source>Current:</source>
-        <translation type="unfinished"/>
+        <translation>Текущий:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="235"/>
@@ -1604,7 +1604,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="48"/>
         <source>Unpartitioned space or unknown partition table</source>
-        <translation>Неразмеченное место или неизвестная таблица разметки</translation>
+        <translation>Неразмеченное место или неизвестная таблица разделов</translation>
     </message>
 </context>
 <context>
@@ -1622,7 +1622,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="161"/>
         <source>The selected item does not appear to be a valid partition.</source>
-        <translation>Выбранный элемент, видимо, не является допустимым разделом.</translation>
+        <translation>Выбранный элемент, видимо, не является действующим разделом.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="169"/>
@@ -1632,7 +1632,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="180"/>
         <source>%1 cannot be installed on an extended partition. Please select an existing primary or logical partition.</source>
-        <translation>%1 не может быть установлен прямо в расширенный раздел. Пожалуйста выберите существующий основной или логический раздел.</translation>
+        <translation>%1 не может быть установлен прямо в расширенный раздел. Выберите существующий основной или логический раздел.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="191"/>
@@ -1657,12 +1657,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="231"/>
         <source>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;The partition %1 is too small for %2. Please select a partition with capacity at least %3 GiB.</source>
-        <translation>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Раздел %1 слишком мал для %2. Пожалуйста выберите раздел объемом не менее %3 ГиБ.</translation>
+        <translation>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Раздел %1 слишком мал для %2. Пожалуйста выберите раздел объемом не менее %3 Гиб.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="255"/>
         <source>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
-        <translation>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Не найдено системного раздела EFI. Пожалуйста, вернитесь назад и выполните ручную разметку для установки %1.</translation>
+        <translation>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Не найден системный раздел EFI. Вернитесь назад и выполните ручную разметку для установки %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="267"/>
@@ -1787,7 +1787,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="83"/>
         <source>Scanning storage devices...</source>
-        <translation>Сканируются устройства...</translation>
+        <translation>Сканируются устройства хранения...</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="84"/>
