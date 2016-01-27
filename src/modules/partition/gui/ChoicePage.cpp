@@ -88,7 +88,8 @@ ChoicePage::ChoicePage( QWidget* parent )
     m_drivesLayout->setDirection( QBoxLayout::LeftToRight );
 
     BootInfoWidget* bootInfoWidget = new BootInfoWidget( this );
-    m_drivesLayout->addWidget( bootInfoWidget );
+    m_drivesLayout->insertWidget( 0, bootInfoWidget );
+    m_drivesLayout->insertSpacing( 1, CalamaresUtils::defaultFontHeight() / 2 );
 
     m_drivesCombo = new QComboBox( this );
     m_mainLayout->setStretchFactor( m_drivesLayout, 0 );
