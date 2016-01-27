@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2015-2016, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -29,8 +29,6 @@
 
 DeviceInfoWidget::DeviceInfoWidget( QWidget* parent )
     : QWidget( parent )
-    , m_bootIcon( new QLabel )
-    , m_bootLabel( new QLabel )
     , m_ptIcon( new QLabel )
     , m_ptLabel( new QLabel )
 {
@@ -39,19 +37,11 @@ DeviceInfoWidget::DeviceInfoWidget( QWidget* parent )
 
     CalamaresUtils::unmarginLayout( mainLayout );
 
-    mainLayout->addWidget( m_bootIcon );
-    mainLayout->addWidget( m_bootLabel );
-    mainLayout->addSpacing( CalamaresUtils::defaultFontHeight() / 4 );
     mainLayout->addWidget( m_ptIcon );
     mainLayout->addWidget( m_ptLabel );
 
     QSize iconSize = CalamaresUtils::defaultIconSize();
 
-    m_bootIcon->setMargin( 0 );
-    m_bootIcon->setFixedSize( iconSize );
-    m_bootIcon->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::BootEnvironment,
-                                                          CalamaresUtils::Original,
-                                                          iconSize ) );
     m_ptIcon->setMargin( 0 );
     m_ptIcon->setFixedSize( iconSize );
     m_ptIcon->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::PartitionTable,
@@ -60,27 +50,16 @@ DeviceInfoWidget::DeviceInfoWidget( QWidget* parent )
 
     QFontMetrics fm = QFontMetrics( QFont() );
     m_ptLabel->setMinimumWidth( fm.boundingRect( "Amiga" ).width() + CalamaresUtils::defaultFontHeight() / 2 );
-    m_bootLabel->setMinimumWidth( fm.boundingRect( "BIOS" ).width() + CalamaresUtils::defaultFontHeight() / 2 );
     m_ptLabel->setAlignment( Qt::AlignCenter );
-    m_bootLabel->setAlignment( Qt::AlignCenter );
 
     QPalette palette;
     palette.setBrush( QPalette::Foreground, QColor( "#4D4D4D" ) ); //dark grey
 
     m_ptIcon->setAutoFillBackground( true );
-    m_bootIcon->setAutoFillBackground( true );
     m_ptLabel->setAutoFillBackground( true );
-    m_bootLabel->setAutoFillBackground( true );
     m_ptIcon->setPalette( palette );
-    m_bootIcon->setPalette( palette );
     m_ptLabel->setPalette( palette );
-    m_bootLabel->setPalette( palette );
 
-    m_bootIcon->setToolTip( tr( "The <strong>boot environment</strong> of this system.<br><br>"
-                                "Older x86 systems only support <strong>BIOS</strong>.<br>"
-                                "Modern systems usually use <strong>EFI</strong>, but "
-                                "may also show up as BIOS if started in compatibility "
-                                "mode." ) );
     m_ptIcon->setToolTip( tr( "The type of <strong>partition table</strong> on the "
                               "selected storage device.<br><br>"
                               "The only way to change the partition table type is to "
@@ -93,37 +72,6 @@ DeviceInfoWidget::DeviceInfoWidget( QWidget* parent )
     bool isEfi = false;
     if ( QDir( "/sys/firmware/efi/efivars" ).exists() )
         isEfi = true;
-
-    QString bootToolTip;
-    if ( isEfi )
-    {
-        m_bootLabel->setText( "EFI " );
-        bootToolTip = tr( "This system was started with an <strong>EFI</strong> "
-                          "boot environment.<br><br>"
-                          "To configure startup from an EFI environment, this installer "
-                          "must deploy a boot loader application, like <strong>GRUB"
-                          "</strong> or <strong>systemd-boot</strong> on an <strong>"
-                          "EFI System Partition</strong>. This is automatic, unless "
-                          "you choose manual partitioning, in which case you must "
-                          "choose it or create it on your own." );
-    }
-    else
-    {
-        m_bootLabel->setText( "BIOS" );
-        bootToolTip = tr( "This system was started with a <strong>BIOS</strong> "
-                          "boot environment.<br><br>"
-                          "To configure startup from a BIOS environment, this installer "
-                          "must install a boot loader, like <strong>GRUB"
-                          "</strong>, either at the beginning of a partition or "
-                          "on the <strong>Master Boot Record</strong> near the "
-                          "beginning of the partition table (preferred). "
-                          "This is automatic, unless "
-                          "you choose manual partitioning, in which case you must "
-                          "set it up on your own." );
-
-    }
-    m_bootLabel->setToolTip( bootToolTip );
-
 }
 
 
