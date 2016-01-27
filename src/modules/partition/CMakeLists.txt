@@ -35,6 +35,7 @@ calamares_add_plugin( partition
         gui/CreatePartitionDialog.cpp
         gui/EditExistingPartitionDialog.cpp
         gui/AlongsidePage.cpp
+        gui/BootInfoWidget.cpp
         gui/DeviceInfoWidget.cpp
         gui/PartitionPage.cpp
         gui/PartitionBarsView.cpp
