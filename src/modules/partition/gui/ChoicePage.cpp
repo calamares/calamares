@@ -32,6 +32,7 @@
 #include "PartitionBarsView.h"
 #include "PartitionLabelsView.h"
 #include "PartitionSplitterWidget.h"
+#include "BootInfoWidget.h"
 #include "DeviceInfoWidget.h"
 #include "ScanningDialog.h"
 
@@ -85,6 +86,10 @@ ChoicePage::ChoicePage( QWidget* parent )
     // Set up drives combo
     m_mainLayout->setDirection( QBoxLayout::TopToBottom );
     m_drivesLayout->setDirection( QBoxLayout::LeftToRight );
+
+    BootInfoWidget* bootInfoWidget = new BootInfoWidget( this );
+    m_drivesLayout->addWidget( bootInfoWidget );
+
     m_drivesCombo = new QComboBox( this );
     m_mainLayout->setStretchFactor( m_drivesLayout, 0 );
     m_mainLayout->setStretchFactor( m_rightLayout, 1 );
