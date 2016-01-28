@@ -138,7 +138,7 @@ DeviceInfoWidget::setPartitionTableType( PartitionTable::TableType type )
                              "systems which start from a <strong>BIOS</strong> boot "
                              "environment. GPT is recommended in most other cases.<br><br>"
                              "<strong>Warning:</strong> the MBR partition table "
-                             "is an obsolete standard.<br>"
+                             "is an obsolete MS-DOS era standard.<br>"
                              "Only 4 <em>primary</em> partitions may be created, and of "
                              "those 4, one can be an <em>extended</em> partition, which "
                              "may in turn contain many <em>logical</em> partitions." );
