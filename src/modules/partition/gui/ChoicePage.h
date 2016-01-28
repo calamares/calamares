@@ -33,7 +33,6 @@ class QComboBox;
 class QLabel;
 class QListView;
 
-class ExpandableRadioButton;
 class PartitionBarsView;
 class PartitionSplitterWidget;
 class PartitionLabelsView;
@@ -79,8 +78,7 @@ private slots:
 private:
     void setNextEnabled( bool enabled );
     void setupChoices();
-    QComboBox* createBootloaderComboBox( ExpandableRadioButton* parentButton );
-    ExpandableRadioButton* createEraseButton();
+    QComboBox* createBootloaderComboBox( QWidget* parentButton );
     Device* selectedDevice();
     void applyDeviceChoice();
     void updateDeviceStatePreview();
@@ -101,7 +99,7 @@ private:
 
     QButtonGroup* m_grp;
     PrettyRadioButton* m_alongsideButton;
-    ExpandableRadioButton* m_eraseButton;
+    PrettyRadioButton* m_eraseButton;
     PrettyRadioButton* m_replaceButton;
     PrettyRadioButton* m_somethingElseButton;
 
