@@ -11,7 +11,7 @@ find_package( KF5 REQUIRED CoreAddons )
 find_package( KF5 REQUIRED Config I18n IconThemes KIO Service )
 
 # TODO: we should require a minimum version, when KPMcore gets meaningful versioning
-find_package( KPMcore REQUIRED )
+find_package( KPMcore 2.0 REQUIRED )
 
 add_subdirectory( tests )
 
