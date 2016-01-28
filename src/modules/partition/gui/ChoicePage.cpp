@@ -216,7 +216,6 @@ ChoicePage::setupChoices()
     m_itemsLayout->addWidget( m_alongsideButton );
     m_itemsLayout->addWidget( m_replaceButton );
     m_itemsLayout->addWidget( m_eraseButton );
-    m_itemsLayout->setSpacing( CalamaresUtils::defaultFontHeight() / 2 );
 
     m_somethingElseButton = new PrettyRadioButton;
     CALAMARES_RETRANSLATE(
