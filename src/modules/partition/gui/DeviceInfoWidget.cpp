@@ -104,17 +104,17 @@ DeviceInfoWidget::setPartitionTableType( PartitionTable::TableType type )
     }
 
 
-    QString toolTipString = tr( "The selected storage device has a partition table of "
-                                "type <strong>%1</strong>." )
+    QString toolTipString = tr( "This device has a <strong>%1</strong> partition "
+                                "table." )
                             .arg( typeString );
 
     switch ( type )
     {
     case PartitionTable::loop:
-        toolTipString = tr( "The selected storage device is a <strong>loop</strong> "
+        toolTipString = tr( "This is a <strong>loop</strong> "
                             "device.<br><br>"
-                            "This is not an actual partition table, it is "
-                            "a pseudo-device that makes a file accessible as a block device. "
+                            "It is a pseudo-device with no partition table "
+                            "that makes a file accessible as a block device. "
                             "This kind of setup usually only contains a single filesystem." );
         break;
     case PartitionTable::unknownTableType:
