@@ -138,6 +138,24 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>BootInfoWidget</name>
+    <message>
+        <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="61"/>
+        <source>The &lt;strong&gt;boot environment&lt;/strong&gt; of this system.&lt;br&gt;&lt;br&gt;Older x86 systems only support &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Modern systems usually use &lt;strong&gt;EFI&lt;/strong&gt;, but may also show up as BIOS if started in compatibility mode.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="75"/>
+        <source>This system was started with an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from an EFI environment, this installer must deploy a boot loader application, like &lt;strong&gt;GRUB&lt;/strong&gt; or &lt;strong&gt;systemd-boot&lt;/strong&gt; on an &lt;strong&gt;EFI System Partition&lt;/strong&gt;. This is automatic, unless you choose manual partitioning, in which case you must choose it or create it on your own.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="87"/>
+        <source>This system was started with a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from a BIOS environment, this installer must install a boot loader, like &lt;strong&gt;GRUB&lt;/strong&gt;, either at the beginning of a partition or on the &lt;strong&gt;Master Boot Record&lt;/strong&gt; near the beginning of the partition table (preferred). This is automatic, unless you choose manual partitioning, in which case you must set it up on your own.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>BootLoaderModel</name>
     <message>
         <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="59"/>
@@ -468,87 +486,87 @@ Het installatieprogramma zal afsluiten en alle wijzigingen zullen verloren gaan.
         <translation>Formulier</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="109"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="115"/>
         <source>After:</source>
         <translation>Na:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="217"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="223"/>
         <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself.</source>
         <translation>&lt;strong&gt;Handmatig partitioneren&lt;/strong&gt;&lt;br/&gt;Je maakt of wijzigt zelf de partities.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="342"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="348"/>
         <source>Boot loader location:</source>
         <translation>Bootloader locatie:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="737"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="743"/>
         <source>%1 will be shrunk to %2MB and a new %3MB partition will be created for %4.</source>
         <translation>%1 zal verkleind worden tot %2MB en een nieuwe %3MB partitie zal worden aangemaakt voor %4.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="107"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="113"/>
         <source>Select storage de&amp;vice:</source>
         <translation>Selecteer &amp;opslagmedium:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="108"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="722"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="762"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="797"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="114"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="728"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="768"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="803"/>
         <source>Current:</source>
         <translation>Huidig:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="723"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="729"/>
         <source>&lt;strong&gt;Select a partition to shrink, then drag the bottom bar to resize&lt;/strong&gt;</source>
         <translation>&lt;strong&gt;Selecteer een partitie om te verkleinen, en sleep vervolgens de onderste balk om het formaat te wijzigen&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="788"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="794"/>
         <source>&lt;strong&gt;Select a partition to install on&lt;/strong&gt;</source>
         <translation>&lt;strong&gt;Selecteer een partitie om op te installeren&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="840"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="846"/>
         <source>This storage device does not seem to have an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>Dit opslagmedium lijkt geen besturingssysteem te bevatten. Wat wil je doen?&lt;br/&gt;Je zal jouw keuzes kunnen nazien en bevestigen voordat er iets aan het opslagmedium wordt veranderd.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="845"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="875"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="899"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="948"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="851"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="881"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="905"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="954"/>
         <source>&lt;strong&gt;Erase disk&lt;/strong&gt;&lt;br/&gt;This will &lt;font color=&quot;red&quot;&gt;delete&lt;/font&gt; all data currently present on the selected storage device.</source>
         <translation>&lt;strong&gt;Wis schijf&lt;/strong&gt;&lt;br/&gt;Dit zal alle huidige gegevens op de geselecteerd opslagmedium &lt;font color=&quot;red&quot;&gt;verwijderen&lt;/font&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="864"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="870"/>
         <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>Dit opslagmedium bevat %1. Wat wil je doen?&lt;br/&gt;Je zal jouw keuzes kunnen nazien en bevestigen voordat er iets aan het opslagmedium wordt veranderd.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="870"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="894"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="943"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="876"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="900"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="949"/>
         <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
         <translation>&lt;strong&gt;Installeer ernaast&lt;/strong&gt;&lt;br/&gt;Het installatieprogramma zal een partitie verkleinen om plaats te maken voor %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="880"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="903"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="952"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="886"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="909"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="958"/>
         <source>&lt;strong&gt;Replace a partition&lt;/strong&gt;&lt;br/&gt;Replaces a partition with %1.</source>
         <translation>&lt;strong&gt;Vervang een partitie&lt;/strong&gt;&lt;br/&gt;Vervangt een partitie met %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="889"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="895"/>
         <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>Dit opslagmedium bevat reeds een besturingssysteem. Wat wil je doen?&lt;br/&gt;Je zal jouw keuzes kunnen nazien en bevestigen voordat er iets aan het opslagmedium wordt veranderd.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="938"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="944"/>
         <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>Dit opslagmedium bevat meerdere besturingssystemen. Wat wil je doen?&lt;br/&gt;Je zal jouw keuzes kunnen nazien en bevestigen voordat er iets aan het opslagmedium wordt veranderd.</translation>
     </message>
@@ -860,49 +878,34 @@ Het installatieprogramma zal afsluiten en alle wijzigingen zullen verloren gaan.
 <context>
     <name>DeviceInfoWidget</name>
     <message>
-        <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="79"/>
-        <source>The &lt;strong&gt;boot environment&lt;/strong&gt; of this system.&lt;br&gt;&lt;br&gt;Older x86 systems only support &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Modern systems usually use &lt;strong&gt;EFI&lt;/strong&gt;, but may also show up as BIOS if the boot environment runs in compatibility mode.&lt;br&gt;Relevant entries in the system setup utility include: CSM, compatibility support module, Legacy boot mode, BIOS mode, etc.</source>
-        <translation>De &lt;strong&gt;opstartomgeving&lt;/strong&gt; van dit systeem.&lt;br&gt;&lt;br&gt;Oudere x86-systemen ondersteunen enkel &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Moderne systemen gebruiken meestal &lt;strong&gt;EFI&lt;/strong&gt;, maar kan ook BIOS gebruiken als de opstartomgeving in compatibiliteitsmodus draait.&lt;br&gt;Relevante items in de systeemconfiguratie omvatten: compatibiliteitsondersteuning (CSM), legacy-opstartmodus, BIOS modus, etc.</translation>
+        <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="63"/>
+        <source>The type of &lt;strong&gt;partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The only way to change the partition table type is to erase and recreate the partition table from scratch, which destroys all data on the storage device.&lt;br&gt;This installer will keep the current partition table unless you explicitly choose otherwise.&lt;br&gt;If unsure, on modern systems GPT is preferred.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="87"/>
-        <source>The type of &lt;strong&gt;partition table&lt;/strong&gt; currently present on the selected storage device.&lt;br&gt;&lt;br&gt;Common values on x86-compatible systems include &lt;strong&gt;GPT&lt;/strong&gt; and &lt;strong&gt;MSDOS&lt;/strong&gt;.&lt;br&gt;Some systems may use other, less common partition table types, like BSD or Sun.&lt;br&gt;The only way to change the partition table type is to erase and recreate the partition table from scratch, which destroys all data on the storage device.&lt;br&gt;This installer will keep the current partition table unless you explicitly choose otherwise.&lt;br&gt;If unsure, on modern systems GPT is preferred.</source>
-        <translation>Het type van &lt;strong&gt;partitietabel&lt;/strong&gt; dat momenteel aanwezig is op het opslagmedium.&lt;br&gt;&lt;br&gt;Vaak voorkomende waarden op x86-compatibele systemen zijn &lt;strong&gt;GPT&lt;/strong&gt; en &lt;strong&gt;MSDOS&lt;/strong&gt;.&lt;br&gt;Sommige systemen kunnen andere, minder voorkomende types partitietabellen gebruiken, zoals BSD of Sun.&lt;br&gt;De enige manier om het type partitietabel te wijzigen is deze volledig te wissen en opnieuw te maken, wat alle gegevens op het opslagmedium vernietigt.&lt;br&gt;Het installatieprogramma zal de huidige partitietabel behouden, tenzij je expliciet anders kiest.&lt;br&gt;Bij twijfel kies je op moderne systemen best voor GPT.</translation>
+        <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="107"/>
+        <source>The selected storage device has a partition table of type &lt;strong&gt;%1&lt;/strong&gt;.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="108"/>
-        <source>This system was started with an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;Most consumer systems nowadays use EFI, along with a GPT partition table.&lt;br&gt;Current versions of other operating systems, like Windows and Mac OS X also support EFI, and dual boot is possible.&lt;br&gt;In order to boot from an EFI environment, this installer must deploy a boot loader application, like &lt;strong&gt;GRUB&lt;/strong&gt; or &lt;strong&gt;systemd-boot&lt;/strong&gt; on an &lt;strong&gt;EFI System Partition&lt;/strong&gt;. This is automatic, unless you choose manual partitioning, in which case you must choose it or create it on your own.</source>
-        <translation>Dit systeem is opgestart met een &lt;strong&gt;EFI&lt;/strong&gt; opstartomgeving.&lt;br&gt;&lt;br&gt;De meeste consumentensystemen gebruiken tegenwoordig EFI, samen met een GPT partitietabel.&lt;br&gt;Huidige versies van andere besturingssystemen zoals Windows en Mac OS X ondersteunen ook EFI, en dual-boot is mogelijk.&lt;br&gt;Om vanaf een EFI omgeving op te starten moet het installatieprogramma een bootloader instellen, zoals &lt;strong&gt;GRUB&lt;/strong&gt; of &lt;strong&gt;systemd-boot&lt;/strong&gt;, op een &lt;strong&gt;EFI systeempartitie&lt;/strong&gt;. Dit gebeurt automatisch, tenzij je voor manueel partitioneren kiest, waar je dit moet kiezen of zelf moet maken.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="124"/>
-        <source>This system was started with a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;Older systems which do not support EFI start from BIOS.&lt;br&gt;New systems that support EFI can also start in BIOS mode through a compatibility layer, sometimes known as CSM, Legacy boot mode or BIOS mode. On such systems EFI should be preferred, unless you wish to dual boot with an old operating system, like Windows XP. In that case, a MSDOS partition table should also be used instead of GPT.&lt;br&gt;In order to boot from a BIOS environment, this installer must install a boot loader, like &lt;strong&gt;GRUB&lt;/strong&gt;, either at the beginning of a partition or on the &lt;strong&gt;Master Boot Record&lt;/strong&gt; near the beginning of the partition table (preferred). This is automatic, unless you choose manual partitioning, in which case you must set it up on your own.</source>
-        <translation>Dit systeem is opgestart met een &lt;strong&gt;BIOS&lt;/strong&gt;-opstartomgeving.&lt;br&gt;&lt;br&gt;Oudere systemen die nog geen EFI ondersteunen starten vanaf BIOS.&lt;br&gt;Nieuwe systemen die wel EFI ondersteunen kunnen ook in BIOS-modus starten met behulp van een compatibiliteitslaag (CSM), legacy-bootmodus of BIOS-modus. Op dergelijke systemen zou EFI verkozen moeten worden, tenzij dual-boot noodzakelijk is met een ouder besturingssysteem zoals Windows XP. In dit geval moet ook een MSDOS-partitietabel gebruikt worden in plaats van GPT.&lt;br&gt;Om vanaf een BIOS-opstartomgeving op te starten moet het installatieprogramma een bootloader installeren, zoals &lt;strong&gt;GRUB&lt;/strong&gt;, ofwel op het begin van een partitie, ofwel op de &lt;strong&gt;Master Boot Record&lt;/strong&gt; dicht bij het begin van de partitietabel (voorkeur). Dit gebeurt automatisch, tenzij je voor manueel partitioneren kiest, waar je dit zelf moet instellen.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="174"/>
-        <source>The selected storage device has a partition table. The partition table type is &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation>Het geselecteerde opslagmedium bevat een partitietabel. Het type van de partitietabel is &lt;strong&gt;%1&lt;/strong&gt;.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="181"/>
+        <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="114"/>
         <source>The selected storage device is a &lt;strong&gt;loop&lt;/strong&gt; device.&lt;br&gt;&lt;br&gt;This is not an actual partition table, it is a pseudo-device that makes a file accessible as a block device. This kind of setup usually only contains a single filesystem.</source>
         <translation>Het geselecteerde opslagmedium is een &lt;strong&gt;loop&lt;/strong&gt;-apparaat.&lt;br&gt;&lt;br&gt;Dit is geen echte partitietabel, maar een pseudo-apparaat dat een bestand beschikbaar maakt als blokapparaat. Dit soort configuratie bevat meestal een enkel bestandssysteem.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="188"/>
+        <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="121"/>
         <source>This installer &lt;strong&gt;cannot detect a partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The device either has no partition table, or the partition table is corrupted or of an unknown type.&lt;br&gt;This installer can create a new partition table for you, either automatically, or through the manual partitioning page.</source>
         <translation>Het installatieprogramma &lt;strong&gt;kon geen partitietabel vinden&lt;/strong&gt; op het geselecteerde opslagmedium.&lt;br&gt;&lt;br&gt;Dit apparaat heeft ofwel geen partitietabel, ofwel is deze ongeldig of van een onbekend type.&lt;br&gt;Het installatieprogramma kan een nieuwe partitietabel aanmaken, ofwel automatisch, ofwel via de manuele partitioneringspagina.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="198"/>
+        <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="131"/>
         <source>&lt;br&gt;&lt;br&gt;This is the recommended partition table type for modern systems which start from an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.</source>
         <translation>&lt;br&gt;&lt;br&gt;Dit is de aanbevolen partitietabel voor moderne systemen die starten vanaf een &lt;strong&gt;EFI&lt;/strong&gt; opstartomgeving.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="204"/>
-        <source>&lt;br&gt;&lt;br&gt;This partition table type is only advisable on older systems which start from a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment. For most uses GPT should be preferred instead.&lt;br&gt;&lt;strong&gt;Warning:&lt;/strong&gt; the MSDOS partition table is an obsolete standard with important drawbacks.&lt;br&gt;Only 4 &lt;em&gt;primary&lt;/em&gt; partitions may be created, and of those 4, one can be an &lt;em&gt;extended&lt;/em&gt; partition, which may in turn contain many &lt;em&gt;logical&lt;/em&gt; partitions.&lt;br&gt;For compatibility reasons, it is recommended for a setup based on an MSDOS partition table to have a separate boot partition. This installer can create the boot partition for you automatically, or you may set it up yourself on the manual partitioning page.</source>
-        <translation>&lt;br&gt;&lt;br&gt;Dit type partitietabel is enkel aan te bevelen op oudere systemen die starten vanaf een &lt;strong&gt;BIOS&lt;/strong&gt; opstartomgeving. In de meeste gevallen moet echter GPT verkozen worden.&lt;br&gt;&lt;strong&gt;Opgelet:&lt;/strong&gt; de MSDOS partitietabel is een achterhaalde standaard met belangrijke nadelen.&lt;br&gt;Slechts 4 &lt;em&gt;primaire&lt;/em&gt; partities kunnen aangemaakt worden, en van deze 4 kan er één een &lt;em&gt;uitgebreide&lt;/em&gt; partitie zijn, die op zijn beurt veel &lt;em&gt;logische&lt;/em&gt; partities kan bevatten.&lt;br&gt;Om compatibiliteitsredenen is het aan te raden om een aparte boot-partitie te voorzien in een configuratie met een MSDOS partitiesysteem. Het installatieprogramma kan dit automatisch doen, of je kan dit zelf instellen op de manuele partitioneringspagina.</translation>
+        <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="137"/>
+        <source>&lt;br&gt;&lt;br&gt;This partition table type is only advisable on older systems which start from a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment. GPT is recommended in most other cases.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Warning:&lt;/strong&gt; the MBR partition table is an obsolete standard.&lt;br&gt;Only 4 &lt;em&gt;primary&lt;/em&gt; partitions may be created, and of those 4, one can be an &lt;em&gt;extended&lt;/em&gt; partition, which may in turn contain many &lt;em&gt;logical&lt;/em&gt; partitions.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

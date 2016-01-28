@@ -138,6 +138,24 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>BootInfoWidget</name>
+    <message>
+        <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="61"/>
+        <source>The &lt;strong&gt;boot environment&lt;/strong&gt; of this system.&lt;br&gt;&lt;br&gt;Older x86 systems only support &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Modern systems usually use &lt;strong&gt;EFI&lt;/strong&gt;, but may also show up as BIOS if started in compatibility mode.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="75"/>
+        <source>This system was started with an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from an EFI environment, this installer must deploy a boot loader application, like &lt;strong&gt;GRUB&lt;/strong&gt; or &lt;strong&gt;systemd-boot&lt;/strong&gt; on an &lt;strong&gt;EFI System Partition&lt;/strong&gt;. This is automatic, unless you choose manual partitioning, in which case you must choose it or create it on your own.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="87"/>
+        <source>This system was started with a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from a BIOS environment, this installer must install a boot loader, like &lt;strong&gt;GRUB&lt;/strong&gt;, either at the beginning of a partition or on the &lt;strong&gt;Master Boot Record&lt;/strong&gt; near the beginning of the partition table (preferred). This is automatic, unless you choose manual partitioning, in which case you must set it up on your own.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>BootLoaderModel</name>
     <message>
         <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="59"/>
@@ -468,87 +486,87 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
         <translation>Forma</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="109"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="115"/>
         <source>After:</source>
         <translation>Po:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="217"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="223"/>
         <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself.</source>
         <translation>&lt;strong&gt;Rankinis skaidymas&lt;/strong&gt;&lt;br/&gt;Galite patys kurti ar keisti skaidinių dydžius.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="342"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="348"/>
         <source>Boot loader location:</source>
         <translation>Paleidyklės vieta:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="737"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="743"/>
         <source>%1 will be shrunk to %2MB and a new %3MB partition will be created for %4.</source>
         <translation>%1 bus sumažintas iki %2MB ir naujas %3MB skaidinys bus sukurtas sistemai %4.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="107"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="113"/>
         <source>Select storage de&amp;vice:</source>
         <translation>Pasirinkite atminties įr&amp;enginį:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="108"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="722"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="762"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="797"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="114"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="728"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="768"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="803"/>
         <source>Current:</source>
         <translation>Dabartinis:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="723"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="729"/>
         <source>&lt;strong&gt;Select a partition to shrink, then drag the bottom bar to resize&lt;/strong&gt;</source>
         <translation>&lt;strong&gt;Pasirinkite, kurį skaidinį sumažinti, o tuomet vilkite juostą, kad pakeistumėte skaidinio dydį&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="788"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="794"/>
         <source>&lt;strong&gt;Select a partition to install on&lt;/strong&gt;</source>
         <translation>&lt;strong&gt;Pasirinkite kuriame skaidinyje įdiegti&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="840"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="846"/>
         <source>This storage device does not seem to have an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>Atrodo, kad šiame įrenginyje nėra operacinės sistemos. Ką norėtumėte daryti?&lt;br/&gt;Prieš atliekant bet kokius pakeitimus atminties įrenginyje, jūs galėsite apžvelgti ir patvirtinti savo pasirinkimus.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="845"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="875"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="899"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="948"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="851"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="881"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="905"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="954"/>
         <source>&lt;strong&gt;Erase disk&lt;/strong&gt;&lt;br/&gt;This will &lt;font color=&quot;red&quot;&gt;delete&lt;/font&gt; all data currently present on the selected storage device.</source>
         <translation>&lt;strong&gt;Ištrinti diską&lt;/strong&gt;&lt;br/&gt;Tai &lt;font color=&quot;red&quot;&gt;ištrins&lt;/font&gt; visus, pasirinktame atminties įrenginyje, esančius duomenis.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="864"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="870"/>
         <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>Šiame atminties įrenginyje jau yra %1. Ką norėtumėte daryti?&lt;br/&gt;Prieš atliekant bet kokius pakeitimus atminties įrenginyje, jūs galėsite apžvelgti ir patvirtinti savo pasirinkimus.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="870"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="894"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="943"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="876"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="900"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="949"/>
         <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
         <translation>&lt;strong&gt;Įdiegti šalia&lt;/strong&gt;&lt;br/&gt;Diegimo programa sumažins skaidinį, kad atlaisvintų vietą sistemai %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="880"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="903"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="952"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="886"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="909"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="958"/>
         <source>&lt;strong&gt;Replace a partition&lt;/strong&gt;&lt;br/&gt;Replaces a partition with %1.</source>
         <translation>&lt;strong&gt;Pakeisti skaidinį&lt;/strong&gt;&lt;br/&gt;Pakeičia skaidinį ir įrašo %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="889"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="895"/>
         <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>Šiame atminties įrenginyje jau yra operacinė sistema. Ką norėtumėte daryti?&lt;br/&gt;Prieš atliekant bet kokius pakeitimus atminties įrenginyje, jūs galėsite apžvelgti ir patvirtinti savo pasirinkimus.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="938"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="944"/>
         <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>Šiame atminties įrenginyje jau yra kelios operacinės sistemos. Ką norėtumėte daryti?&lt;br/&gt;Prieš atliekant bet kokius pakeitimus atminties įrenginyje, jūs galėsite apžvelgti ir patvirtinti savo pasirinkimus.</translation>
     </message>
@@ -860,49 +878,34 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
 <context>
     <name>DeviceInfoWidget</name>
     <message>
-        <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="79"/>
-        <source>The &lt;strong&gt;boot environment&lt;/strong&gt; of this system.&lt;br&gt;&lt;br&gt;Older x86 systems only support &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Modern systems usually use &lt;strong&gt;EFI&lt;/strong&gt;, but may also show up as BIOS if the boot environment runs in compatibility mode.&lt;br&gt;Relevant entries in the system setup utility include: CSM, compatibility support module, Legacy boot mode, BIOS mode, etc.</source>
-        <translation>Šios sistemos &lt;strong&gt;paleidimo aplinka&lt;/strong&gt;.&lt;br&gt;&lt;br&gt;Senesnės x86 sistemos palaiko tik &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Šiuolaikinės sistemos, dažniausiai, naudoja &lt;strong&gt;EFI&lt;/strong&gt;, tačiau, jeigu paleidimo aplinka yra vykdoma suderinamumo veiksenoje, taip pat gali būti rodoma kaip BIOS.&lt;br&gt;Sistemos sąrankos paslaugų programoje prie susijusių įrašų priskiriami: CSM, suderinamumo palaikymo modulis, Liekamoji paleidimo veiksena, BIOS veiksena ir t. t..</translation>
+        <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="63"/>
+        <source>The type of &lt;strong&gt;partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The only way to change the partition table type is to erase and recreate the partition table from scratch, which destroys all data on the storage device.&lt;br&gt;This installer will keep the current partition table unless you explicitly choose otherwise.&lt;br&gt;If unsure, on modern systems GPT is preferred.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="87"/>
-        <source>The type of &lt;strong&gt;partition table&lt;/strong&gt; currently present on the selected storage device.&lt;br&gt;&lt;br&gt;Common values on x86-compatible systems include &lt;strong&gt;GPT&lt;/strong&gt; and &lt;strong&gt;MSDOS&lt;/strong&gt;.&lt;br&gt;Some systems may use other, less common partition table types, like BSD or Sun.&lt;br&gt;The only way to change the partition table type is to erase and recreate the partition table from scratch, which destroys all data on the storage device.&lt;br&gt;This installer will keep the current partition table unless you explicitly choose otherwise.&lt;br&gt;If unsure, on modern systems GPT is preferred.</source>
-        <translation>Šiuo metu atminties įrenginyje esančios, &lt;strong&gt;skaidinių lentelės&lt;/strong&gt; tipas.&lt;br&gt;&lt;br&gt;Į paplitusias reikšmes x86-suderinamose sistemose įeina &lt;strong&gt;GPT&lt;/strong&gt; ir &lt;strong&gt;MSDOS&lt;/strong&gt;.&lt;br&gt;Kai kurios sistemos gali naudoti kitus, mažiau paplitusius, skaidinių lentelių tipus, kaip, pavyzdžiui, BSD ar Sun.&lt;br&gt;Vienintelis būdas kaip galima pakeisti skaidinių lentelės tipą yra ištrinti ir iš naujo sukurti skaidinių lentelę, kas savo ruožtu ištrina visus atminties įrenginyje esančius duomenis.&lt;br&gt;Ši diegimo programa paliks esamą skaidinių lentelę, nebent aiškiai pasirinksite kitaip.&lt;br&gt;Jeigu nesate tikri, šiuolaikinėse sistemose pirmenybė yra teikiama GPT tipui.</translation>
+        <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="107"/>
+        <source>The selected storage device has a partition table of type &lt;strong&gt;%1&lt;/strong&gt;.</source>
+        <translation>Pasirinktame atminties įrenginyje yra &lt;strong&gt;%1&lt;/strong&gt; tipo skaidinių lentelė.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="108"/>
-        <source>This system was started with an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;Most consumer systems nowadays use EFI, along with a GPT partition table.&lt;br&gt;Current versions of other operating systems, like Windows and Mac OS X also support EFI, and dual boot is possible.&lt;br&gt;In order to boot from an EFI environment, this installer must deploy a boot loader application, like &lt;strong&gt;GRUB&lt;/strong&gt; or &lt;strong&gt;systemd-boot&lt;/strong&gt; on an &lt;strong&gt;EFI System Partition&lt;/strong&gt;. This is automatic, unless you choose manual partitioning, in which case you must choose it or create it on your own.</source>
-        <translation>Ši sistema buvo paleista su &lt;strong&gt;EFI&lt;/strong&gt; paleidimo aplinka.&lt;br&gt;&lt;br&gt;Šiais laikais, dauguma naudotojų sistemų naudoja EFI, kartu su GPT skaidinių lentele.&lt;br&gt;Dabartinės kitų operacinių sistemų versijos, tokios kaip Windows ir Mac OS X taip pat palaiko EFI ir yra įmanomas dvejopas paleidimas.&lt;br&gt;Tam, kad galėtų šią sistemą paleisti iš EFI aplinkos, ši diegimo programa, &lt;strong&gt;EFI sistemos skaidinyje&lt;/strong&gt;, privalo išskleisti paleidyklės programą, kaip, pavyzdžiui, &lt;strong&gt;GRUB&lt;/strong&gt; ar &lt;strong&gt;systemd-boot&lt;/strong&gt;. Tai vyks automatiškai, nebent pasirinksite rankinį skaidymą ir tokiu atveju patys turėsite pasirinkti ar sukurti skaidinį.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="124"/>
-        <source>This system was started with a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;Older systems which do not support EFI start from BIOS.&lt;br&gt;New systems that support EFI can also start in BIOS mode through a compatibility layer, sometimes known as CSM, Legacy boot mode or BIOS mode. On such systems EFI should be preferred, unless you wish to dual boot with an old operating system, like Windows XP. In that case, a MSDOS partition table should also be used instead of GPT.&lt;br&gt;In order to boot from a BIOS environment, this installer must install a boot loader, like &lt;strong&gt;GRUB&lt;/strong&gt;, either at the beginning of a partition or on the &lt;strong&gt;Master Boot Record&lt;/strong&gt; near the beginning of the partition table (preferred). This is automatic, unless you choose manual partitioning, in which case you must set it up on your own.</source>
-        <translation>Ši sistema buvo paleista su &lt;strong&gt;BIOS&lt;/strong&gt; paleidimo aplinka.&lt;br&gt;&lt;br&gt;Senesnės sistemos, kurios nepalaiko EFI pasileidžia iš BIOS.&lt;br&gt;Naujos sistemos, kurios palaiko EFI taip pat gali pasileisti BIOS veiksenoje per suderinamumo lygmenį, kartais žinomą kaip CSM, Liekamoji paleidimo veiksena ar BIOS veiksena. Tokiose sistemose pirmenybė turėtų būti teikiama EFI, nebent savo sistemą norite paleisti dvejopai su sena operacine sistema, tokia kaip Windows XP. Tokiu atveju, vietoj GPT, taip pat turėtų būti naudojama ir MSDOS skaidinių lentelė.&lt;br&gt;Tam, kad galėtų paleisti šią sistemą iš BIOS aplinkos, ši diegimo programa, arba skaidinio pradžioje, arba &lt;strong&gt;Paleidimo įraše (MBR)&lt;/strong&gt;, šalia skaidinių lentelės pradžios (pageidautina), privalo įdiegti paleidyklę, kaip, pavyzdžiui, &lt;strong&gt;GRUB&lt;/strong&gt;. Tai vyks automatiškai, nebent pasirinksite rankinį skaidymą ir tokiu atveju, viską turėsite nusistatyti patys.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="174"/>
-        <source>The selected storage device has a partition table. The partition table type is &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation>Pasirinktame atminties įrenginyje yra skaidinių lentelė. Skaidinių lentelės tipas yra &lt;strong&gt;%1&lt;/strong&gt;.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="181"/>
+        <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="114"/>
         <source>The selected storage device is a &lt;strong&gt;loop&lt;/strong&gt; device.&lt;br&gt;&lt;br&gt;This is not an actual partition table, it is a pseudo-device that makes a file accessible as a block device. This kind of setup usually only contains a single filesystem.</source>
         <translation>Pasirinktas atminties įranginys yra &lt;strong&gt;ciklo&lt;/strong&gt; įrenginys.&lt;br&gt;&lt;br&gt;Tai nėra faktinė skaidinių lentelė, tai yra pseudo-įrenginys, kuris padaro failą prieinamą kaip bloko įrenginį. Tokio tipo sąrankoje, dažniausiai, yra tik viena failų sistema.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="188"/>
+        <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="121"/>
         <source>This installer &lt;strong&gt;cannot detect a partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The device either has no partition table, or the partition table is corrupted or of an unknown type.&lt;br&gt;This installer can create a new partition table for you, either automatically, or through the manual partitioning page.</source>
         <translation>Šiai diegimo programai, pasirinktame atminties įrenginyje, &lt;strong&gt;nepavyko aptikti skaidinių lentelės&lt;/strong&gt;.&lt;br&gt;&lt;br&gt;Arba įrenginyje nėra skaidinių lentelės, arba ji yra pažeista, arba nežinomo tipo.&lt;br&gt;Ši diegimo programa gali jums sukurti skaidinių lentelę automatiškai arba per rankinio skaidymo puslapį.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="198"/>
+        <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="131"/>
         <source>&lt;br&gt;&lt;br&gt;This is the recommended partition table type for modern systems which start from an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.</source>
         <translation>&lt;br&gt;&lt;br&gt;Tai yra rekomenduojamas skaidinių lentelės tipas, skirtas šiuolaikinėms sistemoms, kurios yra paleidžiamos iš &lt;strong&gt;EFI&lt;/strong&gt; paleidimo aplinkos.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="204"/>
-        <source>&lt;br&gt;&lt;br&gt;This partition table type is only advisable on older systems which start from a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment. For most uses GPT should be preferred instead.&lt;br&gt;&lt;strong&gt;Warning:&lt;/strong&gt; the MSDOS partition table is an obsolete standard with important drawbacks.&lt;br&gt;Only 4 &lt;em&gt;primary&lt;/em&gt; partitions may be created, and of those 4, one can be an &lt;em&gt;extended&lt;/em&gt; partition, which may in turn contain many &lt;em&gt;logical&lt;/em&gt; partitions.&lt;br&gt;For compatibility reasons, it is recommended for a setup based on an MSDOS partition table to have a separate boot partition. This installer can create the boot partition for you automatically, or you may set it up yourself on the manual partitioning page.</source>
-        <translation>&lt;br&gt;&lt;br&gt;Šį skaidinių lentelės tipą yra patartina naudoti tik senesnėse sistemose, kurios yra paleidžiamos iš &lt;strong&gt;BIOS&lt;/strong&gt; paleidimo aplinkos. Vietoj to, daugeliu atvejų, pirmenybė turėtų būti teikiama GPT tipui.&lt;br&gt;&lt;strong&gt;Įspėjimas:&lt;/strong&gt; MSDOS skaidinių lentelė yra pasenusio standarto su dideliais trūkumais.&lt;br&gt;Gali būti kuriami tik 4 &lt;em&gt;pirminiai&lt;/em&gt; skaidiniai, o iš tų 4, vienas gali būti &lt;em&gt;išplėstas&lt;/em&gt; skaidinys, kuriame savo ruožtu gali būti daug &lt;em&gt;loginių&lt;/em&gt; skaidinių.&lt;br&gt;Dėl suderinamumo priežasčių, yra rekomenduojama MSDOS skaidinių lentele pagrįstoms sąrankoms turėti atskirą paleidimo skaidinį. Ši diegimo programa gali jums sukurti paleidimo skaidinį automatiškai arba jūs galite patys jį nusistatyti per rankinio skaidymo puslapį.</translation>
+        <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="137"/>
+        <source>&lt;br&gt;&lt;br&gt;This partition table type is only advisable on older systems which start from a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment. GPT is recommended in most other cases.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Warning:&lt;/strong&gt; the MBR partition table is an obsolete standard.&lt;br&gt;Only 4 &lt;em&gt;primary&lt;/em&gt; partitions may be created, and of those 4, one can be an &lt;em&gt;extended&lt;/em&gt; partition, which may in turn contain many &lt;em&gt;logical&lt;/em&gt; partitions.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

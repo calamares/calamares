@@ -138,6 +138,24 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>BootInfoWidget</name>
+    <message>
+        <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="61"/>
+        <source>The &lt;strong&gt;boot environment&lt;/strong&gt; of this system.&lt;br&gt;&lt;br&gt;Older x86 systems only support &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Modern systems usually use &lt;strong&gt;EFI&lt;/strong&gt;, but may also show up as BIOS if started in compatibility mode.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="75"/>
+        <source>This system was started with an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from an EFI environment, this installer must deploy a boot loader application, like &lt;strong&gt;GRUB&lt;/strong&gt; or &lt;strong&gt;systemd-boot&lt;/strong&gt; on an &lt;strong&gt;EFI System Partition&lt;/strong&gt;. This is automatic, unless you choose manual partitioning, in which case you must choose it or create it on your own.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="87"/>
+        <source>This system was started with a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from a BIOS environment, this installer must install a boot loader, like &lt;strong&gt;GRUB&lt;/strong&gt;, either at the beginning of a partition or on the &lt;strong&gt;Master Boot Record&lt;/strong&gt; near the beginning of the partition table (preferred). This is automatic, unless you choose manual partitioning, in which case you must set it up on your own.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>BootLoaderModel</name>
     <message>
         <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="59"/>
@@ -468,87 +486,87 @@ Instalatorul va ieși, iar toate modificările vor fi pierdute.</translation>
         <translation>Formular</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="109"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="115"/>
         <source>After:</source>
         <translation>După:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="217"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="223"/>
         <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself.</source>
         <translation>&lt;strong&gt;Partiționare manuală&lt;/strong&gt;&lt;br/&gt;Puteți crea sau redimensiona partițiile.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="342"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="348"/>
         <source>Boot loader location:</source>
         <translation>Locație boot loader:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="737"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="743"/>
         <source>%1 will be shrunk to %2MB and a new %3MB partition will be created for %4.</source>
         <translation>%1 va fi micșorată la %2MB și o nouă partiție %3MB va fi creată pentru %4.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="107"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="113"/>
         <source>Select storage de&amp;vice:</source>
-        <translation type="unfinished"/>
+        <translation>Selectează dispoziti&amp;vul de stocare:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="108"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="722"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="762"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="797"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="114"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="728"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="768"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="803"/>
         <source>Current:</source>
-        <translation type="unfinished"/>
+        <translation>Actual:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="723"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="729"/>
         <source>&lt;strong&gt;Select a partition to shrink, then drag the bottom bar to resize&lt;/strong&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;Selectează o partiție de micșorat, apoi trageți bara din jos pentru a redimensiona&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="788"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="794"/>
         <source>&lt;strong&gt;Select a partition to install on&lt;/strong&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;Selectează o partiție pe care să se instaleze&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="840"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="846"/>
         <source>This storage device does not seem to have an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>Acest dispozitiv de stocare nu pare să aibă un sistem de operare instalat. Ce doriți să faceți?&lt;br/&gt;Veți putea revedea și confirma alegerile făcute înainte să fie realizate schimbări pe dispozitivul de stocare.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="845"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="875"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="899"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="948"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="851"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="881"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="905"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="954"/>
         <source>&lt;strong&gt;Erase disk&lt;/strong&gt;&lt;br/&gt;This will &lt;font color=&quot;red&quot;&gt;delete&lt;/font&gt; all data currently present on the selected storage device.</source>
         <translation>&lt;strong&gt;Șterge discul&lt;/strong&gt;&lt;br/&gt;Aceasta va &lt;font color=&quot;red&quot;&gt;șterge&lt;/font&gt; toate datele prezente pe dispozitivul de stocare selectat.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="864"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="870"/>
         <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>Acest dispozitiv de stocare are %1. Ce doriți să faceți?&lt;br/&gt;Veți putea revedea și confirma alegerile făcute înainte să fie realizate schimbări pe dispozitivul de stocare.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="870"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="894"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="943"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="876"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="900"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="949"/>
         <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
         <translation>&lt;strong&gt;Instalează laolaltă&lt;/strong&gt;&lt;br/&gt;Instalatorul va micșora o partiție pentru a face loc pentru %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="880"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="903"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="952"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="886"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="909"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="958"/>
         <source>&lt;strong&gt;Replace a partition&lt;/strong&gt;&lt;br/&gt;Replaces a partition with %1.</source>
         <translation>&lt;strong&gt;Înlocuiește o partiție&lt;/strong&gt;&lt;br/&gt;Înlocuiește o partiție cu %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="889"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="895"/>
         <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>Acest dispozitiv de stocare are deja un sistem de operare instalat. Ce doriți să faceți?&lt;br/&gt;Veți putea revedea și confirma alegerile făcute înainte de se realiza schimbări pe dispozitivul de stocare.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="938"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="944"/>
         <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>Acest dispozitiv de stocare are mai multe sisteme de operare instalate. Ce doriți să faceți?&lt;br/&gt;Veți putea revedea și confirma alegerile făcute înainte de a se realiza schimbări pe dispozitivul de stocare.</translation>
     </message>
@@ -860,49 +878,34 @@ Instalatorul va ieși, iar toate modificările vor fi pierdute.</translation>
 <context>
     <name>DeviceInfoWidget</name>
     <message>
-        <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="79"/>
-        <source>The &lt;strong&gt;boot environment&lt;/strong&gt; of this system.&lt;br&gt;&lt;br&gt;Older x86 systems only support &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Modern systems usually use &lt;strong&gt;EFI&lt;/strong&gt;, but may also show up as BIOS if the boot environment runs in compatibility mode.&lt;br&gt;Relevant entries in the system setup utility include: CSM, compatibility support module, Legacy boot mode, BIOS mode, etc.</source>
-        <translation>&lt;strong&gt;Mediul de boot&lt;/strong&gt; al sistemului.&lt;br&gt;&lt;br&gt;Sisteme x86 mai vechi suportă doar &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Sistemele moderne folosesc de obicei &lt;strong&gt;EFI&lt;/strong&gt;, dar ar putea apărea și ca BIOS dacă mediul de boot rulează în modul compatibil.&lt;br&gt;Înregistrări relevante în utilitarul de configurare a sistemului includ: CSM, modulul de suport pentru compatibilitate, modul de boot învechit (legacy), modul BIOS, etc.</translation>
+        <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="63"/>
+        <source>The type of &lt;strong&gt;partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The only way to change the partition table type is to erase and recreate the partition table from scratch, which destroys all data on the storage device.&lt;br&gt;This installer will keep the current partition table unless you explicitly choose otherwise.&lt;br&gt;If unsure, on modern systems GPT is preferred.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="87"/>
-        <source>The type of &lt;strong&gt;partition table&lt;/strong&gt; currently present on the selected storage device.&lt;br&gt;&lt;br&gt;Common values on x86-compatible systems include &lt;strong&gt;GPT&lt;/strong&gt; and &lt;strong&gt;MSDOS&lt;/strong&gt;.&lt;br&gt;Some systems may use other, less common partition table types, like BSD or Sun.&lt;br&gt;The only way to change the partition table type is to erase and recreate the partition table from scratch, which destroys all data on the storage device.&lt;br&gt;This installer will keep the current partition table unless you explicitly choose otherwise.&lt;br&gt;If unsure, on modern systems GPT is preferred.</source>
-        <translation>Tipul de &lt;strong&gt;tabelă de partiții&lt;/strong&gt; prezentă pe dispozitivul de stocare selectat.&lt;br&gt;&lt;br&gt;Valori frecvente pentru sistemele compatibile x86 includ &lt;strong&gt;GPT&lt;/strong&gt; și &lt;strong&gt;MSDOS&lt;/strong&gt;.&lt;br&gt;Unele sisteme ar putea folosi alte tipuri de partiție mai rar întâlnite, cum ar fi BSD sau Sun.&lt;br&gt;Singurul mod de a schimba tabela de partiții este ștergerea și recrearea acesteia de la zero, fapt care distruge toate datele de pe dispozitivul de stocare.&lt;br&gt;Acest program de instalare va păstra tabela de partiții, cu excepția cazului în care faceți în mod explicit o altă alegere.&lt;br&gt;Dacă nu sunteți sigur, pentru sistemele moderne este preferabil GPT.</translation>
+        <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="107"/>
+        <source>The selected storage device has a partition table of type &lt;strong&gt;%1&lt;/strong&gt;.</source>
+        <translation>Dispozitivul de stocare selectat are o tabelă de partiții de tip &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="108"/>
-        <source>This system was started with an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;Most consumer systems nowadays use EFI, along with a GPT partition table.&lt;br&gt;Current versions of other operating systems, like Windows and Mac OS X also support EFI, and dual boot is possible.&lt;br&gt;In order to boot from an EFI environment, this installer must deploy a boot loader application, like &lt;strong&gt;GRUB&lt;/strong&gt; or &lt;strong&gt;systemd-boot&lt;/strong&gt; on an &lt;strong&gt;EFI System Partition&lt;/strong&gt;. This is automatic, unless you choose manual partitioning, in which case you must choose it or create it on your own.</source>
-        <translation>Acest sistem a început cu un mediu de boot &lt;strong&gt;EFI&lt;/strong&gt;.&lt;br&gt;&lt;br&gt;Cele mai multe sisteme orientate către consumatori din ziua de azi folosesc EFI și cu o tabelă de partiții GPT.&lt;br&gt;Versiuni actuale ale sistemelor de operare, cum ar fi Windows sau Mac OS X suportă deasemenea EFI și dual boot este posibil.&lt;br&gt;Pentru a boota de pe un mediu EFI environment, acest program de instalare trebuie să instaleze o aplicație de bootare, cum ar fi &lt;strong&gt;GRUB&lt;/strong&gt; sau &lt;strong&gt;systemd-boot&lt;/strong&gt; pe o &lt;strong&gt;partiție de sistem EFI&lt;/strong&gt;. Acest pas este automat, cu excepția cazului în care alegeți partiționarea manuală, iar în acest caz trebuie să alegeți sau instalați bootloaderul manual.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="124"/>
-        <source>This system was started with a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;Older systems which do not support EFI start from BIOS.&lt;br&gt;New systems that support EFI can also start in BIOS mode through a compatibility layer, sometimes known as CSM, Legacy boot mode or BIOS mode. On such systems EFI should be preferred, unless you wish to dual boot with an old operating system, like Windows XP. In that case, a MSDOS partition table should also be used instead of GPT.&lt;br&gt;In order to boot from a BIOS environment, this installer must install a boot loader, like &lt;strong&gt;GRUB&lt;/strong&gt;, either at the beginning of a partition or on the &lt;strong&gt;Master Boot Record&lt;/strong&gt; near the beginning of the partition table (preferred). This is automatic, unless you choose manual partitioning, in which case you must set it up on your own.</source>
-        <translation>Acest sistem a început cu un mediu de boot &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;&lt;br&gt;Sisteme mai vechi care nu suportă EFI pornesc de la BIOS.&lt;br&gt;Sisteme mai noi care suportă EFI pot și ele să pornească în BIOS printr-un mod de compatibilitate, cunoscut și ca CSM, „legacy boot more” sau „BIOS mode”. Pe astfel de sisteme este preferabil EFI, cu excepția cazului în care doriți să faceți dual boot cu un sistem de operare mai vechi, cum ar fi Windows XP. În acest caz, trebuie creată o tabelă de partiții MSDOS în loc de GPT.&lt;br&gt;Pentru a boota de pe un mediu BIOS, acest program de instalare trebuie să instaleze un bootloader, cum ar fi &lt;strong&gt;GRUB&lt;/strong&gt;, fie la începutul unei partiții sau pe &lt;strong&gt;Master Boot Record&lt;/strong&gt; spre începutul tabelei de partiții (preferabil). Acest pas este automat, cu excepția cazului în care alegeți partiționare manuală, iar în acest caz trebuie să îl alegeți sau instala separat.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="174"/>
-        <source>The selected storage device has a partition table. The partition table type is &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation>Dispozitivul de stocare selectat are o tabelă de partiții. Tabela de partiții este &lt;strong&gt;%1&lt;/strong&gt;.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="181"/>
+        <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="114"/>
         <source>The selected storage device is a &lt;strong&gt;loop&lt;/strong&gt; device.&lt;br&gt;&lt;br&gt;This is not an actual partition table, it is a pseudo-device that makes a file accessible as a block device. This kind of setup usually only contains a single filesystem.</source>
         <translation>Dispozitivul de stocare selectat este un dispozitiv &lt;strong&gt;loop&lt;/strong&gt;.&lt;br&gt;&lt;br&gt;Aceasta nu este o tabelă de partiții, este un pseudo-dispozitiv care face un fișier accesibil ca un dispozitiv bloc. Acest tip de setare conține de obicei un singur sistem de fișiere.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="188"/>
+        <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="121"/>
         <source>This installer &lt;strong&gt;cannot detect a partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The device either has no partition table, or the partition table is corrupted or of an unknown type.&lt;br&gt;This installer can create a new partition table for you, either automatically, or through the manual partitioning page.</source>
         <translation>Programul de instalare &lt;strong&gt;nu poate detecta o tabelă de partiții&lt;/strong&gt; pe dispozitivul de stocare selectat.&lt;br&gt;&lt;br&gt;Dispozitivul fie nu are o tabelă de partiții, sau tabela de partiții este coruptă sau de un tip necunoscut.&lt;br&gt;Acest program de instalare poate crea o nouă tabelă de partiție în mod automat sau prin intermediul paginii de partiționare manuală.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="198"/>
+        <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="131"/>
         <source>&lt;br&gt;&lt;br&gt;This is the recommended partition table type for modern systems which start from an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.</source>
         <translation>&lt;br&gt;&lt;br&gt;Acesta este tipul de tabelă de partiții recomandat pentru sisteme moderne ce pornesc de pe un mediu de boot &lt;strong&gt;EFI&lt;/strong&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="204"/>
-        <source>&lt;br&gt;&lt;br&gt;This partition table type is only advisable on older systems which start from a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment. For most uses GPT should be preferred instead.&lt;br&gt;&lt;strong&gt;Warning:&lt;/strong&gt; the MSDOS partition table is an obsolete standard with important drawbacks.&lt;br&gt;Only 4 &lt;em&gt;primary&lt;/em&gt; partitions may be created, and of those 4, one can be an &lt;em&gt;extended&lt;/em&gt; partition, which may in turn contain many &lt;em&gt;logical&lt;/em&gt; partitions.&lt;br&gt;For compatibility reasons, it is recommended for a setup based on an MSDOS partition table to have a separate boot partition. This installer can create the boot partition for you automatically, or you may set it up yourself on the manual partitioning page.</source>
-        <translation>&lt;br&gt;&lt;br&gt;Această tabelă de partiții este recomandată doar pentru sisteme mai vechi ce pornesc de pe un mediu de boot &lt;strong&gt;BIOS&lt;/strong&gt;. Pentru majoritatea utilizărilor, GPT este preferabil.&lt;br&gt;&lt;strong&gt;Atenție:&lt;/strong&gt; tabela de partiții MSDOS este un standard învechit și cu dezavantaje importante.&lt;br&gt;Pot fi create doar 4 partiții &lt;em&gt;primare&lt;/em&gt;, iar din acele 4, una trebuie să fie de tip &lt;em&gt;extins&lt;/em&gt;, care la rândul ei ar putea conține un număr de partiții &lt;em&gt;logice&lt;/em&gt;.&lt;br&gt;Din motive de compatibilitate, este recomandat ca o configurare bazată pe o tabelă de partiții MSDOS să conțină o partiție de boot separată. Acest instalator poate crea partiția în mod automat, sau o puteți seta de pe pagina de partiționare manuală.</translation>
+        <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="137"/>
+        <source>&lt;br&gt;&lt;br&gt;This partition table type is only advisable on older systems which start from a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment. GPT is recommended in most other cases.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Warning:&lt;/strong&gt; the MBR partition table is an obsolete standard.&lt;br&gt;Only 4 &lt;em&gt;primary&lt;/em&gt; partitions may be created, and of those 4, one can be an &lt;em&gt;extended&lt;/em&gt; partition, which may in turn contain many &lt;em&gt;logical&lt;/em&gt; partitions.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1566,7 +1569,7 @@ Instalatorul va ieși, iar toate modificările vor fi pierdute.</translation>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="221"/>
         <source>Current:</source>
-        <translation type="unfinished"/>
+        <translation>Actual:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="235"/>
