@@ -45,7 +45,6 @@ calamares_add_plugin( partition
         gui/PartitionViewStep.cpp
         gui/PrettyRadioButton.cpp
         gui/ScanningDialog.cpp
-        gui/ExpandableRadioButton.cpp
         gui/ReplaceWidget.cpp
         jobs/CheckFileSystemJob.cpp
         jobs/ClearMountsJob.cpp
