@@ -98,9 +98,9 @@ ChoicePage::ChoicePage( QWidget* parent )
 
     m_drivesLayout->addWidget( m_drivesCombo );
 
-    m_drivesLayout->addStretch();
     m_deviceInfoWidget = new DeviceInfoWidget;
     m_drivesLayout->addWidget( m_deviceInfoWidget );
+    m_drivesLayout->addStretch();
 
     m_messageLabel->setWordWrap( true );
     m_messageLabel->hide();
