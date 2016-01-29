@@ -771,34 +771,17 @@ ChoicePage::createBootloaderComboBox( QWidget* parent )
         m_core->setBootLoaderInstallPath( var.toString() );
     } );
 
-    // If the user picks a new device, we update the bootloader choice to that
-    // same device automatically.
-    auto updateBootloaderDevice = [bcb, this]()
-    {
-        Device* currd = selectedDevice();
-        if ( !currd )
-            return;
-        QString devPath = currd->deviceNode();
-        for ( int i = 0; i < bcb->count(); ++i )
-        {
-            QVariant var = bcb->itemData( i, BootLoaderModel::BootLoaderPathRole );
-            if ( !var.isValid() )
-                continue;
-            if ( var.toString() == devPath )
-            {
-                bcb->setCurrentIndex( i );
-                return;
-            }
-        }
-    };
-    connect( this, &ChoicePage::deviceChosen,
-             this, updateBootloaderDevice );
     connect( m_core, &PartitionCoreModule::deviceReverted,
              this, [ this, bcb ]( Device* dev )
     {
-        if ( bcb->model() != m_core->bootLoaderModel() )
-            bcb->setModel( m_core->bootLoaderModel() );
-        bcb->setCurrentIndex( m_lastSelectedDeviceIndex );
+        if ( dev &&
+             dev == selectedDevice() )
+        {
+            if ( bcb->model() != m_core->bootLoaderModel() )
+                bcb->setModel( m_core->bootLoaderModel() );
+
+            bcb->setCurrentIndex( m_lastSelectedDeviceIndex );
+        }
     }, Qt::QueuedConnection );
     // ^ Must be Queued so it's sure to run when the widget is already visible.
 
