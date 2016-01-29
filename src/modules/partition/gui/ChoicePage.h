@@ -110,6 +110,7 @@ private:
     QPointer< PartitionBarsView > m_afterPartitionBarsView;
     QPointer< PartitionLabelsView > m_afterPartitionLabelsView;
     QPointer< PartitionSplitterWidget > m_afterPartitionSplitterWidget;
+    QPointer< QComboBox > m_bootloaderComboBox;
 
     int m_lastSelectedDeviceIndex;
 
