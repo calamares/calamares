@@ -546,6 +546,9 @@ ChoicePage::doReplaceSelectedPartition( const QModelIndex& current,
     [=]
     {
         setNextEnabled( !m_beforePartitionBarsView->selectionModel()->selectedRows().isEmpty() );
+        if ( !m_bootloaderComboBox.isNull() &&
+             m_bootloaderComboBox->currentIndex() < 0 )
+            m_bootloaderComboBox->setCurrentIndex( m_lastSelectedDeviceIndex );
     }, this );
 }
 
@@ -713,9 +716,7 @@ ChoicePage::updateActionChoicePreview( ChoicePage::Choice choice )
                 connect( m_core, &PartitionCoreModule::deviceReverted,
                          this, [ this ]( Device* dev )
                 {
-                    if ( dev &&
-                         dev == selectedDevice() &&
-                         !m_bootloaderComboBox.isNull() )
+                    if ( !m_bootloaderComboBox.isNull() )
                     {
                         if ( m_bootloaderComboBox->model() != m_core->bootLoaderModel() )
                             m_bootloaderComboBox->setModel( m_core->bootLoaderModel() );
