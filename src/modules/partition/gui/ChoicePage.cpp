@@ -186,8 +186,8 @@ ChoicePage::setupChoices()
     //  3) Manual
     //  TBD: upgrade option?
 
-    QSize iconSize( CalamaresUtils::defaultIconSize().width() * 2.5,
-                    CalamaresUtils::defaultIconSize().height() * 2.5 );
+    QSize iconSize( CalamaresUtils::defaultIconSize().width() * 2,
+                    CalamaresUtils::defaultIconSize().height() * 2 );
     m_grp = new QButtonGroup( this );
 
     m_alongsideButton = new PrettyRadioButton;
