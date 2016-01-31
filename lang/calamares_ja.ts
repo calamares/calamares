@@ -147,12 +147,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="75"/>
         <source>This system was started with an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from an EFI environment, this installer must deploy a boot loader application, like &lt;strong&gt;GRUB&lt;/strong&gt; or &lt;strong&gt;systemd-boot&lt;/strong&gt; on an &lt;strong&gt;EFI System Partition&lt;/strong&gt;. This is automatic, unless you choose manual partitioning, in which case you must choose it or create it on your own.</source>
-        <translation type="unfinished"/>
+        <translation>このシステムは&lt;strong&gt;EFI&lt;/strong&gt; ブート環境で起動しました。&lt;br&gt;&lt;br&gt;EFI環境からの起動について設定するためには、&lt;strong&gt;EFI システムパーティション&lt;/strong&gt;に &lt;strong&gt;GRUB&lt;/strong&gt; あるいは &lt;strong&gt;systemd-boot&lt;/strong&gt; といったブートローダーアプリケーションを配置しなければなりません。手動によるパーティショニングを選択する場合、EFI システムパーティションを選択あるいは作成しなければなりません。そうでない場合は、この操作は自動的に行われます。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="87"/>
         <source>This system was started with a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from a BIOS environment, this installer must install a boot loader, like &lt;strong&gt;GRUB&lt;/strong&gt;, either at the beginning of a partition or on the &lt;strong&gt;Master Boot Record&lt;/strong&gt; near the beginning of the partition table (preferred). This is automatic, unless you choose manual partitioning, in which case you must set it up on your own.</source>
-        <translation type="unfinished"/>
+        <translation>このシステムは &lt;strong&gt;BIOS&lt;/strong&gt; ブート環境で起動しました。&lt;br&gt;&lt;br&gt; BIOS環境からの起動について設定するためには、パーティションの開始位置あるいはパーティションテーブルの開始位置の近く(推奨)にある&lt;strong&gt;マスターブートレコード&lt;/strong&gt;に &lt;strong&gt;GRUB&lt;/strong&gt; のようなブートローダーをインストールしなければなりません。手動によるパーティショニングを選択する場合はユーザー自身で設定しなければなりません。そうでない場合は、この操作は自動的に行われます。</translation>
     </message>
 </context>
 <context>
@@ -880,17 +880,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="63"/>
         <source>The type of &lt;strong&gt;partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The only way to change the partition table type is to erase and recreate the partition table from scratch, which destroys all data on the storage device.&lt;br&gt;This installer will keep the current partition table unless you explicitly choose otherwise.&lt;br&gt;If unsure, on modern systems GPT is preferred.</source>
-        <translation type="unfinished"/>
+        <translation>選択したストレージデバイスにおける&lt;strong&gt; パーティションテーブル &lt;/strong&gt; の種類。 &lt;br&gt;&lt;br&gt; パーティションテーブルの種類を変更する唯一の方法は、パーティションテーブルを消去し、最初から再作成を行うことですが、この操作はストレージ上の全てのデータを破壊します。 &lt;br&gt; このインストーラーは、他の種類へ明示的に変更ししない限り、現在のパーティションテーブルが保持されます。よくわからない場合、最近のシステムではGPTが推奨されます。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="107"/>
         <source>This device has a &lt;strong&gt;%1&lt;/strong&gt; partition table.</source>
-        <translation type="unfinished"/>
+        <translation>このデバイスのパーティションテーブルは &lt;strong&gt;%1&lt;/strong&gt; です。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="114"/>
         <source>This is a &lt;strong&gt;loop&lt;/strong&gt; device.&lt;br&gt;&lt;br&gt;It is a pseudo-device with no partition table that makes a file accessible as a block device. This kind of setup usually only contains a single filesystem.</source>
-        <translation type="unfinished"/>
+        <translation>このデバイスは&lt;strong&gt;ループ&lt;/strong&gt; デバイスです。&lt;br&gt;&lt;br&gt; ブロックデバイスとしてふるまうファイルを作成する、パーティションテーブルを持たない仮想デバイスです。このセットアップの種類は通常単一のファイルシステムで構成されます。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="121"/>
@@ -905,7 +905,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="137"/>
         <source>&lt;br&gt;&lt;br&gt;This partition table type is only advisable on older systems which start from a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment. GPT is recommended in most other cases.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Warning:&lt;/strong&gt; the MBR partition table is an obsolete MS-DOS era standard.&lt;br&gt;Only 4 &lt;em&gt;primary&lt;/em&gt; partitions may be created, and of those 4, one can be an &lt;em&gt;extended&lt;/em&gt; partition, which may in turn contain many &lt;em&gt;logical&lt;/em&gt; partitions.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;br&gt;&lt;br&gt;このパーティションテーブルの種類は&lt;strong&gt;BIOS&lt;/strong&gt; ブート環境から起動する古いシステムにおいてのみ望ましいものです。他の多くの場合ではGPTが推奨されます。&lt;br&gt;&lt;br&gt;&lt;strong&gt;警告:&lt;/strong&gt; MBR パーティションテーブルは時代遅れのMS-DOS時代の標準です。&lt;br&gt;わずか 4 つだけの&lt;em&gt;プライマリ&lt;/em&gt;パーティションが作成され、そのうち1つについては、多くの&lt;em&gt;論理&lt;/em&gt;パーティションを含む&lt;em&gt;拡張&lt;/em&gt;パーティションにすることができます。</translation>
     </message>
 </context>
 <context>
