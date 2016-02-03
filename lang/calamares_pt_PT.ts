@@ -142,17 +142,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="61"/>
         <source>The &lt;strong&gt;boot environment&lt;/strong&gt; of this system.&lt;br&gt;&lt;br&gt;Older x86 systems only support &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Modern systems usually use &lt;strong&gt;EFI&lt;/strong&gt;, but may also show up as BIOS if started in compatibility mode.</source>
-        <translation type="unfinished"/>
+        <translation>O &lt;strong&gt;ambiente de arranque&lt;/strong&gt; deste sistema.&lt;br&gt;&lt;br&gt;Sistemas x86 mais antigos apenas suportam &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Sistemas modernos normalmente usam &lt;strong&gt;EFI&lt;/strong&gt;, mas também podem aparecer como BIOS se iniciados em modo de compatibilidade.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="75"/>
         <source>This system was started with an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from an EFI environment, this installer must deploy a boot loader application, like &lt;strong&gt;GRUB&lt;/strong&gt; or &lt;strong&gt;systemd-boot&lt;/strong&gt; on an &lt;strong&gt;EFI System Partition&lt;/strong&gt;. This is automatic, unless you choose manual partitioning, in which case you must choose it or create it on your own.</source>
-        <translation type="unfinished"/>
+        <translation>Este sistema foi iniciado com ambiente de arranque&lt;strong&gt;EFI&lt;/strong&gt;.&lt;br&gt;&lt;br&gt;Para configurar o arranque de um ambiente EFI, o instalador tem de implantar uma aplicação de carregar de arranque, tipo &lt;strong&gt;GRUB&lt;/strong&gt; ou &lt;strong&gt;systemd-boot&lt;/strong&gt; ou uma &lt;strong&gt;Partição de Sistema EFI&lt;/strong&gt;. Isto é automático, a menos que escolha particionamento manual, e nesse caso tem de escolhê-la ou criar uma por si próprio.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="87"/>
         <source>This system was started with a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from a BIOS environment, this installer must install a boot loader, like &lt;strong&gt;GRUB&lt;/strong&gt;, either at the beginning of a partition or on the &lt;strong&gt;Master Boot Record&lt;/strong&gt; near the beginning of the partition table (preferred). This is automatic, unless you choose manual partitioning, in which case you must set it up on your own.</source>
-        <translation type="unfinished"/>
+        <translation>Este sistema foi iniciado com um ambiente de arranque &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;&lt;br&gt;Para configurar um arranque de um ambiente BIOS, este instalador tem de instalar um carregador de arranque, tipo &lt;strong&gt;GRUB&lt;/strong&gt;, quer no início da partição ou no &lt;strong&gt;Master Boot Record&lt;/strong&gt; perto do início da tabela de partições (preferido). Isto é automático, a não ser que escolha particionamento manual, e nesse caso tem de o configurar por si próprio</translation>
     </message>
 </context>
 <context>
@@ -879,17 +879,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="63"/>
         <source>The type of &lt;strong&gt;partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The only way to change the partition table type is to erase and recreate the partition table from scratch, which destroys all data on the storage device.&lt;br&gt;This installer will keep the current partition table unless you explicitly choose otherwise.&lt;br&gt;If unsure, on modern systems GPT is preferred.</source>
-        <translation type="unfinished"/>
+        <translation>O tipo da &lt;strong&gt;tabela de partições&lt;/strong&gt; no dispositivo de armazenamento selecionado.&lt;br&gt;&lt;br&gt;A única maneira de mudar o tipo da tabela de partições é apagá-la e recriar a tabela de partições do nada, o que destrói todos os dados no dispositivo de armazenamento.&lt;br&gt;Este instalador manterá a tabela de partições atual a não ser que escolha explicitamente em contrário.&lt;br&gt;Se não tem a certeza, nos sistemas modernos é preferido o GPT.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="107"/>
         <source>This device has a &lt;strong&gt;%1&lt;/strong&gt; partition table.</source>
-        <translation type="unfinished"/>
+        <translation>Este dispositivo tem uma tabela de partições &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="114"/>
         <source>This is a &lt;strong&gt;loop&lt;/strong&gt; device.&lt;br&gt;&lt;br&gt;It is a pseudo-device with no partition table that makes a file accessible as a block device. This kind of setup usually only contains a single filesystem.</source>
-        <translation type="unfinished"/>
+        <translation>Este é um dispositivo&lt;strong&gt;loop&lt;/strong&gt;.&lt;br&gt;&lt;br&gt;É um pseudo-dispositivo sem tabela de partições que torna um ficheiro acessível como um dispositivo de bloco. Este tipo de configuração normalmente apenas contém um único sistema de ficheiros.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="121"/>
@@ -904,7 +904,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="137"/>
         <source>&lt;br&gt;&lt;br&gt;This partition table type is only advisable on older systems which start from a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment. GPT is recommended in most other cases.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Warning:&lt;/strong&gt; the MBR partition table is an obsolete MS-DOS era standard.&lt;br&gt;Only 4 &lt;em&gt;primary&lt;/em&gt; partitions may be created, and of those 4, one can be an &lt;em&gt;extended&lt;/em&gt; partition, which may in turn contain many &lt;em&gt;logical&lt;/em&gt; partitions.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;br&gt;&lt;br&gt;Este tipo de tabela de partições é aconselhável apenas em sistemas mais antigos que iniciam a partir de um ambiente de arranque &lt;strong&gt;BIOS&lt;/strong&gt;. GPT é recomendado na maior parte dos outros casos.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Aviso:&lt;/strong&gt; A tabela de partições MBR é um standard obsoleto da era MS-DOS.&lt;br&gt;Apenas 4 partições &lt;em&gt;primárias&lt;/em&gt; podem ser criadas, e dessa 4, apenas uma pode ser partição &lt;em&gt;estendida&lt;/em&gt;, que por sua vez podem ser tornadas em várias partições &lt;em&gt;lógicas&lt;/em&gt;.</translation>
     </message>
 </context>
 <context>

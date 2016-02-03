@@ -37,7 +37,7 @@
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="20"/>
         <source>Installer</source>
-        <translation type="unfinished"/>
+        <translation>Εφαρμογή εγκατάστασης</translation>
     </message>
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="168"/>
@@ -50,7 +50,7 @@ p, li { white-space: pre-wrap; }
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600; color:#343434;&quot;&gt;Καλώς ήρθατε&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600; color:#343434;&quot;&gt;Καλώς ήλθατε&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="198"/>
@@ -237,20 +237,20 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="60"/>
         <source>Running command %1 %2</source>
-        <translation>Εκτελείται η εντολή  </translation>
+        <translation>Εκτελείται η εντολή %1 %2</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="89"/>
         <source>External command crashed</source>
-        <translation>Η εξωτερική εντολή τερματίστηκε απροσδόκητα</translation>
+        <translation>Η εξωτερική εντολή κατέρρευσε</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="90"/>
         <source>Command %1 crashed.
 Output:
 %2</source>
-        <translation>Η εντολή %1 τερματίστηκε απροσδόκητα
-Output:
+        <translation>Η εντολή %1 κατέρρευσε.
+Έξοδος:
 %2</translation>
     </message>
     <message>
@@ -271,7 +271,7 @@ Output:
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="101"/>
         <source>Bad parameters for process job call.</source>
-        <translation type="unfinished"/>
+        <translation>Λανθασμένοι παράμετροι για την κλήση διεργασίας.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="104"/>
@@ -284,7 +284,7 @@ Output:
 Output:
 %3</source>
         <translation>Η εντολή %1 απέτυχε να ολοκληρώσει σε %2s.
-Output:
+Έξοδος:
 %3</translation>
     </message>
     <message>
@@ -298,7 +298,7 @@ Output:
 Output:
 %3</source>
         <translation>Η εντολή %1 ολοκληρώθηκε με σφάλμα εξόδου %2.
-Output:
+Έξοδος:
 %3</translation>
     </message>
 </context>
@@ -441,12 +441,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/CheckFileSystemJob.cpp" line="34"/>
         <source>Checking file system on partition %1.</source>
-        <translation>Γίνεται έλεγχος του συστήματος αρχείων στη κατάτμηση %1.</translation>
+        <translation>Γίνεται έλεγχος του συστήματος αρχείων στην κατάτμηση %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CheckFileSystemJob.cpp" line="58"/>
         <source>The file system check on partition %1 failed.</source>
-        <translation>Ο έλεγχος του συστήματος αρχείων στη κατάτμηση %1 απέτυχε.</translation>
+        <translation>Ο έλεγχος του συστήματος αρχείων στην κατάτμηση %1 απέτυχε.</translation>
     </message>
 </context>
 <context>
@@ -626,32 +626,32 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="50"/>
         <source>&amp;Primary</source>
-        <translation>&amp;Primary</translation>
+        <translation>Π&amp;ρωτεύουσα</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="60"/>
         <source>E&amp;xtended</source>
-        <translation>E&amp;xtended</translation>
+        <translation>Ε&amp;κτεταμένη</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="89"/>
         <source>F&amp;ile System:</source>
-        <translation>F&amp;ile System:</translation>
+        <translation>&amp;Σύστημα αρχείων:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="118"/>
         <source>&amp;Mount Point:</source>
-        <translation>&amp;Mount Point:</translation>
+        <translation>Σ&amp;ημείο προσάρτησης:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="164"/>
         <source>Si&amp;ze:</source>
-        <translation>Si&amp;ze:</translation>
+        <translation>&amp;Μέγεθος:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="174"/>
         <source> MB</source>
-        <translation>MB</translation>
+        <translation> MB</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="99"/>
@@ -661,7 +661,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="104"/>
         <source>Primary</source>
-        <translation>Αρχική</translation>
+        <translation>Πρωτεύουσα</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="121"/>
@@ -773,7 +773,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="49"/>
         <source>Create user %1</source>
-        <translation>Δημιούργησε χρήστη %1</translation>
+        <translation>Δημιουργία χρήστη %1</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="56"/>
@@ -788,27 +788,27 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="79"/>
         <source>Sudoers dir is not writable.</source>
-        <translation>Ο κατάλογος Sudoers δεν είναι εγγράψιμος.</translation>
+        <translation>Ο κατάλογος sudoers δεν είναι εγγράψιμος.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="83"/>
         <source>Cannot create sudoers file for writing.</source>
-        <translation>Δεν μπορεί να δημιουργηθέι αρχείο Sudoers για συγγραφή.</translation>
+        <translation>Δεν είναι δυνατή η δημιουργία του αρχείου sudoers για εγγραφή.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="91"/>
         <source>Cannot chmod sudoers file.</source>
-        <translation>Δεν μπορεί να chmod το αρχείο sudoers.</translation>
+        <translation>Δεν είναι δυνατό το chmod στο αρχείο sudoers.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="97"/>
         <source>Cannot open groups file for reading.</source>
-        <translation>Δεν μπορεί να ανοίξει το φάκελο ομάδων για ανάγνωση.</translation>
+        <translation>Δεν είναι δυνατό το άνοιγμα του αρχείου ομάδων για ανάγνωση.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="136"/>
         <source>Cannot create user %1.</source>
-        <translation>Δεν μπορεί να δημιουργήσει το χρήστη %1.</translation>
+        <translation>Δεν είναι δυνατή η δημιουργία του χρήστη %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="138"/>
@@ -818,7 +818,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="143"/>
         <source>Cannot set full name for user %1.</source>
-        <translation>Δεν μπορεί να ορίστει το πλήρες όνομα του χρήστη %1.</translation>
+        <translation>Δεν είναι δυνατός ο ορισμός του πλήρους όνοματος του χρήστη %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="145"/>
@@ -828,7 +828,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="155"/>
         <source>Cannot set home directory ownership for user %1.</source>
-        <translation>Δεν μπορεί να ορίστει η ιδιοκτησία καταλόγου για τον χρήστη %1.</translation>
+        <translation>Δεν είναι δυνατός ο ορισμός της ιδιοκτησία του προσωπικού καταλόγου για τον χρήστη %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="157"/>
@@ -841,37 +841,37 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="42"/>
         <source>Delete partition %1.</source>
-        <translation>Διαγραφή κατάτμησης </translation>
+        <translation>Διαγραφή της κατάτμησης %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="50"/>
         <source>Delete partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation>Διαγραφή κατάτμησης </translation>
+        <translation>Διαγραφή της κατάτμησης &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="58"/>
         <source>Deleting partition %1.</source>
-        <translation>Διαγράφεται η κατάτμηση </translation>
+        <translation>Διαγράφεται η κατάτμηση %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="67"/>
         <source>The installer failed to delete partition %1.</source>
-        <translation>Η εγκατάσταση απέτυχε να διαγράψει την κατάτμηση %1.</translation>
+        <translation>Απέτυχε η διαγραφή της κατάτμησης %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="73"/>
         <source>Partition (%1) and device (%2) do not match.</source>
-        <translation>Η κατάτμηση (%1) δεν αντιστοιχεί με την συσκευή (%2).</translation>
+        <translation>Η κατάτμηση (%1) και η συσκευή (%2) δεν ταιριάζουν.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="85"/>
         <source>Could not open device %1.</source>
-        <translation>Δεν μπόρεσε να ανοίξει τη συσκευή &apos;%1&apos;.</translation>
+        <translation>Δεν ήταν δυνατό το άνοιγμα της συσκευής %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="94"/>
         <source>Could not open partition table.</source>
-        <translation>Δεν μπόρεσε να ανοίξει τον πίνακα κατατμήσεων.</translation>
+        <translation>Δεν ήταν δυνατό το άνοιγμα του πίνακα κατατμήσεων.</translation>
     </message>
 </context>
 <context>
@@ -950,7 +950,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="119"/>
         <source>Si&amp;ze:</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Μέγεθος:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="132"/>
@@ -1019,7 +1019,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/finished/FinishedViewStep.cpp" line="43"/>
         <source>Finish</source>
-        <translation type="unfinished"/>
+        <translation>Τέλος</translation>
     </message>
 </context>
 <context>
@@ -1052,7 +1052,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="99"/>
         <source>Could not open partition table.</source>
-        <translation type="unfinished"/>
+        <translation>Δεν ήταν δυνατό το άνοιγμα του πίνακα κατατμήσεων.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="107"/>
@@ -1092,7 +1092,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/interactiveterminal/InteractiveTerminalViewStep.cpp" line="45"/>
         <source>Script</source>
-        <translation type="unfinished"/>
+        <translation>Σενάριο</translation>
     </message>
 </context>
 <context>
@@ -1241,7 +1241,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/locale/LocaleViewStep.cpp" line="48"/>
         <source>Loading location data...</source>
-        <translation>Φόρτωση δεδομένων τοποθεσίας...</translation>
+        <translation>Γίνεται φόρτωση δεδομένων τοποθεσίας...</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/LocaleViewStep.cpp" line="82"/>
@@ -1392,7 +1392,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="187"/>
         <source>Root</source>
-        <translation type="unfinished"/>
+        <translation>Ριζικός</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="190"/>
@@ -1412,7 +1412,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="197"/>
         <source>Swap</source>
-        <translation type="unfinished"/>
+        <translation>Swap</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="199"/>
@@ -1949,7 +1949,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/summary/SummaryViewStep.cpp" line="43"/>
         <source>Summary</source>
-        <translation type="unfinished"/>
+        <translation>Σύνοψη</translation>
     </message>
 </context>
 <context>
@@ -1991,7 +1991,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/UsersViewStep.cpp" line="48"/>
         <source>Users</source>
-        <translation type="unfinished"/>
+        <translation>Χρήστες</translation>
     </message>
 </context>
 <context>
@@ -2052,7 +2052,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/welcome/WelcomeViewStep.cpp" line="50"/>
         <source>Welcome</source>
-        <translation type="unfinished"/>
+        <translation>Καλώς ήλθατε</translation>
     </message>
 </context>
 </TS>

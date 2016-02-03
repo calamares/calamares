@@ -142,17 +142,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="61"/>
         <source>The &lt;strong&gt;boot environment&lt;/strong&gt; of this system.&lt;br&gt;&lt;br&gt;Older x86 systems only support &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Modern systems usually use &lt;strong&gt;EFI&lt;/strong&gt;, but may also show up as BIOS if started in compatibility mode.</source>
-        <translation type="unfinished"/>
+        <translation>Bu sistemdeki&lt;br&gt; &lt;strong&gt;önyükleme arayüzü&lt;/strong&gt; sadece eski x86 sistem ve &lt;strong&gt;BIOS&lt;/strong&gt; destekler. &lt;br&gt;Modern sistemler genellikle &lt;strong&gt;EFI&lt;/strong&gt; kullanır fakat önyükleme arayüzü uyumlu modda ise BIOS seçilebilir.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="75"/>
         <source>This system was started with an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from an EFI environment, this installer must deploy a boot loader application, like &lt;strong&gt;GRUB&lt;/strong&gt; or &lt;strong&gt;systemd-boot&lt;/strong&gt; on an &lt;strong&gt;EFI System Partition&lt;/strong&gt;. This is automatic, unless you choose manual partitioning, in which case you must choose it or create it on your own.</source>
-        <translation type="unfinished"/>
+        <translation>Bu sistem, bir &lt;strong&gt;EFI&lt;/strong&gt; önyükleme arayüzü ile başladı.&lt;br&gt;&lt;br&gt;EFI ortamından başlangıcı yapılandırmak için, bu yükleyici &lt;strong&gt;EFI Sistem Bölümü&lt;/strong&gt; üzerinde &lt;strong&gt;GRUB&lt;/strong&gt; veya &lt;strong&gt;systemd-boot&lt;/strong&gt; gibi bir önyükleyici oluşturmalıdır. Bunu otomatik olarak yapabileceğiniz gibi elle disk bölümleri oluşturarak ta yapabilirsiniz.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="87"/>
         <source>This system was started with a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from a BIOS environment, this installer must install a boot loader, like &lt;strong&gt;GRUB&lt;/strong&gt;, either at the beginning of a partition or on the &lt;strong&gt;Master Boot Record&lt;/strong&gt; near the beginning of the partition table (preferred). This is automatic, unless you choose manual partitioning, in which case you must set it up on your own.</source>
-        <translation type="unfinished"/>
+        <translation>Bu sistem, bir &lt;strong&gt;BIOS&lt;/strong&gt; önyükleme arayüzü ile başladı.&lt;br&gt;&lt;br&gt;BIOS ortamında önyükleme için, yükleyici bölümün başında veya bölüm tablosu başlangıcına yakın &lt;strong&gt;Master Boot Record&lt;/strong&gt; üzerine &lt;strong&gt;GRUB&lt;/strong&gt; gibi bir önyükleyici yüklemeniz gerekir (önerilir). Eğer bu işlemin otomatik olarak yapılmasını istemez iseniz elle bölümleme yapabilirsiniz.</translation>
     </message>
 </context>
 <context>
@@ -510,7 +510,7 @@ Kuruluma devam edebilirsiniz fakat bazı özellikler devre dışı kalabilir.</t
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="113"/>
         <source>Select storage de&amp;vice:</source>
-        <translation type="unfinished"/>
+        <translation>Depolama ay&amp;gıtı seç:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="114"/>
@@ -518,17 +518,17 @@ Kuruluma devam edebilirsiniz fakat bazı özellikler devre dışı kalabilir.</t
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="686"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="753"/>
         <source>Current:</source>
-        <translation type="unfinished"/>
+        <translation>Geçerli:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="647"/>
         <source>&lt;strong&gt;Select a partition to shrink, then drag the bottom bar to resize&lt;/strong&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;Küçültmek için bir bölüm seçip alttaki çubuğu sürükleyerek boyutlandır&lt;/strong&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="744"/>
         <source>&lt;strong&gt;Select a partition to install on&lt;/strong&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;Yükleyeceğin disk bölümünü seç&lt;/strong&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="820"/>
@@ -882,17 +882,17 @@ Kuruluma devam edebilirsiniz fakat bazı özellikler devre dışı kalabilir.</t
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="63"/>
         <source>The type of &lt;strong&gt;partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The only way to change the partition table type is to erase and recreate the partition table from scratch, which destroys all data on the storage device.&lt;br&gt;This installer will keep the current partition table unless you explicitly choose otherwise.&lt;br&gt;If unsure, on modern systems GPT is preferred.</source>
-        <translation type="unfinished"/>
+        <translation>Seçili depolama aygıtında bir &lt;strong&gt;bölümleme tablosu&lt;/strong&gt; oluştur.&lt;br&gt;&lt;br&gt;Bölümleme tablosu oluşturmanın tek yolu aygıt üzerindeki bölümleri silmek, verileri yoketmek ve yeni bölümleme tablosu oluşturmaktır.&lt;br&gt;Sistem yükleyici aksi bir seçeneğe başvurmaz iseniz geçerli bölümlemeyi koruyacaktır.&lt;br&gt;Emin değilseniz, modern sistemler için GPT tercih edebilirsiniz.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="107"/>
         <source>This device has a &lt;strong&gt;%1&lt;/strong&gt; partition table.</source>
-        <translation type="unfinished"/>
+        <translation>Bu aygıt bir &lt;strong&gt;%1&lt;/strong&gt; bölümleme tablosuna sahip.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="114"/>
         <source>This is a &lt;strong&gt;loop&lt;/strong&gt; device.&lt;br&gt;&lt;br&gt;It is a pseudo-device with no partition table that makes a file accessible as a block device. This kind of setup usually only contains a single filesystem.</source>
-        <translation type="unfinished"/>
+        <translation>Bu bir &lt;strong&gt;döngüsel&lt;/strong&gt; aygıttır.&lt;br&gt;&lt;br&gt;Bu bir pseudo-device aygıt olup disk bölümlemesi yoktur ve dosyalara erişim sağlayan blok bir aygıttır. Kurulum genelde sadece bir tek dosya sistemini içerir.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="121"/>
@@ -907,7 +907,7 @@ Kuruluma devam edebilirsiniz fakat bazı özellikler devre dışı kalabilir.</t
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="137"/>
         <source>&lt;br&gt;&lt;br&gt;This partition table type is only advisable on older systems which start from a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment. GPT is recommended in most other cases.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Warning:&lt;/strong&gt; the MBR partition table is an obsolete MS-DOS era standard.&lt;br&gt;Only 4 &lt;em&gt;primary&lt;/em&gt; partitions may be created, and of those 4, one can be an &lt;em&gt;extended&lt;/em&gt; partition, which may in turn contain many &lt;em&gt;logical&lt;/em&gt; partitions.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;br&gt;&lt;br&gt;Bu bölümleme tablosu &lt;strong&gt;BIOS&lt;/strong&gt;önyükleme arayüzü kullanan eski sistemlerde tercih edilir. Birçok durumda GPT tavsiye edilmektedir.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Uyarı:&lt;/strong&gt; MBR bölüm tablosu eski tip MS-DOS biçimi için standarttır.&lt;br&gt;Sadece 4 &lt;em&gt;birincil&lt;/em&gt; birim oluşturulabilir ve 4 ten fazla bölüm için &lt;em&gt;uzatılmış&lt;/em&gt; bölümler oluşturulmalıdır, böylece daha çok &lt;em&gt;mantıksal&lt;/em&gt; bölüm oluşturulabilir.</translation>
     </message>
 </context>
 <context>
@@ -1571,12 +1571,12 @@ Kuruluma devam edebilirsiniz fakat bazı özellikler devre dışı kalabilir.</t
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="221"/>
         <source>Current:</source>
-        <translation type="unfinished"/>
+        <translation>Geçerli:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="235"/>
         <source>After:</source>
-        <translation type="unfinished"/>
+        <translation>Sonra:</translation>
     </message>
 </context>
 <context>
