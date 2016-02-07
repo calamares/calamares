@@ -142,17 +142,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="61"/>
         <source>The &lt;strong&gt;boot environment&lt;/strong&gt; of this system.&lt;br&gt;&lt;br&gt;Older x86 systems only support &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Modern systems usually use &lt;strong&gt;EFI&lt;/strong&gt;, but may also show up as BIOS if started in compatibility mode.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;Среда загрузки&lt;/strong&gt; данной системы.&lt;br&gt;&lt;br&gt;Старые системы x86 поддерживают только &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Современные системы обычно используют &lt;strong&gt;EFI&lt;/strong&gt;, но также могут имитировать BIOS, если среда загрузки запущена в режиме совместимости.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="75"/>
         <source>This system was started with an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from an EFI environment, this installer must deploy a boot loader application, like &lt;strong&gt;GRUB&lt;/strong&gt; or &lt;strong&gt;systemd-boot&lt;/strong&gt; on an &lt;strong&gt;EFI System Partition&lt;/strong&gt;. This is automatic, unless you choose manual partitioning, in which case you must choose it or create it on your own.</source>
-        <translation type="unfinished"/>
+        <translation>Эта система использует среду загрузки &lt;strong&gt;EFI&lt;/strong&gt;.&lt;br&gt;&lt;br&gt;Чтобы настроить запуск из под среды EFI, установщик использует приложения загрузки, такое как &lt;strong&gt;GRUB&lt;/strong&gt; или &lt;strong&gt;systemd-boot&lt;/strong&gt; на &lt;strong&gt;системном разделе EFI&lt;/strong&gt;. Процесс автоматизирован, но вы можете использовать ручной режим, где вы сами будете должны выбрать или создать его.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="87"/>
         <source>This system was started with a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from a BIOS environment, this installer must install a boot loader, like &lt;strong&gt;GRUB&lt;/strong&gt;, either at the beginning of a partition or on the &lt;strong&gt;Master Boot Record&lt;/strong&gt; near the beginning of the partition table (preferred). This is automatic, unless you choose manual partitioning, in which case you must set it up on your own.</source>
-        <translation type="unfinished"/>
+        <translation>Эта система запущена в &lt;strong&gt;BIOS&lt;/strong&gt; среде загрузки.&lt;br&gt;&lt;br&gt; Чтобы настроить запуск из под среды BIOS, установщик должен установить загручик, такой как &lt;strong&gt;GRUB&lt;/strong&gt;, либо в начале раздела, либо в &lt;strong&gt;Master Boot Record&lt;/strong&gt;, находящийся в начале таблицы разделов (по умолчанию). Процесс автоматизирован, но вы можете выбрать ручной режим, где будете должны настроить его сами.</translation>
     </message>
 </context>
 <context>
@@ -879,17 +879,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="63"/>
         <source>The type of &lt;strong&gt;partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The only way to change the partition table type is to erase and recreate the partition table from scratch, which destroys all data on the storage device.&lt;br&gt;This installer will keep the current partition table unless you explicitly choose otherwise.&lt;br&gt;If unsure, on modern systems GPT is preferred.</source>
-        <translation type="unfinished"/>
+        <translation>Тип &lt;strong&gt;таблицы разделов&lt;/strong&gt; на выбраном устройстве хранения.&lt;br&gt;&lt;br&gt;Смена типа раздела возможна только путем удаления и пересоздания всей таблицы разделов, что уничтожит все данные на устройстве.&lt;br&gt;Этот установщик не затронет текущую таблицу разделов, кроме как вы сами решите иначе.&lt;br&gt;По умолчанию, современные системы используют GPT-разметку.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="107"/>
         <source>This device has a &lt;strong&gt;%1&lt;/strong&gt; partition table.</source>
-        <translation type="unfinished"/>
+        <translation>На этом устройстве имеется &lt;strong&gt;%1&lt;/strong&gt; таблица разделов.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="114"/>
         <source>This is a &lt;strong&gt;loop&lt;/strong&gt; device.&lt;br&gt;&lt;br&gt;It is a pseudo-device with no partition table that makes a file accessible as a block device. This kind of setup usually only contains a single filesystem.</source>
-        <translation type="unfinished"/>
+        <translation>Это &lt;strong&gt;loop&lt;/strong&gt; устройство.&lt;br&gt;&lt;br&gt;Это псевдо-устройство без таблицы разделов позволяет использовать обычный файл как блочное устройство. При таком виде подключения обычно имеется только одна файловая система.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="121"/>
@@ -904,7 +904,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="137"/>
         <source>&lt;br&gt;&lt;br&gt;This partition table type is only advisable on older systems which start from a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment. GPT is recommended in most other cases.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Warning:&lt;/strong&gt; the MBR partition table is an obsolete MS-DOS era standard.&lt;br&gt;Only 4 &lt;em&gt;primary&lt;/em&gt; partitions may be created, and of those 4, one can be an &lt;em&gt;extended&lt;/em&gt; partition, which may in turn contain many &lt;em&gt;logical&lt;/em&gt; partitions.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;br&gt;&lt;br&gt;Этот тип таблицы разделов рекомендуется только для старых систем, запускаемых из среды загрузки &lt;strong&gt;BIOS&lt;/strong&gt;. В большинстве случаев вместо этого лучше использовать GPT.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Внимание:&lt;/strong&gt; MBR стандарт таблицы разделов является устаревшим.&lt;br&gt;Он допускает максимум 4 &lt;em&gt;первичных&lt;/em&gt; раздела, только один из них может быть &lt;em&gt;расширенным&lt;/em&gt; и содержать много &lt;em&gt;логических&lt;/em&gt; под-разделов.</translation>
     </message>
 </context>
 <context>

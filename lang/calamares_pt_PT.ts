@@ -4,12 +4,12 @@
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="77"/>
         <source>Choose partition to shrink:</source>
-        <translation>Escolha a partição a reduzir:</translation>
+        <translation>Escolha a partição a encolher:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="78"/>
         <source>Allocate drive space by dragging the divider below:</source>
-        <translation>Alocar espaço em disco arrastando o separador abaixo:</translation>
+        <translation>Alocar espaço em disco arrastando o divisor abaixo:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="121"/>
@@ -50,7 +50,7 @@ p, li { white-space: pre-wrap; }
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600; color:#343434;&quot;&gt;Bem-vindo&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600; color:#343434;&quot;&gt;Bem vindo&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/calamares/CalamaresWindow.ui" line="198"/>
@@ -188,7 +188,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="14"/>
         <source>Form</source>
-        <translation>Forma</translation>
+        <translation>Formulário</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="24"/>
@@ -237,19 +237,19 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="60"/>
         <source>Running command %1 %2</source>
-        <translation>Executando comando %1 %2</translation>
+        <translation>A executar comando %1 %2</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="89"/>
         <source>External command crashed</source>
-        <translation>Comando externo falhou</translation>
+        <translation>Comando externo crashou</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="90"/>
         <source>Command %1 crashed.
 Output:
 %2</source>
-        <translation>Comando %1 falhou.
+        <translation>Comando %1 crashou.
 Saída:
 %2</translation>
     </message>
@@ -261,7 +261,7 @@ Saída:
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="96"/>
         <source>Command %1 failed to start.</source>
-        <translation>Erro comando% 1 ao iniciar.</translation>
+        <translation>Comando% 1 falhou ao iniciar.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="100"/>
@@ -271,7 +271,7 @@ Saída:
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="101"/>
         <source>Bad parameters for process job call.</source>
-        <translation>Maus parâmetros para chamada do processo.</translation>
+        <translation>Maus parâmetros para chamada de processamento de tarefa.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="104"/>
@@ -283,7 +283,7 @@ Saída:
         <source>Command %1 failed to finish in %2s.
 Output:
 %3</source>
-        <translation>Comando %1 erro a terminar em %2s.
+        <translation>Comando %1 falhou ao terminar em %2s.
 Saída:
 %3</translation>
     </message>
@@ -317,22 +317,22 @@ Saída:
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="255"/>
         <source>Working directory %1 for python job %2 is not readable.</source>
-        <translation>Directório de trabalho %1 para a tarefa de python %2 não é legível.</translation>
+        <translation>Directório de trabalho %1 para a tarefa python %2 não é legível.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="265"/>
         <source>Bad main script file</source>
-        <translation>Ficheiro incorreto do script principal</translation>
+        <translation>Ficheiro de script principal errado</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="266"/>
         <source>Main script file %1 for python job %2 is not readable.</source>
-        <translation>Ficheiro de script principal% 1 para a tarefa python% 2 não é legível.</translation>
+        <translation>Ficheiro de script principal %1 para a tarefa python %2 não é legível.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="311"/>
         <source>Boost.Python error in job &quot;%1&quot;.</source>
-        <translation>Impulso.Erro python na tarefa &quot;% 1&quot;.</translation>
+        <translation>Erro Boost.Python na tarefa &quot;%1&quot;.</translation>
     </message>
 </context>
 <context>
@@ -362,7 +362,8 @@ Saída:
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="91"/>
         <source>Do you really want to cancel the current install process?
 The installer will quit and all changes will be lost.</source>
-        <translation>Tem a certeza que pretende cancelar o processo de instalação? A instalação será cancelada e todas as alterações serão apagadas.</translation>
+        <translation>Tem a certeza que pretende cancelar o atual processo de instalação?
+O instalador será encerrado e todas as alterações serão perdidas.</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="224"/>
@@ -405,7 +406,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/libcalamares/PythonHelper.cpp" line="234"/>
         <source>Unknown exception type</source>
-        <translation>Tipo de execução desconhecido</translation>
+        <translation>Tipo de exceção desconhecido</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonHelper.cpp" line="247"/>
@@ -580,7 +581,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="52"/>
         <source>Clearing mounts for partitioning operations on %1.</source>
-        <translation>Limpando montagens para operações de particionamento em %1.</translation>
+        <translation>A clarear montagens para operações de particionamento em %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="171"/>
@@ -593,12 +594,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="40"/>
         <source>Clear all temporary mounts.</source>
-        <translation>Limpar todas as montagens.</translation>
+        <translation>Clarear todas as montagens temporárias.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="47"/>
         <source>Clearing all temporary mounts.</source>
-        <translation>Limpando todas as montagens temporárias.</translation>
+        <translation>A limpar todas as montagens temporárias.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="58"/>
@@ -608,7 +609,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="97"/>
         <source>Cleared all temporary mounts.</source>
-        <translation>Apuradas todas as montagens temporárias.</translation>
+        <translation>Clareadas todas as montagens temporárias.</translation>
     </message>
 </context>
 <context>
@@ -631,12 +632,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="60"/>
         <source>E&amp;xtended</source>
-        <translation>E&amp;xtendida</translation>
+        <translation>E&amp;stendida</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="89"/>
         <source>F&amp;ile System:</source>
-        <translation>F&amp;icheiro do Sistema:</translation>
+        <translation>Sistema de F&amp;icheiros:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="118"/>
@@ -656,12 +657,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="99"/>
         <source>Logical</source>
-        <translation>Lógico</translation>
+        <translation>Lógica</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="104"/>
         <source>Primary</source>
-        <translation>Primário</translation>
+        <translation>Primária</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="121"/>
@@ -674,22 +675,22 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="48"/>
         <source>Create new %2MB partition on %4 (%3) with file system %1.</source>
-        <translation>Criar nova %2MB partição em %4 (%3) com sistema de ficheiros %1.</translation>
+        <translation>Criar nova partição de %2MB em %4 (%3) com sistema de ficheiros %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="59"/>
         <source>Create new &lt;strong&gt;%2MB&lt;/strong&gt; partition on &lt;strong&gt;%4&lt;/strong&gt; (%3) with file system &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation>Criar nova &lt;strong&gt;%2MB&lt;/strong&gt; partição em &lt;strong&gt;%4&lt;/strong&gt; (%3) com sistem de ficheiros &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+        <translation>Criar nova partição de &lt;strong&gt;%2MB&lt;/strong&gt; em &lt;strong&gt;%4&lt;/strong&gt; (%3) com sistema de ficheiros &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="71"/>
         <source>Creating new %1 partition on %2.</source>
-        <translation>Criando nova %1 partição em %2.</translation>
+        <translation>Criando nova partição %1 em %2.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="83"/>
         <source>The installer failed to create partition on disk &apos;%1&apos;.</source>
-        <translation>O instalador não conseguiu criar a partição no disco &apos;%1&apos;.</translation>
+        <translation>O instalador falhou a criação da partição no disco &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="92"/>
@@ -704,12 +705,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="126"/>
         <source>The installer failed to create file system on partition %1.</source>
-        <translation>O instalador falhou a criar o sistema de ficheiros na partição %1.</translation>
+        <translation>O instalador falhou a criação do sistema de ficheiros na partição %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="134"/>
         <source>The installer failed to update partition table on disk &apos;%1&apos;.</source>
-        <translation>O instalador falhou ao actualizar a tabela de partições no disco &apos;%1&apos;.</translation>
+        <translation>O instalador falhou ao atualizar a tabela de partições no disco &apos;%1&apos;.</translation>
     </message>
 </context>
 <context>
@@ -722,12 +723,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="39"/>
         <source>Creating a new partition table will delete all existing data on the disk.</source>
-        <translation>Criando uma nova tabela de partições irá apagar todos os dados existentes no disco.</translation>
+        <translation>Criar uma nova tabela de partições irá apagar todos os dados existentes no disco.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="65"/>
         <source>What kind of partition table do you want to create?</source>
-        <translation>Que tipo de tabela de partição você quer criar?</translation>
+        <translation>Que tipo de tabela de partições quer criar?</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="72"/>
@@ -755,12 +756,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="66"/>
         <source>Creating new %1 partition table on %2.</source>
-        <translation>Criando nova %1 tabela de partições em %2.</translation>
+        <translation>A criar nova %1 tabela de partições em %2.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="76"/>
         <source>The installer failed to create a partition table on %1.</source>
-        <translation>O instalador não conseguiu criar uma tabela de partição %1.</translation>
+        <translation>O instalador falhou a criação de uma tabela de partições em %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="84"/>
@@ -783,22 +784,22 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="63"/>
         <source>Creating user %1.</source>
-        <translation>Criando utilizador %1.</translation>
+        <translation>A criar utilizador %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="79"/>
         <source>Sudoers dir is not writable.</source>
-        <translation>O directório do Super utilizador não é gravável.</translation>
+        <translation>O diretório dos super utilizadores não é gravável.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="83"/>
         <source>Cannot create sudoers file for writing.</source>
-        <translation>Impossível criar ficheiro do super utilizador para gravação.</translation>
+        <translation>Impossível criar ficheiro do super utilizador para escrita.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="91"/>
         <source>Cannot chmod sudoers file.</source>
-        <translation>Impossível alterar permissões do ficheiro do superutilizador.</translation>
+        <translation>Impossível de usar chmod no ficheiro dos super utilizadores.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="97"/>
@@ -851,7 +852,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="58"/>
         <source>Deleting partition %1.</source>
-        <translation>Apagando partição %1.</translation>
+        <translation>A apagar a partição %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="67"/>
@@ -940,7 +941,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="89"/>
         <source>Warning: Formatting the partition will erase all existing data.</source>
-        <translation>Atenção: A formatação da partição apagará todos os dados existentes.</translation>
+        <translation>Atenção: Formatar a partição irá apagar todos os dados existentes.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="99"/>
@@ -968,7 +969,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="111"/>
         <source>Install %1 on &lt;strong&gt;new&lt;/strong&gt; %2 system partition.</source>
-        <translation>Instalar %1 em &lt;strong&gt;nova&lt;/strong&gt; %2 partição de sistema.</translation>
+        <translation>Instalar %1 na &lt;strong&gt;nova&lt;/strong&gt; %2 partição de sistema.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="116"/>
@@ -1001,7 +1002,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/finished/FinishedPage.ui" line="14"/>
         <source>Form</source>
-        <translation>Forma</translation>
+        <translation>Formulário</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedPage.ui" line="77"/>
@@ -1027,7 +1028,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="48"/>
         <source>Format partition %1 (file system: %2, size: %3 MB) on %4.</source>
-        <translation>Formatar partição %1 (ficheiro sistema: %2, tamanho: %3 MB) em %4.</translation>
+        <translation>Formatar partição %1 (sistema de ficheiros: %2, tamanho: %3 MB) em %4.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="59"/>
@@ -1037,12 +1038,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="70"/>
         <source>Formatting partition %1 with file system %2.</source>
-        <translation>Formatando partição %1 com sistema de ficheiros %2.</translation>
+        <translation>A formatar partição %1 com sistema de ficheiros %2.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="82"/>
         <source>The installer failed to format partition %1 on disk &apos;%2&apos;.</source>
-        <translation>O instalador falhou em formatar a partição %1 no disco &apos;%2&apos;.</translation>
+        <translation>O instalador falhou ao formatar a partição %1 no disco &apos;%2&apos;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="90"/>
@@ -1052,17 +1053,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="99"/>
         <source>Could not open partition table.</source>
-        <translation>Não foi possível ler a tabela de partições.</translation>
+        <translation>Não foi possível abrir a tabela de partições.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="107"/>
         <source>The installer failed to create file system on partition %1.</source>
-        <translation>O instalador falhou ao criar um sistema de ficheiros na partição %1.</translation>
+        <translation>O instalador falhou ao criar o sistema de ficheiros na partição %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="115"/>
         <source>The installer failed to update partition table on disk &apos;%1&apos;.</source>
-        <translation>O instalador falhou ao actualizar a tabela de partições no disco &apos;%1&apos;.</translation>
+        <translation>O instalador falhou ao atualizar a tabela de partições no disco &apos;%1&apos;.</translation>
     </message>
 </context>
 <context>
@@ -1100,7 +1101,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="201"/>
         <source>Set keyboard model to %1.&lt;br/&gt;</source>
-        <translation>Definir o modelo de teclado para %1.&lt;br/&gt;</translation>
+        <translation>Definir o modelo do teclado para %1.&lt;br/&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="203"/>
@@ -1121,7 +1122,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="33"/>
         <source>System locale setting</source>
-        <translation>Definição de localidade do Sistema</translation>
+        <translation>Definição de localização do Sistema</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="40"/>
@@ -1233,7 +1234,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/locale/LocalePage.cpp" line="266"/>
         <source>Set timezone to %1/%2.&lt;br/&gt;</source>
-        <translation>Definir o fuso horário para %1/%2.&lt;br/&gt;</translation>
+        <translation>Definir fuso horário para %1/%2.&lt;br/&gt;</translation>
     </message>
 </context>
 <context>
@@ -1241,7 +1242,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/locale/LocaleViewStep.cpp" line="48"/>
         <source>Loading location data...</source>
-        <translation>Carregando dados de localização...</translation>
+        <translation>A carregar dados de localização...</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/LocaleViewStep.cpp" line="82"/>
@@ -1274,22 +1275,22 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="101"/>
         <source>Moving of partition %1 failed. Roll back of the changes have failed.</source>
-        <translation>A movimentação da partição %1 falhou. As alterações não foram revertidas.</translation>
+        <translation>A movimentação da partição %1 falhou. A reversão das alterações falhou.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="113"/>
         <source>Updating boot sector after the moving of partition %1 failed.</source>
-        <translation>A actualizar sector de arranque após a movimentação da partição %1 ter falhado.</translation>
+        <translation>A atualizar sector de arranque após a movimentação da partição %1 ter falhado.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="127"/>
         <source>The logical sector sizes in the source and target for copying are not the same. This is currently unsupported.</source>
-        <translation>O tamanho de sector lógico a copiar no destino e na fonte não são os mesmos. Esta operação não é suportada actualmente.</translation>
+        <translation>O tamanho dos setores lógicos para copiar na fonte e no destino não são os mesmos. Isto não é suportado actualmente.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="197"/>
         <source>Source and target for copying do not overlap: Rollback is not required.</source>
-        <translation>Origem e alvo da cópia não coincidem: A reversão não é necessária.</translation>
+        <translation>Fonte e alvo para cópia não se sobrepõem: A reversão não é necessária.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="221"/>
@@ -1303,12 +1304,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/keyboard/KeyboardPage.ui" line="14"/>
         <source>Form</source>
-        <translation>Form</translation>
+        <translation>Formulário</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardPage.ui" line="70"/>
         <source>Keyboard Model:</source>
-        <translation>Modelo Teclado:</translation>
+        <translation>Modelo do Teclado:</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardPage.ui" line="131"/>
@@ -1321,7 +1322,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="14"/>
         <source>Form</source>
-        <translation>Form</translation>
+        <translation>Formulário</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="36"/>
@@ -1339,12 +1340,12 @@ The installer will quit and all changes will be lost.</source>
         <location filename="../src/modules/users/page_usersetup.ui" line="437"/>
         <location filename="../src/modules/users/page_usersetup.ui" line="582"/>
         <source>font-weight: normal</source>
-        <translation>fonte-espessura: normal</translation>
+        <translation>font-weight: normal</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="200"/>
         <source>&lt;small&gt;If more than one person will use this computer, you can set up multiple accounts after installation.&lt;/small&gt;</source>
-        <translation>&lt;small&gt;Se mais que uma pessoa precise de usar este computador, poderá adicionar outras contas após a instalação.&lt;/small&gt;</translation>
+        <translation>&lt;small&gt;Se mais do que uma pessoa for usar este computador, pode criar contas múltiplas depois da instalação.&lt;/small&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="335"/>
@@ -1354,7 +1355,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="440"/>
         <source>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors. A good password will contain a mixture of letters, numbers and punctuation, should be at least eight characters long, and should be changed at regular intervals.&lt;/small&gt;</source>
-        <translation>&lt;small&gt;Digite a mesma senha duas vezes, de modo a que possam ser verificados erros de digitação. Uma boa senha contém uma mistura de letras, números e sinais de pontuação, deve ter pelo menos oito caracteres e deve ser alterada em intervalos regulares.&lt;/small&gt;</translation>
+        <translation>&lt;small&gt;Digite a mesma palavra-passe duas vezes, de modo a que possam ser verificados erros de digitação. Uma boa palavra-passe contém uma mistura de letras, números e sinais de pontuação, deve ter pelo menos oito caracteres de comprimento, e deve ser alterada em intervalos regulares.&lt;/small&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="226"/>
@@ -1364,17 +1365,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="309"/>
         <source>&lt;small&gt;This name will be used if you make the computer visible to others on a network.&lt;/small&gt;</source>
-        <translation>&lt;small&gt;Este nome será usado caso decida tornar este computador visível para outros na mesma rede.&lt;/small&gt;</translation>
+        <translation>&lt;small&gt;Este nome será usado se tornar este computador visível para outros numa rede.&lt;/small&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="450"/>
         <source>Log in automatically without asking for the password.</source>
-        <translation>Iniciar sessão automaticamente sem pedir a senha.</translation>
+        <translation>Iniciar sessão automaticamente sem pedir a palavra-passe.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="457"/>
         <source>Use the same password for the administrator account.</source>
-        <translation>Usar a mesma senha para a conta de administrador.</translation>
+        <translation>Usar a mesma palavra-passe para a conta de administrador.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="480"/>
@@ -1384,7 +1385,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="585"/>
         <source>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors.&lt;/small&gt;</source>
-        <translation>&lt;small&gt;Introduza a mesma palavra-passe duas vezes, para que se possam verificar erros na introdução.&lt;/small&gt;</translation>
+        <translation>&lt;small&gt;Introduza a mesma palavra-passe duas vezes, para que se possam verificar erros de digitação.&lt;/small&gt;</translation>
     </message>
 </context>
 <context>
@@ -1397,7 +1398,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="190"/>
         <source>Home</source>
-        <translation>Início</translation>
+        <translation>Home</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="192"/>
@@ -1412,7 +1413,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="197"/>
         <source>Swap</source>
-        <translation>Trocar</translation>
+        <translation>Swap</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="199"/>
@@ -1431,7 +1432,7 @@ The installer will quit and all changes will be lost.</source>
         <location filename="../src/modules/partition/core/PartitionModel.cpp" line="137"/>
         <location filename="../src/modules/partition/core/PartitionModel.cpp" line="169"/>
         <source>Free Space</source>
-        <translation>Espaço livre</translation>
+        <translation>Espaço Livre</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/core/PartitionModel.cpp" line="141"/>
@@ -1447,7 +1448,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/core/PartitionModel.cpp" line="244"/>
         <source>File System</source>
-        <translation>Ficheiro do sistema</translation>
+        <translation>Sistema de Ficheiros</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/core/PartitionModel.cpp" line="246"/>
@@ -1465,7 +1466,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="14"/>
         <source>Form</source>
-        <translation>Form</translation>
+        <translation>Formulário</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="22"/>
@@ -1480,7 +1481,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="84"/>
         <source>New Partition &amp;Table</source>
-        <translation>Nova Partição &amp;Tabela</translation>
+        <translation>Nova &amp;Tabela de Partições</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="104"/>
@@ -1505,7 +1506,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="139"/>
         <source>Are you sure you want to create a new partition table on %1?</source>
-        <translation>Tem certeza de que deseja criar uma nova tabela de partição em %1?</translation>
+        <translation>Tem certeza de que deseja criar uma nova tabela de partições em %1?</translation>
     </message>
 </context>
 <context>
@@ -1597,7 +1598,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="152"/>
         <source>extended</source>
-        <translation>extendido</translation>
+        <translation>estendido</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="154"/>
@@ -1743,7 +1744,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="76"/>
         <source>Resize file system on partition %1.</source>
-        <translation>Redimensionar o ficheiro do sistema na partição %1. </translation>
+        <translation>Redimensionar o sistema de ficheiros na partição %1. </translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="91"/>
@@ -1771,13 +1772,13 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="205"/>
         <source>Resizing %2MB partition %1 to %3MB.</source>
-        <translation>Redimensionando %2MB partição %1 para %3MB.</translation>
+        <translation>A redimensionar %2MB partição %1 para %3MB.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="232"/>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="290"/>
         <source>The installer failed to resize partition %1 on disk &apos;%2&apos;.</source>
-        <translation>O instalador falhou ao redimensionar partição %1 no disco &apos;%2&apos;.</translation>
+        <translation>O instalador falhou o redimensionamento da partição %1 no disco &apos;%2&apos;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="237"/>
@@ -1813,7 +1814,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/SetHostNameJob.cpp" line="51"/>
         <source>Setting hostname %1.</source>
-        <translation>Definindo nome da máquina %1.</translation>
+        <translation>A definir nome da máquina %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetHostNameJob.cpp" line="61"/>
@@ -1825,7 +1826,7 @@ The installer will quit and all changes will be lost.</source>
         <location filename="../src/modules/users/SetHostNameJob.cpp" line="75"/>
         <location filename="../src/modules/users/SetHostNameJob.cpp" line="86"/>
         <source>Cannot write hostname to target system</source>
-        <translation>Não é possível gravar o nome da máquina para o sistema seleccionado</translation>
+        <translation>Não é possível escrever o nome da máquina para o sistema selecionado</translation>
     </message>
 </context>
 <context>
@@ -1833,7 +1834,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="57"/>
         <source>Set keyboard model to %1, layout to %2-%3</source>
-        <translation>Definir modelo de teclado para %1, disposição para %2-%3</translation>
+        <translation>Definir modelo do teclado para %1, disposição para %2-%3</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="284"/>
@@ -1857,12 +1858,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="144"/>
         <source>Update geometry of partition %1.</source>
-        <translation>Geometria da partição actualizar %1.</translation>
+        <translation>Atualizar geometria da partição %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="156"/>
         <source>Failed to change the geometry of the partition.</source>
-        <translation>Erro na alteração geometria da partição.</translation>
+        <translation>Falha na alteração da geometria da partição.</translation>
     </message>
 </context>
 <context>
@@ -1870,27 +1871,27 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="42"/>
         <source>Set password for user %1</source>
-        <translation>Configurar password para o utilizador %1</translation>
+        <translation>Definir palavra-passe para o utilizador %1</translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="49"/>
         <source>Setting password for user %1.</source>
-        <translation>Definindo palavra-passe para o utilizador %1.</translation>
+        <translation>A definir palavra-passe para o utilizador %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="59"/>
         <source>Bad destination system path.</source>
-        <translation>O caminho para o sistema está mal direccionado.</translation>
+        <translation>Mau destino do caminho do sistema.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="60"/>
         <source>rootMountPoint is %1</source>
-        <translation>Ponto de montagem da root está %1</translation>
+        <translation>rootMountPoint é %1</translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="74"/>
         <source>Cannot set password for user %1.</source>
-        <translation>Não é possível configurar password para o utilizador %1.</translation>
+        <translation>Não é possível definir a palavra-passe para o utilizador %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="76"/>
@@ -1908,12 +1909,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="71"/>
         <source>Cannot access selected timezone path.</source>
-        <translation>Não é possível acessar o caminho do fuso horário selecionado.</translation>
+        <translation>Não é possível aceder ao caminho do fuso horário selecionado.</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="72"/>
         <source>Bad path: %1</source>
-        <translation>Path danificado: %1</translation>
+        <translation>Mau caminho: %1</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="86"/>
@@ -1923,17 +1924,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="87"/>
         <source>Link creation failed, target: %1; link name: %2</source>
-        <translation>Não é possível criar o link, alvo: %1; nome: %2</translation>
+        <translation>Falha na criação de ligação, alvo: %1; nome da ligação: %2</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="95"/>
         <source>Cannot set timezone,</source>
-        <translation>Não se consegue definir o fuso horário,</translation>
+        <translation>Não é possível definir o fuso horário,</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="96"/>
         <source>Cannot open /etc/timezone for writing</source>
-        <translation>Não se consegue abrir /etc/timezone para escrita</translation>
+        <translation>Não é possível abrir /etc/timezone para escrita</translation>
     </message>
 </context>
 <context>
@@ -1967,23 +1968,23 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="322"/>
         <source>Your hostname is too short.</source>
-        <translation>O seu nome de anfitrião é demasiado curto.</translation>
+        <translation>O nome da sua máquina é demasiado curto.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="333"/>
         <source>Your hostname is too long.</source>
-        <translation>O seu nome de anfitrião é demasiado longo.</translation>
+        <translation>O nome da sua máquina é demasiado longo.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="344"/>
         <source>Your hostname contains invalid characters. Only letters, numbers and dashes are allowed.</source>
-        <translation>O seu nome de anfitrião contém caractéres inválidos, Apenas letras, números e traços são permitidos.</translation>
+        <translation>O nome da sua máquina contém caratéres inválidos. Apenas letras, números e traços são permitidos.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="375"/>
         <location filename="../src/modules/users/UsersPage.cpp" line="408"/>
         <source>Your passwords do not match!</source>
-        <translation>As suas passwords não coincidem!</translation>
+        <translation>As suas palavras-passe não coincidem!</translation>
     </message>
 </context>
 <context>
@@ -2039,7 +2040,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="72"/>
         <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2015 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Thanks to: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Philip Müller, Pier Luigi Fiorini and Rohan Garg.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;http://calamares.io/&quot;&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - Liberating Software.</source>
-        <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Direito de Cópia 2014-2015 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Agradecimentos: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Philip Müller, Pier Luigi Fiorini and Rohan Garg.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;http://calamares.io/&quot;&gt;Calamares&lt;/a&gt; desenvolvimento patrocinado por &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - Liberating Software.</translation>
+        <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Direitos de Cópia 2014-2015 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Agradecimentos a: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Philip Müller, Pier Luigi Fiorini and Rohan Garg.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;http://calamares.io/&quot;&gt;Calamares&lt;/a&gt; desenvolvimento patrocinado por &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - Liberating Software.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="193"/>
