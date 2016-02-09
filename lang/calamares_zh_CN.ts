@@ -141,17 +141,18 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="61"/>
         <source>The &lt;strong&gt;boot environment&lt;/strong&gt; of this system.&lt;br&gt;&lt;br&gt;Older x86 systems only support &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Modern systems usually use &lt;strong&gt;EFI&lt;/strong&gt;, but may also show up as BIOS if started in compatibility mode.</source>
-        <translation type="unfinished"/>
+        <translation>这个系统的&lt;strong&gt;引导环境&lt;/strong&gt;。&lt;br&gt;&lt;br&gt;较旧的 x86 系统只支持 &lt;strong&gt;BIOS&lt;/strong&gt;。&lt;br&gt;现代的系统则通常使用 &lt;strong&gt;EFI&lt;/strong&gt;，但若引导时使用了兼容模式，也可以显示为 BIOS。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="75"/>
         <source>This system was started with an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from an EFI environment, this installer must deploy a boot loader application, like &lt;strong&gt;GRUB&lt;/strong&gt; or &lt;strong&gt;systemd-boot&lt;/strong&gt; on an &lt;strong&gt;EFI System Partition&lt;/strong&gt;. This is automatic, unless you choose manual partitioning, in which case you must choose it or create it on your own.</source>
-        <translation type="unfinished"/>
+        <translation>这个系统从 &lt;strong&gt;EFI&lt;/strong&gt; 引导环境启动。&lt;br&gt;&lt;br&gt;目前市面上大多数的民用设备都使用 EFI，并同时与之使用 GPT 分区表。&lt;br&gt;要从 EFI 环境引导的话，本安装程序必须部署一个引导器（如 &lt;strong&gt;GRUB&lt;/strong&gt; 或 &lt;strong&gt;systemd-boot&lt;/strong&gt;）到 &lt;strong&gt;EFI 系统分区&lt;/strong&gt;。这个步骤是自动的，除非您选择手动分区——此时您必须自行选择或创建。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="87"/>
         <source>This system was started with a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from a BIOS environment, this installer must install a boot loader, like &lt;strong&gt;GRUB&lt;/strong&gt;, either at the beginning of a partition or on the &lt;strong&gt;Master Boot Record&lt;/strong&gt; near the beginning of the partition table (preferred). This is automatic, unless you choose manual partitioning, in which case you must set it up on your own.</source>
-        <translation type="unfinished"/>
+        <translation>这个系统从 &lt;strong&gt;BIOS&lt;/strong&gt; 引导环境启动。&lt;br&gt;&lt;br&gt;
+要从 BIOS 环境引导，本安装程序必须安装引导器（如 &lt;strong&gt;GRUB&lt;/strong&gt;），一般而言要么安装在分区的开头，要么就是在靠进分区表开头的 &lt;strong&gt;主引导记录&lt;/strong&gt;（推荐）中。这个步骤是自动的，除非您选择手动分区——此时您必须自行配置。</translation>
     </message>
 </context>
 <context>
@@ -507,7 +508,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="113"/>
         <source>Select storage de&amp;vice:</source>
-        <translation type="unfinished"/>
+        <translation>选择存储器(&amp;V)：</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="114"/>
@@ -515,17 +516,17 @@ The installer will quit and all changes will be lost.</source>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="686"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="753"/>
         <source>Current:</source>
-        <translation type="unfinished"/>
+        <translation>当前：</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="647"/>
         <source>&lt;strong&gt;Select a partition to shrink, then drag the bottom bar to resize&lt;/strong&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;选择要缩小的分区，然后拖动底栏改变大小&lt;/strong&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="744"/>
         <source>&lt;strong&gt;Select a partition to install on&lt;/strong&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;选择要安装到的分区&lt;/strong&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="820"/>
@@ -879,17 +880,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="63"/>
         <source>The type of &lt;strong&gt;partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The only way to change the partition table type is to erase and recreate the partition table from scratch, which destroys all data on the storage device.&lt;br&gt;This installer will keep the current partition table unless you explicitly choose otherwise.&lt;br&gt;If unsure, on modern systems GPT is preferred.</source>
-        <translation type="unfinished"/>
+        <translation>目前选定存储器的&lt;strong&gt;分区表&lt;/strong&gt;类型。&lt;br&gt;&lt;br&gt;变更分区表类型的唯一方法就是抹除再重新从头建立分区表，这会破坏在该存储器上所有的数据。&lt;br&gt;除非您特别选择，否则本安装程序将会保留目前的分区表。&lt;br&gt;若不确定，在现代的系统上，建议使用 GPT。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="107"/>
         <source>This device has a &lt;strong&gt;%1&lt;/strong&gt; partition table.</source>
-        <translation type="unfinished"/>
+        <translation>此设备上有一个 &lt;strong&gt;%1&lt;/strong&gt; 分区表。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="114"/>
         <source>This is a &lt;strong&gt;loop&lt;/strong&gt; device.&lt;br&gt;&lt;br&gt;It is a pseudo-device with no partition table that makes a file accessible as a block device. This kind of setup usually only contains a single filesystem.</source>
-        <translation type="unfinished"/>
+        <translation>选定的存储器是一个 &lt;strong&gt;回环&lt;/strong&gt; 设备。&lt;br&gt;&lt;br&gt;此伪设备不含一个真正的分区表，它只是能让一个文件可如块设备那样访问。这种配置一般只包含一个单独的文件系统。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="121"/>
@@ -904,7 +905,8 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="137"/>
         <source>&lt;br&gt;&lt;br&gt;This partition table type is only advisable on older systems which start from a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment. GPT is recommended in most other cases.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Warning:&lt;/strong&gt; the MBR partition table is an obsolete MS-DOS era standard.&lt;br&gt;Only 4 &lt;em&gt;primary&lt;/em&gt; partitions may be created, and of those 4, one can be an &lt;em&gt;extended&lt;/em&gt; partition, which may in turn contain many &lt;em&gt;logical&lt;/em&gt; partitions.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;br&gt;&lt;br&gt;此分区表类型只建议用于使用 &lt;strong&gt;BIOS&lt;/strong&gt; 引导环境的较旧系统，否则一般建议使用 GPT。&lt;br&gt;
+&lt;strong&gt;警告：&lt;/strong&gt;MSDOS 分区表是一个有着重大缺点、已被弃用的标准。&lt;br&gt;MSDOS 分区表上只能创建 4 个&lt;u&gt;主要&lt;/u&gt;分区，其中一个可以是&lt;u&gt;拓展&lt;/u&gt;分区，此分区可以再分为许多&lt;u&gt;逻辑&lt;/u&gt;分区。</translation>
     </message>
 </context>
 <context>
@@ -1568,7 +1570,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="221"/>
         <source>Current:</source>
-        <translation type="unfinished"/>
+        <translation>当前：</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="235"/>
