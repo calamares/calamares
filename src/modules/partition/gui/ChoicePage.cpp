@@ -306,7 +306,7 @@ ChoicePage::applyDeviceChoice()
 
     if ( m_core->isDirty() )
     {
-        m_core->revertDevice( selectedDevice() );
+        m_core->revertAllDevices();
     }
 
     Device* currd = selectedDevice();
