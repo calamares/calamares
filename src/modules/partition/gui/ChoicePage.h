@@ -81,6 +81,7 @@ private:
     QComboBox* createBootloaderComboBox( QWidget* parentButton );
     Device* selectedDevice();
     void applyDeviceChoice();
+    void continueApplyDeviceChoice();
     void updateDeviceStatePreview();
     void applyActionChoice( ChoicePage::Choice choice );
     void updateActionChoicePreview( ChoicePage::Choice choice );

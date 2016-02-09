@@ -306,11 +306,28 @@ ChoicePage::applyDeviceChoice()
 
     if ( m_core->isDirty() )
     {
-        m_core->revertAllDevices();
+        ScanningDialog::run( QtConcurrent::run( [ = ]
+        {
+            QMutexLocker locker( &m_coreMutex );
+            m_core->revertAllDevices();
+        } ),
+        [ this ]
+        {
+            continueApplyDeviceChoice();
+        },
+        this );
     }
+    else
+    {
+        continueApplyDeviceChoice();
+    }
+}
 
+
+void
+ChoicePage::continueApplyDeviceChoice()
+{
     Device* currd = selectedDevice();
-
 
     // The device should only be nullptr immediately after a PCM reset.
     // applyDeviceChoice() will be called again momentarily as soon as we handle the
