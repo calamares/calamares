@@ -39,7 +39,7 @@ class PartitionSplitterWidget : public QWidget
 public:
     explicit PartitionSplitterWidget( QWidget* parent = nullptr );
 
-    void init( Device* dev );
+    void init( Device* dev, bool drawNestedPartitions );
 
     void setSplitPartition( const QString& path,
                             qint64 minSize,
@@ -90,6 +90,8 @@ private:
     int m_resizeHandleX;
 
     const int HANDLE_SNAP;
+
+    bool m_drawNestedPartitions;
 };
 
 #endif // PARTITIONSPLITTERWIDGET_H

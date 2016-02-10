@@ -54,8 +54,9 @@ PartitionSplitterWidget::PartitionSplitterWidget( QWidget* parent )
 
 
 void
-PartitionSplitterWidget::init( Device* dev )
+PartitionSplitterWidget::init( Device* dev, bool drawNestedPartitions )
 {
+    m_drawNestedPartitions = drawNestedPartitions;
     QList< PartitionSplitterItem > allPartitionItems;
     PartitionSplitterItem* extendedPartitionItem = nullptr;
     for ( auto it = PartitionIterator::begin( dev );
@@ -69,13 +70,21 @@ PartitionSplitterWidget::init( Device* dev )
             {}
         };
 
-        if ( ( *it )->roles().has( PartitionRole::Logical ) && extendedPartitionItem )
-            extendedPartitionItem->children.append( newItem );
+        if ( drawNestedPartitions )
+        {
+            if ( ( *it )->roles().has( PartitionRole::Logical ) && extendedPartitionItem )
+                extendedPartitionItem->children.append( newItem );
+            else
+            {
+                allPartitionItems.append( newItem );
+                if ( ( *it )->roles().has( PartitionRole::Extended ) )
+                    extendedPartitionItem = &allPartitionItems.last();
+            }
+        }
         else
         {
-            allPartitionItems.append( newItem );
-            if ( ( *it )->roles().has( PartitionRole::Extended ) )
-                extendedPartitionItem = &allPartitionItems.last();
+            if ( !( *it )->roles().has( PartitionRole::Extended ) )
+                allPartitionItems.append( newItem );
         }
     }
 
