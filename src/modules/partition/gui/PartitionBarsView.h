@@ -35,8 +35,16 @@ class PartitionBarsView : public QAbstractItemView
 {
     Q_OBJECT
 public:
+    enum NestedPartitionsMode
+    {
+        NoNestedPartitions = 0,
+        DrawNestedPartitions
+    };
+
     explicit PartitionBarsView( QWidget* parent = nullptr );
     virtual ~PartitionBarsView();
+
+    void setNestedPartitionsMode( NestedPartitionsMode mode );
 
     QSize minimumSizeHint() const override;
 
@@ -74,6 +82,8 @@ private:
     void drawSection( QPainter* painter, const QRect& rect_, int x, int width, const QModelIndex& index );
     QModelIndex indexAt( const QPoint& point, const QRect& rect, const QModelIndex& parent ) const;
     QRect visualRect( const QModelIndex& index, const QRect& rect, const QModelIndex& parent ) const;
+
+    NestedPartitionsMode m_nestedPartitionsMode;
 
     SelectionFilter canBeSelected;
 

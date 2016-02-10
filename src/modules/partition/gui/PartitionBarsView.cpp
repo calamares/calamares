@@ -52,6 +52,7 @@ static const int SELECTION_MARGIN = qMin( ( EXTENDED_PARTITION_MARGIN - 2 ) / 2,
 
 PartitionBarsView::PartitionBarsView( QWidget* parent )
     : QAbstractItemView( parent )
+    , m_nestedPartitionsMode( NoNestedPartitions )
     , m_hoveredIndex( QModelIndex() )
     , canBeSelected( []( const QModelIndex& ) { return true; } )
 {
@@ -72,6 +73,14 @@ PartitionBarsView::PartitionBarsView( QWidget* parent )
 
 PartitionBarsView::~PartitionBarsView()
 {
+}
+
+
+void
+PartitionBarsView::setNestedPartitionsMode( PartitionBarsView::NestedPartitionsMode mode )
+{
+    m_nestedPartitionsMode = mode;
+    viewport()->repaint();
 }
 
 
@@ -216,16 +225,34 @@ PartitionBarsView::drawPartitions( QPainter* painter, const QRect& rect, const Q
             // Make sure we fill the last pixel column
             width = rect.right() - x + 1;
 
-        drawSection( painter, rect, x, width, item.index );
-        if ( modl->hasChildren( item.index ) )
+        if ( m_nestedPartitionsMode == DrawNestedPartitions )
         {
-            QRect subRect(
-                x + EXTENDED_PARTITION_MARGIN,
-                rect.y() + EXTENDED_PARTITION_MARGIN,
-                width - 2 * EXTENDED_PARTITION_MARGIN,
-                rect.height() - 2 * EXTENDED_PARTITION_MARGIN
-            );
-            drawPartitions( painter, subRect, item.index );
+            drawSection( painter, rect, x, width, item.index );
+            if ( modl->hasChildren( item.index ) )
+            {
+                QRect subRect(
+                    x + EXTENDED_PARTITION_MARGIN,
+                    rect.y() + EXTENDED_PARTITION_MARGIN,
+                    width - 2 * EXTENDED_PARTITION_MARGIN,
+                    rect.height() - 2 * EXTENDED_PARTITION_MARGIN
+                );
+                drawPartitions( painter, subRect, item.index );
+            }
+        }
+        else
+        {
+            if ( modl->hasChildren( item.index ) )
+            {
+                QRect subRect(
+                    x,
+                    rect.y(),
+                    width,
+                    rect.height()
+                );
+                drawPartitions( painter, subRect, item.index );
+            }
+            else
+                drawSection( painter, rect, x, width, item.index );
         }
         x += width;
     }
@@ -276,12 +303,22 @@ PartitionBarsView::indexAt( const QPoint &point,
         {
             if ( modl->hasChildren( item.index ) )
             {
-                QRect subRect(
-                    x + EXTENDED_PARTITION_MARGIN,
-                    rect.y() + EXTENDED_PARTITION_MARGIN,
-                    width - 2 * EXTENDED_PARTITION_MARGIN,
-                    rect.height() - 2 * EXTENDED_PARTITION_MARGIN
-                );
+                QRect subRect;
+                if ( m_nestedPartitionsMode == DrawNestedPartitions )
+                    subRect = QRect(
+                        x + EXTENDED_PARTITION_MARGIN,
+                        rect.y() + EXTENDED_PARTITION_MARGIN,
+                        width - 2 * EXTENDED_PARTITION_MARGIN,
+                        rect.height() - 2 * EXTENDED_PARTITION_MARGIN
+                    );
+                else
+                    subRect = QRect(
+                        x,
+                        rect.y(),
+                        width,
+                        rect.height()
+                    );
+
                 if ( subRect.contains( point ) )
                 {
                     return indexAt( point, subRect, item.index );
@@ -339,12 +376,22 @@ PartitionBarsView::visualRect( const QModelIndex& index,
         if ( modl->hasChildren( item.index ) &&
              index.parent() == item.index )
         {
-            QRect subRect(
-                x + EXTENDED_PARTITION_MARGIN,
-                rect.y() + EXTENDED_PARTITION_MARGIN,
-                width - 2 * EXTENDED_PARTITION_MARGIN,
-                rect.height() - 2 * EXTENDED_PARTITION_MARGIN
-            );
+            QRect subRect;
+            if ( m_nestedPartitionsMode == DrawNestedPartitions )
+                subRect = QRect(
+                    x + EXTENDED_PARTITION_MARGIN,
+                    rect.y() + EXTENDED_PARTITION_MARGIN,
+                    width - 2 * EXTENDED_PARTITION_MARGIN,
+                    rect.height() - 2 * EXTENDED_PARTITION_MARGIN
+                );
+            else
+                subRect = QRect(
+                    x,
+                    rect.y(),
+                    width,
+                    rect.height()
+                );
+
             QRect candidateVisualRect = visualRect( index, subRect, item.index );
             if ( !candidateVisualRect.isNull() )
                 return candidateVisualRect;
