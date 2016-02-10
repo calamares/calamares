@@ -661,6 +661,11 @@ ChoicePage::updateActionChoicePreview( ChoicePage::Choice choice )
     CalamaresUtils::unmarginLayout( layout );
     layout->setSpacing( 6 );
 
+    PartitionBarsView::NestedPartitionsMode mode = Calamares::JobQueue::instance()->globalStorage()->
+                                                   value( "drawNestedPartitions" ).toBool() ?
+                                                       PartitionBarsView::DrawNestedPartitions :
+                                                       PartitionBarsView::NoNestedPartitions;
+
     switch ( choice )
     {
     case Alongside:
@@ -671,7 +676,7 @@ ChoicePage::updateActionChoicePreview( ChoicePage::Choice choice )
             m_selectLabel->show();
 
             m_afterPartitionSplitterWidget = new PartitionSplitterWidget( m_previewAfterFrame );
-            m_afterPartitionSplitterWidget->init( selectedDevice() );
+            m_afterPartitionSplitterWidget->init( selectedDevice(), mode == PartitionBarsView::DrawNestedPartitions );
             layout->addWidget( m_afterPartitionSplitterWidget );
 
             QLabel* sizeLabel = new QLabel( m_previewAfterFrame );
@@ -706,10 +711,6 @@ ChoicePage::updateActionChoicePreview( ChoicePage::Choice choice )
     case Replace:
         {
             m_previewBeforeLabel->setText( tr( "Current:" ) );
-            PartitionBarsView::NestedPartitionsMode mode = Calamares::JobQueue::instance()->globalStorage()->
-                                                           value( "drawNestedPartitions" ).toBool() ?
-                                                               PartitionBarsView::DrawNestedPartitions :
-                                                               PartitionBarsView::NoNestedPartitions;
             m_afterPartitionBarsView = new PartitionBarsView( m_previewAfterFrame );
             m_afterPartitionBarsView->setNestedPartitionsMode( mode );
             m_afterPartitionLabelsView = new PartitionLabelsView( m_previewAfterFrame );
