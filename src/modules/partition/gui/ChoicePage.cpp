@@ -594,7 +594,12 @@ ChoicePage::updateDeviceStatePreview()
     CalamaresUtils::unmarginLayout( layout );
     layout->setSpacing( 6 );
 
+    PartitionBarsView::NestedPartitionsMode mode = Calamares::JobQueue::instance()->globalStorage()->
+                                                   value( "drawNestedPartitions" ).toBool() ?
+                                                       PartitionBarsView::DrawNestedPartitions :
+                                                       PartitionBarsView::NoNestedPartitions;
     m_beforePartitionBarsView = new PartitionBarsView( m_previewBeforeFrame );
+    m_beforePartitionBarsView->setNestedPartitionsMode( mode );
     m_beforePartitionLabelsView = new PartitionLabelsView( m_previewBeforeFrame );
 
     Device* deviceBefore = m_core->createImmutableDeviceCopy( currentDevice );
@@ -701,7 +706,12 @@ ChoicePage::updateActionChoicePreview( ChoicePage::Choice choice )
     case Replace:
         {
             m_previewBeforeLabel->setText( tr( "Current:" ) );
+            PartitionBarsView::NestedPartitionsMode mode = Calamares::JobQueue::instance()->globalStorage()->
+                                                           value( "drawNestedPartitions" ).toBool() ?
+                                                               PartitionBarsView::DrawNestedPartitions :
+                                                               PartitionBarsView::NoNestedPartitions;
             m_afterPartitionBarsView = new PartitionBarsView( m_previewAfterFrame );
+            m_afterPartitionBarsView->setNestedPartitionsMode( mode );
             m_afterPartitionLabelsView = new PartitionLabelsView( m_previewAfterFrame );
             m_afterPartitionLabelsView->setCustomNewRootLabel( Calamares::Branding::instance()->
                                                   string( Calamares::Branding::BootloaderEntryName ) );
