@@ -33,6 +33,8 @@
 
 #include "utils/Retranslator.h"
 #include "Branding.h"
+#include "JobQueue.h"
+#include "GlobalStorage.h"
 
 // KPMcore
 #include <kpmcore/core/device.h>
@@ -56,6 +58,11 @@ PartitionPage::PartitionPage( PartitionCoreModule* core, QWidget* parent )
     m_ui->setupUi( this );
     m_ui->deviceComboBox->setModel( m_core->deviceModel() );
     m_ui->bootLoaderComboBox->setModel( m_core->bootLoaderModel() );
+    PartitionBarsView::NestedPartitionsMode mode = Calamares::JobQueue::instance()->globalStorage()->
+                                                   value( "drawNestedPartitions" ).toBool() ?
+                                                       PartitionBarsView::DrawNestedPartitions :
+                                                       PartitionBarsView::NoNestedPartitions;
+    m_ui->partitionBarsView->setNestedPartitionsMode( mode );
     updateButtons();
     updateBootLoaderInstallPath();
 
