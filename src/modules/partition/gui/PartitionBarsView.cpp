@@ -215,7 +215,7 @@ PartitionBarsView::drawPartitions( QPainter* painter, const QRect& rect, const Q
     QVector< PartitionBarsView::Item >& items = pair.first;
     qreal& total = pair.second;
     int x = rect.x();
-    for ( int row = 0; row < count; ++row )
+    for ( int row = 0; row < items.count(); ++row )
     {
         const auto& item = items[ row ];
         int width;
@@ -272,7 +272,7 @@ PartitionBarsView::indexAt( const QPoint &point,
     QVector< PartitionBarsView::Item >& items = pair.first;
     qreal& total = pair.second;
     int x = rect.x();
-    for ( int row = 0; row < count; ++row )
+    for ( int row = 0; row < items.count(); ++row )
     {
         const auto& item = items[ row ];
         int width;
@@ -335,7 +335,7 @@ PartitionBarsView::visualRect( const QModelIndex& index,
     QVector< PartitionBarsView::Item >& items = pair.first;
     qreal& total = pair.second;
     int x = rect.x();
-    for ( int row = 0; row < count; ++row )
+    for ( int row = 0; row < items.count(); ++row )
     {
         const auto& item = items[ row ];
         int width;
