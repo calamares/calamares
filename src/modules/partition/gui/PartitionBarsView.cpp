@@ -225,34 +225,18 @@ PartitionBarsView::drawPartitions( QPainter* painter, const QRect& rect, const Q
             // Make sure we fill the last pixel column
             width = rect.right() - x + 1;
 
-        if ( m_nestedPartitionsMode == DrawNestedPartitions )
+        drawSection( painter, rect, x, width, item.index );
+
+        if ( m_nestedPartitionsMode == DrawNestedPartitions &&
+             modl->hasChildren( item.index ) )
         {
-            drawSection( painter, rect, x, width, item.index );
-            if ( modl->hasChildren( item.index ) )
-            {
-                QRect subRect(
-                    x + EXTENDED_PARTITION_MARGIN,
-                    rect.y() + EXTENDED_PARTITION_MARGIN,
-                    width - 2 * EXTENDED_PARTITION_MARGIN,
-                    rect.height() - 2 * EXTENDED_PARTITION_MARGIN
-                );
-                drawPartitions( painter, subRect, item.index );
-            }
-        }
-        else
-        {
-            if ( modl->hasChildren( item.index ) )
-            {
-                QRect subRect(
-                    x,
-                    rect.y(),
-                    width,
-                    rect.height()
-                );
-                drawPartitions( painter, subRect, item.index );
-            }
-            else
-                drawSection( painter, rect, x, width, item.index );
+            QRect subRect(
+                x + EXTENDED_PARTITION_MARGIN,
+                rect.y() + EXTENDED_PARTITION_MARGIN,
+                width - 2 * EXTENDED_PARTITION_MARGIN,
+                rect.height() - 2 * EXTENDED_PARTITION_MARGIN
+            );
+            drawPartitions( painter, subRect, item.index );
         }
         x += width;
     }
@@ -301,23 +285,15 @@ PartitionBarsView::indexAt( const QPoint &point,
         QRect thisItemRect( x, rect.y(), width, rect.height() );
         if ( thisItemRect.contains( point ) )
         {
-            if ( modl->hasChildren( item.index ) )
+            if ( m_nestedPartitionsMode == DrawNestedPartitions &&
+                 modl->hasChildren( item.index ) )
             {
-                QRect subRect;
-                if ( m_nestedPartitionsMode == DrawNestedPartitions )
-                    subRect = QRect(
-                        x + EXTENDED_PARTITION_MARGIN,
-                        rect.y() + EXTENDED_PARTITION_MARGIN,
-                        width - 2 * EXTENDED_PARTITION_MARGIN,
-                        rect.height() - 2 * EXTENDED_PARTITION_MARGIN
-                    );
-                else
-                    subRect = QRect(
-                        x,
-                        rect.y(),
-                        width,
-                        rect.height()
-                    );
+                QRect subRect(
+                    x + EXTENDED_PARTITION_MARGIN,
+                    rect.y() + EXTENDED_PARTITION_MARGIN,
+                    width - 2 * EXTENDED_PARTITION_MARGIN,
+                    rect.height() - 2 * EXTENDED_PARTITION_MARGIN
+                );
 
                 if ( subRect.contains( point ) )
                 {
@@ -373,24 +349,16 @@ PartitionBarsView::visualRect( const QModelIndex& index,
         if ( item.index == index )
             return thisItemRect;
 
-        if ( modl->hasChildren( item.index ) &&
+        if ( m_nestedPartitionsMode == DrawNestedPartitions &&
+             modl->hasChildren( item.index ) &&
              index.parent() == item.index )
         {
-            QRect subRect;
-            if ( m_nestedPartitionsMode == DrawNestedPartitions )
-                subRect = QRect(
-                    x + EXTENDED_PARTITION_MARGIN,
-                    rect.y() + EXTENDED_PARTITION_MARGIN,
-                    width - 2 * EXTENDED_PARTITION_MARGIN,
-                    rect.height() - 2 * EXTENDED_PARTITION_MARGIN
-                );
-            else
-                subRect = QRect(
-                    x,
-                    rect.y(),
-                    width,
-                    rect.height()
-                );
+            QRect subRect(
+                x + EXTENDED_PARTITION_MARGIN,
+                rect.y() + EXTENDED_PARTITION_MARGIN,
+                width - 2 * EXTENDED_PARTITION_MARGIN,
+                rect.height() - 2 * EXTENDED_PARTITION_MARGIN
+            );
 
             QRect candidateVisualRect = visualRect( index, subRect, item.index );
             if ( !candidateVisualRect.isNull() )
@@ -545,17 +513,30 @@ PartitionBarsView::updateGeometries()
 QPair< QVector< PartitionBarsView::Item >, qreal >
 PartitionBarsView::computeItemsVector( const QModelIndex& parent ) const
 {
-    const int count = model()->rowCount( parent );
-    QVector< PartitionBarsView::Item > items( count );
+    int count = model()->rowCount( parent );
+    QVector< PartitionBarsView::Item > items;
 
     qreal total = 0;
     for ( int row = 0; row < count; ++row )
     {
         QModelIndex index = model()->index( row, 0, parent );
-        qreal size = index.data( PartitionModel::SizeRole ).toLongLong();
-        total += size;
-        items[ row ] = { size, index };
+        if ( m_nestedPartitionsMode == NoNestedPartitions &&
+             model()->hasChildren( index ) )
+        {
+            QPair< QVector< PartitionBarsView::Item >, qreal > childVect =
+                    computeItemsVector( index );
+            items += childVect.first;
+            total += childVect.second;
+        }
+        else
+        {
+            qreal size = index.data( PartitionModel::SizeRole ).toLongLong();
+            total += size;
+            items.append( { size, index } );
+        }
     }
+
+    count = items.count();
 
     // The sizes we have are perfect, but now we have to hardcode a minimum size for small
     // partitions and compensate for it in the total.
