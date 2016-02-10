@@ -208,7 +208,6 @@ PartitionBarsView::drawPartitions( QPainter* painter, const QRect& rect, const Q
     PartitionModel* modl = qobject_cast< PartitionModel* >( model() );
     if ( !modl )
         return;
-    const int count = modl->rowCount( parent );
     const int totalWidth = rect.width();
 
     auto pair = computeItemsVector( parent );
@@ -219,7 +218,7 @@ PartitionBarsView::drawPartitions( QPainter* painter, const QRect& rect, const Q
     {
         const auto& item = items[ row ];
         int width;
-        if ( row < count - 1 )
+        if ( row < items.count() - 1 )
             width = totalWidth * ( item.size / total );
         else
             // Make sure we fill the last pixel column
@@ -241,7 +240,7 @@ PartitionBarsView::drawPartitions( QPainter* painter, const QRect& rect, const Q
         x += width;
     }
 
-    if ( !count &&
+    if ( !items.count() &&
          !modl->device()->partitionTable() ) // No disklabel or unknown
     {
         int width = rect.right() - rect.x() + 1;
@@ -265,7 +264,6 @@ PartitionBarsView::indexAt( const QPoint &point,
     PartitionModel* modl = qobject_cast< PartitionModel* >( model() );
     if ( !modl )
         return QModelIndex();
-    const int count = modl->rowCount( parent );
     const int totalWidth = rect.width();
 
     auto pair = computeItemsVector( parent );
@@ -276,7 +274,7 @@ PartitionBarsView::indexAt( const QPoint &point,
     {
         const auto& item = items[ row ];
         int width;
-        if ( row < count - 1 )
+        if ( row < items.count() - 1 )
             width = totalWidth * ( item.size / total );
         else
             // Make sure we fill the last pixel column
@@ -328,7 +326,6 @@ PartitionBarsView::visualRect( const QModelIndex& index,
     PartitionModel* modl = qobject_cast< PartitionModel* >( model() );
     if ( !modl )
         return QRect();
-    const int count = modl->rowCount( parent );
     const int totalWidth = rect.width();
 
     auto pair = computeItemsVector( parent );
@@ -339,7 +336,7 @@ PartitionBarsView::visualRect( const QModelIndex& index,
     {
         const auto& item = items[ row ];
         int width;
-        if ( row < count - 1 )
+        if ( row < items.count() - 1 )
             width = totalWidth * ( item.size / total );
         else
             // Make sure we fill the last pixel column
