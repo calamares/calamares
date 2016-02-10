@@ -397,7 +397,8 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     if ( configurationMap.contains( "drawNestedPartitions" ) &&
          configurationMap.value( "drawNestedPartitions" ).type() == QVariant::Bool )
     {
-        gs->insert( "drawNestedPartitions", configurationMap.value( "nestedPartitions", false ).toBool() );
+        gs->insert( "drawNestedPartitions",
+                    configurationMap.value( "drawNestedPartitions", false ).toBool() );
     }
     else
     {
