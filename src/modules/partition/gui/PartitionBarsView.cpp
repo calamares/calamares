@@ -546,7 +546,7 @@ PartitionBarsView::computeItemsVector( const QModelIndex& parent ) const
         if ( items[ row ].size < 0.01 * total ) // If this item is smaller than 1% of everything,
         {                                       // force its width to 1%.
             adjustedTotal -= items[ row ].size;
-            items[ row ].size = qRound( 0.01 * total );
+            items[ row ].size = 0.01 * total;
             adjustedTotal += items[ row ].size;
         }
     }
