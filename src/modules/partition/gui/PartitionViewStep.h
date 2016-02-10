@@ -74,8 +74,6 @@ private:
     PartitionPage*    m_manualPartitionPage;
 
     QWidget*          m_waitingWidget;
-
-    bool m_compactMode;
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( PartitionViewStepFactory )

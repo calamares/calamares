@@ -57,7 +57,6 @@ PartitionViewStep::PartitionViewStep( QObject* parent )
     , m_core( new PartitionCoreModule( this ) )
     , m_choicePage( nullptr )
     , m_manualPartitionPage( new PartitionPage( m_core ) )
-    , m_compactMode( true )
 {
     m_widget->setContentsMargins( 0, 0, 0, 0 );
 
@@ -206,7 +205,12 @@ PartitionViewStep::createSummaryWidget() const
         PartitionLabelsView* previewLabels;
         QVBoxLayout* field;
 
+        PartitionBarsView::NestedPartitionsMode mode = Calamares::JobQueue::instance()->globalStorage()->
+                                                       value( "drawNestedPartitions" ).toBool() ?
+                                                           PartitionBarsView::DrawNestedPartitions :
+                                                           PartitionBarsView::NoNestedPartitions;
         preview = new PartitionBarsView;
+        preview->setNestedPartitionsMode( mode );
         previewLabels = new PartitionLabelsView;
         preview->setModel( info.partitionModelBefore );
         previewLabels->setModel( info.partitionModelBefore );
@@ -221,6 +225,7 @@ PartitionViewStep::createSummaryWidget() const
         formLayout->addRow( tr( "Current:" ), field );
 
         preview = new PartitionBarsView;
+        preview->setNestedPartitionsMode( mode );
         previewLabels = new PartitionLabelsView;
         preview->setModel( info.partitionModelAfter );
         previewLabels->setModel( info.partitionModelAfter );
@@ -389,10 +394,14 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
         gs->insert( "ensureSuspendToDisk", true );
     }
 
-    if ( configurationMap.contains( "compactMode" ) &&
-         configurationMap.value( "compactMode" ).type() == QVariant::Bool )
+    if ( configurationMap.contains( "drawNestedPartitions" ) &&
+         configurationMap.value( "drawNestedPartitions" ).type() == QVariant::Bool )
     {
-        m_compactMode = configurationMap.value( "compactMode", true ).toBool();
+        gs->insert( "drawNestedPartitions", configurationMap.value( "nestedPartitions", false ).toBool() );
+    }
+    else
+    {
+        gs->insert( "drawNestedPartitions", false );
     }
 
     QTimer::singleShot( 0, this, &PartitionViewStep::continueLoading );
