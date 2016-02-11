@@ -601,6 +601,7 @@ ChoicePage::updateDeviceStatePreview()
     m_beforePartitionBarsView = new PartitionBarsView( m_previewBeforeFrame );
     m_beforePartitionBarsView->setNestedPartitionsMode( mode );
     m_beforePartitionLabelsView = new PartitionLabelsView( m_previewBeforeFrame );
+    m_beforePartitionLabelsView->setExtendedPartitionHidden( mode == PartitionBarsView::NoNestedPartitions );
 
     Device* deviceBefore = m_core->createImmutableDeviceCopy( currentDevice );
 
@@ -714,6 +715,7 @@ ChoicePage::updateActionChoicePreview( ChoicePage::Choice choice )
             m_afterPartitionBarsView = new PartitionBarsView( m_previewAfterFrame );
             m_afterPartitionBarsView->setNestedPartitionsMode( mode );
             m_afterPartitionLabelsView = new PartitionLabelsView( m_previewAfterFrame );
+            m_afterPartitionLabelsView->setExtendedPartitionHidden( mode == PartitionBarsView::NoNestedPartitions );
             m_afterPartitionLabelsView->setCustomNewRootLabel( Calamares::Branding::instance()->
                                                   string( Calamares::Branding::BootloaderEntryName ) );
 
