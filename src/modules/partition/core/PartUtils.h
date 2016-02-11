@@ -24,9 +24,12 @@
 #include <QString>
 
 class PartitionCoreModule;
+class Partition;
 
 namespace PartUtils
 {
+
+bool canBeResized( Partition* candidate );
 
 bool canBeResized( PartitionCoreModule* core, const QString& partitionPath );
 

@@ -35,6 +35,40 @@ namespace PartUtils
 {
 
 bool
+canBeResized( Partition* candidate )
+{
+    if ( !candidate->fileSystem().supportGrow() ||
+         !candidate->fileSystem().supportShrink() )
+        return false;
+
+    bool ok = false;
+    double requiredStorageGB = Calamares::JobQueue::instance()
+                                    ->globalStorage()
+                                    ->value( "requiredStorageGB" )
+                                    .toDouble( &ok );
+
+    qint64 availableStorageB = candidate->available();
+
+    // We require a little more for partitioning overhead and swap file
+    // TODO: maybe make this configurable?
+    qint64 requiredStorageB = ( requiredStorageGB + 0.1 + 2.0 ) * 1024 * 1024 * 1024;
+    cDebug() << "Required  storage B:" << requiredStorageB
+             << QString( "(%1GB)" ).arg( requiredStorageB / 1024 / 1024 / 1024 );
+    cDebug() << "Available storage B:" << availableStorageB
+             << QString( "(%1GB)" ).arg( availableStorageB / 1024 / 1024 / 1024 );
+
+    if ( ok &&
+         availableStorageB > requiredStorageB )
+    {
+        cDebug() << "Partition" << candidate->partitionPath() << "authorized for resize + autopartition install.";
+
+        return true;
+    }
+    return false;
+}
+
+
+bool
 canBeResized( PartitionCoreModule* core, const QString& partitionPath )
 {
     //FIXME: check for max partitions count on DOS MBR
@@ -52,33 +86,7 @@ canBeResized( PartitionCoreModule* core, const QString& partitionPath )
             if ( candidate )
             {
                 cDebug() << "found Partition* for" << partitionWithOs;
-                if ( !candidate->fileSystem().supportGrow() ||
-                     !candidate->fileSystem().supportShrink() )
-                    return false;
-
-                bool ok = false;
-                double requiredStorageGB = Calamares::JobQueue::instance()
-                                                ->globalStorage()
-                                                ->value( "requiredStorageGB" )
-                                                .toDouble( &ok );
-
-                qint64 availableStorageB = candidate->available();
-
-                // We require a little more for partitioning overhead and swap file
-                // TODO: maybe make this configurable?
-                qint64 requiredStorageB = ( requiredStorageGB + 0.1 + 2.0 ) * 1024 * 1024 * 1024;
-                cDebug() << "Required  storage B:" << requiredStorageB
-                         << QString( "(%1GB)" ).arg( requiredStorageB / 1024 / 1024 / 1024 );
-                cDebug() << "Available storage B:" << availableStorageB
-                         << QString( "(%1GB)" ).arg( availableStorageB / 1024 / 1024 / 1024 );
-
-                if ( ok &&
-                     availableStorageB > requiredStorageB )
-                {
-                    cDebug() << "Partition" << partitionWithOs << "authorized for resize + autopartition install.";
-
-                    return true;
-                }
+                return canBeResized( candidate );
             }
         }
     }
