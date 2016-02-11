@@ -212,6 +212,7 @@ PartitionViewStep::createSummaryWidget() const
         preview = new PartitionBarsView;
         preview->setNestedPartitionsMode( mode );
         previewLabels = new PartitionLabelsView;
+        previewLabels->setExtendedPartitionHidden( mode == PartitionBarsView::NoNestedPartitions );
         preview->setModel( info.partitionModelBefore );
         previewLabels->setModel( info.partitionModelBefore );
         preview->setSelectionMode( QAbstractItemView::NoSelection );
@@ -227,6 +228,7 @@ PartitionViewStep::createSummaryWidget() const
         preview = new PartitionBarsView;
         preview->setNestedPartitionsMode( mode );
         previewLabels = new PartitionLabelsView;
+        previewLabels->setExtendedPartitionHidden( mode == PartitionBarsView::NoNestedPartitions );
         preview->setModel( info.partitionModelAfter );
         previewLabels->setModel( info.partitionModelAfter );
         preview->setSelectionMode( QAbstractItemView::NoSelection );
