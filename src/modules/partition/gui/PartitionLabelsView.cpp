@@ -164,7 +164,9 @@ PartitionLabelsView::getIndexesToDraw( const QModelIndex& parent ) const
              index.data( PartitionModel::SizeRole ).toLongLong() <  maxHiddenB )
             continue;
 
-        list.append( index );
+        if ( !modl->hasChildren( index ) || !m_extendedPartitionHidden )
+            list.append( index );
+
         if ( modl->hasChildren( index ) )
             list.append( getIndexesToDraw( index ) );
     }
@@ -511,6 +513,13 @@ void
 PartitionLabelsView::setSelectionFilter( SelectionFilter canBeSelected )
 {
     this->canBeSelected = canBeSelected;
+}
+
+
+void
+PartitionLabelsView::setExtendedPartitionHidden( bool hidden )
+{
+    m_extendedPartitionHidden = hidden;
 }
 
 

@@ -55,6 +55,8 @@ public:
 
     void setSelectionFilter( SelectionFilter canBeSelected );
 
+    void setExtendedPartitionHidden( bool hidden );
+
 protected:
     // QAbstractItemView API
     QRegion visualRegionForSelection( const QItemSelection& selection ) const override;
@@ -82,6 +84,7 @@ private:
     QStringList buildTexts( const QModelIndex& index ) const;
 
     SelectionFilter canBeSelected;
+    bool m_extendedPartitionHidden;
 
     QString m_customNewRootLabel;
     QPersistentModelIndex m_hoveredIndex;
