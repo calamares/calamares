@@ -700,8 +700,7 @@ ChoicePage::updateActionChoicePreview( ChoicePage::Choice choice )
 
             SelectionFilter filter = [ this ]( const QModelIndex& index )
             {
-                return PartUtils::canBeResized( m_core,
-                                                index.data( PartitionModel::PartitionPathRole ).toString() );
+                return PartUtils::canBeResized( (Partition*)( index.data( PartitionModel::PartitionPtrRole ).value< void* >() ) );
             };
             m_beforePartitionBarsView->setSelectionFilter( filter );
             m_beforePartitionLabelsView->setSelectionFilter( filter );
