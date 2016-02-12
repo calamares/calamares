@@ -769,6 +769,13 @@ ChoicePage::updateActionChoicePreview( ChoicePage::Choice choice )
                 m_selectLabel->hide();
             else
             {
+                SelectionFilter filter = [ this ]( const QModelIndex& index )
+                {
+                    return PartUtils::canBeReplaced( (Partition*)( index.data( PartitionModel::PartitionPtrRole ).value< void* >() ) );
+                };
+                m_beforePartitionBarsView->setSelectionFilter( filter );
+                m_beforePartitionLabelsView->setSelectionFilter( filter );
+
                 m_selectLabel->show();
                 m_selectLabel->setText( tr( "<strong>Select a partition to install on</strong>" ) );
             }
