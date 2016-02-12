@@ -29,6 +29,8 @@ class Partition;
 namespace PartUtils
 {
 
+bool canBeReplaced( Partition* candidate );
+
 bool canBeResized( Partition* candidate );
 
 bool canBeResized( PartitionCoreModule* core, const QString& partitionPath );

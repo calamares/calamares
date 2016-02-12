@@ -35,6 +35,33 @@ namespace PartUtils
 {
 
 bool
+canBeReplaced( Partition* candidate )
+{
+    bool ok = false;
+    double requiredStorageGB = Calamares::JobQueue::instance()
+                                    ->globalStorage()
+                                    ->value( "requiredStorageGB" )
+                                    .toDouble( &ok );
+
+    qint64 availableStorageB = candidate->capacity();
+    qint64 requiredStorageB = ( requiredStorageGB + 0.5 ) * 1024 * 1024 * 1024;
+    cDebug() << "Required  storage B:" << requiredStorageB
+             << QString( "(%1GB)" ).arg( requiredStorageB / 1024 / 1024 / 1024 );
+    cDebug() << "Available storage B:" << availableStorageB
+             << QString( "(%1GB)" ).arg( availableStorageB / 1024 / 1024 / 1024 );
+
+    if ( ok &&
+         availableStorageB > requiredStorageB )
+    {
+        cDebug() << "Partition" << candidate->partitionPath() << "authorized for replace install.";
+
+        return true;
+    }
+    return false;
+}
+
+
+bool
 canBeResized( Partition* candidate )
 {
     if ( !candidate->fileSystem().supportGrow() ||
@@ -51,7 +78,7 @@ canBeResized( Partition* candidate )
 
     // We require a little more for partitioning overhead and swap file
     // TODO: maybe make this configurable?
-    qint64 requiredStorageB = ( requiredStorageGB + 0.1 + 2.0 ) * 1024 * 1024 * 1024;
+    qint64 requiredStorageB = ( requiredStorageGB + 0.5 + 2.0 ) * 1024 * 1024 * 1024;
     cDebug() << "Required  storage B:" << requiredStorageB
              << QString( "(%1GB)" ).arg( requiredStorageB / 1024 / 1024 / 1024 );
     cDebug() << "Available storage B:" << availableStorageB
