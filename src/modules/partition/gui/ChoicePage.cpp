@@ -851,6 +851,18 @@ ChoicePage::setupActions()
     else
         m_deviceInfoWidget->setPartitionTableType( PartitionTable::unknownTableType );
 
+    bool atLeastOneCanBeResized = false;
+
+    for ( auto it = PartitionIterator::begin( currentDevice );
+          it != PartitionIterator::end( currentDevice ); ++it )
+    {
+        if ( PartUtils::canBeResized( *it ) )
+        {
+            atLeastOneCanBeResized = true;
+            break;
+        }
+    }
+
     if ( osproberEntriesForCurrentDevice.count() == 0 )
     {
         CALAMARES_RETRANSLATE(
@@ -926,7 +938,7 @@ ChoicePage::setupActions()
 
         m_replaceButton->show();
 
-        if ( osproberEntriesForCurrentDevice.first().canBeResized )
+        if ( atLeastOneCanBeResized )
             m_alongsideButton->show();
         else
         {
@@ -939,18 +951,6 @@ ChoicePage::setupActions()
     else
     {
         // osproberEntriesForCurrentDevice has at least 2 items.
-
-        bool atLeastOneCanBeResized = false;
-
-        for ( auto it = PartitionIterator::begin( currentDevice );
-              it != PartitionIterator::end( currentDevice ); ++it )
-        {
-            if ( PartUtils::canBeResized( *it ) )
-            {
-                atLeastOneCanBeResized = true;
-                break;
-            }
-        }
 
         CALAMARES_RETRANSLATE(
             m_messageLabel->setText( tr( "This storage device has multiple operating systems on it. "
