@@ -496,12 +496,12 @@ O instalador pecharase e perderanse todos os cambios.</translation>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="741"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="742"/>
         <source>Boot loader location:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="688"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="689"/>
         <source>%1 will be shrunk to %2MB and a new %3MB partition will be created for %4.</source>
         <translation type="unfinished"/>
     </message>
@@ -512,61 +512,61 @@ O instalador pecharase e perderanse todos os cambios.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="114"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="673"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="674"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="713"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="781"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="782"/>
         <source>Current:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="674"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="675"/>
         <source>&lt;strong&gt;Select a partition to shrink, then drag the bottom bar to resize&lt;/strong&gt;</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="772"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="773"/>
         <source>&lt;strong&gt;Select a partition to install on&lt;/strong&gt;</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="848"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="849"/>
         <source>This storage device does not seem to have an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="853"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="883"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="907"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="956"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="854"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="884"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="908"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="957"/>
         <source>&lt;strong&gt;Erase disk&lt;/strong&gt;&lt;br/&gt;This will &lt;font color=&quot;red&quot;&gt;delete&lt;/font&gt; all data currently present on the selected storage device.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="872"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="873"/>
         <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="878"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="902"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="951"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="879"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="903"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="952"/>
         <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="888"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="911"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="960"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="889"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="912"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="961"/>
         <source>&lt;strong&gt;Replace a partition&lt;/strong&gt;&lt;br/&gt;Replaces a partition with %1.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="897"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="898"/>
         <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="946"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="947"/>
         <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation type="unfinished"/>
     </message>
@@ -1391,37 +1391,37 @@ O instalador pecharase e perderanse todos os cambios.</translation>
 <context>
     <name>PartitionLabelsView</name>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="187"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="189"/>
         <source>Root</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="190"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="192"/>
         <source>Home</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="192"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="194"/>
         <source>Boot</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="195"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="197"/>
         <source>EFI system</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="197"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="199"/>
         <source>Swap</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="199"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="201"/>
         <source>New partition for %1</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="216"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="218"/>
         <source>%1  %2</source>
         <translation type="unfinished"/>
     </message>
@@ -1567,12 +1567,12 @@ O instalador pecharase e perderanse todos os cambios.</translation>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="225"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="226"/>
         <source>Current:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="240"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="242"/>
         <source>After:</source>
         <translation type="unfinished"/>
     </message>
