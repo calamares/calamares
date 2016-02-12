@@ -68,6 +68,16 @@ canBeResized( Partition* candidate )
          !candidate->fileSystem().supportShrink() )
         return false;
 
+    if ( candidate->roles().has( PartitionRole::Primary ) )
+    {
+        PartitionTable* table = dynamic_cast< PartitionTable* >( candidate->parent() );
+        if ( !table )
+            return false;
+
+        if ( table->numPrimaries() >= table->maxPrimaries() )
+            return false;
+    }
+
     bool ok = false;
     double requiredStorageGB = Calamares::JobQueue::instance()
                                     ->globalStorage()
