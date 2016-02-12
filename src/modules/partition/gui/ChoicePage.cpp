@@ -25,6 +25,7 @@
 #include "core/PartitionModel.h"
 #include "core/OsproberEntry.h"
 #include "core/PartUtils.h"
+#include "core/PartitionIterator.h"
 
 #include "ReplaceWidget.h"
 #include "PrettyRadioButton.h"
@@ -941,9 +942,10 @@ ChoicePage::setupActions()
 
         bool atLeastOneCanBeResized = false;
 
-        foreach ( const OsproberEntry& entry, osproberEntriesForCurrentDevice )
+        for ( auto it = PartitionIterator::begin( currentDevice );
+              it != PartitionIterator::end( currentDevice ); ++it )
         {
-            if ( entry.canBeResized )
+            if ( PartUtils::canBeResized( *it ) )
             {
                 atLeastOneCanBeResized = true;
                 break;
