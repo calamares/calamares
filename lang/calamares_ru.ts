@@ -485,87 +485,87 @@ The installer will quit and all changes will be lost.</source>
         <translation>Форма</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="115"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="116"/>
         <source>After:</source>
         <translation>После:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="221"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="222"/>
         <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself.</source>
         <translation>&lt;strong&gt;Ручная разметка&lt;/strong&gt;&lt;br/&gt;Вы можете самостоятельно создавать разделы или изменять их размеры.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="742"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="743"/>
         <source>Boot loader location:</source>
         <translation>Расположение загрузчика:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="689"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="690"/>
         <source>%1 will be shrunk to %2MB and a new %3MB partition will be created for %4.</source>
         <translation>%1 будет уменьшен до %2MB и новый раздел %3MB будет создан для %4.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="113"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="114"/>
         <source>Select storage de&amp;vice:</source>
         <translation>Выбрать устройство &amp;хранения:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="114"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="674"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="713"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="782"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="115"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="675"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="714"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="790"/>
         <source>Current:</source>
         <translation>Текущий:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="675"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="676"/>
         <source>&lt;strong&gt;Select a partition to shrink, then drag the bottom bar to resize&lt;/strong&gt;</source>
         <translation>&lt;strong&gt;Выбрать раздел для уменьшения, затем сдвиньте ползунок для изменения размера&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="773"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="781"/>
         <source>&lt;strong&gt;Select a partition to install on&lt;/strong&gt;</source>
         <translation>&lt;strong&gt;Выбрать раздела для установки на&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="849"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="869"/>
         <source>This storage device does not seem to have an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>Видимо, на этом устройстве нет операционной системы. Что Вы хотите сделать?&lt;br/&gt;Вы сможете изменить или подтвердить свой выбор до того, как на устройстве будут сделаны какие-либо изменения.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="854"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="884"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="908"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="957"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="874"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="904"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="928"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="966"/>
         <source>&lt;strong&gt;Erase disk&lt;/strong&gt;&lt;br/&gt;This will &lt;font color=&quot;red&quot;&gt;delete&lt;/font&gt; all data currently present on the selected storage device.</source>
         <translation>&lt;strong&gt;Стереть диск&lt;/strong&gt;&lt;br/&gt;Это &lt;font color=&quot;red&quot;&gt;удалит&lt;/font&gt; все данные, которые сейчас находятся на выбранном устройстве.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="873"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="893"/>
         <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>На этом устройстве есть %1. Что Вы хотите сделать?&lt;br/&gt;Вы сможете изменить или подтвердить свой выбор до того, как на устройстве будут сделаны какие-либо изменения.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="879"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="903"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="952"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="899"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="923"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="961"/>
         <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
         <translation>&lt;strong&gt;Установить рядом&lt;/strong&gt;&lt;br/&gt;Программа установки уменьшит раздел, чтобы освободить место для %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="889"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="912"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="961"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="909"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="932"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="970"/>
         <source>&lt;strong&gt;Replace a partition&lt;/strong&gt;&lt;br/&gt;Replaces a partition with %1.</source>
         <translation>&lt;strong&gt;Изменить раздел&lt;/strong&gt;&lt;br/&gt;Изменяет раздел на %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="898"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="918"/>
         <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>На этом устройстве уже есть операционная система. Что Вы хотите сделать?&lt;br/&gt;Вы сможете изменить или подтвердить свой выбор до того, как на устройстве будут сделаны какие-либо изменения.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="947"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="956"/>
         <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>На этом устройстве есть несколько операционных систем. Что Вы хотите сделать?&lt;br/&gt;Вы сможете изменить или подтвердить свой выбор до того, как на устройстве будут сделаны какие-либо изменения.</translation>
     </message>
@@ -1503,7 +1503,7 @@ The installer will quit and all changes will be lost.</source>
         <translation>Установить &amp;загрузчик в:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="146"/>
+        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="147"/>
         <source>Are you sure you want to create a new partition table on %1?</source>
         <translation>Вы уверены, что хотите создать новую таблицу разделов на %1?</translation>
     </message>

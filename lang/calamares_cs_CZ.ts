@@ -486,87 +486,87 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
         <translation>Formulář</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="115"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="116"/>
         <source>After:</source>
         <translation>Po:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="221"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="222"/>
         <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself.</source>
         <translation>&lt;strong&gt;Ruční rozdělení disku&lt;/strong&gt;&lt;br/&gt;Můžete si vytvořit a upravit oddíly sami.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="742"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="743"/>
         <source>Boot loader location:</source>
         <translation>Umístění zaváděcího oddílu:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="689"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="690"/>
         <source>%1 will be shrunk to %2MB and a new %3MB partition will be created for %4.</source>
         <translation>%1 bude zmenšen na %2MB a nový %3MB oddíl pro %4 bude vytvořen.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="113"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="114"/>
         <source>Select storage de&amp;vice:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="114"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="674"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="713"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="782"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="115"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="675"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="714"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="790"/>
         <source>Current:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="675"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="676"/>
         <source>&lt;strong&gt;Select a partition to shrink, then drag the bottom bar to resize&lt;/strong&gt;</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="773"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="781"/>
         <source>&lt;strong&gt;Select a partition to install on&lt;/strong&gt;</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="849"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="869"/>
         <source>This storage device does not seem to have an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>Zdá se, že na tomto úložném zařízení není žádný operační systém. Jak chcete postupovat?&lt;br/&gt;Než se provedou jakékoliv změny nastavení Vašich úložných zařízení, ukáže se Vám přehled změn a budete požádáni o jejich potvrzení.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="854"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="884"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="908"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="957"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="874"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="904"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="928"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="966"/>
         <source>&lt;strong&gt;Erase disk&lt;/strong&gt;&lt;br/&gt;This will &lt;font color=&quot;red&quot;&gt;delete&lt;/font&gt; all data currently present on the selected storage device.</source>
         <translation>&lt;strong&gt;Vymazat disk&lt;/strong&gt;&lt;br/&gt;Touto volbou &lt;font color=&quot;red&quot;&gt;smažete&lt;/font&gt; všechna data, která se nyní nachází na vybraném úložišti.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="873"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="893"/>
         <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>Na tomto úložném zařízení jsem našel %1. Jak chcete postupovat?&lt;br/&gt;Než se provedou jakékoliv změny nastavení Vašich úložných zařízení, ukáže se Vám přehled změn a budete požádáni o jejich potvrzení.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="879"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="903"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="952"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="899"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="923"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="961"/>
         <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
         <translation>&lt;strong&gt;Instalovat vedle&lt;/strong&gt;&lt;br/&gt;Instalační program zmenší oddíl a vytvoří místo pro %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="889"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="912"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="961"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="909"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="932"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="970"/>
         <source>&lt;strong&gt;Replace a partition&lt;/strong&gt;&lt;br/&gt;Replaces a partition with %1.</source>
         <translation>&lt;strong&gt;Nahradit oddíl&lt;/strong&gt;&lt;br/&gt;Původní oddíl nahradí %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="898"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="918"/>
         <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>Na tomto úložném zařízení již je operační systém. Jak chcete postupovat?&lt;br/&gt;Než se provedou jakékoliv změny nastavení Vašich úložných zařízení, ukáže se Vám přehled změn a budete požádáni o jejich potvrzení.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="947"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="956"/>
         <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>Na tomto úložném zařízení již je několik operačních systémů. Jak chcete postupovat?&lt;br/&gt;Než se provedou jakékoliv změny nastavení Vašich úložných zařízení, ukáže se Vám přehled změn a budete požádáni o jejich potvrzení.</translation>
     </message>
@@ -1504,7 +1504,7 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
         <translation>Nainstalovat &amp;zavaděč na:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="146"/>
+        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="147"/>
         <source>Are you sure you want to create a new partition table on %1?</source>
         <translation>Opravdu si přejete vytvořit novou tabulku oddílů na %1?</translation>
     </message>
