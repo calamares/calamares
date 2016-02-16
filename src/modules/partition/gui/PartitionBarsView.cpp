@@ -471,10 +471,6 @@ PartitionBarsView::mouseMoveEvent( QMouseEvent* event )
     if ( candidateIndex.isValid() )
     {
         m_hoveredIndex = candidateIndex;
-        if ( !canBeSelected( candidateIndex ) )
-            QGuiApplication::setOverrideCursor( Qt::ForbiddenCursor );
-        else
-            QGuiApplication::restoreOverrideCursor();
     }
     else
     {
@@ -484,6 +480,11 @@ PartitionBarsView::mouseMoveEvent( QMouseEvent* event )
 
     if ( oldHoveredIndex != m_hoveredIndex )
     {
+        if ( !canBeSelected( m_hoveredIndex ) )
+            QGuiApplication::setOverrideCursor( Qt::ForbiddenCursor );
+        else
+            QGuiApplication::restoreOverrideCursor();
+
         viewport()->repaint();
     }
 }
@@ -492,10 +493,10 @@ PartitionBarsView::mouseMoveEvent( QMouseEvent* event )
 void
 PartitionBarsView::leaveEvent( QEvent* event )
 {
+    QGuiApplication::restoreOverrideCursor();
     if ( m_hoveredIndex.isValid() )
     {
         m_hoveredIndex = QModelIndex();
-        QGuiApplication::restoreOverrideCursor();
         viewport()->repaint();
     }
 }
