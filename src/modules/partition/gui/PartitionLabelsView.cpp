@@ -557,14 +557,20 @@ PartitionLabelsView::mouseMoveEvent( QMouseEvent* event )
         m_hoveredIndex = candidateIndex;
     }
     else
+    {
         m_hoveredIndex = QModelIndex();
-
-    if ( !canBeSelected( m_hoveredIndex ) )
-        QGuiApplication::setOverrideCursor( Qt::ForbiddenCursor );
-    else
         QGuiApplication::restoreOverrideCursor();
+    }
 
-    viewport()->repaint();
+    if ( oldHoveredIndex != m_hoveredIndex )
+    {
+        if ( m_hoveredIndex.isValid() && !canBeSelected( m_hoveredIndex ) )
+            QGuiApplication::setOverrideCursor( Qt::ForbiddenCursor );
+        else
+            QGuiApplication::restoreOverrideCursor();
+
+        viewport()->repaint();
+    }
 }
 
 
