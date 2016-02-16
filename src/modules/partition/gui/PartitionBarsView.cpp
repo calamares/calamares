@@ -473,6 +473,8 @@ PartitionBarsView::mouseMoveEvent( QMouseEvent* event )
         m_hoveredIndex = candidateIndex;
         if ( !canBeSelected( candidateIndex ) )
             QGuiApplication::setOverrideCursor( Qt::ForbiddenCursor );
+        else
+            QGuiApplication::restoreOverrideCursor();
     }
     else
     {
