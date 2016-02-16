@@ -31,6 +31,7 @@
 #include <KFormat>
 
 // Qt
+#include <QGuiApplication>
 #include <QMouseEvent>
 #include <QPainter>
 
@@ -558,6 +559,11 @@ PartitionLabelsView::mouseMoveEvent( QMouseEvent* event )
     else
         m_hoveredIndex = QModelIndex();
 
+    if ( !canBeSelected( m_hoveredIndex ) )
+        QGuiApplication::setOverrideCursor( Qt::ForbiddenCursor );
+    else
+        QGuiApplication::restoreOverrideCursor();
+
     viewport()->repaint();
 }
 
@@ -565,6 +571,7 @@ PartitionLabelsView::mouseMoveEvent( QMouseEvent* event )
 void
 PartitionLabelsView::leaveEvent( QEvent* event )
 {
+    QGuiApplication::restoreOverrideCursor();
     if ( m_hoveredIndex.isValid() )
     {
         m_hoveredIndex = QModelIndex();
