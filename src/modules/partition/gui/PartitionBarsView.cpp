@@ -142,7 +142,10 @@ PartitionBarsView::drawSection( QPainter* painter, const QRect& rect_, int x, in
         if ( canBeSelected( index ) )
             painter->setBrush( color.lighter( 115 ) );
         else
+        {
+            painter->setBrush( color );
             setCursor( Qt::ForbiddenCursor );
+        }
     }
     else
     {
