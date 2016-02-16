@@ -135,7 +135,6 @@ PartitionBarsView::drawSection( QPainter* painter, const QRect& rect_, int x, in
     rect.adjust( 0, 0, -1, -1 );
 
 
-    QGuiApplication::restoreOverrideCursor();
     if ( selectionMode() != QAbstractItemView::NoSelection && // no hover without selection
          m_hoveredIndex.isValid() &&
          index == m_hoveredIndex )
@@ -151,6 +150,7 @@ PartitionBarsView::drawSection( QPainter* painter, const QRect& rect_, int x, in
     else
     {
         painter->setBrush( color );
+        QGuiApplication::restoreOverrideCursor();
     }
 
     QColor borderColor = color.darker();
