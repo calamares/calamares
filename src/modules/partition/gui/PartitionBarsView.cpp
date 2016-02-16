@@ -134,11 +134,15 @@ PartitionBarsView::drawSection( QPainter* painter, const QRect& rect_, int x, in
     rect.adjust( 0, 0, -1, -1 );
 
 
+    setCursor( Qt::ArrowCursor);
     if ( selectionMode() != QAbstractItemView::NoSelection && // no hover without selection
          m_hoveredIndex.isValid() &&
          index == m_hoveredIndex )
     {
-        painter->setBrush( color.lighter( 115 ) );
+        if ( canBeSelected( index ) )
+            painter->setBrush( color.lighter( 115 ) );
+        else
+            setCursor( Qt::ForbiddenCursor );
     }
     else
     {
