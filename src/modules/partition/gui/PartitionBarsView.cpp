@@ -142,15 +142,11 @@ PartitionBarsView::drawSection( QPainter* painter, const QRect& rect_, int x, in
         if ( canBeSelected( index ) )
             painter->setBrush( color.lighter( 115 ) );
         else
-        {
             painter->setBrush( color );
-            QGuiApplication::setOverrideCursor( Qt::ForbiddenCursor );
-        }
     }
     else
     {
         painter->setBrush( color );
-        QGuiApplication::restoreOverrideCursor();
     }
 
     QColor borderColor = color.darker();
@@ -475,9 +471,14 @@ PartitionBarsView::mouseMoveEvent( QMouseEvent* event )
     if ( candidateIndex.isValid() )
     {
         m_hoveredIndex = candidateIndex;
+        if ( !canBeSelected( candidateIndex ) )
+            QGuiApplication::setOverrideCursor( Qt::ForbiddenCursor );
     }
     else
+    {
         m_hoveredIndex = QModelIndex();
+        QGuiApplication::restoreOverrideCursor();
+    }
 
     if ( oldHoveredIndex != m_hoveredIndex )
     {
@@ -492,6 +493,7 @@ PartitionBarsView::leaveEvent( QEvent* event )
     if ( m_hoveredIndex.isValid() )
     {
         m_hoveredIndex = QModelIndex();
+        QGuiApplication::restoreOverrideCursor();
         viewport()->repaint();
     }
 }
