@@ -29,6 +29,7 @@
 
 // Qt
 #include <QDebug>
+#include <QGuiApplication>
 #include <QMouseEvent>
 #include <QPainter>
 
@@ -134,7 +135,7 @@ PartitionBarsView::drawSection( QPainter* painter, const QRect& rect_, int x, in
     rect.adjust( 0, 0, -1, -1 );
 
 
-    setCursor( Qt::ArrowCursor);
+    QGuiApplication::restoreOverrideCursor();
     if ( selectionMode() != QAbstractItemView::NoSelection && // no hover without selection
          m_hoveredIndex.isValid() &&
          index == m_hoveredIndex )
@@ -144,7 +145,7 @@ PartitionBarsView::drawSection( QPainter* painter, const QRect& rect_, int x, in
         else
         {
             painter->setBrush( color );
-            setCursor( Qt::ForbiddenCursor );
+            QGuiApplication::setOverrideCursor( Qt::ForbiddenCursor );
         }
     }
     else
