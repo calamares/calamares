@@ -326,13 +326,6 @@ PartitionSplitterWidget::mouseMoveEvent( QMouseEvent* event )
         m_itemToResize->size = qRound64( span * percent );
         m_itemToResizeNext->size -= m_itemToResize->size - oldsize;
 
-        qint64 t = 0;
-        for ( int row = 0; row < m_items.count(); ++row )
-        {
-            t += m_items[ row ].size;
-        }
-        Q_ASSERT( t == total );
-
         repaint();
 
         emit partitionResized( m_itemToResize->itemPath,
