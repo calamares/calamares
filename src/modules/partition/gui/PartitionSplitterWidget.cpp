@@ -280,33 +280,36 @@ PartitionSplitterWidget::mouseMoveEvent( QMouseEvent* event )
     if ( m_resizing )
     {
         qint64 start = 0;
-        foreach ( const PartitionSplitterItem& item, m_items )
+        QString itemPath = m_itemToResize->itemPath;
+        for ( auto it = m_items.constBegin();
+              it != m_items.constEnd(); ++it )
         {
-            if ( item.itemPath == m_itemToResize->itemPath )
+            if ( it->itemPath == itemPath )
                 break;
-            else if ( !item.children.isEmpty() )
+            else if ( !it->children.isEmpty() )
             {
                 bool done = false;
-                foreach ( const PartitionSplitterItem& child, item.children )
+                for ( auto jt = it->children.constBegin();
+                      jt != it->children.constEnd(); ++jt )
                 {
-                    if ( child.itemPath == m_itemToResize->itemPath )
+                    if ( jt->itemPath == itemPath )
                     {
                         done = true;
                         break;
                     }
-                    start += child.size;
+                    start += jt->size;
                 }
                 if ( done )
                     break;
             }
             else
-                start += item.size;
+                start += it->size;
         }
 
         qint64 total = 0;
-        for ( int row = 0; row < m_items.count(); ++row )
+        for ( auto it = m_items.constBegin(); it != m_items.constEnd(); ++it )
         {
-            total += m_items[ row ].size;
+            total += it->size;
         }
 
         int ew = rect().width(); //effective width
@@ -328,7 +331,7 @@ PartitionSplitterWidget::mouseMoveEvent( QMouseEvent* event )
 
         repaint();
 
-        emit partitionResized( m_itemToResize->itemPath,
+        emit partitionResized( itemPath,
                                m_itemToResize->size,
                                m_itemToResizeNext->size );
     }
