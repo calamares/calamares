@@ -1391,37 +1391,37 @@ Alla ändringar kommer att gå förlorade.</translation>
 <context>
     <name>PartitionLabelsView</name>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="189"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="190"/>
         <source>Root</source>
         <translation>Root</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="192"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="193"/>
         <source>Home</source>
         <translation>Hem</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="194"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="195"/>
         <source>Boot</source>
         <translation>Boot</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="197"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="198"/>
         <source>EFI system</source>
         <translation>EFI-system</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="199"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="200"/>
         <source>Swap</source>
         <translation>Swap</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="201"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="202"/>
         <source>New partition for %1</source>
         <translation>Ny partition för %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="218"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="219"/>
         <source>%1  %2</source>
         <translation>%1  %2</translation>
     </message>
@@ -1606,7 +1606,7 @@ Alla ändringar kommer att gå förlorade.</translation>
         <translation>oformaterad</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="48"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="49"/>
         <source>Unpartitioned space or unknown partition table</source>
         <translation>Opartitionerat utrymme eller okänd partitionstabell</translation>
     </message>

@@ -1391,37 +1391,37 @@ The installer will quit and all changes will be lost.</source>
 <context>
     <name>PartitionLabelsView</name>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="189"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="190"/>
         <source>Root</source>
         <translation>根目錄</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="192"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="193"/>
         <source>Home</source>
         <translation>家目錄</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="194"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="195"/>
         <source>Boot</source>
         <translation>Boot</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="197"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="198"/>
         <source>EFI system</source>
         <translation>EFI 系統</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="199"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="200"/>
         <source>Swap</source>
         <translation>Swap</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="201"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="202"/>
         <source>New partition for %1</source>
         <translation>%1 的新分割區</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="218"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="219"/>
         <source>%1  %2</source>
         <translation>%1  %2</translation>
     </message>
@@ -1606,7 +1606,7 @@ The installer will quit and all changes will be lost.</source>
         <translation>未格式化</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="48"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="49"/>
         <source>Unpartitioned space or unknown partition table</source>
         <translation>尚未分割的空間或是未知的分割表</translation>
     </message>

@@ -1391,37 +1391,37 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
 <context>
     <name>PartitionLabelsView</name>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="189"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="190"/>
         <source>Root</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="192"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="193"/>
         <source>Home</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="194"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="195"/>
         <source>Boot</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="197"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="198"/>
         <source>EFI system</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="199"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="200"/>
         <source>Swap</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="201"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="202"/>
         <source>New partition for %1</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="218"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="219"/>
         <source>%1  %2</source>
         <translation type="unfinished"/>
     </message>
@@ -1606,7 +1606,7 @@ Instaler će se zatvoriti i sve promjene će biti izgubljene.</translation>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="48"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="49"/>
         <source>Unpartitioned space or unknown partition table</source>
         <translation type="unfinished"/>
     </message>

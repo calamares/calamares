@@ -1392,37 +1392,37 @@ Telepítés nem folytatható. &lt;a href=&quot;#details&quot;&gt;Részletek...&l
 <context>
     <name>PartitionLabelsView</name>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="189"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="190"/>
         <source>Root</source>
         <translation>Root</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="192"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="193"/>
         <source>Home</source>
         <translation>Home</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="194"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="195"/>
         <source>Boot</source>
         <translation>Boot</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="197"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="198"/>
         <source>EFI system</source>
         <translation>EFI rendszer</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="199"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="200"/>
         <source>Swap</source>
         <translation>Swap</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="201"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="202"/>
         <source>New partition for %1</source>
         <translation>Új partíció %1 -ra/ -re</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="218"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="219"/>
         <source>%1  %2</source>
         <translation>%1  %2</translation>
     </message>
@@ -1607,7 +1607,7 @@ Telepítés nem folytatható. &lt;a href=&quot;#details&quot;&gt;Részletek...&l
         <translation>formázatlan</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="48"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="49"/>
         <source>Unpartitioned space or unknown partition table</source>
         <translation>Nem particionált, vagy ismeretlen partíció</translation>
     </message>

@@ -1391,37 +1391,37 @@ Instalator zostanie zamknięty i wszystkie zmiany zostaną utracone.</translatio
 <context>
     <name>PartitionLabelsView</name>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="189"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="190"/>
         <source>Root</source>
         <translation>Systemowa</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="192"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="193"/>
         <source>Home</source>
         <translation>Domowa</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="194"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="195"/>
         <source>Boot</source>
         <translation>Rozruchowa</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="197"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="198"/>
         <source>EFI system</source>
         <translation>System EFI</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="199"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="200"/>
         <source>Swap</source>
         <translation>Przestrzeń wymiany</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="201"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="202"/>
         <source>New partition for %1</source>
         <translation>Nowa partycja dla %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="218"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="219"/>
         <source>%1  %2</source>
         <translation>%1  %2</translation>
     </message>
@@ -1606,7 +1606,7 @@ Instalator zostanie zamknięty i wszystkie zmiany zostaną utracone.</translatio
         <translation>niesformatowany</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="48"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="49"/>
         <source>Unpartitioned space or unknown partition table</source>
         <translation>Przestrzeń bez partycji lub nieznana tabela partycji</translation>
     </message>
