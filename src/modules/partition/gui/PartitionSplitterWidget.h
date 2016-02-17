@@ -67,7 +67,7 @@ private:
 
     void drawPartitions( QPainter* painter,
                          const QRect& rect,
-                         const QList< PartitionSplitterItem >& items );
+                         const QList< PartitionSplitterItem >& itemList );
     void drawSection( QPainter* painter, const QRect& rect_, int x, int width,
                       const PartitionSplitterItem& item );
     void drawResizeHandle( QPainter* painter,
@@ -77,6 +77,9 @@ private:
     template < typename F >
     PartitionSplitterItem* _findItem( QList< PartitionSplitterItem >& items,
                                       F condition );
+
+    QPair< QList< PartitionSplitterItem >, qreal >
+    computeItemsVector( const QList< PartitionSplitterItem >& originalItems ) const;
 
     QList< PartitionSplitterItem > m_items;
     QString m_itemToResizePath;
