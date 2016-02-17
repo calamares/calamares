@@ -527,7 +527,7 @@ PartitionSplitterWidget::computeItemsVector( const QList< PartitionSplitterItem 
     qreal total = 0;
     for ( int row = 0; row < originalItems.count(); ++row )
     {
-        if ( !originalItems[ row ].children.isEmpty() )
+        if ( originalItems[ row ].children.isEmpty() )
         {
             items += originalItems[ row ];
             total += originalItems[ row ].size;
@@ -535,10 +535,11 @@ PartitionSplitterWidget::computeItemsVector( const QList< PartitionSplitterItem 
         else
         {
             PartitionSplitterItem thisItem = originalItems[ row ];
-            QPair< QList< PartitionSplitterItem >, qreal > r = computeItemsVector( thisItem.children );
-            thisItem.children = r.first;
-            thisItem.size = r.second;
+            QPair< QList< PartitionSplitterItem >, qreal > pair = computeItemsVector( thisItem.children );
+            thisItem.children = pair.first;
+            thisItem.size = pair.second;
             items += thisItem;
+            total += thisItem.size;
         }
     }
 
