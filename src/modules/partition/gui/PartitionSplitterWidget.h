@@ -30,7 +30,7 @@ struct PartitionSplitterItem
     bool isFreeSpace;
     qint64 size;
 
-    QList< PartitionSplitterItem > children;
+    QVector< PartitionSplitterItem > children;
 };
 
 class PartitionSplitterWidget : public QWidget
@@ -63,11 +63,11 @@ protected:
     void mouseReleaseEvent( QMouseEvent* event ) override;
 
 private:
-    void setupItems( const QList< PartitionSplitterItem >& items );
+    void setupItems( const QVector< PartitionSplitterItem >& items );
 
     void drawPartitions( QPainter* painter,
                          const QRect& rect,
-                         const QList< PartitionSplitterItem >& itemList );
+                         const QVector< PartitionSplitterItem >& itemList );
     void drawSection( QPainter* painter, const QRect& rect_, int x, int width,
                       const PartitionSplitterItem& item );
     void drawResizeHandle( QPainter* painter,
@@ -75,13 +75,13 @@ private:
                            int x );
 
     template < typename F >
-    PartitionSplitterItem* _findItem( QList< PartitionSplitterItem >& items,
+    PartitionSplitterItem* _findItem( QVector< PartitionSplitterItem >& items,
                                       F condition );
 
-    QPair< QList< PartitionSplitterItem >, qreal >
-    computeItemsVector( const QList< PartitionSplitterItem >& originalItems ) const;
+    QPair< QVector< PartitionSplitterItem >, qreal >
+    computeItemsVector( const QVector< PartitionSplitterItem >& originalItems ) const;
 
-    QList< PartitionSplitterItem > m_items;
+    QVector< PartitionSplitterItem > m_items;
     QString m_itemToResizePath;
     PartitionSplitterItem* m_itemToResize;
     PartitionSplitterItem* m_itemToResizeNext;

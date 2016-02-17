@@ -58,7 +58,7 @@ void
 PartitionSplitterWidget::init( Device* dev, bool drawNestedPartitions )
 {
     m_drawNestedPartitions = drawNestedPartitions;
-    QList< PartitionSplitterItem > allPartitionItems;
+    QVector< PartitionSplitterItem > allPartitionItems;
     PartitionSplitterItem* extendedPartitionItem = nullptr;
     for ( auto it = PartitionIterator::begin( dev );
           it != PartitionIterator::end( dev ); ++it )
@@ -95,7 +95,7 @@ PartitionSplitterWidget::init( Device* dev, bool drawNestedPartitions )
 }
 
 void
-PartitionSplitterWidget::setupItems( const QList<PartitionSplitterItem>& items )
+PartitionSplitterWidget::setupItems( const QVector<PartitionSplitterItem>& items )
 {
     m_itemToResize = nullptr;
     m_itemToResizeNext = nullptr;
@@ -453,13 +453,13 @@ PartitionSplitterWidget::drawResizeHandle( QPainter* painter,
 void
 PartitionSplitterWidget::drawPartitions( QPainter* painter,
                                          const QRect& rect,
-                                         const QList< PartitionSplitterItem >& itemList )
+                                         const QVector< PartitionSplitterItem >& itemList )
 {
     const int count = itemList.count();
     const int totalWidth = rect.width();
 
     auto pair = computeItemsVector( itemList );
-    QList< PartitionSplitterItem >& items = pair.first;
+    QVector< PartitionSplitterItem >& items = pair.first;
     qreal total = pair.second;
 
     int x = rect.x();
@@ -504,7 +504,7 @@ PartitionSplitterWidget::drawPartitions( QPainter* painter,
 
 template < typename F >
 PartitionSplitterItem*
-PartitionSplitterWidget::_findItem( QList< PartitionSplitterItem >& items,
+PartitionSplitterWidget::_findItem( QVector< PartitionSplitterItem >& items,
                                     F condition )
 {
     for ( auto it = items.begin(); it != items.end(); ++it)
@@ -520,10 +520,10 @@ PartitionSplitterWidget::_findItem( QList< PartitionSplitterItem >& items,
 }
 
 
-QPair< QList< PartitionSplitterItem >, qreal >
-PartitionSplitterWidget::computeItemsVector( const QList< PartitionSplitterItem >& originalItems ) const
+QPair< QVector< PartitionSplitterItem >, qreal >
+PartitionSplitterWidget::computeItemsVector( const QVector< PartitionSplitterItem >& originalItems ) const
 {
-    QList< PartitionSplitterItem > items;
+    QVector< PartitionSplitterItem > items;
 
     qreal total = 0;
     for ( int row = 0; row < originalItems.count(); ++row )
@@ -536,7 +536,7 @@ PartitionSplitterWidget::computeItemsVector( const QList< PartitionSplitterItem 
         else
         {
             PartitionSplitterItem thisItem = originalItems[ row ];
-            QPair< QList< PartitionSplitterItem >, qreal > pair = computeItemsVector( thisItem.children );
+            QPair< QVector< PartitionSplitterItem >, qreal > pair = computeItemsVector( thisItem.children );
             thisItem.children = pair.first;
             thisItem.size = pair.second;
             items += thisItem;
