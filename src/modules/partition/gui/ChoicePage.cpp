@@ -462,6 +462,17 @@ ChoicePage::doAlongsideSetupSplitter( const QModelIndex& current,
 
     setNextEnabled( m_beforePartitionBarsView->selectionModel()->currentIndex().isValid() );
 
+    QList< Partition* > efiSystemPartitions = m_core->efiSystemPartitions();
+    if ( m_isEfi && m_efiLabel && efiSystemPartitions.count() <= 1 ) //should never happen
+    {
+        m_efiLabel->show();
+    }
+    else if ( m_isEfi && m_efiLabel && efiSystemPartitions.count() > 1 )
+    {
+        m_efiLabel->show();
+        m_efiComboBox->show();
+    }
+
     cDebug() << "Partition selected for Alongside.";
 }
 
@@ -581,6 +592,17 @@ ChoicePage::doReplaceSelectedPartition( const QModelIndex& current,
     } ),
     [=]
     {
+        QList< Partition* > efiSystemPartitions = m_core->efiSystemPartitions();
+        if ( m_isEfi && m_efiLabel && efiSystemPartitions.count() <= 1 ) //should never happen
+        {
+            m_efiLabel->show();
+        }
+        else if ( m_isEfi && m_efiLabel && efiSystemPartitions.count() > 1 )
+        {
+            m_efiLabel->show();
+            m_efiComboBox->show();
+        }
+
         setNextEnabled( !m_beforePartitionBarsView->selectionModel()->selectedRows().isEmpty() );
         if ( !m_bootloaderComboBox.isNull() &&
              m_bootloaderComboBox->currentIndex() < 0 )
@@ -819,6 +841,7 @@ ChoicePage::updateActionChoicePreview( ChoicePage::Choice choice )
         m_efiComboBox = new QComboBox( m_previewAfterFrame );
         efiLayout->addWidget( m_efiComboBox );
         m_efiLabel->setBuddy( m_efiComboBox );
+        m_efiLabel->hide();
         m_efiComboBox->hide();
         efiLayout->addStretch();
 
@@ -843,7 +866,6 @@ ChoicePage::updateActionChoicePreview( ChoicePage::Choice choice )
                         .arg( efiSystemPartitions.first()->partitionPath() )
                         .arg( Calamares::Branding::instance()->
                               string( Calamares::Branding::ShortProductName ) ) );
-            setNextEnabled( true );
         }
         else
         {
@@ -859,7 +881,6 @@ ChoicePage::updateActionChoicePreview( ChoicePage::Choice choice )
                      efiPartition->number() == 1 )
                     m_efiComboBox->setCurrentIndex( i );
             }
-            setNextEnabled( true );
         }
     }
 
