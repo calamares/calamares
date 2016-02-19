@@ -500,7 +500,8 @@ ChoicePage::onLeave()
     }
     else    // installPath is then passed to the bootloader module for MBR setup
     {
-        m_core->setBootLoaderInstallPath( selectedDevice()->deviceNode() );
+        if ( m_bootloaderComboBox.isNull() )
+            m_core->setBootLoaderInstallPath( selectedDevice()->deviceNode() );
     }
 }
 
