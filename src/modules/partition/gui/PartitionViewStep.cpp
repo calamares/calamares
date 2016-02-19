@@ -363,9 +363,8 @@ PartitionViewStep::onActivate()
 void
 PartitionViewStep::onLeave()
 {
-    if ( m_widget->currentWidget() == m_choicePage &&
-         m_choicePage->currentChoice() == ChoicePage::Alongside )
-        m_choicePage->doAlongsideApply();
+    if ( m_widget->currentWidget() == m_choicePage )
+        m_choicePage->onLeave();
 }
 
 

@@ -64,7 +64,7 @@ public:
 
     Choice currentChoice() const;
 
-    void doAlongsideApply();
+    void onLeave();
 
 signals:
     void nextStatusChanged( bool );
@@ -87,6 +87,7 @@ private:
     void updateActionChoicePreview( ChoicePage::Choice choice );
     void setupActions();
     OsproberEntryList getOsproberEntriesForDevice( Device* device ) const;
+    void doAlongsideApply();
 
     bool m_nextEnabled;
     PartitionCoreModule* m_core;
@@ -112,6 +113,8 @@ private:
     QPointer< PartitionLabelsView > m_afterPartitionLabelsView;
     QPointer< PartitionSplitterWidget > m_afterPartitionSplitterWidget;
     QPointer< QComboBox > m_bootloaderComboBox;
+    QPointer< QLabel > m_efiLabel;
+    QPointer< QComboBox > m_efiComboBox;
 
     int m_lastSelectedDeviceIndex;
 
