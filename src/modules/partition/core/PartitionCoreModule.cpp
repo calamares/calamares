@@ -391,6 +391,9 @@ PartitionCoreModule::refresh()
     updateHasRootMountPoint();
     updateIsDirty();
     m_bootLoaderModel->update();
+    if ( QDir( "/sys/firmware/efi/efivars" ).exists() )
+        scanForEfiSystemPartitions(); //FIXME: this should be removed in favor of
+                                      //       proper KPM support for EFI
 }
 
 void PartitionCoreModule::updateHasRootMountPoint()
@@ -512,6 +515,7 @@ PartitionCoreModule::revertAllDevices()
     {
         revertDevice( devInfo->device.data() );
     }
+    refresh();
 }
 
 
@@ -536,7 +540,7 @@ PartitionCoreModule::revertDevice( Device* dev )
 
     m_bootLoaderModel->init( devices );
 
-    updateIsDirty();
+    refresh();
     emit deviceReverted( newDev );
 }
 
