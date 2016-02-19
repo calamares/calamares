@@ -462,16 +462,8 @@ ChoicePage::doAlongsideSetupSplitter( const QModelIndex& current,
 
     setNextEnabled( m_beforePartitionBarsView->selectionModel()->currentIndex().isValid() );
 
-    QList< Partition* > efiSystemPartitions = m_core->efiSystemPartitions();
-    if ( m_isEfi && m_efiLabel && efiSystemPartitions.count() <= 1 ) //should never happen
-    {
-        m_efiLabel->show();
-    }
-    else if ( m_isEfi && m_efiLabel && efiSystemPartitions.count() > 1 )
-    {
-        m_efiLabel->show();
-        m_efiComboBox->show();
-    }
+    if ( m_isEfi )
+        setupEfiSystemPartitionSelector();
 
     cDebug() << "Partition selected for Alongside.";
 }
@@ -592,16 +584,8 @@ ChoicePage::doReplaceSelectedPartition( const QModelIndex& current,
     } ),
     [=]
     {
-        QList< Partition* > efiSystemPartitions = m_core->efiSystemPartitions();
-        if ( m_isEfi && m_efiLabel && efiSystemPartitions.count() <= 1 ) //should never happen
-        {
-            m_efiLabel->show();
-        }
-        else if ( m_isEfi && m_efiLabel && efiSystemPartitions.count() > 1 )
-        {
-            m_efiLabel->show();
-            m_efiComboBox->show();
-        }
+        if ( m_isEfi )
+            setupEfiSystemPartitionSelector();
 
         setNextEnabled( !m_beforePartitionBarsView->selectionModel()->selectedRows().isEmpty() );
         if ( !m_bootloaderComboBox.isNull() &&
@@ -841,47 +825,8 @@ ChoicePage::updateActionChoicePreview( ChoicePage::Choice choice )
         m_efiComboBox = new QComboBox( m_previewAfterFrame );
         efiLayout->addWidget( m_efiComboBox );
         m_efiLabel->setBuddy( m_efiComboBox );
-        m_efiLabel->hide();
         m_efiComboBox->hide();
         efiLayout->addStretch();
-
-        // Only the already existing ones:
-        QList< Partition* > efiSystemPartitions = m_core->efiSystemPartitions();
-
-        if ( efiSystemPartitions.count() == 0 ) //should never happen
-        {
-            m_efiLabel->setText(
-                        tr( "An EFI system partition cannot be found anywhere "
-                            "on this system. Please go back and use manual "
-                            "partitioning to set up %1." )
-                        .arg( Calamares::Branding::instance()->
-                              string( Calamares::Branding::ShortProductName ) ) );
-            setNextEnabled( false );
-        }
-        else if ( efiSystemPartitions.count() == 1 ) //probably most usual situation
-        {
-            m_efiLabel->setText(
-                        tr( "The EFI system partition at %1 will be used for "
-                            "starting %2." )
-                        .arg( efiSystemPartitions.first()->partitionPath() )
-                        .arg( Calamares::Branding::instance()->
-                              string( Calamares::Branding::ShortProductName ) ) );
-        }
-        else
-        {
-            m_efiComboBox->show();
-            m_efiLabel->setText( tr( "EFI system partition:" ) );
-            for ( int i = 0; i < efiSystemPartitions.count(); ++i )
-            {
-                Partition* efiPartition = efiSystemPartitions.at( i );
-                m_efiComboBox->addItem( efiPartition->partitionPath(), i );
-
-                // We pick an ESP on the currently selected device, if possible
-                if ( efiPartition->devicePath() == selectedDevice()->deviceNode() &&
-                     efiPartition->number() == 1 )
-                    m_efiComboBox->setCurrentIndex( i );
-            }
-        }
     }
 
     // Also handle selection behavior on beforeFrame.
@@ -898,6 +843,51 @@ ChoicePage::updateActionChoicePreview( ChoicePage::Choice choice )
 
     m_beforePartitionBarsView->setSelectionMode( previewSelectionMode );
     m_beforePartitionLabelsView->setSelectionMode( previewSelectionMode );
+}
+
+
+void
+ChoicePage::setupEfiSystemPartitionSelector()
+{
+    Q_ASSERT( m_isEfi );
+
+    // Only the already existing ones:
+    QList< Partition* > efiSystemPartitions = m_core->efiSystemPartitions();
+
+    if ( efiSystemPartitions.count() == 0 ) //should never happen
+    {
+        m_efiLabel->setText(
+                    tr( "An EFI system partition cannot be found anywhere "
+                        "on this system. Please go back and use manual "
+                        "partitioning to set up %1." )
+                    .arg( Calamares::Branding::instance()->
+                          string( Calamares::Branding::ShortProductName ) ) );
+        setNextEnabled( false );
+    }
+    else if ( efiSystemPartitions.count() == 1 ) //probably most usual situation
+    {
+        m_efiLabel->setText(
+                    tr( "The EFI system partition at %1 will be used for "
+                        "starting %2." )
+                    .arg( efiSystemPartitions.first()->partitionPath() )
+                    .arg( Calamares::Branding::instance()->
+                          string( Calamares::Branding::ShortProductName ) ) );
+    }
+    else
+    {
+        m_efiComboBox->show();
+        m_efiLabel->setText( tr( "EFI system partition:" ) );
+        for ( int i = 0; i < efiSystemPartitions.count(); ++i )
+        {
+            Partition* efiPartition = efiSystemPartitions.at( i );
+            m_efiComboBox->addItem( efiPartition->partitionPath(), i );
+
+            // We pick an ESP on the currently selected device, if possible
+            if ( efiPartition->devicePath() == selectedDevice()->deviceNode() &&
+                 efiPartition->number() == 1 )
+                m_efiComboBox->setCurrentIndex( i );
+        }
+    }
 }
 
 

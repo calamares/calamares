@@ -88,6 +88,7 @@ private:
     void setupActions();
     OsproberEntryList getOsproberEntriesForDevice( Device* device ) const;
     void doAlongsideApply();
+    void setupEfiSystemPartitionSelector();
 
     bool m_nextEnabled;
     PartitionCoreModule* m_core;
