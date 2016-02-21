@@ -193,12 +193,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="24"/>
         <source>GlobalStorage</source>
-        <translation type="unfinished"/>
+        <translation>GlobalStorage</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="34"/>
         <source>JobQueue</source>
-        <translation type="unfinished"/>
+        <translation>JobQueue</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="44"/>
@@ -332,7 +332,7 @@ Output:
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="311"/>
         <source>Boost.Python error in job &quot;%1&quot;.</source>
-        <translation>Boost.Python σφάλμα στην εργασία &quot;%1&quot;.</translation>
+        <translation>Σφάλμα Boost.Python στην εργασία &quot;%1&quot;.</translation>
     </message>
 </context>
 <context>
@@ -356,13 +356,14 @@ Output:
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="90"/>
         <source>Cancel installation?</source>
-        <translation>Ακύρωση εγκατάστασης;</translation>
+        <translation>Ακύρωση της εγκατάστασης;</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="91"/>
         <source>Do you really want to cancel the current install process?
 The installer will quit and all changes will be lost.</source>
-        <translation type="unfinished"/>
+        <translation>Θέλετε πραγματικά να ακυρώσετε τη διαδικασία εγκατάστασης;
+Το πρόγραμμα εγκατάστασης θα τερματιστεί και όλες οι αλλαγές θα χαθούν.</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="224"/>
@@ -372,7 +373,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="225"/>
         <source>The %1 installer is about to make changes to your disk in order to install %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
-        <translation type="unfinished"/>
+        <translation>Το πρόγραμμα εγκατάστασης %1 θα κάνει αλλαγές στον δίσκο για να εγκαταστήσετε το %2.&lt;br/&gt;&lt;strong&gt;Δεν θα είστε σε θέση να αναιρέσετε τις αλλαγές.&lt;/strong&gt;</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="232"/>
@@ -689,37 +690,37 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="48"/>
         <source>Create new %2MB partition on %4 (%3) with file system %1.</source>
-        <translation type="unfinished"/>
+        <translation>Δημιουργία νέας κατάτμησης %2MB στο %4 (%3) με σύστημα αρχείων %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="59"/>
         <source>Create new &lt;strong&gt;%2MB&lt;/strong&gt; partition on &lt;strong&gt;%4&lt;/strong&gt; (%3) with file system &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Δημιουργία νέας κατάτμησης &lt;strong&gt;%2MB&lt;/strong&gt; στο &lt;strong&gt;%4&lt;/strong&gt; (%3) με σύστημα αρχείων &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="71"/>
         <source>Creating new %1 partition on %2.</source>
-        <translation type="unfinished"/>
+        <translation>Δημιουργείται νέα %1 κατάτμηση στο %2.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="83"/>
         <source>The installer failed to create partition on disk &apos;%1&apos;.</source>
-        <translation>Η εγκατάσταση απέτυχε να δημιουργήσει κατάτμηση στο δίσκο &apos;%1&apos;.</translation>
+        <translation>Η εγκατάσταση απέτυχε να δημιουργήσει μία κατάτμηση στο δίσκο &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="92"/>
         <source>Could not open device &apos;%1&apos;.</source>
-        <translation>Δεν μπόρεσε να ανοίξει τη συσκευή &apos;%1&apos;.</translation>
+        <translation>Δεν ήταν δυνατό το άνοιγμα της συσκευής &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="102"/>
         <source>Could not open partition table.</source>
-        <translation>Δεν μπόρεσε να ανοίξει τον πίνακα κατατμήσεων.</translation>
+        <translation>Δεν ήταν δυνατό το άνοιγμα του πίνακα κατατμήσεων.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="126"/>
         <source>The installer failed to create file system on partition %1.</source>
-        <translation>Η εγκατάσταση απέτυχε να δημιουργήσει ένα σύστημα αρχείων στη κατάτμηση %1.</translation>
+        <translation>Η εγκατάσταση απέτυχε να δημιουργήσει το σύστημα αρχείων στην κατάτμηση %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="134"/>
@@ -737,12 +738,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="39"/>
         <source>Creating a new partition table will delete all existing data on the disk.</source>
-        <translation>Δημιουργώντας ένα νέο πίνακα κατατμήσεν θα διαγραφούν όλα τα δεδομένα απο τον δίσκο.</translation>
+        <translation>Με τη δημιουργία ενός νέου πίνακα κατατμήσεων θα διαγραφούν όλα τα δεδομένα στον δίσκο.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="65"/>
         <source>What kind of partition table do you want to create?</source>
-        <translation>Τι είδους πίνακα κατατμήσεων θα ήθελες να δημιουργήσεις?</translation>
+        <translation>Τι είδους πίνακα κατατμήσεων θέλετε να δημιουργήσετε;</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="72"/>
@@ -760,17 +761,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="49"/>
         <source>Create new %1 partition table on %2.</source>
-        <translation type="unfinished"/>
+        <translation>Δημιουργία νέου πίνακα κατατμήσεων %1 στο %2.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="56"/>
         <source>Create new &lt;strong&gt;%1&lt;/strong&gt; partition table on &lt;strong&gt;%2&lt;/strong&gt; (%3).</source>
-        <translation type="unfinished"/>
+        <translation>Δημιουργία νέου πίνακα κατατμήσεων &lt;strong&gt;%1&lt;/strong&gt; στο &lt;strong&gt;%2&lt;/strong&gt; (%3).</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="66"/>
         <source>Creating new %1 partition table on %2.</source>
-        <translation type="unfinished"/>
+        <translation>Δημιουργείται νέα %1 κατάτμηση στο %2.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="76"/>
@@ -780,7 +781,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="84"/>
         <source>Could not open device %1.</source>
-        <translation>Δεν μπόρεσε να ανοίξει τη συσκευή &apos;%1&apos;.</translation>
+        <translation>Δεν ήταν δυνατό το άνοιγμα της συσκευής %1.</translation>
     </message>
 </context>
 <context>
@@ -935,22 +936,22 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="20"/>
         <source>Edit Existing Partition</source>
-        <translation>Επεξεργασία Υπάρχουσας Κατάτμησης</translation>
+        <translation>Επεξεργασία υπάρχουσας κατάτμησης</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="50"/>
         <source>Content:</source>
-        <translation>Περιεχόμενα:</translation>
+        <translation>Περιεχόμενο:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="60"/>
         <source>&amp;Keep</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Διατήρηση</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="70"/>
         <source>Format</source>
-        <translation>Μορφοποίησε</translation>
+        <translation>Μορφοποίηση</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="89"/>
@@ -960,7 +961,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="99"/>
         <source>&amp;Mount Point:</source>
-        <translation>Σημείο %Mount:</translation>
+        <translation>Σ&amp;ημείο προσάρτησης:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="119"/>
@@ -970,7 +971,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="132"/>
         <source>Fi&amp;le System:</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Σύστημα αρχείων:</translation>
     </message>
 </context>
 <context>
@@ -1062,7 +1063,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="90"/>
         <source>Could not open device &apos;%1&apos;.</source>
-        <translation>Δεν μπόρεσε να ανοίξει τη συσκευή &apos;%1&apos;.</translation>
+        <translation>Δεν ήταν δυνατό το άνοιγμα της συσκευής &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="99"/>
@@ -1072,7 +1073,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="107"/>
         <source>The installer failed to create file system on partition %1.</source>
-        <translation type="unfinished"/>
+        <translation>Η εγκατάσταση απέτυχε να δημιουργήσει το σύστημα αρχείων στην κατάτμηση %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="115"/>
@@ -1228,7 +1229,7 @@ The installer will quit and all changes will be lost.</source>
         <location filename="../src/modules/locale/LocalePage.cpp" line="158"/>
         <location filename="../src/modules/locale/LocalePage.cpp" line="169"/>
         <source>The system locale is set to %1.</source>
-        <translation type="unfinished"/>
+        <translation>Η τοπική ρύθμιση του συστήματος έχει οριστεί σε %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/LocalePage.cpp" line="166"/>
@@ -1248,7 +1249,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/locale/LocalePage.cpp" line="266"/>
         <source>Set timezone to %1/%2.&lt;br/&gt;</source>
-        <translation type="unfinished"/>
+        <translation>Ορισμός ζώνης ώρας σε %1/%2.&lt;br/&gt;</translation>
     </message>
 </context>
 <context>
@@ -1323,7 +1324,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/keyboard/KeyboardPage.ui" line="70"/>
         <source>Keyboard Model:</source>
-        <translation>Μοντέλο Πληκτρολογίου:</translation>
+        <translation>Μοντέλο πληκτρολογίου:</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardPage.ui" line="131"/>
@@ -1341,12 +1342,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="36"/>
         <source>What is your name?</source>
-        <translation>Ποιό είναι το όνομά σας;</translation>
+        <translation>Ποιο είναι το όνομά σας;</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="117"/>
         <source>What name do you want to use to log in?</source>
-        <translation>Ποιό όνομα θα θέλατε να χρησιμοποιείτε για σύνδεση;</translation>
+        <translation>Ποιο όνομα θα θέλατε να χρησιμοποιείτε για σύνδεση;</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="197"/>
@@ -1374,7 +1375,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="226"/>
         <source>What is the name of this computer?</source>
-        <translation type="unfinished"/>
+        <translation>Ποιο είναι το όνομά του υπολογιστή;</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="309"/>
@@ -1389,12 +1390,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="457"/>
         <source>Use the same password for the administrator account.</source>
-        <translation type="unfinished"/>
+        <translation>Χρησιμοποιήστε τον ίδιο κωδικό πρόσβασης για τον λογαριασμό διαχειριστή.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="480"/>
         <source>Choose a password for the administrator account.</source>
-        <translation type="unfinished"/>
+        <translation>Επιλέξτε ένα κωδικό για τον λογαριασμό διαχειριστή.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="585"/>
@@ -1407,22 +1408,22 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="190"/>
         <source>Root</source>
-        <translation>Ριζικός</translation>
+        <translation>Ριζική</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="193"/>
         <source>Home</source>
-        <translation type="unfinished"/>
+        <translation>Home</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="195"/>
         <source>Boot</source>
-        <translation type="unfinished"/>
+        <translation>Εκκίνηση</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="198"/>
         <source>EFI system</source>
-        <translation type="unfinished"/>
+        <translation>Σύστημα EFI</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="200"/>
@@ -1558,7 +1559,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="169"/>
         <source>Install %1 &lt;strong&gt;alongside&lt;/strong&gt; another operating system on disk &lt;strong&gt;%2&lt;/strong&gt; (%3).</source>
-        <translation>Εγκατάσταση του %1 &lt;strong&gt;παράλληλα&lt;/strong&gt; με ένα άλλο λειτουργικό σύστημα στον δίσκο&lt;strong&gt;%2&lt;/strong&gt; (%3).</translation>
+        <translation>Εγκατάσταση του %1 &lt;strong&gt;παράλληλα με&lt;/strong&gt; ένα άλλο λειτουργικό σύστημα στον δίσκο&lt;strong&gt;%2&lt;/strong&gt; (%3).</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="176"/>
@@ -1607,22 +1608,22 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="150"/>
         <source>unknown</source>
-        <translation>άγνωστο</translation>
+        <translation>άγνωστη</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="152"/>
         <source>extended</source>
-        <translation>εκτεταμένο</translation>
+        <translation>εκτεταμένη</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="154"/>
         <source>unformatted</source>
-        <translation>μη μορφοποιημένο</translation>
+        <translation>μη μορφοποιημένη</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="49"/>
         <source>Unpartitioned space or unknown partition table</source>
-        <translation type="unfinished"/>
+        <translation>Μη κατανεμημένος χώρος ή άγνωστος πίνακας κατατμήσεων</translation>
     </message>
 </context>
 <context>
@@ -1776,28 +1777,28 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="187"/>
         <source>Resize partition %1.</source>
-        <translation type="unfinished"/>
+        <translation>Αλλαγή μεγέθους κατάτμησης %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="194"/>
         <source>Resize &lt;strong&gt;%2MB&lt;/strong&gt; partition &lt;strong&gt;%1&lt;/strong&gt; to &lt;strong&gt;%3MB&lt;/strong&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Αλλαγή μεγέθους κατάτμησης &lt;strong&gt;%1&lt;/strong&gt; από &lt;strong&gt;%2MB&lt;/strong&gt; σε &lt;strong&gt;%3MB&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="205"/>
         <source>Resizing %2MB partition %1 to %3MB.</source>
-        <translation type="unfinished"/>
+        <translation>Αλλαγή μεγέθους κατάτμησης %1 από %2MB σε %3MB.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="232"/>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="290"/>
         <source>The installer failed to resize partition %1 on disk &apos;%2&apos;.</source>
-        <translation type="unfinished"/>
+        <translation>Η εγκατάσταση απέτυχε να αλλάξει το μέγεθος της κατάτμησης %1 στο δίσκο &apos;%2&apos;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="237"/>
         <source>Could not open device &apos;%1&apos;.</source>
-        <translation>Δεν μπόρεσε να ανοίξει τη συσκευή &apos;%1&apos;.</translation>
+        <translation>Δεν ήταν δυνατό το άνοιγμα της συσκευής &apos;%1&apos;.</translation>
     </message>
 </context>
 <context>
@@ -2059,7 +2060,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="193"/>
         <source>%1 support</source>
-        <translation type="unfinished"/>
+        <translation>Υποστήριξη %1</translation>
     </message>
 </context>
 <context>
