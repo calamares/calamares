@@ -31,6 +31,11 @@ struct PartitionSplitterItem
     qint64 size;
 
     QVector< PartitionSplitterItem > children;
+
+    static PartitionSplitterItem null() { return { QString(), QColor(), false, 0 }; }
+
+    bool isNull() const { return itemPath.isEmpty() && size == 0; }
+    operator bool() const { return !isNull(); }
 };
 
 class PartitionSplitterWidget : public QWidget
@@ -75,16 +80,15 @@ private:
                            int x );
 
     template < typename F >
-    PartitionSplitterItem* _findItem( QVector< PartitionSplitterItem >& items,
-                                      F condition );
+    PartitionSplitterItem _findItem( QVector< PartitionSplitterItem >& items, F condition );
 
     QPair< QVector< PartitionSplitterItem >, qreal >
     computeItemsVector( const QVector< PartitionSplitterItem >& originalItems ) const;
 
     QVector< PartitionSplitterItem > m_items;
     QString m_itemToResizePath;
-    PartitionSplitterItem* m_itemToResize;
-    PartitionSplitterItem* m_itemToResizeNext;
+    PartitionSplitterItem m_itemToResize;
+    PartitionSplitterItem m_itemToResizeNext;
 
     qint64 m_itemMinSize;
     qint64 m_itemMaxSize;
