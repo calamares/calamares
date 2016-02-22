@@ -206,7 +206,6 @@ PartitionSplitterWidget::setSplitPartition( const QString& path,
                 break;
         }
     }
-    repaint();
 
     emit partitionResized( m_itemToResize->itemPath,
                            m_itemToResize->size,
@@ -215,6 +214,11 @@ PartitionSplitterWidget::setSplitPartition( const QString& path,
     cDebug() << "Items updated. Status:";
     foreach ( const PartitionSplitterItem& item, m_items )
         cDebug() << "item" << item.itemPath << "size" << item.size;
+
+    cDebug() << "m_itemToResize:    " << m_itemToResize << m_itemToResize->itemPath;
+    cDebug() << "m_itemToResizeNext:" << m_itemToResizeNext << m_itemToResizeNext->itemPath;
+
+    repaint();
 }
 
 
