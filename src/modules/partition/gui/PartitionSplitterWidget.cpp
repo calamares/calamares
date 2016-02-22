@@ -487,6 +487,8 @@ PartitionSplitterWidget::drawPartitions( QPainter* painter,
         if ( m_itemToResize &&
              m_itemToResizeNext &&
              row > 0 &&
+             !items[ row - 1 ].isFreeSpace &&
+             !items[ row - 1 ].itemPath.isEmpty() &&
              items[ row - 1 ].itemPath == m_itemToResize->itemPath )
         {
             m_resizeHandleX = x;
