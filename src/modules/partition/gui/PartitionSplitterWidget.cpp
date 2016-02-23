@@ -67,6 +67,7 @@ PartitionSplitterWidget::init( Device* dev, bool drawNestedPartitions )
             ColorUtils::colorForPartition( *it ),
             KPMHelpers::isPartitionFreeSpace( *it ),
             ( *it )->capacity(),
+            PartitionSplitterItem::Normal,
             {}
         };
 
