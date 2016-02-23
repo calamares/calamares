@@ -19,7 +19,7 @@
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="198"/>
         <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
-        <translation>Πουθενά στο σύστημα δεν μπορεί να ανιχθευθεί ένα σύστημα αρχείων EFI. Παρακαλώ επιστρέψτε πίσω και χρησιμοποιήστε χειροκίνητη διαμερισματοποίηση για εγκατάσταση %1</translation>
+        <translation>Πουθενά στο σύστημα δεν μπορεί να ανιχθευθεί μία κατάτμηση EFI. Παρακαλώ επιστρέψτε πίσω και χρησιμοποιήστε τη χειροκίνητη τμηματοποίηση για την εγκατάσταση του %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="208"/>
@@ -307,7 +307,7 @@ Output:
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="241"/>
         <source>Running %1 operation.</source>
-        <translation>Εκτέλεση λειτουργίας %1.</translation>
+        <translation>Εκτελείται η λειτουργία %1.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="254"/>
@@ -411,17 +411,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/libcalamares/PythonHelper.cpp" line="247"/>
         <source>unparseable Python error</source>
-        <translation type="unfinished"/>
+        <translation>Μη αναγνώσιμο σφάλμα Python</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonHelper.cpp" line="263"/>
         <source>unparseable Python traceback</source>
-        <translation type="unfinished"/>
+        <translation>Μη αναγνώσιμο ανίχνευση Python</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonHelper.cpp" line="267"/>
         <source>Unfetchable Python error.</source>
-        <translation type="unfinished"/>
+        <translation>Μη ανακτήσιµο σφάλμα Python.</translation>
     </message>
 </context>
 <context>
@@ -442,12 +442,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/CheckFileSystemJob.cpp" line="34"/>
         <source>Checking file system on partition %1.</source>
-        <translation>Γίνεται έλεγχος του συστήματος αρχείων στην κατάτμηση %1.</translation>
+        <translation>Ελέγχεται το σύστημα αρχείων στην κατάτμηση %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CheckFileSystemJob.cpp" line="58"/>
         <source>The file system check on partition %1 failed.</source>
-        <translation>Ο έλεγχος του συστήματος αρχείων στην κατάτμηση %1 απέτυχε.</translation>
+        <translation>Απέτυχε ο έλεγχος του συστήματος αρχείων στην κατάτμηση %1.</translation>
     </message>
 </context>
 <context>
@@ -531,7 +531,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="860"/>
         <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
-        <translation>Πουθενά στο σύστημα δεν μπορεί να ανιχθευθεί ένα σύστημα αρχείων EFI. Παρακαλώ επιστρέψτε πίσω και χρησιμοποιήστε χειροκίνητη διαμερισματοποίηση για εγκατάσταση %1</translation>
+        <translation>Πουθενά στο σύστημα δεν μπορεί να ανιχθευθεί μία κατάτμηση EFI. Παρακαλώ επιστρέψτε πίσω και χρησιμοποιήστε τη χειροκίνητη τμηματοποίηση για την εγκατάσταση του %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="870"/>
@@ -710,12 +710,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="92"/>
         <source>Could not open device &apos;%1&apos;.</source>
-        <translation>Δεν ήταν δυνατό το άνοιγμα της συσκευής &apos;%1&apos;.</translation>
+        <translation>Δεν είναι δυνατό το άνοιγμα της συσκευής &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="102"/>
         <source>Could not open partition table.</source>
-        <translation>Δεν ήταν δυνατό το άνοιγμα του πίνακα κατατμήσεων.</translation>
+        <translation>Δεν είναι δυνατό το άνοιγμα του πίνακα κατατμήσεων.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="126"/>
@@ -781,7 +781,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="84"/>
         <source>Could not open device %1.</source>
-        <translation>Δεν ήταν δυνατό το άνοιγμα της συσκευής %1.</translation>
+        <translation>Δεν είναι δυνατό το άνοιγμα της συσκευής %1.</translation>
     </message>
 </context>
 <context>
@@ -882,12 +882,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="85"/>
         <source>Could not open device %1.</source>
-        <translation>Δεν ήταν δυνατό το άνοιγμα της συσκευής %1.</translation>
+        <translation>Δεν είναι δυνατό το άνοιγμα της συσκευής %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="94"/>
         <source>Could not open partition table.</source>
-        <translation>Δεν ήταν δυνατό το άνοιγμα του πίνακα κατατμήσεων.</translation>
+        <translation>Δεν είναι δυνατό το άνοιγμα του πίνακα κατατμήσεων.</translation>
     </message>
 </context>
 <context>
@@ -1063,12 +1063,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="90"/>
         <source>Could not open device &apos;%1&apos;.</source>
-        <translation>Δεν ήταν δυνατό το άνοιγμα της συσκευής &apos;%1&apos;.</translation>
+        <translation>Δεν είναι δυνατό το άνοιγμα της συσκευής &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="99"/>
         <source>Could not open partition table.</source>
-        <translation>Δεν ήταν δυνατό το άνοιγμα του πίνακα κατατμήσεων.</translation>
+        <translation>Δεν είναι δυνατό το άνοιγμα του πίνακα κατατμήσεων.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="107"/>
@@ -1088,19 +1088,19 @@ The installer will quit and all changes will be lost.</source>
         <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="84"/>
         <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="96"/>
         <source>Konsole not installed</source>
-        <translation type="unfinished"/>
+        <translation>Το Konsole δεν είναι εγκατεστημένο</translation>
     </message>
     <message>
         <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="70"/>
         <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="85"/>
         <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="97"/>
         <source>Please install the kde konsole and try again!</source>
-        <translation type="unfinished"/>
+        <translation>Παρακαλώ εγκαταστήστε το kde konsole και δοκιμάστε ξανά!</translation>
     </message>
     <message>
         <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="122"/>
         <source>Executing script: &amp;nbsp;&lt;code&gt;%1&lt;/code&gt;</source>
-        <translation type="unfinished"/>
+        <translation>Εκτελείται το σενάριο: &amp;nbsp;&lt;code&gt;%1&lt;/code&gt;</translation>
     </message>
 </context>
 <context>
@@ -1116,12 +1116,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="201"/>
         <source>Set keyboard model to %1.&lt;br/&gt;</source>
-        <translation type="unfinished"/>
+        <translation>Ορισμός του μοντέλου πληκτρολογίου σε %1.&lt;br/&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="203"/>
         <source>Set keyboard layout to %1/%2.</source>
-        <translation type="unfinished"/>
+        <translation>Ορισμός της διάταξης πληκτρολογίου σε %1/%2.</translation>
     </message>
 </context>
 <context>
@@ -1249,7 +1249,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/locale/LocalePage.cpp" line="266"/>
         <source>Set timezone to %1/%2.&lt;br/&gt;</source>
-        <translation>Ορισμός ζώνης ώρας σε %1/%2.&lt;br/&gt;</translation>
+        <translation>Ορισμός της ζώνης ώρας σε %1/%2.&lt;br/&gt;</translation>
     </message>
 </context>
 <context>
@@ -1257,7 +1257,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/locale/LocaleViewStep.cpp" line="48"/>
         <source>Loading location data...</source>
-        <translation>Γίνεται φόρτωση δεδομένων τοποθεσίας...</translation>
+        <translation>Γίνεται φόρτωση των δεδομένων τοποθεσίας...</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/LocaleViewStep.cpp" line="82"/>
@@ -1311,7 +1311,7 @@ The installer will quit and all changes will be lost.</source>
         <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="221"/>
         <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="229"/>
         <source>Could not open device %1 to rollback copying.</source>
-        <translation>Δεν μπόρεσε να ανοίξει τη συσκευή &apos;%1&apos; για να επαναφέρει την αντιγραφή.</translation>
+        <translation>Δεν είναι δυνατό το άνοιγμα της συσκευής &apos;%1&apos; για την αναίρεση της αντιγραφής.</translation>
     </message>
 </context>
 <context>
@@ -1355,12 +1355,12 @@ The installer will quit and all changes will be lost.</source>
         <location filename="../src/modules/users/page_usersetup.ui" line="437"/>
         <location filename="../src/modules/users/page_usersetup.ui" line="582"/>
         <source>font-weight: normal</source>
-        <translation type="unfinished"/>
+        <translation>font-weight: normal</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="200"/>
         <source>&lt;small&gt;If more than one person will use this computer, you can set up multiple accounts after installation.&lt;/small&gt;</source>
-        <translation>&lt;small&gt;Εάν περισσότερα από ένα άτομα θα χρησιμοποιούν αυτόν τον υπολογιστή, μπορείτε να δημιουργήσετε πολλαπλούς λογαριασμούς μετά την εγκατάσταση.&lt;/small&gt;</translation>
+        <translation>&lt;small&gt;Αν ο υπολογιστής χρησιμοποιείται από περισσότερα από ένα άτομα, τότε μπορείτε να δημιουργήσετε πολλαπλούς λογαριασμούς μετά την εγκατάσταση.&lt;/small&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="335"/>
@@ -1370,7 +1370,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="440"/>
         <source>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors. A good password will contain a mixture of letters, numbers and punctuation, should be at least eight characters long, and should be changed at regular intervals.&lt;/small&gt;</source>
-        <translation>&lt;small&gt;Εισάγετε τον ίδιο κωδικό πρόσβασης δύο φορές, ώστε να μπορεί να ελεγχθεί για τυπογραφικά λάθη. Ένας καλός κωδικός περιέχει γράμματα, αριθμούς και σημεία στίξης, έχει μήκος τουλάχιστον οκτώ χαρακτήρες, και θα πρέπει να τον αλλάζετε σε τακτά χρονικά διαστήματα.&lt;/small&gt;</translation>
+        <translation>&lt;small&gt;Εισάγετε τον ίδιο κωδικό δύο φορές, ώστε να γίνει έλεγχος για τυπογραφικά σφάλματα. Ένας καλός κωδικός περιέχει γράμματα, αριθμούς και σημεία στίξης, έχει μήκος τουλάχιστον οκτώ χαρακτήρες, και θα πρέπει να τον αλλάζετε σε τακτά χρονικά διαστήματα.&lt;/small&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="226"/>
@@ -1400,7 +1400,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="585"/>
         <source>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors.&lt;/small&gt;</source>
-        <translation>&lt;small&gt;Εισάγετε τον ίδιο κωδικό πρόσβασης δύο φορές, ώστε να μπορεί να ελεγχθεί για τυπογραφικά λάθη.&lt;/small&gt;</translation>
+        <translation>&lt;small&gt;Εισάγετε τον ίδιο κωδικό δύο φορές, ώστε να γίνει έλεγχος για τυπογραφικά σφάλματα.&lt;/small&gt;</translation>
     </message>
 </context>
 <context>
@@ -1554,7 +1554,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="156"/>
         <source>&lt;strong&gt;Manual&lt;/strong&gt; partitioning.</source>
-        <translation>&lt;strong&gt;Χειροκίνητη&lt;/strong&gt; διαμερισματοποίηση.</translation>
+        <translation>&lt;strong&gt;Χειροκίνητη&lt;/strong&gt; τμηματοποίηση.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="169"/>
@@ -1574,7 +1574,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="190"/>
         <source>&lt;strong&gt;Manual&lt;/strong&gt; partitioning on disk &lt;strong&gt;%1&lt;/strong&gt; (%2).</source>
-        <translation>&lt;strong&gt;Χειροκίνητη&lt;/strong&gt; διαμερισματοποίηση του δίσκου &lt;strong&gt;%1&lt;/strong&gt; (%2).</translation>
+        <translation>&lt;strong&gt;Χειροκίνητη&lt;/strong&gt; τμηματοποίηση του δίσκου &lt;strong&gt;%1&lt;/strong&gt; (%2).</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="198"/>
@@ -1661,17 +1661,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="198"/>
         <source>Data partition (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Κατάτμηση δεδομένων (%1)</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="215"/>
         <source>Unknown system partition (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Άγνωστη κατάτμηση συστήματος (%1)</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="220"/>
         <source>%1 system partition (%2)</source>
-        <translation type="unfinished"/>
+        <translation>%1 κατάτμηση συστήματος (%2)</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="231"/>
@@ -1681,7 +1681,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="255"/>
         <source>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Πουθενά στο σύστημα δεν μπορεί να ανιχθευθεί μία κατάτμηση EFI. Παρακαλώ επιστρέψτε πίσω και χρησιμοποιήστε τη χειροκίνητη τμηματοποίηση για την εγκατάσταση του %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="267"/>
@@ -1711,47 +1711,47 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="98"/>
         <source>has at least %1 GB available drive space</source>
-        <translation type="unfinished"/>
+        <translation>έχει τουλάχιστον %1 GB διαθέσιμου χώρου στο δίσκο</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="100"/>
         <source>There is not enough drive space. At least %1 GB is required.</source>
-        <translation type="unfinished"/>
+        <translation>Δεν υπάρχει αρκετός χώρος στο δίσκο. Απαιτείται τουλάχιστον %1 GB.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="108"/>
         <source>has at least %1 GB working memory</source>
-        <translation type="unfinished"/>
+        <translation>έχει τουλάχιστον %1 GB μνημης</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="110"/>
         <source>The system does not have enough working memory. At least %1 GB is required.</source>
-        <translation type="unfinished"/>
+        <translation>Το σύστημα δεν έχει αρκετή μνήμη. Απαιτείται τουλάχιστον %1 GB.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="118"/>
         <source>is plugged in to a power source</source>
-        <translation type="unfinished"/>
+        <translation>είναι συνδεδεμένος σε πηγή ρεύματος</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="119"/>
         <source>The system is not plugged in to a power source.</source>
-        <translation type="unfinished"/>
+        <translation>Το σύστημα δεν είναι συνδεδεμένο σε πηγή ρεύματος.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="126"/>
         <source>is connected to the Internet</source>
-        <translation type="unfinished"/>
+        <translation>είναι συνδεδεμένος στο διαδίκτυο</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="127"/>
         <source>The system is not connected to the Internet.</source>
-        <translation type="unfinished"/>
+        <translation>Το σύστημα δεν είναι συνδεδεμένο στο διαδίκτυο.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="135"/>
         <source>The installer is not running with administrator rights.</source>
-        <translation type="unfinished"/>
+        <translation>Το πρόγραμμα εγκατάστασης δεν εκτελείται με δικαιώματα διαχειριστή.</translation>
     </message>
 </context>
 <context>
@@ -1759,17 +1759,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="76"/>
         <source>Resize file system on partition %1.</source>
-        <translation type="unfinished"/>
+        <translation>Αλλαγή μεγέθους του συστήματος αρχείων στην κατάτμηση %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="91"/>
         <source>Parted failed to resize filesystem.</source>
-        <translation type="unfinished"/>
+        <translation>Το Parted απέτυχε να αλλάξει το μέγεθος του συστήματος αρχείων.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="101"/>
         <source>Failed to resize filesystem.</source>
-        <translation type="unfinished"/>
+        <translation>Απέτυχε η αλλαγή του μεγέθους του συστήματος αρχείων.</translation>
     </message>
 </context>
 <context>
@@ -1798,7 +1798,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="237"/>
         <source>Could not open device &apos;%1&apos;.</source>
-        <translation>Δεν ήταν δυνατό το άνοιγμα της συσκευής &apos;%1&apos;.</translation>
+        <translation>Δεν είναι δυνατό το άνοιγμα της συσκευής &apos;%1&apos;.</translation>
     </message>
 </context>
 <context>
@@ -1811,7 +1811,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="84"/>
         <source>Partitioning</source>
-        <translation>Διαμερισματοποίηση</translation>
+        <translation>Τμηματοποίηση</translation>
     </message>
 </context>
 <context>
