@@ -128,9 +128,11 @@ PartitionSplitterWidget::setSplitPartition( const QString& path,
         for ( int i = 0; i < m_items.count(); ++i )
         {
             if ( m_items[ i ].itemPath == m_itemToResize.itemPath &&
+                 m_items[ i ].status == PartitionSplitterItem::Resizing &&
                  i + 1 < m_items.count() )
             {
                 m_items[ i ].size = m_items[ i ].size + m_itemToResizeNext.size;
+                m_items[ i ].status = PartitionSplitterItem::Normal;
                 m_items.removeAt( i + 1 );
                 m_itemToResizeNext = PartitionSplitterItem::null();
                 break;
@@ -144,6 +146,7 @@ PartitionSplitterWidget::setSplitPartition( const QString& path,
                     {
                         m_items[ i ].children[ j ].size =
                                 m_items[ i ].children[ j ].size + m_itemToResizeNext.size;
+                        m_items[ i ].children[ j ].status = PartitionSplitterItem::Normal;
                         m_items[ i ].children.removeAt( j + 1 );
                         m_itemToResizeNext = PartitionSplitterItem::null();
                         break;
@@ -161,7 +164,12 @@ PartitionSplitterWidget::setSplitPartition( const QString& path,
     PartitionSplitterItem itemToResize = _findItem( m_items,
         [ path ]( PartitionSplitterItem& item ) -> bool
     {
-        return path == item.itemPath;
+        if ( path == item.itemPath )
+        {
+            item.status = PartitionSplitterItem::Resizing;
+            return true;
+        }
+        return false;
     } );
 
     if ( itemToResize.isNull() )
@@ -176,6 +184,17 @@ PartitionSplitterWidget::setSplitPartition( const QString& path,
 
     qint64 newSize = m_itemToResize.size - preferredSize;
     m_itemToResize.size = preferredSize;
+    int opCount = _eachItem( m_items,
+               [ preferredSize ]( PartitionSplitterItem& item ) -> bool
+    {
+        if ( item.status == PartitionSplitterItem::Resizing )
+        {
+            item.size = preferredSize;
+            return true;
+        }
+        return false;
+    } );
+    cDebug() << "each splitter item opcount:" << opCount;
     m_itemMinSize = minSize;
     m_itemMaxSize = maxSize;
     m_itemPrefSize = preferredSize;
@@ -185,7 +204,12 @@ PartitionSplitterWidget::setSplitPartition( const QString& path,
         if ( m_items[ i ].itemPath == itemToResize.itemPath )
         {
             m_items.insert( i+1,
-                            { "", QColor( "#c0392b" ), false, newSize, {} } );
+                            { "",
+                              QColor( "#c0392b" ),
+                              false,
+                              newSize,
+                              PartitionSplitterItem::ResizingNext,
+                              {} } );
             m_itemToResizeNext = m_items[ i+1 ];
             break;
         }
@@ -196,7 +220,12 @@ PartitionSplitterWidget::setSplitPartition( const QString& path,
                 if ( m_items[ i ].children[ j ].itemPath == itemToResize.itemPath )
                 {
                     m_items[ i ].children.insert( j+1,
-                                                  { "", QColor( "#c0392b" ), false, newSize, {} } );
+                                                  { "",
+                                                    QColor( "#c0392b" ),
+                                                    false,
+                                                    newSize,
+                                                    PartitionSplitterItem::ResizingNext,
+                                                    {} } );
                     m_itemToResizeNext = m_items[ i ].children[ j+1 ];
                     break;
                 }
@@ -212,7 +241,7 @@ PartitionSplitterWidget::setSplitPartition( const QString& path,
 
     cDebug() << "Items updated. Status:";
     foreach ( const PartitionSplitterItem& item, m_items )
-        cDebug() << "item" << item.itemPath << "size" << item.size;
+        cDebug() << "item" << item.itemPath << "size" << item.size << "status:" << item.status;
 
     cDebug() << "m_itemToResize:    " << !m_itemToResize.isNull() << m_itemToResize.itemPath;
     cDebug() << "m_itemToResizeNext:" << !m_itemToResizeNext.isNull() << m_itemToResizeNext.itemPath;
@@ -331,6 +360,21 @@ PartitionSplitterWidget::mouseMoveEvent( QMouseEvent* event )
 
         m_itemToResize.size = qRound64( span * percent );
         m_itemToResizeNext.size -= m_itemToResize.size - oldsize;
+        _eachItem( m_items,
+                   [ this ]( PartitionSplitterItem& item ) -> bool
+        {
+            if ( item.status == PartitionSplitterItem::Resizing )
+            {
+                item.size = m_itemToResize.size;
+                return true;
+            }
+            else if ( item.status == PartitionSplitterItem::ResizingNext )
+            {
+                item.size = m_itemToResizeNext.size;
+                return true;
+            }
+            return false;
+        } );
 
         repaint();
 
@@ -503,10 +547,9 @@ PartitionSplitterWidget::drawPartitions( QPainter* painter,
 }
 
 
-template < typename F >
 PartitionSplitterItem
 PartitionSplitterWidget::_findItem( QVector< PartitionSplitterItem >& items,
-                                    F condition )
+                                    std::function< bool ( PartitionSplitterItem& ) > condition ) const
 {
     for ( auto it = items.begin(); it != items.end(); ++it)
     {
@@ -518,6 +561,22 @@ PartitionSplitterWidget::_findItem( QVector< PartitionSplitterItem >& items,
             return candidate;
     }
     return PartitionSplitterItem::null();
+}
+
+
+int
+PartitionSplitterWidget::_eachItem( QVector< PartitionSplitterItem >& items,
+                                    std::function< bool ( PartitionSplitterItem& ) > operation ) const
+{
+    int opCount = 0;
+    for ( auto it = items.begin(); it != items.end(); ++it)
+    {
+        if ( operation( *it ) )
+            opCount++;
+
+        opCount += _eachItem( it->children, operation );
+    }
+    return opCount;
 }
 
 

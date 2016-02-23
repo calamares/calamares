@@ -21,18 +21,28 @@
 
 #include <QWidget>
 
+#include <functional>
+
 class Device;
 
 struct PartitionSplitterItem
 {
+    enum Status
+    {
+        Normal = 0,
+        Resizing,
+        ResizingNext
+    };
+
     QString itemPath;
     QColor color;
     bool isFreeSpace;
     qint64 size;
+    Status status;
 
     QVector< PartitionSplitterItem > children;
 
-    static PartitionSplitterItem null() { return { QString(), QColor(), false, 0 }; }
+    static PartitionSplitterItem null() { return { QString(), QColor(), false, 0, Normal }; }
 
     bool isNull() const { return itemPath.isEmpty() && size == 0; }
     operator bool() const { return !isNull(); }
@@ -79,8 +89,11 @@ private:
                            const QRect& rect_,
                            int x );
 
-    template < typename F >
-    PartitionSplitterItem _findItem( QVector< PartitionSplitterItem >& items, F condition );
+    PartitionSplitterItem _findItem( QVector< PartitionSplitterItem >& items,
+                                     std::function< bool ( PartitionSplitterItem& ) > condition ) const;
+
+    int _eachItem( QVector< PartitionSplitterItem >& items,
+                   std::function< bool ( PartitionSplitterItem& ) > operation ) const;
 
     QPair< QVector< PartitionSplitterItem >, qreal >
     computeItemsVector( const QVector< PartitionSplitterItem >& originalItems ) const;
