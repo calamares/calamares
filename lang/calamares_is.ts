@@ -1355,7 +1355,7 @@ Uppsetning mun hætta og allar breytingar tapast.</translation>
         <location filename="../src/modules/users/page_usersetup.ui" line="437"/>
         <location filename="../src/modules/users/page_usersetup.ui" line="582"/>
         <source>font-weight: normal</source>
-        <translation type="unfinished"/>
+        <translation>letur-þyngd: venjuleg</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="200"/>
@@ -1656,7 +1656,7 @@ Uppsetning mun hætta og allar breytingar tapast.</translation>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="191"/>
         <source>%1 cannot be installed on this partition.</source>
-        <translation type="unfinished"/>
+        <translation>%1 er hægt að setja upp á þessari disksneið.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="198"/>
@@ -1726,7 +1726,7 @@ Uppsetning mun hætta og allar breytingar tapast.</translation>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="110"/>
         <source>The system does not have enough working memory. At least %1 GB is required.</source>
-        <translation type="unfinished"/>
+        <translation>Kerfið hefur ekki nóg vinnsluminni. Að minnsta kosti %1 GB er krafist.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="118"/>
@@ -1751,7 +1751,7 @@ Uppsetning mun hætta og allar breytingar tapast.</translation>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="135"/>
         <source>The installer is not running with administrator rights.</source>
-        <translation type="unfinished"/>
+        <translation>Uppsetningin er ekki keyrandi með kerfisstjórnar réttindi.</translation>
     </message>
 </context>
 <context>
