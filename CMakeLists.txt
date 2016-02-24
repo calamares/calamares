@@ -93,8 +93,8 @@ set( CALAMARES_APPLICATION_NAME  "Calamares" )
 set( CALAMARES_DESCRIPTION_SUMMARY "The distribution-independent installer framework" )
 set( CALAMARES_TRANSLATION_LANGUAGES ar ast bg ca cs_CZ da de el en en_GB es_MX es eu fi_FI fr gl hr hu id it_IT ja lt nl pl pt_BR pt_PT ro ru sk sl sv th tr_TR zh_CN zh_TW )
 
-set( CALAMARES_VERSION_MAJOR 1 )
-set( CALAMARES_VERSION_MINOR 98 )
+set( CALAMARES_VERSION_MAJOR 2 )
+set( CALAMARES_VERSION_MINOR 0 )
 set( CALAMARES_VERSION_PATCH 0 )
 set( CALAMARES_VERSION_RC 0 )
 
@@ -165,7 +165,7 @@ set( CMAKE_INSTALL_CMAKEDIR "${CMAKE_INSTALL_LIBDIR}/cmake/Calamares" CACHE PATH
 set( CMAKE_INSTALL_FULL_CMAKEDIR "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_CMAKEDIR}" )
 export( TARGETS calamares
     FILE "${PROJECT_BINARY_DIR}/CalamaresLibraryDepends.cmake" )
-    
+
 # Export the package for use from the build-tree
 # (this registers the build-tree with a global CMake-registry)
 export( PACKAGE Calamares )
