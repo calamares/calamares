@@ -11,16 +11,31 @@
 
 ### Dependencies
 
-Compiler with C++11 support: GCC >= 4.9.0 or Clang >= 3.5.1
+Main:
+* Compiler with C++11 support: GCC >= 4.9.0 or Clang >= 3.5.1
+* CMake >= 2.8.12
+* Qt >= 5.3
+* yaml-cpp >= 0.5.1
+* Python >= 3.3
+* Boost.Python >= 1.55.0
+* dmidecode
 
-| Main | Welcome module | Partitioning module | Bootloader module | Unpackfs module |
-|:----:|:--------------:|:-------------------:|:-----------------:|:---------------:|
-| CMake >= 2.8.12 | NetworkManager | extra-cmake-modules | systemd-boot or GRUB2 | squashfs-tools |
-| Qt >= 5.3 | UPower | kconfig (part of KF5) | sgdisk | rsync |
-| yaml-cpp >= 0.5.1 | | solid (part of KF5) | | |
-| Python >= 3.3 | | kcoreaddons (part of KF5) | | |
-| Boost.Python >= 1.55.0 | | ki18n (part of KF5) | | |
-| dmidecode | | sgdisk | | |
+Modules:
+* welcome:
+ * NetworkManager
+ * UPower
+* partition:
+ * extra-cmake-modules
+ * KF5: KCoreAddons, KConfig, KI18n, KIconThemes, KIO, KService
+ * KPMcore >= 2.0
+ * sgdisk
+* bootloader:
+ * systemd-boot or GRUB
+ * sgdisk
+* unpackfs:
+ * squashfs-tools
+ * rsync
+
 
 ### Deployment
 [__Setting up branding__](https://github.com/calamares/calamares/blob/master/src/branding/README.md)
