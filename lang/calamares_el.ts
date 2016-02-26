@@ -429,7 +429,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/calamares/CalamaresWindow.cpp" line="44"/>
         <source>%1 Installer</source>
-        <translation>%1 Εγκαταστάτης</translation>
+        <translation>Εφαρμογή εγκατάστασης του %1</translation>
     </message>
     <message>
         <location filename="../src/calamares/CalamaresWindow.cpp" line="98"/>
@@ -2050,7 +2050,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="70"/>
         <source>About %1 installer</source>
-        <translation>Σχετικά με το πρόγραμμα εγκατάστασης του %1</translation>
+        <translation>Σχετικά με το πρόγραμμα εγκατάστασης %1</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="72"/>
