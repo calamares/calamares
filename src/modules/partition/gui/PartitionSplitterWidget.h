@@ -44,7 +44,7 @@ struct PartitionSplitterItem
 
     static PartitionSplitterItem null() { return { QString(), QColor(), false, 0, Normal }; }
 
-    bool isNull() const { return itemPath.isEmpty() && size == 0; }
+    bool isNull() const { return itemPath.isEmpty() && size == 0 && status == Normal; }
     operator bool() const { return !isNull(); }
 };
 
