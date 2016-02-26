@@ -114,7 +114,7 @@ LicenseViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     {
         foreach ( const QVariant& entryV, configurationMap.value( "entries" ).toList() )
         {
-            if ( !entryV.type() == QVariant::Map )
+            if ( entryV.type() != QVariant::Map )
                 continue;
 
             QVariantMap entryMap = entryV.toMap();
