@@ -48,6 +48,7 @@ PartitionSplitterWidget::PartitionSplitterWidget( QWidget* parent )
     , m_itemPrefSize( 0 )
     , m_resizeHandleX( 0 )
     , HANDLE_SNAP( QApplication::startDragDistance() )
+    , m_drawNestedPartitions( false )
 {
     setMouseTracking( true );
 }
