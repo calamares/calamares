@@ -101,6 +101,7 @@ Module::fromDescriptor( const QVariantMap& moduleDescriptor,
     {
         cLog() << Q_FUNC_INFO << "bad module directory"
                << instanceId;
+        delete m;
         return nullptr;
     }
 
