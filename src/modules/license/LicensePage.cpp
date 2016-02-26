@@ -160,6 +160,7 @@ LicensePage::setEntries( const QList< LicenseEntry >& entriesList )
                                      "by %2" )
                                  .arg( entry.prettyName )
                                  .arg( entry.prettyVendor );
+            break;
         case LicenseEntry::GpuDriver:
             //: %1 is usually a vendor name, example: Nvidia graphics driver
             productDescription = tr( "<strong>%1 graphics driver</strong><br/>"
