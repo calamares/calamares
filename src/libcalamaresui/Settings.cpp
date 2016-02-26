@@ -47,6 +47,7 @@ Settings::Settings( const QString& settingsFilePath,
     : QObject( parent )
     , m_debug( debugMode )
     , m_promptInstall( false )
+    , m_doChroot( true )
 {
     cDebug() << "Using Calamares settings file at" << settingsFilePath;
     QFile file( settingsFilePath );
