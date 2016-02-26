@@ -55,6 +55,7 @@ buildUnknownDisklabelTexts( Device* dev )
 PartitionLabelsView::PartitionLabelsView( QWidget* parent )
     : QAbstractItemView( parent )
     , canBeSelected( []( const QModelIndex& ) { return true; } )
+    , m_extendedPartitionHidden( false )
 {
     setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Fixed );
     setFrameStyle( QFrame::NoFrame );
