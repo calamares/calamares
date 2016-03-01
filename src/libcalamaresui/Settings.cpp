@@ -149,7 +149,7 @@ Settings::Settings( const QString& settingsFilePath,
                                                               .as< std::string >() );
             m_promptInstall = config[ "prompt-install" ].as< bool >();
 
-            m_doChroot = !config[ "dont-chroot" ].as< bool >();
+            m_doChroot = config[ "dont-chroot" ] ? !config[ "dont-chroot" ].as< bool >() : true;
         }
         catch ( YAML::Exception& e )
         {
