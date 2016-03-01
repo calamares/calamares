@@ -120,10 +120,12 @@ PartitionCoreModule::init()
         else
             ++it;
 
+    cDebug() << "LIST OF DETECTED DEVICES:\nnode\tcapacity\tname\tprettyName";
     for ( auto device : devices )
     {
         auto deviceInfo = new DeviceInfo( device );
         m_deviceInfos << deviceInfo;
+        cDebug() << device->deviceNode() << device->capacity() << device->name() << device->prettyName();
     }
     m_deviceModel->init( devices );
 
