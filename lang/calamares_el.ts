@@ -9,7 +9,7 @@
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="78"/>
         <source>Allocate drive space by dragging the divider below:</source>
-        <translation>Δεσμεύστε χώρο στον δίσκο έλκοντάς το διαχωριστικό παρακάτω:</translation>
+        <translation>Διανείμετε τον χώρο του δίσκου σύροντας το παρακάτω διαχωριστικό:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="121"/>
@@ -521,12 +521,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="706"/>
         <source>&lt;strong&gt;Select a partition to shrink, then drag the bottom bar to resize&lt;/strong&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;Επιλέξτε ένα διαμέρισμα για σμίκρυνση, και μετά σύρετε το κάτω τμήμα της μπάρας για αλλαγή του μεγέθους&lt;/strong&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="811"/>
         <source>&lt;strong&gt;Select a partition to install on&lt;/strong&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;Επιλέξτε διαμέρισμα για την εγκατάσταση&lt;/strong&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="866"/>
@@ -546,7 +546,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="957"/>
         <source>This storage device does not seem to have an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-        <translation type="unfinished"/>
+        <translation>Η συσκευή αποθήκευσης δεν φαίνεται να διαθέτει κάποιο λειτουργικό σύστημα. Τί θα ήθελες να κάνεις;&lt;br/&gt;Θα έχεις την δυνατότητα να επιβεβαιώσεις και αναθεωρήσεις τις αλλαγές πριν γίνει οποιαδήποτε αλλαγή στην συσκευή αποθήκευσης.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="962"/>
