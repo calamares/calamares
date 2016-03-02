@@ -19,7 +19,7 @@ set( calamaresSources
 )
 
 set( calamaresUi
-    CalamaresWindow.ui
+    #nothing to do here
 )
 
 include_directories(
