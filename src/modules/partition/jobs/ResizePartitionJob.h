@@ -43,10 +43,7 @@ public:
 
     void updatePreview();
 
-    Device* device() const
-    {
-        return m_device;
-    }
+    Device* device() const;
 
 private:
     Device* m_device;

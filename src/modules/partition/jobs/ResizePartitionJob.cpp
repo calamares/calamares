@@ -284,6 +284,14 @@ ResizePartitionJob::updatePreview()
     m_device->partitionTable()->updateUnallocated( *m_device );
 }
 
+
+Device*
+ResizePartitionJob::device() const
+{
+    return m_device;
+}
+
+
 Calamares::JobResult
 ResizePartitionJob::execJobList( const QList< Calamares::job_ptr >& jobs )
 {
