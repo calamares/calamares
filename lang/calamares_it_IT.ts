@@ -1955,7 +1955,7 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="193"/>
         <source>%1 support</source>
-        <translation>%1 supporto</translation>
+        <translation>supporto %1</translation>
     </message>
 </context>
 <context>
