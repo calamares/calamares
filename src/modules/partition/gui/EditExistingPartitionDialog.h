@@ -19,6 +19,8 @@
 #ifndef EDITEXISTINGPARTITIONDIALOG_H
 #define EDITEXISTINGPARTITIONDIALOG_H
 
+#include <kpmcore/core/partitiontable.h>
+
 #include <QDialog>
 #include <QScopedPointer>
 
@@ -49,6 +51,8 @@ private:
     Partition* m_partition;
     PartitionSizeController* m_partitionSizeController;
 
+    PartitionTable::Flags newFlags() const;
+    void setupFlagsList();
     void replacePartResizerWidget();
     void updateMountPointPicker();
 };
