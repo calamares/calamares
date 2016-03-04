@@ -1,7 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
- *   Copyright 2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014,      Aurélien Gâteau <agateau@kde.org>
+ *   Copyright 2015-2016, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -20,6 +20,7 @@
 #define KPMHELPERS_H
 
 // KPMcore
+#include <kpmcore/core/partitiontable.h>
 #include <kpmcore/fs/filesystem.h>
 
 // Qt
@@ -82,7 +83,13 @@ QList< Partition* > findPartitions( const QList< Device* >& devices,
  * Helper function to create a new Partition object (does not create anything
  * on the disk) associated with a FileSystem.
  */
-Partition* createNewPartition( PartitionNode* parent, const Device& device, const PartitionRole& role, FileSystem::Type fsType, qint64 firstSector, qint64 lastSector );
+Partition* createNewPartition( PartitionNode* parent,
+                               const Device& device,
+                               const PartitionRole& role,
+                               FileSystem::Type fsType,
+                               qint64 firstSector,
+                               qint64 lastSector,
+                               PartitionTable::Flags flags = PartitionTable::FlagNone );
 
 Partition* clonePartition( Device* device, Partition* partition );
 
