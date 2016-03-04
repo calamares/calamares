@@ -34,6 +34,7 @@
 #include "jobs/FillGlobalStorageJob.h"
 #include "jobs/FormatPartitionJob.h"
 #include "jobs/ResizePartitionJob.h"
+#include "jobs/SetPartitionFlagsJob.h"
 
 #include "Typedefs.h"
 #include "utils/Logger.h"
@@ -296,7 +297,10 @@ PartitionCoreModule::formatPartition( Device* device, Partition* partition )
 }
 
 void
-PartitionCoreModule::resizePartition( Device* device, Partition* partition, qint64 first, qint64 last )
+PartitionCoreModule::resizePartition( Device* device,
+                                      Partition* partition,
+                                      qint64 first,
+                                      qint64 last )
 {
     auto deviceInfo = infoForDevice( device );
     Q_ASSERT( deviceInfo );
@@ -304,6 +308,22 @@ PartitionCoreModule::resizePartition( Device* device, Partition* partition, qint
 
     ResizePartitionJob* job = new ResizePartitionJob( device, partition, first, last );
     job->updatePreview();
+    deviceInfo->jobs << Calamares::job_ptr( job );
+
+    refresh();
+}
+
+void
+PartitionCoreModule::setPartitionFlags( Device* device,
+                                        Partition* partition,
+                                        PartitionTable::Flags flags )
+{
+    auto deviceInfo = infoForDevice( device );
+    Q_ASSERT( deviceInfo );
+    PartitionModel::ResetHelper( partitionModelForDevice( device ) );
+
+    SetPartFlagsJob* job = new SetPartFlagsJob( device, partition, flags );
+
     deviceInfo->jobs << Calamares::job_ptr( job );
 
     refresh();
