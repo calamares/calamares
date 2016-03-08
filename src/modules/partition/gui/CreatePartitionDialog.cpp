@@ -39,6 +39,7 @@
 #include <QComboBox>
 #include <QDir>
 #include <QSet>
+#include <QListWidgetItem>
 
 static QSet< FileSystem::Type > s_unmountableFS(
 {
@@ -83,10 +84,45 @@ CreatePartitionDialog::CreatePartitionDialog( Device* device, PartitionNode* par
     // Connections
     connect( m_ui->fsComboBox, SIGNAL( activated( int ) ), SLOT( updateMountPointUi() ) );
     connect( m_ui->extendedRadioButton, SIGNAL( toggled( bool ) ), SLOT( updateMountPointUi() ) );
+
+    setupFlagsList();
 }
 
 CreatePartitionDialog::~CreatePartitionDialog()
 {}
+
+
+PartitionTable::Flags
+CreatePartitionDialog::newFlags() const
+{
+    PartitionTable::Flags flags;
+
+    for ( int i = 0; i < m_ui->m_listFlags->count(); i++ )
+        if ( m_ui->m_listFlags->item( i )->checkState() == Qt::Checked )
+            flags |= static_cast< PartitionTable::Flag >(
+                         m_ui->m_listFlags->item( i )->data( Qt::UserRole ).toInt() );
+
+    return flags;
+}
+
+
+void
+CreatePartitionDialog::setupFlagsList()
+{
+    int f = 1;
+    QString s;
+    while ( !( s = PartitionTable::flagName( static_cast< PartitionTable::Flag >( f ) ) ).isEmpty() )
+    {
+        QListWidgetItem* item = new QListWidgetItem( s );
+        m_ui->m_listFlags->addItem( item );
+        item->setFlags( Qt::ItemIsUserCheckable | Qt::ItemIsEnabled );
+        item->setData( Qt::UserRole, f );
+        item->setCheckState( Qt::Unchecked );
+
+        f <<= 1;
+    }
+}
+
 
 void
 CreatePartitionDialog::initMbrPartitionTypeUi()
@@ -145,10 +181,11 @@ CreatePartitionDialog::createPartition()
                                m_parent,
                                *m_device,
                                m_role,
-                               fsType, first, last );
+                               fsType, first, last, newFlags() );
 
     PartitionInfo::setMountPoint( partition, m_ui->mountPointComboBox->currentText() );
     PartitionInfo::setFormat( partition, true );
+
     return partition;
 }
 

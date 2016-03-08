@@ -21,6 +21,7 @@
 
 // KPMcore
 #include <kpmcore/core/partitionrole.h>
+#include <kpmcore/core/partitiontable.h>
 
 #include <QDialog>
 #include <QScopedPointer>
@@ -55,10 +56,13 @@ public:
     void initFromPartitionToCreate( Partition* partition );
     Partition* createPartition();
 
+    PartitionTable::Flags newFlags() const;
+
 private Q_SLOTS:
     void updateMountPointUi();
 
 private:
+    void setupFlagsList();
     QScopedPointer< Ui_CreatePartitionDialog > m_ui;
     PartitionSizeController* m_partitionSizeController;
     Device* m_device;

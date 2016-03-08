@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>425</width>
-    <height>208</height>
+    <width>642</width>
+    <height>489</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -86,7 +86,7 @@
      <item row="3" column="0">
       <widget class="QLabel" name="label_2">
        <property name="text">
-        <string>F&amp;ile System:</string>
+        <string>Fi&amp;le System:</string>
        </property>
        <property name="buddy">
         <cstring>fsComboBox</cstring>
@@ -132,7 +132,7 @@
        </property>
       </widget>
      </item>
-     <item row="7" column="0">
+     <item row="8" column="0">
       <spacer name="verticalSpacer">
        <property name="orientation">
         <enum>Qt::Vertical</enum>
@@ -172,6 +172,26 @@
       <widget class="QSpinBox" name="sizeSpinBox">
        <property name="suffix">
         <string> MB</string>
+       </property>
+      </widget>
+     </item>
+     <item row="7" column="0">
+      <widget class="QLabel" name="label_3">
+       <property name="text">
+        <string>Flags:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="7" column="1">
+      <widget class="QListWidget" name="m_listFlags">
+       <property name="alternatingRowColors">
+        <bool>true</bool>
+       </property>
+       <property name="selectionMode">
+        <enum>QAbstractItemView::NoSelection</enum>
+       </property>
+       <property name="sortingEnabled">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
