@@ -169,9 +169,7 @@ PartitionPage::onCreateClicked()
     if ( dlg->exec() == QDialog::Accepted )
     {
         Partition* newPart = dlg->createPartition();
-        m_core->createPartition( model->device(), newPart );
-        if ( dlg->newFlags() != PartitionTable::FlagNone )
-            m_core->setPartitionFlags( model->device(), newPart, dlg->newFlags() );
+        m_core->createPartition( model->device(), newPart, dlg->newFlags() );
     }
     delete dlg;
 }
@@ -255,7 +253,7 @@ PartitionPage::updatePartitionToCreate( Device* device, Partition* partition )
     {
         Partition* newPartition = dlg->createPartition();
         m_core->deletePartition( device, partition );
-        m_core->createPartition( device, newPartition );
+        m_core->createPartition( device, newPartition, dlg->newFlags() );
     }
     delete dlg;
 }
