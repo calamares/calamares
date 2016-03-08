@@ -202,7 +202,9 @@ PartitionCoreModule::createPartitionTable( Device* device, PartitionTable::Table
 }
 
 void
-PartitionCoreModule::createPartition( Device* device, Partition* partition )
+PartitionCoreModule::createPartition( Device *device,
+                                      Partition *partition,
+                                      PartitionTable::Flags flags )
 {
     auto deviceInfo = infoForDevice( device );
     Q_ASSERT( deviceInfo );
@@ -212,6 +214,12 @@ PartitionCoreModule::createPartition( Device* device, Partition* partition )
     job->updatePreview();
 
     deviceInfo->jobs << Calamares::job_ptr( job );
+
+    if ( flags != PartitionTable::FlagNone )
+    {
+        SetPartFlagsJob* fJob = new SetPartFlagsJob( device, partition, flags );
+        deviceInfo->jobs << Calamares::job_ptr( fJob );
+    }
 
     refresh();
 }
@@ -241,6 +249,16 @@ PartitionCoreModule::deletePartition( Device* device, Partition* partition )
     QList< Calamares::job_ptr >& jobs = deviceInfo->jobs;
     if ( partition->state() == Partition::StateNew )
     {
+        // First remove matching SetPartFlagsJobs
+        for ( auto it = jobs.begin(); it != jobs.end(); )
+        {
+            SetPartFlagsJob* job = qobject_cast< SetPartFlagsJob* >( it->data() );
+            if ( job && job->partition() == partition )
+                it = jobs.erase( it );
+            else
+                ++it;
+        }
+
         // Find matching CreatePartitionJob
         auto it = std::find_if( jobs.begin(), jobs.end(), [ partition ]( Calamares::job_ptr job )
         {
@@ -258,6 +276,7 @@ PartitionCoreModule::deletePartition( Device* device, Partition* partition )
             cDebug() << "Failed to remove partition from preview";
             return;
         }
+
         device->partitionTable()->updateUnallocated( *device );
         jobs.erase( it );
         // The partition is no longer referenced by either a job or the device

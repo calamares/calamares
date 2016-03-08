@@ -81,7 +81,8 @@ public:
 
     void createPartitionTable( Device* device, PartitionTable::TableType type );
 
-    void createPartition( Device* device, Partition* partition );
+    void createPartition( Device* device, Partition* partition,
+                          PartitionTable::Flags flags = PartitionTable::FlagNone );
 
     void deletePartition( Device* device, Partition* partition );
 
