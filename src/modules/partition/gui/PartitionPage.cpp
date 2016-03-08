@@ -167,7 +167,12 @@ PartitionPage::onCreateClicked()
     QPointer<CreatePartitionDialog> dlg = new CreatePartitionDialog( model->device(), partition->parent(), this );
     dlg->initFromFreeSpace( partition );
     if ( dlg->exec() == QDialog::Accepted )
-        m_core->createPartition( model->device(), dlg->createPartition() );
+    {
+        Partition* newPart = dlg->createPartition();
+        m_core->createPartition( model->device(), newPart );
+        if ( dlg->newFlags() != PartitionTable::FlagNone )
+            m_core->setPartitionFlags( model->device(), newPart, dlg->newFlags() );
+    }
     delete dlg;
 }
 
