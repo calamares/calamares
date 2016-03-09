@@ -91,8 +91,8 @@ PartitionPage::PartitionPage( PartitionCoreModule* core, QWidget* parent )
     connect( m_ui->deleteButton, &QAbstractButton::clicked, this, &PartitionPage::onDeleteClicked );
 
     if ( QDir( "/sys/firmware/efi/efivars" ).exists() ) {
-        m_ui->bootLoaderComboBox->setDisabled( true );
-        m_ui->label_3->setDisabled( true );
+        m_ui->bootLoaderComboBox->hide();
+        m_ui->label_3->hide();
     }
     
     CALAMARES_RETRANSLATE( m_ui->retranslateUi( this ); )
