@@ -45,8 +45,10 @@
 
 // Qt
 #include <QApplication>
+#include <QDir>
 #include <QFormLayout>
 #include <QLabel>
+#include <QMessageBox>
 #include <QProcess>
 #include <QStackedWidget>
 #include <QTimer>
@@ -291,6 +293,54 @@ PartitionViewStep::next()
         }
         cDebug() << "Choice applied: " << m_choicePage->currentChoice();
         return;
+    }
+    else if ( m_manualPartitionPage == m_widget->currentWidget() )
+    {
+        if ( QDir( "/sys/firmware/efi/efivars" ).exists() )
+        {
+            QString espMountPoint = Calamares::JobQueue::instance()->globalStorage()->
+                                        value( "efiSystemPartition").toString();
+            Partition* esp = m_core->findPartitionByMountPoint( espMountPoint );
+
+            QString message;
+            QString description;
+            if ( !esp )
+            {
+                message = tr( "No EFI system partition configured" );
+                description = tr( "An EFI system partition is necessary to start %1. "
+                                  "To configure an EFI system partition, go back and "
+                                  "select or create a FAT32 filesystem with the "
+                                  "<strong>esp</strong> flag enabled and mount point "
+                                  "%2.<br/>"
+                                  "You can continue without setting up an EFI system "
+                                  "partition but your system may fail to start." )
+                              .arg( Calamares::Branding::instance()->
+                                    string( Calamares::Branding::ShortProductName ) )
+                              .arg( espMountPoint );
+            }
+            else if ( esp && !esp->activeFlags().testFlag( PartitionTable::FlagEsp ) )
+            {
+                message = tr( "EFI system partition flag not set" );
+                description = tr( "An EFI system partition is necessary to start %1. "
+                                  "A partition was configured with mount point "
+                                  "%2 but its <strong>esp</strong> flag is not set. "
+                                  "To set the flag, go back and edit the partition.<br/>"
+                                  "You can continue without setting the flag but your "
+                                  "system may fail to start." )
+                              .arg( Calamares::Branding::instance()->
+                                    string( Calamares::Branding::ShortProductName ) )
+                              .arg( espMountPoint );
+            }
+
+            if ( !message.isEmpty() )
+            {
+                QMessageBox::warning( m_manualPartitionPage,
+                                      message,
+                                      description );
+                emit done();
+                return;
+            }
+        }
     }
     emit done();
 }
