@@ -384,11 +384,12 @@ PartitionViewStep::onLeave()
             if ( !esp )
             {
                 message = tr( "No EFI system partition configured" );
-                description = tr( "An EFI system partition is necessary to start %1. "
+                description = tr( "An EFI system partition is necessary to start %1."
+                                  "<br/><br/>"
                                   "To configure an EFI system partition, go back and "
                                   "select or create a FAT32 filesystem with the "
                                   "<strong>esp</strong> flag enabled and mount point "
-                                  "%2.<br/>"
+                                  "<strong>%2</strong>.<br/><br/>"
                                   "You can continue without setting up an EFI system "
                                   "partition but your system may fail to start." )
                               .arg( Calamares::Branding::instance()->
@@ -398,10 +399,13 @@ PartitionViewStep::onLeave()
             else if ( esp && !esp->activeFlags().testFlag( PartitionTable::FlagEsp ) )
             {
                 message = tr( "EFI system partition flag not set" );
-                description = tr( "An EFI system partition is necessary to start %1. "
+                description = tr( "An EFI system partition is necessary to start %1."
+                                  "<br/><br/>"
                                   "A partition was configured with mount point "
-                                  "%2 but its <strong>esp</strong> flag is not set. "
-                                  "To set the flag, go back and edit the partition.<br/>"
+                                  "<strong>%2</strong> but its <strong>esp</strong> "
+                                  "flag is not set.<br/>"
+                                  "To set the flag, go back and edit the partition."
+                                  "<br/><br/>"
                                   "You can continue without setting the flag but your "
                                   "system may fail to start." )
                               .arg( Calamares::Branding::instance()->
