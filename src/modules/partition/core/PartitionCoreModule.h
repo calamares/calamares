@@ -99,6 +99,7 @@ public:
     bool hasRootMountPoint() const;
 
     QList< Partition* > efiSystemPartitions() const;
+    Partition* findPartitionByMountPoint( const QString& mountPoint ) const;
 
     void revert();
     void revertAllDevices();
@@ -164,8 +165,6 @@ private:
     void scanForEfiSystemPartitions();
 
     DeviceInfo* infoForDevice( Device* ) const;
-
-    Partition* findPartitionByMountPoint( const QString& mountPoint ) const;
 
     OsproberEntryList m_osproberLines;
 
