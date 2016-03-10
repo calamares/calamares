@@ -224,7 +224,7 @@ def prepare_bootloader(fw_type):
                     print("Boot partition: \"{!s}\"".format(boot_p))
                     print("Boot device: \"{!s}\"".format(device))
 
-        if not boot_device:
+        if not device:
             print("WARNING: no EFI system partition or EFI system partition mount point not set.")
             print("         >>> no EFI bootloader will be installed <<<")
             return None
