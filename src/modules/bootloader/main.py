@@ -216,13 +216,18 @@ def prepare_bootloader(fw_type):
                 device = boot_device[:-1]
 
                 if not boot_p or not device:
-                    return ("EFI directory \"{!s}\" not found!",
-                            "Boot partition: \"{!s}\"",
-                            "Boot device: \"{!s}\"".format(efi_directory, boot_p, device))
+                    return ("EFI directory \"{!s}\" not found!".format(efi_directory),
+                            "Boot partition: \"{!s}\"".format(boot_p),
+                            "Boot device: \"{!s}\"".format(device))
                 else:
                     print("EFI directory: \"{!s}\"".format(efi_directory))
                     print("Boot partition: \"{!s}\"".format(boot_p))
                     print("Boot device: \"{!s}\"".format(device))
+
+        if not boot_device:
+            print("WARNING: no EFI system partition or EFI system partition mount point not set.")
+            print("         >>> no EFI bootloader will be installed <<<")
+            return None
         print("Set 'EF00' flag")
         subprocess.call(["sgdisk", "--typecode={!s}:EF00".format(boot_p), "{!s}".format(device)])
 
