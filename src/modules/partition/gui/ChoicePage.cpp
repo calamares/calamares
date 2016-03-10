@@ -578,6 +578,14 @@ ChoicePage::doReplaceSelectedPartition( const QModelIndex& current,
         {
             m_core->revertDevice( selectedDevice() );
         }
+
+        // TODO: get the selected partition in the immutable model with PartitionPtrRole,
+        //       check KPMHelpers::isPartitionFreeSpace, if true then don't replace but
+        //       just m_core->createPartition for the same first/last sector as the
+        //       free space "partition" in the immutable model.
+        //       Also set parent correctly (see PartitionActions::doReplacePartition)
+        //       as well as mount point and format.
+
         // We can't use the PartitionPtrRole because we need to make changes to the
         // main DeviceModel, not the immutable copy.
         QString partPath = current.data( PartitionModel::PartitionPathRole ).toString();
