@@ -83,6 +83,9 @@ findPartitionByMountPoint( const QList< Device* >& devices, const QString& mount
 Partition*
 findPartitionByPath( const QList< Device* >& devices, const QString& path )
 {
+    if ( path.simplified().isEmpty() )
+        return nullptr;
+
     for ( auto device : devices )
         for ( auto it = PartitionIterator::begin( device ); it != PartitionIterator::end( device ); ++it )
             if ( ( *it )->partitionPath() == path.simplified() )
