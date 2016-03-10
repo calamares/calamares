@@ -37,6 +37,9 @@ namespace PartUtils
 bool
 canBeReplaced( Partition* candidate )
 {
+    if ( KPMHelpers::isPartitionFreeSpace( candidate ) )
+        return false;
+
     bool ok = false;
     double requiredStorageGB = Calamares::JobQueue::instance()
                                     ->globalStorage()
@@ -66,6 +69,9 @@ canBeResized( Partition* candidate )
 {
     if ( !candidate->fileSystem().supportGrow() ||
          !candidate->fileSystem().supportShrink() )
+        return false;
+
+    if ( KPMHelpers::isPartitionFreeSpace( candidate ) )
         return false;
 
     if ( candidate->roles().has( PartitionRole::Primary ) )
