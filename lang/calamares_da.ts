@@ -391,12 +391,12 @@ Installationsprogrammet vil stoppe og alle ændringer vil gå tabt.</translation
         <translation>&lt;strong&gt;Manuel partitionering&lt;/strong&gt;&lt;br/&gt;Do kan lave og ændre størrelse på partitioner selv.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="773"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="781"/>
         <source>Boot loader location:</source>
         <translation>Boot loader lokation:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="720"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="728"/>
         <source>%1 will be shrunk to %2MB and a new %3MB partition will be created for %4.</source>
         <translation>%1 vil blive krympet til %2MB og en ny %3MB partition vil blive lavet til %4.</translation>
     </message>
@@ -407,76 +407,76 @@ Installationsprogrammet vil stoppe og alle ændringer vil gå tabt.</translation
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="116"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="705"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="744"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="820"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="713"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="752"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="828"/>
         <source>Current:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="706"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="714"/>
         <source>&lt;strong&gt;Select a partition to shrink, then drag the bottom bar to resize&lt;/strong&gt;</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="811"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="819"/>
         <source>&lt;strong&gt;Select a partition to install on&lt;/strong&gt;</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="866"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="874"/>
         <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="876"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="884"/>
         <source>The EFI system partition at %1 will be used for starting %2.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="885"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="893"/>
         <source>EFI system partition:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="957"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="965"/>
         <source>This storage device does not seem to have an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>Denne lagerenhed ser ikke ud til at indeholde et styresystem. Hvad vil du gerne gøre?&lt;br/&gt;Du vil få mulighed for at se og bekræfte dine valg før der sker ændringer til lagerenheden.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="962"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="992"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1016"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1054"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="970"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1000"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1024"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1062"/>
         <source>&lt;strong&gt;Erase disk&lt;/strong&gt;&lt;br/&gt;This will &lt;font color=&quot;red&quot;&gt;delete&lt;/font&gt; all data currently present on the selected storage device.</source>
         <translation>&lt;strong&gt;Slet disk&lt;/strong&gt;&lt;br/&gt;Dette vil &lt;font color=&quot;red&quot;&gt;slette&lt;/font&gt; alt data der er på den valgte lagerenhed lige nu.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="981"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="989"/>
         <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>Denne lagerenhed har %1 på den. Hvad vil du gerne gøre?&lt;/br&gt;Du vil få mulighed for at se og bekræfte dine valg før det sker ændringer til lagerenheden.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="987"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1011"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1049"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="995"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1019"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1057"/>
         <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
         <translation>&lt;strong&gt;Installér ved siden af&lt;/strong&gt;&lt;br/&gt;Installationsprogrammet vil krympe en partition for at gøre plads til %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="997"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1020"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1058"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1005"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1028"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1066"/>
         <source>&lt;strong&gt;Replace a partition&lt;/strong&gt;&lt;br/&gt;Replaces a partition with %1.</source>
         <translation>&lt;strong&gt;Erstat en partition&lt;/strong&gt;&lt;br/&gt;Erstatter en partition med %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1006"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1014"/>
         <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>Denne lagerenhed indeholder allerede et styresystem. Hvad vil du gerne gøre?&lt;br/&gt;Du vil få mulighed for at se og bekræfte dine valg før der sker ændringer til lagerenheden.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1044"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1052"/>
         <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>Denne lagerenhed indeholder flere styresystemer. Hvad vil du gerne gøre?&lt;/br&gt;Du vil få mulighed for at se og bekræfte dine valg før der sker ændringer til lagerenheden.</translation>
     </message>
@@ -1531,17 +1531,17 @@ Installationsprogrammet vil stoppe og alle ændringer vil gå tabt.</translation
         <translation>Standard</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="157"/>
+        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="160"/>
         <source>unknown</source>
         <translation>ukendt</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="159"/>
+        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="162"/>
         <source>extended</source>
         <translation>udvidet</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="161"/>
+        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="164"/>
         <source>unformatted</source>
         <translation>uformatteret</translation>
     </message>

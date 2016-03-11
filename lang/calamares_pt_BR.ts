@@ -393,12 +393,12 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
         <translation>&lt;strong&gt;Particionamento manual&lt;/strong&gt;&lt;br/&gt;Você pode criar ou redimensionar partições.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="773"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="781"/>
         <source>Boot loader location:</source>
         <translation>Local do gerenciador de boot:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="720"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="728"/>
         <source>%1 will be shrunk to %2MB and a new %3MB partition will be created for %4.</source>
         <translation>%1 será reduzida para %2MB e uma nova partição de %3MB será criada para %4.</translation>
     </message>
@@ -409,76 +409,76 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="116"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="705"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="744"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="820"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="713"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="752"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="828"/>
         <source>Current:</source>
         <translation>Atual</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="706"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="714"/>
         <source>&lt;strong&gt;Select a partition to shrink, then drag the bottom bar to resize&lt;/strong&gt;</source>
         <translation>&lt;strong&gt;Selecione uma partição a reduzir, então arraste a barra para redimensionar&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="811"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="819"/>
         <source>&lt;strong&gt;Select a partition to install on&lt;/strong&gt;</source>
         <translation>&lt;strong&gt;Selecione uma partição para instalação&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="866"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="874"/>
         <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="876"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="884"/>
         <source>The EFI system partition at %1 will be used for starting %2.</source>
         <translation>A partição de sistema EFI em %1 será usada para iniciar %2.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="885"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="893"/>
         <source>EFI system partition:</source>
         <translation>Partição de sistema EFI:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="957"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="965"/>
         <source>This storage device does not seem to have an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>Parece que não há um sistema operacional neste dispositivo de armazenamento. O que gostaria de fazer?&lt;br/&gt;Você poderá revisar e confirmar suas opções antes que as alterações sejam feitas no dispositivo de armazenamento.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="962"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="992"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1016"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1054"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="970"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1000"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1024"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1062"/>
         <source>&lt;strong&gt;Erase disk&lt;/strong&gt;&lt;br/&gt;This will &lt;font color=&quot;red&quot;&gt;delete&lt;/font&gt; all data currently present on the selected storage device.</source>
         <translation>&lt;strong&gt;Apagar o disco&lt;/strong&gt;&lt;br/&gt;Isto &lt;font color=&quot;red&quot;&gt;excluirá&lt;/font&gt; todos os dados que estiverem armazenados no dispositivo selecionado.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="981"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="989"/>
         <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>Este dispositivo de armazenamento possui %1 nele. O que gostaria de fazer?&lt;br/&gt;Você poderá revisar e confirmar suas opções antes que as alterações sejam feitas no dispositivo de armazenamento.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="987"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1011"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1049"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="995"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1019"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1057"/>
         <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
         <translation>&lt;strong&gt;Instalar ao lado de&lt;/strong&gt;&lt;br/&gt;O instalador irá reduzir uma partição para liberar espaço para %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="997"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1020"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1058"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1005"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1028"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1066"/>
         <source>&lt;strong&gt;Replace a partition&lt;/strong&gt;&lt;br/&gt;Replaces a partition with %1.</source>
         <translation>&lt;strong&gt;Substituir uma partição&lt;/strong&gt;&lt;br/&gt;Substitui uma partição com %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1006"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1014"/>
         <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>Parece que já há um sistema operacional neste dispositivo de armazenamento. O que gostaria de fazer?&lt;br/&gt;Você poderá revisar e confirmar suas opções antes que as alterações sejam feitas no dispositivo de armazenamento.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1044"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1052"/>
         <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>Há diversos sistemas operacionais neste dispositivo de armazenamento. O que gostaria de fazer?&lt;br/&gt;Você poderá revisar e confirmar suas opções antes que as alterações sejam feitas no dispositivo de armazenamento.</translation>
     </message>
@@ -1533,17 +1533,17 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
         <translation>Padrão</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="157"/>
+        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="160"/>
         <source>unknown</source>
         <translation>desconhecido</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="159"/>
+        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="162"/>
         <source>extended</source>
         <translation>estendida</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="161"/>
+        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="164"/>
         <source>unformatted</source>
         <translation>não formatado</translation>
     </message>

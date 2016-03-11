@@ -392,12 +392,12 @@ The installer will quit and all changes will be lost.</source>
         <translation>&lt;strong&gt;手动分区&lt;/strong&gt;&lt;br/&gt;您可以自行创建或重新调整分区大小。</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="773"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="781"/>
         <source>Boot loader location:</source>
         <translation>引导程序位置：</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="720"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="728"/>
         <source>%1 will be shrunk to %2MB and a new %3MB partition will be created for %4.</source>
         <translation>%1 将会被缩减到 %2 MB，同时将为 %4 创建空间为 %3MB 的新分区。</translation>
     </message>
@@ -408,76 +408,76 @@ The installer will quit and all changes will be lost.</source>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="116"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="705"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="744"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="820"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="713"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="752"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="828"/>
         <source>Current:</source>
         <translation>当前：</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="706"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="714"/>
         <source>&lt;strong&gt;Select a partition to shrink, then drag the bottom bar to resize&lt;/strong&gt;</source>
         <translation>&lt;strong&gt;选择要缩小的分区，然后拖动底栏改变大小&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="811"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="819"/>
         <source>&lt;strong&gt;Select a partition to install on&lt;/strong&gt;</source>
         <translation>&lt;strong&gt;选择要安装到的分区&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="866"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="874"/>
         <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
         <translation>在此系统上找不到任何 EFI 系统分区。请后退到上一步并使用手动分区配置 %1。</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="876"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="884"/>
         <source>The EFI system partition at %1 will be used for starting %2.</source>
         <translation>%1 处的 EFI 系统分区将被用来启动 %2。</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="885"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="893"/>
         <source>EFI system partition:</source>
         <translation>EFI 系统分区：</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="957"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="965"/>
         <source>This storage device does not seem to have an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>这个存储器上似乎还没有操作系统。您想要怎么做？&lt;br/&gt;在任何变更应用到存储器上前，您都可以重新查看并确认您的选择。</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="962"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="992"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1016"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1054"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="970"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1000"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1024"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1062"/>
         <source>&lt;strong&gt;Erase disk&lt;/strong&gt;&lt;br/&gt;This will &lt;font color=&quot;red&quot;&gt;delete&lt;/font&gt; all data currently present on the selected storage device.</source>
         <translation>&lt;strong&gt;抹除磁盘&lt;/strong&gt;&lt;br/&gt;这将会&lt;font color=&quot;red&quot;&gt;删除&lt;/font&gt;目前选定的存储器上所有的数据。</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="981"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="989"/>
         <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>这个存储器上已经有 %1 了。您想要怎么做？&lt;br/&gt;在任何变更应用到存储器上前，您都可以重新查看并确认您的选择。</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="987"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1011"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1049"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="995"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1019"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1057"/>
         <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
         <translation>&lt;strong&gt;并存安装&lt;/strong&gt;&lt;br/&gt;安装程序将会缩小一个分区，为 %1 腾出空间。</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="997"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1020"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1058"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1005"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1028"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1066"/>
         <source>&lt;strong&gt;Replace a partition&lt;/strong&gt;&lt;br/&gt;Replaces a partition with %1.</source>
         <translation>&lt;strong&gt;取代一个分区&lt;/strong&gt;&lt;br/&gt;以 %1 &lt;strong&gt;替代&lt;/strong&gt;一个分区。</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1006"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1014"/>
         <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>这个存储器上已经有一个操作系统了。您想要怎么做？&lt;br/&gt;在任何变更应用到存储器上前，您都可以重新查看并确认您的选择。</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1044"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1052"/>
         <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>这个存储器上已经有多个操作系统了。您想要怎么做？&lt;br/&gt;在任何变更应用到存储器上前，您都可以重新查看并确认您的选择。</translation>
     </message>
@@ -548,12 +548,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="89"/>
         <source>Fi&amp;le System:</source>
-        <translation type="unfinished"/>
+        <translation>文件系统 (&amp;L)：</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="181"/>
         <source>Flags:</source>
-        <translation type="unfinished"/>
+        <translation>标记：</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="118"/>
@@ -878,7 +878,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="145"/>
         <source>Flags:</source>
-        <translation type="unfinished"/>
+        <translation>标记：</translation>
     </message>
 </context>
 <context>
@@ -1501,7 +1501,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="386"/>
         <source>No EFI system partition configured</source>
-        <translation type="unfinished"/>
+        <translation>未配置 EFI 系统分区</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="387"/>
@@ -1511,7 +1511,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="401"/>
         <source>EFI system partition flag not set</source>
-        <translation type="unfinished"/>
+        <translation>未设置 EFI 系统分区标记</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="402"/>
@@ -1533,17 +1533,17 @@ The installer will quit and all changes will be lost.</source>
         <translation>默认</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="157"/>
+        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="160"/>
         <source>unknown</source>
         <translation>未知</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="159"/>
+        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="162"/>
         <source>extended</source>
         <translation>扩展分区</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="161"/>
+        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="164"/>
         <source>unformatted</source>
         <translation>未格式化</translation>
     </message>
@@ -1800,12 +1800,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="47"/>
         <source>Set flags on partition %1.</source>
-        <translation type="unfinished"/>
+        <translation>设置分区 %1 的标记.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="56"/>
         <source>Clear flags on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>清空分区 &lt;strong&gt;%1&lt;/strong&gt; 上的标记.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="59"/>
@@ -1825,22 +1825,22 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="90"/>
         <source>The installer failed to set flags on partition %1.</source>
-        <translation type="unfinished"/>
+        <translation>安装程序没有成功设置分区 %1 的标记.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="98"/>
         <source>Could not open device &apos;%1&apos;.</source>
-        <translation type="unfinished"/>
+        <translation>无法打开设备 &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="107"/>
         <source>Could not open partition table on device &apos;%1&apos;.</source>
-        <translation type="unfinished"/>
+        <translation>无法打开设备 &apos;%1&apos; 的分区表。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="119"/>
         <source>Could not find partition &apos;%1&apos;.</source>
-        <translation type="unfinished"/>
+        <translation>无法找到分区 &apos;%1&apos;。</translation>
     </message>
 </context>
 <context>

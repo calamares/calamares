@@ -391,12 +391,12 @@ The installer will quit and all changes will be lost.</source>
         <translation>&lt;strong&gt;手動分割&lt;/strong&gt;&lt;br/&gt;您可以自行建立或重新調整分割區大小。</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="773"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="781"/>
         <source>Boot loader location:</source>
         <translation>開機載入器位置：</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="720"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="728"/>
         <source>%1 will be shrunk to %2MB and a new %3MB partition will be created for %4.</source>
         <translation>%1 將會被縮減容量到 %2MB 而一個新的 %3MB 分割區將會被建立為 %4。</translation>
     </message>
@@ -407,76 +407,76 @@ The installer will quit and all changes will be lost.</source>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="116"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="705"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="744"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="820"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="713"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="752"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="828"/>
         <source>Current:</source>
         <translation>目前：</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="706"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="714"/>
         <source>&lt;strong&gt;Select a partition to shrink, then drag the bottom bar to resize&lt;/strong&gt;</source>
         <translation>&lt;strong&gt;選取要縮減的分割區，然後拖曳底部條狀物來調整大小&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="811"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="819"/>
         <source>&lt;strong&gt;Select a partition to install on&lt;/strong&gt;</source>
         <translation>&lt;strong&gt;選取分割區以安裝在其上&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="866"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="874"/>
         <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
         <translation>在這個系統上找不到任何的 EFI 系統分割區。請回到上一步並使用手動分割以設定 %1。</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="876"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="884"/>
         <source>The EFI system partition at %1 will be used for starting %2.</source>
         <translation>在 %1 的 EFI 系統分割區將會在開始 %2 時使用。</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="885"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="893"/>
         <source>EFI system partition:</source>
         <translation>EFI 系統分割區：</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="957"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="965"/>
         <source>This storage device does not seem to have an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>這個儲存裝置上似乎還沒有作業系統。您想要怎麼做？&lt;br/&gt;在任何變更套用到儲存裝置上前，您都可以重新檢視並確認您的選擇。</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="962"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="992"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1016"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1054"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="970"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1000"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1024"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1062"/>
         <source>&lt;strong&gt;Erase disk&lt;/strong&gt;&lt;br/&gt;This will &lt;font color=&quot;red&quot;&gt;delete&lt;/font&gt; all data currently present on the selected storage device.</source>
         <translation>&lt;strong&gt;抹除磁碟&lt;/strong&gt;&lt;br/&gt;這將會&lt;font color=&quot;red&quot;&gt;刪除&lt;/font&gt;目前選取的儲存裝置上所有的資料。</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="981"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="989"/>
         <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>這個儲存裝置上已經有 %1 了。您想要怎麼做？&lt;br/&gt;在任何變更套用到儲存裝置上前，您都可以重新檢視並確認您的選擇。</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="987"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1011"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1049"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="995"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1019"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1057"/>
         <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
         <translation>&lt;strong&gt;並存安裝&lt;/strong&gt;&lt;br/&gt;安裝程式將會縮減一個分割區以讓出空間給 %1。</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="997"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1020"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1058"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1005"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1028"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1066"/>
         <source>&lt;strong&gt;Replace a partition&lt;/strong&gt;&lt;br/&gt;Replaces a partition with %1.</source>
         <translation>&lt;strong&gt;取代一個分割區&lt;/strong&gt;&lt;br/&gt;用 %1 取代一個分割區。</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1006"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1014"/>
         <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>這個儲存裝置上已經有一個作業系統了。您想要怎麼做？&lt;br/&gt;在任何變更套用到儲存裝置上前，您都可以重新檢視並確認您的選擇。</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1044"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1052"/>
         <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>這個儲存裝置上已經有多個作業系統了。您想要怎麼做？&lt;br/&gt;在任何變更套用到儲存裝置上前，您都可以重新檢視並確認您的選擇。</translation>
     </message>
@@ -1531,17 +1531,17 @@ The installer will quit and all changes will be lost.</source>
         <translation>預設值</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="157"/>
+        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="160"/>
         <source>unknown</source>
         <translation>未知</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="159"/>
+        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="162"/>
         <source>extended</source>
         <translation>延伸分割區</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="161"/>
+        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="164"/>
         <source>unformatted</source>
         <translation>未格式化</translation>
     </message>

@@ -258,7 +258,7 @@ Rezultat:
         <source>Do you really want to cancel the current install process?
 The installer will quit and all changes will be lost.</source>
         <translation>Doriți să anulați procesul curent de instalare?
-Instalatorul va ieși, iar toate modificările vor fi pierdute.</translation>
+Programul de instalare va ieși, iar toate modificările vor fi pierdute.</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="224"/>
@@ -324,7 +324,7 @@ Instalatorul va ieși, iar toate modificările vor fi pierdute.</translation>
     <message>
         <location filename="../src/calamares/CalamaresWindow.cpp" line="44"/>
         <source>%1 Installer</source>
-        <translation>Instalator %1</translation>
+        <translation>Program de instalare %1</translation>
     </message>
     <message>
         <location filename="../src/calamares/CalamaresWindow.cpp" line="98"/>
@@ -391,12 +391,12 @@ Instalatorul va ieși, iar toate modificările vor fi pierdute.</translation>
         <translation>&lt;strong&gt;Partiționare manuală&lt;/strong&gt;&lt;br/&gt;Puteți crea sau redimensiona partițiile.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="773"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="781"/>
         <source>Boot loader location:</source>
         <translation>Locație boot loader:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="720"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="728"/>
         <source>%1 will be shrunk to %2MB and a new %3MB partition will be created for %4.</source>
         <translation>%1 va fi micșorată la %2MB și o nouă partiție %3MB va fi creată pentru %4.</translation>
     </message>
@@ -407,76 +407,76 @@ Instalatorul va ieși, iar toate modificările vor fi pierdute.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="116"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="705"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="744"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="820"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="713"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="752"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="828"/>
         <source>Current:</source>
         <translation>Actual:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="706"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="714"/>
         <source>&lt;strong&gt;Select a partition to shrink, then drag the bottom bar to resize&lt;/strong&gt;</source>
         <translation>&lt;strong&gt;Selectează o partiție de micșorat, apoi trageți bara din jos pentru a redimensiona&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="811"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="819"/>
         <source>&lt;strong&gt;Select a partition to install on&lt;/strong&gt;</source>
         <translation>&lt;strong&gt;Selectează o partiție pe care să se instaleze&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="866"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="874"/>
         <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
         <translation>O partiție de sistem EFI nu poate fi găsită nicăieri în acest sistem. Vă rugăm să reveniți și să partiționați manual pentru a seta %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="876"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="884"/>
         <source>The EFI system partition at %1 will be used for starting %2.</source>
         <translation>Partiția de sistem EFI de la %1 va fi folosită pentru a porni %2.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="885"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="893"/>
         <source>EFI system partition:</source>
         <translation>Partiție de sistem EFI:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="957"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="965"/>
         <source>This storage device does not seem to have an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>Acest dispozitiv de stocare nu pare să aibă un sistem de operare instalat. Ce doriți să faceți?&lt;br/&gt;Veți putea revedea și confirma alegerile făcute înainte să fie realizate schimbări pe dispozitivul de stocare.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="962"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="992"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1016"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1054"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="970"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1000"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1024"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1062"/>
         <source>&lt;strong&gt;Erase disk&lt;/strong&gt;&lt;br/&gt;This will &lt;font color=&quot;red&quot;&gt;delete&lt;/font&gt; all data currently present on the selected storage device.</source>
         <translation>&lt;strong&gt;Șterge discul&lt;/strong&gt;&lt;br/&gt;Aceasta va &lt;font color=&quot;red&quot;&gt;șterge&lt;/font&gt; toate datele prezente pe dispozitivul de stocare selectat.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="981"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="989"/>
         <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>Acest dispozitiv de stocare are %1. Ce doriți să faceți?&lt;br/&gt;Veți putea revedea și confirma alegerile făcute înainte să fie realizate schimbări pe dispozitivul de stocare.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="987"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1011"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1049"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="995"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1019"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1057"/>
         <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
         <translation>&lt;strong&gt;Instalează laolaltă&lt;/strong&gt;&lt;br/&gt;Instalatorul va micșora o partiție pentru a face loc pentru %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="997"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1020"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1058"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1005"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1028"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1066"/>
         <source>&lt;strong&gt;Replace a partition&lt;/strong&gt;&lt;br/&gt;Replaces a partition with %1.</source>
         <translation>&lt;strong&gt;Înlocuiește o partiție&lt;/strong&gt;&lt;br/&gt;Înlocuiește o partiție cu %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1006"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1014"/>
         <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>Acest dispozitiv de stocare are deja un sistem de operare instalat. Ce doriți să faceți?&lt;br/&gt;Veți putea revedea și confirma alegerile făcute înainte de se realiza schimbări pe dispozitivul de stocare.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1044"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1052"/>
         <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>Acest dispozitiv de stocare are mai multe sisteme de operare instalate. Ce doriți să faceți?&lt;br/&gt;Veți putea revedea și confirma alegerile făcute înainte de a se realiza schimbări pe dispozitivul de stocare.</translation>
     </message>
@@ -547,12 +547,12 @@ Instalatorul va ieși, iar toate modificările vor fi pierdute.</translation>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="89"/>
         <source>Fi&amp;le System:</source>
-        <translation type="unfinished"/>
+        <translation>Sis&amp;tem de fișiere:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="181"/>
         <source>Flags:</source>
-        <translation type="unfinished"/>
+        <translation>Flags:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="118"/>
@@ -605,7 +605,7 @@ Instalatorul va ieși, iar toate modificările vor fi pierdute.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="83"/>
         <source>The installer failed to create partition on disk &apos;%1&apos;.</source>
-        <translation>Instalatorul n-a putut să creeze partiția pe discul „%1”.</translation>
+        <translation>Programul de instalare nu a putut crea partiția pe discul „%1”.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="92"/>
@@ -620,12 +620,12 @@ Instalatorul va ieși, iar toate modificările vor fi pierdute.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="126"/>
         <source>The installer failed to create file system on partition %1.</source>
-        <translation>Instalatorul n-a putut crea sistemul de fișiere pe partiția %1.</translation>
+        <translation>Programul de instalare nu a putut crea sistemul de fișiere pe partiția %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="134"/>
         <source>The installer failed to update partition table on disk &apos;%1&apos;.</source>
-        <translation>Instalatorul n-a putut actualiza tabela de partiții pe discul %1.</translation>
+        <translation>Programul de instalare nu a putut actualiza tabela de partiții pe discul „%1”.</translation>
     </message>
 </context>
 <context>
@@ -676,7 +676,7 @@ Instalatorul va ieși, iar toate modificările vor fi pierdute.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="76"/>
         <source>The installer failed to create a partition table on %1.</source>
-        <translation>Instalatorul n-a putut crea o tabelă de partiții pe %1.</translation>
+        <translation>Programul de instalare nu a putut crea o tabelă de partiții pe %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="84"/>
@@ -772,7 +772,7 @@ Instalatorul va ieși, iar toate modificările vor fi pierdute.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="67"/>
         <source>The installer failed to delete partition %1.</source>
-        <translation>Instalatorul n-a putut șterge partiția %1.</translation>
+        <translation>Programul de instalare nu a putut șterge partiția %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="73"/>
@@ -876,7 +876,7 @@ Instalatorul va ieși, iar toate modificările vor fi pierdute.</translation>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="145"/>
         <source>Flags:</source>
-        <translation type="unfinished"/>
+        <translation>Flags:</translation>
     </message>
 </context>
 <context>
@@ -963,7 +963,7 @@ Instalatorul va ieși, iar toate modificările vor fi pierdute.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="82"/>
         <source>The installer failed to format partition %1 on disk &apos;%2&apos;.</source>
-        <translation>Instalatorul n-a putut formata partiția %1 pe discul „%2”.</translation>
+        <translation>Programul de instalare nu a putut formata partiția %1 pe discul „%2”.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="90"/>
@@ -978,12 +978,12 @@ Instalatorul va ieși, iar toate modificările vor fi pierdute.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="107"/>
         <source>The installer failed to create file system on partition %1.</source>
-        <translation>Instalatorul n-a putut crea sistemul de fișiere pe partiția %1.</translation>
+        <translation>Programul de instalare nu a putut crea sistemul de fișiere pe partiția %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="115"/>
         <source>The installer failed to update partition table on disk &apos;%1&apos;.</source>
-        <translation>Instalatorul n-a putut actualiza tabela de partiții pe discul „%1”.</translation>
+        <translation>Programul de instalare nu a putut actualiza tabela de partiții pe discul „%1”.</translation>
     </message>
 </context>
 <context>
@@ -1499,22 +1499,22 @@ Instalatorul va ieși, iar toate modificările vor fi pierdute.</translation>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="386"/>
         <source>No EFI system partition configured</source>
-        <translation type="unfinished"/>
+        <translation>Nicio partiție de sistem EFI nu a fost configurată</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="387"/>
         <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;To configure an EFI system partition, go back and select or create a FAT32 filesystem with the &lt;strong&gt;esp&lt;/strong&gt; flag enabled and mount point &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;&lt;br/&gt;You can continue without setting up an EFI system partition but your system may fail to start.</source>
-        <translation type="unfinished"/>
+        <translation>Este necesară o partiție de sistem EFI pentru a porni %1.&lt;br/&gt;&lt;br/&gt;Pentru a configura o partiție de sistem EFI, reveniți și selectați sau creați o partiție FAT32 cu flag-ul &lt;strong&gt;esp&lt;/strong&gt; activat și montată la &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;&lt;br/&gt;Puteți continua și fără configurarea unei partiții de sistem EFI, dar este posibil ca sistemul să nu pornească.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="401"/>
         <source>EFI system partition flag not set</source>
-        <translation type="unfinished"/>
+        <translation>Flag-ul de partiție de sistem pentru EFI nu a fost setat</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="402"/>
         <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;A partition was configured with mount point &lt;strong&gt;%2&lt;/strong&gt; but its &lt;strong&gt;esp&lt;/strong&gt; flag is not set.&lt;br/&gt;To set the flag, go back and edit the partition.&lt;br/&gt;&lt;br/&gt;You can continue without setting the flag but your system may fail to start.</source>
-        <translation type="unfinished"/>
+        <translation>O partiție de sistem EFI este necesară pentru a porni %1.&lt;br/&gt;&lt;br/&gt;A fost configurată o partiție cu punct de montare la &lt;strong&gt;%2&lt;/strong&gt; dar flag-ul &lt;strong&gt;esp&lt;/strong&gt; al acesteia nu a fost setat.&lt;br/&gt;Pentru a seta flag-ul, reveniți și editați partiția.&lt;br/&gt;&lt;br/&gt;Puteți continua și fără setarea flag-ului, dar este posibil ca sistemul să nu pornească.</translation>
     </message>
 </context>
 <context>
@@ -1531,17 +1531,17 @@ Instalatorul va ieși, iar toate modificările vor fi pierdute.</translation>
         <translation>Implicit</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="157"/>
+        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="160"/>
         <source>unknown</source>
         <translation>necunoscut</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="159"/>
+        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="162"/>
         <source>extended</source>
         <translation>extins</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="161"/>
+        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="164"/>
         <source>unformatted</source>
         <translation>neformatat</translation>
     </message>
@@ -1676,7 +1676,7 @@ Instalatorul va ieși, iar toate modificările vor fi pierdute.</translation>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="135"/>
         <source>The installer is not running with administrator rights.</source>
-        <translation>Instalatorul nu rulează cu privilegii de administrator.</translation>
+        <translation>Programul de instalare nu rulează cu privilegii de administrator.</translation>
     </message>
 </context>
 <context>
@@ -1718,7 +1718,7 @@ Instalatorul va ieși, iar toate modificările vor fi pierdute.</translation>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="232"/>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="298"/>
         <source>The installer failed to resize partition %1 on disk &apos;%2&apos;.</source>
-        <translation>Instalatorul n-a redimensionat partiția %1 pe discul „%2”.</translation>
+        <translation>Programul de instalare nu a redimensionat partiția %1 pe discul „%2”.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="237"/>
@@ -1798,47 +1798,47 @@ Instalatorul va ieși, iar toate modificările vor fi pierdute.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="47"/>
         <source>Set flags on partition %1.</source>
-        <translation type="unfinished"/>
+        <translation>Setează flag-uri pentru partiția %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="56"/>
         <source>Clear flags on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Șterge flag-urile partiției &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="59"/>
         <source>Flag partition &lt;strong&gt;%1&lt;/strong&gt; as &lt;strong&gt;%2&lt;/strong&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Marchează partiția &lt;strong&gt;%1&lt;/strong&gt; cu flag-ul &lt;strong&gt;%2&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="71"/>
         <source>Clearing flags on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Se șterg flag-urile pentru partiția &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="74"/>
         <source>Setting flags &lt;strong&gt;%2&lt;/strong&gt; on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Se setează flag-urile &lt;strong&gt;%2&lt;/strong&gt; pentru partiția &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="90"/>
         <source>The installer failed to set flags on partition %1.</source>
-        <translation type="unfinished"/>
+        <translation>Programul de instalare a eșuat în setarea flag-urilor pentru partiția %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="98"/>
         <source>Could not open device &apos;%1&apos;.</source>
-        <translation type="unfinished"/>
+        <translation>Nu s-a putut deschide dispozitivul „%1”.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="107"/>
         <source>Could not open partition table on device &apos;%1&apos;.</source>
-        <translation type="unfinished"/>
+        <translation>Nu s-a putut deschide tabela de partiții pentru dispozitivul „%1”.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="119"/>
         <source>Could not find partition &apos;%1&apos;.</source>
-        <translation type="unfinished"/>
+        <translation>Nu a fost găsită partiția „%1”.</translation>
     </message>
 </context>
 <context>
@@ -2023,7 +2023,7 @@ Instalatorul va ieși, iar toate modificările vor fi pierdute.</translation>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="70"/>
         <source>About %1 installer</source>
-        <translation>Despre instalatorul de %1</translation>
+        <translation>Despre programul de instalare %1</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="72"/>
