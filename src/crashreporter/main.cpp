@@ -176,7 +176,14 @@ int main( int argc, char* argv[] )
     reporter.setLogo( QPixmap( CRASHREPORTER_ICON ) );
     #endif
     reporter.setWindowTitle( CRASHREPORTER_PRODUCT_NAME );
-    reporter.setText("<html><head/><body><p><span style=\" font-weight:600;\">Sorry!</span> " CRASHREPORTER_PRODUCT_NAME " crashed. Please tell us about it! " CRASHREPORTER_PRODUCT_NAME " has created an error report for you that can help improve the stability in the future. You can now send this report directly to the " CRASHREPORTER_PRODUCT_NAME " developers.</p></body></html>");
+    reporter.setText("<html><head/><body><p><span style=\" font-weight:600;\">Sorry!"
+                     "</span> " CRASHREPORTER_PRODUCT_NAME " crashed. Please tell us "
+                     "about it! " CRASHREPORTER_PRODUCT_NAME " has created an error "
+                     "report for you that can help improve the stability in the "
+                     "future. You can now send this report directly to the "
+                     CRASHREPORTER_PRODUCT_NAME " developers.</p><p>Can you tell us "
+                     "what you were doing when this happened?</p></body></html>");
+    reporter.setBottomText(QString());
 
     reporter.setReportData( "BuildID", CRASHREPORTER_BUILD_ID );
     reporter.setReportData( "ProductName",  CRASHREPORTER_PRODUCT_NAME );
@@ -224,7 +231,10 @@ int main( int argc, char* argv[] )
     // send log
     QFile logFile( CalamaresUtils::appLogDir().filePath( "Calamares.log" ) );
     logFile.open( QFile::ReadOnly );
-    reporter.setReportData( "upload_file_calamareslog", gzip_compress( logFile.readAll() ), "application/x-gzip", QFileInfo( logFile ).fileName().toUtf8());
+    reporter.setReportData( "upload_file_calamareslog",
+                            gzip_compress( logFile.readAll() ),
+                            "application/x-gzip",
+                            QFileInfo( logFile ).fileName().toUtf8());
     logFile.close();
 
     reporter.show();
