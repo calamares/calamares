@@ -112,7 +112,7 @@ void
 PartitionCoreModule::init()
 {
     CoreBackend* backend = CoreBackendManager::self()->backend();
-    auto devices = backend->scanDevices( true );
+    auto devices = backend->scanDevices( false );
 
     // Remove the device which contains / from the list
     for ( auto it = devices.begin(); it != devices.end(); )
