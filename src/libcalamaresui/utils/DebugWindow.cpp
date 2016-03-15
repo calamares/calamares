@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2015-2016, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -17,6 +17,7 @@
  */
 
 #include "DebugWindow.h"
+#include "utils/CalamaresUtils.h"
 #include "utils/Retranslator.h"
 #include "utils/qjsonmodel.h"
 #include "JobQueue.h"
@@ -89,6 +90,11 @@ DebugWindow::DebugWindow()
             moduleConfigModel->loadJson( QJsonDocument::fromVariant( module->configurationMap() ).toJson() );
             moduleConfigView->expandAll();
         }
+    } );
+
+    connect( crashButton, &QPushButton::clicked,
+             this, [] {
+        CalamaresUtils::crash();
     } );
 
     CALAMARES_RETRANSLATE(
