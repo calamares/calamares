@@ -53,6 +53,7 @@ SET_TARGET_PROPERTIES(calamares_bin
 
 if( WITH_KF5Crash )
     set( LINK_LIBRARIES
+        KF5::CoreAddons
         KF5::Crash
     )
 endif()
