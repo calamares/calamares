@@ -51,6 +51,11 @@ SET_TARGET_PROPERTIES(calamares_bin
         RUNTIME_OUTPUT_NAME calamares
 )
 
+if( WITH_KF5Crash )
+    set( LINK_LIBRARIES
+        KF5::Crash
+    )
+endif()
 
 qt5_use_modules( calamares_bin Core Widgets )
 target_link_libraries( calamares_bin
