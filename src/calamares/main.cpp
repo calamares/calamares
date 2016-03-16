@@ -19,9 +19,15 @@
 
 #include "CalamaresApplication.h"
 
+#include "CalamaresConfig.h"
 #include "kdsingleapplicationguard/kdsingleapplicationguard.h"
 #include "utils/CalamaresUtils.h"
 #include "utils/Logger.h"
+
+#ifdef WITH_KCRASH
+#include <KF5/KCrash/KCrash>
+#include <KF5/KCoreAddons/KAboutData>
+#endif
 
 #include <QCommandLineParser>
 #include <QDebug>
@@ -31,6 +37,22 @@ int
 main( int argc, char* argv[] )
 {
     CalamaresApplication a( argc, argv );
+
+#ifdef WITH_KCRASH
+    KAboutData aboutData( "calamares",
+                          "Calamares",
+                          a.applicationVersion(),
+                          "The universal system installer",
+                          KAboutLicense::GPL_V3,
+                          QString(),
+                          QString(),
+                          "https://calamares.io",
+                          "teo@kde.org" );
+    KAboutData::setApplicationData( aboutData );
+    KCrash::initialize();
+    KCrash::setCrashHandler();
+    // TODO: umount anything in /tmp/calamares-... as an emergency save function
+#endif
 
     QCommandLineParser parser;
     parser.setApplicationDescription( "Distribution-independent installer framework" );
