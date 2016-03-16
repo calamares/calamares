@@ -10,5 +10,10 @@
 
 //cmakedefines for CMake variables (e.g. for optdepends) go here
 #cmakedefine WITH_PYTHON
+#cmakedefine WITH_KF5Crash
+
+#ifdef WITH_KF5Crash
+#define WITH_KCRASH
+#endif
 
 #endif // CALAMARESCONFIG_H
