@@ -67,6 +67,10 @@ macro_log_feature(
     "KCrash is used if a crash happens when running in a Plasma session."
 )
 
+if ( KF5Crash_FOUND )
+    find_package( KF5CoreAddons 5.18 REQUIRED )
+endif()
+
 option( WITH_PYTHON "Enable Python modules support." ON )
 
 macro_optional_find_package( PythonLibs 3.3 )
