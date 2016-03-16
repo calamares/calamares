@@ -55,6 +55,18 @@ find_package( Qt5 ${QT_VERSION} CONFIG REQUIRED Core Gui Widgets LinguistTools S
 find_package( YamlCpp 0.5.1 REQUIRED )
 find_package( PolkitQt5-1 REQUIRED )
 
+option( WITH_KF5Crash "Enable crash reporting with KCrash." ON )
+
+macro_optional_find_package( KF5Crash 5.18 )
+macro_log_feature(
+    KF5Crash_FOUND
+    "KCrash"
+    "Helper library for submitting crash reports with DrKonqi by KDE."
+    "http://api.kde.org/frameworks-api/frameworks5-apidocs/kcrash/html/namespaceKCrash.html"
+    FALSE "5.18"
+    "KCrash is used if a crash happens when running in a Plasma session."
+)
+
 option( WITH_PYTHON "Enable Python modules support." ON )
 
 macro_optional_find_package( PythonLibs 3.3 )
