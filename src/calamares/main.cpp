@@ -47,7 +47,7 @@ main( int argc, char* argv[] )
                           QString(),
                           QString(),
                           "https://calamares.io",
-                          "teo@kde.org" );
+                          "https://calamares.io/bugs" );
     KAboutData::setApplicationData( aboutData );
     KCrash::initialize();
     KCrash::setCrashHandler();
