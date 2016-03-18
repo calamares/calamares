@@ -37,9 +37,6 @@ namespace PartUtils
 bool
 canBeReplaced( Partition* candidate )
 {
-    if ( KPMHelpers::isPartitionFreeSpace( candidate ) )
-        return false;
-
     bool ok = false;
     double requiredStorageGB = Calamares::JobQueue::instance()
                                     ->globalStorage()
