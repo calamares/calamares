@@ -986,6 +986,19 @@ ChoicePage::setupActions()
         }
     }
 
+    bool atLeastOneCanBeReplaced = false;
+
+    for ( auto it = PartitionIterator::begin( currentDevice );
+          it != PartitionIterator::end( currentDevice ); ++it )
+    {
+        if ( PartUtils::canBeReplaced( *it ) )
+        {
+            atLeastOneCanBeReplaced = true;
+            break;
+        }
+    }
+
+
     if ( osproberEntriesForCurrentDevice.count() == 0 )
     {
         CALAMARES_RETRANSLATE(
@@ -997,6 +1010,16 @@ ChoicePage::setupActions()
             m_eraseButton->setText( tr( "<strong>Erase disk</strong><br/>"
                                         "This will <font color=\"red\">delete</font> all data "
                                         "currently present on the selected storage device." ) );
+
+            m_alongsideButton->setText( tr( "<strong>Install alongside</strong><br/>"
+                                            "The installer will shrink a partition to make room for %1." )
+                                        .arg( Calamares::Branding::instance()->
+                                              string( Calamares::Branding::ShortVersionedName ) ) );
+
+            m_replaceButton->setText( tr( "<strong>Replace a partition</strong><br/>"
+                                          "Replaces a partition with %1." )
+                                      .arg( Calamares::Branding::instance()->
+                                            string( Calamares::Branding::ShortVersionedName ) ) );
         )
 
         m_replaceButton->hide();
@@ -1107,6 +1130,26 @@ ChoicePage::setupActions()
             m_alongsideButton->buttonWidget()->setChecked( false );
             m_grp->setExclusive( true );
         }
+    }
+
+    if ( atLeastOneCanBeReplaced )
+        m_replaceButton->show();
+    else
+    {
+        m_replaceButton->hide();
+        m_grp->setExclusive( false );
+        m_replaceButton->buttonWidget()->setChecked( false );
+        m_grp->setExclusive( true );
+    }
+
+    if ( atLeastOneCanBeResized )
+        m_alongsideButton->show();
+    else
+    {
+        m_alongsideButton->hide();
+        m_grp->setExclusive( false );
+        m_alongsideButton->buttonWidget()->setChecked( false );
+        m_grp->setExclusive( true );
     }
 
     bool isEfi = QDir( "/sys/firmware/efi/efivars" ).exists();
