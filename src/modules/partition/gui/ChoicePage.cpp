@@ -579,22 +579,49 @@ ChoicePage::doReplaceSelectedPartition( const QModelIndex& current,
             m_core->revertDevice( selectedDevice() );
         }
 
-        // TODO: get the selected partition in the immutable model with PartitionPtrRole,
-        //       check KPMHelpers::isPartitionFreeSpace, if true then don't replace but
-        //       just m_core->createPartition for the same first/last sector as the
-        //       free space "partition" in the immutable model.
-        //       Also set parent correctly (see PartitionActions::doReplacePartition)
-        //       as well as mount point and format.
+        // if the partition is unallocated(free space), we don't replace it but create new one 
+        // with the same first and last sector
+        Partition* selectedPartition = (Partition *)( current.data( PartitionModel::PartitionPtrRole ).value< void* >() );
+        if ( KPMHelpers::isPartitionFreeSpace( selectedPartition ) )
+        {
+            PartitionRole newRoles = PartitionRole( PartitionRole::Primary );
+            PartitionNode* newParent = selectedDevice()->partitionTable();
 
-        // We can't use the PartitionPtrRole because we need to make changes to the
-        // main DeviceModel, not the immutable copy.
-        QString partPath = current.data( PartitionModel::PartitionPathRole ).toString();
-        Partition* partition = KPMHelpers::findPartitionByPath( { selectedDevice() },
-                                                                partPath );
-        if ( partition )
-            PartitionActions::doReplacePartition( m_core,
-                                                  selectedDevice(),
-                                                  partition );
+            if ( selectedPartition->parent() )
+            {
+                Partition* parent = dynamic_cast< Partition* >( selectedPartition->parent() );
+                if ( parent && parent->roles().has( PartitionRole::Extended ) )
+                {
+                    newRoles = PartitionRole( PartitionRole::Logical );
+                    newParent = KPMHelpers::findPartitionByPath( { selectedDevice() }, parent->partitionPath() );
+                }
+            }
+
+            Partition* newPartition = KPMHelpers::createNewPartition(
+                    newParent,
+                    *selectedDevice(),
+                    newRoles,
+                    FileSystem::Ext4,
+                    selectedPartition->firstSector(),
+                    selectedPartition->lastSector() );
+
+            PartitionInfo::setMountPoint( newPartition, "/" );
+            PartitionInfo::setFormat( newPartition, true );
+
+            m_core->createPartition( selectedDevice(), newPartition);
+        }
+        else
+        {
+            // We can't use the PartitionPtrRole because we need to make changes to the
+            // main DeviceModel, not the immutable copy.
+            QString partPath = current.data( PartitionModel::PartitionPathRole ).toString();
+            selectedPartition = KPMHelpers::findPartitionByPath( { selectedDevice() },
+                                                                    partPath );
+            if ( selectedPartition )
+                PartitionActions::doReplacePartition( m_core,
+                                                      selectedDevice(),
+                                                      selectedPartition );
+        }
     } ),
     [=]
     {
