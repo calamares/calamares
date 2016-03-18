@@ -127,10 +127,15 @@ QByteArray gzip_compress(const QByteArray& data)
 }
 
 
-
+#ifdef Q_OS_LINUX
+const char* k_usage =
+    "Usage:\n"
+    "  CrashReporter <dumpFilePath> <linuxBacktracePath>\n";
+#else
 const char* k_usage =
     "Usage:\n"
     "  CrashReporter <dumpFilePath>\n";
+#endif
 
 int main( int argc, char* argv[] )
 {
@@ -164,7 +169,11 @@ int main( int argc, char* argv[] )
     QApplication app( argc, argv );
     CalamaresUtils::installTranslator( QLocale::system(), QString(), &app );
 
+#ifdef Q_OS_LINUX
+    if ( app.arguments().size() != 3 )
+#else
     if ( app.arguments().size() != 2 )
+#endif
     {
         std::cout << k_usage;
         return 1;
@@ -236,6 +245,16 @@ int main( int argc, char* argv[] )
                             "application/x-gzip",
                             QFileInfo( logFile ).fileName().toUtf8());
     logFile.close();
+
+#ifdef Q_OS_LINUX
+    QFile backtraceFile( app.arguments().value( 2 ) );
+    backtraceFile.open( QFile::ReadOnly );
+    reporter.setReportData( "upload_file_linux_backtrace",
+                            gzip_compress( backtraceFile.readAll() ),
+                            "application/x-gzip",
+                            QFileInfo( backtraceFile ).fileName().toUtf8());
+    backtraceFile.close();
+#endif
 
     reporter.show();
 
