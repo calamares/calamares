@@ -16,7 +16,7 @@ else()
     set(CRASHREPORTER_RELEASE_CHANNEL "nightly")
 endif()
 
-set(CRASHREPORTER_SUBMIT_URL "https://calamares.io/oops/crash_upload")
+set(CRASHREPORTER_SUBMIT_URL "https://calamares.io/oops/addreport.php")
 set(CRASHREPORTER_ICON ":/squid.svg")
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/CrashReporterConfig.h.in
                ${CMAKE_CURRENT_BINARY_DIR}/CrashReporterConfig.h)
