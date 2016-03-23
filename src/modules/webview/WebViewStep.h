@@ -28,7 +28,7 @@
 
 #include <QVariantMap>
 
-class QWebView;
+class QWebEngineView;
 
 class PLUGINDLLEXPORT WebViewStep : public Calamares::ViewStep
 {
@@ -57,7 +57,7 @@ public:
     void setConfigurationMap( const QVariantMap& configurationMap ) override;
 
 private:
-    QWebView *m_view;
+    QWebEngineView *m_view;
     QString m_url;
     QString m_prettyName;
 };

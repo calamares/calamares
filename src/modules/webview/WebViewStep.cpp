@@ -19,7 +19,7 @@
 #include "WebViewStep.h"
 
 #include <QVariant>
-#include <QWebView>
+#include <QWebEngineView>
 
 CALAMARES_PLUGIN_FACTORY_DEFINITION( WebViewStepFactory, registerPlugin<WebViewStep>(); )
 
@@ -27,7 +27,7 @@ WebViewStep::WebViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
 {
     emit nextStatusChanged( true );
-    m_view = new QWebView;
+    m_view = new QWebEngineView;
 }
 
 
