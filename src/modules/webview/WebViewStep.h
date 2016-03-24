@@ -1,7 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2015, Rohan Garg <rohan@garg.io>
- *   Copyright 2016, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -20,7 +19,7 @@
 #ifndef WEBVIEWPLUGIN_H
 #define WEBVIEWPLUGIN_H
 
-#include "WebViewConfig.h"
+#include <QObject>
 
 #include <utils/PluginFactory.h>
 #include <viewpages/ViewStep.h>
@@ -29,13 +28,7 @@
 
 #include <QVariantMap>
 
-#ifdef WEBVIEW_WITH_WEBKIT
-#define C_QWEBVIEW QWebView
-#else
-#define C_QWEBVIEW QWebEngineView
-#endif
-
-class C_QWEBVIEW;
+class QWebView;
 
 class PLUGINDLLEXPORT WebViewStep : public Calamares::ViewStep
 {
@@ -64,7 +57,7 @@ public:
     void setConfigurationMap( const QVariantMap& configurationMap ) override;
 
 private:
-    C_QWEBVIEW *m_view;
+    QWebView *m_view;
     QString m_url;
     QString m_prettyName;
 };
