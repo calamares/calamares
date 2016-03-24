@@ -34,6 +34,16 @@ WebViewStep::WebViewStep( QObject* parent )
 {
     emit nextStatusChanged( true );
     m_view = new C_QWEBVIEW();
+#ifdef WEBVIEW_WITH_WEBKIT
+    m_view->settings()->setFontFamily( QWebSettings::StandardFont,
+                                       m_view->settings()->
+                                       fontFamily( QWebSettings::SansSerifFont ) );
+    m_view->setRenderHints( QPainter::Antialiasing |
+                            QPainter::TextAntialiasing |
+                            QPainter::HighQualityAntialiasing |
+                            QPainter::SmoothPixmapTransform |
+                            QPainter::NonCosmeticDefaultPen );
+#endif
 }
 
 
