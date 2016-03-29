@@ -104,7 +104,7 @@ Bitte gehen Sie zurück und nutzen Sie die manuelle Partitionierung, um %1 aufzu
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="57"/>
         <source>Tools</source>
-        <translation type="unfinished"/>
+        <translation>Werkzeuge</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.cpp" line="102"/>
@@ -555,12 +555,12 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="89"/>
         <source>Fi&amp;le System:</source>
-        <translation type="unfinished"/>
+        <translation>Fi&amp;le System:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="181"/>
         <source>Flags:</source>
-        <translation type="unfinished"/>
+        <translation>Markierungen:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="118"/>
@@ -884,7 +884,7 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="145"/>
         <source>Flags:</source>
-        <translation type="unfinished"/>
+        <translation>Markierungen:</translation>
     </message>
 </context>
 <context>
@@ -1507,22 +1507,22 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="386"/>
         <source>No EFI system partition configured</source>
-        <translation type="unfinished"/>
+        <translation>Keine EFI Systempartition konfiguriert</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="387"/>
         <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;To configure an EFI system partition, go back and select or create a FAT32 filesystem with the &lt;strong&gt;esp&lt;/strong&gt; flag enabled and mount point &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;&lt;br/&gt;You can continue without setting up an EFI system partition but your system may fail to start.</source>
-        <translation type="unfinished"/>
+        <translation>Eine EFI Systempartition wird benötigt um %1 zu starten.&lt;br/&gt;&lt;br/&gt;Um eine EFI Systempartition zu konfigurieren, gehen Sie zurück und wählen oder erstellen Sie ein  FAT32 Dateisystem mit einer aktivierten &lt;strong&gt;esp&lt;/strong&gt; Markierung sowie Einhängepunkt &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;&lt;br/&gt;Sie können ohne die Einrichtung einer EFI-Systempartition weitermachen aber ihr System wird unter Umständen nicht starten können.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="401"/>
         <source>EFI system partition flag not set</source>
-        <translation type="unfinished"/>
+        <translation>EFI Systempartitionsmarkierung nicht gesetzt</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="402"/>
         <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;A partition was configured with mount point &lt;strong&gt;%2&lt;/strong&gt; but its &lt;strong&gt;esp&lt;/strong&gt; flag is not set.&lt;br/&gt;To set the flag, go back and edit the partition.&lt;br/&gt;&lt;br/&gt;You can continue without setting the flag but your system may fail to start.</source>
-        <translation type="unfinished"/>
+        <translation>Eine EFI Systempartition wird benötigt um %1 zu starten.&lt;br/&gt;&lt;br/&gt;Eine Partition wurde mit dem Einhängepunkt &lt;strong&gt;%2&lt;/strong&gt; konfiguriert jedoch wurde dort keine  &lt;strong&gt;esp&lt;/strong&gt; Markierung gesetzt.&lt;br/&gt;Um diese Markierung zu setzen, gehen Sie zurück und bearbeiten Sie die Partition.&lt;br/&gt;&lt;br/&gt;Sie können ohne die Markierung fortfahren aber ihr System wird unter Umständen nicht starten können.</translation>
     </message>
 </context>
 <context>
@@ -1806,47 +1806,47 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="47"/>
         <source>Set flags on partition %1.</source>
-        <translation type="unfinished"/>
+        <translation>Setzen von Markierungen auf Partition %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="56"/>
         <source>Clear flags on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Markierungen auf Partition &lt;strong&gt;%1&lt;/strong&gt; entfernen.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="59"/>
         <source>Flag partition &lt;strong&gt;%1&lt;/strong&gt; as &lt;strong&gt;%2&lt;/strong&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Partition markieren &lt;strong&gt;%1&lt;/strong&gt; als &lt;strong&gt;%2&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="71"/>
         <source>Clearing flags on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Entferne Flags auf Partition &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="74"/>
         <source>Setting flags &lt;strong&gt;%2&lt;/strong&gt; on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Setze Flags &lt;strong&gt;%2&lt;/strong&gt; auf Partition &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="90"/>
         <source>The installer failed to set flags on partition %1.</source>
-        <translation type="unfinished"/>
+        <translation>Setzen von Flags auf Partition %1 durch die Installationsroutine schlug fehl.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="98"/>
         <source>Could not open device &apos;%1&apos;.</source>
-        <translation type="unfinished"/>
+        <translation>Konnte Gerät nicht öffnen &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="107"/>
         <source>Could not open partition table on device &apos;%1&apos;.</source>
-        <translation type="unfinished"/>
+        <translation>Konnte Partitionstabelle auf Gerät &apos;%1&apos; nicht öffnen.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="119"/>
         <source>Could not find partition &apos;%1&apos;.</source>
-        <translation type="unfinished"/>
+        <translation>Konnte Partition &apos;%1&apos; nicht finden.</translation>
     </message>
 </context>
 <context>
