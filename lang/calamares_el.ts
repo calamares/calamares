@@ -37,12 +37,12 @@
     <message>
         <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="61"/>
         <source>The &lt;strong&gt;boot environment&lt;/strong&gt; of this system.&lt;br&gt;&lt;br&gt;Older x86 systems only support &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Modern systems usually use &lt;strong&gt;EFI&lt;/strong&gt;, but may also show up as BIOS if started in compatibility mode.</source>
-        <translation>Το &lt;strong&gt; περιβάλλον εκκίνησης &lt;strong&gt; αυτού του συστήματος.&lt;br&gt;&lt;br&gt;Παλαιότερα συστήματα x86 απλώς υποστηρίζουν &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt; Τα μοντέρνα συστήματα συνήθως χρησιμοποιούν &lt;strong&gt;EFI&lt;/strong&gt;, αλλά ίσως επίσης να φαίνονται ως BIOS εάν εκκινηθούν σε λειτουργία συμβατότητας.</translation>
+        <translation>Το &lt;strong&gt; περιβάλλον εκκίνησης &lt;strong&gt; αυτού του συστήματος.&lt;br&gt;&lt;br&gt;Παλαιότερα συστήματα x86 υποστηρίζουν μόνο &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt; Τα σύγχρονα συστήματα συνήθως χρησιμοποιούν &lt;strong&gt;EFI&lt;/strong&gt;, αλλά ίσως επίσης να φαίνονται ως BIOS εάν εκκινήθηκαν σε λειτουργία συμβατότητας.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="75"/>
         <source>This system was started with an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from an EFI environment, this installer must deploy a boot loader application, like &lt;strong&gt;GRUB&lt;/strong&gt; or &lt;strong&gt;systemd-boot&lt;/strong&gt; on an &lt;strong&gt;EFI System Partition&lt;/strong&gt;. This is automatic, unless you choose manual partitioning, in which case you must choose it or create it on your own.</source>
-        <translation type="unfinished"/>
+        <translation>Αυτό το σύστημα εκκινήθηκε με ένα &lt;strong&gt;EFI&lt;/strong&gt; περιβάλλον εκκίνησης.&lt;br&gt;&lt;br&gt;Για να ρυθμιστεί η εκκίνηση από ένα περιβάλλον EFI, αυτός ο εγκαταστάτης πρέπει να αναπτυχθεί ένα πρόγραμμα φορτωτή εκκίνησης, όπως &lt;strong&gt;GRUB&lt;/strong&gt;  ή &lt;strong&gt;systemd-boot&lt;/strong&gt; σε ένα &lt;strong&gt;EFI Σύστημα Διαμερισμού&lt;/strong&gt;. Αυτό είναι αυτόματο, εκτός εάν επιλέξεις χειροκίνητο διαμερισμό, στην οποία περίπτωση οφείλεις να το επιλέξεις ή να το δημιουργήσεις από μόνος σου.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="87"/>
@@ -554,12 +554,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="89"/>
         <source>Fi&amp;le System:</source>
-        <translation type="unfinished"/>
+        <translation>Σύστημα Αρχ&amp;είων:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="181"/>
         <source>Flags:</source>
-        <translation type="unfinished"/>
+        <translation>Σημαίες:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="118"/>
@@ -807,7 +807,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="107"/>
         <source>This device has a &lt;strong&gt;%1&lt;/strong&gt; partition table.</source>
-        <translation type="unfinished"/>
+        <translation>Αυτή η συσκευή έχει ένα &lt;strong&gt;%1&lt;/strong&gt; πίνακα διαμερισμάτων.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="114"/>
@@ -822,7 +822,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="131"/>
         <source>&lt;br&gt;&lt;br&gt;This is the recommended partition table type for modern systems which start from an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;br&gt;&lt;br&gt;Αυτός είναι ο προτεινόμενος τύπος πίνακα διαμερισμάτων για σύγχρονα συστήματα τα οποία εκκινούν από ένα &lt;strong&gt;EFI&lt;/strong&gt; περιβάλλον εκκίνησης.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="137"/>
@@ -883,7 +883,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="145"/>
         <source>Flags:</source>
-        <translation type="unfinished"/>
+        <translation>Σημαίες:</translation>
     </message>
 </context>
 <context>
@@ -896,7 +896,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="111"/>
         <source>Install %1 on &lt;strong&gt;new&lt;/strong&gt; %2 system partition.</source>
-        <translation type="unfinished"/>
+        <translation>Εγκατάσταση %1 στο &lt;strong&gt;νέο&lt;/strong&gt; %2 διαμέρισμα συστήματος.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="116"/>
@@ -916,7 +916,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="142"/>
         <source>Install boot loader on &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Εγκατάσταση φορτωτή εκκίνησης στο &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="152"/>
@@ -1573,22 +1573,22 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="161"/>
         <source>The selected item does not appear to be a valid partition.</source>
-        <translation type="unfinished"/>
+        <translation>Το επιλεγμένο στοιχείο φαίνεται να μην είναι ένα έγκυρο διαμέρισμα.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="169"/>
         <source>%1 cannot be installed on empty space. Please select an existing partition.</source>
-        <translation type="unfinished"/>
+        <translation>%1 δεν μπορεί να εγκατασταθεί σε άδειο χώρο. Παρακαλώ επίλεξε ένα υφιστάμενο διαμέρισμα.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="180"/>
         <source>%1 cannot be installed on an extended partition. Please select an existing primary or logical partition.</source>
-        <translation type="unfinished"/>
+        <translation>%1 δεν μπορεί να εγκατασταθεί σε ένα εκτεταμένο διαμέρισμα. Παρακαλώ επίλεξε ένα υφιστάμενο πρωτεύον ή λογικό διαμέρισμα.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="191"/>
         <source>%1 cannot be installed on this partition.</source>
-        <translation type="unfinished"/>
+        <translation>%1 δεν μπορεί να εγκατασταθεί σ&apos; αυτό το διαμέρισμα.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="198"/>
@@ -1830,7 +1830,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="90"/>
         <source>The installer failed to set flags on partition %1.</source>
-        <translation type="unfinished"/>
+        <translation>Ο εγκαταστάτης απέτυχε να θέσει τις σημαίες στο διαμέρισμα %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="98"/>
@@ -1845,7 +1845,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="119"/>
         <source>Could not find partition &apos;%1&apos;.</source>
-        <translation type="unfinished"/>
+        <translation>Δεν μπόρεσε να βρει το διαμέρισμα &apos;%1&apos;.</translation>
     </message>
 </context>
 <context>
@@ -1853,12 +1853,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="144"/>
         <source>Update geometry of partition %1.</source>
-        <translation type="unfinished"/>
+        <translation>Εκσυγχρονισμός γεωμετρίας του διαμερίσματος %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="156"/>
         <source>Failed to change the geometry of the partition.</source>
-        <translation type="unfinished"/>
+        <translation>Απέτυχε η αλλαγή της γεωμετρίας του διαμερίσματος.</translation>
     </message>
 </context>
 <context>
@@ -1866,12 +1866,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="42"/>
         <source>Set password for user %1</source>
-        <translation type="unfinished"/>
+        <translation>Ορισμός κωδικού για τον χρήστη %1</translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="49"/>
         <source>Setting password for user %1.</source>
-        <translation type="unfinished"/>
+        <translation>Ορίζεται κωδικός για τον χρήστη %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="59"/>
@@ -1914,7 +1914,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="86"/>
         <source>Cannot set timezone.</source>
-        <translation type="unfinished"/>
+        <translation>Αδυναμία ορισμού ζώνης ώρας.</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="87"/>
@@ -1924,12 +1924,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="95"/>
         <source>Cannot set timezone,</source>
-        <translation type="unfinished"/>
+        <translation>Αδυναμία ορισμού ζώνης ώρας,</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="96"/>
         <source>Cannot open /etc/timezone for writing</source>
-        <translation type="unfinished"/>
+        <translation>Αδυναμία ανοίγματος /etc/timezone για εγγραφή</translation>
     </message>
 </context>
 <context>
