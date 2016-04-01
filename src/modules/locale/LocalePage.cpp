@@ -246,13 +246,18 @@ LocalePage::init( const QString& initialRegion,
     }
     foreach ( QByteArray line, ba.split( '\n' ) )
     {
-        if ( line.startsWith( "# " ) || line.simplified() == "#" )
+        if ( line.startsWith( "## " ) ||
+             line.startsWith( "# " ) ||
+             line.simplified() == "#" )
             continue;
 
         QString lineString = QString::fromLatin1( line.simplified() );
-
         if ( lineString.startsWith( "#" ) )
             lineString.remove( '#' );
+        lineString = lineString.simplified();
+
+        if ( lineString.isEmpty() )
+            continue;
 
         m_localeGenLines.append( lineString );
     }
