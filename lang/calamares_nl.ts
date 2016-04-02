@@ -1159,7 +1159,7 @@ Het installatieprogramma zal afsluiten en alle wijzigingen zullen verloren gaan.
         <translation>&amp;Aanpassen</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="266"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="271"/>
         <source>Set timezone to %1/%2.&lt;br/&gt;</source>
         <translation>Instellen tijdzone naar %1/%2.&lt;br/&gt;</translation>
     </message>

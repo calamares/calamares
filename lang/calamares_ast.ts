@@ -1159,7 +1159,7 @@ L&apos;instalador colará y perderánse toles camudancies.</translation>
         <translation>&amp;Cambiar...</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="266"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="271"/>
         <source>Set timezone to %1/%2.&lt;br/&gt;</source>
         <translation>Afitóse&apos;l fusu horariu a %1/%2.&lt;br/&gt;</translation>
     </message>

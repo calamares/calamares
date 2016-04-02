@@ -1159,7 +1159,7 @@ Installationsprogrammet vil stoppe og alle ændringer vil gå tabt.</translation
         <translation>&amp;Ændre...</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="266"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="271"/>
         <source>Set timezone to %1/%2.&lt;br/&gt;</source>
         <translation>Indstil tidszone til %1/%2.&lt;br/&gt;</translation>
     </message>

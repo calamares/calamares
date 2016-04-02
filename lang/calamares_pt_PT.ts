@@ -1159,7 +1159,7 @@ O instalador será encerrado e todas as alterações serão perdidas.</translati
         <translation>&amp;Alterar...</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="266"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="271"/>
         <source>Set timezone to %1/%2.&lt;br/&gt;</source>
         <translation>Definir fuso horário para %1/%2.&lt;br/&gt;</translation>
     </message>

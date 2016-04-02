@@ -103,7 +103,7 @@
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="57"/>
         <source>Tools</source>
-        <translation type="unfinished"/>
+        <translation>Verkfæri</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.cpp" line="102"/>
@@ -1159,7 +1159,7 @@ Uppsetning mun hætta og allar breytingar tapast.</translation>
         <translation>&amp;Breyta...</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="266"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="271"/>
         <source>Set timezone to %1/%2.&lt;br/&gt;</source>
         <translation>Setja tímabelti sem %1/%2.&lt;br/&gt;</translation>
     </message>

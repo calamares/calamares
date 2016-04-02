@@ -1159,7 +1159,7 @@ The installer will quit and all changes will be lost.</source>
         <translation>變更...(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="266"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="271"/>
         <source>Set timezone to %1/%2.&lt;br/&gt;</source>
         <translation>設定時區為 %1/%2 。&lt;br/&gt;</translation>
     </message>
