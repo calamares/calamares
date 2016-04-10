@@ -37,17 +37,17 @@
     <message>
         <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="61"/>
         <source>The &lt;strong&gt;boot environment&lt;/strong&gt; of this system.&lt;br&gt;&lt;br&gt;Older x86 systems only support &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Modern systems usually use &lt;strong&gt;EFI&lt;/strong&gt;, but may also show up as BIOS if started in compatibility mode.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;Среда за начално зареждане&lt;/strong&gt; на тази система.&lt;br&gt;&lt;br&gt;Старите x86 системи поддържат само &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Модерните системи обикновено използват &lt;strong&gt;EFI&lt;/strong&gt;, но може също така да използват BIOS, ако са стартирани в режим на съвместимост.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="75"/>
         <source>This system was started with an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from an EFI environment, this installer must deploy a boot loader application, like &lt;strong&gt;GRUB&lt;/strong&gt; or &lt;strong&gt;systemd-boot&lt;/strong&gt; on an &lt;strong&gt;EFI System Partition&lt;/strong&gt;. This is automatic, unless you choose manual partitioning, in which case you must choose it or create it on your own.</source>
-        <translation type="unfinished"/>
+        <translation>Тази система беше стартирана с &lt;strong&gt;EFI&lt;/strong&gt; среда за начално зареждане.&lt;br&gt;&lt;br&gt;За да се настрои стартирането от EFI, инсталаторът трябва да разположи програма за начално зареждане като &lt;strong&gt;GRUB&lt;/strong&gt; или &lt;strong&gt;systemd-boot&lt;/strong&gt; на &lt;strong&gt;EFI Системен Дял&lt;/strong&gt;. Това се прави автоматично, освен ако не се избере ръчно поделяне, в такъв случай вие трябва да свършите тази работа.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="87"/>
         <source>This system was started with a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from a BIOS environment, this installer must install a boot loader, like &lt;strong&gt;GRUB&lt;/strong&gt;, either at the beginning of a partition or on the &lt;strong&gt;Master Boot Record&lt;/strong&gt; near the beginning of the partition table (preferred). This is automatic, unless you choose manual partitioning, in which case you must set it up on your own.</source>
-        <translation type="unfinished"/>
+        <translation>Тази система беше стартирана с &lt;strong&gt;BIOS&lt;/strong&gt; среда за начално зареждане.&lt;br&gt;&lt;br&gt;За да се настрои стартирането от BIOS, инсталаторът трябва да разположи програма за начално зареждане като &lt;strong&gt;GRUB&lt;/strong&gt; в началото на дяла или на &lt;strong&gt;Сектора за Начално Зареждане&lt;/strong&gt; близо до началото на таблицата на дяловете (предпочитано). Това се прави автоматично, освен ако не се избере ръчно поделяне, в такъв случай вие трябва да свършите тази работа.</translation>
     </message>
 </context>
 <context>
@@ -103,7 +103,7 @@
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="57"/>
         <source>Tools</source>
-        <translation type="unfinished"/>
+        <translation>Инструменти</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.cpp" line="102"/>
@@ -808,7 +808,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="107"/>
         <source>This device has a &lt;strong&gt;%1&lt;/strong&gt; partition table.</source>
-        <translation type="unfinished"/>
+        <translation>Устройството има &lt;strong&gt;%1&lt;/strong&gt; таблица на дяловете.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="114"/>
@@ -1341,7 +1341,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="201"/>
         <source>Swap</source>
-        <translation type="unfinished"/>
+        <translation>Swap</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="203"/>
