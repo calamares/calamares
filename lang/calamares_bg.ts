@@ -14,7 +14,7 @@
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="121"/>
         <source>With this operation, the partition &lt;strong&gt;%1&lt;/strong&gt; which contains %4 will be shrunk to %2MB and a new %3MB partition will be created for %5.</source>
-        <translation>С това действие, делът &lt;strong&gt;%1&lt;/strong&gt;, който съдържа %4, ще бъде смален до %2МБ и нов %3МБ дял ще бъде създаден за %5.</translation>
+        <translation>С това действие, дялът &lt;strong&gt;%1&lt;/strong&gt;, който съдържа %4, ще бъде смален до %2МБ и нов %3МБ дял ще бъде създаден за %5.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="198"/>
@@ -55,12 +55,12 @@
     <message>
         <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="59"/>
         <source>Master Boot Record of %1</source>
-        <translation>Сектор за начално зареждане от %1</translation>
+        <translation>Сектор за начално зареждане на %1</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="76"/>
         <source>Boot Partition</source>
-        <translation>Дял за зареждане</translation>
+        <translation>Дял за начално зареждане</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="81"/>
@@ -171,7 +171,7 @@ Output:
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="101"/>
         <source>Bad parameters for process job call.</source>
-        <translation>Лоши параметри за извикване на задача за процес.</translation>
+        <translation>Невалидни параметри за извикване на задача за процес.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="104"/>
@@ -222,7 +222,7 @@ Output:
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="265"/>
         <source>Bad main script file</source>
-        <translation>Погрешен файл на главен скрипт</translation>
+        <translation>Невалиден файл на главен скрипт</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="266"/>
@@ -361,7 +361,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="113"/>
         <source>This computer does not satisfy some of the recommended requirements for installing %1.&lt;br/&gt;Installation can continue, but some features might be disabled.</source>
-        <translation>Този компютър не отговаря на някои от препоръчителните изисквания за инсталиране %1.&lt;br/&gt;Инсталацията може да продължи, но някои свойства могат да бъдат неналични.</translation>
+        <translation>Този компютър не отговаря на някои от препоръчителните изисквания за инсталиране %1.&lt;br/&gt;Инсталацията може да продължи, но някои свойства могат да бъдат недостъпни.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="142"/>
@@ -399,17 +399,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="808"/>
         <source>Boot loader location:</source>
-        <translation type="unfinished"/>
+        <translation>Локация на програмата за начално зареждане:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="755"/>
         <source>%1 will be shrunk to %2MB and a new %3MB partition will be created for %4.</source>
-        <translation type="unfinished"/>
+        <translation>%1 ще се смали до %2МБ и нов %3МБ дял ще бъде създаден за %4.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="115"/>
         <source>Select storage de&amp;vice:</source>
-        <translation type="unfinished"/>
+        <translation>Изберете ус&amp;тройство за съхранение:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="116"/>
@@ -422,12 +422,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="741"/>
         <source>&lt;strong&gt;Select a partition to shrink, then drag the bottom bar to resize&lt;/strong&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;Изберете дял за смаляване, после влачете долната лента за преоразмеряване&lt;/strong&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="846"/>
         <source>&lt;strong&gt;Select a partition to install on&lt;/strong&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;Изберете дял за инсталацията&lt;/strong&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="901"/>
@@ -598,12 +598,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="48"/>
         <source>Create new %2MB partition on %4 (%3) with file system %1.</source>
-        <translation>Създай нов %2MB дял върху %4 (%3) със файлова система %1.</translation>
+        <translation>Създай нов %2МБ дял върху %4 (%3) със файлова система %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="59"/>
         <source>Create new &lt;strong&gt;%2MB&lt;/strong&gt; partition on &lt;strong&gt;%4&lt;/strong&gt; (%3) with file system &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation>Създай нов  &lt;strong&gt;%2MB&lt;/strong&gt; дял върху &lt;strong&gt;%4&lt;/strong&gt; (%3) със файлова система &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+        <translation>Създай нов  &lt;strong&gt;%2МБ&lt;/strong&gt; дял върху &lt;strong&gt;%4&lt;/strong&gt; (%3) със файлова система &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="71"/>
@@ -823,7 +823,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="131"/>
         <source>&lt;br&gt;&lt;br&gt;This is the recommended partition table type for modern systems which start from an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;br&gt;&lt;br&gt;Това е препоръчаният тип на таблицата на дяловете за модерни системи, които стартират от &lt;strong&gt;EFI&lt;/strong&gt; среда за начално зареждане.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="137"/>
@@ -961,7 +961,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="59"/>
         <source>Format &lt;strong&gt;%3MB&lt;/strong&gt; partition &lt;strong&gt;%1&lt;/strong&gt; with file system &lt;strong&gt;%2&lt;/strong&gt;.</source>
-        <translation>Форматирай &lt;strong&gt;%3MB&lt;/strong&gt; дял &lt;strong&gt;%1&lt;/strong&gt; с файлова система &lt;strong&gt;%2&lt;/strong&gt;.</translation>
+        <translation>Форматирай &lt;strong&gt;%3МБ&lt;/strong&gt; дял &lt;strong&gt;%1&lt;/strong&gt; с файлова система &lt;strong&gt;%2&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="70"/>
@@ -1050,12 +1050,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="33"/>
         <source>System locale setting</source>
-        <translation>Настройка на местността на системата</translation>
+        <translation>Настройка на локацията на системата</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="40"/>
         <source>The system locale setting affects the language and character set for some command line user interface elements.&lt;br/&gt;The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation>Местността на системата засяга езика и символите зададени за някои елементи на командния потребителски интерфейс.&lt;br/&gt;Текущата настройка е &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+        <translation>Локацията на системата засяга езика и символите зададени за някои елементи на командния ред.&lt;br/&gt;Текущата настройка е &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
 </context>
 <context>
@@ -1142,7 +1142,7 @@ The installer will quit and all changes will be lost.</source>
         <location filename="../src/modules/locale/LocalePage.cpp" line="158"/>
         <location filename="../src/modules/locale/LocalePage.cpp" line="169"/>
         <source>The system locale is set to %1.</source>
-        <translation>Местността на системата е поставена на %1.</translation>
+        <translation>Локацията на системата е поставена на %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/LocalePage.cpp" line="166"/>
@@ -1321,17 +1321,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="191"/>
         <source>Root</source>
-        <translation type="unfinished"/>
+        <translation>Основен</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="194"/>
         <source>Home</source>
-        <translation type="unfinished"/>
+        <translation>Домашен</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="196"/>
         <source>Boot</source>
-        <translation type="unfinished"/>
+        <translation>Зареждане</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="199"/>
@@ -1399,7 +1399,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="22"/>
         <source>Storage de&amp;vice:</source>
-        <translation type="unfinished"/>
+        <translation>Ус&amp;тройство за съхранение&quot;</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="51"/>
@@ -1429,7 +1429,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="145"/>
         <source>Install boot &amp;loader on:</source>
-        <translation>Инсталирай &amp;зареждача върху:</translation>
+        <translation>Инсталирай &amp;устройството за начално зареждане върху:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="147"/>
@@ -1507,7 +1507,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="386"/>
         <source>No EFI system partition configured</source>
-        <translation type="unfinished"/>
+        <translation>Няма конфигуриран EFI системен дял</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="387"/>
@@ -1517,7 +1517,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="401"/>
         <source>EFI system partition flag not set</source>
-        <translation type="unfinished"/>
+        <translation>Не е зададен флаг на EFI системен дял</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="402"/>
@@ -1556,7 +1556,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="49"/>
         <source>Unpartitioned space or unknown partition table</source>
-        <translation type="unfinished"/>
+        <translation>Неразделено пространство или неизвестна таблица на дяловете</translation>
     </message>
 </context>
 <context>
@@ -1609,7 +1609,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="231"/>
         <source>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;The partition %1 is too small for %2. Please select a partition with capacity at least %3 GiB.</source>
-        <translation>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Дялът %1 е твърде малък за %2. Моля изберете дял с капацитет поне %3 GiB.</translation>
+        <translation>&lt;strong&gt;%4&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Дялът %1 е твърде малък за %2. Моля изберете дял с капацитет поне %3 ГБ.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="255"/>
@@ -1649,7 +1649,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="100"/>
         <source>There is not enough drive space. At least %1 GB is required.</source>
-        <translation>Няма достатъчно дисково пространство.Необходимо е поне %1 GB.</translation>
+        <translation>Няма достатъчно дисково пространство. Необходимо е поне %1 ГБ.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="108"/>
@@ -1659,7 +1659,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="110"/>
         <source>The system does not have enough working memory. At least %1 GB is required.</source>
-        <translation>Системата не разполага с достатъчно работна памет.Необходима е поне %1 GB.</translation>
+        <translation>Системата не разполага с достатъчно работна памет. Необходима е поне %1 ГБ.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="118"/>
@@ -1715,12 +1715,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="194"/>
         <source>Resize &lt;strong&gt;%2MB&lt;/strong&gt; partition &lt;strong&gt;%1&lt;/strong&gt; to &lt;strong&gt;%3MB&lt;/strong&gt;.</source>
-        <translation>Преоразмери &lt;strong&gt;%2MB&lt;/strong&gt; дял &lt;strong&gt;%1&lt;/strong&gt; на &lt;strong&gt;%3MB&lt;/strong&gt;.</translation>
+        <translation>Преоразмери &lt;strong&gt;%2МБ&lt;/strong&gt; дял &lt;strong&gt;%1&lt;/strong&gt; на &lt;strong&gt;%3МБ&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="205"/>
         <source>Resizing %2MB partition %1 to %3MB.</source>
-        <translation>Преоразмеряване  от %2MB дял %1 на %3MB.</translation>
+        <translation>Преоразмеряване  от %2МБ дял %1 на %3МБ.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="232"/>
@@ -1739,12 +1739,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="83"/>
         <source>Scanning storage devices...</source>
-        <translation type="unfinished"/>
+        <translation>Сканиране на устройствата за съхранение</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="84"/>
         <source>Partitioning</source>
-        <translation type="unfinished"/>
+        <translation>Разделяне</translation>
     </message>
 </context>
 <context>
@@ -1806,32 +1806,32 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="47"/>
         <source>Set flags on partition %1.</source>
-        <translation type="unfinished"/>
+        <translation>Задай флагове на дял %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="56"/>
         <source>Clear flags on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Изчисти флаговете на дял &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="59"/>
         <source>Flag partition &lt;strong&gt;%1&lt;/strong&gt; as &lt;strong&gt;%2&lt;/strong&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Сложи флаг на дял &lt;strong&gt;%1&lt;/strong&gt; като &lt;strong&gt;%2&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="71"/>
         <source>Clearing flags on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Изчистване на флаговете на дял &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="74"/>
         <source>Setting flags &lt;strong&gt;%2&lt;/strong&gt; on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Задаване на флагове &lt;strong&gt;%2&lt;/strong&gt; на дял &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="90"/>
         <source>The installer failed to set flags on partition %1.</source>
-        <translation type="unfinished"/>
+        <translation>Инсталатора не успя да зададе флагове на дял %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="98"/>
@@ -1854,7 +1854,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="144"/>
         <source>Update geometry of partition %1.</source>
-        <translation>Актуализирай геометрията на дял %1.</translation>
+        <translation>Обнови геометрията на дял %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="156"/>
@@ -1867,7 +1867,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="42"/>
         <source>Set password for user %1</source>
-        <translation>Постави парола за потребител %1</translation>
+        <translation>Задай парола за потребител %1</translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="49"/>
@@ -1905,12 +1905,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="71"/>
         <source>Cannot access selected timezone path.</source>
-        <translation>Няма достъп до избраната траектория за часова зона.</translation>
+        <translation>Няма достъп до избрания път за часова зона.</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="72"/>
         <source>Bad path: %1</source>
-        <translation>Лоша траектория: %1</translation>
+        <translation>Лош път: %1</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="86"/>
@@ -2036,7 +2036,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="72"/>
         <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2015 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Thanks to: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Philip Müller, Pier Luigi Fiorini, Rohan Garg and the &lt;a href=&quot;https://www.transifex.com/calamares/calamares/&quot;&gt;Calamares translators team&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;http://calamares.io/&quot;&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - Liberating Software.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;за %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Авторско право 2014-2015 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Благодарение на: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Philip Müller, Pier Luigi Fiorini, Rohan Garg и &lt;a href=&quot;https://www.transifex.com/calamares/calamares/&quot;&gt;преводачите на Calamares&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;http://calamares.io/&quot;&gt;Calamares&lt;/a&gt; е спонсориран от &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - Liberating Software.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="195"/>
