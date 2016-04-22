@@ -5,8 +5,9 @@ list( APPEND CALA_WEBVIEW_LINK_LIBRARIES
     calamaresui
 )
 
+option( WEBVIEW_FORCE_WEBKIT "Always build webview with WebKit instead of WebEngine regardless of Qt version." OFF)
 
-if ( Qt5Core_VERSION VERSION_LESS 5.6 )
+if ( Qt5Core_VERSION VERSION_LESS 5.6 OR WEBVIEW_FORCE_WEBKIT )
     find_package( Qt5 ${QT_VERSION} CONFIG REQUIRED WebKit WebKitWidgets )
 
     list( APPEND CALA_WEBVIEW_INCLUDE_DIRECTORIES
