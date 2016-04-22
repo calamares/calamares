@@ -19,14 +19,21 @@
 #ifndef PARTITIONACTIONS_H
 #define PARTITIONACTIONS_H
 
+#include <QString>
+
 class PartitionCoreModule;
 class Device;
 class Partition;
 
 namespace PartitionActions
 {
-void doAutopartition( PartitionCoreModule* core, Device* dev );
-void doReplacePartition( PartitionCoreModule* core, Device* dev, Partition* partition );
+void doAutopartition( PartitionCoreModule* core,
+                      Device* dev,
+                      const QString& luksPassphrase = QString() );
+
+void doReplacePartition( PartitionCoreModule* core,
+                         Device* dev,
+                         Partition* partition );
 }
 
 #endif // PARTITIONACTIONS_H
