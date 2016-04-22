@@ -76,7 +76,7 @@ private slots:
     void doAlongsideSetupSplitter( const QModelIndex& current, const QModelIndex& previous );
 
 private:
-    void setNextEnabled( bool enabled );
+    void updateNextEnabled();
     void setupChoices();
     QComboBox* createBootloaderComboBox( QWidget* parentButton );
     Device* selectedDevice();
