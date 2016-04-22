@@ -31,6 +31,7 @@
 #include <kpmcore/core/device.h>
 #include <kpmcore/core/partition.h>
 #include <kpmcore/fs/filesystem.h>
+#include <kpmcore/fs/luks.h>
 
 // Qt
 #include <QDebug>
@@ -73,6 +74,18 @@ mapForPartition( Partition* partition, const QString& uuid )
              << "mtpoint:" << PartitionInfo::mountPoint( partition )
              << "fs:" << partition->fileSystem().name()
              << uuid;
+
+    if ( partition->roles().has( PartitionRole::Luks ) )
+    {
+        const FileSystem& fsRef = partition->fileSystem();
+        const FS::luks* luksFs = dynamic_cast< const FS::luks* >( &fsRef );
+        if ( luksFs )
+        {
+            map[ "luksMapperName" ] = luksFs->suggestedMapperName( partition->partitionPath() );
+            cDebug() << "luksMapperName:" << map[ "luksMapperName" ];
+        }
+    }
+
     return map;
 }
 
