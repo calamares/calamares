@@ -91,6 +91,15 @@ Partition* createNewPartition( PartitionNode* parent,
                                qint64 lastSector,
                                PartitionTable::Flags flags = PartitionTable::FlagNone );
 
+Partition* createNewEncryptedPartition( PartitionNode* parent,
+                                        const Device& device,
+                                        const PartitionRole& role,
+                                        FileSystem::Type fsType,
+                                        qint64 firstSector,
+                                        qint64 lastSector,
+                                        const QString& passphrase,
+                                        PartitionTable::Flags flags = PartitionTable::FlagNone );
+
 Partition* clonePartition( Device* device, Partition* partition );
 
 QString prettyNameForFileSystemType( FileSystem::Type t );

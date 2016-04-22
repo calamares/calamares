@@ -26,6 +26,7 @@
 #include <kpmcore/core/partition.h>
 #include <kpmcore/fs/filesystemfactory.h>
 #include <kpmcore/backend/corebackendmanager.h>
+#include <kpmcore/fs/luks.h>
 
 #include <QDebug>
 
@@ -133,6 +134,40 @@ createNewPartition( PartitionNode* parent,
 
 
 Partition*
+createNewEncryptedPartition( PartitionNode* parent,
+                             const Device& device,
+                             const PartitionRole& role,
+                             FileSystem::Type fsType,
+                             qint64 firstSector,
+                             qint64 lastSector,
+                             const QString& passphrase,
+                             PartitionTable::Flags flags )
+{
+    PartitionRole::Roles newRoles = role.roles();
+    if ( !role.has( PartitionRole::Luks ) )
+        newRoles |= PartitionRole::Luks;
+
+    FS::luks* fs = dynamic_cast< FS::luks* >(
+                           FileSystemFactory::create( FileSystem::Luks,
+                                                      firstSector,
+                                                      lastSector ) );
+    fs->createInnerFileSystem( fsType );
+    fs->setPassphrase( passphrase );
+    Partition* p = new Partition( parent,
+                                  device,
+                                  PartitionRole( newRoles ),
+                                  fs, fs->firstSector(), fs->lastSector(),
+                                  QString() /* path */,
+                                  PartitionTable::FlagNone /* availableFlags */,
+                                  QString() /* mountPoint */,
+                                  false /* mounted */,
+                                  flags /* activeFlags */,
+                                  Partition::StateNew );
+    return p;
+}
+
+
+Partition*
 clonePartition( Device* device, Partition* partition )
 {
     FileSystem* fs = FileSystemFactory::create(
@@ -163,7 +198,7 @@ prettyNameForFileSystemType( FileSystem::Type t )
     case FileSystem::Unformatted:
         return QObject::tr( "unformatted" );
     case FileSystem::LinuxSwap:
-        return "swap";
+        return QObject::tr( "swap" );
     case FileSystem::Fat16:
     case FileSystem::Fat32:
     case FileSystem::Ntfs:
