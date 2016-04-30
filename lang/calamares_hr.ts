@@ -37,17 +37,17 @@
     <message>
         <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="61"/>
         <source>The &lt;strong&gt;boot environment&lt;/strong&gt; of this system.&lt;br&gt;&lt;br&gt;Older x86 systems only support &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Modern systems usually use &lt;strong&gt;EFI&lt;/strong&gt;, but may also show up as BIOS if started in compatibility mode.</source>
-        <translation>&lt;strong&gt;Okruženje za pokretanje&lt;/strong&gt; sustava.&lt;br&gt;&lt;br&gt;Stariji x86 sustavi jedino podržavaju &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Noviji sustavi uglavnom koriste &lt;strong&gt;EFI&lt;/strong&gt;, ali mogu podržavati i BIOS ako su pokrenuti u načinu kompatibilnosti.</translation>
+        <translation>&lt;strong&gt;Boot okruženje&lt;/strong&gt; sustava.&lt;br&gt;&lt;br&gt;Stariji x86 sustavi jedino podržavaju &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Noviji sustavi uglavnom koriste &lt;strong&gt;EFI&lt;/strong&gt;, ali mogu podržavati i BIOS ako su pokrenuti u načinu kompatibilnosti.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="75"/>
         <source>This system was started with an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from an EFI environment, this installer must deploy a boot loader application, like &lt;strong&gt;GRUB&lt;/strong&gt; or &lt;strong&gt;systemd-boot&lt;/strong&gt; on an &lt;strong&gt;EFI System Partition&lt;/strong&gt;. This is automatic, unless you choose manual partitioning, in which case you must choose it or create it on your own.</source>
-        <translation>Ovaj sustav koristi &lt;strong&gt;EFI&lt;/strong&gt; okruženje za pokretanje.&lt;br&gt;&lt;br&gt;Za konfiguriranje pokretanja iz EFI okruženja, ovaj instalacijski program mora uvesti aplikaciju za pokretanje sustava, kao što je &lt;strong&gt;GRUB&lt;/strong&gt; ili &lt;strong&gt;systemd-boot&lt;/strong&gt; na &lt;strong&gt;EFI particiju&lt;/strong&gt;. To se odvija automatski, osim ako ste odabrali ručno particioniranje. U tom slučaju to ćete morati odabrati ili kreirati sami.</translation>
+        <translation>Ovaj sustav koristi &lt;strong&gt;EFI&lt;/strong&gt; okruženje.&lt;br&gt;&lt;br&gt;Za konfiguriranje pokretanja iz EFI okruženja, ovaj instalacijski program mora uvesti boot loader aplikaciju, kao što je &lt;strong&gt;GRUB&lt;/strong&gt; ili &lt;strong&gt;systemd-boot&lt;/strong&gt; na &lt;strong&gt;EFI particiju&lt;/strong&gt;. To se odvija automatski, osim ako ste odabrali ručno particioniranje. U tom slučaju to ćete morati odabrati ili kreirati sami.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="87"/>
         <source>This system was started with a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from a BIOS environment, this installer must install a boot loader, like &lt;strong&gt;GRUB&lt;/strong&gt;, either at the beginning of a partition or on the &lt;strong&gt;Master Boot Record&lt;/strong&gt; near the beginning of the partition table (preferred). This is automatic, unless you choose manual partitioning, in which case you must set it up on your own.</source>
-        <translation>Ovaj sustav koristi &lt;strong&gt;BIOS&lt;/strong&gt; okruženje za pokretanje.&lt;br&gt;&lt;br&gt;Za konfiguriranje pokretanja iz BIOS okruženja, ovaj instalacijski program mora uvesti aplikaciju za pokretanje sustava, kao što je &lt;strong&gt;GRUB&lt;/strong&gt;, ili na početku particije ili na &lt;strong&gt;Master Boot Record&lt;/strong&gt; blizu početka na particiji (preporučen način). To se odvija automatski, osim ako ste odabrali ručno particioniranje. U tom slučaju to ćete morati napraviti sami.</translation>
+        <translation>Ovaj sustav koristi &lt;strong&gt;BIOS&lt;/strong&gt; okruženje.&lt;br&gt;&lt;br&gt;Za konfiguriranje pokretanja iz BIOS okruženja, ovaj instalacijski program mora uvesti boot loader aplikaciju, kao što je &lt;strong&gt;GRUB&lt;/strong&gt;, ili na početku particije ili na &lt;strong&gt;Master Boot Record&lt;/strong&gt; blizu početka na particiji (preporučen način). To se odvija automatski, osim ako ste odabrali ručno particioniranje. U tom slučaju to ćete morati napraviti sami.</translation>
     </message>
 </context>
 <context>
@@ -60,7 +60,7 @@
     <message>
         <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="76"/>
         <source>Boot Partition</source>
-        <translation>Particija podizanja sustava</translation>
+        <translation>Boot particija</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="81"/>
@@ -70,7 +70,7 @@
     <message>
         <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="111"/>
         <source>Do not install a boot loader</source>
-        <translation>Nemoj instalirati pokretač sustava</translation>
+        <translation>Nemoj instalirati boot loader</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="125"/>
@@ -398,7 +398,7 @@ Installer će izaći i sve promjene će biti izgubljene.</translation>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="808"/>
         <source>Boot loader location:</source>
-        <translation>Lokacija pokretača sustava:</translation>
+        <translation>Boot loader lokacija:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="755"/>
@@ -822,12 +822,12 @@ Installer će izaći i sve promjene će biti izgubljene.</translation>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="131"/>
         <source>&lt;br&gt;&lt;br&gt;This is the recommended partition table type for modern systems which start from an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.</source>
-        <translation>&lt;br&gt;&lt;br&gt;To je preporučeni tip particijske tablice za moderne sustave koji se koristi od &lt;strong&gt; EFI &lt;/strong&gt; okruženja za pokretanje.</translation>
+        <translation>&lt;br&gt;&lt;br&gt;To je preporučeni tip particijske tablice za moderne sustave koji se koristi od &lt;strong&gt; EFI &lt;/strong&gt; boot okruženje.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="137"/>
         <source>&lt;br&gt;&lt;br&gt;This partition table type is only advisable on older systems which start from a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment. GPT is recommended in most other cases.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Warning:&lt;/strong&gt; the MBR partition table is an obsolete MS-DOS era standard.&lt;br&gt;Only 4 &lt;em&gt;primary&lt;/em&gt; partitions may be created, and of those 4, one can be an &lt;em&gt;extended&lt;/em&gt; partition, which may in turn contain many &lt;em&gt;logical&lt;/em&gt; partitions.</source>
-        <translation>&lt;br&gt;&lt;br&gt;Ovaj oblik particijske tablice je preporučen samo za starije sustave počevši od &lt;strong&gt;BIOS&lt;/strong&gt; okruženja za pokretanje. GPT je preporučen u većini ostalih slučaja. &lt;br&gt;&lt;br&gt;&lt;strong&gt;Upozorenje:&lt;/strong&gt; MBR particijska tablica je zastarjela iz doba MS-DOS standarda.&lt;br&gt;Samo 4 &lt;em&gt;primarne&lt;/em&gt; particije se mogu kreirati i od tih 4, jedna može biti &lt;em&gt;proširena&lt;/em&gt; particija, koja može sadržavati mnogo &lt;em&gt;logičkih&lt;/em&gt; particija.</translation>
+        <translation>&lt;br&gt;&lt;br&gt;Ovaj oblik particijske tablice je preporučen samo za starije sustave počevši od &lt;strong&gt;BIOS&lt;/strong&gt; boot okruženja. GPT je preporučen u većini ostalih slučaja. &lt;br&gt;&lt;br&gt;&lt;strong&gt;Upozorenje:&lt;/strong&gt; MBR particijska tablica je zastarjela iz doba MS-DOS standarda.&lt;br&gt;Samo 4 &lt;em&gt;primarne&lt;/em&gt; particije se mogu kreirati i od tih 4, jedna može biti &lt;em&gt;proširena&lt;/em&gt; particija, koja može sadržavati mnogo &lt;em&gt;logičkih&lt;/em&gt; particija.</translation>
     </message>
 </context>
 <context>
@@ -916,7 +916,7 @@ Installer će izaći i sve promjene će biti izgubljene.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="142"/>
         <source>Install boot loader on &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation>Instaliraj pokretač sustava na &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+        <translation>Instaliraj boot loader &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="152"/>
@@ -1428,7 +1428,7 @@ Installer će izaći i sve promjene će biti izgubljene.</translation>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="145"/>
         <source>Install boot &amp;loader on:</source>
-        <translation>Instaliraj &amp;pokretač sustava na:</translation>
+        <translation>Instaliraj boot &amp;loader na:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="147"/>
