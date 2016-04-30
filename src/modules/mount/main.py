@@ -40,11 +40,19 @@ def mount_partitions(root_mount_point, partitions):
         if fstype == "fat16" or fstype == "fat32":
             fstype = "vfat"
 
-        libcalamares.utils.mount(partition["device"],
-                                 mount_point,
-                                 fstype,
-                                 partition.get("options", ""),
-                                 )
+        if partition["luksMapperName"]:
+            libcalamares.utils.mount(partition["luksMapperName"],
+                                     mount_point,
+                                     fstype,
+                                     partition.get("options", ""),
+                                     )
+
+        else:
+            libcalamares.utils.mount(partition["device"],
+                                     mount_point,
+                                     fstype,
+                                     partition.get("options", ""),
+                                     )
 
 
 def run():
