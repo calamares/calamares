@@ -186,7 +186,8 @@ void
 RequirementsChecker::setConfigurationMap( const QVariantMap& configurationMap )
 {
     if ( configurationMap.contains( "requiredStorage" ) &&
-         configurationMap.value( "requiredStorage" ).type() == QVariant::Double )
+         ( configurationMap.value( "requiredStorage" ).type() == QVariant::Double ||
+           configurationMap.value( "requiredStorage" ).type() == QVariant::Int ) )
     {
         bool ok = false;
         m_requiredStorageGB = configurationMap.value( "requiredStorage" ).toDouble( &ok );
@@ -201,7 +202,8 @@ RequirementsChecker::setConfigurationMap( const QVariantMap& configurationMap )
     }
 
     if ( configurationMap.contains( "requiredRam" ) &&
-         configurationMap.value( "requiredRam" ).type() == QVariant::Double )
+         ( configurationMap.value( "requiredRam" ).type() == QVariant::Double ||
+           configurationMap.value( "requiredRam" ).type() == QVariant::Int ) )
     {
         bool ok = false;
         m_requiredRamGB = configurationMap.value( "requiredRam" ).toDouble( &ok );
