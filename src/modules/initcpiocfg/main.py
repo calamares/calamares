@@ -88,6 +88,7 @@ def modify_mkinitcpio_conf(partitions, root_mount_point):
     btrfs = ""
     hooks = ["base", "udev", "autodetect", "modconf", "block", "keyboard", "keymap"]
     modules = []
+    encrypt_hook = False
 
     # It is important that the plymouth hook comes before any encrypt hook
     plymouth_bin = os.path.join(root_mount_point, "usr/bin/plymouth")
@@ -100,6 +101,12 @@ def modify_mkinitcpio_conf(partitions, root_mount_point):
 
         if partition["fs"] == "btrfs":
             btrfs = "yes"
+
+        if partition["mountPoint"] == "/" and partition["luksMapperName"]:
+            encrypt_hook = True
+
+    if encrypt_hook:
+        hooks.append("encrypt")
 
     if swap_uuid is not "":
         hooks.extend(["resume", "filesystems"])
