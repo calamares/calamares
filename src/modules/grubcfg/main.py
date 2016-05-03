@@ -44,11 +44,20 @@ def modify_grub_default(partitions, root_mount_point, distributor):
     if plymouth_bin == 0:
         use_splash = "splash"
 
+    cryptdevice_params = []
+
     for partition in partitions:
         if partition["fs"] == "linuxswap":
             swap_uuid = partition["uuid"]
 
+        if partition["mountPoint"] == "/" and partition["luksMapperName"]:
+            cryptdevice_params = ["cryptdevice=UUID={!s}:{!s}".format(partition["uuid"], partition["luksMapperName"])]
+            cryptdevice_params.append("root=/dev/mapper/{!s}".format(partition["luksMapperName"]))
+
     kernel_params = ["quiet"]
+
+    if cryptdevice_params:
+        kernel_params.extend(cryptdevice_params)
 
     if use_splash:
         kernel_params.append(use_splash)
