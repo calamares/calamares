@@ -230,6 +230,8 @@ def install_grub(efi_directory, fw_type):
                                "--force",
                                boot_loader["installPath"]])
 
+    # The file specified in grubCfg should already be filled out
+    # by the grubcfg job module.
     check_target_env_call([libcalamares.job.configuration["grubMkconfig"],
                            "-o",
                            libcalamares.job.configuration["grubCfg"]])
