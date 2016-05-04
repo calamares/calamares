@@ -89,12 +89,31 @@ def create_systemd_boot_conf(uuid, conf_path, kernel_line):
     distribution = get_bootloader_entry_name()
     kernel = libcalamares.job.configuration["kernel"]
     img = libcalamares.job.configuration["img"]
+    kernel_params = ["quiet"]
+
     partitions = libcalamares.globalstorage.value("partitions")
-    swap = ""
+    swap_uuid = ""
+
+    cryptdevice_params = []
 
     for partition in partitions:
         if partition["fs"] == "linuxswap":
-            swap = partition["uuid"]
+            swap_uuid = partition["uuid"]
+
+        if partition["mountPoint"] == "/" and partition["luksMapperName"]:
+            cryptdevice_params = [
+                "cryptdevice=UUID={!s}:{!s}".format(partition["uuid"],
+                                                    partition["luksMapperName"]),
+                "root=/dev/mapper/{!s}".format(partition["luksMapperName"])
+            ]
+
+    if cryptdevice_params:
+        kernel_params.extend(cryptdevice_params)
+    else:
+        kernel_params.append("root=UUID={!s}".format(uuid))
+
+    if swap_uuid:
+        kernel_params.append("resume=UUID={!s}".format(swap_uuid))
 
     lines = [
         '## This is just an example config file.\n',
@@ -103,7 +122,7 @@ def create_systemd_boot_conf(uuid, conf_path, kernel_line):
         "title   {!s}{!s}\n".format(distribution, kernel_line),
         "linux   {!s}\n".format(kernel),
         "initrd  {!s}\n".format(img),
-        "options root=UUID={!s} quiet resume=UUID={!s} rw\n".format(uuid, swap),
+        "options {!s} rw\n".format(" ".join(kernel_params)),
     ]
 
     with open(conf_path, 'w') as f:
