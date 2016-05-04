@@ -51,8 +51,11 @@ def modify_grub_default(partitions, root_mount_point, distributor):
             swap_uuid = partition["uuid"]
 
         if partition["mountPoint"] == "/" and partition["luksMapperName"]:
-            cryptdevice_params = ["cryptdevice=UUID={!s}:{!s}".format(partition["uuid"], partition["luksMapperName"])]
-            cryptdevice_params.append("root=/dev/mapper/{!s}".format(partition["luksMapperName"]))
+            cryptdevice_params = [
+                "cryptdevice=UUID={!s}:{!s}".format(partition["uuid"],
+                                                    partition["luksMapperName"]),
+                "root=/dev/mapper/{!s}".format(partition["luksMapperName"])
+            ]
 
     kernel_params = ["quiet"]
 
