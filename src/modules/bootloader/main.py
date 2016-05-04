@@ -157,7 +157,6 @@ def install_systemd_boot(efi_directory):
     print("Bootloader: systemd-boot")
     install_path = libcalamares.globalstorage.value("rootMountPoint")
     install_efi_directory = install_path + efi_directory
-    fallback_kernel_line = libcalamares.job.configuration["fallbackKernelLine"]
     uuid = get_uuid()
     distribution = get_bootloader_entry_name()
     file_name_sanitizer = str.maketrans(" /", "_-")
