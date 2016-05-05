@@ -15,6 +15,7 @@ find_package( KPMcore 2.1 REQUIRED )
 add_subdirectory( tests )
 
 include_directories( ${PROJECT_BINARY_DIR}/src/libcalamaresui )
+include_directories( ${KPMCORE_INCLUDE_DIR} )
 
 calamares_add_plugin( partition
     TYPE viewmodule
