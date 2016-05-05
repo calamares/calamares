@@ -98,7 +98,7 @@ mapForPartition( Partition* partition, const QString& uuid )
         const FS::luks* luksFs = dynamic_cast< const FS::luks* >( &fsRef );
         if ( luksFs )
         {
-            map[ "luksMapperName" ] = luksFs->suggestedMapperName( partition->partitionPath() );
+            map[ "luksMapperName" ] = luksFs->mapperName( partition->partitionPath() );
             map[ "luksUuid" ] = getLuksUuid( partition->partitionPath() );
             cDebug() << "luksMapperName:" << map[ "luksMapperName" ];
         }
