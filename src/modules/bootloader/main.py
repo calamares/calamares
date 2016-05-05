@@ -100,7 +100,7 @@ def create_systemd_boot_conf(uuid, conf_path, kernel_line):
         if partition["fs"] == "linuxswap":
             swap_uuid = partition["uuid"]
 
-        if partition["mountPoint"] == "/" and partition["isLuks"]:
+        if partition["mountPoint"] == "/" and "luksMapperName" in partition:
             cryptdevice_params = [
                 "cryptdevice=UUID={!s}:{!s}".format(partition["luksUuid"],
                                                     partition["luksMapperName"]),
