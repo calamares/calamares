@@ -87,7 +87,6 @@ mapForPartition( Partition* partition, const QString& uuid )
     map[ "mountPoint" ] = PartitionInfo::mountPoint( partition );
     map[ "fs" ] = partition->fileSystem().name();
     map[ "uuid" ] = uuid;
-    map[ "isLuks" ] = false;
     cDebug() << partition->partitionPath()
              << "mtpoint:" << PartitionInfo::mountPoint( partition )
              << "fs:" << partition->fileSystem().name()
@@ -101,7 +100,6 @@ mapForPartition( Partition* partition, const QString& uuid )
         {
             map[ "luksMapperName" ] = luksFs->suggestedMapperName( partition->partitionPath() );
             map[ "luksUuid" ] = getLuksUuid( partition->partitionPath() );
-            map[ "isLuks" ] = true;
             cDebug() << "luksMapperName:" << map[ "luksMapperName" ];
         }
     }
