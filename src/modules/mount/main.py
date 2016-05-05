@@ -42,7 +42,7 @@ def mount_partitions(root_mount_point, partitions):
 
         if "luksMapperName" in partition:
             libcalamares.utils.debug("about to mount {!s}".format(partition["luksMapperName"]))
-            libcalamares.utils.mount(partition["luksMapperName"],
+            libcalamares.utils.mount("/dev/mapper/{!s}".format(partition["luksMapperName"]),
                                      mount_point,
                                      fstype,
                                      partition.get("options", ""),
