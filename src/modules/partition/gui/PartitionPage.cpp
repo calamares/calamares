@@ -54,6 +54,7 @@
 PartitionPage::PartitionPage( PartitionCoreModule* core, QWidget* parent )
     : QWidget( parent )
     , m_ui( new Ui_PartitionPage )
+    , m_lastSelectedBootLoaderIndex(-1)
     , m_core( core )
 {
     m_ui->setupUi( this );
@@ -73,6 +74,11 @@ PartitionPage::PartitionPage( PartitionCoreModule* core, QWidget* parent )
              [ this ]( const QString& /* text */ )
     {
         updateFromCurrentDevice();
+    } );
+    connect( m_ui->bootLoaderComboBox, static_cast<void(QComboBox::*)(const QString &)>(&QComboBox::activated),
+                [ this ]( const QString& /* text */ )
+    {
+        m_lastSelectedBootLoaderIndex = m_ui->bootLoaderComboBox->currentIndex();
     } );
 
     connect( m_ui->bootLoaderComboBox, &QComboBox::currentTextChanged,
@@ -94,7 +100,7 @@ PartitionPage::PartitionPage( PartitionCoreModule* core, QWidget* parent )
         m_ui->bootLoaderComboBox->hide();
         m_ui->label_3->hide();
     }
-    
+
     CALAMARES_RETRANSLATE( m_ui->retranslateUi( this ); )
 }
 
@@ -152,6 +158,9 @@ PartitionPage::onNewPartitionTableClicked()
         m_core->createPartitionTable( device, type );
     }
     delete dlg;
+    // PartionModelReset isn't emmited after createPartitionTable, so we have to manually update
+    // the bootLoader index after the reset.
+    updateBootLoaderIndex();
 }
 
 void
@@ -188,6 +197,7 @@ PartitionPage::onEditClicked()
         updatePartitionToCreate( model->device(), partition );
     else
         editExistingPartition( model->device(), partition );
+
 }
 
 void
@@ -217,7 +227,12 @@ PartitionPage::onRevertClicked()
             m_ui->deviceComboBox->setCurrentIndex( oldIndex );
             updateFromCurrentDevice();
         } ),
-        []{},
+        [ this ]{
+            m_lastSelectedBootLoaderIndex = -1;
+            if( !m_ui->bootLoaderComboBox->currentIndex() >= 0 ) {
+                m_ui->bootLoaderComboBox->setCurrentIndex( 0 );
+            }
+        },
         this );
 }
 
@@ -336,4 +351,14 @@ PartitionPage::onPartitionModelReset()
 {
     m_ui->partitionTreeView->expandAll();
     updateButtons();
+    updateBootLoaderIndex();
+}
+
+void
+PartitionPage::updateBootLoaderIndex()
+{
+    // set bootloader back to user selected index
+    if ( m_lastSelectedBootLoaderIndex >= 0 && m_ui->bootLoaderComboBox->count() ) {
+        m_ui->bootLoaderComboBox->setCurrentIndex( m_lastSelectedBootLoaderIndex );
+    }
 }
