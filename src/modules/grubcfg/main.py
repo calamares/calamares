@@ -135,6 +135,9 @@ def modify_grub_default(partitions, root_mount_point, distributor):
     if not have_distributor_line:
         lines.append(distributor_line)
 
+    if cryptdevice_params:
+        lines.append("GRUB_ENABLE_CRYPTODISK=y")
+
     with open(default_grub, 'w') as grub_file:
         grub_file.write("\n".join(lines) + "\n")
 
