@@ -159,7 +159,7 @@ ChoicePage::init( PartitionCoreModule* core )
              this, &ChoicePage::applyDeviceChoice );
 
     connect( m_encryptWidget, &EncryptWidget::stateChanged,
-             this, &ChoicePage::updateNextEnabled );
+             this, &ChoicePage::onEncryptWidgetStateChanged );
 
     ChoicePage::applyDeviceChoice();
 }
@@ -368,14 +368,14 @@ ChoicePage::applyActionChoice( ChoicePage::Choice choice )
             } ),
             [ = ]
             {
-                PartitionActions::doAutopartition( m_core, selectedDevice() );
+                PartitionActions::doAutopartition( m_core, selectedDevice(), m_encryptWidget->passphrase() );
                 emit deviceChosen();
             },
             this );
         }
         else
         {
-            PartitionActions::doAutopartition( m_core, selectedDevice() );
+            PartitionActions::doAutopartition( m_core, selectedDevice(), m_encryptWidget->passphrase() );
             emit deviceChosen();
         }
 
@@ -471,6 +471,20 @@ ChoicePage::doAlongsideSetupSplitter( const QModelIndex& current,
         setupEfiSystemPartitionSelector();
 
     cDebug() << "Partition selected for Alongside.";
+}
+
+
+void
+ChoicePage::onEncryptWidgetStateChanged()
+{
+    EncryptWidget::State state = m_encryptWidget->state();
+    if ( m_choice == Erase )
+    {
+        if ( state == EncryptWidget::EncryptionConfirmed ||
+             state == EncryptWidget::EncryptionDisabled )
+            applyActionChoice( m_choice );
+    }
+    updateNextEnabled();
 }
 
 
