@@ -1,0 +1,67 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+#
+# === This file is part of Calamares - <http://github.com/calamares> ===
+#
+#   Copyright 2016, Teo Mrnjavac <teo@kde.org>
+#
+#   Calamares is free software: you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation, either version 3 of the License, or
+#   (at your option) any later version.
+#
+#   Calamares is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
+
+import libcalamares
+
+from libcalamares.utils import check_target_env_call
+
+
+def run():
+    """
+    This module sets up a file crypto_keyfile.bin on the rootfs, assuming the rootfs
+    is LUKS encrypted and a passphrase is provided. This file is then included in the
+    initramfs and used for unlocking the rootfs from a previously unlocked GRUB2
+    session.
+    :return:
+    """
+
+    partitions = libcalamares.globalstorage.value("partitions")
+
+    luks_device = ""
+    luks_passphrase = ""
+
+    for partition in partitions:
+        if partition["mountPoint"] == "/" and "luksMapperName" in partition:
+            luks_device = partition["device"]
+            luks_passphrase = partition["luksPassphrase"]
+
+    if not luks_device:
+        return None
+
+    if not luks_passphrase:
+        return ("Encrypted rootfs setup error",
+                "Rootfs partition {!s} is LUKS but no passphrase found.".format(luks_device))
+
+    # Generate random keyfile
+    check_target_env_call(["dd",
+                           "bs=512",
+                           "count=4",
+                           "if=/dev/urandom",
+                           "of=/crypto_keyfile.bin"])
+    check_target_env_call(["cryptsetup",
+                           "luksAddKey",
+                           luks_device,
+                           "/crypto_keyfile.bin"],
+                          luks_passphrase)
+    check_target_env_call(["chmod",
+                           "g-rwx,o-rwx",
+                           "/crypto_keyfile.bin"])
+
+    return None
