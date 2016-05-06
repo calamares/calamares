@@ -22,7 +22,6 @@
 import libcalamares
 import os
 from collections import OrderedDict
-from libcalamares.utils import check_target_env_call
 
 
 def cpuinfo():
@@ -36,8 +35,8 @@ def cpuinfo():
 
     nprocs = 0
 
-    with open('/proc/cpuinfo') as f:
-        for line in f:
+    with open('/proc/cpuinfo') as cpuinfo_file:
+        for line in cpuinfo_file:
             if not line.strip():
                 # end of one processor
                 cpu_info["proc{!s}".format(nprocs)] = procinfo
@@ -53,11 +52,12 @@ def cpuinfo():
     return cpu_info
 
 
-def set_mkinitcpio_hooks_and_modules(hooks, modules, root_mount_point):
+def write_mkinitcpio_lines(hooks, modules, files, root_mount_point):
     """ Set up mkinitcpio.conf.
 
     :param hooks:
     :param modules:
+    :param files:
     :param root_mount_point:
     """
     with open("/etc/mkinitcpio.conf", "r") as mkinitcpio_file:
@@ -70,6 +70,9 @@ def set_mkinitcpio_hooks_and_modules(hooks, modules, root_mount_point):
         elif mklins[i].startswith("MODULES"):
             joined_modules = ' '.join(modules)
             mklins[i] = "MODULES=\"{!s}\"".format(joined_modules)
+        elif mklins[i].startswith("FILES"):
+            joined_files = ' '.join(files)
+            mklins[i] = "FILES=\"{!s}\"".format(joined_files)
 
     path = os.path.join(root_mount_point, "etc/mkinitcpio.conf")
 
@@ -88,6 +91,7 @@ def modify_mkinitcpio_conf(partitions, root_mount_point):
     btrfs = ""
     hooks = ["base", "udev", "autodetect", "modconf", "block", "keyboard", "keymap"]
     modules = []
+    files = []
     encrypt_hook = False
 
     # It is important that the plymouth hook comes before any encrypt hook
@@ -107,6 +111,8 @@ def modify_mkinitcpio_conf(partitions, root_mount_point):
 
     if encrypt_hook:
         hooks.append("encrypt")
+        if os.path.isfile(os.path.join(root_mount_point, "crypto_keyfile.bin")):
+            files.append("/crypto_keyfile.bin")
 
     if swap_uuid is not "":
         hooks.extend(["resume", "filesystems"])
@@ -120,7 +126,7 @@ def modify_mkinitcpio_conf(partitions, root_mount_point):
     else:
         hooks.append("fsck")
 
-    set_mkinitcpio_hooks_and_modules(hooks, modules, root_mount_point)
+    write_mkinitcpio_lines(hooks, modules, files, root_mount_point)
 
 
 def run():
