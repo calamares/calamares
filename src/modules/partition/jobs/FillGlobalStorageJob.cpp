@@ -100,6 +100,7 @@ mapForPartition( Partition* partition, const QString& uuid )
         {
             map[ "luksMapperName" ] = luksFs->mapperName( partition->partitionPath() ).split( "/" ).last();
             map[ "luksUuid" ] = getLuksUuid( partition->partitionPath() );
+            map[ "luksPassphrase" ] = luksFs->passphrase();
             cDebug() << "luksMapperName:" << map[ "luksMapperName" ];
         }
     }
