@@ -554,7 +554,7 @@ Installer će izaći i sve promjene će biti izgubljene.</translation>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="89"/>
         <source>Fi&amp;le System:</source>
-        <translation>D&amp;atotečni sustav:</translation>
+        <translation>Da&amp;totečni sustav:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="181"/>
@@ -878,7 +878,7 @@ Installer će izaći i sve promjene će biti izgubljene.</translation>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="132"/>
         <source>Fi&amp;le System:</source>
-        <translation>D&amp;atotečni sustav:</translation>
+        <translation>Da&amp;totečni sustav:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="145"/>
@@ -891,22 +891,22 @@ Installer će izaći i sve promjene će biti izgubljene.</translation>
     <message>
         <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>Oblik</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="20"/>
         <source>En&amp;crypt system</source>
-        <translation type="unfinished"/>
+        <translation>Ši&amp;friraj sustav</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="30"/>
         <source>Passphrase</source>
-        <translation type="unfinished"/>
+        <translation>Šifra</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="40"/>
         <source>Confirm passphrase</source>
-        <translation type="unfinished"/>
+        <translation>Potvrdi šifru</translation>
     </message>
 </context>
 <context>
@@ -1013,7 +1013,7 @@ Installer će izaći i sve promjene će biti izgubljene.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="115"/>
         <source>The installer failed to update partition table on disk &apos;%1&apos;.</source>
-        <translation>Instalacijski program nije uspio nadograditi particijsku tablicu na disku %1.</translation>
+        <translation>Instalacijski program nije uspio nadograditi particijsku tablicu na disku &apos;%1&apos;.</translation>
     </message>
 </context>
 <context>
@@ -1578,7 +1578,7 @@ Installer će izaći i sve promjene će biti izgubljene.</translation>
     <message>
         <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="201"/>
         <source>swap</source>
-        <translation type="unfinished"/>
+        <translation>swap</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="49"/>
