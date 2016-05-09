@@ -112,11 +112,12 @@ void
 PartitionCoreModule::init()
 {
     CoreBackend* backend = CoreBackendManager::self()->backend();
-    auto devices = backend->scanDevices( true );
+    QList< Device* > devices = backend->scanDevices( true );
 
     // Remove the device which contains / from the list
-    for ( auto it = devices.begin(); it != devices.end(); )
-        if ( hasRootPartition( *it ) )
+    for ( QList< Device* >::iterator it = devices.begin(); it != devices.end(); )
+        if ( hasRootPartition( *it ) ||
+             (*it)->deviceNode().startsWith( "/dev/zram") )
             it = devices.erase( it );
         else
             ++it;
