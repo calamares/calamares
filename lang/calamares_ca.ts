@@ -891,22 +891,22 @@ L&apos;instal·lador es tancarà i tots els canvis es perdran.</translation>
     <message>
         <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>Formulari</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="20"/>
         <source>En&amp;crypt system</source>
-        <translation type="unfinished"/>
+        <translation>En&amp;cripta el sistema</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="30"/>
         <source>Passphrase</source>
-        <translation type="unfinished"/>
+        <translation>Contrasenya:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="40"/>
         <source>Confirm passphrase</source>
-        <translation type="unfinished"/>
+        <translation>Confirmeu la contrasenya</translation>
     </message>
 </context>
 <context>
@@ -1578,7 +1578,7 @@ L&apos;instal·lador es tancarà i tots els canvis es perdran.</translation>
     <message>
         <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="201"/>
         <source>swap</source>
-        <translation type="unfinished"/>
+        <translation>Intercanvi</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="49"/>
