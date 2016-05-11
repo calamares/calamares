@@ -36,38 +36,6 @@ Modules:
  * squashfs-tools
  * rsync
 
-
-### Deployment
-[__Setting up branding__](https://github.com/calamares/calamares/blob/master/src/branding/README.md)
-
-[__Working with modules__](https://github.com/calamares/calamares/blob/master/src/modules/README.md)
-
-
 ### Building
-Clone Calamares from GitHub and `cd` into the calamares directory, then:
-```
-$ git submodule init
-$ git submodule update
-$ mkdir build
-$ cd build
-$ cmake -DCMAKE_BUILD_TYPE=Debug ..
-$ make
-```
 
-#### Supported variables for CMake
- * `WITH_PYTHON` - if this is set to false, the Python module interface will not be built. Default is true.
- * `SKIP_MODULES` - takes a space-separated list of module names that should not be built even if present in `src/modules` (e.g. `cmake -DSKIP_MODULES="partition mount umount welcome" ..`). Default is empty.
-
-### Design Notes
-Calamares is currently split as follows:
- 1. __libcalamares__ - The back-end library.
-   * Only depends on QtCore, yaml-cpp, Python and Boost.Python.
-   * Provides a job queue and generic jobs.
-   * Comes with 3 job interfaces: C++, Python and process (the latter is very limited).
- 2. __libcalamaresui__ - The front-end library.
-   * Same dependencies as libcalamares, plus QtWidgets and other Qt modules.
-   * Comes with a module loading system, for different kinds of plugins.
-   * Supports branding components.
-   * Presents a bunch of pages in a scripted order, enqueues jobs in the back-end library.
- 3. __calamares__ - The main executable.
-   * A thin wrapper around libcalamaresui; starts up and plugs together all the parts.
+See [wiki](https://github.com/calamares/calamares/wiki) for up to date building and deployment instructions.
