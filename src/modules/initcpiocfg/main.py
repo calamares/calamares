@@ -106,7 +106,7 @@ def modify_mkinitcpio_conf(partitions, root_mount_point):
         if partition["fs"] == "btrfs":
             btrfs = "yes"
 
-        if partition["mountPoint"] == "/" and partition["luksMapperName"]:
+        if partition["mountPoint"] == "/" and "luksMapperName" in partition:
             encrypt_hook = True
 
     if encrypt_hook:
