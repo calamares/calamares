@@ -178,7 +178,9 @@ PartitionCoreModule::createImmutableDeviceCopy( Device* device )
 {
     CoreBackend* backend = CoreBackendManager::self()->backend();
 
-    Device* deviceBefore = backend->scanDevice( device->deviceNode() );
+    QString node = device->deviceNode();
+    cDebug() << "Creating immutable copy for node:" << node;
+    Device* deviceBefore = backend->scanDevice( node );
     return deviceBefore;
 }
 
