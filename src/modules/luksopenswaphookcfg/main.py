@@ -21,6 +21,7 @@
 import libcalamares
 import os.path
 
+
 def write_openswap_conf(partitions, root_mount_point, openswap_conf_path):
     swap_outer_uuid = ""
     swap_mapper_name = ""
@@ -71,4 +72,7 @@ def run():
     root_mount_point = libcalamares.globalstorage.value("rootMountPoint")
     openswap_conf_path = libcalamares.job.configuration["configFilePath"]
     partitions = libcalamares.globalstorage.value("partitions")
+
+    openswap_conf_path = openswap_conf_path.lstrip('/')
+
     return write_openswap_conf(partitions, root_mount_point, openswap_conf_path)
