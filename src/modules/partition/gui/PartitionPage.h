@@ -60,8 +60,10 @@ private:
     void editExistingPartition( Device*, Partition* );
     void updateBootLoaderInstallPath();
     void updateFromCurrentDevice();
+    void updateBootLoaderIndex();
 
     QMutex m_revertMutex;
+    int    m_lastSelectedBootLoaderIndex;
 };
 
 #endif // PARTITIONPAGE_H
