@@ -34,20 +34,25 @@ def run():
 
     partitions = libcalamares.globalstorage.value("partitions")
 
-    luks_device = ""
-    luks_passphrase = ""
+    luks_root_device = ""
+    luks_root_passphrase = ""
+
+    additional_luks_devices = []
 
     for partition in partitions:
         if partition["mountPoint"] == "/" and "luksMapperName" in partition:
-            luks_device = partition["device"]
-            luks_passphrase = partition["luksPassphrase"]
+            luks_root_device = partition["device"]
+            luks_root_passphrase = partition["luksPassphrase"]
+        elif "luksMapperName" in partition:
+            additional_luks_devices.append((partition["device"],
+                                            partition["luksPassphrase"]))
 
-    if not luks_device:
+    if not luks_root_device:
         return None
 
-    if not luks_passphrase:
+    if not luks_root_passphrase:
         return ("Encrypted rootfs setup error",
-                "Rootfs partition {!s} is LUKS but no passphrase found.".format(luks_device))
+                "Rootfs partition {!s} is LUKS but no passphrase found.".format(luks_root_device))
 
     # Generate random keyfile
     check_target_env_call(["dd",
@@ -55,11 +60,20 @@ def run():
                            "count=4",
                            "if=/dev/urandom",
                            "of=/crypto_keyfile.bin"])
+
     check_target_env_call(["cryptsetup",
                            "luksAddKey",
-                           luks_device,
+                           luks_root_device,
                            "/crypto_keyfile.bin"],
-                          luks_passphrase)
+                          luks_root_passphrase)
+
+    for additional_device in additional_luks_devices:
+        check_target_env_call(["cryptsetup",
+                               "luksAddKey",
+                               additional_device[0],
+                               "/crypto_keyfile.bin"],
+                              additional_device[1])
+
     check_target_env_call(["chmod",
                            "g-rwx,o-rwx",
                            "/crypto_keyfile.bin"])
