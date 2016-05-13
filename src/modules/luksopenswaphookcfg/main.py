@@ -69,5 +69,5 @@ def run():
     """
 
     openswap_conf_path = libcalamares.job.configuration["configFilePath"]
-    partitions = libcalamares.globalstorage.value["partitions"]
+    partitions = libcalamares.globalstorage.value("partitions")
     return write_openswap_conf(partitions, openswap_conf_path)
