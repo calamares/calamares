@@ -93,6 +93,7 @@ def modify_mkinitcpio_conf(partitions, root_mount_point):
     modules = []
     files = []
     encrypt_hook = False
+    openswap_hook = False
 
     # It is important that the plymouth hook comes before any encrypt hook
     plymouth_bin = os.path.join(root_mount_point, "usr/bin/plymouth")
@@ -102,6 +103,8 @@ def modify_mkinitcpio_conf(partitions, root_mount_point):
     for partition in partitions:
         if partition["fs"] == "linuxswap":
             swap_uuid = partition["uuid"]
+            if "luksMapperName" in partition:
+                openswap_hook = True
 
         if partition["fs"] == "btrfs":
             btrfs = "yes"
@@ -115,6 +118,8 @@ def modify_mkinitcpio_conf(partitions, root_mount_point):
             files.append("/crypto_keyfile.bin")
 
     if swap_uuid is not "":
+        if encrypt_hook and openswap_hook:
+            hooks.extend(["openswap"])
         hooks.extend(["resume", "filesystems"])
     else:
         hooks.extend(["filesystems"])
