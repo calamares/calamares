@@ -229,7 +229,7 @@ PartitionPage::onRevertClicked()
         } ),
         [ this ]{
             m_lastSelectedBootLoaderIndex = -1;
-            if( !m_ui->bootLoaderComboBox->currentIndex() >= 0 ) {
+            if( m_ui->bootLoaderComboBox->currentIndex() < 0 ) {
                 m_ui->bootLoaderComboBox->setCurrentIndex( 0 );
             }
         },
