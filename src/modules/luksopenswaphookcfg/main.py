@@ -19,9 +19,9 @@
 #   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
 
 import libcalamares
+import os.path
 
-
-def write_openswap_conf(partitions, openswap_conf_path):
+def write_openswap_conf(partitions, root_mount_point, openswap_conf_path):
     swap_outer_uuid = ""
     swap_mapper_name = ""
     mountable_keyfile_device = ""
@@ -40,7 +40,7 @@ def write_openswap_conf(partitions, openswap_conf_path):
     swap_device_path = "/dev/disk/by-uuid/{!s}".format(swap_outer_uuid)
 
     lines = []
-    with open(openswap_conf_path, 'r') as openswap_file:
+    with open(os.path.join(root_mount_point, openswap_conf_path), 'r') as openswap_file:
         lines = [x.strip() for x in openswap_file.readlines()]
 
     for i in range(len(lines)):
@@ -56,7 +56,7 @@ def write_openswap_conf(partitions, openswap_conf_path):
         elif lines[i].startswith("keyfile_filename"):
             lines[i] = "keyfile_filename=crypto_keyfile.bin"
 
-    with open(openswap_conf_path, 'w') as openswap_file:
+    with open(os.path.join(root_mount_point, openswap_conf_path), 'w') as openswap_file:
         openswap_file.write("\n".join(lines) + "\n")
 
     return None
@@ -68,6 +68,7 @@ def run():
     :return:
     """
 
+    root_mount_point = libcalamares.globalstorage.value("rootMountPoint")
     openswap_conf_path = libcalamares.job.configuration["configFilePath"]
     partitions = libcalamares.globalstorage.value("partitions")
-    return write_openswap_conf(partitions, openswap_conf_path)
+    return write_openswap_conf(partitions, root_mount_point, openswap_conf_path)
