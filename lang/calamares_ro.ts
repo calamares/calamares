@@ -491,17 +491,17 @@ Programul de instalare va ieși, iar toate modificările vor fi pierdute.</trans
 <context>
     <name>ClearMountsJob</name>
     <message>
-        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="44"/>
+        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="45"/>
         <source>Clear mounts for partitioning operations on %1</source>
         <translation>Eliminați montările pentru operațiunea de partiționare pe %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="52"/>
+        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="53"/>
         <source>Clearing mounts for partitioning operations on %1.</source>
         <translation>Se elimină montările pentru operațiunile de partiționare pe %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="171"/>
+        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="188"/>
         <source>Cleared all mounts for %1</source>
         <translation>S-au eliminat toate punctele de montare pentru %1</translation>
     </message>
@@ -1454,7 +1454,7 @@ Programul de instalare va ieși, iar toate modificările vor fi pierdute.</trans
         <translation>Instalează boot&amp;loaderul pe:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="147"/>
+        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="153"/>
         <source>Are you sure you want to create a new partition table on %1?</source>
         <translation>Sigur doriți să creați o nouă tabelă de partiție pe %1?</translation>
     </message>

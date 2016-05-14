@@ -491,17 +491,17 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
 <context>
     <name>ClearMountsJob</name>
     <message>
-        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="44"/>
+        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="45"/>
         <source>Clear mounts for partitioning operations on %1</source>
         <translation>Rimuovi i punti di mount per operazioni di partizionamento su %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="52"/>
+        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="53"/>
         <source>Clearing mounts for partitioning operations on %1.</source>
         <translation>Rimozione dei punti di mount per le operazioni di partizionamento su %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="171"/>
+        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="188"/>
         <source>Cleared all mounts for %1</source>
         <translation>Rimossi tutti i punti di mount per %1</translation>
     </message>
@@ -1454,7 +1454,7 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
         <translation>Installa il boot &amp;loader su:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="147"/>
+        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="153"/>
         <source>Are you sure you want to create a new partition table on %1?</source>
         <translation>Sei sicuro di voler creare una nuova tabella delle partizioni su %1?</translation>
     </message>

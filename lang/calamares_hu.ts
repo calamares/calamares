@@ -492,17 +492,17 @@ Telepítés nem folytatható. &lt;a href=&quot;#details&quot;&gt;Részletek...&l
 <context>
     <name>ClearMountsJob</name>
     <message>
-        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="44"/>
+        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="45"/>
         <source>Clear mounts for partitioning operations on %1</source>
         <translation>%1 csatolás törlése partícionáláshoz</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="52"/>
+        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="53"/>
         <source>Clearing mounts for partitioning operations on %1.</source>
         <translation>%1 csatolás törlése partícionáláshoz</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="171"/>
+        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="188"/>
         <source>Cleared all mounts for %1</source>
         <translation>%1 minden csatolása törölve</translation>
     </message>
@@ -1455,7 +1455,7 @@ Telepítés nem folytatható. &lt;a href=&quot;#details&quot;&gt;Részletek...&l
         <translation>&amp;Rendszerbetöltő telepítése ide:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="147"/>
+        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="153"/>
         <source>Are you sure you want to create a new partition table on %1?</source>
         <translation>Biztos vagy benne, hogy létrehozol egy új partíciós táblát itt %1 ?</translation>
     </message>

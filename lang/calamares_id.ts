@@ -493,17 +493,17 @@ Penginstalan dapat dilanjutkan, namun beberapa fitur akan ditiadakan.</translati
 <context>
     <name>ClearMountsJob</name>
     <message>
-        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="44"/>
+        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="45"/>
         <source>Clear mounts for partitioning operations on %1</source>
         <translation>Lepaskan semua kaitan untuk operasi pemartisian pada %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="52"/>
+        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="53"/>
         <source>Clearing mounts for partitioning operations on %1.</source>
         <translation>Melepas semua kaitan untuk operasi pemartisian pada %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="171"/>
+        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="188"/>
         <source>Cleared all mounts for %1</source>
         <translation>Semua kaitan dilepas untuk %1</translation>
     </message>
@@ -1456,7 +1456,7 @@ Penginstalan dapat dilanjutkan, namun beberapa fitur akan ditiadakan.</translati
         <translation>Pasang boot %loader pada:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="147"/>
+        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="153"/>
         <source>Are you sure you want to create a new partition table on %1?</source>
         <translation>Apakah Anda yakin ingin membuat tabel partisi baru pada %1?</translation>
     </message>
