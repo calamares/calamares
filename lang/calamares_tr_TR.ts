@@ -893,22 +893,22 @@ Kuruluma devam edebilirsiniz fakat bazı özellikler devre dışı kalabilir.</t
     <message>
         <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>Biçim</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="20"/>
         <source>En&amp;crypt system</source>
-        <translation type="unfinished"/>
+        <translation>Sistemi Şif&amp;rele</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="30"/>
         <source>Passphrase</source>
-        <translation type="unfinished"/>
+        <translation>Parola</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="40"/>
         <source>Confirm passphrase</source>
-        <translation type="unfinished"/>
+        <translation>Parolayı doğrula</translation>
     </message>
 </context>
 <context>
@@ -1580,7 +1580,7 @@ Kuruluma devam edebilirsiniz fakat bazı özellikler devre dışı kalabilir.</t
     <message>
         <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="201"/>
         <source>swap</source>
-        <translation type="unfinished"/>
+        <translation>Swap-Takas</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="49"/>
