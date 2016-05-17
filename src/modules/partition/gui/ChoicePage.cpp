@@ -465,12 +465,12 @@ ChoicePage::doAlongsideSetupSplitter( const QModelIndex& current,
                 Calamares::Branding::instance()->
                     string( Calamares::Branding::ProductName ) );
 
-    updateNextEnabled();
-
     if ( m_isEfi )
         setupEfiSystemPartitionSelector();
 
     cDebug() << "Partition selected for Alongside.";
+
+    updateNextEnabled();
 }
 
 
