@@ -850,6 +850,7 @@ ChoicePage::updateActionChoicePreview( ChoicePage::Choice choice )
                 m_selectLabel->hide();
             else
             {
+                m_encryptWidget->hide();
                 SelectionFilter filter = [ this ]( const QModelIndex& index )
                 {
                     return PartUtils::canBeReplaced( (Partition*)( index.data( PartitionModel::PartitionPtrRole ).value< void* >() ) );
