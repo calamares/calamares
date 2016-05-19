@@ -413,7 +413,7 @@ The installer will quit and all changes will be lost.</source>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="116"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="753"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="794"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="870"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="871"/>
         <source>Current:</source>
         <translation>Текущий:</translation>
     </message>
@@ -423,66 +423,66 @@ The installer will quit and all changes will be lost.</source>
         <translation>&lt;strong&gt;Выберите раздел для уменьшения, затем двигайте ползунок, изменяя размер&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="861"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="862"/>
         <source>&lt;strong&gt;Select a partition to install on&lt;/strong&gt;</source>
         <translation>&lt;strong&gt;Выберите раздел для установки&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="917"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="918"/>
         <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
         <translation>Не найдено системного раздела EFI. Пожалуйста, вернитесь назад и выполните ручную разметку %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="927"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="928"/>
         <source>The EFI system partition at %1 will be used for starting %2.</source>
         <translation>Системный раздел EFI на %1 будет использован для запуска %2.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="936"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="937"/>
         <source>EFI system partition:</source>
         <translation>Системный раздел EFI:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1021"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1022"/>
         <source>This storage device does not seem to have an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>Видимо, на этом устройстве нет операционной системы. Что Вы хотите сделать?&lt;br/&gt;Вы сможете изменить или подтвердить свой выбор до того, как на устройстве будут сделаны какие-либо изменения.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1026"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1066"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1090"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1128"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1027"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1067"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1091"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1129"/>
         <source>&lt;strong&gt;Erase disk&lt;/strong&gt;&lt;br/&gt;This will &lt;font color=&quot;red&quot;&gt;delete&lt;/font&gt; all data currently present on the selected storage device.</source>
         <translation>&lt;strong&gt;Стереть диск&lt;/strong&gt;&lt;br/&gt;Это &lt;font color=&quot;red&quot;&gt;удалит&lt;/font&gt; все данные, которые сейчас находятся на выбранном устройстве.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1055"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1056"/>
         <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>На этом устройстве есть %1. Что Вы хотите сделать?&lt;br/&gt;Вы сможете изменить или подтвердить свой выбор до того, как на устройстве будут сделаны какие-либо изменения.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1030"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1061"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1085"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1123"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1031"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1062"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1086"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1124"/>
         <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
         <translation>&lt;strong&gt;Установить рядом&lt;/strong&gt;&lt;br/&gt;Программа установки уменьшит раздел, чтобы освободить место для %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1035"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1071"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1094"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1132"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1036"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1072"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1095"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1133"/>
         <source>&lt;strong&gt;Replace a partition&lt;/strong&gt;&lt;br/&gt;Replaces a partition with %1.</source>
         <translation>&lt;strong&gt;Заменить раздел&lt;/strong&gt;&lt;br/&gt;Меняет раздел на %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1080"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1081"/>
         <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>На этом устройстве уже есть операционная система. Что Вы хотите сделать?&lt;br/&gt;Вы сможете изменить или подтвердить свой выбор до того, как на устройстве будут сделаны какие-либо изменения.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1118"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1119"/>
         <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>На этом устройстве есть несколько операционных систем. Что Вы хотите сделать?&lt;br/&gt;Вы сможете изменить или подтвердить свой выбор до того, как на устройстве будут сделаны какие-либо изменения.</translation>
     </message>
