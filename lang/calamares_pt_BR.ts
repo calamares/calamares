@@ -718,17 +718,17 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="83"/>
         <source>Cannot create sudoers file for writing.</source>
-        <translation>Impossível criar arquivo do superusuário para gravação.</translation>
+        <translation>Não foi possível criar arquivo do superusuário para gravação.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="91"/>
         <source>Cannot chmod sudoers file.</source>
-        <translation>Impossível alterar permissões do arquivo do superusuário.</translation>
+        <translation>Não foi possível alterar permissões do arquivo do superusuário.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="97"/>
         <source>Cannot open groups file for reading.</source>
-        <translation>Impossível abrir arquivos do grupo para leitura.</translation>
+        <translation>Não foi possível abrir arquivos do grupo para leitura.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="136"/>
@@ -1673,12 +1673,12 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="98"/>
         <source>has at least %1 GB available drive space</source>
-        <translation>tenha pelo menos %1 GB de espaço disponível no disco</translation>
+        <translation>tenha pelo menos %1 GB de espaço disponível no dispositivo</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="100"/>
         <source>There is not enough drive space. At least %1 GB is required.</source>
-        <translation>Não há espaço suficiente no disco. Pelo menos %1 GB é necessária.</translation>
+        <translation>Não há espaço suficiente no armazenamento. Pelo menos %1 GB é necessário.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="108"/>
@@ -1744,12 +1744,12 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="194"/>
         <source>Resize &lt;strong&gt;%2MB&lt;/strong&gt; partition &lt;strong&gt;%1&lt;/strong&gt; to &lt;strong&gt;%3MB&lt;/strong&gt;.</source>
-        <translation>Redimensionar &lt;strong&gt;%2MB&lt;/strong&gt; partição &lt;strong&gt;%1&lt;/strong&gt; para &lt;strong&gt;%3MB&lt;/strong&gt;.</translation>
+        <translation>Redimensionar &lt;strong&gt;%2MB&lt;/strong&gt; da partição &lt;strong&gt;%1&lt;/strong&gt; para &lt;strong&gt;%3MB&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="205"/>
         <source>Resizing %2MB partition %1 to %3MB.</source>
-        <translation>Redimensionando %2MB partição %1 para %3MB.</translation>
+        <translation>Redimensionando %2MB da partição %1 para %3MB.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="232"/>
@@ -1911,7 +1911,7 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="60"/>
         <source>rootMountPoint is %1</source>
-        <translation>Ponto de Montagem do root é %1</translation>
+        <translation>rootMountPoint é %1</translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="74"/>
@@ -1939,7 +1939,7 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
     <message>
         <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="72"/>
         <source>Bad path: %1</source>
-        <translation>Direcionamento ruim: %1</translation>
+        <translation>Caminho ruim: %1</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="86"/>
@@ -1959,7 +1959,7 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
     <message>
         <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="96"/>
         <source>Cannot open /etc/timezone for writing</source>
-        <translation>Impossível abrir /etc/timezone para gravação</translation>
+        <translation>Não foi possível abrir /etc/timezone para gravação</translation>
     </message>
 </context>
 <context>
