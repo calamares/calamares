@@ -86,7 +86,11 @@ CalamaresApplication::init()
     setWindowIcon( QIcon( Calamares::Branding::instance()->
                           imagePath( Calamares::Branding::ProductIcon ) ) );
 
+    cDebug() << "STARTUP: initQmlPath, initSettings, initBranding done";
+
     initModuleManager(); //also shows main window
+
+    cDebug() << "STARTUP: initModuleManager: module init started";
 }
 
 
@@ -328,7 +332,9 @@ CalamaresApplication::initModuleManager()
 void
 CalamaresApplication::initView()
 {
+    cDebug() << "STARTUP: initModuleManager: all modules init done";
     initJobQueue();
+    cDebug() << "STARTUP: initJobQueue done";
 
     m_mainwindow = new CalamaresWindow(); //also creates ViewManager
 
@@ -340,15 +346,19 @@ CalamaresApplication::initView()
     m_mainwindow->move(
         this->desktop()->availableGeometry().center() -
         m_mainwindow->rect().center() );
+
+    cDebug() << "STARTUP: CalamaresWindow created; loadModules started";
 }
 
 
 void
 CalamaresApplication::initViewSteps()
 {
+    cDebug() << "STARTUP: loadModules for all modules done";
     m_mainwindow->show();
     ProgressTreeModel* m = new ProgressTreeModel( this );
     ProgressTreeView::instance()->setModel( m );
+    cDebug() << "STARTUP: Window now visible and ProgressTreeView populated";
 }
 
 
