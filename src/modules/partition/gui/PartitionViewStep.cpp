@@ -56,9 +56,9 @@
 PartitionViewStep::PartitionViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
     , m_widget( new QStackedWidget() )
-    , m_core( new PartitionCoreModule( this ) )
+    , m_core( nullptr )
     , m_choicePage( nullptr )
-    , m_manualPartitionPage( new PartitionPage( m_core ) )
+    , m_manualPartitionPage( nullptr )
 {
     m_widget->setContentsMargins( 0, 0, 0, 0 );
 
@@ -73,7 +73,12 @@ PartitionViewStep::PartitionViewStep( QObject* parent )
 void
 PartitionViewStep::continueLoading()
 {
+    Q_ASSERT( !m_core );
     Q_ASSERT( !m_choicePage );
+    Q_ASSERT( !m_manualPartitionPage );
+
+    m_core = new PartitionCoreModule( this );
+    m_manualPartitionPage = new PartitionPage( m_core );
     m_choicePage = new ChoicePage();
 
     m_choicePage->init( m_core );
