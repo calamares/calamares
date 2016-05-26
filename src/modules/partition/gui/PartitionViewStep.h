@@ -44,8 +44,6 @@ public:
     explicit PartitionViewStep( QObject* parent = 0 );
     virtual ~PartitionViewStep();
 
-    void continueLoading();
-
     QString prettyName() const override;
     QWidget* createSummaryWidget() const override;
 
@@ -68,6 +66,9 @@ public:
     QList< Calamares::job_ptr > jobs() const override;
 
 private:
+    void initPartitionCoreModule();
+    void continueLoading();
+
     PartitionCoreModule* m_core;
     QStackedWidget*   m_widget;
     ChoicePage*       m_choicePage;
