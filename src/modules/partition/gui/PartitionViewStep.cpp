@@ -52,6 +52,8 @@
 #include <QProcess>
 #include <QStackedWidget>
 #include <QTimer>
+#include <QtConcurrent/QtConcurrent>
+#include <QFutureWatcher>
 
 PartitionViewStep::PartitionViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
@@ -71,13 +73,19 @@ PartitionViewStep::PartitionViewStep( QObject* parent )
 
 
 void
-PartitionViewStep::continueLoading()
+PartitionViewStep::initPartitionCoreModule()
 {
     Q_ASSERT( !m_core );
+    m_core = new PartitionCoreModule( this );
+}
+
+
+void
+PartitionViewStep::continueLoading()
+{
     Q_ASSERT( !m_choicePage );
     Q_ASSERT( !m_manualPartitionPage );
 
-    m_core = new PartitionCoreModule( this );
     m_manualPartitionPage = new PartitionPage( m_core );
     m_choicePage = new ChoicePage();
 
@@ -468,7 +476,20 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
         gs->insert( "drawNestedPartitions", false );
     }
 
-    QTimer::singleShot( 0, this, &PartitionViewStep::continueLoading );
+    // Now that we have the config, we load the PartitionCoreModule in the background
+    // because it could take a while. Then when it's done, we can set up the widgets
+    // and remove the spinner.
+    QFutureWatcher< void >* watcher = new QFutureWatcher< void >();
+    connect( watcher, &QFutureWatcher< void >::finished,
+             this, [ this, watcher ]
+    {
+        continueLoading();
+        watcher->deleteLater();
+    } );
+
+    QFuture< void > future =
+            QtConcurrent::run( this, &PartitionViewStep::initPartitionCoreModule );
+    watcher->setFuture( future );
 }
 
 
