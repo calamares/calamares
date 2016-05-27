@@ -484,6 +484,19 @@ ChoicePage::onEncryptWidgetStateChanged()
              state == EncryptWidget::EncryptionDisabled )
             applyActionChoice( m_choice );
     }
+    else if ( m_choice == Replace )
+    {
+        if ( m_beforePartitionBarsView &&
+             m_beforePartitionBarsView->selectionModel()->currentIndex().isValid() &&
+             ( state == EncryptWidget::EncryptionConfirmed ||
+               state == EncryptWidget::EncryptionDisabled ) )
+        {
+            doReplaceSelectedPartition( m_beforePartitionBarsView->
+                                            selectionModel()->
+                                                currentIndex(),
+                                        QModelIndex() );
+        }
+    }
     updateNextEnabled();
 }
 
@@ -610,13 +623,28 @@ ChoicePage::doReplaceSelectedPartition( const QModelIndex& current,
                 }
             }
 
-            Partition* newPartition = KPMHelpers::createNewPartition(
+            Partition* newPartition = nullptr;
+            if ( m_encryptWidget->state() == EncryptWidget::EncryptionConfirmed )
+            {
+                newPartition = KPMHelpers::createNewEncryptedPartition(
+                    newParent,
+                    *selectedDevice(),
+                    newRoles,
+                    FileSystem::Ext4,
+                    selectedPartition->firstSector(),
+                    selectedPartition->lastSector(),
+                    m_encryptWidget->passphrase() );
+            }
+            else
+            {
+                newPartition = KPMHelpers::createNewPartition(
                     newParent,
                     *selectedDevice(),
                     newRoles,
                     FileSystem::Ext4,
                     selectedPartition->firstSector(),
                     selectedPartition->lastSector() );
+            }
 
             PartitionInfo::setMountPoint( newPartition, "/" );
             PartitionInfo::setFormat( newPartition, true );
@@ -850,7 +878,6 @@ ChoicePage::updateActionChoicePreview( ChoicePage::Choice choice )
                 m_selectLabel->hide();
             else
             {
-                m_encryptWidget->hide();
                 SelectionFilter filter = [ this ]( const QModelIndex& index )
                 {
                     return PartUtils::canBeReplaced( (Partition*)( index.data( PartitionModel::PartitionPtrRole ).value< void* >() ) );
