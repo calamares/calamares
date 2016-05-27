@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2016, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -225,41 +225,60 @@ LocalePage::init( const QString& initialRegion,
     }
     emit m_tzWidget->locationChanged( m_tzWidget->getCurrentLocation() );
 
-    // Fill in meaningful locale/charset lines from locale.gen
+    // Some distros come with a meaningfully commented and easy to parse locale.gen,
+    // and others ship a separate file /usr/share/i18n/SUPPORTED with a clean list of
+    // supported locales. We first try that one, and if it doesn't exist, we fall back
+    // to parsing the lines from locale.gen
     m_localeGenLines.clear();
-    QFile localeGen( localeGenPath );
+    QFile supported( "/usr/share/i18n/SUPPORTED" );
     QByteArray ba;
-    if ( localeGen.open( QIODevice::ReadOnly | QIODevice::Text ) )
+
+    if ( supported.exists() &&
+         supported.open( QIODevice::ReadOnly | QIODevice::Text ) )
     {
-        ba = localeGen.readAll();
-        localeGen.close();
+        ba = supported.readAll();
+        supported.close();
+
+        foreach ( QByteArray line, ba.split( '\n' ) )
+        {
+            m_localeGenLines.append( QString::fromLatin1( line.simplified() ) );
+        }
     }
     else
     {
-        cDebug() << "Cannot open file" << localeGenPath
-                 << ". Assuming the supported languages are already built into "
-                    "the locale archive.";
-        QProcess localeA;
-        localeA.start( "locale", QStringList() << "-a" );
-        localeA.waitForFinished();
-        ba = localeA.readAllStandardOutput();
-    }
-    foreach ( QByteArray line, ba.split( '\n' ) )
-    {
-        if ( line.startsWith( "## " ) ||
-             line.startsWith( "# " ) ||
-             line.simplified() == "#" )
-            continue;
+        QFile localeGen( localeGenPath );
+        if ( localeGen.open( QIODevice::ReadOnly | QIODevice::Text ) )
+        {
+            ba = localeGen.readAll();
+            localeGen.close();
+        }
+        else
+        {
+            cDebug() << "Cannot open file" << localeGenPath
+                     << ". Assuming the supported languages are already built into "
+                        "the locale archive.";
+            QProcess localeA;
+            localeA.start( "locale", QStringList() << "-a" );
+            localeA.waitForFinished();
+            ba = localeA.readAllStandardOutput();
+        }
+        foreach ( QByteArray line, ba.split( '\n' ) )
+        {
+            if ( line.startsWith( "## " ) ||
+                 line.startsWith( "# " ) ||
+                 line.simplified() == "#" )
+                continue;
 
-        QString lineString = QString::fromLatin1( line.simplified() );
-        if ( lineString.startsWith( "#" ) )
-            lineString.remove( '#' );
-        lineString = lineString.simplified();
+            QString lineString = QString::fromLatin1( line.simplified() );
+            if ( lineString.startsWith( "#" ) )
+                lineString.remove( '#' );
+            lineString = lineString.simplified();
 
-        if ( lineString.isEmpty() )
-            continue;
+            if ( lineString.isEmpty() )
+                continue;
 
-        m_localeGenLines.append( lineString );
+            m_localeGenLines.append( lineString );
+        }
     }
 }
 
