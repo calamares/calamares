@@ -52,11 +52,11 @@ def run():
             for line in text:
                 if us in line and line[0] == "#":
                     # uncomment line
-                    line = line[1:]
+                    line = line[1:].strip()
 
                 if locale in line and line[0] == "#":
                     # uncomment line
-                    line = line[1:]
+                    line = line[1:].strip()
 
                 gen.write(line)
 
