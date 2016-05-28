@@ -1182,7 +1182,7 @@ Instalator zakończy działanie i wszystkie zmiany zostaną utracone.</translati
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="271"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="290"/>
         <source>Set timezone to %1/%2.&lt;br/&gt;</source>
         <translation>Strefa czasowa %1/%2.&lt;br/&gt;</translation>
     </message>

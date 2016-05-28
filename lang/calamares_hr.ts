@@ -1182,7 +1182,7 @@ Installer će izaći i sve promjene će biti izgubljene.</translation>
         <translation>&amp;Promijeni...</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="271"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="290"/>
         <source>Set timezone to %1/%2.&lt;br/&gt;</source>
         <translation>Postavi vremesku zonu na %1%2&lt;br/&gt;</translation>
     </message>

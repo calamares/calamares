@@ -1185,7 +1185,7 @@ El instalador terminará y se perderán todos los cambios.</translation>
         <translation>&amp;Cambiar...</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="271"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="290"/>
         <source>Set timezone to %1/%2.&lt;br/&gt;</source>
         <translation>Definir la zona horaria como %1/%2.&lt;br/&gt;</translation>
     </message>
