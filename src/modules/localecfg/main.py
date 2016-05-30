@@ -74,6 +74,6 @@ def run():
     if os.path.isdir(etc_default_path):
         with open(os.path.join(etc_default_path, "locale"), "w") as etc_default_locale:
             locale_split = locale.split(' ')[0]
-            etc_default_locale.write("{!s}\n".format(locale_split))
+            etc_default_locale.write("LANG={!s}\n".format(locale_split))
 
     return None
