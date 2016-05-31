@@ -6,6 +6,7 @@ calamares_add_plugin( keyboard
     SOURCES
         KeyboardViewStep.cpp
         KeyboardPage.cpp
+        KeyboardLayoutModel.cpp
         SetKeyboardLayoutJob.cpp
         keyboardwidget/keyboardglobal.cpp
         keyboardwidget/keyboardpreview.cpp
