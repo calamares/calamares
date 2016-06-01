@@ -103,7 +103,7 @@
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="57"/>
         <source>Tools</source>
-        <translation type="unfinished"/>
+        <translation>Ferramientes</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.cpp" line="102"/>
@@ -403,12 +403,12 @@ L&apos;instalador colará y perderánse toles camudancies.</translation>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="768"/>
         <source>%1 will be shrunk to %2MB and a new %3MB partition will be created for %4.</source>
-        <translation type="unfinished"/>
+        <translation>%1 redimensionaráse a %2MB y crearáse la partición nueva de %3MB pa %4.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="115"/>
         <source>Select storage de&amp;vice:</source>
-        <translation type="unfinished"/>
+        <translation>Esbillar preséu d&apos;almacenamientu:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="116"/>
@@ -896,17 +896,17 @@ L&apos;instalador colará y perderánse toles camudancies.</translation>
     <message>
         <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="20"/>
         <source>En&amp;crypt system</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Cifrar sistema</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="30"/>
         <source>Passphrase</source>
-        <translation type="unfinished"/>
+        <translation>Fras de pasu</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="40"/>
         <source>Confirm passphrase</source>
-        <translation type="unfinished"/>
+        <translation>Confirmar fras de pasu</translation>
     </message>
 </context>
 <context>
@@ -1049,12 +1049,12 @@ L&apos;instalador colará y perderánse toles camudancies.</translation>
 <context>
     <name>KeyboardPage</name>
     <message>
-        <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="201"/>
+        <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="193"/>
         <source>Set keyboard model to %1.&lt;br/&gt;</source>
         <translation>Afitóse&apos;l modelu de tecláu a %1.&lt;br/&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="203"/>
+        <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="195"/>
         <source>Set keyboard layout to %1/%2.</source>
         <translation>Afitóse la distribución de tecláu a %1/%2.</translation>
     </message>
@@ -1858,7 +1858,7 @@ L&apos;instalador colará y perderánse toles camudancies.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="90"/>
         <source>The installer failed to set flags on partition %1.</source>
-        <translation type="unfinished"/>
+        <translation>L&apos;instalador falló al afitar les banderes na partición %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="98"/>
@@ -1868,7 +1868,7 @@ L&apos;instalador colará y perderánse toles camudancies.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="107"/>
         <source>Could not open partition table on device &apos;%1&apos;.</source>
-        <translation type="unfinished"/>
+        <translation>Nun pudo abrise la tabla de particiones nel preséu «%1».</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="119"/>
