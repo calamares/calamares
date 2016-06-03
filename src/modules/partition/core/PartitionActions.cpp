@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2016, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -230,7 +230,10 @@ doAutopartition( PartitionCoreModule* core, Device* dev, const QString& luksPass
 
 
 void
-doReplacePartition( PartitionCoreModule* core, Device* dev, Partition* partition )
+doReplacePartition( PartitionCoreModule* core,
+                    Device* dev,
+                    Partition* partition,
+                    const QString& luksPassphrase )
 {
     cDebug() << "doReplacePartition for device" << partition->partitionPath();
 
@@ -250,13 +253,30 @@ doReplacePartition( PartitionCoreModule* core, Device* dev, Partition* partition
         }
     }
 
-    Partition* newPartition = KPMHelpers::createNewPartition(
-                                  partition->parent(),
-                                  *dev,
-                                  newRoles,
-                                  FileSystem::Ext4,
-                                  partition->firstSector(),
-                                  partition->lastSector() );
+    Partition* newPartition = nullptr;
+    if ( luksPassphrase.isEmpty() )
+    {
+        newPartition = KPMHelpers::createNewPartition(
+            partition->parent(),
+            *dev,
+            newRoles,
+            FileSystem::Ext4,
+            partition->firstSector(),
+            partition->lastSector()
+        );
+    }
+    else
+    {
+        newPartition = KPMHelpers::createNewEncryptedPartition(
+            partition->parent(),
+            *dev,
+            newRoles,
+            FileSystem::Ext4,
+            partition->firstSector(),
+            partition->lastSector(),
+            luksPassphrase
+        );
+    }
     PartitionInfo::setMountPoint( newPartition, "/" );
     PartitionInfo::setFormat( newPartition, true );
 

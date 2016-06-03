@@ -661,7 +661,8 @@ ChoicePage::doReplaceSelectedPartition( const QModelIndex& current,
             if ( selectedPartition )
                 PartitionActions::doReplacePartition( m_core,
                                                       selectedDevice(),
-                                                      selectedPartition );
+                                                      selectedPartition,
+                                                      m_encryptWidget->passphrase() );
         }
     } ),
     [=]
