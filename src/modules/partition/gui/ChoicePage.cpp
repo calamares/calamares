@@ -818,9 +818,9 @@ ChoicePage::updateActionChoicePreview( ChoicePage::Choice choice )
             break;
         }
     case Erase:
-        m_encryptWidget->show();
     case Replace:
         {
+            m_encryptWidget->show();
             m_previewBeforeLabel->setText( tr( "Current:" ) );
             m_afterPartitionBarsView = new PartitionBarsView( m_previewAfterFrame );
             m_afterPartitionBarsView->setNestedPartitionsMode( mode );
