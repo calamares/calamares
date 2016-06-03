@@ -411,6 +411,7 @@ ChoicePage::applyActionChoice( ChoicePage::Choice choice )
                 // We need to reupdate after reverting because the splitter widget is
                 // not a true view.
                 updateActionChoicePreview( currentChoice() );
+                updateNextEnabled();
             },
             this );
         }
@@ -1248,13 +1249,11 @@ ChoicePage::updateNextEnabled()
         enabled = false;
         break;
     case Replace:
-        enabled = !m_beforePartitionBarsView->selectionModel()->
-                  selectedRows().isEmpty();
+        enabled = m_beforePartitionBarsView->selectionModel()->
+                  currentIndex().isValid();
         break;
     case Alongside:
-        enabled = !m_beforePartitionBarsView->selectionModel()->
-                  selectedRows().isEmpty() &&
-                  m_beforePartitionBarsView->selectionModel()->
+        enabled = m_beforePartitionBarsView->selectionModel()->
                   currentIndex().isValid();
         break;
     case Erase:
