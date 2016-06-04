@@ -26,6 +26,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import platform
 
 from libcalamares import *
 
@@ -282,7 +283,7 @@ def run():
         destination = os.path.abspath(root_mount_point + entry["destination"])
 
         # Modified for blackPanther OS support (www.blackpantheros.eu)
-        if not os.path.exists(source): 
+        if not os.path.exists(source) or (os.path.isdir(source) and platform.dist()[0] != "blackPanther"): 
             return "Bad source", "source=\"{}\"".format(source)
 
         if not os.path.isdir(destination):
