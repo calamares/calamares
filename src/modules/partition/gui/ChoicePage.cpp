@@ -566,13 +566,31 @@ ChoicePage::doAlongsideApply()
                                    dev->logicalSectorSize();
 
             m_core->resizePartition( dev, candidate, firstSector, newLastSector );
-            Partition* newPartition = KPMHelpers::createNewPartition(
-                                          candidate->parent(),
-                                          *dev,
-                                          candidate->roles(),
-                                          FileSystem::Ext4,
-                                          newLastSector + 2, // *
-                                          oldLastSector );
+            Partition* newPartition = nullptr;
+            QString luksPassphrase = m_encryptWidget->passphrase();
+            if ( luksPassphrase.isEmpty() )
+            {
+                newPartition = KPMHelpers::createNewPartition(
+                    candidate->parent(),
+                    *dev,
+                    candidate->roles(),
+                    FileSystem::Ext4,
+                    newLastSector + 2, // *
+                    oldLastSector
+                );
+            }
+            else
+            {
+                newPartition = KPMHelpers::createNewEncryptedPartition(
+                    candidate->parent(),
+                    *dev,
+                    candidate->roles(),
+                    FileSystem::Ext4,
+                    newLastSector + 2, // *
+                    oldLastSector,
+                    luksPassphrase
+                );
+            }
             PartitionInfo::setMountPoint( newPartition, "/" );
             PartitionInfo::setFormat( newPartition, true );
             // * for some reason ped_disk_add_partition refuses to create a new partition
@@ -780,6 +798,7 @@ ChoicePage::updateActionChoicePreview( ChoicePage::Choice choice )
     {
     case Alongside:
         {
+            m_encryptWidget->show();
             m_previewBeforeLabel->setText( tr( "Current:" ) );
             m_selectLabel->setText( tr( "<strong>Select a partition to shrink, "
                                         "then drag the bottom bar to resize</strong>" ) );
@@ -813,7 +832,6 @@ ChoicePage::updateActionChoicePreview( ChoicePage::Choice choice )
             };
             m_beforePartitionBarsView->setSelectionFilter( filter );
             m_beforePartitionLabelsView->setSelectionFilter( filter );
-            m_encryptWidget->hide();
 
             break;
         }
