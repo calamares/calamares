@@ -117,12 +117,19 @@ FinishedViewStep::setConfigurationMap( const QVariantMap& configurationMap )
         if ( restartNowEnabled )
         {
             if ( configurationMap.contains( "restartNowChecked" ) &&
-                 configurationMap.value( "restartNowChecked" ).type() == QVariant::Bool &&
-                 configurationMap.contains( "restartNowCommand" ) &&
-                 configurationMap.value( "restartNowCommand" ).type() == QVariant::String )
+                 configurationMap.value( "restartNowChecked" ).type() == QVariant::Bool )
             {
                 m_widget->setRestartNowChecked( configurationMap.value( "restartNowChecked" ).toBool() );
+            }
+
+            if ( configurationMap.contains( "restartNowCommand" ) &&
+                 configurationMap.value( "restartNowCommand" ).type() == QVariant::String )
+            {
                 m_widget->setRestartNowCommand( configurationMap.value( "restartNowCommand" ).toString() );
+            }
+            else
+            {
+                m_widget->setRestartNowCommand( "systemctl reboot");
             }
         }
     }
