@@ -129,7 +129,7 @@ FinishedViewStep::setConfigurationMap( const QVariantMap& configurationMap )
             }
             else
             {
-                m_widget->setRestartNowCommand( "systemctl reboot");
+                m_widget->setRestartNowCommand( "systemctl -i reboot");
             }
         }
     }
