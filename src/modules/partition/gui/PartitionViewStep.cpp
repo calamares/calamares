@@ -42,6 +42,7 @@
 
 #include <kpmcore/core/device.h>
 #include <kpmcore/core/partition.h>
+#include <kpmcore/fs/filesystem.h>
 
 // Qt
 #include <QApplication>
@@ -475,6 +476,24 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     {
         gs->insert( "drawNestedPartitions", false );
     }
+
+    if ( configurationMap.contains( "defaultFileSystemType" ) &&
+         configurationMap.value( "defaultFileSystemType" ).type() == QVariant::String &&
+         !configurationMap.value( "defaultFileSystemType" ).toString().isEmpty() )
+    {
+        QString typeString = configurationMap.value( "defaultFileSystemType" ).toString();
+        gs->insert( "defaultFileSystemType", typeString );
+        if ( FileSystem::typeForName( typeString ) == FileSystem::Unknown )
+        {
+            cDebug() << "WARNING: bad default filesystem configuration for partition module. Reverting to ext4 as default.";
+            gs->insert( "defaultFileSystemType", "ext4" );
+        }
+    }
+    else
+    {
+        gs->insert( "defaultFileSystemType", QStringLiteral( "ext4" ) );
+    }
+
 
     // Now that we have the config, we load the PartitionCoreModule in the background
     // because it could take a while. Then when it's done, we can set up the widgets
