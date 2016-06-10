@@ -77,17 +77,32 @@ CreatePartitionDialog::CreatePartitionDialog( Device* device, PartitionNode* par
         initGptPartitionTypeUi();
 
     // File system
+    FileSystem::Type defaultFsType = FileSystem::typeForName(
+                                         Calamares::JobQueue::instance()->
+                                         globalStorage()->
+                                         value( "defaultFileSystemType" ).toString() );
+    int defaultFsIndex = -1;
+    int fsCounter = 0;
     QStringList fsNames;
     for ( auto fs : FileSystemFactory::map() )
     {
-        if ( fs->supportCreate() != FileSystem::cmdSupportNone && fs->type() != FileSystem::Extended )
+        if ( fs->supportCreate() != FileSystem::cmdSupportNone &&
+             fs->type() != FileSystem::Extended )
+        {
             fsNames << fs->name();
+            if ( fs->type() == defaultFsType )
+                defaultFsIndex = fsCounter;
+            fsCounter++;
+        }
     }
     m_ui->fsComboBox->addItems( fsNames );
 
     // Connections
     connect( m_ui->fsComboBox, SIGNAL( activated( int ) ), SLOT( updateMountPointUi() ) );
     connect( m_ui->extendedRadioButton, SIGNAL( toggled( bool ) ), SLOT( updateMountPointUi() ) );
+
+    // Select a default
+    m_ui->fsComboBox->setCurrentIndex( defaultFsIndex );
 
     setupFlagsList();
 }
