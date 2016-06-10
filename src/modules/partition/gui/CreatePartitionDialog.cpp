@@ -35,6 +35,7 @@
 #include <kpmcore/core/partition.h>
 #include <kpmcore/fs/filesystem.h>
 #include <kpmcore/fs/filesystemfactory.h>
+#include <kpmcore/fs/luks.h>
 
 // Qt
 #include <QComboBox>
@@ -59,6 +60,8 @@ CreatePartitionDialog::CreatePartitionDialog( Device* device, PartitionNode* par
     , m_parent( parentPartition )
 {
     m_ui->setupUi( this );
+    m_ui->encryptWidget->setText( tr( "En&crypt" ) );
+    m_ui->encryptWidget->hide();
 
     QStringList mountPoints = { "/", "/boot", "/home", "/opt", "/usr", "/var" };
     if ( QDir( "/sys/firmware/efi/efivars" ).exists() )
@@ -178,11 +181,28 @@ CreatePartitionDialog::createPartition()
     FileSystem::Type fsType = m_role.has( PartitionRole::Extended )
                               ? FileSystem::Extended
                               : FileSystem::typeForName( m_ui->fsComboBox->currentText() );
-    Partition* partition = KPMHelpers::createNewPartition(
-                               m_parent,
-                               *m_device,
-                               m_role,
-                               fsType, first, last, newFlags() );
+
+    Partition* partition = nullptr;
+    QString luksPassphrase = m_ui->encryptWidget->passphrase();
+    if ( m_ui->encryptWidget->isVisible() &&
+         !luksPassphrase.isEmpty() )
+    {
+        partition = KPMHelpers::createNewEncryptedPartition(
+            m_parent,
+            *m_device,
+            m_role,
+            fsType, first, last, luksPassphrase, newFlags()
+        );
+    }
+    else
+    {
+        partition = KPMHelpers::createNewPartition(
+            m_parent,
+            *m_device,
+            m_role,
+            fsType, first, last, newFlags()
+        );
+    }
 
     PartitionInfo::setMountPoint( partition, m_ui->mountPointComboBox->currentText() );
     PartitionInfo::setFormat( partition, true );
@@ -198,6 +218,17 @@ CreatePartitionDialog::updateMountPointUi()
     {
         FileSystem::Type type = FileSystem::typeForName( m_ui->fsComboBox->currentText() );
         enabled = !s_unmountableFS.contains( type );
+
+        if ( FS::luks::canEncryptType( type ) )
+        {
+            m_ui->encryptWidget->show();
+            m_ui->encryptWidget->reset();
+        }
+        else
+        {
+            m_ui->encryptWidget->reset();
+            m_ui->encryptWidget->hide();
+        }
     }
     m_ui->mountPointLabel->setEnabled( enabled );
     m_ui->mountPointComboBox->setEnabled( enabled );
