@@ -1293,7 +1293,8 @@ ChoicePage::updateNextEnabled()
             enabled = false;
     }
 
-    if ( m_encryptWidget->isVisible() &&
+    if ( m_choice != Manual &&
+         m_encryptWidget->isVisible() &&
          m_encryptWidget->state() == EncryptWidget::EncryptionUnconfirmed )
         enabled = false;
 
