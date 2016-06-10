@@ -104,6 +104,12 @@ doAutopartition( PartitionCoreModule* core, Device* dev, const QString& luksPass
     if ( QDir( "/sys/firmware/efi/efivars" ).exists() )
         isEfi = true;
 
+    QString defaultFsType = Calamares::JobQueue::instance()->
+                                globalStorage()->
+                                value( "defaultFileSystemType" ).toString();
+    if ( FileSystem::typeForName( defaultFsType ) == FileSystem::Unknown )
+        defaultFsType = "ext4";
+
 #define MiB * static_cast< qint64 >( 1024 ) * 1024
 #define GiB * static_cast< qint64 >( 1024 ) * 1024 * 1024
 
@@ -174,7 +180,7 @@ doAutopartition( PartitionCoreModule* core, Device* dev, const QString& luksPass
             dev->partitionTable(),
             *dev,
             PartitionRole( PartitionRole::Primary ),
-            FileSystem::Ext4,
+            FileSystem::typeForName( defaultFsType ),
             firstFreeSector,
             lastSectorForRoot
         );
@@ -185,7 +191,7 @@ doAutopartition( PartitionCoreModule* core, Device* dev, const QString& luksPass
             dev->partitionTable(),
             *dev,
             PartitionRole( PartitionRole::Primary ),
-            FileSystem::Ext4,
+            FileSystem::typeForName( defaultFsType ),
             firstFreeSector,
             lastSectorForRoot,
             luksPassphrase
@@ -237,6 +243,12 @@ doReplacePartition( PartitionCoreModule* core,
 {
     cDebug() << "doReplacePartition for device" << partition->partitionPath();
 
+    QString defaultFsType = Calamares::JobQueue::instance()->
+                                globalStorage()->
+                                value( "defaultFileSystemType" ).toString();
+    if ( FileSystem::typeForName( defaultFsType ) == FileSystem::Unknown )
+        defaultFsType = "ext4";
+
     PartitionRole newRoles( partition->roles() );
     if ( partition->roles().has( PartitionRole::Extended ) )
         newRoles = PartitionRole( PartitionRole::Primary );
@@ -260,7 +272,7 @@ doReplacePartition( PartitionCoreModule* core,
             partition->parent(),
             *dev,
             newRoles,
-            FileSystem::Ext4,
+            FileSystem::typeForName( defaultFsType ),
             partition->firstSector(),
             partition->lastSector()
         );
@@ -271,7 +283,7 @@ doReplacePartition( PartitionCoreModule* core,
             partition->parent(),
             *dev,
             newRoles,
-            FileSystem::Ext4,
+            FileSystem::typeForName( defaultFsType ),
             partition->firstSector(),
             partition->lastSector(),
             luksPassphrase

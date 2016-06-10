@@ -85,6 +85,12 @@ ChoicePage::ChoicePage( QWidget* parent )
 {
     setupUi( this );
 
+    m_defaultFsType = Calamares::JobQueue::instance()->
+                        globalStorage()->
+                        value( "defaultFileSystemType" ).toString();
+    if ( FileSystem::typeForName( m_defaultFsType ) == FileSystem::Unknown )
+        m_defaultFsType = "ext4";
+
     // Set up drives combo
     m_mainLayout->setDirection( QBoxLayout::TopToBottom );
     m_drivesLayout->setDirection( QBoxLayout::LeftToRight );
@@ -574,7 +580,7 @@ ChoicePage::doAlongsideApply()
                     candidate->parent(),
                     *dev,
                     candidate->roles(),
-                    FileSystem::Ext4,
+                    FileSystem::typeForName( m_defaultFsType ),
                     newLastSector + 2, // *
                     oldLastSector
                 );
@@ -585,7 +591,7 @@ ChoicePage::doAlongsideApply()
                     candidate->parent(),
                     *dev,
                     candidate->roles(),
-                    FileSystem::Ext4,
+                    FileSystem::typeForName( m_defaultFsType ),
                     newLastSector + 2, // *
                     oldLastSector,
                     luksPassphrase
@@ -649,7 +655,7 @@ ChoicePage::doReplaceSelectedPartition( const QModelIndex& current,
                     newParent,
                     *selectedDevice(),
                     newRoles,
-                    FileSystem::Ext4,
+                    FileSystem::typeForName( m_defaultFsType ),
                     selectedPartition->firstSector(),
                     selectedPartition->lastSector(),
                     m_encryptWidget->passphrase() );
@@ -660,7 +666,7 @@ ChoicePage::doReplaceSelectedPartition( const QModelIndex& current,
                     newParent,
                     *selectedDevice(),
                     newRoles,
-                    FileSystem::Ext4,
+                    FileSystem::typeForName( m_defaultFsType ),
                     selectedPartition->firstSector(),
                     selectedPartition->lastSector() );
             }

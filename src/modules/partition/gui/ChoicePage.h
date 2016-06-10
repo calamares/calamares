@@ -120,6 +120,8 @@ private:
 
     int m_lastSelectedDeviceIndex;
 
+    QString m_defaultFsType;
+
     QMutex m_coreMutex;
 };
 
