@@ -103,6 +103,7 @@ CreatePartitionDialog::CreatePartitionDialog( Device* device, PartitionNode* par
 
     // Select a default
     m_ui->fsComboBox->setCurrentIndex( defaultFsIndex );
+    updateMountPointUi();
 
     setupFlagsList();
 }
