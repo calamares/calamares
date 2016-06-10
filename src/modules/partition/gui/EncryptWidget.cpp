@@ -42,10 +42,27 @@ EncryptWidget::EncryptWidget( QWidget* parent )
 }
 
 
+void
+EncryptWidget::reset()
+{
+    m_passphraseLineEdit->clear();
+    m_confirmLineEdit->clear();
+
+    m_encryptCheckBox->setChecked( false );
+}
+
+
 EncryptWidget::State
 EncryptWidget::state() const
 {
     return m_state;
+}
+
+
+void
+EncryptWidget::setText( const QString& text )
+{
+    m_encryptCheckBox->setText( text );
 }
 
 
@@ -129,7 +146,7 @@ EncryptWidget::onPassphraseEdited()
         m_iconLabel->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::No,
                                                                CalamaresUtils::Original,
                                                                m_iconLabel->size() ) );
-        m_iconLabel->setToolTip( "Please enter the same passphrase in both boxes." );
+        m_iconLabel->setToolTip( tr( "Please enter the same passphrase in both boxes." ) );
     }
 
     updateState();

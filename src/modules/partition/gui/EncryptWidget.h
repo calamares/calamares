@@ -36,7 +36,10 @@ public:
 
     explicit EncryptWidget( QWidget* parent = nullptr );
 
+    void reset();
+
     State state() const;
+    void setText( const QString& text );
 
     QString passphrase() const;
 
