@@ -100,7 +100,9 @@ EditExistingPartitionDialog::EditExistingPartitionDialog( Device* device, Partit
     if ( fsNames.contains( m_partition->fileSystem().name() ) )
         m_ui->fileSystemComboBox->setCurrentText( m_partition->fileSystem().name() );
     else
-        m_ui->fileSystemComboBox->setCurrentText( FileSystem::nameForType( FileSystem::Ext4 ) );
+        m_ui->fileSystemComboBox->setCurrentText( Calamares::JobQueue::instance()->
+                                                      globalStorage()->
+                                                      value( "defaultFileSystemType" ).toString() );
 
     m_ui->fileSystemLabel->setEnabled( m_ui->formatRadioButton->isChecked() );
     m_ui->fileSystemComboBox->setEnabled( m_ui->formatRadioButton->isChecked() );
