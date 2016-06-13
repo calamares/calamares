@@ -59,13 +59,16 @@ KeyboardLayoutModel::data( const QModelIndex& index, int role ) const
 void
 KeyboardLayoutModel::init()
 {
-    auto layouts = KeyboardGlobal::getKeyboardLayouts();
-    for ( auto it = layouts.constBegin(); it != layouts.constEnd(); ++it )
+    QMap< QString, KeyboardGlobal::KeyboardInfo > layouts =
+            KeyboardGlobal::getKeyboardLayouts();
+    for ( QMap< QString, KeyboardGlobal::KeyboardInfo >::const_iterator it = layouts.constBegin();
+          it != layouts.constEnd(); ++it )
     {
         m_layouts.append( qMakePair( it.key(), it.value() ) );
     }
 
-    std::stable_sort( m_layouts.begin(), m_layouts.end(), []( auto a, auto b )
+    std::stable_sort( m_layouts.begin(), m_layouts.end(), []( const QPair< QString, KeyboardGlobal::KeyboardInfo >& a,
+                                                              const QPair< QString, KeyboardGlobal::KeyboardInfo >& b )
     {
         return a.second.description < b.second.description;
     } );
