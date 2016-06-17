@@ -27,7 +27,7 @@ Modules:
 * partition:
  * extra-cmake-modules
  * KF5: KCoreAddons, KConfig, KI18n, KIconThemes, KIO, KService
- * KPMcore >= 2.1
+ * KPMcore >= 2.2
  * sgdisk
 * bootloader:
  * systemd-boot or GRUB
