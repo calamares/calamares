@@ -18,6 +18,8 @@
 
 #include "jobs/CheckFileSystemJob.h"
 
+#include <utils/Logger.h>
+
 // KPMcore
 #include <kpmcore/core/partition.h>
 #include <kpmcore/fs/filesystem.h>
@@ -54,11 +56,18 @@ CheckFileSystemJob::exec()
     Report report( nullptr );
     bool ok = fs.check( report, partition()->partitionPath() );
     if ( !ok )
-        return Calamares::JobResult::error(
-                   tr( "The file system check on partition %1 failed." )
-                   .arg( partition()->partitionPath() ),
-                   report.toText()
-               );
+    {
+        cDebug() << "Filesystem check failed for" << partition()->partitionPath()
+                 << ", retrying...";
+        ok = fs.check( report, partition()->partitionPath() );
+
+        if ( !ok )
+            return Calamares::JobResult::error(
+                       tr( "The file system check on partition %1 failed." )
+                       .arg( partition()->partitionPath() ),
+                       report.toText()
+                   );
+    }
 
     return Calamares::JobResult::ok();
 }
