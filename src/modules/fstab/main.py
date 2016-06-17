@@ -76,8 +76,8 @@ def is_ssd_disk(disk_name):
         # Should not happen unless sysfs changes, but better safe than sorry
         return False
 
-    with open(filename) as f:
-        return f.read() == "0\n"
+    with open(filename) as sysfile:
+        return sysfile.read() == "0\n"
 
 
 def disk_name_for_partition(partition):
@@ -132,14 +132,14 @@ class FstabGenerator(object):
         mkdir_p(os.path.join(self.root_mount_point, "etc"))
         crypttab_path = os.path.join(self.root_mount_point, "etc", "crypttab")
 
-        with open(crypttab_path, "w") as fl:
-            print(CRYPTTAB_HEADER, file=fl)
+        with open(crypttab_path, "w") as crypttab_file:
+            print(CRYPTTAB_HEADER, file=crypttab_file)
 
             for partition in self.partitions:
                 dct = self.generate_crypttab_line_info(partition)
 
                 if dct:
-                    self.print_crypttab_line(dct, file=fl)
+                    self.print_crypttab_line(dct, file=crypttab_file)
 
     def generate_crypttab_line_info(self, partition):
         """ Generates information for each crypttab entry. """
@@ -172,14 +172,14 @@ class FstabGenerator(object):
         mkdir_p(os.path.join(self.root_mount_point, "etc"))
         fstab_path = os.path.join(self.root_mount_point, "etc", "fstab")
 
-        with open(fstab_path, "w") as fl:
-            print(FSTAB_HEADER, file=fl)
+        with open(fstab_path, "w") as fstab_file:
+            print(FSTAB_HEADER, file=fstab_file)
 
             for partition in self.partitions:
                 dct = self.generate_fstab_line_info(partition)
 
                 if dct:
-                    self.print_fstab_line(dct, file=fl)
+                    self.print_fstab_line(dct, file=fstab_file)
 
             if self.root_is_ssd:
                 # Mount /tmp on a tmpfs
@@ -189,22 +189,23 @@ class FstabGenerator(object):
                            options="defaults,noatime,mode=1777",
                            check=0,
                           )
-                self.print_fstab_line(dct, file=fl)
+                self.print_fstab_line(dct, file=fstab_file)
 
     def generate_fstab_line_info(self, partition):
         """ Generates information for each fstab entry. """
-        fs = partition["fs"]
+        filesystem = partition["fs"]
         mount_point = partition["mountPoint"]
         disk_name = disk_name_for_partition(partition)
         is_ssd = disk_name in self.ssd_disks
-        fs = FS_MAP.get(fs, fs)
+        filesystem = FS_MAP.get(filesystem, filesystem)
 
-        if not mount_point and not fs == "swap":
+        if not mount_point and not filesystem == "swap":
             return None
 
-        options = self.mount_options.get(fs, self.mount_options["default"])
+        options = self.mount_options.get(filesystem,
+                                         self.mount_options["default"])
         if is_ssd:
-            extra = self.ssd_extra_mount_options.get(fs)
+            extra = self.ssd_extra_mount_options.get(filesystem)
 
             if extra:
                 options += "," + extra
@@ -221,7 +222,7 @@ class FstabGenerator(object):
 
         return dict(device="UUID=" + partition["uuid"],
                     mount_point=mount_point or "swap",
-                    fs=fs,
+                    fs=filesystem,
                     options=options,
                     check=check,
                    )
@@ -248,12 +249,15 @@ def run():
 
     :return:
     """
-    gs = libcalamares.globalstorage
+    global_storage = libcalamares.globalstorage
     conf = libcalamares.job.configuration
-    partitions = gs.value("partitions")
-    root_mount_point = gs.value("rootMountPoint")
+    partitions = global_storage.value("partitions")
+    root_mount_point = global_storage.value("rootMountPoint")
     mount_options = conf["mountOptions"]
     ssd_extra_mount_options = conf.get("ssdExtraMountOptions", {})
-    generator = FstabGenerator(partitions, root_mount_point, mount_options, ssd_extra_mount_options)
+    generator = FstabGenerator(partitions,
+                               root_mount_point,
+                               mount_options,
+                               ssd_extra_mount_options)
 
     return generator.run()
