@@ -25,13 +25,27 @@ import re
 import libcalamares
 
 
-HEADER = """# /etc/fstab: static file system information.
+FSTAB_HEADER = """# /etc/fstab: static file system information.
 #
 # Use 'blkid' to print the universally unique identifier for a device; this may
 # be used with UUID= as a more robust way to name devices that works even if
 # disks are added and removed. See fstab(5).
 #
 # <file system>                           <mount point>  <type>  <options>  <dump>  <pass>"""
+
+CRYPTTAB_HEADER = """# /etc/crypttab: mappings for encrypted partitions.
+#
+# Each mapped device will be created in /dev/mapper, so your /etc/fstab
+# should use the /dev/mapper/<name> paths for encrypted devices.
+#
+# See crypttab(5) for the supported syntax.
+#
+# NOTE: Do not list your root (/) partition here, it must be set up
+#       beforehand by the initramfs (/etc/mkinitcpio.conf). The same applies
+#       to encrypted swap, which should be set up with mkinitcpio-openswap
+#       for resume support.
+#
+# <name>               <device>                                     <password> <options>"""
 
 # Turn Parted filesystem names into fstab names
 FS_MAP = {
@@ -103,6 +117,7 @@ class FstabGenerator(object):
         """
         self.find_ssd_disks()
         self.generate_fstab()
+        self.generate_crypttab()
         self.create_mount_points()
 
         return None
@@ -112,13 +127,53 @@ class FstabGenerator(object):
         disks = {disk_name_for_partition(x) for x in self.partitions}
         self.ssd_disks = {x for x in disks if is_ssd_disk(x)}
 
+    def generate_crypttab(self):
+        """ Create crypttab. """
+        mkdir_p(os.path.join(self.root_mount_point, "etc"))
+        crypttab_path = os.path.join(self.root_mount_point, "etc", "crypttab")
+
+        with open(crypttab_path, "w") as fl:
+            print(CRYPTTAB_HEADER, file=fl)
+
+            for partition in self.partitions:
+                dct = self.generate_crypttab_line_info(partition)
+
+                if dct:
+                    self.print_crypttab_line(dct, file=fl)
+
+    def generate_crypttab_line_info(self, partition):
+        """ Generates information for each crypttab entry. """
+        mapper_name = partition["luksMapperName"]
+        mount_point = partition["mountPoint"]
+        luks_uuid = partition["luksUuid"]
+        if not mapper_name or not luks_uuid:
+            return None
+
+        if mount_point == "/":
+            return None
+
+        return dict(
+            name=mapper_name,
+            device="UUID=" + luks_uuid,
+            password="/crypto_keyfile.bin",
+        )
+
+    def print_crypttab_line(self, dct, file=None):
+        """ Prints line to '/etc/crypttab' file. """
+        line = "{:21} {:<45} {}".format(dct["name"],
+                                        dct["device"],
+                                        dct["password"],
+                                       )
+
+        print(line, file=file)
+
     def generate_fstab(self):
         """ Create fstab. """
         mkdir_p(os.path.join(self.root_mount_point, "etc"))
         fstab_path = os.path.join(self.root_mount_point, "etc", "fstab")
 
         with open(fstab_path, "w") as fl:
-            print(HEADER, file=fl)
+            print(FSTAB_HEADER, file=fl)
 
             for partition in self.partitions:
                 dct = self.generate_fstab_line_info(partition)
@@ -133,15 +188,11 @@ class FstabGenerator(object):
                            fs="tmpfs",
                            options="defaults,noatime,mode=1777",
                            check=0,
-                           )
+                          )
                 self.print_fstab_line(dct, file=fl)
 
     def generate_fstab_line_info(self, partition):
-        """ Generates information for each fstab entry.
-
-        :param partition:
-        :return:
-        """
+        """ Generates information for each fstab entry. """
         fs = partition["fs"]
         mount_point = partition["mountPoint"]
         disk_name = disk_name_for_partition(partition)
@@ -173,20 +224,16 @@ class FstabGenerator(object):
                     fs=fs,
                     options=options,
                     check=check,
-                    )
+                   )
 
     def print_fstab_line(self, dct, file=None):
-        """ Prints line to '/etc/fstab' file.
-
-        :param dct:
-        :param file:
-        """
+        """ Prints line to '/etc/fstab' file. """
         line = "{:41} {:<14} {:<7} {:<10} 0       {}".format(dct["device"],
                                                              dct["mount_point"],
                                                              dct["fs"],
                                                              dct["options"],
                                                              dct["check"],
-                                                             )
+                                                            )
         print(line, file=file)
 
     def create_mount_points(self):
