@@ -143,6 +143,9 @@ class FstabGenerator(object):
 
     def generate_crypttab_line_info(self, partition):
         """ Generates information for each crypttab entry. """
+        if "luksMapperName" not in partition or "luksUuid" not in partition:
+            return None
+
         mapper_name = partition["luksMapperName"]
         mount_point = partition["mountPoint"]
         luks_uuid = partition["luksUuid"]
