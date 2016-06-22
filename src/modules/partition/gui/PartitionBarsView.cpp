@@ -22,6 +22,7 @@
 #include <core/ColorUtils.h>
 
 #include <kpmcore/core/device.h>
+#include <kpmcore/core/partition.h>
 
 #include <utils/CalamaresUtilsGui.h>
 #include <utils/Logger.h>
@@ -66,7 +67,14 @@ PartitionBarsView::PartitionBarsView( QWidget* parent )
     connect( this, &PartitionBarsView::clicked,
              this, [=]( const QModelIndex& index )
     {
-        cDebug() << "Clicked row" << index.row();
+        Partition* selectedPartition =
+                (Partition *)( index.data( PartitionModel::PartitionPtrRole )
+                               .value< void* >() );
+        cDebug() << "Clicked row" << index.row()
+                 << "\npath:       " << selectedPartition->partitionPath()
+                 << "\nfirstSector:" << selectedPartition->firstSector()
+                 << "\nlastSector: " << selectedPartition->lastSector();
+
     } );
     setMouseTracking( true );
 }
