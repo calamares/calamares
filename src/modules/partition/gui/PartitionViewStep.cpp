@@ -477,6 +477,17 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
         gs->insert( "drawNestedPartitions", false );
     }
 
+    if ( configurationMap.contains( "alwaysShowPartitionLabels" ) &&
+         configurationMap.value( "alwaysShowPartitionLabels" ).type() == QVariant::Bool )
+    {
+        gs->insert( "alwaysShowPartitionLabels",
+                    configurationMap.value( "alwaysShowPartitionLabels", true ).toBool() );
+    }
+    else
+    {
+        gs->insert( "alwaysShowPartitionLabels", true );
+    }
+
     if ( configurationMap.contains( "defaultFileSystemType" ) &&
          configurationMap.value( "defaultFileSystemType" ).type() == QVariant::String &&
          !configurationMap.value( "defaultFileSystemType" ).toString().isEmpty() )
