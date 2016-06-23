@@ -58,6 +58,9 @@
     <widget class="PartitionBarsView" name="partitionBarsView"/>
    </item>
    <item>
+    <widget class="PartitionLabelsView" name="partitionLabelsView"/>
+   </item>
+   <item>
     <widget class="QTreeView" name="partitionTreeView">
      <property name="editTriggers">
       <set>QAbstractItemView::NoEditTriggers</set>
@@ -178,6 +181,12 @@
    <class>PartitionBarsView</class>
    <extends>QFrame</extends>
    <header location="global">gui/PartitionBarsView.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>PartitionLabelsView</class>
+   <extends>QFrame</extends>
+   <header location="global">gui/PartitionLabelsView.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
