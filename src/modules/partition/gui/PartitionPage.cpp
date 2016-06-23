@@ -58,6 +58,9 @@ PartitionPage::PartitionPage( PartitionCoreModule* core, QWidget* parent )
     , m_core( core )
 {
     m_ui->setupUi( this );
+    m_ui->partitionLabelsView->setVisible(
+            Calamares::JobQueue::instance()->globalStorage()->
+                    value( "alwaysShowPartitionLabels" ).toBool() );
     m_ui->deviceComboBox->setModel( m_core->deviceModel() );
     m_ui->bootLoaderComboBox->setModel( m_core->bootLoaderModel() );
     PartitionBarsView::NestedPartitionsMode mode = Calamares::JobQueue::instance()->globalStorage()->
@@ -306,15 +309,24 @@ PartitionPage::updateFromCurrentDevice()
 
     PartitionModel* model = m_core->partitionModelForDevice( device );
     m_ui->partitionBarsView->setModel( model );
+    m_ui->partitionLabelsView->setModel( model );
     m_ui->partitionTreeView->setModel( model );
     m_ui->partitionTreeView->expandAll();
 
-    // Make both views use the same selection model.
+    // Make all views use the same selection model.
     if ( m_ui->partitionBarsView->selectionModel() !=
-         m_ui->partitionTreeView->selectionModel() )
+         m_ui->partitionTreeView->selectionModel() ||
+         m_ui->partitionBarsView->selectionModel() !=
+         m_ui->partitionLabelsView->selectionModel() )
     {
+        // Tree view
         QItemSelectionModel* selectionModel = m_ui->partitionTreeView->selectionModel();
         m_ui->partitionTreeView->setSelectionModel( m_ui->partitionBarsView->selectionModel() );
+        selectionModel->deleteLater();
+
+        // Labels view
+        selectionModel = m_ui->partitionLabelsView->selectionModel();
+        m_ui->partitionLabelsView->setSelectionModel( m_ui->partitionBarsView->selectionModel() );
         selectionModel->deleteLater();
     }
 
@@ -327,6 +339,7 @@ PartitionPage::updateFromCurrentDevice()
         QModelIndex selectedIndex = m_ui->partitionBarsView->selectionModel()->currentIndex();
         selectedIndex = selectedIndex.sibling( selectedIndex.row(), 0 );
         m_ui->partitionBarsView->setCurrentIndex( selectedIndex );
+        m_ui->partitionLabelsView->setCurrentIndex( selectedIndex );
     }, Qt::UniqueConnection );
 
     // Must be done here because we need to have a model set to define
