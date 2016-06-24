@@ -57,6 +57,8 @@ PartitionSizeController::setPartResizerWidget( PartResizerWidget* widget, bool f
     if ( m_partResizerWidget )
         disconnect( m_partResizerWidget, 0, this, 0 );
 
+    m_dirty = false;
+
     // Update partition filesystem. This must be done *before* the call to
     // PartResizerWidget::init() otherwise it will be ignored by the widget.
     // This is why this method accept a `format` boolean.
@@ -84,7 +86,17 @@ PartitionSizeController::setPartResizerWidget( PartResizerWidget* widget, bool f
         // If we are not formatting, update the widget to make sure the space
         // between the first and last sectors is big enough to fit the existing
         // content.
-        updatePartResizerWidget();
+        m_updating = true;
+
+        qint64 firstSector = m_partition->firstSector();
+        qint64 lastSector = m_partition->lastSector();
+
+        // This first time we call doAAUPRW with real first/last sector,
+        // all further calls will come from updatePartResizerWidget, and
+        // will therefore use values calculated from the SpinBox.
+        doAlignAndUpdatePartResizerWidget( firstSector, lastSector );
+
+        m_updating = false;
     }
 }
 
@@ -122,18 +134,35 @@ PartitionSizeController::updatePartResizerWidget()
 
     qint64 firstSector = m_partition->firstSector();
     qint64 lastSector = firstSector + sectorSize - 1;
+
+    doAlignAndUpdatePartResizerWidget( firstSector, lastSector );
+
+    m_updating = false;
+}
+
+void
+PartitionSizeController::doAlignAndUpdatePartResizerWidget( qint64 firstSector,
+                                                            qint64 lastSector )
+{
     if ( lastSector > m_partResizerWidget->maximumLastSector() )
     {
         qint64 delta = lastSector - m_partResizerWidget->maximumLastSector();
         firstSector -= delta;
         lastSector -= delta;
     }
-    m_partResizerWidget->updateLastSector( lastSector );
-    m_partResizerWidget->updateFirstSector( firstSector );
+    if ( lastSector != m_partition->lastSector() )
+    {
+        m_partResizerWidget->updateLastSector( lastSector );
+        m_dirty = true;
+    }
+    if ( firstSector != m_partition->firstSector() )
+    {
+        m_partResizerWidget->updateFirstSector( firstSector );
+        m_dirty = true;
+    }
 
     // Update spinbox value in case it was an impossible value
     doUpdateSpinBox();
-    m_updating = false;
 }
 
 void
@@ -165,4 +194,10 @@ qint64
 PartitionSizeController::lastSector() const
 {
     return m_partition->lastSector();
+}
+
+bool
+PartitionSizeController::isDirty() const
+{
+    return m_dirty;
 }

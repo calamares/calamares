@@ -53,6 +53,8 @@ public:
     qint64 firstSector() const;
     qint64 lastSector() const;
 
+    bool isDirty() const;
+
 private:
     QPointer< PartResizerWidget > m_partResizerWidget;
     QPointer< QSpinBox > m_spinBox;
@@ -65,6 +67,9 @@ private:
 
     void connectWidgets();
     void doUpdateSpinBox();
+    void doAlignAndUpdatePartResizerWidget( qint64 fistSector, qint64 lastSector );
+
+    bool m_dirty = false;
 
 private Q_SLOTS:
     void updatePartResizerWidget();
