@@ -43,8 +43,6 @@ public:
     EditExistingPartitionDialog( Device* device, Partition* partition, QWidget* parentWidget = nullptr );
     ~EditExistingPartitionDialog();
 
-    void done( int r ) override;
-
     void applyChanges( PartitionCoreModule* module );
 
 private:
