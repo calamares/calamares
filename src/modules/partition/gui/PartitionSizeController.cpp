@@ -187,7 +187,8 @@ PartitionSizeController::doUpdateSpinBox()
         return;
     qint64 mbSize = m_partition->length() * m_device->logicalSectorSize() / 1024 / 1024;
     m_spinBox->setValue( mbSize );
-    if ( m_currentSpinBoxValue != -1 ) //it's not the first time we're setting it
+    if ( m_currentSpinBoxValue != -1 &&    //if it's not the first time we're setting it
+         m_currentSpinBoxValue != mbSize ) //and the operation changes the SB value
         m_dirty = true;
     m_currentSpinBoxValue = mbSize;
 }
