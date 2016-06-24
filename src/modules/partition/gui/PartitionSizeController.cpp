@@ -130,6 +130,9 @@ PartitionSizeController::updatePartResizerWidget()
 {
     if ( m_updating )
         return;
+    if ( m_spinBox->value() == m_currentSpinBoxValue )
+        return;
+
     m_updating = true;
     qint64 sectorSize = qint64( m_spinBox->value() ) * 1024 * 1024 / m_device->logicalSectorSize();
 
@@ -183,6 +186,9 @@ PartitionSizeController::doUpdateSpinBox()
         return;
     qint64 mbSize = m_partition->length() * m_device->logicalSectorSize() / 1024 / 1024;
     m_spinBox->setValue( mbSize );
+    if ( m_currentSpinBoxValue != -1 ) //it's not the first time we're setting it
+        m_dirty = true;
+    m_currentSpinBoxValue = mbSize;
 }
 
 qint64

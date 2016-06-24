@@ -71,6 +71,7 @@ private:
     void doAlignAndUpdatePartResizerWidget( qint64 fistSector, qint64 lastSector );
 
     bool m_dirty = false;
+    qint64 m_currentSpinBoxValue = -1;
 
 private Q_SLOTS:
     void updatePartResizerWidget();
