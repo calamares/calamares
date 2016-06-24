@@ -162,6 +162,11 @@ EditExistingPartitionDialog::applyChanges( PartitionCoreModule* core )
     bool partResizedMoved = newFirstSector != m_partition->firstSector() ||
                             newLastSector  != m_partition->lastSector();
 
+    cDebug() << "old boundaries:" << m_partition->firstSector()
+             << m_partition->lastSector() << m_partition->length();
+    cDebug() << "new boundaries:" << newFirstSector << newLastSector;
+    cDebug() << "dirty status:" << m_partitionSizeController->isDirty();
+
     FileSystem::Type fsType = FileSystem::Unknown;
     if ( m_ui->formatRadioButton->isChecked() )
     {
