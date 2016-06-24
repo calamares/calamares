@@ -151,7 +151,7 @@ PartitionSizeController::doUpdateSpinBox()
 {
     if ( !m_spinBox )
         return;
-    qint64 mbSize = ( m_partition->lastSector() - m_partition->firstSector() + 1 ) * m_device->logicalSectorSize() / 1024 / 1024;
+    qint64 mbSize = m_partition->length() * m_device->logicalSectorSize() / 1024 / 1024;
     m_spinBox->setValue( mbSize );
 }
 
