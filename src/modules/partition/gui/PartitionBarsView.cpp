@@ -71,9 +71,10 @@ PartitionBarsView::PartitionBarsView( QWidget* parent )
                 (Partition *)( index.data( PartitionModel::PartitionPtrRole )
                                .value< void* >() );
         cDebug() << "Clicked row" << index.row()
-                 << "\n\tpath:       " << selectedPartition->partitionPath()
-                 << "\n\tfirstSector:" << selectedPartition->firstSector()
-                 << "\n\tlastSector: " << selectedPartition->lastSector();
+                 << "\npath:       " << selectedPartition->partitionPath()
+                 << "\nfirstSector:" << selectedPartition->firstSector()
+                 << "\nlastSector: " << selectedPartition->lastSector();
+
     } );
     setMouseTracking( true );
 }
