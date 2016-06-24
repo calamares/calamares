@@ -59,6 +59,7 @@ PartitionSizeController::setPartResizerWidget( PartResizerWidget* widget, bool f
         disconnect( m_partResizerWidget, 0, this, 0 );
 
     m_dirty = false;
+    m_currentSpinBoxValue = -1;
 
     // Update partition filesystem. This must be done *before* the call to
     // PartResizerWidget::init() otherwise it will be ignored by the widget.
