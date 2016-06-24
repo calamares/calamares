@@ -114,6 +114,14 @@ EditExistingPartitionDialog::EditExistingPartitionDialog( Device* device, Partit
 EditExistingPartitionDialog::~EditExistingPartitionDialog()
 {}
 
+void
+EditExistingPartitionDialog::done( int r )
+{
+    // Avoid emitting editingFinished when losing focus
+    m_ui->sizeSpinBox->blockSignals( true );
+    QDialog::done( r );
+}
+
 
 PartitionTable::Flags
 EditExistingPartitionDialog::newFlags() const
