@@ -29,7 +29,7 @@ class GroupSelectionWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit GroupSelectionWidget( QString name, QString description, QStringList packages, QWidget* parent = 0 );
+    explicit GroupSelectionWidget( QString name, QString description, QStringList packages, QWidget* parent = nullptr );
 
     // Current status of the group: is it selected in the view?
     bool isToggled() const;

@@ -57,7 +57,7 @@ class NetInstallPage : public QWidget
     };
 
 public:
-    NetInstallPage( QWidget* parent = 0 );
+    NetInstallPage( QWidget* parent = nullptr );
     void onActivate();
 
     bool isReady();
