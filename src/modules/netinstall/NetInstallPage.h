@@ -1,6 +1,7 @@
 /*
  *   Copyright 2016, Luca Giambonini <almack@chakraos.org>
- *                   Lisa Vitolo     <shainer@chakraos.org>
+ *   Copyright 2016, Lisa Vitolo     <shainer@chakraos.org>
+ *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
  *   the Free Software Foundation, either version 3 of the License, or
