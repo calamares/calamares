@@ -23,6 +23,7 @@
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 #include "utils/Logger.h"
+#include "utils/YamlUtils.h"
 
 #include <QFile>
 #include <QMap>
@@ -37,6 +38,7 @@
 
 #include <yaml-cpp/yaml.h>
 
+using CalamaresUtils::yamlToVariant;
 
 NetInstallPage::NetInstallPage( QWidget* parent )
     : QWidget( parent )
@@ -53,7 +55,7 @@ NetInstallPage::isReady()
     return true;
 }
 
-void NetInstallPage::ReadGroups( const QByteArray& yamlData )
+void NetInstallPage::readGroups( const QByteArray& yamlData )
 {
     YAML::Node groups = YAML::Load( yamlData.constData() );
     Q_ASSERT( groups.IsSequence() );
@@ -62,23 +64,23 @@ void NetInstallPage::ReadGroups( const QByteArray& yamlData )
     {
         YAML::Node groupDefinition = it->as<YAML::Node>();
 
-        QString name( tr( groupDefinition["name"].as<std::string>().c_str() ) );
-        QString description( tr( groupDefinition["description"].as<std::string>().c_str() ) );
+        QString name( tr( yamlToVariant(groupDefinition["name"]).toByteArray() ) );
+        QString description( tr( yamlToVariant(groupDefinition["description"]).toByteArray() ) );
         QStringList packages;
 
         for ( YAML::const_iterator it = groupDefinition["packages"].begin();
                 it != groupDefinition["packages"].end(); ++it )
-            packages.append( ( *it ).as<std::string>().c_str() );
+            packages.append( yamlToVariant(*it).toString() );
 
         m_groups[name].name = name;
         m_groups[name].description = description;
         m_groups[name].packages = packages;
 
         if ( groupDefinition["selected"] )
-            m_groups[name].selected = groupDefinition["selected"].as<bool>();
+            m_groups[name].selected = yamlToVariant( groupDefinition["selected"] ).toBool();
 
         if ( groupDefinition["hidden"] )
-            m_groups[name].hidden = groupDefinition["hidden"].as<bool>();
+            m_groups[name].hidden = yamlToVariant( groupDefinition["hidden"] ).toBool();
 
         m_groupOrder.append( name );
     }
@@ -96,7 +98,7 @@ NetInstallPage::dataIsHere( KJob* job )
 
     auto transferJob = dynamic_cast<KIO::StoredTransferJob*>( job );
     Q_ASSERT( transferJob != nullptr );
-    ReadGroups( transferJob->data() );
+    readGroups( transferJob->data() );
 
     QSignalMapper* mapper = new QSignalMapper( this );
     foreach ( const QString& groupKey, m_groupOrder )

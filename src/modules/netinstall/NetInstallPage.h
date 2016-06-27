@@ -82,7 +82,7 @@ private:
     // Takes the YAML data representing the groups and reads them into the
     // m_groups and m_groupOrder internal structures. See the README.md
     // of this module to know the format expected of the YAML files.
-    void ReadGroups( const QByteArray& yamlData );
+    void readGroups( const QByteArray& yamlData );
 
     Ui::Page_NetInst* ui;
 
