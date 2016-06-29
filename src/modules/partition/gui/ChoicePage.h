@@ -65,6 +65,7 @@ public:
     Choice currentChoice() const;
 
     void onLeave();
+    void applyActionChoice( ChoicePage::Choice choice );
 
 signals:
     void nextStatusChanged( bool );
@@ -84,7 +85,6 @@ private:
     void applyDeviceChoice();
     void continueApplyDeviceChoice();
     void updateDeviceStatePreview();
-    void applyActionChoice( ChoicePage::Choice choice );
     void updateActionChoicePreview( ChoicePage::Choice choice );
     void setupActions();
     OsproberEntryList getOsproberEntriesForDevice( Device* device ) const;

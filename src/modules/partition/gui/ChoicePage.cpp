@@ -556,11 +556,6 @@ ChoicePage::doAlongsideApply()
 
     QMutexLocker locker( &m_coreMutex );
 
-    if ( m_core->isDirty() )
-    {
-        m_core->revert();
-    }
-
     QString path = m_beforePartitionBarsView->
                    selectionModel()->
                    currentIndex().data( PartitionModel::PartitionPathRole ).toString();
