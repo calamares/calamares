@@ -35,6 +35,7 @@ public:
     explicit SummaryPage( const SummaryViewStep* thisViewStep, QWidget* parent = nullptr );
 
     void onActivate();
+    void createContentWidget();
 
 private:
     Calamares::ViewStepList stepsForSummary( const Calamares::ViewStepList& allSteps ) const;
@@ -44,7 +45,6 @@ private:
     QVBoxLayout* m_layout = nullptr;
     QWidget* m_contentWidget = nullptr;
 
-    void createContentWidget();
     QLabel* createTitleLabel( const QString& text ) const;
     QLabel* createBodyLabel( const QString& text ) const;
 

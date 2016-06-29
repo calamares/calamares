@@ -104,3 +104,10 @@ SummaryViewStep::onActivate()
     m_widget->onActivate();
 }
 
+
+void
+SummaryViewStep::onLeave()
+{
+    m_widget->createContentWidget();
+}
+
