@@ -558,7 +558,7 @@ ChoicePage::doAlongsideApply()
 
     if ( m_core->isDirty() )
     {
-        m_core->revertDevice( selectedDevice() );
+        m_core->revert();
     }
 
     QString path = m_beforePartitionBarsView->
