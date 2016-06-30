@@ -19,8 +19,6 @@
 #ifndef NETINSTALLVIEWSTEP_H
 #define NETINSTALLVIEWSTEP_H
 
-#include <QObject>
-
 #include <utils/PluginFactory.h>
 #include <viewpages/ViewStep.h>
 
