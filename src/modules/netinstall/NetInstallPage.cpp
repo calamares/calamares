@@ -92,7 +92,7 @@ NetInstallPage::dataIsHere( KJob* job )
 {
     if ( job->error() )
     {
-        qDebug() << job->errorString();
+        cDebug() << job->errorString();
         ui->netinst_status->setText( tr( "Network Installation. (Disabled: Unable to fetch package lists, check your network connection)" ) );
         return;
     }
@@ -118,7 +118,6 @@ NetInstallPage::dataIsHere( KJob* job )
         mapper->setMapping( groupWidget, groupKey );
         connect( groupWidget, &GroupSelectionWidget::toggled, mapper,
                  static_cast<void(QSignalMapper::*)()>(&QSignalMapper::map) );
-        //connect( groupWidget, SIGNAL( toggled( bool ) ), mapper, SLOT( map() ) );
     }
 
     // TODO
