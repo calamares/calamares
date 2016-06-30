@@ -47,7 +47,7 @@ NetInstallViewStep::~NetInstallViewStep()
 QString
 NetInstallViewStep::prettyName() const
 {
-    return tr( "NetInstall" );
+    return tr( "Package selection" );
 }
 
 
