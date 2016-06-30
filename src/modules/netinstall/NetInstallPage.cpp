@@ -150,7 +150,7 @@ void NetInstallPage::loadGroupList()
             "groupsUrl" ).toString() );
 
     KIO::Job* getJob = KIO::storedGet( confUrl, KIO::Reload, KIO::Overwrite | KIO::HideProgressInfo );
-    connect ( getJob, SIGNAL(  result( KJob* ) ), this, SLOT( dataIsHere( KJob* ) ) );
+    connect ( getJob, &KIO::Job::result, this, &NetInstallPage::dataIsHere );
 }
 
 void NetInstallPage::onActivate()

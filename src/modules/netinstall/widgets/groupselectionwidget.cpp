@@ -26,7 +26,7 @@ GroupSelectionWidget::GroupSelectionWidget( QString name, QString description, Q
 {
     ui.setupUi( this );
 
-    connect( ui.group, SIGNAL( toggled( bool ) ), this, SLOT( toggleGroup( bool ) ) );
+    connect( ui.group, &QCheckBox::toggled, this, &GroupSelectionWidget::toggleGroup );
 
     ui.group->setText( name );
     ui.description->setText( description );
