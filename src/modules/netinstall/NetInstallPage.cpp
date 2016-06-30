@@ -35,6 +35,7 @@
 #include <QtDebug>
 #include <QtGlobal>
 #include <QWidget>
+#include <QSignalMapper>
 
 #include <yaml-cpp/yaml.h>
 
@@ -115,7 +116,9 @@ NetInstallPage::dataIsHere( KJob* job )
         ui->groupswidget->layout()->addWidget( groupWidget );
 
         mapper->setMapping( groupWidget, groupKey );
-        connect( groupWidget, SIGNAL( toggled( bool ) ), mapper, SLOT( map() ) );
+        connect( groupWidget, &GroupSelectionWidget::toggled, mapper,
+                 static_cast<void(QSignalMapper::*)()>(&QSignalMapper::map) );
+        //connect( groupWidget, SIGNAL( toggled( bool ) ), mapper, SLOT( map() ) );
     }
 
     // TODO
