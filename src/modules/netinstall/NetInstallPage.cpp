@@ -63,7 +63,7 @@ void NetInstallPage::readGroups( const QByteArray& yamlData )
 
     for ( YAML::const_iterator it = groups.begin(); it != groups.end(); ++it )
     {
-        YAML::Node groupDefinition = it->as<YAML::Node>();
+        const YAML::Node groupDefinition = *it;
 
         QString name( tr( yamlToVariant(groupDefinition["name"]).toByteArray() ) );
         QString description( tr( yamlToVariant(groupDefinition["description"]).toByteArray() ) );
