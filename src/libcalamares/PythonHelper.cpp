@@ -29,7 +29,8 @@
 
 namespace bp = boost::python;
 
-namespace CalamaresPython {
+namespace CalamaresPython
+{
 
 
 boost::python::object
@@ -39,6 +40,9 @@ variantToPyObject( const QVariant& variant )
     {
     case QVariant::Map:
         return variantMapToPyDict( variant.toMap() );
+
+    case QVariant::Hash:
+        return variantHashToPyDict( variant.toHash() );
 
     case QVariant::List:
     case QVariant::StringList:
@@ -94,9 +98,7 @@ variantListToPyList( const QVariantList& variantList )
 {
     bp::list pyList;
     foreach ( const QVariant& variant, variantList )
-    {
         pyList.append( variantToPyObject( variant ) );
-    }
     return pyList;
 }
 
@@ -106,9 +108,7 @@ variantListFromPyList( const boost::python::list& pyList )
 {
     QVariantList list;
     for ( int i = 0; i < bp::len( pyList ); ++i )
-    {
         list.append( variantFromPyObject( pyList[ i ] ) );
-    }
     return list;
 }
 
@@ -118,9 +118,7 @@ variantMapToPyDict( const QVariantMap& variantMap )
 {
     bp::dict pyDict;
     for ( auto it = variantMap.constBegin(); it != variantMap.constEnd(); ++it )
-    {
         pyDict[ it.key().toStdString() ] = variantToPyObject( it.value() );
-    }
     return pyDict;
 }
 
@@ -148,6 +146,40 @@ variantMapFromPyDict( const boost::python::dict& pyDict )
     return map;
 }
 
+boost::python::dict
+variantHashToPyDict( const QVariantHash& variantHash )
+{
+    bp::dict pyDict;
+    for ( auto it = variantHash.constBegin(); it != variantHash.constEnd(); ++it )
+        pyDict[ it.key().toStdString() ] = variantToPyObject( it.value() );
+    return pyDict;
+}
+
+
+QVariantHash
+variantHashFromPyDict( const boost::python::dict& pyDict )
+{
+    QVariantHash hash;
+    bp::list keys = pyDict.keys();
+    for ( int i = 0; i < bp::len( keys ); ++i )
+    {
+        bp::extract< std::string > extracted_key( keys[ i ] );
+        if ( !extracted_key.check() )
+        {
+            cDebug() << "Key invalid, map might be incomplete.";
+            continue;
+        }
+
+        std::string key = extracted_key;
+
+        bp::object obj = pyDict[ key ];
+
+        hash.insert( QString::fromStdString( key ), variantFromPyObject( obj ) );
+    }
+    return hash;
+}
+
+
 
 Helper* Helper::s_instance = nullptr;
 
@@ -165,20 +197,16 @@ Helper::Helper( QObject* parent )
         // If we're running from the build dir
         QFileInfo fi( QDir::current().absoluteFilePath( "libcalamares.so" ) );
         if ( fi.exists() && fi.isReadable() )
-        {
             m_pythonPaths.append( fi.dir().absolutePath() );
-        }
 
         QDir calaPythonPath( CalamaresUtils::systemLibDir().absolutePath() +
                              QDir::separator() + "calamares" );
         if ( calaPythonPath.exists() &&
-             calaPythonPath.isReadable() )
+                calaPythonPath.isReadable() )
         {
             QFileInfo fi( calaPythonPath.absoluteFilePath( "libcalamares.so" ) );
             if ( fi.exists() && fi.isReadable() )
-            {
                 m_pythonPaths.append( fi.dir().absolutePath() );
-            }
         }
 
 
