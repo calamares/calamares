@@ -127,7 +127,7 @@ NetInstallViewStep::onLeave()
 
     if ( !m_widget->selectedPackages().empty() )
     {
-        QHash<QString, QVariant> packagesWithOperation;
+        QMap<QString, QVariant> packagesWithOperation;
         // Gets all packages selected in the page; includes groups that are
         // selected by default but not displayed.
         packagesWithOperation.insert( "install", m_widget->selectedPackages() );
