@@ -124,6 +124,6 @@ def run():
         run_operations(pkgman, entry)
 
     if libcalamares.globalstorage.contains("packageOperations"):
-        run_operations(libcalamares.globalstorage.value("packageOperations"))
+        run_operations(pkgman, libcalamares.globalstorage.value("packageOperations"))
 
     return None
