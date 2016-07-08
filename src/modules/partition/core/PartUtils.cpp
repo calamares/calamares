@@ -30,6 +30,7 @@
 #include <GlobalStorage.h>
 
 #include <QProcess>
+#include <QTemporaryDir>
 
 namespace PartUtils
 {
@@ -136,6 +137,50 @@ canBeResized( PartitionCoreModule* core, const QString& partitionPath )
 }
 
 
+FstabEntryList
+lookForFstabEntries( const QString& partitionPath )
+{
+    FstabEntryList fstabEntries;
+    QTemporaryDir mountsDir;
+
+    int exit = QProcess::execute( "mount", { partitionPath, mountsDir.path() } );
+    if ( !exit ) // if all is well
+    {
+        QFile fstabFile( mountsDir.path() + "/etc/fstab" );
+        if ( fstabFile.open( QIODevice::ReadOnly | QIODevice::Text ) )
+        {
+            QStringList fstabLines = QString::fromLocal8Bit( fstabFile.readAll() )
+                                     .split( '\n' );
+
+            foreach ( const QString& rawLine, fstabLines )
+            {
+                QString line = rawLine.simplified();
+                if ( line.startsWith( '#' ) )
+                    continue;
+
+                QStringList splitLine = line.split( ' ' );
+                if ( splitLine.length() != 6 )
+                    continue;
+
+                fstabEntries.append( { splitLine.at( 0 ), // path, or UUID, or LABEL, etc.
+                                       splitLine.at( 1 ), // mount point
+                                       splitLine.at( 2 ), // fs type
+                                       splitLine.at( 3 ), // options
+                                       splitLine.at( 4 ).toInt(), //dump
+                                       splitLine.at( 5 ).toInt()  //pass
+                                     } );
+            }
+
+            fstabFile.close();
+        }
+
+        QProcess::execute( "umount", { "-R", mountsDir.path() } );
+    }
+
+    return fstabEntries;
+}
+
+
 OsproberEntryList
 runOsprober( PartitionCoreModule* core )
 {
@@ -177,10 +222,13 @@ runOsprober( PartitionCoreModule* core )
             if ( !path.startsWith( "/dev/" ) ) //basic sanity check
                 continue;
 
+            FstabEntryList fstabEntries = lookForFstabEntries( path );
+
             osproberEntries.append( { prettyName,
                                       path,
                                       canBeResized( core, path ),
-                                      lineColumns } );
+                                      lineColumns,
+                                      fstabEntries } );
             osproberCleanLines.append( line );
         }
     }
