@@ -34,6 +34,11 @@ If both keys are set to true for the same group, you are basically creating a "d
 Here is the set of instructions to have the module work in your Calamares. As of July 2016, this has been successfully 
 tested using the live installation of Chakra Fermi.
 
+First, if the module is used, we need to require a working Internet connection, otherwise the module will be
+unable to fetch the package groups and to perform the installation. Requirements for the Calamares instance
+are configured in the **welcome.conf** file (configuration for the **welcome** module). Make sure *internet*
+is listed below *required*.
+
 In the *settings.conf* file, decide where the **netinstall** page should be displayed. I put it just after the
 **welcome** page, but any position between that and just before **partition** should make no difference.
 
