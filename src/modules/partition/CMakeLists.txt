@@ -25,7 +25,6 @@ calamares_add_plugin( partition
         core/ColorUtils.cpp
         core/DeviceModel.cpp
         core/KPMHelpers.cpp
-        core/OsproberEntry.cpp
         core/PartitionActions.cpp
         core/PartitionCoreModule.cpp
         core/PartitionInfo.cpp

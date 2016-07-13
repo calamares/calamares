@@ -40,8 +40,7 @@ struct OsproberEntry
     bool canBeResized;
     QStringList line;
     FstabEntryList fstab;
-
-    QString homePartitionPath();
+    QString homePath;
 };
 
 typedef QList< OsproberEntry > OsproberEntryList;
