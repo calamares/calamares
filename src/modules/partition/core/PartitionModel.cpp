@@ -223,6 +223,11 @@ PartitionModel::data( const QModelIndex& index, int role ) const
             if ( osproberEntry.path == partition->partitionPath() )
                 return osproberEntry.line;
         return QVariant();
+    case OsproberHomePartitionPathRole:
+        foreach ( const OsproberEntry& osproberEntry, m_osproberEntries )
+            if ( osproberEntry.path == partition->partitionPath() )
+                return osproberEntry.homePath;
+        return QVariant();
     // end Osprober roles.
 
     default:

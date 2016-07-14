@@ -77,7 +77,8 @@ public:
         OsproberNameRole,
         OsproberPathRole,
         OsproberCanBeResizedRole,
-        OsproberRawLineRole
+        OsproberRawLineRole,
+        OsproberHomePartitionPathRole
     };
 
     enum Column
