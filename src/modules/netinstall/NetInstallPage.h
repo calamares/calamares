@@ -22,10 +22,11 @@
 #include "Typedefs.h"
 #include <QWidget>
 #include <QAbstractButton>
+#include <QNetworkAccessManager>
 
 // required forward declarations
-class KJob;
 class QByteArray;
+class QNetworkReply;
 class GroupSelectionWidget;
 
 namespace Ui
@@ -58,6 +59,7 @@ class NetInstallPage : public QWidget
 
 public:
     NetInstallPage( QWidget* parent = nullptr );
+
     void onActivate();
 
     bool isReady();
@@ -73,7 +75,7 @@ public:
     QStringList selectedPackages() const;
 
 public slots:
-    void dataIsHere( KJob* );
+    void dataIsHere( QNetworkReply* );
 
 signals:
     void checkReady( bool );
@@ -85,6 +87,9 @@ private:
     void readGroups( const QByteArray& yamlData );
 
     Ui::Page_NetInst* ui;
+
+    // Handles connection with the remote URL storing the configuration.
+    QNetworkAccessManager m_networkManager;
 
     QHash<QString, Group> m_groups;
     // For each group name, store the selection widget to retrieve UI

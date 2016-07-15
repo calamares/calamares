@@ -29,8 +29,9 @@
 #include <QMap>
 #include <QTextStream>
 
-#include <KIO/Job>
-#include <KIO/StoredTransferJob>
+#include <QNetworkAccessManager>
+#include <QNetworkRequest>
+#include <QNetworkReply>
 
 #include <QtDebug>
 #include <QtGlobal>
@@ -44,6 +45,7 @@ using CalamaresUtils::yamlToVariant;
 NetInstallPage::NetInstallPage( QWidget* parent )
     : QWidget( parent )
     , ui( new Ui::Page_NetInst )
+    , m_networkManager( this )
 {
     ui->setupUi( this );
 }
@@ -88,18 +90,16 @@ void NetInstallPage::readGroups( const QByteArray& yamlData )
 }
 
 void
-NetInstallPage::dataIsHere( KJob* job )
+NetInstallPage::dataIsHere( QNetworkReply* reply )
 {
-    if ( job->error() )
+    if ( reply->error() != QNetworkReply::NoError )
     {
-        cDebug() << job->errorString();
+        cDebug() << reply->errorString();
         ui->netinst_status->setText( tr( "Network Installation. (Disabled: Unable to fetch package lists, check your network connection)" ) );
         return;
     }
 
-    auto transferJob = dynamic_cast<KIO::StoredTransferJob*>( job );
-    Q_ASSERT( transferJob != nullptr );
-    readGroups( transferJob->data() );
+    readGroups( reply->readAll() );
 
     QSignalMapper* mapper = new QSignalMapper( this );
     foreach ( const QString& groupKey, m_groupOrder )
@@ -120,7 +120,7 @@ NetInstallPage::dataIsHere( KJob* job )
                  static_cast<void(QSignalMapper::*)()>(&QSignalMapper::map) );
     }
 
-    // TODO
+    reply->deleteLater();
     emit checkReady( isReady() );
 }
 
@@ -151,8 +151,14 @@ void NetInstallPage::loadGroupList()
         Calamares::JobQueue::instance()->globalStorage()->value(
             "groupsUrl" ).toString() );
 
-    KIO::Job* getJob = KIO::storedGet( confUrl, KIO::Reload, KIO::Overwrite | KIO::HideProgressInfo );
-    connect ( getJob, &KIO::Job::result, this, &NetInstallPage::dataIsHere );
+    QNetworkRequest request;
+    request.setUrl( QUrl( confUrl ) );
+    // Follows all redirects except unsafe ones (https to http).
+    request.setAttribute(QNetworkRequest::FollowRedirectsAttribute, true);
+
+    connect(&m_networkManager, &QNetworkAccessManager::finished,
+            this, &NetInstallPage::dataIsHere);
+    m_networkManager.get(request);
 }
 
 void NetInstallPage::onActivate()
