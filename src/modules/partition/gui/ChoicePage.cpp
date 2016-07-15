@@ -947,6 +947,7 @@ ChoicePage::updateActionChoicePreview( ChoicePage::Choice choice )
                 connect( m_core, &PartitionCoreModule::deviceReverted,
                          this, [ this ]( Device* dev )
                 {
+                    Q_UNUSED( dev )
                     if ( !m_bootloaderComboBox.isNull() )
                     {
                         if ( m_bootloaderComboBox->model() != m_core->bootLoaderModel() )
