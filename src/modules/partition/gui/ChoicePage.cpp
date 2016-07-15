@@ -68,20 +68,20 @@
  */
 ChoicePage::ChoicePage( QWidget* parent )
     : QWidget( parent )
-    , m_choice( NoChoice )
     , m_nextEnabled( false )
     , m_core( nullptr )
+    , m_choice( NoChoice )
+    , m_isEfi( false )
     , m_grp( nullptr )
     , m_alongsideButton( nullptr )
     , m_eraseButton( nullptr )
     , m_replaceButton( nullptr )
     , m_somethingElseButton( nullptr )
     , m_deviceInfoWidget( nullptr )
-    , m_lastSelectedDeviceIndex( -1 )
-    , m_isEfi( false )
     , m_beforePartitionBarsView( nullptr )
     , m_beforePartitionLabelsView( nullptr )
     , m_bootloaderComboBox( nullptr )
+    , m_lastSelectedDeviceIndex( -1 )
 {
     setupUi( this );
 
@@ -468,7 +468,7 @@ ChoicePage::doAlongsideSetupSplitter( const QModelIndex& current,
                                     ->value( "requiredStorageGB" )
                                     .toDouble();
 
-    qint64 requiredStorageB = ( requiredStorageGB + 0.1 + 2.0 ) * 1024 * 1024 * 1024;
+    qint64 requiredStorageB = qRound64( requiredStorageGB + 0.1 + 2.0 ) * 1024 * 1024 * 1024;
 
     m_afterPartitionSplitterWidget->setSplitPartition(
                 part->partitionPath(),
@@ -877,8 +877,11 @@ ChoicePage::updateActionChoicePreview( ChoicePage::Choice choice )
             layout->addWidget( sizeLabel );
             sizeLabel->setWordWrap( true );
             connect( m_afterPartitionSplitterWidget, &PartitionSplitterWidget::partitionResized,
-                     this, [ this, sizeLabel ]( const QString& path, qint64 size, qint64 sizeNext )
+                     this, [ this, sizeLabel ]( const QString& path,
+                                                qint64 size,
+                                                qint64 sizeNext )
             {
+                Q_UNUSED( path )
                 sizeLabel->setText( tr( "%1 will be shrunk to %2MB and a new "
                                         "%3MB partition will be created for %4." )
                                     .arg( m_beforePartitionBarsView->selectionModel()->currentIndex().data().toString() )
