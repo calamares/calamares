@@ -32,7 +32,7 @@
     </layout>
    </item>
    <item>
-    <layout class="QVBoxLayout" name="m_rightLayout" stretch="0,1,0,0,0,0">
+    <layout class="QVBoxLayout" name="m_rightLayout" stretch="0,1,0,0,0,0,0">
      <item>
       <widget class="QLabel" name="m_messageLabel">
        <property name="toolTip">
@@ -63,7 +63,7 @@
           <x>0</x>
           <y>0</y>
           <width>729</width>
-          <height>276</height>
+          <height>233</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="m_itemsLayout">
@@ -95,6 +95,13 @@
      </item>
      <item>
       <widget class="EncryptWidget" name="m_encryptWidget" native="true"/>
+     </item>
+     <item>
+      <widget class="QCheckBox" name="m_reuseHomeCheckBox">
+       <property name="text">
+        <string notr="true">&lt;m_reuseHomeCheckBox&gt;</string>
+       </property>
+      </widget>
      </item>
      <item>
       <widget class="QLabel" name="m_selectLabel">
