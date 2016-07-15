@@ -129,6 +129,7 @@ ChoicePage::ChoicePage( QWidget* parent )
     m_previewAfterFrame->hide();
     m_encryptWidget->hide();
     m_reuseHomeCheckBox->hide();
+    Calamares::JobQueue::instance()->globalStorage()->insert( "reuseHome", false );
 }
 
 
@@ -741,9 +742,16 @@ ChoicePage::doReplaceSelectedPartition( const QModelIndex& current )
                                                       m_encryptWidget->passphrase() );
                 Partition* homePartition = KPMHelpers::findPartitionByPath( { selectedDevice() },
                                                                             homePartitionPath );
+
+                Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
                 if ( homePartition )
                 {
                     PartitionInfo::setMountPoint( homePartition, "/home" );
+                    gs->insert( "reuseHome", true );
+                }
+                else
+                {
+                    gs->insert( "reuseHome", false );
                 }
             }
         }
@@ -861,6 +869,8 @@ ChoicePage::updateActionChoicePreview( ChoicePage::Choice choice )
                                                        PartitionBarsView::NoNestedPartitions;
 
     m_reuseHomeCheckBox->hide();
+    Calamares::JobQueue::instance()->globalStorage()->insert( "reuseHome", false );
+
     switch ( choice )
     {
     case Alongside:
