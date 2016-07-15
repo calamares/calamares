@@ -73,9 +73,11 @@ signals:
     void deviceChosen();
 
 private slots:
-    void doReplaceSelectedPartition( const QModelIndex& current, const QModelIndex& previous );
+    void onPartitionToReplaceSelected( const QModelIndex& current, const QModelIndex& previous );
+    void doReplaceSelectedPartition( const QModelIndex& current );
     void doAlongsideSetupSplitter( const QModelIndex& current, const QModelIndex& previous );
     void onEncryptWidgetStateChanged();
+    void onHomeCheckBoxStateChanged();
 
 private:
     void updateNextEnabled();

@@ -128,7 +128,7 @@ ChoicePage::ChoicePage( QWidget* parent )
     m_previewAfterLabel->hide();
     m_previewAfterFrame->hide();
     m_encryptWidget->hide();
-    // end
+    m_reuseHomeCheckBox->hide();
 }
 
 
@@ -166,6 +166,8 @@ ChoicePage::init( PartitionCoreModule* core )
 
     connect( m_encryptWidget, &EncryptWidget::stateChanged,
              this, &ChoicePage::onEncryptWidgetStateChanged );
+    connect( m_reuseHomeCheckBox, &QCheckBox::stateChanged,
+             this, &ChoicePage::onHomeCheckBoxStateChanged );
 
     ChoicePage::applyDeviceChoice();
 }
@@ -374,14 +376,18 @@ ChoicePage::applyActionChoice( ChoicePage::Choice choice )
             } ),
             [ = ]
             {
-                PartitionActions::doAutopartition( m_core, selectedDevice(), m_encryptWidget->passphrase() );
+                PartitionActions::doAutopartition( m_core,
+                                                   selectedDevice(),
+                                                   m_encryptWidget->passphrase() );
                 emit deviceChosen();
             },
             this );
         }
         else
         {
-            PartitionActions::doAutopartition( m_core, selectedDevice(), m_encryptWidget->passphrase() );
+            PartitionActions::doAutopartition( m_core,
+                                               selectedDevice(),
+                                               m_encryptWidget->passphrase() );
             emit deviceChosen();
         }
 
@@ -400,7 +406,7 @@ ChoicePage::applyActionChoice( ChoicePage::Choice choice )
         updateNextEnabled();
 
         connect( m_beforePartitionBarsView->selectionModel(), SIGNAL( currentRowChanged( QModelIndex, QModelIndex ) ),
-                 this, SLOT( doReplaceSelectedPartition( QModelIndex, QModelIndex ) ),
+                 this, SLOT( onPartitionToReplaceSelected( QModelIndex, QModelIndex ) ),
                  Qt::UniqueConnection );
         break;
 
@@ -500,11 +506,23 @@ ChoicePage::onEncryptWidgetStateChanged()
         {
             doReplaceSelectedPartition( m_beforePartitionBarsView->
                                             selectionModel()->
-                                                currentIndex(),
-                                        QModelIndex() );
+                                                currentIndex() );
         }
     }
     updateNextEnabled();
+}
+
+
+void
+ChoicePage::onHomeCheckBoxStateChanged()
+{
+    if ( currentChoice() == Replace &&
+         m_beforePartitionBarsView->selectionModel()->currentIndex().isValid() )
+    {
+        doReplaceSelectedPartition( m_beforePartitionBarsView->
+                                        selectionModel()->
+                                            currentIndex() );
+    }
 }
 
 
@@ -616,14 +634,33 @@ ChoicePage::doAlongsideApply()
 
 
 void
-ChoicePage::doReplaceSelectedPartition( const QModelIndex& current,
-                                        const QModelIndex& previous )
+ChoicePage::onPartitionToReplaceSelected( const QModelIndex& current,
+                                          const QModelIndex& previous )
 {
     Q_UNUSED( previous );
     if ( !current.isValid() )
         return;
 
-    ScanningDialog::run( QtConcurrent::run( [ = ]
+    // Reset state on selection regardless of whether this will be used.
+    m_reuseHomeCheckBox->setChecked( false );
+
+    doReplaceSelectedPartition( current );
+}
+
+
+void
+ChoicePage::doReplaceSelectedPartition( const QModelIndex& current )
+{
+    if ( !current.isValid() )
+        return;
+
+    QString homePartitionPath;
+    bool doReuseHomePartition = m_reuseHomeCheckBox->isChecked();
+
+    // NOTE: using by-ref captures because we need to write homePartitionPath and
+    //       doReuseHomePartition *after* the device revert, for later use.
+    ScanningDialog::run( QtConcurrent::run(
+    [ this, &current, &homePartitionPath, &doReuseHomePartition ]
     {
         QMutexLocker locker( &m_coreMutex );
 
@@ -632,11 +669,20 @@ ChoicePage::doReplaceSelectedPartition( const QModelIndex& current,
             m_core->revertDevice( selectedDevice() );
         }
 
+        // Find out is the selected partition has a rootfs. If yes, then make the
+        // m_reuseHomeCheckBox visible and set its text to something meaningful.
+        homePartitionPath = current.data( PartitionModel::OsproberHomePartitionPathRole ).toString();
+        if ( homePartitionPath.isEmpty() )
+            doReuseHomePartition = false;
+
         // if the partition is unallocated(free space), we don't replace it but create new one 
         // with the same first and last sector
         Partition* selectedPartition = (Partition *)( current.data( PartitionModel::PartitionPtrRole ).value< void* >() );
         if ( KPMHelpers::isPartitionFreeSpace( selectedPartition ) )
         {
+            //NOTE: if the selected partition is free space, we don't deal with
+            //      a separate /home partition at all because there's no existing
+            //      rootfs to read it from.
             PartitionRole newRoles = PartitionRole( PartitionRole::Primary );
             PartitionNode* newParent = selectedDevice()->partitionTable();
 
@@ -684,16 +730,26 @@ ChoicePage::doReplaceSelectedPartition( const QModelIndex& current,
             // main DeviceModel, not the immutable copy.
             QString partPath = current.data( PartitionModel::PartitionPathRole ).toString();
             selectedPartition = KPMHelpers::findPartitionByPath( { selectedDevice() },
-                                                                    partPath );
+                                                                 partPath );
             if ( selectedPartition )
+            {
                 PartitionActions::doReplacePartition( m_core,
                                                       selectedDevice(),
                                                       selectedPartition,
                                                       m_encryptWidget->passphrase() );
+                Partition* homePartition = KPMHelpers::findPartitionByPath( { selectedDevice() },
+                                                                            homePartitionPath );
+                if ( homePartition )
+                {
+                    PartitionInfo::setMountPoint( homePartition, "/home" );
+                }
+            }
         }
     } ),
-    [=]
+    [&]
     {
+        m_reuseHomeCheckBox->setVisible( !homePartitionPath.isEmpty() );
+
         if ( m_isEfi )
             setupEfiSystemPartitionSelector();
 
