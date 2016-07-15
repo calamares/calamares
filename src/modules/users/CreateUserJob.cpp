@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2016, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -23,6 +23,7 @@
 #include "utils/Logger.h"
 #include "utils/CalamaresUtilsSystem.h"
 
+#include <QDateTime>
 #include <QDir>
 #include <QFile>
 #include <QFileInfo>
@@ -121,6 +122,29 @@ CreateUserJob::exec()
 
         CalamaresUtils::System::instance()->targetEnvCall( { "groupadd", autologinGroup } );
         defaultGroups.append( QString( ",%1" ).arg( autologinGroup ) );
+    }
+
+    // If we're looking to reuse the contents of an existing /home
+    if ( gs->value( "reuseHome" ).toBool() )
+    {
+        QString shellFriendlyHome = "/home/" + m_userName;
+        QDir existingHome( destDir.absolutePath() + shellFriendlyHome );
+        if ( existingHome.exists() )
+        {
+            QString backupDirName = "dotfiles_backup_" +
+                                    QDateTime::currentDateTime()
+                                        .toString( "yyyy-MM-dd_HH-mm-ss" );
+            existingHome.mkdir( backupDirName );
+
+            CalamaresUtils::System::instance()->
+                    targetEnvCall( { "sh",
+                                     "-c",
+                                     "mv -f " +
+                                        shellFriendlyHome + "/.* " +
+                                        shellFriendlyHome + "/" +
+                                        backupDirName
+                                   } );
+        }
     }
 
     int ec = CalamaresUtils::System::instance()->
