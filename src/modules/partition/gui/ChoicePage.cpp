@@ -472,7 +472,7 @@ ChoicePage::doAlongsideSetupSplitter( const QModelIndex& current,
 
     m_afterPartitionSplitterWidget->setSplitPartition(
                 part->partitionPath(),
-                part->used() * 1.1,
+                qRound64( part->used() * 1.1 ),
                 part->capacity() - requiredStorageB,
                 part->capacity() / 2,
                 Calamares::Branding::instance()->
