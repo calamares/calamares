@@ -858,6 +858,7 @@ ChoicePage::updateActionChoicePreview( ChoicePage::Choice choice )
                                                        PartitionBarsView::DrawNestedPartitions :
                                                        PartitionBarsView::NoNestedPartitions;
 
+    m_reuseHomeCheckBox->hide();
     switch ( choice )
     {
     case Alongside:
