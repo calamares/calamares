@@ -677,7 +677,9 @@ ChoicePage::doReplaceSelectedPartition( const QModelIndex& current )
 
         // if the partition is unallocated(free space), we don't replace it but create new one 
         // with the same first and last sector
-        Partition* selectedPartition = (Partition *)( current.data( PartitionModel::PartitionPtrRole ).value< void* >() );
+        Partition* selectedPartition =
+            static_cast< Partition* >( current.data( PartitionModel::PartitionPtrRole )
+                                       .value< void* >() );
         if ( KPMHelpers::isPartitionFreeSpace( selectedPartition ) )
         {
             //NOTE: if the selected partition is free space, we don't deal with
@@ -896,7 +898,10 @@ ChoicePage::updateActionChoicePreview( ChoicePage::Choice choice )
 
             SelectionFilter filter = [ this ]( const QModelIndex& index )
             {
-                return PartUtils::canBeResized( (Partition*)( index.data( PartitionModel::PartitionPtrRole ).value< void* >() ) );
+                return PartUtils::canBeResized(
+                    static_cast< Partition* >(
+                        index.data( PartitionModel::PartitionPtrRole )
+                            .value< void* >() ) );
             };
             m_beforePartitionBarsView->setSelectionFilter( filter );
             m_beforePartitionLabelsView->setSelectionFilter( filter );
@@ -968,7 +973,10 @@ ChoicePage::updateActionChoicePreview( ChoicePage::Choice choice )
             {
                 SelectionFilter filter = [ this ]( const QModelIndex& index )
                 {
-                    return PartUtils::canBeReplaced( (Partition*)( index.data( PartitionModel::PartitionPtrRole ).value< void* >() ) );
+                    return PartUtils::canBeReplaced(
+                        static_cast< Partition* >(
+                            index.data( PartitionModel::PartitionPtrRole )
+                                .value< void* >() ) );
                 };
                 m_beforePartitionBarsView->setSelectionFilter( filter );
                 m_beforePartitionLabelsView->setSelectionFilter( filter );
