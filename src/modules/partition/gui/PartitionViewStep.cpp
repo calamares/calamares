@@ -58,8 +58,8 @@
 
 PartitionViewStep::PartitionViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
-    , m_widget( new QStackedWidget() )
     , m_core( nullptr )
+    , m_widget( new QStackedWidget() )
     , m_choicePage( nullptr )
     , m_manualPartitionPage( nullptr )
 {
@@ -69,6 +69,7 @@ PartitionViewStep::PartitionViewStep( QObject* parent )
     m_widget->addWidget( m_waitingWidget );
     CALAMARES_RETRANSLATE( qobject_cast< WaitingWidget* >( m_waitingWidget )->setText( tr( "Gathering system information..." ) ); )
 
+    m_core = new PartitionCoreModule( this ); // Unusable before init is complete!
     // We're not done loading, but we need the configuration map first.
 }
 
@@ -76,8 +77,8 @@ PartitionViewStep::PartitionViewStep( QObject* parent )
 void
 PartitionViewStep::initPartitionCoreModule()
 {
-    Q_ASSERT( !m_core );
-    m_core = new PartitionCoreModule( this );
+    Q_ASSERT( m_core );
+    m_core->init();
 }
 
 
