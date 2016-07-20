@@ -670,12 +670,6 @@ ChoicePage::doReplaceSelectedPartition( const QModelIndex& current )
             m_core->revertDevice( selectedDevice() );
         }
 
-        // Find out is the selected partition has a rootfs. If yes, then make the
-        // m_reuseHomeCheckBox visible and set its text to something meaningful.
-        homePartitionPath = current.data( PartitionModel::OsproberHomePartitionPathRole ).toString();
-        if ( homePartitionPath.isEmpty() )
-            doReuseHomePartition = false;
-
         // if the partition is unallocated(free space), we don't replace it but create new one 
         // with the same first and last sector
         Partition* selectedPartition =
@@ -736,6 +730,15 @@ ChoicePage::doReplaceSelectedPartition( const QModelIndex& current )
                                                                  partPath );
             if ( selectedPartition )
             {
+                // Find out is the selected partition has a rootfs. If yes, then make the
+                // m_reuseHomeCheckBox visible and set its text to something meaningful.
+                homePartitionPath.clear();
+                foreach ( const OsproberEntry& osproberEntry, m_core->osproberEntries() )
+                    if ( osproberEntry.path == partPath )
+                        homePartitionPath = osproberEntry.homePath;
+                if ( homePartitionPath.isEmpty() )
+                    doReuseHomePartition = false;
+
                 PartitionActions::doReplacePartition( m_core,
                                                       selectedDevice(),
                                                       selectedPartition,
