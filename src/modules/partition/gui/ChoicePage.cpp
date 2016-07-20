@@ -661,7 +661,7 @@ ChoicePage::doReplaceSelectedPartition( const QModelIndex& current )
     // NOTE: using by-ref captures because we need to write homePartitionPath and
     //       doReuseHomePartition *after* the device revert, for later use.
     ScanningDialog::run( QtConcurrent::run(
-    [ this, &current, &homePartitionPath, &doReuseHomePartition ]
+    [ this, current, &homePartitionPath, &doReuseHomePartition ]
     {
         QMutexLocker locker( &m_coreMutex );
 
