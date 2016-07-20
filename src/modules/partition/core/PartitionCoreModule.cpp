@@ -104,7 +104,6 @@ PartitionCoreModule::PartitionCoreModule( QObject* parent )
 {
     if ( !KPMHelpers::initKPMcore() )
         qFatal( "Failed to initialize KPMcore backend" );
-    FileSystemFactory::init();
 }
 
 
@@ -119,6 +118,8 @@ PartitionCoreModule::init()
 void
 PartitionCoreModule::doInit()
 {
+    FileSystemFactory::init();
+
     CoreBackend* backend = CoreBackendManager::self()->backend();
     QList< Device* > devices = backend->scanDevices( true );
 
