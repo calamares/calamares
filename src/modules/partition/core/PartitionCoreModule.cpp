@@ -911,6 +911,14 @@ PartitionCoreModule::layoutApply( Device* dev,
         = std::find_if( partList.constBegin(), partList.constEnd(), is_boot ) != partList.constEnd();
     for ( Partition* part : partList )
     {
+        if ( is_boot( part ) )
+        {
+            part->setLabel( "boot" );
+        }
+        if ( is_root( part ) )
+        {
+            part->setLabel( "root" );
+        }
         if ( ( separate_boot_partition && is_boot( part ) ) || ( !separate_boot_partition && is_root( part ) ) )
         {
             createPartition(

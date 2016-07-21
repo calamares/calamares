@@ -70,6 +70,9 @@ EditExistingPartitionDialog::EditExistingPartitionDialog( Device* device,
         m_ui->fileSystemLabel->setEnabled( doFormat );
         m_ui->fileSystemComboBox->setEnabled( doFormat );
 
+        m_ui->fileSystemLabelEdit->setEnabled( doFormat );
+        m_ui->fileSystemLabelEdit->setText( m_partition->fileSystem().label() );
+
         if ( !doFormat )
         {
             m_ui->fileSystemComboBox->setCurrentText( userVisibleFS( m_partition->fileSystem() ) );
@@ -146,6 +149,7 @@ EditExistingPartitionDialog::applyChanges( PartitionCoreModule* core )
             ? FileSystem::Extended
             : FileSystem::typeForName( m_ui->fileSystemComboBox->currentText() );
     }
+    const QString fsLabel = m_ui->fileSystemLabelEdit->text();
 
     const auto resultFlags = newFlags();
     const auto currentFlags = PartitionInfo::flags( m_partition );
@@ -158,6 +162,7 @@ EditExistingPartitionDialog::applyChanges( PartitionCoreModule* core )
                                                                       *m_device,
                                                                       m_partition->roles(),
                                                                       fsType,
+                                                                      fsLabel,
                                                                       newFirstSector,
                                                                       newLastSector,
                                                                       resultFlags );
@@ -197,6 +202,7 @@ EditExistingPartitionDialog::applyChanges( PartitionCoreModule* core )
                                                                           *m_device,
                                                                           m_partition->roles(),
                                                                           fsType,
+                                                                          fsLabel,
                                                                           m_partition->firstSector(),
                                                                           m_partition->lastSector(),
                                                                           resultFlags );
