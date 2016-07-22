@@ -655,13 +655,13 @@ ChoicePage::doReplaceSelectedPartition( const QModelIndex& current )
     if ( !current.isValid() )
         return;
 
-    QString homePartitionPath;
+    QString* homePartitionPath = new QString();
     bool doReuseHomePartition = m_reuseHomeCheckBox->isChecked();
 
     // NOTE: using by-ref captures because we need to write homePartitionPath and
     //       doReuseHomePartition *after* the device revert, for later use.
     ScanningDialog::run( QtConcurrent::run(
-    [ this, current, &homePartitionPath, &doReuseHomePartition ]
+    [ this, current ]( QString* homePartitionPath, bool doReuseHomePartition )
     {
         QMutexLocker locker( &m_coreMutex );
 
@@ -732,11 +732,11 @@ ChoicePage::doReplaceSelectedPartition( const QModelIndex& current )
             {
                 // Find out is the selected partition has a rootfs. If yes, then make the
                 // m_reuseHomeCheckBox visible and set its text to something meaningful.
-                homePartitionPath.clear();
+                homePartitionPath->clear();
                 foreach ( const OsproberEntry& osproberEntry, m_core->osproberEntries() )
                     if ( osproberEntry.path == partPath )
-                        homePartitionPath = osproberEntry.homePath;
-                if ( homePartitionPath.isEmpty() )
+                        *homePartitionPath = osproberEntry.homePath;
+                if ( homePartitionPath->isEmpty() )
                     doReuseHomePartition = false;
 
                 PartitionActions::doReplacePartition( m_core,
@@ -744,10 +744,10 @@ ChoicePage::doReplaceSelectedPartition( const QModelIndex& current )
                                                       selectedPartition,
                                                       m_encryptWidget->passphrase() );
                 Partition* homePartition = KPMHelpers::findPartitionByPath( { selectedDevice() },
-                                                                            homePartitionPath );
+                                                                            *homePartitionPath );
 
                 Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
-                if ( homePartition )
+                if ( homePartition && doReuseHomePartition )
                 {
                     PartitionInfo::setMountPoint( homePartition, "/home" );
                     gs->insert( "reuseHome", true );
@@ -758,10 +758,11 @@ ChoicePage::doReplaceSelectedPartition( const QModelIndex& current )
                 }
             }
         }
-    } ),
-    [&]
+    }, homePartitionPath, doReuseHomePartition ),
+    [ = ]
     {
-        m_reuseHomeCheckBox->setVisible( !homePartitionPath.isEmpty() );
+        m_reuseHomeCheckBox->setVisible( !homePartitionPath->isEmpty() );
+        delete homePartitionPath;
 
         if ( m_isEfi )
             setupEfiSystemPartitionSelector();
