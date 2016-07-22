@@ -762,6 +762,11 @@ ChoicePage::doReplaceSelectedPartition( const QModelIndex& current )
     [ = ]
     {
         m_reuseHomeCheckBox->setVisible( !homePartitionPath->isEmpty() );
+        if ( !homePartitionPath->isEmpty() )
+            m_reuseHomeCheckBox->setText( tr( "Reuse %1 as home partition for %2." )
+                                          .arg( *homePartitionPath )
+                                          .arg( Calamares::Branding::instance()->string(
+                                                Calamares::Branding::ShortProductName ) ) );
         delete homePartitionPath;
 
         if ( m_isEfi )
