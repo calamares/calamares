@@ -199,8 +199,10 @@ PartitionLabelsView::buildTexts( const QModelIndex& index ) const
             firstLine = tr( "EFI system" );
         else if ( index.data( PartitionModel::FileSystemTypeRole ).toInt() == FileSystem::LinuxSwap )
             firstLine = tr( "Swap" );
-        else
+        else if ( !mountPoint.isEmpty() )
             firstLine = tr( "New partition for %1" ).arg( mountPoint );
+        else
+            firstLine = tr( "New partition" );
     }
     else if ( index.data( PartitionModel::OsproberNameRole ).toString().isEmpty() )
     {
