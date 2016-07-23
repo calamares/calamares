@@ -22,6 +22,7 @@
 #include "core/PartitionInfo.h"
 #include "core/PartitionModel.h"
 #include "jobs/AutoMountManagementJob.h"
+#include "jobs/ChangeFilesystemLabelJob.h"
 #include "jobs/ClearMountsJob.h"
 #include "jobs/ClearTempMountsJob.h"
 #include "jobs/CreatePartitionJob.h"
@@ -539,6 +540,15 @@ PartitionCoreModule::formatPartition( Device* device, Partition* partition )
     Q_ASSERT( deviceInfo );
     OperationHelper helper( partitionModelForDevice( device ), this );
     deviceInfo->makeJob< FormatPartitionJob >( partition );
+}
+
+void
+PartitionCoreModule::setFilesystemLabel(Device *device, Partition *partition, const QString& newLabel) {
+    auto deviceInfo = infoForDevice( device );
+    Q_ASSERT( deviceInfo );
+
+    OperationHelper helper( partitionModelForDevice( device ), this );
+    deviceInfo->makeJob< ChangeFilesystemLabelJob >( partition, newLabel );
 }
 
 void
