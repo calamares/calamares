@@ -31,7 +31,7 @@ rm -Rf "$WORKSPACE/build"
 mkdir "$WORKSPACE/build"
 cd "$WORKSPACE/build"
 
-CMAKE_PREFIX_PATH="$WORKSPACE/prefix/usr" cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr ..
+CMAKE_PREFIX_PATH="$WORKSPACE/prefix/usr" cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr -DWEBVIEW_FORCE_WEBKIT=1 ..
 nice -n 18 cov-build --dir cov-int make -j2
 
 tar caf calamares-ci.tar.xz cov-int
