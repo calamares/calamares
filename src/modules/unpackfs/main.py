@@ -198,7 +198,10 @@ class UnpackOperation:
         :param entry:
         :param imgmountdir:
         """
-        subprocess.check_call(["mount", entry.source, imgmountdir, "-t", entry.sourcefs, "-o", "loop"])
+        if os.path.isdir(entry.source):
+            subprocess.check_call(["mount", "--bind", entry.source, imgmountdir])
+        else:
+            subprocess.check_call(["mount", entry.source, imgmountdir, "-t", entry.sourcefs, "-o", "loop"])
 
     def unpack_image(self, entry, imgmountdir):
         """ Unpacks image.
@@ -278,7 +281,7 @@ def run():
 
         destination = os.path.abspath(root_mount_point + entry["destination"])
 
-        if not os.path.exists(source) or os.path.isdir(source):
+        if not os.path.exists(source): 
             return "Bad source", "source=\"{}\"".format(source)
 
         if not os.path.isdir(destination):
