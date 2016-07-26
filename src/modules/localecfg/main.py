@@ -5,6 +5,7 @@
 #
 #   Copyright 2014, Anke Boersma <demm@kaosx.us>
 #   Copyright 2015, Philip Müller <philm@manjaro.org>
+#   Copyright 2016, Teo Mrnjavac <teo@kde.org>
 #
 #   Calamares is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -68,6 +69,15 @@ def run():
     with open(locale_conf_path, "w") as locale_conf:
         locale_split = locale.split(' ')[0]
         locale_conf.write("LANG={!s}\n".format(locale_split))
+        locale_conf.write("LC_NUMERIC={!s}\n".format(locale_split))
+        locale_conf.write("LC_TIME={!s}\n".format(locale_split))
+        locale_conf.write("LC_MONETARY={!s}\n".format(locale_split))
+        locale_conf.write("LC_PAPER={!s}\n".format(locale_split))
+        locale_conf.write("LC_NAME={!s}\n".format(locale_split))
+        locale_conf.write("LC_ADDRESS={!s}\n".format(locale_split))
+        locale_conf.write("LC_TELEPHONE={!s}\n".format(locale_split))
+        locale_conf.write("LC_MEASUREMENT={!s}\n".format(locale_split))
+        locale_conf.write("LC_IDENTIFICATION={!s}\n".format(locale_split))
 
     # write /etc/default/locale if /etc/default exists and is a dir
     etc_default_path = os.path.join(install_path, "etc/default")
