@@ -84,8 +84,11 @@ colorForPartition( Partition* partition )
         return FREE_SPACE_COLOR;
     if ( partition->roles().has( PartitionRole::Extended ) )
         return EXTENDED_COLOR;
-    if ( s_partitionColorsCache.contains( partition->partitionPath() ) )
-        return s_partitionColorsCache[ partition->partitionPath() ];
+
+    if ( partition->fileSystem().supportGetUUID() != FileSystem::cmdSupportNone &&
+         !partition->fileSystem().uuid().isEmpty() &&
+         s_partitionColorsCache.contains( partition->fileSystem().uuid() ) )
+        return s_partitionColorsCache[ partition->fileSystem().uuid() ];
 
     // No partition-specific color needed, pick one from our list, but skip
     // free space: we don't want a partition to change colors if space before
@@ -114,8 +117,10 @@ colorForPartition( Partition* partition )
     if ( KPMHelpers::isPartitionNew( partition ) )
         return NEW_PARTITION_COLORS[ newColorIdx % NUM_NEW_PARTITION_COLORS ];
 
-    s_partitionColorsCache.insert( partition->partitionPath(),
-                                   PARTITION_COLORS[ colorIdx % NUM_PARTITION_COLORS ] );
+    if ( partition->fileSystem().supportGetUUID() != FileSystem::cmdSupportNone &&
+         !partition->fileSystem().uuid().isEmpty() )
+        s_partitionColorsCache.insert( partition->fileSystem().uuid(),
+                                       PARTITION_COLORS[ colorIdx % NUM_PARTITION_COLORS ] );
     return PARTITION_COLORS[ colorIdx % NUM_PARTITION_COLORS ];
 }
 
