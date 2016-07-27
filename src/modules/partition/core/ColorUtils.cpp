@@ -107,8 +107,7 @@ colorForPartition( Partition* partition )
         {
             if ( KPMHelpers::isPartitionNew( child ) )
                 ++newColorIdx;
-            else
-                ++colorIdx;
+            ++colorIdx;
         }
     }
 
