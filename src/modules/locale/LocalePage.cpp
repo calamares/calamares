@@ -34,7 +34,7 @@
 
 
 LocalePage::LocalePage( QWidget* parent )
-    : QWidget()
+    : QWidget( parent )
     , m_blockTzWidgetSet( false )
 {
     QBoxLayout* mainLayout = new QVBoxLayout;
@@ -113,6 +113,7 @@ LocalePage::LocalePage( QWidget* parent )
              static_cast< void ( QComboBox::* )( int ) >( &QComboBox::currentIndexChanged ),
              [this]( int currentIndex )
     {
+        Q_UNUSED( currentIndex )
         if ( !m_blockTzWidgetSet )
             m_tzWidget->setCurrentLocation( m_regionCombo->currentData().toString(),
                                             m_zoneCombo->currentData().toString() );
