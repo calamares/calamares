@@ -259,11 +259,6 @@ PartitionCoreModule::deletePartition( Device* device, Partition* partition )
             deletePartition( device, partition );
     }
 
-    if ( partition->roles().has( PartitionRole::Logical ) )
-    {
-        ColorUtils::invalidateCache();
-    }
-
     QList< Calamares::job_ptr >& jobs = deviceInfo->jobs;
     if ( partition->state() == Partition::StateNew )
     {
