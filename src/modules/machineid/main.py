@@ -4,6 +4,7 @@
 # === This file is part of Calamares - <http://github.com/calamares> ===
 #
 #   Copyright 2014, Kevin Kofler <kevin.kofler@chello.at>
+#   Copyright 2015, Philip Müller <philm@manjaro.org>
 #
 #   Calamares is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -34,17 +35,17 @@ def run():
     enable_symlink = libcalamares.job.configuration["symlink"]
     target_systemd_machineid_file = "{}/etc/machine-id".format(root_mount_point)
 
-    if enable_systemd:
-        if os.path.exists(target_systemd_machineid_file):
-            os.remove(target_systemd_machineid_file)
+    if os.path.exists(target_systemd_machineid_file):
+        os.remove(target_systemd_machineid_file)
 
+    if os.path.exists(target_dbus_machineid_file):
+        os.remove(target_dbus_machineid_file)
+
+    if enable_systemd:
         check_target_env_call("systemd-machine-id-setup")
 
     if enable_dbus:
         target_dbus_machineid_file = "{}/var/lib/dbus/machine-id".format(root_mount_point)
-
-        if os.path.exists(target_dbus_machineid_file):
-            os.remove(target_dbus_machineid_file)
 
         if enable_symlink and os.path.exists(target_systemd_machineid_file):
             check_target_env_call(["ln", "-s", "/etc/machine-id", "/var/lib/dbus/machine-id"])
