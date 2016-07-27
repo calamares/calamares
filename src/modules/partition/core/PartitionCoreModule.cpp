@@ -20,6 +20,7 @@
 #include "core/PartitionCoreModule.h"
 
 #include "core/BootLoaderModel.h"
+#include "core/ColorUtils.h"
 #include "core/DeviceModel.h"
 #include "core/PartitionInfo.h"
 #include "core/PartitionIterator.h"
@@ -256,6 +257,11 @@ PartitionCoreModule::deletePartition( Device* device, Partition* partition )
 
         for ( auto partition : lst )
             deletePartition( device, partition );
+    }
+
+    if ( partition->roles().has( PartitionRole::Logical ) )
+    {
+        ColorUtils::invalidateCache();
     }
 
     QList< Calamares::job_ptr >& jobs = deviceInfo->jobs;
