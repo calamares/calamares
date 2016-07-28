@@ -38,6 +38,9 @@ namespace PartUtils
 bool
 canBeReplaced( Partition* candidate )
 {
+    if ( !candidate )
+        return false;
+
     bool ok = false;
     double requiredStorageGB = Calamares::JobQueue::instance()
                                     ->globalStorage()
@@ -65,6 +68,9 @@ canBeReplaced( Partition* candidate )
 bool
 canBeResized( Partition* candidate )
 {
+    if ( !candidate )
+        return false;
+
     if ( !candidate->fileSystem().supportGrow() ||
          !candidate->fileSystem().supportShrink() )
         return false;
