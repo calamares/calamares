@@ -37,6 +37,7 @@ struct OsproberEntry
 {
     QString prettyName;
     QString path;
+    QString uuid;
     bool canBeResized;
     QStringList line;
     FstabEntryList fstab;
