@@ -145,6 +145,35 @@ PartitionCoreModule::doInit()
     // which relies on a working DeviceModel.
     m_osproberLines = PartUtils::runOsprober( this );
 
+    // We perform a best effort of filling out filesystem UUIDs in m_osproberLines
+    // because we will need them later on in PartitionModel if partition paths
+    // change.
+    // It is a known fact that /dev/sda1-style device paths aren't persistent
+    // across reboots (and this doesn't affect us), but partition numbers can also
+    // change at runtime against our will just for shits and giggles.
+    // But why would that ever happen? What system could possibly be so poorly
+    // designed that it requires a partition path rearrangement at runtime?
+    // Logical partitions on an MSDOS disklabel of course.
+    // See DeletePartitionJob::updatePreview.
+    for ( auto deviceInfo : m_deviceInfos )
+    {
+        for ( auto it = PartitionIterator::begin( deviceInfo->device.data() );
+              it != PartitionIterator::end( deviceInfo->device.data() ); ++it )
+        {
+            Partition* partition = *it;
+            for ( auto jt = m_osproberLines.begin();
+                  jt != m_osproberLines.end(); ++jt )
+            {
+                if ( jt->path == partition->partitionPath() &&
+                     partition->fileSystem().supportGetUUID() != FileSystem::cmdSupportNone &&
+                     !partition->fileSystem().uuid().isEmpty() )
+                {
+                    jt->uuid = partition->fileSystem().uuid();
+                }
+            }
+        }
+    }
+
     for ( auto deviceInfo : m_deviceInfos )
     {
         deviceInfo->partitionModel->init( deviceInfo->device.data(), m_osproberLines );

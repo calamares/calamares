@@ -303,6 +303,7 @@ runOsprober( PartitionCoreModule* core )
 
             osproberEntries.append( { prettyName,
                                       path,
+                                      QString(),
                                       canBeResized( core, path ),
                                       lineColumns,
                                       fstabEntries,
