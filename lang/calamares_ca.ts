@@ -421,7 +421,7 @@ L&apos;instal·lador es tancarà i tots els canvis es perdran.</translation>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="766"/>
         <source>Reuse %1 as home partition for %2.</source>
-        <translation type="unfinished"/>
+        <translation>Reutilitza %1 com a partició de l&apos;usuari per a %2.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="889"/>
@@ -1194,28 +1194,28 @@ L&apos;instal·lador es tancarà i tots els canvis es perdran.</translation>
 <context>
     <name>LocalePage</name>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="158"/>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="169"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="159"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="170"/>
         <source>The system locale is set to %1.</source>
         <translation>S&apos;ha triat %1 com a localització del sistema.</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="166"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="167"/>
         <source>Region:</source>
         <translation>Regió:</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="167"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="168"/>
         <source>Zone:</source>
         <translation>Zona:</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="172"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="173"/>
         <source>&amp;Change...</source>
         <translation>&amp;Canvi...</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="290"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="291"/>
         <source>Set timezone to %1/%2.&lt;br/&gt;</source>
         <translation>Estableix la zona horària a %1/%2.&lt;br/&gt;</translation>
     </message>
@@ -1422,7 +1422,7 @@ L&apos;instal·lador es tancarà i tots els canvis es perdran.</translation>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="205"/>
         <source>New partition</source>
-        <translation type="unfinished"/>
+        <translation>Partició nova</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="222"/>
