@@ -205,27 +205,37 @@ PartitionModel::data( const QModelIndex& index, int role ) const
     // Osprober roles:
     case OsproberNameRole:
         foreach ( const OsproberEntry& osproberEntry, m_osproberEntries )
-            if ( osproberEntry.path == partition->partitionPath() )
+            if ( partition->fileSystem().supportGetUUID() != FileSystem::cmdSupportNone &&
+                 !partition->fileSystem().uuid().isEmpty() &&
+                 osproberEntry.uuid == partition->fileSystem().uuid() )
                 return osproberEntry.prettyName;
         return QVariant();
     case OsproberPathRole:
         foreach ( const OsproberEntry& osproberEntry, m_osproberEntries )
-            if ( osproberEntry.path == partition->partitionPath() )
+            if ( partition->fileSystem().supportGetUUID() != FileSystem::cmdSupportNone &&
+                 !partition->fileSystem().uuid().isEmpty() &&
+                 osproberEntry.uuid == partition->fileSystem().uuid() )
                 return osproberEntry.path;
         return QVariant();
     case OsproberCanBeResizedRole:
         foreach ( const OsproberEntry& osproberEntry, m_osproberEntries )
-            if ( osproberEntry.path == partition->partitionPath() )
+            if ( partition->fileSystem().supportGetUUID() != FileSystem::cmdSupportNone &&
+                 !partition->fileSystem().uuid().isEmpty() &&
+                 osproberEntry.uuid == partition->fileSystem().uuid() )
                 return osproberEntry.canBeResized;
         return QVariant();
     case OsproberRawLineRole:
         foreach ( const OsproberEntry& osproberEntry, m_osproberEntries )
-            if ( osproberEntry.path == partition->partitionPath() )
+            if ( partition->fileSystem().supportGetUUID() != FileSystem::cmdSupportNone &&
+                 !partition->fileSystem().uuid().isEmpty() &&
+                 osproberEntry.uuid == partition->fileSystem().uuid() )
                 return osproberEntry.line;
         return QVariant();
     case OsproberHomePartitionPathRole:
         foreach ( const OsproberEntry& osproberEntry, m_osproberEntries )
-            if ( osproberEntry.path == partition->partitionPath() )
+            if ( partition->fileSystem().supportGetUUID() != FileSystem::cmdSupportNone &&
+                 !partition->fileSystem().uuid().isEmpty() &&
+                 osproberEntry.uuid == partition->fileSystem().uuid() )
                 return osproberEntry.homePath;
         return QVariant();
     // end Osprober roles.
