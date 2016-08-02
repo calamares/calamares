@@ -281,6 +281,22 @@ LocalePage::init( const QString& initialRegion,
             m_localeGenLines.append( lineString );
         }
     }
+
+    if ( m_localeGenLines.isEmpty() )
+    {
+        cDebug() << "WARNING: cannot get list of supported locales from anywhere.";
+        return; // something went wrong and there's nothing we can do about it.
+    }
+
+    // Assuming we have a list of supported locales, we usually only want UTF-8 ones
+    // because it's not 1995.
+    for ( auto it = m_localeGenLines.begin(); it != m_localeGenLines.end(); )
+    {
+        if ( !it->contains( "UTF-8", Qt::CaseInsensitive ) )
+            it = m_localeGenLines.erase( it );
+        else
+            ++it;
+    }
 }
 
 
