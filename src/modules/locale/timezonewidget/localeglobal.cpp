@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2016, Teo Mrnjavac <teo@kde.org>
  *
  *   Originally from the Manjaro Installation Framework
  *   by Roland Singer <roland@manjaro.org>
@@ -149,10 +149,15 @@ void LocaleGlobal::initLocations() {
         if (timezone.size() < 2)
             continue;
 
+        QString countryCode = list.at(0).trimmed();
+        if (countryCode.size() != 2)
+            continue;
+
         location.region = timezone.takeFirst();
         location.zone = timezone.join( '/' );
         location.latitude = getRightGeoLocation(list.at(1).mid(0, cooSplitPos));
         location.longitude = getRightGeoLocation(list.at(1).mid(cooSplitPos));
+        location.country = countryCode;
 
         locations[location.region].append(location);
     }
