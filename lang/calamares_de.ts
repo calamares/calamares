@@ -1216,7 +1216,7 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
         <translation>&amp;Ändern...</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="291"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="307"/>
         <source>Set timezone to %1/%2.&lt;br/&gt;</source>
         <translation>Setze Zeitzone auf %1/%2.&lt;br/&gt;</translation>
     </message>

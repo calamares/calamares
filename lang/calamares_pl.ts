@@ -1215,7 +1215,7 @@ Instalator zostanie zamknięty i wszystkie zmiany zostaną utracone.</translatio
         <translation>&amp;Zmień...</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="291"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="307"/>
         <source>Set timezone to %1/%2.&lt;br/&gt;</source>
         <translation>Ustaw strefę czasową na %1/%2.&lt;br/&gt;</translation>
     </message>

@@ -37,17 +37,18 @@
     <message>
         <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="61"/>
         <source>The &lt;strong&gt;boot environment&lt;/strong&gt; of this system.&lt;br&gt;&lt;br&gt;Older x86 systems only support &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Modern systems usually use &lt;strong&gt;EFI&lt;/strong&gt;, but may also show up as BIOS if started in compatibility mode.</source>
-        <translation type="unfinished"/>
+        <translation>O &lt;strong&gt; entorno de arranque &lt;/strong&gt; do sistema.
+&lt;br&gt;&lt;br&gt; Os sistemas x86 antigos só soportan &lt;strong&gt; BIOS &lt;/strong&gt;.&lt;br&gt; Os sistemas modernos empregan normalmente &lt;strong&gt; EFI &lt;/strong&gt;, pero tamén poden arrincar como BIOS se funcionan no modo de compatibilidade.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="75"/>
         <source>This system was started with an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from an EFI environment, this installer must deploy a boot loader application, like &lt;strong&gt;GRUB&lt;/strong&gt; or &lt;strong&gt;systemd-boot&lt;/strong&gt; on an &lt;strong&gt;EFI System Partition&lt;/strong&gt;. This is automatic, unless you choose manual partitioning, in which case you must choose it or create it on your own.</source>
-        <translation type="unfinished"/>
+        <translation>Este sistema arrincou con &lt;strong&gt; EFI &lt;/strong&gt; como entorno de arranque.&lt;br&gt;&lt;br&gt; Para configurar o arranque dende un entorno EFI, este instalador debe configurar un cargador de arranque, como &lt;strong&gt;GRUB&lt;/strong&gt; ou &lt;strong&gt;systemd-boot&lt;/strong&gt; nunha &lt;strong&gt; Partición de Sistema EFI&lt;/strong&gt;. Este proceso é automático, salvo que escolla particionamento manual. Nese caso deberá escoller unha existente ou crear unha pola súa conta.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="87"/>
         <source>This system was started with a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from a BIOS environment, this installer must install a boot loader, like &lt;strong&gt;GRUB&lt;/strong&gt;, either at the beginning of a partition or on the &lt;strong&gt;Master Boot Record&lt;/strong&gt; near the beginning of the partition table (preferred). This is automatic, unless you choose manual partitioning, in which case you must set it up on your own.</source>
-        <translation type="unfinished"/>
+        <translation>Este sistema arrincou con &lt;strong&gt; BIOS &lt;/strong&gt; como entorno de arranque.&lt;br&gt;&lt;br&gt; Para configurar o arranque dende un entorno BIOS, este instalador debe configurar un cargador de arranque, como &lt;strong&gt;GRUB&lt;/strong&gt;, ben ó comezo dunha partición ou no &lt;strong&gt;Master Boot Record&lt;/strong&gt; preto do inicio da táboa de particións (recomendado). Este proceso é automático, salvo que escolla particionamento manual, nese caso deberá configuralo pola súa conta.</translation>
     </message>
 </context>
 <context>
@@ -103,7 +104,7 @@
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="57"/>
         <source>Tools</source>
-        <translation type="unfinished"/>
+        <translation>Ferramentas</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.cpp" line="102"/>
@@ -393,7 +394,7 @@ O instalador pecharase e perderanse todos os cambios.</translation>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="236"/>
         <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;Particionado manual&lt;/strong&gt;&lt;br/&gt; Pode crear o redimensionar particións pola súa conta.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="963"/>
@@ -1215,7 +1216,7 @@ O instalador pecharase e perderanse todos os cambios.</translation>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="291"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="307"/>
         <source>Set timezone to %1/%2.&lt;br/&gt;</source>
         <translation type="unfinished"/>
     </message>

@@ -1215,7 +1215,7 @@ L&apos;installateur se fermera et les changements seront perdus.</translation>
         <translation>&amp;Modifier...</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="291"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="307"/>
         <source>Set timezone to %1/%2.&lt;br/&gt;</source>
         <translation>Configurer le fuseau horaire à %1/%2.&lt;br/&gt;</translation>
     </message>

@@ -1215,7 +1215,7 @@ Programul de instalare va ieși, iar toate modificările vor fi pierdute.</trans
         <translation>S&amp;chimbă</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="291"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="307"/>
         <source>Set timezone to %1/%2.&lt;br/&gt;</source>
         <translation>Setează fusul orar la %1/%2.&lt;br/&gt;</translation>
     </message>

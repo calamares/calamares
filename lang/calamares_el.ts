@@ -1215,7 +1215,7 @@ The installer will quit and all changes will be lost.</source>
         <translation>&amp;Αλλαγή...</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="291"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="307"/>
         <source>Set timezone to %1/%2.&lt;br/&gt;</source>
         <translation>Ορισμός της ζώνης ώρας σε %1/%2.&lt;br/&gt;</translation>
     </message>

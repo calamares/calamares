@@ -1215,7 +1215,7 @@ Uppsetning mun hætta og allar breytingar tapast.</translation>
         <translation>&amp;Breyta...</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="291"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="307"/>
         <source>Set timezone to %1/%2.&lt;br/&gt;</source>
         <translation>Setja tímabelti sem %1/%2.&lt;br/&gt;</translation>
     </message>

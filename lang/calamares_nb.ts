@@ -1215,7 +1215,7 @@ Installasjonsprogrammet vil avsluttes og alle endringer vil gå tapt.</translati
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="291"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="307"/>
         <source>Set timezone to %1/%2.&lt;br/&gt;</source>
         <translation type="unfinished"/>
     </message>

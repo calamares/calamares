@@ -1215,7 +1215,7 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
         <translation>K&amp;eisti...</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="291"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="307"/>
         <source>Set timezone to %1/%2.&lt;br/&gt;</source>
         <translation>Nustatyti laiko juostą kaip %1/%2.&lt;br/&gt;</translation>
     </message>
