@@ -422,7 +422,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="766"/>
         <source>Reuse %1 as home partition for %2.</source>
-        <translation type="unfinished"/>
+        <translation>将 %1 重用为 %2 的家分区。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="889"/>
@@ -585,7 +585,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="63"/>
         <source>En&amp;crypt</source>
-        <translation type="unfinished"/>
+        <translation>加密(&amp;C)</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="155"/>
@@ -923,7 +923,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="150"/>
         <source>Please enter the same passphrase in both boxes.</source>
-        <translation type="unfinished"/>
+        <translation>请在两个输入框中输入同样的密码。</translation>
     </message>
 </context>
 <context>
@@ -1038,17 +1038,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/netinstall/widgets/groupselectionwidget.ui" line="20"/>
         <source>Frame</source>
-        <translation type="unfinished"/>
+        <translation>边框</translation>
     </message>
     <message>
         <location filename="../src/modules/netinstall/widgets/groupselectionwidget.ui" line="29"/>
         <source>group</source>
-        <translation type="unfinished"/>
+        <translation>组别</translation>
     </message>
     <message>
         <location filename="../src/modules/netinstall/widgets/groupselectionwidget.ui" line="36"/>
         <source>description</source>
-        <translation type="unfinished"/>
+        <translation>描述</translation>
     </message>
 </context>
 <context>
@@ -1289,7 +1289,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="98"/>
         <source>Network Installation. (Disabled: Unable to fetch package lists, check your network connection)</source>
-        <translation type="unfinished"/>
+        <translation>网络安装。（已禁用：无法获取软件包列表，请检查网络连接）</translation>
     </message>
 </context>
 <context>
@@ -1297,7 +1297,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="50"/>
         <source>Package selection</source>
-        <translation type="unfinished"/>
+        <translation>软件包选择</translation>
     </message>
 </context>
 <context>
@@ -1424,7 +1424,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="205"/>
         <source>New partition</source>
-        <translation type="unfinished"/>
+        <translation>新建分区</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="222"/>
