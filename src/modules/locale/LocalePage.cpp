@@ -368,7 +368,13 @@ LocalePage::init( const QString& initialRegion,
             ++it;
     }
 
-
+    // We strip " UTF-8" from "en_US.UTF-8 UTF-8" because it's redundant redundant.
+    for ( auto it = m_localeGenLines.begin(); it != m_localeGenLines.end(); ++it )
+    {
+        if ( it->endsWith( " UTF-8" ) )
+            it->chop( 6 );
+        *it = it->simplified();
+    }
 }
 
 
@@ -448,7 +454,11 @@ LocalePage::prettyLCLocale( const QString& lcLocale )
     QString localeString = lcLocale;
     if ( localeString.endsWith( " UTF-8" ) )
         localeString.remove( " UTF-8" );
-    return localeString;
+
+    QLocale locale( localeString );
+    //: Language (Country)
+    return tr( "%1 (%2)" ).arg( QLocale::languageToString( locale.language() ) )
+                          .arg( QLocale::countryToString( locale.country() ) );
 }
 
 void

@@ -29,7 +29,7 @@ LocaleConfiguration::createDefault()
     LocaleConfiguration lc = LocaleConfiguration();
     lc.lang = lc.lc_numeric = lc.lc_time = lc.lc_monetary = lc.lc_paper = lc.lc_name
             = lc.lc_address = lc.lc_telephone = lc.lc_measurement
-            = lc.lc_identification = "en_US.UTF-8 UTF-8";
+            = lc.lc_identification = "en_US.UTF-8";
     return lc;
 }
 
@@ -51,7 +51,7 @@ LocaleConfiguration::fromLanguageAndLocation( const QString& languageLocale,
 
     QString lang;
     if ( linesForLanguage.length() == 0 || languageLocale.isEmpty() )
-        lang = "en_US.UTF-8 UTF-8";
+        lang = "en_US.UTF-8";
     else if ( linesForLanguage.length() == 1 )
         lang = linesForLanguage.first();
     else
@@ -109,7 +109,7 @@ LocaleConfiguration::fromLanguageAndLocation( const QString& languageLocale,
     // Else we have an unrecognized or unsupported locale, all we can do is go with
     // en_US.UTF-8 UTF-8. This completes all default language setting guesswork.
     if ( lang.isEmpty() )
-        lang = "en_US.UTF-8 UTF-8";
+        lang = "en_US.UTF-8";
 
 
     // The following block was inspired by Ubiquity, scripts/localechooser-apply.
