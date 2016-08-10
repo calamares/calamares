@@ -29,7 +29,7 @@ import libcalamares
 def run():
     """ Create locale """
     en_us_locale = '#en_US'
-    locale = libcalamares.globalstorage.value("lcLocale")
+    locale = libcalamares.globalstorage.value("localeConf")
 
     if not locale:
         locale = 'en_US.UTF-8 UTF-8'
