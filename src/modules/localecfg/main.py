@@ -28,11 +28,22 @@ import libcalamares
 
 def run():
     """ Create locale """
-    en_us_locale = '#en_US'
-    locale = libcalamares.globalstorage.value("localeConf")
+    en_us_locale = 'en_US.UTF-8'
+    locale_conf = libcalamares.globalstorage.value("localeConf")
 
-    if not locale:
-        locale = 'en_US.UTF-8 UTF-8'
+    if not locale_conf:
+        locale_conf = {
+            'LANG': 'en_US.UTF-8',
+            'LC_NUMERIC': 'en_US.UTF-8',
+            'LC_TIME': 'en_US.UTF-8',
+            'LC_MONETARY': 'en_US.UTF-8',
+            'LC_PAPER': 'en_US.UTF-8',
+            'LC_NAME': 'en_US.UTF-8',
+            'LC_ADDRESS': 'en_US.UTF-8',
+            'LC_TELEPHONE': 'en_US.UTF-8',
+            'LC_MEASUREMENT': 'en_US.UTF-8',
+            'LC_IDENTIFICATION': 'en_US.UTF-8'
+        }
 
     install_path = libcalamares.globalstorage.value("rootMountPoint")
 
@@ -48,16 +59,20 @@ def run():
         with open("{!s}/etc/locale.gen".format(install_path), "r") as gen:
             text = gen.readlines()
 
-        # always enable en_US
+        # we want unique values, so locale_values should have 1 or 2 items
+        locale_values = set(locale_conf.values())
+
         with open("{!s}/etc/locale.gen".format(install_path), "w") as gen:
             for line in text:
+                # always enable en_US
                 if en_us_locale in line and line[0] == "#":
                     # uncomment line
                     line = line[1:].lstrip()
 
-                if locale in line and line[0] == "#":
-                    # uncomment line
-                    line = line[1:].lstrip()
+                for locale_value in locale_values:
+                    if locale_value in line and line[0] == "#":
+                        # uncomment line
+                        line = line[1:].lstrip()
 
                 gen.write(line)
 
@@ -66,24 +81,15 @@ def run():
 
     # write /etc/locale.conf
     locale_conf_path = os.path.join(install_path, "etc/locale.conf")
-    with open(locale_conf_path, "w") as locale_conf:
-        locale_split = locale.split(' ')[0]
-        locale_conf.write("LANG={!s}\n".format(locale_split))
-        locale_conf.write("LC_NUMERIC={!s}\n".format(locale_split))
-        locale_conf.write("LC_TIME={!s}\n".format(locale_split))
-        locale_conf.write("LC_MONETARY={!s}\n".format(locale_split))
-        locale_conf.write("LC_PAPER={!s}\n".format(locale_split))
-        locale_conf.write("LC_NAME={!s}\n".format(locale_split))
-        locale_conf.write("LC_ADDRESS={!s}\n".format(locale_split))
-        locale_conf.write("LC_TELEPHONE={!s}\n".format(locale_split))
-        locale_conf.write("LC_MEASUREMENT={!s}\n".format(locale_split))
-        locale_conf.write("LC_IDENTIFICATION={!s}\n".format(locale_split))
+    with open(locale_conf_path, "w") as lcf:
+        for k, v in locale_conf.items():
+            lcf.write("{!s}={!s}\n".format(k, v))
 
     # write /etc/default/locale if /etc/default exists and is a dir
     etc_default_path = os.path.join(install_path, "etc/default")
     if os.path.isdir(etc_default_path):
-        with open(os.path.join(etc_default_path, "locale"), "w") as etc_default_locale:
-            locale_split = locale.split(' ')[0]
-            etc_default_locale.write("LANG={!s}\n".format(locale_split))
+        with open(os.path.join(etc_default_path, "locale"), "w") as edl:
+            for k, v in locale_conf.items():
+                edl.write("{!s}={!s}\n".format(k, v))
 
     return None
