@@ -5,8 +5,9 @@ calamares_add_plugin( locale
     EXPORT_MACRO PLUGINDLLEXPORT_PRO
     SOURCES
         LCLocaleDialog.cpp
-        LocaleViewStep.cpp
+        LocaleConfiguration.cpp
         LocalePage.cpp
+        LocaleViewStep.cpp
         SetTimezoneJob.cpp
         timezonewidget/timezonewidget.cpp
         timezonewidget/localeglobal.cpp
