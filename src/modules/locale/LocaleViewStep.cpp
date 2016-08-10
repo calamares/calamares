@@ -159,8 +159,13 @@ LocaleViewStep::onLeave()
 
     m_prettyStatus = m_actualWidget->prettyStatus();
 
-    Calamares::JobQueue::instance()->globalStorage()->insert( "lcLocale",
-                                                              m_actualWidget->lcLocale() );
+    auto map = m_actualWidget->localesMap();
+    QVariantMap vm;
+    for ( auto it = map.constBegin(); it != map.constEnd(); ++it )
+        vm.insert( it.key(), it.value() );
+
+    Calamares::JobQueue::instance()->globalStorage()
+            ->insert( "localeConf", vm );
 }
 
 
