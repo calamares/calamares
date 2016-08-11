@@ -1194,30 +1194,43 @@ The installer will quit and all changes will be lost.</source>
 <context>
     <name>LocalePage</name>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="159"/>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="170"/>
-        <source>The system locale is set to %1.</source>
-        <translation>Η τοπική ρύθμιση του συστήματος έχει οριστεί σε %1.</translation>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="173"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="236"/>
+        <source>The system language will be set to %1.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="167"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="205"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="239"/>
+        <source>The numbers and dates locale will be set to %1.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="215"/>
         <source>Region:</source>
         <translation>Περιοχή:</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="168"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="216"/>
         <source>Zone:</source>
         <translation>Ζώνη:</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="173"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="220"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="221"/>
         <source>&amp;Change...</source>
         <translation>&amp;Αλλαγή...</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="307"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="385"/>
         <source>Set timezone to %1/%2.&lt;br/&gt;</source>
         <translation>Ορισμός της ζώνης ώρας σε %1/%2.&lt;br/&gt;</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="460"/>
+        <source>%1 (%2)</source>
+        <extracomment>Language (Country)</extracomment>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
