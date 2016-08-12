@@ -1197,13 +1197,13 @@ Installer će izaći i sve promjene će biti izgubljene.</translation>
         <location filename="../src/modules/locale/LocalePage.cpp" line="173"/>
         <location filename="../src/modules/locale/LocalePage.cpp" line="236"/>
         <source>The system language will be set to %1.</source>
-        <translation type="unfinished"/>
+        <translation>Jezik sustava će se postaviti na %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/LocalePage.cpp" line="205"/>
         <location filename="../src/modules/locale/LocalePage.cpp" line="239"/>
         <source>The numbers and dates locale will be set to %1.</source>
-        <translation type="unfinished"/>
+        <translation>Jezična shema brojeva i datuma će se postaviti na %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/LocalePage.cpp" line="215"/>
@@ -1230,7 +1230,7 @@ Installer će izaći i sve promjene će biti izgubljene.</translation>
         <location filename="../src/modules/locale/LocalePage.cpp" line="460"/>
         <source>%1 (%2)</source>
         <extracomment>Language (Country)</extracomment>
-        <translation type="unfinished"/>
+        <translation>%1 (%2)</translation>
     </message>
 </context>
 <context>

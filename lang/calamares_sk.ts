@@ -1105,12 +1105,12 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
     <message>
         <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="33"/>
         <source>System locale setting</source>
-        <translation>Nastavenie systémovej lokalizácie</translation>
+        <translation>Miestne nastavenie systému</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="40"/>
         <source>The system locale setting affects the language and character set for some command line user interface elements.&lt;br/&gt;The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation>Nastavenie systémovej lokalizácie ovplyvní jazyk a znakovú sadu niektorých prvkov používateľského rozhrania v príkazovom riadku.&lt;br/&gt;Aktuálne nastavenie je &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+        <translation>Miestne nastavenie systému ovplyvní jazyk a znakovú sadu niektorých prvkov používateľského rozhrania v príkazovom riadku.&lt;br/&gt;Aktuálne nastavenie je &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
 </context>
 <context>
