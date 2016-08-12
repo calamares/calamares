@@ -180,6 +180,7 @@ UsersPage::onFullNameTextEdited( const QString& textRef )
             ui->textBoxUsername->clear();
         if ( !m_customHostname )
             ui->textBoxHostname->clear();
+        m_readyFullName = false;
     }
     else
     {
