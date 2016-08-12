@@ -87,6 +87,7 @@ class PackageManager:
             check_target_env_call(["pacman", "-Rs", "--noconfirm"] + pkgs)
         elif self.backend == "portage":
             check_target_env_call(["emerge", "-C"] + pkgs)
+            check_target_env_call(["emerge", "--depclean", "-q"])
         elif self.backend == "entropy":
             check_target_env_call(["equo", "rm"] + pkgs)
 
