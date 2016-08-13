@@ -60,17 +60,15 @@ ChangeFilesystemLabelJob::exec()
         return Calamares::JobResult::ok();
     }
 
+    Report report( nullptr );
     CoreBackend* backend = CoreBackendManager::self()->backend();
-
-    QString errorMessage = tr( "The installer failed to set flags on partition %1." )
-                           .arg( m_partition->partitionPath() );
 
     QScopedPointer< CoreBackendDevice > backendDevice( backend->openDevice( m_device->deviceNode() ) );
     if ( !backendDevice.data() )
     {
         return Calamares::JobResult::error(
-                   errorMessage,
-                   tr( "Could not open device '%1'." ).arg( m_device->deviceNode() )
+                   tr( "Could not open device '%1'." ).arg( m_device->deviceNode() ),
+                   report.toText()
                );
     }
 
@@ -78,8 +76,8 @@ ChangeFilesystemLabelJob::exec()
     if ( !backendPartitionTable.data() )
     {
         return Calamares::JobResult::error(
-                   errorMessage,
-                   tr( "Could not open partition table on device '%1'." ).arg( m_device->deviceNode() )
+                   tr( "Could not open partition table on device '%1'." ).arg( m_device->deviceNode() ),
+                   report.toText()
                );
     }
 
@@ -90,13 +88,21 @@ ChangeFilesystemLabelJob::exec()
     );
     if ( !backendPartition.data() ) {
         return Calamares::JobResult::error(
-                   errorMessage,
-                   tr( "Could not find partition '%1'." ).arg( partition()->partitionPath() )
+                   tr( "Could not find partition '%1'." ).arg( partition()->partitionPath() ),
+                   report.toText()
                );
     }
 
     FileSystem& fs = m_partition->fileSystem();
     fs.setLabel( m_label );
+
+    if ( !backendPartitionTable->setPartitionSystemType( report, *m_partition ) )
+    {
+        return Calamares::JobResult::error(
+                   tr( "The installer failed to update partition table on disk '%1'." ).arg( m_device->name() ),
+                   report.toText()
+               );
+    }
 
     backendPartitionTable->commit();
     return Calamares::JobResult::ok();
