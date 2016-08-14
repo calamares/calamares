@@ -1200,13 +1200,13 @@ Kuruluma devam edebilirsiniz fakat bazı özellikler devre dışı kalabilir.</t
         <location filename="../src/modules/locale/LocalePage.cpp" line="173"/>
         <location filename="../src/modules/locale/LocalePage.cpp" line="236"/>
         <source>The system language will be set to %1.</source>
-        <translation type="unfinished"/>
+        <translation>Sistem dili %1 olarak ayarlanacak.</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/LocalePage.cpp" line="205"/>
         <location filename="../src/modules/locale/LocalePage.cpp" line="239"/>
         <source>The numbers and dates locale will be set to %1.</source>
-        <translation type="unfinished"/>
+        <translation>Sayılar ve günler için sistem yereli %1 olarak ayarlanacak.</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/LocalePage.cpp" line="215"/>
@@ -1233,7 +1233,7 @@ Kuruluma devam edebilirsiniz fakat bazı özellikler devre dışı kalabilir.</t
         <location filename="../src/modules/locale/LocalePage.cpp" line="460"/>
         <source>%1 (%2)</source>
         <extracomment>Language (Country)</extracomment>
-        <translation type="unfinished"/>
+        <translation>%1 (%2)</translation>
     </message>
 </context>
 <context>
