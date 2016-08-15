@@ -452,7 +452,7 @@ O instalador pecharase e perderanse todos os cambios.</translation>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1165"/>
         <source>This storage device does not seem to have an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-        <translation type="unfinished"/>
+        <translation>Esta unidade de almacenamento non semella ter un sistema operativo instalado nela. Que desexa facer?&lt;br/&gt;Poderá revisar e confirmar as súas eleccións antes de que calquera cambio sexa feito na unidade de almacenamento.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1170"/>
