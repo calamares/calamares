@@ -2120,7 +2120,7 @@ O instalador será encerrado e todas as alterações serão perdidas.</translati
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="56"/>
         <source>&lt;h1&gt;Welcome to the %1 installer.&lt;/h1&gt;</source>
-        <translation>&lt;h1&gt;Bem vindo ao %1 instalador.&lt;/h1&gt;</translation>
+        <translation>&lt;h1&gt;Bem vindo ao instalador do %1.&lt;/h1&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="70"/>
