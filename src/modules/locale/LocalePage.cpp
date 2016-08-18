@@ -375,6 +375,7 @@ LocalePage::init( const QString& initialRegion,
             it->chop( 6 );
         *it = it->simplified();
     }
+    updateGlobalStorage();
 }
 
 
