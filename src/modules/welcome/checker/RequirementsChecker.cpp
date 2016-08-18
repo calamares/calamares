@@ -334,6 +334,7 @@ RequirementsChecker::checkHasInternet()
         // We can't talk to NM, so no idea.  Wild guess: we're connected
         // using ssh with X forwarding, and are therefore connected.  This
         // allows us to proceed with a minimum of complaint.
+        Calamares::JobQueue::instance()->globalStorage()->insert( "hasInternet", true );
         return true;
     }
 
