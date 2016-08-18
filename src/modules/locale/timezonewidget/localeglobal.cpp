@@ -54,7 +54,8 @@ LocaleGlobal::Location::comment() const
 }
 
 
-void LocaleGlobal::init() {
+void
+LocaleGlobal::init() {
     // TODO: Error handling
     initLocales();
     initLocations();
@@ -62,13 +63,15 @@ void LocaleGlobal::init() {
 
 
 
-QHash<QString, QHash<QString, QList<LocaleGlobal::Locale> > > LocaleGlobal::getLocales() {
+QHash< QString, QHash< QString, QList< LocaleGlobal::Locale > > >
+LocaleGlobal::getLocales() {
     return locales;
 }
 
 
 
-QHash<QString, QList<LocaleGlobal::Location> > LocaleGlobal::getLocations() {
+QHash< QString, QList< LocaleGlobal::Location > >
+LocaleGlobal::getLocations() {
     return locations;
 }
 
@@ -78,7 +81,8 @@ QHash<QString, QList<LocaleGlobal::Location> > LocaleGlobal::getLocations() {
 //###
 
 
-void LocaleGlobal::initLocales() {
+void
+LocaleGlobal::initLocales() {
     locales.clear();
 
     QStringList files = QDir(LOCALESDIR).entryList(QDir::Files, QDir::Name);
@@ -125,7 +129,8 @@ void LocaleGlobal::initLocales() {
 
 
 
-void LocaleGlobal::initLocations() {
+void
+LocaleGlobal::initLocations() {
     locations.clear();
 
     QFile file(TZ_DATA_FILE);
@@ -165,7 +170,8 @@ void LocaleGlobal::initLocations() {
 
 
 
-double LocaleGlobal::getRightGeoLocation(QString str) {
+double
+LocaleGlobal::getRightGeoLocation(QString str) {
     double sign = 1, num = 0.00;
 
     // Determind sign
