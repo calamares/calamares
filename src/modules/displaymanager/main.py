@@ -295,8 +295,8 @@ def run():
     if "displaymanagers" in libcalamares.job.configuration:
         displaymanagers = libcalamares.job.configuration["displaymanagers"]
 
-    if libcalamares.globalstorage.contains("displaymanagers"):
-        displaymanagers = libcalamares.globalstorage.value("displaymanagers")
+    if libcalamares.globalstorage.contains("displayManagers"):
+        displaymanagers = libcalamares.globalstorage.value("displayManagers")
 
     if displaymanagers is None:
         return "No display managers selected for the displaymanager module.", \
@@ -434,4 +434,6 @@ def run():
     else:
         libcalamares.utils.debug("Unsetting autologin.")
 
+    libcalamares.globalstorage.insert("displayManagers", displaymanagers)
+    
     return set_autologin(username, displaymanagers, default_desktop_environment, root_mount_point)
