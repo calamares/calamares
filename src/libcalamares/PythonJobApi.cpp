@@ -21,6 +21,7 @@
 #include "PythonHelper.h"
 #include "utils/Logger.h"
 #include "utils/CalamaresUtilsSystem.h"
+#include "utils/CalamaresUtils.h"
 
 #include <QDir>
 
@@ -188,6 +189,13 @@ PythonJobInterface::setprogress( qreal progress )
 {
     if ( progress >= 0 && progress <= 1 )
         m_parent->emitProgress( progress );
+}
+
+
+std::string
+obscure( const std::string& string )
+{
+    return CalamaresUtils::obscure( QString::fromStdString( string ) ).toStdString();
 }
 
 }
