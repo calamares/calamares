@@ -1222,12 +1222,12 @@ The installer will quit and all changes will be lost.</translation>
         <translation>&amp;Change...</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="385"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="386"/>
         <source>Set timezone to %1/%2.&lt;br/&gt;</source>
         <translation>Set timezone to %1/%2.&lt;br/&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="460"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="461"/>
         <source>%1 (%2)</source>
         <extracomment>Language (Country)</extracomment>
         <translation>%1 (%2)</translation>
@@ -1236,12 +1236,12 @@ The installer will quit and all changes will be lost.</translation>
 <context>
     <name>LocaleViewStep</name>
     <message>
-        <location filename="../src/modules/locale/LocaleViewStep.cpp" line="48"/>
+        <location filename="../src/modules/locale/LocaleViewStep.cpp" line="52"/>
         <source>Loading location data...</source>
         <translation>Loading location data...</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocaleViewStep.cpp" line="82"/>
+        <location filename="../src/modules/locale/LocaleViewStep.cpp" line="160"/>
         <source>Location</source>
         <translation>Location</translation>
     </message>
