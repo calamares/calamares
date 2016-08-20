@@ -205,32 +205,32 @@ Výstup:
 <context>
     <name>Calamares::PythonJob</name>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="241"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="250"/>
         <source>Running %1 operation.</source>
         <translation>Spúšťa sa operácia %1.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="254"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="263"/>
         <source>Bad working directory path</source>
         <translation>Nesprávna cesta k pracovnému adresáru</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="255"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="264"/>
         <source>Working directory %1 for python job %2 is not readable.</source>
         <translation>Pracovný adresár %1 pre úlohu jazyka python %2 nie je možné čítať.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="265"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="274"/>
         <source>Bad main script file</source>
         <translation>Nesprávny súbor hlavného skriptu</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="266"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="275"/>
         <source>Main script file %1 for python job %2 is not readable.</source>
         <translation>Súbor hlavného skriptu %1 pre úlohu jazyka python %2 nie je možné čítať.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="311"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="320"/>
         <source>Boost.Python error in job &quot;%1&quot;.</source>
         <translation>Chyba knižnice Boost.Python v úlohe „%1“.</translation>
     </message>
