@@ -45,7 +45,7 @@ def modify_grub_default(partitions, root_mount_point, distributor):
 
     if plymouth_bin == 0:
         use_splash = "splash"
-        if libcalamares.job.configuration["plymouth_theme"] and libcalamares.job_sheets_supported.configuration["plymouth_theme"] is not None:
+        if "plymouth_theme" in libcalamares.job.configuration and libcalamares.job.configuration["plymouth_theme"] is not None:
             plymouth_theme = libcalamares.job.configuration["plymouth_theme"]
             setExpression('s|^.*Theme=.*|Theme=' + plymouth_theme + '|', "/etc/plymouth/plymouthd.conf")
 
