@@ -24,7 +24,7 @@ import os
 import re
 
 def setExpression(pattern, file):
-        libcalamares.utils.target_env_call(["sed", "-e", pattern, "-i", file])
+    libcalamares.utils.target_env_call(["sed", "-e", pattern, "-i", file])
 
 def modify_grub_default(partitions, root_mount_point, distributor):
     """ Configures '/etc/default/grub' for hibernation and plymouth.
