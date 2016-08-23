@@ -9,6 +9,7 @@
 #   Copyright 2014, Benjamin Vaudour <benjamin.vaudour@yahoo.fr>
 #   Copyright 2014, Kevin Kofler <kevin.kofler@chello.at>
 #   Copyright 2015, Philip Mueller <philm@manjaro.org>
+#   Copyright 2016, Teo Mrnjavac <teo@kde.org>
 #
 #   Calamares is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -23,10 +24,10 @@
 #   You should have received a copy of the GNU General Public License
 #   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
 
-import libcalamares
-
 import os
 import subprocess
+
+import libcalamares
 
 from libcalamares.utils import check_target_env_call
 
@@ -192,8 +193,9 @@ def install_grub(efi_directory, fw_type):
     """
     if fw_type == "efi":
         print("Bootloader: grub (efi)")
-        efi_directory_firmware = efi_directory + "/EFI"
-        check_target_env_call(["mkdir", "-p", "{!s}".format(efi_directory)])
+
+        if not os.path.isdir(efi_directory):
+            check_target_env_call(["mkdir", "-p", "{!s}".format(efi_directory)])
 
         if "efiBootloaderId" in libcalamares.job.configuration:
             efi_bootloader_id = libcalamares.job.configuration["efiBootloaderId"]
@@ -216,11 +218,23 @@ def install_grub(efi_directory, fw_type):
                                "--efi-directory={!s}".format(efi_directory),
                                "--bootloader-id={!s}".format(efi_bootloader_id),
                                "--force"])
+
+        # VFAT is weird, see issue CAL-385
+        efi_directory_firmware = case_insensitive_subdir(efi_directory,
+                                                         ["EFI", "Efi", "efi"])
+        if not efi_directory_firmware:
+            efi_directory_firmware = os.path.join(efi_directory, "EFI")
+
+        efi_boot_directory = case_insensitive_subdir(efi_directory_firmware,
+                                                     ["Boot", "boot", "BOOT"])
+        if not efi_boot_directory:
+            efi_boot_directory = os.path.join(efi_directory_firmware, "boot")
+            check_target_env_call(["mkdir", "-p", efi_boot_directory])
+
         # Workaround for some UEFI firmwares
-        check_target_env_call(["mkdir", "-p", "{!s}/boot".format(efi_directory_firmware)])
-        check_target_env_call(["cp", "{!s}/{!s}/grubx64.efi".format(efi_directory_firmware,
-                                                                    efi_bootloader_id),
-                               "{!s}/boot/bootx64.efi".format(efi_directory_firmware)])
+        check_target_env_call(["cp",
+                               os.path.join(efi_directory_firmware, efi_bootloader_id, "grubx64.efi"),
+                               os.path.join(efi_boot_directory, "bootx64.efi")])
     else:
         print("Bootloader: grub (bios)")
         boot_loader = libcalamares.globalstorage.value("bootLoader")
@@ -235,6 +249,13 @@ def install_grub(efi_directory, fw_type):
     check_target_env_call([libcalamares.job.configuration["grubMkconfig"],
                            "-o",
                            libcalamares.job.configuration["grubCfg"]])
+
+
+def case_insensitive_subdir(parent, candidate_dirnames):
+    for dirname in candidate_dirnames:
+        if os.path.isdir(os.path.join(parent, dirname)):
+            return os.path.join(parent, dirname)
+    return ""
 
 
 def prepare_bootloader(fw_type):
