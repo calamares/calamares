@@ -23,9 +23,6 @@ import libcalamares
 import os
 import re
 
-def setExpression(pattern, file):
-    libcalamares.utils.target_env_call(["sed", "-e", pattern, "-i", file])
-
 def modify_grub_default(partitions, root_mount_point, distributor):
     """ Configures '/etc/default/grub' for hibernation and plymouth.
 
@@ -37,17 +34,11 @@ def modify_grub_default(partitions, root_mount_point, distributor):
     default_dir = os.path.join(root_mount_point, "etc/default")
     default_grub = os.path.join(default_dir, "grub")
     distributor_replace = distributor.replace("'", "'\\''")
-    plymouth_bin = libcalamares.utils.target_env_call(["sh", "-c", "which plymouth"])
     use_splash = ""
     swap_uuid = ""
 
-    libcalamares.utils.debug("which plymouth exit code: {!s}".format(plymouth_bin))
-
-    if plymouth_bin == 0:
+    if libcalamares.globalstorage.value("hasPlymouth"):
         use_splash = "splash"
-        if "plymouth_theme" in libcalamares.job.configuration and libcalamares.job.configuration["plymouth_theme"] is not None:
-            plymouth_theme = libcalamares.job.configuration["plymouth_theme"]
-            setExpression('s|^.*Theme=.*|Theme=' + plymouth_theme + '|', "/etc/plymouth/plymouthd.conf")
 
     cryptdevice_params = []
 

@@ -1,0 +1,5 @@
+---
+type:       "job"
+name:       "plymouthcfg"
+interface:  "python"
+script:     "main.py"
