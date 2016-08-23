@@ -3,8 +3,7 @@
 #
 # === This file is part of Calamares - <http://github.com/calamares> ===
 #
-#   Copyright 2014-2015, Philip Müller <philm@manjaro.org>
-#   Copyright 2015,      Teo Mrnjavac <teo@kde.org>
+#   Copyright 2016, Artoo <artoo@manjaro.org>
 #
 #   Calamares is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -21,49 +20,42 @@
 
 import libcalamares
 
-from libcalamares import debug, target_env_call
+from libcalamares.utils import debug, target_env_call
+
 
 class PlymouthController:
+
     def __init__(self):
         self.__root = libcalamares.globalstorage.value('rootMountPoint')
-        self._hasPlymouth = 1
 
     @property
-	def root(self):
-		return self.__root
-
-    @property
-	def hasPlymouth(self):
-		return self._hasPlymouth
-
-    @hasPlymouth.setter
-	def hasPlymouth(self, value):
-		self._hasPlymouth = value
-
-    def setExpression(self, pattern, file):
-        target_env_call(["sed", "-e", pattern, "-i", file])
+    def root(self):
+        return self.__root
 
     def setTheme(self):
         plymouth_theme = libcalamares.job.configuration["plymouth_theme"]
-        setExpression('s|^.*Theme=.*|Theme=' + plymouth_theme + '|', "/etc/plymouth/plymouthd.conf")
+        target_env_call(["sed", "-e", 's|^.*Theme=.*|Theme=' +
+                         plymouth_theme + '|', "-i", "/etc/plymouth/plymouthd.conf"])
 
-    def detect_plymouth(self):
+    def detect(self):
         plymouth_bin = target_env_call(["which", "plymouth"])
         debug("which plymouth exit code: {!s}".format(plymouth_bin))
 
-        if plymouth_bin:
-            libcalamares.globalstorage.insert("hasPlymouth", "true")
+        if plymouth_bin == 0:
+            libcalamares.globalstorage.insert("hasPlymouth", True)
         else:
-            libcalamares.globalstorage.insert("hasPlymouth", "false")
+            libcalamares.globalstorage.insert("hasPlymouth", False)
+
+        return plymouth_bin
 
     def run(self):
-
-        self.detect_plymouth()
-        if plymouth_bin == 0:
+        if self.detect() == 0:
             if "plymouth_theme" in libcalamares.job.configuration and libcalamares.job.configuration["plymouth_theme"] is not None:
                 self.setTheme()
-
         return None
 
+
 def run():
+    pc = PlymouthController()
+    return pc.run()
 
