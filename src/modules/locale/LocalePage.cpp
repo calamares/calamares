@@ -25,6 +25,7 @@
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 #include "LCLocaleDialog.h"
+#include "Settings.h"
 
 #include <QBoxLayout>
 #include <QComboBox>
@@ -470,6 +471,15 @@ LocalePage::updateGlobalStorage()
             ->insert( "locationRegion", location.region );
     Calamares::JobQueue::instance()->globalStorage()
             ->insert( "locationZone", location.zone );
+
+    // If we're in chroot mode (normal install mode), then we immediately set the
+    // timezone on the live system.
+    if ( Calamares::Settings::instance()->doChroot() )
+    {
+        QProcess ::execute( "timedatectl",  // depends on systemd
+                            { "set-timezone",
+                              location.region + '/' + location.zone } );
+    }
 
     m_selectedLocaleConfiguration = guessLocaleConfiguration();
     updateLocaleLabels();
