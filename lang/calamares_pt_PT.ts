@@ -1194,40 +1194,40 @@ O instalador será encerrado e todas as alterações serão perdidas.</translati
 <context>
     <name>LocalePage</name>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="173"/>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="236"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="174"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="237"/>
         <source>The system language will be set to %1.</source>
         <translation>A linguagem do sistema será definida para %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="205"/>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="239"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="206"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="240"/>
         <source>The numbers and dates locale will be set to %1.</source>
         <translation>Os números e datas locais serão definidos para %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="215"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="216"/>
         <source>Region:</source>
         <translation>Região:</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="216"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="217"/>
         <source>Zone:</source>
         <translation>Zona:</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="220"/>
         <location filename="../src/modules/locale/LocalePage.cpp" line="221"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="222"/>
         <source>&amp;Change...</source>
         <translation>&amp;Alterar...</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="386"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="387"/>
         <source>Set timezone to %1/%2.&lt;br/&gt;</source>
         <translation>Definir fuso horário para %1/%2.&lt;br/&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="461"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="462"/>
         <source>%1 (%2)</source>
         <extracomment>Language (Country)</extracomment>
         <translation>%1 (%2)</translation>
@@ -2017,12 +2017,12 @@ O instalador será encerrado e todas as alterações serão perdidas.</translati
         <translation>Falha na criação de ligação, alvo: %1; nome da ligação: %2</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="95"/>
+        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="96"/>
         <source>Cannot set timezone,</source>
         <translation>Não é possível definir o fuso horário,</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="96"/>
+        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="97"/>
         <source>Cannot open /etc/timezone for writing</source>
         <translation>Não é possível abrir /etc/timezone para escrita</translation>
     </message>

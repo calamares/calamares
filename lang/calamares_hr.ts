@@ -263,7 +263,7 @@ Izlaz:
         <source>Do you really want to cancel the current install process?
 The installer will quit and all changes will be lost.</source>
         <translation>Stvarno želite prekinuti instalacijski proces?
-Installer će izaći i sve promjene će biti izgubljene.</translation>
+Instalacijski program će izaći i sve promjene će biti izgubljene.</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="224"/>
@@ -342,12 +342,12 @@ Installer će izaći i sve promjene će biti izgubljene.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/CheckFileSystemJob.cpp" line="39"/>
         <source>Checking file system on partition %1.</source>
-        <translation>Provjera datotečnog sustava na particiji %1</translation>
+        <translation>Provjera datotečnog sustava na particiji %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CheckFileSystemJob.cpp" line="77"/>
         <source>The file system check on partition %1 failed.</source>
-        <translation>Provjera datotečnog sustava na particiji %1 nije uspjela</translation>
+        <translation>Provjera datotečnog sustava na particiji %1 nije uspjela.</translation>
     </message>
 </context>
 <context>
@@ -365,7 +365,7 @@ Installer će izaći i sve promjene će biti izgubljene.</translation>
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="142"/>
         <source>This program will ask you some questions and set up %2 on your computer.</source>
-        <translation>Ovaj program će vas pitati neka pitanja i postaviti %2 na vaše računalo.</translation>
+        <translation>Ovaj program će vam postaviti neka pitanja i instalirati %2 na vaše računalo.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="166"/>
@@ -544,7 +544,7 @@ Installer će izaći i sve promjene će biti izgubljene.</translation>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="55"/>
         <source>Partition &amp;Type:</source>
-        <translation>Particija i tip:</translation>
+        <translation>Tip &amp;particije:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="67"/>
@@ -1194,40 +1194,40 @@ Installer će izaći i sve promjene će biti izgubljene.</translation>
 <context>
     <name>LocalePage</name>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="173"/>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="236"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="174"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="237"/>
         <source>The system language will be set to %1.</source>
         <translation>Jezik sustava će se postaviti na %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="205"/>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="239"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="206"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="240"/>
         <source>The numbers and dates locale will be set to %1.</source>
         <translation>Jezična shema brojeva i datuma će se postaviti na %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="215"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="216"/>
         <source>Region:</source>
         <translation>Regija:</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="216"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="217"/>
         <source>Zone:</source>
         <translation>Zona:</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="220"/>
         <location filename="../src/modules/locale/LocalePage.cpp" line="221"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="222"/>
         <source>&amp;Change...</source>
         <translation>&amp;Promijeni...</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="386"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="387"/>
         <source>Set timezone to %1/%2.&lt;br/&gt;</source>
         <translation>Postavi vremesku zonu na %1%2&lt;br/&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="461"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="462"/>
         <source>%1 (%2)</source>
         <extracomment>Language (Country)</extracomment>
         <translation>%1 (%2)</translation>
@@ -2017,12 +2017,12 @@ Installer će izaći i sve promjene će biti izgubljene.</translation>
         <translation>Kreiranje linka nije uspjelo, cilj: %1; ime linka: %2</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="95"/>
+        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="96"/>
         <source>Cannot set timezone,</source>
         <translation>Ne mogu postaviti vremensku zonu,</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="96"/>
+        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="97"/>
         <source>Cannot open /etc/timezone for writing</source>
         <translation>Ne mogu otvoriti /etc/timezone za pisanje</translation>
     </message>

@@ -1196,40 +1196,40 @@ The installer will quit and all changes will be lost.</source>
 <context>
     <name>LocalePage</name>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="173"/>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="236"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="174"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="237"/>
         <source>The system language will be set to %1.</source>
         <translation>系统语言将设置为 %1。</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="205"/>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="239"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="206"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="240"/>
         <source>The numbers and dates locale will be set to %1.</source>
         <translation>数字和日期地域将设置为 %1。</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="215"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="216"/>
         <source>Region:</source>
         <translation>地区：</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="216"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="217"/>
         <source>Zone:</source>
         <translation>区域：</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="220"/>
         <location filename="../src/modules/locale/LocalePage.cpp" line="221"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="222"/>
         <source>&amp;Change...</source>
         <translation>更改 (&amp;C) ...</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="386"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="387"/>
         <source>Set timezone to %1/%2.&lt;br/&gt;</source>
         <translation>设置时区为 %1/%2。&lt;br/&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="461"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="462"/>
         <source>%1 (%2)</source>
         <extracomment>Language (Country)</extracomment>
         <translation>%1（%2）</translation>
@@ -2019,12 +2019,12 @@ The installer will quit and all changes will be lost.</source>
         <translation>链接创建失败，目标：%1，链接名称：%2</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="95"/>
+        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="96"/>
         <source>Cannot set timezone,</source>
         <translation>无法设置时区，</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="96"/>
+        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="97"/>
         <source>Cannot open /etc/timezone for writing</source>
         <translation>无法打开要写入的 /etc/timezone</translation>
     </message>

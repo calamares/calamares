@@ -1195,40 +1195,40 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
 <context>
     <name>LocalePage</name>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="173"/>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="236"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="174"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="237"/>
         <source>The system language will be set to %1.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="205"/>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="239"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="206"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="240"/>
         <source>The numbers and dates locale will be set to %1.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="215"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="216"/>
         <source>Region:</source>
         <translation>Region:</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="216"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="217"/>
         <source>Zone:</source>
         <translation>Zeitzone:</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="220"/>
         <location filename="../src/modules/locale/LocalePage.cpp" line="221"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="222"/>
         <source>&amp;Change...</source>
         <translation>&amp;Ändern...</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="386"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="387"/>
         <source>Set timezone to %1/%2.&lt;br/&gt;</source>
         <translation>Setze Zeitzone auf %1/%2.&lt;br/&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="461"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="462"/>
         <source>%1 (%2)</source>
         <extracomment>Language (Country)</extracomment>
         <translation type="unfinished"/>
@@ -2018,12 +2018,12 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
         <translation>Erstellen der Verknüpfung fehlgeschlagen, Ziel: %1; Verknüpfung: %2</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="95"/>
+        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="96"/>
         <source>Cannot set timezone,</source>
         <translation>Kann die Zeitzone nicht setzen,</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="96"/>
+        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="97"/>
         <source>Cannot open /etc/timezone for writing</source>
         <translation>Kein Schreibzugriff auf /etc/timezone</translation>
     </message>

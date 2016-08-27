@@ -1197,40 +1197,40 @@ Kuruluma devam edebilirsiniz fakat bazı özellikler devre dışı kalabilir.</t
 <context>
     <name>LocalePage</name>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="173"/>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="236"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="174"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="237"/>
         <source>The system language will be set to %1.</source>
         <translation>Sistem dili %1 olarak ayarlanacak.</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="205"/>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="239"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="206"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="240"/>
         <source>The numbers and dates locale will be set to %1.</source>
         <translation>Sayılar ve günler için sistem yereli %1 olarak ayarlanacak.</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="215"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="216"/>
         <source>Region:</source>
         <translation>Bölge:</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="216"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="217"/>
         <source>Zone:</source>
         <translation>Şehir:</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="220"/>
         <location filename="../src/modules/locale/LocalePage.cpp" line="221"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="222"/>
         <source>&amp;Change...</source>
         <translation>&amp;Değiştir...</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="386"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="387"/>
         <source>Set timezone to %1/%2.&lt;br/&gt;</source>
         <translation>Bölge ve zaman dilimi %1/%2 olarak ayarlandı.&lt;br/&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="461"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="462"/>
         <source>%1 (%2)</source>
         <extracomment>Language (Country)</extracomment>
         <translation>%1 (%2)</translation>
@@ -2021,12 +2021,12 @@ Sistem güç kaynağına bağlı değil.</translation>
         <translation>Link oluşturulamadı, hedef: %1; link adı: %2</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="95"/>
+        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="96"/>
         <source>Cannot set timezone,</source>
         <translation>Bölge ve zaman dilimi ayarlanmadı,</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="96"/>
+        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="97"/>
         <source>Cannot open /etc/timezone for writing</source>
         <translation>/etc/timezone açılamadığından düzenlenemedi</translation>
     </message>

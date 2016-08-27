@@ -103,7 +103,7 @@
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="57"/>
         <source>Tools</source>
-        <translation type="unfinished"/>
+        <translation>Nástroje</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.cpp" line="102"/>
@@ -408,7 +408,7 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="121"/>
         <source>Select storage de&amp;vice:</source>
-        <translation type="unfinished"/>
+        <translation>Zvolte paměťové zařízení:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="122"/>
@@ -416,12 +416,12 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="934"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1014"/>
         <source>Current:</source>
-        <translation type="unfinished"/>
+        <translation>Aktuální:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="766"/>
         <source>Reuse %1 as home partition for %2.</source>
-        <translation type="unfinished"/>
+        <translation>Opakované použití %1 jako domovský oddíl pro %2.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="889"/>
@@ -901,7 +901,7 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
     <message>
         <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>Formulář</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="32"/>
@@ -921,7 +921,7 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
     <message>
         <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="150"/>
         <source>Please enter the same passphrase in both boxes.</source>
-        <translation type="unfinished"/>
+        <translation>Zadejte prosím stejné heslo do obou polí.</translation>
     </message>
 </context>
 <context>
@@ -1046,7 +1046,7 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
     <message>
         <location filename="../src/modules/netinstall/widgets/groupselectionwidget.ui" line="36"/>
         <source>description</source>
-        <translation type="unfinished"/>
+        <translation>popis</translation>
     </message>
 </context>
 <context>
@@ -1194,43 +1194,43 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
 <context>
     <name>LocalePage</name>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="173"/>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="236"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="174"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="237"/>
         <source>The system language will be set to %1.</source>
-        <translation type="unfinished"/>
+        <translation>Jazyk systému bude nastaven na 1%.</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="205"/>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="239"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="206"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="240"/>
         <source>The numbers and dates locale will be set to %1.</source>
-        <translation type="unfinished"/>
+        <translation>Čísla a data národního prostředí budou nastavena na %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="215"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="216"/>
         <source>Region:</source>
         <translation>Oblast:</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="216"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="217"/>
         <source>Zone:</source>
         <translation>Pásmo:</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="220"/>
         <location filename="../src/modules/locale/LocalePage.cpp" line="221"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="222"/>
         <source>&amp;Change...</source>
         <translation>&amp;Změnit...</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="386"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="387"/>
         <source>Set timezone to %1/%2.&lt;br/&gt;</source>
         <translation>Nastavit časové pásmo na %1/%2.&lt;br/&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="461"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="462"/>
         <source>%1 (%2)</source>
         <extracomment>Language (Country)</extracomment>
-        <translation type="unfinished"/>
+        <translation>%1 (%2)</translation>
     </message>
 </context>
 <context>
@@ -1300,7 +1300,7 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
     <message>
         <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="98"/>
         <source>Network Installation. (Disabled: Unable to fetch package lists, check your network connection)</source>
-        <translation type="unfinished"/>
+        <translation>Síťová instalace. (Zakázáno: Nelze načíst seznamy balíků, zkontrolujte připojení k síti)</translation>
     </message>
 </context>
 <context>
@@ -1308,7 +1308,7 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
     <message>
         <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="50"/>
         <source>Package selection</source>
-        <translation type="unfinished"/>
+        <translation>Výběr balíků</translation>
     </message>
 </context>
 <context>
@@ -1606,7 +1606,7 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="418"/>
         <source>EFI system partition flag not set</source>
-        <translation type="unfinished"/>
+        <translation>Příznak EFI systémového oddílu není nastaven</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="419"/>
@@ -2017,12 +2017,12 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
         <translation>Vytváření odkazu selhalo, cíl: %1; jméno odkazu: %2 </translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="95"/>
+        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="96"/>
         <source>Cannot set timezone,</source>
         <translation>Nelze nastavit časovou zónu.</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="96"/>
+        <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="97"/>
         <source>Cannot open /etc/timezone for writing</source>
         <translation>Nelze otevřít /etc/timezone pro zápis</translation>
     </message>
