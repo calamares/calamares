@@ -421,7 +421,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="766"/>
         <source>Reuse %1 as home partition for %2.</source>
-        <translation type="unfinished"/>
+        <translation>%1 を %2 のホームパーティションとして再利用する</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="889"/>
@@ -1300,7 +1300,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="98"/>
         <source>Network Installation. (Disabled: Unable to fetch package lists, check your network connection)</source>
-        <translation type="unfinished"/>
+        <translation>ネットワークインストール。(無効: パッケージリストを取得できません。ネットワーク接続を確認してください。)</translation>
     </message>
 </context>
 <context>

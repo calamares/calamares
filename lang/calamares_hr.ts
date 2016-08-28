@@ -9,17 +9,17 @@
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="78"/>
         <source>Allocate drive space by dragging the divider below:</source>
-        <translation>Dodijeli prostor za disk povlačeći pregradu koja se nalazi ispod:</translation>
+        <translation>Dodijeli prostor na disku povlačeći razdjelnik koja se nalazi ispod:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="121"/>
         <source>With this operation, the partition &lt;strong&gt;%1&lt;/strong&gt; which contains %4 will be shrunk to %2MB and a new %3MB partition will be created for %5.</source>
-        <translation>Sa ovom operacijom, particija &lt;strong&gt; %1 &lt;/strong&gt; koja sadrži %4 će biti smanjana za %2MB i nova %3MB particija će se kreirati za %5.</translation>
+        <translation>Sa ovom operacijom, particija &lt;strong&gt;%1&lt;/strong&gt; koja sadrži %4 će biti smanjena za %2MB i stvorit će se nova %3MB particija za %5.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="198"/>
         <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
-        <translation>EFI particija se ne može naći nigdje na ovom sustavu. Vratite se natrag i koristite ručno particioniranje da bi ste postavili %1</translation>
+        <translation>EFI particija ne postoji na ovom sustavu. Vratite se natrag i koristite ručno particioniranje da bi ste postavili %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="208"/>
@@ -42,12 +42,12 @@
     <message>
         <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="75"/>
         <source>This system was started with an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from an EFI environment, this installer must deploy a boot loader application, like &lt;strong&gt;GRUB&lt;/strong&gt; or &lt;strong&gt;systemd-boot&lt;/strong&gt; on an &lt;strong&gt;EFI System Partition&lt;/strong&gt;. This is automatic, unless you choose manual partitioning, in which case you must choose it or create it on your own.</source>
-        <translation>Ovaj sustav koristi &lt;strong&gt;EFI&lt;/strong&gt; okruženje.&lt;br&gt;&lt;br&gt;Za konfiguriranje pokretanja iz EFI okruženja, ovaj instalacijski program mora uvesti boot učitavač, kao što je &lt;strong&gt;GRUB&lt;/strong&gt; ili &lt;strong&gt;systemd-boot&lt;/strong&gt; na &lt;strong&gt;EFI particiju&lt;/strong&gt;. To se odvija automatski, osim ako ste odabrali ručno particioniranje. U tom slučaju to ćete morati odabrati ili kreirati sami.</translation>
+        <translation>Ovaj sustav koristi &lt;strong&gt;EFI&lt;/strong&gt; okruženje.&lt;br&gt;&lt;br&gt;Za konfiguriranje pokretanja iz EFI okruženja, ovaj instalacijski program mora uvesti boot učitavač, kao što je &lt;strong&gt;GRUB&lt;/strong&gt; ili &lt;strong&gt;systemd-boot&lt;/strong&gt; na &lt;strong&gt;EFI particiju&lt;/strong&gt;. To se odvija automatski, osim ako ste odabrali ručno particioniranje. U tom slučaju to ćete morati odabrati ili stvoriti sami.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="87"/>
         <source>This system was started with a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from a BIOS environment, this installer must install a boot loader, like &lt;strong&gt;GRUB&lt;/strong&gt;, either at the beginning of a partition or on the &lt;strong&gt;Master Boot Record&lt;/strong&gt; near the beginning of the partition table (preferred). This is automatic, unless you choose manual partitioning, in which case you must set it up on your own.</source>
-        <translation>Ovaj sustav koristi &lt;strong&gt;BIOS&lt;/strong&gt; okruženje.&lt;br&gt;&lt;br&gt;Za konfiguriranje pokretanja iz BIOS okruženja, ovaj instalacijski program mora uvesti boot učitavač, kao što je &lt;strong&gt;GRUB&lt;/strong&gt;, ili na početku particije ili na &lt;strong&gt;Master Boot Record&lt;/strong&gt; blizu početka na particiji (preporučen način). To se odvija automatski, osim ako ste odabrali ručno particioniranje. U tom slučaju to ćete morati napraviti sami.</translation>
+        <translation>Ovaj sustav koristi &lt;strong&gt;BIOS&lt;/strong&gt; okruženje.&lt;br&gt;&lt;br&gt;Za konfiguriranje pokretanja iz BIOS okruženja, ovaj instalacijski program mora uvesti boot učitavač, kao što je &lt;strong&gt;GRUB&lt;/strong&gt;, ili na početku particije ili na &lt;strong&gt;Master Boot Record&lt;/strong&gt; blizu početka particijske tablice (preporučen način). To se odvija automatski, osim ako ste odabrali ručno particioniranje. U tom slučaju to ćete morati napraviti sami.</translation>
     </message>
 </context>
 <context>
@@ -124,7 +124,7 @@
     <message>
         <location filename="../src/libcalamares/JobQueue.cpp" line="89"/>
         <source>Done</source>
-        <translation>Završeno</translation>
+        <translation>Gotovo</translation>
     </message>
 </context>
 <context>
@@ -161,7 +161,7 @@ Izlaz:
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="96"/>
         <source>Command %1 failed to start.</source>
-        <translation>Naredba %1 nije uspješno pokrenuta</translation>
+        <translation>Naredba %1 nije uspješno pokrenuta.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="100"/>
@@ -288,7 +288,7 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="264"/>
         <source>&amp;Quit</source>
-        <translation>&amp;Izlaz</translation>
+        <translation>&amp;Izađi</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="170"/>
@@ -306,7 +306,7 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
     <message>
         <location filename="../src/libcalamares/PythonHelper.cpp" line="262"/>
         <source>Unknown exception type</source>
-        <translation>Nepoznati tip odstupanja</translation>
+        <translation>Nepoznati tip iznimke</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonHelper.cpp" line="275"/>
@@ -321,7 +321,7 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
     <message>
         <location filename="../src/libcalamares/PythonHelper.cpp" line="295"/>
         <source>Unfetchable Python error.</source>
-        <translation>Unfetchable Python greška.</translation>
+        <translation>Nedohvatljiva Python greška.</translation>
     </message>
 </context>
 <context>
@@ -360,7 +360,7 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="113"/>
         <source>This computer does not satisfy some of the recommended requirements for installing %1.&lt;br/&gt;Installation can continue, but some features might be disabled.</source>
-        <translation>Računalo ne zadovoljava neke od preporučenih uvijeta za instalaciju %1.&lt;br/&gt;Instalacija se može nastaviti, ali neke značajke možda neće biti dostupne.</translation>
+        <translation>Računalo ne zadovoljava neke od preporučenih uvjeta za instalaciju %1.&lt;br/&gt;Instalacija se može nastaviti, ali neke značajke možda neće biti dostupne.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="142"/>
@@ -393,17 +393,17 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="236"/>
         <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself.</source>
-        <translation>&lt;strong&gt;Ručno particioniranje&lt;/strong&gt;&lt;br/&gt;Možete sami kreirati ili promijeniti veličine particija.</translation>
+        <translation>&lt;strong&gt;Ručno particioniranje&lt;/strong&gt;&lt;br/&gt;Možete sami stvoriti ili promijeniti veličine particija.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="963"/>
         <source>Boot loader location:</source>
-        <translation>Boot učitavač lokacija:</translation>
+        <translation>Lokacija boot učitavača:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="906"/>
         <source>%1 will be shrunk to %2MB and a new %3MB partition will be created for %4.</source>
-        <translation>%1 će se smanjiti na %2MB i nova %3MB particija će se kreirati za %4.</translation>
+        <translation>%1 će se smanjiti na %2MB i stvorit će se nova %3MB particija za %4.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="121"/>
@@ -436,7 +436,7 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1061"/>
         <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
-        <translation>EFI particija se ne može nigdje pronaći na sustavu. Vratite se natrag i koristite ručno particioniranje da bi ste postavili %1.</translation>
+        <translation>EFI particija ne postoji na ovom sustavu. Vratite se natrag i koristite ručno particioniranje da bi ste postavili %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1071"/>
@@ -464,7 +464,7 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1199"/>
         <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-        <translation>Ovaj disk ima %1 na sebi. Što želite učiniti?&lt;br/&gt;Moći ćete provjeriti i potvrditi vaš odabir prije bilo kakvih promjena na disku.</translation>
+        <translation>Ovaj disk ima %1. Što želite učiniti?&lt;br/&gt;Moći ćete provjeriti i potvrditi vaš odabir prije bilo kakvih promjena na disku.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1174"/>
@@ -526,7 +526,7 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
     <message>
         <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="58"/>
         <source>Cannot get list of temporary mounts.</source>
-        <translation>Ne mogu dobiti popis privremenih montiranja.</translation>
+        <translation>Ne mogu dohvatiti popis privremenih montiranja.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="97"/>
@@ -607,17 +607,17 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="48"/>
         <source>Create new %2MB partition on %4 (%3) with file system %1.</source>
-        <translation>Napravi novu %2MB particiju na %4 (%3) s datotečnim sustavom %1.</translation>
+        <translation>Stvori novu %2MB particiju na %4 (%3) s datotečnim sustavom %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="59"/>
         <source>Create new &lt;strong&gt;%2MB&lt;/strong&gt; partition on &lt;strong&gt;%4&lt;/strong&gt; (%3) with file system &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation>Napravi novu &lt;strong&gt;%2MB&lt;/strong&gt; particiju na &lt;strong&gt;%4&lt;/strong&gt; (%3) s datotečnim sustavom &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+        <translation>Stvori novu &lt;strong&gt;%2MB&lt;/strong&gt; particiju na &lt;strong&gt;%4&lt;/strong&gt; (%3) s datotečnim sustavom &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="71"/>
         <source>Creating new %1 partition on %2.</source>
-        <translation>Pravim novu %1 particiju na %2.</translation>
+        <translation>Stvaram novu %1 particiju na %2.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="83"/>
@@ -660,7 +660,7 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="65"/>
         <source>What kind of partition table do you want to create?</source>
-        <translation>Kakvu vrstu particijske tablice želite stvoriti?</translation>
+        <translation>Koju vrstu particijske tablice želite stvoriti?</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="72"/>
@@ -678,17 +678,17 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="49"/>
         <source>Create new %1 partition table on %2.</source>
-        <translation>Napravi novu %1 particijsku tablicu na %2.</translation>
+        <translation>Stvori novu %1 particijsku tablicu na %2.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="56"/>
         <source>Create new &lt;strong&gt;%1&lt;/strong&gt; partition table on &lt;strong&gt;%2&lt;/strong&gt; (%3).</source>
-        <translation>Napravi novu &lt;strong&gt;%1&lt;/strong&gt; particijsku tablicu na &lt;strong&gt;%2&lt;/strong&gt; (%3).</translation>
+        <translation>Stvori novu &lt;strong&gt;%1&lt;/strong&gt; particijsku tablicu na &lt;strong&gt;%2&lt;/strong&gt; (%3).</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="66"/>
         <source>Creating new %1 partition table on %2.</source>
-        <translation>Pravim novu %1 particijsku tablicu na %2.</translation>
+        <translation>Stvaram novu %1 particijsku tablicu na %2.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="76"/>
@@ -711,12 +711,12 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="57"/>
         <source>Create user &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation>Napravi korisnika &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+        <translation>Stvori korisnika &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="64"/>
         <source>Creating user %1.</source>
-        <translation>Pravim korisnika %1.</translation>
+        <translation>Stvaram korisnika %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="80"/>
@@ -812,7 +812,7 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="63"/>
         <source>The type of &lt;strong&gt;partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The only way to change the partition table type is to erase and recreate the partition table from scratch, which destroys all data on the storage device.&lt;br&gt;This installer will keep the current partition table unless you explicitly choose otherwise.&lt;br&gt;If unsure, on modern systems GPT is preferred.</source>
-        <translation>Tip &lt;strong&gt;particijske tablice&lt;/strong&gt; na odabranom disku.&lt;br&gt;&lt;br&gt;Jedini način da bi ste promijenili tip particijske tablice je da obrišete i iznova kreirate particijsku tablicu. To će uništiiti sve podatke na disku.&lt;br&gt;Instalacijski program će zadržati postojeću particijsku tablicu osim ako ne odaberete drugačije.&lt;br&gt;Ako niste sigurni, na novijim sustavima GPT je preferirana particijska tablica.</translation>
+        <translation>Tip &lt;strong&gt;particijske tablice&lt;/strong&gt; na odabranom disku.&lt;br&gt;&lt;br&gt;Jedini način da bi ste promijenili tip particijske tablice je da obrišete i iznova stvorite particijsku tablicu. To će uništiiti sve podatke na disku.&lt;br&gt;Instalacijski program će zadržati postojeću particijsku tablicu osim ako ne odaberete drugačije.&lt;br&gt;Ako niste sigurni, na novijim sustavima GPT je preporučena particijska tablica.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="107"/>
@@ -827,12 +827,12 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="121"/>
         <source>This installer &lt;strong&gt;cannot detect a partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The device either has no partition table, or the partition table is corrupted or of an unknown type.&lt;br&gt;This installer can create a new partition table for you, either automatically, or through the manual partitioning page.</source>
-        <translation>Instalacijski program &lt;strong&gt;ne može detektirati particijsku tablicu&lt;/strong&gt; na odabranom disku.&lt;br&gt;&lt;br&gt;Uređaj ili nema particijsku tablicu ili je particijska tablica oštečena ili nepoznatog tipa.&lt;br&gt;Instalacijski program može kreirati novu particijsku tablicu, ili automatski, ili kroz ručno particioniranje.</translation>
+        <translation>Instalacijski program &lt;strong&gt;ne može detektirati particijsku tablicu&lt;/strong&gt; na odabranom disku.&lt;br&gt;&lt;br&gt;Uređaj ili nema particijsku tablicu ili je particijska tablica oštečena ili nepoznatog tipa.&lt;br&gt;Instalacijski program može stvoriti novu particijsku tablicu, ili automatski, ili kroz ručno particioniranje.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="131"/>
         <source>&lt;br&gt;&lt;br&gt;This is the recommended partition table type for modern systems which start from an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.</source>
-        <translation>&lt;br&gt;&lt;br&gt;To je preporučeni tip particijske tablice za moderne sustave koji se koristi od &lt;strong&gt; EFI &lt;/strong&gt; boot okruženje.</translation>
+        <translation>&lt;br&gt;&lt;br&gt;To je preporučeni tip particijske tablice za moderne sustave koji se koristi za &lt;strong&gt; EFI &lt;/strong&gt; boot okruženje.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="137"/>
@@ -954,7 +954,7 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
     <message>
         <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="174"/>
         <source>Install boot loader on &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation>Instaliraj boot učitavač &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+        <translation>Instaliraj boot učitavač na &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="184"/>
@@ -977,7 +977,7 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
     <message>
         <location filename="../src/modules/finished/FinishedPage.cpp" line="50"/>
         <source>&lt;h1&gt;All done.&lt;/h1&gt;&lt;br/&gt;%1 has been installed on your computer.&lt;br/&gt;You may now restart into your new system, or continue using the %2 Live environment.</source>
-        <translation>&lt;h1&gt;Gotovo.&lt;/h1&gt;&lt;br/&gt;%1 je instaliran na vaše računalo.&lt;br/&gt;Sada možete ponovno pokrenuti računalo ili nastaviti sa korištenjem %2 Live okruženjem.</translation>
+        <translation>&lt;h1&gt;Gotovo.&lt;/h1&gt;&lt;br/&gt;%1 je instaliran na vaše računalo.&lt;br/&gt;Sada možete ponovno pokrenuti računalo ili nastaviti sa korištenjem %2 live okruženja.</translation>
     </message>
 </context>
 <context>
@@ -1155,27 +1155,27 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
         <location filename="../src/modules/license/LicensePage.cpp" line="166"/>
         <source>&lt;strong&gt;%1 graphics driver&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;by %2&lt;/font&gt;</source>
         <extracomment>%1 is usually a vendor name, example: Nvidia graphics driver</extracomment>
-        <translation>&lt;strong&gt;%1 grafički upravljački program&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;by %2&lt;/font&gt;</translation>
+        <translation>&lt;strong&gt;%1 grafički upravljački program&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;od %2&lt;/font&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="172"/>
         <source>&lt;strong&gt;%1 browser plugin&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;by %2&lt;/font&gt;</source>
-        <translation>&lt;strong&gt;%1 dodatak preglednika&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;by %2&lt;/font&gt;</translation>
+        <translation>&lt;strong&gt;%1 dodatak preglednika&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;od %2&lt;/font&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="178"/>
         <source>&lt;strong&gt;%1 codec&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;by %2&lt;/font&gt;</source>
-        <translation>&lt;strong&gt;%1 kodek&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;by %2&lt;/font&gt;</translation>
+        <translation>&lt;strong&gt;%1 kodek&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;od %2&lt;/font&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="184"/>
         <source>&lt;strong&gt;%1 package&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;by %2&lt;/font&gt;</source>
-        <translation>&lt;strong&gt;%1 paket&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;by %2&lt;/font&gt;</translation>
+        <translation>&lt;strong&gt;%1 paket&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;od %2&lt;/font&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="190"/>
         <source>&lt;strong&gt;%1&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;by %2&lt;/font&gt;</source>
-        <translation>&lt;strong&gt;%1&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;by %2&lt;/font&gt;</translation>
+        <translation>&lt;strong&gt;%1&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;od %2&lt;/font&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="202"/>
@@ -1224,7 +1224,7 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
     <message>
         <location filename="../src/modules/locale/LocalePage.cpp" line="387"/>
         <source>Set timezone to %1/%2.&lt;br/&gt;</source>
-        <translation>Postavi vremesku zonu na %1%2&lt;br/&gt;</translation>
+        <translation>Postavi vremesku zonu na %1%2.&lt;br/&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/LocalePage.cpp" line="462"/>
@@ -1326,7 +1326,7 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
     <message>
         <location filename="../src/modules/keyboard/KeyboardPage.ui" line="131"/>
         <source>Type here to test your keyboard</source>
-        <translation>Piši ovdje kako bi testirao tipkovnicu</translation>
+        <translation>Ovdje testirajte tipkovnicu</translation>
     </message>
 </context>
 <context>
@@ -1344,7 +1344,7 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="117"/>
         <source>What name do you want to use to log in?</source>
-        <translation>Koje ime želiš koristiti za prijavu?</translation>
+        <translation>Koje ime želite koristiti za prijavu?</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="197"/>
@@ -1362,7 +1362,7 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="335"/>
         <source>Choose a password to keep your account safe.</source>
-        <translation>Odaberi lozinku za očuvanje računa sigurnim.</translation>
+        <translation>Odaberite lozinku da bi račun bio siguran.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="440"/>
@@ -1392,7 +1392,7 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="480"/>
         <source>Choose a password for the administrator account.</source>
-        <translation>Odaberi lozinku za administratorski račun</translation>
+        <translation>Odaberi lozinku za administratorski račun.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="585"/>
@@ -1488,7 +1488,7 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="22"/>
         <source>Storage de&amp;vice:</source>
-        <translation>Uređaj za spremanje:</translation>
+        <translation>Uređaj za sp&amp;remanje:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="51"/>
@@ -1498,12 +1498,12 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="87"/>
         <source>New Partition &amp;Table</source>
-        <translation>Nova particija i tablica</translation>
+        <translation>Nova particijska &amp;tablica</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="107"/>
         <source>&amp;Create</source>
-        <translation>&amp;Izradi</translation>
+        <translation>&amp;Stvori</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="114"/>
@@ -1601,7 +1601,7 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="404"/>
         <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;To configure an EFI system partition, go back and select or create a FAT32 filesystem with the &lt;strong&gt;esp&lt;/strong&gt; flag enabled and mount point &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;&lt;br/&gt;You can continue without setting up an EFI system partition but your system may fail to start.</source>
-        <translation>EFI particija je potrebna za pokretanje %1.&lt;br/&gt;&lt;br/&gt;Da bi ste konfigurirali EFI particiju, idite natrag i odaberite ili kreirajte FAT32 datotečni sustav s omogućenom &lt;strong&gt;esp&lt;/strong&gt; zastavicom i točkom montiranja &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;&lt;br/&gt;Možete nastaviti bez postavljanja EFI particije, ali vaš sustav se možda neće moći pokrenuti.</translation>
+        <translation>EFI particija je potrebna za pokretanje %1.&lt;br/&gt;&lt;br/&gt;Da bi ste konfigurirali EFI particiju, idite natrag i odaberite ili stvorite FAT32 datotečni sustav s omogućenom &lt;strong&gt;esp&lt;/strong&gt; zastavicom i točkom montiranja &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;&lt;br/&gt;Možete nastaviti bez postavljanja EFI particije, ali vaš sustav se možda neće moći pokrenuti.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="418"/>
@@ -1640,7 +1640,7 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
     <message>
         <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="199"/>
         <source>unformatted</source>
-        <translation>ne formatirano</translation>
+        <translation>nije formatirano</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="201"/>
@@ -1708,7 +1708,7 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="255"/>
         <source>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
-        <translation>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;EFI particija se ne može pronaći nigdje na ovom sustavu. Vratite se natrag i koristite ručno particioniranje za postavljane %1.</translation>
+        <translation>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;EFI particijane postoji na ovom sustavu. Vratite se natrag i koristite ručno particioniranje za postavljane %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="267"/>
@@ -1758,7 +1758,7 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="118"/>
         <source>is plugged in to a power source</source>
-        <translation>je spojen na izvor struje</translation>
+        <translation>je spojeno na izvor struje</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="119"/>
@@ -1768,7 +1768,7 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="126"/>
         <source>is connected to the Internet</source>
-        <translation>je spojen na Internet</translation>
+        <translation>je spojeno na Internet</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="127"/>
@@ -1804,7 +1804,7 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="187"/>
         <source>Resize partition %1.</source>
-        <translation>Promjena veličine particije %1.</translation>
+        <translation>Promijeni veličinu particije %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="194"/>
@@ -2058,7 +2058,7 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="323"/>
         <source>Your hostname is too short.</source>
-        <translation>Ime računala je previše kratko.</translation>
+        <translation>Ime računala je kratko.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="334"/>
