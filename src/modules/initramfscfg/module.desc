@@ -1,0 +1,5 @@
+---
+type:       "job"
+name:       "initramfscfg"
+interface:  "python"
+script:     "main.py"
