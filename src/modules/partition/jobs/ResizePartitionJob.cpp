@@ -93,7 +93,7 @@ public:
             break;
         case FileSystem::cmdSupportFileSystem:
         {
-            qint64 byteLength = m_device->logicalSectorSize() * m_length;
+            qint64 byteLength = m_device->logicalSize() * m_length;
             bool ok = fs.resize( report, m_partition->partitionPath(), byteLength );
             if ( !ok )
                 return Calamares::JobResult::error(
