@@ -66,10 +66,10 @@ void PluginFactory::doRegisterPlugin(const QString &keyword, const QMetaObject *
         }
         d->createInstanceHash.insert(keyword, PluginFactoryPrivate::Plugin(metaObject, instanceFunction));
     } else {
-        QList<PluginFactoryPrivate::Plugin> clashes(d->createInstanceHash.values(keyword));
+        const QList<PluginFactoryPrivate::Plugin> clashes(d->createInstanceHash.values(keyword));
         const QMetaObject *superClass = metaObject->superClass();
         if (superClass) {
-            foreach (const PluginFactoryPrivate::Plugin &plugin, clashes) {
+            for (const PluginFactoryPrivate::Plugin &plugin : clashes) {
                 for (const QMetaObject *otherSuper = plugin.first->superClass(); otherSuper;
                         otherSuper = otherSuper->superClass()) {
                     if (superClass == otherSuper) {
@@ -78,7 +78,7 @@ void PluginFactory::doRegisterPlugin(const QString &keyword, const QMetaObject *
                 }
             }
         }
-        foreach (const PluginFactoryPrivate::Plugin &plugin, clashes) {
+        for (const PluginFactoryPrivate::Plugin &plugin : clashes) {
             superClass = plugin.first->superClass();
             if (superClass) {
                 for (const QMetaObject *otherSuper = metaObject->superClass(); otherSuper;
@@ -102,7 +102,7 @@ QObject *PluginFactory::create(const char *iface, QWidget *parentWidget, QObject
     const QList<PluginFactoryPrivate::Plugin> candidates(d->createInstanceHash.values(keyword));
     // for !keyword.isEmpty() candidates.count() is 0 or 1
 
-    foreach (const PluginFactoryPrivate::Plugin &plugin, candidates) {
+    for (const PluginFactoryPrivate::Plugin &plugin : candidates) {
         for (const QMetaObject *current = plugin.first; current; current = current->superClass()) {
             if (0 == qstrcmp(iface, current->className())) {
                 if (obj) {

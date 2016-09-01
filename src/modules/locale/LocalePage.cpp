@@ -108,8 +108,8 @@ LocalePage::LocalePage( QWidget* parent )
 
         m_zoneCombo->clear();
 
-        QList< LocaleGlobal::Location > zones = regions.value( m_regionCombo->currentData().toString() );
-        foreach ( const LocaleGlobal::Location& zone, zones )
+        const QList< LocaleGlobal::Location > zones = regions.value( m_regionCombo->currentData().toString() );
+        for ( const LocaleGlobal::Location& zone : zones )
         {
             m_zoneCombo->addItem( LocaleGlobal::Location::pretty( zone.zone ), zone.zone );
         }
@@ -270,7 +270,7 @@ LocalePage::init( const QString& initialRegion,
     auto containsLocation = []( const QList< LocaleGlobal::Location >& locations,
                                 const QString& zone ) -> bool
     {
-        foreach ( const LocaleGlobal::Location& location, locations )
+        for ( const LocaleGlobal::Location& location : locations )
         {
             if ( location.zone == zone )
                 return true;
@@ -303,7 +303,8 @@ LocalePage::init( const QString& initialRegion,
         ba = supported.readAll();
         supported.close();
 
-        foreach ( QByteArray line, ba.split( '\n' ) )
+        const auto lines = ba.split( '\n' );
+        for ( const QByteArray &line : lines )
         {
             m_localeGenLines.append( QString::fromLatin1( line.simplified() ) );
         }
@@ -326,7 +327,8 @@ LocalePage::init( const QString& initialRegion,
             localeA.waitForFinished();
             ba = localeA.readAllStandardOutput();
         }
-        foreach ( QByteArray line, ba.split( '\n' ) )
+        const auto lines = ba.split( '\n' );
+        for ( const QByteArray &line : lines )
         {
             if ( line.startsWith( "## " ) ||
                  line.startsWith( "# " ) ||

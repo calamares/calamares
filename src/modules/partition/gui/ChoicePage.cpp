@@ -733,7 +733,7 @@ ChoicePage::doReplaceSelectedPartition( const QModelIndex& current )
                 // Find out is the selected partition has a rootfs. If yes, then make the
                 // m_reuseHomeCheckBox visible and set its text to something meaningful.
                 homePartitionPath->clear();
-                foreach ( const OsproberEntry& osproberEntry, m_core->osproberEntries() )
+                for ( const OsproberEntry& osproberEntry : m_core->osproberEntries() )
                     if ( osproberEntry.path == partPath )
                         *homePartitionPath = osproberEntry.homePath;
                 if ( homePartitionPath->isEmpty() )
@@ -1329,7 +1329,7 @@ OsproberEntryList
 ChoicePage::getOsproberEntriesForDevice( Device* device ) const
 {
     OsproberEntryList eList;
-    foreach ( const OsproberEntry& entry, m_core->osproberEntries() )
+    for ( const OsproberEntry& entry : m_core->osproberEntries() )
     {
         if ( entry.path.startsWith( device->deviceNode() ) )
             eList.append( entry );

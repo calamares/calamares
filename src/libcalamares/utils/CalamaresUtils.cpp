@@ -273,7 +273,7 @@ removeDiacritics( const QString& string )
     };
 
     QString output;
-    foreach ( QChar c, string )
+    for ( const QChar &c : string )
     {
         int i = diacriticLetters.indexOf( c );
         if ( i < 0 )

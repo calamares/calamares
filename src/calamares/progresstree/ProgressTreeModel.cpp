@@ -132,7 +132,8 @@ ProgressTreeModel::setupModelData()
     m_rootItem = new ProgressTreeRoot();
     const Calamares::ViewManager* vm = Calamares::ViewManager::instance();
 
-    foreach ( const Calamares::ViewStep* step, vm->viewSteps() )
+    const auto steps = vm->viewSteps();
+    for ( const Calamares::ViewStep* step : steps )
     {
         m_rootItem->appendChild( new ViewStepItem( step, m_rootItem ) );
     }

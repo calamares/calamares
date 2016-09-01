@@ -449,7 +449,7 @@ PartitionCoreModule::dumpQueue() const
 }
 
 
-OsproberEntryList
+const OsproberEntryList
 PartitionCoreModule::osproberEntries() const
 {
     return m_osproberLines;

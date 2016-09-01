@@ -129,7 +129,7 @@ AlongsidePage::init( PartitionCoreModule* core )
                                         string( Calamares::Branding::ProductName ) ) );
     } );
 
-    foreach ( const OsproberEntry& e, m_core->osproberEntries() )
+    for ( const OsproberEntry& e : m_core->osproberEntries() )
     {
         if ( e.canBeResized )
             m_partitionsComboBox->addItem( e.prettyName + " (" + e.path + ")", e.path );

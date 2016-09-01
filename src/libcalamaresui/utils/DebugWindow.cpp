@@ -59,7 +59,7 @@ DebugWindow::DebugWindow()
              this, [ this ]( const QList< Calamares::job_ptr >& jobs )
     {
         QStringList text;
-        foreach( auto job, jobs )
+        for ( const auto &job : jobs )
         {
             text.append( job->prettyName() );
         }

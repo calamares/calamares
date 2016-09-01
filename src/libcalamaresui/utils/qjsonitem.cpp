@@ -104,7 +104,8 @@ QJsonTreeItem* QJsonTreeItem::load(const QJsonValue& value, QJsonTreeItem* paren
     {
 
         //Get all QJsonValue childs
-        foreach (QString key , value.toObject().keys()){
+        const auto keys = value.toObject().keys();
+        for (const QString &key : keys){
             QJsonValue v = value.toObject().value(key);
             QJsonTreeItem * child = load(v,rootItem);
             child->setKey(key);
@@ -119,7 +120,8 @@ QJsonTreeItem* QJsonTreeItem::load(const QJsonValue& value, QJsonTreeItem* paren
     {
         //Get all QJsonValue childs
         int index = 0;
-        foreach (QJsonValue v , value.toArray()){
+        const auto valueArray = value.toArray();
+        for (const QJsonValue &v : valueArray) {
 
             QJsonTreeItem * child = load(v,rootItem);
             child->setKey(QString::number(index));

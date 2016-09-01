@@ -149,7 +149,7 @@ ReplaceWidget::onPartitionSelected()
     PartitionModel* model = qobject_cast< PartitionModel* >( m_ui->partitionTreeView->model() );
     if ( model && ok )
     {
-        QStringList osproberLines = Calamares::JobQueue::instance()
+        const QStringList osproberLines = Calamares::JobQueue::instance()
                                     ->globalStorage()
                                     ->value( "osproberLines" ).toStringList();
 
@@ -197,7 +197,7 @@ ReplaceWidget::onPartitionSelected()
 
         QString prettyName = tr( "Data partition (%1)" )
                              .arg( partition->fileSystem().name() );
-        foreach ( const QString& line, osproberLines )
+        for ( const QString& line : osproberLines )
         {
             QStringList lineColumns = line.split( ':' );
 

@@ -127,7 +127,7 @@ public:
 
     void dumpQueue() const;
 
-    OsproberEntryList osproberEntries() const;
+    const OsproberEntryList osproberEntries() const;
 
 Q_SIGNALS:
     void hasRootMountPointChanged( bool value );
