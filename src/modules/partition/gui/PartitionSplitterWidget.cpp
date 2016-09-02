@@ -105,7 +105,7 @@ PartitionSplitterWidget::setupItems( const QVector<PartitionSplitterItem>& items
     m_items.clear();
     m_items = items;
     repaint();
-    foreach ( const PartitionSplitterItem& item, items )
+    for ( const PartitionSplitterItem& item : items )
         cDebug() << "PSI added item" << item.itemPath << "size" << item.size;
 }
 

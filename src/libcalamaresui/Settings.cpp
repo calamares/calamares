@@ -98,7 +98,8 @@ Settings::Settings( const QString& settingsFilePath,
                         = CalamaresUtils::yamlToVariant( config[ "instances" ] ).toList();
                 if ( instancesV.type() == QVariant::List )
                 {
-                    foreach ( const QVariant& instancesVListItem, instancesV.toList() )
+                    const auto instances = instancesV.toList();
+                    for ( const QVariant& instancesVListItem : instances )
                     {
                         if ( instancesVListItem.type() != QVariant::Map )
                             continue;
@@ -123,7 +124,8 @@ Settings::Settings( const QString& settingsFilePath,
                 QVariant sequenceV
                         = CalamaresUtils::yamlToVariant( config[ "sequence" ] );
                 Q_ASSERT( sequenceV.type() == QVariant::List );
-                foreach ( const QVariant& sequenceVListItem, sequenceV.toList() )
+                const auto sequence = sequenceV.toList();
+                for ( const QVariant& sequenceVListItem : sequence )
                 {
                     if ( sequenceVListItem.type() != QVariant::Map )
                         continue;

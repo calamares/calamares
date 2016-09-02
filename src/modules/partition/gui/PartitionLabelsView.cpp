@@ -240,11 +240,11 @@ PartitionLabelsView::drawLabels( QPainter* painter,
     if ( !modl )
         return;
 
-    QModelIndexList indexesToDraw = getIndexesToDraw( parent );
+    const QModelIndexList indexesToDraw = getIndexesToDraw( parent );
 
     int label_x = rect.x();
     int label_y = rect.y();
-    foreach ( const QModelIndex& index, indexesToDraw )
+    for ( const QModelIndex& index : indexesToDraw )
     {
         QStringList texts = buildTexts( index );
 
@@ -306,12 +306,12 @@ PartitionLabelsView::sizeForAllLabels( int maxLineWidth ) const
     if ( !modl )
         return QSize();
 
-    QModelIndexList indexesToDraw = getIndexesToDraw( QModelIndex() );
+    const QModelIndexList indexesToDraw = getIndexesToDraw( QModelIndex() );
 
     int lineLength = 0;
     int numLines = 1;
     int singleLabelHeight = 0;
-    foreach ( const QModelIndex& index, indexesToDraw )
+    for ( const QModelIndex& index : indexesToDraw )
     {
         QStringList texts = buildTexts( index );
 
@@ -349,7 +349,7 @@ PartitionLabelsView::sizeForLabel( const QStringList& text ) const
 {
     int vertOffset = 0;
     int width = 0;
-    foreach ( const QString& textLine, text )
+    for ( const QString& textLine : text )
     {
         QSize textSize = fontMetrics().size( Qt::TextSingleLine, textLine );
 
@@ -371,7 +371,7 @@ PartitionLabelsView::drawLabel( QPainter* painter,
     painter->setPen( Qt::black );
     int vertOffset = 0;
     int width = 0;
-    foreach ( const QString& textLine, text )
+    for ( const QString& textLine : text )
     {
         QSize textSize = painter->fontMetrics().size( Qt::TextSingleLine, textLine );
         painter->drawText( pos.x()+LABEL_PARTITION_SQUARE_MARGIN,
@@ -402,12 +402,12 @@ PartitionLabelsView::indexAt( const QPoint& point ) const
     if ( !modl )
         return QModelIndex();
 
-    QModelIndexList indexesToDraw = getIndexesToDraw( QModelIndex() );
+    const QModelIndexList indexesToDraw = getIndexesToDraw( QModelIndex() );
 
     QRect rect = this->rect();
     int label_x = rect.x();
     int label_y = rect.y();
-    foreach ( const QModelIndex& index, indexesToDraw )
+    for ( const QModelIndex& index : indexesToDraw )
     {
         QStringList texts = buildTexts( index );
 
@@ -437,12 +437,12 @@ PartitionLabelsView::visualRect( const QModelIndex& idx ) const
     if ( !modl )
         return QRect();
 
-    QModelIndexList indexesToDraw = getIndexesToDraw( QModelIndex() );
+    const QModelIndexList indexesToDraw = getIndexesToDraw( QModelIndex() );
 
     QRect rect = this->rect();
     int label_x = rect.x();
     int label_y = rect.y();
-    foreach ( const QModelIndex& index, indexesToDraw )
+    for ( const QModelIndex& index : indexesToDraw )
     {
         QStringList texts = buildTexts( index );
 

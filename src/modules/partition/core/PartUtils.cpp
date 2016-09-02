@@ -155,10 +155,10 @@ lookForFstabEntries( const QString& partitionPath )
         QFile fstabFile( mountsDir.path() + "/etc/fstab" );
         if ( fstabFile.open( QIODevice::ReadOnly | QIODevice::Text ) )
         {
-            QStringList fstabLines = QString::fromLocal8Bit( fstabFile.readAll() )
+            const QStringList fstabLines = QString::fromLocal8Bit( fstabFile.readAll() )
                                      .split( '\n' );
 
-            foreach ( const QString& rawLine, fstabLines )
+            for ( const QString& rawLine : fstabLines )
             {
                 QString line = rawLine.simplified();
                 if ( line.startsWith( '#' ) )
@@ -194,7 +194,7 @@ findPartitionPathForMountPoint( const FstabEntryList& fstab,
     if ( fstab.isEmpty() )
         return QString();
 
-    foreach ( const FstabEntry& entry, fstab )
+    for ( const FstabEntry& entry : fstab )
     {
         if ( entry.mountPoint == mountPoint )
         {
@@ -283,7 +283,8 @@ runOsprober( PartitionCoreModule* core )
     QString osProberReport( "Osprober lines, clean:\n" );
     QStringList osproberCleanLines;
     OsproberEntryList osproberEntries;
-    foreach ( const QString& line, osproberOutput.split( '\n' ) )
+    const auto lines = osproberOutput.split( '\n' );
+    for ( const QString& line : lines )
     {
         if ( !line.simplified().isEmpty() )
         {

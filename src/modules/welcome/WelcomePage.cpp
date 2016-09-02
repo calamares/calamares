@@ -109,7 +109,8 @@ WelcomePage::initLanguages()
     {
         bool isTranslationAvailable = false;
 
-        foreach ( const QString& locale, QString( CALAMARES_TRANSLATION_LANGUAGES ).split( ';') )
+        const auto locales = QString( CALAMARES_TRANSLATION_LANGUAGES ).split( ';');
+        for ( const QString& locale : locales )
         {
             QLocale thisLocale = QLocale( locale );
             QString lang = QLocale::languageToString( thisLocale.language() );

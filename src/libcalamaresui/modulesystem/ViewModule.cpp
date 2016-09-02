@@ -95,10 +95,10 @@ ViewModule::initFrom( const QVariantMap& moduleDescriptor )
     // If a load path is not specified, we look for a plugin to load in the directory.
     if ( load.isEmpty() || !QLibrary::isLibrary( load ) )
     {
-        QStringList ls = directory.entryList( QStringList{ "*.so" } );
+        const QStringList ls = directory.entryList( QStringList{ "*.so" } );
         if ( !ls.isEmpty() )
         {
-            foreach ( QString entry, ls )
+            for ( QString entry : ls )
             {
                 entry = directory.absoluteFilePath( entry );
                 if ( QLibrary::isLibrary( entry ) )

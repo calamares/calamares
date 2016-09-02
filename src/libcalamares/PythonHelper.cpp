@@ -97,7 +97,7 @@ boost::python::list
 variantListToPyList( const QVariantList& variantList )
 {
     bp::list pyList;
-    foreach ( const QVariant& variant, variantList )
+    for ( const QVariant& variant : variantList )
         pyList.append( variantToPyObject( variant ) );
     return pyList;
 }

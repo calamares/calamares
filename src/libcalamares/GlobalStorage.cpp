@@ -118,7 +118,8 @@ bp::list
 GlobalStoragePythonWrapper::keys() const
 {
     bp::list pyList;
-    foreach( const QString& key, m_gs->keys() )
+    const auto keys = m_gs->keys();
+    for ( const QString& key : keys )
         pyList.append( key.toStdString() );
     return pyList;
 }

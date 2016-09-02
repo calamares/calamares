@@ -63,10 +63,10 @@ SummaryPage::onActivate()
 
     QString text;
     bool first = true;
-    Calamares::ViewStepList steps =
+    const Calamares::ViewStepList steps =
         stepsForSummary( Calamares::ViewManager::instance()->viewSteps() );
 
-    foreach ( Calamares::ViewStep* step, steps )
+    for ( Calamares::ViewStep* step : steps )
     {
         QString text = step->prettyStatus();
         QWidget* widget = step->createSummaryWidget();
@@ -101,7 +101,7 @@ Calamares::ViewStepList
 SummaryPage::stepsForSummary( const Calamares::ViewStepList& allSteps ) const
 {
     Calamares::ViewStepList steps;
-    foreach ( Calamares::ViewStep* step, allSteps )
+    for ( Calamares::ViewStep* step : allSteps )
     {
         // We start from the beginning of the complete steps list. If we encounter any
         // ExecutionViewStep, it means there was an execution phase in the past, and any

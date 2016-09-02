@@ -264,9 +264,8 @@ RequirementsChecker::checkBatteryExists()
         return false;
 
     QDir baseDir( basePath.absoluteFilePath() );
-    foreach ( auto item, baseDir.entryList( QDir::AllDirs |
-                                            QDir::Readable |
-                                            QDir::NoDotAndDotDot ) )
+    const auto entries = baseDir.entryList( QDir::AllDirs | QDir::Readable | QDir::NoDotAndDotDot );
+    for ( const auto &item : entries )
     {
         QFileInfo typePath( baseDir.absoluteFilePath( QString( "%1/type" )
                                                       .arg( item ) ) );

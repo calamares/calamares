@@ -91,9 +91,9 @@ public:
 private:
     static Branding* s_instance;
 
-    static QStringList s_stringEntryStrings;
-    static QStringList s_imageEntryStrings;
-    static QStringList s_styleEntryStrings;
+    static const QStringList s_stringEntryStrings;
+    static const QStringList s_imageEntryStrings;
+    static const QStringList s_styleEntryStrings;
 
     void bail( const QString& message );
 

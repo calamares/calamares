@@ -66,7 +66,7 @@ private:
     QMap< QString, QVariantMap > m_availableDescriptorsByModuleName;
     QMap< QString, QString > m_moduleDirectoriesByModuleName;
     QMap< QString, Module* > m_loadedModulesByInstanceKey;
-    QStringList m_paths;
+    const QStringList m_paths;
 
     static ModuleManager* s_instance;
 };

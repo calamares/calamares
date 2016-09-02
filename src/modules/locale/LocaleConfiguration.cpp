@@ -43,7 +43,7 @@ LocaleConfiguration::fromLanguageAndLocation( const QString& languageLocale,
     QString language = languageLocale.split( '_' ).first();
 
     QStringList linesForLanguage;
-    foreach ( QString line, availableLocales )
+    for ( const QString &line : availableLocales )
     {
         if ( line.startsWith( language ) )
             linesForLanguage.append( line );
@@ -95,7 +95,7 @@ LocaleConfiguration::fromLanguageAndLocation( const QString& languageLocale,
     // language locale and pick the first result, if any.
     if ( lang.isEmpty() )
     {
-        foreach ( QString line, availableLocales )
+        for ( const QString &line : availableLocales )
         {
             if ( line.startsWith( languageLocale ) )
             {
@@ -161,7 +161,7 @@ LocaleConfiguration::fromLanguageAndLocation( const QString& languageLocale,
     QString combined = QString( "%1_%2" ).arg( language )
                                          .arg( countryCode );
     // We look up if it's a supported locale.
-    foreach ( QString line, availableLocales )
+    for ( const QString &line : availableLocales )
     {
         if ( line.startsWith( combined ) )
         {
@@ -174,7 +174,7 @@ LocaleConfiguration::fromLanguageAndLocation( const QString& languageLocale,
     if ( lc_formats.isEmpty() )
     {
         QStringList available;
-        foreach ( QString line, availableLocales )
+        for ( const QString &line : availableLocales )
         {
             if ( line.contains( QString( "_%1" ).arg( countryCode ) ) )
             {
@@ -239,7 +239,7 @@ LocaleConfiguration::fromLanguageAndLocation( const QString& languageLocale,
                         QString( "%1_%2" ).arg( countryToDefaultLanguage.value( countryCode ) )
                                           .arg( countryCode );
 
-                foreach ( QString line, availableLocales )
+                for ( const QString &line : availableLocales )
                 {
                     if ( line.startsWith( combinedLocale ) )
                     {

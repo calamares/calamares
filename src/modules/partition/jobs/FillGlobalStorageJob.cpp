@@ -126,7 +126,8 @@ FillGlobalStorageJob::prettyDescription() const
 {
     QStringList lines;
 
-    foreach ( QVariant partitionItem, createPartitionList().toList() )
+    const auto partitionList = createPartitionList().toList();
+    for ( const QVariant &partitionItem : partitionList )
     {
         if ( partitionItem.type() == QVariant::Map )
         {

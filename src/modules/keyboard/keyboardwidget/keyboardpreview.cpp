@@ -122,9 +122,9 @@ bool KeyBoardPreview::loadCodes() {
     // Clear codes
     codes.clear();
 
-    QStringList list = QString(process.readAll()).split("\n", QString::SkipEmptyParts);
+    const QStringList list = QString(process.readAll()).split("\n", QString::SkipEmptyParts);
 
-    foreach(QString line, list) {
+    for (const QString &line : list) {
         if (!line.startsWith("keycode") || !line.contains('='))
             continue;
 
@@ -253,7 +253,7 @@ void KeyBoardPreview::paintEvent(QPaintEvent* event) {
         int rw=usable_width-x;
         int ii=0;
 
-        foreach (int k, kb->keys.at(i)) {
+        for (int k : kb->keys.at(i)) {
             QRectF rect = QRectF(x, y, key_w, key_w);
 
             if (ii == kb->keys.at(i).size()-1 && last_end)

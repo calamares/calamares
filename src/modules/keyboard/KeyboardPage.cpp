@@ -92,10 +92,10 @@ KeyboardPage::init()
 
     if ( process.waitForFinished() )
     {
-        QStringList list = QString( process.readAll() )
+        const QStringList list = QString( process.readAll() )
                            .split( "\n", QString::SkipEmptyParts );
 
-        foreach( QString line, list )
+        for ( QString line : list )
         {
             line = line.trimmed();
             if ( !line.startsWith( "xkb_symbols" ) )

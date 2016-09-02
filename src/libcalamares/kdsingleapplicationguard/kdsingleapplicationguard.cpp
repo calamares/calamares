@@ -390,7 +390,7 @@ void ProcessInfo::setArguments( const QStringList & arguments )
         return;
 
     size_t totalsize = MarkerSize;
-    Q_FOREACH( const QString& arg, arguments )
+    for ( const QString& arg : arguments )
     {
         const QByteArray utf8 = arg.toUtf8();
         totalsize += utf8.size() + MarkerSize;
@@ -406,7 +406,7 @@ void ProcessInfo::setArguments( const QStringList & arguments )
     char* const commandline = this->commandline + reinterpret_cast<qptrdiff>(reg->commandLines);
 
     int argpos = 0;
-    Q_FOREACH( const QString & arg, arguments )
+    for ( const QString & arg : arguments )
     {
         const QByteArray utf8 = arg.toUtf8();
         const int required = MarkerSize + utf8.size() + MarkerSize ;

@@ -44,7 +44,7 @@ Branding::instance()
 }
 
 
-QStringList Branding::s_stringEntryStrings =
+const QStringList Branding::s_stringEntryStrings =
 {
     "productName",
     "version",
@@ -60,14 +60,14 @@ QStringList Branding::s_stringEntryStrings =
 };
 
 
-QStringList Branding::s_imageEntryStrings =
+const QStringList Branding::s_imageEntryStrings =
 {
     "productLogo",
     "productIcon",
     "productWelcome"
 };
 
-QStringList Branding::s_styleEntryStrings =
+const QStringList Branding::s_styleEntryStrings =
 {
     "sidebarBackground",
     "sidebarText",
@@ -268,7 +268,7 @@ void
 Branding::setGlobals( GlobalStorage* globalStorage ) const
 {
     QVariantMap brandingMap;
-    foreach ( const QString& key, s_stringEntryStrings )
+    for ( const QString& key : s_stringEntryStrings )
         brandingMap.insert( key, m_strings.value( key ) );
     globalStorage->insert( "branding", brandingMap );
 }
