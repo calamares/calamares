@@ -127,7 +127,10 @@ PartitionCoreModule::doInit()
     // Remove the device which contains / from the list
     for ( QList< Device* >::iterator it = devices.begin(); it != devices.end(); )
         if ( hasRootPartition( *it ) ||
-             (*it)->deviceNode().startsWith( "/dev/zram") )
+             (*it)->deviceNode().startsWith( "/dev/zram") ||
+             ( (*it)->partitionTable() &&
+               (*it)->partitionTable()->type() == PartitionTable::loop &&
+               (*it)->partitionTable()->isChildMounted() ) )
             it = devices.erase( it );
         else
             ++it;
