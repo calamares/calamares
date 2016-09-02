@@ -63,6 +63,36 @@ hasRootPartition( Device* device )
     return false;
 }
 
+static bool
+isIso9660( const Device* device )
+{
+    QString path = device->deviceNode();
+    if ( path.isEmpty() )
+        return false;
+
+    QProcess blkid;
+    blkid.start( "blkid", { path } );
+    blkid.waitForFinished();
+    QString output = QString::fromLocal8Bit( blkid.readAllStandardOutput() );
+    if ( output.contains( "iso9660" ) )
+        return true;
+
+    if ( device->partitionTable() &&
+         !device->partitionTable()->children().isEmpty() )
+    {
+        for ( const Partition* partition : device->partitionTable()->children() )
+        {
+            path = partition->partitionPath();
+            blkid.start( "blkid", { path } );
+            blkid.waitForFinished();
+            QString output = QString::fromLocal8Bit( blkid.readAllStandardOutput() );
+            if ( output.contains( "iso9660" ) )
+                return true;
+        }
+    }
+    return false;
+}
+
 //- DeviceInfo ---------------------------------------------
 PartitionCoreModule::DeviceInfo::DeviceInfo( Device* _device )
     : device( _device )
@@ -128,9 +158,7 @@ PartitionCoreModule::doInit()
     for ( QList< Device* >::iterator it = devices.begin(); it != devices.end(); )
         if ( hasRootPartition( *it ) ||
              (*it)->deviceNode().startsWith( "/dev/zram") ||
-             ( (*it)->partitionTable() &&
-               (*it)->partitionTable()->type() == PartitionTable::loop &&
-               (*it)->partitionTable()->isChildMounted() ) )
+             isIso9660( *it ) )
             it = devices.erase( it );
         else
             ++it;
