@@ -207,7 +207,7 @@ Izlaz:
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="250"/>
         <source>Running %1 operation.</source>
-        <translation>Izvršavam %1 operaciju.</translation>
+        <translation>Izvodim %1 operaciju.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="263"/>
