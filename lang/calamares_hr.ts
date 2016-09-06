@@ -1326,7 +1326,7 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
     <message>
         <location filename="../src/modules/keyboard/KeyboardPage.ui" line="131"/>
         <source>Type here to test your keyboard</source>
-        <translation>Ovdje testirajte tipkovnicu</translation>
+        <translation>Ovdje testiraj tipkovnicu</translation>
     </message>
 </context>
 <context>
