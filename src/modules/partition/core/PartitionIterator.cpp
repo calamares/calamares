@@ -83,6 +83,7 @@ PartitionIterator::operator!=( const PartitionIterator& other ) const
 PartitionIterator
 PartitionIterator::begin( Device* device )
 {
+    Q_ASSERT(device);
     PartitionTable* table = device->partitionTable();
     if ( !table )
         return PartitionIterator( nullptr );
