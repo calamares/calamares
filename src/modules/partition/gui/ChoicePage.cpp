@@ -813,7 +813,7 @@ ChoicePage::updateDeviceStatePreview()
     m_beforePartitionLabelsView = new PartitionLabelsView( m_previewBeforeFrame );
     m_beforePartitionLabelsView->setExtendedPartitionHidden( mode == PartitionBarsView::NoNestedPartitions );
 
-    Device* deviceBefore = m_core->createImmutableDeviceCopy( currentDevice );
+    Device* deviceBefore = m_core->immutableDeviceCopy( currentDevice );
 
     PartitionModel* model = new PartitionModel( m_beforePartitionBarsView );
     model->init( deviceBefore, m_core->osproberEntries() );

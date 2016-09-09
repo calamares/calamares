@@ -97,6 +97,7 @@ isIso9660( const Device* device )
 PartitionCoreModule::DeviceInfo::DeviceInfo( Device* _device )
     : device( _device )
     , partitionModel( new PartitionModel )
+    , immutableDevice( new Device( *_device ) )
 {}
 
 PartitionCoreModule::DeviceInfo::~DeviceInfo()
@@ -235,7 +236,7 @@ PartitionCoreModule::bootLoaderModel() const
 }
 
 PartitionModel*
-PartitionCoreModule::partitionModelForDevice( Device* device ) const
+PartitionCoreModule::partitionModelForDevice( const Device* device ) const
 {
     DeviceInfo* info = infoForDevice( device );
     Q_ASSERT( info );
@@ -244,14 +245,14 @@ PartitionCoreModule::partitionModelForDevice( Device* device ) const
 
 
 Device*
-PartitionCoreModule::createImmutableDeviceCopy( Device* device )
+PartitionCoreModule::immutableDeviceCopy( const Device* device )
 {
-    CoreBackend* backend = CoreBackendManager::self()->backend();
+    Q_ASSERT( device );
+    DeviceInfo* info = infoForDevice( device );
+    if ( !info )
+        return nullptr;
 
-    QString node = device->deviceNode();
-    cDebug() << "Creating immutable copy for node:" << node;
-    Device* deviceBefore = backend->scanDevice( node );
-    return deviceBefore;
+    return info->immutableDevice.data();
 }
 
 
@@ -581,12 +582,15 @@ PartitionCoreModule::scanForEfiSystemPartitions()
 }
 
 PartitionCoreModule::DeviceInfo*
-PartitionCoreModule::infoForDevice( Device* device ) const
+PartitionCoreModule::infoForDevice( const Device* device ) const
 {
-    for ( auto deviceInfo : m_deviceInfos )
+    for ( auto it = m_deviceInfos.constBegin();
+          it != m_deviceInfos.constEnd(); ++it )
     {
-        if ( deviceInfo->device.data() == device )
-            return deviceInfo;
+        if ( ( *it )->device.data() == device )
+            return *it;
+        if ( ( *it )->immutableDevice.data() == device )
+            return *it;
     }
     return nullptr;
 }
