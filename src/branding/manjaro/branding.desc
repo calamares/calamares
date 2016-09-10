@@ -1,0 +1,23 @@
+---
+componentName:  manjaro
+
+strings:
+    productName:         Manjaro Linux
+    shortProductName:    Manjaro
+    version:             16.08
+    shortVersion:        16.08
+    versionedName:       Manjaro Linux 16.08 "Ellada"
+    shortVersionedName:  Manjaro 16.08
+    bootloaderEntryName: Manjaro
+
+images:
+    productLogo:         "squid.png"
+    productIcon:         "logo.png"
+    productWelcome:      "languages.png"
+
+slideshow:               "show.qml"
+
+style:
+   sidebarBackground:    "#292F34"
+   sidebarText:          "#FFFFFF"
+   sidebarTextSelect:    "#292F34"
