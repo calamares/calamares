@@ -37,8 +37,9 @@ def modify_grub_default(partitions, root_mount_point, distributor):
     use_splash = ""
     swap_uuid = ""
 
-    if libcalamares.globalstorage.value("hasPlymouth"):
-        use_splash = "splash"
+    if libcalamares.globalstorage.contains("hasPlymouth"):
+        if libcalamares.globalstorage.value("hasPlymouth"):
+            use_splash = "splash"
 
     cryptdevice_params = []
 
