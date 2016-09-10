@@ -1,0 +1,6 @@
+---
+type:       "job"
+name:       "servicescfg"
+interface:  "python"
+requires:   []
+script:     "main.py"
