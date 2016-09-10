@@ -23,7 +23,6 @@ import libcalamares
 import os
 import re
 
-
 def modify_grub_default(partitions, root_mount_point, distributor):
     """ Configures '/etc/default/grub' for hibernation and plymouth.
 
@@ -35,14 +34,12 @@ def modify_grub_default(partitions, root_mount_point, distributor):
     default_dir = os.path.join(root_mount_point, "etc/default")
     default_grub = os.path.join(default_dir, "grub")
     distributor_replace = distributor.replace("'", "'\\''")
-    plymouth_bin = libcalamares.utils.target_env_call(["sh", "-c", "which plymouth"])
     use_splash = ""
     swap_uuid = ""
 
-    libcalamares.utils.debug("which plymouth exit code: {!s}".format(plymouth_bin))
-
-    if plymouth_bin == 0:
-        use_splash = "splash"
+    if libcalamares.globalstorage.contains("hasPlymouth"):
+        if libcalamares.globalstorage.value("hasPlymouth"):
+            use_splash = "splash"
 
     cryptdevice_params = []
 
