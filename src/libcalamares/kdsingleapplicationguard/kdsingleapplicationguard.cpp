@@ -723,7 +723,7 @@ void KDSingleApplicationGuard::Private::create( const QStringList & arguments )
 
     const QString name = QCoreApplication::applicationName();
     if ( name.isEmpty() ) {
-        qWarning( "KDSingleApplicationGuard: QCoreApplication::applicationName must not be emty" );
+        qWarning( "KDSingleApplicationGuard: QCoreApplication::applicationName must not be empty" );
         return;
     }
 
