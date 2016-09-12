@@ -3,6 +3,7 @@ Type=Application
 Version=1.0
 Name=Calamares
 GenericName=System Installer
+Keywords=calamares;system;installer
 TryExec=calamares
 Exec=pkexec /usr/bin/calamares
 Comment=Calamares — System Installer
