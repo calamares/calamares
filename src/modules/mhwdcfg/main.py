@@ -40,7 +40,7 @@ class MhwdController:
 	@driver.setter
 	def driver(self, value):
 		self._driver = value
-		
+
 	@property
 	def root(self):
 		return self.__root
@@ -48,51 +48,50 @@ class MhwdController:
 	@property
 	def local(self):
 		return self.__local
-	
+
 	@property
 	def repo(self):
 		return self.__repo
-	
+
 	@property
 	def identifier(self):
 		return self.__identifier
-	
+
 	@property
 	def bus(self):
 		return self.__bus
-	
+
 	def umount(self, mp):
 		call(["umount", "-l", join(self.root, mp)])
-		
+
 	def mount(self, mp):
 		call(["mount", "-Br", "/" + mp, join(self.root, mp)])
-	
+
 	def configure(self, name, id):
 		cmd = ["mhwd", "-a", str(name), str(self.driver), str(id).zfill(4)]
 		if self.local:
 			self.mount("opt")
 			cmd.extend(["--pmconfig", self.repo])
-			
+
 		self.mount("etc/resolv.conf")
 		check_target_env_call(cmd)
-		
+
 		if self.local:
 			self.umount("opt")
 		self.umount("etc/resolv.conf")
-		
+
 	def run(self):
-		for id in self.identifier['net']:
-			for b in self.bus:
-				self.configure(b, id)
-		for id in self.identifier['video']:
-			for b in self.bus:
-				self.configure(b, id)
-				
+		for b in self.bus:
+			for id in self.identifier['net']:
+					self.configure(b, id)
+			for id in self.identifier['video']:
+					self.configure(b, id)
+
 		return None
 
 def run():
 	""" Configure the hardware """
 
 	mhwd = MhwdController()
-	
+
 	return mhwd.run()
