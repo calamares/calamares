@@ -20,9 +20,9 @@
 
 import libcalamares
 
-from libcalamares.utils import check_target_env_call, target_env_call, debug
+from libcalamares.utils import target_env_call, debug
 from os.path import join
-from subprocess import check_call, call
+from subprocess import call
 
 class MhwdController:
 	def __init__(self):
@@ -74,7 +74,7 @@ class MhwdController:
 			cmd.extend(["--pmconfig", self.repo])
 
 		self.mount("etc/resolv.conf")
-		check_target_env_call(cmd)
+		target_env_call(cmd)
 
 		if self.local:
 			self.umount("opt")
