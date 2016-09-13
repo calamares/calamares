@@ -700,7 +700,6 @@ QList< PartitionCoreModule::SummaryInfo >
 PartitionCoreModule::createSummaryInfo() const
 {
     QList< SummaryInfo > lst;
-    CoreBackend* backend = CoreBackendManager::self()->backend();
     for ( auto deviceInfo : m_deviceInfos )
     {
         if ( !deviceInfo->isDirty() )
@@ -709,7 +708,7 @@ PartitionCoreModule::createSummaryInfo() const
         summaryInfo.deviceName = deviceInfo->device->name();
         summaryInfo.deviceNode = deviceInfo->device->deviceNode();
 
-        Device* deviceBefore = backend->scanDevice( deviceInfo->device->deviceNode() );
+        Device* deviceBefore = deviceInfo->immutableDevice.data();
         summaryInfo.partitionModelBefore = new PartitionModel;
         summaryInfo.partitionModelBefore->init( deviceBefore, m_osproberLines );
         // Make deviceBefore a child of partitionModelBefore so that it is not
