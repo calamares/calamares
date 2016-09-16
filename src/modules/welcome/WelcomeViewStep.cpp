@@ -20,6 +20,7 @@
 
 #include "WelcomePage.h"
 #include "checker/RequirementsChecker.h"
+#include "utils/Logger.h"
 
 
 #include <QVariant>
@@ -128,5 +129,8 @@ WelcomeViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     if ( configurationMap.contains( "requirements" ) &&
          configurationMap.value( "requirements" ).type() == QVariant::Map )
         m_requirementsChecker->setConfigurationMap( configurationMap.value( "requirements" ).toMap() );
+    else
+        cDebug() << "WARNING: no valid requirements map found in welcome "
+                    "module configuration.";
 }
 
