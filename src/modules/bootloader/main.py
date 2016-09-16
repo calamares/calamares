@@ -220,15 +220,14 @@ def install_grub(efi_directory, fw_type):
                                "--force"])
 
         # VFAT is weird, see issue CAL-385
-        efi_directory_firmware = case_insensitive_subdir(efi_directory,
-                                                         ["EFI", "Efi", "efi"])
-        if not efi_directory_firmware:
-            efi_directory_firmware = os.path.join(efi_directory, "EFI")
+        efi_directory_firmware = os.path.join(efi_directory, "EFI")
+        if os.path.exists(efi_directory_firmware):
+            efi_directory_firmware = vfat_correct_case(efi_directory, "EFI")
 
-        efi_boot_directory = case_insensitive_subdir(efi_directory_firmware,
-                                                     ["Boot", "boot", "BOOT"])
-        if not efi_boot_directory:
-            efi_boot_directory = os.path.join(efi_directory_firmware, "boot")
+        efi_boot_directory = os.path.join(efi_directory_firmware, "boot")
+        if os.path.exists(efi_boot_directory):
+            efi_boot_directory = vfat_correct_case(efi_directory_firmware, "boot")
+        else:
             check_target_env_call(["mkdir", "-p", efi_boot_directory])
 
         # Workaround for some UEFI firmwares
@@ -251,11 +250,11 @@ def install_grub(efi_directory, fw_type):
                            libcalamares.job.configuration["grubCfg"]])
 
 
-def case_insensitive_subdir(parent, candidate_dirnames):
-    for dirname in candidate_dirnames:
-        if os.path.isdir(os.path.join(parent, dirname)):
-            return os.path.join(parent, dirname)
-    return ""
+def vfat_correct_case(parent, name):
+    for candidate in os.listdir(parent):
+        if name.lower() == candidate.lower():
+            return candidate
+    return os.path.join(parent, name)
 
 
 def prepare_bootloader(fw_type):
