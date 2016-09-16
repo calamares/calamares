@@ -155,18 +155,13 @@ CreateUserJob::exec()
                               "-U",
                               "-G",
                               defaultGroups,
+                              "-c",
+                              m_fullName,
                               m_userName } );
     if ( ec )
         return Calamares::JobResult::error( tr( "Cannot create user %1." )
                                                 .arg( m_userName ),
                                             tr( "useradd terminated with error code %1." )
-                                                .arg( ec ) );
-
-    ec = CalamaresUtils::System::instance()->targetEnvCall( { "chfn", "-f", m_fullName, m_userName } );
-    if ( ec )
-        return Calamares::JobResult::error( tr( "Cannot set full name for user %1." )
-                                                .arg( m_userName ),
-                                            tr( "chfn terminated with error code %1." )
                                                 .arg( ec ) );
 
     ec = CalamaresUtils::System::instance()->
