@@ -740,32 +740,22 @@ The installer will quit and all changes will be lost.</source>
         <translation>无法打开要读取的 groups 文件。</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="160"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="162"/>
         <source>Cannot create user %1.</source>
         <translation>无法创建用户 %1。</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="162"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="164"/>
         <source>useradd terminated with error code %1.</source>
         <translation>useradd 以错误代码 %1 中止。</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="167"/>
-        <source>Cannot set full name for user %1.</source>
-        <translation>无法设置用户 %1 的全名。</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="169"/>
-        <source>chfn terminated with error code %1.</source>
-        <translation>chfn 以错误代码 %1 中止。</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="179"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="174"/>
         <source>Cannot set home directory ownership for user %1.</source>
         <translation>无法设置用户 %1 的主文件夹所有者。</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="181"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="176"/>
         <source>chown terminated with error code %1.</source>
         <translation>chown 以错误代码 %1 中止。</translation>
     </message>
@@ -2143,7 +2133,7 @@ The installer will quit and all changes will be lost.</source>
 <context>
     <name>WelcomeViewStep</name>
     <message>
-        <location filename="../src/modules/welcome/WelcomeViewStep.cpp" line="50"/>
+        <location filename="../src/modules/welcome/WelcomeViewStep.cpp" line="51"/>
         <source>Welcome</source>
         <translation>欢迎</translation>
     </message>

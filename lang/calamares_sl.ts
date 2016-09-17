@@ -739,32 +739,22 @@ Namestilni program se bo končal in vse spremembe bodo izgubljene.</translation>
         <translation>Datoteke skupin ni bilo mogoče odpreti za branje.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="160"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="162"/>
         <source>Cannot create user %1.</source>
         <translation>Ni mogoče ustvariti uporabnika %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="162"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="164"/>
         <source>useradd terminated with error code %1.</source>
         <translation>useradd se je prekinil s kodo napake %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="167"/>
-        <source>Cannot set full name for user %1.</source>
-        <translation>Ni mogoče nastaviti polnega imena za uporabnika %1.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="169"/>
-        <source>chfn terminated with error code %1.</source>
-        <translation>chfn se je prekinil s kodo napake %1.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="179"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="174"/>
         <source>Cannot set home directory ownership for user %1.</source>
         <translation>Ni mogoče nastaviti lastništva domače mape za uporabnika %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="181"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="176"/>
         <source>chown terminated with error code %1.</source>
         <translation>chown se je prekinil s kodo napake %1.</translation>
     </message>
@@ -2141,7 +2131,7 @@ Namestilni program se bo končal in vse spremembe bodo izgubljene.</translation>
 <context>
     <name>WelcomeViewStep</name>
     <message>
-        <location filename="../src/modules/welcome/WelcomeViewStep.cpp" line="50"/>
+        <location filename="../src/modules/welcome/WelcomeViewStep.cpp" line="51"/>
         <source>Welcome</source>
         <translation type="unfinished"/>
     </message>

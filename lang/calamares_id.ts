@@ -741,32 +741,22 @@ Penginstalan dapat dilanjutkan, namun beberapa fitur akan ditiadakan.</translati
         <translation>Tidak dapat membuka berkas groups untuk dibaca.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="160"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="162"/>
         <source>Cannot create user %1.</source>
         <translation>Tidak dapat membuat pengguna %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="162"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="164"/>
         <source>useradd terminated with error code %1.</source>
         <translation>useradd dihentikan dengan kode kesalahan %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="167"/>
-        <source>Cannot set full name for user %1.</source>
-        <translation>Tidak dapat menyetel nama lengkap untuk pengguna %1.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="169"/>
-        <source>chfn terminated with error code %1.</source>
-        <translation>chfn dihentikan dengan kode kesalahan %1.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="179"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="174"/>
         <source>Cannot set home directory ownership for user %1.</source>
         <translation>Tidak dapat menyetel kepemilikan direktori home untuk pengguna %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="181"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="176"/>
         <source>chown terminated with error code %1.</source>
         <translation>chown dihentikan dengan kode kesalahan %1.</translation>
     </message>
@@ -2143,7 +2133,7 @@ Penginstalan dapat dilanjutkan, namun beberapa fitur akan ditiadakan.</translati
 <context>
     <name>WelcomeViewStep</name>
     <message>
-        <location filename="../src/modules/welcome/WelcomeViewStep.cpp" line="50"/>
+        <location filename="../src/modules/welcome/WelcomeViewStep.cpp" line="51"/>
         <source>Welcome</source>
         <translation>Selamat Datang</translation>
     </message>

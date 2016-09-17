@@ -421,7 +421,7 @@ Instalator zostanie zamknięty i wszystkie zmiany zostaną utracone.</translatio
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="766"/>
         <source>Reuse %1 as home partition for %2.</source>
-        <translation type="unfinished"/>
+        <translation>Użyj ponownie %1 jako partycji domowej dla %2.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="889"/>
@@ -584,7 +584,7 @@ Instalator zostanie zamknięty i wszystkie zmiany zostaną utracone.</translatio
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="63"/>
         <source>En&amp;crypt</source>
-        <translation type="unfinished"/>
+        <translation>Zaszy%fruj</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="155"/>
@@ -739,32 +739,22 @@ Instalator zostanie zamknięty i wszystkie zmiany zostaną utracone.</translatio
         <translation>Nie można otworzyć pliku groups do odczytu.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="160"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="162"/>
         <source>Cannot create user %1.</source>
         <translation>Nie można utworzyć użytkownika %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="162"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="164"/>
         <source>useradd terminated with error code %1.</source>
         <translation>Polecenie useradd zostało przerwane z kodem błędu %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="167"/>
-        <source>Cannot set full name for user %1.</source>
-        <translation>Nie można ustawić pełnej nazwy dla użytkownika %1.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="169"/>
-        <source>chfn terminated with error code %1.</source>
-        <translation>Polecenie chfn zostało przerwane z kodem błędu %1.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="179"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="174"/>
         <source>Cannot set home directory ownership for user %1.</source>
         <translation>Nie można ustawić właściciela katalogu domowego dla użytkownika %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="181"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="176"/>
         <source>chown terminated with error code %1.</source>
         <translation>Polecenie chown zostało przerwane z kodem błędu %1.</translation>
     </message>
@@ -1036,17 +1026,17 @@ Instalator zostanie zamknięty i wszystkie zmiany zostaną utracone.</translatio
     <message>
         <location filename="../src/modules/netinstall/widgets/groupselectionwidget.ui" line="20"/>
         <source>Frame</source>
-        <translation type="unfinished"/>
+        <translation>Ramka</translation>
     </message>
     <message>
         <location filename="../src/modules/netinstall/widgets/groupselectionwidget.ui" line="29"/>
         <source>group</source>
-        <translation type="unfinished"/>
+        <translation>grupa</translation>
     </message>
     <message>
         <location filename="../src/modules/netinstall/widgets/groupselectionwidget.ui" line="36"/>
         <source>description</source>
-        <translation type="unfinished"/>
+        <translation>opis</translation>
     </message>
 </context>
 <context>
@@ -1197,13 +1187,13 @@ Instalator zostanie zamknięty i wszystkie zmiany zostaną utracone.</translatio
         <location filename="../src/modules/locale/LocalePage.cpp" line="174"/>
         <location filename="../src/modules/locale/LocalePage.cpp" line="237"/>
         <source>The system language will be set to %1.</source>
-        <translation type="unfinished"/>
+        <translation>Język systemu zostanie ustawiony na %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/LocalePage.cpp" line="206"/>
         <location filename="../src/modules/locale/LocalePage.cpp" line="240"/>
         <source>The numbers and dates locale will be set to %1.</source>
-        <translation type="unfinished"/>
+        <translation>Format liczb i daty zostanie ustawiony na %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/LocalePage.cpp" line="216"/>
@@ -1230,7 +1220,7 @@ Instalator zostanie zamknięty i wszystkie zmiany zostaną utracone.</translatio
         <location filename="../src/modules/locale/LocalePage.cpp" line="464"/>
         <source>%1 (%2)</source>
         <extracomment>Language (Country)</extracomment>
-        <translation type="unfinished"/>
+        <translation>%1 (%2)</translation>
     </message>
 </context>
 <context>
@@ -1308,7 +1298,7 @@ Instalator zostanie zamknięty i wszystkie zmiany zostaną utracone.</translatio
     <message>
         <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="50"/>
         <source>Package selection</source>
-        <translation type="unfinished"/>
+        <translation>Wybór pakietów</translation>
     </message>
 </context>
 <context>
@@ -1435,7 +1425,7 @@ Instalator zostanie zamknięty i wszystkie zmiany zostaną utracone.</translatio
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="205"/>
         <source>New partition</source>
-        <translation type="unfinished"/>
+        <translation>Nowa partycja</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="222"/>
@@ -2141,7 +2131,7 @@ Instalator zostanie zamknięty i wszystkie zmiany zostaną utracone.</translatio
 <context>
     <name>WelcomeViewStep</name>
     <message>
-        <location filename="../src/modules/welcome/WelcomeViewStep.cpp" line="50"/>
+        <location filename="../src/modules/welcome/WelcomeViewStep.cpp" line="51"/>
         <source>Welcome</source>
         <translation>Witamy</translation>
     </message>

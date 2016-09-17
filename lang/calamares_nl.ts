@@ -739,32 +739,22 @@ Het installatieprogramma zal afsluiten en alle wijzigingen zullen verloren gaan.
         <translation>Kan het bestand groups niet lezen.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="160"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="162"/>
         <source>Cannot create user %1.</source>
         <translation>Kan gebruiker %1 niet aanmaken.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="162"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="164"/>
         <source>useradd terminated with error code %1.</source>
         <translation>useradd is gestopt met foutcode %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="167"/>
-        <source>Cannot set full name for user %1.</source>
-        <translation>Kan de volledige naam voor gebruiker %1 niet instellen.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="169"/>
-        <source>chfn terminated with error code %1.</source>
-        <translation>chfn is gestopt met foutcode %1.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="179"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="174"/>
         <source>Cannot set home directory ownership for user %1.</source>
         <translation>Kan eigendomsrecht gebruikersmap niet instellen voor gebruiker %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="181"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="176"/>
         <source>chown terminated with error code %1.</source>
         <translation>chown is gestopt met foutcode %1.</translation>
     </message>
@@ -2141,7 +2131,7 @@ Het installatieprogramma zal afsluiten en alle wijzigingen zullen verloren gaan.
 <context>
     <name>WelcomeViewStep</name>
     <message>
-        <location filename="../src/modules/welcome/WelcomeViewStep.cpp" line="50"/>
+        <location filename="../src/modules/welcome/WelcomeViewStep.cpp" line="51"/>
         <source>Welcome</source>
         <translation>Welkom</translation>
     </message>
