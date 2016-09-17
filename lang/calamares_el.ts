@@ -739,32 +739,22 @@ The installer will quit and all changes will be lost.</source>
         <translation>Δεν είναι δυνατό το άνοιγμα του αρχείου ομάδων για ανάγνωση.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="160"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="162"/>
         <source>Cannot create user %1.</source>
         <translation>Δεν είναι δυνατή η δημιουργία του χρήστη %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="162"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="164"/>
         <source>useradd terminated with error code %1.</source>
         <translation>Το useradd τερματίστηκε με κωδικό σφάλματος %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="167"/>
-        <source>Cannot set full name for user %1.</source>
-        <translation>Δεν είναι δυνατός ο ορισμός του πλήρους όνοματος του χρήστη %1.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="169"/>
-        <source>chfn terminated with error code %1.</source>
-        <translation>Το chfn τερματίστηκε με κωδικό σφάλματος %1.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="179"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="174"/>
         <source>Cannot set home directory ownership for user %1.</source>
         <translation>Δεν είναι δυνατός ο ορισμός της ιδιοκτησία του προσωπικού καταλόγου για τον χρήστη %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="181"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="176"/>
         <source>chown terminated with error code %1.</source>
         <translation>Το chown τερματίστηκε με κωδικό σφάλματος %1.</translation>
     </message>
@@ -2141,7 +2131,7 @@ The installer will quit and all changes will be lost.</source>
 <context>
     <name>WelcomeViewStep</name>
     <message>
-        <location filename="../src/modules/welcome/WelcomeViewStep.cpp" line="50"/>
+        <location filename="../src/modules/welcome/WelcomeViewStep.cpp" line="51"/>
         <source>Welcome</source>
         <translation>Καλώς ήλθατε</translation>
     </message>
