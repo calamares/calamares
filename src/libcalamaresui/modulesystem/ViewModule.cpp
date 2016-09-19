@@ -61,15 +61,16 @@ ViewModule::loadSelf()
             cDebug() << Q_FUNC_INFO << m_loader->errorString();
             return;
         }
-        cDebug() << "ViewModule loading self for instance" << instanceKey()
-                 << "\nViewModule at address" << this
-                 << "\nCalamares::PluginFactory at address" << pf
-                 << "\nViewStep at address" << m_viewStep;
+//        cDebug() << "ViewModule loading self for instance" << instanceKey()
+//                 << "\nViewModule at address" << this
+//                 << "\nCalamares::PluginFactory at address" << pf
+//                 << "\nViewStep at address" << m_viewStep;
 
         m_viewStep->setModuleInstanceKey( instanceKey() );
         m_viewStep->setConfigurationMap( m_configurationMap );
         ViewManager::instance()->addViewStep( m_viewStep );
         m_loaded = true;
+        cDebug() << "ViewModule" << instanceKey() << "loading complete.";
     }
 }
 
