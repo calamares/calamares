@@ -57,7 +57,7 @@
          <bool>true</bool>
         </property>
         <property name="checked">
-         <bool>true</bool>
+         <bool>false</bool>
         </property>
        </widget>
       </item>
@@ -120,7 +120,7 @@
    <sender>pushButton</sender>
    <signal>toggled(bool)</signal>
    <receiver>packageview</receiver>
-   <slot>setHidden(bool)</slot>
+   <slot>setVisible(bool)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>772</x>
