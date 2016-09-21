@@ -28,12 +28,22 @@
 #include <QWidget>
 
 namespace Ui {
-class Page_UserSetup;
+class UserCreation;
 }
 
 class UsersPage : public QWidget
 {
     Q_OBJECT
+
+    struct User {
+        User(const QString& username, const QString& fullname, const QStringList& groups)
+            : username(username), fullname(fullname), groups(groups) {}
+
+        QString username;
+        QString fullname;
+        QStringList groups;
+    };
+
 public:
     explicit UsersPage( QWidget* parent = nullptr );
     virtual ~UsersPage();
@@ -58,11 +68,17 @@ protected slots:
     void onPasswordTextChanged( const QString& );
     void onRootPasswordTextChanged( const QString& );
 
+    void addUserClicked();
+
 signals:
     void checkReady( bool );
 
 private:
-    Ui::Page_UserSetup* ui;
+    void addUser(const QString& login, const QString& fullName, const QString& password, bool autologin);
+
+    Ui::UserCreation* ui;
+
+    QList<User *> m_currentUsers;
 
     const QRegExp USERNAME_RX = QRegExp( "^[a-z_][a-z0-9_-]*[$]?$" );
     const QRegExp HOSTNAME_RX = QRegExp( "^[a-zA-Z0-9][-a-zA-Z0-9_]*$" );
