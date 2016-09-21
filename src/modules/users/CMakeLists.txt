@@ -12,8 +12,10 @@ calamares_add_plugin( users
         UsersViewStep.cpp
         UsersPage.cpp
         SetHostNameJob.cpp
+        AddUserDialog.cpp
     UI
-        page_usersetup.ui
+        usercreation.ui
+        adduserdialog.ui
     RESOURCES
         users.qrc
     LINK_LIBRARIES

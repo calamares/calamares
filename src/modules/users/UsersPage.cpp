@@ -21,7 +21,8 @@
  */
 
 #include "UsersPage.h"
-#include "ui_page_usersetup.h"
+#include "ui_usercreation.h"
+#include "AddUserDialog.h"
 #include "CreateUserJob.h"
 #include "SetPasswordJob.h"
 #include "SetHostNameJob.h"
@@ -34,6 +35,7 @@
 #include <QBoxLayout>
 #include <QLabel>
 #include <QLineEdit>
+#include <QPointer>
 #include <QRegExp>
 #include <QRegExpValidator>
 
@@ -41,7 +43,7 @@
 
 UsersPage::UsersPage( QWidget* parent )
     : QWidget( parent )
-    , ui( new Ui::Page_UserSetup )
+    , ui( new Ui::UserCreation )
     , m_readyFullName( false )
     , m_readyUsername( false )
     , m_readyHostname( false )
@@ -50,39 +52,9 @@ UsersPage::UsersPage( QWidget* parent )
     , m_writeRootPassword( true )
 {
     ui->setupUi( this );
+    ui->scrollArea->setWidgetResizable(true);
 
-    // Connect signals and slots
-    connect( ui->textBoxFullName, &QLineEdit::textEdited,
-             this, &UsersPage::onFullNameTextEdited );
-    connect( ui->textBoxUsername, &QLineEdit::textEdited,
-             this, &UsersPage::onUsernameTextEdited );
-    connect( ui->textBoxHostname, &QLineEdit::textEdited,
-             this, &UsersPage::onHostnameTextEdited );
-    connect( ui->textBoxUserPassword, &QLineEdit::textChanged,
-             this, &UsersPage::onPasswordTextChanged );
-    connect( ui->textBoxUserVerifiedPassword, &QLineEdit::textChanged,
-             this, &UsersPage::onPasswordTextChanged );
-    connect( ui->textBoxRootPassword, &QLineEdit::textChanged,
-             this, &UsersPage::onRootPasswordTextChanged );
-    connect( ui->textBoxVerifiedRootPassword, &QLineEdit::textChanged,
-             this, &UsersPage::onRootPasswordTextChanged );
-    connect( ui->checkBoxReusePassword, &QCheckBox::stateChanged,
-             this, [this]( int checked )
-    {
-        ui->labelChooseRootPassword->setVisible( !checked );
-        ui->labelExtraRootPassword->setVisible( !checked );
-        ui->labelRootPassword->setVisible( !checked );
-        ui->labelRootPasswordError->setVisible( !checked );
-        ui->textBoxRootPassword->setVisible( !checked );
-        ui->textBoxVerifiedRootPassword->setVisible( !checked );
-        checkReady( isReady() );
-    } );
-
-    m_customUsername = false;
-    m_customHostname = false;
-
-    setWriteRootPassword( true );
-    ui->checkBoxReusePassword->setChecked( true );
+    connect(ui->addUser, SIGNAL(clicked(bool)), this, SLOT(addUserClicked()));
 
     CALAMARES_RETRANSLATE( ui->retranslateUi( this ); )
 }
@@ -93,18 +65,40 @@ UsersPage::~UsersPage()
     delete ui;
 }
 
+void
+UsersPage::addUserClicked() {
+    QPointer<AddUserDialog> dlg = new AddUserDialog( this );
+    if ( dlg->exec() == QDialog::Accepted ) {
+        // TODO: put groups and avatar.
+        addUser(dlg->login, dlg->name, dlg->password, dlg->autoLogin);
+    }
+
+    delete dlg;
+}
+
+void
+UsersPage::addUser(const QString &login, const QString &fullName, const QString &password, bool autologin) {
+    User* newUser = new User(login, fullName, QStringList());
+    m_currentUsers.append(newUser);
+
+    ui->hostname->setText( login + "-pc" );
+
+    // TODO: reload
+}
+
 
 bool
 UsersPage::isReady()
 {
-    bool readyFields = m_readyFullName &&
-                       m_readyHostname &&
-                       m_readyPassword &&
-                       m_readyUsername;
-    if ( !m_writeRootPassword || ui->checkBoxReusePassword->isChecked() )
-        return readyFields;
+    return true;
+//    bool readyFields = m_readyFullName &&
+//                       m_readyHostname &&
+//                       m_readyPassword &&
+//                       m_readyUsername;
+//    if ( !m_writeRootPassword || ui->checkBoxReusePassword->isChecked() )
+//        return readyFields;
 
-    return readyFields && m_readyRootPassword;
+//    return readyFields && m_readyRootPassword;
 }
 
 
@@ -115,40 +109,40 @@ UsersPage::createJobs( const QStringList& defaultGroupsList )
     if ( !isReady() )
         return list;
 
-    Calamares::Job* j;
-    j = new CreateUserJob( ui->textBoxUsername->text(),
-                           ui->textBoxFullName->text().isEmpty() ?
-                               ui->textBoxUsername->text() :
-                               ui->textBoxFullName->text(),
-                           ui->checkBoxAutoLogin->isChecked(),
-                           defaultGroupsList );
-    list.append( Calamares::job_ptr( j ) );
+//    Calamares::Job* j;
+//    j = new CreateUserJob( ui->textBoxUsername->text(),
+//                           ui->textBoxFullName->text().isEmpty() ?
+//                               ui->textBoxUsername->text() :
+//                               ui->textBoxFullName->text(),
+//                           ui->checkBoxAutoLogin->isChecked(),
+//                           defaultGroupsList );
+//    list.append( Calamares::job_ptr( j ) );
 
-    j = new SetPasswordJob( ui->textBoxUsername->text(),
-                            ui->textBoxUserPassword->text() );
-    list.append( Calamares::job_ptr( j ) );
+//    j = new SetPasswordJob( ui->textBoxUsername->text(),
+//                            ui->textBoxUserPassword->text() );
+//    list.append( Calamares::job_ptr( j ) );
 
-    if ( m_writeRootPassword )
-    {
-        if ( ui->checkBoxReusePassword->isChecked() )
-            j = new SetPasswordJob( "root",
-                                    ui->textBoxUserPassword->text() );
-        else
-            j = new SetPasswordJob( "root",
-                                    ui->textBoxRootPassword->text() );
-        list.append( Calamares::job_ptr( j ) );
-    }
+//    if ( m_writeRootPassword )
+//    {
+//        if ( ui->checkBoxReusePassword->isChecked() )
+//            j = new SetPasswordJob( "root",
+//                                    ui->textBoxUserPassword->text() );
+//        else
+//            j = new SetPasswordJob( "root",
+//                                    ui->textBoxRootPassword->text() );
+//        list.append( Calamares::job_ptr( j ) );
+//    }
 
-    j = new SetHostNameJob( ui->textBoxHostname->text() );
-    list.append( Calamares::job_ptr( j ) );
+//    j = new SetHostNameJob( ui->textBoxHostname->text() );
+//    list.append( Calamares::job_ptr( j ) );
 
-    Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
-    gs->insert( "hostname", ui->textBoxHostname->text() );
-    if ( ui->checkBoxAutoLogin->isChecked() )
-        gs->insert( "autologinUser", ui->textBoxUsername->text() );
+//    Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
+//    gs->insert( "hostname", ui->textBoxHostname->text() );
+//    if ( ui->checkBoxAutoLogin->isChecked() )
+//        gs->insert( "autologinUser", ui->textBoxUsername->text() );
 
-    gs->insert( "username", ui->textBoxUsername->text() );
-    gs->insert( "password", CalamaresUtils::obscure( ui->textBoxUserPassword->text() ) );
+//    gs->insert( "username", ui->textBoxUsername->text() );
+//    gs->insert( "password", CalamaresUtils::obscure( ui->textBoxUserPassword->text() ) );
 
     return list;
 }
@@ -157,284 +151,284 @@ UsersPage::createJobs( const QStringList& defaultGroupsList )
 void
 UsersPage::onActivate()
 {
-    ui->textBoxFullName->setFocus();
+//    ui->textBoxFullName->setFocus();
 }
 
 
 void
 UsersPage::setWriteRootPassword( bool write )
 {
-    ui->checkBoxReusePassword->setVisible( write );
-    m_writeRootPassword = write;
+//    ui->checkBoxReusePassword->setVisible( write );
+//    m_writeRootPassword = write;
 }
 
 
 void
 UsersPage::onFullNameTextEdited( const QString& textRef )
 {
-    if ( textRef.isEmpty() )
-    {
-        ui->labelFullNameError->clear();
-        ui->labelFullName->clear();
-        if ( !m_customUsername )
-            ui->textBoxUsername->clear();
-        if ( !m_customHostname )
-            ui->textBoxHostname->clear();
-        m_readyFullName = false;
-    }
-    else
-    {
-        ui->labelFullName->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::Yes,
-                                                                     CalamaresUtils::Original,
-                                                                     ui->labelFullName->size() ) );
-        m_readyFullName = true;
-        fillSuggestions();
-    }
-    checkReady( isReady() );
+//    if ( textRef.isEmpty() )
+//    {
+//        ui->labelFullNameError->clear();
+//        ui->labelFullName->clear();
+//        if ( !m_customUsername )
+//            ui->textBoxUsername->clear();
+//        if ( !m_customHostname )
+//            ui->textBoxHostname->clear();
+//        m_readyFullName = false;
+//    }
+//    else
+//    {
+//        ui->labelFullName->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::Yes,
+//                                                                     CalamaresUtils::Original,
+//                                                                     ui->labelFullName->size() ) );
+//        m_readyFullName = true;
+//        fillSuggestions();
+//    }
+//    checkReady( isReady() );
 }
 
 
 void
 UsersPage::fillSuggestions()
 {
-    QString fullName = ui->textBoxFullName->text();
-    QRegExp rx( "[^a-zA-Z0-9 ]", Qt::CaseInsensitive );
-    QString cleanName = CalamaresUtils::removeDiacritics( fullName )
-                        .toLower().replace( rx, " " ).simplified();
-    QStringList cleanParts = cleanName.split( ' ' );
+//    QString fullName = ui->textBoxFullName->text();
+//    QRegExp rx( "[^a-zA-Z0-9 ]", Qt::CaseInsensitive );
+//    QString cleanName = CalamaresUtils::removeDiacritics( fullName )
+//                        .toLower().replace( rx, " " ).simplified();
+//    QStringList cleanParts = cleanName.split( ' ' );
 
-    if ( !m_customUsername )
-    {
-        if ( !cleanParts.isEmpty() && !cleanParts.first().isEmpty() )
-        {
-            QString usernameSuggestion = cleanParts.first();
-            for ( int i = 1; i < cleanParts.length(); ++i )
-            {
-                if ( !cleanParts.value( i ).isEmpty() )
-                    usernameSuggestion.append( cleanParts.value( i ).at( 0 ) );
-            }
-            if ( USERNAME_RX.indexIn( usernameSuggestion ) != -1 )
-            {
-                ui->textBoxUsername->setText( usernameSuggestion );
-                validateUsernameText( usernameSuggestion );
-                m_customUsername = false;
-            }
-        }
-    }
+//    if ( !m_customUsername )
+//    {
+//        if ( !cleanParts.isEmpty() && !cleanParts.first().isEmpty() )
+//        {
+//            QString usernameSuggestion = cleanParts.first();
+//            for ( int i = 1; i < cleanParts.length(); ++i )
+//            {
+//                if ( !cleanParts.value( i ).isEmpty() )
+//                    usernameSuggestion.append( cleanParts.value( i ).at( 0 ) );
+//            }
+//            if ( USERNAME_RX.indexIn( usernameSuggestion ) != -1 )
+//            {
+//                ui->textBoxUsername->setText( usernameSuggestion );
+//                validateUsernameText( usernameSuggestion );
+//                m_customUsername = false;
+//            }
+//        }
+//    }
 
-    if ( !m_customHostname )
-    {
-        if ( !cleanParts.isEmpty() && !cleanParts.first().isEmpty() )
-        {
-            QString hostnameSuggestion = QString( "%1-pc" ).arg( cleanParts.first() );
-            if ( HOSTNAME_RX.indexIn( hostnameSuggestion ) != -1 )
-            {
-                ui->textBoxHostname->setText( hostnameSuggestion );
-                validateHostnameText( hostnameSuggestion );
-                m_customHostname = false;
-            }
-        }
-    }
+//    if ( !m_customHostname )
+//    {
+//        if ( !cleanParts.isEmpty() && !cleanParts.first().isEmpty() )
+//        {
+//            QString hostnameSuggestion = QString( "%1-pc" ).arg( cleanParts.first() );
+//            if ( HOSTNAME_RX.indexIn( hostnameSuggestion ) != -1 )
+//            {
+//                ui->textBoxHostname->setText( hostnameSuggestion );
+//                validateHostnameText( hostnameSuggestion );
+//                m_customHostname = false;
+//            }
+//        }
+//    }
 }
 
 
 void
 UsersPage::onUsernameTextEdited( const QString& textRef )
 {
-    m_customUsername = true;
-    validateUsernameText( textRef );
+//    m_customUsername = true;
+//    validateUsernameText( textRef );
 }
 
 
 void
 UsersPage::validateUsernameText( const QString& textRef )
 {
-    QString text( textRef );
-    QRegExp rx( USERNAME_RX );
-    QRegExpValidator val( rx );
-    int pos = -1;
+//    QString text( textRef );
+//    QRegExp rx( USERNAME_RX );
+//    QRegExpValidator val( rx );
+//    int pos = -1;
 
-    if ( text.isEmpty() )
-    {
-        ui->labelUsernameError->clear();
-        ui->labelUsername->clear();
-        m_readyUsername = false;
-    }
-    else if ( text.length() > USERNAME_MAX_LENGTH )
-    {
-        ui->labelUsername->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::No,
-                                                                     CalamaresUtils::Original,
-                                                                     ui->labelUsername->size() ) );
-        ui->labelUsernameError->setText(
-            tr( "Your username is too long." ) );
+//    if ( text.isEmpty() )
+//    {
+//        ui->labelUsernameError->clear();
+//        ui->labelUsername->clear();
+//        m_readyUsername = false;
+//    }
+//    else if ( text.length() > USERNAME_MAX_LENGTH )
+//    {
+//        ui->labelUsername->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::No,
+//                                                                     CalamaresUtils::Original,
+//                                                                     ui->labelUsername->size() ) );
+//        ui->labelUsernameError->setText(
+//            tr( "Your username is too long." ) );
 
-        m_readyUsername = false;
-    }
-    else if ( val.validate( text, pos ) == QValidator::Invalid )
-    {
-        ui->labelUsername->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::No,
-                                                                     CalamaresUtils::Original,
-                                                                     ui->labelUsername->size() ) );
-        ui->labelUsernameError->setText(
-            tr( "Your username contains invalid characters. Only lowercase letters and numbers are allowed." ) );
+//        m_readyUsername = false;
+//    }
+//    else if ( val.validate( text, pos ) == QValidator::Invalid )
+//    {
+//        ui->labelUsername->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::No,
+//                                                                     CalamaresUtils::Original,
+//                                                                     ui->labelUsername->size() ) );
+//        ui->labelUsernameError->setText(
+//            tr( "Your username contains invalid characters. Only lowercase letters and numbers are allowed." ) );
 
-        m_readyUsername = false;
-    }
-    else {
-        ui->labelUsername->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::Yes,
-                                                                     CalamaresUtils::Original,
-                                                                     ui->labelUsername->size() ) );
-        ui->labelUsernameError->clear();
-        m_readyUsername = true;
-    }
+//        m_readyUsername = false;
+//    }
+//    else {
+//        ui->labelUsername->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::Yes,
+//                                                                     CalamaresUtils::Original,
+//                                                                     ui->labelUsername->size() ) );
+//        ui->labelUsernameError->clear();
+//        m_readyUsername = true;
+//    }
 
-    emit checkReady( isReady() );
+//    emit checkReady( isReady() );
 }
 
 
 void
 UsersPage::onHostnameTextEdited( const QString& textRef )
 {
-    m_customHostname = true;
-    validateHostnameText( textRef );
+//    m_customHostname = true;
+//    validateHostnameText( textRef );
 }
 
 
 void
 UsersPage::validateHostnameText( const QString& textRef )
 {
-    QString text = textRef;
-    QRegExp rx( HOSTNAME_RX );
-    QRegExpValidator val( rx );
-    int pos = -1;
+//    QString text = textRef;
+//    QRegExp rx( HOSTNAME_RX );
+//    QRegExpValidator val( rx );
+//    int pos = -1;
 
-    if ( text.isEmpty() )
-    {
-        ui->labelHostnameError->clear();
-        ui->labelHostname->clear();
-        m_readyHostname= false;
-    }
-    else if ( text.length() < HOSTNAME_MIN_LENGTH )
-    {
-        ui->labelHostname->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::No,
-                                                                     CalamaresUtils::Original,
-                                                                     ui->labelHostname->size() ) );
-        ui->labelHostnameError->setText(
-            tr( "Your hostname is too short." ) );
+//    if ( text.isEmpty() )
+//    {
+//        ui->labelHostnameError->clear();
+//        ui->labelHostname->clear();
+//        m_readyHostname= false;
+//    }
+//    else if ( text.length() < HOSTNAME_MIN_LENGTH )
+//    {
+//        ui->labelHostname->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::No,
+//                                                                     CalamaresUtils::Original,
+//                                                                     ui->labelHostname->size() ) );
+//        ui->labelHostnameError->setText(
+//            tr( "Your hostname is too short." ) );
 
-        m_readyHostname = false;
+//        m_readyHostname = false;
 
-    }
-    else if ( text.length() > HOSTNAME_MAX_LENGTH )
-    {
-        ui->labelHostname->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::No,
-                                                                     CalamaresUtils::Original,
-                                                                     ui->labelHostname->size() ) );
-        ui->labelHostnameError->setText(
-            tr( "Your hostname is too long." ) );
+//    }
+//    else if ( text.length() > HOSTNAME_MAX_LENGTH )
+//    {
+//        ui->labelHostname->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::No,
+//                                                                     CalamaresUtils::Original,
+//                                                                     ui->labelHostname->size() ) );
+//        ui->labelHostnameError->setText(
+//            tr( "Your hostname is too long." ) );
 
-        m_readyHostname = false;
+//        m_readyHostname = false;
 
-    }
-    else if ( val.validate( text, pos ) == QValidator::Invalid )
-    {
-        ui->labelHostname->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::No,
-                                                                     CalamaresUtils::Original,
-                                                                     ui->labelHostname->size() ) );
-        ui->labelHostnameError->setText(
-            tr( "Your hostname contains invalid characters. Only letters, numbers and dashes are allowed." ) );
+//    }
+//    else if ( val.validate( text, pos ) == QValidator::Invalid )
+//    {
+//        ui->labelHostname->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::No,
+//                                                                     CalamaresUtils::Original,
+//                                                                     ui->labelHostname->size() ) );
+//        ui->labelHostnameError->setText(
+//            tr( "Your hostname contains invalid characters. Only letters, numbers and dashes are allowed." ) );
 
-        m_readyHostname = false;
-    }
-    else
-    {
-        ui->labelHostname->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::Yes,
-                                                                     CalamaresUtils::Original,
-                                                                     ui->labelHostname->size() ) );
-        ui->labelHostnameError->clear();
-        m_readyHostname = true;
-    }
+//        m_readyHostname = false;
+//    }
+//    else
+//    {
+//        ui->labelHostname->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::Yes,
+//                                                                     CalamaresUtils::Original,
+//                                                                     ui->labelHostname->size() ) );
+//        ui->labelHostnameError->clear();
+//        m_readyHostname = true;
+//    }
 
-    emit checkReady( isReady() );
+//    emit checkReady( isReady() );
 }
 
 
 void
 UsersPage::onPasswordTextChanged( const QString& )
 {
-    QString pw1 = ui->textBoxUserPassword->text();
-    QString pw2 = ui->textBoxUserVerifiedPassword->text();
+//    QString pw1 = ui->textBoxUserPassword->text();
+//    QString pw2 = ui->textBoxUserVerifiedPassword->text();
 
-    if ( pw1.isEmpty() && pw2.isEmpty() )
-    {
-        ui->labelUserPasswordError->clear();
-        ui->labelUserPassword->clear();
-        m_readyPassword = false;
-    }
-    else if ( pw1 != pw2 )
-    {
-        ui->labelUserPasswordError->setText( tr( "Your passwords do not match!" ) );
-        ui->labelUserPassword->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::No,
-                                                                         CalamaresUtils::Original,
-                                                                         ui->labelUserPassword->size() ) );
-        m_readyPassword = false;
-    }
-    else
-    {
-        ui->labelUserPasswordError->clear();
-        ui->labelUserPassword->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::Yes,
-                                                                         CalamaresUtils::Original,
-                                                                         ui->labelUserPassword->size() ) );
-        m_readyPassword = true;
-    }
+//    if ( pw1.isEmpty() && pw2.isEmpty() )
+//    {
+//        ui->labelUserPasswordError->clear();
+//        ui->labelUserPassword->clear();
+//        m_readyPassword = false;
+//    }
+//    else if ( pw1 != pw2 )
+//    {
+//        ui->labelUserPasswordError->setText( tr( "Your passwords do not match!" ) );
+//        ui->labelUserPassword->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::No,
+//                                                                         CalamaresUtils::Original,
+//                                                                         ui->labelUserPassword->size() ) );
+//        m_readyPassword = false;
+//    }
+//    else
+//    {
+//        ui->labelUserPasswordError->clear();
+//        ui->labelUserPassword->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::Yes,
+//                                                                         CalamaresUtils::Original,
+//                                                                         ui->labelUserPassword->size() ) );
+//        m_readyPassword = true;
+//    }
 
-    emit checkReady( isReady() );
+//    emit checkReady( isReady() );
 }
 
 
 void
 UsersPage::onRootPasswordTextChanged( const QString& )
 {
-    QString pw1 = ui->textBoxRootPassword->text();
-    QString pw2 = ui->textBoxVerifiedRootPassword->text();
+//    QString pw1 = ui->textBoxRootPassword->text();
+//    QString pw2 = ui->textBoxVerifiedRootPassword->text();
 
-    if ( pw1.isEmpty() && pw2.isEmpty() )
-    {
-        ui->labelRootPasswordError->clear();
-        ui->labelRootPassword->clear();
-        m_readyRootPassword = false;
-    }
-    else if ( pw1 != pw2 )
-    {
-        ui->labelRootPasswordError->setText( tr( "Your passwords do not match!" ) );
-        ui->labelRootPassword->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::No,
-                                                                         CalamaresUtils::Original,
-                                                                         ui->labelRootPassword->size() ) );
-        m_readyRootPassword = false;
-    }
-    else
-    {
-        ui->labelRootPasswordError->clear();
-        ui->labelRootPassword->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::Yes,
-                                                                         CalamaresUtils::Original,
-                                                                         ui->labelRootPassword->size() ) );
-        m_readyRootPassword = true;
-    }
+//    if ( pw1.isEmpty() && pw2.isEmpty() )
+//    {
+//        ui->labelRootPasswordError->clear();
+//        ui->labelRootPassword->clear();
+//        m_readyRootPassword = false;
+//    }
+//    else if ( pw1 != pw2 )
+//    {
+//        ui->labelRootPasswordError->setText( tr( "Your passwords do not match!" ) );
+//        ui->labelRootPassword->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::No,
+//                                                                         CalamaresUtils::Original,
+//                                                                         ui->labelRootPassword->size() ) );
+//        m_readyRootPassword = false;
+//    }
+//    else
+//    {
+//        ui->labelRootPasswordError->clear();
+//        ui->labelRootPassword->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::Yes,
+//                                                                         CalamaresUtils::Original,
+//                                                                         ui->labelRootPassword->size() ) );
+//        m_readyRootPassword = true;
+//    }
 
-    emit checkReady( isReady() );
+//    emit checkReady( isReady() );
 }
 
 
 void
 UsersPage::setAutologinDefault( bool checked )
 {
-    ui->checkBoxAutoLogin->setChecked( checked );
-    emit checkReady( isReady() );
+//    ui->checkBoxAutoLogin->setChecked( checked );
+//    emit checkReady( isReady() );
 }
 
 void
 UsersPage::setReusePasswordDefault( bool checked )
 {
-    ui->checkBoxReusePassword->setChecked( checked );
-    emit checkReady( isReady() );
+//    ui->checkBoxReusePassword->setChecked( checked );
+//    emit checkReady( isReady() );
 }
