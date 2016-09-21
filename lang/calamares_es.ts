@@ -465,7 +465,7 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1199"/>
         <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-        <translation type="unfinished"/>
+        <translation>%1 se encuentra instalado en este dispositivo de almacenamiento. ¿Qué desea hacer?&lt;br/&gt;Podrá revisar y confirmar su elección antes de que cualquier cambio se haga efectivo en el dispositivo de almacenamiento.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1174"/>
@@ -473,7 +473,7 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1229"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1267"/>
         <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;Instalar junto al otro SO&lt;/strong&gt;&lt;br/&gt;El instalador reducirá la partición del SO existente para tener espacio para instalar %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1179"/>
@@ -486,12 +486,12 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1224"/>
         <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-        <translation type="unfinished"/>
+        <translation>Este dispositivo de almacenamiento parece que ya tiene un sistema operativo instalado en él. ¿Qué desea hacer?&lt;br/&gt;Podrá revisar y confirmar su elección antes de que cualquier cambio se haga efectivo en el dispositivo de almacenamiento.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1262"/>
         <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-        <translation type="unfinished"/>
+        <translation>Este dispositivo de almacenamiento contiene múltiples sistemas operativos instalados en él. ¿Qué desea hacer?&lt;br/&gt;Podrá revisar y confirmar su elección antes de que cualquier cambio se haga efectivo en el dispositivo de almacenamiento.</translation>
     </message>
 </context>
 <context>
@@ -803,7 +803,7 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="63"/>
         <source>The type of &lt;strong&gt;partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The only way to change the partition table type is to erase and recreate the partition table from scratch, which destroys all data on the storage device.&lt;br&gt;This installer will keep the current partition table unless you explicitly choose otherwise.&lt;br&gt;If unsure, on modern systems GPT is preferred.</source>
-        <translation type="unfinished"/>
+        <translation>El tipo de &lt;strong&gt;tabla de particiones&lt;/strong&gt; en el dispositivo de almacenamiento seleccionado.&lt;br/&gt;&lt;br/&gt;La única forma de cambiar el tipo de la tabla de particiones es borrando y creando la tabla de particiones de nuevo, lo cual destruirá todos los datos almacenados en el dispositivo de almacenamiento.&lt;br/&gt;Este instalador mantendrá la tabla de particiones actual salvo que explícitamente se indique lo contrario.&lt;br/&gt;En caso de dudas, GPT es preferible en sistemas modernos.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="107"/>
@@ -813,7 +813,7 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="114"/>
         <source>This is a &lt;strong&gt;loop&lt;/strong&gt; device.&lt;br&gt;&lt;br&gt;It is a pseudo-device with no partition table that makes a file accessible as a block device. This kind of setup usually only contains a single filesystem.</source>
-        <translation type="unfinished"/>
+        <translation>Este es un dispositivo &lt;strong&gt;loop&lt;/strong&gt;.&lt;br/&gt;&lt;br/&gt;Se trata de un pseudo-dispositivo sin tabla de particiones que permite el acceso a los archivos como un dispositivo orientado a bloques. Este tipo de configuración normalmente solo contiene un único sistema de archivos.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="121"/>
@@ -1291,7 +1291,7 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
         <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="98"/>
         <source>Network Installation. (Disabled: Unable to fetch package lists, check your network connection)</source>
-        <translation type="unfinished"/>
+        <translation>Instalación a través de la Red. (Desactivada: no se ha podido obtener una lista de paquetes, comprueba tu conexión a la red)</translation>
     </message>
 </context>
 <context>
@@ -1299,7 +1299,7 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
         <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="50"/>
         <source>Package selection</source>
-        <translation type="unfinished"/>
+        <translation>Selección de paquetes</translation>
     </message>
 </context>
 <context>
@@ -1426,7 +1426,7 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="205"/>
         <source>New partition</source>
-        <translation type="unfinished"/>
+        <translation>Partición nueva</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="222"/>

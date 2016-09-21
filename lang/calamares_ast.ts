@@ -37,12 +37,12 @@
     <message>
         <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="61"/>
         <source>The &lt;strong&gt;boot environment&lt;/strong&gt; of this system.&lt;br&gt;&lt;br&gt;Older x86 systems only support &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Modern systems usually use &lt;strong&gt;EFI&lt;/strong&gt;, but may also show up as BIOS if started in compatibility mode.</source>
-        <translation type="unfinished"/>
+        <translation>L&apos;&lt;strong&gt;entornu d&apos;arranque&lt;/strong&gt; d&apos;esti sistema.&lt;br&gt;&lt;br&gt;Sistemes x86 más vieyos namái sofiten &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Los sistemes modernos usen davezu &lt;strong&gt;EFI&lt;/strong&gt;, pero quiciabes d&apos;amuesen como BIOS si s&apos;anicien nel mou compatibilidá.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="75"/>
         <source>This system was started with an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from an EFI environment, this installer must deploy a boot loader application, like &lt;strong&gt;GRUB&lt;/strong&gt; or &lt;strong&gt;systemd-boot&lt;/strong&gt; on an &lt;strong&gt;EFI System Partition&lt;/strong&gt;. This is automatic, unless you choose manual partitioning, in which case you must choose it or create it on your own.</source>
-        <translation type="unfinished"/>
+        <translation>Esti sistema anicióse con un entornu d&apos;arranque &lt;strong&gt;EFI&lt;/strong&gt;.&lt;br&gt;&lt;br&gt;Pa configurar l&apos;aniciu d&apos;un entornu EFI, esti instalador ha instalar una aplicación de xestión d&apos;arranque, como &lt;strong&gt;GRUB&lt;/strong&gt; o &lt;strong&gt;systemd-boot&lt;/strong&gt; nuna &lt;strong&gt;partición del sistema EFI&lt;/strong&gt;. Esto ye automático, a nun ser qu&apos;escueyas el particionáu manual, que nesi casu has escoyer creala tu mesmu.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="87"/>
@@ -436,7 +436,7 @@ L&apos;instalador colará y perderánse toles camudancies.</translation>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1061"/>
         <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
-        <translation type="unfinished"/>
+        <translation>Nun pue alcontrase una partición EFI nesti sistema. Torna y usa&apos;l particionáu a mano pa configurar %1, por favor.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1071"/>
@@ -1630,12 +1630,12 @@ L&apos;instalador colará y perderánse toles camudancies.</translation>
     <message>
         <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="199"/>
         <source>unformatted</source>
-        <translation type="unfinished"/>
+        <translation>ensin formatiar</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="201"/>
         <source>swap</source>
-        <translation type="unfinished"/>
+        <translation>intercambéu</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="49"/>

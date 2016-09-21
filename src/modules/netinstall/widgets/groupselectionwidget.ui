@@ -50,14 +50,13 @@
         </property>
         <property name="icon">
          <iconset resource="../netinstall.qrc">
-          <normaloff>:/images/arrow-up.png</normaloff>
-          <normalon>:/images/arrow-down.png</normalon>:/images/arrow-up.png</iconset>
+          <normaloff>:/images/arrow-down.png</normaloff>:/images/arrow-down.png</iconset>
         </property>
         <property name="checkable">
          <bool>true</bool>
         </property>
         <property name="checked">
-         <bool>true</bool>
+         <bool>false</bool>
         </property>
        </widget>
       </item>
@@ -120,7 +119,7 @@
    <sender>pushButton</sender>
    <signal>toggled(bool)</signal>
    <receiver>packageview</receiver>
-   <slot>setHidden(bool)</slot>
+   <slot>setVisible(bool)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>772</x>
