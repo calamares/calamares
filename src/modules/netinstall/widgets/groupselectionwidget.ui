@@ -50,8 +50,7 @@
         </property>
         <property name="icon">
          <iconset resource="../netinstall.qrc">
-          <normaloff>:/images/arrow-up.png</normaloff>
-          <normalon>:/images/arrow-down.png</normalon>:/images/arrow-up.png</iconset>
+          <normaloff>:/images/arrow-down.png</normaloff>:/images/arrow-down.png</iconset>
         </property>
         <property name="checkable">
          <bool>true</bool>
