@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2016, Teo Mrnjavac <teo@kde.org>
  *   Copyright 2014, Kevin Kofler <kevin.kofler@chello.at>
  *
  *   Portions from systemd (localed.c):
@@ -240,6 +240,34 @@ SetKeyboardLayoutJob::writeX11Data( const QString& keyboardConfPath ) const
 }
 
 
+bool
+SetKeyboardLayoutJob::writeDefaultKeyboardData( const QString& defaultKeyboardPath ) const
+{
+    QFile file( defaultKeyboardPath );
+    file.open( QIODevice::WriteOnly | QIODevice::Text );
+    QTextStream stream( &file );
+
+    stream << "# KEYBOARD CONFIGURATION FILE\n\n"
+              "# Consult the keyboard(5) manual page.\n\n";
+
+    stream << "XKBMODEL=\"" << m_model << "\"\n";
+    stream << "XKBLAYOUT=\"" << m_layout << "\"\n";
+    stream << "XKBVARIANT=\"" << m_variant << "\"\n";
+    stream << "XKBOPTIONS=\"\"\n\n";
+    stream << "BACKSPACE=\"guess\"\n";
+    stream.flush();
+
+    file.close();
+
+    cDebug() << "Written XKBMODEL" << m_model <<
+                "; XKBLAYOUT" << m_layout <<
+                "; XKBVARIANT" << m_variant <<
+                "to /etc/default/keyboard file" << defaultKeyboardPath;
+
+    return ( stream.status() == QTextStream::Ok );
+}
+
+
 Calamares::JobResult
 SetKeyboardLayoutJob::exec()
 {
@@ -271,6 +299,12 @@ SetKeyboardLayoutJob::exec()
     }
     destDir.mkpath( xorgConfDPath );
 
+    QString defaultKeyboardPath;
+    if ( QDir( destDir.absoluteFilePath( "etc/default" ) ).exists() )
+    {
+        defaultKeyboardPath = destDir.absoluteFilePath( "etc/default/keyboard" );
+    }
+
     // Get the path to the destination's path to the converted key mappings
     QString convertedKeymapPath = m_convertedKeymapPath;
     if ( !convertedKeymapPath.isEmpty() )
@@ -287,6 +321,13 @@ SetKeyboardLayoutJob::exec()
     if ( !writeX11Data( keyboardConfPath ) )
         return Calamares::JobResult::error( tr( "Failed to write keyboard configuration for X11." ),
                                             tr( "Failed to write to %1" ).arg( keyboardConfPath ) );
+
+    if ( !defaultKeyboardPath.isEmpty() )
+    {
+        if ( !writeDefaultKeyboardData( defaultKeyboardPath ) )
+            return Calamares::JobResult::error( tr( "Failed to write keyboard configuration to existing /etc/default directory." ),
+                                                tr( "Failed to write to %1" ).arg( keyboardConfPath ) );
+    }
 
     return Calamares::JobResult::ok();
 }

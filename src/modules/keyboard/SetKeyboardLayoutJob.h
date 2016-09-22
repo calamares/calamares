@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2016, Teo Mrnjavac <teo@kde.org>
  *   Copyright 2014, Kevin Kofler <kevin.kofler@chello.at>
  *
  *   Calamares is free software: you can redistribute it and/or modify
@@ -41,7 +41,8 @@ private:
     QString findLegacyKeymap() const;
     bool writeVConsoleData( const QString& vconsoleConfPath,
                             const QString& convertedKeymapPath ) const;
-    bool writeX11Data( const QString& keyboardConfPath  ) const;
+    bool writeX11Data( const QString& keyboardConfPath ) const;
+    bool writeDefaultKeyboardData( const QString& defaultKeyboardPath ) const;
 
     QString m_model;
     QString m_layout;
