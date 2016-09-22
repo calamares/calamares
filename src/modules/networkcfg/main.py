@@ -58,6 +58,10 @@ def run():
     target_resolv = os.path.join(root_mount_point, "etc/resolv.conf")
     if source_resolv != target_resolv and os.path.exists(source_resolv):
         try:
+            os.remove(target_resolv)
+        except FileNotFoundError:
+            libcalamares.utils.debug("Couldn't remove {}".format(target_resolv))
+        try:
             shutil.copy(source_resolv, target_resolv)
         except FileNotFoundError:
             libcalamares.utils.debug("Can't copy resolv.conf from {}".format(source_resolv))
