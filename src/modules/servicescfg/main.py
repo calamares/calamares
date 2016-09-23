@@ -19,9 +19,8 @@
 #   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
 
 import libcalamares
-import os
 
-from libcalamares.utils import check_target_env_call, debug
+from libcalamares.utils import target_env_call
 from os.path import exists, join
 
 class ServicesController:
@@ -38,7 +37,7 @@ class ServicesController:
         return self.__services
 
     def setExpression(self, pattern, file):
-        check_target_env_call(["sed", "-e", pattern, "-i", file])
+        target_env_call(["sed", "-e", pattern, "-i", file])
 
     def configure(self):
         self.setExpression('s|^.*rc_shell=.*|rc_shell="/usr/bin/sulogin"|', "/etc/rc.conf")
@@ -52,11 +51,13 @@ class ServicesController:
             if dm == "lightdm":
                 self.setExpression('s|^.*minimum-vt=.*|minimum-vt=7|', "/etc/lightdm/lightdm.conf")
                 self.setExpression('s|pam_systemd.so|pam_ck_connector.so nox11|', "/etc/pam.d/lightdm-greeter")
+        if exist(join(self.root, "etc/pulse/client.conf")):
+            self.setExpression('s|autospawn = no|autospawn = yes|', "/etc/pulse/client.conf")
 
     def update(self, action, state):
         for svc in self.services[state]:
             if exists(self.root + "/etc/init.d/" + svc["name"]):
-                check_target_env_call(["rc-update", action, svc["name"], svc["runlevel"]])
+                target_env_call(["rc-update", action, svc["name"], svc["runlevel"]])
 
     def run(self):
         self.configure()
