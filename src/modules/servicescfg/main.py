@@ -51,7 +51,7 @@ class ServicesController:
             if dm == "lightdm":
                 self.setExpression('s|^.*minimum-vt=.*|minimum-vt=7|', "/etc/lightdm/lightdm.conf")
                 self.setExpression('s|pam_systemd.so|pam_ck_connector.so nox11|', "/etc/pam.d/lightdm-greeter")
-        if exist(join(self.root, "etc/pulse/client.conf")):
+        if exists(join(self.root, "etc/pulse/client.conf")):
             self.setExpression('s|autospawn = no|autospawn = yes|', "/etc/pulse/client.conf")
 
     def update(self, action, state):
