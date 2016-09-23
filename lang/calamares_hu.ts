@@ -1870,20 +1870,26 @@ Telepítés nem folytatható. &lt;a href=&quot;#details&quot;&gt;Részletek...&l
         <translation>Billentyűzet beállítása %1, elrendezés %2-%3</translation>
     </message>
     <message>
-        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="284"/>
+        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="318"/>
         <source>Failed to write keyboard configuration for the virtual console.</source>
         <translation>Hiba történt a billentyűzet virtuális konzolba való beállításakor</translation>
     </message>
     <message>
-        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="285"/>
-        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="289"/>
+        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="319"/>
+        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="323"/>
+        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="329"/>
         <source>Failed to write to %1</source>
         <translation>Hiba történt %1 -re történő íráskor</translation>
     </message>
     <message>
-        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="288"/>
+        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="322"/>
         <source>Failed to write keyboard configuration for X11.</source>
         <translation>Hiba történt a billentyűzet X11- hez való beállításakor</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="328"/>
+        <source>Failed to write keyboard configuration to existing /etc/default directory.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

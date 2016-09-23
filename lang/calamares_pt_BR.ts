@@ -1871,20 +1871,26 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
         <translation>Definir modelo de teclado para %1, layout para %2-%3</translation>
     </message>
     <message>
-        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="284"/>
+        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="318"/>
         <source>Failed to write keyboard configuration for the virtual console.</source>
         <translation>Falha ao gravar a configuração do teclado para o console virtual.</translation>
     </message>
     <message>
-        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="285"/>
-        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="289"/>
+        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="319"/>
+        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="323"/>
+        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="329"/>
         <source>Failed to write to %1</source>
         <translation>Falha ao gravar em %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="288"/>
+        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="322"/>
         <source>Failed to write keyboard configuration for X11.</source>
         <translation>Falha ao gravar a configuração do teclado para X11.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="328"/>
+        <source>Failed to write keyboard configuration to existing /etc/default directory.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
