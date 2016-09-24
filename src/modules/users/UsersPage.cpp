@@ -39,7 +39,36 @@
 #include <QRegExp>
 #include <QRegExpValidator>
 
+UsersListModel::~UsersListModel() {
+    //qDeleteAll(m_currentUsers);
+}
 
+int UsersListModel::rowCount(const QModelIndex &parent) const {
+    return m_currentUsers.size();
+}
+
+QVariant UsersListModel::data(const QModelIndex &index, int role) const {
+    if (role == Qt::DisplayRole) {
+        User* user = m_currentUsers.at( index.row() );
+        return QVariant( user->toString() );
+    }
+
+    return QVariant();
+}
+
+Qt::ItemFlags UsersListModel::flags(const QModelIndex & /*index*/) const {
+    return Qt::ItemIsSelectable | Qt::ItemIsEnabled ;
+}
+
+void UsersListModel::addUser(User* user) {
+    beginInsertRows( QModelIndex(), 0, 0);
+    m_currentUsers.append(user);
+    endInsertRows();
+}
+
+QList<User *> UsersListModel::getUsers() const {
+    return m_currentUsers;
+}
 
 UsersPage::UsersPage( QWidget* parent )
     : QWidget( parent )
@@ -52,13 +81,14 @@ UsersPage::UsersPage( QWidget* parent )
     , m_writeRootPassword( true )
 {
     ui->setupUi( this );
-    ui->scrollArea->setWidgetResizable(true);
 
     connect(ui->addUser, SIGNAL(clicked(bool)), this, SLOT(addUserClicked()));
+    addUser("prova", "test", "test", false);
 
+    ui->usersListView->setModel(&m_userModel);
+    ui->usersListView->show();
     CALAMARES_RETRANSLATE( ui->retranslateUi( this ); )
 }
-
 
 UsersPage::~UsersPage()
 {
@@ -68,6 +98,7 @@ UsersPage::~UsersPage()
 void
 UsersPage::addUserClicked() {
     QPointer<AddUserDialog> dlg = new AddUserDialog( this );
+
     if ( dlg->exec() == QDialog::Accepted ) {
         // TODO: put groups and avatar.
         addUser(dlg->login, dlg->name, dlg->password, dlg->autoLogin);
@@ -79,11 +110,9 @@ UsersPage::addUserClicked() {
 void
 UsersPage::addUser(const QString &login, const QString &fullName, const QString &password, bool autologin) {
     User* newUser = new User(login, fullName, QStringList());
-    m_currentUsers.append(newUser);
+    m_userModel.addUser(newUser);
 
     ui->hostname->setText( login + "-pc" );
-
-    // TODO: reload
 }
 
 
