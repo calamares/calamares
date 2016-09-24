@@ -28,26 +28,68 @@
     </widget>
    </item>
    <item>
-    <widget class="QPushButton" name="addUser">
-     <property name="minimumSize">
-      <size>
-       <width>48</width>
-       <height>48</height>
-      </size>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <property name="topMargin">
+      <number>0</number>
      </property>
-     <property name="maximumSize">
-      <size>
-       <width>80</width>
-       <height>48</height>
-      </size>
-     </property>
-     <property name="toolTip">
-      <string>Add another user account.</string>
-     </property>
-     <property name="text">
-      <string>Create user</string>
-     </property>
-    </widget>
+     <item>
+      <widget class="QPushButton" name="addUser">
+       <property name="minimumSize">
+        <size>
+         <width>48</width>
+         <height>48</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>80</width>
+         <height>48</height>
+        </size>
+       </property>
+       <property name="toolTip">
+        <string>Add another user account.</string>
+       </property>
+       <property name="text">
+        <string>Create user</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="deleteUser">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="baseSize">
+        <size>
+         <width>80</width>
+         <height>48</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Delete user</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
    </item>
    <item>
     <widget class="Line" name="line">
@@ -67,7 +109,7 @@
         <x>0</x>
         <y>0</y>
         <width>678</width>
-        <height>279</height>
+        <height>277</height>
        </rect>
       </property>
       <property name="sizePolicy">
