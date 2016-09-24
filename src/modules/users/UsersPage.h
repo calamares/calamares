@@ -26,6 +26,7 @@
 #include "Typedefs.h"
 
 #include <QAbstractListModel>
+#include <QItemSelection>
 #include <QVariant>
 #include <QWidget>
 
@@ -57,6 +58,7 @@ public:
     Qt::ItemFlags flags(const QModelIndex & /*index*/) const Q_DECL_OVERRIDE;
 
     void addUser(User *user);
+    void deleteUser(int index);
     QList<User *> getUsers() const;
 
 private:
@@ -92,6 +94,7 @@ protected slots:
     void onRootPasswordTextChanged( const QString& );
 
     void addUserClicked();
+    void deleteUserClicked();
 
 signals:
     void checkReady( bool );

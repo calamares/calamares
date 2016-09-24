@@ -33,8 +33,10 @@
 #include "utils/Retranslator.h"
 
 #include <QBoxLayout>
+#include <QMessageBox>
 #include <QLabel>
 #include <QLineEdit>
+#include <QItemSelectionModel>
 #include <QPointer>
 #include <QRegExp>
 #include <QRegExpValidator>
@@ -66,6 +68,16 @@ void UsersListModel::addUser(User* user) {
     endInsertRows();
 }
 
+void UsersListModel::deleteUser(int index) {
+    if (index < 0 || index >= m_currentUsers.size()) {
+        return;
+    }
+
+    beginRemoveRows(QModelIndex(), 0, 0);
+    m_currentUsers.removeAt(index);
+    endRemoveRows();
+}
+
 QList<User *> UsersListModel::getUsers() const {
     return m_currentUsers;
 }
@@ -83,6 +95,8 @@ UsersPage::UsersPage( QWidget* parent )
     ui->setupUi( this );
 
     connect(ui->addUser, SIGNAL(clicked(bool)), this, SLOT(addUserClicked()));
+    connect(ui->deleteUser, SIGNAL(clicked(bool)), this, SLOT(deleteUserClicked()));
+
     addUser("prova", "test", "test", false);
 
     ui->usersListView->setModel(&m_userModel);
@@ -108,13 +122,28 @@ UsersPage::addUserClicked() {
 }
 
 void
+UsersPage::deleteUserClicked() {
+    QItemSelectionModel* selectionModel = ui->usersListView->selectionModel();
+
+    if (!selectionModel->hasSelection()) {
+        return;
+    }
+
+    QModelIndex selectionIndex = selectionModel->currentIndex();
+    if (!selectionIndex.isValid()) {
+        return;
+    }
+
+    m_userModel.deleteUser(selectionIndex.row());
+}
+
+void
 UsersPage::addUser(const QString &login, const QString &fullName, const QString &password, bool autologin) {
     User* newUser = new User(login, fullName, QStringList());
     m_userModel.addUser(newUser);
 
     ui->hostname->setText( login + "-pc" );
 }
-
 
 bool
 UsersPage::isReady()
