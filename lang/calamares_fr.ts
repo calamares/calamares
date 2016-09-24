@@ -1888,7 +1888,7 @@ L&apos;installateur se fermera et les changements seront perdus.</translation>
     <message>
         <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="328"/>
         <source>Failed to write keyboard configuration to existing /etc/default directory.</source>
-        <translation type="unfinished"/>
+        <translation>Impossible d&apos;écrire la configuration du clavier dans le dossier /etc/default existant.</translation>
     </message>
 </context>
 <context>

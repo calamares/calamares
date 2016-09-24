@@ -1888,7 +1888,7 @@ L&apos;instal·lador es tancarà i tots els canvis es perdran.</translation>
     <message>
         <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="328"/>
         <source>Failed to write keyboard configuration to existing /etc/default directory.</source>
-        <translation type="unfinished"/>
+        <translation>Ha fallat escriure la configuració del teclat al directori existent /etc/default.</translation>
     </message>
 </context>
 <context>
