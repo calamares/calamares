@@ -25,24 +25,47 @@
 
 #include "Typedefs.h"
 
+#include <QAbstractListModel>
+#include <QVariant>
 #include <QWidget>
 
 namespace Ui {
 class UserCreation;
 }
 
+struct User {
+    User(const QString& username, const QString& fullname, const QStringList& groups)
+        : username(username), fullname(fullname), groups(groups) {}
+
+    QString toString() const {
+        return username;
+    }
+
+    QString username;
+    QString fullname;
+    QStringList groups;
+};
+
+class UsersListModel : public QAbstractListModel {
+    Q_OBJECT
+
+public:
+    virtual ~UsersListModel();
+
+    int rowCount(const QModelIndex &parent = QModelIndex()) const Q_DECL_OVERRIDE;
+    QVariant data(const QModelIndex &index, int role) const Q_DECL_OVERRIDE;
+    Qt::ItemFlags flags(const QModelIndex & /*index*/) const Q_DECL_OVERRIDE;
+
+    void addUser(User *user);
+    QList<User *> getUsers() const;
+
+private:
+    QList<User *> m_currentUsers;
+};
+
 class UsersPage : public QWidget
 {
     Q_OBJECT
-
-    struct User {
-        User(const QString& username, const QString& fullname, const QStringList& groups)
-            : username(username), fullname(fullname), groups(groups) {}
-
-        QString username;
-        QString fullname;
-        QStringList groups;
-    };
 
 public:
     explicit UsersPage( QWidget* parent = nullptr );
@@ -77,8 +100,7 @@ private:
     void addUser(const QString& login, const QString& fullName, const QString& password, bool autologin);
 
     Ui::UserCreation* ui;
-
-    QList<User *> m_currentUsers;
+    UsersListModel m_userModel;
 
     const QRegExp USERNAME_RX = QRegExp( "^[a-z_][a-z0-9_-]*[$]?$" );
     const QRegExp HOSTNAME_RX = QRegExp( "^[a-zA-Z0-9][-a-zA-Z0-9_]*$" );

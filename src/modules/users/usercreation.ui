@@ -61,7 +61,7 @@
      <property name="widgetResizable">
       <bool>true</bool>
      </property>
-     <widget class="QWidget" name="scrollAreaWidgetContents">
+     <widget class="QListView" name="usersListView">
       <property name="geometry">
        <rect>
         <x>0</x>
