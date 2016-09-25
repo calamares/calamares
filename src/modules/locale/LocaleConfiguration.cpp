@@ -60,7 +60,8 @@ LocaleConfiguration::fromLanguageAndLocation( const QString& languageLocale,
         // FIXME: this might be useless if we already filter out non-UTF8 locales
         foreach ( QString line, linesForLanguage )
         {
-            if ( line.contains( "UTF-8" ) )
+            if ( line.contains( "UTF-8", Qt::CaseInsensitive ) ||
+                 line.contains( "utf8", Qt::CaseInsensitive ) )
                 linesForLanguageUtf.append( line );
         }
 

@@ -365,7 +365,8 @@ LocalePage::init( const QString& initialRegion,
     // because it's not 1995.
     for ( auto it = m_localeGenLines.begin(); it != m_localeGenLines.end(); )
     {
-        if ( !it->contains( "UTF-8", Qt::CaseInsensitive ) )
+        if ( !it->contains( "UTF-8", Qt::CaseInsensitive ) &&
+             !it->contains( "utf8", Qt::CaseInsensitive ) )
             it = m_localeGenLines.erase( it );
         else
             ++it;
