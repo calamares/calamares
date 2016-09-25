@@ -23,7 +23,7 @@
 #ifndef CALAMARESPLUGINFACTORY_H
 #define CALAMARESPLUGINFACTORY_H
 
-#include "UiDllMacro.h"
+#include "DllMacro.h"
 
 #include <QtCore/QObject>
 #include <QtCore/QVariant>
@@ -196,7 +196,7 @@ namespace Calamares
  * \author Matthias Kretz <kretz@kde.org>
  * \author Bernhard Loos <nhuh.put@web.de>
  */
-class UIDLLEXPORT PluginFactory : public QObject
+class DLLEXPORT PluginFactory : public QObject
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(PluginFactory)

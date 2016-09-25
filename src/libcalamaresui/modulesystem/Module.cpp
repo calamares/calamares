@@ -19,6 +19,7 @@
 #include "Module.h"
 
 #include "ProcessJobModule.h"
+#include "CppJobModule.h"
 #include "ViewModule.h"
 #include "utils/CalamaresUtils.h"
 #include "utils/YamlUtils.h"
@@ -76,7 +77,11 @@ Module::fromDescriptor( const QVariantMap& moduleDescriptor,
     }
     else if ( typeString == "job" )
     {
-        if ( intfString == "process" )
+        if ( intfString == "qtplugin" )
+        {
+            m = new CppJobModule();
+        }
+        else if ( intfString == "process" )
         {
             m = new ProcessJobModule();
         }
