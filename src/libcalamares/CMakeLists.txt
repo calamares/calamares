@@ -11,6 +11,7 @@ configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/../calamares/CalamaresVersion.h.in
                 ${CMAKE_CURRENT_BINARY_DIR}/CalamaresVersion.h )
 
 set( libSources
+    CppJob.cpp
     GlobalStorage.cpp
     Job.cpp
     JobQueue.cpp
@@ -24,6 +25,7 @@ set( libSources
     utils/CalamaresUtils.cpp
     utils/CalamaresUtilsSystem.cpp
     utils/Logger.cpp
+    utils/PluginFactory.cpp
     utils/Retranslator.cpp
 )
 
