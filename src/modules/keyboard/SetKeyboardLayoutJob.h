@@ -31,7 +31,8 @@ public:
                           const QString& layout,
                           const QString& variant,
                           const QString& xOrgConfFileName,
-                          const QString& convertedKeymapPath );
+                          const QString& convertedKeymapPath,
+                          bool writeEtcDefaultKeyboard );
 
     QString prettyName() const override;
     Calamares::JobResult exec() override;
@@ -49,6 +50,7 @@ private:
     QString m_variant;
     QString m_xOrgConfFileName;
     QString m_convertedKeymapPath;
+    const bool m_writeEtcDefaultKeyboard;
 };
 
 #endif /* SETKEYBOARDLAYOUTJOB_H */

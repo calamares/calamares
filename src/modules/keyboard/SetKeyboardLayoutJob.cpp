@@ -40,13 +40,15 @@ SetKeyboardLayoutJob::SetKeyboardLayoutJob( const QString& model,
                                             const QString& layout,
                                             const QString& variant,
                                             const QString& xOrgConfFileName,
-                                            const QString& convertedKeymapPath )
+                                            const QString& convertedKeymapPath,
+                                            bool writeEtcDefaultKeyboard)
     : Calamares::Job()
     , m_model( model )
     , m_layout( layout )
     , m_variant( variant )
     , m_xOrgConfFileName( xOrgConfFileName )
     , m_convertedKeymapPath( convertedKeymapPath )
+    , m_writeEtcDefaultKeyboard( writeEtcDefaultKeyboard )
 {
 }
 
@@ -322,7 +324,7 @@ SetKeyboardLayoutJob::exec()
         return Calamares::JobResult::error( tr( "Failed to write keyboard configuration for X11." ),
                                             tr( "Failed to write to %1" ).arg( keyboardConfPath ) );
 
-    if ( !defaultKeyboardPath.isEmpty() )
+    if ( !defaultKeyboardPath.isEmpty() && m_writeEtcDefaultKeyboard )
     {
         if ( !writeDefaultKeyboardData( defaultKeyboardPath ) )
             return Calamares::JobResult::error( tr( "Failed to write keyboard configuration to existing /etc/default directory." ),
