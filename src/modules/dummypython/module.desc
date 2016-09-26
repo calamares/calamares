@@ -1,4 +1,4 @@
-# Module metadata file for dummy process jobmodule
+# Module metadata file for dummy python jobmodule
 # Syntax is YAML 1.2
 ---
 type:       "job"
