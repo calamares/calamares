@@ -508,6 +508,17 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
         gs->insert( "defaultFileSystemType", QStringLiteral( "ext4" ) );
     }
 
+    if ( configurationMap.contains( "enableLuksAutomatedPartitioning" ) &&
+         configurationMap.value( "enableLuksAutomatedPartitioning" ).type() == QVariant::Bool )
+    {
+        gs->insert( "enableLuksAutomatedPartitioning",
+                    configurationMap.value( "enableLuksAutomatedPartitioning" ).toBool() );
+    }
+    else
+    {
+        gs->insert( "enableLuksAutomatedPartitioning", true );
+    }
+
 
     // Now that we have the config, we load the PartitionCoreModule in the background
     // because it could take a while. Then when it's done, we can set up the widgets
