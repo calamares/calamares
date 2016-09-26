@@ -1212,12 +1212,12 @@ L&apos;installateur se fermera et les changements seront perdus.</translation>
         <translation>&amp;Modifier...</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="389"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="390"/>
         <source>Set timezone to %1/%2.&lt;br/&gt;</source>
         <translation>Configurer le fuseau horaire à %1/%2.&lt;br/&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="464"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="465"/>
         <source>%1 (%2)</source>
         <extracomment>Language (Country)</extracomment>
         <translation>%1 (%2)</translation>

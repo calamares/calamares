@@ -1212,12 +1212,12 @@ Programul de instalare va ieși, iar toate modificările vor fi pierdute.</trans
         <translation>S&amp;chimbă</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="389"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="390"/>
         <source>Set timezone to %1/%2.&lt;br/&gt;</source>
         <translation>Setează fusul orar la %1/%2.&lt;br/&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="464"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="465"/>
         <source>%1 (%2)</source>
         <extracomment>Language (Country)</extracomment>
         <translation>%1 (%2)</translation>
@@ -1888,7 +1888,7 @@ Programul de instalare va ieși, iar toate modificările vor fi pierdute.</trans
     <message>
         <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="328"/>
         <source>Failed to write keyboard configuration to existing /etc/default directory.</source>
-        <translation type="unfinished"/>
+        <translation>Nu s-a reușit scrierea configurației de tastatură în directorul existent /etc/default.</translation>
     </message>
 </context>
 <context>
