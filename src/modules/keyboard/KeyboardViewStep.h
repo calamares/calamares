@@ -64,6 +64,7 @@ private:
 
     QString m_xOrgConfFileName;
     QString m_convertedKeymapPath;
+    bool m_writeEtcDefaultKeyboard;
 
     QList< Calamares::job_ptr > m_jobs;
 };

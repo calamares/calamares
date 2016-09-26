@@ -123,7 +123,9 @@ void
 KeyboardViewStep::onLeave()
 {
     m_widget->finalize();
-    m_jobs = m_widget->createJobs( m_xOrgConfFileName, m_convertedKeymapPath );
+    m_jobs = m_widget->createJobs( m_xOrgConfFileName,
+                                   m_convertedKeymapPath,
+                                   m_writeEtcDefaultKeyboard );
     m_prettyStatus = m_widget->prettyStatus();
 }
 
@@ -156,5 +158,15 @@ KeyboardViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     else
     {
         m_convertedKeymapPath = QString();
+    }
+
+    if ( configurationMap.contains( "writeEtcDefaultKeyboard" ) &&
+         configurationMap.value( "writeEtcDefaultKeyboard" ).type() == QVariant::Bool )
+    {
+        m_writeEtcDefaultKeyboard = configurationMap.value( "writeEtcDefaultKeyboard" ).toBool();
+    }
+    else
+    {
+        m_writeEtcDefaultKeyboard = true;
     }
 }
