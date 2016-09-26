@@ -123,6 +123,7 @@ private:
     int m_lastSelectedDeviceIndex;
 
     QString m_defaultFsType;
+    bool m_enableEncryptionWidget;
 
     QMutex m_coreMutex;
 };
