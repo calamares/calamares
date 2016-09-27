@@ -387,109 +387,109 @@ O instalador pecharase e perderanse todos os cambios.</translation>
         <translation>Formulario</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="123"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="127"/>
         <source>After:</source>
         <translation>Despois:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="236"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="240"/>
         <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself.</source>
         <translation>&lt;strong&gt;Particionado manual&lt;/strong&gt;&lt;br/&gt; Pode crear o redimensionar particións pola súa conta.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="963"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="969"/>
         <source>Boot loader location:</source>
         <translation>Localización do cargador de arranque:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="906"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="911"/>
         <source>%1 will be shrunk to %2MB and a new %3MB partition will be created for %4.</source>
         <translation>%1 será acurtada a %2MB e unha nova partición de %3MB será creada para %4</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="121"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="125"/>
         <source>Select storage de&amp;vice:</source>
         <translation>Seleccione o dispositivo de almacenamento:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="122"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="888"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="934"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1014"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="126"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="893"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="940"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1020"/>
         <source>Current:</source>
         <translation>Actual:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="766"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="770"/>
         <source>Reuse %1 as home partition for %2.</source>
         <translation>Reutilizar %1 como partición home para %2</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="889"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="894"/>
         <source>&lt;strong&gt;Select a partition to shrink, then drag the bottom bar to resize&lt;/strong&gt;</source>
         <translation>&lt;strong&gt;Seleccione unha partición para acurtar, logo empregue a barra para redimensionala&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1005"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1011"/>
         <source>&lt;strong&gt;Select a partition to install on&lt;/strong&gt;</source>
         <translation>&lt;strong&gt;Seleccione unha partición para instalar&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1061"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1067"/>
         <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
         <translation>Non foi posible atopar unha partición de sistema de tipo EFI. Por favor, volva atrás e empregue a opción de particionado manual para crear unha en %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1071"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1077"/>
         <source>The EFI system partition at %1 will be used for starting %2.</source>
         <translation>A partición EFI do sistema en %1 será usada para iniciar %2.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1080"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1086"/>
         <source>EFI system partition:</source>
         <translation>Partición EFI do sistema:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1165"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1171"/>
         <source>This storage device does not seem to have an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>Esta unidade de almacenamento non semella ter un sistema operativo instalado nela. Que desexa facer?&lt;br/&gt;Poderá revisar e confirmar as súas eleccións antes de que calquera cambio sexa feito na unidade de almacenamento.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1170"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1210"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1234"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1272"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1176"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1216"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1240"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1278"/>
         <source>&lt;strong&gt;Erase disk&lt;/strong&gt;&lt;br/&gt;This will &lt;font color=&quot;red&quot;&gt;delete&lt;/font&gt; all data currently present on the selected storage device.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1199"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1205"/>
         <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1174"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1205"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1229"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1267"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1180"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1211"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1235"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1273"/>
         <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1179"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1215"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1238"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1276"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1185"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1221"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1244"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1282"/>
         <source>&lt;strong&gt;Replace a partition&lt;/strong&gt;&lt;br/&gt;Replaces a partition with %1.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1224"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1230"/>
         <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1262"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1268"/>
         <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation type="unfinished"/>
     </message>
@@ -1865,29 +1865,29 @@ O instalador pecharase e perderanse todos os cambios.</translation>
 <context>
     <name>SetKeyboardLayoutJob</name>
     <message>
-        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="57"/>
+        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="59"/>
         <source>Set keyboard model to %1, layout to %2-%3</source>
         <translation>Configurar modelo de teclado a %1, distribución a %2-%3</translation>
     </message>
     <message>
-        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="318"/>
+        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="320"/>
         <source>Failed to write keyboard configuration for the virtual console.</source>
         <translation>Houbo un fallo ao escribir a configuración do teclado para a consola virtual.</translation>
     </message>
     <message>
-        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="319"/>
-        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="323"/>
-        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="329"/>
+        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="321"/>
+        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="325"/>
+        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="331"/>
         <source>Failed to write to %1</source>
         <translation>Non pode escribir en %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="322"/>
+        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="324"/>
         <source>Failed to write keyboard configuration for X11.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="328"/>
+        <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="330"/>
         <source>Failed to write keyboard configuration to existing /etc/default directory.</source>
         <translation type="unfinished"/>
     </message>
