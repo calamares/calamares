@@ -1,0 +1,7 @@
+# Module metadata file for dummycpp job
+# Syntax is YAML 1.2
+---
+type:      "job"
+name:      "dummycpp"
+interface: "qtplugin"
+load:      "libcalamares_job_dummycpp.so"
