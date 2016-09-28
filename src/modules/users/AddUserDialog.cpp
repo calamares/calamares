@@ -18,6 +18,7 @@
 
 //#include "avatardialog.h"
 #include "AddUserDialog.h"
+#include "utils/CalamaresUtilsGui.h"
 #include <pwquality.h>
 
 UsernameValidator::UsernameValidator(QRegExp exp): QRegExpValidator(exp),  m_badNames()
@@ -88,6 +89,7 @@ AddUserDialog::AddUserDialog(QWidget* parent): QDialog(parent)
 
     ui.passLine->setEchoMode(QLineEdit::Password);
     ui.confirmPassLine->setEchoMode(QLineEdit::Password);
+    ui.labelUsernameError->setFont( QFont("Arial", 10) );
 
     //don't use character classes, Qt is unicode aware, but useradd is not
     QRegExp validUsername("[a-z_][a-z0-9\\-_]{0,31}");  //this is the regular expression which is accepted by the useradd command
@@ -165,9 +167,9 @@ void AddUserDialog::validateUsername(const QString& username) {
     }
     else if ( username.length() > USERNAME_MAX_LENGTH )
     {
-        //ui->labelUsername->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::No,
-        //                                                             CalamaresUtils::Original,
-        //                                                             ui->labelUsername->size() ) );
+        ui.iconUsername->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::No,
+                                                                     CalamaresUtils::Original,
+                                                                     ui.iconUsername->size() ) );
         ui.labelUsernameError->setText(
             tr( "Your username is too long." ) );
 
@@ -175,19 +177,19 @@ void AddUserDialog::validateUsername(const QString& username) {
     }
     else if ( val.validate( (QString &)username, pos ) == QValidator::Invalid )
     {
-        //ui->labelUsername->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::No,
-        //                                                             CalamaresUtils::Original,
-        //                                                             ui->labelUsername->size() ) );
+        ui.iconUsername->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::No,
+                                                                     CalamaresUtils::Original,
+                                                                     ui.iconUsername->size() ) );
         ui.labelUsernameError->setText(
             tr( "Your username contains invalid characters. Only lowercase letters and numbers are allowed." ) );
 
         validUsername = false;
     }
     else {
-        //ui->labelUsername->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::Yes,
-        //                                                             CalamaresUtils::Original,
-        //                                                             ui->labelUsername->size() ) );
-        ui.labelUsernameError->clear();
+        ui.iconUsername->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::Yes,
+                                                                     CalamaresUtils::Original,
+                                                                     ui.iconUsername->size() ) );
+        ui.labelUsernameError->setText("Username valid.");
         validUsername = true;
     }
 
