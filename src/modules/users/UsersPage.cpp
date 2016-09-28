@@ -209,7 +209,7 @@ UsersPage::createJobs( const QStringList& defaultGroupsList )
 void
 UsersPage::onActivate()
 {
-//    ui->textBoxFullName->setFocus();
+    addUserClicked();
 }
 
 
