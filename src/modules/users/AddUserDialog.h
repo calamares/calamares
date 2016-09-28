@@ -44,7 +44,6 @@ public:
     AddUserDialog(QWidget *parent = 0);
     virtual ~AddUserDialog();
 
-    QLineEdit *loginLine;
     QString login;
     QString password;
     QString avatar;
@@ -52,10 +51,12 @@ public:
 
     bool autoLogin;
     bool useUserPw;
+
+    bool validUsername;
     bool passwordsMatch;
     bool passwordsEmpty;
 
-    bool isUserNameValid();
+    void validateUsername(const QString&);
 
 public slots:
     void setLogin(const QString&);
@@ -76,7 +77,7 @@ private slots:
     void avatarClicked();
     void autoLoginToggled();
 
-    void testFields();
+    void updateValidityUi();
     void updatePasswordStrengthBar(const QString&);
 
 private:
@@ -84,6 +85,9 @@ private:
     //AvatarDialog *m_avatarDialog;
     //KMessageWidget *m_messageWidget;
     UsernameValidator *m_validator;
+
+    const QRegExp USERNAME_RX = QRegExp( "^[a-z_][a-z0-9_-]*[$]?$" );
+    const int USERNAME_MAX_LENGTH = 31;
 };
 
 #endif /* ADDUSERDIALOG_H */

@@ -10,6 +10,8 @@
  *
  */
 
+#include <functional>
+
 #include <QDebug>
 #include <QDesktopWidget>
 #include <QRegExpValidator>
@@ -87,6 +89,14 @@ AddUserDialog::AddUserDialog(QWidget* parent): QDialog(parent)
     ui.passLine->setEchoMode(QLineEdit::Password);
     ui.confirmPassLine->setEchoMode(QLineEdit::Password);
 
+    //don't use character classes, Qt is unicode aware, but useradd is not
+    QRegExp validUsername("[a-z_][a-z0-9\\-_]{0,31}");  //this is the regular expression which is accepted by the useradd command
+    UsernameValidator *m_validator = new UsernameValidator(validUsername);
+    ui.userNameLine->setValidator(m_validator);
+
+    connect(ui.userNameLine, &QLineEdit::textEdited, this,
+            &AddUserDialog::validateUsername);
+
     //ui.userDetails->setIcon(KIcon("view-list-details"));
 
 //    ui.avatar->setIconSize(QSize(48, 48));
@@ -109,11 +119,6 @@ AddUserDialog::AddUserDialog(QWidget* parent): QDialog(parent)
 //    }
 
     passwordsMatch = true;
-    //don't use character classes, Qt is unicode aware, but useradd is not
-    QRegExp validUsername("[a-z_][a-z0-9\\-_]{0,31}");  //this is the regular expression which is accepted by the useradd command
-    UsernameValidator *m_validator = new UsernameValidator(validUsername);
-    loginLine = ui.loginLine;
-    loginLine->setValidator(m_validator);
 
     //m_messageWidget = new KMessageWidget(this);
     //m_messageWidget->hide();
@@ -121,21 +126,21 @@ AddUserDialog::AddUserDialog(QWidget* parent): QDialog(parent)
     //m_messageWidget->setWordWrap(true);
     //ui.userNameLayout->insertWidget(0, m_messageWidget);
 
-    connect(ui.loginLine, SIGNAL(textChanged(QString)), this, SLOT(testFields()));
-    connect(ui.passLine, SIGNAL(textChanged(QString)), this, SLOT(testFields()));
-    connect(ui.passLine, SIGNAL(textChanged(QString)), this, SLOT(updatePasswordStrengthBar(QString)));
-    connect(ui.confirmPassLine, SIGNAL(textChanged(QString)), this, SLOT(testFields()));
+//    connect(ui.passLine, SIGNAL(textChanged(QString)), this, SLOT(testFields()));
+//    connect(ui.passLine, SIGNAL(textChanged(QString)), this, SLOT(updatePasswordStrengthBar(QString)));
+//    connect(ui.confirmPassLine, SIGNAL(textChanged(QString)), this, SLOT(testFields()));
 
     connect(m_validator, SIGNAL(invalidSymbolEntered(QString)), this, SLOT(showUsernameWarning(QString)));
     connect(m_validator, SIGNAL(textIsValidAgain()), this, SLOT(hideUsernameWarning()));
 
     connect(ui.userDetails, SIGNAL(clicked(bool)), this, SLOT(showDetails()));
 
-    connect(ui.nameLine, SIGNAL(textChanged(QString)), this, SLOT(testFields()));
+//    connect(ui.nameLine, SIGNAL(textChanged(QString)), this, SLOT(testFields()));
 
-    connect(ui.avatar, SIGNAL(clicked(bool)), this, SLOT(avatarClicked()));
-    connect(ui.autoLoginCheckBox, SIGNAL(toggled(bool)), this, SLOT(autoLoginToggled()));
+//    connect(ui.avatar, SIGNAL(clicked(bool)), this, SLOT(avatarClicked()));
+//    connect(ui.autoLoginCheckBox, SIGNAL(toggled(bool)), this, SLOT(autoLoginToggled()));
 
+    ui.dialogButtonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
     connect(ui.dialogButtonBox, SIGNAL(accepted()), this, SLOT(accept()));
     connect(ui.dialogButtonBox, SIGNAL(rejected()), this, SLOT(reject()));
 
@@ -144,7 +149,49 @@ AddUserDialog::AddUserDialog(QWidget* parent): QDialog(parent)
 
 AddUserDialog::~AddUserDialog()
 {
-  
+    delete m_validator;
+}
+
+void AddUserDialog::validateUsername(const QString& username) {
+    QRegExp rx( USERNAME_RX );
+    QRegExpValidator val( rx );
+    int pos = -1;
+
+    if ( username.isEmpty() )
+    {
+        ui.labelUsernameError->clear();
+        //ui->labelUsername->clear();
+        validUsername = false;
+    }
+    else if ( username.length() > USERNAME_MAX_LENGTH )
+    {
+        //ui->labelUsername->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::No,
+        //                                                             CalamaresUtils::Original,
+        //                                                             ui->labelUsername->size() ) );
+        ui.labelUsernameError->setText(
+            tr( "Your username is too long." ) );
+
+        validUsername = false;
+    }
+    else if ( val.validate( (QString &)username, pos ) == QValidator::Invalid )
+    {
+        //ui->labelUsername->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::No,
+        //                                                             CalamaresUtils::Original,
+        //                                                             ui->labelUsername->size() ) );
+        ui.labelUsernameError->setText(
+            tr( "Your username contains invalid characters. Only lowercase letters and numbers are allowed." ) );
+
+        validUsername = false;
+    }
+    else {
+        //ui->labelUsername->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::Yes,
+        //                                                             CalamaresUtils::Original,
+        //                                                             ui->labelUsername->size() ) );
+        ui.labelUsernameError->clear();
+        validUsername = true;
+    }
+
+    updateValidityUi();
 }
 
 void AddUserDialog::setAvatar(const QString& avatar_)
@@ -160,27 +207,36 @@ void AddUserDialog::showDetails()
     ui.extWidget->setVisible(!ui.extWidget->isVisible());
 }
 
-void AddUserDialog::testFields()
+void AddUserDialog::updateValidityUi()
 {
-    // user password
-    if ((ui.passLine->text().isEmpty()) && (ui.confirmPassLine->text().isEmpty())) {
-        passwordsEmpty = true;
+    if (validUsername && !passwordsEmpty && passwordsMatch) {
+        ui.dialogButtonBox->button(QDialogButtonBox::Ok)->setEnabled(true);
     } else {
-        if ((ui.passLine->text() == ui.confirmPassLine->text())) {
-            ui.confirmPwCheck->setPixmap(QPixmap(":Images/images/green-check.png"));
-            password = ui.passLine->text();
-            passwordsMatch = true;
-        } else {
-            ui.confirmPwCheck->setPixmap(QPixmap());
-            passwordsMatch = false;
-        }
-        passwordsEmpty = false;
+        ui.dialogButtonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
     }
-
-    login = ui.loginLine->text();
-    name = ui.nameLine->text();
-    autoLogin = ui.autoLoginCheckBox->isChecked();
 }
+
+//    // user password
+//    if ((ui.passLine->text().isEmpty()) && (ui.confirmPassLine->text().isEmpty())) {
+//        passwordsEmpty = true;
+//    } else {
+//        if ((ui.passLine->text() == ui.confirmPassLine->text())) {
+//            ui.confirmPwCheck->setPixmap(QPixmap(":Images/images/green-check.png"));
+//            password = ui.passLine->text();
+//            passwordsMatch = true;
+//        } else {
+//            ui.confirmPwCheck->setPixmap(QPixmap());
+//            passwordsMatch = false;
+//        }
+//        passwordsEmpty = false;
+//    }
+
+
+
+//    login = ui.userNameLine->text();
+//    name = ui.nameLine->text();
+//    autoLogin = ui.autoLoginCheckBox->isChecked();
+//}
 
 void AddUserDialog::avatarClicked()
 {
@@ -208,18 +264,6 @@ void AddUserDialog::updatePasswordStrengthBar(const QString& newpass_)
     }
 }
 
-bool AddUserDialog::isUserNameValid()
-{
-    int i = 0;
-    QString s = loginLine->text();
-    if (loginLine->validator()->validate(s, i) == QRegExpValidator::Acceptable) {
-        hideUsernameWarning();
-        return true;
-    } else {
-        return false;
-    }
-}
-
 
 void AddUserDialog::showUsernameWarning(const QString& warning_)
 {
@@ -237,8 +281,6 @@ void AddUserDialog::hideUsernameWarning()
 //    }
 }
 
-
-
 void AddUserDialog::autoLoginToggled()
 {
 //    autoLogin = ui.autoLoginCheckBox->isChecked();
@@ -248,7 +290,7 @@ void AddUserDialog::autoLoginToggled()
 
 void AddUserDialog::setLogin(const QString& login_)
 {
-    ui.loginLine->setText(login_);
+    ui.userNameLine->setText(login_);
     login = login_;
 }
 
