@@ -42,7 +42,7 @@
 #include <QRegExpValidator>
 
 UsersListModel::~UsersListModel() {
-    //qDeleteAll(m_currentUsers);
+    qDeleteAll(m_currentUsers);
 }
 
 int UsersListModel::rowCount(const QModelIndex &parent) const {
@@ -97,11 +97,12 @@ UsersPage::UsersPage( QWidget* parent )
     connect(ui->addUser, SIGNAL(clicked(bool)), this, SLOT(addUserClicked()));
     connect(ui->deleteUser, SIGNAL(clicked(bool)), this, SLOT(deleteUserClicked()));
 
+    // TODO: remove
     addUser("prova", "test", "test", false);
 
     ui->usersListView->setModel(&m_userModel);
     ui->usersListView->show();
-    CALAMARES_RETRANSLATE( ui->retranslateUi( this ); )
+    CALAMARES_RETRANSLATE( ui->retranslateUi( this ); );
 }
 
 UsersPage::~UsersPage()
