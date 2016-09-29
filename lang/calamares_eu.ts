@@ -503,7 +503,7 @@ The installer will quit and all changes will be lost.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="188"/>
+        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="190"/>
         <source>Cleared all mounts for %1</source>
         <translation type="unfinished"/>
     </message>
@@ -929,32 +929,32 @@ The installer will quit and all changes will be lost.</source>
         <translation>Ezarri partizioaren informazioa</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="143"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="144"/>
         <source>Install %1 on &lt;strong&gt;new&lt;/strong&gt; %2 system partition.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="148"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="149"/>
         <source>Set up &lt;strong&gt;new&lt;/strong&gt; %2 partition with mount point &lt;strong&gt;%1&lt;/strong&gt;.</source>
         <translation>Ezarri %2 partizio &lt;strong&gt;berria&lt;/strong&gt; &lt;strong&gt;%1&lt;/strong&gt; muntatze puntuarekin.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="156"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="157"/>
         <source>Install %2 on %3 system partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="162"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="163"/>
         <source>Set up %3 partition &lt;strong&gt;%1&lt;/strong&gt; with mount point &lt;strong&gt;%2&lt;/strong&gt;.</source>
         <translation>Ezarri %3 partizioa &lt;strong&gt;%1&lt;/strong&gt; &lt;strong&gt;%2&lt;/strong&gt; muntatze puntuarekin.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="174"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="175"/>
         <source>Install boot loader on &lt;strong&gt;%1&lt;/strong&gt;.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="184"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="185"/>
         <source>Setting up mount points.</source>
         <translation>Muntatze puntuak ezartzen.</translation>
     </message>
@@ -1219,12 +1219,12 @@ The installer will quit and all changes will be lost.</source>
         <translation>&amp;Aldatu...</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="387"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="389"/>
         <source>Set timezone to %1/%2.&lt;br/&gt;</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="462"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="464"/>
         <source>%1 (%2)</source>
         <extracomment>Language (Country)</extracomment>
         <translation type="unfinished"/>
@@ -2130,7 +2130,7 @@ The installer will quit and all changes will be lost.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/welcome/WelcomePage.cpp" line="195"/>
+        <location filename="../src/modules/welcome/WelcomePage.cpp" line="196"/>
         <source>%1 support</source>
         <translation>%1 euskarria</translation>
     </message>

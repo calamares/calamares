@@ -507,7 +507,7 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
         <translation>Limpiando puntos de montaje para operaciones de particionamiento en %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="188"/>
+        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="190"/>
         <source>Cleared all mounts for %1</source>
         <translation>Limpiados todos los puntos de montaje para %1</translation>
     </message>
@@ -933,32 +933,32 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
         <translation>Establecer la información de la partición</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="143"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="144"/>
         <source>Install %1 on &lt;strong&gt;new&lt;/strong&gt; %2 system partition.</source>
         <translation>Instalar %1 en &lt;strong&gt;nuevo&lt;/strong&gt; %2 partición del sistema.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="148"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="149"/>
         <source>Set up &lt;strong&gt;new&lt;/strong&gt; %2 partition with mount point &lt;strong&gt;%1&lt;/strong&gt;.</source>
         <translation>Configurar &lt;strong&gt;nueva&lt;/strong&gt; %2 partición con punto de montaje &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="156"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="157"/>
         <source>Install %2 on %3 system partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
         <translation>Instalar %2 en %3 partición del sistema &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="162"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="163"/>
         <source>Set up %3 partition &lt;strong&gt;%1&lt;/strong&gt; with mount point &lt;strong&gt;%2&lt;/strong&gt;.</source>
         <translation>Configurar %3 partición &lt;strong&gt;%1&lt;/strong&gt; con punto de montaje &lt;strong&gt;%2&lt;/strong&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="174"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="175"/>
         <source>Install boot loader on &lt;strong&gt;%1&lt;/strong&gt;.</source>
         <translation>Instalar gestor de arranque en &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="184"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="185"/>
         <source>Setting up mount points.</source>
         <translation>Configurando puntos de montaje.</translation>
     </message>
@@ -1223,12 +1223,12 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
         <translation>&amp;Cambiar...</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="387"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="389"/>
         <source>Set timezone to %1/%2.&lt;br/&gt;</source>
         <translation>Configurar zona horaria a %1/%2.&lt;br/&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="462"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="464"/>
         <source>%1 (%2)</source>
         <extracomment>Language (Country)</extracomment>
         <translation type="unfinished"/>
@@ -2134,7 +2134,7 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/welcome/WelcomePage.cpp" line="195"/>
+        <location filename="../src/modules/welcome/WelcomePage.cpp" line="196"/>
         <source>%1 support</source>
         <translation>%1 ayuda</translation>
     </message>

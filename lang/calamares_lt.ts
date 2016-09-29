@@ -506,7 +506,7 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
         <translation>Išvalomi prijungimai, siekiant atlikti skaidymo operacijas skaidiniuose %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="188"/>
+        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="190"/>
         <source>Cleared all mounts for %1</source>
         <translation>Visi %1 prijungimai išvalyti</translation>
     </message>
@@ -932,32 +932,32 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
         <translation>Nustatyti skaidinio informaciją</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="143"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="144"/>
         <source>Install %1 on &lt;strong&gt;new&lt;/strong&gt; %2 system partition.</source>
         <translation>Įdiegti %1 &lt;strong&gt;naujame&lt;/strong&gt; %2 sistemos skaidinyje.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="148"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="149"/>
         <source>Set up &lt;strong&gt;new&lt;/strong&gt; %2 partition with mount point &lt;strong&gt;%1&lt;/strong&gt;.</source>
         <translation>Nustatyti &lt;strong&gt;naują&lt;/strong&gt; %2 skaidinį su prijungimo tašku &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="156"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="157"/>
         <source>Install %2 on %3 system partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
         <translation>Diegti %2 sistemą, %3 sistemos skaidinyje &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="162"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="163"/>
         <source>Set up %3 partition &lt;strong&gt;%1&lt;/strong&gt; with mount point &lt;strong&gt;%2&lt;/strong&gt;.</source>
         <translation>Nustatyti %3 skaidinį &lt;strong&gt;%1&lt;/strong&gt; su prijungimo tašku &lt;strong&gt;%2&lt;/strong&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="174"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="175"/>
         <source>Install boot loader on &lt;strong&gt;%1&lt;/strong&gt;.</source>
         <translation>Diegti paleidyklę skaidinyje &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="184"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="185"/>
         <source>Setting up mount points.</source>
         <translation>Nustatomi prijungimo taškai.</translation>
     </message>
@@ -1222,12 +1222,12 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
         <translation>K&amp;eisti...</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="387"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="389"/>
         <source>Set timezone to %1/%2.&lt;br/&gt;</source>
         <translation>Nustatyti laiko juostą kaip %1/%2.&lt;br/&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocalePage.cpp" line="462"/>
+        <location filename="../src/modules/locale/LocalePage.cpp" line="464"/>
         <source>%1 (%2)</source>
         <extracomment>Language (Country)</extracomment>
         <translation>%1 (%2)</translation>
@@ -2133,7 +2133,7 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
         <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;sistemai %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Autorių Teisės 2014-2015 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Dėkojame: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Philip Müller, Pier Luigi Fiorini, Rohan Garg ir &lt;a href=&quot;https://www.transifex.com/calamares/calamares/&quot;&gt;Calamares vertėjų komandai&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;http://calamares.io/&quot;&gt;Calamares&lt;/a&gt; kūrimą remia &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - Išlaisvinanti programinė įranga.</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/WelcomePage.cpp" line="195"/>
+        <location filename="../src/modules/welcome/WelcomePage.cpp" line="196"/>
         <source>%1 support</source>
         <translation>%1 palaikymas</translation>
     </message>
