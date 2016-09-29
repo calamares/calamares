@@ -843,7 +843,7 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
     <message>
         <location filename="../src/modules/dummycpp/DummyCppJob.cpp" line="46"/>
         <source>Dummy C++ Job</source>
-        <translation type="unfinished"/>
+        <translation>Lažni C++ posao</translation>
     </message>
 </context>
 <context>
@@ -1896,7 +1896,7 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
     <message>
         <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="330"/>
         <source>Failed to write keyboard configuration to existing /etc/default directory.</source>
-        <translation type="unfinished"/>
+        <translation>Neuspješno pisanje konfiguracije tipkovnice u postojeći /etc/default direktorij.</translation>
     </message>
 </context>
 <context>
