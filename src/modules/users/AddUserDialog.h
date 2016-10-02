@@ -77,6 +77,8 @@ private slots:
     void avatarClicked();
     void autoLoginToggled();
 
+    void passwordChanged();
+
     void updateValidityUi();
     void updatePasswordStrengthBar(const QString&);
 

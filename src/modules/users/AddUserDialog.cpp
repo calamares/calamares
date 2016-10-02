@@ -120,7 +120,6 @@ AddUserDialog::AddUserDialog(QWidget* parent): QDialog(parent)
 //        ui.rootPwWidget->hide();
 //    }
 
-    passwordsMatch = true;
 
     //m_messageWidget = new KMessageWidget(this);
     //m_messageWidget->hide();
@@ -128,14 +127,12 @@ AddUserDialog::AddUserDialog(QWidget* parent): QDialog(parent)
     //m_messageWidget->setWordWrap(true);
     //ui.userNameLayout->insertWidget(0, m_messageWidget);
 
-//    connect(ui.passLine, SIGNAL(textChanged(QString)), this, SLOT(testFields()));
+    passwordsMatch = passwordsEmpty = true;
+    connect(ui.passLine, &QLineEdit::textChanged, this, &AddUserDialog::passwordChanged);
+    connect(ui.confirmPassLine, &QLineEdit::textChanged, this, &AddUserDialog::passwordChanged);
 //    connect(ui.passLine, SIGNAL(textChanged(QString)), this, SLOT(updatePasswordStrengthBar(QString)));
-//    connect(ui.confirmPassLine, SIGNAL(textChanged(QString)), this, SLOT(testFields()));
 
-    connect(m_validator, SIGNAL(invalidSymbolEntered(QString)), this, SLOT(showUsernameWarning(QString)));
-    connect(m_validator, SIGNAL(textIsValidAgain()), this, SLOT(hideUsernameWarning()));
-
-    connect(ui.userDetails, SIGNAL(clicked(bool)), this, SLOT(showDetails()));
+    connect(ui.userDetails, &QPushButton::clicked, this, &AddUserDialog::showDetails);
 
 //    connect(ui.nameLine, SIGNAL(textChanged(QString)), this, SLOT(testFields()));
 
@@ -149,10 +146,7 @@ AddUserDialog::AddUserDialog(QWidget* parent): QDialog(parent)
     //connect(m_avatarDialog, SIGNAL(setAvatar(QString)), this, SLOT(setAvatar(QString)));
 }
 
-AddUserDialog::~AddUserDialog()
-{
-    delete m_validator;
-}
+AddUserDialog::~AddUserDialog() {}
 
 void AddUserDialog::validateUsername(const QString& username) {
     QRegExp rx( USERNAME_RX );
@@ -191,6 +185,25 @@ void AddUserDialog::validateUsername(const QString& username) {
                                                                      ui.iconUsername->size() ) );
         ui.labelUsernameError->setText("Username valid.");
         validUsername = true;
+    }
+
+    login = username;
+    updateValidityUi();
+}
+
+void AddUserDialog::passwordChanged() {
+    password = ui.passLine->text();
+    passwordsMatch = (password == ui.confirmPassLine->text());
+    passwordsEmpty = (password.length() == 0);
+
+    if (passwordsMatch && !passwordsEmpty) {
+        ui.confirmPwCheck->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::Yes,
+                                                                     CalamaresUtils::Original,
+                                                                     ui.confirmPwCheck->size()) );
+    } else {
+        ui.confirmPwCheck->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::No,
+                                                                     CalamaresUtils::Original,
+                                                                     ui.confirmPwCheck->size()) );
     }
 
     updateValidityUi();
