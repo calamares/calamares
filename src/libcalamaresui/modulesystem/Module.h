@@ -48,9 +48,10 @@ public:
 
     enum Interface
     {
-        QtPlugin,
-        Python,
-        Process
+        QtPluginInterface,
+        PythonInterface,
+        ProcessInterface,
+        PythonQtInterface
     };
     virtual ~Module();
 

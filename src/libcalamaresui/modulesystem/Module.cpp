@@ -31,6 +31,10 @@
 #include "PythonJobModule.h"
 #endif
 
+#ifdef WITH_PYTHONQT
+#include "PythonQtViewModule.h"
+#endif
+
 #include <yaml-cpp/yaml.h>
 
 #include <QDir>
@@ -71,9 +75,18 @@ Module::fromDescriptor( const QVariantMap& moduleDescriptor,
                << instanceId;
         return nullptr;
     }
-    if ( typeString == "view" && intfString == "qtplugin" )
+    if ( typeString == "view" )
     {
-        m = new ViewModule();
+        if ( intfString == "qtplugin" )
+        {
+            m = new ViewModule();
+        }
+#ifdef WITH_PYTHONQT
+        else if ( intfString == "pythonqt" )
+        {
+            m = new PythonQtViewModule();
+        }
+#endif
     }
     else if ( typeString == "job" )
     {
