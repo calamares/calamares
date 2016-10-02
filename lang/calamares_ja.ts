@@ -843,7 +843,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/dummycpp/DummyCppJob.cpp" line="46"/>
         <source>Dummy C++ Job</source>
-        <translation type="unfinished"/>
+        <translation>Dummy C++ Job</translation>
     </message>
 </context>
 <context>
@@ -1897,7 +1897,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="330"/>
         <source>Failed to write keyboard configuration to existing /etc/default directory.</source>
-        <translation type="unfinished"/>
+        <translation>現存する /etc/default ディレクトリへのキーボード設定の書き込みに失敗しました。</translation>
     </message>
 </context>
 <context>
