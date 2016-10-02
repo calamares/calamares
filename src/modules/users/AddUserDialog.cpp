@@ -14,6 +14,7 @@
 
 #include <QDebug>
 #include <QDesktopWidget>
+#include <QFileDialog>
 #include <QRegExpValidator>
 
 //#include "avatardialog.h"
@@ -98,51 +99,18 @@ AddUserDialog::AddUserDialog(const QStringList& shells, QWidget* parent): QDialo
     connect(ui.userNameLine, &QLineEdit::textEdited, this,
             &AddUserDialog::validateUsername);
 
-    //ui.userDetails->setIcon(KIcon("view-list-details"));
-
-//    ui.avatar->setIconSize(QSize(48, 48));
-//    ui.avatar->setIcon(QPixmap(":/Images/images/own.png"));
-
-//    m_avatarDialog = new AvatarDialog(parent->parentWidget());
-//    m_avatarDialog->hide();
-
-//    if (number == 0) {
-//        autoLogin = true;
-//        useRootPw = true; // set this to true for the first user, so that he can manually set a password for root
-//        ui.autoLoginCheckBox->setChecked(true);
-//        ui.rootUsesUserPwCheckBox->setChecked(false);
-//        ui.removeUser->setVisible(false);
-//    } else {
-//        autoLogin = false;
-//        ui.rootUsesUserPwCheckBox->setVisible(false);
-//        ui.extWidget->hide();
-//        ui.rootPwWidget->hide();
-//    }
-
-
-    //m_messageWidget = new KMessageWidget(this);
-    //m_messageWidget->hide();
-    //m_messageWidget->setMessageType(KMessageWidget::Warning);
-    //m_messageWidget->setWordWrap(true);
-    //ui.userNameLayout->insertWidget(0, m_messageWidget);
-
     m_passwordsMatch = m_passwordsEmpty = true;
     connect(ui.passLine, &QLineEdit::textChanged, this, &AddUserDialog::passwordChanged);
     connect(ui.confirmPassLine, &QLineEdit::textChanged, this, &AddUserDialog::passwordChanged);
 //    connect(ui.passLine, SIGNAL(textChanged(QString)), this, SLOT(updatePasswordStrengthBar(QString)));
 
-    connect(ui.userDetails, &QPushButton::clicked, this, &AddUserDialog::showDetails);
-
 //    connect(ui.nameLine, SIGNAL(textChanged(QString)), this, SLOT(testFields()));
 
-//    connect(ui.avatar, SIGNAL(clicked(bool)), this, SLOT(avatarClicked()));
-//    connect(ui.autoLoginCheckBox, SIGNAL(toggled(bool)), this, SLOT(autoLoginToggled()));
+    connect(ui.selectImageButton, &QPushButton::clicked, this, &AddUserDialog::avatarClicked);
 
     ui.dialogButtonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
     connect(ui.dialogButtonBox, SIGNAL(accepted()), this, SLOT(accept()));
     connect(ui.dialogButtonBox, SIGNAL(rejected()), this, SLOT(reject()));
-
-    //connect(m_avatarDialog, SIGNAL(setAvatar(QString)), this, SLOT(setAvatar(QString)));
 }
 
 AddUserDialog::~AddUserDialog() {}
@@ -166,7 +134,7 @@ void AddUserDialog::validateUsername(const QString& username) {
     if ( username.isEmpty() )
     {
         ui.labelUsernameError->clear();
-        //ui->labelUsername->clear();
+        ui.iconUsername->clear();
         m_validUsername = false;
     }
     else if ( username.length() > USERNAME_MAX_LENGTH )
@@ -185,7 +153,7 @@ void AddUserDialog::validateUsername(const QString& username) {
                                                                      CalamaresUtils::Original,
                                                                      ui.iconUsername->size() ) );
         ui.labelUsernameError->setText(
-            tr( "Your username contains invalid characters. Only lowercase letters and numbers are allowed." ) );
+            tr( "Only lowercase letters and numbers are allowed." ) );
 
         m_validUsername = false;
     }
@@ -225,11 +193,6 @@ void AddUserDialog::setAvatar(const QString& avatar_)
     //}
 }
 
-void AddUserDialog::showDetails()
-{
-    ui.extWidget->setVisible(!ui.extWidget->isVisible());
-}
-
 void AddUserDialog::updateValidityUi()
 {
     if (m_validUsername && !m_passwordsEmpty && m_passwordsMatch) {
@@ -239,39 +202,17 @@ void AddUserDialog::updateValidityUi()
     }
 }
 
-//    // user password
-//    if ((ui.passLine->text().isEmpty()) && (ui.confirmPassLine->text().isEmpty())) {
-//        passwordsEmpty = true;
-//    } else {
-//        if ((ui.passLine->text() == ui.confirmPassLine->text())) {
-//            ui.confirmPwCheck->setPixmap(QPixmap(":Images/images/green-check.png"));
-//            password = ui.passLine->text();
-//            passwordsMatch = true;
-//        } else {
-//            ui.confirmPwCheck->setPixmap(QPixmap());
-//            passwordsMatch = false;
-//        }
-//        passwordsEmpty = false;
-//    }
-
-
-
-//    login = ui.userNameLine->text();
-//    name = ui.nameLine->text();
-//    autoLogin = ui.autoLoginCheckBox->isChecked();
-//}
-
 void AddUserDialog::avatarClicked()
 {
-    //m_avatarDialog->show();
-    //m_avatarDialog->setGeometry(QStyle::alignedRect(Qt::LeftToRight, Qt::AlignCenter, m_avatarDialog->size(), qApp->desktop()->availableGeometry()));
-}
+    QFileDialog dlg( this );
+    dlg.setNameFilter(tr("Images (*.png *.xpm *.jpg)"));
+    dlg.setViewMode(QFileDialog::Detail);
+    dlg.setDirectory("/home");
 
-void AddUserDialog::autoLoginToggled()
-{
-//    autoLogin = ui.autoLoginCheckBox->isChecked();
-//    if (autoLogin)
-//        emit autoLoginToggled(number);
+    if ( dlg.exec() == QDialog::Accepted ) {
+        avatarFile = dlg.selectedFiles().at(0);
+        ui.avatarFileLine->setText(avatarFile);
+    }
 }
 
 void AddUserDialog::setLogin(const QString& login_)
