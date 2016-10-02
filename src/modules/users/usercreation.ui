@@ -103,7 +103,7 @@
      <property name="widgetResizable">
       <bool>true</bool>
      </property>
-     <widget class="QListView" name="usersListView">
+     <widget class="QTableView" name="usersView">
       <property name="geometry">
        <rect>
         <x>0</x>
@@ -113,7 +113,7 @@
        </rect>
       </property>
       <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+       <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
