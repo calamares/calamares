@@ -49,10 +49,63 @@ int UsersListModel::rowCount(const QModelIndex &parent) const {
     return m_currentUsers.size();
 }
 
+int UsersListModel::columnCount(const QModelIndex &parent) const {
+    return 4;
+}
+
+QVariant UsersListModel::headerData(int section, Qt::Orientation orientation, int role) const {
+    QVariant header;
+
+    if (role == Qt::DisplayRole && orientation == Qt::Horizontal) {
+        switch (section) {
+            case 0:
+                header = QVariant(tr("User name"));
+            break;
+
+            case 1:
+                header = QVariant(tr("Full name"));
+            break;
+
+            case 2:
+                header = QVariant(tr("Shell"));
+            break;
+
+            case 3:
+                header = QVariant(tr("Autologin?"));
+            break;
+        }
+    }
+
+    return header;
+}
+
 QVariant UsersListModel::data(const QModelIndex &index, int role) const {
     if (role == Qt::DisplayRole) {
         User* user = m_currentUsers.at( index.row() );
-        return QVariant( user->toString() );
+        QVariant data;
+
+        switch (index.column()) {
+            case 0:
+                data = QVariant( user->toString() );
+            break;
+
+            case 1:
+                data = QVariant( user->fullname );
+            break;
+
+            case 2:
+                data = QVariant( user->shell );
+            break;
+
+            case 3:
+                data = (user->autologin ? "yes" : "no");
+        }
+
+        return data;
+    }
+
+    if (role == Qt::TextAlignmentRole) {
+        return Qt::AlignCenter;
     }
 
     return QVariant();
@@ -100,8 +153,11 @@ UsersPage::UsersPage( QWidget* parent )
     // TODO: remove
     addUser("prova", "test", "test", false);
 
-    ui->usersListView->setModel(&m_userModel);
-    ui->usersListView->show();
+    ui->usersView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->usersView->setSelectionBehavior(QAbstractItemView::SelectRows);
+
+    ui->usersView->setModel(&m_userModel);
+    ui->usersView->show();
     CALAMARES_RETRANSLATE( ui->retranslateUi( this ); );
 }
 
@@ -124,7 +180,7 @@ UsersPage::addUserClicked() {
 
 void
 UsersPage::deleteUserClicked() {
-    QItemSelectionModel* selectionModel = ui->usersListView->selectionModel();
+    QItemSelectionModel* selectionModel = ui->usersView->selectionModel();
 
     if (!selectionModel->hasSelection()) {
         return;
@@ -140,7 +196,7 @@ UsersPage::deleteUserClicked() {
 
 void
 UsersPage::addUser(const QString &login, const QString &fullName, const QString &password, bool autologin) {
-    User* newUser = new User(login, fullName, QStringList());
+    User* newUser = new User(login, fullName, "/bin/bash", autologin);
     m_userModel.addUser(newUser);
 
     ui->hostname->setText( login + "-pc" );

@@ -35,8 +35,8 @@ class UserCreation;
 }
 
 struct User {
-    User(const QString& username, const QString& fullname, const QStringList& groups)
-        : username(username), fullname(fullname), groups(groups) {}
+    User(const QString& username, const QString& fullname, const QString& shell, bool autologin)
+        : username(username), fullname(fullname), shell(shell), autologin(autologin) {}
 
     QString toString() const {
         return username;
@@ -44,17 +44,20 @@ struct User {
 
     QString username;
     QString fullname;
-    QStringList groups;
+    QString shell;
+    bool autologin;
 };
 
-class UsersListModel : public QAbstractListModel {
+class UsersListModel : public QAbstractTableModel {
     Q_OBJECT
 
 public:
     virtual ~UsersListModel();
 
     int rowCount(const QModelIndex &parent = QModelIndex()) const Q_DECL_OVERRIDE;
+    int columnCount(const QModelIndex &parent) const Q_DECL_OVERRIDE;
     QVariant data(const QModelIndex &index, int role) const Q_DECL_OVERRIDE;
+    QVariant headerData(int section, Qt::Orientation orientation, int role) const Q_DECL_OVERRIDE;
     Qt::ItemFlags flags(const QModelIndex & /*index*/) const Q_DECL_OVERRIDE;
 
     void addUser(User *user);
