@@ -47,7 +47,7 @@ public:
     QString login;
     QString shell;
     QString password;
-    QString avatar;
+    QString avatarFile;
     QString name;
 
     bool autoLogin;
@@ -66,22 +66,14 @@ public slots:
 
 signals:
     void addUserClicked();
-    void autoLoginToggled(int);
 
 private slots:
-    void showDetails();
-
     void avatarClicked();
-    void autoLoginToggled();
-
     void passwordChanged();
-
     void updateValidityUi();
 
 private:
     Ui::AddUserDialog ui;
-    //AvatarDialog *m_avatarDialog;
-    //KMessageWidget *m_messageWidget;
     UsernameValidator *m_validator;
 
     bool m_validUsername;

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>712</width>
-    <height>371</height>
+    <height>383</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -58,7 +58,7 @@
       </property>
       <item>
        <layout class="QGridLayout" name="gridLayout">
-        <item row="0" column="3" rowspan="3">
+        <item row="0" column="2" rowspan="3">
          <widget class="QLabel" name="label_2">
           <property name="text">
            <string>Password: </string>
@@ -68,7 +68,7 @@
           </property>
          </widget>
         </item>
-        <item row="0" column="4" rowspan="4">
+        <item row="0" column="3" rowspan="4">
          <spacer name="horizontalSpacer_7">
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
@@ -84,20 +84,7 @@
           </property>
          </spacer>
         </item>
-        <item row="0" column="0" rowspan="4">
-         <spacer name="horizontalSpacer_4">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item row="3" column="3">
+        <item row="3" column="2">
          <widget class="QLabel" name="label_3">
           <property name="text">
            <string>Confirm Password:</string>
@@ -107,7 +94,7 @@
           </property>
          </widget>
         </item>
-        <item row="1" column="1" rowspan="4">
+        <item row="1" column="0" rowspan="4">
          <layout class="QVBoxLayout" name="userNameLayout">
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout">
@@ -118,9 +105,22 @@
              <number>5</number>
             </property>
             <item>
+             <spacer name="verticalSpacer_2">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>45</width>
+                <height>40</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
              <widget class="QLabel" name="label">
               <property name="text">
-               <string>User name</string>
+               <string>User name:</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -174,7 +174,7 @@
           </item>
          </layout>
         </item>
-        <item row="3" column="5" colspan="2">
+        <item row="3" column="4" colspan="2">
          <widget class="QLineEdit" name="confirmPassLine">
           <property name="minimumSize">
            <size>
@@ -184,7 +184,7 @@
           </property>
          </widget>
         </item>
-        <item row="0" column="5" rowspan="3" colspan="2">
+        <item row="0" column="4" rowspan="3" colspan="2">
          <widget class="QLineEdit" name="passLine">
           <property name="minimumSize">
            <size>
@@ -194,7 +194,7 @@
           </property>
          </widget>
         </item>
-        <item row="0" column="7" rowspan="4" colspan="2">
+        <item row="0" column="6" rowspan="4" colspan="2">
          <widget class="QLabel" name="confirmPwCheck">
           <property name="minimumSize">
            <size>
@@ -213,63 +213,7 @@
           </property>
          </widget>
         </item>
-        <item row="0" column="11" rowspan="4">
-         <spacer name="horizontalSpacer_5">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item row="0" column="9" rowspan="4">
-         <spacer name="horizontalSpacer_3">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeType">
-           <enum>QSizePolicy::Fixed</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item row="3" column="10">
-         <widget class="QPushButton" name="userDetails">
-          <property name="minimumSize">
-           <size>
-            <width>32</width>
-            <height>32</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>32</width>
-            <height>32</height>
-           </size>
-          </property>
-          <property name="toolTip">
-           <string>Include more information about this user.</string>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-          <property name="icon">
-           <iconset resource="../netinstall/netinstall.qrc">
-            <normaloff>:/images/arrow-up.png</normaloff>
-            <activeon>:/images/arrow-down.png</activeon>:/images/arrow-up.png</iconset>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="2" rowspan="4">
+        <item row="0" column="1" rowspan="4">
          <spacer name="horizontalSpacer">
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
@@ -313,34 +257,7 @@
       <item>
        <widget class="QWidget" name="extWidget" native="true">
         <layout class="QGridLayout" name="gridLayout_2">
-         <item row="1" column="7">
-          <widget class="QComboBox" name="loginShellSelection"/>
-         </item>
-         <item row="1" column="2">
-          <widget class="QLabel" name="label_4">
-           <property name="text">
-            <string>Name: </string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="3" colspan="2">
-          <widget class="QLineEdit" name="nameLine">
-           <property name="maximumSize">
-            <size>
-             <width>180</width>
-             <height>16777215</height>
-            </size>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="6">
-          <widget class="QLabel" name="label_5">
-           <property name="text">
-            <string>Login shell: </string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="3" colspan="2">
+         <item row="3" column="1">
           <widget class="QCheckBox" name="rootUsesUserPwCheckBox">
            <property name="text">
             <string>Select to use the above password
@@ -348,60 +265,10 @@ as the Administrator password</string>
            </property>
           </widget>
          </item>
-         <item row="2" column="3" colspan="2">
-          <widget class="QCheckBox" name="autoLoginCheckBox">
-           <property name="text">
-            <string>Login Automatically</string>
-           </property>
-          </widget>
+         <item row="1" column="4" colspan="3">
+          <widget class="QComboBox" name="loginShellSelection"/>
          </item>
-         <item row="4" column="7">
-          <widget class="QDialogButtonBox" name="dialogButtonBox">
-           <property name="standardButtons">
-            <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="5">
-          <widget class="Line" name="line_3">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="0" colspan="7">
-          <widget class="QWidget" name="rootPwWidget" native="true">
-           <layout class="QGridLayout" name="gridLayout_4">
-            <item row="0" column="0">
-             <spacer name="horizontalSpacer_9">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item row="0" column="1">
-             <spacer name="horizontalSpacer_11">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-           </layout>
-          </widget>
-         </item>
-         <item row="0" column="2">
+         <item row="0" column="0">
           <widget class="QLabel" name="label_6">
            <property name="font">
             <font>
@@ -414,7 +281,74 @@ as the Administrator password</string>
            </property>
           </widget>
          </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="label_4">
+           <property name="text">
+            <string>              Full name: </string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QCheckBox" name="autoLoginCheckBox">
+           <property name="text">
+            <string>Login Automatically</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="0" colspan="7">
+          <widget class="QWidget" name="avatarSelectionWidget" native="true">
+           <layout class="QGridLayout" name="gridLayout_4">
+            <item row="0" column="0">
+             <widget class="QLabel" name="label_7">
+              <property name="font">
+               <font>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Avatar selection</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="2">
+             <widget class="QLineEdit" name="avatarFileLine"/>
+            </item>
+            <item row="1" column="0" colspan="2">
+             <widget class="QPushButton" name="selectImageButton">
+              <property name="text">
+               <string>Image file...</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item row="1" column="3">
+          <widget class="QLabel" name="label_5">
+           <property name="text">
+            <string>Login shell: </string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLineEdit" name="nameLine">
+           <property name="maximumSize">
+            <size>
+             <width>180</width>
+             <height>16777215</height>
+            </size>
+           </property>
+          </widget>
+         </item>
         </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QDialogButtonBox" name="dialogButtonBox">
+        <property name="standardButtons">
+         <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+        </property>
        </widget>
       </item>
       <item>
@@ -436,34 +370,13 @@ as the Administrator password</string>
      </layout>
     </widget>
    </item>
-   <item>
-    <spacer name="verticalSpacer_2">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeType">
-      <enum>QSizePolicy::Expanding</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>1</width>
-       <height>1</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
   </layout>
  </widget>
  <tabstops>
   <tabstop>userNameLine</tabstop>
   <tabstop>passLine</tabstop>
   <tabstop>confirmPassLine</tabstop>
-  <tabstop>nameLine</tabstop>
-  <tabstop>autoLoginCheckBox</tabstop>
-  <tabstop>rootUsesUserPwCheckBox</tabstop>
  </tabstops>
- <resources>
-  <include location="../netinstall/netinstall.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>
