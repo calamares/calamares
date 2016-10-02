@@ -15,6 +15,7 @@ Main:
 * Compiler with C++11 support: GCC >= 4.9.0 or Clang >= 3.5.1
 * CMake >= 2.8.12
 * Qt >= 5.3
+ * Note: this changes if you compile the netinstall module, see list below.
 * yaml-cpp >= 0.5.1
 * Python >= 3.3
 * Boost.Python >= 1.55.0
@@ -35,6 +36,8 @@ Modules:
 * unpackfs:
  * squashfs-tools
  * rsync
+* netinstall:
+ * Qt >= 5.6
 
 ### Building
 
