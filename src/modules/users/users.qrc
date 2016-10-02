@@ -2,5 +2,7 @@
     <qresource prefix="/">
         <file>images/invalid.png</file>
         <file>images/valid.png</file>
+        <file>images/arrow-down.png</file>
+        <file>images/arrow-up.png</file>
     </qresource>
 </RCC>

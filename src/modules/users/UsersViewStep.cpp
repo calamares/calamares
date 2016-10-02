@@ -165,5 +165,10 @@ UsersViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     {
         m_widget->setReusePasswordDefault( configurationMap.value( "doReusePassword" ).toBool() );
     }
-}
 
+    if ( configurationMap.contains( "availableShells" ) &&
+         configurationMap.value( "availableShells" ).type() == QVariant::String )
+    {
+        m_widget->setAvailableShells( configurationMap.value( "availableShells" ).toString().split(",") );
+    }
+}

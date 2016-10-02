@@ -112,7 +112,7 @@ UsersPage::~UsersPage()
 
 void
 UsersPage::addUserClicked() {
-    QPointer<AddUserDialog> dlg = new AddUserDialog( this );
+    QPointer<AddUserDialog> dlg = new AddUserDialog( m_availableShells, this );
 
     if ( dlg->exec() == QDialog::Accepted ) {
         // TODO: put groups and avatar.
@@ -149,15 +149,8 @@ UsersPage::addUser(const QString &login, const QString &fullName, const QString 
 bool
 UsersPage::isReady()
 {
+    // TODO: look at hostname, readyRootPassword, and at least one user should exist.
     return true;
-//    bool readyFields = m_readyFullName &&
-//                       m_readyHostname &&
-//                       m_readyPassword &&
-//                       m_readyUsername;
-//    if ( !m_writeRootPassword || ui->checkBoxReusePassword->isChecked() )
-//        return readyFields;
-
-//    return readyFields && m_readyRootPassword;
 }
 
 
@@ -490,4 +483,8 @@ UsersPage::setReusePasswordDefault( bool checked )
 {
 //    ui->checkBoxReusePassword->setChecked( checked );
 //    emit checkReady( isReady() );
+}
+
+void UsersPage::setAvailableShells(const QStringList &shells) {
+    m_availableShells = shells;
 }
