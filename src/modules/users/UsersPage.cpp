@@ -259,7 +259,9 @@ UsersPage::createJobs( const QStringList& defaultGroupsList )
 void
 UsersPage::onActivate()
 {
-    addUserClicked();
+    if (m_userModel.rowCount() == 0) {
+        addUserClicked();
+    }
 }
 
 
