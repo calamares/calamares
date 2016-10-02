@@ -41,10 +41,11 @@ class AddUserDialog : public QDialog
     Q_OBJECT
 
 public:
-    AddUserDialog(QWidget *parent = 0);
+    AddUserDialog(const QStringList &, QWidget *parent = 0);
     virtual ~AddUserDialog();
 
     QString login;
+    QString shell;
     QString password;
     QString avatar;
     QString name;
@@ -52,20 +53,16 @@ public:
     bool autoLogin;
     bool useUserPw;
 
-    bool validUsername;
-    bool passwordsMatch;
-    bool passwordsEmpty;
-
     void validateUsername(const QString&);
 
 public slots:
+    void accept() override;
+
     void setLogin(const QString&);
     void setPassword(const QString&);
     void setAvatar(const QString&);
     void setName(const QString&);
     void setAutoLogin(const QString&);
-    void showUsernameWarning(const QString&);
-    void hideUsernameWarning();
 
 signals:
     void addUserClicked();
@@ -80,13 +77,16 @@ private slots:
     void passwordChanged();
 
     void updateValidityUi();
-    void updatePasswordStrengthBar(const QString&);
 
 private:
     Ui::AddUserDialog ui;
     //AvatarDialog *m_avatarDialog;
     //KMessageWidget *m_messageWidget;
     UsernameValidator *m_validator;
+
+    bool m_validUsername;
+    bool m_passwordsMatch;
+    bool m_passwordsEmpty;
 
     const QRegExp USERNAME_RX = QRegExp( "^[a-z_][a-z0-9_-]*[$]?$" );
     const int USERNAME_MAX_LENGTH = 31;

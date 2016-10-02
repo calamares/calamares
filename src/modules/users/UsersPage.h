@@ -82,6 +82,7 @@ public:
     void setWriteRootPassword( bool show );
     void setAutologinDefault( bool checked );
     void setReusePasswordDefault( bool checked );
+    void setAvailableShells( const QStringList& shells);
 
 protected slots:
     void onFullNameTextEdited( const QString& );
@@ -118,6 +119,7 @@ private:
     bool m_customHostname;
     bool m_readyPassword;
     bool m_readyRootPassword;
+    QStringList m_availableShells;
 
     bool m_writeRootPassword;
 };

@@ -66,7 +66,7 @@ QValidator::State UsernameValidator::validate(QString& input, int& pos) const
         } else if (lastchar.isSpace()) {
             emit invalidSymbolEntered(tr("Usernames can not contain spaces."));
         } else {
-            //emit invalidSymbolEntered(tr("%1 is not a valid character", lastchar));
+            //emit invalidSymbolEntered(tr("%1 is not a valid character", QString(lastchar)));
         }
         fixup(input);
         state = QRegExpValidator::validate(input, pos);
@@ -83,7 +83,7 @@ QValidator::State UsernameValidator::validate(QString& input, int& pos) const
 
 
 
-AddUserDialog::AddUserDialog(QWidget* parent): QDialog(parent)
+AddUserDialog::AddUserDialog(const QStringList& shells, QWidget* parent): QDialog(parent)
 {
     ui.setupUi(this);
 
@@ -91,11 +91,10 @@ AddUserDialog::AddUserDialog(QWidget* parent): QDialog(parent)
     ui.confirmPassLine->setEchoMode(QLineEdit::Password);
     ui.labelUsernameError->setFont( QFont("Arial", 10) );
 
-    //don't use character classes, Qt is unicode aware, but useradd is not
-    QRegExp validUsername("[a-z_][a-z0-9\\-_]{0,31}");  //this is the regular expression which is accepted by the useradd command
-    UsernameValidator *m_validator = new UsernameValidator(validUsername);
-    ui.userNameLine->setValidator(m_validator);
+    ui.loginShellSelection->setAutoCompletion(true);
+    ui.loginShellSelection->addItems(shells);
 
+    //don't use character classes, Qt is unicode aware, but useradd is not
     connect(ui.userNameLine, &QLineEdit::textEdited, this,
             &AddUserDialog::validateUsername);
 
@@ -127,7 +126,7 @@ AddUserDialog::AddUserDialog(QWidget* parent): QDialog(parent)
     //m_messageWidget->setWordWrap(true);
     //ui.userNameLayout->insertWidget(0, m_messageWidget);
 
-    passwordsMatch = passwordsEmpty = true;
+    m_passwordsMatch = m_passwordsEmpty = true;
     connect(ui.passLine, &QLineEdit::textChanged, this, &AddUserDialog::passwordChanged);
     connect(ui.confirmPassLine, &QLineEdit::textChanged, this, &AddUserDialog::passwordChanged);
 //    connect(ui.passLine, SIGNAL(textChanged(QString)), this, SLOT(updatePasswordStrengthBar(QString)));
@@ -148,6 +147,17 @@ AddUserDialog::AddUserDialog(QWidget* parent): QDialog(parent)
 
 AddUserDialog::~AddUserDialog() {}
 
+void AddUserDialog::accept() {
+    login = ui.userNameLine->text();
+    password = ui.passLine->text();
+    shell = ui.loginShellSelection->currentText();
+
+    autoLogin = ui.autoLoginCheckBox->isEnabled();
+    useUserPw = ui.rootUsesUserPwCheckBox->isEnabled();
+
+    QDialog::accept();
+}
+
 void AddUserDialog::validateUsername(const QString& username) {
     QRegExp rx( USERNAME_RX );
     QRegExpValidator val( rx );
@@ -157,7 +167,7 @@ void AddUserDialog::validateUsername(const QString& username) {
     {
         ui.labelUsernameError->clear();
         //ui->labelUsername->clear();
-        validUsername = false;
+        m_validUsername = false;
     }
     else if ( username.length() > USERNAME_MAX_LENGTH )
     {
@@ -167,7 +177,7 @@ void AddUserDialog::validateUsername(const QString& username) {
         ui.labelUsernameError->setText(
             tr( "Your username is too long." ) );
 
-        validUsername = false;
+        m_validUsername = false;
     }
     else if ( val.validate( (QString &)username, pos ) == QValidator::Invalid )
     {
@@ -177,26 +187,24 @@ void AddUserDialog::validateUsername(const QString& username) {
         ui.labelUsernameError->setText(
             tr( "Your username contains invalid characters. Only lowercase letters and numbers are allowed." ) );
 
-        validUsername = false;
+        m_validUsername = false;
     }
     else {
         ui.iconUsername->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::Yes,
                                                                      CalamaresUtils::Original,
                                                                      ui.iconUsername->size() ) );
         ui.labelUsernameError->setText("Username valid.");
-        validUsername = true;
+        m_validUsername = true;
     }
 
-    login = username;
     updateValidityUi();
 }
 
 void AddUserDialog::passwordChanged() {
-    password = ui.passLine->text();
-    passwordsMatch = (password == ui.confirmPassLine->text());
-    passwordsEmpty = (password.length() == 0);
+    m_passwordsMatch = (ui.passLine->text() == ui.confirmPassLine->text());
+    m_passwordsEmpty = (ui.passLine->text().length() == 0);
 
-    if (passwordsMatch && !passwordsEmpty) {
+    if (m_passwordsMatch && !m_passwordsEmpty) {
         ui.confirmPwCheck->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::Yes,
                                                                      CalamaresUtils::Original,
                                                                      ui.confirmPwCheck->size()) );
@@ -224,7 +232,7 @@ void AddUserDialog::showDetails()
 
 void AddUserDialog::updateValidityUi()
 {
-    if (validUsername && !passwordsEmpty && passwordsMatch) {
+    if (m_validUsername && !m_passwordsEmpty && m_passwordsMatch) {
         ui.dialogButtonBox->button(QDialogButtonBox::Ok)->setEnabled(true);
     } else {
         ui.dialogButtonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
@@ -257,43 +265,6 @@ void AddUserDialog::avatarClicked()
 {
     //m_avatarDialog->show();
     //m_avatarDialog->setGeometry(QStyle::alignedRect(Qt::LeftToRight, Qt::AlignCenter, m_avatarDialog->size(), qApp->desktop()->availableGeometry()));
-}
-
-void AddUserDialog::updatePasswordStrengthBar(const QString& newpass_)
-{
-    // This code uses libpwquality to check the password's strength each time it changes and uses a QProgressBar to indicate how strong it is
-    // TODO: Maybe abstract libpwquality away, writing a wrapper with a Qtish API?
-    QByteArray byteArray = newpass_.toUtf8();
-    const char* cPassString = byteArray.constData();
-    void* auxerror;
-    //int pwstrength = pwquality_check(pwquality_default_settings(), cPassString, NULL, NULL, &auxerror);
-    int pwstrength = 0;
-    if (pwstrength < 0) {
-        //const char* cAuxErrorInfo =  pwquality_strerror(NULL, 0, pwstrength, auxerror);
-        ui.passStrengthProgBar->reset();
-        ui.pwERRORLabel->setText(QString::fromUtf8("error"));  // cAuxErrorInfo.
-        ui.pwERRORLabel->show();
-    } else {
-        ui.passStrengthProgBar->setValue(pwstrength);
-        ui.pwERRORLabel->hide();
-    }
-}
-
-
-void AddUserDialog::showUsernameWarning(const QString& warning_)
-{
-//    if (m_messageWidget->isVisible()) {
-//        m_messageWidget->hide(); //else the GUI will look awkward when the text changes
-//    }
-//    m_messageWidget->setText(warning_);
-//    m_messageWidget->animatedShow();
-}
-
-void AddUserDialog::hideUsernameWarning()
-{
-//    if(m_messageWidget->isVisible()) {
-//        m_messageWidget->animatedHide();
-//    }
 }
 
 void AddUserDialog::autoLoginToggled()
