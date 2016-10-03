@@ -189,7 +189,8 @@ Helper::Helper( QObject* parent )
     // Let's make extra sure we only call Py_Initialize once
     if ( !s_instance )
     {
-        Py_Initialize();
+        if ( !Py_IsInitialized() )
+            Py_Initialize();
 
         m_mainModule = bp::import( "__main__" );
         m_mainNamespace = m_mainModule.attr( "__dict__" );
