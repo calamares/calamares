@@ -20,8 +20,9 @@
 
 #include "utils/Logger.h"
 #include "viewpages/ViewStep.h"
+#include "viewpages/PythonQtViewStep.h"
 #include "ViewManager.h"
-#include "PythonQtConsoleViewStep.h"
+#include "CalamaresConfig.h"
 
 #include <PythonQt.h>
 #include <extensions/PythonQt_QtAll/PythonQt_QtAll.h>
@@ -52,39 +53,85 @@ PythonQtViewModule::loadSelf()
     {
         if ( PythonQt::self() == nullptr )
         {
-            PythonQt::init();
+            if ( Py_IsInitialized() )
+                PythonQt::init( PythonQt::IgnoreSiteModule |
+                                PythonQt::RedirectStdOut |
+                                PythonQt::PythonAlreadyInitialized );
+            else
+                PythonQt::init();
+
             PythonQt_QtAll::init();
+            cDebug() << "Initializing PythonQt bindings."
+                     << "This should only happen once.";
+
+            PythonQt::self()->registerClass( &PythonQtViewStep::staticMetaObject,
+                                             "calamares" );
+
+            QObject::connect( PythonQt::self(), &PythonQt::pythonStdOut,
+                     []( const QString& message )
+            {
+                cDebug() << "PythonQt OUT>" << message;
+            } );
+            QObject::connect( PythonQt::self(), &PythonQt::pythonStdErr,
+                     []( const QString& message )
+            {
+                cDebug() << "PythonQt ERR>" << message;
+            } );
+
         }
 
+        QDir workingDir( m_workingPath );
+        if ( !workingDir.exists() )
+        {
+            cDebug() << "Invalid working directory"
+                     << m_workingPath
+                     << "for module"
+                     << name();
+            return;
+        }
+
+        QString fullPath = workingDir.absoluteFilePath( m_scriptFileName );
+        QFileInfo scriptFileInfo( fullPath );
+        if ( !scriptFileInfo.isReadable() )
+        {
+            cDebug() << "Invalid main script file path"
+                     << fullPath
+                     << "for module"
+                     << name();
+            return;
+        }
+
+        // Construct empty Python module with the given name
         PythonQtObjectPtr cxt =
                 PythonQt::self()->
-                createModuleFromFile( name(),
-                                      m_workingPath +
-                                      QDir::separator() +
-                                      m_scriptFileName );
-        cDebug() << "Creating viewstep for script at"
-                 << m_workingPath +
-                    QDir::separator() +
-                    m_scriptFileName;
+                createModuleFromScript( name() );
+        if ( cxt.isNull() )
+        {
+            cDebug() << "Cannot load PythonQt context from file"
+                     << fullPath
+                     << "for module"
+                     << name();
+            return;
+        }
 
-        m_viewStep = new PythonQtConsoleViewStep( cxt );
+        QString calamares_module_annotation =
+                "_calamares_module_typename = 'foo'\n"
+                "def calamares_module(viewmodule_type):\n"
+                "    global _calamares_module_typename\n"
+                "    _calamares_module_typename = viewmodule_type.__name__\n"
+                "    return viewmodule_type\n";
 
-//        m_viewStep = reinterpret_cast< ViewStep* >(
-//                         PythonQt::self()->
-//                         lookupObject( cxt,
-//                                       "_calamares_module" ).object() );
+        // Load in the decorator
+        PythonQt::self()->evalScript( cxt, calamares_module_annotation );
 
-//        if ( !m_viewStep )
-//        {
-//            cDebug() << Q_FUNC_INFO << m_loader->errorString();
-//            return;
-//        }
+        // Load the module
+        PythonQt::self()->evalFile( cxt, fullPath );
 
+        m_viewStep = new PythonQtViewStep( cxt );
 
-//        cDebug() << "PythonQtViewModule loading self for instance" << instanceKey()
-//                 << "\nPythonQtViewModule at address" << this
-//                 << "\nCalamares::PluginFactory at address" << pf
-//                 << "\nViewStep at address" << m_viewStep;
+        cDebug() << "PythonQtViewModule loading self for instance" << instanceKey()
+                 << "\nPythonQtViewModule at address" << this
+                 << "\nViewStep at address" << m_viewStep;
 
         m_viewStep->setModuleInstanceKey( instanceKey() );
         m_viewStep->setConfigurationMap( m_configurationMap );
