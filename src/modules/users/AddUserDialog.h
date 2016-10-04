@@ -41,7 +41,12 @@ class AddUserDialog : public QDialog
     Q_OBJECT
 
 public:
-    AddUserDialog(const QStringList &, QWidget *parent = 0);
+    /*
+     * - existingUsers: username of the users that were already created.
+     * This avoids us creating a second one with the same name.
+     * - shells: the available login shells for users.
+     */
+    AddUserDialog(const QStringList &existingUsers, const QStringList &shells, QWidget *parent = 0);
     virtual ~AddUserDialog();
 
     QString login;
@@ -76,6 +81,7 @@ private:
     Ui::AddUserDialog ui;
     UsernameValidator *m_validator;
 
+    QStringList m_existingUsers;
     bool m_validUsername;
     bool m_passwordsMatch;
     bool m_passwordsEmpty;
