@@ -18,30 +18,44 @@
 #   You should have received a copy of the GNU General Public License
 #   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
 
-import os
-from time import gmtime, strftime, sleep
+import platform
 
 from PythonQt.QtGui import *
+from PythonQt.calamares import *
 
+# Example Python ViewModule.
+# A Python ViewModule is a Python program which defines a ViewStep class.
+# This class must be marked with the @calamares_module decorator. A
+# ViewModule may define other classes, but only one may be decorated with
+# @calamares_module. Such a class must conform to the Calamares ViewStep
+# interface and functions as the entry point of the module.
+# A ViewStep manages one or more "wizard pages" through methods like
+# back/next, and reports its status through isNextEnabled/isBackEnabled/
+# isAtBeginning/isAtEnd. The whole UI, including all the pages, must be
+# exposed as a single QWidget, returned by the widget function.
+@calamares_module
+class DummyPythonQtViewStep():
+    def __init__(self):
+        self.main_widget = QLabel()
 
-def run():
-    """ Example Python jobmodule.
+        accumulator = "\nCalamares+PythonQt running embedded Python " +\
+                      platform.python_version()
+        self.main_widget.text = accumulator
 
-    A Python jobmodule is a Python program which imports libcalamares and
-    has a function run() as entry point. run() must return None if everything
-    went well, or a tuple (str,str) with an error message and description
-    if something went wrong.
+    def prettyName(self):
+        return "Dummy PythonQt ViewStep"
 
-    :return:
-    """
-    print("foo bar quux")
-    os.system("/bin/sh -c \"touch ~/calamares-dummypythonqt\"")
-    accumulator = strftime("%Y-%m-%d %H:%M:%S", gmtime()) + "\n"
+    def isNextEnabled(self):
+        return True
 
-    box = QLabel(accumulator)
-    box.show()
-    print(accumulator)
+    def isBackEnabled(self):
+        return True
 
-    # To indicate an error, return a tuple of:
-    # (message, detailed-error-message)
-    return None
+    def isAtBeginning(self):
+        return True
+
+    def isAtEnd(self):
+        return True
+
+    def widget(self):
+        return self.main_widget
