@@ -228,6 +228,38 @@ Module::location() const
 }
 
 
+QString
+Module::typeString() const
+{
+    switch ( type() )
+    {
+    case Job:
+        return "Job Module";
+    case View:
+        return "View Module";
+    }
+    return QString();
+}
+
+
+QString
+Module::interfaceString() const
+{
+    switch ( interface() )
+    {
+    case ProcessInterface:
+        return "External process";
+    case PythonInterface:
+        return "Python (Boost.Python)";
+    case PythonQtInterface:
+        return "Python (experimental)";
+    case QtPluginInterface:
+        return "Qt Plugin";
+    }
+    return QString();
+}
+
+
 bool
 Module::isLoaded() const
 {
