@@ -44,7 +44,6 @@ if( WITH_PYTHONQT )
     include_directories(${PYTHONQT_INCLUDE_DIR})
 
     list( APPEND ${CALAMARESUI_LIBRARY_TARGET}_SOURCES
-        PythonQtConsoleViewStep.cpp
         modulesystem/PythonQtViewModule.cpp
         viewpages/PythonQtViewStep.cpp
     )
