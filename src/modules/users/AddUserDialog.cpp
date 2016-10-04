@@ -84,7 +84,9 @@ QValidator::State UsernameValidator::validate(QString& input, int& pos) const
 
 
 
-AddUserDialog::AddUserDialog(const QStringList& shells, QWidget* parent): QDialog(parent)
+AddUserDialog::AddUserDialog(const QStringList& existingUsers, const QStringList& shells, QWidget* parent)
+    : QDialog(parent),
+      m_existingUsers(existingUsers)
 {
     ui.setupUi(this);
 
@@ -154,6 +156,15 @@ void AddUserDialog::validateUsername(const QString& username) {
                                                                      ui.iconUsername->size() ) );
         ui.labelUsernameError->setText(
             tr( "Only lowercase letters and numbers are allowed." ) );
+
+        m_validUsername = false;
+    }
+    else if ( m_existingUsers.contains(username) ) {
+        ui.iconUsername->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::No,
+                                                                     CalamaresUtils::Original,
+                                                                     ui.iconUsername->size() ) );
+        ui.labelUsernameError->setText(
+            tr( "This username was already created." ) );
 
         m_validUsername = false;
     }

@@ -168,7 +168,12 @@ UsersPage::~UsersPage()
 
 void
 UsersPage::addUserClicked() {
-    QPointer<AddUserDialog> dlg = new AddUserDialog( m_availableShells, this );
+    QStringList existingUsers;
+    for (const User* user : m_userModel.getUsers()) {
+        existingUsers.append( user->username );
+    }
+
+    QPointer<AddUserDialog> dlg = new AddUserDialog( existingUsers, m_availableShells, this );
 
     if ( dlg->exec() == QDialog::Accepted ) {
         // TODO: put groups and avatar.
