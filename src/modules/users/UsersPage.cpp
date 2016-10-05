@@ -138,17 +138,14 @@ QList<User *> UsersListModel::getUsers() const {
 UsersPage::UsersPage( QWidget* parent )
     : QWidget( parent )
     , ui( new Ui::UserCreation )
-    , m_readyFullName( false )
-    , m_readyUsername( false )
     , m_readyHostname( false )
-    , m_readyPassword( false )
     , m_readyRootPassword( false )
-    , m_writeRootPassword( true )
+    , m_haveRootPassword( true )
 {
     ui->setupUi( this );
 
-    connect(ui->addUser, SIGNAL(clicked(bool)), this, SLOT(addUserClicked()));
-    connect(ui->deleteUser, SIGNAL(clicked(bool)), this, SLOT(deleteUserClicked()));
+    connect(ui->addUser, &QPushButton::clicked, this, &UsersPage::addUserClicked);
+    connect(ui->deleteUser, &QPushButton::clicked, this, &UsersPage::deleteUserClicked);
 
     connect(ui->hostname, &QLineEdit::textChanged, this, &UsersPage::onHostnameTextEdited);
 
@@ -157,6 +154,10 @@ UsersPage::UsersPage( QWidget* parent )
         ui->confirmRootPw->show();
         ui->labelRootPw->show();
         ui->labelConfirmRootPw->show();
+
+        connect(ui->rootPw, &QLineEdit::textChanged, this, &UsersPage::onRootPasswordTextChanged);
+        connect(ui->confirmRootPw, &QLineEdit::textChanged, this, &UsersPage::onRootPasswordTextChanged);
+
     } else {
         ui->rootPw->hide();
         ui->confirmRootPw->hide();
@@ -224,13 +225,16 @@ UsersPage::addUser(const QString &login, const QString &fullName, const QString 
     m_userModel.addUser(newUser);
 
     ui->hostname->setText( login + "-pc" );
+
+    emit checkReady( isReady() );
 }
 
 bool
 UsersPage::isReady()
 {
-    // TODO: look at hostname, readyRootPassword, and at least one user should exist.
-    return true;
+    return (m_readyHostname &&
+            m_userModel.getUsers().size() > 0 &&
+            (!m_haveRootPassword || m_readyRootPassword));
 }
 
 
@@ -281,52 +285,11 @@ UsersPage::createJobs( const QStringList& defaultGroupsList )
 void
 UsersPage::onActivate()
 {
+    emit checkReady( isReady() );
+
     if (m_userModel.rowCount() == 0) {
         addUserClicked();
     }
-}
-
-void
-UsersPage::fillSuggestions()
-{
-//    QString fullName = ui->textBoxFullName->text();
-//    QRegExp rx( "[^a-zA-Z0-9 ]", Qt::CaseInsensitive );
-//    QString cleanName = CalamaresUtils::removeDiacritics( fullName )
-//                        .toLower().replace( rx, " " ).simplified();
-//    QStringList cleanParts = cleanName.split( ' ' );
-
-//    if ( !m_customUsername )
-//    {
-//        if ( !cleanParts.isEmpty() && !cleanParts.first().isEmpty() )
-//        {
-//            QString usernameSuggestion = cleanParts.first();
-//            for ( int i = 1; i < cleanParts.length(); ++i )
-//            {
-//                if ( !cleanParts.value( i ).isEmpty() )
-//                    usernameSuggestion.append( cleanParts.value( i ).at( 0 ) );
-//            }
-//            if ( USERNAME_RX.indexIn( usernameSuggestion ) != -1 )
-//            {
-//                ui->textBoxUsername->setText( usernameSuggestion );
-//                validateUsernameText( usernameSuggestion );
-//                m_customUsername = false;
-//            }
-//        }
-//    }
-
-//    if ( !m_customHostname )
-//    {
-//        if ( !cleanParts.isEmpty() && !cleanParts.first().isEmpty() )
-//        {
-//            QString hostnameSuggestion = QString( "%1-pc" ).arg( cleanParts.first() );
-//            if ( HOSTNAME_RX.indexIn( hostnameSuggestion ) != -1 )
-//            {
-//                ui->textBoxHostname->setText( hostnameSuggestion );
-//                validateHostnameText( hostnameSuggestion );
-//                m_customHostname = false;
-//            }
-//        }
-//    }
 }
 
 void
@@ -394,70 +357,36 @@ UsersPage::validateHostnameText( const QString& textRef )
     emit checkReady( isReady() );
 }
 
-
 void
-UsersPage::onPasswordTextChanged( const QString& )
+UsersPage::onRootPasswordTextChanged( const QString& textRef )
 {
-//    QString pw1 = ui->textBoxUserPassword->text();
-//    QString pw2 = ui->textBoxUserVerifiedPassword->text();
+    QString pw1 = ui->rootPw->text();
+    QString pw2 = ui->confirmRootPw->text();
 
-//    if ( pw1.isEmpty() && pw2.isEmpty() )
-//    {
-//        ui->labelUserPasswordError->clear();
-//        ui->labelUserPassword->clear();
-//        m_readyPassword = false;
-//    }
-//    else if ( pw1 != pw2 )
-//    {
-//        ui->labelUserPasswordError->setText( tr( "Your passwords do not match!" ) );
-//        ui->labelUserPassword->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::No,
-//                                                                         CalamaresUtils::Original,
-//                                                                         ui->labelUserPassword->size() ) );
-//        m_readyPassword = false;
-//    }
-//    else
-//    {
-//        ui->labelUserPasswordError->clear();
-//        ui->labelUserPassword->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::Yes,
-//                                                                         CalamaresUtils::Original,
-//                                                                         ui->labelUserPassword->size() ) );
-//        m_readyPassword = true;
-//    }
+    if ( pw1.isEmpty() && pw2.isEmpty() )
+    {
+        ui->labelRootPwError->clear();
+        ui->labelRootPwIcon->clear();
+        m_readyRootPassword = false;
+    }
+    else if ( pw1 != pw2 )
+    {
+        ui->labelRootPwError->setText( tr( "Your passwords do not match!" ) );
+        ui->labelRootPwIcon->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::No,
+                                                                         CalamaresUtils::Original,
+                                                                         ui->labelRootPwIcon->size() ) );
+        m_readyRootPassword = false;
+    }
+    else
+    {
+        ui->labelRootPwError->clear();
+        ui->labelRootPwIcon->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::Yes,
+                                                                         CalamaresUtils::Original,
+                                                                         ui->labelRootPwIcon->size() ) );
+        m_readyRootPassword = true;
+    }
 
-//    emit checkReady( isReady() );
-}
-
-
-void
-UsersPage::onRootPasswordTextChanged( const QString& )
-{
-//    QString pw1 = ui->textBoxRootPassword->text();
-//    QString pw2 = ui->textBoxVerifiedRootPassword->text();
-
-//    if ( pw1.isEmpty() && pw2.isEmpty() )
-//    {
-//        ui->labelRootPasswordError->clear();
-//        ui->labelRootPassword->clear();
-//        m_readyRootPassword = false;
-//    }
-//    else if ( pw1 != pw2 )
-//    {
-//        ui->labelRootPasswordError->setText( tr( "Your passwords do not match!" ) );
-//        ui->labelRootPassword->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::No,
-//                                                                         CalamaresUtils::Original,
-//                                                                         ui->labelRootPassword->size() ) );
-//        m_readyRootPassword = false;
-//    }
-//    else
-//    {
-//        ui->labelRootPasswordError->clear();
-//        ui->labelRootPassword->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::Yes,
-//                                                                         CalamaresUtils::Original,
-//                                                                         ui->labelRootPassword->size() ) );
-//        m_readyRootPassword = true;
-//    }
-
-//    emit checkReady( isReady() );
+    emit checkReady( isReady() );
 }
 
 void UsersPage::setHaveRootPassword(bool haveRootPassword) {

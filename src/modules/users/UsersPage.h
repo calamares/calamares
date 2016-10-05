@@ -86,10 +86,8 @@ public:
     void setHaveRootPassword(bool);
 
 protected slots:
-    void fillSuggestions();
     void onHostnameTextEdited( const QString& );
     void validateHostnameText( const QString& );
-    void onPasswordTextChanged( const QString& );
     void onRootPasswordTextChanged( const QString& );
 
     void addUserClicked();
@@ -108,18 +106,12 @@ private:
     const int HOSTNAME_MIN_LENGTH = 2;
     const int HOSTNAME_MAX_LENGTH = 24;
 
-    bool m_readyFullName;
-    bool m_readyUsername;
-    bool m_customUsername;
     bool m_readyHostname;
     bool m_customHostname;
-    bool m_readyPassword;
     bool m_readyRootPassword;
 
     bool m_haveRootPassword;
     QStringList m_availableShells;
-
-    bool m_writeRootPassword;
 };
 
 #endif // USERSPAGE_H
