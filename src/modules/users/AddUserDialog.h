@@ -46,7 +46,7 @@ public:
      * This avoids us creating a second one with the same name.
      * - shells: the available login shells for users.
      */
-    AddUserDialog(const QStringList &existingUsers, const QStringList &shells, QWidget *parent = 0);
+    AddUserDialog(const QStringList &existingUsers, const QStringList &shells, bool haveRootPassword, QWidget *parent = 0);
     virtual ~AddUserDialog();
 
     QString login;

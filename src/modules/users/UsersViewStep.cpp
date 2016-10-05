@@ -151,19 +151,7 @@ UsersViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     {
         Calamares::JobQueue::instance()->globalStorage()->insert( "setRootPassword",
                         configurationMap.value( "setRootPassword" ).toBool() );
-        m_widget->setWriteRootPassword( configurationMap.value( "setRootPassword" ).toBool() );
-    }
-
-    if ( configurationMap.contains( "doAutologin" ) &&
-         configurationMap.value( "doAutologin" ).type() == QVariant::Bool )
-    {
-        m_widget->setAutologinDefault( configurationMap.value( "doAutologin" ).toBool() );
-    }
-    
-    if ( configurationMap.contains( "doReusePassword" ) &&
-         configurationMap.value( "doReusePassword" ).type() == QVariant::Bool )
-    {
-        m_widget->setReusePasswordDefault( configurationMap.value( "doReusePassword" ).toBool() );
+        m_widget->setHaveRootPassword( configurationMap.value( "setRootPassword" ).toBool() );
     }
 
     if ( configurationMap.contains( "availableShells" ) &&

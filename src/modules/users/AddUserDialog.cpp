@@ -84,7 +84,7 @@ QValidator::State UsernameValidator::validate(QString& input, int& pos) const
 
 
 
-AddUserDialog::AddUserDialog(const QStringList& existingUsers, const QStringList& shells, QWidget* parent)
+AddUserDialog::AddUserDialog(const QStringList& existingUsers, const QStringList& shells, bool haveRootPassword, QWidget* parent)
     : QDialog(parent),
       m_existingUsers(existingUsers)
 {
@@ -104,6 +104,11 @@ AddUserDialog::AddUserDialog(const QStringList& existingUsers, const QStringList
     m_passwordsMatch = m_passwordsEmpty = true;
     connect(ui.passLine, &QLineEdit::textChanged, this, &AddUserDialog::passwordChanged);
     connect(ui.confirmPassLine, &QLineEdit::textChanged, this, &AddUserDialog::passwordChanged);
+
+    if (!haveRootPassword) {
+        ui.rootUsesUserPwCheckBox->setEnabled(false);
+    }
+
 //    connect(ui.passLine, SIGNAL(textChanged(QString)), this, SLOT(updatePasswordStrengthBar(QString)));
 
 //    connect(ui.nameLine, SIGNAL(textChanged(QString)), this, SLOT(testFields()));

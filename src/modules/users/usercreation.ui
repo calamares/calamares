@@ -148,27 +148,27 @@
      <item row="1" column="3">
       <widget class="QLineEdit" name="hostname">
        <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
        <property name="minimumSize">
         <size>
-         <width>200</width>
+         <width>250</width>
          <height>0</height>
         </size>
        </property>
        <property name="maximumSize">
         <size>
-         <width>16777215</width>
+         <width>700</width>
          <height>16777215</height>
         </size>
        </property>
       </widget>
      </item>
      <item row="2" column="2">
-      <widget class="QLabel" name="label">
+      <widget class="QLabel" name="labelRootPw">
        <property name="text">
         <string>Root password: </string>
        </property>
@@ -176,6 +176,18 @@
      </item>
      <item row="1" column="2">
       <widget class="QLabel" name="label_3">
+       <property name="minimumSize">
+        <size>
+         <width>120</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>120</width>
+         <height>16777215</height>
+        </size>
+       </property>
        <property name="text">
         <string>Hostname:</string>
        </property>
@@ -185,7 +197,7 @@
       </widget>
      </item>
      <item row="2" column="4">
-      <widget class="QLabel" name="label_4">
+      <widget class="QLabel" name="labelConfirmRootPw">
        <property name="text">
         <string>Confirm: </string>
        </property>
@@ -195,6 +207,44 @@
       <widget class="QLineEdit" name="confirmRootPw">
        <property name="echoMode">
         <enum>QLineEdit::Password</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="4">
+      <widget class="QLabel" name="labelHostname">
+       <property name="minimumSize">
+        <size>
+         <width>50</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>50</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="5">
+      <widget class="QLabel" name="labelHostnameError">
+       <property name="minimumSize">
+        <size>
+         <width>230</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>230</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string/>
        </property>
       </widget>
      </item>
