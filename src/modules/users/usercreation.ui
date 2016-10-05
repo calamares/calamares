@@ -109,7 +109,7 @@
         <x>0</x>
         <y>0</y>
         <width>678</width>
-        <height>277</height>
+        <height>248</height>
        </rect>
       </property>
       <property name="sizePolicy">
@@ -138,10 +138,10 @@
      <property name="verticalSpacing">
       <number>11</number>
      </property>
-     <item row="2" column="3">
-      <widget class="QLineEdit" name="rootPw">
-       <property name="echoMode">
-        <enum>QLineEdit::Password</enum>
+     <item row="2" column="4">
+      <widget class="QLabel" name="labelConfirmRootPw">
+       <property name="text">
+        <string>Confirm: </string>
        </property>
       </widget>
      </item>
@@ -164,6 +164,13 @@
          <width>700</width>
          <height>16777215</height>
         </size>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="5">
+      <widget class="QLineEdit" name="confirmRootPw">
+       <property name="echoMode">
+        <enum>QLineEdit::Password</enum>
        </property>
       </widget>
      </item>
@@ -196,17 +203,29 @@
        </property>
       </widget>
      </item>
-     <item row="2" column="4">
-      <widget class="QLabel" name="labelConfirmRootPw">
-       <property name="text">
-        <string>Confirm: </string>
+     <item row="2" column="3">
+      <widget class="QLineEdit" name="rootPw">
+       <property name="echoMode">
+        <enum>QLineEdit::Password</enum>
        </property>
       </widget>
      </item>
-     <item row="2" column="5">
-      <widget class="QLineEdit" name="confirmRootPw">
-       <property name="echoMode">
-        <enum>QLineEdit::Password</enum>
+     <item row="1" column="5">
+      <widget class="QLabel" name="labelHostnameError">
+       <property name="minimumSize">
+        <size>
+         <width>230</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>230</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="text">
+        <string/>
        </property>
       </widget>
      </item>
@@ -229,20 +248,21 @@
        </property>
       </widget>
      </item>
-     <item row="1" column="5">
-      <widget class="QLabel" name="labelHostnameError">
-       <property name="minimumSize">
-        <size>
-         <width>230</width>
-         <height>0</height>
-        </size>
-       </property>
+     <item row="3" column="2">
+      <widget class="QLabel" name="labelRootPwIcon">
        <property name="maximumSize">
         <size>
-         <width>230</width>
+         <width>50</width>
          <height>16777215</height>
         </size>
        </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="3">
+      <widget class="QLabel" name="labelRootPwError">
        <property name="text">
         <string/>
        </property>
