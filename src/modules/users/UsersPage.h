@@ -81,17 +81,11 @@ public:
     QList< Calamares::job_ptr > createJobs( const QStringList& defaultGroupsList );
 
     void onActivate();
-
-    void setWriteRootPassword( bool show );
-    void setAutologinDefault( bool checked );
-    void setReusePasswordDefault( bool checked );
     void setAvailableShells( const QStringList& shells);
+    void setHaveRootPassword(bool);
 
 protected slots:
-    void onFullNameTextEdited( const QString& );
     void fillSuggestions();
-    void onUsernameTextEdited( const QString& );
-    void validateUsernameText( const QString& );
     void onHostnameTextEdited( const QString& );
     void validateHostnameText( const QString& );
     void onPasswordTextChanged( const QString& );
@@ -122,6 +116,8 @@ private:
     bool m_customHostname;
     bool m_readyPassword;
     bool m_readyRootPassword;
+
+    bool m_haveRootPassword;
     QStringList m_availableShells;
 
     bool m_writeRootPassword;
