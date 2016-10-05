@@ -19,23 +19,6 @@
 #include <QValidator>
 #include <QRegExp>
 
-class UsernameValidator: public QRegExpValidator
-{
-    Q_OBJECT
-  
-public:
-    UsernameValidator(QRegExp exp);
-    void fixup ( QString & input ) const ;
-    QValidator::State validate ( QString & input, int & pos ) const;
-    
-signals:
-    void invalidSymbolEntered(const QString &) const; // const is needed, because the signal is emitted in a const method
-    void textIsValidAgain() const;
-
-private:
-    QStringList m_badNames;
-};
-
 class AddUserDialog : public QDialog
 {
     Q_OBJECT
@@ -79,9 +62,9 @@ private slots:
 
 private:
     Ui::AddUserDialog ui;
-    UsernameValidator *m_validator;
 
     QStringList m_existingUsers;
+    QStringList m_badUsernames;
     bool m_validUsername;
     bool m_passwordsMatch;
     bool m_passwordsEmpty;

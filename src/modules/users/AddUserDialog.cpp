@@ -22,72 +22,35 @@
 #include "utils/CalamaresUtilsGui.h"
 #include <pwquality.h>
 
-UsernameValidator::UsernameValidator(QRegExp exp): QRegExpValidator(exp),  m_badNames()
-{
-  m_badNames 
-    << "root"
-    << "bin"
-    << "daemon"
-    << "mail"
-    << "ftp"
-    << "http"
-    << "nobody"
-    << "dbus"
-    << "avahi"
-    << "usbmux"
-    << "postgres"
-    << "quassel"
-    << "rtkit"
-    << "git"
-    << "polkitd"
-    << "nm-openconnect"
-    << "kdm"
-    << "uuidd"
-    << "ntp"
-    << "mysql"
-    << "clamav"
-    << "postfix"
-    << "lightdm";
-}
-
-
-void UsernameValidator::fixup(QString& input) const
-{
-    input = input.trimmed();
-    input = input.toLower();
-}
-
-QValidator::State UsernameValidator::validate(QString& input, int& pos) const
-{
-    QValidator::State state = QRegExpValidator::validate(input, pos);
-    if (state == QRegExpValidator::Invalid) {
-        QChar lastchar = input.at(pos-1);
-        if (lastchar.isUpper()) {
-            emit invalidSymbolEntered(tr("Usernames can not contain uppercase letters."));
-        } else if (lastchar.isSpace()) {
-            emit invalidSymbolEntered(tr("Usernames can not contain spaces."));
-        } else {
-            //emit invalidSymbolEntered(tr("%1 is not a valid character", QString(lastchar)));
-        }
-        fixup(input);
-        state = QRegExpValidator::validate(input, pos);
-    }
-    if (m_badNames.contains(input)) {
-      //emit invalidSymbolEntered(tr("%1 is already used by a system user. Please choose another name.", input));
-      return QValidator::Intermediate;
-    }
-    if (state == QValidator::Acceptable) {
-      emit textIsValidAgain();
-    }
-    return state;
-}
-
-
-
 AddUserDialog::AddUserDialog(const QStringList& existingUsers, const QStringList& shells, bool haveRootPassword, QWidget* parent)
     : QDialog(parent),
       m_existingUsers(existingUsers)
 {
+      m_badUsernames
+        << "root"
+        << "bin"
+        << "daemon"
+        << "mail"
+        << "ftp"
+        << "http"
+        << "nobody"
+        << "dbus"
+        << "avahi"
+        << "usbmux"
+        << "postgres"
+        << "quassel"
+        << "rtkit"
+        << "git"
+        << "polkitd"
+        << "nm-openconnect"
+        << "kdm"
+        << "uuidd"
+        << "ntp"
+        << "mysql"
+        << "clamav"
+        << "postfix"
+        << "lightdm";
+
     ui.setupUi(this);
 
     ui.passLine->setEchoMode(QLineEdit::Password);
@@ -108,10 +71,6 @@ AddUserDialog::AddUserDialog(const QStringList& existingUsers, const QStringList
     if (!haveRootPassword) {
         ui.rootUsesUserPwCheckBox->setEnabled(false);
     }
-
-//    connect(ui.passLine, SIGNAL(textChanged(QString)), this, SLOT(updatePasswordStrengthBar(QString)));
-
-//    connect(ui.nameLine, SIGNAL(textChanged(QString)), this, SLOT(testFields()));
 
     connect(ui.selectImageButton, &QPushButton::clicked, this, &AddUserDialog::avatarClicked);
 
@@ -170,6 +129,15 @@ void AddUserDialog::validateUsername(const QString& username) {
                                                                      ui.iconUsername->size() ) );
         ui.labelUsernameError->setText(
             tr( "This username was already created." ) );
+
+        m_validUsername = false;
+    }
+    else if ( m_badUsernames.contains(username) ) {
+        ui.iconUsername->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::No,
+                                                                     CalamaresUtils::Original,
+                                                                     ui.iconUsername->size() ) );
+        ui.labelUsernameError->setText(
+            tr( "Username is already in use in the system." ) );
 
         m_validUsername = false;
     }
