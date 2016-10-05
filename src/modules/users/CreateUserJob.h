@@ -29,6 +29,7 @@ class CreateUserJob : public Calamares::Job
 public:
     CreateUserJob( const QString& userName,
                    const QString& fullName,
+                   const QString& shell,
                    bool autologin,
                    const QStringList& defaultGroups );
     QString prettyName() const override;
@@ -39,6 +40,7 @@ public:
 private:
     QString m_userName;
     QString m_fullName;
+    QString m_shell;
     bool m_autologin;
     QStringList m_defaultGroups;
 };

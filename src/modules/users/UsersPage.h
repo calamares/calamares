@@ -35,8 +35,8 @@ class UserCreation;
 }
 
 struct User {
-    User(const QString& username, const QString& fullname, const QString& shell, bool autologin)
-        : username(username), fullname(fullname), shell(shell), autologin(autologin) {}
+    User(const QString& username, const QString& fullname, const QString& password, const QString& shell, bool autologin)
+        : username(username), fullname(fullname), password(password), shell(shell), autologin(autologin) {}
 
     QString toString() const {
         return username;
@@ -44,6 +44,7 @@ struct User {
 
     QString username;
     QString fullname;
+    QString password;
     QString shell;
     bool autologin;
 };
@@ -98,14 +99,12 @@ signals:
     void checkReady( bool );
 
 private:
-    void addUser(const QString& login, const QString& fullName, const QString& password, bool autologin);
+    void addUser(const QString& login, const QString& fullName, const QString& password, const QString& shell, bool autologin);
 
     Ui::UserCreation* ui;
     UsersListModel m_userModel;
 
-    const QRegExp USERNAME_RX = QRegExp( "^[a-z_][a-z0-9_-]*[$]?$" );
     const QRegExp HOSTNAME_RX = QRegExp( "^[a-zA-Z0-9][-a-zA-Z0-9_]*$" );
-    const int USERNAME_MAX_LENGTH = 31;
     const int HOSTNAME_MIN_LENGTH = 2;
     const int HOSTNAME_MAX_LENGTH = 24;
 
