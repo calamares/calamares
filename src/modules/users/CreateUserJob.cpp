@@ -33,11 +33,13 @@
 
 CreateUserJob::CreateUserJob( const QString& userName,
                               const QString& fullName,
+                              const QString& shell,
                               bool autologin,
                               const QStringList& defaultGroups )
     : Calamares::Job()
     , m_userName( userName )
     , m_fullName( fullName )
+    , m_shell( shell )
     , m_autologin( autologin )
     , m_defaultGroups( defaultGroups )
 {
@@ -151,7 +153,7 @@ CreateUserJob::exec()
              targetEnvCall( { "useradd",
                               "-m",
                               "-s",
-                              "/bin/bash",
+                              m_shell,
                               "-U",
                               "-c",
                               m_fullName,

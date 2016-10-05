@@ -165,7 +165,7 @@ UsersPage::UsersPage( QWidget* parent )
     }
 
     // TODO: remove
-    addUser("prova", "test", "test", false);
+    addUser("prova", "Full Name", "test", "/bin/bash", false);
 
     ui->usersView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->usersView->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -191,7 +191,7 @@ UsersPage::addUserClicked() {
 
     if ( dlg->exec() == QDialog::Accepted ) {
         // TODO: put groups and avatar.
-        addUser(dlg->login, dlg->name, dlg->password, dlg->autoLogin);
+        addUser(dlg->login, dlg->name, dlg->password, dlg->shell, dlg->autoLogin);
 
         if (dlg->useUserPw && m_haveRootPassword) {
             ui->rootPw->setText(dlg->password);
@@ -219,8 +219,8 @@ UsersPage::deleteUserClicked() {
 }
 
 void
-UsersPage::addUser(const QString &login, const QString &fullName, const QString &password, bool autologin) {
-    User* newUser = new User(login, fullName, "/bin/bash", autologin);
+UsersPage::addUser(const QString &login, const QString &fullName, const QString &password, const QString &shell, bool autologin) {
+    User* newUser = new User(login, fullName, shell, password, autologin);
     m_userModel.addUser(newUser);
 
     ui->hostname->setText( login + "-pc" );
@@ -241,40 +241,38 @@ UsersPage::createJobs( const QStringList& defaultGroupsList )
     if ( !isReady() )
         return list;
 
-//    Calamares::Job* j;
-//    j = new CreateUserJob( ui->textBoxUsername->text(),
-//                           ui->textBoxFullName->text().isEmpty() ?
-//                               ui->textBoxUsername->text() :
-//                               ui->textBoxFullName->text(),
-//                           ui->checkBoxAutoLogin->isChecked(),
-//                           defaultGroupsList );
-//    list.append( Calamares::job_ptr( j ) );
+    for (const User* user : m_userModel.getUsers()) {
 
-//    j = new SetPasswordJob( ui->textBoxUsername->text(),
-//                            ui->textBoxUserPassword->text() );
-//    list.append( Calamares::job_ptr( j ) );
+        Calamares::Job* j;
+        j = new CreateUserJob( user->username,
+                               (user->fullname.length() > 0) ? user->fullname : user->username,
+                               user->shell,
+                               user->autologin,
+                               defaultGroupsList );
 
-//    if ( m_writeRootPassword )
-//    {
-//        if ( ui->checkBoxReusePassword->isChecked() )
-//            j = new SetPasswordJob( "root",
-//                                    ui->textBoxUserPassword->text() );
-//        else
-//            j = new SetPasswordJob( "root",
-//                                    ui->textBoxRootPassword->text() );
-//        list.append( Calamares::job_ptr( j ) );
-//    }
+        list.append( Calamares::job_ptr( j ) );
 
-//    j = new SetHostNameJob( ui->textBoxHostname->text() );
-//    list.append( Calamares::job_ptr( j ) );
+        j = new SetPasswordJob( user->username, user->password );
+        list.append( Calamares::job_ptr( j ) );
 
-//    Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
-//    gs->insert( "hostname", ui->textBoxHostname->text() );
-//    if ( ui->checkBoxAutoLogin->isChecked() )
-//        gs->insert( "autologinUser", ui->textBoxUsername->text() );
+        if ( m_haveRootPassword )
+        {
+                j = new SetPasswordJob( "root",
+                                        ui->rootPw->text() );
+            list.append( Calamares::job_ptr( j ) );
+        }
 
-//    gs->insert( "username", ui->textBoxUsername->text() );
-//    gs->insert( "password", CalamaresUtils::obscure( ui->textBoxUserPassword->text() ) );
+        j = new SetHostNameJob( ui->hostname->text() );
+        list.append( Calamares::job_ptr( j ) );
+
+        Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
+        gs->insert( "hostname", ui->hostname->text() );
+//        if ( user->autologin )
+//            gs->insert( "autologinUser", user->username );
+
+//        gs->insert( "username", user-> );
+//        gs->insert( "password", CalamaresUtils::obscure( ui->textBoxUserPassword->text() ) );
+    }
 
     return list;
 }
@@ -337,7 +335,6 @@ UsersPage::onHostnameTextEdited( const QString& textRef )
     m_customHostname = true;
     validateHostnameText( textRef );
 }
-
 
 void
 UsersPage::validateHostnameText( const QString& textRef )
