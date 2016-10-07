@@ -45,6 +45,7 @@ if( WITH_PYTHONQT )
 
     list( APPEND ${CALAMARESUI_LIBRARY_TARGET}_SOURCES
         modulesystem/PythonQtViewModule.cpp
+        utils/PythonQtUtils.cpp
         viewpages/PythonQtViewStep.cpp
     )
     set( OPTIONAL_PRIVATE_LIBRARIES
