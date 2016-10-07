@@ -23,6 +23,9 @@
 
 #include <PythonQt.h>
 
+namespace Calamares
+{
+
 class PythonQtViewStep : public Calamares::ViewStep
 {
     Q_OBJECT
@@ -45,6 +48,8 @@ public:
 
     QList< Calamares::job_ptr > jobs() const override;
 
+    void setConfigurationMap( const QVariantMap& configurationMap ) override;
+
     QWidget* createScriptingConsole();
 
 protected:
@@ -55,5 +60,7 @@ private:
     PythonQtObjectPtr m_obj;
     friend class PythonQtViewStepDecorator;
 };
+
+}
 
 #endif // PYTHONQTVIEWSTEP_H

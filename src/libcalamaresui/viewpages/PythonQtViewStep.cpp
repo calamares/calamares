@@ -19,12 +19,15 @@
 #include "PythonQtViewStep.h"
 #include "utils/Logger.h"
 #include "utils/CalamaresUtilsGui.h"
+#include "utils/PythonQtUtils.h"
 
 #include <gui/PythonQtScriptingConsole.h>
 
 #include <QBoxLayout>
 #include <QWidget>
 
+namespace Calamares
+{
 
 PythonQtViewStep::PythonQtViewStep( PythonQtObjectPtr cxt,
                                     QObject* parent )
@@ -32,13 +35,17 @@ PythonQtViewStep::PythonQtViewStep( PythonQtObjectPtr cxt,
     , m_widget( new QWidget() )
     , m_cxt( cxt )
 {
+    // The @calamares_module decorator should have filled _calamares_module_typename
+    // for us.
     QString className = m_cxt.getVariable( "_calamares_module_typename" ).toString();
 
+    // Instantiate an object of the class marked with @calamares_module and
+    // store it as _calamares_module.
     PythonQt::self()->evalScript( m_cxt, QString( "_calamares_module = %1()" )
                                             .arg( className ) );
     m_obj = PythonQt::self()->lookupObject( m_cxt, "_calamares_module" );
 
-    Q_ASSERT( !m_obj.isNull() );
+    Q_ASSERT( !m_obj.isNull() );    // no entry point, no party
 
     m_widget->setLayout( new QVBoxLayout );
     CalamaresUtils::unmarginLayout( m_widget->layout() );
@@ -49,18 +56,37 @@ PythonQtViewStep::PythonQtViewStep( PythonQtObjectPtr cxt,
 QString
 PythonQtViewStep::prettyName() const
 {
-    return PythonQt::self()->call( m_obj, "prettyName" ).toString();
+    return CalamaresUtils::lookupAndCall( m_obj,
+                                          { "prettyName",
+                                            "pretty_name" } ).toString();
 }
 
 
 QWidget*
 PythonQtViewStep::widget()
 {
-    m_widget->layout()->deleteLater();
-    m_widget->setLayout( new QVBoxLayout );
-    CalamaresUtils::unmarginLayout( m_widget->layout() );
+    if ( m_widget->layout()->count() > 1 )
+        cDebug() << "WARNING: PythonQtViewStep wrapper widget has more than 1 child. "
+                    "This should never happen.";
+
+    bool nothingChanged = m_cxt.evalScript(
+        "_calamares_module_basewidget.contains(_calamares_module.widget())" ).toBool();
+    if ( nothingChanged )
+        return m_widget;
+
+    // Else, we either don't have a child widget, or we have a child widget that
+    // was previously set and doesn't apply any more since the Python module
+    // set a new one.
+
+    // First we clear the layout, which should only ever have 1 item.
+    // We only remove from the layout and not delete because Python is in charge
+    // of memory management for these widgets.
+    while ( m_widget->layout()->itemAt( 0 ) )
+        m_widget->layout()->takeAt( 0 );
+
     m_cxt.evalScript(
         "_calamares_module_basewidget.layout().addWidget(_calamares_module.widget())" );
+
     return m_widget;
 }
 
@@ -68,42 +94,50 @@ PythonQtViewStep::widget()
 void
 PythonQtViewStep::next()
 {
-
+    CalamaresUtils::lookupAndCall( m_obj, { "next" } );
 }
 
 
 void
 PythonQtViewStep::back()
 {
-
+    CalamaresUtils::lookupAndCall( m_obj, { "back" } );
 }
 
 
 bool
 PythonQtViewStep::isNextEnabled() const
 {
-    return PythonQt::self()->call( m_obj, "isNextEnabled" ).toBool();
+    return CalamaresUtils::lookupAndCall( m_obj,
+                                          { "isNextEnabled",
+                                            "is_next_enabled" } ).toBool();
 }
 
 
 bool
 PythonQtViewStep::isBackEnabled() const
 {
-    return PythonQt::self()->call( m_obj, "isBackEnabled" ).toBool();
+    return CalamaresUtils::lookupAndCall( m_obj,
+                                          { "isBackEnabled",
+                                            "is_back_enabled" } ).toBool();
 }
 
 
 bool
 PythonQtViewStep::isAtBeginning() const
 {
-    return PythonQt::self()->call( m_obj, "isAtBeginning" ).toBool();
+    return CalamaresUtils::lookupAndCall( m_obj,
+                                          { "isAtBeginning",
+                                            "is_at_beginning" } ).toBool();
 }
 
 
 bool
 PythonQtViewStep::isAtEnd() const
 {
-    return PythonQt::self()->call( m_obj, "isAtEnd" ).toBool();
+    return CalamaresUtils::lookupAndCall( m_obj,
+                                          { "isAtEnd",
+                                            "is_at_end" } ).toBool();
 }
 
 
@@ -115,6 +149,13 @@ PythonQtViewStep::jobs() const
 }
 
 
+void
+PythonQtViewStep::setConfigurationMap( const QVariantMap& configurationMap )
+{
+#warning "Not implemented yet."
+}
+
+
 QWidget*
 PythonQtViewStep::createScriptingConsole()
 {
@@ -122,4 +163,6 @@ PythonQtViewStep::createScriptingConsole()
     console->setProperty( "classname",
                           m_cxt.getVariable( "_calamares_module_typename" ).toString() );
     return console;
+}
+
 }
