@@ -35,11 +35,24 @@ from PythonQt.QtGui import *
 @calamares_module
 class DummyPythonQtViewStep():
     def __init__(self):
-        self.main_widget = QLabel()
+        self.main_widget = QFrame()
+
+        self.main_widget.setLayout(QVBoxLayout())
+
+        label = QLabel()
+        self.main_widget.layout().addWidget(label)
 
         accumulator = "\nCalamares+PythonQt running embedded Python " +\
                       platform.python_version()
-        self.main_widget.text = accumulator
+        label.text = accumulator
+
+        btn = QPushButton()
+        btn.setText("Click me!")
+        self.main_widget.layout().addWidget(btn)
+        btn.connect("clicked(bool)", self.on_btn_clicked)
+
+    def on_btn_clicked(self):
+        self.main_widget.layout().addWidget(QLabel("A new QLabel."))
 
     def prettyName(self):
         return "Dummy PythonQt ViewStep"
