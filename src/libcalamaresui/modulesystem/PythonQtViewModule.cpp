@@ -64,8 +64,9 @@ PythonQtViewModule::loadSelf()
             cDebug() << "Initializing PythonQt bindings."
                      << "This should only happen once.";
 
-            PythonQt::self()->registerClass( &PythonQtViewStep::staticMetaObject,
-                                             "calamares" );
+            //TODO: register classes here into the PythonQt environment, like this:
+            //PythonQt::self()->registerClass( &PythonQtViewStep::staticMetaObject,
+            //                                 "calamares" );
 
             QObject::connect( PythonQt::self(), &PythonQt::pythonStdOut,
                      []( const QString& message )
