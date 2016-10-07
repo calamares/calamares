@@ -21,7 +21,6 @@
 import platform
 
 from PythonQt.QtGui import *
-from PythonQt.calamares import *
 
 # Example Python ViewModule.
 # A Python ViewModule is a Python program which defines a ViewStep class.
