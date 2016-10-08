@@ -22,7 +22,7 @@
 #include "utils/CalamaresUtilsGui.h"
 #include <pwquality.h>
 
-AddUserDialog::AddUserDialog(const QStringList& existingUsers, const QStringList& shells, bool haveRootPassword, QWidget* parent)
+AddUserDialog::AddUserDialog(const QStringList& existingUsers, bool avatar, bool autologin, const QStringList& shells, bool haveRootPassword, QWidget* parent)
     : QDialog(parent),
       m_existingUsers(existingUsers)
 {
@@ -70,6 +70,15 @@ AddUserDialog::AddUserDialog(const QStringList& existingUsers, const QStringList
 
     if (!haveRootPassword) {
         ui.rootUsesUserPwCheckBox->setEnabled(false);
+    }
+
+    if (!autologin) {
+        ui.autoLoginCheckBox->setEnabled(false);
+    }
+
+    if (!avatar) {
+        ui.avatarFileLine->setEnabled(false);
+        ui.selectImageButton->setEnabled(false);
     }
 
     connect(ui.selectImageButton, &QPushButton::clicked, this, &AddUserDialog::avatarClicked);

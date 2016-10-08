@@ -184,11 +184,20 @@ UsersPage::~UsersPage()
 void
 UsersPage::addUserClicked() {
     QStringList existingUsers;
+    bool userHasAutologin = false;
+
     for (const User* user : m_userModel.getUsers()) {
         existingUsers.append( user->username );
+
+        if (user->autologin) {
+            userHasAutologin = true;
+        }
     }
 
-    QPointer<AddUserDialog> dlg = new AddUserDialog( existingUsers, m_availableShells, m_haveRootPassword, this );
+    bool allowAutologin = m_autologin && !userHasAutologin;
+
+    QPointer<AddUserDialog> dlg = new AddUserDialog(
+                existingUsers, m_avatarFilePath.length() > 0, allowAutologin, m_availableShells, m_haveRootPassword, this );
 
     if ( dlg->exec() == QDialog::Accepted ) {
         // TODO: put groups and avatar.
@@ -271,11 +280,9 @@ UsersPage::createJobs( const QStringList& defaultGroupsList )
 
         Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
         gs->insert( "hostname", ui->hostname->text() );
-//        if ( user->autologin )
-//            gs->insert( "autologinUser", user->username );
+        if ( user->autologin )
+            gs->insert( "autologinUser", user->username );
 
-//        gs->insert( "username", user-> );
-//        gs->insert( "password", CalamaresUtils::obscure( ui->textBoxUserPassword->text() ) );
     }
 
     return list;
@@ -389,8 +396,16 @@ UsersPage::onRootPasswordTextChanged( const QString& textRef )
     emit checkReady( isReady() );
 }
 
+void UsersPage::setAutologin(bool autologin) {
+    m_autologin = autologin;
+}
+
 void UsersPage::setHaveRootPassword(bool haveRootPassword) {
     m_haveRootPassword = haveRootPassword;
+}
+
+void UsersPage::setAvatarFilePath(const QString &path) {
+    m_avatarFilePath = path;
 }
 
 void UsersPage::setAvailableShells(const QStringList &shells) {

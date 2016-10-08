@@ -82,6 +82,8 @@ public:
     QList< Calamares::job_ptr > createJobs( const QStringList& defaultGroupsList );
 
     void onActivate();
+    void setAutologin( bool autologin );
+    void setAvatarFilePath( const QString& path );
     void setAvailableShells( const QStringList& shells);
     void setHaveRootPassword(bool);
 
@@ -110,7 +112,9 @@ private:
     bool m_customHostname;
     bool m_readyRootPassword;
 
+    bool m_autologin;
     bool m_haveRootPassword;
+    QString m_avatarFilePath;
     QStringList m_availableShells;
 };
 
