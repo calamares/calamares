@@ -230,7 +230,7 @@ UsersPage::deleteUserClicked() {
 
 void
 UsersPage::addUser(const QString &login, const QString &fullName, const QString &password, const QString &shell, bool autologin) {
-    User* newUser = new User(login, fullName, shell, password, autologin);
+    User* newUser = new User(login, fullName, password, shell, autologin);
     m_userModel.addUser(newUser);
 
     ui->hostname->setText( login + "-pc" );
