@@ -27,9 +27,11 @@ public:
     /*
      * - existingUsers: username of the users that were already created.
      * This avoids us creating a second one with the same name.
+     * - avatar: whether we should allow to choose an avatar.
+     * - autologin: whether we should allow the autologin option.
      * - shells: the available login shells for users.
      */
-    AddUserDialog(const QStringList &existingUsers, const QStringList &shells, bool haveRootPassword, QWidget *parent = 0);
+    AddUserDialog(const QStringList &existingUsers, bool avatar, bool autologin, const QStringList &shells, bool haveRootPassword, QWidget *parent = 0);
     virtual ~AddUserDialog();
 
     QString login;

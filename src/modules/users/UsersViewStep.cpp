@@ -139,6 +139,12 @@ UsersViewStep::setConfigurationMap( const QVariantMap& configurationMap )
                         configurationMap.value( "autologinGroup" ).toString() );
     }
 
+    if ( configurationMap.contains( "doAutologin" ) &&
+         configurationMap.value( "doAutologin" ).type() == QVariant::Bool )
+    {
+        m_widget->setAutologin( configurationMap.value( "doAutologin" ).toBool() );
+    }
+
     if ( configurationMap.contains( "sudoersGroup" ) &&
          configurationMap.value( "sudoersGroup" ).type() == QVariant::String )
     {
@@ -158,5 +164,11 @@ UsersViewStep::setConfigurationMap( const QVariantMap& configurationMap )
          configurationMap.value( "availableShells" ).type() == QVariant::String )
     {
         m_widget->setAvailableShells( configurationMap.value( "availableShells" ).toString().split(",") );
+    }
+
+    if ( configurationMap.contains( "avatarFilePath" ) &&
+         configurationMap.value( "avatarFilePath").type() == QVariant::String )
+    {
+        m_widget->setAvatarFilePath( configurationMap.value( "avatarFilePath" ).toString() );
     }
 }
