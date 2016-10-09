@@ -751,7 +751,7 @@ L&apos;instal·lador es tancarà i tots els canvis es perdran.</translation>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="174"/>
         <source>Cannot set home directory ownership for user %1.</source>
-        <translation>No es pot assignar el permís de propietat del directori personal de l&apos;usuari %1.</translation>
+        <translation>No es pot establir la propietat del directori personal a l&apos;usuari %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="176"/>
