@@ -12,6 +12,7 @@ calamares_add_plugin( users
         UsersViewStep.cpp
         UsersPage.cpp
         SetHostNameJob.cpp
+        SetAvatarJob.cpp
         AddUserDialog.cpp
     UI
         usercreation.ui
