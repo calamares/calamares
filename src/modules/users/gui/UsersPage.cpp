@@ -21,12 +21,12 @@
  */
 
 #include "UsersPage.h"
-#include "ui_usercreation.h"
+#include "ui_page_usersetup.h"
 #include "AddUserDialog.h"
-#include "CreateUserJob.h"
-#include "SetAvatarJob.h"
-#include "SetPasswordJob.h"
-#include "SetHostNameJob.h"
+#include <jobs/CreateUserJob.h>
+#include <jobs/SetAvatarJob.h>
+#include <jobs/SetPasswordJob.h>
+#include <jobs/SetHostNameJob.h>
 #include "JobQueue.h"
 #include "GlobalStorage.h"
 #include "utils/Logger.h"
@@ -48,7 +48,7 @@ UsersListModel::~UsersListModel() {
 
 int UsersListModel::rowCount(const QModelIndex &parent) const {
     return m_currentUsers.size();
-}f
+}
 
 int UsersListModel::columnCount(const QModelIndex &parent) const {
     return 4;
@@ -167,7 +167,7 @@ UsersPage::UsersPage( QWidget* parent )
     }
 
     // TODO: remove
-    addUser("prova", "Full Name", "test", "/bin/bash", false);
+    addUser("prova", "Full Name", "test", "/bin/bash", "", false);
 
     ui->usersView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->usersView->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -201,8 +201,7 @@ UsersPage::addUserClicked() {
                 existingUsers, m_avatarFilePath.length() > 0, allowAutologin, m_availableShells, m_haveRootPassword, this );
 
     if ( dlg->exec() == QDialog::Accepted ) {
-        // TODO: put groups and avatar.
-        addUser(dlg->login, dlg->name, dlg->password, dlg->shell, dlg->autoLogin);
+        addUser(dlg->login, dlg->name, dlg->password, dlg->shell, dlg->avatarFile, dlg->autoLogin);
 
         if (dlg->useUserPw && m_haveRootPassword) {
             ui->rootPw->setText(dlg->password);

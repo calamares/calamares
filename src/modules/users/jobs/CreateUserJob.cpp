@@ -16,7 +16,7 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <CreateUserJob.h>
+#include <jobs/CreateUserJob.h>
 
 #include "JobQueue.h"
 #include "GlobalStorage.h"
