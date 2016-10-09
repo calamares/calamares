@@ -150,22 +150,6 @@ UsersPage::UsersPage( QWidget* parent )
 
     connect(ui->hostname, &QLineEdit::textChanged, this, &UsersPage::onHostnameTextEdited);
 
-    if (m_haveRootPassword) {
-        ui->rootPw->show();
-        ui->confirmRootPw->show();
-        ui->labelRootPw->show();
-        ui->labelConfirmRootPw->show();
-
-        connect(ui->rootPw, &QLineEdit::textChanged, this, &UsersPage::onRootPasswordTextChanged);
-        connect(ui->confirmRootPw, &QLineEdit::textChanged, this, &UsersPage::onRootPasswordTextChanged);
-
-    } else {
-        ui->rootPw->hide();
-        ui->confirmRootPw->hide();
-        ui->labelRootPw->hide();
-        ui->labelConfirmRootPw->hide();
-    }
-
     // The columns will occupy all the space available in the view.
     ui->usersView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     // You can only select entire rows, not single cells, i.e. you
@@ -418,6 +402,21 @@ void UsersPage::setAutologin(bool autologin) {
 
 void UsersPage::setHaveRootPassword(bool haveRootPassword) {
     m_haveRootPassword = haveRootPassword;
+
+    if (m_haveRootPassword) {
+        ui->rootPw->show();
+        ui->confirmRootPw->show();
+        ui->labelRootPw->show();
+        ui->labelConfirmRootPw->show();
+
+        connect(ui->rootPw, &QLineEdit::textChanged, this, &UsersPage::onRootPasswordTextChanged);
+        connect(ui->confirmRootPw, &QLineEdit::textChanged, this, &UsersPage::onRootPasswordTextChanged);
+    } else {
+        ui->rootPw->hide();
+        ui->confirmRootPw->hide();
+        ui->labelRootPw->hide();
+        ui->labelConfirmRootPw->hide();
+    }
 }
 
 void UsersPage::setAvatarFilePath(const QString &path) {
