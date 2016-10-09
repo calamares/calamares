@@ -18,7 +18,7 @@
 
 #include "UsersViewStep.h"
 
-#include "UsersPage.h"
+#include "gui/UsersPage.h"
 
 #include "JobQueue.h"
 #include "GlobalStorage.h"

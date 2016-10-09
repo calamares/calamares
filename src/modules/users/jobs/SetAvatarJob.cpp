@@ -16,7 +16,7 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "SetAvatarJob.h"
+#include <jobs/SetAvatarJob.h>
 
 #include "GlobalStorage.h"
 #include "utils/Logger.h"
