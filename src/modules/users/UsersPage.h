@@ -35,8 +35,8 @@ class UserCreation;
 }
 
 struct User {
-    User(const QString& username, const QString& fullname, const QString& password, const QString& shell, bool autologin)
-        : username(username), fullname(fullname), password(password), shell(shell), autologin(autologin) {}
+    User(const QString& username, const QString& fullname, const QString& password, const QString& shell, const QString& avatarFile, bool autologin)
+        : username(username), fullname(fullname), password(password), shell(shell), avatarFile(avatarFile), autologin(autologin) {}
 
     QString toString() const {
         return username;
@@ -46,6 +46,7 @@ struct User {
     QString fullname;
     QString password;
     QString shell;
+    QString avatarFile;
     bool autologin;
 };
 
@@ -99,7 +100,7 @@ signals:
     void checkReady( bool );
 
 private:
-    void addUser(const QString& login, const QString& fullName, const QString& password, const QString& shell, bool autologin);
+    void addUser(const QString& login, const QString& fullName, const QString& password, const QString& shell, const QString& avatarFile, bool autologin);
 
     Ui::UserCreation* ui;
     UsersListModel m_userModel;

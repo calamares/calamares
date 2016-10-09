@@ -24,6 +24,7 @@
 #include "ui_usercreation.h"
 #include "AddUserDialog.h"
 #include "CreateUserJob.h"
+#include "SetAvatarJob.h"
 #include "SetPasswordJob.h"
 #include "SetHostNameJob.h"
 #include "JobQueue.h"
@@ -47,7 +48,7 @@ UsersListModel::~UsersListModel() {
 
 int UsersListModel::rowCount(const QModelIndex &parent) const {
     return m_currentUsers.size();
-}
+}f
 
 int UsersListModel::columnCount(const QModelIndex &parent) const {
     return 4;
@@ -229,8 +230,8 @@ UsersPage::deleteUserClicked() {
 }
 
 void
-UsersPage::addUser(const QString &login, const QString &fullName, const QString &password, const QString &shell, bool autologin) {
-    User* newUser = new User(login, fullName, password, shell, autologin);
+UsersPage::addUser(const QString &login, const QString &fullName, const QString &password, const QString &shell, const QString& avatarFile, bool autologin) {
+    User* newUser = new User(login, fullName, password, shell, avatarFile, autologin);
     m_userModel.addUser(newUser);
 
     ui->hostname->setText( login + "-pc" );
@@ -268,13 +269,6 @@ UsersPage::createJobs( const QStringList& defaultGroupsList )
         j = new SetPasswordJob( user->username, user->password );
         list.append( Calamares::job_ptr( j ) );
 
-        if ( m_haveRootPassword )
-        {
-                j = new SetPasswordJob( "root",
-                                        ui->rootPw->text() );
-            list.append( Calamares::job_ptr( j ) );
-        }
-
         j = new SetHostNameJob( ui->hostname->text() );
         list.append( Calamares::job_ptr( j ) );
 
@@ -283,6 +277,21 @@ UsersPage::createJobs( const QStringList& defaultGroupsList )
         if ( user->autologin )
             gs->insert( "autologinUser", user->username );
 
+        if ( !user->avatarFile.length() > 0 ) {
+            if (m_avatarFilePath.contains("~")) {
+                    QString home( "/home/ " + user->username);
+                    m_avatarFilePath.replace("~", home);
+            }
+
+            j = new SetAvatarJob( user->avatarFile, m_avatarFilePath );
+            list.append( Calamares::job_ptr(j) );
+        }
+    }
+
+    if ( m_haveRootPassword )
+    {
+        Calamares::Job* j = new SetPasswordJob( "root", ui->rootPw->text() );
+        list.append( Calamares::job_ptr( j ) );
     }
 
     return list;
