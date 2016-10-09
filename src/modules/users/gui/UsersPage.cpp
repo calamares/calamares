@@ -187,7 +187,7 @@ UsersPage::addUserClicked() {
                 existingUsers, m_avatarFilePath.length() > 0, allowAutologin, m_availableShells, m_haveRootPassword, this );
 
     if ( dlg->exec() == QDialog::Accepted ) {
-        addUser(dlg->login, dlg->name, dlg->password, dlg->shell, dlg->avatarFile, dlg->autoLogin);
+        addUser(dlg->login, dlg->fullName, dlg->password, dlg->shell, dlg->avatarFile, dlg->autoLogin);
 
         if (dlg->useUserPw && m_haveRootPassword) {
             ui->rootPw->setText(dlg->password);
