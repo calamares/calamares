@@ -26,6 +26,7 @@
 #include "Typedefs.h"
 
 #include <QAbstractListModel>
+#include <QtGlobal>
 #include <QItemSelection>
 #include <QVariant>
 #include <QWidget>
@@ -34,6 +35,13 @@ namespace Ui {
 class UserCreation;
 }
 
+/*
+ * Represents the properties of a user in the system.
+ *
+ * The fullname and avatar file can be empty and they will be ignored.
+ * The password can technically be empty too, but that is of course
+ * not recommended in general.
+ */
 struct User {
     User(const QString& username, const QString& fullname, const QString& password, const QString& shell, const QString& avatarFile, bool autologin)
         : username(username), fullname(fullname), password(password), shell(shell), avatarFile(avatarFile), autologin(autologin) {}
@@ -50,6 +58,12 @@ struct User {
     bool autologin;
 };
 
+/*
+ * Model to contain the users created during the installation
+ * process. This is associated to a QTableView in the main UI.
+ *
+ * Each row is a user and each column a property of the user.
+ */
 class UsersListModel : public QAbstractTableModel {
     Q_OBJECT
 
@@ -83,6 +97,8 @@ public:
     QList< Calamares::job_ptr > createJobs( const QStringList& defaultGroupsList );
 
     void onActivate();
+
+    // Setters for properties of this page, usually from configuration.
     void setAutologin( bool autologin );
     void setAvatarFilePath( const QString& path );
     void setAvailableShells( const QStringList& shells);
@@ -105,12 +121,13 @@ private:
     Ui::UserCreation* ui;
     UsersListModel m_userModel;
 
+    // Hostname validation.
     const QRegExp HOSTNAME_RX = QRegExp( "^[a-zA-Z0-9][-a-zA-Z0-9_]*$" );
     const int HOSTNAME_MIN_LENGTH = 2;
     const int HOSTNAME_MAX_LENGTH = 24;
 
+    // Are the following fields valid with their current value?
     bool m_readyHostname;
-    bool m_customHostname;
     bool m_readyRootPassword;
 
     bool m_autologin;
