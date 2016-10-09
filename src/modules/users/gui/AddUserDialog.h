@@ -1,14 +1,23 @@
-/*
- * Copyright (c) 2008 - 2009  Dario Freddi <drf@chakra-project.org>
- *               2010 - 2011  Drake Justice <djustice@chakra-project.com>
- *                      2013  Manuel tortosa <manutortosa@chakra-project.org>
- *                      2016  Lisa Vitolo <shainer@chakralinux.org>
+/* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
+ *   Copyright 2016, Lisa Vitolo <shainer@chakralinux.org>
  *
+ *   Portions from Tribe (Chakra Linux)
+ *   by Dario Freddi, Drake Justice and Manuel Tortosa
+ *   Copyright (C) 2013 Free Software Foundation, Inc.
+ *
+ *   Calamares is free software: you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation, either version 3 of the License, or
+ *   (at your option) any later version.
+ *
+ *   Calamares is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
 #ifndef ADDUSERDIALOG_H
