@@ -166,10 +166,10 @@ UsersPage::UsersPage( QWidget* parent )
         ui->labelConfirmRootPw->hide();
     }
 
-    // TODO: remove
-    addUser("prova", "Full Name", "test", "/bin/bash", "", false);
-
+    // The columns will occupy all the space available in the view.
     ui->usersView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    // You can only select entire rows, not single cells, i.e. you
+    // always select the user as a whole.
     ui->usersView->setSelectionBehavior(QAbstractItemView::SelectRows);
 
     ui->usersView->setModel(&m_userModel);
@@ -195,6 +195,8 @@ UsersPage::addUserClicked() {
         }
     }
 
+    // Only allow autologin if the module configuration allows it,
+    // and there exists no other users with autologin enabled.
     bool allowAutologin = m_autologin && !userHasAutologin;
 
     QPointer<AddUserDialog> dlg = new AddUserDialog(
@@ -242,6 +244,7 @@ bool
 UsersPage::isReady()
 {
     return (m_readyHostname &&
+            // At least one user should have been created.
             m_userModel.getUsers().size() > 0 &&
             (!m_haveRootPassword || m_readyRootPassword));
 }
@@ -273,6 +276,9 @@ UsersPage::createJobs( const QStringList& defaultGroupsList )
 
         Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
         gs->insert( "hostname", ui->hostname->text() );
+
+        // Given the validation we do, we assume this is always true
+        // for at most one user in the page.
         if ( user->autologin )
             gs->insert( "autologinUser", user->username );
 
@@ -302,6 +308,9 @@ UsersPage::onActivate()
 {
     emit checkReady( isReady() );
 
+    // If there is no user yet, open the dialog as soon as the
+    // page is enabled. This makes it easy for people who want
+    // to create one user.
     if (m_userModel.rowCount() == 0) {
         addUserClicked();
     }
@@ -310,7 +319,6 @@ UsersPage::onActivate()
 void
 UsersPage::onHostnameTextEdited( const QString& textRef )
 {
-    m_customHostname = true;
     validateHostnameText( textRef );
 }
 

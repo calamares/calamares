@@ -12,6 +12,7 @@
 
 #include <functional>
 
+#include <QDialogButtonBox>
 #include <QDebug>
 #include <QDesktopWidget>
 #include <QFileDialog>
@@ -60,7 +61,6 @@ AddUserDialog::AddUserDialog(const QStringList& existingUsers, bool avatar, bool
     ui.loginShellSelection->setAutoCompletion(true);
     ui.loginShellSelection->addItems(shells);
 
-    //don't use character classes, Qt is unicode aware, but useradd is not
     connect(ui.userNameLine, &QLineEdit::textEdited, this,
             &AddUserDialog::validateUsername);
 
@@ -83,14 +83,16 @@ AddUserDialog::AddUserDialog(const QStringList& existingUsers, bool avatar, bool
 
     connect(ui.selectImageButton, &QPushButton::clicked, this, &AddUserDialog::avatarClicked);
 
+    // Do not enable until valid information have been entered.
     ui.dialogButtonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
-    connect(ui.dialogButtonBox, SIGNAL(accepted()), this, SLOT(accept()));
-    connect(ui.dialogButtonBox, SIGNAL(rejected()), this, SLOT(reject()));
+    connect(ui.dialogButtonBox, &QDialogButtonBox::accepted, this, &AddUserDialog::accept);
+    connect(ui.dialogButtonBox, &QDialogButtonBox::rejected, this, &AddUserDialog::reject);
 }
 
 AddUserDialog::~AddUserDialog() {}
 
 void AddUserDialog::accept() {
+    // Store all the information from the dialog in member variables.
     login = ui.userNameLine->text();
     password = ui.passLine->text();
     shell = ui.loginShellSelection->currentText();
@@ -178,14 +180,6 @@ void AddUserDialog::passwordChanged() {
     updateValidityUi();
 }
 
-void AddUserDialog::setAvatar(const QString& avatar_)
-{
-    //if (avatar_ != "z") {
-    //    ui.avatar->setIcon(KIcon(avatar_));
-    //    avatar = avatar_;
-    //}
-}
-
 void AddUserDialog::updateValidityUi()
 {
     if (m_validUsername && !m_passwordsEmpty && m_passwordsMatch) {
@@ -195,11 +189,16 @@ void AddUserDialog::updateValidityUi()
     }
 }
 
+// TODO: support getting the avatar from a URL too.
 void AddUserDialog::avatarClicked()
 {
+    // Open a file dialog restricted to images.
     QFileDialog dlg( this );
     dlg.setNameFilter(tr("Images (*.png *.xpm *.jpg)"));
     dlg.setViewMode(QFileDialog::Detail);
+
+    // TODO: read this from configuration as we could have a
+    // preferred directory to store avatars in the live installation.
     dlg.setDirectory("/home");
 
     if ( dlg.exec() == QDialog::Accepted ) {
@@ -207,34 +206,3 @@ void AddUserDialog::avatarClicked()
         ui.avatarFileLine->setText(avatarFile);
     }
 }
-
-void AddUserDialog::setLogin(const QString& login_)
-{
-    ui.userNameLine->setText(login_);
-    login = login_;
-}
-
-void AddUserDialog::setName(const QString& name_)
-{
-    ui.nameLine->setText(name_);
-    name  = name_;
-}
-
-void AddUserDialog::setPassword(const QString& pass_)
-{
-    ui.passLine->setText(pass_);
-    ui.confirmPassLine->setText(pass_);
-    password = pass_;
-}
-
-void AddUserDialog::setAutoLogin(const QString& autologin_) {
-    if (autologin_.toInt() > 0) {
-        ui.autoLoginCheckBox->setCheckState(Qt::Checked);
-        autoLogin = true;
-    } else {
-        ui.autoLoginCheckBox->setCheckState(Qt::Unchecked);
-        autoLogin = false;
-    }
-}
-
-#include "AddUserDialog.moc"

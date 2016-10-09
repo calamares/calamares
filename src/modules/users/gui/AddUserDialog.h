@@ -2,6 +2,7 @@
  * Copyright (c) 2008 - 2009  Dario Freddi <drf@chakra-project.org>
  *               2010 - 2011  Drake Justice <djustice@chakra-project.com>
  *                      2013  Manuel tortosa <manutortosa@chakra-project.org>
+ *                      2016  Lisa Vitolo <shainer@chakralinux.org>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -47,12 +48,6 @@ public:
 
 public slots:
     void accept() override;
-
-    void setLogin(const QString&);
-    void setPassword(const QString&);
-    void setAvatar(const QString&);
-    void setName(const QString&);
-    void setAutoLogin(const QString&);
 
 signals:
     void addUserClicked();
