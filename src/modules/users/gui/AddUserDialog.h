@@ -39,7 +39,7 @@ public:
     QString shell;
     QString password;
     QString avatarFile;
-    QString name;
+    QString fullName;
 
     bool autoLogin;
     bool useUserPw;

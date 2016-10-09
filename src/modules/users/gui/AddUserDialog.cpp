@@ -96,9 +96,10 @@ void AddUserDialog::accept() {
     login = ui.userNameLine->text();
     password = ui.passLine->text();
     shell = ui.loginShellSelection->currentText();
+    fullName = ui.nameLine->text();
 
     autoLogin = ui.autoLoginCheckBox->isEnabled();
-    useUserPw = ui.rootUsesUserPwCheckBox->isEnabled();
+    useUserPw = ui.rootUsesUserPwCheckBox->isChecked();
 
     QDialog::accept();
 }
