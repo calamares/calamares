@@ -152,9 +152,6 @@ class FstabGenerator(object):
         if not mapper_name or not luks_uuid:
             return None
 
-        if mount_point == "/":
-            return None
-
         return dict(
             name=mapper_name,
             device="UUID=" + luks_uuid,
