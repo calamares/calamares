@@ -152,20 +152,22 @@ class FstabGenerator(object):
         if not mapper_name or not luks_uuid:
             return None
 
-        if mount_point == "/":
+        if mount_point != "/":
             return None
 
         return dict(
             name=mapper_name,
             device="UUID=" + luks_uuid,
             password="/crypto_keyfile.bin",
+            options="luks,keyscript=/bin/cat",
         )
 
     def print_crypttab_line(self, dct, file=None):
         """ Prints line to '/etc/crypttab' file. """
-        line = "{:21} {:<45} {}".format(dct["name"],
+        line = "{:21} {:<45} {} {}".format(dct["name"],
                                         dct["device"],
                                         dct["password"],
+                                        dct["options"],
                                        )
 
         print(line, file=file)
