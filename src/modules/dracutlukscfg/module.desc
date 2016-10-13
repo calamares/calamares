@@ -1,0 +1,7 @@
+# Module metadata file for dracutlukscfg job
+# Syntax is YAML 1.2
+---
+type:      "job"
+name:      "dracutlukscfg"
+interface: "qtplugin"
+load:      "libcalamares_job_dracutlukscfg.so"
