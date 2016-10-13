@@ -102,11 +102,13 @@ class FstabGenerator(object):
     :param mount_options:
     :param ssd_extra_mount_options:
     """
-    def __init__(self, partitions, root_mount_point, mount_options, ssd_extra_mount_options):
+    def __init__(self, partitions, root_mount_point, mount_options,
+                 ssd_extra_mount_options, crypttab_options):
         self.partitions = partitions
         self.root_mount_point = root_mount_point
         self.mount_options = mount_options
         self.ssd_extra_mount_options = ssd_extra_mount_options
+        self.crypttab_options = crypttab_options
         self.ssd_disks = set()
         self.root_is_ssd = False
 
@@ -156,14 +158,16 @@ class FstabGenerator(object):
             name=mapper_name,
             device="UUID=" + luks_uuid,
             password="/crypto_keyfile.bin",
+            options=self.crypttab_options,
         )
 
     def print_crypttab_line(self, dct, file=None):
         """ Prints line to '/etc/crypttab' file. """
-        line = "{:21} {:<45} {}".format(dct["name"],
-                                        dct["device"],
-                                        dct["password"],
-                                       )
+        line = "{:21} {:<45} {} {}".format(dct["name"],
+                                           dct["device"],
+                                           dct["password"],
+                                           dct["options"],
+                                          )
 
         print(line, file=file)
 
@@ -255,9 +259,11 @@ def run():
     root_mount_point = global_storage.value("rootMountPoint")
     mount_options = conf["mountOptions"]
     ssd_extra_mount_options = conf.get("ssdExtraMountOptions", {})
+    crypttab_options = conf.get("crypttabOptions", "luks")
     generator = FstabGenerator(partitions,
                                root_mount_point,
                                mount_options,
-                               ssd_extra_mount_options)
+                               ssd_extra_mount_options,
+                               crypttab_options)
 
     return generator.run()
