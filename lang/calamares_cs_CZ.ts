@@ -37,7 +37,7 @@
     <message>
         <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="61"/>
         <source>The &lt;strong&gt;boot environment&lt;/strong&gt; of this system.&lt;br&gt;&lt;br&gt;Older x86 systems only support &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Modern systems usually use &lt;strong&gt;EFI&lt;/strong&gt;, but may also show up as BIOS if started in compatibility mode.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;Zaváděcí prostředí&lt;/strong&gt; tohoto systému.&lt;br&gt;&lt;br&gt;Starší x86 systémy podporují pouze &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Moderní systémy většinou využívají &lt;strong&gt;EFI&lt;/strong&gt;, někdy lze toto prostředí přepnout do módu kompatibility a může se jevit jako BIOS.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="75"/>
@@ -431,7 +431,7 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1011"/>
         <source>&lt;strong&gt;Select a partition to install on&lt;/strong&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;Vyberte oddíl pro provedení instalace&lt;/strong&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1067"/>
@@ -559,7 +559,7 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="119"/>
         <source>Fi&amp;le System:</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Souborový systém:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="168"/>
@@ -584,7 +584,7 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="63"/>
         <source>En&amp;crypt</source>
-        <translation type="unfinished"/>
+        <translation>Š&amp;ifrovat</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="155"/>
@@ -904,7 +904,7 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
     <message>
         <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="32"/>
         <source>En&amp;crypt system</source>
-        <translation type="unfinished"/>
+        <translation>Z&amp;ašifrovat systém</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="42"/>
@@ -1904,7 +1904,7 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="47"/>
         <source>Set flags on partition %1.</source>
-        <translation type="unfinished"/>
+        <translation>Nastavit příznak oddílu %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="56"/>
@@ -1929,7 +1929,7 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="90"/>
         <source>The installer failed to set flags on partition %1.</source>
-        <translation type="unfinished"/>
+        <translation>Instalátor selhal při nastavení příznaku oddílu %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="98"/>
@@ -1939,12 +1939,12 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="107"/>
         <source>Could not open partition table on device &apos;%1&apos;.</source>
-        <translation type="unfinished"/>
+        <translation>Nelze otevřít tabulku oddílů na zařízení &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="119"/>
         <source>Could not find partition &apos;%1&apos;.</source>
-        <translation type="unfinished"/>
+        <translation>Oddíl &apos;%1&apos; nebyl nalezen.</translation>
     </message>
 </context>
 <context>
