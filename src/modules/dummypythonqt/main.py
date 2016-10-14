@@ -22,6 +22,21 @@ import platform
 
 from PythonQt.QtGui import *
 
+# Set up translations.
+# You may skip this if your Calamares module has no user visible strings.
+# DO NOT install _ into the builtin namespace because each module loads
+# its own catalog.
+# DO use the gettext class-based API and manually alias _ as described in:
+# https://docs.python.org/3.5/library/gettext.html#localizing-your-module
+import gettext
+import inspect
+import os
+filename = inspect.getframeinfo(inspect.currentframe()).filename
+path = os.path.dirname(os.path.abspath(filename))
+t = gettext.translation('dummypythonqt',
+                        os.path.join(path, 'lang'))
+_ = t.lgettext
+
 # Example Python ViewModule.
 # A Python ViewModule is a Python program which defines a ViewStep class.
 # This class must be marked with the @calamares_module decorator. A
@@ -47,7 +62,7 @@ class DummyPythonQtViewStep():
         label.text = accumulator
 
         btn = QPushButton()
-        btn.setText("Click me!")
+        btn.setText(_("Click me!"))
         self.main_widget.layout().addWidget(btn)
         btn.connect("clicked(bool)", self.on_btn_clicked)
 
