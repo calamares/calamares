@@ -3,8 +3,9 @@
 #
 # === This file is part of Calamares - <http://github.com/calamares> ===
 #
-#   Copyright 2014, Philip Müller <philm@manjaro.org>
+#   Copyright 2014-2016, Philip Müller <philm@manjaro.org>
 #   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+#   Copyright 2016, Artoo <artoo@manjaro.org>
 #
 #   Calamares is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -20,6 +21,7 @@
 #   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
 
 import libcalamares
+from os.path import join, exists
 
 
 def run():
@@ -27,6 +29,7 @@ def run():
     services = libcalamares.job.configuration['services']
     targets = libcalamares.job.configuration['targets']
     disable = libcalamares.job.configuration['disable']
+    rootmnt = libcalamares.globalstorage.value("rootMountPoint")
 
     # note that the "systemctl enable" and "systemctl disable" commands used
     # here will work in a chroot; in fact, they are the only systemctl commands
@@ -68,7 +71,7 @@ def run():
                 libcalamares.utils.debug("Cannot disable systemd service {}".format(dbl['name']))
                 libcalamares.utils.debug("systemctl disable call in chroot returned error code {}".format(ec))
     
-    if libcalamares.globalstorage.contains("displayManagers"):
+    if libcalamares.globalstorage.contains("displayManagers") and not exists(join(rootmnt, "etc/systemd/system/display-manager.service")):
         for dm in libcalamares.globalstorage.value("displayManagers"):
             ec = libcalamares.utils.target_env_call(['systemctl', 'enable', '{}.service'.format(dm)])
     
