@@ -1590,27 +1590,27 @@ The installer will quit and all changes will be lost.</source>
         <translation>Сегашен:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="259"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="261"/>
         <source>After:</source>
         <translation>След:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="403"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="405"/>
         <source>No EFI system partition configured</source>
         <translation>Няма конфигуриран EFI системен дял</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="404"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="406"/>
         <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;To configure an EFI system partition, go back and select or create a FAT32 filesystem with the &lt;strong&gt;esp&lt;/strong&gt; flag enabled and mount point &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;&lt;br/&gt;You can continue without setting up an EFI system partition but your system may fail to start.</source>
         <translation>EFI системен дял е нужен за стартиране на %1.&lt;br/&gt;&lt;br/&gt;За настройка на EFI системен дял се върнете назад и изберете или създайте FAT32 файлова система с включен &lt;strong&gt;esp&lt;/strong&gt; флаг и точка на монтиране &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;&lt;br/&gt;Може да продължите без EFI системен дял, но системата може да не успее да стартира.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="418"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="420"/>
         <source>EFI system partition flag not set</source>
         <translation>Не е зададен флаг на EFI системен дял</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="419"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="421"/>
         <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;A partition was configured with mount point &lt;strong&gt;%2&lt;/strong&gt; but its &lt;strong&gt;esp&lt;/strong&gt; flag is not set.&lt;br/&gt;To set the flag, go back and edit the partition.&lt;br/&gt;&lt;br/&gt;You can continue without setting the flag but your system may fail to start.</source>
         <translation>EFI системен дял е нужен за стартиране на %1.&lt;br/&gt;&lt;br/&gt;Дялът беше конфигуриран с точка на монтиране &lt;strong&gt;%2&lt;/strong&gt;, но неговия &lt;strong&gt;esp&lt;/strong&gt; флаг не е включен.&lt;br/&gt;За да включите флага се върнете назад и редактирайте дяла.&lt;br/&gt;&lt;br/&gt;Може да продължите без флага, но системата може да не успее да стартира.</translation>
     </message>
