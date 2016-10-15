@@ -1587,27 +1587,27 @@ O instalador será encerrado e todas as alterações serão perdidas.</translati
         <translation>Atual:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="259"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="261"/>
         <source>After:</source>
         <translation>Depois:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="403"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="405"/>
         <source>No EFI system partition configured</source>
         <translation>Nenhuma partição de sistema EFI configurada</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="404"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="406"/>
         <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;To configure an EFI system partition, go back and select or create a FAT32 filesystem with the &lt;strong&gt;esp&lt;/strong&gt; flag enabled and mount point &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;&lt;br/&gt;You can continue without setting up an EFI system partition but your system may fail to start.</source>
         <translation>É necessária uma partição de sistema EFI para iniciar %1.&lt;br/&gt;&lt;br/&gt;Para configurar uma partição de sistema EFI, volte atrás e selecione ou crie um sistema de ficheiros FAT32 com a flag &lt;strong&gt;esp&lt;/strong&gt; ativada e ponto de montagem &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;&lt;br/&gt;Pode continuar sem configurar uma partição de sistema EFI mas o seu sistema pode falhar o arranque.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="418"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="420"/>
         <source>EFI system partition flag not set</source>
         <translation>flag não definida da partição de sistema EFI</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="419"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="421"/>
         <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;A partition was configured with mount point &lt;strong&gt;%2&lt;/strong&gt; but its &lt;strong&gt;esp&lt;/strong&gt; flag is not set.&lt;br/&gt;To set the flag, go back and edit the partition.&lt;br/&gt;&lt;br/&gt;You can continue without setting the flag but your system may fail to start.</source>
         <translation>É necessária uma partição de sistema EFI para iniciar %1.&lt;br/&gt;&lt;br/&gt;A partitição foi configurada com o ponto de montagem &lt;strong&gt;%2&lt;/strong&gt; mas a sua flag &lt;strong&gt;esp&lt;/strong&gt; não está definida.&lt;br/&gt;Para definir a flag, volte atrás e edite a partição.&lt;br/&gt;&lt;br/&gt;Pode continuar sem definir a flag mas o seu sistema pode falhar o arranque.</translation>
     </message>
