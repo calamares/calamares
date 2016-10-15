@@ -71,15 +71,16 @@ def run():
                 libcalamares.utils.debug("Cannot disable systemd service {}".format(dbl['name']))
                 libcalamares.utils.debug("systemctl disable call in chroot returned error code {}".format(ec))
     
-    if libcalamares.globalstorage.contains("displayManagers") and not exists(join(rootmnt, "etc/systemd/system/display-manager.service")):
+    if libcalamares.globalstorage.contains("displayManagers"):
         for dm in libcalamares.globalstorage.value("displayManagers"):
-            ec = libcalamares.utils.target_env_call(['systemctl', 'enable', '{}.service'.format(dm)])
+            if not exists(join(rootmnt, "etc/systemd/system/display-manager.service")):
+                ec = libcalamares.utils.target_env_call(['systemctl', 'enable', '{}.service'.format(dm)])
     
-            if ec != 0:
-                return "Cannot enable systemd service {}".format(dm), \
-                    "systemctl enable call in chroot returned error code {}".format(ec)
-            else:
-                libcalamares.utils.debug("Cannot enable systemd service {}".format(dm))
-                libcalamares.utils.debug("systemctl enable call in chroot returned error code {}".format(ec))
+                if ec != 0:
+                    return "Cannot enable systemd service {}".format(dm), \
+                        "systemctl enable call in chroot returned error code {}".format(ec)
+                else:
+                    libcalamares.utils.debug("Cannot enable systemd service {}".format(dm))
+                    libcalamares.utils.debug("systemctl enable call in chroot returned error code {}".format(ec))
 
     return None
