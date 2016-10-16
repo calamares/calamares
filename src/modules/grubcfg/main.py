@@ -68,7 +68,7 @@ def modify_grub_default(partitions, root_mount_point, distributor):
     if swap_uuid:
         kernel_params.append("resume=UUID={!s}".format(swap_uuid))
 
-    distributor_line = "GRUB_DISTRIBUTOR=\"{!s}\"".format(distributor_replace)
+    distributor_line = "GRUB_DISTRIBUTOR='{!s}'".format(distributor_replace)
 
     if not os.path.exists(default_dir):
         os.mkdir(default_dir)
@@ -126,7 +126,7 @@ def modify_grub_default(partitions, root_mount_point, distributor):
                 else:
                     escaped_value = str(value).replace("'", "'\\''")
 
-                lines.append("{!s}=\"{!s}\"".format(key, escaped_value))
+                lines.append("{!s}='{!s}'".format(key, escaped_value))
 
     if not have_kernel_cmd:
         kernel_cmd = "GRUB_CMDLINE_LINUX_DEFAULT=\"{!s}\"".format(" ".join(kernel_params))
