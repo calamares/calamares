@@ -839,6 +839,24 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
     </message>
 </context>
 <context>
+    <name>DracutLuksCfgJob</name>
+    <message>
+        <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="108"/>
+        <source>Write LUKS configuration for Dracut to %1</source>
+        <translation>Scrittura della configurazione LUKS per Dracut su %1</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="110"/>
+        <source>Skip writing LUKS configuration for Dracut: &quot;/&quot; partition is not encrypted</source>
+        <translation>Salto scrittura della configurazione LUKS per Dracut: la partizione &quot;/&quot; non è cifrata</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="126"/>
+        <source>Failed to open %1</source>
+        <translation>Impossibile aprire %1</translation>
+    </message>
+</context>
+<context>
     <name>DummyCppJob</name>
     <message>
         <location filename="../src/modules/dummycpp/DummyCppJob.cpp" line="46"/>
@@ -1141,7 +1159,7 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="129"/>
         <source>Please review the End User License Agreements (EULAs) above.&lt;br/&gt;If you do not agree with the terms, proprietary software will not be installed, and open source alternatives will be used instead.</source>
-        <translation>Leggi attentamente le licenze d&apos;uso (EULA) riportate sopra.&lt;br/&gt;Se non ne accetti i termini, il software proprietario non verrà installato e al suo posto saranno utilizzate alternative open source.</translation>
+        <translation>Si prega di leggere attentamente gli accordi di licenza dell&apos;utente finale (EULA) riportati sopra.&lt;/br&gt;Se non se ne accettano i termini, il software proprietario non verrà installato e al suo posto saranno utilizzate alternative open source.</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="159"/>

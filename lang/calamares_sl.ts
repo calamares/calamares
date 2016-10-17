@@ -839,6 +839,24 @@ Namestilni program se bo končal in vse spremembe bodo izgubljene.</translation>
     </message>
 </context>
 <context>
+    <name>DracutLuksCfgJob</name>
+    <message>
+        <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="108"/>
+        <source>Write LUKS configuration for Dracut to %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="110"/>
+        <source>Skip writing LUKS configuration for Dracut: &quot;/&quot; partition is not encrypted</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="126"/>
+        <source>Failed to open %1</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>DummyCppJob</name>
     <message>
         <location filename="../src/modules/dummycpp/DummyCppJob.cpp" line="46"/>

@@ -839,6 +839,24 @@ The installer will quit and all changes will be lost.</translation>
     </message>
 </context>
 <context>
+    <name>DracutLuksCfgJob</name>
+    <message>
+        <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="108"/>
+        <source>Write LUKS configuration for Dracut to %1</source>
+        <translation>Write LUKS configuration for Dracut to %1</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="110"/>
+        <source>Skip writing LUKS configuration for Dracut: &quot;/&quot; partition is not encrypted</source>
+        <translation>Skip writing LUKS configuration for Dracut: &quot;/&quot; partition is not encrypted</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="126"/>
+        <source>Failed to open %1</source>
+        <translation>Failed to open %1</translation>
+    </message>
+</context>
+<context>
     <name>DummyCppJob</name>
     <message>
         <location filename="../src/modules/dummycpp/DummyCppJob.cpp" line="46"/>
