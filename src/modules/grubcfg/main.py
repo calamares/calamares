@@ -53,7 +53,7 @@ def modify_grub_default(partitions, root_mount_point, distributor):
                                                     partition["luksMapperName"]),
                 "root=/dev/mapper/{!s}".format(partition["luksMapperName"]),
                 # Fix for unbootable system with dracut --nohostonly
-                "rd.luks.uuid={!s}."format(partition["luksUuid"])
+                "rd.luks.uuid={!s}".format(partition["luksUuid"])
             ]
 
     kernel_params = ["quiet"]
