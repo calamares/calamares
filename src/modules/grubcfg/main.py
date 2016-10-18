@@ -50,7 +50,7 @@ def modify_grub_default(partitions, root_mount_point, distributor):
                 swap_uuid = partition["uuid"]
 
             if partition["mountPoint"] == "/" and "luksMapperName" in partition:
-                cryptdevice_params["rd.luks.uuid={!s}".format(partition["luksUuid"])]
+                cryptdevice_params = ["rd.luks.uuid={!s}".format(partition["luksUuid"])]
     else:
         for partition in partitions:
             if partition["fs"] == "linuxswap":
