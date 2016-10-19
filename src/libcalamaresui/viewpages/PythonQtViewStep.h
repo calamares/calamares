@@ -58,7 +58,6 @@ protected:
 private:
     PythonQtObjectPtr m_cxt;
     PythonQtObjectPtr m_obj;
-    friend class PythonQtViewStepDecorator;
 };
 
 }
