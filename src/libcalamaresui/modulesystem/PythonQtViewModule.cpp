@@ -23,11 +23,54 @@
 #include "viewpages/PythonQtViewStep.h"
 #include "ViewManager.h"
 #include "CalamaresConfig.h"
+#include "GlobalStorage.h"
+#include "JobQueue.h"
 
 #include <PythonQt.h>
 #include <extensions/PythonQt_QtAll/PythonQt_QtAll.h>
 
 #include <QDir>
+#include <QPointer>
+
+
+/**
+ * @brief This GlobalStorage class is a namespace-free wrapper for
+ *        Calamares::GlobalStorage. This is unfortunately a necessity
+ *        because PythonQt doesn't like namespaces.
+ */
+class GlobalStorage : public QObject
+{
+    Q_OBJECT
+public:
+    explicit GlobalStorage( Calamares::GlobalStorage* gs )
+        : QObject( gs )
+        , m_gs( gs )
+    {}
+
+public slots:
+    bool contains( const QString& key ) const
+    { return m_gs->contains( key ); }
+
+    int count() const
+    { return m_gs->count(); }
+
+    void insert( const QString& key, const QVariant& value )
+    { m_gs->insert( key, value ); }
+
+    QStringList keys() const
+    { return m_gs->keys(); }
+
+    int remove( const QString& key )
+    { return m_gs->remove( key ); }
+
+    QVariant value( const QString& key ) const
+    { return m_gs->value( key ); }
+private:
+    Calamares::GlobalStorage* m_gs;
+};
+
+static QPointer< GlobalStorage > s_gs = nullptr;
+
 
 namespace Calamares {
 
@@ -68,6 +111,18 @@ PythonQtViewModule::loadSelf()
             //PythonQt::self()->registerClass( &PythonQtViewStep::staticMetaObject,
             //                                 "calamares" );
 
+            // Prepare GlobalStorage object, in module PythonQt.calamares
+            if ( !s_gs )
+                s_gs = new ::GlobalStorage( Calamares::JobQueue::instance()->globalStorage() );
+
+            PythonQt::self()->registerClass( &::GlobalStorage::staticMetaObject,
+                                             "calamares" );
+            PythonQtObjectPtr pqtm = PythonQt::priv()->pythonQtModule();
+            PythonQtObjectPtr cala = PythonQt::self()->lookupObject( pqtm, "calamares" );
+
+            cala.addObject( "global_storage", s_gs );
+
+            // Basic stdout/stderr handling
             QObject::connect( PythonQt::self(), &PythonQt::pythonStdOut,
                      []( const QString& message )
             {
@@ -173,3 +228,5 @@ PythonQtViewModule::~PythonQtViewModule()
 }
 
 } // namespace Calamares
+
+#include "PythonQtViewModule.moc"
