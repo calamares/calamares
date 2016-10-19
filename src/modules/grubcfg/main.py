@@ -34,6 +34,7 @@ def modify_grub_default(partitions, root_mount_point, distributor):
     default_dir = os.path.join(root_mount_point, "etc/default")
     default_grub = os.path.join(default_dir, "grub")
     distributor_replace = distributor.replace("'", "'\\''")
+    dracut_bin = libcalamares.utils.target_env_call(["sh", "-c", "which dracut"])
     use_splash = ""
     swap_uuid = ""
 
@@ -43,17 +44,23 @@ def modify_grub_default(partitions, root_mount_point, distributor):
 
     cryptdevice_params = []
 
-    for partition in partitions:
-        if partition["fs"] == "linuxswap":
-            swap_uuid = partition["uuid"]
+    if dracut_bin == 0:
+        for partition in partitions:
+            if partition["fs"] == "linuxswap":
+                swap_uuid = partition["uuid"]
 
-        if partition["mountPoint"] == "/" and "luksMapperName" in partition:
-            cryptdevice_params = [
-                "cryptdevice=UUID={!s}:{!s}".format(partition["luksUuid"],
-                                                    partition["luksMapperName"]),
-                "root=/dev/mapper/{!s}".format(partition["luksMapperName"]),
-                # Fix for unbootable system with dracut --nohostonly
-                "rd.luks.uuid={!s}".format(partition["luksUuid"])
+            if partition["mountPoint"] == "/" and "luksMapperName" in partition:
+                cryptdevice_params = ["rd.luks.uuid={!s}".format(partition["luksUuid"])]
+    else:
+        for partition in partitions:
+            if partition["fs"] == "linuxswap":
+                swap_uuid = partition["uuid"]
+
+            if partition["mountPoint"] == "/" and "luksMapperName" in partition:
+                cryptdevice_params = [
+                    "cryptdevice=UUID={!s}:{!s}".format(partition["luksUuid"],
+                                                        partition["luksMapperName"]),
+                    "root=/dev/mapper/{!s}".format(partition["luksMapperName"])
             ]
 
     kernel_params = ["quiet"]
