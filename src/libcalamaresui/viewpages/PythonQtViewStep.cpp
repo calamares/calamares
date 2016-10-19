@@ -26,6 +26,7 @@
 #include <QBoxLayout>
 #include <QWidget>
 
+
 namespace Calamares
 {
 
@@ -35,18 +36,22 @@ PythonQtViewStep::PythonQtViewStep( PythonQtObjectPtr cxt,
     , m_widget( new QWidget() )
     , m_cxt( cxt )
 {
+    PythonQt* pq = PythonQt::self();
+    Q_ASSERT( pq );
+
     // The @calamares_module decorator should have filled _calamares_module_typename
     // for us.
     QString className = m_cxt.getVariable( "_calamares_module_typename" ).toString();
 
     // Instantiate an object of the class marked with @calamares_module and
     // store it as _calamares_module.
-    PythonQt::self()->evalScript( m_cxt, QString( "_calamares_module = %1()" )
+    pq->evalScript( m_cxt, QString( "_calamares_module = %1()" )
                                             .arg( className ) );
-    m_obj = PythonQt::self()->lookupObject( m_cxt, "_calamares_module" );
+    m_obj = pq->lookupObject( m_cxt, "_calamares_module" );
 
     Q_ASSERT( !m_obj.isNull() );    // no entry point, no party
 
+    // Prepare the base widget for the module's pages
     m_widget->setLayout( new QVBoxLayout );
     CalamaresUtils::unmarginLayout( m_widget->layout() );
     m_cxt.addObject( "_calamares_module_basewidget", m_widget );
@@ -70,7 +75,7 @@ PythonQtViewStep::widget()
                     "This should never happen.";
 
     bool nothingChanged = m_cxt.evalScript(
-        "_calamares_module_basewidget.contains(_calamares_module.widget())" ).toBool();
+        "_calamares_module.widget() in _calamares_module_basewidget.children()" ).toBool();
     if ( nothingChanged )
         return m_widget;
 
