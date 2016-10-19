@@ -843,17 +843,17 @@ Programul de instalare va ieși, iar toate modificările vor fi pierdute.</trans
     <message>
         <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="108"/>
         <source>Write LUKS configuration for Dracut to %1</source>
-        <translation type="unfinished"/>
+        <translation>Scrie configurația LUKS pentru Dracut pe %1</translation>
     </message>
     <message>
         <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="110"/>
         <source>Skip writing LUKS configuration for Dracut: &quot;/&quot; partition is not encrypted</source>
-        <translation type="unfinished"/>
+        <translation>Omite scrierea configurației LUKS pentru Dracut: partiția „/” nu este criptată</translation>
     </message>
     <message>
         <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="126"/>
         <source>Failed to open %1</source>
-        <translation type="unfinished"/>
+        <translation>Nu s-a reușit deschiderea %1</translation>
     </message>
 </context>
 <context>
@@ -861,7 +861,7 @@ Programul de instalare va ieși, iar toate modificările vor fi pierdute.</trans
     <message>
         <location filename="../src/modules/dummycpp/DummyCppJob.cpp" line="46"/>
         <source>Dummy C++ Job</source>
-        <translation type="unfinished"/>
+        <translation>Dummy C++ Job</translation>
     </message>
 </context>
 <context>
