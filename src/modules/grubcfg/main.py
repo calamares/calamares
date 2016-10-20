@@ -39,6 +39,7 @@ def modify_grub_default(partitions, root_mount_point, distributor):
     dracut_bin = libcalamares.utils.target_env_call(["sh", "-c", "which dracut"])
     use_splash = ""
     swap_uuid = ""
+    swap_outer_uuid = ""
 
     libcalamares.utils.debug("which plymouth exit code: {!s}".format(plymouth_bin))
 
@@ -47,10 +48,13 @@ def modify_grub_default(partitions, root_mount_point, distributor):
 
     cryptdevice_params = []
 
-    if dracut_bin == 0:
+    if dracut_bin == "0":
         for partition in partitions:
             if partition["fs"] == "linuxswap":
                 swap_uuid = partition["uuid"]
+
+            if partition["fs"] == "linuxswap" and "luksMapperName" in partition:
+                swap_outer_uuid = partition["luksUuid"]
 
             if partition["mountPoint"] == "/" and "luksMapperName" in partition:
                 cryptdevice_params = ["rd.luks.uuid={!s}".format(partition["luksUuid"])]
@@ -76,6 +80,9 @@ def modify_grub_default(partitions, root_mount_point, distributor):
 
     if swap_uuid:
         kernel_params.append("resume=UUID={!s}".format(swap_uuid))
+
+    if dracut_bin == "0" and swap_outer_uuid:
+        kernel_params.append("rd.luks.uuid={!s}".format(swap_outer_uuid))
 
     distributor_line = "GRUB_DISTRIBUTOR='{!s}'".format(distributor_replace)
 
