@@ -853,7 +853,7 @@ Instalator zostanie zamknięty i wszystkie zmiany zostaną utracone.</translatio
     <message>
         <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="126"/>
         <source>Failed to open %1</source>
-        <translation type="unfinished"/>
+        <translation>Nie udało się otworzyć %1</translation>
     </message>
 </context>
 <context>
