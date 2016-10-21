@@ -47,6 +47,8 @@ if( WITH_PYTHONQT )
         modulesystem/PythonQtViewModule.cpp
         utils/PythonQtUtils.cpp
         viewpages/PythonQtViewStep.cpp
+        viewpages/PythonQtGlobalStorageWrapper.cpp
+        viewpages/PythonQtUtilsWrapper.cpp
     )
     set( OPTIONAL_PRIVATE_LIBRARIES
         ${OPTIONAL_PRIVATE_LIBRARIES}
