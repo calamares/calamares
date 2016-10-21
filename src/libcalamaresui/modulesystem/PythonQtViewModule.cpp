@@ -23,6 +23,8 @@
 #include "viewpages/PythonQtViewStep.h"
 #include "ViewManager.h"
 #include "CalamaresConfig.h"
+#include "viewpages/PythonQtGlobalStorageWrapper.h"
+#include "viewpages/PythonQtUtilsWrapper.h"
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 
@@ -33,47 +35,10 @@
 #include <QPointer>
 
 
-/**
- * @brief This GlobalStorage class is a namespace-free wrapper for
- *        Calamares::GlobalStorage. This is unfortunately a necessity
- *        because PythonQt doesn't like namespaces.
- */
-class GlobalStorage : public QObject
-{
-    Q_OBJECT
-public:
-    explicit GlobalStorage( Calamares::GlobalStorage* gs )
-        : QObject( gs )
-        , m_gs( gs )
-    {}
-
-public slots:
-    bool contains( const QString& key ) const
-    { return m_gs->contains( key ); }
-
-    int count() const
-    { return m_gs->count(); }
-
-    void insert( const QString& key, const QVariant& value )
-    { m_gs->insert( key, value ); }
-
-    QStringList keys() const
-    { return m_gs->keys(); }
-
-    int remove( const QString& key )
-    { return m_gs->remove( key ); }
-
-    QVariant value( const QString& key ) const
-    { return m_gs->value( key ); }
-private:
-    Calamares::GlobalStorage* m_gs;
-};
-
 static QPointer< GlobalStorage > s_gs = nullptr;
-
+static QPointer< Utils > s_utils = nullptr;
 
 namespace Calamares {
-
 
 Module::Type
 PythonQtViewModule::type() const
@@ -111,16 +76,24 @@ PythonQtViewModule::loadSelf()
             //PythonQt::self()->registerClass( &PythonQtViewStep::staticMetaObject,
             //                                 "calamares" );
 
-            // Prepare GlobalStorage object, in module PythonQt.calamares
-            if ( !s_gs )
-                s_gs = new ::GlobalStorage( Calamares::JobQueue::instance()->globalStorage() );
-
+            // We only do the following to force PythonQt to create a submodule
+            // "calamares" for us to put our static objects in
             PythonQt::self()->registerClass( &::GlobalStorage::staticMetaObject,
                                              "calamares" );
+
+            // Get a PythonQtObjectPtr to the PythonQt.calamares submodule
             PythonQtObjectPtr pqtm = PythonQt::priv()->pythonQtModule();
             PythonQtObjectPtr cala = PythonQt::self()->lookupObject( pqtm, "calamares" );
 
+            // Prepare GlobalStorage object, in module PythonQt.calamares
+            if ( !s_gs )
+                s_gs = new ::GlobalStorage( Calamares::JobQueue::instance()->globalStorage() );
             cala.addObject( "global_storage", s_gs );
+
+            // Prepare Utils object, in module PythonQt.calamares
+            if ( !s_utils )
+                s_utils = new ::Utils( Calamares::JobQueue::instance()->globalStorage() );
+            cala.addObject( "utils", s_utils );
 
             // Basic stdout/stderr handling
             QObject::connect( PythonQt::self(), &PythonQt::pythonStdOut,
@@ -228,5 +201,3 @@ PythonQtViewModule::~PythonQtViewModule()
 }
 
 } // namespace Calamares
-
-#include "PythonQtViewModule.moc"
