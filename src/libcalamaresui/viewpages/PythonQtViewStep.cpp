@@ -157,7 +157,7 @@ PythonQtViewStep::jobs() const
 void
 PythonQtViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
-#warning "Not implemented yet."
+    m_obj.addVariable( "configuration", configurationMap );
 }
 
 
