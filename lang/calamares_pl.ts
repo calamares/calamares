@@ -812,7 +812,7 @@ Instalator zostanie zamknięty i wszystkie zmiany zostaną utracone.</translatio
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="114"/>
         <source>This is a &lt;strong&gt;loop&lt;/strong&gt; device.&lt;br&gt;&lt;br&gt;It is a pseudo-device with no partition table that makes a file accessible as a block device. This kind of setup usually only contains a single filesystem.</source>
-        <translation type="unfinished"/>
+        <translation>To jest urządzenie &lt;strong&gt;pętli zwrotnej&lt;/strong&gt;. To jest pseudo-urządzenie, które nie posiada tabeli partycji, która czyni plik dostępny jako urządzenie blokowe. Ten rodzaj instalacji zwykle zawiera tylko jeden system plików.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="121"/>
@@ -861,7 +861,7 @@ Instalator zostanie zamknięty i wszystkie zmiany zostaną utracone.</translatio
     <message>
         <location filename="../src/modules/dummycpp/DummyCppJob.cpp" line="46"/>
         <source>Dummy C++ Job</source>
-        <translation type="unfinished"/>
+        <translation>Działanie obiektu Dummy C++</translation>
     </message>
 </context>
 <context>
@@ -1154,7 +1154,7 @@ Instalator zostanie zamknięty i wszystkie zmiany zostaną utracone.</translatio
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="124"/>
         <source>&lt;h1&gt;License Agreement&lt;/h1&gt;This setup procedure can install proprietary software that is subject to licensing terms in order to provide additional features and enhance the user experience.</source>
-        <translation>&lt;h1&gt;Umowy licencyjne&lt;/h1&gt;Ten etap instalacji może zainstalować własnościowe oprogramowanie którego dotyczą zasady licencji w celu poprawienia doświadczenia i zapewnienia dodatkowych funkcji.</translation>
+        <translation>&lt;h1&gt;Umowy licencyjne&lt;/h1&gt;Ten etap instalacji pozwoli zainstalować własnościowe oprogramowanie którego dotyczą zasady licencji w celu poprawienia doświadczenia i zapewnienia dodatkowych funkcji.</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="129"/>
@@ -1617,7 +1617,7 @@ Instalator zostanie zamknięty i wszystkie zmiany zostaną utracone.</translatio
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="406"/>
         <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;To configure an EFI system partition, go back and select or create a FAT32 filesystem with the &lt;strong&gt;esp&lt;/strong&gt; flag enabled and mount point &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;&lt;br/&gt;You can continue without setting up an EFI system partition but your system may fail to start.</source>
-        <translation type="unfinished"/>
+        <translation>Partycja systemu EFI jest zalecana aby rozpocząć %1.&lt;br/&gt;&lt;br/&gt;Aby ją skonfigurować, wróć i wybierz lub utwórz partycję z systemem plików FAT32 i flagą &lt;strong&gt;esp&lt;/strong&gt; o punkcie montowania &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;&lt;br/&gt;Możesz kontynuować bez ustawiania partycji systemu EFI, ale twój system może nie uruchomić się.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="420"/>
@@ -1627,7 +1627,7 @@ Instalator zostanie zamknięty i wszystkie zmiany zostaną utracone.</translatio
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="421"/>
         <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;A partition was configured with mount point &lt;strong&gt;%2&lt;/strong&gt; but its &lt;strong&gt;esp&lt;/strong&gt; flag is not set.&lt;br/&gt;To set the flag, go back and edit the partition.&lt;br/&gt;&lt;br/&gt;You can continue without setting the flag but your system may fail to start.</source>
-        <translation type="unfinished"/>
+        <translation>Partycja systemu EFI jest zalecana aby rozpocząć %1.&lt;br/&gt;&lt;br/&gt;Została utworzona partycja o punkcie montownia &lt;strong&gt;%2&lt;/strong&gt;, ale flaga &lt;strong&gt;esp&lt;/strong&gt; nie jest ustawiona. Aby ustawić flagę, wróć i edytuj tą partycję.&lt;br/&gt;&lt;br/&gt;Możesz kontynuować bez ustawienia tej flagi, ale twój system może nie uruchomić się.</translation>
     </message>
 </context>
 <context>
