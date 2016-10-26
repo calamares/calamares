@@ -44,6 +44,7 @@ desktop_environments = [
     DesktopEnvironment('/usr/bin/pekwm', 'pekwm'),
     DesktopEnvironment('/usr/bin/pantheon-session', 'pantheon'),
     DesktopEnvironment('/usr/bin/i3', 'i3'),
+    DesktopEnvironment('/usr/bin/startdde', 'deepin'),
     DesktopEnvironment('/usr/bin/openbox-session', 'openbox')
 ]
 
@@ -350,6 +351,11 @@ def run():
             if default_desktop_environment is not None:
                 os.system("sed -i -e \"s/^.*user-session=.*/user-session={!s}/\" {!s}/etc/lightdm/lightdm.conf".format(
                           default_desktop_environment.desktop_file, root_mount_point))
+
+            if default_desktop_environment.desktop_file == "deepin":
+                os.system("sed -i -e \"s/^.greeter-session=.*/greeter-session=lightdm-deepin-greeter/\" {}/etc/lightdm/lightdm.conf".format(
+                          root_mount_point))
+                          
         else:
             libcalamares.utils.debug("lightdm selected but not installed")
             displaymanagers.remove("lightdm")
