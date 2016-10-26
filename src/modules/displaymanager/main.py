@@ -3,7 +3,7 @@
 #
 # === This file is part of Calamares - <http://github.com/calamares> ===
 #
-#   Copyright 2014-2015, Philip Müller <philm@manjaro.org>
+#   Copyright 2014-2016, Philip Müller <philm@manjaro.org>
 #   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
 #   Copyright 2014, Kevin Kofler <kevin.kofler@chello.at>
 #
@@ -268,7 +268,7 @@ def set_autologin(username, displaymanagers, default_desktop_environment, root_m
                 # User= line, possibly commented out
                 if re.match('\\s*(?:#\\s*)?User=', line):
                     if do_autologin:
-                        line = 'User={}\n'.format(username)
+                        line = 'User={!s}\n'.format(username)
                     else:
                         line = '#User=\n'
 
@@ -276,9 +276,9 @@ def set_autologin(username, displaymanagers, default_desktop_environment, root_m
                 if re.match('\\s*#\\s*Session=|\\s*Session=$', line):
                     if default_desktop_environment is not None:
                         if do_autologin:
-                            line = 'Session={}.desktop\n'.format(default_desktop_environment.desktop_file)
+                            line = 'Session={!s}.desktop\n'.format(default_desktop_environment.desktop_file)
                         else:
-                            line = '#Session={}.desktop\n'.format(default_desktop_environment.desktop_file)
+                            line = '#Session={!s}.desktop\n'.format(default_desktop_environment.desktop_file)
 
                 sddm_conf.write(line)
 
@@ -353,7 +353,7 @@ def run():
                           default_desktop_environment.desktop_file, root_mount_point))
 
             if default_desktop_environment.desktop_file == "deepin":
-                os.system("sed -i -e \"s/^.greeter-session=.*/greeter-session=lightdm-deepin-greeter/\" {}/etc/lightdm/lightdm.conf".format(
+                os.system("sed -i -e \"s/^.greeter-session=.*/greeter-session=lightdm-deepin-greeter/\" {!s}/etc/lightdm/lightdm.conf".format(
                           root_mount_point))
                           
         else:
