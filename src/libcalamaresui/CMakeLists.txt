@@ -46,6 +46,7 @@ if( WITH_PYTHONQT )
     list( APPEND ${CALAMARESUI_LIBRARY_TARGET}_SOURCES
         modulesystem/PythonQtViewModule.cpp
         utils/PythonQtUtils.cpp
+        viewpages/PythonQtJob.cpp
         viewpages/PythonQtViewStep.cpp
         viewpages/PythonQtGlobalStorageWrapper.cpp
         viewpages/PythonQtUtilsWrapper.cpp
