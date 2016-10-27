@@ -21,6 +21,7 @@
 import platform
 
 from PythonQt.QtGui import *
+import PythonQt.calamares as calamares
 
 # Set up translations.
 # You may skip this if your Calamares module has no user visible strings.
@@ -33,9 +34,11 @@ import inspect
 import os
 filename = inspect.getframeinfo(inspect.currentframe()).filename
 path = os.path.dirname(os.path.abspath(filename))
-t = gettext.translation('dummypythonqt',
-                        os.path.join(path, 'lang'))
-_ = t.lgettext
+# t = gettext.translation('dummypythonqt',
+#                         os.path.join(path, 'lang'),
+#                         languages=['en'])
+#_ = t.lgettext
+_ = gettext.gettext
 
 # Example Python ViewModule.
 # A Python ViewModule is a Python program which defines a ViewStep class.
@@ -84,5 +87,29 @@ class DummyPythonQtViewStep():
     def isAtEnd(self):
         return True
 
+    def jobs(self):
+        return [DummyPQJob("hi there lol")]
+
     def widget(self):
         return self.main_widget
+
+
+class DummyPQJob():
+    def __init__(self, my_msg):
+        self.my_msg = my_msg
+
+    def pretty_name(self):
+        return _("The Dummy PythonQt Job")
+
+    def pretty_description(self):
+        return _("This description says that the Dummy PythonQt Job is a dummy. "
+                 "The dummy job says: {}".format(self.my_msg))
+
+    def pretty_status_message(self):
+        return _("A status message for DPQ Job.")
+
+    def exec(self):
+        rmp = calamares.global_storage['rootMountPoint']
+        os.system("touch {}/calamares_dpqt_was_here".format(rmp))
+        calamares.utils.debug("the dummy job says {}".format(self.my_msg))
+        return {'ok': True}
