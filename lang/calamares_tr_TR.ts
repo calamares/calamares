@@ -846,17 +846,17 @@ Kuruluma devam edebilirsiniz fakat bazı özellikler devre dışı kalabilir.</t
     <message>
         <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="108"/>
         <source>Write LUKS configuration for Dracut to %1</source>
-        <translation type="unfinished"/>
+        <translation>%1 aygıtına Dracut için LUKS yapılandırmasını yaz</translation>
     </message>
     <message>
         <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="110"/>
         <source>Skip writing LUKS configuration for Dracut: &quot;/&quot; partition is not encrypted</source>
-        <translation type="unfinished"/>
+        <translation>Dracut için LUKS yapılandırma işlemi atlanıyor: &quot;/&quot; diski şifrelenemedi</translation>
     </message>
     <message>
         <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="126"/>
         <source>Failed to open %1</source>
-        <translation type="unfinished"/>
+        <translation>%1 Açılamadı</translation>
     </message>
 </context>
 <context>
