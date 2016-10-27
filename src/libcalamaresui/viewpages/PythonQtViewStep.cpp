@@ -20,6 +20,8 @@
 #include "utils/Logger.h"
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/PythonQtUtils.h"
+#include "utils/Retranslator.h"
+#include "viewpages/PythonQtJob.h"
 
 #include <gui/PythonQtScriptingConsole.h>
 
@@ -55,6 +57,10 @@ PythonQtViewStep::PythonQtViewStep( PythonQtObjectPtr cxt,
     m_widget->setLayout( new QVBoxLayout );
     CalamaresUtils::unmarginLayout( m_widget->layout() );
     m_cxt.addObject( "_calamares_module_basewidget", m_widget );
+
+    CALAMARES_RETRANSLATE(
+        CalamaresUtils::lookupAndCall( m_obj, { "retranslate" } );
+    )
 }
 
 
@@ -63,6 +69,7 @@ PythonQtViewStep::prettyName() const
 {
     return CalamaresUtils::lookupAndCall( m_obj,
                                           { "prettyName",
+                                            "prettyname",
                                             "pretty_name" } ).toString();
 }
 
@@ -115,6 +122,7 @@ PythonQtViewStep::isNextEnabled() const
 {
     return CalamaresUtils::lookupAndCall( m_obj,
                                           { "isNextEnabled",
+                                            "isnextenabled",
                                             "is_next_enabled" } ).toBool();
 }
 
@@ -124,6 +132,7 @@ PythonQtViewStep::isBackEnabled() const
 {
     return CalamaresUtils::lookupAndCall( m_obj,
                                           { "isBackEnabled",
+                                            "isbackenabled",
                                             "is_back_enabled" } ).toBool();
 }
 
@@ -133,6 +142,7 @@ PythonQtViewStep::isAtBeginning() const
 {
     return CalamaresUtils::lookupAndCall( m_obj,
                                           { "isAtBeginning",
+                                            "isatbeginning",
                                             "is_at_beginning" } ).toBool();
 }
 
@@ -142,6 +152,7 @@ PythonQtViewStep::isAtEnd() const
 {
     return CalamaresUtils::lookupAndCall( m_obj,
                                           { "isAtEnd",
+                                            "isatend",
                                             "is_at_end" } ).toBool();
 }
 
@@ -149,8 +160,30 @@ PythonQtViewStep::isAtEnd() const
 QList< Calamares::job_ptr >
 PythonQtViewStep::jobs() const
 {
-#warning "Not implemented yet."
-    return QList< Calamares::job_ptr >();
+    QList< Calamares::job_ptr > jobs;
+
+    PythonQtObjectPtr jobsCallable = PythonQt::self()->lookupCallable( m_obj, "jobs" );
+    if ( jobsCallable.isNull() )
+        return jobs;
+
+    PythonQtObjectPtr response = PythonQt::self()->callAndReturnPyObject( jobsCallable );
+    if ( response.isNull() )
+        return jobs;
+
+    PythonQtObjectPtr listPopCallable = PythonQt::self()->lookupCallable( response, "pop" );
+    if ( listPopCallable.isNull() )
+        return jobs;
+
+    forever
+    {
+        PythonQtObjectPtr aJob = PythonQt::self()->callAndReturnPyObject( listPopCallable, { 0 } );
+        if ( aJob.isNull() )
+            break;
+
+        jobs.append( Calamares::job_ptr( new PythonQtJob( m_cxt, aJob ) ) );
+    }
+
+    return jobs;
 }
 
 
