@@ -739,22 +739,32 @@ The installer will quit and all changes will be lost.</source>
         <translation>無法開啟要讀取的 groups 檔案。</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="162"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="160"/>
         <source>Cannot create user %1.</source>
         <translation>無法建立使用者 %1 。</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="164"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="162"/>
         <source>useradd terminated with error code %1.</source>
         <translation>useradd 以錯誤代碼 %1 終止。</translation>
     </message>
     <message>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="171"/>
+        <source>Cannot add user %1 to groups: %2.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="174"/>
+        <source>usermod terminated with error code %1.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="184"/>
         <source>Cannot set home directory ownership for user %1.</source>
         <translation>無法將使用者 %1 設定為家目錄的擁有者。</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="176"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="186"/>
         <source>chown terminated with error code %1.</source>
         <translation>chown 以錯誤代碼 %1 終止。</translation>
     </message>

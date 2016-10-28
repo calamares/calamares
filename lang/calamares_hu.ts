@@ -740,22 +740,32 @@ Telepítés nem folytatható. &lt;a href=&quot;#details&quot;&gt;Részletek...&l
         <translation>Nem lehet a groups fájlt megnyitni olvasásra.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="162"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="160"/>
         <source>Cannot create user %1.</source>
         <translation>Nem lehet a %1 felhasználót létrehozni.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="164"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="162"/>
         <source>useradd terminated with error code %1.</source>
         <translation>useradd megszakítva %1 hibakóddal.</translation>
     </message>
     <message>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="171"/>
+        <source>Cannot add user %1 to groups: %2.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="174"/>
+        <source>usermod terminated with error code %1.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="184"/>
         <source>Cannot set home directory ownership for user %1.</source>
         <translation>Nem lehet a home könyvtár tulajdonos jogosultságát beállítani %1 felhasználónak.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="176"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="186"/>
         <source>chown terminated with error code %1.</source>
         <translation>chown megszakítva %1 hibakóddal.</translation>
     </message>

@@ -741,22 +741,32 @@ Penginstalan dapat dilanjutkan, namun beberapa fitur akan ditiadakan.</translati
         <translation>Tidak dapat membuka berkas groups untuk dibaca.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="162"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="160"/>
         <source>Cannot create user %1.</source>
         <translation>Tidak dapat membuat pengguna %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="164"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="162"/>
         <source>useradd terminated with error code %1.</source>
         <translation>useradd dihentikan dengan kode kesalahan %1.</translation>
     </message>
     <message>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="171"/>
+        <source>Cannot add user %1 to groups: %2.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="174"/>
+        <source>usermod terminated with error code %1.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="184"/>
         <source>Cannot set home directory ownership for user %1.</source>
         <translation>Tidak dapat menyetel kepemilikan direktori home untuk pengguna %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="176"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="186"/>
         <source>chown terminated with error code %1.</source>
         <translation>chown dihentikan dengan kode kesalahan %1.</translation>
     </message>

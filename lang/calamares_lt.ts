@@ -739,22 +739,32 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
         <translation>Nepavyko skaitymui atverti grupių failo.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="162"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="160"/>
         <source>Cannot create user %1.</source>
         <translation>Nepavyko sukurti naudotojo %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="164"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="162"/>
         <source>useradd terminated with error code %1.</source>
         <translation>komanda useradd nutraukė darbą dėl klaidos kodo %1.</translation>
     </message>
     <message>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="171"/>
+        <source>Cannot add user %1 to groups: %2.</source>
+        <translation>Nepavyksta pridėti naudotojo %1 į grupes: %2.</translation>
+    </message>
+    <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="174"/>
+        <source>usermod terminated with error code %1.</source>
+        <translation>usermod nutraukta su klaidos kodu %1.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="184"/>
         <source>Cannot set home directory ownership for user %1.</source>
         <translation>Nepavyko nustatyti home katalogo nuosavybės naudotojui %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="176"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="186"/>
         <source>chown terminated with error code %1.</source>
         <translation>komanda chown nutraukė darbą dėl klaidos kodo %1.</translation>
     </message>
