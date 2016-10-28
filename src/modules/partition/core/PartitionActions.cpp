@@ -140,7 +140,8 @@ doAutopartition( PartitionCoreModule* core, Device* dev, const QString& luksPass
             PartitionRole( PartitionRole::Primary ),
             FileSystem::Fat32,
             firstFreeSector,
-            lastSector
+            lastSector,
+            PartitionTable::FlagEsp
         );
         PartitionInfo::setFormat( efiPartition, true );
         PartitionInfo::setMountPoint( efiPartition, Calamares::JobQueue::instance()
