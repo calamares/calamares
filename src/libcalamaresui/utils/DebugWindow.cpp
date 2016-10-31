@@ -150,7 +150,11 @@ DebugWindow::DebugWindow()
 #endif
 
     connect( modulesListView->selectionModel(), &QItemSelectionModel::selectionChanged,
-             this, [ this, moduleConfigModel, pythonConsoleButton ]
+             this, [ this, moduleConfigModel
+#ifdef WITH_PYTHONQT
+             , pythonConsoleButton
+#endif
+             ]
     {
         QString moduleName = modulesListView->currentIndex().data().toString();
         Module* module = ModuleManager::instance()->moduleInstance( moduleName );
