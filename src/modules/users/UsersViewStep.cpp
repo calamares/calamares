@@ -161,9 +161,9 @@ UsersViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     }
 
     if ( configurationMap.contains( "availableShells" ) &&
-         configurationMap.value( "availableShells" ).type() == QVariant::String )
+         configurationMap.value( "availableShells" ).type() == QVariant::List )
     {
-        m_widget->setAvailableShells( configurationMap.value( "availableShells" ).toString().split(",") );
+        m_widget->setAvailableShells( configurationMap.value( "availableShells" ).toStringList() );
     }
 
     if ( configurationMap.contains( "avatarFilePath" ) &&
