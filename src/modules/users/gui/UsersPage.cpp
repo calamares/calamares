@@ -266,7 +266,7 @@ UsersPage::createJobs( const QStringList& defaultGroupsList )
         if ( user->autologin )
             gs->insert( "autologinUser", user->username );
 
-        if ( !user->avatarFile.length() > 0 ) {
+        if ( user->avatarFile.length() > 0 ) {
             if (m_avatarFilePath.contains("~")) {
                     QString home( "/home/" + user->username);
                     m_avatarFilePath.replace("~", home);
