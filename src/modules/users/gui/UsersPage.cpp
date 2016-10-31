@@ -184,7 +184,7 @@ UsersPage::addUserClicked() {
     bool allowAutologin = m_autologin && !userHasAutologin;
 
     QPointer<AddUserDialog> dlg = new AddUserDialog(
-                existingUsers, m_avatarFilePath.length() > 0, allowAutologin, m_availableShells, m_haveRootPassword, this );
+                existingUsers, !m_avatarFilePath.isEmpty(), allowAutologin, m_availableShells, m_haveRootPassword, this );
 
     if ( dlg->exec() == QDialog::Accepted ) {
         addUser(dlg->login, dlg->fullName, dlg->password, dlg->shell, dlg->avatarFile, dlg->autoLogin);
@@ -245,7 +245,7 @@ UsersPage::createJobs( const QStringList& defaultGroupsList )
 
         Calamares::Job* j;
         j = new CreateUserJob( user->username,
-                               (user->fullname.length() > 0) ? user->fullname : user->username,
+                               (!user->fullname.isEmpty()) ? user->fullname : user->username,
                                user->shell,
                                user->autologin,
                                defaultGroupsList );
@@ -266,7 +266,7 @@ UsersPage::createJobs( const QStringList& defaultGroupsList )
         if ( user->autologin )
             gs->insert( "autologinUser", user->username );
 
-        if ( user->avatarFile.length() > 0 ) {
+        if ( !user->avatarFile.isEmpty() ) {
             if (m_avatarFilePath.contains("~")) {
                     QString home( "/home/" + user->username);
                     m_avatarFilePath.replace("~", home);
