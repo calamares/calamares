@@ -82,7 +82,7 @@ DebugWindow::DebugWindow()
     moduleConfigView->setModel( moduleConfigModel );
 
 #ifdef WITH_PYTHONQT
-    QPushButton* pythonConsoleButton = new QPushButton;
+    QPushButton* pythonConsoleButton = new QPushButton( this );
     pythonConsoleButton->setText( "Attach Python console" );
     modulesVerticalLayout->insertWidget( 1, pythonConsoleButton );
     pythonConsoleButton->hide();
@@ -149,8 +149,13 @@ DebugWindow::DebugWindow()
 
 #endif
 
+#ifdef WITH_PYTHONQT
     connect( modulesListView->selectionModel(), &QItemSelectionModel::selectionChanged,
              this, [ this, moduleConfigModel, pythonConsoleButton ]
+#else
+    connect( modulesListView->selectionModel(), &QItemSelectionModel::selectionChanged,
+             this, [ this, moduleConfigModel ]
+#endif
     {
         QString moduleName = modulesListView->currentIndex().data().toString();
         Module* module = ModuleManager::instance()->moduleInstance( moduleName );
