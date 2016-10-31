@@ -39,7 +39,7 @@ CppJobModule::type() const
 Module::Interface
 CppJobModule::interface() const
 {
-    return QtPlugin;
+    return QtPluginInterface;
 }
 
 

@@ -39,7 +39,7 @@ ViewModule::type() const
 Module::Interface
 ViewModule::interface() const
 {
-    return QtPlugin;
+    return QtPluginInterface;
 }
 
 

@@ -36,7 +36,7 @@ PythonJobModule::type() const
 Module::Interface
 PythonJobModule::interface() const
 {
-    return Python;
+    return PythonInterface;
 }
 
 

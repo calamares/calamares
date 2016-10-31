@@ -39,6 +39,25 @@ if( WITH_PYTHON )
     )
 endif()
 
+if( WITH_PYTHONQT )
+    include_directories(${PYTHON_INCLUDE_DIRS})
+    include_directories(${PYTHONQT_INCLUDE_DIR})
+
+    list( APPEND ${CALAMARESUI_LIBRARY_TARGET}_SOURCES
+        modulesystem/PythonQtViewModule.cpp
+        utils/PythonQtUtils.cpp
+        viewpages/PythonQtJob.cpp
+        viewpages/PythonQtViewStep.cpp
+        viewpages/PythonQtGlobalStorageWrapper.cpp
+        viewpages/PythonQtUtilsWrapper.cpp
+    )
+    set( OPTIONAL_PRIVATE_LIBRARIES
+        ${OPTIONAL_PRIVATE_LIBRARIES}
+        ${PYTHON_LIBRARIES}
+        ${PYTHONQT_LIBRARIES}
+    )
+endif()
+
 calamares_add_library( ${CALAMARESUI_LIBRARY_TARGET}
     SOURCES ${${CALAMARESUI_LIBRARY_TARGET}_SOURCES}
     UI ${${CALAMARESUI_LIBRARY_TARGET}_UI}
@@ -47,6 +66,7 @@ calamares_add_library( ${CALAMARESUI_LIBRARY_TARGET}
         yaml-cpp
         Qt5::Svg
 	Qt5::QuickWidgets
+        ${OPTIONAL_PRIVATE_LIBRARIES}
     RESOURCES libcalamaresui.qrc
     EXPORT CalamaresLibraryDepends
     VERSION ${CALAMARES_VERSION_SHORT}
