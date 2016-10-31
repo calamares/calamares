@@ -262,9 +262,15 @@ def set_autologin(username, displaymanagers, default_desktop_environment, root_m
             sddm_config.read(sddm_conf_path)
 
         if do_autologin:
-            sddm_config['Autologin'] = { 'User': username }
-            with open(sddm_conf_path, 'w') as sddm_config_file:
-                sddm_config.write(sddm_config_file, space_around_delimiters=False)
+            username_hash = {'User': username}
+            if sddm_config['Autologin']:
+                sddm_config['Autologin'].update(username_hash)
+            else:
+                sddm_config['Autologin'] = username_hash
+
+        with open(sddm_conf_path, 'w') as sddm_config_file:
+            sddm_config.write(sddm_config_file, space_around_delimiters=False)
+
 
     return None
 
