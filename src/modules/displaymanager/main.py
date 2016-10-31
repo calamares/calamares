@@ -24,6 +24,7 @@ import os
 import collections
 import re
 import libcalamares
+import configparser
 
 
 DesktopEnvironment = collections.namedtuple('DesktopEnvironment', ['executable', 'desktop_file'])
@@ -253,34 +254,17 @@ def set_autologin(username, displaymanagers, default_desktop_environment, root_m
         # Systems with Sddm as Desktop Manager
         sddm_conf_path = os.path.join(root_mount_point, "etc/sddm.conf")
 
+        sddm_config = configparser.ConfigParser()
+        # Make everything case sensitive
+        sddm_config.optionxform = str
+
         if os.path.isfile(sddm_conf_path):
-            libcalamares.utils.debug('SDDM config file exists')
-        else:
-            libcalamares.utils.check_target_env_call(["sh", "-c", "sddm --example-config > /etc/sddm.conf"])
+            sddm_config.read(sddm_conf_path)
 
-        text = []
-
-        with open(sddm_conf_path, 'r') as sddm_conf:
-            text = sddm_conf.readlines()
-
-        with open(sddm_conf_path, 'w') as sddm_conf:
-            for line in text:
-                # User= line, possibly commented out
-                if re.match('\\s*(?:#\\s*)?User=', line):
-                    if do_autologin:
-                        line = 'User={!s}\n'.format(username)
-                    else:
-                        line = '#User=\n'
-
-                # Session= line, commented out or with empty value
-                if re.match('\\s*#\\s*Session=|\\s*Session=$', line):
-                    if default_desktop_environment is not None:
-                        if do_autologin:
-                            line = 'Session={!s}.desktop\n'.format(default_desktop_environment.desktop_file)
-                        else:
-                            line = '#Session={!s}.desktop\n'.format(default_desktop_environment.desktop_file)
-
-                sddm_conf.write(line)
+        if do_autologin:
+            sddm_config['Autologin'] = { 'User': username }
+            with open(sddm_conf_path, 'w') as sddm_config_file:
+                sddm_config.write(sddm_config_file, space_around_delimiters=False)
 
     return None
 
