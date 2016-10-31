@@ -268,7 +268,7 @@ UsersPage::createJobs( const QStringList& defaultGroupsList )
 
         if ( !user->avatarFile.length() > 0 ) {
             if (m_avatarFilePath.contains("~")) {
-                    QString home( "/home/ " + user->username);
+                    QString home( "/home/" + user->username);
                     m_avatarFilePath.replace("~", home);
             }
 
