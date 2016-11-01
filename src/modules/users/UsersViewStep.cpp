@@ -18,7 +18,7 @@
 
 #include "UsersViewStep.h"
 
-#include "UsersPage.h"
+#include "gui/UsersPage.h"
 
 #include "JobQueue.h"
 #include "GlobalStorage.h"
@@ -139,6 +139,12 @@ UsersViewStep::setConfigurationMap( const QVariantMap& configurationMap )
                         configurationMap.value( "autologinGroup" ).toString() );
     }
 
+    if ( configurationMap.contains( "doAutologin" ) &&
+         configurationMap.value( "doAutologin" ).type() == QVariant::Bool )
+    {
+        m_widget->setAutologin( configurationMap.value( "doAutologin" ).toBool() );
+    }
+
     if ( configurationMap.contains( "sudoersGroup" ) &&
          configurationMap.value( "sudoersGroup" ).type() == QVariant::String )
     {
@@ -151,19 +157,18 @@ UsersViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     {
         Calamares::JobQueue::instance()->globalStorage()->insert( "setRootPassword",
                         configurationMap.value( "setRootPassword" ).toBool() );
-        m_widget->setWriteRootPassword( configurationMap.value( "setRootPassword" ).toBool() );
+        m_widget->setHaveRootPassword( configurationMap.value( "setRootPassword" ).toBool() );
     }
 
-    if ( configurationMap.contains( "doAutologin" ) &&
-         configurationMap.value( "doAutologin" ).type() == QVariant::Bool )
+    if ( configurationMap.contains( "availableShells" ) &&
+         configurationMap.value( "availableShells" ).type() == QVariant::List )
     {
-        m_widget->setAutologinDefault( configurationMap.value( "doAutologin" ).toBool() );
+        m_widget->setAvailableShells( configurationMap.value( "availableShells" ).toStringList() );
     }
-    
-    if ( configurationMap.contains( "doReusePassword" ) &&
-         configurationMap.value( "doReusePassword" ).type() == QVariant::Bool )
+
+    if ( configurationMap.contains( "avatarFilePath" ) &&
+         configurationMap.value( "avatarFilePath").type() == QVariant::String )
     {
-        m_widget->setReusePasswordDefault( configurationMap.value( "doReusePassword" ).toBool() );
+        m_widget->setAvatarFilePath( configurationMap.value( "avatarFilePath" ).toString() );
     }
 }
-
