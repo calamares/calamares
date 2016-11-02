@@ -20,7 +20,7 @@
 
 #include <QtDebug>
 
-GroupSelectionWidget::GroupSelectionWidget( QString name, QString description, QStringList packages, QWidget* parent ) :
+GroupSelectionWidget::GroupSelectionWidget( QString name, QString description, QStringList packages, bool selected, QWidget* parent ) :
     QWidget( parent ),
     m_isToggled( false )
 {
@@ -29,6 +29,7 @@ GroupSelectionWidget::GroupSelectionWidget( QString name, QString description, Q
     connect( ui.group, &QCheckBox::toggled, this, &GroupSelectionWidget::toggleGroup );
 
     ui.group->setText( name );
+    ui.group->setChecked( selected ); // also triggers the toggleGroup slot
     ui.description->setText( description );
     const int columns = 4;
     const int rows = ( packages.size() - 1 ) / columns + 1;

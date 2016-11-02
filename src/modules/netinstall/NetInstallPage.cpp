@@ -111,7 +111,7 @@ NetInstallPage::dataIsHere( QNetworkReply* reply )
             continue;
         }
 
-        GroupSelectionWidget* groupWidget = new GroupSelectionWidget( group.name, group.description, group.packages, this );
+        GroupSelectionWidget* groupWidget = new GroupSelectionWidget( group.name, group.description, group.packages, group.selected, this );
         m_groupWidgets.insert( groupKey, groupWidget );
         ui->groupswidget->layout()->addWidget( groupWidget );
 
