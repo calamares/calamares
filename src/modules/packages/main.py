@@ -91,6 +91,22 @@ class PackageManager:
         elif self.backend == "entropy":
             check_target_env_call(["equo", "rm"] + pkgs)
 
+    def update_db(self):
+        if self.backend == "packagekit":
+            check_target_env_call(["pkcon", "refresh"])
+        elif self.backend == "zypp":
+            check_target_env_call(["zypper", "update"])
+        elif self.backend == "urpmi":
+            check_target_env_call(["urpmi.update", "-a"])
+        elif self.backend == "apt":
+            check_target_env_call(["apt-get", "update"])
+        elif self.backend == "pacman":
+            check_target_env_call(["pacman", "-Sy"])
+        elif self.backend == "portage":
+            check_target_env_call(["emerge", "--sync"])
+        elif self.backend == "entropy":
+            check_target_env_call(["equo", "update"])
+
 
 def run_operations(pkgman, entry):
     """ Call package manager with given parameters.
@@ -120,6 +136,10 @@ def run():
 
     pkgman = PackageManager(backend)
     operations = libcalamares.job.configuration.get("operations", [])
+
+    update_db = libcalamares.job.configuration.get("update_db", False)
+    if update_db and libcalamares.globalstorage.value("hasInternet"):
+        pkgman.update_db()
 
     for entry in operations:
         run_operations(pkgman, entry)
