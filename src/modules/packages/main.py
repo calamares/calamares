@@ -18,6 +18,7 @@
 #   You should have received a copy of the GNU General Public License
 #   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
 
+import subprocess
 import libcalamares
 from libcalamares.utils import check_target_env_call, target_env_call
 
@@ -117,8 +118,18 @@ def run_operations(pkgman, entry):
     for key in entry.keys():
         if key == "install":
             pkgman.install(entry[key])
+        elif key == "try_install":
+            try:
+                pkgman.install(entry[key])
+            except subprocess.CalledProcessError:
+                libcalamares.utils.debug("WARNING: could not install packages {}".format(", ".join(entry[key])))
         elif key == "remove":
             pkgman.remove(entry[key])
+        elif key == "try_remove":
+            try:
+                pkgman.remove(entry[key])
+            except subprocess.CalledProcessError:
+                libcalamares.utils.debug("WARNING: could not remove packages {}".format(", ".join(entry[key])))
         elif key == "localInstall":
             pkgman.install(entry[key], from_local=True)
 
