@@ -119,7 +119,18 @@ def file_copy(source, dest, progress_cb):
 
     process.wait()
 
-    if process.returncode != 0:
+    # 23 is the return code rsync returns if it cannot write extended attributes
+    # (with -X) because the target file system does not support it, e.g., the
+    # FAT EFI system partition. We need -X because distributions using file
+    # system capabilities and/or SELinux require the extended attributes. But
+    # distributions using SELinux may also have SELinux labels set on files
+    # under /boot/efi, and rsync complains about those. The only clean way would
+    # be to split the rsync into one with -X and --exclude /boot/efi and a
+    # separate one without -X for /boot/efi, but only if /boot/efi is actually
+    # an EFI system partition. For now, this hack will have to do. See also:
+    # https://bugzilla.redhat.com/show_bug.cgi?id=868755#c50
+    # for the same issue in Anaconda, which uses a similar workaround.
+    if process.returncode != 0 and process.returncode != 23:
         return "rsync failed with error code {}.".format(process.returncode)
 
     return None
