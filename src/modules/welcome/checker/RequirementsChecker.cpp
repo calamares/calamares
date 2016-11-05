@@ -347,7 +347,7 @@ RequirementsChecker::checkHasInternet()
                            QDBusConnection::systemBus(), 0 );
 
     bool ok = false;
-    int nmState = nmIntf.property( "state" ).toInt( &ok );
+    int nmState = nmIntf.property( "State" ).toInt( &ok );
 
     if ( !ok || !nmIntf.isValid() )
     {
