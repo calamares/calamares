@@ -253,7 +253,7 @@ def install_grub(efi_directory, fw_type):
 def vfat_correct_case(parent, name):
     for candidate in os.listdir(parent):
         if name.lower() == candidate.lower():
-            return candidate
+            return os.path.join(parent, candidate)
     return os.path.join(parent, name)
 
 
