@@ -231,9 +231,13 @@ def install_grub(efi_directory, fw_type):
             check_target_env_call(["mkdir", "-p", efi_boot_directory])
 
         # Workaround for some UEFI firmwares
+        efi_file_source = {"32": os.path.join(efi_directory_firmware, efi_bootloader_id, "grubia32.efi"),
+                           "64": os.path.join(efi_directory_firmware, efi_bootloader_id, "grubx64.efi")}
+        efi_file_target = {"32": os.path.join(efi_boot_directory, "bootia32.efi"),
+                           "64": os.path.join(efi_boot_directory, "bootx64.efi")}
         check_target_env_call(["cp",
-                               os.path.join(efi_directory_firmware, efi_bootloader_id, "grubx64.efi"),
-                               os.path.join(efi_boot_directory, "bootx64.efi")])
+                               efi_file_source[efi_bitness],
+                               efi_file_target[efi_bitness]])
     else:
         print("Bootloader: grub (bios)")
         boot_loader = libcalamares.globalstorage.value("bootLoader")
