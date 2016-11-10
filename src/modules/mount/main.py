@@ -19,6 +19,7 @@
 #   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
 
 import tempfile
+import subprocess
 
 import libcalamares
 
@@ -54,6 +55,58 @@ def mount_partitions(root_mount_point, partitions):
                                      fstype,
                                      partition.get("options", ""),
                                      )
+
+        # If the root partition is btrfs, we create a subvolume "@"
+        # for the root mount point.
+        # If a separate /home partition isn't defined, we also create
+        # a subvolume "@home".
+        # Finally we remount all of the above on the correct paths.
+        if fstype == "btrfs" and partition["mountPoint"] == '/':
+            has_home_mount_point = False
+            for p in partitions:
+                if "mountPoint" not in p or not p["mountPoint"]:
+                    continue
+                if p["mountPoint"] == "/home":
+                    has_home_mount_point = True
+                    break
+
+            subprocess.check_call(['btrfs', 'subvolume', 'create',
+                                   root_mount_point + '/@'])
+
+            if not has_home_mount_point:
+                subprocess.check_call(['btrfs', 'subvolume', 'create',
+                                       root_mount_point + '/@home'])
+
+            subprocess.check_call(["umount", "-v", root_mount_point])
+
+            if "luksMapperName" in partition:
+                libcalamares.utils.mount("/dev/mapper/{!s}".format(partition["luksMapperName"]),
+                                         mount_point,
+                                         fstype,
+                                         ",".join(["subvol=@",
+                                                   partition.get("options", "")]),
+                                         )
+                if not has_home_mount_point:
+                    libcalamares.utils.mount("/dev/mapper/{!s}".format(partition["luksMapperName"]),
+                                             root_mount_point + "/home",
+                                             fstype,
+                                             ",".join(["subvol=@home",
+                                                       partition.get("options", "")]),
+                                             )
+            else:
+                libcalamares.utils.mount(partition["device"],
+                                         mount_point,
+                                         fstype,
+                                         ",".join(["subvol=@",
+                                                   partition.get("options", "")]),
+                                         )
+                if not has_home_mount_point:
+                    libcalamares.utils.mount(partition["device"],
+                                             root_mount_point + "/home",
+                                             fstype,
+                                             ",".join(["subvol=@home",
+                                                       partition.get("options", "")]),
+                                             )
 
 
 def run():
