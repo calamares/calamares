@@ -165,6 +165,7 @@
     - kapudan
 - name: "Wireless"
   description: "Tools for wireless connections"
+  critical: false
   packages:
     - crda
     - ndiswrapper
