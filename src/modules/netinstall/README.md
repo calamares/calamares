@@ -27,8 +27,16 @@ The URL must point to a YAML file. Here is a short example of how the YAML file 
 
 The file is composed of a list of entry, each describing one group. The keys *name*, *description* and *packages* are required.
 
-Two more keys are supported, *hidden* (if true, do not show the group on the page) and *selected* (if true, display the group as selected). Both default to false if not present.
-If both keys are set to true for the same group, you are basically creating a "default" group of packages which will always be installed in the user's system.
+Three more keys are supported:
+
+      - hidden: if true, do not show the group on the page. Defaults to false.
+      - selected: if true, display the group as selected. Defaults to false.
+      - critical: if true, make the installation process fail if installing
+        any of the packages in the group fails. Otherwise, just log a warning.
+        Defaults to true.
+
+If you set both *hidden* and *selected* for a group, you are basically creating a "default" group of packages
+which will always be installed in the user's system.
 
 ## Configuration of the module
 Here is the set of instructions to have the module work in your Calamares. As of July 2016, this has been successfully 

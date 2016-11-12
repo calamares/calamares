@@ -34,28 +34,29 @@ namespace Ui
 class Page_NetInst;
 }
 
+// Representation of a package group.
+struct Group
+{
+    Group()
+        : Group( "","",false, false, true ) { }
+    Group( QString name, QString description, bool selected, bool hidden, bool critical )
+        : name( name ), description( description ), selected( selected ), hidden( hidden ), critical( critical ) { }
+    Group( QString name, QString description )
+        : Group( name, description, false, false, true ) { }
+
+    QString name;
+    QString description;
+    QStringList packages;
+
+    // See README.md for a description of these fields.
+    bool selected = false;
+    bool hidden = false;
+    bool critical = true;
+};
+
 class NetInstallPage : public QWidget
 {
     Q_OBJECT
-
-    // Internal representation of a package group.
-    struct Group
-    {
-        Group()
-            : Group( "","",false, false ) { }
-        Group( QString name, QString description, bool selected, bool hidden )
-            : name( name ), description( description ), selected( selected ), hidden( hidden ) { }
-        Group( QString name, QString description )
-            : Group( name, description, false, false ) { }
-
-        QString name;
-        QString description;
-        QStringList packages;
-
-        // See README.md for a description of these two fields.
-        bool selected = false;
-        bool hidden = false;
-    };
 
 public:
     NetInstallPage( QWidget* parent = nullptr );
@@ -69,10 +70,9 @@ public:
     // in the global storage. This should be called before displaying the page.
     void loadGroupList();
 
-    // Returns the list of packages belonging to groups that are
-    // selected in the view in this given moment. No data is cached here, so
-    // this function does not have constant time.
-    QStringList selectedPackages() const;
+    // Return a list of groups currently selected. No data is cached here, so
+    // this function does not run in constant time.
+    QList<Group> selectedGroups() const;
 
 public slots:
     void dataIsHere( QNetworkReply* );
