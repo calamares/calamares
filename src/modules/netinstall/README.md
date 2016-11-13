@@ -33,7 +33,7 @@ Three more keys are supported:
       - selected: if true, display the group as selected. Defaults to false.
       - critical: if true, make the installation process fail if installing
         any of the packages in the group fails. Otherwise, just log a warning.
-        Defaults to true.
+        Defaults to false.
 
 If you set both *hidden* and *selected* for a group, you are basically creating a "default" group of packages
 which will always be installed in the user's system.

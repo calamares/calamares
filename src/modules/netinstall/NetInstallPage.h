@@ -38,11 +38,11 @@ class Page_NetInst;
 struct Group
 {
     Group()
-        : Group( "","",false, false, true ) { }
+        : Group( "","",false, false, false ) { }
     Group( QString name, QString description, bool selected, bool hidden, bool critical )
         : name( name ), description( description ), selected( selected ), hidden( hidden ), critical( critical ) { }
     Group( QString name, QString description )
-        : Group( name, description, false, false, true ) { }
+        : Group( name, description, false, false, false ) { }
 
     QString name;
     QString description;
@@ -51,7 +51,7 @@ struct Group
     // See README.md for a description of these fields.
     bool selected = false;
     bool hidden = false;
-    bool critical = true;
+    bool critical = false;
 };
 
 class NetInstallPage : public QWidget
