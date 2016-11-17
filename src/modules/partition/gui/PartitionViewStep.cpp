@@ -466,6 +466,10 @@ PartitionViewStep::onLeave()
                                   "<br/>To encrypt the boot partition, go back and "
                                   "recreate it, selecting <strong>Encrypt</strong> "
                                   "in the partition creation window." );
+
+                QMessageBox::warning( m_manualPartitionPage,
+                                      message,
+                                      description );
             }
         }
     }
