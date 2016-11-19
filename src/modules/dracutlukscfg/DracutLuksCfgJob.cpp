@@ -33,13 +33,21 @@
 const QString DracutLuksCfgJob::CONFIG_FILE = QStringLiteral( "/etc/dracut.conf.d/calamares-luks.conf" );
 
 // static
-const char *DracutLuksCfgJob::CONFIG_FILE_CONTENTS =
+const char *DracutLuksCfgJob::CONFIG_FILE_HEADER =
     "# Configuration file automatically written by the Calamares system installer\n"
     "# (This file is written once at install time and should be safe to edit.)\n"
     "# Enables support for LUKS full disk encryption with single sign on from GRUB.\n"
-    "\n"
+    "\n";
+
+// static
+const char *DracutLuksCfgJob::CONFIG_FILE_CRYPTTAB_KEYFILE_LINE =
     "# force installing /etc/crypttab even if hostonly=\"no\", install the keyfile\n"
     "install_items+=\" /etc/crypttab /crypto_keyfile.bin \"\n";
+
+// static
+const char *DracutLuksCfgJob::CONFIG_FILE_CRYPTTAB_LINE =
+    "# force installing /etc/crypttab even if hostonly=\"no\"\n"
+    "install_items+=\" /etc/crypttab \"\n";
 
 // static
 const QString DracutLuksCfgJob::CONFIG_FILE_SWAPLINE = QStringLiteral( "# enable automatic resume from swap\nadd_device+=\" /dev/disk/by-uuid/%1 \"\n" );
@@ -71,6 +79,21 @@ DracutLuksCfgJob::isRootEncrypted()
         QString mountPoint = partitionMap.value( QStringLiteral( "mountPoint" ) ).toString();
         if ( mountPoint == QStringLiteral( "/" ) )
             return partitionMap.contains( QStringLiteral( "luksMapperName" ) );
+    }
+    return false;
+}
+
+// static
+bool
+DracutLuksCfgJob::hasUnencryptedSeparateBoot()
+{
+    const QVariantList partitions = DracutLuksCfgJob::partitions();
+    for ( const QVariant &partition : partitions )
+    {
+        QVariantMap partitionMap = partition.toMap();
+        QString mountPoint = partitionMap.value( QStringLiteral( "mountPoint" ) ).toString();
+        if ( mountPoint == QStringLiteral( "/boot" ) )
+            return !partitionMap.contains( QStringLiteral( "luksMapperName" ) );
     }
     return false;
 }
@@ -126,7 +149,9 @@ DracutLuksCfgJob::exec()
             return Calamares::JobResult::error( tr( "Failed to open %1" ).arg( realConfigFilePath ) );
         }
         QTextStream outStream( &configFile );
-        outStream << CONFIG_FILE_CONTENTS;
+        outStream << CONFIG_FILE_HEADER
+                  << ( hasUnencryptedSeparateBoot() ? CONFIG_FILE_CRYPTTAB_LINE
+                                                    : CONFIG_FILE_CRYPTTAB_KEYFILE_LINE );
         const QString swapOuterUuid = DracutLuksCfgJob::swapOuterUuid();
         if ( ! swapOuterUuid.isEmpty() )
         {

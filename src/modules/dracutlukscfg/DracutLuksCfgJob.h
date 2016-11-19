@@ -42,12 +42,15 @@ public:
 
 private:
     static const QString CONFIG_FILE;
-    static const char *CONFIG_FILE_CONTENTS;
+    static const char *CONFIG_FILE_HEADER;
+    static const char *CONFIG_FILE_CRYPTTAB_KEYFILE_LINE;
+    static const char *CONFIG_FILE_CRYPTTAB_LINE;
     static const QString CONFIG_FILE_SWAPLINE;
 
     static QString rootMountPoint();
     static QVariantList partitions();
     static bool isRootEncrypted();
+    static bool hasUnencryptedSeparateBoot();
     static QString swapOuterUuid();
 };
 
