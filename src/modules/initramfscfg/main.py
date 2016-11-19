@@ -6,6 +6,7 @@
 #   Copyright 2014, Rohan Garg <rohan@kde.org>
 #   Copyright 2015, Philip Müller <philm@manjaro.org>
 #   Copyright 2016, David McKinney <mckinney@subgraph.com>
+#   Copyright 2016, Kevin Kofler <kevin.kofler@chello.at>
 #
 #   Calamares is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -31,13 +32,20 @@ def copy_initramfs_hooks(partitions, root_mount_point):
     :param root_mount_point:
     """
     encrypt_hook = False
+    unencrypted_separate_boot = False
 
     for partition in partitions:
         if partition["mountPoint"] == "/" and "luksMapperName" in partition:
             encrypt_hook = True
 
+        if partition["mountPoint"] == "/boot" and "luksMapperName" not in partition:
+            unencrypted_separate_boot = True
+
     if encrypt_hook:
-        shutil.copy2("/usr/lib/calamares/modules/initramfscfg/encrypt_hook", "{!s}/usr/share/initramfs-tools/hooks/".format(root_mount_point))
+        if unencrypted_separate_boot:
+            shutil.copy2("/usr/lib/calamares/modules/initramfscfg/encrypt_hook_nokey", "{!s}/usr/share/initramfs-tools/hooks/encrypt_hook".format(root_mount_point))
+        else:
+            shutil.copy2("/usr/lib/calamares/modules/initramfscfg/encrypt_hook", "{!s}/usr/share/initramfs-tools/hooks/".format(root_mount_point))
         os.chmod("{!s}/usr/share/initramfs-tools/hooks/encrypt_hook".format(root_mount_point), 0o755)
 
 def run():
