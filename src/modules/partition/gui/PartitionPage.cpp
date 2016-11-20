@@ -280,7 +280,7 @@ PartitionPage::updatePartitionToCreate( Device* device, Partition* partition )
 void
 PartitionPage::editExistingPartition( Device* device, Partition* partition )
 {
-    QPointer<EditExistingPartitionDialog> dlg = new EditExistingPartitionDialog( device, partition, this );
+    QPointer<EditExistingPartitionDialog> dlg = new EditExistingPartitionDialog( device, partition, getCurrentUsedMountpoints(), this );
     if ( dlg->exec() == QDialog::Accepted )
         dlg->applyChanges( m_core );
     delete dlg;

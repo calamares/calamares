@@ -43,13 +43,15 @@
 // Qt
 #include <QComboBox>
 #include <QDir>
+#include <QPushButton>
 
-EditExistingPartitionDialog::EditExistingPartitionDialog( Device* device, Partition* partition, QWidget* parentWidget )
+EditExistingPartitionDialog::EditExistingPartitionDialog( Device* device, Partition* partition, const QStringList& usedMountPoints, QWidget* parentWidget )
     : QDialog( parentWidget )
     , m_ui( new Ui_EditExistingPartitionDialog )
     , m_device( device )
     , m_partition( partition )
     , m_partitionSizeController( new PartitionSizeController( this ) )
+    , m_usedMountPoints( usedMountPoints )
 {
     m_ui->setupUi( this );
 
@@ -60,11 +62,14 @@ EditExistingPartitionDialog::EditExistingPartitionDialog( Device* device, Partit
     mountPoints.sort();
     m_ui->mountPointComboBox->addItems( mountPoints );
 
+    m_usedMountPoints.removeOne( PartitionInfo::mountPoint( partition ) );
+
     QColor color = ColorUtils::colorForPartition( m_partition );
     m_partitionSizeController->init( m_device, m_partition, color );
     m_partitionSizeController->setSpinBox( m_ui->sizeSpinBox );
 
     m_ui->mountPointComboBox->setCurrentText( PartitionInfo::mountPoint( partition ) );
+    connect( m_ui->mountPointComboBox, &QComboBox::currentTextChanged, this, &EditExistingPartitionDialog::checkMountPointSelection );
 
     replacePartResizerWidget();
 
@@ -290,4 +295,18 @@ EditExistingPartitionDialog::updateMountPointPicker()
     m_ui->mountPointComboBox->setEnabled( canMount );
     if ( !canMount )
         m_ui->mountPointComboBox->setCurrentText( QString() );
+}
+
+void
+EditExistingPartitionDialog::checkMountPointSelection()
+{
+    const QString& selection = m_ui->mountPointComboBox->currentText();
+
+    if (m_usedMountPoints.contains(selection)) {
+        m_ui->labelMountPoint->setText("Mountpoint already in use. Please select another one.");
+        m_ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
+    } else {
+        m_ui->labelMountPoint->setText( QString() );
+        m_ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(true);
+    }
 }
