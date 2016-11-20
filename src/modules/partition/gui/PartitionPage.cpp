@@ -23,6 +23,7 @@
 #include "core/BootLoaderModel.h"
 #include "core/DeviceModel.h"
 #include "core/PartitionCoreModule.h"
+#include "core/PartitionInfo.h"
 #include "core/PartitionModel.h"
 #include "core/KPMHelpers.h"
 #include "gui/CreatePartitionDialog.h"
@@ -387,8 +388,10 @@ PartitionPage::getCurrentUsedMountpoints()
     QStringList mountPoints;
 
     for (Partition* partition : device->partitionTable()->children()) {
-        if (!partition->mountPoint().isEmpty()) {
-            mountPoints << partition->mountPoint();
+        const QString& mountPoint = PartitionInfo::mountPoint( partition );
+
+        if (!mountPoint.isEmpty()) {
+            mountPoints << mountPoint;
         }
     }
 
