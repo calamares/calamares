@@ -110,6 +110,8 @@ CreatePartitionDialog::CreatePartitionDialog( Device* device, PartitionNode* par
     updateMountPointUi();
 
     setupFlagsList();
+    // Checks the initial selection.
+    checkMountPointSelection();
 }
 
 CreatePartitionDialog::~CreatePartitionDialog()
@@ -257,10 +259,12 @@ CreatePartitionDialog::updateMountPointUi()
 }
 
 void
-CreatePartitionDialog::checkMountPointSelection(const QString& selection)
+CreatePartitionDialog::checkMountPointSelection()
 {
+    const QString& selection = m_ui->mountPointComboBox->currentText();
+
     if (m_usedMountPoints.contains(selection)) {
-        m_ui->labelMountPoint->setText("Mountpoint already used. Please select another one.");
+        m_ui->labelMountPoint->setText("Mountpoint already in use. Please select another one.");
         m_ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
     } else {
         m_ui->labelMountPoint->setText( QString() );

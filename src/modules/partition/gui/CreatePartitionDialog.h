@@ -61,7 +61,7 @@ public:
 
 private Q_SLOTS:
     void updateMountPointUi();
-    void checkMountPointSelection(const QString &);
+    void checkMountPointSelection();
 
 private:
     void setupFlagsList();
