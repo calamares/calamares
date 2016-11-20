@@ -176,7 +176,7 @@ PartitionPage::onCreateClicked()
     Partition* partition = model->partitionForIndex( index );
     Q_ASSERT( partition );
 
-    QPointer<CreatePartitionDialog> dlg = new CreatePartitionDialog( model->device(), partition->parent(), this );
+    QPointer<CreatePartitionDialog> dlg = new CreatePartitionDialog( model->device(), partition->parent(), getCurrentUsedMountpoints(), this );
     dlg->initFromFreeSpace( partition );
     if ( dlg->exec() == QDialog::Accepted )
     {
@@ -265,7 +265,7 @@ PartitionPage::onPartitionViewActivated()
 void
 PartitionPage::updatePartitionToCreate( Device* device, Partition* partition )
 {
-    QPointer<CreatePartitionDialog> dlg = new CreatePartitionDialog( device, partition->parent(), this );
+    QPointer<CreatePartitionDialog> dlg = new CreatePartitionDialog( device, partition->parent(), getCurrentUsedMountpoints(), this );
     dlg->initFromPartitionToCreate( partition );
     if ( dlg->exec() == QDialog::Accepted )
     {
@@ -374,4 +374,23 @@ PartitionPage::updateBootLoaderIndex()
     if ( m_lastSelectedBootLoaderIndex >= 0 && m_ui->bootLoaderComboBox->count() ) {
         m_ui->bootLoaderComboBox->setCurrentIndex( m_lastSelectedBootLoaderIndex );
     }
+}
+
+QStringList
+PartitionPage::getCurrentUsedMountpoints()
+{
+    QModelIndex index = m_core->deviceModel()->index( m_ui->deviceComboBox->currentIndex(), 0 );
+    if ( !index.isValid() )
+        return QStringList();
+
+    Device* device = m_core->deviceModel()->deviceForIndex( index );
+    QStringList mountPoints;
+
+    for (Partition* partition : device->partitionTable()->children()) {
+        if (!partition->mountPoint().isEmpty()) {
+            mountPoints << partition->mountPoint();
+        }
+    }
+
+    return mountPoints;
 }
