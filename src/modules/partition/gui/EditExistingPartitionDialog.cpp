@@ -62,8 +62,6 @@ EditExistingPartitionDialog::EditExistingPartitionDialog( Device* device, Partit
     mountPoints.sort();
     m_ui->mountPointComboBox->addItems( mountPoints );
 
-    m_usedMountPoints.removeOne( PartitionInfo::mountPoint( partition ) );
-
     QColor color = ColorUtils::colorForPartition( m_partition );
     m_partitionSizeController->init( m_device, m_partition, color );
     m_partitionSizeController->setSpinBox( m_ui->sizeSpinBox );

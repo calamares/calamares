@@ -266,7 +266,10 @@ PartitionPage::onPartitionViewActivated()
 void
 PartitionPage::updatePartitionToCreate( Device* device, Partition* partition )
 {
-    QPointer<CreatePartitionDialog> dlg = new CreatePartitionDialog( device, partition->parent(), getCurrentUsedMountpoints(), this );
+    QStringList mountPoints = getCurrentUsedMountpoints();
+    mountPoints.removeOne( PartitionInfo::mountPoint( partition ) );
+
+    QPointer<CreatePartitionDialog> dlg = new CreatePartitionDialog( device, partition->parent(), mountPoints, this );
     dlg->initFromPartitionToCreate( partition );
     if ( dlg->exec() == QDialog::Accepted )
     {
@@ -280,7 +283,10 @@ PartitionPage::updatePartitionToCreate( Device* device, Partition* partition )
 void
 PartitionPage::editExistingPartition( Device* device, Partition* partition )
 {
-    QPointer<EditExistingPartitionDialog> dlg = new EditExistingPartitionDialog( device, partition, getCurrentUsedMountpoints(), this );
+    QStringList mountPoints = getCurrentUsedMountpoints();
+    mountPoints.removeOne( PartitionInfo::mountPoint( partition ) );
+
+    QPointer<EditExistingPartitionDialog> dlg = new EditExistingPartitionDialog( device, partition, mountPoints, this );
     if ( dlg->exec() == QDialog::Accepted )
         dlg->applyChanges( m_core );
     delete dlg;
