@@ -57,6 +57,7 @@ find_package( PolkitQt5-1 REQUIRED )
 
 option( WITH_PYTHON "Enable Python modules support." ON )
 option( WITH_CRASHREPORTER "Build with CrashReporter" ON )
+option( INSTALL_CONFIG "Install configuration files" ON)
 
 if( CMAKE_SYSTEM_PROCESSOR MATCHES "arm" OR NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/libcrashreporter-qt/CMakeLists.txt" )
     message( STATUS "Build of crashreporter disabled." )
@@ -170,6 +171,10 @@ if ( NOT WITH_PYTHON )
     message( "-- WARNING: Building Calamares without Python support. Python modules will not work.\n" )
 endif()
 
+if ( NOT INSTALL_CONFIG )
+    message( "-- WARNING: Configuration files will not be installed.\n" )
+endif()
+
 # Add all targets to the build-tree export set
 set( CMAKE_INSTALL_CMAKEDIR "${CMAKE_INSTALL_LIBDIR}/cmake/Calamares" CACHE PATH  "Installation directory for CMake files" )
 set( CMAKE_INSTALL_FULL_CMAKEDIR "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_CMAKEDIR}" )
@@ -211,12 +216,14 @@ install(
         "${CMAKE_INSTALL_CMAKEDIR}"
 )
 
-install(
-    FILES
-        settings.conf
-    DESTINATION
-        share/calamares
-)
+if (INSTALL_CONFIG)
+    install(
+        FILES
+            settings.conf
+        DESTINATION
+            share/calamares
+    )
+endif()
 
 install(
   FILES
