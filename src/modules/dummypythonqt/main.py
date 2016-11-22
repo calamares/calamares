@@ -88,7 +88,7 @@ class DummyPythonQtViewStep():
         return True
 
     def jobs(self):
-        return [DummyPQJob("hi there lol")]
+        return [DummyPQJob("Dummy PythonQt job reporting for duty")]
 
     def widget(self):
         return self.main_widget
@@ -102,11 +102,11 @@ class DummyPQJob():
         return _("The Dummy PythonQt Job")
 
     def pretty_description(self):
-        return _("This description says that the Dummy PythonQt Job is a dummy. "
+        return _("This is the Dummy PythonQt Job. "
                  "The dummy job says: {}".format(self.my_msg))
 
     def pretty_status_message(self):
-        return _("A status message for DPQ Job.")
+        return _("A status message for Dummy PythonQt Job.")
 
     def exec(self):
         rmp = calamares.global_storage['rootMountPoint']
