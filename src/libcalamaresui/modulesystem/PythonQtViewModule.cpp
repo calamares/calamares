@@ -144,7 +144,7 @@ PythonQtViewModule::loadSelf()
         }
 
         QString calamares_module_annotation =
-                "_calamares_module_typename = 'foo'\n"
+                "_calamares_module_typename = ''\n"
                 "def calamares_module(viewmodule_type):\n"
                 "    global _calamares_module_typename\n"
                 "    _calamares_module_typename = viewmodule_type.__name__\n"
