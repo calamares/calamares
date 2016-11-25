@@ -1,7 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
- *   Copyright 2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2015-2016, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -86,10 +86,13 @@ mapForPartition( Partition* partition, const QString& uuid )
     map[ "device" ] = partition->partitionPath();
     map[ "mountPoint" ] = PartitionInfo::mountPoint( partition );
     map[ "fs" ] = partition->fileSystem().name();
+    if ( partition->fileSystem().type() == FileSystem::Luks &&
+         dynamic_cast< FS::luks& >( partition->fileSystem() ).innerFS() )
+        map[ "fs" ] = dynamic_cast< FS::luks& >( partition->fileSystem() ).innerFS()->name();
     map[ "uuid" ] = uuid;
     cDebug() << partition->partitionPath()
              << "mtpoint:" << PartitionInfo::mountPoint( partition )
-             << "fs:" << partition->fileSystem().name()
+             << "fs:" << map[ "fs" ]
              << uuid;
 
     if ( partition->roles().has( PartitionRole::Luks ) )
