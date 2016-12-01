@@ -21,7 +21,7 @@
 import subprocess
 import libcalamares
 from libcalamares.utils import check_target_env_call, target_env_call
-
+from string import Template
 
 class PackageManager:
     """ Package manager class.
@@ -109,6 +109,20 @@ class PackageManager:
             check_target_env_call(["equo", "update"])
 
 
+def subst_locale(list):
+    ret = []
+    locale = libcalamares.globalstorage.value("locale")
+    if locale:
+        for e in list:
+            if  locale != "en":
+                entry = Template(e)
+                ret.append(entry.safe_substitute(LOCALE=locale))
+            elif 'LOCALE' not in e:
+                ret.append(e)
+    else:
+        ret = list
+    return ret
+
 def run_operations(pkgman, entry):
     """ Call package manager with given parameters.
 
@@ -116,6 +130,7 @@ def run_operations(pkgman, entry):
     :param entry:
     """
     for key in entry.keys():
+        entry[key] = subst_locale(entry[key])
         if key == "install":
             pkgman.install(entry[key])
         elif key == "try_install":

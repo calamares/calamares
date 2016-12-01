@@ -17,6 +17,7 @@
  */
 
 #include "LocaleConfiguration.h"
+#include <QLocale>
 
 LocaleConfiguration::LocaleConfiguration()
 {
@@ -41,6 +42,7 @@ LocaleConfiguration::fromLanguageAndLocation( const QString& languageLocale,
 {
     LocaleConfiguration lc = LocaleConfiguration();
     QString language = languageLocale.split( '_' ).first();
+    lc.myLanguageLocaleBcp47 = QLocale(language).bcp47Name();
 
     QStringList linesForLanguage;
     for ( const QString &line : availableLocales )
