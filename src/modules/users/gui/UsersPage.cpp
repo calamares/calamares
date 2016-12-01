@@ -141,6 +141,7 @@ UsersPage::UsersPage( QWidget* parent )
     , ui( new Ui::UserCreation )
     , m_readyHostname( false )
     , m_readyRootPassword( false )
+    , m_autologin( true )
     , m_haveRootPassword( true )
 {
     ui->setupUi( this );
