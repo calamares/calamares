@@ -441,6 +441,7 @@ PartitionCoreModule::jobs() const
         lst << info->jobs;
         devices << info->device.data();
     }
+    cDebug() << "Creating FillGlobalStorageJob with bootLoader path" << m_bootLoaderInstallPath;
     lst << Calamares::job_ptr( new FillGlobalStorageJob( devices, m_bootLoaderInstallPath ) );
 
 
@@ -596,6 +597,7 @@ PartitionCoreModule::findPartitionByMountPoint( const QString& mountPoint ) cons
 void
 PartitionCoreModule::setBootLoaderInstallPath( const QString& path )
 {
+    cDebug() << "PCM::setBootLoaderInstallPath" << path;
     m_bootLoaderInstallPath = path;
 }
 

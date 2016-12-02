@@ -198,10 +198,12 @@ FillGlobalStorageJob::exec()
         QVariant var = createBootLoaderMap();
         if ( !var.isValid() )
             cDebug() << "Failed to find path for boot loader";
+        cDebug() << "FillGlobalStorageJob writing bootLoader path:" << var;
         storage->insert( "bootLoader", var );
     }
     else
     {
+        cDebug() << "FillGlobalStorageJob writing empty bootLoader value";
         storage->insert( "bootLoader", QVariant() );
     }
     return Calamares::JobResult::ok();
