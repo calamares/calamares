@@ -267,15 +267,13 @@ def set_autologin(username, displaymanagers, default_desktop_environment, root_m
 
         if do_autologin:
             autologin_section['User'] = username
+        else:
+            del autologin_section['User']
 
         if default_desktop_environment is not None:
             autologin_section['Session'] = default_desktop_environment.desktop_file
 
-        if autologin_section:
-            if 'Autologin' in sddm_config:
-                sddm_config['Autologin'].update(autologin_section)
-            else:
-                sddm_config['Autologin'] = autologin_section
+        sddm_config['Autologin'] = autologin_section
 
         with open(sddm_conf_path, 'w') as sddm_config_file:
             sddm_config.write(sddm_config_file, space_around_delimiters=False)
