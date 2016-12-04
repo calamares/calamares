@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>694</width>
-    <height>474</height>
+    <height>475</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -109,7 +109,7 @@
         <x>0</x>
         <y>0</y>
         <width>678</width>
-        <height>248</height>
+        <height>249</height>
        </rect>
       </property>
       <property name="sizePolicy">
@@ -233,13 +233,13 @@
       <widget class="QLabel" name="labelHostname">
        <property name="minimumSize">
         <size>
-         <width>50</width>
+         <width>40</width>
          <height>0</height>
         </size>
        </property>
        <property name="maximumSize">
         <size>
-         <width>50</width>
+         <width>40</width>
          <height>16777215</height>
         </size>
        </property>
@@ -252,7 +252,7 @@
       <widget class="QLabel" name="labelRootPwIcon">
        <property name="maximumSize">
         <size>
-         <width>50</width>
+         <width>30</width>
          <height>16777215</height>
         </size>
        </property>
