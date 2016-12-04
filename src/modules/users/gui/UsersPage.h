@@ -130,9 +130,13 @@ private:
     bool m_readyHostname;
     bool m_readyRootPassword;
 
+    // Check autologin by default (if no other user is already in autologin mode)?
     bool m_autologin;
+    // Allow to set a root password?
     bool m_haveRootPassword;
+    // Path to copy the avatar file to, if the user selects one.
     QString m_avatarFilePath;
+    // List of available shells for new users.
     QStringList m_availableShells;
 };
 

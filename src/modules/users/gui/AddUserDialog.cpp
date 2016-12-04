@@ -31,7 +31,7 @@
 #include "AddUserDialog.h"
 #include "utils/CalamaresUtilsGui.h"
 
-AddUserDialog::AddUserDialog(const QStringList& existingUsers, bool avatar, bool autologin, const QStringList& shells, bool haveRootPassword, QWidget* parent)
+AddUserDialog::AddUserDialog(const QStringList& existingUsers, bool avatar, bool allowAutologin, bool checkAutologin, const QStringList& shells, bool haveRootPassword, QWidget* parent)
     : QDialog(parent),
       m_existingUsers(existingUsers)
 {
@@ -80,8 +80,10 @@ AddUserDialog::AddUserDialog(const QStringList& existingUsers, bool avatar, bool
         ui.rootUsesUserPwCheckBox->setEnabled(false);
     }
 
-    if (!autologin) {
+    if (!allowAutologin) {
         ui.autoLoginCheckBox->setEnabled(false);
+    } else {
+        ui.autoLoginCheckBox->setChecked(checkAutologin);
     }
 
     if (!avatar) {

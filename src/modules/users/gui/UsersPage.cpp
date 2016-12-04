@@ -141,7 +141,7 @@ UsersPage::UsersPage( QWidget* parent )
     , ui( new Ui::UserCreation )
     , m_readyHostname( false )
     , m_readyRootPassword( false )
-    , m_autologin( true )
+    , m_autologin( false )
     , m_haveRootPassword( true )
 {
     ui->setupUi( this );
@@ -180,12 +180,11 @@ UsersPage::addUserClicked() {
         }
     }
 
-    // Only allow autologin if the module configuration allows it,
-    // and there exists no other users with autologin enabled.
-    bool allowAutologin = m_autologin && !userHasAutologin;
+    // Only allow autologin if there exists no other users with autologin enabled.
+    bool allowAutologin = !userHasAutologin;
 
     QPointer<AddUserDialog> dlg = new AddUserDialog(
-                existingUsers, !m_avatarFilePath.isEmpty(), allowAutologin, m_availableShells, m_haveRootPassword, this );
+                existingUsers, !m_avatarFilePath.isEmpty(), allowAutologin, m_autologin, m_availableShells, m_haveRootPassword, this );
 
     if ( dlg->exec() == QDialog::Accepted ) {
         addUser(dlg->login, dlg->fullName, dlg->password, dlg->shell, dlg->avatarFile, dlg->autoLogin);
