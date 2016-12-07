@@ -3,7 +3,7 @@ calamares_add_plugin( dracutlukscfg
     EXPORT_MACRO PLUGINDLLEXPORT_PRO
     SOURCES
         DracutLuksCfgJob.cpp
-    LINK_LIBRARIES
+    LINK_PRIVATE_LIBRARIES
         calamares
     SHARED_LIB
 )

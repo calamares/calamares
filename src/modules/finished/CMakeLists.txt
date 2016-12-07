@@ -7,7 +7,7 @@ calamares_add_plugin( finished
         FinishedPage.cpp
     UI
         FinishedPage.ui
-    LINK_LIBRARIES
+    LINK_PRIVATE_LIBRARIES
         calamaresui
     SHARED_LIB
 )

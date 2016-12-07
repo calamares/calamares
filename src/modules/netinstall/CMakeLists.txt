@@ -12,7 +12,9 @@ calamares_add_plugin( netinstall
         widgets/groupselectionwidget.ui
     RESOURCES
         netinstall.qrc
-    LINK_LIBRARIES
+    LINK_PRIVATE_LIBRARIES
         calamaresui
+        Qt5::Network
+        yaml-cpp
     SHARED_LIB
 )
