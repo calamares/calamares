@@ -14,7 +14,9 @@ calamares_add_plugin( locale
     UI
     RESOURCES
         locale.qrc
-    LINK_LIBRARIES
+    LINK_PRIVATE_LIBRARIES
         calamaresui
+        Qt5::Network
+        yaml-cpp
     SHARED_LIB
 )

@@ -66,7 +66,7 @@ calamares_add_plugin( partition
         gui/EncryptWidget.ui
         gui/PartitionPage.ui
         gui/ReplaceWidget.ui
-    LINK_LIBRARIES
+    LINK_PRIVATE_LIBRARIES
         kpmcore
         calamaresui
         KF5::CoreAddons

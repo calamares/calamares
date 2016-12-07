@@ -16,7 +16,7 @@ calamares_add_plugin( users
         page_usersetup.ui
     RESOURCES
         users.qrc
-    LINK_LIBRARIES
+    LINK_PRIVATE_LIBRARIES
         calamaresui
         ${CRYPT_LIBRARIES}
     SHARED_LIB

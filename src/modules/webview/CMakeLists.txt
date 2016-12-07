@@ -44,7 +44,7 @@ calamares_add_plugin( webview
     EXPORT_MACRO PLUGINDLLEXPORT_PRO
     SOURCES
         WebViewStep.cpp
-    LINK_LIBRARIES
+    LINK_PRIVATE_LIBRARIES
         ${CALA_WEBVIEW_LINK_LIBRARIES}
     SHARED_LIB
 )
