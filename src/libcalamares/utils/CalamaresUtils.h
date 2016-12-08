@@ -42,6 +42,7 @@ namespace CalamaresUtils
     DLLEXPORT void installTranslator( const QLocale& locale,
                                       const QString& brandingTranslationsPrefix,
                                       QObject* parent );
+    DLLEXPORT QString translatorLocaleName();
 
     /**
      * Override app data dir. Only for testing purposes.

@@ -48,6 +48,7 @@ static bool s_isAppDataDirOverridden = false;
 static QTranslator* s_brandingTranslator = nullptr;
 static QTranslator* s_translator = nullptr;
 static QTranslator* s_qtTranslator = nullptr;
+static QString s_translatorLocaleName = QString();
 
 
 static bool
@@ -224,6 +225,15 @@ installTranslator( const QLocale& locale,
     }
     QCoreApplication::installTranslator( translator );
     s_qtTranslator = translator;
+
+    s_translatorLocaleName = localeName;
+}
+
+
+QString
+translatorLocaleName()
+{
+    return s_translatorLocaleName;
 }
 
 
