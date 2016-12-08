@@ -98,7 +98,8 @@ class DummyPythonQtViewStep():
         _ = gettext.gettext
         calamares.utils.debug("DummyPythonQt retranslation event.")
 
-class DummyPQJob():
+
+class DummyPQJob:
     def __init__(self, my_msg):
         self.my_msg = my_msg
 
