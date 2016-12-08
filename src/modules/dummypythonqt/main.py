@@ -93,6 +93,10 @@ class DummyPythonQtViewStep():
     def widget(self):
         return self.main_widget
 
+    def retranslate(self):
+        global _
+        _ = gettext.gettext
+        calamares.utils.debug("DummyPythonQt retranslation event.")
 
 class DummyPQJob():
     def __init__(self, my_msg):
