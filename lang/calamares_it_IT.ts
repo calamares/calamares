@@ -4,12 +4,12 @@
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="77"/>
         <source>Choose partition to shrink:</source>
-        <translation>Scegli la partizione da ridurre:</translation>
+        <translation>Scegliere la partizione da ridurre:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="78"/>
         <source>Allocate drive space by dragging the divider below:</source>
-        <translation>Assegna spazio su disco trascinando il separatore sottostante:</translation>
+        <translation>Assegnare spazio su disco trascinando il separatore sottostante:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="121"/>
@@ -408,7 +408,7 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="125"/>
         <source>Select storage de&amp;vice:</source>
-        <translation>Seleziona un dispositivo di me&amp;moria:</translation>
+        <translation>Selezionare un dispositivo di me&amp;moria:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="126"/>
@@ -421,12 +421,12 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="770"/>
         <source>Reuse %1 as home partition for %2.</source>
-        <translation>Riutilizza %1 come partizione home per &amp;2.</translation>
+        <translation>Riutilizzare %1 come partizione home per &amp;2.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="894"/>
         <source>&lt;strong&gt;Select a partition to shrink, then drag the bottom bar to resize&lt;/strong&gt;</source>
-        <translation>&lt;strong&gt;Seleziona una partizione da ridurre, trascina la barra inferiore per ridimensionare&lt;/strong&gt;</translation>
+        <translation>&lt;strong&gt;Selezionare una partizione da ridurre, trascina la barra inferiore per ridimensionare&lt;/strong&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1011"/>
@@ -459,7 +459,7 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1240"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1278"/>
         <source>&lt;strong&gt;Erase disk&lt;/strong&gt;&lt;br/&gt;This will &lt;font color=&quot;red&quot;&gt;delete&lt;/font&gt; all data currently present on the selected storage device.</source>
-        <translation>&lt;strong&gt;Cancella disco&lt;/strong&gt;&lt;br/&gt;Questo &lt;font color=&quot;red&quot;&gt;cancellerà&lt;/font&gt; tutti i dati attualmente presenti sul dispositivo di memoria.</translation>
+        <translation>&lt;strong&gt;Cancellare disco&lt;/strong&gt;&lt;br/&gt;Questo &lt;font color=&quot;red&quot;&gt;cancellerà&lt;/font&gt; tutti i dati attualmente presenti sul dispositivo di memoria.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1205"/>
@@ -472,7 +472,7 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1235"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1273"/>
         <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
-        <translation>&lt;strong&gt;Installa a fianco&lt;/strong&gt;&lt;br/&gt;Il programma di installazione ridurrà una partizione per dare spazio a %1.</translation>
+        <translation>&lt;strong&gt;Installare a fianco&lt;/strong&gt;&lt;br/&gt;Il programma di installazione ridurrà una partizione per dare spazio a %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1185"/>
@@ -480,7 +480,7 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1244"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1282"/>
         <source>&lt;strong&gt;Replace a partition&lt;/strong&gt;&lt;br/&gt;Replaces a partition with %1.</source>
-        <translation>&lt;strong&gt;Sostituisci una partizione&lt;/strong&gt;&lt;br/&gt;Sostituisce una partizione con %1.</translation>
+        <translation>&lt;strong&gt;Sostituire una partizione&lt;/strong&gt;&lt;br/&gt;Sostituisce una partizione con %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1230"/>
@@ -498,7 +498,7 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
     <message>
         <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="45"/>
         <source>Clear mounts for partitioning operations on %1</source>
-        <translation>Rimuovi i punti di mount per operazioni di partizionamento su %1</translation>
+        <translation>Rimuovere i punti di mount per operazioni di partizionamento su %1</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="53"/>
@@ -516,7 +516,7 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
     <message>
         <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="40"/>
         <source>Clear all temporary mounts.</source>
-        <translation>Rimuovi tutti i punti di mount temporanei.</translation>
+        <translation>Rimuovere tutti i punti di mount temporanei.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="47"/>
@@ -539,7 +539,7 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="14"/>
         <source>Create a Partition</source>
-        <translation>Crea una partizione</translation>
+        <translation>Creare una partizione</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="55"/>
@@ -584,7 +584,7 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="63"/>
         <source>En&amp;crypt</source>
-        <translation>Ci&amp;fra</translation>
+        <translation>Cr&amp;iptare</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="155"/>
@@ -607,12 +607,12 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="48"/>
         <source>Create new %2MB partition on %4 (%3) with file system %1.</source>
-        <translation>Crea una nuova partizione da %2MB su %4 (%3) con file system %1.</translation>
+        <translation>Creare una nuova partizione da %2MB su %4 (%3) con file system %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="59"/>
         <source>Create new &lt;strong&gt;%2MB&lt;/strong&gt; partition on &lt;strong&gt;%4&lt;/strong&gt; (%3) with file system &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation>Crea una nuova partizione da &lt;strong&gt;%2MB&lt;/strong&gt; su &lt;strong&gt;%4&lt;/strong&gt; (%3) con file system &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+        <translation>Creare una nuova partizione da &lt;strong&gt;%2MB&lt;/strong&gt; su &lt;strong&gt;%4&lt;/strong&gt; (%3) con file system &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="71"/>
@@ -650,7 +650,7 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="20"/>
         <source>Create Partition Table</source>
-        <translation>Crea tabella delle partizioni</translation>
+        <translation>Creare la tabella delle partizioni</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="39"/>
@@ -678,12 +678,12 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="49"/>
         <source>Create new %1 partition table on %2.</source>
-        <translation>Crea una nuova tabella delle partizioni %1 su %2.</translation>
+        <translation>Creare una nuova tabella delle partizioni %1 su %2.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="56"/>
         <source>Create new &lt;strong&gt;%1&lt;/strong&gt; partition table on &lt;strong&gt;%2&lt;/strong&gt; (%3).</source>
-        <translation>Crea una nuova tabella delle partizioni &lt;strong&gt;%1&lt;/strong&gt; su &lt;strong&gt;%2&lt;/strong&gt; (%3).</translation>
+        <translation>Creare una nuova tabella delle partizioni &lt;strong&gt;%1&lt;/strong&gt; su &lt;strong&gt;%2&lt;/strong&gt; (%3).</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="66"/>
@@ -706,12 +706,12 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="50"/>
         <source>Create user %1</source>
-        <translation>Crea l&apos;utente %1</translation>
+        <translation>Creare l&apos;utente %1</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="57"/>
         <source>Create user &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation>Crea utente &lt;strong&gt;%1&lt;/strong&gt;</translation>
+        <translation>Creare l&apos;utente &lt;strong&gt;%1&lt;/strong&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="64"/>
@@ -774,12 +774,12 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="42"/>
         <source>Delete partition %1.</source>
-        <translation>Cancella la partizione %1.</translation>
+        <translation>Cancellare la partizione %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="50"/>
         <source>Delete partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation>Cancella la partizione &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+        <translation>Cancellare la partizione &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="58"/>
@@ -851,17 +851,17 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
 <context>
     <name>DracutLuksCfgJob</name>
     <message>
-        <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="108"/>
+        <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="131"/>
         <source>Write LUKS configuration for Dracut to %1</source>
         <translation>Scrittura della configurazione LUKS per Dracut su %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="110"/>
+        <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="133"/>
         <source>Skip writing LUKS configuration for Dracut: &quot;/&quot; partition is not encrypted</source>
-        <translation>Salto scrittura della configurazione LUKS per Dracut: la partizione &quot;/&quot; non è cifrata</translation>
+        <translation>Salto scrittura della configurazione LUKS per Dracut: la partizione &quot;/&quot; non è criptata</translation>
     </message>
     <message>
-        <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="126"/>
+        <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="149"/>
         <source>Failed to open %1</source>
         <translation>Impossibile aprire %1</translation>
     </message>
@@ -889,12 +889,12 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="60"/>
         <source>&amp;Keep</source>
-        <translation>&amp;Mantieni</translation>
+        <translation>&amp;Mantenere</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="70"/>
         <source>Format</source>
-        <translation>Formatta</translation>
+        <translation>Formattare</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="89"/>
@@ -932,7 +932,7 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
     <message>
         <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="32"/>
         <source>En&amp;crypt system</source>
-        <translation>Ci&amp;fra il sistema</translation>
+        <translation>Cr&amp;iptare il sistema</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="42"/>
@@ -942,7 +942,7 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
     <message>
         <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="52"/>
         <source>Confirm passphrase</source>
-        <translation>Conferma frase di accesso</translation>
+        <translation>Confermare frase di accesso</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="150"/>
@@ -953,37 +953,37 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
 <context>
     <name>FillGlobalStorageJob</name>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="120"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="123"/>
         <source>Set partition information</source>
-        <translation>Imposta informazioni partizione</translation>
+        <translation>Impostare informazioni partizione</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="144"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="147"/>
         <source>Install %1 on &lt;strong&gt;new&lt;/strong&gt; %2 system partition.</source>
-        <translation>Installa %1 sulla &lt;strong&gt;nuova&lt;/strong&gt; partizione di sistema %2.</translation>
+        <translation>Installare %1 sulla &lt;strong&gt;nuova&lt;/strong&gt; partizione di sistema %2.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="149"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="152"/>
         <source>Set up &lt;strong&gt;new&lt;/strong&gt; %2 partition with mount point &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation>Imposta la &lt;strong&gt;nuova&lt;/strong&gt; %2 partizione con punto di mount &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+        <translation>Impostare la &lt;strong&gt;nuova&lt;/strong&gt; %2 partizione con punto di mount &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="157"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="160"/>
         <source>Install %2 on %3 system partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation>Installa %2 sulla partizione di sistema %3 &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+        <translation>Installare %2 sulla partizione di sistema %3 &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="163"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="166"/>
         <source>Set up %3 partition &lt;strong&gt;%1&lt;/strong&gt; with mount point &lt;strong&gt;%2&lt;/strong&gt;.</source>
-        <translation>Imposta la partizione %3 &lt;strong&gt;%1&lt;/strong&gt; con punto di montaggio &lt;strong&gt;%2&lt;/strong&gt;.</translation>
+        <translation>Impostare la partizione %3 &lt;strong&gt;%1&lt;/strong&gt; con punto di montaggio &lt;strong&gt;%2&lt;/strong&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="175"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="178"/>
         <source>Install boot loader on &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation>Installa il boot loader su &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+        <translation>Installare il boot loader su &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="185"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="188"/>
         <source>Setting up mount points.</source>
         <translation>Impostazione dei punti di mount.</translation>
     </message>
@@ -998,7 +998,7 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
     <message>
         <location filename="../src/modules/finished/FinishedPage.ui" line="77"/>
         <source>&amp;Restart now</source>
-        <translation>&amp;Riavvia ora</translation>
+        <translation>&amp;Riavviare ora</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedPage.cpp" line="50"/>
@@ -1019,12 +1019,12 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="49"/>
         <source>Format partition %1 (file system: %2, size: %3 MB) on %4.</source>
-        <translation>Formatta partizione %1 (file system: %2, dimensioni: %3 MB) su %4</translation>
+        <translation>Formattare la partizione %1 (file system: %2, dimensioni: %3 MB) su %4</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="60"/>
         <source>Format &lt;strong&gt;%3MB&lt;/strong&gt; partition &lt;strong&gt;%1&lt;/strong&gt; with file system &lt;strong&gt;%2&lt;/strong&gt;.</source>
-        <translation>Formatta la partizione &lt;strong&gt;%1&lt;/strong&gt; da &lt;strong&gt;%3MB&lt;/strong&gt; con file system &lt;strong&gt;%2&lt;/strong&gt;.</translation>
+        <translation>Formattare la partizione &lt;strong&gt;%1&lt;/strong&gt; da &lt;strong&gt;%3MB&lt;/strong&gt; con file system &lt;strong&gt;%2&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="71"/>
@@ -1110,12 +1110,12 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
     <message>
         <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="193"/>
         <source>Set keyboard model to %1.&lt;br/&gt;</source>
-        <translation>Imposta il modello di tastiera a %1.&lt;br/&gt;</translation>
+        <translation>Impostare il modello di tastiera a %1.&lt;br/&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="195"/>
         <source>Set keyboard layout to %1/%2.</source>
-        <translation>Imposta il layout della tastiera a %1%2.</translation>
+        <translation>Impostare il layout della tastiera a %1%2.</translation>
     </message>
 </context>
 <context>
@@ -1159,7 +1159,7 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="118"/>
         <source>Please review the End User License Agreements (EULAs) above.&lt;br/&gt;If you do not agree with the terms, the setup procedure cannot continue.</source>
-        <translation>Leggi attentamente le licenze d&apos;uso (EULA) riportate sopra.&lt;br/&gt;Se non ne accetti i termini, la procedura di configurazione non può proseguire.</translation>
+        <translation>Leggere attentamente le licenze d&apos;uso (EULA) riportate sopra.&lt;br/&gt;Se non ne accetti i termini, la procedura di configurazione non può proseguire.</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="124"/>
@@ -1277,7 +1277,7 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
     <message>
         <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="66"/>
         <source>Move file system of partition %1.</source>
-        <translation>Sposta il file system della partizione %1.</translation>
+        <translation>Spostare il file system della partizione %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="80"/>
@@ -1352,7 +1352,7 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
     <message>
         <location filename="../src/modules/keyboard/KeyboardPage.ui" line="131"/>
         <source>Type here to test your keyboard</source>
-        <translation>Digita qui per provare la tastiera</translation>
+        <translation>Digitare qui per provare la tastiera</translation>
     </message>
 </context>
 <context>
@@ -1365,12 +1365,12 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="36"/>
         <source>What is your name?</source>
-        <translation>Qual&apos;è il tuo nome?</translation>
+        <translation>Qual&apos;è il nome?</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="117"/>
         <source>What name do you want to use to log in?</source>
-        <translation>Che nome vuoi usare per autenticarti?</translation>
+        <translation>Quale nome usare per l&apos;autenticazione?</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="197"/>
@@ -1388,12 +1388,12 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="335"/>
         <source>Choose a password to keep your account safe.</source>
-        <translation>Scegli una password per rendere sicuro il tuo account.</translation>
+        <translation>Scegliere una password per rendere sicuro il tuo account.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="440"/>
         <source>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors. A good password will contain a mixture of letters, numbers and punctuation, should be at least eight characters long, and should be changed at regular intervals.&lt;/small&gt;</source>
-        <translation>&lt;small&gt;Inserisci la password due volte per controllare eventuali errori di battitura. Una buona password contiene lettere, numeri e segni di punteggiatura. Deve essere lunga almeno otto caratteri e dovrebbe essere cambiata a intervalli regolari.&lt;/small&gt;</translation>
+        <translation>&lt;small&gt;Inserire la password due volte per controllare eventuali errori di battitura. Una buona password contiene lettere, numeri e segni di punteggiatura. Deve essere lunga almeno otto caratteri e dovrebbe essere cambiata a intervalli regolari.&lt;/small&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="226"/>
@@ -1408,22 +1408,22 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="450"/>
         <source>Log in automatically without asking for the password.</source>
-        <translation>Accedi automaticamente senza chiedere la password.</translation>
+        <translation>Accedere automaticamente senza chiedere la password.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="457"/>
         <source>Use the same password for the administrator account.</source>
-        <translation>Usa la stessa password per l&apos;account amministratore.</translation>
+        <translation>Usare la stessa password per l&apos;account amministratore.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="480"/>
         <source>Choose a password for the administrator account.</source>
-        <translation>Scegli una password per l&apos;account dell&apos;amministratore.</translation>
+        <translation>Scegliere una password per l&apos;account dell&apos;amministratore.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="585"/>
         <source>&lt;small&gt;Enter the same password twice, so that it can be checked for typing errors.&lt;/small&gt;</source>
-        <translation>&lt;small&gt;Inserisci la password due volte per controllare eventuali errori di battitura.&lt;/small&gt;</translation>
+        <translation>&lt;small&gt;Inserire la password due volte per controllare eventuali errori di battitura.&lt;/small&gt;</translation>
     </message>
 </context>
 <context>
@@ -1529,27 +1529,27 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="107"/>
         <source>&amp;Create</source>
-        <translation>&amp;Crea</translation>
+        <translation>&amp;Creare</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="114"/>
         <source>&amp;Edit</source>
-        <translation>&amp;Modifica</translation>
+        <translation>&amp;Modificare</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="121"/>
         <source>&amp;Delete</source>
-        <translation>&amp;Cancella</translation>
+        <translation>&amp;Cancellare</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="148"/>
         <source>Install boot &amp;loader on:</source>
-        <translation>Installa il boot &amp;loader su:</translation>
+        <translation>Installare il boot &amp;loader su:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="156"/>
         <source>Are you sure you want to create a new partition table on %1?</source>
-        <translation>Sei sicuro di voler creare una nuova tabella delle partizioni su %1?</translation>
+        <translation>Si è sicuri di voler creare una nuova tabella delle partizioni su %1?</translation>
     </message>
 </context>
 <context>
@@ -1567,17 +1567,17 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="158"/>
         <source>Install %1 &lt;strong&gt;alongside&lt;/strong&gt; another operating system.</source>
-        <translation>Installa %1 &lt;strong&gt;a fianco&lt;/strong&gt; di un altro sistema operativo.</translation>
+        <translation>Installare %1 &lt;strong&gt;a fianco&lt;/strong&gt; di un altro sistema operativo.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="163"/>
         <source>&lt;strong&gt;Erase&lt;/strong&gt; disk and install %1.</source>
-        <translation>&lt;strong&gt;Cancella&lt;/strong&gt; il disco e installa %1.</translation>
+        <translation>&lt;strong&gt;Cancellare&lt;/strong&gt; il disco e installare %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="168"/>
         <source>&lt;strong&gt;Replace&lt;/strong&gt; a partition with %1.</source>
-        <translation>&lt;strong&gt;Sostituisci&lt;/strong&gt; una partizione con %1.</translation>
+        <translation>&lt;strong&gt;Sostituire&lt;/strong&gt; una partizione con %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="173"/>
@@ -1587,17 +1587,17 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="186"/>
         <source>Install %1 &lt;strong&gt;alongside&lt;/strong&gt; another operating system on disk &lt;strong&gt;%2&lt;/strong&gt; (%3).</source>
-        <translation>Installa %1 &lt;strong&gt;a fianco&lt;/strong&gt; di un altro sistema operativo sul disco&lt;strong&gt;%2&lt;/strong&gt; (%3).</translation>
+        <translation>Installare %1 &lt;strong&gt;a fianco&lt;/strong&gt; di un altro sistema operativo sul disco&lt;strong&gt;%2&lt;/strong&gt; (%3).</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="193"/>
         <source>&lt;strong&gt;Erase&lt;/strong&gt; disk &lt;strong&gt;%2&lt;/strong&gt; (%3) and install %1.</source>
-        <translation>&lt;strong&gt;Cancella&lt;/strong&gt; il disco &lt;strong&gt;%2&lt;/strong&gt; (%3) e installa %1.</translation>
+        <translation>&lt;strong&gt;Cancellare&lt;/strong&gt; il disco &lt;strong&gt;%2&lt;/strong&gt; (%3) e installa %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="200"/>
         <source>&lt;strong&gt;Replace&lt;/strong&gt; a partition on disk &lt;strong&gt;%2&lt;/strong&gt; (%3) with %1.</source>
-        <translation>&lt;strong&gt;Sostituisci&lt;/strong&gt; una partizione sul disco &lt;strong&gt;%2&lt;/strong&gt; (%3) con %1.</translation>
+        <translation>&lt;strong&gt;Sostituire&lt;/strong&gt; una partizione sul disco &lt;strong&gt;%2&lt;/strong&gt; (%3) con %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="207"/>
@@ -1642,12 +1642,12 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="456"/>
         <source>Boot partition not encrypted</source>
-        <translation type="unfinished"/>
+        <translation>Partizione di avvio non criptata</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="457"/>
         <source>A separate boot partition was set up together with an encrypted root partition, but the boot partition is not encrypted.&lt;br/&gt;&lt;br/&gt;There are security concerns with this kind of setup, because important system files are kept on an unencrypted partition.&lt;br/&gt;You may continue if you wish, but filesystem unlocking will happen later during system startup.&lt;br/&gt;To encrypt the boot partition, go back and recreate it, selecting &lt;strong&gt;Encrypt&lt;/strong&gt; in the partition creation window.</source>
-        <translation type="unfinished"/>
+        <translation>E&apos; stata configurata una partizione di avvio non criptata assieme ad una partizione root criptata. &lt;br/&gt;&lt;br/&gt;Ci sono problemi di sicurezza con questo tipo di configurazione perchè dei file di sistema importanti sono tenuti su una partizione non criptata.&lt;br/&gt;Si può continuare se lo si desidera ma dopo ci sarà lo sblocco del file system, durante l&apos;avvio del sistema.&lt;br/&gt;Per criptare la partizione di avvio, tornare indietro e ricrearla, selezionando &lt;strong&gt;Criptare&lt;/strong&gt; nella finestra di creazione della partizione.</translation>
     </message>
 </context>
 <context>
@@ -1822,7 +1822,7 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="76"/>
         <source>Resize file system on partition %1.</source>
-        <translation>Ridimensiona il file system sulla partizione %1.</translation>
+        <translation>Ridimensionare il file system sulla partizione %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="91"/>
@@ -1840,12 +1840,12 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="187"/>
         <source>Resize partition %1.</source>
-        <translation>Ridimensiona partizione %1.</translation>
+        <translation>Ridimensionare la partizione %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="194"/>
         <source>Resize &lt;strong&gt;%2MB&lt;/strong&gt; partition &lt;strong&gt;%1&lt;/strong&gt; to &lt;strong&gt;%3MB&lt;/strong&gt;.</source>
-        <translation>Ridimensiona la partizione &lt;strong&gt;%1&lt;/strong&gt; da &lt;strong&gt;%2MB&lt;/strong&gt; a &lt;strong&gt;%3MB&lt;/strong&gt;.</translation>
+        <translation>Ridimensionare la partizione &lt;strong&gt;%1&lt;/strong&gt; da &lt;strong&gt;%2MB&lt;/strong&gt; a &lt;strong&gt;%3MB&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="205"/>
@@ -1882,17 +1882,17 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
     <message>
         <location filename="../src/modules/users/SetHostNameJob.cpp" line="37"/>
         <source>Set hostname %1</source>
-        <translation>Imposta hostname %1</translation>
+        <translation>Impostare hostname %1</translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetHostNameJob.cpp" line="44"/>
         <source>Set hostname &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation>Imposta hostname &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+        <translation>Impostare hostname &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetHostNameJob.cpp" line="51"/>
         <source>Setting hostname %1.</source>
-        <translation>Imposta hostname %1.</translation>
+        <translation>Impostare hostname %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetHostNameJob.cpp" line="61"/>
@@ -1947,12 +1947,12 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="51"/>
         <source>Set flags on %1MB %2 partition.</source>
-        <translation>Imposta i flag sulla partizione %1MB %2.</translation>
+        <translation>Impostare i flag sulla partizione %1MB %2.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="55"/>
         <source>Set flags on new partition.</source>
-        <translation>Imposta i flag sulla nuova partizione.</translation>
+        <translation>Impostare i flag sulla nuova partizione.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="66"/>
@@ -2040,7 +2040,7 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="144"/>
         <source>Update geometry of partition %1.</source>
-        <translation>Aggiorna la geometria della partizione %1.</translation>
+        <translation>Aggiornare la geometria della partizione %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="156"/>
@@ -2053,12 +2053,12 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="42"/>
         <source>Set password for user %1</source>
-        <translation>Imposta la password per l&apos;utente %1</translation>
+        <translation>Impostare la password per l&apos;utente %1</translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="49"/>
         <source>Setting password for user %1.</source>
-        <translation>Imposta la password per l&apos;utente %1.</translation>
+        <translation>Impostare la password per l&apos;utente %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="59"/>
@@ -2086,7 +2086,7 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
     <message>
         <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="43"/>
         <source>Set timezone to %1/%2</source>
-        <translation>Imposta il fuso orario su %1%2</translation>
+        <translation>Impostare il fuso orario su %1%2</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="71"/>
@@ -2124,7 +2124,7 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
     <message>
         <location filename="../src/modules/summary/SummaryPage.cpp" line="46"/>
         <source>This is an overview of what will happen once you start the install procedure.</source>
-        <translation>Ecco una panoramica delle modifiche che saranno effettuate una volta avviata la procedura di installazione.</translation>
+        <translation>Una panoramica delle modifiche che saranno effettuate una volta avviata la procedura di installazione.</translation>
     </message>
 </context>
 <context>
@@ -2145,28 +2145,28 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="279"/>
         <source>Your username contains invalid characters. Only lowercase letters and numbers are allowed.</source>
-        <translation>Il tuo nome utente contiene caratteri non validi. Sono ammessi solo lettere minuscole e numeri.</translation>
+        <translation>Il nome utente contiene caratteri non validi. Sono ammessi solo lettere minuscole e numeri.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="323"/>
         <source>Your hostname is too short.</source>
-        <translation>Il tuo hostname è troppo corto.</translation>
+        <translation>Hostname è troppo corto.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="334"/>
         <source>Your hostname is too long.</source>
-        <translation>Il tuo hostname è troppo lungo.</translation>
+        <translation>Hostname è troppo lungo.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="345"/>
         <source>Your hostname contains invalid characters. Only letters, numbers and dashes are allowed.</source>
-        <translation>Il tuo hostname contiene caratteri non validi. Sono ammessi solo lettere, numeri e trattini.</translation>
+        <translation>Hostname contiene caratteri non validi. Sono ammessi solo lettere, numeri e trattini.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="376"/>
         <location filename="../src/modules/users/UsersPage.cpp" line="409"/>
         <source>Your passwords do not match!</source>
-        <translation>Le tue password non corrispondono!</translation>
+        <translation>Le password non corrispondono!</translation>
     </message>
 </context>
 <context>
