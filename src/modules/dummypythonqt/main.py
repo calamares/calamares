@@ -32,12 +32,9 @@ import PythonQt.calamares as calamares
 import gettext
 import inspect
 import os
-filename = inspect.getframeinfo(inspect.currentframe()).filename
-path = os.path.dirname(os.path.abspath(filename))
-# t = gettext.translation('dummypythonqt',
-#                         os.path.join(path, 'lang'),
-#                         languages=['en'])
-#_ = t.lgettext
+_filename = inspect.getframeinfo(inspect.currentframe()).filename
+_path = os.path.dirname(os.path.abspath(_filename))
+
 _ = gettext.gettext
 
 # Example Python ViewModule.
@@ -51,7 +48,7 @@ _ = gettext.gettext
 # isAtBeginning/isAtEnd. The whole UI, including all the pages, must be
 # exposed as a single QWidget, returned by the widget function.
 @calamares_module
-class DummyPythonQtViewStep():
+class DummyPythonQtViewStep:
     def __init__(self):
         self.main_widget = QFrame()
 
@@ -93,10 +90,14 @@ class DummyPythonQtViewStep():
     def widget(self):
         return self.main_widget
 
-    def retranslate(self):
+    def retranslate(self, localeName):
         global _
-        _ = gettext.gettext
-        calamares.utils.debug("DummyPythonQt retranslation event.")
+        _t = gettext.translation('dummypythonqt',
+                                 os.path.join(_path, 'lang'),
+                                 languages=[localeName])
+        _ = _t.lgettext
+        calamares.utils.debug("DummyPythonQt retranslation event "
+                              "for locale name: {}".format(localeName))
 
 
 class DummyPQJob:
