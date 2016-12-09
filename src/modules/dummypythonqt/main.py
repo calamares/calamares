@@ -91,13 +91,14 @@ class DummyPythonQtViewStep:
         return self.main_widget
 
     def retranslate(self, localeName):
+        calamares.utils.debug("DummyPythonQt retranslation event "
+                              "for locale name: {}".format(localeName))
+
         global _
         _t = gettext.translation('dummypythonqt',
                                  os.path.join(_path, 'lang'),
                                  languages=[localeName])
         _ = _t.lgettext
-        calamares.utils.debug("DummyPythonQt retranslation event "
-                              "for locale name: {}".format(localeName))
 
 
 class DummyPQJob:
