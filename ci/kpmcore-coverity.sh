@@ -8,7 +8,7 @@ wget https://scan.coverity.com/download/cxx/linux64 --no-check-certificate \
      --post-data "token=cyOjQZx5EOFLdhfo7ZDa4Q&project=KDE+Partition+Manager+Core+Library+-+KPMcore" \
      -O coverity_tool.tar.gz
 mkdir "$WORKSPACE/coveritytool"
-tar xvf coverity_tool.tar.gz -C "$WORKSPACE/coveritytool" --strip-components 1
+tar xvf coverity_tool.tar.gz -C "$WORKSPACE/coveritytool" --strip-components 2
 export PATH="$WORKSPACE/coveritytool/bin:$PATH"
 
 rm -Rf "$WORKSPACE/build"
