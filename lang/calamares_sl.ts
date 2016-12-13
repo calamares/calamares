@@ -14,7 +14,7 @@
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="121"/>
         <source>With this operation, the partition &lt;strong&gt;%1&lt;/strong&gt; which contains %4 will be shrunk to %2MB and a new %3MB partition will be created for %5.</source>
-        <translation type="unfinished"/>
+        <translation>S to operacijo bo razdelek &lt;strong&gt;%1&lt;/strong&gt;, ki vsebuje %4 zmanjšan na %2MB, pri čemer bo za %5 ustvarjen nov razdelek velikosti %3MB.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="198"/>
