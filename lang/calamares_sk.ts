@@ -1121,7 +1121,7 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
 <context>
     <name>KeyboardViewStep</name>
     <message>
-        <location filename="../src/modules/keyboard/KeyboardViewStep.cpp" line="49"/>
+        <location filename="../src/modules/keyboard/KeyboardViewStep.cpp" line="50"/>
         <source>Keyboard</source>
         <translation>Klávesnica</translation>
     </message>
@@ -1664,22 +1664,22 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
         <translation>Predvolený</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="195"/>
+        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="201"/>
         <source>unknown</source>
         <translation>neznámy</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="197"/>
+        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="203"/>
         <source>extended</source>
         <translation>rozšírený</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="199"/>
+        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="205"/>
         <source>unformatted</source>
         <translation>nenaformátovaný</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="201"/>
+        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="207"/>
         <source>swap</source>
         <translation>odkladací</translation>
     </message>

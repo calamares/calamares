@@ -1122,7 +1122,7 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
 <context>
     <name>KeyboardViewStep</name>
     <message>
-        <location filename="../src/modules/keyboard/KeyboardViewStep.cpp" line="49"/>
+        <location filename="../src/modules/keyboard/KeyboardViewStep.cpp" line="50"/>
         <source>Keyboard</source>
         <translation>Tastatur</translation>
     </message>
@@ -1665,22 +1665,22 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
         <translation>Standard</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="195"/>
+        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="201"/>
         <source>unknown</source>
         <translation>unbekannt</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="197"/>
+        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="203"/>
         <source>extended</source>
         <translation>erweitert</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="199"/>
+        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="205"/>
         <source>unformatted</source>
         <translation>unformatiert</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="201"/>
+        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="207"/>
         <source>swap</source>
         <translation>Swap</translation>
     </message>
