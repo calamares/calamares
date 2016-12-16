@@ -32,6 +32,14 @@ function( calamares_add_module_subdirectory )
             endif()
         endforeach()
 
+        # We copy over the lang directory, if any
+        if( IS_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/${SUBDIRECTORY}/lang" )
+          file( COPY "${CMAKE_CURRENT_SOURCE_DIR}/${SUBDIRECTORY}/lang"
+                DESTINATION "${CMAKE_CURRENT_BINARY_DIR}/${SUBDIRECTORY}" )
+          install( DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/${SUBDIRECTORY}/lang"
+                   DESTINATION ${MODULE_DESTINATION} )
+        endif()
+
         message( "-- ${BoldYellow}Found ${CALAMARES_APPLICATION_NAME} module: ${BoldRed}${SUBDIRECTORY}${ColorReset}" )
         if( NOT CMAKE_BUILD_TYPE STREQUAL "Release" )
             message( "   ${Green}TYPE:${ColorReset} jobmodule" )
