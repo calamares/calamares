@@ -67,7 +67,7 @@ class DummyPythonQtViewStep:
         btn.connect("clicked(bool)", self.on_btn_clicked)
 
     def on_btn_clicked(self):
-        self.main_widget.layout().addWidget(QLabel("A new QLabel."))
+        self.main_widget.layout().addWidget(QLabel(_("A new QLabel.")))
 
     def prettyName(self):
         return "Dummy PythonQt ViewStep"
@@ -91,15 +91,15 @@ class DummyPythonQtViewStep:
         return self.main_widget
 
     def retranslate(self, locale_name):
-        calamares.utils.debug("DummyPythonQt retranslation event "
+        calamares.utils.debug("PythonQt retranslation event "
                               "for locale name: {}".format(locale_name))
 
         try:
             global _
             _t = gettext.translation('dummypythonqt',
-                                     os.path.join(_path, 'lang'),
+                                     localedir=os.path.join(_path, 'lang'),
                                      languages=[locale_name])
-            _ = _t.lgettext
+            _ = _t.gettext
         except OSError as e:
             calamares.utils.debug(e)
             pass
