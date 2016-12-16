@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2016-12-16 15:07+0100\n"
+"POT-Creation-Date: 2016-12-16 16:00+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Language-Team: Thai (https://www.transifex.com/calamares/teams/20061/th/)\n"
 "MIME-Version: 1.0\n"
@@ -17,6 +17,10 @@ msgstr ""
 
 #: src/modules/dummypythonqt/main.py:65
 msgid "Click me!"
+msgstr ""
+
+#: src/modules/dummypythonqt/main.py:70
+msgid "A new QLabel."
 msgstr ""
 
 #: src/modules/dummypythonqt/main.py:113
