@@ -114,7 +114,7 @@ class DummyPQJob:
 
     def pretty_description(self):
         return _("This is the Dummy PythonQt Job. "
-                 "The dummy job says: {}".format(self.my_msg))
+                 "The dummy job says: {}").format(self.my_msg)
 
     def pretty_status_message(self):
         return _("A status message for Dummy PythonQt Job.")
