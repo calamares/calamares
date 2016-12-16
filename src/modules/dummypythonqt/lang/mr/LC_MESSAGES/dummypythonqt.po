@@ -7,25 +7,26 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2016-12-16 15:07+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language-Team: Marathi (https://www.transifex.com/calamares/teams/20061/mr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: pygettext.py 1.5\n"
+"Language: mr\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: src/modules/dummypythonqt/main.py:65
 msgid "Click me!"
-msgstr "Click me!"
+msgstr ""
 
 #: src/modules/dummypythonqt/main.py:113
 msgid "The Dummy PythonQt Job"
-msgstr "The Dummy PythonQt Job"
+msgstr ""
 
 #: src/modules/dummypythonqt/main.py:116
 msgid "This is the Dummy PythonQt Job. The dummy job says: {}"
-msgstr "This is the Dummy PythonQt Job. The dummy job says: {}"
+msgstr ""
 
 #: src/modules/dummypythonqt/main.py:120
 msgid "A status message for Dummy PythonQt Job."
-msgstr "A status message for Dummy PythonQt Job."
+msgstr ""
