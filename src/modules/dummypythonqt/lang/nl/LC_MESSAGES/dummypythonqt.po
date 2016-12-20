@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2016-12-19 00:54+0000\n"
+"POT-Creation-Date: 2016-12-19 03:04+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: De Zeeappel <zeeappel@gmail.com>, 2016\n"
 "Language-Team: Dutch (https://www.transifex.com/calamares/teams/20061/nl/)\n"
@@ -24,16 +24,16 @@ msgstr "Klik mij!"
 
 #: src/modules/dummypythonqt/main.py:70
 msgid "A new QLabel."
-msgstr "Een nieuwe QLabel"
+msgstr "Een nieuw QLabel"
 
 #: src/modules/dummypythonqt/main.py:113
 msgid "The Dummy PythonQt Job"
-msgstr ""
+msgstr "De Dummy PythonQt opdracht"
 
 #: src/modules/dummypythonqt/main.py:116
 msgid "This is the Dummy PythonQt Job. The dummy job says: {}"
-msgstr ""
+msgstr "Dit is de Dummy PythonQt opdracht. De opdracht zegt: {}"
 
 #: src/modules/dummypythonqt/main.py:120
 msgid "A status message for Dummy PythonQt Job."
-msgstr ""
+msgstr "Een statusbericht voor de Dummy PythonQt opdracht."
