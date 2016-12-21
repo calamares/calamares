@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>712</width>
-    <height>383</height>
+    <height>388</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -376,6 +376,12 @@ as the Administrator password</string>
   <tabstop>userNameLine</tabstop>
   <tabstop>passLine</tabstop>
   <tabstop>confirmPassLine</tabstop>
+  <tabstop>nameLine</tabstop>
+  <tabstop>autoLoginCheckBox</tabstop>
+  <tabstop>rootUsesUserPwCheckBox</tabstop>
+  <tabstop>loginShellSelection</tabstop>
+  <tabstop>selectImageButton</tabstop>
+  <tabstop>avatarFileLine</tabstop>
  </tabstops>
  <resources/>
  <connections/>
