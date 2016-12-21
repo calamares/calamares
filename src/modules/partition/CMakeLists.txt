@@ -11,6 +11,13 @@ find_package( KF5 REQUIRED CoreAddons )
 find_package( KF5 REQUIRED Config I18n IconThemes KIO Service )
 
 find_package( KPMcore 2.2 REQUIRED )
+if(KPMcore_VERSION VERSION_LESS 3.0.0)
+    set(WITH_KPMCORE3 OFF)
+else()
+    set(WITH_KPMCORE3 ON)
+endif()
+configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/PartitionConfig.h.in
+                ${CMAKE_CURRENT_BINARY_DIR}/PartitionConfig.h )
 
 add_subdirectory( tests )
 
