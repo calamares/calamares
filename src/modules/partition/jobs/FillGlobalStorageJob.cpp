@@ -26,6 +26,7 @@
 #include "core/KPMHelpers.h"
 #include "Branding.h"
 #include "utils/Logger.h"
+#include "PartitionConfig.h"
 
 // CalaPM
 #include <kpmcore/core/device.h>
@@ -98,7 +99,11 @@ mapForPartition( Partition* partition, const QString& uuid )
         const FS::luks* luksFs = dynamic_cast< const FS::luks* >( &fsRef );
         if ( luksFs )
         {
+#ifdef WITH_KPMCORE3
+            map[ "luksMapperName" ] = luksFs->mapperName().split( "/" ).last();
+#else
             map[ "luksMapperName" ] = luksFs->mapperName( partition->partitionPath() ).split( "/" ).last();
+#endif
             map[ "luksUuid" ] = getLuksUuid( partition->partitionPath() );
             map[ "luksPassphrase" ] = luksFs->passphrase();
             cDebug() << "luksMapperName:" << map[ "luksMapperName" ];

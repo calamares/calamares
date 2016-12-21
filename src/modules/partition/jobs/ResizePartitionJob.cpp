@@ -44,6 +44,7 @@
 #include "jobs/CheckFileSystemJob.h"
 #include "jobs/MoveFileSystemJob.h"
 #include "utils/Logger.h"
+#include "PartitionConfig.h"
 
 // KPMcore
 #include <kpmcore/backend/corebackend.h>
@@ -93,7 +94,11 @@ public:
             break;
         case FileSystem::cmdSupportFileSystem:
         {
+#ifdef WITH_KPMCORE3
+            qint64 byteLength = m_device->logicalSize() * m_length;
+#else
             qint64 byteLength = m_device->logicalSectorSize() * m_length;
+#endif
             bool ok = fs.resize( report, m_partition->partitionPath(), byteLength );
             if ( !ok )
                 return Calamares::JobResult::error(

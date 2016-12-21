@@ -21,6 +21,7 @@
 
 #include "core/ColorUtils.h"
 #include "core/KPMHelpers.h"
+#include "PartitionConfig.h"
 
 // Qt
 #include <QSpinBox>
@@ -135,7 +136,11 @@ PartitionSizeController::updatePartResizerWidget()
         return;
 
     m_updating = true;
+#ifdef WITH_KPMCORE3
+    qint64 sectorSize = qint64( m_spinBox->value() ) * 1024 * 1024 / m_device->logicalSize();
+#else
     qint64 sectorSize = qint64( m_spinBox->value() ) * 1024 * 1024 / m_device->logicalSectorSize();
+#endif
 
     qint64 firstSector = m_partition->firstSector();
     qint64 lastSector = firstSector + sectorSize - 1;
@@ -185,7 +190,11 @@ PartitionSizeController::doUpdateSpinBox()
 {
     if ( !m_spinBox )
         return;
+#ifdef WITH_KPMCORE3
+    qint64 mbSize = m_partition->length() * m_device->logicalSize() / 1024 / 1024;
+#else
     qint64 mbSize = m_partition->length() * m_device->logicalSectorSize() / 1024 / 1024;
+#endif
     m_spinBox->setValue( mbSize );
     if ( m_currentSpinBoxValue != -1 &&    //if it's not the first time we're setting it
          m_currentSpinBoxValue != mbSize ) //and the operation changes the SB value

@@ -35,6 +35,7 @@
 #include "BootInfoWidget.h"
 #include "DeviceInfoWidget.h"
 #include "ScanningDialog.h"
+#include "PartitionConfig.h"
 
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
@@ -594,7 +595,11 @@ ChoicePage::doAlongsideApply()
             qint64 oldLastSector = candidate->lastSector();
             qint64 newLastSector = firstSector +
                                    m_afterPartitionSplitterWidget->splitPartitionSize() /
+#ifdef WITH_KPMCORE3
+                                   dev->logicalSize();
+#else
                                    dev->logicalSectorSize();
+#endif
 
             m_core->resizePartition( dev, candidate, firstSector, newLastSector );
             Partition* newPartition = nullptr;

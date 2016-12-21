@@ -22,6 +22,7 @@
 #include "core/PartitionInfo.h"
 #include "core/KPMHelpers.h"
 #include "utils/Logger.h"
+#include "PartitionConfig.h"
 
 // CalaPM
 #include <kpmcore/core/device.h>
@@ -148,7 +149,11 @@ PartitionModel::data( const QModelIndex& index, int role ) const
             return PartitionInfo::mountPoint( partition );
         if ( col == SizeColumn )
         {
+#ifdef WITH_KPMCORE3
+            qint64 size = ( partition->lastSector() - partition->firstSector() + 1 ) * m_device->logicalSize();
+#else
             qint64 size = ( partition->lastSector() - partition->firstSector() + 1 ) * m_device->logicalSectorSize();
+#endif
             return KFormat().formatByteSize( size );
         }
         cDebug() << "Unknown column" << col;
@@ -175,12 +180,20 @@ PartitionModel::data( const QModelIndex& index, int role ) const
             }
         }
         QString prettyFileSystem = KPMHelpers::prettyNameForFileSystemType( partition->fileSystem().type() );
+#ifdef WITH_KPMCORE3
+        qint64 size = ( partition->lastSector() - partition->firstSector() + 1 ) * m_device->logicalSize();
+#else
         qint64 size = ( partition->lastSector() - partition->firstSector() + 1 ) * m_device->logicalSectorSize();
+#endif
         QString prettySize = KFormat().formatByteSize( size );
         return QVariant(name + " " + prettyFileSystem + " " + prettySize);
     }
     case SizeRole:
+#ifdef WITH_KPMCORE3
+        return ( partition->lastSector() - partition->firstSector() + 1 ) * m_device->logicalSize();
+#else
         return ( partition->lastSector() - partition->firstSector() + 1 ) * m_device->logicalSectorSize();
+#endif
     case IsFreeSpaceRole:
         return KPMHelpers::isPartitionFreeSpace( partition );
 

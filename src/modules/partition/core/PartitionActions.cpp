@@ -26,6 +26,7 @@
 #include "JobQueue.h"
 #include "utils/Logger.h"
 #include "GlobalStorage.h"
+#include "PartitionConfig.h"
 
 #include <kpmcore/core/device.h>
 #include <kpmcore/core/partition.h>
@@ -128,11 +129,19 @@ doAutopartition( PartitionCoreModule* core, Device* dev, const QString& luksPass
         empty_space_size = 1;
     }
 
+#ifdef WITH_KPMCORE3
+    qint64 firstFreeSector = empty_space_size MiB / dev->logicalSize() + 1;
+#else
     qint64 firstFreeSector = empty_space_size MiB / dev->logicalSectorSize() + 1;
+#endif
 
     if ( isEfi )
     {
+#ifdef WITH_KPMCORE3
+        qint64 lastSector = firstFreeSector + ( uefisys_part_size MiB / dev->logicalSize() );
+#else
         qint64 lastSector = firstFreeSector + ( uefisys_part_size MiB / dev->logicalSectorSize() );
+#endif
         core->createPartitionTable( dev, PartitionTable::gpt );
         Partition* efiPartition = KPMHelpers::createNewPartition(
             dev->partitionTable(),
@@ -157,7 +166,11 @@ doAutopartition( PartitionCoreModule* core, Device* dev, const QString& luksPass
     }
 
     bool shouldCreateSwap = false;
+#ifdef WITH_KPMCORE3
+    qint64 availableSpaceB = ( dev->totalLogical() - firstFreeSector ) * dev->logicalSize();
+#else
     qint64 availableSpaceB = ( dev->totalSectors() - firstFreeSector ) * dev->logicalSectorSize();
+#endif
     qint64 suggestedSwapSizeB = swapSuggestion( availableSpaceB );
     qint64 requiredSpaceB =
             ( Calamares::JobQueue::instance()->
@@ -168,11 +181,19 @@ doAutopartition( PartitionCoreModule* core, Device* dev, const QString& luksPass
     // If there is enough room for ESP + root + swap, create swap, otherwise don't.
     shouldCreateSwap = availableSpaceB > requiredSpaceB;
 
+#ifdef WITH_KPMCORE3
+    qint64 lastSectorForRoot = dev->totalLogical() - 1; //last sector of the device
+    if ( shouldCreateSwap )
+    {
+        lastSectorForRoot -= suggestedSwapSizeB / dev->logicalSize() + 1;
+    }
+#else
     qint64 lastSectorForRoot = dev->totalSectors() - 1; //last sector of the device
     if ( shouldCreateSwap )
     {
         lastSectorForRoot -= suggestedSwapSizeB / dev->logicalSectorSize() + 1;
     }
+#endif
 
     Partition* rootPartition = nullptr;
     if ( luksPassphrase.isEmpty() )
@@ -213,7 +234,11 @@ doAutopartition( PartitionCoreModule* core, Device* dev, const QString& luksPass
                 PartitionRole( PartitionRole::Primary ),
                 FileSystem::LinuxSwap,
                 lastSectorForRoot + 1,
+#ifdef WITH_KPMCORE3
+                dev->totalLogical() - 1
+#else
                 dev->totalSectors() - 1
+#endif
             );
         }
         else
@@ -224,7 +249,11 @@ doAutopartition( PartitionCoreModule* core, Device* dev, const QString& luksPass
                 PartitionRole( PartitionRole::Primary ),
                 FileSystem::LinuxSwap,
                 lastSectorForRoot + 1,
+#ifdef WITH_KPMCORE3
+                dev->totalLogical() - 1,
+#else
                 dev->totalSectors() - 1,
+#endif
                 luksPassphrase
             );
         }

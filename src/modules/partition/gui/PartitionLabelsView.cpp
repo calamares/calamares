@@ -21,6 +21,7 @@
 
 #include <core/PartitionModel.h>
 #include <core/ColorUtils.h>
+#include "PartitionConfig.h"
 
 #include <utils/CalamaresUtilsGui.h>
 #include <utils/Logger.h>
@@ -47,7 +48,11 @@ QStringList
 buildUnknownDisklabelTexts( Device* dev )
 {
     QStringList texts = { QObject::tr( "Unpartitioned space or unknown partition table" ),
+#ifdef WITH_KPMCORE3
+                          KFormat().formatByteSize( dev->totalLogical() * dev->logicalSize() ) };
+#else
                           KFormat().formatByteSize( dev->totalSectors() * dev->logicalSectorSize() ) };
+#endif
     return texts;
 }
 
