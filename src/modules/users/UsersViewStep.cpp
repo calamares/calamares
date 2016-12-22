@@ -22,6 +22,7 @@
 
 #include "JobQueue.h"
 #include "GlobalStorage.h"
+#include "utils/Logger.h"
 
 CALAMARES_PLUGIN_FACTORY_DEFINITION( UsersViewStepFactory, registerPlugin<UsersViewStep>(); )
 
@@ -161,9 +162,14 @@ UsersViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     }
 
     if ( configurationMap.contains( "availableShells" ) &&
-         configurationMap.value( "availableShells" ).type() == QVariant::List )
+         configurationMap.value( "availableShells" ).type() == QVariant::String )
     {
-        m_widget->setAvailableShells( configurationMap.value( "availableShells" ).toStringList() );
+        QStringList shells;
+        for (QString& shell : configurationMap.value( "availableShells" ).toString().split(",")) {
+            shells.append( shell.trimmed() );
+        }
+
+        m_widget->setAvailableShells(shells);
     }
 
     if ( configurationMap.contains( "avatarFilePath" ) &&
