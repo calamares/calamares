@@ -51,8 +51,9 @@ canBeReplaced( Partition* candidate )
     qint64 requiredStorageB = ( requiredStorageGB + 0.5 ) * 1024 * 1024 * 1024;
     cDebug() << "Required  storage B:" << requiredStorageB
              << QString( "(%1GB)" ).arg( requiredStorageB / 1024 / 1024 / 1024 );
-    cDebug() << "Available storage B:" << availableStorageB
-             << QString( "(%1GB)" ).arg( availableStorageB / 1024 / 1024 / 1024 );
+    cDebug() << "Storage capacity  B:" << availableStorageB
+             << QString( "(%1GB)" ).arg( availableStorageB / 1024 / 1024 / 1024 )
+             << "for" << candidate->partitionPath() << "   length:" << candidate->length();
 
     if ( ok &&
          availableStorageB > requiredStorageB )
@@ -102,7 +103,8 @@ canBeResized( Partition* candidate )
     cDebug() << "Required  storage B:" << requiredStorageB
              << QString( "(%1GB)" ).arg( requiredStorageB / 1024 / 1024 / 1024 );
     cDebug() << "Available storage B:" << availableStorageB
-             << QString( "(%1GB)" ).arg( availableStorageB / 1024 / 1024 / 1024 );
+             << QString( "(%1GB)" ).arg( availableStorageB / 1024 / 1024 / 1024 )
+             << "for" << candidate->partitionPath() << "   length:" << candidate->length();
 
     if ( ok &&
          availableStorageB > requiredStorageB )
