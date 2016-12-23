@@ -104,7 +104,8 @@ canBeResized( Partition* candidate )
              << QString( "(%1GB)" ).arg( requiredStorageB / 1024 / 1024 / 1024 );
     cDebug() << "Available storage B:" << availableStorageB
              << QString( "(%1GB)" ).arg( availableStorageB / 1024 / 1024 / 1024 )
-             << "for" << candidate->partitionPath() << "   length:" << candidate->length();
+             << "for" << candidate->partitionPath() << "   length:" << candidate->length()
+             << "   sectorsUsed:" << candidate->sectorsUsed() << "   fsType:" << candidate->fileSystem().name();
 
     if ( ok &&
          availableStorageB > requiredStorageB )
