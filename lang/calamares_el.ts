@@ -103,13 +103,13 @@
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="57"/>
         <source>Type:</source>
-        <translation type="unfinished"/>
+        <translation>Τύπος:</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="64"/>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="78"/>
         <source>none</source>
-        <translation type="unfinished"/>
+        <translation>κανένα</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="71"/>
@@ -119,7 +119,7 @@
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="93"/>
         <source>Tools</source>
-        <translation type="unfinished"/>
+        <translation>Εργαλεία</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.cpp" line="182"/>
@@ -542,12 +542,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="58"/>
         <source>Cannot get list of temporary mounts.</source>
-        <translation type="unfinished"/>
+        <translation>Η λίστα των προσωρινών προσαρτήσεων δεν μπορεί να ληφθεί.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="97"/>
         <source>Cleared all temporary mounts.</source>
-        <translation type="unfinished"/>
+        <translation>Καθαρίστηκαν όλες οι προσωρινές προσαρτήσεις.</translation>
     </message>
 </context>
 <context>
@@ -943,7 +943,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>Τύπος</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="32"/>
@@ -953,17 +953,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="42"/>
         <source>Passphrase</source>
-        <translation type="unfinished"/>
+        <translation>Λέξη Κλειδί</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="52"/>
         <source>Confirm passphrase</source>
-        <translation type="unfinished"/>
+        <translation>Επιβεβαίωση λέξης κλειδί</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="150"/>
         <source>Please enter the same passphrase in both boxes.</source>
-        <translation type="unfinished"/>
+        <translation>Παρακαλώ εισάγετε την ίδια λέξη κλειδί και στα δύο κουτιά.</translation>
     </message>
 </context>
 <context>
@@ -1070,7 +1070,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="133"/>
         <source>The installer failed to update partition table on disk &apos;%1&apos;.</source>
-        <translation type="unfinished"/>
+        <translation>Η εγκατάσταση απέτυχε να αναβαθμίσει τον πίνακα κατατμήσεων στον δίσκο &apos;%1&apos;.</translation>
     </message>
 </context>
 <context>
@@ -1083,12 +1083,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/netinstall/widgets/groupselectionwidget.ui" line="29"/>
         <source>group</source>
-        <translation type="unfinished"/>
+        <translation>Ομάδα</translation>
     </message>
     <message>
         <location filename="../src/modules/netinstall/widgets/groupselectionwidget.ui" line="36"/>
         <source>description</source>
-        <translation type="unfinished"/>
+        <translation>περιγραφή</translation>
     </message>
 </context>
 <context>
@@ -1239,7 +1239,7 @@ The installer will quit and all changes will be lost.</source>
         <location filename="../src/modules/locale/LocalePage.cpp" line="174"/>
         <location filename="../src/modules/locale/LocalePage.cpp" line="237"/>
         <source>The system language will be set to %1.</source>
-        <translation type="unfinished"/>
+        <translation>Η τοπική γλώσσα του συστήματος έχει οριστεί σε %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/LocalePage.cpp" line="206"/>
@@ -1293,12 +1293,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="66"/>
         <source>Move file system of partition %1.</source>
-        <translation type="unfinished"/>
+        <translation>Μετακίνηση μεγέθους του συστήματος αρχείων στην κατάτμηση %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="80"/>
         <source>Could not open file system on partition %1 for moving.</source>
-        <translation type="unfinished"/>
+        <translation>Δεν μπορούσε να ανοιχτή το σύστημα αρχείων στη κατάτμηση %1 για μετακίνηση.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="86"/>
@@ -1350,7 +1350,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="50"/>
         <source>Package selection</source>
-        <translation type="unfinished"/>
+        <translation>Επιλογή πακέτου</translation>
     </message>
 </context>
 <context>
@@ -1477,7 +1477,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="205"/>
         <source>New partition</source>
-        <translation type="unfinished"/>
+        <translation>Νέα κατάτμηση</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="222"/>
