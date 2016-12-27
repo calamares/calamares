@@ -231,9 +231,13 @@ def install_grub(efi_directory, fw_type):
             check_target_env_call(["mkdir", "-p", efi_boot_directory])
 
         # Workaround for some UEFI firmwares
+        efi_file_source = {"32": os.path.join(efi_directory_firmware, efi_bootloader_id, "grubia32.efi"),
+                           "64": os.path.join(efi_directory_firmware, efi_bootloader_id, "grubx64.efi")}
+        efi_file_target = {"32": os.path.join(efi_boot_directory, "bootia32.efi"),
+                           "64": os.path.join(efi_boot_directory, "bootx64.efi")}
         check_target_env_call(["cp",
-                               os.path.join(efi_directory_firmware, efi_bootloader_id, "grubx64.efi"),
-                               os.path.join(efi_boot_directory, "bootx64.efi")])
+                               efi_file_source[efi_bitness],
+                               efi_file_target[efi_bitness]])
     else:
         print("Bootloader: grub (bios)")
         boot_loader = libcalamares.globalstorage.value("bootLoader")
@@ -253,12 +257,12 @@ def install_grub(efi_directory, fw_type):
 def vfat_correct_case(parent, name):
     for candidate in os.listdir(parent):
         if name.lower() == candidate.lower():
-            return candidate
+            return os.path.join(parent, candidate)
     return os.path.join(parent, name)
 
 
 def prepare_bootloader(fw_type):
-    """ Prepares bootloader and set proper flags to EFI boot partition (esp,boot).
+    """ Prepares bootloader.
     Based on value 'efi_boot_loader', it either calls systemd-boot or grub to be installed.
 
     :param fw_type:
@@ -266,33 +270,6 @@ def prepare_bootloader(fw_type):
     """
     efi_boot_loader = libcalamares.job.configuration["efiBootLoader"]
     efi_directory = libcalamares.globalstorage.value("efiSystemPartition")
-
-    if fw_type == "efi":
-        partitions = libcalamares.globalstorage.value("partitions")
-        boot_p = ""
-        device = ""
-
-        for partition in partitions:
-            if partition["mountPoint"] == efi_directory:
-                boot_device = partition["device"]
-                boot_p = boot_device[-1:]
-                device = boot_device[:-1]
-
-                if not boot_p or not device:
-                    return ("EFI directory \"{!s}\" not found!".format(efi_directory),
-                            "Boot partition: \"{!s}\"".format(boot_p),
-                            "Boot device: \"{!s}\"".format(device))
-                else:
-                    print("EFI directory: \"{!s}\"".format(efi_directory))
-                    print("Boot partition: \"{!s}\"".format(boot_p))
-                    print("Boot device: \"{!s}\"".format(device))
-
-        if not device:
-            print("WARNING: no EFI system partition or EFI system partition mount point not set.")
-            print("         >>> no EFI bootloader will be installed <<<")
-            return None
-        print("Set 'EF00' flag")
-        subprocess.call(["sgdisk", "--typecode={!s}:EF00".format(boot_p), "{!s}".format(device)])
 
     if efi_boot_loader == "systemd-boot" and fw_type == "efi":
         install_systemd_boot(efi_directory)

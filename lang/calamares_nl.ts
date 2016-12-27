@@ -102,11 +102,27 @@
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="57"/>
+        <source>Type:</source>
+        <translation>Type:</translation>
+    </message>
+    <message>
+        <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="64"/>
+        <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="78"/>
+        <source>none</source>
+        <translation>geen</translation>
+    </message>
+    <message>
+        <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="71"/>
+        <source>Interface:</source>
+        <translation>Interface:</translation>
+    </message>
+    <message>
+        <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="93"/>
         <source>Tools</source>
         <translation>Hulpmiddelen</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/utils/DebugWindow.cpp" line="102"/>
+        <location filename="../src/libcalamaresui/utils/DebugWindow.cpp" line="182"/>
         <source>Debug information</source>
         <translation>Debug informatie</translation>
     </message>
@@ -304,22 +320,22 @@ Het installatieprogramma zal afsluiten en alle wijzigingen zullen verloren gaan.
 <context>
     <name>CalamaresPython::Helper</name>
     <message>
-        <location filename="../src/libcalamares/PythonHelper.cpp" line="262"/>
+        <location filename="../src/libcalamares/PythonHelper.cpp" line="263"/>
         <source>Unknown exception type</source>
         <translation>Onbekend uitzonderingstype</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonHelper.cpp" line="275"/>
+        <location filename="../src/libcalamares/PythonHelper.cpp" line="276"/>
         <source>unparseable Python error</source>
         <translation>onuitvoerbare Python fout</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonHelper.cpp" line="291"/>
+        <location filename="../src/libcalamares/PythonHelper.cpp" line="292"/>
         <source>unparseable Python traceback</source>
         <translation>onuitvoerbare Python traceback</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonHelper.cpp" line="295"/>
+        <location filename="../src/libcalamares/PythonHelper.cpp" line="296"/>
         <source>Unfetchable Python error.</source>
         <translation>Onbekende Python fout.</translation>
     </message>
@@ -739,22 +755,32 @@ Het installatieprogramma zal afsluiten en alle wijzigingen zullen verloren gaan.
         <translation>Kan het bestand groups niet lezen.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="162"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="160"/>
         <source>Cannot create user %1.</source>
         <translation>Kan gebruiker %1 niet aanmaken.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="164"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="162"/>
         <source>useradd terminated with error code %1.</source>
         <translation>useradd is gestopt met foutcode %1.</translation>
     </message>
     <message>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="171"/>
+        <source>Cannot add user %1 to groups: %2.</source>
+        <translation>Kan gebruiker %1 niet toevoegen tot groepen: %2.</translation>
+    </message>
+    <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="174"/>
+        <source>usermod terminated with error code %1.</source>
+        <translation>usermod is gestopt met foutcode %1.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="184"/>
         <source>Cannot set home directory ownership for user %1.</source>
         <translation>Kan eigendomsrecht gebruikersmap niet instellen voor gebruiker %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="176"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="186"/>
         <source>chown terminated with error code %1.</source>
         <translation>chown is gestopt met foutcode %1.</translation>
     </message>
@@ -841,19 +867,19 @@ Het installatieprogramma zal afsluiten en alle wijzigingen zullen verloren gaan.
 <context>
     <name>DracutLuksCfgJob</name>
     <message>
-        <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="108"/>
+        <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="131"/>
         <source>Write LUKS configuration for Dracut to %1</source>
-        <translation type="unfinished"/>
+        <translation>Schrijf LUKS configuratie voor Dracut op %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="110"/>
+        <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="133"/>
         <source>Skip writing LUKS configuration for Dracut: &quot;/&quot; partition is not encrypted</source>
-        <translation type="unfinished"/>
+        <translation>Schrijven van LUKS configuratie voor Dracut overgeslaan: &quot;/&quot; partitie is niet versleuteld</translation>
     </message>
     <message>
-        <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="126"/>
+        <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="149"/>
         <source>Failed to open %1</source>
-        <translation type="unfinished"/>
+        <translation>Openen van %1 mislukt</translation>
     </message>
 </context>
 <context>
@@ -943,37 +969,37 @@ Het installatieprogramma zal afsluiten en alle wijzigingen zullen verloren gaan.
 <context>
     <name>FillGlobalStorageJob</name>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="120"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="123"/>
         <source>Set partition information</source>
         <translation>Instellen partitie-informatie</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="144"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="147"/>
         <source>Install %1 on &lt;strong&gt;new&lt;/strong&gt; %2 system partition.</source>
         <translation>Installeer %1 op &lt;strong&gt;nieuwe&lt;/strong&gt; %2 systeempartitie.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="149"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="152"/>
         <source>Set up &lt;strong&gt;new&lt;/strong&gt; %2 partition with mount point &lt;strong&gt;%1&lt;/strong&gt;.</source>
         <translation>Maak &lt;strong&gt;nieuwe&lt;/strong&gt; %2 partitie met aankoppelpunt &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="157"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="160"/>
         <source>Install %2 on %3 system partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
         <translation>Installeer %2 op %3 systeempartitie &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="163"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="166"/>
         <source>Set up %3 partition &lt;strong&gt;%1&lt;/strong&gt; with mount point &lt;strong&gt;%2&lt;/strong&gt;.</source>
         <translation>Stel %3 partitie &lt;strong&gt;%1&lt;/strong&gt; in met aankoppelpunt &lt;strong&gt;%2&lt;/strong&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="175"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="178"/>
         <source>Install boot loader on &lt;strong&gt;%1&lt;/strong&gt;.</source>
         <translation>Installeer bootloader op &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="185"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="188"/>
         <source>Setting up mount points.</source>
         <translation>Aankoppelpunten instellen.</translation>
     </message>
@@ -1111,7 +1137,7 @@ Het installatieprogramma zal afsluiten en alle wijzigingen zullen verloren gaan.
 <context>
     <name>KeyboardViewStep</name>
     <message>
-        <location filename="../src/modules/keyboard/KeyboardViewStep.cpp" line="49"/>
+        <location filename="../src/modules/keyboard/KeyboardViewStep.cpp" line="50"/>
         <source>Keyboard</source>
         <translation>Toetsenbord</translation>
     </message>
@@ -1314,7 +1340,7 @@ Het installatieprogramma zal afsluiten en alle wijzigingen zullen verloren gaan.
 <context>
     <name>NetInstallPage</name>
     <message>
-        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="98"/>
+        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="101"/>
         <source>Network Installation. (Disabled: Unable to fetch package lists, check your network connection)</source>
         <translation>Netwerkinstallatie. (Uitgeschakeld: kon de pakketlijsten niet binnenhalen, controleer de netwerkconnectie)</translation>
     </message>
@@ -1629,6 +1655,16 @@ Het installatieprogramma zal afsluiten en alle wijzigingen zullen verloren gaan.
         <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;A partition was configured with mount point &lt;strong&gt;%2&lt;/strong&gt; but its &lt;strong&gt;esp&lt;/strong&gt; flag is not set.&lt;br/&gt;To set the flag, go back and edit the partition.&lt;br/&gt;&lt;br/&gt;You can continue without setting the flag but your system may fail to start.</source>
         <translation>Een EFI systeempartitie is vereist om %1 op te starten.&lt;br/&gt;&lt;br/&gt;Een partitie is ingesteld met aankoppelpunt &lt;strong&gt;%2&lt;/strong&gt;, maar de de &lt;strong&gt;esp&lt;/strong&gt;-vlag is niet aangevinkt.&lt;br/&gt;Om deze vlag aan te vinken, ga terug en pas de partitie aan.&lt;br/&gt;&lt;br/&gt;Je kan verdergaan zonder deze vlag, maar mogelijk start je systeem dan niet op.</translation>
     </message>
+    <message>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="456"/>
+        <source>Boot partition not encrypted</source>
+        <translation>Bootpartitie niet versleuteld</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="457"/>
+        <source>A separate boot partition was set up together with an encrypted root partition, but the boot partition is not encrypted.&lt;br/&gt;&lt;br/&gt;There are security concerns with this kind of setup, because important system files are kept on an unencrypted partition.&lt;br/&gt;You may continue if you wish, but filesystem unlocking will happen later during system startup.&lt;br/&gt;To encrypt the boot partition, go back and recreate it, selecting &lt;strong&gt;Encrypt&lt;/strong&gt; in the partition creation window.</source>
+        <translation>Een aparte bootpartitie was ingesteld samen met een versleutelde rootpartitie, maar de bootpartitie zelf is niet versleuteld.&lt;br/&gt;&lt;br/&gt;Dit is niet volledig veilig, aangezien belangrijke systeembestanden bewaard worden op een niet-versleutelde partitie.&lt;br/&gt;Je kan doorgaan als je wil, maar het ontgrendelen van bestandssystemen zal tijdens het opstarten later plaatsvinden.&lt;br/&gt;Om de bootpartitie toch te versleutelen: keer terug en maak de bootpartitie opnieuw, waarbij je &lt;strong&gt;Versleutelen&lt;/strong&gt; aanvinkt in het venster partitie aanmaken. </translation>
+    </message>
 </context>
 <context>
     <name>QObject</name>
@@ -1644,22 +1680,22 @@ Het installatieprogramma zal afsluiten en alle wijzigingen zullen verloren gaan.
         <translation>Standaard</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="195"/>
+        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="201"/>
         <source>unknown</source>
         <translation>onbekend</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="197"/>
+        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="203"/>
         <source>extended</source>
         <translation>uitgebreid</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="199"/>
+        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="205"/>
         <source>unformatted</source>
         <translation>niet-geformateerd</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="201"/>
+        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="207"/>
         <source>swap</source>
         <translation>wisselgeheugen</translation>
     </message>
@@ -1747,52 +1783,52 @@ Het installatieprogramma zal afsluiten en alle wijzigingen zullen verloren gaan.
 <context>
     <name>RequirementsChecker</name>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="57"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="58"/>
         <source>Gathering system information...</source>
         <translation>Systeeminformatie verzamelen...</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="98"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="99"/>
         <source>has at least %1 GB available drive space</source>
         <translation>tenminste %1 GB vrije schijfruimte heeft</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="100"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="101"/>
         <source>There is not enough drive space. At least %1 GB is required.</source>
         <translation>Er is onvoldoende vrije schijfruimte. Tenminste %1 GB is vereist.</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="108"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="109"/>
         <source>has at least %1 GB working memory</source>
         <translation>tenminste %1 GB werkgeheugen heeft</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="110"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="111"/>
         <source>The system does not have enough working memory. At least %1 GB is required.</source>
         <translation>Dit systeem heeft onvoldoende werkgeheugen. Tenminste %1 GB is vereist.</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="118"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="119"/>
         <source>is plugged in to a power source</source>
         <translation>aangesloten is op netstroom</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="119"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="120"/>
         <source>The system is not plugged in to a power source.</source>
         <translation>Dit systeem is niet aangesloten op netstroom. </translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="126"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="127"/>
         <source>is connected to the Internet</source>
         <translation>verbonden is met het Internet</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="127"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="128"/>
         <source>The system is not connected to the Internet.</source>
         <translation>Dit systeem is niet verbonden met het Internet.</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="135"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="136"/>
         <source>The installer is not running with administrator rights.</source>
         <translation>Het installatieprogramma draait zonder administratorrechten.</translation>
     </message>
@@ -1920,47 +1956,97 @@ Het installatieprogramma zal afsluiten en alle wijzigingen zullen verloren gaan.
 <context>
     <name>SetPartFlagsJob</name>
     <message>
-        <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="47"/>
+        <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="48"/>
         <source>Set flags on partition %1.</source>
         <translation>Stel vlaggen in op partitie %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="56"/>
+        <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="51"/>
+        <source>Set flags on %1MB %2 partition.</source>
+        <translation>Stel vlaggen in op %1MB %2 partitie.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="55"/>
+        <source>Set flags on new partition.</source>
+        <translation>Stel vlaggen in op nieuwe partitie.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="66"/>
         <source>Clear flags on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
         <translation>Wis vlaggen op partitie &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="59"/>
+        <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="70"/>
+        <source>Clear flags on %1MB &lt;strong&gt;%2&lt;/strong&gt; partition.</source>
+        <translation>Wis vlaggen op %1MB &lt;strong&gt;%2&lt;/strong&gt; partitie.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="74"/>
+        <source>Clear flags on new partition.</source>
+        <translation>Wis vlaggen op nieuwe partitie.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="78"/>
         <source>Flag partition &lt;strong&gt;%1&lt;/strong&gt; as &lt;strong&gt;%2&lt;/strong&gt;.</source>
         <translation>Partitie &lt;strong&gt;%1&lt;/strong&gt; als &lt;strong&gt;%2&lt;/strong&gt; vlaggen.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="71"/>
+        <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="84"/>
+        <source>Flag %1MB &lt;strong&gt;%2&lt;/strong&gt; partition as &lt;strong&gt;%3&lt;/strong&gt;.</source>
+        <translation>Vlag %1MB &lt;strong&gt;%2&lt;/strong&gt; partitie als &lt;strong&gt;%3&lt;/strong&gt;.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="90"/>
+        <source>Flag new partition as &lt;strong&gt;%1&lt;/strong&gt;.</source>
+        <translation>Vlag nieuwe partitie als &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="102"/>
         <source>Clearing flags on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
         <translation>Vlaggen op partitie &lt;strong&gt;%1&lt;/strong&gt; wissen.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="74"/>
+        <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="106"/>
+        <source>Clearing flags on %1MB &lt;strong&gt;%2&lt;/strong&gt; partition.</source>
+        <translation>Vlaggen op %1MB &lt;strong&gt;%2&lt;/strong&gt; partitie wissen.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="110"/>
+        <source>Clearing flags on new partition.</source>
+        <translation>Vlaggen op nieuwe partitie wissen.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="114"/>
         <source>Setting flags &lt;strong&gt;%2&lt;/strong&gt; on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
         <translation>Vlaggen &lt;strong&gt;%2&lt;/strong&gt; op partitie &lt;strong&gt;%1&lt;/strong&gt; instellen.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="90"/>
+        <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="120"/>
+        <source>Setting flags &lt;strong&gt;%3&lt;/strong&gt; on %1MB &lt;strong&gt;%2&lt;/strong&gt; partition.</source>
+        <translation>Vlaggen &lt;strong&gt;%3&lt;/strong&gt; op %1MB &lt;strong&gt;%2&lt;/strong&gt; partitie instellen.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="126"/>
+        <source>Setting flags &lt;strong&gt;%1&lt;/strong&gt; on new partition.</source>
+        <translation>Vlaggen &lt;strong&gt;%1&lt;/strong&gt; op nieuwe partitie instellen.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="140"/>
         <source>The installer failed to set flags on partition %1.</source>
         <translation>Het installatieprogramma kon geen vlaggen instellen op partitie %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="98"/>
+        <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="148"/>
         <source>Could not open device &apos;%1&apos;.</source>
         <translation>Kon apparaat &apos;%1&apos; niet openen.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="107"/>
+        <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="157"/>
         <source>Could not open partition table on device &apos;%1&apos;.</source>
         <translation>Kon de partitietabel op apparaat &apos;%1&apos; niet openen.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="119"/>
+        <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="169"/>
         <source>Could not find partition &apos;%1&apos;.</source>
         <translation>Kon partitie &apos;%1&apos; niet vinden.</translation>
     </message>

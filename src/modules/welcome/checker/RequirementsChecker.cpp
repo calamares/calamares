@@ -36,6 +36,7 @@
 #include <QFile>
 #include <QFileInfo>
 #include <QLabel>
+#include <QNetworkAccessManager>
 #include <QProcess>
 #include <QTimer>
 
@@ -336,30 +337,8 @@ RequirementsChecker::checkHasPower()
 bool
 RequirementsChecker::checkHasInternet()
 {
-    const QString NM_SVC_NAME( "org.freedesktop.NetworkManager" );
-    const QString NM_INTF_NAME( "org.freedesktop.NetworkManager" );
-    const QString NM_PATH( "/org/freedesktop/NetworkManager" );
-    const int NM_STATE_CONNECTED_GLOBAL = 70;
-
-    QDBusInterface nmIntf( NM_SVC_NAME,
-                           NM_PATH,
-                           NM_INTF_NAME,
-                           QDBusConnection::systemBus(), 0 );
-
-    bool ok = false;
-    int nmState = nmIntf.property( "state" ).toInt( &ok );
-
-    if ( !ok || !nmIntf.isValid() )
-    {
-        // We can't talk to NM, so no idea.  Wild guess: we're connected
-        // using ssh with X forwarding, and are therefore connected.  This
-        // allows us to proceed with a minimum of complaint.
-        Calamares::JobQueue::instance()->globalStorage()->insert( "hasInternet", true );
-        return true;
-    }
-
-    bool hasInternet = nmState == NM_STATE_CONNECTED_GLOBAL;
-
+    // default to true in the QNetworkAccessManager::UnknownAccessibility case
+    bool hasInternet = QNetworkAccessManager(this).networkAccessible() != QNetworkAccessManager::NotAccessible;
     Calamares::JobQueue::instance()->globalStorage()->insert( "hasInternet", hasInternet );
     return hasInternet;
 }

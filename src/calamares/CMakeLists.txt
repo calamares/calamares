@@ -59,12 +59,12 @@ endif()
 
 qt5_use_modules( calamares_bin Core Widgets )
 target_link_libraries( calamares_bin
-    ${CALAMARES_LIBRARIES}
-    calamaresui
-    Qt5::Core
-    Qt5::Widgets
-    yaml-cpp
-    ${LINK_LIBRARIES}
+    PRIVATE
+        ${CALAMARES_LIBRARIES}
+        calamaresui
+        Qt5::Core
+        Qt5::Widgets
+        ${LINK_LIBRARIES}
 )
 
 install( TARGETS calamares_bin

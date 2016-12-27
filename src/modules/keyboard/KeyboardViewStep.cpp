@@ -29,6 +29,7 @@ KeyboardViewStep::KeyboardViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
     , m_widget( new KeyboardPage() )
     , m_nextEnabled( false )
+    , m_writeEtcDefaultKeyboard( true )
 {
     m_widget->init();
     m_nextEnabled = true;

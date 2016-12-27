@@ -94,6 +94,7 @@ def modify_mkinitcpio_conf(partitions, root_mount_point):
     files = []
     encrypt_hook = False
     openswap_hook = False
+    unencrypted_separate_boot = False
 
     # It is important that the plymouth hook comes before any encrypt hook
     plymouth_bin = os.path.join(root_mount_point, "usr/bin/plymouth")
@@ -112,9 +113,13 @@ def modify_mkinitcpio_conf(partitions, root_mount_point):
         if partition["mountPoint"] == "/" and "luksMapperName" in partition:
             encrypt_hook = True
 
+        if partition["mountPoint"] == "/boot" and "luksMapperName" not in partition:
+            unencrypted_separate_boot = True
+
     if encrypt_hook:
         hooks.append("encrypt")
-        if os.path.isfile(os.path.join(root_mount_point, "crypto_keyfile.bin")):
+        if not unencrypted_separate_boot and \
+           os.path.isfile(os.path.join(root_mount_point, "crypto_keyfile.bin")):
             files.append("/crypto_keyfile.bin")
 
     if swap_uuid is not "":

@@ -10,4 +10,25 @@ git config --global http.sslVerify false
 
 export QT_SELECT=5
 lupdate src/ -ts -no-obsolete lang/calamares_en.ts
-tx push --force --source --no-interactive
+
+# Arch
+# PYGETTEXT=/usr/lib/python3.5/Tools/i18n/pygettext.py
+
+# Ubuntu
+PYGETTEXT=pygettext3
+
+for MODULE_DIR in `find src/modules -maxdepth 1 -mindepth 1 -type d`; do
+  FILES=(${MODULE_DIR}/*.py)
+  if [ ${#FILES[@]} -gt 0 ]; then
+    MODULE_NAME=$(basename ${MODULE_DIR})
+    if [ -d ${MODULE_DIR}/lang ]; then
+      ${PYGETTEXT} -p ${MODULE_DIR}/lang -d ${MODULE_NAME} ${MODULE_DIR}/*.py
+      if [ -f ${MODULE_DIR}/lang/${MODULE_NAME}.pot ]; then
+        tx set -r calamares.${MODULE_NAME} --source -l en ${MODULE_DIR}/lang/${MODULE_NAME}.pot
+        tx push --force --source --no-interactive -r calamares.${MODULE_NAME}
+      fi
+    fi
+  fi
+done
+
+tx push --force --source --no-interactive -r calamares.calamares-master

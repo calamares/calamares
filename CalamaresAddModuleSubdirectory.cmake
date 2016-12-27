@@ -21,7 +21,7 @@ function( calamares_add_module_subdirectory )
                 configure_file( ${SUBDIRECTORY}/${MODULE_FILE} ${SUBDIRECTORY}/${MODULE_FILE} COPYONLY )
 
                 get_filename_component( FLEXT ${MODULE_FILE} EXT )
-                if( "${FLEXT}" STREQUAL ".conf" )
+                if( "${FLEXT}" STREQUAL ".conf" AND INSTALL_CONFIG)
                     install( FILES ${CMAKE_CURRENT_BINARY_DIR}/${SUBDIRECTORY}/${MODULE_FILE}
                              DESTINATION ${MODULE_DATA_DESTINATION} )
                     list( APPEND MODULE_CONFIG_FILES ${MODULE_FILE} )
@@ -32,13 +32,25 @@ function( calamares_add_module_subdirectory )
             endif()
         endforeach()
 
+        # We copy over the lang directory, if any
+        if( IS_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/${SUBDIRECTORY}/lang" )
+          file( COPY "${CMAKE_CURRENT_SOURCE_DIR}/${SUBDIRECTORY}/lang"
+                DESTINATION "${CMAKE_CURRENT_BINARY_DIR}/${SUBDIRECTORY}" )
+          install( DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/${SUBDIRECTORY}/lang"
+                   DESTINATION ${MODULE_DESTINATION} )
+        endif()
+
         message( "-- ${BoldYellow}Found ${CALAMARES_APPLICATION_NAME} module: ${BoldRed}${SUBDIRECTORY}${ColorReset}" )
         if( NOT CMAKE_BUILD_TYPE STREQUAL "Release" )
             message( "   ${Green}TYPE:${ColorReset} jobmodule" )
 #            message( "   ${Green}FILES:${ColorReset} ${MODULE_FILES}" )
             message( "   ${Green}MODULE_DESTINATION:${ColorReset} ${MODULE_DESTINATION}" )
             if( MODULE_CONFIG_FILES )
-                message( "   ${Green}CONFIGURATION_FILES:${ColorReset} ${MODULE_CONFIG_FILES} => ${MODULE_DATA_DESTINATION}" )
+                if (INSTALL_CONFIG)
+                    message( "   ${Green}CONFIGURATION_FILES:${ColorReset} ${MODULE_CONFIG_FILES} => ${MODULE_DATA_DESTINATION}" )
+                else()
+                    message( "   ${Green}CONFIGURATION_FILES:${ColorReset} ${MODULE_CONFIG_FILES} => [Skipping installation]" )
+                endif()
             endif()
             message( "" )
         endif()

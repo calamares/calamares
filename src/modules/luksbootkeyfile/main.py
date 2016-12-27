@@ -43,7 +43,8 @@ def run():
         if partition["mountPoint"] == "/" and "luksMapperName" in partition:
             luks_root_device = partition["device"]
             luks_root_passphrase = partition["luksPassphrase"]
-        elif "luksMapperName" in partition:
+        elif "luksMapperName" in partition and\
+             (partition["mountPoint"] or partition["fs"] == "linuxswap"):
             additional_luks_devices.append((partition["device"],
                                             partition["luksPassphrase"]))
 
@@ -65,14 +66,16 @@ def run():
                            "luksAddKey",
                            luks_root_device,
                            "/crypto_keyfile.bin"],
-                          luks_root_passphrase)
+                          luks_root_passphrase,
+                          15)  # timeout 15s
 
     for additional_device in additional_luks_devices:
         check_target_env_call(["cryptsetup",
                                "luksAddKey",
                                additional_device[0],
                                "/crypto_keyfile.bin"],
-                              additional_device[1])
+                              additional_device[1],
+                              15)  # timeout 15s
 
     check_target_env_call(["chmod",
                            "g-rwx,o-rwx",

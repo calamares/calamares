@@ -85,6 +85,9 @@ void NetInstallPage::readGroups( const QByteArray& yamlData )
         if ( groupDefinition["hidden"] )
             m_groups[name].hidden = yamlToVariant( groupDefinition["hidden"] ).toBool();
 
+        if ( groupDefinition["critical"] )
+            m_groups[name].critical = yamlToVariant( groupDefinition["critical"] ).toBool();
+
         m_groupOrder.append( name );
     }
 }
@@ -111,7 +114,7 @@ NetInstallPage::dataIsHere( QNetworkReply* reply )
             continue;
         }
 
-        GroupSelectionWidget* groupWidget = new GroupSelectionWidget( group.name, group.description, group.packages, this );
+        GroupSelectionWidget* groupWidget = new GroupSelectionWidget( group.name, group.description, group.packages, group.selected, this );
         m_groupWidgets.insert( groupKey, groupWidget );
         ui->groupswidget->layout()->addWidget( groupWidget );
 
@@ -124,25 +127,25 @@ NetInstallPage::dataIsHere( QNetworkReply* reply )
     emit checkReady( isReady() );
 }
 
-QStringList NetInstallPage::selectedPackages() const
+QList<Group> NetInstallPage::selectedGroups() const
 {
-    QStringList selectedPackages;
+    QList<Group> selectedGroups;
 
-    // Add all the packages for groups that are toggled in the view.
+    // Add all the groups that are toggled in the view.
     for ( auto it = m_groupWidgets.constBegin(); it != m_groupWidgets.constEnd(); it++ )
     {
         if ( it.value()->isToggled() )
-            selectedPackages += m_groups[it.key()].packages;
+            selectedGroups += m_groups[it.key()];
     }
 
-    // Add all the packages for groups that are hidden but selected.
+    // Add all groups that are hidden but selected.
     for ( const Group& group : m_groups.values() )
     {
         if ( group.hidden && group.selected )
-            selectedPackages += group.packages;
+            selectedGroups += group;
     }
 
-    return selectedPackages;
+    return selectedGroups;
 }
 
 void NetInstallPage::loadGroupList()

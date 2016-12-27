@@ -2,6 +2,7 @@
   description: "Default group"
   hidden: true
   selected: true
+  critical: false
   packages:
     - base
     - chakra-live-skel
@@ -165,6 +166,7 @@
     - kapudan
 - name: "Wireless"
   description: "Tools for wireless connections"
+  critical: false
   packages:
     - crda
     - ndiswrapper
@@ -198,49 +200,4 @@
     - kdegraphics-svgpart
     - kdegraphics-thumbnailers
     - imagemagick
-- name: "Burning"
-  description: "Set of packages for disc burning"
-  packages:
-    - dvd+rw-tools
-    - vcdimager
-    - transcode
-    - emovix
-    - k3b
-    - libdvdcss
-- name: "Printing"
-  description: "Print much?"
-  packages:
-    - cups
-    - gutenprint
-    - cups-pdf
-    - kdeadmin-print-manager
-    - hplip
-    - epsoneplijs
-    - epson-inkjet-printer-escpr
-    - python2-gobject2
-    - samba
-- name: "Multimedia"
-  description: "Music and video players"
-  packages:
-    - kdemultimedia-dragonplayer
-    - kdenlive
-    - amarok
-- name: "Miscellaneous"
-  description: "Useful tools and apps"
-  packages:
-    - imagewriter
-    - tomoyo-tools
-    - python2-gobject  ## needed for systemd-analyze
-    - clamav
-    - kdenetwork-kget  ## maybe move to a network group?
-    - kdeplasma-addons-applets-lancelot
-    - kdeplasma-applets-homerun
-    - kdeplasma-applets-appmenu-qml
-    - kdeplasma-addons-runners-characters
-    - kdeplasma-addons-runners-converter
-    - kdeplasma-addons-runners-datetime
-    - kdeplasma-addons-runners-dictionary ##4.10 option
-    - kdeplasma-addons-runners-spellchecker
-    - appmenu-qt  ## needed for menubar options in 4.10
-    - kscreen
 

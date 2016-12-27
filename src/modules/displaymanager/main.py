@@ -3,7 +3,7 @@
 #
 # === This file is part of Calamares - <http://github.com/calamares> ===
 #
-#   Copyright 2014-2015, Philip Müller <philm@manjaro.org>
+#   Copyright 2014-2016, Philip Müller <philm@manjaro.org>
 #   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
 #   Copyright 2014, Kevin Kofler <kevin.kofler@chello.at>
 #
@@ -24,6 +24,7 @@ import os
 import collections
 import re
 import libcalamares
+import configparser
 
 
 DesktopEnvironment = collections.namedtuple('DesktopEnvironment', ['executable', 'desktop_file'])
@@ -44,6 +45,7 @@ desktop_environments = [
     DesktopEnvironment('/usr/bin/budgie-session', 'budgie-session'),
     DesktopEnvironment('/usr/bin/budgie-desktop', 'budgie-desktop'),
     DesktopEnvironment('/usr/bin/i3', 'i3'),
+    DesktopEnvironment('/usr/bin/startdde', 'deepin'),
     DesktopEnvironment('/usr/bin/openbox-session', 'openbox')
 ]
 
@@ -252,34 +254,29 @@ def set_autologin(username, displaymanagers, default_desktop_environment, root_m
         # Systems with Sddm as Desktop Manager
         sddm_conf_path = os.path.join(root_mount_point, "etc/sddm.conf")
 
+        sddm_config = configparser.ConfigParser()
+        # Make everything case sensitive
+        sddm_config.optionxform = str
+
         if os.path.isfile(sddm_conf_path):
-            libcalamares.utils.debug('SDDM config file exists')
+            sddm_config.read(sddm_conf_path)
+
+        autologin_section = {}
+        if 'Autologin' in sddm_config:
+            autologin_section = sddm_config['Autologin']
+
+        if do_autologin:
+            autologin_section['User'] = username
         else:
-            libcalamares.utils.check_target_env_call(["sh", "-c", "sddm --example-config > /etc/sddm.conf"])
+            del autologin_section['User']
 
-        text = []
+        if default_desktop_environment is not None:
+            autologin_section['Session'] = default_desktop_environment.desktop_file
 
-        with open(sddm_conf_path, 'r') as sddm_conf:
-            text = sddm_conf.readlines()
+        sddm_config['Autologin'] = autologin_section
 
-        with open(sddm_conf_path, 'w') as sddm_conf:
-            for line in text:
-                # User= line, possibly commented out
-                if re.match('\\s*(?:#\\s*)?User=', line):
-                    if do_autologin:
-                        line = 'User={}\n'.format(username)
-                    else:
-                        line = '#User=\n'
-
-                # Session= line, commented out or with empty value
-                if re.match('\\s*#\\s*Session=|\\s*Session=$', line):
-                    if default_desktop_environment is not None:
-                        if do_autologin:
-                            line = 'Session={}.desktop\n'.format(default_desktop_environment.desktop_file)
-                        else:
-                            line = '#Session={}.desktop\n'.format(default_desktop_environment.desktop_file)
-
-                sddm_conf.write(line)
+        with open(sddm_conf_path, 'w') as sddm_config_file:
+            sddm_config.write(sddm_config_file, space_around_delimiters=False)
 
     return None
 
@@ -350,6 +347,11 @@ def run():
             if default_desktop_environment is not None:
                 os.system("sed -i -e \"s/^.*user-session=.*/user-session={!s}/\" {!s}/etc/lightdm/lightdm.conf".format(
                           default_desktop_environment.desktop_file, root_mount_point))
+
+            if default_desktop_environment.desktop_file == "deepin":
+                os.system("sed -i -e \"s/^.greeter-session=.*/greeter-session=lightdm-deepin-greeter/\" {!s}/etc/lightdm/lightdm.conf".format(
+                          root_mount_point))
+                          
         else:
             libcalamares.utils.debug("lightdm selected but not installed")
             displaymanagers.remove("lightdm")

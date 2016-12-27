@@ -151,6 +151,12 @@ createNewEncryptedPartition( PartitionNode* parent,
                            FileSystemFactory::create( FileSystem::Luks,
                                                       firstSector,
                                                       lastSector ) );
+    if ( !fs )
+    {
+        qDebug() << "ERROR: cannot create LUKS filesystem. Giving up.";
+        return nullptr;
+    }
+
     fs->createInnerFileSystem( fsType );
     fs->setPassphrase( passphrase );
     Partition* p = new Partition( parent,

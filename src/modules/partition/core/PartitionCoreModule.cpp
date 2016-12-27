@@ -441,6 +441,7 @@ PartitionCoreModule::jobs() const
         lst << info->jobs;
         devices << info->device.data();
     }
+    cDebug() << "Creating FillGlobalStorageJob with bootLoader path" << m_bootLoaderInstallPath;
     lst << Calamares::job_ptr( new FillGlobalStorageJob( devices, m_bootLoaderInstallPath ) );
 
 
@@ -548,29 +549,14 @@ PartitionCoreModule::scanForEfiSystemPartitions()
         devices.append( device );
     }
 
-    //FIXME: Unfortunately right now we have to call sgdisk manually because
-    //       the KPM submodule does not expose the ESP flag from libparted.
-    //       The following findPartitions call and lambda should be scrapped and
-    //       rewritten based on libKPM.     -- Teo 5/2015
     QList< Partition* > efiSystemPartitions =
         KPMHelpers::findPartitions( devices,
                                  []( Partition* partition ) -> bool
     {
-        QProcess process;
-        process.setProgram( "sgdisk" );
-        process.setArguments( { "-i",
-                                QString::number( partition->number() ),
-                                partition->devicePath() } );
-        process.setProcessChannelMode( QProcess::MergedChannels );
-        process.start();
-        if ( process.waitForFinished() )
+        if ( partition->activeFlags().testFlag( PartitionTable::FlagEsp ) )
         {
-            if ( process.readAllStandardOutput()
-                    .contains( "C12A7328-F81F-11D2-BA4B-00A0C93EC93B" ) )
-            {
-                cDebug() << "Found EFI system partition at" << partition->partitionPath();
-                return true;
-            }
+            cDebug() << "Found EFI system partition at" << partition->partitionPath();
+            return true;
         }
         return false;
     } );
@@ -611,6 +597,7 @@ PartitionCoreModule::findPartitionByMountPoint( const QString& mountPoint ) cons
 void
 PartitionCoreModule::setBootLoaderInstallPath( const QString& path )
 {
+    cDebug() << "PCM::setBootLoaderInstallPath" << path;
     m_bootLoaderInstallPath = path;
 }
 
