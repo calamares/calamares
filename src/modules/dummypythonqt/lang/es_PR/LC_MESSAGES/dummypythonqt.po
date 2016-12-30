@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2016-12-29 00:55+0000\n"
+"POT-Creation-Date: 2016-12-29 03:05+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Language-Team: Spanish (Puerto Rico) (https://www.transifex.com/calamares/teams/20061/es_PR/)\n"
 "MIME-Version: 1.0\n"
