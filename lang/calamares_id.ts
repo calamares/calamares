@@ -29,7 +29,7 @@
     <message>
         <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="218"/>
         <source>EFI system partition:</source>
-        <translation>Partisi sistem EFI</translation>
+        <translation>Partisi sistem EFI:</translation>
     </message>
 </context>
 <context>
@@ -103,18 +103,18 @@
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="57"/>
         <source>Type:</source>
-        <translation type="unfinished"/>
+        <translation>Tipe:</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="64"/>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="78"/>
         <source>none</source>
-        <translation type="unfinished"/>
+        <translation>tidak ada</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="71"/>
         <source>Interface:</source>
-        <translation type="unfinished"/>
+        <translation>Antarmuka:</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="93"/>
@@ -464,7 +464,7 @@ Pemasangan dapat dilanjutkan, namun beberapa fitur akan ditiadakan.</translation
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1086"/>
         <source>EFI system partition:</source>
-        <translation type="unfinished"/>
+        <translation>Partisi sistem EFI:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1171"/>
@@ -577,12 +577,12 @@ Pemasangan dapat dilanjutkan, namun beberapa fitur akan ditiadakan.</translation
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="119"/>
         <source>Fi&amp;le System:</source>
-        <translation type="unfinished"/>
+        <translation>Sistem Berkas:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="168"/>
         <source>Flags:</source>
-        <translation type="unfinished"/>
+        <translation>Tanda:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="148"/>
@@ -602,7 +602,7 @@ Pemasangan dapat dilanjutkan, namun beberapa fitur akan ditiadakan.</translation
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="63"/>
         <source>En&amp;crypt</source>
-        <translation type="unfinished"/>
+        <translation>Enkripsi</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="155"/>
@@ -955,17 +955,17 @@ Pemasangan dapat dilanjutkan, namun beberapa fitur akan ditiadakan.</translation
     <message>
         <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="42"/>
         <source>Passphrase</source>
-        <translation type="unfinished"/>
+        <translation>Kata Sandi</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EncryptWidget.ui" line="52"/>
         <source>Confirm passphrase</source>
-        <translation type="unfinished"/>
+        <translation>Konfirmasi kata sandi</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="150"/>
         <source>Please enter the same passphrase in both boxes.</source>
-        <translation type="unfinished"/>
+        <translation>Silakan masukkan kata sandi yang sama di kedua kotak.</translation>
     </message>
 </context>
 <context>
