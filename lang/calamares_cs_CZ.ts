@@ -578,12 +578,12 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
         <translation>&amp;Souborový systém:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="168"/>
+        <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="183"/>
         <source>Flags:</source>
         <translation>Příznaky:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="148"/>
+        <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="151"/>
         <source>&amp;Mount Point:</source>
         <translation>&amp;Bod připojení:</translation>
     </message>
@@ -598,22 +598,22 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
         <translation>MB</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="63"/>
+        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="65"/>
         <source>En&amp;crypt</source>
         <translation>Š&amp;ifrovat</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="155"/>
+        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="161"/>
         <source>Logical</source>
         <translation>Logický</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="160"/>
+        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="166"/>
         <source>Primary</source>
         <translation>Primární</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="177"/>
+        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="183"/>
         <source>GPT</source>
         <translation>GPT</translation>
     </message>
@@ -1563,7 +1563,7 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
         <translation>Nainstalovat &amp;zavaděč na:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="156"/>
+        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="157"/>
         <source>Are you sure you want to create a new partition table on %1?</source>
         <translation>Opravdu si přejete vytvořit novou tabulku oddílů na %1?</translation>
     </message>

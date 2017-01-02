@@ -580,12 +580,12 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
         <translation>Sistema de Arquivos:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="168"/>
+        <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="183"/>
         <source>Flags:</source>
         <translation>Flags:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="148"/>
+        <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="151"/>
         <source>&amp;Mount Point:</source>
         <translation>Ponto de &amp;Montagem:</translation>
     </message>
@@ -600,22 +600,22 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
         <translation>MB</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="63"/>
+        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="65"/>
         <source>En&amp;crypt</source>
         <translation>&amp;Criptografar</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="155"/>
+        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="161"/>
         <source>Logical</source>
         <translation>Lógica</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="160"/>
+        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="166"/>
         <source>Primary</source>
         <translation>Primária</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="177"/>
+        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="183"/>
         <source>GPT</source>
         <translation>GPT</translation>
     </message>
@@ -1565,7 +1565,7 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
         <translation>Insta&amp;lar o gerenciador de inicialização em:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="156"/>
+        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="157"/>
         <source>Are you sure you want to create a new partition table on %1?</source>
         <translation>Você tem certeza de que deseja criar uma nova tabela de partições em %1?</translation>
     </message>

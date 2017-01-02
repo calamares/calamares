@@ -42,7 +42,7 @@ class CreatePartitionDialog : public QDialog
 {
     Q_OBJECT
 public:
-    CreatePartitionDialog( Device* device, PartitionNode* parentPartition, QWidget* parentWidget = nullptr );
+    CreatePartitionDialog( Device* device, PartitionNode* parentPartition, const QStringList& usedMountPoints, QWidget* parentWidget = nullptr );
     ~CreatePartitionDialog();
 
     /**
@@ -61,6 +61,7 @@ public:
 
 private Q_SLOTS:
     void updateMountPointUi();
+    void checkMountPointSelection();
 
 private:
     void setupFlagsList();
@@ -69,6 +70,7 @@ private:
     Device* m_device;
     PartitionNode* m_parent;
     PartitionRole m_role = PartitionRole( PartitionRole::None );
+    QStringList m_usedMountPoints;
 
     void initGptPartitionTypeUi();
     void initMbrPartitionTypeUi();
