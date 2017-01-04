@@ -263,12 +263,15 @@ CreatePartitionDialog::checkMountPointSelection()
 {
     const QString& selection = m_ui->mountPointComboBox->currentText();
 
-    if (m_usedMountPoints.contains(selection)) {
-        m_ui->labelMountPoint->setText("Mountpoint already in use. Please select another one.");
-        m_ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
-    } else {
+    if ( m_usedMountPoints.contains( selection ) )
+    {
+        m_ui->labelMountPoint->setText( tr( "Mountpoint already in use. Please select another one." ) );
+        m_ui->buttonBox->button( QDialogButtonBox::Ok )->setEnabled( false );
+    }
+    else
+    {
         m_ui->labelMountPoint->setText( QString() );
-        m_ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(true);
+        m_ui->buttonBox->button( QDialogButtonBox::Ok )->setEnabled( true );
     }
 }
 
