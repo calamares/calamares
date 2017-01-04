@@ -161,11 +161,6 @@
      </item>
      <item row="7" column="1">
       <widget class="QLabel" name="labelMountPoint">
-       <property name="font">
-        <font>
-         <italic>true</italic>
-        </font>
-       </property>
        <property name="text">
         <string/>
        </property>
