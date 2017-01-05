@@ -578,7 +578,7 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
         <translation>&amp;Systém súborov:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="183"/>
+        <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="178"/>
         <source>Flags:</source>
         <translation>Značky:</translation>
     </message>
@@ -616,6 +616,11 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="183"/>
         <source>GPT</source>
         <translation>GPT</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="268"/>
+        <source>Mountpoint already in use. Please select another one.</source>
+        <translation>Bod pripojenia sa už používa. Prosím, vyberte iný.</translation>
     </message>
 </context>
 <context>
@@ -936,6 +941,11 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="145"/>
         <source>Flags:</source>
         <translation>Značky:</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.cpp" line="306"/>
+        <source>Mountpoint already in use. Please select another one.</source>
+        <translation>Bod pripojenia sa už používa. Prosím, vyberte iný.</translation>
     </message>
 </context>
 <context>

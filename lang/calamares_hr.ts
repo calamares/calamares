@@ -578,7 +578,7 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
         <translation>Da&amp;totečni sustav:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="183"/>
+        <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="178"/>
         <source>Flags:</source>
         <translation>Oznake:</translation>
     </message>
@@ -616,6 +616,11 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="183"/>
         <source>GPT</source>
         <translation>GPT</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="268"/>
+        <source>Mountpoint already in use. Please select another one.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -936,6 +941,11 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="145"/>
         <source>Flags:</source>
         <translation>Oznake:</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.cpp" line="306"/>
+        <source>Mountpoint already in use. Please select another one.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

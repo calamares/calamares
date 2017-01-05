@@ -578,7 +578,7 @@ O instalador será encerrado e todas as alterações serão perdidas.</translati
         <translation>Sistema de Fi&amp;cheiros:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="183"/>
+        <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="178"/>
         <source>Flags:</source>
         <translation>Flags:</translation>
     </message>
@@ -616,6 +616,11 @@ O instalador será encerrado e todas as alterações serão perdidas.</translati
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="183"/>
         <source>GPT</source>
         <translation>GPT</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="268"/>
+        <source>Mountpoint already in use. Please select another one.</source>
+        <translation>Ponto de montagem já em uso. Por favor selecione outro.</translation>
     </message>
 </context>
 <context>
@@ -936,6 +941,11 @@ O instalador será encerrado e todas as alterações serão perdidas.</translati
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="145"/>
         <source>Flags:</source>
         <translation>Flags:</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.cpp" line="306"/>
+        <source>Mountpoint already in use. Please select another one.</source>
+        <translation>Ponto de montagem já em uso. Por favor selecione outro.</translation>
     </message>
 </context>
 <context>
