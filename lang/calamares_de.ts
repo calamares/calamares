@@ -104,18 +104,18 @@ Bitte gehen Sie zurück und nutzen Sie die manuelle Partitionierung, um %1 aufzu
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="57"/>
         <source>Type:</source>
-        <translation type="unfinished"/>
+        <translation>Typ:</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="64"/>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="78"/>
         <source>none</source>
-        <translation type="unfinished"/>
+        <translation>keiner</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="71"/>
         <source>Interface:</source>
-        <translation type="unfinished"/>
+        <translation>Interface:</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="93"/>
@@ -621,7 +621,7 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="268"/>
         <source>Mountpoint already in use. Please select another one.</source>
-        <translation type="unfinished"/>
+        <translation>Der Mountpoint wird schon benuztzt. Bitte wählen Sie einen anderen.</translation>
     </message>
 </context>
 <context>
@@ -946,7 +946,7 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.cpp" line="306"/>
         <source>Mountpoint already in use. Please select another one.</source>
-        <translation type="unfinished"/>
+        <translation>Der Mountpoint wird schon benuztzt. Bitte wählen Sie einen anderen.</translation>
     </message>
 </context>
 <context>
@@ -1669,12 +1669,12 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="456"/>
         <source>Boot partition not encrypted</source>
-        <translation type="unfinished"/>
+        <translation>Bootpartition unverschlüsselt</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="457"/>
         <source>A separate boot partition was set up together with an encrypted root partition, but the boot partition is not encrypted.&lt;br/&gt;&lt;br/&gt;There are security concerns with this kind of setup, because important system files are kept on an unencrypted partition.&lt;br/&gt;You may continue if you wish, but filesystem unlocking will happen later during system startup.&lt;br/&gt;To encrypt the boot partition, go back and recreate it, selecting &lt;strong&gt;Encrypt&lt;/strong&gt; in the partition creation window.</source>
-        <translation type="unfinished"/>
+        <translation>Eine saparate Bootpartition wurde zusammen mit einer verschlüsselten Rootpartition erstellt, die Bootpartition ist aber unverschlüsselt.&lt;br/&gt;&lt;br/&gt;. Dies begnet Sicherheitsbedenken, weil wichtige Systemdateien auf einer unverschlüsselten Partition gespeichert werden.&lt;br/&gt;Wenn Sie wollen, können Sie fortfahren, aber das entschlüsseln des Filesystems wird später während des Systemstarts erfolgen.&lt;br/&gt;Um die Bootpartition zu verschlüsseln, gehen Sie zurück und erstellen Sie sie neu, indem Sie &lt;strong&gt;Verschlüsseln&lt;/strong&gt; im Partitionserstellungs-Fenster wählen. </translation>
     </message>
 </context>
 <context>
