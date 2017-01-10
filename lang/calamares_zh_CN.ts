@@ -104,18 +104,18 @@
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="57"/>
         <source>Type:</source>
-        <translation type="unfinished"/>
+        <translation>类型：</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="64"/>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="78"/>
         <source>none</source>
-        <translation type="unfinished"/>
+        <translation>无</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="71"/>
         <source>Interface:</source>
-        <translation type="unfinished"/>
+        <translation>接口：</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="93"/>
@@ -621,7 +621,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="268"/>
         <source>Mountpoint already in use. Please select another one.</source>
-        <translation type="unfinished"/>
+        <translation>挂载点已被占用。请选择另一个。</translation>
     </message>
 </context>
 <context>
@@ -947,7 +947,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.cpp" line="306"/>
         <source>Mountpoint already in use. Please select another one.</source>
-        <translation type="unfinished"/>
+        <translation>挂载点已被占用。请选择另一个。</translation>
     </message>
 </context>
 <context>
