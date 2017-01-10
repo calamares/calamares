@@ -1111,7 +1111,7 @@ ChoicePage::createBootloaderComboBox( QWidget* parent )
 
     // When the chosen bootloader device changes, we update the choice in the PCM
     connect( bcb, static_cast< void (QComboBox::*)(int) >( &QComboBox::currentIndexChanged ),
-             [this]( int newIndex )
+             this, [this]( int newIndex )
     {
         QComboBox* bcb = qobject_cast< QComboBox* >( sender() );
         if ( bcb )
