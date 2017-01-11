@@ -7,13 +7,16 @@ calamares_add_plugin( users
     TYPE viewmodule
     EXPORT_MACRO PLUGINDLLEXPORT_PRO
     SOURCES
-        CreateUserJob.cpp
-        SetPasswordJob.cpp
+        jobs/CreateUserJob.cpp
+        jobs/SetPasswordJob.cpp
         UsersViewStep.cpp
-        UsersPage.cpp
-        SetHostNameJob.cpp
+        gui/UsersPage.cpp
+        jobs/SetHostNameJob.cpp
+        jobs/SetAvatarJob.cpp
+        gui/AddUserDialog.cpp
     UI
-        page_usersetup.ui
+        gui/page_usersetup.ui
+        gui/adduserdialog.ui
     RESOURCES
         users.qrc
     LINK_PRIVATE_LIBRARIES

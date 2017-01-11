@@ -17,7 +17,7 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "SetHostNameJob.h"
+#include <jobs/SetHostNameJob.h>
 
 #include "GlobalStorage.h"
 #include "utils/Logger.h"
