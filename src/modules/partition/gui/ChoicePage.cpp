@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014-2016, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2017, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -565,7 +565,7 @@ ChoicePage::onLeave()
     }
     else    // installPath is then passed to the bootloader module for MBR setup
     {
-        if ( m_bootloaderComboBox.isNull() )
+        if ( !m_isEfi && m_bootloaderComboBox.isNull() )
             m_core->setBootLoaderInstallPath( selectedDevice()->deviceNode() );
     }
 }
