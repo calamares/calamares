@@ -2100,12 +2100,12 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="70"/>
         <source>Cannot disable root account.</source>
-        <translation type="unfinished"/>
+        <translation>No se puede deshabilitar la cuenta root</translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="71"/>
         <source>passwd terminated with error code %1.</source>
-        <translation type="unfinished"/>
+        <translation>passwd finalizó con el código de error %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="88"/>
