@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2017-01-12 16:04+0000\n"
+"POT-Creation-Date: 2017-01-13 14:49+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: pavelrz <pavel@rzehak.cz>, 2016\n"
 "Language-Team: Czech (Czech Republic) (https://www.transifex.com/calamares/teams/20061/cs_CZ/)\n"
@@ -18,22 +18,22 @@ msgstr ""
 "Language: cs_CZ\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
-#: src/modules/dummypythonqt/main.py:65
+#: src/modules/dummypythonqt/main.py:80
 msgid "Click me!"
 msgstr "Klikni na mě!"
 
-#: src/modules/dummypythonqt/main.py:70
+#: src/modules/dummypythonqt/main.py:90
 msgid "A new QLabel."
 msgstr "Nový QLabel."
 
-#: src/modules/dummypythonqt/main.py:113
+#: src/modules/dummypythonqt/main.py:176
 msgid "The Dummy PythonQt Job"
 msgstr "Testovací úloha PythonQt"
 
-#: src/modules/dummypythonqt/main.py:116
+#: src/modules/dummypythonqt/main.py:179
 msgid "This is the Dummy PythonQt Job. The dummy job says: {}"
 msgstr "Toto je testovací úloha PythonQt. Testovací úloha říká: {}"
 
-#: src/modules/dummypythonqt/main.py:120
+#: src/modules/dummypythonqt/main.py:183
 msgid "A status message for Dummy PythonQt Job."
 msgstr "Stavová zpráva o testovací úloze PythonQt."

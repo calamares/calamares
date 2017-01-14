@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2017-01-12 16:04+0000\n"
+"POT-Creation-Date: 2017-01-13 14:49+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,22 +14,22 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: pygettext.py 1.5\n"
 
-#: src/modules/dummypythonqt/main.py:65
+#: src/modules/dummypythonqt/main.py:80
 msgid "Click me!"
 msgstr "Click me!"
 
-#: src/modules/dummypythonqt/main.py:70
+#: src/modules/dummypythonqt/main.py:90
 msgid "A new QLabel."
 msgstr "A new QLabel."
 
-#: src/modules/dummypythonqt/main.py:113
+#: src/modules/dummypythonqt/main.py:176
 msgid "The Dummy PythonQt Job"
 msgstr "The Dummy PythonQt Job"
 
-#: src/modules/dummypythonqt/main.py:116
+#: src/modules/dummypythonqt/main.py:179
 msgid "This is the Dummy PythonQt Job. The dummy job says: {}"
 msgstr "This is the Dummy PythonQt Job. The dummy job says: {}"
 
-#: src/modules/dummypythonqt/main.py:120
+#: src/modules/dummypythonqt/main.py:183
 msgid "A status message for Dummy PythonQt Job."
 msgstr "A status message for Dummy PythonQt Job."
