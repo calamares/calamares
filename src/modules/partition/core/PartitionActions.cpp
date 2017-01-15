@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014-2016, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2017, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -148,7 +148,7 @@ doAutopartition( PartitionCoreModule* core, Device* dev, const QString& luksPass
                                                         ->globalStorage()
                                                         ->value( "efiSystemPartition" )
                                                         .toString() );
-        core->createPartition( dev, efiPartition );
+        core->createPartition( dev, efiPartition, PartitionTable::FlagEsp | PartitionTable::FlagBoot );
         firstFreeSector = lastSector + 1;
     }
     else

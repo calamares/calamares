@@ -48,9 +48,10 @@ public:
 
     enum Interface
     {
-        QtPlugin,
-        Python,
-        Process
+        QtPluginInterface,
+        PythonInterface,
+        ProcessInterface,
+        PythonQtInterface
     };
     virtual ~Module();
 
@@ -65,7 +66,9 @@ public:
     virtual QStringList requiredModules() const;
     virtual QString location() const final;
     virtual Type type() const = 0;
+    virtual QString typeString() const;
     virtual Interface interface() const = 0;
+    virtual QString interfaceString() const;
 
     virtual bool isLoaded() const;
 

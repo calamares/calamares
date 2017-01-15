@@ -10,7 +10,7 @@ find_package( KF5 REQUIRED CoreAddons )
 # These are needed because KPMcore links publicly against ConfigCore, I18n, IconThemes, KIOCore and Service
 find_package( KF5 REQUIRED Config I18n IconThemes KIO Service )
 
-find_package( KPMcore 2.9.90 REQUIRED )
+find_package( KPMcore 3.0.2 REQUIRED )
 
 add_subdirectory( tests )
 
@@ -66,7 +66,7 @@ calamares_add_plugin( partition
         gui/EncryptWidget.ui
         gui/PartitionPage.ui
         gui/ReplaceWidget.ui
-    LINK_LIBRARIES
+    LINK_PRIVATE_LIBRARIES
         kpmcore
         calamaresui
         KF5::CoreAddons

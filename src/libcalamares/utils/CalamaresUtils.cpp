@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2013-2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2013-2016, Teo Mrnjavac <teo@kde.org>
  *
  *   Originally from Tomahawk, portions:
  *   Copyright 2010-2011, Christian Muehlhaeuser <muesli@tomahawk-player.org>
@@ -48,6 +48,7 @@ static bool s_isAppDataDirOverridden = false;
 static QTranslator* s_brandingTranslator = nullptr;
 static QTranslator* s_translator = nullptr;
 static QTranslator* s_qtTranslator = nullptr;
+static QString s_translatorLocaleName = QString();
 
 
 static bool
@@ -224,6 +225,15 @@ installTranslator( const QLocale& locale,
     }
     QCoreApplication::installTranslator( translator );
     s_qtTranslator = translator;
+
+    s_translatorLocaleName = localeName;
+}
+
+
+QString
+translatorLocaleName()
+{
+    return s_translatorLocaleName;
 }
 
 

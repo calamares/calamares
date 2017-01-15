@@ -19,7 +19,7 @@ calamares_add_plugin( interactiveterminal
     SOURCES
         InteractiveTerminalViewStep.cpp
         InteractiveTerminalPage.cpp
-    LINK_LIBRARIES
+    LINK_PRIVATE_LIBRARIES
         calamaresui
         KF5::Service
         KF5::Parts

@@ -338,7 +338,9 @@ bool
 RequirementsChecker::checkHasInternet()
 {
     // default to true in the QNetworkAccessManager::UnknownAccessibility case
-    return QNetworkAccessManager(this).networkAccessible() != QNetworkAccessManager::NotAccessible;
+    bool hasInternet = QNetworkAccessManager(this).networkAccessible() != QNetworkAccessManager::NotAccessible;
+    Calamares::JobQueue::instance()->globalStorage()->insert( "hasInternet", hasInternet );
+    return hasInternet;
 }
 
 

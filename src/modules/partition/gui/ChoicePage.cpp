@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014-2016, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2017, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -565,7 +565,7 @@ ChoicePage::onLeave()
     }
     else    // installPath is then passed to the bootloader module for MBR setup
     {
-        if ( m_bootloaderComboBox.isNull() )
+        if ( !m_isEfi && m_bootloaderComboBox.isNull() )
             m_core->setBootLoaderInstallPath( selectedDevice()->deviceNode() );
     }
 }
@@ -1106,7 +1106,7 @@ ChoicePage::createBootloaderComboBox( QWidget* parent )
 
     // When the chosen bootloader device changes, we update the choice in the PCM
     connect( bcb, static_cast< void (QComboBox::*)(int) >( &QComboBox::currentIndexChanged ),
-             [this]( int newIndex )
+             this, [this]( int newIndex )
     {
         QComboBox* bcb = qobject_cast< QComboBox* >( sender() );
         if ( bcb )

@@ -1,0 +1,7 @@
+# Module metadata file for dummy pythonqt jobmodule
+# Syntax is YAML 1.2
+---
+type:       "view"
+name:       "dummypythonqt"
+interface:  "pythonqt"
+script:     "main.py"   #assumed relative to the current directory

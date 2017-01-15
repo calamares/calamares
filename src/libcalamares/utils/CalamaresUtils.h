@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2013-2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2013-2016, Teo Mrnjavac <teo@kde.org>
  *
  *   Originally from Tomahawk, portions:
  *   Copyright 2010-2011, Christian Muehlhaeuser <muesli@tomahawk-player.org>
@@ -42,6 +42,7 @@ namespace CalamaresUtils
     DLLEXPORT void installTranslator( const QLocale& locale,
                                       const QString& brandingTranslationsPrefix,
                                       QObject* parent );
+    DLLEXPORT QString translatorLocaleName();
 
     /**
      * Override app data dir. Only for testing purposes.

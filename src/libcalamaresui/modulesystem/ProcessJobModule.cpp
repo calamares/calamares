@@ -35,7 +35,7 @@ ProcessJobModule::type() const
 Module::Interface
 ProcessJobModule::interface() const
 {
-    return Process;
+    return ProcessInterface;
 }
 
 

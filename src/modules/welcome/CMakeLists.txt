@@ -26,7 +26,7 @@ calamares_add_plugin( welcome
         WelcomePage.cpp
     UI
         WelcomePage.ui
-    LINK_LIBRARIES
+    LINK_PRIVATE_LIBRARIES
         calamaresui
         ${CHECKER_LINK_LIBRARIES}
     SHARED_LIB

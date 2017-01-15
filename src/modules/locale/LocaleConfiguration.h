@@ -38,6 +38,7 @@ public:
     // avoid confusion with locale.h.
     QString lang, lc_numeric, lc_time, lc_monetary, lc_paper, lc_name, lc_address,
             lc_telephone, lc_measurement, lc_identification;
+    QString myLanguageLocaleBcp47;
     QMap< QString, QString > toMap();
 };
 
