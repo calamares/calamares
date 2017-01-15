@@ -4,12 +4,13 @@
 # 
 # Translators:
 # Teo Mrnjavac <teo@kde.org>, 2016
+# Saverio <saverio.brancaccio@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2017-01-13 14:49+0000\n"
+"POT-Creation-Date: 2017-01-14 00:56+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Teo Mrnjavac <teo@kde.org>, 2016\n"
+"Last-Translator: Saverio <saverio.brancaccio@gmail.com>, 2016\n"
 "Language-Team: Italian (Italy) (https://www.transifex.com/calamares/teams/20061/it_IT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ANSI_X3.4-1968\n"
@@ -28,12 +29,12 @@ msgstr "Una nuova QLabel."
 
 #: src/modules/dummypythonqt/main.py:176
 msgid "The Dummy PythonQt Job"
-msgstr "Il Dummy PythonQt Job"
+msgstr "Il Job Dummy PythonQt"
 
 #: src/modules/dummypythonqt/main.py:179
 msgid "This is the Dummy PythonQt Job. The dummy job says: {}"
-msgstr "Questo è il Dummy PythonQt Job. Il dummy job dice: {}"
+msgstr "Questo è il Job Dummy PythonQt. Il dummy job notifica: {}"
 
 #: src/modules/dummypythonqt/main.py:183
 msgid "A status message for Dummy PythonQt Job."
-msgstr "Un messaggio di stato per Dummy PythonQt Job."
+msgstr "Un messaggio di stato per il Job Dummy PythonQt."
