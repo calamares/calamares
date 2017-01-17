@@ -620,7 +620,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="268"/>
         <source>Mountpoint already in use. Please select another one.</source>
-        <translation type="unfinished"/>
+        <translation>マウントポイントは既に使用されています。他を選択してください。</translation>
     </message>
 </context>
 <context>
@@ -945,7 +945,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.cpp" line="306"/>
         <source>Mountpoint already in use. Please select another one.</source>
-        <translation type="unfinished"/>
+        <translation>マウントポイントは既に使用されています。他を選択してください。</translation>
     </message>
 </context>
 <context>
@@ -2100,12 +2100,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="70"/>
         <source>Cannot disable root account.</source>
-        <translation type="unfinished"/>
+        <translation>rootアカウントを使用することができません。</translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="71"/>
         <source>passwd terminated with error code %1.</source>
-        <translation type="unfinished"/>
+        <translation>passwd がエラーコード %1 のため終了しました。</translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="88"/>
