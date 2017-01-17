@@ -274,7 +274,7 @@ UsersPage::createJobs( const QStringList& defaultGroupsList )
                     m_avatarFilePath.replace("~", home);
             }
 
-            j = new SetAvatarJob( user->avatarFile, m_avatarFilePath );
+            j = new SetAvatarJob( user->avatarFile, m_avatarFilePath, user->username, defaultGroupsList[0] );
             list.append( Calamares::job_ptr(j) );
         }
     }

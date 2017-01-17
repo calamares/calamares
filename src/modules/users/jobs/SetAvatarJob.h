@@ -25,7 +25,7 @@ class SetAvatarJob : public Calamares::Job
 {
     Q_OBJECT
 public:
-    SetAvatarJob( const QString& avatarFile, const QString& destPath );
+    SetAvatarJob( const QString& avatarFile, const QString& destPath, const QString& owner, const QString& group );
     QString prettyName() const override;
     QString prettyDescription() const override;
     QString prettyStatusMessage() const override;
@@ -33,6 +33,9 @@ public:
 private:
     const QString m_avatarFile;
     const QString m_destPath;
+    // Owner and group of the destination avatar file.
+    const QString m_owner;
+    const QString m_group;
 };
 
 
