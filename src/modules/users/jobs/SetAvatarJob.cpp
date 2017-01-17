@@ -19,12 +19,12 @@
 #include <jobs/SetAvatarJob.h>
 
 #include "GlobalStorage.h"
+#include "utils/CalamaresUtilsSystem.h"
 #include "utils/Logger.h"
 #include "JobQueue.h"
 
 #include <QFile>
 #include <QDir>
-#include <QProcess>
 
 SetAvatarJob::SetAvatarJob(const QString &avatarFile, const QString &destPath, const QString& owner, const QString& group)
     : Calamares::Job()
@@ -83,12 +83,12 @@ Calamares::JobResult SetAvatarJob::exec()
     if (!avatarFile.copy(destination)) {
         cLog() << "Error copying avatar:" << avatarFile.errorString();
     } else {
-        QProcess chown;
-        chown.start("chown", QStringList() << userGroup << destination);
-        chown.waitForFinished();
-
-        if (chown.exitCode() != 0) {
-            cLog() << "Error changing permissions of avatar file. Exit code: " << chown.exitCode();
+        int ec = CalamaresUtils::System::instance()->
+                targetEnvCall({ "chown",
+                                userGroup,
+                                m_destPath });
+        if ( ec ) {
+            cLog() << "Error changing ownership of the avatar file. Exit code: " << ec;
         }
     }
 
