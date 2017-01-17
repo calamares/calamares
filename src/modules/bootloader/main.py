@@ -284,6 +284,10 @@ def run():
     """
 
     fw_type = libcalamares.globalstorage.value("firmwareType")
+
+    if libcalamares.globalstorage.value("bootLoader") is None and fw_type != "efi":
+        return None
+
     prepare_bootloader(fw_type)
 
     return None
