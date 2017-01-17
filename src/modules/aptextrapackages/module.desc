@@ -1,0 +1,7 @@
+# Module metadata file for aptextrapackages viewmodule
+# Syntax is YAML 1.2
+---
+type: "view"
+name: "aptextrapackages"
+interface: "qtplugin"
+load: "libcalamares_viewmodule_aptextrapackages.so"
