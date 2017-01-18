@@ -36,22 +36,26 @@ SetSourcesJob::SetSourcesJob( const QString& source ) :
     m_source( source )
 { }
 
-QString SetSourcesJob::prettyName() const
+QString
+SetSourcesJob::prettyName() const
 {
     return tr( "Add source %1" ).arg( m_source );
 }
 
-QString SetSourcesJob::prettyDescription() const
+QString
+SetSourcesJob::prettyDescription() const
 {
     return tr( "Add <strong>%1</strong> to apt sources list" ).arg( m_source );
 }
 
-QString SetSourcesJob::prettyStatusMessage() const
+QString
+SetSourcesJob::prettyStatusMessage() const
 {
     return tr( "Adding %1 to sources list" ).arg( m_source );
 }
 
-Calamares::JobResult SetSourcesJob::exec()
+Calamares::JobResult
+SetSourcesJob::exec()
 {
     QString rmp = Calamares::JobQueue::instance()->globalStorage()->value( "rootMountPoint" ).toString();
     QString sourceListPath = rmp + "/etc/apt/sources.list";

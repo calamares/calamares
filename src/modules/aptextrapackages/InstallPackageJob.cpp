@@ -34,17 +34,20 @@ InstallPackageJob::InstallPackageJob( const QString& name, const QString& preScr
     m_jobProgress( InstallJobProgress::PRE_SCRIPT )
 { }
 
-QString InstallPackageJob::prettyName() const
+QString
+InstallPackageJob::prettyName() const
 {
     return tr( "Install package %1" ).arg( m_name );
 }
 
-QString InstallPackageJob::prettyDescription() const
+QString
+InstallPackageJob::prettyDescription() const
 {
     return tr( "Install package <strong>%1</strong>" ).arg( m_name );
 }
 
-QString InstallPackageJob::prettyStatusMessage() const
+QString
+InstallPackageJob::prettyStatusMessage() const
 {
     switch ( m_jobProgress )
     {
@@ -57,7 +60,8 @@ QString InstallPackageJob::prettyStatusMessage() const
     }
 }
 
-Calamares::JobResult InstallPackageJob::exec()
+Calamares::JobResult
+InstallPackageJob::exec()
 {
     if ( m_preScript != "" )
     {

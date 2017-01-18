@@ -21,28 +21,30 @@
 #include "Branding.h"
 #include "GlobalStorage.h"
 #include "InstallPackageJob.h"
+#include "JobQueue.h"
 #include "SetSourcesJob.h"
 #include "ui_ExtraPackagesPage.h"
 #include "utils/Logger.h"
 #include "utils/CalamaresUtilsGui.h"
-#include "JobQueue.h"
+#include "utils/Retranslator.h"
 
 #include <QDesktopServices>
 #include <QFocusEvent>
 #include <QHeaderView>
 #include <QNetworkAccessManager>
-#include <QVariant>
 #include <QString>
+#include <QVariant>
 
 ExtraPackagesPage::ExtraPackagesPage( QWidget* parent ) :
     QWidget( parent ),
     ui( new Ui::ExtraPackagesPage )
 {
     ui->setupUi( this );
+    CALAMARES_RETRANSLATE (
     ui->maintext->setText( tr( "<p>Select the non-free packages you would like to install "
-                               "(if any). This requires an Insternet connection</p>"
+                               "(if any). This requires an Internet connection</p>"
                                "<p>By installing these packages you are accepting their respective "
-                               "licenses.</p>" ) );
+                               "licenses.</p>" ) ); )
     ui->helpCentreButton->setIcon( CalamaresUtils::defaultPixmap(
                                        CalamaresUtils::Information,
                                        CalamaresUtils::Original,
@@ -68,7 +70,7 @@ void
 ExtraPackagesPage::setUpLink( bool showHelpCentre, QString url )
 {
     using namespace Calamares;
-    if ( showHelpCentre && url != NULL )
+    if ( showHelpCentre && url != nullptr )
     {
         ui->helpCentreButton->setIcon( CalamaresUtils::defaultPixmap(
                                            CalamaresUtils::Information,
@@ -80,7 +82,7 @@ ExtraPackagesPage::setUpLink( bool showHelpCentre, QString url )
             QDesktopServices::openUrl( url );
         } );
     }
-    else if ( showHelpCentre && url == NULL )
+    else if ( showHelpCentre && url == nullptr )
     {
         cDebug() << "WARNING: Restricted Extras help URL is invalid. Disabling help button";
         ui->helpCentreButton->hide();
@@ -90,15 +92,14 @@ ExtraPackagesPage::setUpLink( bool showHelpCentre, QString url )
 }
 
 void
-ExtraPackagesPage::setUpPackages( QVariantList packages )
+ExtraPackagesPage::setUpPackages( const QVariantList& packages )
 {
     for ( int i = 0; i < ui->packageTable->horizontalHeader()->count(); i++ )
         ui->packageTable->horizontalHeader()->setSectionResizeMode( i,
                 QHeaderView::Stretch );
     ui->packageTable->setRowCount( packages.size() );
     int row = 0;
-    QVariantList::iterator i;
-    for ( i = packages.begin(); i != packages.end(); i++ )
+    for ( auto i = packages.begin(); i != packages.end(); i++ )
     {
         QVariantMap packageMap = ( *i ).toMap();
         QTableWidgetItem* name =
@@ -133,17 +134,16 @@ QString
 ExtraPackagesPage::prettyStatus()
 {
     QString status;
-    QList<Calamares::job_ptr> list = createJobs( QVariantList() );
+    const QList<Calamares::job_ptr> list = createJobs( QVariantList() );
     if ( !list.size() )
         return status;
-    QList<Calamares::job_ptr>::iterator i;
-    for ( i = list.begin(); i < list.end(); i++ )
+    for ( auto i = list.begin(); i < list.end(); i++ )
         status += ( **i ).prettyName() + "\n";
     return status;
 }
 
 QList<Calamares::job_ptr> 
-ExtraPackagesPage::createJobs( QVariantList sources )
+ExtraPackagesPage::createJobs( const QVariantList& sources )
 {
     QList<Calamares::job_ptr> list;
     Calamares::Job* j;
@@ -162,31 +162,22 @@ ExtraPackagesPage::createJobs( QVariantList sources )
         }
     }
     if ( list.count() )
-    {
-        QVariantList::iterator i;
-        for ( i = sources.begin(); i != sources.end(); i++ )
+        for ( auto i = sources.begin(); i != sources.end(); i++ )
             list.prepend( Calamares::job_ptr( new SetSourcesJob( ( *i ).toString() ) ) );
-    }
     return list;
 }
 
 void
 ExtraPackagesPage::checkInternet()
 {
-    if ( Calamares::JobQueue::instance()->globalStorage()->
-            value( "hasInternet" ).toBool() )
-    {
-        ui->packageTable->setEnabled( true );
-        ui->selectAllBox->setEnabled( true );
-    }
-    else
-    {
+    if ( !Calamares::JobQueue::instance()->globalStorage()->value( "hasInternet" ).toBool() )
         cDebug() << "WARNING: No Internet connection detected. Unable to "
                  "install extra packages";
-        ui->packageTable->setEnabled( false );
-        ui->selectAllBox->setEnabled( false );
-    }
 
+    ui->packageTable->setEnabled(
+            Calamares::JobQueue::instance()->globalStorage()->value( "hasInternet" ).toBool() );
+    ui->selectAllBox->setEnabled(
+            Calamares::JobQueue::instance()->globalStorage()->value( "hasInternet" ).toBool() );
 }
 
 void 

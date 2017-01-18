@@ -25,8 +25,8 @@
 #include "ExtraPackagesViewStep.h"
 
 #include "ExtraPackagesPage.h"
-#include "utils/Logger.h"
 #include "JobQueue.h"
+#include "utils/Logger.h"
 
 #include <QVariant>
 
@@ -46,68 +46,81 @@ ExtraPackagesViewStep::~ExtraPackagesViewStep()
         m_widget->deleteLater();
 }
 
-QString ExtraPackagesViewStep::prettyName() const
+QString
+ExtraPackagesViewStep::prettyName() const
 {
     return tr( "Extra Packages" );
 }
 
-QString ExtraPackagesViewStep::prettyStatus() const
+QString
+ExtraPackagesViewStep::prettyStatus() const
 {
     return m_widget->prettyStatus();
 }
 
-QWidget* ExtraPackagesViewStep::widget()
+QWidget*
+ExtraPackagesViewStep::widget()
 {
     return m_widget;
 }
 
-void ExtraPackagesViewStep::next()
+void
+ExtraPackagesViewStep::next()
 {
     m_widget->checkInternet();
     emit done();
 }
 
-void ExtraPackagesViewStep::back()
+void
+ExtraPackagesViewStep::back()
 {
 }
 
-bool ExtraPackagesViewStep::isNextEnabled() const
-{
-    return true;
-}
-
-bool ExtraPackagesViewStep::isBackEnabled() const
+bool
+ExtraPackagesViewStep::isNextEnabled() const
 {
     return true;
 }
 
-bool ExtraPackagesViewStep::isAtBeginning() const
+bool
+ExtraPackagesViewStep::isBackEnabled() const
 {
     return true;
 }
 
-bool ExtraPackagesViewStep::isAtEnd() const
+bool
+ExtraPackagesViewStep::isAtBeginning() const
 {
     return true;
 }
 
-void ExtraPackagesViewStep::onActivate()
+bool
+ExtraPackagesViewStep::isAtEnd() const
+{
+    return true;
+}
+
+void
+ExtraPackagesViewStep::onActivate()
 {
     m_widget->checkInternet();
 }
 
-void ExtraPackagesViewStep::onLeave()
+void
+ExtraPackagesViewStep::onLeave()
 {
     m_jobs.clear();
     m_jobs.append( m_widget->createJobs( m_sources ) );
 }
 
-QList<Calamares::job_ptr> ExtraPackagesViewStep::jobs() const
+QList<Calamares::job_ptr>
+ExtraPackagesViewStep::jobs() const
 {
     return m_jobs;
 }
 
-void ExtraPackagesViewStep::setConfigurationMap( const QVariantMap& configurationMap )
+void
+ExtraPackagesViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
     bool showHelpCentre =
         configurationMap.contains( "showHelpCentre" ) &&
@@ -122,16 +135,12 @@ void ExtraPackagesViewStep::setConfigurationMap( const QVariantMap& configuratio
             configurationMap.value( "packages" ).toList().size() )
         m_widget->setUpPackages( configurationMap.value( "packages" ).toList() );
     else
-    {
         cDebug() << "WARNING: No valid packages found in aptextrapackages "
                  "module configuration.";
-    }
     if ( configurationMap.contains( "sources" ) &&
             configurationMap.value( "sources" ).toList().size() )
         m_sources = configurationMap.value( "sources" ).toList();
     else
-    {
         cDebug() << "WARNING: No valid sources list found in aptextrapackages "
                  "module configuration.";
-    }
 }

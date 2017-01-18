@@ -26,6 +26,7 @@
 #define EXTRAPACKAGESPAGE_H
 
 #include "Typedefs.h"
+
 #include <QWidget>
 
 namespace Ui
@@ -41,9 +42,9 @@ public:
     explicit ExtraPackagesPage( QWidget* parent = nullptr );
 
     void setUpLink( bool showHelpCentre, QString url );
-    void setUpPackages( QVariantList packages );
+    void setUpPackages( const QVariantList& packages );
     QString prettyStatus();
-    QList<Calamares::job_ptr> createJobs( QVariantList sources );
+    QList<Calamares::job_ptr> createJobs( const QVariantList& sources );
     void checkInternet();
 protected:
     void focusInEvent( QFocusEvent* e ) override;

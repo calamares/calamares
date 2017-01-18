@@ -25,13 +25,12 @@
 #ifndef EXTRAPACKAGESPLUGIN_H
 #define EXTRAPACKAGESPLUGIN_H
 
+#include "PluginDllMacro.h"
+#include "utils/PluginFactory.h"
+#include "viewpages/ViewStep.h"
+
 #include <QObject>
 #include <QVariantMap>
-
-#include <utils/PluginFactory.h>
-#include <viewpages/ViewStep.h>
-
-#include <PluginDllMacro.h>
 
 class ExtraPackagesPage;
 
