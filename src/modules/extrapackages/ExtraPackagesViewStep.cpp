@@ -67,8 +67,6 @@ ExtraPackagesViewStep::widget()
 void
 ExtraPackagesViewStep::next()
 {
-    m_widget->checkInternet();
-    emit done();
 }
 
 void
@@ -111,6 +109,7 @@ ExtraPackagesViewStep::onLeave()
 {
     m_jobs.clear();
     m_jobs.append( m_widget->createJobs( m_sources ) );
+    m_widget->addPackagesToStorage();
 }
 
 QList<Calamares::job_ptr>

@@ -45,6 +45,7 @@ public:
     void setUpPackages( const QVariantList& packages );
     QString prettyStatus();
     QList<Calamares::job_ptr> createJobs( const QVariantList& sources );
+    void addPackagesToStorage();
     void checkInternet();
 protected:
     void focusInEvent( QFocusEvent* e ) override;

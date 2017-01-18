@@ -145,8 +145,26 @@ ExtraPackagesPage::prettyStatus()
 QList<Calamares::job_ptr> 
 ExtraPackagesPage::createJobs( const QVariantList& sources )
 {
+    bool empty = true;
+    for ( int i = 0; i < ui->packageTable->rowCount(); i++ )
+    {
+        if ( ui->packageTable->item( i, 0 )->checkState() == Qt::Checked )
+        {
+            empty = false;
+            break;
+        }
+    }
     QList<Calamares::job_ptr> list;
-    Calamares::Job* j;
+    if ( !empty )
+        for ( auto i = sources.begin(); i != sources.end(); i++ )
+            list.prepend( Calamares::job_ptr( new SetSourcesJob( ( *i ).toString() ) ) );
+    return list;
+}
+
+void
+ExtraPackagesPage::addPackagesToStorage()
+{
+    QStringList packages;
     for ( int i = 0; i < ui->packageTable->rowCount(); i++ )
     {
         if ( ui->packageTable->item( i, 0 )->checkState() == Qt::Checked )
@@ -157,14 +175,16 @@ ExtraPackagesPage::createJobs( const QVariantList& sources )
                 ui->packageTable->item( i, 0 )->data( Qt::UserRole ).toString();
             QString postScript =
                 ui->packageTable->item( i, 0 )->data( Qt::UserRole+1 ).toString();
-            j = new InstallPackageJob( name, preScript, postScript );
-            list.append( Calamares::job_ptr( j ) );
+            packages += name; //TODO: Add pre/post script
         }
     }
-    if ( list.count() )
-        for ( auto i = sources.begin(); i != sources.end(); i++ )
-            list.prepend( Calamares::job_ptr( new SetSourcesJob( ( *i ).toString() ) ) );
-    return list;
+    if ( packages.count() )
+    {
+        QMap<QString, QVariant> installList;
+        installList.insert("try_install", packages);
+        Calamares::JobQueue::instance()->globalStorage()->insert(
+                "packageOperations", QVariant(installList));
+    }
 }
 
 void

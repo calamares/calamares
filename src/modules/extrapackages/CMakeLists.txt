@@ -1,5 +1,5 @@
 include_directories( ${PROJECT_BINARY_DIR}/src/libcalamaresui )
-calamares_add_plugin( aptextrapackages
+calamares_add_plugin( extrapackages
     TYPE viewmodule
     EXPORT_MACRO PLUGINDLLEXPORT_PRO
     SOURCES
