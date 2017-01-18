@@ -565,8 +565,20 @@ ChoicePage::onLeave()
     }
     else    // installPath is then passed to the bootloader module for MBR setup
     {
-        if ( !m_isEfi && m_bootloaderComboBox.isNull() )
-            m_core->setBootLoaderInstallPath( selectedDevice()->deviceNode() );
+        if ( !m_isEfi )
+        {
+            if ( m_bootloaderComboBox.isNull() )
+            {
+                m_core->setBootLoaderInstallPath( selectedDevice()->deviceNode() );
+            }
+            else
+            {
+                QVariant var = m_bootloaderComboBox->currentData( BootLoaderModel::BootLoaderPathRole );
+                if ( !var.isValid() )
+                    return;
+                m_core->setBootLoaderInstallPath( var.toString() );
+            }
+        }
     }
 }
 
