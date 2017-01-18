@@ -66,6 +66,7 @@ private:
 
     QMutex m_revertMutex;
     int    m_lastSelectedBootLoaderIndex;
+    bool   m_isEfi;
 };
 
 #endif // PARTITIONPAGE_H
