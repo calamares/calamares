@@ -240,7 +240,13 @@ def install_grub(efi_directory, fw_type):
                                efi_file_target[efi_bitness]])
     else:
         print("Bootloader: grub (bios)")
+        if libcalamares.globalstorage.value("bootLoader") is None:
+            return
+
         boot_loader = libcalamares.globalstorage.value("bootLoader")
+        if boot_loader["installPath"] is None:
+            return
+
         check_target_env_call([libcalamares.job.configuration["grubInstall"],
                                "--target=i386-pc",
                                "--recheck",
@@ -282,10 +288,12 @@ def run():
 
     :return:
     """
-    if libcalamares.globalstorage.value("bootLoader") is None:
-        return None
 
     fw_type = libcalamares.globalstorage.value("firmwareType")
+
+    if libcalamares.globalstorage.value("bootLoader") is None and fw_type != "efi":
+        return None
+
     prepare_bootloader(fw_type)
 
     return None

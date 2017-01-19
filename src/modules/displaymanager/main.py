@@ -267,7 +267,7 @@ def set_autologin(username, displaymanagers, default_desktop_environment, root_m
 
         if do_autologin:
             autologin_section['User'] = username
-        else:
+        elif 'User' in autologin_section:
             del autologin_section['User']
 
         if default_desktop_environment is not None:

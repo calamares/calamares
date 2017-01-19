@@ -57,7 +57,10 @@ PartitionPage::PartitionPage( PartitionCoreModule* core, QWidget* parent )
     , m_ui( new Ui_PartitionPage )
     , m_lastSelectedBootLoaderIndex(-1)
     , m_core( core )
+    , m_isEfi( false )
 {
+    m_isEfi = QDir( "/sys/firmware/efi/efivars" ).exists();
+
     m_ui->setupUi( this );
     m_ui->partitionLabelsView->setVisible(
             Calamares::JobQueue::instance()->globalStorage()->
@@ -100,7 +103,7 @@ PartitionPage::PartitionPage( PartitionCoreModule* core, QWidget* parent )
     connect( m_ui->editButton, &QAbstractButton::clicked, this, &PartitionPage::onEditClicked );
     connect( m_ui->deleteButton, &QAbstractButton::clicked, this, &PartitionPage::onDeleteClicked );
 
-    if ( QDir( "/sys/firmware/efi/efivars" ).exists() ) {
+    if ( m_isEfi ) {
         m_ui->bootLoaderComboBox->hide();
         m_ui->label_3->hide();
     }
@@ -301,6 +304,9 @@ PartitionPage::editExistingPartition( Device* device, Partition* partition )
 void
 PartitionPage::updateBootLoaderInstallPath()
 {
+    if ( m_isEfi || !m_ui->bootLoaderComboBox->isVisible() )
+        return;
+
     QVariant var = m_ui->bootLoaderComboBox->currentData( BootLoaderModel::BootLoaderPathRole );
     if ( !var.isValid() )
         return;
