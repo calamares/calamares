@@ -126,8 +126,8 @@ NetInstallViewStep::onLeave()
              << "to global storage";
 
     QMap<QString, QVariant> packagesWithOperation;
-    QList<QVariant> installPackages = m_widget->selectedPackages(true);
-    QList<QVariant> tryInstallPackages = m_widget->selectedPackages(false);
+    QList<QVariant> installPackages = m_widget->selectedPackages( true );
+    QList<QVariant> tryInstallPackages = m_widget->selectedPackages( false );
 
     if ( !installPackages.empty() )
         packagesWithOperation.insert( "install", installPackages );
