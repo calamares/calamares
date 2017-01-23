@@ -103,14 +103,14 @@ void NetInstallPage::loadGroupList()
     QNetworkRequest request;
     request.setUrl( QUrl( confUrl ) );
     // Follows all redirects except unsafe ones (https to http).
-    request.setAttribute(QNetworkRequest::FollowRedirectsAttribute, true);
+    request.setAttribute( QNetworkRequest::FollowRedirectsAttribute, true );
     // Not everybody likes the default User Agent used by this class (looking at you,
     // sourceforge.net), so let's set a more descriptive one.
     request.setRawHeader( "User-Agent", "Mozilla/5.0 (compatible; Calamares)" );
 
-    connect(&m_networkManager, &QNetworkAccessManager::finished,
-            this, &NetInstallPage::dataIsHere);
-    m_networkManager.get(request);
+    connect( &m_networkManager, &QNetworkAccessManager::finished,
+             this, &NetInstallPage::dataIsHere );
+    m_networkManager.get( request );
 }
 
 void NetInstallPage::onActivate()

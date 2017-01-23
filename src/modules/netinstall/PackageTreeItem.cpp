@@ -81,14 +81,14 @@ PackageTreeItem::data( int column ) const
             return QVariant( packageName() );
         return QVariant();
     }
-    switch( column ) // group
+    switch ( column ) // group
     {
-        case 0:
-            return QVariant( prettyName() );
-        case 1:
-            return QVariant( description() );
-        default:
-            return QVariant();
+    case 0:
+        return QVariant( prettyName() );
+    case 1:
+        return QVariant( description() );
+    default:
+        return QVariant();
     }
 }
 
@@ -175,7 +175,7 @@ PackageTreeItem::setSelected( Qt::CheckState isSelected )
             if ( currentItem->child( i )->isSelected() == Qt::PartiallyChecked )
                 isChildPartiallySelected = true;
         }
-        if ( !childrenSelected  && !isChildPartiallySelected)
+        if ( !childrenSelected  && !isChildPartiallySelected )
             currentItem->m_selected = Qt::Unchecked;
         else if ( childrenSelected == currentItem->childCount() )
             currentItem->m_selected = Qt::Checked;

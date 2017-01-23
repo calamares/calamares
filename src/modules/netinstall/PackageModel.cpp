@@ -41,7 +41,7 @@ PackageModel::~PackageModel()
 QModelIndex
 PackageModel::index( int row, int column, const QModelIndex& parent ) const
 {
-    if ( !hasIndex(row, column, parent ) )
+    if ( !hasIndex( row, column, parent ) )
         return QModelIndex();
 
     PackageTreeItem* parentItem;
@@ -99,14 +99,10 @@ QVariant
 PackageModel::data( const QModelIndex& index, int role ) const
 {
     if ( !index.isValid() )
-    {
         return QVariant();
-    }
     PackageTreeItem* item = static_cast<PackageTreeItem*>( index.internalPointer() );
     if ( index.column() == 0 && role == Qt::CheckStateRole )
-    {
         return item->isSelected();
-    }
 
     if ( !item->childCount() ) // package
     {
@@ -120,22 +116,20 @@ PackageModel::data( const QModelIndex& index, int role ) const
     }
 
     if ( item->isHidden() && role == Qt::DisplayRole ) // Hidden group
-    {
         return QVariant();
-    }
 
     switch ( role )
     {
-        case Qt::DisplayRole:
-            return item->data( index.column() );
-        case PackageTreeItem::PreScriptRole:
-            return QVariant( item->preScript() );
-        case PackageTreeItem::PackageNameRole:
-            return QVariant( item->packageName() );
-        case PackageTreeItem::PostScriptRole:
-            return QVariant( item->postScript() );
-        default:
-            return QVariant();
+    case Qt::DisplayRole:
+        return item->data( index.column() );
+    case PackageTreeItem::PreScriptRole:
+        return QVariant( item->preScript() );
+    case PackageTreeItem::PackageNameRole:
+        return QVariant( item->packageName() );
+    case PackageTreeItem::PostScriptRole:
+        return QVariant( item->postScript() );
+    default:
+        return QVariant();
     }
 }
 
@@ -147,8 +141,8 @@ PackageModel::setData( const QModelIndex& index, const QVariant& value, int role
         PackageTreeItem* item = static_cast<PackageTreeItem*>( index.internalPointer() );
         item->setSelected( static_cast<Qt::CheckState>( value.toInt() ) );
 
-        emit dataChanged( this->index(0, 0), index.sibling( index.column(), index.row() + 1 ), 
-                QVector<int>( Qt::CheckStateRole ) );
+        emit dataChanged( this->index( 0, 0 ), index.sibling( index.column(), index.row() + 1 ),
+                          QVector<int>( Qt::CheckStateRole ) );
     }
     return true;
 }
@@ -195,7 +189,7 @@ PackageModel::getItemPackages( PackageTreeItem* item, bool isCritical ) const
     QList<PackageTreeItem*> selectedPackages;
     for ( int i = 0; i < item->childCount(); i++ )
     {
-        if ( item->child( i )->isSelected() == Qt::Unchecked  || 
+        if ( item->child( i )->isSelected() == Qt::Unchecked  ||
                 item->child( i )->isCritical() != isCritical )
             continue;
 
@@ -216,9 +210,9 @@ PackageModel::setupModelData( const YAML::Node& data, PackageTreeItem* parent )
         const YAML::Node itemDefinition = *it;
 
         QString name(
-                tr( CalamaresUtils::yamlToVariant( itemDefinition["name"] ).toByteArray() ) );
+            tr( CalamaresUtils::yamlToVariant( itemDefinition["name"] ).toByteArray() ) );
         QString description(
-                tr( CalamaresUtils::yamlToVariant( itemDefinition["description"] ).toByteArray() ) );
+            tr( CalamaresUtils::yamlToVariant( itemDefinition["description"] ).toByteArray() ) );
 
         PackageTreeItem::ItemData itemData;
         itemData.name = name;
@@ -230,12 +224,12 @@ PackageModel::setupModelData( const YAML::Node& data, PackageTreeItem* parent )
         if ( itemDefinition["post-install"] )
             itemData.postScript =
                 CalamaresUtils::yamlToVariant( itemDefinition["post-install"] ).toString();
-        PackageTreeItem* item = new PackageTreeItem(itemData, parent );
+        PackageTreeItem* item = new PackageTreeItem( itemData, parent );
 
         if ( itemDefinition["selected"] )
             item->setSelected(
-                    CalamaresUtils::yamlToVariant( itemDefinition["selected"] ).toBool() ?
-                    Qt::Checked : Qt::Unchecked );
+                CalamaresUtils::yamlToVariant( itemDefinition["selected"] ).toBool() ?
+                Qt::Checked : Qt::Unchecked );
         else
             item->setSelected( parent->isSelected() ); // Inherit from it's parent
 
@@ -249,8 +243,8 @@ PackageModel::setupModelData( const YAML::Node& data, PackageTreeItem* parent )
 
         for ( YAML::const_iterator packageIt = itemDefinition["packages"].begin();
                 packageIt != itemDefinition["packages"].end(); ++packageIt )
-            item->appendChild( 
-                    new PackageTreeItem( CalamaresUtils::yamlToVariant( *packageIt ).toString(), item ) );
+            item->appendChild(
+                new PackageTreeItem( CalamaresUtils::yamlToVariant( *packageIt ).toString(), item ) );
 
         if ( itemDefinition["subgroups"] )
             setupModelData( itemDefinition["subgroups"], item );

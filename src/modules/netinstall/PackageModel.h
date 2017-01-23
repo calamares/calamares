@@ -34,31 +34,31 @@ class PackageModel : public QAbstractItemModel
 {
     Q_OBJECT
 
-    public:
-        explicit PackageModel( const YAML::Node& data, const QVariantList& columnHeadings,
-                               QObject* parent = 0 );
-        ~PackageModel();
+public:
+    explicit PackageModel( const YAML::Node& data, const QVariantList& columnHeadings,
+                           QObject* parent = 0 );
+    ~PackageModel();
 
-        QVariant data( const QModelIndex& index, int role ) const Q_DECL_OVERRIDE;
-        bool setData( const QModelIndex& index, const QVariant& value, 
-                      int role = Qt::EditRole) Q_DECL_OVERRIDE;
-        Qt::ItemFlags flags( const QModelIndex& index ) const Q_DECL_OVERRIDE;
-        QVariant headerData( int section, Qt::Orientation orientation,
-                             int role = Qt::DisplayRole ) const Q_DECL_OVERRIDE;
-        QModelIndex index( int row, int column,
-                           const QModelIndex& parent = QModelIndex() ) const Q_DECL_OVERRIDE;
-        QModelIndex parent( const QModelIndex& index ) const Q_DECL_OVERRIDE;
-        int rowCount( const QModelIndex& parent = QModelIndex() ) const Q_DECL_OVERRIDE;
-        int columnCount( const QModelIndex& parent = QModelIndex() ) const Q_DECL_OVERRIDE;
-        QList<QVariant> getPackages( bool isCritical ) const;
-        QList<PackageTreeItem*> getItemPackages( PackageTreeItem* item, bool isCritical ) const;
+    QVariant data( const QModelIndex& index, int role ) const Q_DECL_OVERRIDE;
+    bool setData( const QModelIndex& index, const QVariant& value,
+                  int role = Qt::EditRole ) Q_DECL_OVERRIDE;
+    Qt::ItemFlags flags( const QModelIndex& index ) const Q_DECL_OVERRIDE;
+    QVariant headerData( int section, Qt::Orientation orientation,
+                         int role = Qt::DisplayRole ) const Q_DECL_OVERRIDE;
+    QModelIndex index( int row, int column,
+                       const QModelIndex& parent = QModelIndex() ) const Q_DECL_OVERRIDE;
+    QModelIndex parent( const QModelIndex& index ) const Q_DECL_OVERRIDE;
+    int rowCount( const QModelIndex& parent = QModelIndex() ) const Q_DECL_OVERRIDE;
+    int columnCount( const QModelIndex& parent = QModelIndex() ) const Q_DECL_OVERRIDE;
+    QList<QVariant> getPackages( bool isCritical ) const;
+    QList<PackageTreeItem*> getItemPackages( PackageTreeItem* item, bool isCritical ) const;
 
-    private:
-        void setupModelData( const YAML::Node& data, PackageTreeItem* parent );
+private:
+    void setupModelData( const YAML::Node& data, PackageTreeItem* parent );
 
-        PackageTreeItem* m_rootItem;
-        QList<PackageTreeItem*> m_hiddenItems;
-        QVariantList m_columnHeadings;
+    PackageTreeItem* m_rootItem;
+    QList<PackageTreeItem*> m_hiddenItems;
+    QVariantList m_columnHeadings;
 };
 
 #endif // PACKAGEMODEL_H
