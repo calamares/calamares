@@ -19,6 +19,7 @@
 #ifndef NETINSTALLPAGE_H
 #define NETINSTALLPAGE_H
 
+#include "PackageModel.h"
 #include "Typedefs.h"
 #include <QWidget>
 #include <QAbstractButton>
@@ -28,36 +29,16 @@
 class QByteArray;
 class QNetworkReply;
 class GroupSelectionWidget;
+class PackageModel;
 
 namespace Ui
 {
 class Page_NetInst;
 }
 
-// Representation of a package group.
-struct Group
-{
-    Group()
-        : Group( "","",false, false, false ) { }
-    Group( QString name, QString description, bool selected, bool hidden, bool critical )
-        : name( name ), description( description ), selected( selected ), hidden( hidden ), critical( critical ) { }
-    Group( QString name, QString description )
-        : Group( name, description, false, false, false ) { }
-
-    QString name;
-    QString description;
-    QStringList packages;
-
-    // See README.md for a description of these fields.
-    bool selected = false;
-    bool hidden = false;
-    bool critical = false;
-};
-
 class NetInstallPage : public QWidget
 {
     Q_OBJECT
-
 public:
     NetInstallPage( QWidget* parent = nullptr );
 
@@ -70,9 +51,10 @@ public:
     // in the global storage. This should be called before displaying the page.
     void loadGroupList();
 
-    // Return a list of groups currently selected. No data is cached here, so
-    // this function does not run in constant time.
-    QList<Group> selectedGroups() const;
+    // Returns the list of packages belonging to groups that are
+    // selected in the view in this given moment. No data is cached here, so
+    // this function does not have constant time.
+    QList<QVariant> selectedPackages( bool isCritical ) const;
 
 public slots:
     void dataIsHere( QNetworkReply* );
@@ -91,11 +73,10 @@ private:
     // Handles connection with the remote URL storing the configuration.
     QNetworkAccessManager m_networkManager;
 
-    QHash<QString, Group> m_groups;
+    PackageModel* m_groups;
     // For each group name, store the selection widget to retrieve UI
     // properties.
     QHash<QString, GroupSelectionWidget*> m_groupWidgets;
-    QList<QString> m_groupOrder;
 };
 
 #endif // NETINSTALLPAGE_H
