@@ -22,7 +22,7 @@
 import subprocess
 import libcalamares
 from libcalamares.utils import check_target_env_call, target_env_call
-from string import Template
+
 
 class PackageManager:
     """ Package manager class.
@@ -109,20 +109,10 @@ class PackageManager:
         elif self.backend == "entropy":
             check_target_env_call(["equo", "update"])
 
+    def run(self, script):
+        if script != "":
+            check_target_env_call(script.split(" "))
 
-def subst_locale(list):
-    ret = []
-    locale = libcalamares.globalstorage.value("locale")
-    if locale:
-        for e in list:
-            if  locale != "en":
-                entry = Template(e)
-                ret.append(entry.safe_substitute(LOCALE=locale))
-            elif 'LOCALE' not in e:
-                ret.append(e)
-    else:
-        ret = list
-    return ret
 
 def run_operations(pkgman, entry):
     """ Call package manager with given parameters.
@@ -131,17 +121,30 @@ def run_operations(pkgman, entry):
     :param entry:
     """
     for key in entry.keys():
-        entry[key] = subst_locale(entry[key])
         if key == "install":
-            pkgman.install(entry[key])
+            if isinstance(package, str):
+                pkgman.install(entry[key])
+            else:
+                for package in entry[key]:
+                    pkgman.run(package["pre-script"])
+                    pkgman.install([package["package"]])
+                    pkgman.run(package["post-script"])
         elif key == "try_install":
             # we make a separate package manager call for each package so a single
             # failing package won't stop all of them
             for package in entry[key]:
-                try:
-                    pkgman.install([package])
-                except subprocess.CalledProcessError:
-                    libcalamares.utils.debug("WARNING: could not install package {}".format(package))
+                if isinstance(package, str):
+                    try:
+                        pkgman.install([package])
+                    except subprocess.CalledProcessError:
+                        libcalamares.utils.debug("WARNING: could not install package {}".format(package))
+                else:
+                    try:
+                        pkgman.run(package["pre-script"])
+                        pkgman.install([package["package"]])
+                        pkgman.run(package["post-script"])
+                    except subprocess.CalledProcessError:
+                        libcalamares.utils.debug("WARNING: could not install packages {}", package["package"])
         elif key == "remove":
             pkgman.remove(entry[key])
         elif key == "try_remove":
