@@ -18,7 +18,8 @@
 
 #include "NetInstallPage.h"
 
-#include "widgets/groupselectionwidget.h"
+#include "PackageModel.h"
+
 #include "ui_page_netinst.h"
 #include "GlobalStorage.h"
 #include "JobQueue.h"
@@ -33,6 +34,7 @@
 #include <QNetworkRequest>
 #include <QNetworkReply>
 
+#include <QHeaderView>
 #include <QtDebug>
 #include <QtGlobal>
 #include <QWidget>
@@ -62,34 +64,9 @@ void NetInstallPage::readGroups( const QByteArray& yamlData )
 {
     YAML::Node groups = YAML::Load( yamlData.constData() );
     Q_ASSERT( groups.IsSequence() );
-
-    for ( YAML::const_iterator it = groups.begin(); it != groups.end(); ++it )
-    {
-        const YAML::Node groupDefinition = *it;
-
-        QString name( tr( yamlToVariant(groupDefinition["name"]).toByteArray() ) );
-        QString description( tr( yamlToVariant(groupDefinition["description"]).toByteArray() ) );
-        QStringList packages;
-
-        for ( YAML::const_iterator it = groupDefinition["packages"].begin();
-                it != groupDefinition["packages"].end(); ++it )
-            packages.append( yamlToVariant(*it).toString() );
-
-        m_groups[name].name = name;
-        m_groups[name].description = description;
-        m_groups[name].packages = packages;
-
-        if ( groupDefinition["selected"] )
-            m_groups[name].selected = yamlToVariant( groupDefinition["selected"] ).toBool();
-
-        if ( groupDefinition["hidden"] )
-            m_groups[name].hidden = yamlToVariant( groupDefinition["hidden"] ).toBool();
-
-        if ( groupDefinition["critical"] )
-            m_groups[name].critical = yamlToVariant( groupDefinition["critical"] ).toBool();
-
-        m_groupOrder.append( name );
-    }
+    QVariantList columnHeadings;
+    columnHeadings << tr( "Name" ) << tr( "Description" );
+    m_groups = new PackageModel( groups, columnHeadings );
 }
 
 void
@@ -104,48 +81,17 @@ NetInstallPage::dataIsHere( QNetworkReply* reply )
 
     readGroups( reply->readAll() );
 
-    QSignalMapper* mapper = new QSignalMapper( this );
-    foreach ( const QString& groupKey, m_groupOrder )
-    {
-        Group group = m_groups[groupKey];
-        if ( group.hidden )
-        {
-            // Do not present on view.
-            continue;
-        }
-
-        GroupSelectionWidget* groupWidget = new GroupSelectionWidget( group.name, group.description, group.packages, group.selected, this );
-        m_groupWidgets.insert( groupKey, groupWidget );
-        ui->groupswidget->layout()->addWidget( groupWidget );
-
-        mapper->setMapping( groupWidget, groupKey );
-        connect( groupWidget, &GroupSelectionWidget::toggled, mapper,
-                 static_cast<void(QSignalMapper::*)()>(&QSignalMapper::map) );
-    }
+    ui->groupswidget->setModel( m_groups );
+    ui->groupswidget->header()->setSectionResizeMode( 0, QHeaderView::ResizeToContents );
+    ui->groupswidget->header()->setSectionResizeMode( 1, QHeaderView::Stretch );
 
     reply->deleteLater();
     emit checkReady( isReady() );
 }
 
-QList<Group> NetInstallPage::selectedGroups() const
+QList<QVariant> NetInstallPage::selectedPackages( bool isCritical ) const
 {
-    QList<Group> selectedGroups;
-
-    // Add all the groups that are toggled in the view.
-    for ( auto it = m_groupWidgets.constBegin(); it != m_groupWidgets.constEnd(); it++ )
-    {
-        if ( it.value()->isToggled() )
-            selectedGroups += m_groups[it.key()];
-    }
-
-    // Add all groups that are hidden but selected.
-    for ( const Group& group : m_groups.values() )
-    {
-        if ( group.hidden && group.selected )
-            selectedGroups += group;
-    }
-
-    return selectedGroups;
+    return m_groups->getPackages( isCritical );
 }
 
 void NetInstallPage::loadGroupList()

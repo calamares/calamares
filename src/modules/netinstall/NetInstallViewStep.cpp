@@ -125,32 +125,17 @@ NetInstallViewStep::onLeave()
     cDebug() << "Leaving netinstall, adding packages to be installed"
              << "to global storage";
 
-    const QList<Group>& selectedGroups = m_widget->selectedGroups();
+    QMap<QString, QVariant> packagesWithOperation;
+    QList<QVariant> installPackages = m_widget->selectedPackages(true);
+    QList<QVariant> tryInstallPackages = m_widget->selectedPackages(false);
 
-    if ( !selectedGroups.empty() )
+    if ( !installPackages.empty() )
+        packagesWithOperation.insert( "install", installPackages );
+    if ( !tryInstallPackages.empty() )
+        packagesWithOperation.insert( "try-install", tryInstallPackages );
+
+    if ( !packagesWithOperation.isEmpty() )
     {
-        QMap<QString, QVariant> packagesWithOperation;
-        QStringList packages, critical_packages;
-
-        // We have two types of groups: "critical" (failing to install any of
-        // the packages makes Calamares fail) and "non critical" (we only log
-        // an error if the installation fails). We distinguish them here and select
-        // the correct package operation.
-        for (const Group& group : selectedGroups) {
-            if (group.critical) {
-                critical_packages += group.packages;
-            } else {
-                packages += group.packages;
-            }
-        }
-
-        if (!critical_packages.empty()) {
-            packagesWithOperation.insert( "install", critical_packages );
-        }
-        if (!packages.empty()) {
-            packagesWithOperation.insert( "try_install", packages);
-        }
-
         Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
         gs->insert( "packageOperations", QVariant( packagesWithOperation ) );
     }

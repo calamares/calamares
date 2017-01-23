@@ -6,10 +6,10 @@ calamares_add_plugin( netinstall
     SOURCES
         NetInstallViewStep.cpp
         NetInstallPage.cpp
-        widgets/groupselectionwidget.cpp
+        PackageTreeItem.cpp
+        PackageModel.cpp
     UI
         page_netinst.ui
-        widgets/groupselectionwidget.ui
     RESOURCES
         netinstall.qrc
     LINK_PRIVATE_LIBRARIES
