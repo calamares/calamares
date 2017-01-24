@@ -76,7 +76,7 @@ SetPasswordJob::exec()
     QString encrypted = QString::fromLatin1(
                             crypt( m_newPassword.toUtf8(),
                                    QString( "$6$%1$" )
-                                .arg( m_userName ).toLatin1() ) );
+                                .arg( m_userName ).toUtf8() ) );
 
     int ec = CalamaresUtils::System::instance()->
                           targetEnvCall( { "usermod",
