@@ -2108,12 +2108,12 @@ The installer will quit and all changes will be lost.</source>
         <translation>passwd がエラーコード %1 のため終了しました。</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/SetPasswordJob.cpp" line="88"/>
+        <location filename="../src/modules/users/SetPasswordJob.cpp" line="87"/>
         <source>Cannot set password for user %1.</source>
         <translation>ユーザ %1 のパスワードは設定できませんでした。</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/SetPasswordJob.cpp" line="90"/>
+        <location filename="../src/modules/users/SetPasswordJob.cpp" line="89"/>
         <source>usermod terminated with error code %1.</source>
         <translation>エラーコード %1 によりusermodが停止しました。</translation>
     </message>

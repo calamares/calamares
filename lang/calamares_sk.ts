@@ -2107,12 +2107,12 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
         <translation>Príkaz passwd ukončený s chybovým kódom %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/SetPasswordJob.cpp" line="88"/>
+        <location filename="../src/modules/users/SetPasswordJob.cpp" line="87"/>
         <source>Cannot set password for user %1.</source>
         <translation>Nedá sa nastaviť heslo pre používateľa %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/SetPasswordJob.cpp" line="90"/>
+        <location filename="../src/modules/users/SetPasswordJob.cpp" line="89"/>
         <source>usermod terminated with error code %1.</source>
         <translation>Príkaz usermod ukončený s chybovým kódom %1.</translation>
     </message>

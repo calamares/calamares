@@ -2107,12 +2107,12 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
         <translation>passwd je prekinut s greškom %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/SetPasswordJob.cpp" line="88"/>
+        <location filename="../src/modules/users/SetPasswordJob.cpp" line="87"/>
         <source>Cannot set password for user %1.</source>
         <translation>Ne mogu postaviti lozinku za korisnika %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/SetPasswordJob.cpp" line="90"/>
+        <location filename="../src/modules/users/SetPasswordJob.cpp" line="89"/>
         <source>usermod terminated with error code %1.</source>
         <translation>usermod je prekinut s greškom %1.</translation>
     </message>
