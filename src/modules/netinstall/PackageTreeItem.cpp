@@ -18,18 +18,20 @@
 
 #include "PackageTreeItem.h"
 
-#include "utils/Logger.h" // TODO:Remove
-
 PackageTreeItem::PackageTreeItem( const ItemData& data, PackageTreeItem* parent ) :
     m_data( data ),
     m_parentItem( parent )
 { }
 
 PackageTreeItem::PackageTreeItem( const QString packageName, PackageTreeItem* parent ) :
-    m_packageName( packageName ),
-    m_parentItem( parent ),
-    m_selected( parent->isSelected() )
-{   }
+    m_parentItem( parent )
+{
+    m_data.packageName = packageName;
+    if ( parent != nullptr )
+        m_data.selected = parent->isSelected();
+    else
+        m_data.selected = Qt::Unchecked;
+}
 
 PackageTreeItem::PackageTreeItem( PackageTreeItem* parent ) :
     m_parentItem( parent )
@@ -75,9 +77,9 @@ PackageTreeItem::columnCount() const
 QVariant
 PackageTreeItem::data( int column ) const
 {
-    if ( m_packageName != nullptr ) // package
+    if ( packageName() != nullptr ) // package
     {
-        if ( column == 1 )
+        if ( !column )
             return QVariant( packageName() );
         return QVariant();
     }
@@ -119,7 +121,7 @@ PackageTreeItem::preScript() const
 QString
 PackageTreeItem::packageName() const
 {
-    return m_packageName;
+    return m_data.packageName;
 }
 
 QString
@@ -131,37 +133,37 @@ PackageTreeItem::postScript() const
 bool
 PackageTreeItem::isHidden() const
 {
-    return m_hidden;
+    return m_data.isHidden;
 }
 
 void
 PackageTreeItem::setHidden( bool isHidden )
 {
-    m_hidden = isHidden;
+    m_data.isHidden = isHidden;
 }
 
 bool
 PackageTreeItem::isCritical() const
 {
-    return m_critical;
+    return m_data.isCritical;
 }
 
 void
 PackageTreeItem::setCritical( bool isCritical )
 {
-    m_critical = isCritical;
+    m_data.isCritical = isCritical;
 }
 
 Qt::CheckState
 PackageTreeItem::isSelected() const
 {
-    return m_selected;
+    return m_data.selected;
 }
 
 void
 PackageTreeItem::setSelected( Qt::CheckState isSelected )
 {
-    m_selected = isSelected;
+    m_data.selected = isSelected;
     setChildrenSelected( isSelected );
     PackageTreeItem* currentItem = parentItem();
     while ( currentItem != nullptr )
@@ -176,11 +178,11 @@ PackageTreeItem::setSelected( Qt::CheckState isSelected )
                 isChildPartiallySelected = true;
         }
         if ( !childrenSelected  && !isChildPartiallySelected )
-            currentItem->m_selected = Qt::Unchecked;
+            currentItem->m_data.selected = Qt::Unchecked;
         else if ( childrenSelected == currentItem->childCount() )
-            currentItem->m_selected = Qt::Checked;
+            currentItem->m_data.selected = Qt::Checked;
         else
-            currentItem->m_selected = Qt::PartiallyChecked;
+            currentItem->m_data.selected = Qt::PartiallyChecked;
         currentItem = currentItem->parentItem();
     }
 }
@@ -191,7 +193,7 @@ PackageTreeItem::setChildrenSelected( Qt::CheckState isSelected )
     if ( isSelected != Qt::PartiallyChecked )
         for ( auto child : m_childItems )
         {
-            child->m_selected = isSelected;
+            child->m_data.selected = isSelected;
             child->setChildrenSelected( isSelected );
         }
 }

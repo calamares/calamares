@@ -27,13 +27,16 @@ The URL must point to a YAML file. Here is a short example of how the YAML file 
 
 The file is composed of a list of entry, each describing one group. The keys *name*, *description* and *packages* are required.
 
-Three more keys are supported:
+More keys are supported:
 
       - hidden: if true, do not show the group on the page. Defaults to false.
       - selected: if true, display the group as selected. Defaults to false.
       - critical: if true, make the installation process fail if installing
         any of the packages in the group fails. Otherwise, just log a warning.
         Defaults to false.
+      - subgroups: if present this follows the same structure as the top level
+        of the YAML file, allowing there to be sub-groups of packages to an
+        arbitary depth
 
 If you set both *hidden* and *selected* for a group, you are basically creating a "default" group of packages
 which will always be installed in the user's system.
