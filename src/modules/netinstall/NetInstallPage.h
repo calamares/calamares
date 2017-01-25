@@ -1,6 +1,7 @@
 /*
  *   Copyright 2016, Luca Giambonini <almack@chakraos.org>
  *   Copyright 2016, Lisa Vitolo     <shainer@chakraos.org>
+ *   Copyright 2017, Kyle Robbertze  <krobbertze@gmail.com>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -20,7 +21,9 @@
 #define NETINSTALLPAGE_H
 
 #include "PackageModel.h"
+#include "PackageTreeItem.h"
 #include "Typedefs.h"
+
 #include <QWidget>
 #include <QAbstractButton>
 #include <QNetworkAccessManager>
@@ -28,8 +31,6 @@
 // required forward declarations
 class QByteArray;
 class QNetworkReply;
-class GroupSelectionWidget;
-class PackageModel;
 
 namespace Ui
 {
@@ -54,7 +55,7 @@ public:
     // Returns the list of packages belonging to groups that are
     // selected in the view in this given moment. No data is cached here, so
     // this function does not have constant time.
-    QList<QVariant> selectedPackages( bool isCritical ) const;
+    QList<PackageTreeItem::ItemData> selectedPackages() const;
 
 public slots:
     void dataIsHere( QNetworkReply* );
@@ -74,9 +75,6 @@ private:
     QNetworkAccessManager m_networkManager;
 
     PackageModel* m_groups;
-    // For each group name, store the selection widget to retrieve UI
-    // properties.
-    QHash<QString, GroupSelectionWidget*> m_groupWidgets;
 };
 
 #endif // NETINSTALLPAGE_H

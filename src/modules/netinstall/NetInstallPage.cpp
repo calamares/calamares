@@ -1,6 +1,7 @@
 /*
  *   Copyright 2016, Luca Giambonini <almack@chakraos.org>
  *   Copyright 2016, Lisa Vitolo     <shainer@chakraos.org>
+ *   Copyright 2017, Kyle Robbertze  <krobbertze@gmail.com>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -24,6 +25,7 @@
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 #include "utils/Logger.h"
+#include "utils/Retranslator.h"
 #include "utils/YamlUtils.h"
 
 #include <QFile>
@@ -64,9 +66,10 @@ void NetInstallPage::readGroups( const QByteArray& yamlData )
 {
     YAML::Node groups = YAML::Load( yamlData.constData() );
     Q_ASSERT( groups.IsSequence() );
-    QVariantList columnHeadings;
-    columnHeadings << tr( "Name" ) << tr( "Description" );
-    m_groups = new PackageModel( groups, columnHeadings );
+    m_groups = new PackageModel( groups );
+    CALAMARES_RETRANSLATE(
+        m_groups->setHeaderData( 0, Qt::Horizontal, tr( "Name" ) );
+        m_groups->setHeaderData( 0, Qt::Horizontal, tr( "Description" ) ); )
 }
 
 void
@@ -89,9 +92,9 @@ NetInstallPage::dataIsHere( QNetworkReply* reply )
     emit checkReady( isReady() );
 }
 
-QList<QVariant> NetInstallPage::selectedPackages( bool isCritical ) const
+QList<PackageTreeItem::ItemData> NetInstallPage::selectedPackages() const
 {
-    return m_groups->getPackages( isCritical );
+    return m_groups->getPackages();
 }
 
 void NetInstallPage::loadGroupList()

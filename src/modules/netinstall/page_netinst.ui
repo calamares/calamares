@@ -34,6 +34,11 @@
         <height>434</height>
        </rect>
       </property>
+      <property name="font">
+        <font>
+          <pointsize>11</pointsize>
+        </font>
+      </property>
       <layout class="QVBoxLayout" name="verticalLayout_3"/>
      </widget>
     </widget>

@@ -18,18 +18,13 @@
 
 #include "PackageModel.h"
 
-#include "utils/Logger.h"
 #include "utils/YamlUtils.h"
 
-#include <Qt>
-
-PackageModel::PackageModel( const YAML::Node& data, const QVariantList& columnHeadings,
-                            QObject* parent ) :
+PackageModel::PackageModel( const YAML::Node& data, QObject* parent ) :
     QAbstractItemModel( parent ),
-    m_columnHeadings( columnHeadings )
+    m_columnHeadings()
 {
-    QVariantList rootData;
-    m_rootItem = new PackageTreeItem( );
+    m_rootItem = new PackageTreeItem();
     setupModelData( data, m_rootItem );
 }
 
@@ -100,37 +95,17 @@ PackageModel::data( const QModelIndex& index, int role ) const
 {
     if ( !index.isValid() )
         return QVariant();
+
     PackageTreeItem* item = static_cast<PackageTreeItem*>( index.internalPointer() );
     if ( index.column() == 0 && role == Qt::CheckStateRole )
         return item->isSelected();
 
-    if ( !item->childCount() ) // package
-    {
-        if ( !item->parentItem()->isHidden() && role == Qt::DisplayRole &&
-                index.column() == 0 )
-            return QVariant( item->packageName() );
-        else if ( role == PackageTreeItem::PackageNameRole )
-            return QVariant( item->packageName() );
-        else
-            return QVariant();
-    }
-
     if ( item->isHidden() && role == Qt::DisplayRole ) // Hidden group
         return QVariant();
 
-    switch ( role )
-    {
-    case Qt::DisplayRole:
+    if ( role == Qt::DisplayRole )
         return item->data( index.column() );
-    case PackageTreeItem::PreScriptRole:
-        return QVariant( item->preScript() );
-    case PackageTreeItem::PackageNameRole:
-        return QVariant( item->packageName() );
-    case PackageTreeItem::PostScriptRole:
-        return QVariant( item->postScript() );
-    default:
-        return QVariant();
-    }
+    return QVariant();
 }
 
 bool
@@ -143,6 +118,21 @@ PackageModel::setData( const QModelIndex& index, const QVariant& value, int role
 
         emit dataChanged( this->index( 0, 0 ), index.sibling( index.column(), index.row() + 1 ),
                           QVector<int>( Qt::CheckStateRole ) );
+    }
+    return true;
+}
+
+bool
+PackageModel::setHeaderData( int section, Qt::Orientation orientation,
+                             const QVariant& value, int role )
+{
+    if ( orientation == Qt::Horizontal )
+    {
+        if ( m_columnHeadings.value( section ) != QVariant() )
+            m_columnHeadings.replace( section, value );
+        else
+            m_columnHeadings.insert( section, value );
+        emit headerDataChanged( orientation, section, section );
     }
     return true;
 }
@@ -165,38 +155,38 @@ PackageModel::headerData( int section, Qt::Orientation orientation, int role ) c
     return QVariant();
 }
 
-QList<QVariant>
-PackageModel::getPackages( bool isCritical ) const
+QList<PackageTreeItem::ItemData>
+PackageModel::getPackages() const
 {
-    QList<PackageTreeItem*> items = getItemPackages( m_rootItem, isCritical );
+    QList<PackageTreeItem*> items = getItemPackages( m_rootItem );
     for ( auto package : m_hiddenItems )
-        items.append( getItemPackages( package, isCritical ) );
-    QList<QVariant> packages;
+        items.append( getItemPackages( package ) );
+    QList<PackageTreeItem::ItemData> packages;
     for ( auto item : items )
     {
-        QMap<QString, QVariant> itemMap;
-        itemMap.insert( "pre-script", item->parentItem()->preScript() ); // Only groups have hooks
-        itemMap.insert( "package", item->packageName() );
-        itemMap.insert( "post-script", item->parentItem()->postScript() );
-        packages.append( QVariant( itemMap ) );
+        PackageTreeItem::ItemData itemData;
+        itemData.preScript = item->parentItem()->preScript(); // Only groups have hooks
+        itemData.packageName = item->packageName(); // this seg faults
+        itemData.postScript = item->parentItem()->postScript(); // Only groups have hooks
+        itemData.isCritical = item->parentItem()->isCritical(); // Only groups are critical
+        packages.append( itemData );
     }
     return packages;
 }
 
 QList<PackageTreeItem*>
-PackageModel::getItemPackages( PackageTreeItem* item, bool isCritical ) const
+PackageModel::getItemPackages( PackageTreeItem* item ) const
 {
     QList<PackageTreeItem*> selectedPackages;
     for ( int i = 0; i < item->childCount(); i++ )
     {
-        if ( item->child( i )->isSelected() == Qt::Unchecked  ||
-                item->child( i )->isCritical() != isCritical )
+        if ( item->child( i )->isSelected() == Qt::Unchecked )
             continue;
 
         if ( !item->child( i )->childCount() ) // package
             selectedPackages.append( item->child( i ) );
         else
-            selectedPackages.append( getItemPackages( item->child( i ), isCritical ) );
+            selectedPackages.append( getItemPackages( item->child( i ) ) );
     }
     return selectedPackages;
 

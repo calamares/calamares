@@ -19,8 +19,6 @@
 #ifndef PACKAGETREEITEM_H
 #define PACKAGETREEITEM_H
 
-#include "NetInstallPage.h"
-
 #include <QList>
 #include <QVariant>
 #include <QStandardItem>
@@ -33,7 +31,11 @@ public:
         QString name;
         QString description;
         QString preScript;
+        QString packageName;
         QString postScript;
+        bool isCritical = false;
+        bool isHidden = false;
+        Qt::CheckState selected = Qt::Unchecked;
     };
     explicit PackageTreeItem( const ItemData& data, PackageTreeItem* parent = 0 );
     explicit PackageTreeItem( const QString packageName, PackageTreeItem* parent = 0 );
@@ -44,7 +46,7 @@ public:
     PackageTreeItem* child( int row );
     int childCount() const;
     int columnCount() const;
-    QVariant data( int column ) const Q_DECL_OVERRIDE;
+    QVariant data( int column ) const override;
     int row() const;
     PackageTreeItem* parentItem();
     QString prettyName() const;
@@ -59,22 +61,12 @@ public:
     Qt::CheckState isSelected() const;
     void setSelected( Qt::CheckState isSelected );
     void setChildrenSelected( Qt::CheckState isSelected );
-    int type() const Q_DECL_OVERRIDE;
-
-    static const int PreScriptRole = Qt::UserRole;
-    static const int PackageNameRole = Qt::UserRole + 1;
-    static const int PostScriptRole = Qt::UserRole + 2;
+    int type() const override;
 private:
+    PackageTreeItem* m_parentItem;
     QList<PackageTreeItem*> m_childItems;
     ItemData m_data;
-    QString m_packageName;
-
-    // See README.md for a description of these two fields.
-    Qt::CheckState m_selected = Qt::Unchecked;
-    bool m_hidden = false;
-    bool m_critical = false;
     const int m_columns = 2; // Name, description
-    PackageTreeItem* m_parentItem;
 };
 
 #endif // PACKAGETREEITEM_H
