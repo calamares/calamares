@@ -103,13 +103,19 @@ class PackageManager:
         elif self.backend == "zypp":
             check_target_env_call(["zypper", "--non-interactive", "update"])
         elif self.backend == "urpmi":
-            check_target_env_call(["urpmi.update", "-a"]) elif self.backend == "apt": check_target_env_call(["apt-get", "update"])
+            check_target_env_call(["urpmi.update", "-a"])
+        elif self.backend == "apt":
+            check_target_env_call(["apt-get", "update"])
         elif self.backend == "pacman":
             check_target_env_call(["pacman", "-Sy"])
         elif self.backend == "portage":
             check_target_env_call(["emerge", "--sync"])
         elif self.backend == "entropy":
             check_target_env_call(["equo", "update"])
+
+    def run(self, script):
+        if script != "":
+            check_target_env_call(scrtip.split(" "))
 
 
 def subst_locale(list):
@@ -157,7 +163,7 @@ def run_operations(pkgman, entry):
                         pkgman.install([package["package"]])
                         pkgman.run(package["post-script"])
                     except subprocess.CalledProcessError:
-                        libcalamares.utils.debug("WARNING: could not install packages {}", package["package"])
+                        libcalamares.utils.debug("WARNING: could not install packages {}".format(package["package"]))
         elif key == "remove":
             pkgman.remove(entry[key])
         elif key == "try_remove":
