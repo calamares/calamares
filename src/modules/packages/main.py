@@ -4,7 +4,11 @@
 # === This file is part of Calamares - <http://github.com/calamares> ===
 #
 #   Copyright 2014, Pier Luigi Fiorini <pierluigi.fiorini@gmail.com>
+<<<<<<< HEAD
 #   Copyright 2015-2017, Teo Mrnjavac <teo@kde.org>
+=======
+#   Copyright 2016, Kyle Robbertze <kyle@aims.ac.za>
+>>>>>>> corrected packages module features so that they are up to date
 #
 #   Calamares is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -22,7 +26,7 @@
 import subprocess
 import libcalamares
 from libcalamares.utils import check_target_env_call, target_env_call
-
+from string import Template
 
 class PackageManager:
     """ Package manager class.
@@ -99,9 +103,7 @@ class PackageManager:
         elif self.backend == "zypp":
             check_target_env_call(["zypper", "--non-interactive", "update"])
         elif self.backend == "urpmi":
-            check_target_env_call(["urpmi.update", "-a"])
-        elif self.backend == "apt":
-            check_target_env_call(["apt-get", "update"])
+            check_target_env_call(["urpmi.update", "-a"]) elif self.backend == "apt": check_target_env_call(["apt-get", "update"])
         elif self.backend == "pacman":
             check_target_env_call(["pacman", "-Sy"])
         elif self.backend == "portage":
@@ -109,10 +111,20 @@ class PackageManager:
         elif self.backend == "entropy":
             check_target_env_call(["equo", "update"])
 
-    def run(self, script):
-        if script != "":
-            check_target_env_call(script.split(" "))
 
+def subst_locale(list):
+    ret = []
+    locale = libcalamares.globalstorage.value("locale")
+    if locale:
+        for e in list:
+            if  locale != "en":
+                entry = Template(e)
+                ret.append(entry.safe_substitute(LOCALE=locale))
+            elif 'LOCALE' not in e:
+                ret.append(e)
+    else:
+        ret = list
+    return ret
 
 def run_operations(pkgman, entry):
     """ Call package manager with given parameters.
@@ -121,6 +133,7 @@ def run_operations(pkgman, entry):
     :param entry:
     """
     for key in entry.keys():
+        entry[key] = subst_locale(entry[key])
         if key == "install":
             if isinstance(package, str):
                 pkgman.install(entry[key])

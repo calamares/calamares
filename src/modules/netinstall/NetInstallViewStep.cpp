@@ -147,7 +147,7 @@ NetInstallViewStep::onLeave()
     if ( !installPackages.empty() )
         packagesWithOperation.insert( "install", QVariant( installPackages ) );
     if ( !tryInstallPackages.empty() )
-        packagesWithOperation.insert( "try-install", QVariant( tryInstallPackages ) );
+        packagesWithOperation.insert( "try_install", QVariant( tryInstallPackages ) );
 
     if ( !packagesWithOperation.isEmpty() )
     {
