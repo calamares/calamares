@@ -97,7 +97,7 @@ class PackageManager:
         if self.backend == "packagekit":
             check_target_env_call(["pkcon", "refresh"])
         elif self.backend == "zypp":
-            check_target_env_call(["zypper", "update"])
+            check_target_env_call(["zypper", "--non-interactive", "update"])
         elif self.backend == "urpmi":
             check_target_env_call(["urpmi.update", "-a"])
         elif self.backend == "apt":
