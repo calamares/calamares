@@ -4,6 +4,7 @@
 # === This file is part of Calamares - <http://github.com/calamares> ===
 #
 #   Copyright 2014, Pier Luigi Fiorini <pierluigi.fiorini@gmail.com>
+#   Copyright 2015-2017, Teo Mrnjavac <teo@kde.org>
 #
 #   Calamares is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -134,17 +135,21 @@ def run_operations(pkgman, entry):
         if key == "install":
             pkgman.install(entry[key])
         elif key == "try_install":
-            try:
-                pkgman.install(entry[key])
-            except subprocess.CalledProcessError:
-                libcalamares.utils.debug("WARNING: could not install packages {}".format(", ".join(entry[key])))
+            # we make a separate package manager call for each package so a single
+            # failing package won't stop all of them
+            for package in entry[key]:
+                try:
+                    pkgman.install([package])
+                except subprocess.CalledProcessError:
+                    libcalamares.utils.debug("WARNING: could not install package {}".format(package))
         elif key == "remove":
             pkgman.remove(entry[key])
         elif key == "try_remove":
-            try:
-                pkgman.remove(entry[key])
-            except subprocess.CalledProcessError:
-                libcalamares.utils.debug("WARNING: could not remove packages {}".format(", ".join(entry[key])))
+            for package in entry[key]:
+                try:
+                    pkgman.remove([package])
+                except subprocess.CalledProcessError:
+                    libcalamares.utils.debug("WARNING: could not remove package {}".format(package))
         elif key == "localInstall":
             pkgman.install(entry[key], from_local=True)
 
