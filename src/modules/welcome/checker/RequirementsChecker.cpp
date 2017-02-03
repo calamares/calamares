@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014-2016, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2017, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -33,10 +33,13 @@
 #include <QDBusConnection>
 #include <QDBusInterface>
 #include <QDir>
+#include <QEventLoop>
 #include <QFile>
 #include <QFileInfo>
 #include <QLabel>
 #include <QNetworkAccessManager>
+#include <QNetworkRequest>
+#include <QNetworkReply>
 #include <QProcess>
 #include <QTimer>
 
@@ -222,6 +225,27 @@ RequirementsChecker::setConfigurationMap( const QVariantMap& configurationMap )
         incompleteConfiguration = true;
     }
 
+    if ( configurationMap.contains( "internetCheckUrl" ) &&
+         configurationMap.value( "internetCheckUrl" ).type() == QVariant::String )
+    {
+        m_checkHasInternetUrl = configurationMap.value( "internetCheckUrl" ).toString().trimmed();
+        if ( m_checkHasInternetUrl.isEmpty() ||
+             !QUrl( m_checkHasInternetUrl ).isValid() )
+        {
+            cDebug() << "Invalid internetCheckUrl in welcome.conf" << m_checkHasInternetUrl
+                     << "reverting to default (http://example.com).";
+            m_checkHasInternetUrl = "http://example.com";
+            incompleteConfiguration = true;
+        }
+    }
+    else
+    {
+        cDebug() << "internetCheckUrl is undefined in welcome.conf, "
+                    "reverting to default (http://example.com).";
+        m_checkHasInternetUrl = "http://example.com";
+        incompleteConfiguration = true;
+    }
+
     if ( configurationMap.contains( "check" ) &&
          configurationMap.value( "check" ).type() == QVariant::List )
     {
@@ -338,7 +362,21 @@ bool
 RequirementsChecker::checkHasInternet()
 {
     // default to true in the QNetworkAccessManager::UnknownAccessibility case
-    bool hasInternet = QNetworkAccessManager(this).networkAccessible() != QNetworkAccessManager::NotAccessible;
+    QNetworkAccessManager qnam( this );
+    bool hasInternet = qnam.networkAccessible() == QNetworkAccessManager::Accessible;
+
+    if ( !hasInternet && qnam.networkAccessible() == QNetworkAccessManager::UnknownAccessibility )
+    {
+        QNetworkRequest req = QNetworkRequest( QUrl( m_checkHasInternetUrl ) );
+        QNetworkReply* reply = qnam.get( req );
+        QEventLoop loop;
+        connect( reply, &QNetworkReply::finished,
+                 &loop, &QEventLoop::quit );
+        loop.exec();
+        if( reply->bytesAvailable() )
+            hasInternet = true;
+    }
+
     Calamares::JobQueue::instance()->globalStorage()->insert( "hasInternet", hasInternet );
     return hasInternet;
 }
