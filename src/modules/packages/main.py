@@ -4,11 +4,8 @@
 # === This file is part of Calamares - <http://github.com/calamares> ===
 #
 #   Copyright 2014, Pier Luigi Fiorini <pierluigi.fiorini@gmail.com>
-<<<<<<< HEAD
 #   Copyright 2015-2017, Teo Mrnjavac <teo@kde.org>
-=======
-#   Copyright 2016, Kyle Robbertze <kyle@aims.ac.za>
->>>>>>> corrected packages module features so that they are up to date
+#   Copyright 2016-2017, Kyle Robbertze <kyle@aims.ac.za>
 #
 #   Calamares is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
