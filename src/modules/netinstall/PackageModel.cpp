@@ -231,10 +231,11 @@ PackageModel::setupModelData( const YAML::Node& data, PackageTreeItem* parent )
             item->setCritical(
                 CalamaresUtils::yamlToVariant( itemDefinition["critical"] ).toBool() );
 
-        for ( YAML::const_iterator packageIt = itemDefinition["packages"].begin();
-                packageIt != itemDefinition["packages"].end(); ++packageIt )
-            item->appendChild(
-                new PackageTreeItem( CalamaresUtils::yamlToVariant( *packageIt ).toString(), item ) );
+        if ( itemDefinition["packages"] )
+            for ( YAML::const_iterator packageIt = itemDefinition["packages"].begin();
+                    packageIt != itemDefinition["packages"].end(); ++packageIt )
+                item->appendChild(
+                    new PackageTreeItem( CalamaresUtils::yamlToVariant( *packageIt ).toString(), item ) );
 
         if ( itemDefinition["subgroups"] )
             setupModelData( itemDefinition["subgroups"], item );
