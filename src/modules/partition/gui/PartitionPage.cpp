@@ -96,7 +96,7 @@ PartitionPage::PartitionPage( PartitionCoreModule* core, QWidget* parent )
 
     connect( m_core, &PartitionCoreModule::isDirtyChanged, m_ui->revertButton, &QWidget::setEnabled );
 
-    connect( m_ui->partitionTreeView, &QAbstractItemView::activated, this, &PartitionPage::onPartitionViewActivated );
+    connect( m_ui->partitionTreeView, &QAbstractItemView::doubleClicked, this, &PartitionPage::onPartitionViewActivated );
     connect( m_ui->revertButton, &QAbstractButton::clicked, this, &PartitionPage::onRevertClicked );
     connect( m_ui->newPartitionTableButton, &QAbstractButton::clicked, this, &PartitionPage::onNewPartitionTableClicked );
     connect( m_ui->createButton, &QAbstractButton::clicked, this, &PartitionPage::onCreateClicked );
