@@ -100,13 +100,13 @@ swapSuggestion( const qint64 availableSpaceB )
 void
 doAutopartition( PartitionCoreModule* core, Device* dev, const QString& luksPassphrase )
 {
+    Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
+
     bool isEfi = false;
     if ( QDir( "/sys/firmware/efi/efivars" ).exists() )
         isEfi = true;
 
-    QString defaultFsType = Calamares::JobQueue::instance()->
-                                globalStorage()->
-                                value( "defaultFileSystemType" ).toString();
+    QString defaultFsType = gs->value( "defaultFileSystemType" ).toString();
     if ( FileSystem::typeForName( defaultFsType ) == FileSystem::Unknown )
         defaultFsType = "ext4";
 
@@ -144,9 +144,7 @@ doAutopartition( PartitionCoreModule* core, Device* dev, const QString& luksPass
             PartitionTable::FlagEsp
         );
         PartitionInfo::setFormat( efiPartition, true );
-        PartitionInfo::setMountPoint( efiPartition, Calamares::JobQueue::instance()
-                                                        ->globalStorage()
-                                                        ->value( "efiSystemPartition" )
+        PartitionInfo::setMountPoint( efiPartition, gs->value( "efiSystemPartition" )
                                                         .toString() );
         core->createPartition( dev, efiPartition, PartitionTable::FlagEsp | PartitionTable::FlagBoot );
         firstFreeSector = lastSector + 1;
@@ -156,17 +154,21 @@ doAutopartition( PartitionCoreModule* core, Device* dev, const QString& luksPass
         core->createPartitionTable( dev, PartitionTable::msdos );
     }
 
+    const bool mayCreateSwap = !gs->value( "neverCreateSwap" ).toBool();
     bool shouldCreateSwap = false;
-    qint64 availableSpaceB = ( dev->totalLogical() - firstFreeSector ) * dev->logicalSize();
-    qint64 suggestedSwapSizeB = swapSuggestion( availableSpaceB );
-    qint64 requiredSpaceB =
-            ( Calamares::JobQueue::instance()->
-              globalStorage()->
-              value( "requiredStorageGB" ).toDouble() + 0.1 + 2.0 ) GiB +
-            suggestedSwapSizeB;
+    qint64 suggestedSwapSizeB = 0;
 
-    // If there is enough room for ESP + root + swap, create swap, otherwise don't.
-    shouldCreateSwap = availableSpaceB > requiredSpaceB;
+    if ( mayCreateSwap )
+    {
+        qint64 availableSpaceB = ( dev->totalLogical() - firstFreeSector ) * dev->logicalSize();
+        suggestedSwapSizeB = swapSuggestion( availableSpaceB );
+        qint64 requiredSpaceB =
+                ( gs->value( "requiredStorageGB" ).toDouble() + 0.1 + 2.0 ) GiB +
+                suggestedSwapSizeB;
+
+        // If there is enough room for ESP + root + swap, create swap, otherwise don't.
+        shouldCreateSwap = availableSpaceB > requiredSpaceB;
+    }
 
     qint64 lastSectorForRoot = dev->totalLogical() - 1; //last sector of the device
     if ( shouldCreateSwap )

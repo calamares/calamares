@@ -1,7 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
- *   Copyright 2014-2016, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2017, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -501,6 +501,16 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     else
     {
         gs->insert( "ensureSuspendToDisk", true );
+    }
+
+    if ( configurationMap.contains( "neverCreateSwap" ) &&
+         configurationMap.value( "neverCreateSwap" ).type() == QVariant::Bool )
+    {
+        gs->insert( "neverCreateSwap", configurationMap.value( "neverCreateSwap" ).toBool() );
+    }
+    else
+    {
+        gs->insert( "neverCreateSwap", false );
     }
 
     if ( configurationMap.contains( "drawNestedPartitions" ) &&
