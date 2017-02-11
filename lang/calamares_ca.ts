@@ -1334,12 +1334,12 @@ L&apos;instal·lador es tancarà i tots els canvis es perdran.</translation>
     <message>
         <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="71"/>
         <source>Name</source>
-        <translation type="unfinished"/>
+        <translation>Nom</translation>
     </message>
     <message>
         <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="72"/>
         <source>Description</source>
-        <translation type="unfinished"/>
+        <translation>Descripció</translation>
     </message>
     <message>
         <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="81"/>

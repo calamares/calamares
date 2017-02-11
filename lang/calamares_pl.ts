@@ -848,7 +848,7 @@ Instalator zostanie zamknięty i wszystkie zmiany zostaną utracone.</translatio
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="121"/>
         <source>This installer &lt;strong&gt;cannot detect a partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The device either has no partition table, or the partition table is corrupted or of an unknown type.&lt;br&gt;This installer can create a new partition table for you, either automatically, or through the manual partitioning page.</source>
-        <translation>Instalator &lt;strong&gt;nie mógł znaleźć tabeli partycji&lt;/strong&gt; na zaznaczonym nośniku danych.&lt;br&gt;&lt;br&gt;Urządzenie nie posiada tabeli partycji bądź jest ona uszkodzona lub nieznanego typu.&lt;br&gt;Instalator może stworzyć nową tabelę partycji dla ciebie automatycznie lub manualnie.</translation>
+        <translation>Instalator &lt;strong&gt;nie mógł znaleźć tabeli partycji&lt;/strong&gt; na zaznaczonym nośniku danych.&lt;br&gt;&lt;br&gt;Urządzenie nie posiada tabeli partycji bądź jest ona uszkodzona lub nieznanego rodzaju.&lt;br&gt;Instalator może utworzyć dla Ciebie nową tabelę partycji automatycznie, lub możesz uczynić to ręcznie.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="131"/>
@@ -1162,17 +1162,17 @@ Instalator zostanie zamknięty i wszystkie zmiany zostaną utracone.</translatio
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="115"/>
         <source>&lt;h1&gt;License Agreement&lt;/h1&gt;This setup procedure will install proprietary software that is subject to licensing terms.</source>
-        <translation>&lt;h1&gt;Umowy licencyjne&lt;/h1&gt;Ten etap instalacji zainstaluje własnościowe oprogramowanie którego dotyczą zasady licencji.</translation>
+        <translation>&lt;h1&gt;Umowy licencyjne&lt;/h1&gt;Ten etap instalacji zainstaluje własnościowe oprogramowanie, którego dotyczą zasady licencji.</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="118"/>
         <source>Please review the End User License Agreements (EULAs) above.&lt;br/&gt;If you do not agree with the terms, the setup procedure cannot continue.</source>
-        <translation>Przeczytaj znajdujące się poniżej Umowy Licencyjne Końcowego użytkownika (EULA).&lt;br/&gt;Jeżeli nie zgadzasz się z tymi warunkami, nie możesz kontynuować.</translation>
+        <translation>Przeczytaj znajdujące się poniżej Umowy Licencyjne Końcowego Użytkownika (EULA).&lt;br/&gt;Jeżeli nie zgadzasz się z tymi warunkami, nie możesz kontynuować.</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="124"/>
         <source>&lt;h1&gt;License Agreement&lt;/h1&gt;This setup procedure can install proprietary software that is subject to licensing terms in order to provide additional features and enhance the user experience.</source>
-        <translation>&lt;h1&gt;Umowy licencyjne&lt;/h1&gt;Ten etap instalacji pozwoli zainstalować własnościowe oprogramowanie którego dotyczą zasady licencji w celu poprawienia doświadczenia i zapewnienia dodatkowych funkcji.</translation>
+        <translation>&lt;h1&gt;Umowy licencyjne&lt;/h1&gt;Ten etap instalacji pozwoli zainstalować własnościowe oprogramowanie, którego dotyczą zasady licencji w celu poprawienia doświadczenia i zapewnienia dodatkowych funkcji.</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="129"/>
@@ -1655,7 +1655,7 @@ Instalator zostanie zamknięty i wszystkie zmiany zostaną utracone.</translatio
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="421"/>
         <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;A partition was configured with mount point &lt;strong&gt;%2&lt;/strong&gt; but its &lt;strong&gt;esp&lt;/strong&gt; flag is not set.&lt;br/&gt;To set the flag, go back and edit the partition.&lt;br/&gt;&lt;br/&gt;You can continue without setting the flag but your system may fail to start.</source>
-        <translation>Partycja systemu EFI jest zalecana aby rozpocząć %1.&lt;br/&gt;&lt;br/&gt;Została utworzona partycja o punkcie montownia &lt;strong&gt;%2&lt;/strong&gt;, ale flaga &lt;strong&gt;esp&lt;/strong&gt; nie jest ustawiona. Aby ustawić flagę, wróć i edytuj tą partycję.&lt;br/&gt;&lt;br/&gt;Możesz kontynuować bez ustawienia tej flagi, ale twój system może nie uruchomić się.</translation>
+        <translation>Partycja systemu EFI jest konieczna, aby rozpocząć %1.&lt;br/&gt;&lt;br/&gt;Partycja została skonfigurowana w punkcie montowania &lt;strong&gt;%2&lt;/strong&gt;, ale nie została ustawiona flaga &lt;strong&gt;esp&lt;/strong&gt;. Aby ustawić tę flagę, wróć i zmodyfikuj tę partycję.&lt;br/&gt;&lt;br/&gt;Możesz kontynuować bez ustawienia tej flagi, ale Twój system może się nie uruchomić.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="456"/>
@@ -1952,7 +1952,7 @@ Instalator zostanie zamknięty i wszystkie zmiany zostaną utracone.</translatio
     <message>
         <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="330"/>
         <source>Failed to write keyboard configuration to existing /etc/default directory.</source>
-        <translation>Błąd zapisu konfiguracji układu klawiatury dla istniejącego katalogu.</translation>
+        <translation>Błąd zapisu konfiguracji układu klawiatury dla istniejącego katalogu /etc/default.</translation>
     </message>
 </context>
 <context>
@@ -2025,7 +2025,7 @@ Instalator zostanie zamknięty i wszystkie zmiany zostaną utracone.</translatio
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="120"/>
         <source>Setting flags &lt;strong&gt;%3&lt;/strong&gt; on %1MB &lt;strong&gt;%2&lt;/strong&gt; partition.</source>
-        <translation>Nadawanie flag &lt;strong&gt;%3&lt;/strong&gt; na partycji %1MB &lt;strong&gt;%2&lt;/strong&gt;.</translation>
+        <translation>Ustawienie flag &lt;strong&gt;%3&lt;/strong&gt; na partycji %1MB &lt;strong&gt;%2&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="126"/>
@@ -2091,7 +2091,7 @@ Instalator zostanie zamknięty i wszystkie zmiany zostaną utracone.</translatio
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="70"/>
         <source>Cannot disable root account.</source>
-        <translation>Nie można wyłączyć konta roota.</translation>
+        <translation>Nie można wyłączyć konta administratora.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="71"/>
@@ -2250,7 +2250,7 @@ Instalator zostanie zamknięty i wszystkie zmiany zostaną utracone.</translatio
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="72"/>
         <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Thanks to: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Lisa Vitolo, Philip Müller, Pier Luigi Fiorini, Rohan Garg and the &lt;a href=&quot;https://www.transifex.com/calamares/calamares/&quot;&gt;Calamares translators team&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;http://calamares.io/&quot;&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - Liberating Software.</source>
-        <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Prawa autorskie 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Podziękowania dla: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Lisa Vitolo, Philip Müller, Pier Luigi Fiorini, Rohan Garg i &lt;a href=&quot;https://www.transifex.com/calamares/calamares/&quot;&gt; zespołu tłumaczy Calamares&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;Rozwój &lt;a href=&quot;http://calamares.io/&quot;&gt;Calamares&lt;/a&gt; jest sponsorowany przez &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - Liberating Software.</translation>
+        <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;dla %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Prawa autorskie 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Podziękowania dla: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Lisa Vitolo, Philip Müller, Pier Luigi Fiorini, Rohan Garg i &lt;a href=&quot;https://www.transifex.com/calamares/calamares/&quot;&gt;zespołu tłumaczy Calamares&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;Rozwój &lt;a href=&quot;http://calamares.io/&quot;&gt;Calamares&lt;/a&gt; jest sponsorowany przez &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - Liberating Software.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="196"/>
