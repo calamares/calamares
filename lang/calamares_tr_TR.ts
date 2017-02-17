@@ -1337,12 +1337,12 @@ Kuruluma devam edebilirsiniz fakat bazı özellikler devre dışı kalabilir.</t
     <message>
         <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="71"/>
         <source>Name</source>
-        <translation type="unfinished"/>
+        <translation>İsim</translation>
     </message>
     <message>
         <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="72"/>
         <source>Description</source>
-        <translation type="unfinished"/>
+        <translation>Açıklama</translation>
     </message>
     <message>
         <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="81"/>
@@ -2207,7 +2207,7 @@ Sistem güç kaynağına bağlı değil.</translation>
     <message>
         <location filename="../src/modules/users/UsersViewStep.cpp" line="48"/>
         <source>Users</source>
-        <translation>Kullanıcı Seçenekleri</translation>
+        <translation>Kullanıcı Tercihleri</translation>
     </message>
 </context>
 <context>
