@@ -9,7 +9,7 @@
 #   Copyright 2014, Benjamin Vaudour <benjamin.vaudour@yahoo.fr>
 #   Copyright 2014, Kevin Kofler <kevin.kofler@chello.at>
 #   Copyright 2015, Philip Mueller <philm@manjaro.org>
-#   Copyright 2016, Teo Mrnjavac <teo@kde.org>
+#   Copyright 2016-2017, Teo Mrnjavac <teo@kde.org>
 #
 #   Calamares is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -293,6 +293,18 @@ def run():
 
     if libcalamares.globalstorage.value("bootLoader") is None and fw_type != "efi":
         return None
+
+    partitions = libcalamares.globalstorage.value("partitions")
+
+    if fw_type == "efi":
+        esp_found = False
+
+        for partition in partitions:
+            if partition["mountPoint"] == libcalamares.globalstorage.value("efiSystemPartition"):
+                esp_found = True
+
+        if not esp_found:
+            return None
 
     prepare_bootloader(fw_type)
 
