@@ -112,7 +112,7 @@ class PackageManager:
 
     def run(self, script):
         if script != "":
-            check_target_env_call(scrtip.split(" "))
+            check_target_env_call(script.split(" "))
 
 
 def subst_locale(list):
@@ -138,13 +138,13 @@ def run_operations(pkgman, entry):
     for key in entry.keys():
         entry[key] = subst_locale(entry[key])
         if key == "install":
-            if isinstance(package, str):
-                pkgman.install(entry[key])
-            else:
+            if isinstance(entry[key], list):
                 for package in entry[key]:
                     pkgman.run(package["pre-script"])
                     pkgman.install([package["package"]])
                     pkgman.run(package["post-script"])
+            else:
+                pkgman.install(entry[key])
         elif key == "try_install":
             # we make a separate package manager call for each package so a single
             # failing package won't stop all of them
