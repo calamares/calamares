@@ -16,11 +16,11 @@ The *netinstall.conf* file should have this format:
 The URL must point to a YAML file. Here is a short example of how the YAML file should look.
 
       - name: "Group name"
-      description: "Description of the group"
-      packages:
-        - lsb-release
-        - avahi
-        - grub
+        description: "Description of the group"
+        packages:
+          - lsb-release
+          - avahi
+          - grub
       - name: "Second group name"
       ...
 
@@ -37,6 +37,12 @@ More keys are supported:
       - subgroups: if present this follows the same structure as the top level
         of the YAML file, allowing there to be sub-groups of packages to an
         arbitary depth
+      - pre-install: an optional command to run within the new system before
+        the group's packages are installed. It will run before each package in
+        the group is installed.
+      - post-install: an optional command to run within the new system after
+        the group's packages are installed. It will run after each package in
+        the group is installed.
 
 If you set both *hidden* and *selected* for a group, you are basically creating a "default" group of packages
 which will always be installed in the user's system.
