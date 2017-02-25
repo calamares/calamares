@@ -303,10 +303,6 @@ ModuleManager::loadModules()
                         evs = new ExecutionViewStep( ViewManager::instance() );
                         ViewManager::instance()->addViewStep( evs );
                     }
-                    else
-                    {
-                        cDebug() << "LAST VS IS EVS!";
-                    }
 
                     evs->appendJobModuleInstanceKey( instanceKey );
                 }
