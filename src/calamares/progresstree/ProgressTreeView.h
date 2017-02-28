@@ -23,6 +23,11 @@
 
 class ProgressTreeDelegate;
 
+/**
+ * @brief The ProgressTreeView class is a modified QTreeView which displays the
+ * available view steps and the user's progress through them.
+ * @note singleton, only access through ProgressTreeView::instance().
+ */
 class ProgressTreeView : public QTreeView
 {
     Q_OBJECT
@@ -32,6 +37,9 @@ public:
     explicit ProgressTreeView( QWidget* parent = 0 );
     virtual ~ProgressTreeView();
 
+    /**
+     * @brief setModel assigns a model to this view.
+     */
     void setModel( QAbstractItemModel* model ) override;
 
 private:

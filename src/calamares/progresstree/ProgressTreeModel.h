@@ -24,6 +24,10 @@
 class ProgressTreeRoot;
 class ProgressTreeItem;
 
+
+/**
+ * @brief The ProgressTreeModel class implements a model for the ProgressTreeView.
+ */
 class ProgressTreeModel : public QAbstractItemModel
 {
     Q_OBJECT

@@ -32,6 +32,11 @@ namespace Calamares
 class ModuleManager;
 }
 
+
+/**
+ * @brief The CalamaresApplication class extends QApplication to handle
+ * Calamares startup and lifetime of main components.
+ */
 class CalamaresApplication : public QApplication
 {
     Q_OBJECT
@@ -39,12 +44,27 @@ public:
     CalamaresApplication( int& argc, char* argv[] );
     virtual ~CalamaresApplication();
 
+    /**
+     * @brief init handles the first part of Calamares application startup.
+     * After the main window shows up, the latter part of the startup sequence
+     * (including modules loading) happens asynchronously.
+     */
     void init();
     static CalamaresApplication* instance();
 
+    /**
+     * @brief setDebug controls whether debug mode is enabled
+     */
     void setDebug( bool enabled );
+
+    /**
+     * @brief isDebug returns true if running in debug mode, otherwise false.
+     */
     bool isDebug();
 
+    /**
+     * @brief mainWindow returns the Calamares application main window.
+     */
     CalamaresWindow* mainWindow();
 
 private slots:

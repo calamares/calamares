@@ -33,28 +33,82 @@ namespace Calamares
 class ViewStep;
 class ExecutionViewStep;
 
+/**
+ * @brief The ViewManager class handles progression through view pages.
+ * @note Singleton object, only use through ViewManager::instance().
+ */
 class UIDLLEXPORT ViewManager : public QObject
 {
     Q_OBJECT
 public:
+    /**
+     * @brief instance access to the ViewManager singleton.
+     * @return
+     */
     static ViewManager* instance();
 
     explicit ViewManager( QObject* parent = nullptr );
     virtual ~ViewManager();
 
+    /**
+     * @brief centralWidget always returns the central widget in the Calamares main
+     * window.
+     * @return a pointer to the active QWidget (usually a wizard page provided by a
+     * view module).
+     */
     QWidget* centralWidget();
 
+    /**
+     * @brief addViewStep appends a view step to the roster.
+     * @param step a pointer to the ViewStep object to add.
+     * @note a ViewStep is the active instance of a view module, it aggregates one
+     * or more view pages, plus zero or more jobs which may be created at runtime.
+     */
     void addViewStep( ViewStep* step );
 
+    /**
+     * @brief viewSteps returns the list of currently present view steps.
+     * @return the ViewStepList.
+     * This should only return an empty list before startup is complete.
+     */
     ViewStepList viewSteps() const;
+
+    /**
+     * @brief currentStep returns the currently active ViewStep, i.e. the ViewStep
+     * which owns the currently visible view page.
+     * @return the active ViewStep. Do not confuse this with centralWidget().
+     * @see ViewStep::centralWidget
+     */
     ViewStep* currentStep() const;
+
+    /**
+     * @brief currentStepIndex returns the index of the currently active ViewStep.
+     * @return the index.
+     */
     int currentStepIndex() const;
 
 
 public slots:
+    /**
+     * @brief next moves forward to the next page of the current ViewStep (if any),
+     * or to the first page of the next ViewStep if the current ViewStep doesn't
+     * have any more pages.
+     */
     void next();
+
+    /**
+     * @brief back moves backward to the previous page of the current ViewStep (if any),
+     * or to the last page of the previous ViewStep if the current ViewStep doesn't
+     * have any pages before the current one.
+     */
     void back();
 
+    /**
+     * @brief onInstallationFailed displays an error message when a fatal failure
+     * happens in a ViewStep.
+     * @param message the error string.
+     * @param details the details string.
+     */
     void onInstallationFailed( const QString& message, const QString& details );
 
 signals:
