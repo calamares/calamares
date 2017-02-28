@@ -1040,7 +1040,7 @@ Kuruluma devam edebilirsiniz fakat bazı özellikler devre dışı kalabilir.</t
     <message>
         <location filename="../src/modules/finished/FinishedViewStep.cpp" line="43"/>
         <source>Finish</source>
-        <translation>Kurulum Tamamlandı</translation>
+        <translation>Kurulum Tamam</translation>
     </message>
 </context>
 <context>
