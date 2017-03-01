@@ -29,6 +29,14 @@ class QLayout;
 
 namespace CalamaresUtils
 {
+
+/**
+ * @brief The ImageType enum lists all common Calamares icons.
+ * Icons are loaded from SVGs and cached. Each icon has an enum value, through which
+ * it can be accessed.
+ * You can forward-declare this as:
+ * enum ImageType : int;
+ */
 enum ImageType : int
 {
     Yes,
@@ -49,6 +57,10 @@ enum ImageType : int
     Squid
 };
 
+/**
+ * @brief The ImageMode enum contains different transformations that can be applied.
+ * Most of these are currently unused.
+ */
 enum ImageMode
 {
     Original,
@@ -58,15 +70,46 @@ enum ImageMode
     RoundedCorners
 };
 
-UIDLLEXPORT QPixmap defaultPixmap( ImageType type, ImageMode mode = CalamaresUtils::Original, const QSize& size = QSize( 0, 0 ) );
-UIDLLEXPORT QPixmap createRoundedImage( const QPixmap& avatar, const QSize& size, float frameWidthPct = 0.20 );
+/**
+ * @brief defaultPixmap returns a resized and/or transformed pixmap for a given
+ * ImageType.
+ * @param type the ImageType i.e. the enum value for an SVG.
+ * @param mode the transformation to apply (default: no transformation).
+ * @param size the target pixmap size (default: original SVG size).
+ * @return the new pixmap.
+ */
+UIDLLEXPORT QPixmap defaultPixmap( ImageType type,
+                                   ImageMode mode = CalamaresUtils::Original,
+                                   const QSize& size = QSize( 0, 0 ) );
 
+/**
+ * @brief createRoundedImage returns a rounded version of a pixmap.
+ * @param avatar the input pixmap.
+ * @param size the new size.
+ * @param frameWidthPct the frame size, as percentage of width.
+ * @return the transformed pixmap.
+ * This one is currently unused.
+ */
+UIDLLEXPORT QPixmap createRoundedImage( const QPixmap& avatar,
+                                        const QSize& size,
+                                        float frameWidthPct = 0.20 );
+
+/**
+ * @brief unmarginLayout recursively walks the QLayout tree and removes all margins.
+ * @param layout the layout to unmargin.
+ */
 UIDLLEXPORT void unmarginLayout( QLayout* layout );
+
+/**
+ * @brief clearLayout recursively walks the QLayout tree and deletes all the child
+ * widgets and layouts.
+ * @param layout the layout to clear.
+ */
 UIDLLEXPORT void clearLayout( QLayout* layout );
 
 UIDLLEXPORT void setDefaultFontSize( int points );
-UIDLLEXPORT int defaultFontSize();
-UIDLLEXPORT int defaultFontHeight();
+UIDLLEXPORT int defaultFontSize();      // in points
+UIDLLEXPORT int defaultFontHeight();    // in pixels, DPI-specific
 UIDLLEXPORT QFont defaultFont();
 UIDLLEXPORT QSize defaultIconSize();
 

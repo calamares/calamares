@@ -26,10 +26,20 @@
 namespace CalamaresUtils
 {
 
+/**
+ * @brief The System class is a singleton with utility functions that perform
+ * system-specific operations.
+ */
 class DLLEXPORT System : public QObject
 {
     Q_OBJECT
 public:
+    /**
+     * @brief System the constructor. Only call this once in a Calamares instance.
+     * @param doChroot set to true if all external commands should run in the
+     * target system chroot, otherwise false to run everything on the current system.
+     * @param parent the QObject parent.
+     */
     explicit System( bool doChroot, QObject* parent = nullptr );
     virtual ~System();
 
@@ -37,6 +47,10 @@ public:
 
     /**
       * Runs the mount utility with the specified parameters.
+      * @param devicePath the path of the partition to mount.
+      * @param mountPoint the full path of the target mount point.
+      * @param filesystemName the name of the filesystem (optional).
+      * @param options any additional options as passed to mount -o (optional).
       * @returns the program's exit code, or:
       *             -1 = QProcess crash
       *             -2 = QProcess cannot start
@@ -49,6 +63,13 @@ public:
 
     /**
       * Runs the specified command in the chroot of the target system.
+      * @param args the call with arguments, as a string list.
+      * @param workingPath the current working directory for the QProcess
+      * call (optional).
+      * @param stdInput the input string to send to the running process as
+      * standard input (optional).
+      * @param timeoutSec the timeout after which the process will be
+      * killed (optional, default is 0 i.e. no timeout).
       * @returns the program's exit code, or:
       *             -1 = QProcess crash
       *             -2 = QProcess cannot start
@@ -77,9 +98,11 @@ public:
                                 const QString& stdInput = QString(),
                                 int timeoutSec = 0 );
 
-    DLLEXPORT qint64 getPhysicalMemoryB();  //Better guess, doesn't work in VirualBox
-
+    /**
+     * @brief getTotalMemoryB returns the total main memory, in bytes.
+     */
     DLLEXPORT qint64 getTotalMemoryB();     //Always underguessed, but always works on Linux
+    DLLEXPORT qint64 getPhysicalMemoryB();  //Better guess, doesn't work in VirualBox
 
 private:
     static System* s_instance;
