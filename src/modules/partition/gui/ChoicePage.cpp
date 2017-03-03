@@ -141,12 +141,6 @@ ChoicePage::~ChoicePage()
 {}
 
 
-/**
- * @brief ChoicePage::init runs when the PartitionViewStep and the PartitionCoreModule are
- *      ready. Sets up the rest of the UI based on os-prober output.
- * @param core the PartitionCoreModule pointer.
- * @param osproberEntries the output of os-prober, cleaned up and structured.
- */
 void
 ChoicePage::init( PartitionCoreModule* core )
 {
