@@ -894,7 +894,7 @@ Pemasangan dapat dilanjutkan, namun beberapa fitur akan dinonfungsikan.</transla
     <message>
         <location filename="../src/modules/dummycpp/DummyCppJob.cpp" line="46"/>
         <source>Dummy C++ Job</source>
-        <translation type="unfinished"/>
+        <translation>Tugas C++ Kosong</translation>
     </message>
 </context>
 <context>

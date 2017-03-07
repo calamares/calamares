@@ -261,7 +261,7 @@ Išvestis:
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="66"/>
         <source>&amp;Next</source>
-        <translation>&amp;Kitas</translation>
+        <translation>&amp;Toliau</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="67"/>
@@ -289,7 +289,7 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="225"/>
         <source>The %1 installer is about to make changes to your disk in order to install %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
-        <translation>%1 diegimo programa, siekdama įdiegti %2, ketina atlikti pakeitimus jūsų diske.&lt;br/&gt;&lt;strong&gt;Jūs negalėsite atšaukti šių pakeitimų.&lt;/strong&gt;</translation>
+        <translation>%1 diegimo programa, siekdama įdiegti %2, ketina atlikti pakeitimus diske.&lt;br/&gt;&lt;strong&gt;Negalėsite atšaukti šių pakeitimų.&lt;/strong&gt;</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="232"/>
@@ -376,12 +376,12 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="113"/>
         <source>This computer does not satisfy some of the recommended requirements for installing %1.&lt;br/&gt;Installation can continue, but some features might be disabled.</source>
-        <translation>Šis kompiuteris netenkina kai kurių %1 diegimo rekomenduojamų reikalavimų.&lt;br/&gt;Diegimas gali būti tęsiamas, bet kai kurios funkcijos gali būti išjungtos.</translation>
+        <translation>Šis kompiuteris netenkina kai kurių %1 diegimui rekomenduojamų reikalavimų.&lt;br/&gt;Diegti galite, bet kai kurios funkcijos gali būti išjungtos.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="142"/>
         <source>This program will ask you some questions and set up %2 on your computer.</source>
-        <translation>Ši programa užduos jums kelis klausimus ir padės jums savo kompiuteryje nusistatyti %2.</translation>
+        <translation>Programa užduos klausimus ir padės įsidiegti %2.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="166"/>
@@ -874,7 +874,7 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
     <message>
         <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="131"/>
         <source>Write LUKS configuration for Dracut to %1</source>
-        <translation>Įrašyti LUKS konfigūraciją, skirtą Dracut į %1</translation>
+        <translation>Dracut skirtąją LUKS konfigūraciją įrašyti į %1</translation>
     </message>
     <message>
         <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="133"/>
