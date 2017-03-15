@@ -98,28 +98,28 @@
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="44"/>
         <source>Modules</source>
-        <translation type="unfinished"/>
+        <translation>Модули</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="57"/>
         <source>Type:</source>
-        <translation type="unfinished"/>
+        <translation>Тип:</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="64"/>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="78"/>
         <source>none</source>
-        <translation type="unfinished"/>
+        <translation>ништа</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="71"/>
         <source>Interface:</source>
-        <translation type="unfinished"/>
+        <translation>Сучеље:</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="93"/>
         <source>Tools</source>
-        <translation type="unfinished"/>
+        <translation>Алатке</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.cpp" line="182"/>
@@ -132,7 +132,7 @@
     <message>
         <location filename="../src/libcalamaresui/ExecutionViewStep.cpp" line="77"/>
         <source>Install</source>
-        <translation type="unfinished"/>
+        <translation>Инсталирај</translation>
     </message>
 </context>
 <context>
@@ -148,7 +148,7 @@
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="51"/>
         <source>Run command %1 %2</source>
-        <translation type="unfinished"/>
+        <translation>Покрени команду %1 %2</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="60"/>
@@ -293,12 +293,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="232"/>
         <source>&amp;Install now</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Инсталирај сада</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="233"/>
         <source>Go &amp;back</source>
-        <translation type="unfinished"/>
+        <translation>Иди &amp;назад</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="264"/>
@@ -403,7 +403,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="127"/>
         <source>After:</source>
-        <translation type="unfinished"/>
+        <translation>После:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="234"/>
@@ -431,7 +431,7 @@ The installer will quit and all changes will be lost.</source>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="946"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1026"/>
         <source>Current:</source>
-        <translation type="unfinished"/>
+        <translation>Тренутно:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="776"/>
@@ -736,7 +736,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="64"/>
         <source>Creating user %1.</source>
-        <translation type="unfinished"/>
+        <translation>Правим корисника %1</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="80"/>
@@ -909,7 +909,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="60"/>
         <source>&amp;Keep</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Очувај</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="70"/>
@@ -924,17 +924,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="99"/>
         <source>&amp;Mount Point:</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Тачка монтирања:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="119"/>
         <source>Si&amp;ze:</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Величина:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="132"/>
         <source>Fi&amp;le System:</source>
-        <translation type="unfinished"/>
+        <translation>Фајл &amp;систем:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="145"/>
@@ -1036,7 +1036,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/finished/FinishedViewStep.cpp" line="43"/>
         <source>Finish</source>
-        <translation type="unfinished"/>
+        <translation>Заврши</translation>
     </message>
 </context>
 <context>
@@ -1109,7 +1109,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/interactiveterminal/InteractiveTerminalViewStep.cpp" line="45"/>
         <source>Script</source>
-        <translation type="unfinished"/>
+        <translation>Скрипта</translation>
     </message>
 </context>
 <context>
@@ -1130,7 +1130,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/keyboard/KeyboardViewStep.cpp" line="50"/>
         <source>Keyboard</source>
-        <translation type="unfinished"/>
+        <translation>Тастатура</translation>
     </message>
 </context>
 <context>
@@ -1221,7 +1221,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/license/LicenseViewStep.cpp" line="51"/>
         <source>License</source>
-        <translation type="unfinished"/>
+        <translation>Лиценца</translation>
     </message>
 </context>
 <context>
@@ -1230,7 +1230,7 @@ The installer will quit and all changes will be lost.</source>
         <location filename="../src/modules/locale/LocalePage.cpp" line="174"/>
         <location filename="../src/modules/locale/LocalePage.cpp" line="237"/>
         <source>The system language will be set to %1.</source>
-        <translation type="unfinished"/>
+        <translation>Системски језик биће постављен на %1</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/LocalePage.cpp" line="206"/>
@@ -1241,18 +1241,18 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/locale/LocalePage.cpp" line="216"/>
         <source>Region:</source>
-        <translation type="unfinished"/>
+        <translation>Регион:</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/LocalePage.cpp" line="217"/>
         <source>Zone:</source>
-        <translation type="unfinished"/>
+        <translation>Зона:</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/LocalePage.cpp" line="221"/>
         <location filename="../src/modules/locale/LocalePage.cpp" line="222"/>
         <source>&amp;Change...</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Измени...</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/LocalePage.cpp" line="390"/>
@@ -1276,7 +1276,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/locale/LocaleViewStep.cpp" line="160"/>
         <source>Location</source>
-        <translation type="unfinished"/>
+        <translation>Локација</translation>
     </message>
 </context>
 <context>
@@ -1333,12 +1333,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="71"/>
         <source>Name</source>
-        <translation type="unfinished"/>
+        <translation>Назив</translation>
     </message>
     <message>
         <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="72"/>
         <source>Description</source>
-        <translation type="unfinished"/>
+        <translation>Опис</translation>
     </message>
     <message>
         <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="81"/>
@@ -1351,7 +1351,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="51"/>
         <source>Package selection</source>
-        <translation type="unfinished"/>
+        <translation>Избор пакета</translation>
     </message>
 </context>
 <context>
@@ -1369,7 +1369,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/keyboard/KeyboardPage.ui" line="131"/>
         <source>Type here to test your keyboard</source>
-        <translation type="unfinished"/>
+        <translation>куцајте овде да тестирате тастатуру</translation>
     </message>
 </context>
 <context>
@@ -1377,12 +1377,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>Форма</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="36"/>
         <source>What is your name?</source>
-        <translation type="unfinished"/>
+        <translation>Како се зовете?</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="117"/>
@@ -1405,7 +1405,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="335"/>
         <source>Choose a password to keep your account safe.</source>
-        <translation type="unfinished"/>
+        <translation>Изаберите лозинку да обезбедите свој налог.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="440"/>
@@ -1415,7 +1415,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="226"/>
         <source>What is the name of this computer?</source>
-        <translation type="unfinished"/>
+        <translation>Како ћете звати ваш рачунар?</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="309"/>
@@ -1629,12 +1629,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="243"/>
         <source>Current:</source>
-        <translation type="unfinished"/>
+        <translation>Тренутно:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="261"/>
         <source>After:</source>
-        <translation type="unfinished"/>
+        <translation>После:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="405"/>
@@ -1678,22 +1678,22 @@ The installer will quit and all changes will be lost.</source>
         <location filename="../src/modules/keyboard/keyboardwidget/keyboardglobal.cpp" line="127"/>
         <location filename="../src/modules/keyboard/keyboardwidget/keyboardglobal.cpp" line="163"/>
         <source>Default</source>
-        <translation type="unfinished"/>
+        <translation>подразумевано</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="201"/>
         <source>unknown</source>
-        <translation type="unfinished"/>
+        <translation>непознато</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="203"/>
         <source>extended</source>
-        <translation type="unfinished"/>
+        <translation>проширена</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="205"/>
         <source>unformatted</source>
-        <translation type="unfinished"/>
+        <translation>неформатирана</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="207"/>
@@ -1891,7 +1891,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="84"/>
         <source>Partitioning</source>
-        <translation type="unfinished"/>
+        <translation>Партиционисање</translation>
     </message>
 </context>
 <context>
@@ -1915,7 +1915,7 @@ The installer will quit and all changes will be lost.</source>
         <location filename="../src/modules/users/SetHostNameJob.cpp" line="61"/>
         <location filename="../src/modules/users/SetHostNameJob.cpp" line="68"/>
         <source>Internal Error</source>
-        <translation type="unfinished"/>
+        <translation>Интерна грешка</translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetHostNameJob.cpp" line="75"/>
@@ -2159,7 +2159,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/summary/SummaryViewStep.cpp" line="43"/>
         <source>Summary</source>
-        <translation type="unfinished"/>
+        <translation>Сажетак</translation>
     </message>
 </context>
 <context>
@@ -2167,7 +2167,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="275"/>
         <source>Your username is too long.</source>
-        <translation type="unfinished"/>
+        <translation>Ваше корисничко име је предугачко.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="285"/>
@@ -2201,7 +2201,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/UsersViewStep.cpp" line="48"/>
         <source>Users</source>
-        <translation type="unfinished"/>
+        <translation>Корисници</translation>
     </message>
 </context>
 <context>
@@ -2209,12 +2209,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>Форма</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="75"/>
         <source>&amp;Language:</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Језик:</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="176"/>
@@ -2224,17 +2224,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="166"/>
         <source>&amp;Known issues</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Познати проблеми</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="156"/>
         <source>&amp;Support</source>
-        <translation type="unfinished"/>
+        <translation>По&amp;дршка</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="146"/>
         <source>&amp;About</source>
-        <translation type="unfinished"/>
+        <translation>&amp;О програму</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="56"/>
@@ -2244,7 +2244,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="70"/>
         <source>About %1 installer</source>
-        <translation type="unfinished"/>
+        <translation>О %1 инсталатеру</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="72"/>
@@ -2254,7 +2254,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="196"/>
         <source>%1 support</source>
-        <translation type="unfinished"/>
+        <translation>%1 подршка</translation>
     </message>
 </context>
 <context>
@@ -2262,7 +2262,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/welcome/WelcomeViewStep.cpp" line="51"/>
         <source>Welcome</source>
-        <translation type="unfinished"/>
+        <translation>Добродошли</translation>
     </message>
 </context>
 </TS>
