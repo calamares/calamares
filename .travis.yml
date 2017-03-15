@@ -4,7 +4,7 @@ sudo: required
 services:
   - docker
 
-before_install:
+install:
   - docker build -t calamares .
 
 script:
