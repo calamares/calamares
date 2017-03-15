@@ -4,6 +4,10 @@ sudo: required
 services:
   - docker
 
+notifications:
+  irc:
+    - "chat.freenode.net#calamares"
+
 install:
   - docker build -t calamares .
 
