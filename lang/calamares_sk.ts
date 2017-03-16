@@ -261,7 +261,7 @@ Výstup:
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="66"/>
         <source>&amp;Next</source>
-        <translation>Ď&amp;aľej</translation>
+        <translation>Ď&amp;alej</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="67"/>
