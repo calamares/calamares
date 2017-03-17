@@ -806,22 +806,22 @@ O instalador pecharase e perderanse todos os cambios.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="58"/>
         <source>Deleting partition %1.</source>
-        <translation type="unfinished"/>
+        <translation>Eliminando partición %1</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="67"/>
         <source>The installer failed to delete partition %1.</source>
-        <translation type="unfinished"/>
+        <translation>O instalador fallou ó eliminar a partición %1</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="73"/>
         <source>Partition (%1) and device (%2) do not match.</source>
-        <translation type="unfinished"/>
+        <translation>A partición (%1) e o dispositivo (%2) non coinciden</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="85"/>
         <source>Could not open device %1.</source>
-        <translation type="unfinished"/>
+        <translation>Non foi posíbel abrir o dispositivo %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="94"/>
