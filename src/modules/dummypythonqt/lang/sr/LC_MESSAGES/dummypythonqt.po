@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2017-03-17 00:49+0000\n"
+"POT-Creation-Date: 2017-03-17 12:49+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Slobodan Simić <slsimic@gmail.com>, 2017\n"
 "Language-Team: Serbian (https://www.transifex.com/calamares/teams/20061/sr/)\n"
@@ -28,12 +28,12 @@ msgstr "Нова КуОзнака"
 
 #: src/modules/dummypythonqt/main.py:176
 msgid "The Dummy PythonQt Job"
-msgstr ""
+msgstr "Провизорни ПитонКуТ посао"
 
 #: src/modules/dummypythonqt/main.py:179
 msgid "This is the Dummy PythonQt Job. The dummy job says: {}"
-msgstr ""
+msgstr "Ово је провизорни ПитонКуТ посао. Он каже: {}"
 
 #: src/modules/dummypythonqt/main.py:183
 msgid "A status message for Dummy PythonQt Job."
-msgstr ""
+msgstr "Порука стања за провизорни ПитонКуТ посао."
