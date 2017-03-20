@@ -5,6 +5,7 @@
 #
 #   Copyright 2014, Kevin Kofler <kevin.kofler@chello.at>
 #   Copyright 2016, Philip Müller <philm@manjaro.org>
+#   Copyright 2017, Alf Gaida <agaida@siduction.org>
 #
 #   Calamares is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -25,7 +26,8 @@ from libcalamares.utils import check_target_env_call
 
 
 def run():
-    """ Generate machine-id using dbus and systemd.
+    """
+    Generate machine-id using dbus and systemd.
 
     :return:
     """
@@ -33,8 +35,8 @@ def run():
     enable_systemd = libcalamares.job.configuration["systemd"]
     enable_dbus = libcalamares.job.configuration["dbus"]
     enable_symlink = libcalamares.job.configuration["symlink"]
-    target_systemd_machineid_file = "{}/etc/machine-id".format(root_mount_point)
-    target_dbus_machineid_file = "{}/var/lib/dbus/machine-id".format(root_mount_point)
+    target_systemd_machineid_file = root_mount_point + "/etc/machine-id"
+    target_dbus_machineid_file = root_mount_point + "/var/lib/dbus/machine-id"
 
     if os.path.exists(target_dbus_machineid_file):
         os.remove(target_dbus_machineid_file)
@@ -46,7 +48,8 @@ def run():
 
     if enable_dbus:
         if enable_symlink and os.path.exists(target_systemd_machineid_file):
-            check_target_env_call(["ln", "-s", "/etc/machine-id", "/var/lib/dbus/machine-id"])
+            check_target_env_call(["ln", "-s", "/etc/machine-id",
+                                   "/var/lib/dbus/machine-id"])
         else:
             check_target_env_call(["dbus-uuidgen", "--ensure"])
 
