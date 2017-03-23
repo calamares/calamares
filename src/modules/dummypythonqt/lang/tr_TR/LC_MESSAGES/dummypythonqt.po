@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2017-03-22 03:08+0000\n"
+"POT-Creation-Date: 2017-03-23 00:50+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Demiray Muhterem <mdemiray@msn.com>, 2016\n"
 "Language-Team: Turkish (Turkey) (https://www.transifex.com/calamares/teams/20061/tr_TR/)\n"
