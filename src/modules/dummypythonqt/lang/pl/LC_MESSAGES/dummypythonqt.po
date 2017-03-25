@@ -3,13 +3,13 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# m4sk1n <m4sk1n@o2.pl>, 2016
+# m4sk1n <m4sk1n@vivaldi.net>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2017-03-24 01:05+0000\n"
+"POT-Creation-Date: 2017-03-24 03:20+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: m4sk1n <m4sk1n@o2.pl>, 2016\n"
+"Last-Translator: m4sk1n <m4sk1n@vivaldi.net>, 2016\n"
 "Language-Team: Polish (https://www.transifex.com/calamares/teams/20061/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ANSI_X3.4-1968\n"
