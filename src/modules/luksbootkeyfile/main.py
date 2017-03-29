@@ -4,6 +4,7 @@
 # === This file is part of Calamares - <http://github.com/calamares> ===
 #
 #   Copyright 2016, Teo Mrnjavac <teo@kde.org>
+#   Copyright 2017, Alf Gaida <agaida@siduction.org>
 #
 #   Calamares is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -25,10 +26,10 @@ from libcalamares.utils import check_target_env_call
 
 def run():
     """
-    This module sets up a file crypto_keyfile.bin on the rootfs, assuming the rootfs
-    is LUKS encrypted and a passphrase is provided. This file is then included in the
-    initramfs and used for unlocking the rootfs from a previously unlocked GRUB2
-    session.
+    This module sets up a file crypto_keyfile.bin on the rootfs, assuming the
+    rootfs is LUKS encrypted and a passphrase is provided. This file is then
+    included in the initramfs and used for unlocking the rootfs from a
+    previously unlocked GRUB2 session.
     :return:
     """
 
@@ -53,7 +54,8 @@ def run():
 
     if not luks_root_passphrase:
         return ("Encrypted rootfs setup error",
-                "Rootfs partition {!s} is LUKS but no passphrase found.".format(luks_root_device))
+                "Rootfs partition {!s}".format(luks_root_device),
+                "is LUKS but no passphrase found.")
 
     # Generate random keyfile
     check_target_env_call(["dd",
