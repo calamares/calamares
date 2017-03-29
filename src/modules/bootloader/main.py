@@ -176,7 +176,7 @@ def install_systemd_boot(efi_directory):
     conf_path = os.path.join(install_efi_directory,
                              "loader",
                              "entries",
-                             distribution_translated +".conf")
+                             distribution_translated + ".conf")
     fallback_path = os.path.join(install_efi_directory,
                                  "loader",
                                  "entries",
@@ -324,7 +324,7 @@ def run():
         esp_found = False
 
         for partition in partitions:
-            if (partition["mountPoint"] == 
+            if (partition["mountPoint"] ==
                     libcalamares.globalstorage.value("efiSystemPartition")):
                 esp_found = True
 
