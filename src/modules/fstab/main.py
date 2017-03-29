@@ -5,6 +5,7 @@
 #
 #   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
 #   Copyright 2016, Teo Mrnjavac <teo@kde.org>
+#   Copyright 2017, Alf Gaida <agaida@siduction.org>
 #
 #   Calamares is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -32,7 +33,7 @@ FSTAB_HEADER = """# /etc/fstab: static file system information.
 # be used with UUID= as a more robust way to name devices that works even if
 # disks are added and removed. See fstab(5).
 #
-# <file system>                           <mount point>  <type>  <options>  <dump>  <pass>"""
+# <file system>             <mount point>  <type>  <options>  <dump>  <pass>"""
 
 CRYPTTAB_HEADER = """# /etc/crypttab: mappings for encrypted partitions.
 #
@@ -46,7 +47,7 @@ CRYPTTAB_HEADER = """# /etc/crypttab: mappings for encrypted partitions.
 #       to encrypted swap, which should be set up with mkinitcpio-openswap
 #       for resume support.
 #
-# <name>               <device>                                     <password> <options>"""
+# <name>               <device>                         <password> <options>"""
 
 # Turn Parted filesystem names into fstab names
 FS_MAP = {
@@ -168,7 +169,7 @@ class FstabGenerator(object):
                                            dct["device"],
                                            dct["password"],
                                            dct["options"],
-                                          )
+                                           )
 
         print(line, file=file)
 
@@ -181,8 +182,10 @@ class FstabGenerator(object):
             print(FSTAB_HEADER, file=fstab_file)
 
             for partition in self.partitions:
-                # Special treatment for a btrfs root with @ and @home subvolumes
-                if partition["fs"] == "btrfs" and partition["mountPoint"] == "/":
+                # Special treatment for a btrfs root with @ and @home
+                # subvolumes
+                if (partition["fs"] == "btrfs"
+                   and partition["mountPoint"] == "/"):
                     output = subprocess.check_output(['btrfs',
                                                       'subvolume',
                                                       'list',
@@ -216,7 +219,7 @@ class FstabGenerator(object):
                            fs="tmpfs",
                            options="defaults,noatime,mode=1777",
                            check=0,
-                          )
+                           )
                 self.print_fstab_line(dct, file=fstab_file)
 
     def generate_fstab_line_info(self, partition):
@@ -249,13 +252,15 @@ class FstabGenerator(object):
             self.root_is_ssd = is_ssd
 
         if filesystem == "btrfs" and "subvol" in partition:
-            return dict(device="UUID=" + partition["uuid"],
-                        mount_point=mount_point,
-                        fs=filesystem,
-                        options=",".join(["subvol={}".format(partition["subvol"]),
-                                          options]),
-                        check=check,
-                        )
+            return dict(
+                device="UUID=" + partition["uuid"],
+                mount_point=mount_point,
+                fs=filesystem,
+                options=",".join(
+                    ["subvol={}".format(partition["subvol"]), options]
+                    ),
+                check=check,
+                )
 
         return dict(device="UUID=" + partition["uuid"],
                     mount_point=mount_point or "swap",
@@ -266,12 +271,12 @@ class FstabGenerator(object):
 
     def print_fstab_line(self, dct, file=None):
         """ Prints line to '/etc/fstab' file. """
-        line = "{:41} {:<14} {:<7} {:<10} 0       {}".format(dct["device"],
-                                                             dct["mount_point"],
-                                                             dct["fs"],
-                                                             dct["options"],
-                                                             dct["check"],
-                                                            )
+        line = "{:41} {:<14} {:<7} {:<10} 0 {}".format(dct["device"],
+                                                       dct["mount_point"],
+                                                       dct["fs"],
+                                                       dct["options"],
+                                                       dct["check"],
+                                                       )
         print(line, file=file)
 
     def create_mount_points(self):
