@@ -35,5 +35,5 @@ def run():
     except subprocess.CalledProcessError as e:
         libcalamares.utils.debug("Cannot remove user.",
                                  "'userdel' terminated with exit code",
-                                 "{}.".format(e.returncode)
+                                 "{}.".format(e.returncode))
     return None
