@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2017-03-29 00:50+0000\n"
+"POT-Creation-Date: 2017-03-29 19:05+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: scootergrisen <scootergrisen@gmail.com>, 2017\n"
 "Language-Team: Danish (https://www.transifex.com/calamares/teams/20061/da/)\n"
@@ -18,22 +18,22 @@ msgstr ""
 "Language: da\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/modules/dummypythonqt/main.py:80
+#: src/modules/dummypythonqt/main.py:84
 msgid "Click me!"
 msgstr "Klik på mig!"
 
-#: src/modules/dummypythonqt/main.py:90
+#: src/modules/dummypythonqt/main.py:94
 msgid "A new QLabel."
 msgstr "En ny QLabel."
 
-#: src/modules/dummypythonqt/main.py:176
+#: src/modules/dummypythonqt/main.py:183
 msgid "The Dummy PythonQt Job"
 msgstr "Dummy PythonQt-jobbet"
 
-#: src/modules/dummypythonqt/main.py:179
+#: src/modules/dummypythonqt/main.py:186
 msgid "This is the Dummy PythonQt Job. The dummy job says: {}"
 msgstr "Dette er dummy PythonQt-jobbet. Dummy-jobbet siger: {}"
 
-#: src/modules/dummypythonqt/main.py:183
+#: src/modules/dummypythonqt/main.py:190
 msgid "A status message for Dummy PythonQt Job."
 msgstr "En statusmeddelelse til dummy PythonQt-job."

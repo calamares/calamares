@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2017-03-29 00:50+0000\n"
+"POT-Creation-Date: 2017-03-29 19:05+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Rodrigo Macedo <rmsolucoeseminformatic4@gmail.com>, 2017\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/calamares/teams/20061/pt_BR/)\n"
@@ -18,22 +18,22 @@ msgstr ""
 "Language: pt_BR\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: src/modules/dummypythonqt/main.py:80
+#: src/modules/dummypythonqt/main.py:84
 msgid "Click me!"
 msgstr "Clique em mim!"
 
-#: src/modules/dummypythonqt/main.py:90
+#: src/modules/dummypythonqt/main.py:94
 msgid "A new QLabel."
 msgstr "Uma nova QLabel."
 
-#: src/modules/dummypythonqt/main.py:176
+#: src/modules/dummypythonqt/main.py:183
 msgid "The Dummy PythonQt Job"
 msgstr "O trabalho de modelo do PythonQt"
 
-#: src/modules/dummypythonqt/main.py:179
+#: src/modules/dummypythonqt/main.py:186
 msgid "This is the Dummy PythonQt Job. The dummy job says: {}"
 msgstr "Este é o trabalho do modelo PythonQt. O trabalho fictício diz: {}"
 
-#: src/modules/dummypythonqt/main.py:183
+#: src/modules/dummypythonqt/main.py:190
 msgid "A status message for Dummy PythonQt Job."
 msgstr "Uma mensagem de status para Dummy PythonQt Job."

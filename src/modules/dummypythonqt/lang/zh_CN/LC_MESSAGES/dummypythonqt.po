@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2017-03-29 00:50+0000\n"
+"POT-Creation-Date: 2017-03-29 19:05+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Mingcong Bai <jeffbai@aosc.xyz>, 2017\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/calamares/teams/20061/zh_CN/)\n"
@@ -18,22 +18,22 @@ msgstr ""
 "Language: zh_CN\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: src/modules/dummypythonqt/main.py:80
+#: src/modules/dummypythonqt/main.py:84
 msgid "Click me!"
 msgstr "按我按我！"
 
-#: src/modules/dummypythonqt/main.py:90
+#: src/modules/dummypythonqt/main.py:94
 msgid "A new QLabel."
 msgstr "一个平淡无奇的 QLabel。"
 
-#: src/modules/dummypythonqt/main.py:176
+#: src/modules/dummypythonqt/main.py:183
 msgid "The Dummy PythonQt Job"
 msgstr "PythonQt 任务"
 
-#: src/modules/dummypythonqt/main.py:179
+#: src/modules/dummypythonqt/main.py:186
 msgid "This is the Dummy PythonQt Job. The dummy job says: {}"
 msgstr "我是个 PythonQt 任务。任务提示：{}"
 
-#: src/modules/dummypythonqt/main.py:183
+#: src/modules/dummypythonqt/main.py:190
 msgid "A status message for Dummy PythonQt Job."
 msgstr "来自 PythonQt 任务的状态消息。"

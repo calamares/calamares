@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2017-03-29 00:50+0000\n"
+"POT-Creation-Date: 2017-03-29 19:05+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: strel <strelnic@gmail.com>, 2016\n"
 "Language-Team: Spanish (https://www.transifex.com/calamares/teams/20061/es/)\n"
@@ -18,22 +18,22 @@ msgstr ""
 "Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/modules/dummypythonqt/main.py:80
+#: src/modules/dummypythonqt/main.py:84
 msgid "Click me!"
 msgstr "¡Púlsame!"
 
-#: src/modules/dummypythonqt/main.py:90
+#: src/modules/dummypythonqt/main.py:94
 msgid "A new QLabel."
 msgstr "Una nueva QLabel."
 
-#: src/modules/dummypythonqt/main.py:176
+#: src/modules/dummypythonqt/main.py:183
 msgid "The Dummy PythonQt Job"
 msgstr "La Tarea PythonQt Ficticia"
 
-#: src/modules/dummypythonqt/main.py:179
+#: src/modules/dummypythonqt/main.py:186
 msgid "This is the Dummy PythonQt Job. The dummy job says: {}"
 msgstr "Esta es la Tarea PythonQt Ficticia. La tarea ficticia dice: {}"
 
-#: src/modules/dummypythonqt/main.py:183
+#: src/modules/dummypythonqt/main.py:190
 msgid "A status message for Dummy PythonQt Job."
 msgstr "Un mensaje de estado para la Tarea PythonQt Ficticia."
