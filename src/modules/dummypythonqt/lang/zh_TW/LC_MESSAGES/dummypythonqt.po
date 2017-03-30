@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2017-03-29 19:05+0000\n"
+"POT-Creation-Date: 2017-03-30 00:50+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Jeff Huang <s8321414@gmail.com>, 2016\n"
 "Language-Team: Chinese (Taiwan) (https://www.transifex.com/calamares/teams/20061/zh_TW/)\n"
