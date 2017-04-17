@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2017-04-16 01:34+0000\n"
+"POT-Creation-Date: 2017-04-16 03:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Kristján Magnússon <kristjanmagnus@gmail.com>, 2017\n"
 "Language-Team: Icelandic (https://www.transifex.com/calamares/teams/20061/is/)\n"
