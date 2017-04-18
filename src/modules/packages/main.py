@@ -170,7 +170,8 @@ def run_operations(pkgman, entry):
                         pkgman.install([package])
                     except subprocess.CalledProcessError:
                         warn_text = "WARNING: could not install package "
-                        libcalamares.utils.debug(warn_text + package)
+                        warn_text += package
+                        libcalamares.utils.debug(warn_text)
                 else:
                     try:
                         pkgman.run(package["pre-script"])
@@ -178,8 +179,8 @@ def run_operations(pkgman, entry):
                         pkgman.run(package["post-script"])
                     except subprocess.CalledProcessError:
                         warn_text = "WARNING: could not install packages "
-                        libcalamares.utils.debug(warn_text
-                                                 + package["package"])
+                        warn_text += package["package"]
+                        libcalamares.utils.debug(warn_text)
         elif key == "remove":
             pkgman.remove(entry[key])
         elif key == "try_remove":
@@ -188,7 +189,8 @@ def run_operations(pkgman, entry):
                     pkgman.remove([package])
                 except subprocess.CalledProcessError:
                     warn_text = "WARNING: could not remove package "
-                    libcalamares.utils.debug( warn_text + package)
+                    warn_text += package
+                    libcalamares.utils.debug(warn_text)
         elif key == "localInstall":
             pkgman.install(entry[key], from_local=True)
 
