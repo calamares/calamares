@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2017-04-28 01:05+0000\n"
+"POT-Creation-Date: 2017-04-28 03:30+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: m4sk1n <m4sk1n@vivaldi.net>, 2016\n"
 "Language-Team: Polish (https://www.transifex.com/calamares/teams/20061/pl/)\n"
