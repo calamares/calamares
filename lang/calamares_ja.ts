@@ -996,7 +996,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="160"/>
         <source>Install %2 on %3 system partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation>%3 システムパーティション &lt;strong&gt;%1&lt;/strong&gt; に %2 をインストール。</translation>
+        <translation>%3 システムパーティション &lt;strong&gt;%1&lt;/strong&gt; に%2 をインストール。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="166"/>
@@ -1300,7 +1300,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="95"/>
         <source>Moving of partition %1 failed, changes have been rolled back.</source>
-        <translation>パーティション %1 の移動に失敗しました。変更内容は戻されます。</translation>
+        <translation>パーティション %1 の移動に失敗しました。変更は取り消されます。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="101"/>
@@ -1722,22 +1722,22 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="161"/>
         <source>The selected item does not appear to be a valid partition.</source>
-        <translation>選択した項目は有効なパーティションではありません。</translation>
+        <translation>選択した項目は有効なパーティションではないようです。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="169"/>
         <source>%1 cannot be installed on empty space. Please select an existing partition.</source>
-        <translation>%1 は空きスペースにインストールすることはできません。既存のパーティションを選択してください。</translation>
+        <translation>%1 は空き領域にインストールすることはできません。既存のパーティションを選択してください。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="180"/>
         <source>%1 cannot be installed on an extended partition. Please select an existing primary or logical partition.</source>
-        <translation>%1 は拡張パーティションにインストールする事はできません。既存のプライマリまたは論理パーティションを選択してください。</translation>
+        <translation>%1 は拡張パーティションにインストールできません。既存のプライマリまたは論理パーティションを選択してください。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="191"/>
         <source>%1 cannot be installed on this partition.</source>
-        <translation>このパーティションには %1 をインストールできません。</translation>
+        <translation>%1 はこのパーティションにインストールできません。</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="198"/>
@@ -1792,7 +1792,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="102"/>
         <source>has at least %1 GB available drive space</source>
-        <translation>最低 %1 GB のディスク空き容量があること</translation>
+        <translation>最低 %1 GBのディスク空き領域があること</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="104"/>
