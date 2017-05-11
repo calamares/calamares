@@ -620,7 +620,7 @@ Programul de instalare va ieși, iar toate modificările vor fi pierdute.</trans
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="268"/>
         <source>Mountpoint already in use. Please select another one.</source>
-        <translation type="unfinished"/>
+        <translation>Punct de montare existent. Vă rugăm alegeţi altul.</translation>
     </message>
 </context>
 <context>
@@ -945,7 +945,7 @@ Programul de instalare va ieși, iar toate modificările vor fi pierdute.</trans
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.cpp" line="306"/>
         <source>Mountpoint already in use. Please select another one.</source>
-        <translation type="unfinished"/>
+        <translation>Punct de montare existent. Vă rugăm alegeţi altul.</translation>
     </message>
 </context>
 <context>
@@ -1334,12 +1334,12 @@ Programul de instalare va ieși, iar toate modificările vor fi pierdute.</trans
     <message>
         <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="71"/>
         <source>Name</source>
-        <translation type="unfinished"/>
+        <translation>Nume</translation>
     </message>
     <message>
         <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="72"/>
         <source>Description</source>
-        <translation type="unfinished"/>
+        <translation>Despre</translation>
     </message>
     <message>
         <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="81"/>
@@ -2091,12 +2091,12 @@ Programul de instalare va ieși, iar toate modificările vor fi pierdute.</trans
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="70"/>
         <source>Cannot disable root account.</source>
-        <translation type="unfinished"/>
+        <translation>Nu pot dezactiva contul root</translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="71"/>
         <source>passwd terminated with error code %1.</source>
-        <translation type="unfinished"/>
+        <translation>eroare la setarea parolei cod %1</translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="87"/>
@@ -2250,7 +2250,7 @@ Programul de instalare va ieși, iar toate modificările vor fi pierdute.</trans
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="72"/>
         <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Thanks to: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Lisa Vitolo, Philip Müller, Pier Luigi Fiorini, Rohan Garg and the &lt;a href=&quot;https://www.transifex.com/calamares/calamares/&quot;&gt;Calamares translators team&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;http://calamares.io/&quot;&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - Liberating Software.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Mulţumiri: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Lisa Vitolo, Philip Müller, Pier Luigi Fiorini, Rohan Garg şi &lt;a href=&quot;https://www.transifex.com/calamares/calamares/&quot;&gt;Calamares translators team&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;http://calamares.io/&quot;&gt;Calamares&lt;/a&gt; dezvoltarea sponsorizată de  &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - Liberating Software.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="196"/>
