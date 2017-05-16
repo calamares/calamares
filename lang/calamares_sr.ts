@@ -60,7 +60,7 @@
     <message>
         <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="76"/>
         <source>Boot Partition</source>
-        <translation>Партиција за покретање система</translation>
+        <translation>Подизна партиција</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="81"/>
@@ -158,63 +158,64 @@
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="89"/>
         <source>External command crashed</source>
-        <translation>Извршавање спољашње команде није успело</translation>
+        <translation>Спољашња наредба се срушила</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="90"/>
         <source>Command %1 crashed.
 Output:
 %2</source>
-        <translation>Извршавање команде %1 није успело.
-Порука:
+        <translation>Наредба %1 се срушила.
+Излаз:
 %2</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="95"/>
         <source>External command failed to start</source>
-        <translation>Покретање спољашње команде није успело</translation>
+        <translation>Покретање спољашње наредбе није успело</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="96"/>
         <source>Command %1 failed to start.</source>
-        <translation>Покретање команде %1 није успело</translation>
+        <translation>Покретање наредбе %1 није успело</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="100"/>
         <source>Internal error when starting command</source>
-        <translation>Интерна грешка при покретању команде</translation>
+        <translation>Интерна грешка при покретању наредбе</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="101"/>
         <source>Bad parameters for process job call.</source>
-        <translation>Погрешни параметри код позива функције у процесу.</translation>
+        <translation>Лоши параметри при позиву посла процеса.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="104"/>
         <source>External command failed to finish</source>
-        <translation>Извршавање екстерне команде није завршено.</translation>
+        <translation>Спољашња наредба није завршила</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="105"/>
         <source>Command %1 failed to finish in %2s.
 Output:
 %3</source>
-        <translation>Извршавање команде %1 није завршено у %2s.
-Повратна порука:
+        <translation>Наредба %1 није завршила у %2s.
+Излаз:
 %3</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="111"/>
         <source>External command finished with errors</source>
-        <translation>Извршавање спољашње команде извршено уз грешке.</translation>
+        <translation>Спољашња наредба извршена уз грешке</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="112"/>
         <source>Command %1 finished with exit code %2.
 Output:
 %3</source>
-        <translation>Команда %1 завршена са излазним кодом %2.
-Повратна порука: %3</translation>
+        <translation>Наредба %1 извршена са излазним кодом %2.
+Излаз:
+%3</translation>
     </message>
 </context>
 <context>
@@ -232,22 +233,22 @@ Output:
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="264"/>
         <source>Working directory %1 for python job %2 is not readable.</source>
-        <translation>Није могуће прочитати радни директоријум %1 за функцију %2 у питону.</translation>
+        <translation>Радни директоријум %1 за питонов посао %2 није читљив.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="274"/>
         <source>Bad main script file</source>
-        <translation>Неисправан главни фајл скрипте</translation>
+        <translation>Лош фајл главне скрипте</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="275"/>
         <source>Main script file %1 for python job %2 is not readable.</source>
-        <translation>Није могуће прочитати главни фајл скрипте %1 за питон функцију %2</translation>
+        <translation>Фајл главне скрипте %1 за питонов посао %2 није читљив.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonJob.cpp" line="320"/>
         <source>Boost.Python error in job &quot;%1&quot;.</source>
-        <translation>Грешка у функцији %1 C++ библиотеке Boost.Python. </translation>
+        <translation>Boost.Python грешка у послу „%1“.</translation>
     </message>
 </context>
 <context>
@@ -260,18 +261,18 @@ Output:
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="66"/>
         <source>&amp;Next</source>
-        <translation>&amp;Даље</translation>
+        <translation>&amp;Следеће</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="67"/>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="295"/>
         <source>&amp;Cancel</source>
-        <translation>&amp;Прекини</translation>
+        <translation>&amp;Откажи</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="90"/>
         <source>Cancel installation?</source>
-        <translation>Прекини инсталацију</translation>
+        <translation>Отказати инсталацију?</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="91"/>
