@@ -2058,12 +2058,12 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="144"/>
         <source>Update geometry of partition %1.</source>
-        <translation>Aggiornare la geometria della partizione %1.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="156"/>
         <source>Failed to change the geometry of the partition.</source>
-        <translation>Impossibile modificare la geometria della partizione.</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2134,7 +2134,7 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
     <message>
         <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="87"/>
         <source>Link creation failed, target: %1; link name: %2</source>
-        <translation>Creazione del collegamento non riuscita, destinazione: %1; nome collegamento: %2</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="96"/>
