@@ -94,21 +94,22 @@ canBeResized( Partition* candidate )
                                     ->globalStorage()
                                     ->value( "requiredStorageGB" )
                                     .toDouble( &ok );
+    double advisedStorageGB = requiredStorageGB + 0.5 + 2.0;
 
     qint64 availableStorageB = candidate->available();
 
     // We require a little more for partitioning overhead and swap file
     // TODO: maybe make this configurable?
-    qint64 requiredStorageB = ( requiredStorageGB + 0.5 + 2.0 ) * 1024 * 1024 * 1024;
-    cDebug() << "Required  storage B:" << requiredStorageB
-             << QString( "(%1GB)" ).arg( requiredStorageB / 1024 / 1024 / 1024 );
+    qint64 advisedStorageB = advisedStorageGB * 1024 * 1024 * 1024;
+    cDebug() << "Required  storage B:" << advisedStorageB
+             << QString( "(%1GB)" ).arg( advisedStorageGB );
     cDebug() << "Available storage B:" << availableStorageB
              << QString( "(%1GB)" ).arg( availableStorageB / 1024 / 1024 / 1024 )
              << "for" << candidate->partitionPath() << "   length:" << candidate->length()
              << "   sectorsUsed:" << candidate->sectorsUsed() << "   fsType:" << candidate->fileSystem().name();
 
     if ( ok &&
-         availableStorageB > requiredStorageB )
+         availableStorageB > advisedStorageB )
     {
         cDebug() << "Partition" << candidate->partitionPath() << "authorized for resize + autopartition install.";
 
