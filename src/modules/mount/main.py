@@ -44,14 +44,14 @@ def mount_partitions(root_mount_point, partitions):
             fstype = "vfat"
 
         if "luksMapperName" in partition:
-            libcalamares.utils.debug("about to mount "
-                                     + partition["luksMapperName"])
-            libcalamares.utils.mount("/dev/mapper/"
-                                     + partition["luksMapperName"],
-                                     mount_point,
-                                     fstype,
-                                     partition.get("options", ""),
-                                     )
+            libcalamares.utils.debug(
+                "about to mount {!s}".format(partition["luksMapperName"]))
+            libcalamares.utils.mount(
+                "/dev/mapper/{!s}".format(partition["luksMapperName"]),
+                mount_point,
+                fstype,
+                partition.get("options", ""),
+                )
 
         else:
             libcalamares.utils.mount(partition["device"],
@@ -84,39 +84,36 @@ def mount_partitions(root_mount_point, partitions):
             subprocess.check_call(["umount", "-v", root_mount_point])
 
             if "luksMapperName" in partition:
-                libcalamares.utils.mount("/dev/mapper/"
-                                         + partition["luksMapperName"],
-                                         mount_point,
-                                         fstype,
-                                         ",".join(["subvol=@",
-                                                   partition.get("options",
-                                                                 "")]),
-                                         )
+                libcalamares.utils.mount(
+                    "/dev/mapper/{!s}".format(partition["luksMapperName"]),
+                    mount_point,
+                    fstype,
+                    ",".join(
+                        ["subvol=@", partition.get("options", "")]),
+                    )
                 if not has_home_mount_point:
-                    libcalamares.utils.mount("/dev/mapper/"
-                                             + partition["luksMapperName"],
-                                             root_mount_point + "/home",
-                                             fstype,
-                                             ",".join(["subvol=@home",
-                                                       partition.get("options",
-                                                                     "")]),
-                                             )
+                    libcalamares.utils.mount(
+                        "/dev/mapper/{!s}".format(partition["luksMapperName"]),
+                        root_mount_point + "/home",
+                        fstype,
+                        ",".join(
+                            ["subvol=@home", partition.get("options", "")]),
+                        )
             else:
-                libcalamares.utils.mount(partition["device"],
-                                         mount_point,
-                                         fstype,
-                                         ",".join(["subvol=@",
-                                                   partition.get("options",
-                                                                 "")]),
-                                         )
+                libcalamares.utils.mount(
+                    partition["device"],
+                    mount_point,
+                    fstype,
+                    ",".join(["subvol=@", partition.get("options", "")]),
+                    )
                 if not has_home_mount_point:
-                    libcalamares.utils.mount(partition["device"],
-                                             root_mount_point + "/home",
-                                             fstype,
-                                             ",".join(["subvol=@home",
-                                                       partition.get("options",
-                                                                     "")]),
-                                             )
+                    libcalamares.utils.mount(
+                        partition["device"],
+                        root_mount_point + "/home",
+                        fstype,
+                        ",".join(
+                            ["subvol=@home", partition.get("options", "")]),
+                        )
 
 
 def run():
@@ -143,8 +140,8 @@ def run():
 
     # Remember the extra mounts for the unpackfs module
     if fw_type == 'efi':
-        libcalamares.globalstorage.insert("extraMounts",
-                                          extra_mounts + extra_mounts_efi)
+        libcalamares.globalstorage.insert(
+            "extraMounts", extra_mounts + extra_mounts_efi)
     else:
         libcalamares.globalstorage.insert("extraMounts", extra_mounts)
 
