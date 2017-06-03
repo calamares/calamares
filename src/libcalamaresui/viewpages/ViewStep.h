@@ -27,6 +27,14 @@
 namespace Calamares
 {
 
+/**
+ * @brief The ViewStep class is the base class for all view modules.
+ * A view module is a Calamares module which has at least one UI page (exposed as
+ * ViewStep::widget), and can optionally create Calamares jobs at runtime.
+ * As of early 2017, a view module can be implemented by deriving from ViewStep
+ * in C++ (as a Qt Plugin) or in Python with the PythonQt interface (which also
+ * mimics the ViewStep class).
+ */
 class UIDLLEXPORT ViewStep : public QObject
 {
     Q_OBJECT

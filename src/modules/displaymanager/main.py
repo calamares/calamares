@@ -261,19 +261,16 @@ def set_autologin(username, displaymanagers, default_desktop_environment, root_m
         if os.path.isfile(sddm_conf_path):
             sddm_config.read(sddm_conf_path)
 
-        autologin_section = {}
-        if 'Autologin' in sddm_config:
-            autologin_section = sddm_config['Autologin']
+        if 'Autologin' not in sddm_config:
+            sddm_config.add_section('Autologin')
 
         if do_autologin:
-            autologin_section['User'] = username
-        else:
-            del autologin_section['User']
+            sddm_config.set('Autologin', 'User', username)
+        elif sddm_config.has_option('Autologin', 'User'):
+            sddm_config.remove_option('Autologin', 'User')
 
         if default_desktop_environment is not None:
-            autologin_section['Session'] = default_desktop_environment.desktop_file
-
-        sddm_config['Autologin'] = autologin_section
+            sddm_config.set('Autologin', 'Session', default_desktop_environment.desktop_file)
 
         with open(sddm_conf_path, 'w') as sddm_config_file:
             sddm_config.write(sddm_config_file, space_around_delimiters=False)
@@ -351,7 +348,7 @@ def run():
             if default_desktop_environment.desktop_file == "deepin":
                 os.system("sed -i -e \"s/^.greeter-session=.*/greeter-session=lightdm-deepin-greeter/\" {!s}/etc/lightdm/lightdm.conf".format(
                           root_mount_point))
-                          
+
         else:
             libcalamares.utils.debug("lightdm selected but not installed")
             displaymanagers.remove("lightdm")
@@ -437,5 +434,5 @@ def run():
         libcalamares.utils.debug("Unsetting autologin.")
 
     libcalamares.globalstorage.insert("displayManagers", displaymanagers)
-    
+
     return set_autologin(username, displaymanagers, default_desktop_environment, root_mount_point)

@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2017, Teo Mrnjavac <teo@kde.org>
  *
  *   Portions from the Manjaro Installation Framework
  *   by Roland Singer <roland@manjaro.org>
@@ -136,6 +136,12 @@ UsersPage::createJobs( const QStringList& defaultGroupsList )
         else
             j = new SetPasswordJob( "root",
                                     ui->textBoxRootPassword->text() );
+        list.append( Calamares::job_ptr( j ) );
+    }
+    else
+    {
+        j = new SetPasswordJob( "root",
+                                "" ); //explicitly disable root password
         list.append( Calamares::job_ptr( j ) );
     }
 

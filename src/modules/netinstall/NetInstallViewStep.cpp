@@ -1,6 +1,7 @@
 /*
  *   Copyright 2016, Luca Giambonini <almack@chakraos.org>
  *   Copyright 2016, Lisa Vitolo <shainer@chakraos.org>
+ *   Copyright 2017, Kyle Robbertze  <krobbertze@gmail.com>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -125,32 +126,31 @@ NetInstallViewStep::onLeave()
     cDebug() << "Leaving netinstall, adding packages to be installed"
              << "to global storage";
 
-    const QList<Group>& selectedGroups = m_widget->selectedGroups();
+    QMap<QString, QVariant> packagesWithOperation;
+    QList<PackageTreeItem::ItemData> packages = m_widget->selectedPackages();
+    QVariantList installPackages;
+    QVariantList tryInstallPackages;
+    cDebug() << "Processing";
 
-    if ( !selectedGroups.empty() )
+    for ( auto package : packages )
     {
-        QMap<QString, QVariant> packagesWithOperation;
-        QStringList packages, critical_packages;
+        QMap<QString, QVariant> details;
+        details.insert( "pre-script", package.preScript );
+        details.insert( "package", package.packageName );
+        details.insert( "post-script", package.postScript );
+        if ( package.isCritical )
+            installPackages.append( details );
+        else
+            tryInstallPackages.append( details );
+    }
 
-        // We have two types of groups: "critical" (failing to install any of
-        // the packages makes Calamares fail) and "non critical" (we only log
-        // an error if the installation fails). We distinguish them here and select
-        // the correct package operation.
-        for (const Group& group : selectedGroups) {
-            if (group.critical) {
-                critical_packages += group.packages;
-            } else {
-                packages += group.packages;
-            }
-        }
+    if ( !installPackages.empty() )
+        packagesWithOperation.insert( "install", QVariant( installPackages ) );
+    if ( !tryInstallPackages.empty() )
+        packagesWithOperation.insert( "try_install", QVariant( tryInstallPackages ) );
 
-        if (!critical_packages.empty()) {
-            packagesWithOperation.insert( "install", critical_packages );
-        }
-        if (!packages.empty()) {
-            packagesWithOperation.insert( "try_install", packages);
-        }
-
+    if ( !packagesWithOperation.isEmpty() )
+    {
         Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
         gs->insert( "packageOperations", QVariant( packagesWithOperation ) );
     }

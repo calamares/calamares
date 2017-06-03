@@ -22,6 +22,12 @@
 #include <QList>
 #include <QVariant>
 
+
+/**
+ * @brief The ProgressTreeItem class represents an item in the
+ * ProgressTreeModel/ProgressTreeView.
+ * Each item generally represents a ViewStep.
+ */
 class ProgressTreeItem
 {
 public:

@@ -3,6 +3,7 @@
 
 [![GitHub release](https://img.shields.io/github/release/calamares/calamares.svg)](https://github.com/calamares/calamares/releases)
 [![Build Status](https://calamares.io/ci/buildStatus/icon?job=calamares-post_commit)](https://calamares.io/ci/job/calamares-post_commit/)
+[![Travis Build Status](https://travis-ci.org/calamares/calamares.svg?branch=master)](https://travis-ci.org/calamares/calamares)
 [![Coverity Scan Build Status](https://scan.coverity.com/projects/5389/badge.svg)](https://scan.coverity.com/projects/5389)
 [![GitHub license](https://img.shields.io/github/license/calamares/calamares.svg)](https://github.com/calamares/calamares/blob/master/LICENSE)
 
@@ -22,17 +23,17 @@ Main:
 
 Modules:
 * welcome:
- * NetworkManager
- * UPower
+  * NetworkManager
+  * UPower
 * partition:
- * extra-cmake-modules
- * KF5: KCoreAddons, KConfig, KI18n, KIconThemes, KIO, KService
- * KPMcore >= 3.0
+  * extra-cmake-modules
+  * KF5: KCoreAddons, KConfig, KI18n, KIconThemes, KIO, KService
+  * KPMcore >= 3.0
 * bootloader:
- * systemd-boot or GRUB
+  * systemd-boot or GRUB
 * unpackfs:
- * squashfs-tools
- * rsync
+  * squashfs-tools
+  * rsync
 
 ### Building
 

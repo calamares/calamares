@@ -4,7 +4,7 @@
 # === This file is part of Calamares - <http://github.com/calamares> ===
 #
 #   Copyright 2014-2015, Philip Müller <philm@manjaro.org>
-#   Copyright 2015,      Teo Mrnjavac <teo@kde.org>
+#   Copyright 2015-2017, Teo Mrnjavac <teo@kde.org>
 #
 #   Calamares is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -22,6 +22,7 @@
 import libcalamares
 import os
 import re
+
 
 def modify_grub_default(partitions, root_mount_point, distributor):
     """ Configures '/etc/default/grub' for hibernation and plymouth.
@@ -65,7 +66,7 @@ def modify_grub_default(partitions, root_mount_point, distributor):
                     "cryptdevice=UUID={!s}:{!s}".format(partition["luksUuid"],
                                                         partition["luksMapperName"]),
                     "root=/dev/mapper/{!s}".format(partition["luksMapperName"])
-            ]
+                ]
 
     kernel_params = ["quiet"]
 
@@ -162,10 +163,24 @@ def run():
 
     :return:
     """
-    if libcalamares.globalstorage.value("bootLoader") is None:
+
+    fw_type = libcalamares.globalstorage.value("firmwareType")
+
+    if libcalamares.globalstorage.value("bootLoader") is None and fw_type != "efi":
         return None
 
     partitions = libcalamares.globalstorage.value("partitions")
+
+    if fw_type == "efi":
+        esp_found = False
+
+        for partition in partitions:
+            if partition["mountPoint"] == libcalamares.globalstorage.value("efiSystemPartition"):
+                esp_found = True
+
+        if not esp_found:
+            return None
+
     root_mount_point = libcalamares.globalstorage.value("rootMountPoint")
     branding = libcalamares.globalstorage.value("branding")
     distributor = branding["bootloaderEntryName"]

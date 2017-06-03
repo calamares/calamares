@@ -114,9 +114,9 @@ set( CALAMARES_DESCRIPTION_SUMMARY "The distribution-independent installer frame
 set( CALAMARES_TRANSLATION_LANGUAGES ar ast bg ca cs_CZ da de el en en_GB es_MX es eu fr hr hu id is it_IT ja lt nl pl pt_BR pt_PT ro ru sk sv th tr_TR zh_CN zh_TW )
 
 ### Bump version here
-set( CALAMARES_VERSION_MAJOR 2 )
-set( CALAMARES_VERSION_MINOR 4 )
-set( CALAMARES_VERSION_PATCH 80 )
+set( CALAMARES_VERSION_MAJOR 3 )
+set( CALAMARES_VERSION_MINOR 1 )
+set( CALAMARES_VERSION_PATCH 0 )
 set( CALAMARES_VERSION_RC 0 )
 
 set( CALAMARES_VERSION ${CALAMARES_VERSION_MAJOR}.${CALAMARES_VERSION_MINOR}.${CALAMARES_VERSION_PATCH} )

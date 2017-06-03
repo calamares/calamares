@@ -27,6 +27,9 @@ namespace Calamares
 class DebugWindow;
 }
 
+/**
+ * @brief The CalamaresWindow class represents the main window of the Calamares UI.
+ */
 class CalamaresWindow : public QWidget
 {
     Q_OBJECT

@@ -42,6 +42,12 @@ class DeviceInfoWidget;
 
 class Device;
 
+
+/**
+ * @brief The ChoicePage class is the first page of the partitioning interface.
+ * It offers a choice between partitioning operations and initiates all automated
+ * partitioning modes. For manual partitioning, see PartitionPage.
+ */
 class ChoicePage : public QWidget, private Ui::ChoicePage
 {
     Q_OBJECT
@@ -58,13 +64,36 @@ public:
     explicit ChoicePage( QWidget* parent = nullptr );
     virtual ~ChoicePage();
 
+    /**
+     * @brief init runs when the PartitionViewStep and the PartitionCoreModule are
+     *      ready. Sets up the rest of the UI based on os-prober output.
+     * @param core the PartitionCoreModule pointer.
+     */
     void init( PartitionCoreModule* core );
 
+    /**
+     * @brief isNextEnabled answers whether the current state of the page is such
+     * that progressing to the next page should be allowed.
+     * @return true if next is allowed, otherwise false.
+     */
     bool isNextEnabled() const;
 
+    /**
+     * @brief currentChoice returns the enum Choice value corresponding to the
+     * currently selected partitioning mode (with a PrettyRadioButton).
+     * @return the enum Choice value.
+     */
     Choice currentChoice() const;
 
+    /**
+     * @brief onLeave runs when control passes from this page to another one.
+     */
     void onLeave();
+
+    /**
+     * @brief applyActionChoice reacts to a choice of partitioning mode.
+     * @param choice the partitioning action choice.
+     */
     void applyActionChoice( ChoicePage::Choice choice );
 
 signals:

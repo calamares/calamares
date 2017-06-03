@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2017, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -69,6 +69,7 @@ private:
     QWidget* m_widget;
     qreal m_requiredStorageGB;
     qreal m_requiredRamGB;
+    QString m_checkHasInternetUrl;
 
     CheckerWidget* m_actualWidget;
     bool m_verdict;

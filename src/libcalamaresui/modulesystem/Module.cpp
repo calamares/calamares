@@ -176,6 +176,12 @@ Module::loadConfigurationFile( const QString& configFileName ) //throws YAML::Ex
             QByteArray ba = configFile.readAll();
 
             YAML::Node doc = YAML::Load( ba.constData() );
+            if ( doc.IsNull() )
+            {
+                // Special case: empty config files are valid,
+                // but aren't a map.
+                return;
+            }
             if ( !doc.IsMap() )
             {
                 cLog() << Q_FUNC_INFO << "bad module configuration format"

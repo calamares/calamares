@@ -21,6 +21,12 @@
 
 #include <QStyledItemDelegate>
 
+
+/**
+ * @brief The ProgressTreeDelegate class customizes the look and feel of the
+ * ProgressTreeView elements.
+ * @see ProgressTreeView
+ */
 class ProgressTreeDelegate : public QStyledItemDelegate
 {
     Q_OBJECT

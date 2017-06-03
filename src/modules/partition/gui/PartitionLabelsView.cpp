@@ -207,7 +207,7 @@ PartitionLabelsView::buildTexts( const QModelIndex& index ) const
     else if ( index.data( PartitionModel::OsproberNameRole ).toString().isEmpty() )
     {
         firstLine = index.data().toString();
-        if ( firstLine.startsWith( "/dev/sd" ) )
+        if ( firstLine.startsWith( "/dev/" ) )
             firstLine.remove( 0, 5 );   // "/dev/"
     }
     else

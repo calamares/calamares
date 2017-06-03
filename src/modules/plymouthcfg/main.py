@@ -4,6 +4,7 @@
 # === This file is part of Calamares - <http://github.com/calamares> ===
 #
 #   Copyright 2016, Artoo <artoo@manjaro.org>
+#   Copyright 2017, Alf Gaida <agaida@siduction.org>
 #
 #   Calamares is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -35,7 +36,8 @@ class PlymouthController:
     def setTheme(self):
         plymouth_theme = libcalamares.job.configuration["plymouth_theme"]
         target_env_call(["sed", "-e", 's|^.*Theme=.*|Theme=' +
-                         plymouth_theme + '|', "-i", "/etc/plymouth/plymouthd.conf"])
+                         plymouth_theme + '|', "-i",
+                         "/etc/plymouth/plymouthd.conf"])
 
     def detect(self):
         isPlymouth = target_env_call(["which", "plymouth"])
@@ -50,7 +52,8 @@ class PlymouthController:
 
     def run(self):
         if self.detect() == 0:
-            if "plymouth_theme" in libcalamares.job.configuration and libcalamares.job.configuration["plymouth_theme"] is not None:
+            if (("plymouth_theme" in libcalamares.job.configuration) and
+               (libcalamares.job.configuration["plymouth_theme"] is not None)):
                 self.setTheme()
         return None
 
@@ -58,4 +61,3 @@ class PlymouthController:
 def run():
     pc = PlymouthController()
     return pc.run()
-

@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2017, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -59,11 +59,24 @@ SetPasswordJob::exec()
         return Calamares::JobResult::error( tr( "Bad destination system path." ),
                                             tr( "rootMountPoint is %1" ).arg( destDir.absolutePath() ) );
 
+    if ( m_userName == "root" &&
+         m_newPassword.isEmpty() ) //special case for disabling root account
+    {
+        int ec = CalamaresUtils::System::instance()->
+                 targetEnvCall( { "passwd",
+                                  "-dl",
+                                  m_userName } );
+        if ( ec )
+            return Calamares::JobResult::error( tr( "Cannot disable root account." ),
+                                                tr( "passwd terminated with error code %1." )
+                                                    .arg( ec ) );
+        return Calamares::JobResult::ok();
+    }
+
     QString encrypted = QString::fromLatin1(
-                            crypt( m_newPassword.toLatin1(),
+                            crypt( m_newPassword.toUtf8(),
                                    QString( "$6$%1$" )
-                                .arg( m_userName )
-                                .toLatin1() ) );
+                                .arg( m_userName ).toUtf8() ) );
 
     int ec = CalamaresUtils::System::instance()->
                           targetEnvCall( { "usermod",

@@ -10,7 +10,7 @@ find_package( KF5 REQUIRED CoreAddons )
 # These are needed because KPMcore links publicly against ConfigCore, I18n, IconThemes, KIOCore and Service
 find_package( KF5 REQUIRED Config I18n IconThemes KIO Service )
 
-find_package( KPMcore 3.0.0 REQUIRED )
+find_package( KPMcore 3.0.2 REQUIRED )
 
 add_subdirectory( tests )
 

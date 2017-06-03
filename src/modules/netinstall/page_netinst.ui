@@ -25,7 +25,7 @@
      <property name="widgetResizable">
       <bool>true</bool>
      </property>
-     <widget class="QWidget" name="groupswidget">
+     <widget class="QTreeView" name="groupswidget">
       <property name="geometry">
        <rect>
         <x>0</x>
@@ -33,6 +33,11 @@
         <width>981</width>
         <height>434</height>
        </rect>
+      </property>
+      <property name="font">
+        <font>
+          <pointsize>11</pointsize>
+        </font>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_3"/>
      </widget>

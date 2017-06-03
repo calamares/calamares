@@ -24,6 +24,10 @@
 #include <QObject>
 
 
+/**
+ * @brief The Utils class wraps around functions from CalamaresUtils to make them
+ * available in the PythonQt interface.
+ */
 class Utils : public QObject
 {
     Q_OBJECT

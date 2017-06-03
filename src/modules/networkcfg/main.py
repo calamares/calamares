@@ -59,11 +59,12 @@ def run():
     if source_resolv != target_resolv and os.path.exists(source_resolv):
         try:
             os.remove(target_resolv)
-        except FileNotFoundError:
-            libcalamares.utils.debug("Couldn't remove {}".format(target_resolv))
+        except Exception as err:
+            libcalamares.utils.debug("Couldn't remove {}: {}".format(target_resolv, err))
+
         try:
             shutil.copy(source_resolv, target_resolv)
-        except FileNotFoundError:
-            libcalamares.utils.debug("Can't copy resolv.conf from {}".format(source_resolv))
+        except Exception as err:
+            libcalamares.utils.debug("Can't copy resolv.conf from {}: {}".format(source_resolv, err))
 
     return None
