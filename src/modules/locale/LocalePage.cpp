@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014-2016, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -350,14 +351,16 @@ LocalePage::init( const QString& initialRegion,
     if ( m_localeGenLines.isEmpty() )
     {
         cDebug() << "WARNING: cannot acquire a list of available locales."
-                 << "The locale and localecfg modules will be broken as long as this "
+                    << "The locale and localecfg modules will be broken as long as this "
                     "system does not provide"
-                 << " * a /usr/share/i18n/SUPPORTED file"
-                 << "\tOR"
-                 << " * a well-formed /etc/locale.gen"
-                 << "\tOR"
-                 << " * a complete pre-compiled locale-gen database which allows complete locale -a output.";
-
+                    << "\n\t  "
+                    << "* a well-formed"
+                    << supported.fileName()
+                    << "\n\tOR"
+                    << "* a well-formed"
+                    << (localeGenPath.isEmpty() ? QLatin1Literal("/etc/locale.gen") : localeGenPath)
+                    << "\n\tOR"
+                    << "* a complete pre-compiled locale-gen database which allows complete locale -a output.";
         return; // something went wrong and there's nothing we can do about it.
     }
 
@@ -432,14 +435,7 @@ LocalePage::guessLocaleConfiguration()
     // If we cannot say anything about available locales
     if ( m_localeGenLines.isEmpty() )
     {
-        cDebug() << "WARNING: cannot acquire a list of available locales."
-                 << "The locale and localecfg modules will be broken as long as this "
-                    "system does not provide"
-                 << " * a /usr/share/i18n/SUPPORTED file"
-                 << "\tOR"
-                 << " * a well-formed /etc/locale.gen"
-                 << "\tOR"
-                 << " * a complete pre-compiled locale-gen database which allows complete locale -a output.";
+        cDebug() << "WARNING: guessLocaleConfiguration can't guess from an empty list.";
         return LocaleConfiguration::createDefault();
     }
 
