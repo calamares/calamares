@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -51,14 +52,14 @@ ViewModule::loadSelf()
         PluginFactory* pf = qobject_cast< PluginFactory* >( m_loader->instance() );
         if ( !pf )
         {
-            cDebug() << Q_FUNC_INFO << m_loader->errorString();
+            cDebug() << Q_FUNC_INFO << "No factory:" << m_loader->errorString();
             return;
         }
 
         m_viewStep = pf->create< Calamares::ViewStep >();
         if ( !m_viewStep )
         {
-            cDebug() << Q_FUNC_INFO << m_loader->errorString();
+            cDebug() << Q_FUNC_INFO << "create() failed" << m_loader->errorString();
             return;
         }
 //        cDebug() << "ViewModule loading self for instance" << instanceKey()
