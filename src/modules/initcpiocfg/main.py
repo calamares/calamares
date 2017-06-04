@@ -132,16 +132,16 @@ def modify_mkinitcpio_conf(partitions, root_mount_point):
                ):
             files.append("/crypto_keyfile.bin")
 
-    if swap_uuid is not "":
+    if swap_uuid != "":
         if encrypt_hook and openswap_hook:
             hooks.extend(["openswap"])
         hooks.extend(["resume", "filesystems"])
     else:
         hooks.extend(["filesystems"])
 
-    if btrfs is "yes" and cpu['proc0']['vendor_id'].lower() != "genuineintel":
+    if btrfs == "yes" and cpu['proc0']['vendor_id'].lower() != "genuineintel":
         modules.append("crc32c")
-    elif (btrfs is "yes"
+    elif (btrfs == "yes"
           and cpu['proc0']['vendor_id'].lower() == "genuineintel"):
         modules.append("crc32c-intel")
     else:
