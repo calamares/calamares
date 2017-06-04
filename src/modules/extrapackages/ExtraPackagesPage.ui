@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ExtraPackagesPage</class>
+ <widget class="QWidget" name="ExtraPackagesPage">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>593</width>
+    <height>400</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Extra Packages</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QLabel" name="maintext">
+     <property name="text">
+      <string>&lt;p&gt;Select the packages you would like to install (if any). This requires an Internet connection&lt;/p&gt;&lt;p&gt;By installing these packages you are accepting their respective licenses. &lt;/p&gt;</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+     <widget class="QCheckBox" name="selectAllBox">
+       <property name="text">
+         <string>Select all</string>
+       </property>
+       <property name="tristate">
+         <bool>true</bool>
+       </property>
+     </widget>
+   </item>
+   <item>
+    <widget class="QTableWidget" name="packageTable">
+     <property name="selectionMode">
+      <enum>QAbstractItemView::NoSelection</enum>
+     </property>
+     <property name="showGrid">
+      <bool>false</bool>
+     </property>
+     <attribute name="verticalHeaderVisible">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="verticalHeaderHighlightSections">
+      <bool>false</bool>
+     </attribute>
+     <column>
+      <property name="text">
+       <string>Package Name</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Description</string>
+      </property>
+     </column>
+    </widget>
+   </item>
+   <item alignment="Qt::AlignHCenter">
+    <widget class="QPushButton" name="helpCentreButton">
+     <property name="text">
+      <string>&amp;Help Centre</string>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
