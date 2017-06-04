@@ -25,10 +25,10 @@ from libcalamares.utils import check_target_env_call
 
 def run():
     """
-    This module sets up a file crypto_keyfile.bin on the rootfs, assuming the rootfs
-    is LUKS encrypted and a passphrase is provided. This file is then included in the
-    initramfs and used for unlocking the rootfs from a previously unlocked GRUB2
-    session.
+    This module sets up a file crypto_keyfile.bin on the rootfs, assuming the
+    rootfs is LUKS encrypted and a passphrase is provided. This file is then
+    included in the initramfs and used for unlocking the rootfs from a
+    previously unlocked GRUB2 session.
     :return:
     """
 
@@ -52,8 +52,10 @@ def run():
         return None
 
     if not luks_root_passphrase:
-        return ("Encrypted rootfs setup error",
-                "Rootfs partition {!s} is LUKS but no passphrase found.".format(luks_root_device))
+        return (
+            "Encrypted rootfs setup error",
+            "Rootfs partition {!s} is LUKS but no passphrase found."
+            .format(luks_root_device))
 
     # Generate random keyfile
     check_target_env_call(["dd",
