@@ -172,9 +172,7 @@ LocalePage::LocalePage( QWidget* parent )
              !dlg->selectedLCLocale().isEmpty() )
         {
             m_selectedLocaleConfiguration.lang = dlg->selectedLCLocale();
-            m_localeLabel->setText( tr( "The system language will be set to %1." )
-                                    .arg( prettyLCLocale(
-                                        m_selectedLocaleConfiguration.lang ) ) );
+            this->updateLocaleLabels();
         }
 
         dlg->deleteLater();
@@ -204,9 +202,7 @@ LocalePage::LocalePage( QWidget* parent )
             m_selectedLocaleConfiguration.lc_measurement = dlg->selectedLCLocale();
             m_selectedLocaleConfiguration.lc_identification = dlg->selectedLCLocale();
 
-            m_formatsLabel->setText( tr( "The numbers and dates locale will be set to %1." )
-                                    .arg( prettyLCLocale(
-                                        m_selectedLocaleConfiguration.lc_numeric ) ) );
+            this->updateLocaleLabels();
         }
 
         dlg->deleteLater();
