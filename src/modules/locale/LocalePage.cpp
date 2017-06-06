@@ -172,6 +172,7 @@ LocalePage::LocalePage( QWidget* parent )
              !dlg->selectedLCLocale().isEmpty() )
         {
             m_selectedLocaleConfiguration.lang = dlg->selectedLCLocale();
+            m_selectedLocaleConfiguration.explicit_lang = true;
             this->updateLocaleLabels();
         }
 
@@ -201,6 +202,7 @@ LocalePage::LocalePage( QWidget* parent )
             m_selectedLocaleConfiguration.lc_telephone = dlg->selectedLCLocale();
             m_selectedLocaleConfiguration.lc_measurement = dlg->selectedLCLocale();
             m_selectedLocaleConfiguration.lc_identification = dlg->selectedLCLocale();
+            m_selectedLocaleConfiguration.explicit_lc = true;
 
             this->updateLocaleLabels();
         }
@@ -420,6 +422,13 @@ void
 LocalePage::onActivate()
 {
     m_regionCombo->setFocus();
+    if ( m_selectedLocaleConfiguration.isEmpty() ||
+         !m_selectedLocaleConfiguration.explicit_lang )
+    {
+        auto newLocale = guessLocaleConfiguration();
+        m_selectedLocaleConfiguration.lang = newLocale.lang;
+        updateLocaleLabels();
+    }
 }
 
 
@@ -478,6 +487,27 @@ LocalePage::updateGlobalStorage()
                               location.region + '/' + location.zone } );
     }
 
-    m_selectedLocaleConfiguration = guessLocaleConfiguration();
+    // Preserve those settings that have been made explicit.
+    auto newLocale = guessLocaleConfiguration();
+    if ( !m_selectedLocaleConfiguration.isEmpty() &&
+         m_selectedLocaleConfiguration.explicit_lang )
+        newLocale.lang = m_selectedLocaleConfiguration.lang;
+    if ( !m_selectedLocaleConfiguration.isEmpty() &&
+         m_selectedLocaleConfiguration.explicit_lc )
+    {
+        newLocale.lc_numeric = m_selectedLocaleConfiguration.lc_numeric;
+        newLocale.lc_time = m_selectedLocaleConfiguration.lc_time;
+        newLocale.lc_monetary = m_selectedLocaleConfiguration.lc_monetary;
+        newLocale.lc_paper = m_selectedLocaleConfiguration.lc_paper;
+        newLocale.lc_name = m_selectedLocaleConfiguration.lc_name;
+        newLocale.lc_address = m_selectedLocaleConfiguration.lc_address;
+        newLocale.lc_telephone = m_selectedLocaleConfiguration.lc_telephone;
+        newLocale.lc_measurement = m_selectedLocaleConfiguration.lc_measurement;
+        newLocale.lc_identification = m_selectedLocaleConfiguration.lc_identification;
+    }
+    newLocale.explicit_lang = m_selectedLocaleConfiguration.explicit_lang;
+    newLocale.explicit_lc = m_selectedLocaleConfiguration.explicit_lc;
+
+    m_selectedLocaleConfiguration = newLocale;
     updateLocaleLabels();
 }

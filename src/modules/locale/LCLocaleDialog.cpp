@@ -69,6 +69,8 @@ LCLocaleDialog::LCLocaleDialog( const QString& guessedLCLocale,
     connect( dbb->button( QDialogButtonBox::Cancel ), &QPushButton::clicked,
              this, &QDialog::reject );
 
+    connect( m_localesWidget, &QListWidget::itemDoubleClicked,
+             this, &QDialog::accept );
     connect( m_localesWidget, &QListWidget::itemSelectionChanged,
              [this, dbb]()
     {
