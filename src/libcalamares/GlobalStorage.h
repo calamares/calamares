@@ -57,6 +57,8 @@ public:
     int remove( const QString& key );
     QVariant value( const QString& key ) const;
 
+    void debugDump() const;
+
 signals:
     void changed();
 
