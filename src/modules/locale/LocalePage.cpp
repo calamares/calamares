@@ -422,6 +422,13 @@ void
 LocalePage::onActivate()
 {
     m_regionCombo->setFocus();
+    if ( m_selectedLocaleConfiguration.isEmpty() ||
+         !m_selectedLocaleConfiguration.explicit_lang )
+    {
+        auto newLocale = guessLocaleConfiguration();
+        m_selectedLocaleConfiguration.lang = newLocale.lang;
+        updateLocaleLabels();
+    }
 }
 
 
