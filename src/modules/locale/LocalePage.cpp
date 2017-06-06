@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014-2016, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -171,9 +172,7 @@ LocalePage::LocalePage( QWidget* parent )
              !dlg->selectedLCLocale().isEmpty() )
         {
             m_selectedLocaleConfiguration.lang = dlg->selectedLCLocale();
-            m_localeLabel->setText( tr( "The system language will be set to %1." )
-                                    .arg( prettyLCLocale(
-                                        m_selectedLocaleConfiguration.lang ) ) );
+            this->updateLocaleLabels();
         }
 
         dlg->deleteLater();
@@ -203,9 +202,7 @@ LocalePage::LocalePage( QWidget* parent )
             m_selectedLocaleConfiguration.lc_measurement = dlg->selectedLCLocale();
             m_selectedLocaleConfiguration.lc_identification = dlg->selectedLCLocale();
 
-            m_formatsLabel->setText( tr( "The numbers and dates locale will be set to %1." )
-                                    .arg( prettyLCLocale(
-                                        m_selectedLocaleConfiguration.lc_numeric ) ) );
+            this->updateLocaleLabels();
         }
 
         dlg->deleteLater();
@@ -350,14 +347,16 @@ LocalePage::init( const QString& initialRegion,
     if ( m_localeGenLines.isEmpty() )
     {
         cDebug() << "WARNING: cannot acquire a list of available locales."
-                 << "The locale and localecfg modules will be broken as long as this "
+                    << "The locale and localecfg modules will be broken as long as this "
                     "system does not provide"
-                 << " * a /usr/share/i18n/SUPPORTED file"
-                 << "\tOR"
-                 << " * a well-formed /etc/locale.gen"
-                 << "\tOR"
-                 << " * a complete pre-compiled locale-gen database which allows complete locale -a output.";
-
+                    << "\n\t  "
+                    << "* a well-formed"
+                    << supported.fileName()
+                    << "\n\tOR"
+                    << "* a well-formed"
+                    << (localeGenPath.isEmpty() ? QLatin1Literal("/etc/locale.gen") : localeGenPath)
+                    << "\n\tOR"
+                    << "* a complete pre-compiled locale-gen database which allows complete locale -a output.";
         return; // something went wrong and there's nothing we can do about it.
     }
 
@@ -432,14 +431,7 @@ LocalePage::guessLocaleConfiguration()
     // If we cannot say anything about available locales
     if ( m_localeGenLines.isEmpty() )
     {
-        cDebug() << "WARNING: cannot acquire a list of available locales."
-                 << "The locale and localecfg modules will be broken as long as this "
-                    "system does not provide"
-                 << " * a /usr/share/i18n/SUPPORTED file"
-                 << "\tOR"
-                 << " * a well-formed /etc/locale.gen"
-                 << "\tOR"
-                 << " * a complete pre-compiled locale-gen database which allows complete locale -a output.";
+        cDebug() << "WARNING: guessLocaleConfiguration can't guess from an empty list.";
         return LocaleConfiguration::createDefault();
     }
 

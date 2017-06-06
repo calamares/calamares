@@ -18,6 +18,8 @@
 
 #include "GlobalStorage.h"
 
+#include "utils/Logger.h"
+
 #ifdef WITH_PYTHON
 #include "PythonHelper.h"
 
@@ -78,6 +80,15 @@ QVariant
 GlobalStorage::value( const QString& key ) const
 {
     return m.value( key );
+}
+
+void
+GlobalStorage::debugDump() const
+{
+    for ( auto it = m.cbegin(); it != m.cend(); ++it )
+    {
+        cDebug() << it.key() << '\t' << it.value();
+    }
 }
 
 } // namespace Calamares

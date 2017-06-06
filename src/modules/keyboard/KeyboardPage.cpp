@@ -323,6 +323,7 @@ KeyboardPage::onListVariantCurrentItemChanged( QListWidgetItem* current, QListWi
         QProcess::execute( QString( "setxkbmap -layout \"%1\" -variant \"%2\"" )
                            .arg( layout, variant ).toUtf8() );
         cDebug() << "xkbmap selection changed to: " << layout << "-" << variant;
+        m_setxkbmapTimer.disconnect( this );
     } );
     m_setxkbmapTimer.start( QApplication::keyboardInputInterval() );
 
