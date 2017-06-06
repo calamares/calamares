@@ -6,6 +6,7 @@
 #   Copyright 2014, Teo Mrnjavac <teo@kde.org>
 #   Copyright 2014, Daniel Hillenbrand <codeworkx@bbqlinux.org>
 #   Copyright 2014, Philip Müller <philm@manjaro.org>
+#   Copyright 2017, Alf Gaida <agaida@siduction.org>
 #
 #   Calamares is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -31,7 +32,8 @@ from libcalamares import *
 
 
 class UnpackEntry:
-    """ Extraction routine using rsync.
+    """
+    Extraction routine using rsync.
 
     :param source:
     :param sourcefs:
@@ -51,7 +53,8 @@ ON_POSIX = 'posix' in sys.builtin_module_names
 
 
 def list_excludes(destination):
-    """ List excludes for rsync.
+    """
+    List excludes for rsync.
 
     :param destination:
     :return:
@@ -69,7 +72,8 @@ def list_excludes(destination):
 
 
 def file_copy(source, dest, progress_cb):
-    """ Extract given image using rsync.
+    """
+    Extract given image using rsync.
 
     :param source:
     :param dest:
@@ -89,7 +93,9 @@ def file_copy(source, dest, progress_cb):
     args = ['rsync', '-aHAXr']
     args.extend(list_excludes(dest))
     args.extend(['--progress', source, dest])
-    process = subprocess.Popen(args, env=at_env, bufsize=1, stdout=subprocess.PIPE, close_fds=ON_POSIX)
+    process = subprocess.Popen(
+        args, env=at_env, bufsize=1, stdout=subprocess.PIPE, close_fds=ON_POSIX
+        )
 
     for line in iter(process.stdout.readline, b''):
         # small comment on this regexp.
@@ -119,15 +125,16 @@ def file_copy(source, dest, progress_cb):
 
     process.wait()
 
-    # 23 is the return code rsync returns if it cannot write extended attributes
-    # (with -X) because the target file system does not support it, e.g., the
-    # FAT EFI system partition. We need -X because distributions using file
-    # system capabilities and/or SELinux require the extended attributes. But
-    # distributions using SELinux may also have SELinux labels set on files
-    # under /boot/efi, and rsync complains about those. The only clean way would
-    # be to split the rsync into one with -X and --exclude /boot/efi and a
-    # separate one without -X for /boot/efi, but only if /boot/efi is actually
-    # an EFI system partition. For now, this hack will have to do. See also:
+    # 23 is the return code rsync returns if it cannot write extended
+    # attributes (with -X) because the target file system does not support it,
+    # e.g., the FAT EFI system partition. We need -X because distributions
+    # using file system capabilities and/or SELinux require the extended
+    # attributes. But distributions using SELinux may also have SELinux labels
+    # set on files under /boot/efi, and rsync complains about those. The only
+    # clean way would be to split the rsync into one with -X and
+    # --exclude /boot/efi and a separate one without -X for /boot/efi, but only
+    # if /boot/efi is actually an EFI system partition. For now, this hack will
+    # have to do. See also:
     # https://bugzilla.redhat.com/show_bug.cgi?id=868755#c50
     # for the same issue in Anaconda, which uses a similar workaround.
     if process.returncode != 0 and process.returncode != 23:
@@ -137,7 +144,8 @@ def file_copy(source, dest, progress_cb):
 
 
 class UnpackOperation:
-    """ Extraction routine using unsquashfs.
+    """
+    Extraction routine using unsquashfs.
 
     :param entries:
     """
@@ -147,7 +155,9 @@ class UnpackOperation:
         self.entry_for_source = dict((x.source, x) for x in self.entries)
 
     def report_progress(self):
-        """ Pass progress to user interface """
+        """
+        Pass progress to user interface
+        """
         progress = float(0)
 
         for entry in self.entries:
@@ -162,7 +172,8 @@ class UnpackOperation:
         job.setprogress(progress)
 
     def run(self):
-        """ Extract given image using unsquashfs.
+        """
+        Extract given image using unsquashfs.
 
         :return:
         """
@@ -170,7 +181,8 @@ class UnpackOperation:
 
         try:
             for entry in self.entries:
-                imgbasename = os.path.splitext(os.path.basename(entry.source))[0]
+                imgbasename = os.path.splitext(
+                    os.path.basename(entry.source))[0]
                 imgmountdir = os.path.join(source_mount_path, imgbasename)
                 os.mkdir(imgmountdir)
 
@@ -186,10 +198,14 @@ class UnpackOperation:
                         return ("Failed to unpack image",
                                 msg)
 
-                    fslist = subprocess.check_output(["unsquashfs", "-l", entry.source])
+                    fslist = subprocess.check_output(
+                        ["unsquashfs", "-l", entry.source]
+                        )
 
                 if entry.sourcefs == "ext4":
-                    fslist = subprocess.check_output(["find", imgmountdir, "-type", "f"])
+                    fslist = subprocess.check_output(
+                        ["find", imgmountdir, "-type", "f"]
+                        )
 
                 entry.total = len(fslist.splitlines())
 
@@ -197,25 +213,35 @@ class UnpackOperation:
                 error_msg = self.unpack_image(entry, imgmountdir)
 
                 if error_msg:
-                    return "Failed to unpack image {}".format(entry.source), error_msg
+                    return ("Failed to unpack image {}".format(entry.source),
+                            error_msg)
 
             return None
         finally:
             shutil.rmtree(source_mount_path)
 
     def mount_image(self, entry, imgmountdir):
-        """ Mount given image as loop device.
+        """
+        Mount given image as loop device.
 
         :param entry:
         :param imgmountdir:
         """
         if os.path.isdir(entry.source):
-            subprocess.check_call(["mount", "--bind", entry.source, imgmountdir])
+            subprocess.check_call(["mount",
+                                   "--bind", entry.source,
+                                   imgmountdir])
         else:
-            subprocess.check_call(["mount", entry.source, imgmountdir, "-t", entry.sourcefs, "-o", "loop"])
+            subprocess.check_call(["mount",
+                                   entry.source,
+                                   imgmountdir,
+                                   "-t", entry.sourcefs,
+                                   "-o", "loop"
+                                   ])
 
     def unpack_image(self, entry, imgmountdir):
-        """ Unpacks image.
+        """
+        Unpacks image.
 
         :param entry:
         :param imgmountdir:
@@ -236,12 +262,13 @@ class UnpackOperation:
 
 
 def run():
-    """ Unsquashes filesystem from given image file.
+    """
+    Unsquashes filesystem from given image file.
 
     from globalstorage: rootMountPoint
-    from job.configuration: the path to where to mount the source image(s) for copying
-    an ordered list of unpack mappings for image file <-> target dir relative
-    to rootMountPoint, e.g.:
+    from job.configuration: the path to where to mount the source image(s) for
+    copying an ordered list of unpack mappings for image file <-> target dir
+    relative to rootMountPoint, e.g.:
     configuration:
         unpack:
             - source: "/path/to/filesystem.img"
@@ -280,7 +307,8 @@ def run():
         if os.path.isfile(PATH_PROCFS) and os.access(PATH_PROCFS, os.R_OK):
             with open(PATH_PROCFS, 'r') as procfile:
                 filesystems = procfile.read()
-                filesystems = filesystems.replace("nodev", "").replace("\t", "").splitlines()
+                filesystems = filesystems.replace(
+                    "nodev", "").replace("\t", "").splitlines()
 
                 # Check if the source filesystem is supported
                 for fs in filesystems:
@@ -292,7 +320,7 @@ def run():
 
         destination = os.path.abspath(root_mount_point + entry["destination"])
 
-        if not os.path.exists(source): 
+        if not os.path.exists(source):
             return "Bad source", "source=\"{}\"".format(source)
 
         if not os.path.isdir(destination):
