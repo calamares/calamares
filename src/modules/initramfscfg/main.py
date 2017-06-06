@@ -46,21 +46,19 @@ def copy_initramfs_hooks(partitions, root_mount_point):
             unencrypted_separate_boot = True
 
     if encrypt_hook:
+        target = "{!s}/usr/share/initramfs-tools/hooks/encrypt_hook".format(
+                    root_mount_point)
         if unencrypted_separate_boot:
             shutil.copy2(
                 "/usr/lib/calamares/modules/initramfscfg/encrypt_hook_nokey",
-                "{!s}/usr/share/initramfs-tools/hooks/encrypt_hook".format(
-                    root_mount_point)
-                    )
+                target
+                )
         else:
             shutil.copy2(
                 "/usr/lib/calamares/modules/initramfscfg/encrypt_hook",
-                "{!s}/usr/share/initramfs-tools/hooks/".format(
-                    root_mount_point)
-                    )
-        os.chmod("{!s}/usr/share/initramfs-tools/hooks/encrypt_hook".format(
-            root_mount_point), 0o755
-            )
+                target
+                )
+        os.chmod(target, 0o755)
 
 
 def run():
