@@ -256,6 +256,13 @@ install(
       ${CMAKE_INSTALL_DATADIR}/applications
 )
 
+install(
+    FILES
+        man/calamares.8
+    DESTINATION
+        ${CMAKE_INSTALL_MANDIR}/man8/
+)
+
 # uninstall target
 configure_file(
     "${CMAKE_CURRENT_SOURCE_DIR}/cmake_uninstall.cmake.in"
