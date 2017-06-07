@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2016, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -59,9 +60,9 @@ KeyboardLayoutModel::data( const QModelIndex& index, int role ) const
 void
 KeyboardLayoutModel::init()
 {
-    QMap< QString, KeyboardGlobal::KeyboardInfo > layouts =
+    KeyboardGlobal::LayoutsMap layouts =
             KeyboardGlobal::getKeyboardLayouts();
-    for ( QMap< QString, KeyboardGlobal::KeyboardInfo >::const_iterator it = layouts.constBegin();
+    for ( KeyboardGlobal::LayoutsMap::const_iterator it = layouts.constBegin();
           it != layouts.constEnd(); ++it )
     {
         m_layouts.append( qMakePair( it.key(), it.value() ) );
