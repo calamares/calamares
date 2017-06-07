@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014-2016, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Portions from the Manjaro Installation Framework
  *   by Roland Singer <roland@manjaro.org>
@@ -222,9 +223,57 @@ KeyboardPage::createJobs( const QString& xOrgConfFileName,
 
 
 void
+KeyboardPage::guessLayout( const QStringList& langParts )
+{
+    const KeyboardLayoutModel* klm = dynamic_cast< KeyboardLayoutModel* >( ui->listLayout->model() );
+    bool foundCountryPart = false;
+    for ( auto countryPart = langParts.rbegin(); !foundCountryPart && countryPart != langParts.rend(); ++countryPart)
+    {
+        cDebug() << "   .. looking for locale part" << *countryPart;
+        for ( int i = 0; i < klm->rowCount(); ++i )
+        {
+            QModelIndex idx = klm->index( i );
+            if ( idx.isValid() &&
+                ( idx.data( KeyboardLayoutModel::KeyboardLayoutKeyRole ).toString().compare( *countryPart, Qt::CaseInsensitive ) == 0 ) )
+            {
+                cDebug() << "   .. matched" << idx.data( KeyboardLayoutModel::KeyboardLayoutKeyRole ).toString();
+                ui->listLayout->setCurrentIndex( idx );
+                foundCountryPart = true;
+                break;
+            }
+        }
+    }
+}
+
+
+void
 KeyboardPage::onActivate()
 {
     ui->listLayout->setFocus();
+
+    // Try to preselect a layout, depending on language and locale
+    Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
+    QString lang = gs->value( "localeConf" ).toMap().value( "LANG" ).toString();
+
+    cDebug() << "Got locale language" << lang;
+    if ( !lang.isEmpty() )
+    {
+        // Chop off .codeset and @modifier
+        int index = lang.indexOf('.');
+        if ( index >= 0 )
+            lang.truncate( index );
+        index = lang.indexOf('@');
+        if ( index >= 0 )
+            lang.truncate( index );
+
+        lang.replace( '-', '_' );  // Normalize separators
+        const auto langParts = lang.split( '_' , QString::SkipEmptyParts );
+
+        QString country = QLocale::countryToString( QLocale( lang ).country() );
+        cDebug() << " .. extracted country" << country << "::" << langParts;
+
+        guessLayout( langParts );
+    }
 }
 
 
