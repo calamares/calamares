@@ -62,7 +62,8 @@ public:
     {
         SidebarBackground,
         SidebarText,
-        SidebarTextSelect
+        SidebarTextSelect,
+        SidebarTextHighlight
     };
 
     static Branding* instance();
