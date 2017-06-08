@@ -71,7 +71,8 @@ const QStringList Branding::s_styleEntryStrings =
 {
     "sidebarBackground",
     "sidebarText",
-    "sidebarTextSelect"
+    "sidebarTextSelect",
+    "sidebarTextHighlight"
 };
 
 
