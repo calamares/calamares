@@ -2,6 +2,7 @@
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *   Copyright 2015,      Anke Boersma <demm@kaosx.us>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -52,8 +53,11 @@ WelcomePage::WelcomePage( RequirementsChecker* requirementsChecker, QWidget* par
     ui->mainText->setWordWrap( true );
     ui->mainText->setOpenExternalLinks( true );
 
+    cDebug() << "Welcome string" << Calamares::Branding::instance()->welcomeStyleCalamares()
+        << Calamares::Branding::instance()->string( Calamares::Branding::VersionedName );
+
     CALAMARES_RETRANSLATE(
-        ui->mainText->setText( tr( "<h1>Welcome to the %1 installer.</h1>" )
+        ui->mainText->setText( (Calamares::Branding::instance()->welcomeStyleCalamares() ? tr( "<h1>Welcome to the Calamares installer for %1.</h1>" ) : tr( "<h1>Welcome to the %1 installer.</h1>" ))
                                 .arg( Calamares::Branding::instance()->
                                       string( Calamares::Branding::VersionedName ) ) );
         ui->retranslateUi( this );
