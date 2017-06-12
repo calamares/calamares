@@ -1,4 +1,3 @@
-# style.sidebarTextHighlight is optional and defaults to application palette
 ---
 componentName:  default
 
@@ -22,6 +21,14 @@ images:
 
 slideshow:               "show.qml"
 
+# Colors for text and background components.
+#
+#  - sidebarBackground is the background of the sidebar
+#  - sidebarText is the (foreground) text color
+#  - sidebarTextHighlight sets the background of the selected (current) step.
+#    Optional, and defaults to the application palette.
+#  - sidebarSelect is the text color of the selected step.
+#
 style:
    sidebarBackground:    "#292F34"
    sidebarText:          "#FFFFFF"
