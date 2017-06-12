@@ -1,6 +1,13 @@
 ---
 componentName:  default
 
+# This selects between different welcome texts. When false, uses
+# the traditional "Welcome to the %1 installer.", and when true,
+# uses "Welcome to the Calamares installer for %1." This allows
+# to distinguish this installer from other installers for the
+# same distribution.
+welcomeStyleCalamares:   false
+
 strings:
     productName:         Generic GNU/Linux
     shortProductName:    Generic
