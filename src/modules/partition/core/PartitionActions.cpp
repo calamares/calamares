@@ -34,14 +34,12 @@
 
 namespace PartitionActions
 {
+#define MiB * static_cast< qint64 >( 1024 ) * 1024
+#define GiB * static_cast< qint64 >( 1024 ) * 1024 * 1024
 
 qint64
 swapSuggestion( const qint64 availableSpaceB )
 {
-
-#define MiB * static_cast< qint64 >( 1024 ) * 1024
-#define GiB * static_cast< qint64 >( 1024 ) * 1024 * 1024
-
     // swap(mem) = max(2, 2 * mem), if mem < 2 GiB
     //           = mem,             if 2 GiB <= mem < 8 GiB
     //           = mem / 2,         if 8 GIB <= mem < 64 GiB
@@ -109,9 +107,6 @@ doAutopartition( PartitionCoreModule* core, Device* dev, const QString& luksPass
     QString defaultFsType = gs->value( "defaultFileSystemType" ).toString();
     if ( FileSystem::typeForName( defaultFsType ) == FileSystem::Unknown )
         defaultFsType = "ext4";
-
-#define MiB * static_cast< qint64 >( 1024 ) * 1024
-#define GiB * static_cast< qint64 >( 1024 ) * 1024 * 1024
 
     // Partition sizes are expressed in MiB, should be multiples of
     // the logical sector size (usually 512B).
