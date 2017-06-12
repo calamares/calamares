@@ -1,5 +1,5 @@
 # ECM used for something in the tests  directory
-find_package(ECM 0.0.13 REQUIRED NO_MODULE)
+find_package(ECM 5.10.0 REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${CMAKE_MODULE_PATH})
 
 # KF5::CoreAddons seems to be used for *something* in this module, not sure what
