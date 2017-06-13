@@ -900,12 +900,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="20"/>
         <source>Edit Existing Partition</source>
-        <translation>既存のパーティションの編集</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="50"/>
         <source>Content:</source>
-        <translation>内容:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="60"/>
@@ -915,17 +915,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="70"/>
         <source>Format</source>
-        <translation>フォーマット</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="89"/>
         <source>Warning: Formatting the partition will erase all existing data.</source>
-        <translation>警告: パーティションのフォーマットはすべてのデータを消去します。</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="99"/>
         <source>&amp;Mount Point:</source>
-        <translation>マウントポイント（&amp;M）</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="119"/>
