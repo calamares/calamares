@@ -11,6 +11,15 @@ find_package( KF5 REQUIRED CoreAddons )
 find_package( KF5 REQUIRED Config I18n IconThemes KIO Service )
 
 find_package( KPMcore 3.0.3 REQUIRED )
+find_library( atasmart_LIB atasmart )
+find_library( blkid_LIB blkid )
+if( NOT atasmart_LIB )
+  message( WARNING "atasmart library not found." )
+endif()
+if( NOT blkid_LIB )
+  message( WARNING "blkid library not found." )
+endif()
+
 
 add_subdirectory( tests )
 
