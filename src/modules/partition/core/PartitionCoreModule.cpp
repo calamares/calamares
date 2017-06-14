@@ -157,9 +157,9 @@ PartitionCoreModule::doInit()
 
     // Remove the device which contains / from the list
     for ( QList< Device* >::iterator it = devices.begin(); it != devices.end(); )
-        if ( *it && ( hasRootPartition( *it ) ||
+        if ( ! (*it) || hasRootPartition( *it ) ||
              (*it)->deviceNode().startsWith( "/dev/zram") ||
-             isIso9660( *it ) ) )
+             isIso9660( *it ) )
             it = devices.erase( it );
         else
             ++it;
@@ -171,6 +171,7 @@ PartitionCoreModule::doInit()
         m_deviceInfos << deviceInfo;
         cDebug() << device->deviceNode() << device->capacity() << device->name() << device->prettyName();
     }
+    cDebug() << ".." << devices.count() << "devices detected.";
     m_deviceModel->init( devices );
 
     // The following PartUtils::runOsprober call in turn calls PartUtils::canBeResized,
