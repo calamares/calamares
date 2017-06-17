@@ -50,6 +50,7 @@ NetInstallPage::NetInstallPage( QWidget* parent )
     : QWidget( parent )
     , ui( new Ui::Page_NetInst )
     , m_networkManager( this )
+    , m_groups( nullptr )
 {
     ui->setupUi( this );
 }

@@ -81,6 +81,7 @@ Branding::Branding( const QString& brandingFilePath,
                     QObject* parent )
     : QObject( parent )
     , m_descriptorPath( brandingFilePath )
+    , m_componentName()
 {
     cDebug() << "Using Calamares branding file at" << brandingFilePath;
     QFile file( brandingFilePath );
@@ -192,7 +193,14 @@ Branding::Branding( const QString& brandingFilePath,
     }
 
     s_instance = this;
-    cDebug() << "Loaded branding component" << m_componentName;
+    if ( m_componentName.isEmpty() )
+    {
+        cDebug() << "WARNING: failed to load component from" << brandingFilePath;
+    }
+    else
+    {
+        cDebug() << "Loaded branding component" << m_componentName;
+    }
 }
 
 
