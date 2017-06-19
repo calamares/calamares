@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014-2016, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Portions from the Manjaro Installation Framework
  *   by Roland Singer <roland@manjaro.org>
@@ -292,6 +293,9 @@ KeyboardPage::onListLayoutCurrentItemChanged( const QModelIndex& current,
     updateVariants( QPersistentModelIndex( current ) );
 }
 
+/* Returns stringlist with suitable setxkbmap command-line arguments
+ * to set the given @p layout and @p variant.
+ */
 static inline QStringList xkbmap_args( QStringList&& r, const QString& layout, const QString& variant)
 {
     r << "-layout" << layout;
