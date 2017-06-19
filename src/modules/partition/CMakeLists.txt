@@ -1,5 +1,5 @@
 # ECM used for something in the tests  directory
-find_package(ECM 0.0.13 REQUIRED NO_MODULE)
+find_package(ECM 5.10.0 REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${CMAKE_MODULE_PATH})
 
 # KF5::CoreAddons seems to be used for *something* in this module, not sure what
@@ -10,7 +10,16 @@ find_package( KF5 REQUIRED CoreAddons )
 # These are needed because KPMcore links publicly against ConfigCore, I18n, IconThemes, KIOCore and Service
 find_package( KF5 REQUIRED Config I18n IconThemes KIO Service )
 
-find_package( KPMcore 3.0.2 REQUIRED )
+find_package( KPMcore 3.0.3 REQUIRED )
+find_library( atasmart_LIB atasmart )
+find_library( blkid_LIB blkid )
+if( NOT atasmart_LIB )
+  message( WARNING "atasmart library not found." )
+endif()
+if( NOT blkid_LIB )
+  message( WARNING "blkid library not found." )
+endif()
+
 
 add_subdirectory( tests )
 

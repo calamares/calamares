@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014-2017, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -34,14 +35,29 @@
 
 namespace PartitionActions
 {
+constexpr qint64 operator ""_MiB( unsigned long long m )
+{
+    return m * static_cast< qint64 >( 1024 ) * 1024;
+}
+
+constexpr qint64 operator ""_GiB( unsigned long long m )
+{
+    return operator ""_MiB(m) * static_cast< qint64 >( 1024 );
+}
+
+constexpr qint64 toMiB( unsigned long long m )
+{
+    return operator ""_MiB( m );
+}
+
+constexpr qint64 toGiB( unsigned long long m )
+{
+    return operator ""_GiB( m );
+}
 
 qint64
 swapSuggestion( const qint64 availableSpaceB )
 {
-
-#define MiB * static_cast< qint64 >( 1024 ) * 1024
-#define GiB * static_cast< qint64 >( 1024 ) * 1024 * 1024
-
     // swap(mem) = max(2, 2 * mem), if mem < 2 GiB
     //           = mem,             if 2 GiB <= mem < 8 GiB
     //           = mem / 2,         if 8 GIB <= mem < 64 GiB
@@ -62,10 +78,10 @@ swapSuggestion( const qint64 availableSpaceB )
 
     if ( ensureSuspendToDisk )
     {
-        if ( availableRamB < 4 GiB )
-            suggestedSwapSizeB = qMax( 2 GiB, availableRamB * 2 );
-        else if ( availableRamB >= 4 GiB && availableRamB < 8 GiB )
-            suggestedSwapSizeB = 8 GiB;
+        if ( availableRamB < 4_GiB )
+            suggestedSwapSizeB = qMax( 2_GiB, availableRamB * 2 );
+        else if ( availableRamB >= 4_GiB && availableRamB < 8_GiB )
+            suggestedSwapSizeB = 8_GiB;
         else
             suggestedSwapSizeB = availableRamB;
 
@@ -73,14 +89,14 @@ swapSuggestion( const qint64 availableSpaceB )
     }
     else //if we don't care about suspend to disk
     {
-        if ( availableRamB < 2 GiB )
-            suggestedSwapSizeB = qMax( 2 GiB, availableRamB * 2 );
-        else if ( availableRamB >= 2 GiB && availableRamB < 8 GiB )
+        if ( availableRamB < 2_GiB )
+            suggestedSwapSizeB = qMax( 2_GiB, availableRamB * 2 );
+        else if ( availableRamB >= 2_GiB && availableRamB < 8_GiB )
             suggestedSwapSizeB = availableRamB;
-        else if ( availableRamB >= 8 GiB && availableRamB < 64 GiB )
+        else if ( availableRamB >= 8_GiB && availableRamB < 64_GiB )
             suggestedSwapSizeB = availableRamB / 2;
         else
-            suggestedSwapSizeB = 4 GiB;
+            suggestedSwapSizeB = 4_GiB;
 
         suggestedSwapSizeB *= overestimationFactor;
 
@@ -110,9 +126,6 @@ doAutopartition( PartitionCoreModule* core, Device* dev, const QString& luksPass
     if ( FileSystem::typeForName( defaultFsType ) == FileSystem::Unknown )
         defaultFsType = "ext4";
 
-#define MiB * static_cast< qint64 >( 1024 ) * 1024
-#define GiB * static_cast< qint64 >( 1024 ) * 1024 * 1024
-
     // Partition sizes are expressed in MiB, should be multiples of
     // the logical sector size (usually 512B).
     int uefisys_part_size = 0;
@@ -128,11 +141,11 @@ doAutopartition( PartitionCoreModule* core, Device* dev, const QString& luksPass
         empty_space_size = 1;
     }
 
-    qint64 firstFreeSector = empty_space_size MiB / dev->logicalSize() + 1;
+    qint64 firstFreeSector = toMiB(empty_space_size) / dev->logicalSize() + 1;
 
     if ( isEfi )
     {
-        qint64 lastSector = firstFreeSector + ( uefisys_part_size MiB / dev->logicalSize() );
+        qint64 lastSector = firstFreeSector + ( toMiB(uefisys_part_size) / dev->logicalSize() );
         core->createPartitionTable( dev, PartitionTable::gpt );
         Partition* efiPartition = KPMHelpers::createNewPartition(
             dev->partitionTable(),
@@ -163,7 +176,7 @@ doAutopartition( PartitionCoreModule* core, Device* dev, const QString& luksPass
         qint64 availableSpaceB = ( dev->totalLogical() - firstFreeSector ) * dev->logicalSize();
         suggestedSwapSizeB = swapSuggestion( availableSpaceB );
         qint64 requiredSpaceB =
-                ( gs->value( "requiredStorageGB" ).toDouble() + 0.1 + 2.0 ) GiB +
+                toGiB( gs->value( "requiredStorageGB" ).toDouble() + 0.1 + 2.0 ) +
                 suggestedSwapSizeB;
 
         // If there is enough room for ESP + root + swap, create swap, otherwise don't.

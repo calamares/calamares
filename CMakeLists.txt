@@ -3,19 +3,24 @@ project( calamares CXX )
 # The partition manager uses ECM but ECMConfig.cmake
 # will complain if we require CMake less than 2.8.13,
 # so never change this.
-cmake_minimum_required( VERSION 2.8.12 )
+cmake_minimum_required( VERSION 3.2 )
 
 set( CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/CMakeModules" )
 
+set( CMAKE_CXX_STANDARD 14 )
+set( CMAKE_CXX_STANDARD_REQUIRED ON )
+set( CMAKE_C_STANDARD 99 )
+set( CMAKE_C_STANDARD_REQUIRED ON )
+
 if( CMAKE_CXX_COMPILER_ID MATCHES "Clang" )
     message( STATUS "Found Clang ${CMAKE_CXX_COMPILER_VERSION}, setting up Clang-specific compiler flags." )
-    set( CMAKE_C_FLAGS                  "${CMAKE_C_FLAGS} -Wall -std=c99" )
+    set( CMAKE_C_FLAGS                  "${CMAKE_C_FLAGS} -Wall" )
     set( CMAKE_C_FLAGS_DEBUG            "-g" )
     set( CMAKE_C_FLAGS_MINSIZEREL       "-Os -DNDEBUG" )
     set( CMAKE_C_FLAGS_RELEASE          "-O4 -DNDEBUG" )
     set( CMAKE_C_FLAGS_RELWITHDEBINFO   "-O2 -g" )
 
-    set( CMAKE_CXX_FLAGS                "${CMAKE_CXX_FLAGS} -Weverything -std=c++14" )
+    set( CMAKE_CXX_FLAGS                "${CMAKE_CXX_FLAGS} -Weverything" )
     set( CMAKE_CXX_FLAGS_DEBUG          "-g" )
     set( CMAKE_CXX_FLAGS_MINSIZEREL     "-Os -DNDEBUG" )
     set( CMAKE_CXX_FLAGS_RELEASE        "-O4 -DNDEBUG" )
@@ -25,9 +30,8 @@ if( CMAKE_CXX_COMPILER_ID MATCHES "Clang" )
 
     set( CMAKE_SHARED_LINKER_FLAGS "-Wl,--no-undefined" )
 else()
-    set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c99" )
-    set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -Wl,--no-undefined" )
-    set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -Wl,--fatal-warnings -Wnon-virtual-dtor -Woverloaded-virtual -Werror=return-type" )
+    set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wl,--no-undefined" )
+    set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wl,--fatal-warnings -Wnon-virtual-dtor -Woverloaded-virtual -Werror=return-type" )
 endif()
 
 if( CMAKE_COMPILER_IS_GNUCXX )
@@ -254,6 +258,13 @@ install(
       calamares.desktop
   DESTINATION
       ${CMAKE_INSTALL_DATADIR}/applications
+)
+
+install(
+    FILES
+        man/calamares.8
+    DESTINATION
+        ${CMAKE_INSTALL_MANDIR}/man8/
 )
 
 # uninstall target

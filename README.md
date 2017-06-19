@@ -14,7 +14,7 @@
 
 Main:
 * Compiler with C++11 support: GCC >= 4.9.0 or Clang >= 3.5.1
-* CMake >= 2.8.12
+* CMake >= 3.2
 * Qt >= 5.6
 * yaml-cpp >= 0.5.1
 * Python >= 3.3
@@ -28,7 +28,7 @@ Modules:
 * partition:
   * extra-cmake-modules
   * KF5: KCoreAddons, KConfig, KI18n, KIconThemes, KIO, KService
-  * KPMcore >= 3.0
+  * KPMcore >= 3.0.3
 * bootloader:
   * systemd-boot or GRUB
 * unpackfs:

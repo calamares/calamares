@@ -4,6 +4,7 @@
 # === This file is part of Calamares - <http://github.com/calamares> ===
 #
 #   Copyright 2016, Teo Mrnjavac <teo@kde.org>
+#   Copyright 2017, Alf Gaida <agaida@siduction.org>
 #
 #   Calamares is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -33,7 +34,9 @@ def write_openswap_conf(partitions, root_mount_point, openswap_conf_path):
             swap_mapper_name = partition["luksMapperName"]
 
         elif partition["mountPoint"] == "/" and "luksMapperName" in partition:
-            mountable_keyfile_device = "/dev/mapper/{!s}".format(partition["luksMapperName"])
+            mountable_keyfile_device = (
+                "/dev/mapper/{!s}".format(partition["luksMapperName"])
+                )
 
     if not mountable_keyfile_device or not swap_outer_uuid:
         return None
@@ -41,7 +44,8 @@ def write_openswap_conf(partitions, root_mount_point, openswap_conf_path):
     swap_device_path = "/dev/disk/by-uuid/{!s}".format(swap_outer_uuid)
 
     lines = []
-    with open(os.path.join(root_mount_point, openswap_conf_path), 'r') as openswap_file:
+    with open(os.path.join(root_mount_point,
+                           openswap_conf_path), 'r') as openswap_file:
         lines = [x.strip() for x in openswap_file.readlines()]
 
     for i in range(len(lines)):
@@ -57,7 +61,8 @@ def write_openswap_conf(partitions, root_mount_point, openswap_conf_path):
         elif lines[i].startswith("keyfile_filename"):
             lines[i] = "keyfile_filename=crypto_keyfile.bin"
 
-    with open(os.path.join(root_mount_point, openswap_conf_path), 'w') as openswap_file:
+    with open(os.path.join(root_mount_point,
+                           openswap_conf_path), 'w') as openswap_file:
         openswap_file.write("\n".join(lines) + "\n")
 
     return None
@@ -75,4 +80,6 @@ def run():
 
     openswap_conf_path = openswap_conf_path.lstrip('/')
 
-    return write_openswap_conf(partitions, root_mount_point, openswap_conf_path)
+    return write_openswap_conf(
+        partitions, root_mount_point, openswap_conf_path
+        )

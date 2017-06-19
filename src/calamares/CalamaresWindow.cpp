@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -46,10 +47,13 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
                               string( Calamares::Branding::ProductName ) ) );
     )
 
-    setMinimumSize( 1010, 520 );
+    constexpr int min_w = 800;
+    constexpr int min_h = 520;
+
+    setMinimumSize( min_w, min_h );
     QSize availableSize = qApp->desktop()->availableGeometry( this ).size();
-    int w = qBound( 1010, CalamaresUtils::defaultFontHeight() * 60, availableSize.width() );
-    int h = qBound( 520,  CalamaresUtils::defaultFontHeight() * 36, availableSize.height() );
+    int w = qBound( min_w, CalamaresUtils::defaultFontHeight() * 60, availableSize.width() );
+    int h = qBound( min_h,  CalamaresUtils::defaultFontHeight() * 36, availableSize.height() );
 
     cDebug() << "Proposed window size:" << w << h;
     resize( w, h );

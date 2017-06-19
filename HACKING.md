@@ -26,10 +26,21 @@ Example:
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 ```
-Copyright holders must be physical or legal personalities. A statement such as `Copyright 2014, The FooBarQuux project` has no legal value if "The FooBarQuux project" is not the legal name of a person, company, incorporated organization, etc.
+Copyright holders must be physical or legal personalities. A statement such as
+`Copyright 2014, The FooBarQuux project` has no legal value if "The FooBarQuux
+project" is not the legal name of a person, company, incorporated
+organization, etc.
+
+Please add your name to files you touch when making any contribution (even if
+it's just a typo-fix which might not be copyrightable in all jurisdictions).
 
 Formatting
 ----------
+
+This formatting guide applies to C++ code only; for Python modules, we use
+[pycodestyle][https://github.com/PyCQA/pycodestyle] to apply a check of
+some PEP8 guidelines.
+
 * Spaces, not tabs.
 * Indentation is 4 spaces.
 * Lines should be limited to 90 characters.
@@ -70,7 +81,9 @@ You can use the `hacking/calamaresstyle` script to run
 [astyle](http://astyle.sf.net) on your code and have it formatted the right
 way.
 
-**NOTE:** An .editorconfig file is included to assist with formatting. In order to take advantage of this functionality you will need to acquire the [EditorConfig](http://editorconfig.org/#download) plug-in for your editor.
+**NOTE:** An .editorconfig file is included to assist with formatting. In
+order to take advantage of this functionality you will need to acquire the
+[EditorConfig](http://editorconfig.org/#download) plug-in for your editor.
 
 Naming
 ------

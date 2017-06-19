@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -62,7 +63,8 @@ public:
     {
         SidebarBackground,
         SidebarText,
-        SidebarTextSelect
+        SidebarTextSelect,
+        SidebarTextHighlight
     };
 
     static Branding* instance();
@@ -80,6 +82,8 @@ public:
     QString imagePath( Branding::ImageEntry imageEntry ) const;
     QPixmap image( Branding::ImageEntry imageEntry, const QSize& size ) const;
     QString slideshowPath() const;
+
+    bool welcomeStyleCalamares() const;
 
     /**
      * Creates a map called "branding" in the global storage, and inserts an
@@ -104,6 +108,8 @@ private:
     QMap< QString, QString > m_style;
     QString m_slideshowPath;
     QString m_translationsPathPrefix;
+
+    bool m_welcomeStyleCalamares;
 };
 
 }
