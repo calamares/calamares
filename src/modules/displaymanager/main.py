@@ -89,14 +89,15 @@ def have_dm(dm_name, root_mount_point):
 
 
 def set_autologin(username,
-                  displaymanagers,
+                  displaymanager,
                   default_desktop_environment,
                   root_mount_point):
     """
     Enables automatic login for the installed desktop managers.
 
     :param username:
-    :param displaymanagers:
+    :param displaymanager: str
+        The displaymanager for which to configure autologin.
     :param default_desktop_environment:
     :param root_mount_point:
     """
@@ -105,7 +106,7 @@ def set_autologin(username,
     if username is None:
         do_autologin = False
 
-    if "mdm" in displaymanagers:
+    if "mdm" == displaymanager:
         # Systems with MDM as Desktop Manager
         mdm_conf_path = os.path.join(root_mount_point, "etc/mdm/custom.conf")
 
@@ -142,7 +143,7 @@ def set_autologin(username,
                 else:
                     mdm_conf.write('AutomaticLoginEnable=False\n')
 
-    if "gdm" in displaymanagers:
+    if "gdm" == displaymanager:
         # Systems with GDM as Desktop Manager
         gdm_conf_path = os.path.join(root_mount_point, "etc/gdm/custom.conf")
 
@@ -205,7 +206,7 @@ def set_autologin(username,
                     )
                 )
 
-    if "kdm" in displaymanagers:
+    if "kdm" == displaymanager:
         # Systems with KDM as Desktop Manager
         kdm_conf_path = os.path.join(
             root_mount_point, "usr/share/config/kdm/kdmrc"
@@ -234,7 +235,7 @@ def set_autologin(username,
                 "KDM config file {!s} does not exist".format(kdm_conf_path)
                 )
 
-    if "lxdm" in displaymanagers:
+    if "lxdm" == displaymanager:
         # Systems with LXDM as Desktop Manager
         lxdm_conf_path = os.path.join(root_mount_point, "etc/lxdm/lxdm.conf")
         text = []
@@ -258,7 +259,7 @@ def set_autologin(username,
                 "LXDM config file {!s} does not exist".format(lxdm_conf_path)
                 )
 
-    if "lightdm" in displaymanagers:
+    if "lightdm" == displaymanager:
         # Systems with LightDM as Desktop Manager
         # Ideally, we should use configparser for the ini conf file,
         # but we just do a simple text replacement for now, as it
@@ -289,7 +290,7 @@ def set_autologin(username,
                     )
                 )
 
-    if "slim" in displaymanagers:
+    if "slim" == displaymanager:
         # Systems with Slim as Desktop Manager
         slim_conf_path = os.path.join(root_mount_point, "etc/slim.conf")
         text = []
@@ -316,7 +317,7 @@ def set_autologin(username,
                 "SLIM config file {!s} does not exist".format(slim_conf_path)
                 )
 
-    if "sddm" in displaymanagers:
+    if "sddm" == displaymanager:
         # Systems with Sddm as Desktop Manager
         sddm_conf_path = os.path.join(root_mount_point, "etc/sddm.conf")
 
@@ -618,8 +619,15 @@ def run():
 
     libcalamares.globalstorage.insert("displayManagers", displaymanagers)
 
-    return set_autologin(
-        username, displaymanagers,
-        default_desktop_environment,
-        root_mount_point
-        )
+    dm_setup_message = []
+    for dm in displaymanagers:
+        dm_message = set_autologin(
+                        username, dm,
+                        default_desktop_environment,
+                        root_mount_point
+                        )
+        if dm_message is not None:
+            dm_setup_message.append("{!s}: {!s}".format(*dm_message))
+    if dm_setup_message:
+        return ("Display manager configuration was incomplete",
+                "\n".join(dm_setup_message))
