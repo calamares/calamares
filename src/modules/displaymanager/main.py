@@ -177,34 +177,20 @@ def set_autologin(username,
                 else:
                     gdm_conf.write('AutomaticLoginEnable=False\n')
 
-        if (do_autologin
-                and os.path.exists("{!s}/var/lib/AccountsService/users".format(
+        if (do_autologin):
+            accountservice_dir = "{!s}/var/lib/AccountsService/users".format(
                     root_mount_point
                     )
-                )):
-            os.system(
-                "echo \"[User]\" > "
-                "{!s}/var/lib/AccountsService/users/{!s}".format(
-                    root_mount_point,
-                    username
-                    )
-                )
+            userfile_path = "{!s}/{!s}".format(accountservice_dir, username)
+            if os.path.exists(accountservice_dir):
+                with open(userfile_path, "w") as userfile:
+                    userfile.write("[User]\n")
 
-            if default_desktop_environment is not None:
-                os.system(
-                    "echo \"XSession={!s}\" >> "
-                    "{!s}/var/lib/AccountsService/users/{!s}".format(
-                        default_desktop_environment.desktop_file,
-                        root_mount_point, username
-                        )
-                    )
+                    if default_desktop_environment is not None:
+                        userfile.write("XSession={!s}\n".format(
+                            default_desktop_environment.desktop_file))
 
-            os.system(
-                "echo \"Icon=\" >> "
-                "{!s}/var/lib/AccountsService/users/{!s}".format(
-                    root_mount_point, username
-                    )
-                )
+                    userfile.write("Icon=\n")
 
     if "kdm" == displaymanager:
         # Systems with KDM as Desktop Manager
