@@ -27,14 +27,17 @@ def write_dmcrypt_conf(partitions, root_mount_point, dmcrypt_conf_path):
     crypto_source = ""
 
     for partition in partitions:
-        if partition["mountPoint"] == "/home" and "luksMapperName" in partition:
+        if partition["mountPoint"] == "/home" \
+                and "luksMapperName" in partition:
             crypto_target = partition["luksMapperName"]
             crypto_source = "/dev/disk/by-uuid/{!s}".format(partition["uuid"])
-        
-    if not "luksMapperName" in partition:
+    if "luksMapperName" not in partition:
             return None
 
-    with open(os.path.join(root_mount_point, dmcrypt_conf_path), 'a+') as dmcrypt_file:
+    with open(os.path.join(root_mount_point,
+                           dmcrypt_conf_path),
+                           'a+'
+                           ) as dmcrypt_file:
         dmcrypt_file.write("\ntarget=" + crypto_target)
         dmcrypt_file.write("\nsource=" + crypto_source)
         dmcrypt_file.write("\nkey=/crypto_keyfile.bin")
@@ -46,7 +49,8 @@ def write_dmcrypt_conf(partitions, root_mount_point, dmcrypt_conf_path):
 
 def run():
     """
-    This module configures the OpenRC dmcrypt service for an encrypted /home partition.
+    This module configures the OpenRC dmcrypt service for an encrypted 
+    /home partition.
     :return:
     """
 
