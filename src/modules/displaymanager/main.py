@@ -211,6 +211,17 @@ def set_autologin(username,
         kdm_conf_path = os.path.join(
             root_mount_point, "usr/share/config/kdm/kdmrc"
             )
+        # Check which path is in use: SUSE does something else.
+        # Also double-check the default setting. Pick the first
+        # one that exists in the target.
+        for candidate_kdmrc in (
+            "usr/share/config/kdm/kdmrc",
+            "usr/share/kde4/config/kdm/kdmrc",
+        ):
+            p = os.path.join(root_mount_point, candidate_kdmrc)
+            if os.path.exists(p):
+                kdm_conf_path = p
+                break
         text = []
 
         if os.path.exists(kdm_conf_path):
