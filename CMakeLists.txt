@@ -250,7 +250,7 @@ install(
   FILES
       com.github.calamares.calamares.policy
   DESTINATION
-      "${POLKITQT-1_POLICY_FILES_INSTALL_DIR}"
+      "${CMAKE_INSTALL_PREFIX}${POLKITQT-1_POLICY_FILES_INSTALL_DIR}"
 )
 
 install(
