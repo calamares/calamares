@@ -67,8 +67,8 @@ KeyboardPage::KeyboardPage( QWidget* parent )
         QString model = m_models.value( text, "pc105" );
 
         // Set Xorg keyboard model
-        QProcess::execute( QString( "setxkbmap -model \"%1\"" )
-                           .arg( model ).toUtf8() );
+        QProcess::execute( QLatin1Literal( "setxkbmap" ),
+                           QStringList() << "-model" << model );
     });
 
     CALAMARES_RETRANSLATE( ui->retranslateUi( this ); )
@@ -292,6 +292,13 @@ KeyboardPage::onListLayoutCurrentItemChanged( const QModelIndex& current,
     updateVariants( QPersistentModelIndex( current ) );
 }
 
+static inline QStringList xkbmap_args( QStringList&& r, const QString& layout, const QString& variant)
+{
+    r << "-layout" << layout;
+    if ( !variant.isEmpty() )
+        r << "-variant" << variant;
+    return r;
+}
 
 void
 KeyboardPage::onListVariantCurrentItemChanged( QListWidgetItem* current, QListWidgetItem* previous )
@@ -320,8 +327,8 @@ KeyboardPage::onListVariantCurrentItemChanged( QListWidgetItem* current, QListWi
     connect( &m_setxkbmapTimer, &QTimer::timeout,
              this, [=]
     {
-        QProcess::execute( QString( "setxkbmap -layout \"%1\" -variant \"%2\"" )
-                           .arg( layout, variant ).toUtf8() );
+        QProcess::execute( QLatin1Literal( "setxkbmap" ),
+                           xkbmap_args( QStringList(), layout, variant ) );
         cDebug() << "xkbmap selection changed to: " << layout << "-" << variant;
         m_setxkbmapTimer.disconnect( this );
     } );
