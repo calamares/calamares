@@ -37,6 +37,21 @@
 #include <QProcess>
 #include <QPushButton>
 
+static QPersistentModelIndex
+findLayout( const KeyboardLayoutModel* klm, const QString& currentLayout )
+{
+    QPersistentModelIndex currentLayoutItem;
+
+    for ( int i = 0; i < klm->rowCount(); ++i )
+    {
+        QModelIndex idx = klm->index( i );
+        if ( idx.isValid() &&
+             idx.data( KeyboardLayoutModel::KeyboardLayoutKeyRole ).toString() == currentLayout )
+            currentLayoutItem = idx;
+    }
+
+    return currentLayoutItem;
+}
 
 KeyboardPage::KeyboardPage( QWidget* parent )
     : QWidget()
@@ -160,14 +175,13 @@ KeyboardPage::init()
     // Block signals
     ui->listLayout->blockSignals( true );
 
-    QPersistentModelIndex currentLayoutItem;
-
-    for ( int i = 0; i < klm->rowCount(); ++i )
+    QPersistentModelIndex currentLayoutItem = findLayout( klm, currentLayout );
+    if ( !currentLayoutItem.isValid() && (
+           ( currentLayout == "latin" )
+        || ( currentLayout == "pc" ) ) )
     {
-        QModelIndex idx = klm->index( i );
-        if ( idx.isValid() &&
-             idx.data( KeyboardLayoutModel::KeyboardLayoutKeyRole ).toString() == currentLayout )
-            currentLayoutItem = idx;
+        currentLayout = "us";
+        currentLayoutItem = findLayout( klm, currentLayout );
     }
 
     // Set current layout and variant
@@ -341,4 +355,3 @@ KeyboardPage::onListVariantCurrentItemChanged( QListWidgetItem* current, QListWi
     m_selectedLayout = layout;
     m_selectedVariant = variant;
 }
-
