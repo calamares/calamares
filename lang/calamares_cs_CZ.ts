@@ -1116,12 +1116,12 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
 <context>
     <name>KeyboardPage</name>
     <message>
-        <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="193"/>
+        <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="208"/>
         <source>Set keyboard model to %1.&lt;br/&gt;</source>
         <translation>Nastavit model klávesnice na %1.&lt;br/&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="195"/>
+        <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="210"/>
         <source>Set keyboard layout to %1/%2.</source>
         <translation>Nastavit rozložení klávesnice na %1/%2.</translation>
     </message>
