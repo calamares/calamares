@@ -29,8 +29,8 @@ include_directories(
 ecm_add_test( ${partitionjobtests_SRCS}
     TEST_NAME partitionjobtests
     LINK_LIBRARIES
-        calapm
         ${CALAMARES_LIBRARIES}
+        kpmcore
         Qt5::Core
         Qt5::Test
         KF5::Service
