@@ -1,6 +1,5 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
@@ -17,27 +16,39 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef SETPASSWORDJOB_H
-#define SETPASSWORDJOB_H
+#include "SetPasswordJob.h"
 
-#include <Job.h>
+#include "PasswordTests.h"
 
+#include <QtTest/QtTest>
 
-class SetPasswordJob : public Calamares::Job
+QTEST_GUILESS_MAIN( PasswordTests )
+
+PasswordTests::PasswordTests()
 {
-    Q_OBJECT
-public:
-    SetPasswordJob( const QString& userName,
-                    const QString& newPassword );
-    QString prettyName() const override;
-    QString prettyStatusMessage() const override;
-    Calamares::JobResult exec() override;
+}
 
-    static QString make_salt(size_t length);
+PasswordTests::~PasswordTests()
+{
+}
 
-private:
-    QString m_userName;
-    QString m_newPassword;
-};
+void
+PasswordTests::initTestCase()
+{
+}
 
-#endif /* SETPASSWORDJOB_H */
+void
+PasswordTests::testSalt()
+{
+    QString s = SetPasswordJob::make_salt( 8 );
+    QCOMPARE( s.length(), 4 + 8 ); // 8 salt chars, plus $6$, plus trailing $
+    QVERIFY( s.startsWith( "$6$" ) );
+    QVERIFY( s.endsWith( '$' ) );
+    qDebug() << "Obtained salt" << s;
+
+    s = SetPasswordJob::make_salt( 11 );
+    QCOMPARE( s.length(), 4 + 11 );
+    QVERIFY( s.startsWith( "$6$" ) );
+    QVERIFY( s.endsWith( '$' ) );
+    qDebug() << "Obtained salt" << s;
+}

@@ -1,6 +1,5 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
@@ -17,27 +16,21 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef SETPASSWORDJOB_H
-#define SETPASSWORDJOB_H
+#ifndef PASSWORDTESTS_H
+#define PASSWORDTESTS_H
 
-#include <Job.h>
+#include <QObject>
 
-
-class SetPasswordJob : public Calamares::Job
+class PasswordTests : public QObject
 {
     Q_OBJECT
 public:
-    SetPasswordJob( const QString& userName,
-                    const QString& newPassword );
-    QString prettyName() const override;
-    QString prettyStatusMessage() const override;
-    Calamares::JobResult exec() override;
+    PasswordTests();
+    ~PasswordTests() override;
 
-    static QString make_salt(size_t length);
-
-private:
-    QString m_userName;
-    QString m_newPassword;
+private Q_SLOTS:
+    void initTestCase();
+    void testSalt();
 };
 
-#endif /* SETPASSWORDJOB_H */
+#endif
