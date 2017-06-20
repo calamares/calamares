@@ -49,13 +49,24 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
 
     constexpr int min_w = 800;
     constexpr int min_h = 520;
+    constexpr int preferred_min_w = 1050;
+    constexpr int preferred_min_h = 520;
 
-    setMinimumSize( min_w, min_h );
     QSize availableSize = qApp->desktop()->availableGeometry( this ).size();
-    int w = qBound( min_w, CalamaresUtils::defaultFontHeight() * 60, availableSize.width() );
-    int h = qBound( min_h,  CalamaresUtils::defaultFontHeight() * 36, availableSize.height() );
 
-    cDebug() << "Proposed window size:" << w << h;
+    cDebug() << "Available size" << availableSize;
+
+    if ( (availableSize.width() < preferred_min_w) || (availableSize.height() < preferred_min_h) )
+        cDebug() << "  Small screen detected.";
+    QSize minimumSize( qBound( min_w, availableSize.width(), preferred_min_w ),
+                       qBound( min_h, availableSize.height(), preferred_min_h ) );
+    setMinimumSize( minimumSize );
+
+
+    int w = qBound( minimumSize.width(), CalamaresUtils::defaultFontHeight() * 60, availableSize.width() );
+    int h = qBound( minimumSize.height(),  CalamaresUtils::defaultFontHeight() * 36, availableSize.height() );
+
+    cDebug() << "  Proposed window size:" << w << h;
     resize( w, h );
 
     QBoxLayout* mainLayout = new QHBoxLayout;
