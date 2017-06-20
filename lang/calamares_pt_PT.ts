@@ -1116,12 +1116,12 @@ O instalador será encerrado e todas as alterações serão perdidas.</translati
 <context>
     <name>KeyboardPage</name>
     <message>
-        <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="193"/>
+        <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="208"/>
         <source>Set keyboard model to %1.&lt;br/&gt;</source>
         <translation>Definir o modelo do teclado para %1.&lt;br/&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="195"/>
+        <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="210"/>
         <source>Set keyboard layout to %1/%2.</source>
         <translation>Definir esquema do teclado para %1/%2.</translation>
     </message>
