@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014-2017, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -53,7 +54,7 @@ SetPasswordJob::prettyStatusMessage() const
 
 /// Returns a modular hashing salt for method 6 (SHA512) with a 16 character random salt.
 QString
-make_salt(size_t length)
+SetPasswordJob::make_salt(size_t length)
 {
     Q_ASSERT(length >= 8);
     Q_ASSERT(length <= 128);
