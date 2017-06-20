@@ -21,10 +21,10 @@ if( NOT blkid_LIB )
 endif()
 
 
-add_subdirectory( tests )
-
-include_directories( ${PROJECT_BINARY_DIR}/src/libcalamaresui )
 include_directories( ${KPMCORE_INCLUDE_DIR} )
+include_directories( ${PROJECT_BINARY_DIR}/src/libcalamaresui )
+
+add_subdirectory( tests )
 
 calamares_add_plugin( partition
     TYPE viewmodule

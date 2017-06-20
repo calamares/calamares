@@ -1116,12 +1116,12 @@ Het installatieprogramma zal afsluiten en alle wijzigingen zullen verloren gaan.
 <context>
     <name>KeyboardPage</name>
     <message>
-        <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="193"/>
+        <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="208"/>
         <source>Set keyboard model to %1.&lt;br/&gt;</source>
         <translation>Instellen toetsenbord model naar %1.&lt;br/&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="195"/>
+        <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="210"/>
         <source>Set keyboard layout to %1/%2.</source>
         <translation>Instellen toetsenbord lay-out naar %1/%2.</translation>
     </message>
