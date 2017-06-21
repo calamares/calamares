@@ -24,7 +24,7 @@
 void
 operator>>( const YAML::Node& node, QStringList& v )
 {
-    for ( int i = 0; i < node.size(); ++i )
+    for ( size_t i = 0; i < node.size(); ++i )
     {
         v.append( QString::fromStdString( node[ i ].as< std::string >() ) );
     }
@@ -51,9 +51,11 @@ yamlToVariant( const YAML::Node& node )
         return yamlMapToVariant( node );
 
     case YAML::NodeType::Null:
+    case YAML::NodeType::Undefined:
         return QVariant();
     }
 
+    // NOTREACHED
     return QVariant();
 }
 
