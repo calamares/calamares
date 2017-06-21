@@ -77,7 +77,7 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
 
     QBoxLayout* sideLayout = new QVBoxLayout;
     sideBox->setLayout( sideLayout );
-    sideBox->setFixedWidth( qMax( 190, CalamaresUtils::defaultFontHeight() * 12 ) );
+    sideBox->setFixedWidth( qBound( 100, CalamaresUtils::defaultFontHeight() * 12, w < preferred_min_w ? 100 : 190 ) );
     sideBox->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
 
     QHBoxLayout* logoLayout = new QHBoxLayout;
