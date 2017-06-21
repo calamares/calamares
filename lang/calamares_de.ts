@@ -1,39 +1,5 @@
 <?xml version="1.0" ?><!DOCTYPE TS><TS language="de" version="2.1">
 <context>
-    <name>AlongsidePage</name>
-    <message>
-        <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="77"/>
-        <source>Choose partition to shrink:</source>
-        <translation>Wählen Sie eine Partition zum Verkleinern:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="78"/>
-        <source>Allocate drive space by dragging the divider below:</source>
-        <translation>Teilen Sie Festplattenplatz zu, indem Sie den Trenner unten verschieben:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="121"/>
-        <source>With this operation, the partition &lt;strong&gt;%1&lt;/strong&gt; which contains %4 will be shrunk to %2MB and a new %3MB partition will be created for %5.</source>
-        <translation>Durch diesen Vorgang wird die Partition &lt;strong&gt;%1&lt;/strong&gt;, welche %4 enthält, auf %2MB verkleinert, und für %5 wird eine neue Partition mit %3MB erstellt.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="198"/>
-        <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
-        <translation>Es wurde keine EFI-Systempartition auf diesem System gefunden.
-Bitte gehen Sie zurück und nutzen Sie die manuelle Partitionierung, um %1 aufzusetzen.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="208"/>
-        <source>The EFI system partition at %1 will be used for starting %2.</source>
-        <translation>Die EFI-Systempartition auf %1 wird benutzt, um %2 zu starten.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="218"/>
-        <source>EFI system partition:</source>
-        <translation>EFI-Systempartition:</translation>
-    </message>
-</context>
-<context>
     <name>BootInfoWidget</name>
     <message>
         <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="61"/>
@@ -2068,42 +2034,42 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
 <context>
     <name>SetPasswordJob</name>
     <message>
-        <location filename="../src/modules/users/SetPasswordJob.cpp" line="42"/>
+        <location filename="../src/modules/users/SetPasswordJob.cpp" line="44"/>
         <source>Set password for user %1</source>
         <translation>Setze Passwort für Benutzer %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/SetPasswordJob.cpp" line="49"/>
+        <location filename="../src/modules/users/SetPasswordJob.cpp" line="51"/>
         <source>Setting password for user %1.</source>
         <translation>Setze Passwort für Benutzer %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/SetPasswordJob.cpp" line="59"/>
+        <location filename="../src/modules/users/SetPasswordJob.cpp" line="108"/>
         <source>Bad destination system path.</source>
         <translation>Ungültiger System-Zielpfad.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/SetPasswordJob.cpp" line="60"/>
+        <location filename="../src/modules/users/SetPasswordJob.cpp" line="109"/>
         <source>rootMountPoint is %1</source>
         <translation>root-Einhängepunkt ist %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/SetPasswordJob.cpp" line="70"/>
+        <location filename="../src/modules/users/SetPasswordJob.cpp" line="119"/>
         <source>Cannot disable root account.</source>
         <translation>Das Root-Konto kann nicht deaktiviert werden.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/SetPasswordJob.cpp" line="71"/>
+        <location filename="../src/modules/users/SetPasswordJob.cpp" line="120"/>
         <source>passwd terminated with error code %1.</source>
         <translation>Passwd beendet mit Fehlercode %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/SetPasswordJob.cpp" line="87"/>
+        <location filename="../src/modules/users/SetPasswordJob.cpp" line="135"/>
         <source>Cannot set password for user %1.</source>
         <translation>Passwort für Benutzer %1 kann nicht gesetzt werden.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/SetPasswordJob.cpp" line="89"/>
+        <location filename="../src/modules/users/SetPasswordJob.cpp" line="137"/>
         <source>usermod terminated with error code %1.</source>
         <translation>usermod wurde mit Fehlercode %1 beendet.</translation>
     </message>

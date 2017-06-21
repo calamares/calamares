@@ -1,38 +1,5 @@
 <?xml version="1.0" ?><!DOCTYPE TS><TS language="ca" version="2.1">
 <context>
-    <name>AlongsidePage</name>
-    <message>
-        <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="77"/>
-        <source>Choose partition to shrink:</source>
-        <translation>Trieu la partició per reduir:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="78"/>
-        <source>Allocate drive space by dragging the divider below:</source>
-        <translation>Assigneu l&apos;espai del disc arrossegant el separador inferior:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="121"/>
-        <source>With this operation, the partition &lt;strong&gt;%1&lt;/strong&gt; which contains %4 will be shrunk to %2MB and a new %3MB partition will be created for %5.</source>
-        <translation>Amb aquesta operació la partició &lt;strong&gt;%1&lt;/strong&gt;, la qual conté %4, s&apos;encongirà a %2MB i es crearà una nova partició de %3MB per a %5.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="198"/>
-        <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
-        <translation>No s&apos;ha pogut trobar enlloc una partició EFI en aquest sistema. Si us plau torneu enrere i useu el particionament manual per a instal·lar %1.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="208"/>
-        <source>The EFI system partition at %1 will be used for starting %2.</source>
-        <translation>S&apos;utilitzarà la partició del sistema EFI a %1 per a iniciar %2.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="218"/>
-        <source>EFI system partition:</source>
-        <translation>Partició EFI de sistema:</translation>
-    </message>
-</context>
-<context>
     <name>BootInfoWidget</name>
     <message>
         <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="61"/>
@@ -2067,42 +2034,42 @@ L&apos;instal·lador es tancarà i tots els canvis es perdran.</translation>
 <context>
     <name>SetPasswordJob</name>
     <message>
-        <location filename="../src/modules/users/SetPasswordJob.cpp" line="42"/>
+        <location filename="../src/modules/users/SetPasswordJob.cpp" line="44"/>
         <source>Set password for user %1</source>
         <translation>Assigneu una contrasenya per a l&apos;usuari %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/SetPasswordJob.cpp" line="49"/>
+        <location filename="../src/modules/users/SetPasswordJob.cpp" line="51"/>
         <source>Setting password for user %1.</source>
         <translation>Establint la contrasenya de l&apos;usuari %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/SetPasswordJob.cpp" line="59"/>
+        <location filename="../src/modules/users/SetPasswordJob.cpp" line="108"/>
         <source>Bad destination system path.</source>
         <translation>Destinació errònia de la ruta del sistema.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/SetPasswordJob.cpp" line="60"/>
+        <location filename="../src/modules/users/SetPasswordJob.cpp" line="109"/>
         <source>rootMountPoint is %1</source>
         <translation>El punt de muntatge rootMountPoint és %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/SetPasswordJob.cpp" line="70"/>
+        <location filename="../src/modules/users/SetPasswordJob.cpp" line="119"/>
         <source>Cannot disable root account.</source>
         <translation>No es pot inhabilitar el compte d&apos;arrel.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/SetPasswordJob.cpp" line="71"/>
+        <location filename="../src/modules/users/SetPasswordJob.cpp" line="120"/>
         <source>passwd terminated with error code %1.</source>
         <translation>El procés passwd ha acabat amb el codi d&apos;error %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/SetPasswordJob.cpp" line="87"/>
+        <location filename="../src/modules/users/SetPasswordJob.cpp" line="135"/>
         <source>Cannot set password for user %1.</source>
         <translation>No s&apos;ha pogut assignar la contrasenya de l&apos;usuari %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/SetPasswordJob.cpp" line="89"/>
+        <location filename="../src/modules/users/SetPasswordJob.cpp" line="137"/>
         <source>usermod terminated with error code %1.</source>
         <translation>usermod ha terminat amb el codi d&apos;error %1.</translation>
     </message>

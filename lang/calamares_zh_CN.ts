@@ -1,38 +1,5 @@
 <?xml version="1.0" ?><!DOCTYPE TS><TS language="zh_CN" version="2.1">
 <context>
-    <name>AlongsidePage</name>
-    <message>
-        <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="77"/>
-        <source>Choose partition to shrink:</source>
-        <translation>选择要缩小的分区：</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="78"/>
-        <source>Allocate drive space by dragging the divider below:</source>
-        <translation>拖动下方的分隔来调整分区空间：</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="121"/>
-        <source>With this operation, the partition &lt;strong&gt;%1&lt;/strong&gt; which contains %4 will be shrunk to %2MB and a new %3MB partition will be created for %5.</source>
-        <translation>在此操作后，带有 %4 的分区 &lt;strong&gt;%1&lt;/strong&gt; 将缩小到 %2MB，而后将为 %5 创建一个 %3MB 大小的分区。</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="198"/>
-        <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
-        <translation>在此系统上找不到任何 EFI 系统分区。请后退到上一步并使用手动分区配置 %1。</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="208"/>
-        <source>The EFI system partition at %1 will be used for starting %2.</source>
-        <translation>将使用 %1 处的 EFI 系统分区启动 %2。</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="218"/>
-        <source>EFI system partition:</source>
-        <translation>EFI 系统分区：</translation>
-    </message>
-</context>
-<context>
     <name>BootInfoWidget</name>
     <message>
         <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="61"/>
@@ -2069,42 +2036,42 @@ The installer will quit and all changes will be lost.</source>
 <context>
     <name>SetPasswordJob</name>
     <message>
-        <location filename="../src/modules/users/SetPasswordJob.cpp" line="42"/>
+        <location filename="../src/modules/users/SetPasswordJob.cpp" line="44"/>
         <source>Set password for user %1</source>
         <translation>设置用户 %1 的密码</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/SetPasswordJob.cpp" line="49"/>
+        <location filename="../src/modules/users/SetPasswordJob.cpp" line="51"/>
         <source>Setting password for user %1.</source>
         <translation>正在为用户 %1 设置密码。</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/SetPasswordJob.cpp" line="59"/>
+        <location filename="../src/modules/users/SetPasswordJob.cpp" line="108"/>
         <source>Bad destination system path.</source>
         <translation>非法的目标系统路径。</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/SetPasswordJob.cpp" line="60"/>
+        <location filename="../src/modules/users/SetPasswordJob.cpp" line="109"/>
         <source>rootMountPoint is %1</source>
         <translation>根挂载点为 %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/SetPasswordJob.cpp" line="70"/>
+        <location filename="../src/modules/users/SetPasswordJob.cpp" line="119"/>
         <source>Cannot disable root account.</source>
         <translation>无法禁用 root 帐号。</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/SetPasswordJob.cpp" line="71"/>
+        <location filename="../src/modules/users/SetPasswordJob.cpp" line="120"/>
         <source>passwd terminated with error code %1.</source>
         <translation>passwd 以错误代码 %1 终止。</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/SetPasswordJob.cpp" line="87"/>
+        <location filename="../src/modules/users/SetPasswordJob.cpp" line="135"/>
         <source>Cannot set password for user %1.</source>
         <translation>无法设置用户 %1 的密码。</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/SetPasswordJob.cpp" line="89"/>
+        <location filename="../src/modules/users/SetPasswordJob.cpp" line="137"/>
         <source>usermod terminated with error code %1.</source>
         <translation>usermod 以错误代码 %1 中止。</translation>
     </message>

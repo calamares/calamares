@@ -1,38 +1,5 @@
 <?xml version="1.0" ?><!DOCTYPE TS><TS language="hu" version="2.1">
 <context>
-    <name>AlongsidePage</name>
-    <message>
-        <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="77"/>
-        <source>Choose partition to shrink:</source>
-        <translation>Válaszd ki melyik partíció legyen átméretezve, zsugorítva:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="78"/>
-        <source>Allocate drive space by dragging the divider below:</source>
-        <translation>Az alábbi osztósáv húzásával meghatározhatod a lefoglalandó meghajtó területet:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="121"/>
-        <source>With this operation, the partition &lt;strong&gt;%1&lt;/strong&gt; which contains %4 will be shrunk to %2MB and a new %3MB partition will be created for %5.</source>
-        <translation>Ezzel a művelettel, a &lt;strong&gt;%1&lt;/strong&gt; partíció, ami %4-et tartalmaz, %2MB-ra lesz zsugorítva és egy új %3MB partíció lesz létrehozva %5 számára.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="198"/>
-        <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
-        <translation>Az EFI rendszerpartíció nem található a rendszerben. Kérlek, lépj vissza és állítsd be manuális partícionálással %1- et.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="208"/>
-        <source>The EFI system partition at %1 will be used for starting %2.</source>
-        <translation>A %2 indításához az EFI rendszer partíciót használja a következőn: %1</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/gui/AlongsidePage.cpp" line="218"/>
-        <source>EFI system partition:</source>
-        <translation>EFI rendszer partíció:</translation>
-    </message>
-</context>
-<context>
     <name>BootInfoWidget</name>
     <message>
         <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="61"/>
@@ -2068,42 +2035,42 @@ Telepítés nem folytatható. &lt;a href=&quot;#details&quot;&gt;Részletek...&l
 <context>
     <name>SetPasswordJob</name>
     <message>
-        <location filename="../src/modules/users/SetPasswordJob.cpp" line="42"/>
+        <location filename="../src/modules/users/SetPasswordJob.cpp" line="44"/>
         <source>Set password for user %1</source>
         <translation>%1 felhasználó jelszó beállítása</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/SetPasswordJob.cpp" line="49"/>
+        <location filename="../src/modules/users/SetPasswordJob.cpp" line="51"/>
         <source>Setting password for user %1.</source>
         <translation>%1 felhasználói jelszó beállítása</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/SetPasswordJob.cpp" line="59"/>
+        <location filename="../src/modules/users/SetPasswordJob.cpp" line="108"/>
         <source>Bad destination system path.</source>
         <translation>Rossz célrendszer elérési út</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/SetPasswordJob.cpp" line="60"/>
+        <location filename="../src/modules/users/SetPasswordJob.cpp" line="109"/>
         <source>rootMountPoint is %1</source>
         <translation>rootMountPoint is %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/SetPasswordJob.cpp" line="70"/>
+        <location filename="../src/modules/users/SetPasswordJob.cpp" line="119"/>
         <source>Cannot disable root account.</source>
         <translation>A root account- ot nem lehet inaktiválni.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/SetPasswordJob.cpp" line="71"/>
+        <location filename="../src/modules/users/SetPasswordJob.cpp" line="120"/>
         <source>passwd terminated with error code %1.</source>
         <translation>passwd megszakítva %1 hibakóddal.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/SetPasswordJob.cpp" line="87"/>
+        <location filename="../src/modules/users/SetPasswordJob.cpp" line="135"/>
         <source>Cannot set password for user %1.</source>
         <translation>Nem lehet a %1 felhasználó jelszavát beállítani.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/SetPasswordJob.cpp" line="89"/>
+        <location filename="../src/modules/users/SetPasswordJob.cpp" line="137"/>
         <source>usermod terminated with error code %1.</source>
         <translation>usermod megszakítva %1 hibakóddal.</translation>
     </message>
