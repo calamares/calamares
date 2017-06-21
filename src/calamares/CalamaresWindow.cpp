@@ -47,19 +47,19 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
                               string( Calamares::Branding::ProductName ) ) );
     )
 
-    constexpr int min_w = 800;
-    constexpr int min_h = 520;
-    constexpr int preferred_min_w = 1050;
-    constexpr int preferred_min_h = 520;
+    using CalamaresUtils::windowMinimumHeight;
+    using CalamaresUtils::windowMinimumWidth;
+    using CalamaresUtils::windowPreferredHeight;
+    using CalamaresUtils::windowPreferredWidth;
 
     QSize availableSize = qApp->desktop()->availableGeometry( this ).size();
 
     cDebug() << "Available size" << availableSize;
 
-    if ( (availableSize.width() < preferred_min_w) || (availableSize.height() < preferred_min_h) )
+    if ( (availableSize.width() < windowPreferredWidth) || (availableSize.height() < windowPreferredHeight) )
         cDebug() << "  Small screen detected.";
-    QSize minimumSize( qBound( min_w, availableSize.width(), preferred_min_w ),
-                       qBound( min_h, availableSize.height(), preferred_min_h ) );
+    QSize minimumSize( qBound( windowMinimumWidth, availableSize.width(), windowPreferredWidth ),
+                       qBound( windowMinimumHeight, availableSize.height(), windowPreferredHeight ) );
     setMinimumSize( minimumSize );
 
 
@@ -77,7 +77,7 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
 
     QBoxLayout* sideLayout = new QVBoxLayout;
     sideBox->setLayout( sideLayout );
-    sideBox->setFixedWidth( qBound( 100, CalamaresUtils::defaultFontHeight() * 12, w < preferred_min_w ? 100 : 190 ) );
+    sideBox->setFixedWidth( qBound( 100, CalamaresUtils::defaultFontHeight() * 12, w < windowPreferredWidth ? 100 : 190 ) );
     sideBox->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
 
     QHBoxLayout* logoLayout = new QHBoxLayout;
