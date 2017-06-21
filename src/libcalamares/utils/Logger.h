@@ -48,6 +48,7 @@ namespace Logger
         CDebug( unsigned int debugLevel = LOGDEBUG ) : CLog( debugLevel )
         {
         }
+        virtual ~CDebug();
     };
 
     DLLEXPORT void CalamaresLogHandler( QtMsgType type, const char* msg );

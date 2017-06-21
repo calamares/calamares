@@ -172,3 +172,6 @@ CLog::~CLog()
     log( m_msg.toUtf8().data(), m_debugLevel );
 }
 
+Logger::CDebug::~CDebug()
+{
+}

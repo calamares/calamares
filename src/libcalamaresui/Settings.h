@@ -57,9 +57,6 @@ public:
 private:
     static Settings* s_instance;
 
-    bool m_debug;
-    bool m_doChroot;
-
     QStringList m_modulesSearchPaths;
 
     QList< QMap< QString, QString > > m_customModuleInstances;
@@ -67,6 +64,8 @@ private:
 
     QString m_brandingComponentName;
 
+    bool m_debug;
+    bool m_doChroot;
     bool m_promptInstall;
 };
 
