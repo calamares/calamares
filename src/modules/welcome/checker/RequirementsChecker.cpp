@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014-2017, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -29,9 +30,11 @@
 #include "JobQueue.h"
 #include "GlobalStorage.h"
 
+#include <QApplication>
 #include <QBoxLayout>
 #include <QDBusConnection>
 #include <QDBusInterface>
+#include <QDesktopWidget>
 #include <QDir>
 #include <QEventLoop>
 #include <QFile>
@@ -60,6 +63,8 @@ RequirementsChecker::RequirementsChecker( QObject* parent )
     mainLayout->addWidget( waitingWidget );
     CALAMARES_RETRANSLATE( waitingWidget->setText( tr( "Gathering system information..." ) ); )
 
+    QSize availableSize = qApp->desktop()->availableGeometry( m_widget ).size();
+
     QTimer* timer = new QTimer;
     timer->setSingleShot( true );
     connect( timer, &QTimer::timeout,
@@ -70,6 +75,7 @@ RequirementsChecker::RequirementsChecker( QObject* parent )
         bool hasPower = false;
         bool hasInternet = false;
         bool isRoot = false;
+        bool enoughScreen = (availableSize.width() >= CalamaresUtils::windowPreferredWidth) && (availableSize.height() >= CalamaresUtils::windowPreferredHeight);
 
         qint64 requiredStorageB = m_requiredStorageGB * 1073741824L; /*powers of 2*/
         cDebug() << "Need at least storage bytes:" << requiredStorageB;
@@ -140,7 +146,14 @@ RequirementsChecker::RequirementsChecker( QObject* parent )
                     isRoot,
                     m_entriesToRequire.contains( entry )
                 } );
-
+            else if ( entry == "screen" )
+                checkEntries.append( {
+                    entry,
+                    [this]{ return QString(); }, // we hide it
+                    [this]{ return tr( "The screen is too small to display the installer." ); },
+                    enoughScreen,
+                    false
+                } );
         }
 
         m_actualWidget->init( checkEntries );
