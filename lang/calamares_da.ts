@@ -315,7 +315,7 @@ Installationsprogrammet vil stoppe og alle ændringer vil gå tabt.</translation
         <translation>%1-installationsprogram</translation>
     </message>
     <message>
-        <location filename="../src/calamares/CalamaresWindow.cpp" line="102"/>
+        <location filename="../src/calamares/CalamaresWindow.cpp" line="113"/>
         <source>Show debug information</source>
         <translation>Vis fejlretningsinformation</translation>
     </message>
@@ -1104,12 +1104,12 @@ Installationsprogrammet vil stoppe og alle ændringer vil gå tabt.</translation
 <context>
     <name>LCLocaleDialog</name>
     <message>
-        <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="33"/>
+        <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="34"/>
         <source>System locale setting</source>
         <translation>Systemets lokalitetsindstilling</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="40"/>
+        <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="41"/>
         <source>The system locale setting affects the language and character set for some command line user interface elements.&lt;br/&gt;The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
         <translation>Systemets lokalitetsindstilling har indflydelse på sproget og tegnsættet for nogle kommandolinje-brugerelementer.&lt;br/&gt;Den nuværende indstilling er &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
@@ -1297,17 +1297,17 @@ Installationsprogrammet vil stoppe og alle ændringer vil gå tabt.</translation
 <context>
     <name>NetInstallPage</name>
     <message>
-        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="72"/>
+        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="73"/>
         <source>Name</source>
         <translation>Navn</translation>
     </message>
     <message>
-        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="73"/>
+        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="74"/>
         <source>Description</source>
         <translation>Beskrivelse</translation>
     </message>
     <message>
-        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="82"/>
+        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="83"/>
         <source>Network Installation. (Disabled: Unable to fetch package lists, check your network connection)</source>
         <translation>Netværksinstallation. (Deaktiveret: Kunne ikke hente pakkelister, tjek din netværksforbindelse)</translation>
     </message>
@@ -1750,54 +1750,59 @@ Installationsprogrammet vil stoppe og alle ændringer vil gå tabt.</translation
 <context>
     <name>RequirementsChecker</name>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="61"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="64"/>
         <source>Gathering system information...</source>
         <translation>Indsamler systeminformation...</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="102"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="108"/>
         <source>has at least %1 GB available drive space</source>
         <translation>har mindst %1 GB ledig plads på drevet</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="104"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="110"/>
         <source>There is not enough drive space. At least %1 GB is required.</source>
         <translation>Der er ikke nok ledig plads på drevet. Mindst %1 GB er påkrævet.</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="112"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="118"/>
         <source>has at least %1 GB working memory</source>
         <translation>har mindst %1 GB arbejdshukommelse</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="114"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="120"/>
         <source>The system does not have enough working memory. At least %1 GB is required.</source>
         <translation>Systemet har ikke nok arbejdshukommelse. Mindst %1 GB er påkrævet.</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="122"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="128"/>
         <source>is plugged in to a power source</source>
         <translation>er tilsluttet en strømkilde</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="123"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="129"/>
         <source>The system is not plugged in to a power source.</source>
         <translation>Systemet er ikke tilsluttet en strømkilde.</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="130"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="136"/>
         <source>is connected to the Internet</source>
         <translation>er forbundet til internettet</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="131"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="137"/>
         <source>The system is not connected to the Internet.</source>
         <translation>Systemet er ikke forbundet til internettet.</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="139"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="145"/>
         <source>The installer is not running with administrator rights.</source>
         <translation>Installationsprogrammet kører ikke med administratorrettigheder.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="153"/>
+        <source>The screen is too small to display the installer.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

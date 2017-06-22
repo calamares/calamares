@@ -315,7 +315,7 @@ The installer will quit and all changes will be lost.</source>
         <translation>%1 安裝程式</translation>
     </message>
     <message>
-        <location filename="../src/calamares/CalamaresWindow.cpp" line="102"/>
+        <location filename="../src/calamares/CalamaresWindow.cpp" line="113"/>
         <source>Show debug information</source>
         <translation>顯示除錯資訊</translation>
     </message>
@@ -1104,12 +1104,12 @@ The installer will quit and all changes will be lost.</source>
 <context>
     <name>LCLocaleDialog</name>
     <message>
-        <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="33"/>
+        <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="34"/>
         <source>System locale setting</source>
         <translation>系統語系設定</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="40"/>
+        <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="41"/>
         <source>The system locale setting affects the language and character set for some command line user interface elements.&lt;br/&gt;The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
         <translation>系統語系設定會影響部份命令列使用者介面的語言及字元集。&lt;br/&gt;目前的設定為 &lt;strong&gt;%1&lt;/strong&gt;。</translation>
     </message>
@@ -1297,17 +1297,17 @@ The installer will quit and all changes will be lost.</source>
 <context>
     <name>NetInstallPage</name>
     <message>
-        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="72"/>
+        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="73"/>
         <source>Name</source>
         <translation>名稱</translation>
     </message>
     <message>
-        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="73"/>
+        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="74"/>
         <source>Description</source>
         <translation>描述</translation>
     </message>
     <message>
-        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="82"/>
+        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="83"/>
         <source>Network Installation. (Disabled: Unable to fetch package lists, check your network connection)</source>
         <translation>網路安裝。（已停用：無法擷取軟體包清單，請檢查您的網路連線）</translation>
     </message>
@@ -1750,54 +1750,59 @@ The installer will quit and all changes will be lost.</source>
 <context>
     <name>RequirementsChecker</name>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="61"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="64"/>
         <source>Gathering system information...</source>
         <translation>收集系統資訊中...</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="102"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="108"/>
         <source>has at least %1 GB available drive space</source>
         <translation>有至少 %1 GB 的可用磁碟空間</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="104"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="110"/>
         <source>There is not enough drive space. At least %1 GB is required.</source>
         <translation>沒有足夠的磁碟空間。至少需要 %1 GB。</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="112"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="118"/>
         <source>has at least %1 GB working memory</source>
         <translation>有至少 %1 GB 的可用記憶體</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="114"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="120"/>
         <source>The system does not have enough working memory. At least %1 GB is required.</source>
         <translation>系統沒有足夠的記憶體。至少需要 %1 GB。</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="122"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="128"/>
         <source>is plugged in to a power source</source>
         <translation>已插入外接電源</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="123"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="129"/>
         <source>The system is not plugged in to a power source.</source>
         <translation>系統未插入外接電源。</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="130"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="136"/>
         <source>is connected to the Internet</source>
         <translation>已連上網際網路</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="131"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="137"/>
         <source>The system is not connected to the Internet.</source>
         <translation>系統未連上網際網路</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="139"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="145"/>
         <source>The installer is not running with administrator rights.</source>
         <translation>安裝程式並未以管理員權限執行。</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="153"/>
+        <source>The screen is too small to display the installer.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

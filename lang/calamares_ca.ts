@@ -315,7 +315,7 @@ L&apos;instal·lador es tancarà i tots els canvis es perdran.</translation>
         <translation>Instal·lador de %1</translation>
     </message>
     <message>
-        <location filename="../src/calamares/CalamaresWindow.cpp" line="102"/>
+        <location filename="../src/calamares/CalamaresWindow.cpp" line="113"/>
         <source>Show debug information</source>
         <translation>Mostra la informació de depuració</translation>
     </message>
@@ -1104,12 +1104,12 @@ L&apos;instal·lador es tancarà i tots els canvis es perdran.</translation>
 <context>
     <name>LCLocaleDialog</name>
     <message>
-        <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="33"/>
+        <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="34"/>
         <source>System locale setting</source>
         <translation>Configuració de la llengua del sistema</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="40"/>
+        <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="41"/>
         <source>The system locale setting affects the language and character set for some command line user interface elements.&lt;br/&gt;The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
         <translation>La configuració local del sistema afecta la llengua i el joc de caràcters d&apos;alguns elements de la interície de línia d&apos;ordres. &lt;br/&gt;La configuració actual és &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
@@ -1297,17 +1297,17 @@ L&apos;instal·lador es tancarà i tots els canvis es perdran.</translation>
 <context>
     <name>NetInstallPage</name>
     <message>
-        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="72"/>
+        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="73"/>
         <source>Name</source>
         <translation>Nom</translation>
     </message>
     <message>
-        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="73"/>
+        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="74"/>
         <source>Description</source>
         <translation>Descripció</translation>
     </message>
     <message>
-        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="82"/>
+        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="83"/>
         <source>Network Installation. (Disabled: Unable to fetch package lists, check your network connection)</source>
         <translation>Instal·lació per xarxa. (Inhabilitada: no es poden obtenir les llistes de paquets, comproveu la connexió.)</translation>
     </message>
@@ -1750,54 +1750,59 @@ L&apos;instal·lador es tancarà i tots els canvis es perdran.</translation>
 <context>
     <name>RequirementsChecker</name>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="61"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="64"/>
         <source>Gathering system information...</source>
         <translation>Recopilant informació del sistema...</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="102"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="108"/>
         <source>has at least %1 GB available drive space</source>
         <translation>té com a mínim %1 GB d&apos;espai de disc disponible.</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="104"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="110"/>
         <source>There is not enough drive space. At least %1 GB is required.</source>
         <translation>No hi ha prou espai de disc disponible. Com a mínim hi ha d&apos;haver %1 GB.</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="112"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="118"/>
         <source>has at least %1 GB working memory</source>
         <translation>té com a mínim %1 GB de memòria de treball</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="114"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="120"/>
         <source>The system does not have enough working memory. At least %1 GB is required.</source>
         <translation>El sistema no té prou memòria de treball. Com a mínim es necessita %1 GB.</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="122"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="128"/>
         <source>is plugged in to a power source</source>
         <translation>està connectat a una font de corrent</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="123"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="129"/>
         <source>The system is not plugged in to a power source.</source>
         <translation>El sistema no està connectat a una font de corrent.</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="130"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="136"/>
         <source>is connected to the Internet</source>
         <translation>està connectat a Internet</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="131"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="137"/>
         <source>The system is not connected to the Internet.</source>
         <translation>El sistema no està connectat a Internet.</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="139"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="145"/>
         <source>The installer is not running with administrator rights.</source>
         <translation>L&apos;instal·lador no s&apos;ha executat amb privilegis d&apos;administrador.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="153"/>
+        <source>The screen is too small to display the installer.</source>
+        <translation>La pantalla és massa petita per mostrar l&apos;instal·lador.</translation>
     </message>
 </context>
 <context>

@@ -315,7 +315,7 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
         <translation>Inštalátor distribúcie %1</translation>
     </message>
     <message>
-        <location filename="../src/calamares/CalamaresWindow.cpp" line="102"/>
+        <location filename="../src/calamares/CalamaresWindow.cpp" line="113"/>
         <source>Show debug information</source>
         <translation>Zobraziť ladiace informácie</translation>
     </message>
@@ -1104,12 +1104,12 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
 <context>
     <name>LCLocaleDialog</name>
     <message>
-        <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="33"/>
+        <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="34"/>
         <source>System locale setting</source>
         <translation>Miestne nastavenie systému</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="40"/>
+        <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="41"/>
         <source>The system locale setting affects the language and character set for some command line user interface elements.&lt;br/&gt;The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
         <translation>Miestne nastavenie systému ovplyvní jazyk a znakovú sadu niektorých prvkov používateľského rozhrania v príkazovom riadku.&lt;br/&gt;Aktuálne nastavenie je &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
@@ -1297,17 +1297,17 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
 <context>
     <name>NetInstallPage</name>
     <message>
-        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="72"/>
+        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="73"/>
         <source>Name</source>
         <translation>Názov</translation>
     </message>
     <message>
-        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="73"/>
+        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="74"/>
         <source>Description</source>
         <translation>Popis</translation>
     </message>
     <message>
-        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="82"/>
+        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="83"/>
         <source>Network Installation. (Disabled: Unable to fetch package lists, check your network connection)</source>
         <translation>Sieťová inštalácia. (Zakázaná: Nie je možné získať zoznamy balíkov. Skontrolujte vaše sieťové pripojenie.)</translation>
     </message>
@@ -1750,54 +1750,59 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
 <context>
     <name>RequirementsChecker</name>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="61"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="64"/>
         <source>Gathering system information...</source>
         <translation>Zbierajú sa informácie o počítači...</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="102"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="108"/>
         <source>has at least %1 GB available drive space</source>
         <translation>obsahuje aspoň %1 GB voľného miesta na disku</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="104"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="110"/>
         <source>There is not enough drive space. At least %1 GB is required.</source>
         <translation>Nie je dostatok miesta na disku. Vyžaduje sa aspoň %1 GB.</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="112"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="118"/>
         <source>has at least %1 GB working memory</source>
         <translation>obsahuje aspoň %1 GB voľnej operačnej pamäte</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="114"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="120"/>
         <source>The system does not have enough working memory. At least %1 GB is required.</source>
         <translation>Počítač neobsahuje dostatok operačnej pamäte. Vyžaduje sa aspoň %1 GB.</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="122"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="128"/>
         <source>is plugged in to a power source</source>
         <translation>je pripojený k zdroju napájania</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="123"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="129"/>
         <source>The system is not plugged in to a power source.</source>
         <translation>Počítač nie je pripojený k zdroju napájania.</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="130"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="136"/>
         <source>is connected to the Internet</source>
         <translation>je pripojený k internetu</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="131"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="137"/>
         <source>The system is not connected to the Internet.</source>
         <translation>Počítač nie je pripojený k internetu.</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="139"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="145"/>
         <source>The installer is not running with administrator rights.</source>
         <translation>Inštalátor nie je spustený s právami správcu.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="153"/>
+        <source>The screen is too small to display the installer.</source>
+        <translation>Obrazovka je príliš malá na to, aby bolo možné zobraziť inštalátor.</translation>
     </message>
 </context>
 <context>

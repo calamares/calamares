@@ -315,7 +315,7 @@ O instalador será encerrado e todas as alterações serão perdidas.</translati
         <translation>%1 Instalador</translation>
     </message>
     <message>
-        <location filename="../src/calamares/CalamaresWindow.cpp" line="102"/>
+        <location filename="../src/calamares/CalamaresWindow.cpp" line="113"/>
         <source>Show debug information</source>
         <translation>Mostrar informação de depuração</translation>
     </message>
@@ -1104,12 +1104,12 @@ O instalador será encerrado e todas as alterações serão perdidas.</translati
 <context>
     <name>LCLocaleDialog</name>
     <message>
-        <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="33"/>
+        <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="34"/>
         <source>System locale setting</source>
         <translation>Definição de localização do Sistema</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="40"/>
+        <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="41"/>
         <source>The system locale setting affects the language and character set for some command line user interface elements.&lt;br/&gt;The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
         <translation>A definição local do sistema afeta o idioma e conjunto de carateres para alguns elementos do interface da linha de comandos.&lt;br/&gt;A definição atual é &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
@@ -1297,17 +1297,17 @@ O instalador será encerrado e todas as alterações serão perdidas.</translati
 <context>
     <name>NetInstallPage</name>
     <message>
-        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="72"/>
+        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="73"/>
         <source>Name</source>
         <translation>Nome</translation>
     </message>
     <message>
-        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="73"/>
+        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="74"/>
         <source>Description</source>
         <translation>Descrição</translation>
     </message>
     <message>
-        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="82"/>
+        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="83"/>
         <source>Network Installation. (Disabled: Unable to fetch package lists, check your network connection)</source>
         <translation>Instalaçao de Rede. (Desativada: Incapaz de buscar listas de pacotes, verifique a sua ligação de rede)</translation>
     </message>
@@ -1750,54 +1750,59 @@ O instalador será encerrado e todas as alterações serão perdidas.</translati
 <context>
     <name>RequirementsChecker</name>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="61"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="64"/>
         <source>Gathering system information...</source>
         <translation>A recolher informação de sistema...</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="102"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="108"/>
         <source>has at least %1 GB available drive space</source>
         <translation>tem pelo menos %1 GB de espaço livre em disco</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="104"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="110"/>
         <source>There is not enough drive space. At least %1 GB is required.</source>
         <translation>Não existe espaço livre suficiente em disco. É necessário pelo menos %1 GB. </translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="112"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="118"/>
         <source>has at least %1 GB working memory</source>
         <translation>tem pelo menos %1 GB de memória disponível</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="114"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="120"/>
         <source>The system does not have enough working memory. At least %1 GB is required.</source>
         <translation>O sistema não tem memória disponível suficiente. É necessário pelo menos %1 GB.</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="122"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="128"/>
         <source>is plugged in to a power source</source>
         <translation>está ligado a uma fonte de energia</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="123"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="129"/>
         <source>The system is not plugged in to a power source.</source>
         <translation>O sistema não está ligado a uma fonte de energia.</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="130"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="136"/>
         <source>is connected to the Internet</source>
         <translation>está ligado à internet</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="131"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="137"/>
         <source>The system is not connected to the Internet.</source>
         <translation>O sistema não está ligado à internet.</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="139"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="145"/>
         <source>The installer is not running with administrator rights.</source>
         <translation>O instalador não está a correr com permissões de administrador.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="153"/>
+        <source>The screen is too small to display the installer.</source>
+        <translation>O ecrã tem um tamanho demasiado pequeno para mostrar o instalador.</translation>
     </message>
 </context>
 <context>
