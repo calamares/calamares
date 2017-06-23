@@ -1802,7 +1802,7 @@ Instalator zostanie zamknięty i wszystkie zmiany zostaną utracone.</translatio
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="153"/>
         <source>The screen is too small to display the installer.</source>
-        <translation type="unfinished"/>
+        <translation>Zbyt niska rozdzielczość ekranu, aby wyświetlić instalator.</translation>
     </message>
 </context>
 <context>
