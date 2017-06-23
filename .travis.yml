@@ -21,3 +21,5 @@ install:
 script:
   - docker run -v $PWD:/build calamares bash -lc "cd /build && cmake -DWEBVIEW_FORCE_WEBKIT=1 -DKDE_INSTALL_USE_QT_SYS_PATHS=ON . && make -j2"
   - pycodestyle --exclude=thirdparty,.git $PWD
+
+group: deprecated-2017Q2
