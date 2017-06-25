@@ -1802,7 +1802,7 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="153"/>
         <source>The screen is too small to display the installer.</source>
-        <translation type="unfinished"/>
+        <translation>Zaslon je premalen za prikaz instalacijskog programa.</translation>
     </message>
 </context>
 <context>
