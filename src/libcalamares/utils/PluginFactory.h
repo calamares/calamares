@@ -193,8 +193,8 @@ namespace Calamares
  * }
  * \endcode
  *
- * \author Matthias Kretz <kretz@kde.org>
- * \author Bernhard Loos <nhuh.put@web.de>
+ * \author Matthias Kretz <kretz\@kde.org>
+ * \author Bernhard Loos <nhuh.put\@web.de>
  */
 class DLLEXPORT PluginFactory : public QObject
 {
@@ -311,7 +311,6 @@ protected:
      * was requested. E.g. for KCModule plugins this string will be "KCModule".
      * \param parentWidget Only used if the requested plugin is a KPart.
      * \param parent The parent object for the plugin object.
-     * \param args A plugin specific list of arbitrary arguments.
      * \param keyword A string that uniquely identifies the plugin. If a KService is used this
      * keyword is read from the X-KDE-PluginKeyword entry in the .desktop file.
      */
