@@ -43,12 +43,10 @@ class UIDLLEXPORT ViewManager : public QObject
 public:
     /**
      * @brief instance access to the ViewManager singleton.
-     * @return
+     * @return pointer to the singleton instance.
      */
     static ViewManager* instance();
-
-    explicit ViewManager( QObject* parent = nullptr );
-    virtual ~ViewManager();
+    static ViewManager* instance( QObject* parent );
 
     /**
      * @brief centralWidget always returns the central widget in the Calamares main
@@ -115,6 +113,9 @@ signals:
     void currentStepChanged();
 
 private:
+    explicit ViewManager( QObject* parent = nullptr );
+    virtual ~ViewManager();
+
     void insertViewStep( int before, ViewStep* step );
 
     static ViewManager* s_instance;

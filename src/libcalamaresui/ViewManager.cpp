@@ -42,13 +42,20 @@ ViewManager::instance()
     return s_instance;
 }
 
+ViewManager*
+ViewManager::instance( QObject* parent )
+{
+    Q_ASSERT( !s_instance );
+    s_instance = new ViewManager( parent );
+    return s_instance;
+}
+
 ViewManager::ViewManager( QObject* parent )
     : QObject( parent )
     , m_widget( new QWidget() )
     , m_currentStep( 0 )
 {
     Q_ASSERT( !s_instance );
-    s_instance = this;
 
     QBoxLayout* mainLayout = new QVBoxLayout;
     m_widget->setLayout( mainLayout );

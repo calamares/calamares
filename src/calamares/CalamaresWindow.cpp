@@ -142,7 +142,7 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
     CalamaresUtils::unmarginLayout( sideLayout );
     CalamaresUtils::unmarginLayout( mainLayout );
 
-    Calamares::ViewManager* vm = new Calamares::ViewManager( this );
+    Calamares::ViewManager* vm = Calamares::ViewManager::instance( this );
 
     mainLayout->addWidget( vm->centralWidget() );
 }
