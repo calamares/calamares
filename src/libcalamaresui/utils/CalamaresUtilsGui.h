@@ -93,7 +93,7 @@ UIDLLEXPORT QPixmap defaultPixmap( ImageType type,
  */
 UIDLLEXPORT QPixmap createRoundedImage( const QPixmap& avatar,
                                         const QSize& size,
-                                        float frameWidthPct = 0.20 );
+                                        float frameWidthPct = 0.20f );
 
 /**
  * @brief unmarginLayout recursively walks the QLayout tree and removes all margins.
