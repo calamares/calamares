@@ -130,7 +130,7 @@ CheckerWidget::init( const QList< PrepareEntry >& checkEntries )
             if ( !theImage.isNull() )
             {
                 FixedAspectRatioLabel* imageLabel = new FixedAspectRatioLabel;
-                imageLabel->setContentsMargins( 4, CalamaresUtils::defaultFontHeight()*0.75, 4, 4 );
+                imageLabel->setContentsMargins( 4, CalamaresUtils::defaultFontHeight() * 3 / 4, 4, 4 );
                 m_mainLayout->addWidget( imageLabel );
                 imageLabel->setAlignment( Qt::AlignCenter );
                 imageLabel->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
