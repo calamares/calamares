@@ -82,6 +82,7 @@ Branding::Branding( const QString& brandingFilePath,
     : QObject( parent )
     , m_descriptorPath( brandingFilePath )
     , m_componentName()
+    , m_welcomeStyleCalamares( false )
 {
     cDebug() << "Using Calamares branding file at" << brandingFilePath;
     QFile file( brandingFilePath );
