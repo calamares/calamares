@@ -448,7 +448,7 @@ def run():
 
             if default_desktop_environment.desktop_file == "deepin":
                 os.system(
-                    "sed -i -e \"s/^.greeter-session=.* "
+                    "sed -i -e \"s/^.greeter-session=.*"
                     "/greeter-session=lightdm-deepin-greeter/\" "
                     "{!s}/etc/lightdm/lightdm.conf".format(
                         root_mount_point
