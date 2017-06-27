@@ -59,6 +59,11 @@ option( WITH_PYTHON "Enable Python modules API (requires Boost.Python)." ON )
 option( WITH_CRASHREPORTER "Build with CrashReporter" ON )
 option( INSTALL_CONFIG "Install configuration files" ON)
 option( WITH_PYTHONQT "Enable next generation Python modules API (experimental, requires PythonQt)." OFF )
+option(BUILD_TESTING "Build the testing tree." ON)
+
+if(BUILD_TESTING)
+    enable_testing()
+endif ()
 
 if( CMAKE_SYSTEM_PROCESSOR MATCHES "arm" OR NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/libcrashreporter-qt/CMakeLists.txt" )
     message( STATUS "Build of crashreporter disabled." )
