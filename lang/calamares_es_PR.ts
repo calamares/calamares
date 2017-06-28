@@ -221,64 +221,64 @@ Salida:
 <context>
     <name>Calamares::ViewManager</name>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="65"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="72"/>
         <source>&amp;Back</source>
         <translation>&amp;Atrás</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="66"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="73"/>
         <source>&amp;Next</source>
         <translation>&amp;Próximo</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="67"/>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="295"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="74"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="302"/>
         <source>&amp;Cancel</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="90"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="97"/>
         <source>Cancel installation?</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="91"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="98"/>
         <source>Do you really want to cancel the current install process?
 The installer will quit and all changes will be lost.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="224"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="231"/>
         <source>Continue with setup?</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="225"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="232"/>
         <source>The %1 installer is about to make changes to your disk in order to install %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="232"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="239"/>
         <source>&amp;Install now</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="233"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="240"/>
         <source>Go &amp;back</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="264"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="271"/>
         <source>&amp;Quit</source>
         <translation>&amp;Salir</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="170"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="177"/>
         <source>Error</source>
         <translation>Error</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="171"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="178"/>
         <source>Installation Failed</source>
         <translation>Falló la instalación</translation>
     </message>

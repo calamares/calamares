@@ -221,65 +221,65 @@ Output:
 <context>
     <name>Calamares::ViewManager</name>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="65"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="72"/>
         <source>&amp;Back</source>
         <translation>&amp;Προηγούμενο</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="66"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="73"/>
         <source>&amp;Next</source>
         <translation>&amp;Επόμενο</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="67"/>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="295"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="74"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="302"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Ακύρωση</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="90"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="97"/>
         <source>Cancel installation?</source>
         <translation>Ακύρωση της εγκατάστασης;</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="91"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="98"/>
         <source>Do you really want to cancel the current install process?
 The installer will quit and all changes will be lost.</source>
         <translation>Θέλετε πραγματικά να ακυρώσετε τη διαδικασία εγκατάστασης;
 Το πρόγραμμα εγκατάστασης θα τερματιστεί και όλες οι αλλαγές θα χαθούν.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="224"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="231"/>
         <source>Continue with setup?</source>
         <translation>Συνέχεια με την εγκατάσταση;</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="225"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="232"/>
         <source>The %1 installer is about to make changes to your disk in order to install %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
         <translation>Το πρόγραμμα εγκατάστασης %1 θα κάνει αλλαγές στον δίσκο για να εγκαταστήσετε το %2.&lt;br/&gt;&lt;strong&gt;Δεν θα είστε σε θέση να αναιρέσετε τις αλλαγές.&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="232"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="239"/>
         <source>&amp;Install now</source>
         <translation>Ε&amp;γκατάσταση τώρα</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="233"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="240"/>
         <source>Go &amp;back</source>
         <translation>Μετάβαση πί&amp;σω</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="264"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="271"/>
         <source>&amp;Quit</source>
         <translation>Έ&amp;ξοδος</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="170"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="177"/>
         <source>Error</source>
         <translation>Σφάλμα</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="171"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="178"/>
         <source>Installation Failed</source>
         <translation>Η εγκατάσταση απέτυχε</translation>
     </message>
@@ -1299,12 +1299,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="73"/>
         <source>Name</source>
-        <translation type="unfinished"/>
+        <translation>Όνομα</translation>
     </message>
     <message>
         <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="74"/>
         <source>Description</source>
-        <translation type="unfinished"/>
+        <translation>Περιγραφή</translation>
     </message>
     <message>
         <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="83"/>

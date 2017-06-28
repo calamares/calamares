@@ -221,65 +221,65 @@ Išvestis:
 <context>
     <name>Calamares::ViewManager</name>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="65"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="72"/>
         <source>&amp;Back</source>
         <translation>&amp;Atgal</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="66"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="73"/>
         <source>&amp;Next</source>
         <translation>&amp;Toliau</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="67"/>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="295"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="74"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="302"/>
         <source>&amp;Cancel</source>
         <translation>A&amp;tšaukti</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="90"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="97"/>
         <source>Cancel installation?</source>
         <translation>Atšaukti diegimą?</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="91"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="98"/>
         <source>Do you really want to cancel the current install process?
 The installer will quit and all changes will be lost.</source>
         <translation>Ar tikrai norite atšaukti dabartinio diegimo procesą?
 Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="224"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="231"/>
         <source>Continue with setup?</source>
         <translation>Tęsti sąranką?</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="225"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="232"/>
         <source>The %1 installer is about to make changes to your disk in order to install %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
         <translation>%1 diegimo programa, siekdama įdiegti %2, ketina atlikti pakeitimus diske.&lt;br/&gt;&lt;strong&gt;Negalėsite atšaukti šių pakeitimų.&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="232"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="239"/>
         <source>&amp;Install now</source>
         <translation>Į&amp;diegti dabar</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="233"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="240"/>
         <source>Go &amp;back</source>
         <translation>&amp;Grįžti</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="264"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="271"/>
         <source>&amp;Quit</source>
         <translation>&amp;Baigti</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="170"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="177"/>
         <source>Error</source>
         <translation>Klaida</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="171"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="178"/>
         <source>Installation Failed</source>
         <translation>Diegimas nepavyko</translation>
     </message>
@@ -2215,7 +2215,7 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="60"/>
         <source>&lt;h1&gt;Welcome to the Calamares installer for %1.&lt;/h1&gt;</source>
-        <translation>&lt;h1&gt;Sveiki atvykę į Calamares diegimo programą, skirtą %1.&lt;/h1&gt;</translation>
+        <translation>&lt;h1&gt;Jus sveikina Calamares diegimo programa, skirta %1 sistemai.&lt;/h1&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="74"/>

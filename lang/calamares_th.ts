@@ -221,65 +221,65 @@ Output:
 <context>
     <name>Calamares::ViewManager</name>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="65"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="72"/>
         <source>&amp;Back</source>
         <translation>&amp;B ย้อนกลับ</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="66"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="73"/>
         <source>&amp;Next</source>
         <translation>&amp;N ถัดไป</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="67"/>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="295"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="74"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="302"/>
         <source>&amp;Cancel</source>
         <translation>&amp;C ยกเลิก</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="90"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="97"/>
         <source>Cancel installation?</source>
         <translation>ยกเลิกการติดตั้ง?</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="91"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="98"/>
         <source>Do you really want to cancel the current install process?
 The installer will quit and all changes will be lost.</source>
         <translation>คุณต้องการยกเลิกกระบวนการติดตั้งที่กำลังดำเนินการอยู่หรือไม่?
 ตัวติดตั้งจะสิ้นสุดการทำงานและไม่บันทึกการเปลี่ยนแปลงที่ได้ดำเนินการก่อนหน้านี้</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="224"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="231"/>
         <source>Continue with setup?</source>
         <translation>ดำเนินการติดตั้งต่อหรือไม่?</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="225"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="232"/>
         <source>The %1 installer is about to make changes to your disk in order to install %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
         <translation>ตัวติดตั้ง %1 กำลังพยายามที่จะทำการเปลี่ยนแปลงในดิสก์ของคุณเพื่อติดตั้ง %2&lt;br/&gt;&lt;strong&gt;คุณจะไม่สามารถยกเลิกการเปลี่ยนแปลงเหล่านี้ได้&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="232"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="239"/>
         <source>&amp;Install now</source>
         <translation>&amp;ติดตั้งตอนนี้</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="233"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="240"/>
         <source>Go &amp;back</source>
         <translation>กลั&amp;บไป</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="264"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="271"/>
         <source>&amp;Quit</source>
         <translation>&amp;Q ออก</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="170"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="177"/>
         <source>Error</source>
         <translation>ข้อผิดพลาด</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="171"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="178"/>
         <source>Installation Failed</source>
         <translation>การติดตั้งล้มเหลว</translation>
     </message>

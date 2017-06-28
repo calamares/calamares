@@ -14,7 +14,7 @@
     <message>
         <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="87"/>
         <source>This system was started with a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from a BIOS environment, this installer must install a boot loader, like &lt;strong&gt;GRUB&lt;/strong&gt;, either at the beginning of a partition or on the &lt;strong&gt;Master Boot Record&lt;/strong&gt; near the beginning of the partition table (preferred). This is automatic, unless you choose manual partitioning, in which case you must set it up on your own.</source>
-        <translation type="unfinished"/>
+        <translation>Detta system startades med en &lt;strong&gt;BIOS-miljö&lt;/strong&gt;. &lt;br&gt;&lt;br&gt;För att ställa in uppstart från en BIOS-miljö måste en uppstartsladdare som t.ex. &lt;strong&gt;GRUB&lt;/strong&gt; installeras, antingen i början av en partition eller på &lt;strong&gt;huvudstartsektorn (MBR)&lt;/strong&gt; i början av partitionstabellen. Detta sker automatiskt, såvida du inte väljer manuell partitionering. Då måste du själv installera en uppstartsladdare.</translation>
     </message>
 </context>
 <context>
@@ -70,18 +70,18 @@
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="57"/>
         <source>Type:</source>
-        <translation type="unfinished"/>
+        <translation>Typ:</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="64"/>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="78"/>
         <source>none</source>
-        <translation type="unfinished"/>
+        <translation>ingen</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="71"/>
         <source>Interface:</source>
-        <translation type="unfinished"/>
+        <translation>Gränssnitt:</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="93"/>
@@ -221,65 +221,65 @@ Utdata:
 <context>
     <name>Calamares::ViewManager</name>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="65"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="72"/>
         <source>&amp;Back</source>
         <translation>&amp;Bakåt</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="66"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="73"/>
         <source>&amp;Next</source>
         <translation>&amp;Nästa</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="67"/>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="295"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="74"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="302"/>
         <source>&amp;Cancel</source>
         <translation>Avbryt</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="90"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="97"/>
         <source>Cancel installation?</source>
         <translation>Avbryt installation?</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="91"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="98"/>
         <source>Do you really want to cancel the current install process?
 The installer will quit and all changes will be lost.</source>
         <translation>Är du säker på att du vill avsluta installationen i förtid?
 Alla ändringar kommer att gå förlorade.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="224"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="231"/>
         <source>Continue with setup?</source>
         <translation>Fortsätt med installation?</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="225"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="232"/>
         <source>The %1 installer is about to make changes to your disk in order to install %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
         <translation>%1-installeraren är på väg att göra ändringar för att installera %2.&lt;br/&gt;&lt;strong&gt;Du kommer inte att kunna ångra dessa ändringar!strong&gt;</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="232"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="239"/>
         <source>&amp;Install now</source>
         <translation>&amp;Installera nu</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="233"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="240"/>
         <source>Go &amp;back</source>
         <translation>Gå &amp;bakåt</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="264"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="271"/>
         <source>&amp;Quit</source>
         <translation>Avsluta</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="170"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="177"/>
         <source>Error</source>
         <translation>Fel</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="171"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="178"/>
         <source>Installation Failed</source>
         <translation>Installationen misslyckades</translation>
     </message>
@@ -404,27 +404,27 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="776"/>
         <source>Reuse %1 as home partition for %2.</source>
-        <translation type="unfinished"/>
+        <translation>Återanvänd %1 som hempartition för %2.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="900"/>
         <source>&lt;strong&gt;Select a partition to shrink, then drag the bottom bar to resize&lt;/strong&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;Välj en partition att minska, sen dra i nedre fältet för att ändra storlek&lt;/strong&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1017"/>
         <source>&lt;strong&gt;Select a partition to install on&lt;/strong&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;Välj en partition att installera på&lt;/strong&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1073"/>
         <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
-        <translation type="unfinished"/>
+        <translation>Ingen EFI-partition kunde inte hittas på systemet. Gå tillbaka och partitionera din lagringsenhet manuellt för att ställa in %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1083"/>
         <source>The EFI system partition at %1 will be used for starting %2.</source>
-        <translation type="unfinished"/>
+        <translation>EFI-partitionen %1 kommer att användas för att starta %2.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1092"/>
@@ -434,7 +434,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1177"/>
         <source>This storage device does not seem to have an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-        <translation type="unfinished"/>
+        <translation>Denna lagringsenhet ser inte ut att ha ett operativsystem installerat. Vad vill du göra?&lt;br/&gt;Du kommer kunna granska och bekräfta dina val innan någon ändring görs på lagringseneheten.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1182"/>
@@ -442,12 +442,12 @@ Alla ändringar kommer att gå förlorade.</translation>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1246"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1284"/>
         <source>&lt;strong&gt;Erase disk&lt;/strong&gt;&lt;br/&gt;This will &lt;font color=&quot;red&quot;&gt;delete&lt;/font&gt; all data currently present on the selected storage device.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;Rensa lagringsenhet&lt;/strong&gt;&lt;br/&gt;Detta kommer &lt;font color=&quot;red&quot;&gt;radera&lt;/font&gt; all existerande data på den valda lagringsenheten.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1211"/>
         <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-        <translation type="unfinished"/>
+        <translation>Denna lagringsenhet har %1 på sig. Vad vill du göra?&lt;br/&gt;Du kommer kunna granska och bekräfta dina val innan någon ändring görs på lagringsenheten.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1186"/>
@@ -455,7 +455,7 @@ Alla ändringar kommer att gå förlorade.</translation>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1241"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1279"/>
         <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;Installera på sidan om&lt;/strong&gt;&lt;br/&gt;Installationshanteraren kommer krympa en partition för att göra utrymme för %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1191"/>
@@ -463,17 +463,17 @@ Alla ändringar kommer att gå förlorade.</translation>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1250"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1288"/>
         <source>&lt;strong&gt;Replace a partition&lt;/strong&gt;&lt;br/&gt;Replaces a partition with %1.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;Ersätt en partition&lt;/strong&gt;&lt;br/&gt;Ersätter en partition med %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1236"/>
         <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-        <translation type="unfinished"/>
+        <translation>Denna lagringsenhet har redan ett operativsystem på sig. Vad vill du göra?&lt;br/&gt;Du kommer kunna granska och bekräfta dina val innan någon ändring sker på lagringsenheten.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1274"/>
         <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-        <translation type="unfinished"/>
+        <translation>Denna lagringsenhet har flera operativsystem på sig. Vad vill du göra?&lt;br/&gt;Du kommer kunna granska och bekräfta dina val innan någon ändring sker på lagringsenheten.</translation>
     </message>
 </context>
 <context>
@@ -542,12 +542,12 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="119"/>
         <source>Fi&amp;le System:</source>
-        <translation type="unfinished"/>
+        <translation>Fi&amp;lsystem:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="178"/>
         <source>Flags:</source>
-        <translation type="unfinished"/>
+        <translation>Flaggor:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="151"/>
@@ -567,7 +567,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="65"/>
         <source>En&amp;crypt</source>
-        <translation type="unfinished"/>
+        <translation>Kr%yptera</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="161"/>
@@ -587,7 +587,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="268"/>
         <source>Mountpoint already in use. Please select another one.</source>
-        <translation type="unfinished"/>
+        <translation>Monteringspunkt används redan. Välj en annan.</translation>
     </message>
 </context>
 <context>
@@ -595,17 +595,17 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="48"/>
         <source>Create new %2MB partition on %4 (%3) with file system %1.</source>
-        <translation type="unfinished"/>
+        <translation>Skapa ny %2MB partition på %4 (%3) med filsystem %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="59"/>
         <source>Create new &lt;strong&gt;%2MB&lt;/strong&gt; partition on &lt;strong&gt;%4&lt;/strong&gt; (%3) with file system &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Skapa ny &lt;strong&gt;%2MB&lt;/strong&gt; partition på &lt;strong&gt;%4 (%3)&lt;/strong&gt; med filsystem &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="71"/>
         <source>Creating new %1 partition on %2.</source>
-        <translation type="unfinished"/>
+        <translation>Skapar ny %1 partition på %2.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="83"/>
@@ -666,17 +666,17 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="49"/>
         <source>Create new %1 partition table on %2.</source>
-        <translation type="unfinished"/>
+        <translation>Skapa ny %1 partitionstabell på %2.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="56"/>
         <source>Create new &lt;strong&gt;%1&lt;/strong&gt; partition table on &lt;strong&gt;%2&lt;/strong&gt; (%3).</source>
-        <translation type="unfinished"/>
+        <translation>Skapa ny &lt;strong&gt;%1&lt;/strong&gt; partitionstabell på &lt;strong&gt;%2&lt;/strong&gt; (%3).</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="66"/>
         <source>Creating new %1 partition table on %2.</source>
-        <translation type="unfinished"/>
+        <translation>Skapar ny %1 partitionstabell på %2.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="76"/>
@@ -739,12 +739,12 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="171"/>
         <source>Cannot add user %1 to groups: %2.</source>
-        <translation type="unfinished"/>
+        <translation>Kan inte lägga till användare %1 till grupper: %2.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="174"/>
         <source>usermod terminated with error code %1.</source>
-        <translation type="unfinished"/>
+        <translation>usermod avslutade med felkod %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="184"/>
@@ -800,12 +800,12 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="63"/>
         <source>The type of &lt;strong&gt;partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The only way to change the partition table type is to erase and recreate the partition table from scratch, which destroys all data on the storage device.&lt;br&gt;This installer will keep the current partition table unless you explicitly choose otherwise.&lt;br&gt;If unsure, on modern systems GPT is preferred.</source>
-        <translation type="unfinished"/>
+        <translation>Typen av &lt;strong&gt;partitionstabell&lt;/strong&gt; på den valda lagringsenheten.&lt;br&gt;&lt;br&gt;Det enda sättet attt ändra typen av partitionstabell är genom att radera och återskapa partitionstabellen från början, vilket förstör all data på lagringsenheten.&lt;br&gt;Installationshanteraren kommer behålla den nuvarande partitionstabellen om du inte väljer något annat.&lt;br&gt;På moderna system är GPT att föredra.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="107"/>
         <source>This device has a &lt;strong&gt;%1&lt;/strong&gt; partition table.</source>
-        <translation type="unfinished"/>
+        <translation>Denna enhet har en &lt;strong&gt;%1&lt;/strong&gt; partitionstabell.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="114"/>
