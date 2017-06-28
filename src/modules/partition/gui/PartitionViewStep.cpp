@@ -169,7 +169,8 @@ PartitionViewStep::createSummaryWidget() const
                        .arg( Calamares::Branding::instance()->
                              string( Calamares::Branding::ShortVersionedName ) );
             break;
-        default:
+        case ChoicePage::NoChoice:
+        case ChoicePage::Manual:
             modeText = tr( "<strong>Manual</strong> partitioning." );
         }
         modeLabel->setText( modeText );
@@ -203,7 +204,8 @@ PartitionViewStep::createSummaryWidget() const
                            .arg( info.deviceNode )
                            .arg( info.deviceName );
                 break;
-            default:
+            case ChoicePage::NoChoice:
+            case ChoicePage::Manual:
                 modeText = tr( "<strong>Manual</strong> partitioning on disk <strong>%1</strong> (%2)." )
                            .arg( info.deviceNode )
                            .arg( info.deviceName );
@@ -271,7 +273,6 @@ PartitionViewStep::createSummaryWidget() const
         QLabel* jobsLabel = new QLabel( widget );
         mainLayout->addWidget( jobsLabel );
         jobsLabel->setText( jobsLines.join( "<br/>" ) );
-        int m = CalamaresUtils::defaultFontHeight() / 2;
         jobsLabel->setMargin( CalamaresUtils::defaultFontHeight() / 2 );
         QPalette pal;
         pal.setColor( QPalette::Background, pal.background().color().lighter( 108 ) );
