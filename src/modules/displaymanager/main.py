@@ -318,7 +318,7 @@ def set_autologin(username,
         # Systems with Sddm as Desktop Manager
         sddm_conf_path = os.path.join(root_mount_point, "etc/sddm.conf")
 
-        sddm_config = configparser.ConfigParser()
+        sddm_config = configparser.ConfigParser(strict=False)
         # Make everything case sensitive
         sddm_config.optionxform = str
 
