@@ -3,10 +3,11 @@
 #
 # === This file is part of Calamares - <http://github.com/calamares> ===
 #
-#   Copyright 2014-2016, Philip Müller <philm@manjaro.org>
+#   Copyright 2014-2017, Philip Müller <philm@manjaro.org>
 #   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
 #   Copyright 2014, Kevin Kofler <kevin.kofler@chello.at>
 #   Copyright 2017, Alf Gaida <agaida@siduction.org>
+#   Copyright 2017, Bernhard Landauer <oberon@manjaro.org>
 #
 #   Calamares is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -403,6 +404,10 @@ def run():
     # setup lightdm
     if "lightdm" in displaymanagers:
         if have_dm("lightdm", root_mount_point):
+            lightdm_conf_path = os.path.join(
+                root_mount_point, "etc/lightdm/lightdm.conf"
+                )
+
             if enable_basic_setup:
                 libcalamares.utils.target_env_call(
                     ['mkdir', '-p', '/run/lightdm']
@@ -440,21 +445,42 @@ def run():
             if default_desktop_environment is not None:
                 os.system(
                     "sed -i -e \"s/^.*user-session=.*/user-session={!s}/\" "
-                    "{!s}/etc/lightdm/lightdm.conf".format(
+                    "{!s}".format(
                         default_desktop_environment.desktop_file,
-                        root_mount_point
+                        lightdm_conf_path
                         )
                     )
 
-            if default_desktop_environment.desktop_file == "deepin":
-                os.system(
-                    "sed -i -e \"s/^.greeter-session=.*"
-                    "/greeter-session=lightdm-deepin-greeter/\" "
-                    "{!s}/etc/lightdm/lightdm.conf".format(
-                        root_mount_point
-                        )
-                    )
+            # configure lightdm-greeter
+            greeter_path = os.path.join(
+                root_mount_point, "usr/share/xgreeters"
+                )
 
+            if (os.path.exists(greeter_path)):
+                greeter_configured = False
+
+                # configure first found lightdm-greeter
+                for entry in os.scandir(greeter_path):
+                    if entry.name.endswith('.desktop') \
+                            and not greeter_configured:
+                        greeter = entry.name.split('.')[0]
+                        libcalamares.utils.debug(
+                            "found greeter {!s}".format(greeter)
+                            )
+                        os.system(
+                            "sed -i -e \"s/^.*greeter-session=.*"
+                            "/greeter-session={!s}/\" {!s}".format(
+                                greeter,
+                                lightdm_conf_path
+                                )
+                            )
+                        libcalamares.utils.debug(
+                            "{!s} configured as greeter.".format(greeter)
+                            )
+                        greeter_configured = True
+
+                if not greeter_configured:
+                    return ("No lightdm greeter installed.")
         else:
             libcalamares.utils.debug("lightdm selected but not installed")
             displaymanagers.remove("lightdm")
