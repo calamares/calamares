@@ -52,8 +52,8 @@ ViewManager::instance( QObject* parent )
 
 ViewManager::ViewManager( QObject* parent )
     : QObject( parent )
-    , m_widget( new QWidget() )
     , m_currentStep( 0 )
+    , m_widget( new QWidget() )
 {
     Q_ASSERT( !s_instance );
 
@@ -72,6 +72,7 @@ ViewManager::ViewManager( QObject* parent )
         m_back->setText( tr( "&Back" ) );
         m_next->setText( tr( "&Next" ) );
         m_quit->setText( tr( "&Cancel" ) );
+        m_quit->setToolTip( tr( "Cancel installation without changing the system." ) );
     )
 
     QBoxLayout* bottomLayout = new QHBoxLayout;
@@ -268,7 +269,8 @@ ViewManager::next()
     if ( m_currentStep == m_steps.count() -1 &&
          m_steps.last()->isAtEnd() )
     {
-        m_quit->setText( tr( "&Quit" ) );
+        m_quit->setText( tr( "&Done" ) );
+        m_quit->setToolTip( tr( "The installation is complete. Close the installer." ) );
     }
 }
 
@@ -299,7 +301,10 @@ ViewManager::back()
 
     if ( !( m_currentStep == m_steps.count() -1 &&
             m_steps.last()->isAtEnd() ) )
+    {
         m_quit->setText( tr( "&Cancel" ) );
+        m_quit->setToolTip( tr( "Cancel installation without changing the system." ) );
+    }
 }
 
 }
