@@ -48,7 +48,7 @@ static bool s_isAppDataDirOverridden = false;
 static QTranslator* s_brandingTranslator = nullptr;
 static QTranslator* s_translator = nullptr;
 static QTranslator* s_qtTranslator = nullptr;
-static QString s_translatorLocaleName = QString();
+static QString s_translatorLocaleName;
 
 
 static bool
@@ -342,7 +342,7 @@ obscure( const QString& string )
 void
 crash()
 {
-    volatile int* a = (int*)(NULL);
+    volatile int* a = nullptr;
     *a = 1;
 }
 
