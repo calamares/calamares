@@ -41,11 +41,11 @@ public:
     Calamares::JobResult exec() override;
 
 private:
-    static const QString CONFIG_FILE;
+    static const QLatin1Literal CONFIG_FILE;
     static const char *CONFIG_FILE_HEADER;
     static const char *CONFIG_FILE_CRYPTTAB_KEYFILE_LINE;
     static const char *CONFIG_FILE_CRYPTTAB_LINE;
-    static const QString CONFIG_FILE_SWAPLINE;
+    static const QLatin1Literal CONFIG_FILE_SWAPLINE;
 
     static QString rootMountPoint();
     static QVariantList partitions();
