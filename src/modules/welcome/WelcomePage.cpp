@@ -46,7 +46,7 @@ WelcomePage::WelcomePage( RequirementsChecker* requirementsChecker, QWidget* par
 {
     ui->setupUi( this );
 
-    ui->verticalLayout->insertSpacing( 1, CalamaresUtils::defaultFontHeight() * 4 );
+    ui->verticalLayout->insertSpacing( 1, CalamaresUtils::defaultFontHeight() * 2 );
     initLanguages();
 
     ui->mainText->setAlignment( Qt::AlignCenter );
