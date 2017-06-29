@@ -157,7 +157,7 @@ createRoundedImage( const QPixmap& pixmap, const QSize& size, float frameWidthPc
 
     painter.setBrush( brush );
     painter.setPen( pen );
-    painter.drawRoundedRect( outerRect, frameWidthPct * 100.0f, frameWidthPct * 100.0f, Qt::RelativeSize );
+    painter.drawRoundedRect( outerRect, qreal(frameWidthPct) * 100.0, qreal(frameWidthPct) * 100.0, Qt::RelativeSize );
 
 /*    painter.setBrush( Qt::transparent );
     painter.setPen( Qt::white );
@@ -223,7 +223,7 @@ setDefaultFontSize( int points )
 QSize
 defaultIconSize()
 {
-    const int w = defaultFontHeight() * 1.6f;
+    const int w = int(defaultFontHeight() * 1.6);
     return QSize( w, w );
 }
 
