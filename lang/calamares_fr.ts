@@ -240,7 +240,7 @@ Sortie :
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="75"/>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="306"/>
         <source>Cancel installation without changing the system.</source>
-        <translation type="unfinished"/>
+        <translation>Annuler l&apos;installation sans modifier votre système.</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="98"/>
@@ -277,12 +277,12 @@ L&apos;installateur se fermera et les changements seront perdus.</translation>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="272"/>
         <source>&amp;Done</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Terminé</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="273"/>
         <source>The installation is complete. Close the installer.</source>
-        <translation type="unfinished"/>
+        <translation>L&apos;installation est terminée. Fermer l&apos;installateur.</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="178"/>
@@ -1813,7 +1813,7 @@ L&apos;installateur se fermera et les changements seront perdus.</translation>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="153"/>
         <source>The screen is too small to display the installer.</source>
-        <translation type="unfinished"/>
+        <translation>L&apos;écran est trop petit pour afficher l&apos;installateur.</translation>
     </message>
 </context>
 <context>
@@ -2226,7 +2226,7 @@ L&apos;installateur se fermera et les changements seront perdus.</translation>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="60"/>
         <source>&lt;h1&gt;Welcome to the Calamares installer for %1.&lt;/h1&gt;</source>
-        <translation type="unfinished"/>
+        <translation>Bien dans l&apos;installateur Calamares pour %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="74"/>

@@ -241,7 +241,7 @@ Salida:
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="75"/>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="306"/>
         <source>Cancel installation without changing the system.</source>
-        <translation type="unfinished"/>
+        <translation>Cancelar instalación sin cambiar el sistema.</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="98"/>
@@ -278,12 +278,12 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="272"/>
         <source>&amp;Done</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Hecho</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="273"/>
         <source>The installation is complete. Close the installer.</source>
-        <translation type="unfinished"/>
+        <translation>La instalación se ha completado. Cierre el instalador.</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="178"/>
@@ -1814,7 +1814,7 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="153"/>
         <source>The screen is too small to display the installer.</source>
-        <translation type="unfinished"/>
+        <translation>La pantalla es demasiado pequeña para mostrar el instalador.</translation>
     </message>
 </context>
 <context>

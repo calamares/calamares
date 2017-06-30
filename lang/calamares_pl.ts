@@ -240,7 +240,7 @@ Wyjście:
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="75"/>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="306"/>
         <source>Cancel installation without changing the system.</source>
-        <translation type="unfinished"/>
+        <translation>Anuluj instalację bez dokonywania zmian w systemie.</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="98"/>
@@ -277,12 +277,12 @@ Instalator zostanie zamknięty i wszystkie zmiany zostaną utracone.</translatio
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="272"/>
         <source>&amp;Done</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Ukończono</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="273"/>
         <source>The installation is complete. Close the installer.</source>
-        <translation type="unfinished"/>
+        <translation>Instalacja ukończona pomyślnie. Możesz zamknąć instalator.</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="178"/>
