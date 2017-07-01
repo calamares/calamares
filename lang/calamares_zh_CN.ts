@@ -241,7 +241,7 @@ Output:
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="75"/>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="306"/>
         <source>Cancel installation without changing the system.</source>
-        <translation type="unfinished"/>
+        <translation>取消安装，并不做任何更改。</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="98"/>
@@ -278,12 +278,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="272"/>
         <source>&amp;Done</source>
-        <translation type="unfinished"/>
+        <translation>&amp;完成</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="273"/>
         <source>The installation is complete. Close the installer.</source>
-        <translation type="unfinished"/>
+        <translation>安装过程已完毕。请关闭安装器。</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="178"/>
@@ -1815,7 +1815,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="153"/>
         <source>The screen is too small to display the installer.</source>
-        <translation type="unfinished"/>
+        <translation>屏幕不能完整显示安装器。</translation>
     </message>
 </context>
 <context>
@@ -2223,12 +2223,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="60"/>
         <source>&lt;h1&gt;Welcome to the %1 installer.&lt;/h1&gt;</source>
-        <translation>&lt;h1&gt;欢迎来到 %1 安装程序。&lt;/h1&gt;</translation>
+        <translation>&lt;h1&gt;欢迎使用 %1 安装程序。&lt;/h1&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="60"/>
         <source>&lt;h1&gt;Welcome to the Calamares installer for %1.&lt;/h1&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;h1&gt;欢迎使用 Calamares 安装程序 - %1。&lt;/h1&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="74"/>
