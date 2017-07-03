@@ -38,6 +38,9 @@ public:
 
     void setUpRestart();
 
+public slots:
+    void onInstallationFailed( const QString& message, const QString& details );
+
 protected:
     void focusInEvent( QFocusEvent* e ) override; //choose the child widget to focus
 

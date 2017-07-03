@@ -39,6 +39,7 @@ FinishedPage::FinishedPage( QWidget* parent )
     , ui( new Ui::FinishedPage )
     , m_restartSetUp( false )
 {
+    cDebug() << "FinishedPage()";
     ui->setupUi( this );
 
     ui->mainText->setAlignment( Qt::AlignCenter );
@@ -83,6 +84,7 @@ FinishedPage::setRestartNowCommand( const QString& command )
 void
 FinishedPage::setUpRestart()
 {
+    cDebug() << "FinishedPage::setUpRestart()";
     if ( !m_restartSetUp )
     {
         connect( qApp, &QApplication::aboutToQuit,
@@ -102,3 +104,14 @@ FinishedPage::focusInEvent( QFocusEvent* e )
     e->accept();
 }
 
+void
+FinishedPage::onInstallationFailed( const QString& message, const QString& details )
+{
+    ui->mainText->setText( tr( "<h1>Installation Failed</h1><br/>"
+                             "%1 has not been installed on your computer.<br/>"
+                             "The error message was: %2." )
+                        .arg(Calamares::Branding::instance()->
+                               string( Calamares::Branding::VersionedName ) )
+                        .arg( details ) );
+    setRestartNowEnabled( false );
+}
