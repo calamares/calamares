@@ -38,7 +38,7 @@ def mount_partitions(root_mount_point, partitions):
         # Create mount point with `+` rather than `os.path.join()` because
         # `partition["mountPoint"]` starts with a '/'.
         mount_point = root_mount_point + partition["mountPoint"]
-        fstype = partition.get("fs", "")
+        fstype = partition.get("fs", "").lower()
 
         if fstype == "fat16" or fstype == "fat32":
             fstype = "vfat"

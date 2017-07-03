@@ -224,7 +224,7 @@ class FstabGenerator(object):
 
     def generate_fstab_line_info(self, partition):
         """ Generates information for each fstab entry. """
-        filesystem = partition["fs"]
+        filesystem = partition["fs"].lower()
         mount_point = partition["mountPoint"]
         disk_name = disk_name_for_partition(partition)
         is_ssd = disk_name in self.ssd_disks
