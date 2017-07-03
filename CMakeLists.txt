@@ -57,11 +57,11 @@ find_package( PolkitQt5-1 REQUIRED )
 
 option( WITH_PYTHON "Enable Python modules API (requires Boost.Python)." ON )
 option( WITH_CRASHREPORTER "Build with CrashReporter" ON )
-option( INSTALL_CONFIG "Install configuration files" ON)
+option( INSTALL_CONFIG "Install configuration files" ON )
 option( WITH_PYTHONQT "Enable next generation Python modules API (experimental, requires PythonQt)." OFF )
-option(BUILD_TESTING "Build the testing tree." ON)
+option( BUILD_TESTING "Build the testing tree." ON )
 
-if(BUILD_TESTING)
+if( BUILD_TESTING )
     enable_testing()
 endif ()
 
@@ -102,10 +102,10 @@ if ( PYTHONLIBS_FOUND )
     )
 endif()
 
-if ( PYTHONLIBS_NOTFOUND OR NOT CALAMARES_BOOST_PYTHON3_FOUND )
+if( PYTHONLIBS_NOTFOUND OR NOT CALAMARES_BOOST_PYTHON3_FOUND )
     set( WITH_PYTHON OFF )
 endif()
-if ( PYTHONLIBS_NOTFOUND OR NOT PYTHONQT_FOUND )
+if( PYTHONLIBS_NOTFOUND OR NOT PYTHONQT_FOUND )
     set( WITH_PYTHONQT OFF )
 endif()
 
@@ -185,15 +185,15 @@ add_subdirectory( src )
 
 macro_display_feature_log()
 
-if ( NOT WITH_PYTHON )
+if( NOT WITH_PYTHON )
     message( "-- WARNING: Building Calamares without Python support. Legacy Python job modules will not work.\n" )
 endif()
-if ( NOT WITH_PYTHONQT )
+if( NOT WITH_PYTHONQT )
     message( "-- WARNING: Building Calamares without PythonQt support. Python modules will not work.\n" )
 endif()
 
 
-if ( NOT INSTALL_CONFIG )
+if( NOT INSTALL_CONFIG )
     message( "-- WARNING: Configuration files will not be installed.\n" )
 endif()
 
@@ -238,7 +238,7 @@ install(
         "${CMAKE_INSTALL_CMAKEDIR}"
 )
 
-if (INSTALL_CONFIG)
+if( INSTALL_CONFIG )
     install(
         FILES
             settings.conf
