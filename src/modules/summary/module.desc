@@ -1,4 +1,9 @@
-# Module metadata file for keyboard viewmodule
+# Module metadata file for summary viewmodule
+#
+# The summary module tells the user what is going to happen (next)
+# during the installation. Each other step is responsible for
+# creating a summary widget that this step can display.
+#
 # Syntax is YAML 1.2
 ---
 type:      "view"
