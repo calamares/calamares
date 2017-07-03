@@ -78,6 +78,7 @@ WelcomePage::WelcomePage( RequirementsChecker* requirementsChecker, QWidget* par
                             "<strong>%2<br/>"
                             "for %3</strong><br/><br/>"
                             "Copyright 2014-2017 Teo Mrnjavac &lt;teo@kde.org&gt;<br/>"
+                            "Copyright 2017 Adriaan de Groot &lt;groot@kde.org&gt;<br/>"
                             "Thanks to: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Lisa Vitolo,"
                             " Philip Müller, Pier Luigi Fiorini, Rohan Garg and the <a "
                             "href=\"https://www.transifex.com/calamares/calamares/\">Calamares "
