@@ -94,12 +94,16 @@ ViewManager::ViewManager( QObject* parent )
         if ( !( m_currentStep == m_steps.count() -1 &&
                 m_steps.last()->isAtEnd() ) )
         {
-            int response = QMessageBox::question( m_widget,
+            QMessageBox mb( QMessageBox::Question,
                             tr( "Cancel installation?" ),
                             tr( "Do you really want to cancel the current install process?\n"
                                 "The installer will quit and all changes will be lost." ),
                             QMessageBox::Yes | QMessageBox::No,
-                            QMessageBox::No );
+                            m_widget );
+            mb.setDefaultButton( QMessageBox::No );
+            mb.button( QMessageBox::Yes )->setText( tr( "&Yes" ) );
+            mb.button( QMessageBox::No )->setText( tr( "&No" ) );
+            int response = mb.exec();
             if ( response == QMessageBox::Yes )
                 qApp->quit();
         }

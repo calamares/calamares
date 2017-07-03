@@ -7,12 +7,6 @@ macro(add_calamares_translations language)
     set( calamares_i18n_qrc_content "${calamares_i18n_qrc_content}<qresource prefix=\"/lang\">\n" )
     foreach( lang ${CALAMARES_LANGUAGES} )
         set( calamares_i18n_qrc_content "${calamares_i18n_qrc_content}<file>calamares_${lang}.qm</file>\n" )
-        if( NOT lang STREQUAL "en" AND EXISTS ${QT_TRANSLATIONS_DIR}/qt_${lang}.qm )
-            file( COPY ${QT_TRANSLATIONS_DIR}/qt_${lang}.qm DESTINATION ${CMAKE_CURRENT_BINARY_DIR} )
-            set( calamares_i18n_qrc_content "${calamares_i18n_qrc_content}<file>qt_${lang}.qm</file>\n" )
-        endif()
-
-        # build explicitly enabled languages
         list( APPEND TS_FILES "${CMAKE_SOURCE_DIR}/lang/calamares_${lang}.ts" )
     endforeach()
 
