@@ -121,6 +121,8 @@ firstFreePartition( PartitionNode* parent )
 //- QueueRunner ---------------------------------------------------------------
 QueueRunner::QueueRunner( JobQueue* queue )
     : m_queue( queue )
+    , m_finished( false )  // Same initalizations as in ::run()
+    , m_success( true )
 {
     connect( m_queue, &JobQueue::finished, this, &QueueRunner::onFinished );
     connect( m_queue, &JobQueue::failed, this, &QueueRunner::onFailed );
