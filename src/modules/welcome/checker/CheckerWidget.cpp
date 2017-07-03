@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -96,8 +97,7 @@ CheckerWidget::init( const QList< PrepareEntry >& checkEntries )
                                         "requirements for installing %1.<br/>"
                                         "Installation cannot continue. "
                                         "<a href=\"#details\">Details...</a>" )
-                                        .arg( Calamares::Branding::instance()->
-                                              string( Calamares::Branding::ShortVersionedName ) ) );
+                                        .arg( *Calamares::Branding::ShortVersionedName ) );
             )
             textLabel->setOpenExternalLinks( false );
             connect( textLabel, &QLabel::linkActivated,
@@ -114,8 +114,7 @@ CheckerWidget::init( const QList< PrepareEntry >& checkEntries )
                                         "recommended requirements for installing %1.<br/>"
                                         "Installation can continue, but some features "
                                         "might be disabled." )
-                                        .arg( Calamares::Branding::instance()->
-                                              string( Calamares::Branding::ShortVersionedName ) ) );
+                                        .arg( *Calamares::Branding::ShortVersionedName ) );
             )
         }
     }
@@ -141,8 +140,7 @@ CheckerWidget::init( const QList< PrepareEntry >& checkEntries )
         CALAMARES_RETRANSLATE(
             textLabel->setText( tr( "This program will ask you some questions and "
                                     "set up %2 on your computer." )
-                                .arg( Calamares::Branding::instance()->
-                                      string( Calamares::Branding::ProductName ) ) );
+                                .arg( *Calamares::Branding::ProductName ) );
             textLabel->setAlignment( Qt::AlignCenter );
         )
     }

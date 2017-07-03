@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -237,10 +238,8 @@ ViewManager::next()
                                        tr( "The %1 installer is about to make changes to your "
                                            "disk in order to install %2.<br/><strong>You will not be able "
                                            "to undo these changes.</strong>" )
-                                       .arg( Calamares::Branding::instance()->string(
-                                                Calamares::Branding::ShortProductName ) )
-                                       .arg( Calamares::Branding::instance()->string(
-                                                Calamares::Branding::ShortVersionedName ) ),
+                                       .arg( *Calamares::Branding::ShortProductName )
+                                       .arg( *Calamares::Branding::ShortVersionedName ),
                                        tr( "&Install now" ),
                                        tr( "Go &back" ),
                                        QString(),

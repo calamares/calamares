@@ -37,6 +37,11 @@ class UIDLLEXPORT Branding : public QObject
 {
     Q_OBJECT
 public:
+    /**
+     * Descriptive strings in the configuration file. use
+     * e.g. *Branding::ProductName to get the string value for
+     * the product name.
+     */
     enum StringEntry : short
     {
         ProductName,
@@ -111,6 +116,8 @@ private:
 
     bool m_welcomeStyleCalamares;
 };
+
+template<typename U> inline QString operator*(U e) { return Branding::instance()->string( e ); }
 
 }
 
