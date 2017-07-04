@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -37,6 +38,9 @@ public:
     void setRestartNowCommand( const QString& command );
 
     void setUpRestart();
+
+public slots:
+    void onInstallationFailed( const QString& message, const QString& details );
 
 protected:
     void focusInEvent( QFocusEvent* e ) override; //choose the child widget to focus
