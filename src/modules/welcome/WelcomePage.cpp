@@ -54,12 +54,11 @@ WelcomePage::WelcomePage( RequirementsChecker* requirementsChecker, QWidget* par
     ui->mainText->setOpenExternalLinks( true );
 
     cDebug() << "Welcome string" << Calamares::Branding::instance()->welcomeStyleCalamares()
-        << Calamares::Branding::instance()->string( Calamares::Branding::VersionedName );
+        << *Calamares::Branding::VersionedName;
 
     CALAMARES_RETRANSLATE(
         ui->mainText->setText( (Calamares::Branding::instance()->welcomeStyleCalamares() ? tr( "<h1>Welcome to the Calamares installer for %1.</h1>" ) : tr( "<h1>Welcome to the %1 installer.</h1>" ))
-                                .arg( Calamares::Branding::instance()->
-                                      string( Calamares::Branding::VersionedName ) ) );
+                                .arg( *Calamares::Branding::VersionedName ) );
         ui->retranslateUi( this );
     )
 
@@ -78,6 +77,7 @@ WelcomePage::WelcomePage( RequirementsChecker* requirementsChecker, QWidget* par
                             "<strong>%2<br/>"
                             "for %3</strong><br/><br/>"
                             "Copyright 2014-2017 Teo Mrnjavac &lt;teo@kde.org&gt;<br/>"
+                            "Copyright 2017 Adriaan de Groot &lt;groot@kde.org&gt;<br/>"
                             "Thanks to: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Lisa Vitolo,"
                             " Philip Müller, Pier Luigi Fiorini, Rohan Garg and the <a "
                             "href=\"https://www.transifex.com/calamares/calamares/\">Calamares "
@@ -89,8 +89,7 @@ WelcomePage::WelcomePage( RequirementsChecker* requirementsChecker, QWidget* par
                         )
                         .arg( CALAMARES_APPLICATION_NAME )
                         .arg( CALAMARES_VERSION )
-                        .arg( Calamares::Branding::instance()->string(
-                                  Calamares::Branding::VersionedName ) ),
+                        .arg( *Calamares::Branding::VersionedName ),
                         QMessageBox::Ok,
                         this );
         mb.setIconPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::Squid,
@@ -193,12 +192,11 @@ WelcomePage::setUpLinks( bool showSupportUrl,
                           bool showReleaseNotesUrl )
 {
     using namespace Calamares;
-    Branding* b = Branding::instance();
-    if ( showSupportUrl && !b->string( Branding::SupportUrl ).isEmpty() )
+    if ( showSupportUrl && !( *Branding::SupportUrl ).isEmpty() )
     {
         CALAMARES_RETRANSLATE(
             ui->supportButton->setText( tr( "%1 support" )
-                                        .arg( b->string( Branding::ShortProductName ) ) );
+                                        .arg( *Branding::ShortProductName ) );
         )
         ui->supportButton->setIcon( CalamaresUtils::defaultPixmap( CalamaresUtils::Help,
                                                                    CalamaresUtils::Original,
@@ -206,7 +204,7 @@ WelcomePage::setUpLinks( bool showSupportUrl,
                                                                           CalamaresUtils::defaultFontHeight() ) ) );
         connect( ui->supportButton, &QPushButton::clicked, []
         {
-            QDesktopServices::openUrl( Branding::instance()->string( Branding::SupportUrl ) );
+            QDesktopServices::openUrl( *Branding::SupportUrl );
         } );
     }
     else
@@ -214,7 +212,7 @@ WelcomePage::setUpLinks( bool showSupportUrl,
         ui->supportButton->hide();
     }
 
-    if ( showKnownIssuesUrl && !b->string( Branding::KnownIssuesUrl ).isEmpty() )
+    if ( showKnownIssuesUrl && !( *Branding::KnownIssuesUrl ).isEmpty() )
     {
         ui->knownIssuesButton->setIcon( CalamaresUtils::defaultPixmap( CalamaresUtils::Bugs,
                                                                        CalamaresUtils::Original,
@@ -222,7 +220,7 @@ WelcomePage::setUpLinks( bool showSupportUrl,
                                                                               CalamaresUtils::defaultFontHeight() ) ) );
         connect( ui->knownIssuesButton, &QPushButton::clicked, []
         {
-            QDesktopServices::openUrl( Branding::instance()->string( Branding::KnownIssuesUrl ) );
+            QDesktopServices::openUrl( *Branding::KnownIssuesUrl );
         } );
     }
     else
@@ -230,7 +228,7 @@ WelcomePage::setUpLinks( bool showSupportUrl,
         ui->knownIssuesButton->hide();
     }
 
-    if ( showReleaseNotesUrl && !b->string( Branding::ReleaseNotesUrl ).isEmpty() )
+    if ( showReleaseNotesUrl && !( *Branding::ReleaseNotesUrl ).isEmpty() )
     {
         ui->releaseNotesButton->setIcon( CalamaresUtils::defaultPixmap( CalamaresUtils::Release,
                                                                         CalamaresUtils::Original,
@@ -238,7 +236,7 @@ WelcomePage::setUpLinks( bool showSupportUrl,
                                                                                CalamaresUtils::defaultFontHeight() ) ) );
         connect( ui->releaseNotesButton, &QPushButton::clicked, []
         {
-            QDesktopServices::openUrl( Branding::instance()->string( Branding::ReleaseNotesUrl ) );
+            QDesktopServices::openUrl( *Branding::ReleaseNotesUrl );
         } );
     }
     else

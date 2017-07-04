@@ -145,8 +145,7 @@ FillGlobalStorageJob::prettyDescription() const
             {
                 if ( mountPoint == "/" )
                     lines.append( tr( "Install %1 on <strong>new</strong> %2 system partition." )
-                                  .arg( Calamares::Branding::instance()->string(
-                                        Calamares::Branding::ShortProductName ) )
+                                  .arg( *Calamares::Branding::ShortProductName )
                                   .arg( fsType ) );
                 else
                     lines.append( tr( "Set up <strong>new</strong> %2 partition with mount point "
@@ -159,8 +158,7 @@ FillGlobalStorageJob::prettyDescription() const
                 if ( mountPoint == "/" )
                     lines.append( tr( "Install %2 on %3 system partition <strong>%1</strong>." )
                                   .arg( path )
-                                  .arg( Calamares::Branding::instance()->string(
-                                        Calamares::Branding::ShortProductName ) )
+                                  .arg( *Calamares::Branding::ShortProductName )
                                   .arg( fsType ) );
                 else
                     lines.append( tr( "Set up %3 partition <strong>%1</strong> with mount point "

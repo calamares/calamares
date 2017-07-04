@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -177,22 +178,23 @@ ViewManager::onInstallationFailed( const QString& message, const QString& detail
     cLog() << "- message:" << message;
     cLog() << "- details:" << details;
 
-    QMessageBox msgBox;
-    msgBox.setIcon( QMessageBox::Critical );
-    msgBox.setWindowTitle( tr("Error") );
-    msgBox.setText( "<strong>" + tr( "Installation Failed" ) + "</strong>" );
-    msgBox.setStandardButtons( QMessageBox::Close );
+    QMessageBox* msgBox = new QMessageBox();
+    msgBox->setIcon( QMessageBox::Critical );
+    msgBox->setWindowTitle( tr("Error") );
+    msgBox->setText( "<strong>" + tr( "Installation Failed" ) + "</strong>" );
+    msgBox->setStandardButtons( QMessageBox::Close );
+    msgBox->button( QMessageBox::Close )->setText( tr( "&Close" ) );
 
     QString text = "<p>" + message + "</p>";
     if ( !details.isEmpty() )
     {
         text += "<p>" + details + "</p>";
     }
-    msgBox.setInformativeText( text );
+    msgBox->setInformativeText( text );
 
-    msgBox.exec();
-    cLog() << "Calamares will now quit.";
-    qApp->quit();
+    connect(msgBox, &QMessageBox::buttonClicked, qApp, &QApplication::quit);
+    cLog() << "Calamares will quit when the dialog closes.";
+    msgBox->show();
 }
 
 
@@ -237,10 +239,8 @@ ViewManager::next()
                                        tr( "The %1 installer is about to make changes to your "
                                            "disk in order to install %2.<br/><strong>You will not be able "
                                            "to undo these changes.</strong>" )
-                                       .arg( Calamares::Branding::instance()->string(
-                                                Calamares::Branding::ShortProductName ) )
-                                       .arg( Calamares::Branding::instance()->string(
-                                                Calamares::Branding::ShortVersionedName ) ),
+                                       .arg( *Calamares::Branding::ShortProductName )
+                                       .arg( *Calamares::Branding::ShortVersionedName ),
                                        tr( "&Install now" ),
                                        tr( "Go &back" ),
                                        QString(),

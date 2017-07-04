@@ -8,6 +8,10 @@ componentName:  default
 # same distribution.
 welcomeStyleCalamares:   false
 
+# Should the welcome image (productWelcome, below) be scaled
+# up beyond its natural size?
+welcomeExpandingLogo:   true
+
 strings:
     productName:         Generic GNU/Linux
     shortProductName:    Generic

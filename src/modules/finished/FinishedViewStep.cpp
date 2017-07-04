@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -17,8 +18,10 @@
  */
 
 #include "FinishedViewStep.h"
-
 #include "FinishedPage.h"
+#include "JobQueue.h"
+
+#include "utils/Logger.h"
 
 #include <QVariantMap>
 
@@ -26,6 +29,11 @@ FinishedViewStep::FinishedViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
     , m_widget( new FinishedPage() )
 {
+    cDebug() << "FinishedViewStep()";
+
+    connect( Calamares::JobQueue::instance(), &Calamares::JobQueue::failed,
+            m_widget, &FinishedPage::onInstallationFailed );
+
     emit nextStatusChanged( true );
 }
 
@@ -47,6 +55,7 @@ FinishedViewStep::prettyName() const
 QWidget*
 FinishedViewStep::widget()
 {
+    cDebug() << "FinishedViewStep::widget()";
     return m_widget;
 }
 
@@ -94,6 +103,7 @@ FinishedViewStep::isAtEnd() const
 void
 FinishedViewStep::onActivate()
 {
+    cDebug() << "FinishedViewStep::onActivate()";
     m_widget->setUpRestart();
 }
 
@@ -101,6 +111,7 @@ FinishedViewStep::onActivate()
 QList< Calamares::job_ptr >
 FinishedViewStep::jobs() const
 {
+    cDebug() << "FinishedViewStep::jobs";
     return QList< Calamares::job_ptr >();
 }
 

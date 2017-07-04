@@ -153,19 +153,27 @@ PartitionCoreModule::doInit()
 {
     FileSystemFactory::init();
 
+    using DeviceList = QList< Device* >;
+
     CoreBackend* backend = CoreBackendManager::self()->backend();
-    QList< Device* > devices = backend->scanDevices( true );
+    DeviceList devices = backend->scanDevices( true );
+
+    cDebug() << "Winnowing" << devices.count() << "devices.";
 
     // Remove the device which contains / from the list
-    for ( QList< Device* >::iterator it = devices.begin(); it != devices.end(); )
+    for ( DeviceList::iterator it = devices.begin(); it != devices.end(); )
         if ( ! (*it) || hasRootPartition( *it ) ||
              (*it)->deviceNode().startsWith( "/dev/zram") ||
              isIso9660( *it ) )
+        {
+            cDebug() << "  .. Winnowing" << ( (*it) ? (*it)->deviceNode() : QString( "<null device>" ) );
             it = devices.erase( it );
+        }
         else
             ++it;
 
-    cDebug() << "LIST OF DETECTED DEVICES:\nnode\tcapacity\tname\tprettyName";
+    cDebug() << "LIST OF DETECTED DEVICES:";
+    cDebug() << "node\tcapacity\tname\tprettyName";
     for ( auto device : devices )
     {
         auto deviceInfo = new DeviceInfo( device );

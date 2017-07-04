@@ -37,6 +37,11 @@ class UIDLLEXPORT Branding : public QObject
 {
     Q_OBJECT
 public:
+    /**
+     * Descriptive strings in the configuration file. use
+     * e.g. *Branding::ProductName to get the string value for
+     * the product name.
+     */
     enum StringEntry : short
     {
         ProductName,
@@ -83,7 +88,8 @@ public:
     QPixmap image( Branding::ImageEntry imageEntry, const QSize& size ) const;
     QString slideshowPath() const;
 
-    bool welcomeStyleCalamares() const;
+    bool welcomeStyleCalamares() const { return m_welcomeStyleCalamares; }
+    bool welcomeExpandingLogo() const { return m_welcomeExpandingLogo; }
 
     /**
      * Creates a map called "branding" in the global storage, and inserts an
@@ -110,7 +116,10 @@ private:
     QString m_translationsPathPrefix;
 
     bool m_welcomeStyleCalamares;
+    bool m_welcomeExpandingLogo;
 };
+
+template<typename U> inline QString operator*(U e) { return Branding::instance()->string( e ); }
 
 }
 

@@ -43,8 +43,7 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
 
     CALAMARES_RETRANSLATE(
         setWindowTitle( tr( "%1 Installer" )
-                        .arg( Calamares::Branding::instance()->
-                              string( Calamares::Branding::ProductName ) ) );
+                        .arg( *Calamares::Branding::ProductName ) );
     )
 
     using CalamaresUtils::windowMinimumHeight;
