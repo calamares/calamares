@@ -108,12 +108,11 @@ FinishedPage::focusInEvent( QFocusEvent* e )
 void
 FinishedPage::onInstallationFailed( const QString& message, const QString& details )
 {
-    Q_UNUSED( message );
+    Q_UNUSED( details );
     ui->mainText->setText( tr( "<h1>Installation Failed</h1><br/>"
                              "%1 has not been installed on your computer.<br/>"
                              "The error message was: %2." )
-                        .arg(Calamares::Branding::instance()->
-                               string( Calamares::Branding::VersionedName ) )
-                        .arg( details ) );
+                        .arg( *Calamares::Branding::VersionedName )
+                        .arg( message ) );
     setRestartNowEnabled( false );
 }
