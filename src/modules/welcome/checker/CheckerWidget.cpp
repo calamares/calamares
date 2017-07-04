@@ -128,13 +128,23 @@ CheckerWidget::init( const QList< PrepareEntry >& checkEntries )
                                imagePath( Calamares::Branding::ProductWelcome ) );
             if ( !theImage.isNull() )
             {
-                FixedAspectRatioLabel* imageLabel = new FixedAspectRatioLabel;
+                QLabel* imageLabel;
+                if ( Calamares::Branding::instance()->welcomeExpandingLogo() )
+                {
+                    FixedAspectRatioLabel *p = new FixedAspectRatioLabel;
+                    p->setPixmap( theImage );
+                    imageLabel = p;
+                }
+                else
+                {
+                    imageLabel = new QLabel;
+                    imageLabel->setPixmap( theImage );
+                }
+
                 imageLabel->setContentsMargins( 4, CalamaresUtils::defaultFontHeight() * 3 / 4, 4, 4 );
                 m_mainLayout->addWidget( imageLabel );
                 imageLabel->setAlignment( Qt::AlignCenter );
                 imageLabel->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
-
-                imageLabel->setPixmap( theImage );
             }
         }
         CALAMARES_RETRANSLATE(
