@@ -1180,13 +1180,11 @@ ChoicePage::setupActions()
 
             m_alongsideButton->setText( tr( "<strong>Install alongside</strong><br/>"
                                             "The installer will shrink a partition to make room for %1." )
-                                        .arg( Calamares::Branding::instance()->
-                                              string( Calamares::Branding::ShortVersionedName ) ) );
+                                        .arg( *Calamares::Branding::ShortVersionedName ) );
 
             m_replaceButton->setText( tr( "<strong>Replace a partition</strong><br/>"
                                           "Replaces a partition with %1." )
-                                      .arg( Calamares::Branding::instance()->
-                                            string( Calamares::Branding::ShortVersionedName ) ) );
+                                      .arg( *Calamares::Branding::ShortVersionedName ) );
         )
 
         m_replaceButton->hide();
@@ -1211,8 +1209,7 @@ ChoicePage::setupActions()
 
                 m_alongsideButton->setText( tr( "<strong>Install alongside</strong><br/>"
                                                 "The installer will shrink a partition to make room for %1." )
-                                            .arg( Calamares::Branding::instance()->
-                                                  string( Calamares::Branding::ShortVersionedName ) ) );
+                                            .arg( *Calamares::Branding::ShortVersionedName ) );
 
                 m_eraseButton->setText( tr( "<strong>Erase disk</strong><br/>"
                                             "This will <font color=\"red\">delete</font> all data "
@@ -1221,8 +1218,7 @@ ChoicePage::setupActions()
 
                 m_replaceButton->setText( tr( "<strong>Replace a partition</strong><br/>"
                                               "Replaces a partition with %1." )
-                                          .arg( Calamares::Branding::instance()->
-                                                string( Calamares::Branding::ShortVersionedName ) ) );
+                                          .arg( *Calamares::Branding::ShortVersionedName ) );
             )
         }
         else
@@ -1235,8 +1231,7 @@ ChoicePage::setupActions()
 
                 m_alongsideButton->setText( tr( "<strong>Install alongside</strong><br/>"
                                                 "The installer will shrink a partition to make room for %1." )
-                                            .arg( Calamares::Branding::instance()->
-                                                  string( Calamares::Branding::ShortVersionedName ) ) );
+                                            .arg( *Calamares::Branding::ShortVersionedName ) );
 
                 m_eraseButton->setText( tr( "<strong>Erase disk</strong><br/>"
                                             "This will <font color=\"red\">delete</font> all data "
@@ -1244,8 +1239,7 @@ ChoicePage::setupActions()
 
                 m_replaceButton->setText( tr( "<strong>Replace a partition</strong><br/>"
                                               "Replaces a partition with %1." )
-                                          .arg( Calamares::Branding::instance()->
-                                                string( Calamares::Branding::ShortVersionedName ) ) );
+                                          .arg( *Calamares::Branding::ShortVersionedName ) );
             )
         }
 
@@ -1273,8 +1267,7 @@ ChoicePage::setupActions()
 
             m_alongsideButton->setText( tr( "<strong>Install alongside</strong><br/>"
                                             "The installer will shrink a partition to make room for %1." )
-                                        .arg( Calamares::Branding::instance()->
-                                              string( Calamares::Branding::ShortVersionedName ) ) );
+                                        .arg( *Calamares::Branding::ShortVersionedName ) );
 
             m_eraseButton->setText( tr( "<strong>Erase disk</strong><br/>"
                                         "This will <font color=\"red\">delete</font> all data "
@@ -1282,8 +1275,7 @@ ChoicePage::setupActions()
 
             m_replaceButton->setText( tr( "<strong>Replace a partition</strong><br/>"
                                           "Replaces a partition with %1." )
-                                      .arg( Calamares::Branding::instance()->
-                                            string( Calamares::Branding::ShortVersionedName ) ) );
+                                      .arg( *Calamares::Branding::ShortVersionedName ) );
         )
 
         m_replaceButton->show();

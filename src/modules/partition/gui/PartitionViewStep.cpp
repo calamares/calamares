@@ -156,18 +156,15 @@ PartitionViewStep::createSummaryWidget() const
         {
         case ChoicePage::Alongside:
             modeText = tr( "Install %1 <strong>alongside</strong> another operating system." )
-                       .arg( Calamares::Branding::instance()->
-                             string( Calamares::Branding::ShortVersionedName ) );
+                       .arg( *Calamares::Branding::ShortVersionedName );
             break;
         case ChoicePage::Erase:
             modeText = tr( "<strong>Erase</strong> disk and install %1." )
-                       .arg( Calamares::Branding::instance()->
-                             string( Calamares::Branding::ShortVersionedName ) );
+                       .arg( *Calamares::Branding::ShortVersionedName );
             break;
         case ChoicePage::Replace:
             modeText = tr( "<strong>Replace</strong> a partition with %1." )
-                       .arg( Calamares::Branding::instance()->
-                             string( Calamares::Branding::ShortVersionedName ) );
+                       .arg( *Calamares::Branding::ShortVersionedName );
             break;
         case ChoicePage::NoChoice:
         case ChoicePage::Manual:
@@ -185,22 +182,19 @@ PartitionViewStep::createSummaryWidget() const
             {
             case ChoicePage::Alongside:
                 modeText = tr( "Install %1 <strong>alongside</strong> another operating system on disk <strong>%2</strong> (%3)." )
-                           .arg( Calamares::Branding::instance()->
-                                 string( Calamares::Branding::ShortVersionedName ) )
+                           .arg( *Calamares::Branding::ShortVersionedName )
                            .arg( info.deviceNode )
                            .arg( info.deviceName );
                 break;
             case ChoicePage::Erase:
                 modeText = tr( "<strong>Erase</strong> disk <strong>%2</strong> (%3) and install %1." )
-                           .arg( Calamares::Branding::instance()->
-                                 string( Calamares::Branding::ShortVersionedName ) )
+                           .arg( *Calamares::Branding::ShortVersionedName )
                            .arg( info.deviceNode )
                            .arg( info.deviceName );
                 break;
             case ChoicePage::Replace:
                 modeText = tr( "<strong>Replace</strong> a partition on disk <strong>%2</strong> (%3) with %1." )
-                           .arg( Calamares::Branding::instance()->
-                                 string( Calamares::Branding::ShortVersionedName ) )
+                           .arg( *Calamares::Branding::ShortVersionedName )
                            .arg( info.deviceNode )
                            .arg( info.deviceName );
                 break;
@@ -252,8 +246,7 @@ PartitionViewStep::createSummaryWidget() const
         previewLabels->setModel( info.partitionModelAfter );
         preview->setSelectionMode( QAbstractItemView::NoSelection );
         previewLabels->setSelectionMode( QAbstractItemView::NoSelection );
-        previewLabels->setCustomNewRootLabel( Calamares::Branding::instance()->
-                                              string( Calamares::Branding::BootloaderEntryName ) );
+        previewLabels->setCustomNewRootLabel( *Calamares::Branding::BootloaderEntryName );
         info.partitionModelAfter->setParent( widget );
         field = new QVBoxLayout;
         CalamaresUtils::unmarginLayout( field );
@@ -412,8 +405,7 @@ PartitionViewStep::onLeave()
                                   "<strong>%2</strong>.<br/><br/>"
                                   "You can continue without setting up an EFI system "
                                   "partition but your system may fail to start." )
-                              .arg( Calamares::Branding::instance()->
-                                    string( Calamares::Branding::ShortProductName ) )
+                              .arg( *Calamares::Branding::ShortProductName )
                               .arg( espMountPoint );
             }
             else if ( esp && !esp->activeFlags().testFlag( PartitionTable::FlagEsp ) )
@@ -428,8 +420,7 @@ PartitionViewStep::onLeave()
                                   "<br/><br/>"
                                   "You can continue without setting the flag but your "
                                   "system may fail to start." )
-                              .arg( Calamares::Branding::instance()->
-                                    string( Calamares::Branding::ShortProductName ) )
+                              .arg( *Calamares::Branding::ShortProductName )
                               .arg( espMountPoint );
             }
 

@@ -53,10 +53,8 @@ FinishedPage::FinishedPage( QWidget* parent )
                              "%1 has been installed on your computer.<br/>"
                              "You may now restart into your new system, or continue "
                              "using the %2 Live environment." )
-                         .arg( Calamares::Branding::instance()->
-                               string( Calamares::Branding::VersionedName ) )
-                         .arg( Calamares::Branding::instance()->
-                               string( Calamares::Branding::ProductName ) ) );
+                         .arg( *Calamares::Branding::VersionedName )
+                         .arg( *Calamares::Branding::ProductName ) );
     )
 }
 
