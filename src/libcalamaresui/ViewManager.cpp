@@ -178,22 +178,23 @@ ViewManager::onInstallationFailed( const QString& message, const QString& detail
     cLog() << "- message:" << message;
     cLog() << "- details:" << details;
 
-    QMessageBox msgBox;
-    msgBox.setIcon( QMessageBox::Critical );
-    msgBox.setWindowTitle( tr("Error") );
-    msgBox.setText( "<strong>" + tr( "Installation Failed" ) + "</strong>" );
-    msgBox.setStandardButtons( QMessageBox::Close );
+    QMessageBox* msgBox = new QMessageBox();
+    msgBox->setIcon( QMessageBox::Critical );
+    msgBox->setWindowTitle( tr("Error") );
+    msgBox->setText( "<strong>" + tr( "Installation Failed" ) + "</strong>" );
+    msgBox->setStandardButtons( QMessageBox::Close );
+    msgBox->button( QMessageBox::Close )->setText( tr( "&Close" ) );
 
     QString text = "<p>" + message + "</p>";
     if ( !details.isEmpty() )
     {
         text += "<p>" + details + "</p>";
     }
-    msgBox.setInformativeText( text );
+    msgBox->setInformativeText( text );
 
-    msgBox.exec();
-    cLog() << "Calamares will now quit.";
-    qApp->quit();
+    connect(msgBox, &QMessageBox::buttonClicked, qApp, &QApplication::quit);
+    cLog() << "Calamares will quit when the dialog closes.";
+    msgBox->show();
 }
 
 
