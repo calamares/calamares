@@ -1,4 +1,7 @@
-include( ${PROJECT_BINARY_DIR}/CalamaresUse.cmake )
+include( CalamaresAddPlugin )
+include( CalamaresAddModuleSubdirectory )
+include( CalamaresAddLibrary )
+include( CalamaresAddBrandingSubdirectory )
 
 include_directories( ${CMAKE_CURRENT_BINARY_DIR}/libcalamares )
 include_directories( ${CMAKE_CURRENT_LIST_DIR}/libcalamares )
