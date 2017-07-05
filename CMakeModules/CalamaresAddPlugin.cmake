@@ -1,6 +1,6 @@
 include( CMakeParseArguments )
-include( ${CALAMARES_CMAKE_DIR}/CalamaresAddLibrary.cmake )
-include( ${CALAMARES_CMAKE_DIR}/CMakeColors.cmake )
+include( CalamaresAddLibrary  )
+include( CMakeColors )
 
 function( calamares_add_plugin )
     # parse arguments ( name needs to be saved before passing ARGN into the macro )
