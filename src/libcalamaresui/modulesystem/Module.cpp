@@ -76,7 +76,7 @@ Module::fromDescriptor( const QVariantMap& moduleDescriptor,
                << instanceId;
         return nullptr;
     }
-    if ( typeString == "view" )
+    if ( ( typeString == "view" ) || ( typeString == "viewmodule" ) )
     {
         if ( intfString == "qtplugin" )
         {
@@ -88,6 +88,8 @@ Module::fromDescriptor( const QVariantMap& moduleDescriptor,
             m = new PythonQtViewModule();
         }
 #endif
+        else
+            cLog() << "Bad interface" << intfString << "for module type" << typeString;
     }
     else if ( typeString == "job" )
     {
@@ -105,7 +107,12 @@ Module::fromDescriptor( const QVariantMap& moduleDescriptor,
             m = new PythonJobModule();
         }
 #endif
+        else
+            cLog() << "Bad interface" << intfString << "for module type" << typeString;
     }
+    else
+        cLog() << "Bad module type" << typeString;
+
     if ( !m )
     {
         cLog() << Q_FUNC_INFO << "bad module type or interface string"
