@@ -1,5 +1,6 @@
 include( CMakeParseArguments )
 include( ${CALAMARES_CMAKE_DIR}/CalamaresAddLibrary.cmake )
+include( ${CALAMARES_CMAKE_DIR}/CMakeColors.cmake )
 
 function( calamares_add_plugin )
     # parse arguments ( name needs to be saved before passing ARGN into the macro )
@@ -17,7 +18,6 @@ function( calamares_add_plugin )
     set( CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}" )
     set( CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}" )
 
-    include( CMakeColors )
     message( "-- ${BoldYellow}Found ${CALAMARES_APPLICATION_NAME} module: ${BoldRed}${PLUGIN_NAME}${ColorReset}" )
     if( NOT CMAKE_BUILD_TYPE STREQUAL "Release" )
         message( "   ${Green}TYPE:${ColorReset} ${PLUGIN_TYPE}" )
