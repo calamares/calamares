@@ -300,7 +300,13 @@ PythonJob::exec()
         bp::extract< std::string > entryPoint_doc_attr(entryPoint.attr( "__doc__" ) );
 
         if ( entryPoint_doc_attr.check() )
-            m_description = QString::fromStdString( entryPoint_doc_attr() );
+        {
+            m_description = QString::fromStdString( entryPoint_doc_attr() ).trimmed();
+            auto i_newline = m_description.indexOf('\n');
+            if ( i_newline > 0 )
+                m_description.truncate( i_newline );
+            cDebug() << "Job" << prettyName() << "->" << m_description;
+        }
 
         bp::object runResult = entryPoint();
 
