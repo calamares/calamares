@@ -228,6 +228,7 @@ PythonJob::PythonJob( const QString& scriptFile,
     : Job( parent )
     , m_scriptFile( scriptFile )
     , m_workingPath( workingPath )
+    , m_description()
     , m_configurationMap( moduleConfiguration )
 {
 }
@@ -293,6 +294,10 @@ PythonJob::exec()
                                            scriptNamespace );
 
         bp::object entryPoint = scriptNamespace[ "run" ];
+        bp::extract< std::string > entryPoint_doc_attr(entryPoint.attr( "__doc__" ) );
+
+        if ( entryPoint_doc_attr.check() )
+            m_description = QString::fromStdString( entryPoint_doc_attr() );
 
         bp::object runResult = entryPoint();
 
