@@ -248,8 +248,11 @@ PythonJob::prettyName() const
 QString
 PythonJob::prettyStatusMessage() const
 {
-    return tr( "Running %1 operation." )
-            .arg( QDir( m_workingPath ).dirName() );
+    if ( m_description.isEmpty() )
+        return tr( "Running %1 operation." )
+                .arg( QDir( m_workingPath ).dirName() );
+    else
+        return m_description;
 }
 
 
