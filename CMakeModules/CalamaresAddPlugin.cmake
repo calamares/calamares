@@ -87,8 +87,9 @@ function( calamares_add_plugin )
         configure_file( ${PLUGIN_DESC_FILE} ${PLUGIN_DESC_FILE} COPYONLY )
     else()
         set( _file ${CMAKE_CURRENT_BINARY_DIR}/${PLUGIN_DESC_FILE} )
+        set( _type ${PLUGIN_TYPE} )
         file( WRITE  ${_file} "# AUTO-GENERATED metadata file\n# Syntax is YAML 1.2\n---\n" )
-        file( APPEND ${_file} "type: \"${TYPE}\"\nname: \"${NAME}\"\ninterface: \"qtplugin\"\nload: \"${target}\"\n" )
+        file( APPEND ${_file} "type: \"${_type}\"\nname: \"${PLUGIN_NAME}\"\ninterface: \"qtplugin\"\nload: \"lib${target}.so\"\n" )
     endif()
 
     install( FILES ${CMAKE_CURRENT_BINARY_DIR}/${PLUGIN_DESC_FILE}
