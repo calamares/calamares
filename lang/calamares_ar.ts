@@ -2261,7 +2261,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="198"/>
         <source>%1 support</source>
-        <translation>1%الدعم</translation>
+        <translation>1%  الدعم</translation>
     </message>
 </context>
 <context>

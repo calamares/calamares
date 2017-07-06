@@ -1901,17 +1901,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/SetHostNameJob.cpp" line="37"/>
         <source>Set hostname %1</source>
-        <translation>הגדר שם המחשב %1</translation>
+        <translation>הגדר שם עמדה %1</translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetHostNameJob.cpp" line="44"/>
         <source>Set hostname &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation>הגדר שם המחשב &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+        <translation>הגדר שם עמדה &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetHostNameJob.cpp" line="51"/>
         <source>Setting hostname %1.</source>
-        <translation>מגדיר את שם המחשב %1.</translation>
+        <translation>מגדיר את שם העמדה %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetHostNameJob.cpp" line="61"/>
@@ -1923,7 +1923,7 @@ The installer will quit and all changes will be lost.</source>
         <location filename="../src/modules/users/SetHostNameJob.cpp" line="75"/>
         <location filename="../src/modules/users/SetHostNameJob.cpp" line="86"/>
         <source>Cannot write hostname to target system</source>
-        <translation>נכשלה כתיבת שם המחשב למערכת המטרה.</translation>
+        <translation>נכשלה כתיבת שם העמדה למערכת המטרה.</translation>
     </message>
 </context>
 <context>
@@ -1936,7 +1936,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="320"/>
         <source>Failed to write keyboard configuration for the virtual console.</source>
-        <translation>נכשלה כתיבת הגדרת מקלדת למסוף.</translation>
+        <translation>נכשלה כתיבת הגדרת מקלדת למסוף הוירטואלי.</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="321"/>
@@ -2036,7 +2036,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="140"/>
         <source>The installer failed to set flags on partition %1.</source>
-        <translation>תהליך ההתקנה נכשל בעת סימון דגלים במחיצה %1.</translation>
+        <translation>תהליך ההתקנה נכשל בעת הצבת סימונים במחיצה %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="148"/>
@@ -2082,12 +2082,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="108"/>
         <source>Bad destination system path.</source>
-        <translation>יעד נתיב מערכת לא תקין.</translation>
+        <translation>יעד נתיב המערכת לא תקין.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="109"/>
         <source>rootMountPoint is %1</source>
-        <translation>עיגון מחיצת מערכת ההפעלה היא %1</translation>
+        <translation>עיגון מחיצת מערכת ההפעלה, rootMountPoint, היא %1</translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="119"/>
@@ -2153,7 +2153,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/summary/SummaryPage.cpp" line="46"/>
         <source>This is an overview of what will happen once you start the install procedure.</source>
-        <translation>להלן סקירה של מה שיתרחש לאחר שיתחיל תהליך ההתקנה.</translation>
+        <translation>להלן סקירת המאורעות שיתרחשו עם תחילת תהליך ההתקנה.</translation>
     </message>
 </context>
 <context>
@@ -2174,22 +2174,22 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="285"/>
         <source>Your username contains invalid characters. Only lowercase letters and numbers are allowed.</source>
-        <translation>שם המחשב מכיל ערכים לא תקינים. אך ורק אותיות לא רישיות ומספרים מורשים.</translation>
+        <translation>שם העמדה מכיל ערכים לא תקינים. ניתן להשתמש אך ורק באותיות קטנות ומספרים.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="329"/>
         <source>Your hostname is too short.</source>
-        <translation>שם המחשב קצר מדי.</translation>
+        <translation>שם העמדה קצר מדי.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="340"/>
         <source>Your hostname is too long.</source>
-        <translation>שם המחשב ארוך מדי.</translation>
+        <translation>שם העמדה ארוך מדי.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="351"/>
         <source>Your hostname contains invalid characters. Only letters, numbers and dashes are allowed.</source>
-        <translation>שם המחשב מכיל ערכים לא תקינים. אך ורק אותיות, מספרים ומקפים מורשים.</translation>
+        <translation>שם העמדה מכיל ערכים לא תקינים. אך ורק אותיות, מספרים ומקפים מורשים.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="382"/>
