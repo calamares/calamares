@@ -9,12 +9,12 @@
     <message>
         <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="75"/>
         <source>This system was started with an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from an EFI environment, this installer must deploy a boot loader application, like &lt;strong&gt;GRUB&lt;/strong&gt; or &lt;strong&gt;systemd-boot&lt;/strong&gt; on an &lt;strong&gt;EFI System Partition&lt;/strong&gt;. This is automatic, unless you choose manual partitioning, in which case you must choose it or create it on your own.</source>
-        <translation>מערכת זו הופעלה בתצורת אתחול &lt;strong&gt;EFI&lt;/strong&gt;.&lt;br&gt;&lt;br&gt; בכדי להגדיר הפעלה מתצורת אתחול EFI, על אשף ההתקנה להתקין מנהל אתחול, לדוגמה &lt;strong&gt;GRUB&lt;/strong&gt; או &lt;strong&gt;systemd-boot&lt;/strong&gt; על &lt;strong&gt;מחיצת מערכת EFI&lt;/strong&gt;. פעולה זו היא אוטומטית, אלא אם כן תבחר להגדיר מחיצות באופן ידני, במקרה זה עליך לבחור זאת או להגדיר בעצמך.</translation>
+        <translation>מערכת זו הופעלה בתצורת אתחול &lt;strong&gt;EFI&lt;/strong&gt;.&lt;br&gt;&lt;br&gt; בכדי להגדיר הפעלה מתצורת אתחול EFI, על אשף ההתקנה להתקין מנהל אתחול מערכת, לדוגמה &lt;strong&gt;GRUB&lt;/strong&gt; או &lt;strong&gt;systemd-boot&lt;/strong&gt; על &lt;strong&gt;מחיצת מערכת EFI&lt;/strong&gt;. פעולה זו היא אוטומטית, אלא אם כן תבחר להגדיר מחיצות באופן ידני, במקרה זה עליך לבחור זאת או להגדיר בעצמך.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="87"/>
         <source>This system was started with a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from a BIOS environment, this installer must install a boot loader, like &lt;strong&gt;GRUB&lt;/strong&gt;, either at the beginning of a partition or on the &lt;strong&gt;Master Boot Record&lt;/strong&gt; near the beginning of the partition table (preferred). This is automatic, unless you choose manual partitioning, in which case you must set it up on your own.</source>
-        <translation>מערכת זו הופעלה בתצורת אתחול &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;&lt;br&gt; בכדי להגדיר הפעלה מתצורת אתחול BIOS, על אשף ההתקנה להתקין מנהל אתחול, לדוגמה &lt;strong&gt;GRUB&lt;/strong&gt;, בתחלית מחיצה או על ה &lt;strong&gt;Master Boot Record&lt;/strong&gt; בצמוד להתחלה של טבלת המחיצות (מועדף). פעולה זו היא אוטומטית, אלא אם כן תבחר להגדיר מחיצות באופן ידני, במקרה זה עליך להגדיר זאת בעצמך.</translation>
+        <translation>מערכת זו הופעלה בתצורת אתחול &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;&lt;br&gt; בכדי להגדיר הפעלה מתצורת אתחול BIOS, על אשף ההתקנה להתקין מנהל אתחול מערכת, לדוגמה &lt;strong&gt;GRUB&lt;/strong&gt;, בתחלית מחיצה או על ה &lt;strong&gt;Master Boot Record&lt;/strong&gt; בצמוד להתחלה של טבלת המחיצות (מועדף). פעולה זו היא אוטומטית, אלא אם כן תבחר להגדיר מחיצות באופן ידני, במקרה זה עליך להגדיר זאת בעצמך.</translation>
     </message>
 </context>
 <context>
@@ -37,7 +37,7 @@
     <message>
         <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="111"/>
         <source>Do not install a boot loader</source>
-        <translation>אל תתקין מנהל אתחול, boot loader</translation>
+        <translation>אל תתקין מנהל אתחול מערכת, boot loader</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="125"/>
@@ -159,28 +159,28 @@ Output:
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="104"/>
         <source>External command failed to finish</source>
-        <translation>פקודה חיצונית כשלה בעת סוף הרצת הפקודה</translation>
+        <translation>הרצת פקודה חיצונית לא הצליחה להסתיים</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="105"/>
         <source>Command %1 failed to finish in %2s.
 Output:
 %3</source>
-        <translation>פקודה %1 נכשלה לקראת סיומה ב %2 שניות.
+        <translation>פקודה %1 לא הצליחה להסתיים ב %2 שניות.
 פלט:
 %3</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="111"/>
         <source>External command finished with errors</source>
-        <translation>פעולת פקודה חיצונית הסתיימה עם שגיאות</translation>
+        <translation>פקודה חיצונית הסתיימה עם שגיאות</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="112"/>
         <source>Command %1 finished with exit code %2.
 Output:
 %3</source>
-        <translation>פעולת פקודה %1 הסתיימה עם קוד יציאה %2.
+        <translation>פקודה %1 הסתיימה עם קוד יציאה %2.
 פלט:
 %3</translation>
     </message>
@@ -252,7 +252,7 @@ Output:
         <source>Do you really want to cancel the current install process?
 The installer will quit and all changes will be lost.</source>
         <translation>האם אתה בטוח שברצונך לבטל את תהליך ההתקנה?
-אשף ההתקנה ייסגר וכלל השינויים יאבדו.</translation>
+אשף ההתקנה ייסגר וכל השינויים יאבדו.</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="105"/>
@@ -325,7 +325,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/libcalamares/PythonHelper.cpp" line="292"/>
         <source>unparseable Python traceback</source>
-        <translation>עקבה לאחור של Python לא ניתנת לנתוח</translation>
+        <translation>עקבה לאחור של Python לא ניתנת לניתוח</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonHelper.cpp" line="296"/>
@@ -407,7 +407,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="972"/>
         <source>Boot loader location:</source>
-        <translation>מיקום מנהל האיתחול:</translation>
+        <translation>מיקום מנהל אתחול המערכת:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="916"/>
@@ -999,7 +999,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="176"/>
         <source>Install boot loader on &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation>התקן מנהל אתחול על &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+        <translation>התקן מנהל אתחול מערכת על &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="186"/>
@@ -1558,7 +1558,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="148"/>
         <source>Install boot &amp;loader on:</source>
-        <translation>התקן &amp;מנהל אתחול על:</translation>
+        <translation>התקן &amp;מנהל אתחול מערכת על:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="160"/>
