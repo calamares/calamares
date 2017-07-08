@@ -258,17 +258,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="105"/>
         <source>&amp;Yes</source>
-        <translation type="unfinished"/>
+        <translation>&amp;是</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="106"/>
         <source>&amp;No</source>
-        <translation type="unfinished"/>
+        <translation>&amp;否</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="186"/>
         <source>&amp;Close</source>
-        <translation type="unfinished"/>
+        <translation>&amp;关闭</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="238"/>
@@ -1029,7 +1029,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/finished/FinishedPage.cpp" line="110"/>
         <source>&lt;h1&gt;Installation Failed&lt;/h1&gt;&lt;br/&gt;%1 has not been installed on your computer.&lt;br/&gt;The error message was: %2.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;h1&gt;安装失败&lt;/h1&gt;&lt;br/&gt;%1 未在你的电脑上安装。&lt;br/&gt;错误信息：%2。</translation>
     </message>
 </context>
 <context>
