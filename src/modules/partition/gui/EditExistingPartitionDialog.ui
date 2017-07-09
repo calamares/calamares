@@ -126,7 +126,7 @@
      <item row="1" column="1">
       <widget class="QSpinBox" name="sizeSpinBox">
        <property name="suffix">
-        <string> MB</string>
+        <string> MiB</string>
        </property>
       </widget>
      </item>
