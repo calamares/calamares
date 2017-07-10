@@ -19,6 +19,6 @@ install:
   - pip install pycodestyle
 
 script:
-  - docker run -v $PWD:/cbuild calamares bash -lc "mkdir /cbuild ; chmod 755 /cbuild ; cd /cbuild && cmake -DWEBVIEW_FORCE_WEBKIT=1 -DKDE_INSTALL_USE_QT_SYS_PATHS=ON . && make -j2"
+  - docker run -v $PWD:/build calamares bash -lc "mkdir /cbuild ; cd /cbuild && cmake -DWEBVIEW_FORCE_WEBKIT=1 -DKDE_INSTALL_USE_QT_SYS_PATHS=ON ../build && make -j2"
   - pycodestyle --exclude=thirdparty,.git $PWD
 
