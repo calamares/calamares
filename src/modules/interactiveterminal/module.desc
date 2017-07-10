@@ -1,7 +1,0 @@
-# Module metadata file for interactiveterminal viewmodule
-# Syntax is YAML 1.2
----
-type:      "view"
-name:      "interactiveterminal"
-interface: "qtplugin"
-load:      "libcalamares_viewmodule_interactiveterminal.so"
