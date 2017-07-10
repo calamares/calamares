@@ -281,12 +281,23 @@ def set_autologin(username,
 
                     lightdm_conf.write(line)
         else:
-            return (
-                "Cannot write LightDM configuration file",
-                "LightDM config file {!s} does not exist".format(
-                    lightdm_conf_path
+            try:
+                # Create a new lightdm.conf file; this is documented to be
+                # read last, after aeverything in lightdm.conf.d/
+                with open(lightdm_conf_path, 'w') as lightdm_conf:
+                    if do_autologin:
+                        lightdm_conf.write(
+                            "autologin-user={!s}\n".format(username))
+                    else:
+                        lightdm_conf.write(
+                            "#autologin-user=\n")
+            except FileNotFOundError:
+                return (
+                    "Cannot write LightDM configuration file",
+                    "LightDM config file {!s} does not exist".format(
+                        lightdm_conf_path
+                        )
                     )
-                )
 
     if "slim" == displaymanager:
         # Systems with Slim as Desktop Manager
