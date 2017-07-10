@@ -28,7 +28,7 @@ import libcalamares
 
 def run():
     """
-    Set hardware clock
+    Set hardware clock.
     """
 
     root_mount_point = libcalamares.globalstorage.value("rootMountPoint")
