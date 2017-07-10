@@ -306,6 +306,7 @@ PythonJob::exec()
             if ( i_newline > 0 )
                 m_description.truncate( i_newline );
             cDebug() << "Job" << prettyName() << "->" << m_description;
+            emit progress( 0 );
         }
 
         bp::object runResult = entryPoint();
