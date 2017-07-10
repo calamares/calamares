@@ -228,6 +228,7 @@ PythonJob::PythonJob( const QString& scriptFile,
     : Job( parent )
     , m_scriptFile( scriptFile )
     , m_workingPath( workingPath )
+    , m_description()
     , m_configurationMap( moduleConfiguration )
 {
 }
@@ -247,8 +248,11 @@ PythonJob::prettyName() const
 QString
 PythonJob::prettyStatusMessage() const
 {
-    return tr( "Running %1 operation." )
-            .arg( QDir( m_workingPath ).dirName() );
+    if ( m_description.isEmpty() )
+        return tr( "Running %1 operation." )
+                .arg( QDir( m_workingPath ).dirName() );
+    else
+        return m_description;
 }
 
 
@@ -293,6 +297,17 @@ PythonJob::exec()
                                            scriptNamespace );
 
         bp::object entryPoint = scriptNamespace[ "run" ];
+        bp::extract< std::string > entryPoint_doc_attr(entryPoint.attr( "__doc__" ) );
+
+        if ( entryPoint_doc_attr.check() )
+        {
+            m_description = QString::fromStdString( entryPoint_doc_attr() ).trimmed();
+            auto i_newline = m_description.indexOf('\n');
+            if ( i_newline > 0 )
+                m_description.truncate( i_newline );
+            cDebug() << "Job" << prettyName() << "->" << m_description;
+            emit progress( 0 );
+        }
 
         bp::object runResult = entryPoint();
 

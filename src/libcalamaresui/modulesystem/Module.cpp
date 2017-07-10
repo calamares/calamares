@@ -82,12 +82,14 @@ Module::fromDescriptor( const QVariantMap& moduleDescriptor,
         {
             m = new ViewModule();
         }
-#ifdef WITH_PYTHONQT
         else if ( intfString == "pythonqt" )
         {
+#ifdef WITH_PYTHONQT
             m = new PythonQtViewModule();
-        }
+#else
+            cLog() << "PythonQt modules are not supported in this version of Calamares.";
 #endif
+        }
     }
     else if ( typeString == "job" )
     {
@@ -99,17 +101,20 @@ Module::fromDescriptor( const QVariantMap& moduleDescriptor,
         {
             m = new ProcessJobModule();
         }
-#ifdef WITH_PYTHON
         else if ( intfString == "python" )
         {
+#ifdef WITH_PYTHON
             m = new PythonJobModule();
-        }
+#else
+            cLog() << "Python modules are not supported in this version of Calamares.";
 #endif
+        }
     }
     if ( !m )
     {
-        cLog() << Q_FUNC_INFO << "bad module type or interface string"
-               << instanceId << typeString << intfString;
+        cLog() << "Bad module type (" << typeString
+            << ") or interface string (" << intfString
+            << ") for module " << instanceId;
         return nullptr;
     }
 

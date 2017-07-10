@@ -53,6 +53,7 @@ private:
     CalamaresPython::Helper* helper();
     QString m_scriptFile;
     QString m_workingPath;
+    QString m_description;
     QVariantMap m_configurationMap;
 };
 

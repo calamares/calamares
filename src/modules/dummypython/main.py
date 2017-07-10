@@ -19,22 +19,22 @@
 #   You should have received a copy of the GNU General Public License
 #   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
 
+"""
+=== Example Python jobmodule.
+
+A Python jobmodule is a Python program which imports libcalamares and
+has a function run() as entry point. run() must return None if everything
+went well, or a tuple (str,str) with an error message and description
+if something went wrong.
+"""
+
 import libcalamares
 import os
 from time import gmtime, strftime, sleep
 
 
 def run():
-    """
-    Example Python jobmodule.
-
-    A Python jobmodule is a Python program which imports libcalamares and
-    has a function run() as entry point. run() must return None if everything
-    went well, or a tuple (str,str) with an error message and description
-    if something went wrong.
-
-    :return:
-    """
+    """Dummy python job."""
     os.system("/bin/sh -c \"touch ~/calamares-dummypython\"")
     accumulator = strftime("%Y-%m-%d %H:%M:%S", gmtime()) + "\n"
     accumulator += "Calamares version: " + libcalamares.VERSION_SHORT + "\n"

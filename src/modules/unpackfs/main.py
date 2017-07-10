@@ -263,22 +263,7 @@ class UnpackOperation:
 
 def run():
     """
-    Unsquashes filesystem from given image file.
-
-    from globalstorage: rootMountPoint
-    from job.configuration: the path to where to mount the source image(s) for
-    copying an ordered list of unpack mappings for image file <-> target dir
-    relative to rootMountPoint, e.g.:
-    configuration:
-        unpack:
-            - source: "/path/to/filesystem.img"
-              sourcefs: "ext4"
-              destination: ""
-            - source: "/path/to/another/filesystem.sqfs"
-              sourcefs: "squashfs"
-              destination: ""
-
-    :return:
+    Unsquash filesystem.
     """
     PATH_PROCFS = '/proc/filesystems'
 
