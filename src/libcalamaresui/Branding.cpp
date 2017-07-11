@@ -83,6 +83,7 @@ Branding::Branding( const QString& brandingFilePath,
     , m_descriptorPath( brandingFilePath )
     , m_componentName()
     , m_welcomeStyleCalamares( false )
+    , m_welcomeExpandingLogo( true )
 {
     cDebug() << "Using Calamares branding file at" << brandingFilePath;
     QFile file( brandingFilePath );
