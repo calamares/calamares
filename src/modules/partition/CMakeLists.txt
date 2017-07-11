@@ -1,10 +1,8 @@
-# ECM used for something in the tests  directory
 find_package(ECM 5.10.0 REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${CMAKE_MODULE_PATH})
 
-# KF5::CoreAddons seems to be used for *something* in this module, not sure what
-include(KDEInstallDirs)       # this seems to be necessary for KF5::CoreAddons
-include(GenerateExportHeader) # this too, because KDE frameworks always want omnomnom more stuff
+include(KDEInstallDirs)
+include(GenerateExportHeader)
 find_package( KF5 REQUIRED CoreAddons )
 
 # These are needed because KPMcore links publicly against ConfigCore, I18n, IconThemes, KIOCore and Service
