@@ -5,8 +5,6 @@ if( ECM_FOUND )
 endif()
 
 find_package( Qt5 COMPONENTS Core Test REQUIRED )
-
-list( APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/CMakeModules" )
 find_package( Crypt )
 
 include_directories( ${PROJECT_BINARY_DIR}/src/libcalamaresui )
