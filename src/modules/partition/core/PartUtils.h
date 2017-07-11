@@ -23,6 +23,7 @@
 
 #include <QString>
 
+class Device;
 class PartitionCoreModule;
 class Partition;
 
@@ -61,6 +62,14 @@ bool canBeResized( PartitionCoreModule* core, const QString& partitionPath );
  * @return a list of os-prober entries, parsed.
  */
 OsproberEntryList runOsprober( PartitionCoreModule* core );
+
+/**
+ * @brief Gets a list of storage devices.
+ * @param writableOnly if set to true, only devices which can be overwritten
+ *      safely are returned (e.g. RO-media are ignored, as are mounted partitions).
+ * @return a list of Devices meeting this criterium.
+ */
+QList< Device* > getDevices( bool writableOnly = false );
 
 }
 

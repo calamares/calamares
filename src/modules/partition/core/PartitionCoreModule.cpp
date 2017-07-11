@@ -55,62 +55,6 @@
 #include <QFutureWatcher>
 #include <QtConcurrent/QtConcurrent>
 
-/**
- * Does the given @p device contain the root filesystem? This is true if
- * the device contains a partition which is currently mounted at / .
- */
-static bool
-hasRootPartition( Device* device )
-{
-    for ( auto it = PartitionIterator::begin( device ); it != PartitionIterator::end( device ); ++it )
-        if ( ( *it )->mountPoint() == "/" )
-            return true;
-    return false;
-}
-
-static bool
-isMounted( Device* device )
-{
-    cDebug() << "Checking for mounted partitions in" << device->deviceNode();
-    for ( auto it = PartitionIterator::begin( device ); it != PartitionIterator::end( device ); ++it )
-    {
-        cDebug() << "  .." << ( *it )->partitionPath() << "mount" << ( *it )->mountPoint();
-        if ( ! ( *it )->mountPoint().isEmpty() )
-            return true;
-    }
-    return false;
-}
-
-static bool
-isIso9660( const Device* device )
-{
-    QString path = device->deviceNode();
-    if ( path.isEmpty() )
-        return false;
-
-    QProcess blkid;
-    blkid.start( "blkid", { path } );
-    blkid.waitForFinished();
-    QString output = QString::fromLocal8Bit( blkid.readAllStandardOutput() );
-    if ( output.contains( "iso9660" ) )
-        return true;
-
-    if ( device->partitionTable() &&
-            !device->partitionTable()->children().isEmpty() )
-    {
-        for ( const Partition* partition : device->partitionTable()->children() )
-        {
-            path = partition->partitionPath();
-            blkid.start( "blkid", { path } );
-            blkid.waitForFinished();
-            QString output = QString::fromLocal8Bit( blkid.readAllStandardOutput() );
-            if ( output.contains( "iso9660" ) )
-                return true;
-        }
-    }
-    return false;
-}
-
 //- DeviceInfo ---------------------------------------------
 PartitionCoreModule::DeviceInfo::DeviceInfo( Device* _device )
     : device( _device )
@@ -171,26 +115,7 @@ PartitionCoreModule::doInit()
     FileSystemFactory::init();
 
     using DeviceList = QList< Device* >;
-
-    CoreBackend* backend = CoreBackendManager::self()->backend();
-    DeviceList devices = backend->scanDevices( true );
-
-    cDebug() << "Winnowing" << devices.count() << "devices.";
-
-    // Remove the device which contains / from the list
-    for ( DeviceList::iterator it = devices.begin(); it != devices.end(); )
-        if ( ! ( *it ) ||
-                hasRootPartition( *it ) ||
-                isIso9660( *it ) ||
-                isMounted( *it ) ||
-                ( *it )->deviceNode().startsWith( "/dev/zram" )
-           )
-        {
-            cDebug() << "  .. Winnowing" << ( ( *it ) ? ( *it )->deviceNode() : QString( "<null device>" ) );
-            it = devices.erase( it );
-        }
-        else
-            ++it;
+    DeviceList devices = PartUtils::getDevices( true );
 
     cDebug() << "LIST OF DETECTED DEVICES:";
     cDebug() << "node\tcapacity\tname\tprettyName";
