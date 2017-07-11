@@ -22,6 +22,7 @@
 
 #include "core/BootLoaderModel.h"
 #include "core/ColorUtils.h"
+#include "core/DeviceList.h"
 #include "core/DeviceModel.h"
 #include "core/PartitionInfo.h"
 #include "core/PartitionIterator.h"

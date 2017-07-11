@@ -30,6 +30,7 @@ calamares_add_plugin( partition
     SOURCES
         core/BootLoaderModel.cpp
         core/ColorUtils.cpp
+        core/DeviceList.cpp
         core/DeviceModel.cpp
         core/KPMHelpers.cpp
         core/PartitionActions.cpp
