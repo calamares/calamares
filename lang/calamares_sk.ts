@@ -188,32 +188,32 @@ Výstup:
 <context>
     <name>Calamares::PythonJob</name>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="250"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="252"/>
         <source>Running %1 operation.</source>
         <translation>Spúšťa sa operácia %1.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="263"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="267"/>
         <source>Bad working directory path</source>
         <translation>Nesprávna cesta k pracovnému adresáru</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="264"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="268"/>
         <source>Working directory %1 for python job %2 is not readable.</source>
         <translation>Pracovný adresár %1 pre úlohu jazyka python %2 nie je možné čítať.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="274"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="278"/>
         <source>Bad main script file</source>
         <translation>Nesprávny súbor hlavného skriptu</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="275"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="279"/>
         <source>Main script file %1 for python job %2 is not readable.</source>
         <translation>Súbor hlavného skriptu %1 pre úlohu jazyka python %2 nie je možné čítať.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="320"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="335"/>
         <source>Boost.Python error in job &quot;%1&quot;.</source>
         <translation>Chyba knižnice Boost.Python v úlohe „%1“.</translation>
     </message>
@@ -551,6 +551,11 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
         <translation>Vytvorenie oddielu</translation>
     </message>
     <message>
+        <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="48"/>
+        <source> MiB</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="55"/>
         <source>Partition &amp;Type:</source>
         <translation>&amp;Typ oddielu:</translation>
@@ -584,11 +589,6 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="38"/>
         <source>Si&amp;ze:</source>
         <translation>Veľ&amp;kosť:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="48"/>
-        <source> MB</source>
-        <translation> MB</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="65"/>
@@ -926,12 +926,17 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
         <translation>V&amp;eľkosť:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="132"/>
+        <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="129"/>
+        <source> MiB</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="136"/>
         <source>Fi&amp;le System:</source>
         <translation>S&amp;ystém súborov:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="145"/>
+        <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="149"/>
         <source>Flags:</source>
         <translation>Značky:</translation>
     </message>

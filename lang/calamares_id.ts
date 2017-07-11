@@ -188,32 +188,32 @@ Keluaran:
 <context>
     <name>Calamares::PythonJob</name>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="250"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="252"/>
         <source>Running %1 operation.</source>
         <translation>Menjalankan %1 operasi.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="263"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="267"/>
         <source>Bad working directory path</source>
         <translation>Jalur lokasi direktori tidak berjalan baik</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="264"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="268"/>
         <source>Working directory %1 for python job %2 is not readable.</source>
         <translation>Direktori kerja %1 untuk penugasan python %2 tidak dapat dibaca.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="274"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="278"/>
         <source>Bad main script file</source>
         <translation>Berkas skrip utama buruk</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="275"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="279"/>
         <source>Main script file %1 for python job %2 is not readable.</source>
         <translation>Berkas skrip utama %1 untuk penugasan python %2 tidak dapat dibaca.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="320"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="335"/>
         <source>Boost.Python error in job &quot;%1&quot;.</source>
         <translation>Boost.Python mogok dalam penugasan &quot;%1&quot;.</translation>
     </message>
@@ -553,6 +553,11 @@ Pemasangan dapat dilanjutkan, namun beberapa fitur akan dinonfungsikan.</transla
         <translation>Buat Partisi</translation>
     </message>
     <message>
+        <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="48"/>
+        <source> MiB</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="55"/>
         <source>Partition &amp;Type:</source>
         <translation>Partisi &amp; Tipe:</translation>
@@ -586,11 +591,6 @@ Pemasangan dapat dilanjutkan, namun beberapa fitur akan dinonfungsikan.</transla
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="38"/>
         <source>Si&amp;ze:</source>
         <translation>Uku&amp;ran:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="48"/>
-        <source> MB</source>
-        <translation>MB</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="65"/>
@@ -928,12 +928,17 @@ Pemasangan dapat dilanjutkan, namun beberapa fitur akan dinonfungsikan.</transla
         <translation>Uku&amp;ran:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="132"/>
+        <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="129"/>
+        <source> MiB</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="136"/>
         <source>Fi&amp;le System:</source>
         <translation>Sis&amp;tem Berkas:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="145"/>
+        <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="149"/>
         <source>Flags:</source>
         <translation>Bendera:</translation>
     </message>

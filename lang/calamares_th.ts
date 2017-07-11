@@ -188,32 +188,32 @@ Output:
 <context>
     <name>Calamares::PythonJob</name>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="250"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="252"/>
         <source>Running %1 operation.</source>
         <translation>การปฏิบัติการ %1 กำลังทำงาน</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="263"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="267"/>
         <source>Bad working directory path</source>
         <translation>เส้นทางไดเรคทอรีที่ใช้ทำงานไม่ถูกต้อง</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="264"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="268"/>
         <source>Working directory %1 for python job %2 is not readable.</source>
         <translation>ไม่สามารถอ่านไดเรคทอรีที่ใช้ทำงาน %1 สำหรับ python %2 ได้</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="274"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="278"/>
         <source>Bad main script file</source>
         <translation>ไฟล์สคริปต์หลักไม่ถูกต้อง</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="275"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="279"/>
         <source>Main script file %1 for python job %2 is not readable.</source>
         <translation>ไม่สามารถอ่านไฟล์สคริปต์หลัก %1 สำหรับ python %2 ได้</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="320"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="335"/>
         <source>Boost.Python error in job &quot;%1&quot;.</source>
         <translation>Boost.Python ผิดพลาดที่งาน &quot;%1&quot;.</translation>
     </message>
@@ -551,6 +551,11 @@ The installer will quit and all changes will be lost.</source>
         <translation>สร้างพาร์ทิชัน</translation>
     </message>
     <message>
+        <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="48"/>
+        <source> MiB</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="55"/>
         <source>Partition &amp;Type:</source>
         <translation>&amp;T พาร์ทิชันและประเภท:</translation>
@@ -584,11 +589,6 @@ The installer will quit and all changes will be lost.</source>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="38"/>
         <source>Si&amp;ze:</source>
         <translation>&amp;Z ขนาด:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="48"/>
-        <source> MB</source>
-        <translation> MB เมกะไบต์</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="65"/>
@@ -926,12 +926,17 @@ The installer will quit and all changes will be lost.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="132"/>
+        <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="129"/>
+        <source> MiB</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="136"/>
         <source>Fi&amp;le System:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="145"/>
+        <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="149"/>
         <source>Flags:</source>
         <translation type="unfinished"/>
     </message>

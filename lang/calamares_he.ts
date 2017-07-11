@@ -188,32 +188,32 @@ Output:
 <context>
     <name>Calamares::PythonJob</name>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="250"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="252"/>
         <source>Running %1 operation.</source>
         <translation>מריץ פעולה %1.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="263"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="267"/>
         <source>Bad working directory path</source>
         <translation>נתיב תיקיית עבודה לא תקין</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="264"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="268"/>
         <source>Working directory %1 for python job %2 is not readable.</source>
         <translation>תיקיית עבודה %1 עבור משימת python %2 לא קריאה.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="274"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="278"/>
         <source>Bad main script file</source>
         <translation>קובץ תסריט הרצה ראשי לא תקין</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="275"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="279"/>
         <source>Main script file %1 for python job %2 is not readable.</source>
         <translation>קובץ תסריט הרצה ראשי %1 עבור משימת python %2 לא קריא. </translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="320"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="335"/>
         <source>Boost.Python error in job &quot;%1&quot;.</source>
         <translation>שגיאת Boost.Python במשימה &quot;%1&quot;.</translation>
     </message>
@@ -551,6 +551,11 @@ The installer will quit and all changes will be lost.</source>
         <translation>ייצר מחיצה</translation>
     </message>
     <message>
+        <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="48"/>
+        <source> MiB</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="55"/>
         <source>Partition &amp;Type:</source>
         <translation>מחיצה &amp;מסוג:</translation>
@@ -584,11 +589,6 @@ The installer will quit and all changes will be lost.</source>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="38"/>
         <source>Si&amp;ze:</source>
         <translation>גו&amp;דל:</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="48"/>
-        <source> MB</source>
-        <translation>מגה בייט</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="65"/>
@@ -926,12 +926,17 @@ The installer will quit and all changes will be lost.</source>
         <translation>גו&amp;דל:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="132"/>
+        <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="129"/>
+        <source> MiB</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="136"/>
         <source>Fi&amp;le System:</source>
         <translation>מ&amp;ערכת קבצים:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="145"/>
+        <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="149"/>
         <source>Flags:</source>
         <translation>סימונים:</translation>
     </message>
