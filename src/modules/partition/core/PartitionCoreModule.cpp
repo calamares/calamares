@@ -79,7 +79,7 @@ isIso9660( const Device* device )
         return true;
 
     if ( device->partitionTable() &&
-         !device->partitionTable()->children().isEmpty() )
+            !device->partitionTable()->children().isEmpty() )
     {
         for ( const Partition* partition : device->partitionTable()->children() )
         {
@@ -162,11 +162,11 @@ PartitionCoreModule::doInit()
 
     // Remove the device which contains / from the list
     for ( DeviceList::iterator it = devices.begin(); it != devices.end(); )
-        if ( ! (*it) || hasRootPartition( *it ) ||
-             (*it)->deviceNode().startsWith( "/dev/zram") ||
-             isIso9660( *it ) )
+        if ( ! ( *it ) || hasRootPartition( *it ) ||
+                ( *it )->deviceNode().startsWith( "/dev/zram" ) ||
+                isIso9660( *it ) )
         {
-            cDebug() << "  .. Winnowing" << ( (*it) ? (*it)->deviceNode() : QString( "<null device>" ) );
+            cDebug() << "  .. Winnowing" << ( ( *it ) ? ( *it )->deviceNode() : QString( "<null device>" ) );
             it = devices.erase( it );
         }
         else
@@ -200,32 +200,29 @@ PartitionCoreModule::doInit()
     for ( auto deviceInfo : m_deviceInfos )
     {
         for ( auto it = PartitionIterator::begin( deviceInfo->device.data() );
-              it != PartitionIterator::end( deviceInfo->device.data() ); ++it )
+                it != PartitionIterator::end( deviceInfo->device.data() ); ++it )
         {
             Partition* partition = *it;
             for ( auto jt = m_osproberLines.begin();
-                  jt != m_osproberLines.end(); ++jt )
+                    jt != m_osproberLines.end(); ++jt )
             {
                 if ( jt->path == partition->partitionPath() &&
-                     partition->fileSystem().supportGetUUID() != FileSystem::cmdSupportNone &&
-                     !partition->fileSystem().uuid().isEmpty() )
-                {
+                        partition->fileSystem().supportGetUUID() != FileSystem::cmdSupportNone &&
+                        !partition->fileSystem().uuid().isEmpty() )
                     jt->uuid = partition->fileSystem().uuid();
-                }
             }
         }
     }
 
     for ( auto deviceInfo : m_deviceInfos )
-    {
         deviceInfo->partitionModel->init( deviceInfo->device.data(), m_osproberLines );
-    }
 
     m_bootLoaderModel->init( devices );
 
+    //FIXME: this should be removed in favor of
+    //       proper KPM support for EFI
     if ( QDir( "/sys/firmware/efi/efivars" ).exists() )
-        scanForEfiSystemPartitions(); //FIXME: this should be removed in favor of
-                                      //       proper KPM support for EFI
+        scanForEfiSystemPartitions();
 }
 
 PartitionCoreModule::~PartitionCoreModule()
@@ -286,8 +283,8 @@ PartitionCoreModule::createPartitionTable( Device* device, PartitionTable::Table
 }
 
 void
-PartitionCoreModule::createPartition( Device *device,
-                                      Partition *partition,
+PartitionCoreModule::createPartition( Device* device,
+                                      Partition* partition,
                                       PartitionTable::Flags flags )
 {
     auto deviceInfo = infoForDevice( device );
@@ -457,9 +454,7 @@ PartitionCoreModule::jobs() const
 
     QStringList jobsDebug;
     foreach ( auto job, lst )
-    {
         jobsDebug.append( job->prettyName() );
-    }
 
     cDebug() << "PartitionCodeModule has been asked for jobs. About to return:"
              << jobsDebug.join( "\n" );
@@ -517,9 +512,11 @@ PartitionCoreModule::refresh()
     updateHasRootMountPoint();
     updateIsDirty();
     m_bootLoaderModel->update();
+
+    //FIXME: this should be removed in favor of
+    //       proper KPM support for EFI
     if ( QDir( "/sys/firmware/efi/efivars" ).exists() )
-        scanForEfiSystemPartitions(); //FIXME: this should be removed in favor of
-                                      //       proper KPM support for EFI
+        scanForEfiSystemPartitions();
 }
 
 void PartitionCoreModule::updateHasRootMountPoint()
@@ -561,7 +558,7 @@ PartitionCoreModule::scanForEfiSystemPartitions()
 
     QList< Partition* > efiSystemPartitions =
         KPMHelpers::findPartitions( devices,
-                                 []( Partition* partition ) -> bool
+                                    []( Partition* partition ) -> bool
     {
         if ( partition->activeFlags().testFlag( PartitionTable::FlagEsp ) )
         {
@@ -581,7 +578,7 @@ PartitionCoreModule::DeviceInfo*
 PartitionCoreModule::infoForDevice( const Device* device ) const
 {
     for ( auto it = m_deviceInfos.constBegin();
-          it != m_deviceInfos.constEnd(); ++it )
+            it != m_deviceInfos.constEnd(); ++it )
     {
         if ( ( *it )->device.data() == device )
             return *it;
@@ -627,9 +624,7 @@ void
 PartitionCoreModule::revertAllDevices()
 {
     foreach ( DeviceInfo* devInfo, m_deviceInfos )
-    {
         revertDevice( devInfo->device.data() );
-    }
     refresh();
 }
 
@@ -643,7 +638,7 @@ PartitionCoreModule::revertDevice( Device* dev )
         return;
     devInfo->forgetChanges();
     CoreBackend* backend = CoreBackendManager::self()->backend();
-    Device *newDev = backend->scanDevice( devInfo->device->deviceNode() );
+    Device* newDev = backend->scanDevice( devInfo->device->deviceNode() );
     devInfo->device.reset( newDev );
     devInfo->partitionModel->init( newDev, m_osproberLines );
 
@@ -680,9 +675,7 @@ void
 PartitionCoreModule::clearJobs()
 {
     foreach ( DeviceInfo* deviceInfo, m_deviceInfos )
-    {
         deviceInfo->forgetChanges();
-    }
     updateIsDirty();
 }
 
