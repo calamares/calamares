@@ -43,10 +43,7 @@ initKPMcore()
         return true;
 
     QByteArray backendName = qgetenv( "KPMCORE_BACKEND" );
-    if ( backendName.isEmpty() )
-        backendName = "pmlibpartedbackendplugin";
-
-    if ( !CoreBackendManager::self()->load( backendName ) )
+    if ( !CoreBackendManager::self()->load( backendName.isEmpty() ? CoreBackendManager::defaultBackendName() : backendName ) )
     {
         qWarning() << "Failed to load backend plugin" << backendName;
         return false;
