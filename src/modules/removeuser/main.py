@@ -33,7 +33,7 @@ def run():
         libcalamares.utils.check_target_env_call(["userdel", "-f",
                                                   "-r", username])
     except subprocess.CalledProcessError as e:
-        libcalamares.utils.debug("Cannot remove user.",
-                                 "'userdel' terminated with exit code",
+        libcalamares.utils.debug("Cannot remove user. "
+                                 "'userdel' terminated with exit code "
                                  "{}.".format(e.returncode))
     return None
