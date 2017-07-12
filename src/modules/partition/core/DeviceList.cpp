@@ -98,6 +98,13 @@ isIso9660( const Device* device )
 }
 
 
+static inline QDebug&
+operator <<( QDebug& s, QList< Device* >::iterator& it )
+{
+    s << ( ( *it ) ? ( *it )->deviceNode() : QString( "<null device>" ) );
+    return s;
+}
+
 QList< Device* > getDevices( DeviceType which )
 {
     bool writableOnly = (which == DeviceType::WritableOnly);
@@ -115,7 +122,7 @@ QList< Device* > getDevices( DeviceType which )
                 ( *it )->deviceNode().startsWith( "/dev/zram" )
         )
         {
-            cDebug() << "  .. Removing" << ( ( *it ) ? ( *it )->deviceNode() : QString( "<null device>" ) );
+            cDebug() << "  .. Removing" << it;
             it = devices.erase( it );
 
         }
@@ -125,7 +132,7 @@ QList< Device* > getDevices( DeviceType which )
                 isMounted( *it ) )
            )
         {
-            cDebug() << "  .. Removing" << ( ( *it ) ? ( *it )->deviceNode() : QString( "<null device>" ) );
+            cDebug() << "  .. Removing" << it;
             it = devices.erase( it );
         }
         else
