@@ -553,7 +553,7 @@ Instalator zostanie zamknięty i wszystkie zmiany zostaną utracone.</translatio
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="48"/>
         <source> MiB</source>
-        <translation type="unfinished"/>
+        <translation>MB</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="55"/>
@@ -928,7 +928,7 @@ Instalator zostanie zamknięty i wszystkie zmiany zostaną utracone.</translatio
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="129"/>
         <source> MiB</source>
-        <translation type="unfinished"/>
+        <translation> MB</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="136"/>
