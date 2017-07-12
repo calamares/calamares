@@ -105,7 +105,7 @@ operator <<( QDebug& s, QList< Device* >::iterator& it )
     return s;
 }
 
-QList< Device* > getDevices( DeviceType which )
+QList< Device* > getDevices( DeviceType which, qint64 minimumSize )
 {
     bool writableOnly = (which == DeviceType::WritableOnly);
 
@@ -133,6 +133,11 @@ QList< Device* > getDevices( DeviceType which )
            )
         {
             cDebug() << "  .. Removing" << it;
+            it = devices.erase( it );
+        }
+        else if ( (minimumSize >= 0) && !( (*it)->capacity() > minimumSize ) )
+        {
+            cDebug() << "  .. Removing too-small" << it;
             it = devices.erase( it );
         }
         else
