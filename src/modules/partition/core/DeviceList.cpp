@@ -58,9 +58,11 @@ isMounted( Device* device )
     cDebug() << "Checking for mounted partitions in" << device->deviceNode();
     for ( auto it = PartitionIterator::begin( device ); it != PartitionIterator::end( device ); ++it )
     {
-        cDebug() << "  .." << ( *it )->partitionPath() << "mount" << ( *it )->mountPoint();
         if ( ! ( *it )->mountPoint().isEmpty() )
+        {
+            cDebug() << "  .." << ( *it )->partitionPath() << "is mounted on" << ( *it )->mountPoint();
             return true;
+        }
     }
     return false;
 }
@@ -103,7 +105,7 @@ QList< Device* > getDevices( bool writableOnly )
     CoreBackend* backend = CoreBackendManager::self()->backend();
     DeviceList devices = backend->scanDevices( true );
 
-    cDebug() << "Winnowing" << devices.count() << "devices.";
+    cDebug() << "Removing unsuitable devices:" << devices.count() << "candidates.";
 
     // Remove the device which contains / from the list
     for ( DeviceList::iterator it = devices.begin(); it != devices.end(); )
@@ -111,7 +113,7 @@ QList< Device* > getDevices( bool writableOnly )
                 ( *it )->deviceNode().startsWith( "/dev/zram" )
         )
         {
-            cDebug() << "  .. Winnowing" << ( ( *it ) ? ( *it )->deviceNode() : QString( "<null device>" ) );
+            cDebug() << "  .. Removing" << ( ( *it ) ? ( *it )->deviceNode() : QString( "<null device>" ) );
             it = devices.erase( it );
 
         }
@@ -121,7 +123,7 @@ QList< Device* > getDevices( bool writableOnly )
                 isMounted( *it ) )
            )
         {
-            cDebug() << "  .. Winnowing" << ( ( *it ) ? ( *it )->deviceNode() : QString( "<null device>" ) );
+            cDebug() << "  .. Removing" << ( ( *it ) ? ( *it )->deviceNode() : QString( "<null device>" ) );
             it = devices.erase( it );
         }
         else
