@@ -116,7 +116,7 @@ PartitionCoreModule::doInit()
     FileSystemFactory::init();
 
     using DeviceList = QList< Device* >;
-    DeviceList devices = PartUtils::getDevices( true );
+    DeviceList devices = PartUtils::getDevices( PartUtils::DeviceType::WritableOnly );
 
     cDebug() << "LIST OF DETECTED DEVICES:";
     cDebug() << "node\tcapacity\tname\tprettyName";

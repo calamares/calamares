@@ -16,7 +16,7 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "PartUtils.h"
+#include "DeviceList.h"
 
 #include "PartitionCoreModule.h"
 
@@ -98,8 +98,10 @@ isIso9660( const Device* device )
 }
 
 
-QList< Device* > getDevices( bool writableOnly )
+QList< Device* > getDevices( DeviceType which )
 {
+    bool writableOnly = (which == DeviceType::WritableOnly);
+
     using DeviceList = QList< Device* >;
 
     CoreBackend* backend = CoreBackendManager::self()->backend();

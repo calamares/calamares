@@ -28,13 +28,17 @@ class Device;
 namespace PartUtils
 {
 
+enum class DeviceType { All, WritableOnly };
+
 /**
  * @brief Gets a list of storage devices.
- * @param writableOnly if set to true, only devices which can be overwritten
+ * @param which Can be used to select from all the devices in
+ *      the system, filtering out those that do not meet a criterium.
+ *      If set to WritableOnly, only devices which can be overwritten
  *      safely are returned (e.g. RO-media are ignored, as are mounted partitions).
  * @return a list of Devices meeting this criterium.
  */
-QList< Device* > getDevices( bool writableOnly = false );
+QList< Device* > getDevices( DeviceType which = DeviceType::All );
 
 }
 
