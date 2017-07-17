@@ -435,7 +435,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="899"/>
         <source>&lt;strong&gt;Select a partition to shrink, then drag the bottom bar to resize&lt;/strong&gt;</source>
-        <translation>&lt;strong&gt;בחר מחיצה לכיווץ, לאחר מכן גרור את הפס התחתון בכדי לשנות את גודלה&lt;/strong&gt;</translation>
+        <translation>&lt;strong&gt;בחר מחיצה לכיווץ, לאחר מכן גרור את הסרגל התחתון בכדי לשנות את גודלה&lt;/strong&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1014"/>
@@ -445,7 +445,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1070"/>
         <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
-        <translation>מחיצת מערכת EFI לא נמצאה באף מקום על המערכת. אנא חזור והשתמש ביצירת מחיצות באופן ידני בכדי להגדיר את %1.</translation>
+        <translation>מחיצת מערכת EFI לא נמצאה במערכת. אנא חזור והשתמש ביצירת מחיצות באופן ידני בכדי להגדיר את %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1079"/>
