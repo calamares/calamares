@@ -240,7 +240,7 @@ Frálag:
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="76"/>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="310"/>
         <source>Cancel installation without changing the system.</source>
-        <translation type="unfinished"/>
+        <translation>Hætta við uppsetningu ánþess að breyta kerfinu.</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="99"/>
@@ -257,17 +257,17 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="105"/>
         <source>&amp;Yes</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Já</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="106"/>
         <source>&amp;No</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Nei</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="186"/>
         <source>&amp;Close</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Loka</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="238"/>
@@ -292,12 +292,12 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="276"/>
         <source>&amp;Done</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Búið</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="277"/>
         <source>The installation is complete. Close the installer.</source>
-        <translation type="unfinished"/>
+        <translation>Uppsetning er lokið. Lokaðu uppsetningarforritinu.</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="183"/>
@@ -517,7 +517,7 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="190"/>
         <source>Cleared all mounts for %1</source>
-        <translation type="unfinished"/>
+        <translation>Hreinsaði alla tengipunkta fyrir %1</translation>
     </message>
 </context>
 <context>
@@ -553,7 +553,7 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="48"/>
         <source> MiB</source>
-        <translation type="unfinished"/>
+        <translation>MiB</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="55"/>
@@ -928,7 +928,7 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="129"/>
         <source> MiB</source>
-        <translation type="unfinished"/>
+        <translation>MiB</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="136"/>
@@ -1763,7 +1763,7 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="250"/>
         <source>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;EFI kerfisdisksneið er hvergi að finna á þessu kerfi. Vinsamlegast farðu til baka og notaðu handvirka skiptingu til að setja upp %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="261"/>
@@ -2184,12 +2184,12 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="329"/>
         <source>Your hostname is too short.</source>
-        <translation type="unfinished"/>
+        <translation>Notandanafnið þitt er of stutt.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="340"/>
         <source>Your hostname is too long.</source>
-        <translation type="unfinished"/>
+        <translation>Notandanafnið þitt er of langt.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="351"/>
@@ -2251,7 +2251,7 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="60"/>
         <source>&lt;h1&gt;Welcome to the Calamares installer for %1.&lt;/h1&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;h1&gt;Velkomin(n) til Calamares uppsetningar fyrir %1&lt;/h1&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="73"/>

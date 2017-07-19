@@ -460,7 +460,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1172"/>
         <source>This storage device does not seem to have an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-        <translation>לא נמצאה מערכת הפעלה על התקן האחסון הזה. מה ברצונך לעשות?&lt;br/&gt; תוכל לסקור ולאשר את בחירתך לפני ששינויים יתבצעו על התקן האחסון.</translation>
+        <translation>לא נמצאה מערכת הפעלה על התקן אחסון זה. מה ברצונך לעשות?&lt;br/&gt; תוכל לסקור ולאשר את בחירתך לפני ששינויים יתבצעו על התקן האחסון.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1177"/>
@@ -473,7 +473,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1204"/>
         <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-        <translation>נמצא %1 על התקן האחסון הזה. מה ברצונך לעשות?&lt;br/&gt; תוכל לסקור ולאשר את בחירתך לפני ששינויים יתבצעו על התקן האחסון.</translation>
+        <translation>נמצא %1 על התקן אחסון זה. מה ברצונך לעשות?&lt;br/&gt; תוכל לסקור ולאשר את בחירתך לפני ששינויים יתבצעו על התקן האחסון.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1181"/>

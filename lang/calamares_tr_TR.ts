@@ -240,7 +240,7 @@ Output:
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="76"/>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="310"/>
         <source>Cancel installation without changing the system.</source>
-        <translation type="unfinished"/>
+        <translation>Sistemi değiştirmeden yüklemeyi iptal edin.</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="99"/>
@@ -257,17 +257,17 @@ Yükleyiciden çıkınca tüm değişiklikler kaybedilecek.</translation>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="105"/>
         <source>&amp;Yes</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Evet</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="106"/>
         <source>&amp;No</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Hayır</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="186"/>
         <source>&amp;Close</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Kapat</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="238"/>
@@ -292,12 +292,12 @@ Yükleyiciden çıkınca tüm değişiklikler kaybedilecek.</translation>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="276"/>
         <source>&amp;Done</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Tamam</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="277"/>
         <source>The installation is complete. Close the installer.</source>
-        <translation type="unfinished"/>
+        <translation>Yükleme işi tamamlandı. Sistem yükleyiciyi kapatın.</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="183"/>
@@ -556,7 +556,7 @@ Kuruluma devam edebilirsiniz fakat bazı özellikler devre dışı kalabilir.</t
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="48"/>
         <source> MiB</source>
-        <translation type="unfinished"/>
+        <translation>MB</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="55"/>
@@ -931,7 +931,7 @@ Kuruluma devam edebilirsiniz fakat bazı özellikler devre dışı kalabilir.</t
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="129"/>
         <source> MiB</source>
-        <translation type="unfinished"/>
+        <translation>MB</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="136"/>
@@ -1035,7 +1035,7 @@ Kuruluma devam edebilirsiniz fakat bazı özellikler devre dışı kalabilir.</t
     <message>
         <location filename="../src/modules/finished/FinishedPage.cpp" line="110"/>
         <source>&lt;h1&gt;Installation Failed&lt;/h1&gt;&lt;br/&gt;%1 has not been installed on your computer.&lt;br/&gt;The error message was: %2.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;h1&gt;Yükleme Başarısız&lt;/h1&gt;&lt;br/&gt;%1 bilgisayarınıza yüklenemedi.&lt;br/&gt;Hata mesajı çıktısı: %2.</translation>
     </message>
 </context>
 <context>
@@ -1843,7 +1843,7 @@ Sistem güç kaynağına bağlı değil.</translation>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="153"/>
         <source>The screen is too small to display the installer.</source>
-        <translation type="unfinished"/>
+        <translation>Ekran, sistem yükleyiciyi görüntülemek için çok küçük.</translation>
     </message>
 </context>
 <context>
@@ -2256,7 +2256,7 @@ Sistem güç kaynağına bağlı değil.</translation>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="60"/>
         <source>&lt;h1&gt;Welcome to the Calamares installer for %1.&lt;/h1&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;h1&gt;%1 Calamares Sistem Yükleyici .&lt;/h1&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="73"/>
@@ -2266,7 +2266,7 @@ Sistem güç kaynağına bağlı değil.</translation>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="75"/>
         <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Copyright 2017 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;Thanks to: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Lisa Vitolo, Philip Müller, Pier Luigi Fiorini, Rohan Garg and the &lt;a href=&quot;https://www.transifex.com/calamares/calamares/&quot;&gt;Calamares translators team&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;http://calamares.io/&quot;&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - Liberating Software.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;%3 sürüm&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Telif Hakkı 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Telif Hakkı 2017 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;Teşekkürler: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Lisa Vitolo, Philip Müller, Pier Luigi Fiorini, Rohan Garg ve&lt;a href=&quot;https://www.transifex.com/calamares/calamares/&quot;&gt;Calamares çeviri takımı&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;http://calamares.io/&quot;&gt;Calamares&lt;/a&gt; gelişim sponsoru &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - Özgür Yazılım.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="201"/>
