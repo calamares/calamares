@@ -1,8 +1,5 @@
 project( calamares CXX )
 
-# The partition manager uses ECM but ECMConfig.cmake
-# will complain if we require CMake less than 2.8.13,
-# so never change this.
 cmake_minimum_required( VERSION 3.2 )
 
 set( CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/CMakeModules" )
