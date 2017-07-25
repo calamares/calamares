@@ -1,3 +1,16 @@
+### CMakeLists.txt for Calamares
+#
+# Generally, this CMakeLists.txt will find all the dependencies for Calamares
+# and complain appropriately. See below (later in this file) for CMake-level
+# options. There are some "secret" options as well:
+#
+#   SKIP_MODULES    : a space or semicolon-separated list of directory names
+#                     under src/modules that should not be built.
+#
+# Example usage:
+#
+#   cmake . -DSKIP_MODULES="partition luksbootkeycfg"
+
 project( calamares CXX )
 
 cmake_minimum_required( VERSION 3.2 )
