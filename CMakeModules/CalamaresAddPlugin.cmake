@@ -1,3 +1,25 @@
+# Convenience function for creating a C++ (qtplugin) module for Calamares.
+# This function provides cmake-time feedback about the plugin, adds
+# targets for compilation and boilerplate information, and creates
+# a module.desc with standard values if none is provided (which only
+# happens for very unusual plugins).
+#
+# Usage:
+#
+# calamaers_add_plugin(
+#   module-name
+#   TYPE <view|job>
+#   EXPORT_MACRO macro-name
+#   SOURCES source-file...
+#   UI ui-file...
+#   LINK_LIBRARIES lib...
+#   LINK_PRIVATE_LIBRARIES lib...
+#   COMPILE_DEFINITIONS def...
+#   RESOURCES resource-file
+#   [NO_INSTALL]
+#   [SHARED_LIB]
+# )
+
 include( CMakeParseArguments )
 include( CalamaresAddLibrary  )
 include( CMakeColors )
