@@ -94,7 +94,7 @@ class DummyPythonQtViewStep:
         self.main_widget.layout().addWidget(QLabel(_("A new QLabel.")))
 
     def prettyName(self):
-        return "Dummy PythonQt ViewStep"
+        return _("Dummy PythonQt ViewStep")
 
     def isNextEnabled(self):
         return True  # The "Next" button should be clickable
