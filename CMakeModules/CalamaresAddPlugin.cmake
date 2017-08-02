@@ -1,5 +1,28 @@
+# Convenience function for creating a C++ (qtplugin) module for Calamares.
+# This function provides cmake-time feedback about the plugin, adds
+# targets for compilation and boilerplate information, and creates
+# a module.desc with standard values if none is provided (which only
+# happens for very unusual plugins).
+#
+# Usage:
+#
+# calamaers_add_plugin(
+#   module-name
+#   TYPE <view|job>
+#   EXPORT_MACRO macro-name
+#   SOURCES source-file...
+#   UI ui-file...
+#   LINK_LIBRARIES lib...
+#   LINK_PRIVATE_LIBRARIES lib...
+#   COMPILE_DEFINITIONS def...
+#   RESOURCES resource-file
+#   [NO_INSTALL]
+#   [SHARED_LIB]
+# )
+
 include( CMakeParseArguments )
-include( ${CALAMARES_CMAKE_DIR}/CalamaresAddLibrary.cmake )
+include( CalamaresAddLibrary  )
+include( CMakeColors )
 
 function( calamares_add_plugin )
     # parse arguments ( name needs to be saved before passing ARGN into the macro )
@@ -17,7 +40,6 @@ function( calamares_add_plugin )
     set( CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}" )
     set( CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}" )
 
-    include( CMakeColors )
     message( "-- ${BoldYellow}Found ${CALAMARES_APPLICATION_NAME} module: ${BoldRed}${PLUGIN_NAME}${ColorReset}" )
     if( NOT CMAKE_BUILD_TYPE STREQUAL "Release" )
         message( "   ${Green}TYPE:${ColorReset} ${PLUGIN_TYPE}" )
@@ -83,7 +105,15 @@ function( calamares_add_plugin )
 
     calamares_add_library( ${calamares_add_library_args} )
 
-    configure_file( ${PLUGIN_DESC_FILE} ${PLUGIN_DESC_FILE} COPYONLY )
+    if ( EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/${PLUGIN_DESC_FILE} )
+        configure_file( ${PLUGIN_DESC_FILE} ${PLUGIN_DESC_FILE} COPYONLY )
+    else()
+        set( _file ${CMAKE_CURRENT_BINARY_DIR}/${PLUGIN_DESC_FILE} )
+        set( _type ${PLUGIN_TYPE} )
+        file( WRITE  ${_file} "# AUTO-GENERATED metadata file\n# Syntax is YAML 1.2\n---\n" )
+        file( APPEND ${_file} "type: \"${_type}\"\nname: \"${PLUGIN_NAME}\"\ninterface: \"qtplugin\"\nload: \"lib${target}.so\"\n" )
+    endif()
+
     install( FILES ${CMAKE_CURRENT_BINARY_DIR}/${PLUGIN_DESC_FILE}
              DESTINATION ${PLUGIN_DESTINATION} )
 

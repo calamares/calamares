@@ -1,7 +1,0 @@
-# Module metadata file for locale viewmodule
-# Syntax is YAML 1.2
----
-type:           "view"
-name:           "locale"
-interface:      "qtplugin"
-load:           "libcalamares_viewmodule_locale.so"

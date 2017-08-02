@@ -15,7 +15,7 @@ project( calamares CXX )
 
 cmake_minimum_required( VERSION 3.2 )
 
-set( CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/CMakeModules" )
+set( CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMakeModules" )
 
 set( CMAKE_CXX_STANDARD 14 )
 set( CMAKE_CXX_STANDARD_REQUIRED ON )
@@ -180,12 +180,7 @@ configure_file(
 )
 
 # Early configure these files as we need them later on
-configure_file( CalamaresUse.cmake.in "${PROJECT_BINARY_DIR}/CalamaresUse.cmake" @ONLY )
-file( COPY CalamaresAddLibrary.cmake DESTINATION "${PROJECT_BINARY_DIR}" )
-file( COPY CalamaresAddModuleSubdirectory.cmake DESTINATION "${PROJECT_BINARY_DIR}" )
-file( COPY CalamaresAddPlugin.cmake DESTINATION "${PROJECT_BINARY_DIR}" )
-file( COPY CalamaresAddBrandingSubdirectory.cmake DESTINATION "${PROJECT_BINARY_DIR}" )
-
+set( CALAMARES_CMAKE_DIR "${CMAKE_SOURCE_DIR}/CMakeModules" )
 set( CALAMARES_LIBRARIES calamares )
 
 set( THIRDPARTY_DIR "${CMAKE_SOURCE_DIR}/thirdparty" )
@@ -231,11 +226,10 @@ install(
     FILES
         "${PROJECT_BINARY_DIR}/CalamaresConfig.cmake"
         "${PROJECT_BINARY_DIR}/CalamaresConfigVersion.cmake"
-        "${PROJECT_BINARY_DIR}/CalamaresUse.cmake"
-        "${PROJECT_BINARY_DIR}/CalamaresAddPlugin.cmake"
-        "${PROJECT_BINARY_DIR}/CalamaresAddModuleSubdirectory.cmake"
-        "${PROJECT_BINARY_DIR}/CalamaresAddLibrary.cmake"
-        "${PROJECT_BINARY_DIR}/CalamaresAddBrandingSubdirectory.cmake"
+        "CmakeModules/CalamaresAddPlugin.cmake"
+        "CmakeModules/CalamaresAddModuleSubdirectory.cmake"
+        "CmakeModules/CalamaresAddLibrary.cmake"
+        "CmakeModules/CalamaresAddBrandingSubdirectory.cmake"
     DESTINATION
         "${CMAKE_INSTALL_CMAKEDIR}"
 )

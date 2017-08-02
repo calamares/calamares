@@ -76,7 +76,7 @@ Module::fromDescriptor( const QVariantMap& moduleDescriptor,
                << instanceId;
         return nullptr;
     }
-    if ( typeString == "view" )
+    if ( ( typeString == "view" ) || ( typeString == "viewmodule" ) )
     {
         if ( intfString == "qtplugin" )
         {
@@ -90,6 +90,8 @@ Module::fromDescriptor( const QVariantMap& moduleDescriptor,
             cLog() << "PythonQt modules are not supported in this version of Calamares.";
 #endif
         }
+        else
+            cLog() << "Bad interface" << intfString << "for module type" << typeString;
     }
     else if ( typeString == "job" )
     {
@@ -109,7 +111,12 @@ Module::fromDescriptor( const QVariantMap& moduleDescriptor,
             cLog() << "Python modules are not supported in this version of Calamares.";
 #endif
         }
+        else
+            cLog() << "Bad interface" << intfString << "for module type" << typeString;
     }
+    else
+        cLog() << "Bad module type" << typeString;
+
     if ( !m )
     {
         cLog() << "Bad module type (" << typeString
