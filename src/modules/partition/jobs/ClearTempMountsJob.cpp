@@ -20,6 +20,8 @@
 
 #include "utils/Logger.h"
 
+#include <algorithm>
+
 // KPMcore
 #include <kpmcore/util/report.h>
 
@@ -74,7 +76,7 @@ ClearTempMountsJob::exec()
         lineIn = in.readLine();
     }
 
-    qSort( lst.begin(), lst.end(), []( const QPair< QString, QString >& a,
+    std::sort ( lst.begin(), lst.end(), []( const QPair< QString, QString >& a,
                                        const QPair< QString, QString >& b ) -> bool
     {
         return a.first > b.first;
