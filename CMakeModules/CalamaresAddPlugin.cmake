@@ -6,7 +6,7 @@
 #
 # Usage:
 #
-# calamaers_add_plugin(
+# calamares_add_plugin(
 #   module-name
 #   TYPE <view|job>
 #   EXPORT_MACRO macro-name
