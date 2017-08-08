@@ -34,4 +34,4 @@ for MODULE_DIR in `find src/modules -maxdepth 1 -mindepth 1 -type d`; do
   fi
 done
 
-git push --set-upstream origin master
+# git push --set-upstream origin master

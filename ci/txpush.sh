@@ -25,10 +25,10 @@ for MODULE_DIR in `find src/modules -maxdepth 1 -mindepth 1 -type d`; do
       ${PYGETTEXT} -p ${MODULE_DIR}/lang -d ${MODULE_NAME} ${MODULE_DIR}/*.py
       if [ -f ${MODULE_DIR}/lang/${MODULE_NAME}.pot ]; then
         tx set -r calamares.${MODULE_NAME} --source -l en ${MODULE_DIR}/lang/${MODULE_NAME}.pot
-        tx push --force --source --no-interactive -r calamares.${MODULE_NAME}
+        tx push --source --no-interactive -r calamares.${MODULE_NAME}
       fi
     fi
   fi
 done
 
-tx push --force --source --no-interactive -r calamares.calamares-master
+tx push --source --no-interactive -r calamares.calamares-master
