@@ -34,6 +34,10 @@ namespace Calamares
  * As of early 2017, a view module can be implemented by deriving from ViewStep
  * in C++ (as a Qt Plugin) or in Python with the PythonQt interface (which also
  * mimics the ViewStep class).
+ *
+ * A ViewStep can describe itself in human-readable format for the SummaryPage
+ * (which shows all of the things which have been collected to be done in the
+ * next exec-step) through prettyStatus() and createSummaryWidget().
  */
 class UIDLLEXPORT ViewStep : public QObject
 {
@@ -43,11 +47,20 @@ public:
     virtual ~ViewStep();
 
     virtual QString prettyName() const = 0;
+
+    /**
+     * Optional. May return a non-empty string describing what this
+     * step is going to do (should be translated). This is also used
+     * in the summary page to describe what is going to be done.
+     * Return an empty string to provide no description.
+     */
     virtual QString prettyStatus() const;
 
     /**
-     * Optional. Should return a widget which will be inserted in the summary
-     * page. The caller takes ownership of the widget.
+     * Optional. May return a widget which will be inserted in the summary
+     * page. The caller takes ownership of the widget. Return nullptr to
+     * provide no widget. In general, this is only used for complicated
+     * steps where prettyStatus() is not sufficient.
      */
     virtual QWidget* createSummaryWidget() const;
 
