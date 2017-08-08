@@ -4,12 +4,13 @@
 # 
 # Translators:
 # Вадим Сабынич <vadim@sabini.ch>, 2017
+# Simon Schwartz <arzardk@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2017-07-20 02:49+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Вадим Сабынич <vadim@sabini.ch>, 2017\n"
+"Last-Translator: Simon Schwartz <arzardk@gmail.com>, 2017\n"
 "Language-Team: Russian (https://www.transifex.com/calamares/teams/20061/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ANSI_X3.4-1968\n"
@@ -36,4 +37,4 @@ msgstr ""
 
 #: src/modules/dummypythonqt/main.py:190
 msgid "A status message for Dummy PythonQt Job."
-msgstr ""
+msgstr "Сообщение состояния для Dummy PythonQt Job."
