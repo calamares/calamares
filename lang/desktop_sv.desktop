@@ -14,3 +14,7 @@ Categories=Qt;System;
 
 
 # Translations
+Name[sv]=Calamares
+Icon[sv]=calamares
+GenericName[sv]=Systeminstallerare
+Comment[sv]=Calamares — Systeminstallerare
