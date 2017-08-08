@@ -272,7 +272,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="238"/>
         <source>Continue with setup?</source>
-        <translation>המשך עם תהליך ההתקנה?</translation>
+        <translation>המשך עם הליך ההתקנה?</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="239"/>
@@ -523,22 +523,22 @@ The installer will quit and all changes will be lost.</source>
 <context>
     <name>ClearTempMountsJob</name>
     <message>
-        <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="40"/>
+        <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="42"/>
         <source>Clear all temporary mounts.</source>
         <translation>מחק את כל נקודות העיגון הזמניות.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="47"/>
+        <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="49"/>
         <source>Clearing all temporary mounts.</source>
         <translation>מבצע מחיקה של כל נקודות העיגון הזמניות.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="58"/>
+        <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="60"/>
         <source>Cannot get list of temporary mounts.</source>
         <translation>לא ניתן לשלוף רשימה של כל נקודות העיגון הזמניות.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="97"/>
+        <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="99"/>
         <source>Cleared all temporary mounts.</source>
         <translation>בוצעה מחיקה של כל נקודות העיגון הזמניות.</translation>
     </message>
@@ -548,17 +548,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="14"/>
         <source>Create a Partition</source>
-        <translation>ייצר מחיצה</translation>
+        <translation>צור מחיצה</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="48"/>
         <source> MiB</source>
-        <translation>מבי - בייט</translation>
+        <translation>MiB</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="55"/>
         <source>Partition &amp;Type:</source>
-        <translation>מחיצה &amp;מסוג:</translation>
+        <translation>&amp;סוג מחיצה:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="67"/>
@@ -613,7 +613,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="268"/>
         <source>Mountpoint already in use. Please select another one.</source>
-        <translation>נקודת העיגון בשימוש. אנא בחר אחרת.</translation>
+        <translation>נקודת העיגון בשימוש. אנא בחר נקודת עיגון אחרת.</translation>
     </message>
 </context>
 <context>
@@ -651,7 +651,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="126"/>
         <source>The installer failed to create file system on partition %1.</source>
-        <translation>אשף ההתקנה נכשל בעת יצירת מערכת הקבצים על המחיצה %1.</translation>
+        <translation>אשף ההתקנה נכשל בעת יצירת מערכת הקבצים על מחיצה %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="134"/>
@@ -674,7 +674,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="65"/>
         <source>What kind of partition table do you want to create?</source>
-        <translation>איזה סוג של טבלת מחיצות ברצונך לייצר?</translation>
+        <translation>איזה סוג של טבלת מחיצות ברצונך ליצור?</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="72"/>
@@ -712,7 +712,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="84"/>
         <source>Could not open device %1.</source>
-        <translation>לא ניתן לפתוח את ההתקן %1.</translation>
+        <translation>לא ניתן לפתוח את התקן %1.</translation>
     </message>
 </context>
 <context>
@@ -755,7 +755,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="160"/>
         <source>Cannot create user %1.</source>
-        <translation>לא ניתן ליצור את המשתמש %1.</translation>
+        <translation>לא ניתן ליצור משתמש %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CreateUserJob.cpp" line="162"/>
@@ -813,7 +813,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="85"/>
         <source>Could not open device %1.</source>
-        <translation>לא ניתן לפתוח את ההתקן %1.</translation>
+        <translation>לא ניתן לפתוח את התקן %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="94"/>
@@ -826,7 +826,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="63"/>
         <source>The type of &lt;strong&gt;partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The only way to change the partition table type is to erase and recreate the partition table from scratch, which destroys all data on the storage device.&lt;br&gt;This installer will keep the current partition table unless you explicitly choose otherwise.&lt;br&gt;If unsure, on modern systems GPT is preferred.</source>
-        <translation>סוג &lt;strong&gt;טבלת המחיצות&lt;/strong&gt; על התקן האחסון הנבחר.&lt;br&gt;&lt;br&gt; הדרך היחידה לשנות את סוג טבלת המחיצות היא למחוק וליצור מחדש את טבלת המחיצות, אשר דורסת את כל המידע הקיים על התקן האחסון.&lt;br&gt; אשף ההתקנה ישמור את טבלת המחיצות הקיימת אלא אם כן תבחר אחרת במפורש.&lt;br&gt; במידה ואינך בטוח, על מערכות חדשות GPT הוא הסוג המועדף.</translation>
+        <translation>סוג &lt;strong&gt;טבלת המחיצות&lt;/strong&gt; על התקן האחסון הנבחר.&lt;br&gt;&lt;br&gt; הדרך היחידה לשנות את סוג טבלת המחיצות היא למחוק וליצור מחדש את טבלת המחיצות, אשר דורסת את כל המידע הקיים על התקן האחסון.&lt;br&gt; אשף ההתקנה ישמור את טבלת המחיצות הקיימת אלא אם כן תבחר אחרת במפורש.&lt;br&gt; במידה ואינך בטוח, במערכות מודרניות, GPT הוא הסוג המועדף.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="107"/>
@@ -836,22 +836,22 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="114"/>
         <source>This is a &lt;strong&gt;loop&lt;/strong&gt; device.&lt;br&gt;&lt;br&gt;It is a pseudo-device with no partition table that makes a file accessible as a block device. This kind of setup usually only contains a single filesystem.</source>
-        <translation>זה הוא התקן מסוג &lt;strong&gt;loop&lt;/strong&gt;.&lt;br&gt;&lt;br&gt; זה הוא התקן מדמה ללא טבלת מחיצות אשר מאפשר גישה לקובץ כהתקן בלוק. תצורה מהסוג הזה בדרך כלל תכיל מערכת קבצים יחידה.</translation>
+        <translation>זהו התקן מסוג &lt;strong&gt;loop&lt;/strong&gt;.&lt;br&gt;&lt;br&gt; זהו התקן מדמה ללא טבלת מחיצות אשר מאפשר גישה לקובץ כהתקן בלוק. תצורה מסוג זה בדרך כלל תכיל מערכת קבצים יחידה.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="121"/>
         <source>This installer &lt;strong&gt;cannot detect a partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The device either has no partition table, or the partition table is corrupted or of an unknown type.&lt;br&gt;This installer can create a new partition table for you, either automatically, or through the manual partitioning page.</source>
-        <translation>אשף ההתקנה &lt;strong&gt;אינו יכול לזהות את טבלת המחיצות&lt;/strong&gt; על התקן האחסון הנבחר.&lt;br&gt;&lt;br&gt; ההתקן הנבחר לא מכיל טבלת מחיצות, או שטבלת המחיצות  הקיימת הושחתה או שסוג הטבלה אינו מוכר.&lt;br&gt; אשף התקנה זה יכול ליצור טבלת מחיצות חדשה עבורך, אוטומטית, או בדף הגדרת מחיצות באופן ידני.</translation>
+        <translation>אשף ההתקנה &lt;strong&gt;אינו יכול לזהות את טבלת המחיצות&lt;/strong&gt; על התקן האחסון הנבחר.&lt;br&gt;&lt;br&gt; ההתקן הנבחר לא מכיל טבלת מחיצות, או שטבלת המחיצות הקיימת הושחתה או שסוג הטבלה אינו מוכר.&lt;br&gt; אשף התקנה זה יכול ליצור טבלת מחיצות חדשה עבורך אוטומטית או בדף הגדרת מחיצות באופן ידני.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="131"/>
         <source>&lt;br&gt;&lt;br&gt;This is the recommended partition table type for modern systems which start from an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.</source>
-        <translation>&lt;br&gt;&lt;br&gt; זהו סוג טבלת המחיצות המועדף על מערכות חדשות אשר מאותחלות ממחיצת טעינת סביבת &lt;strong&gt;EFI&lt;/strong&gt;.</translation>
+        <translation>&lt;br&gt;&lt;br&gt; זהו סוג טבלת מחיצות מועדף במערכות מודרניות, אשר מאותחלות ממחיצת טעינת מערכת &lt;strong&gt;EFI&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="137"/>
         <source>&lt;br&gt;&lt;br&gt;This partition table type is only advisable on older systems which start from a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment. GPT is recommended in most other cases.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Warning:&lt;/strong&gt; the MBR partition table is an obsolete MS-DOS era standard.&lt;br&gt;Only 4 &lt;em&gt;primary&lt;/em&gt; partitions may be created, and of those 4, one can be an &lt;em&gt;extended&lt;/em&gt; partition, which may in turn contain many &lt;em&gt;logical&lt;/em&gt; partitions.</source>
-        <translation>&lt;br&gt;&lt;br&gt;הסוג הזה של טבלת המחיצות מומלץ לשימוש על מערכות ישנות אשר מאותחלות מסביבת טעינה &lt;strong&gt;BIOS&lt;/strong&gt;. ברוב המקרים האחרים, GPT מומלץ לשימוש.&lt;br&gt;&lt;br&gt;&lt;strong&gt;אזהרה:&lt;/strong&gt; תקן טבלת המחיצות של MBR מיושן מתקופת MS-DOS.&lt;br&gt; ניתן ליצור אך ורק 4 מחיצות &lt;em&gt;ראשיות&lt;/em&gt;, מתוך ה 4 הללו, אחת יכולה להיות מוגדרת כמחיצה &lt;em&gt;מורחבת&lt;/em&gt;, אשר יכולה להכיל מחיצות &lt;em&gt;לוגיות&lt;/em&gt;. </translation>
+        <translation>&lt;br&gt;&lt;br&gt;סוג זה של טבלת מחיצות מומלץ לשימוש על מערכות ישנות אשר מאותחלות מסביבת טעינה &lt;strong&gt;BIOS&lt;/strong&gt;. ברוב המקרים האחרים, GPT מומלץ לשימוש.&lt;br&gt;&lt;br&gt;&lt;strong&gt;אזהרה:&lt;/strong&gt; תקן טבלת המחיצות של MBR מיושן מתקופת MS-DOS.&lt;br&gt; ניתן ליצור אך ורק 4 מחיצות &lt;em&gt;ראשיות&lt;/em&gt;, מתוכן, אחת יכולה להיות מוגדרת כמחיצה &lt;em&gt;מורחבת&lt;/em&gt;, אשר יכולה להכיל מחיצות &lt;em&gt;לוגיות&lt;/em&gt;. </translation>
     </message>
 </context>
 <context>
@@ -928,7 +928,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="129"/>
         <source> MiB</source>
-        <translation>מבי - בייט</translation>
+        <translation>MiB</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="136"/>
@@ -943,7 +943,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.cpp" line="306"/>
         <source>Mountpoint already in use. Please select another one.</source>
-        <translation>נקודת העיגון בשימוש. אנא בחר אחרת.</translation>
+        <translation>נקודת העיגון בשימוש. אנא בחר נקודת עיגון אחרת.</translation>
     </message>
 </context>
 <context>
@@ -971,7 +971,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="150"/>
         <source>Please enter the same passphrase in both boxes.</source>
-        <translation>אנא הכנס את אותו ביטוי אבטחה בשני התאים.</translation>
+        <translation>אנא הכנס ביטוי אבטחה זהה בשני התאים.</translation>
     </message>
 </context>
 <context>
@@ -1027,7 +1027,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/finished/FinishedPage.cpp" line="52"/>
         <source>&lt;h1&gt;All done.&lt;/h1&gt;&lt;br/&gt;%1 has been installed on your computer.&lt;br/&gt;You may now restart into your new system, or continue using the %2 Live environment.</source>
-        <translation>&lt;h1&gt;תהליך ההתקנה הסתיים.&lt;/h1&gt;&lt;br/&gt;%1 הותקן על המחשב שלך.&lt;br/&gt; כעת ניתן לאתחל את המחשב אל המערכת החדשה שהותקנה, או להמשיך להשתמש בסביבה הנוכחית של %2.  </translation>
+        <translation>&lt;h1&gt;תהליך ההתקנה הסתיים.&lt;/h1&gt;&lt;br/&gt;%1 הותקן על המחשב שלך.&lt;br/&gt; כעת ניתן לאתחל את המחשב אל תוך המערכת החדשה שהותקנה, או להמשיך להשתמש בסביבה הנוכחית של %2.  </translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedPage.cpp" line="110"/>
@@ -1040,7 +1040,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/finished/FinishedViewStep.cpp" line="51"/>
         <source>Finish</source>
-        <translation>סיים</translation>
+        <translation>סיום</translation>
     </message>
 </context>
 <context>
@@ -1078,7 +1078,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="124"/>
         <source>The installer failed to create file system on partition %1.</source>
-        <translation>אשף ההתקנה נכשל בעת יצירת מערכת הקבצים על המחיצה %1.</translation>
+        <translation>אשף ההתקנה נכשל בעת יצירת מערכת הקבצים על מחיצה %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="133"/>
@@ -1147,7 +1147,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="41"/>
         <source>The system locale setting affects the language and character set for some command line user interface elements.&lt;br/&gt;The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation>הגדרות המיקום של המערכת משפיעות על השפה וקידוד התווים של חלק מרכיבי ממשקי שורת פקודה למשתמש. &lt;br/&gt; ההגדרה הנוכחית היא &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+        <translation>הגדרת מיקום המערכת משפיעה על השפה וקידוד התווים של חלק מרכיבי ממשקי שורת פקודה למשתמש. &lt;br/&gt; ההגדרה הנוכחית היא &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
 </context>
 <context>
@@ -1291,7 +1291,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="80"/>
         <source>Could not open file system on partition %1 for moving.</source>
-        <translation>פתיחת מערכת הקבצים במחיצה %1 לטובת העברה נכשלה.</translation>
+        <translation>פתיחת מערכת הקבצים במחיצה %1 לטובת ההעברה נכשלה.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="86"/>
@@ -1316,7 +1316,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="127"/>
         <source>The logical sector sizes in the source and target for copying are not the same. This is currently unsupported.</source>
-        <translation>הגדלים הלוגיים של מקטעי המקור והיעד להעתקה אינם זהים. לא נתמך בגרסה זו.</translation>
+        <translation>הגדלים הלוגיים של מקטעי המקור והיעד להעתקה אינם זהים. הנ&quot;ל לא נתמך בגרסה זו.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="197"/>
@@ -1392,7 +1392,6 @@ The installer will quit and all changes will be lost.</source>
         <translation>באיזה שם ברצונך להשתמש בעת כניסה למחשב?</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/page_usersetup.ui" line="197"/>
         <location filename="../src/modules/users/page_usersetup.ui" line="306"/>
         <location filename="../src/modules/users/page_usersetup.ui" line="437"/>
         <location filename="../src/modules/users/page_usersetup.ui" line="582"/>
@@ -1402,7 +1401,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="200"/>
         <source>&lt;small&gt;If more than one person will use this computer, you can set up multiple accounts after installation.&lt;/small&gt;</source>
-        <translation>&lt;small&gt;במידה ויותר מאדם אחד ישתמשו במחשב זה, תוכל להגדיר משתמשים נוספים לאחר ההתקנה.&lt;/small&gt;</translation>
+        <translation>&lt;small&gt;במידה ויותר מאדם אחד ישתמש במחשב זה, תוכל להגדיר משתמשים נוספים לאחר ההתקנה.&lt;/small&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="335"/>
@@ -1417,7 +1416,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="226"/>
         <source>What is the name of this computer?</source>
-        <translation>מהו שם המחשב הזה?</translation>
+        <translation>מהו שם מחשב זה?</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="309"/>
@@ -1568,7 +1567,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="160"/>
         <source>Are you sure you want to create a new partition table on %1?</source>
-        <translation>האם אתה בטוח שברצונך לייצר טבלת מחיצות חדשה על %1?</translation>
+        <translation>האם אתה בטוח שברצונך ליצור טבלת מחיצות חדשה על %1?</translation>
     </message>
 </context>
 <context>
@@ -1685,17 +1684,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="198"/>
         <source>unknown</source>
-        <translation>לא מוכרת</translation>
+        <translation>לא מוכר/ת</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="200"/>
         <source>extended</source>
-        <translation>מורחבת</translation>
+        <translation>מורחב/ת</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="202"/>
         <source>unformatted</source>
-        <translation>לא מאותחל</translation>
+        <translation>לא מאותחל/ת</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="204"/>
@@ -1705,7 +1704,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="49"/>
         <source>Unpartitioned space or unknown partition table</source>
-        <translation>הזכרון לא מחולק למחיצות או טבלת מחיצות לא מוכרת.</translation>
+        <translation>הזכרון לא מחולק למחיצות או טבלת מחיצות לא מוכרת</translation>
     </message>
 </context>
 <context>
@@ -1738,7 +1737,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="188"/>
         <source>%1 cannot be installed on this partition.</source>
-        <translation>לא ניתן להתקין את %1 על המחיצה הזו.</translation>
+        <translation>לא ניתן להתקין את %1 על מחיצה זו.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="194"/>
@@ -1793,22 +1792,22 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="108"/>
         <source>has at least %1 GB available drive space</source>
-        <translation>קיים לפחות %1 גיגה - בייט של נפח אחסון</translation>
+        <translation>קיים לפחות %1 GB של נפח אחסון</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="110"/>
         <source>There is not enough drive space. At least %1 GB is required.</source>
-        <translation>נפח האחסון לא מספק. נדרש לפחות %1 גיגה - בייט.</translation>
+        <translation>נפח האחסון לא מספק. נדרש לפחות %1 GB.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="118"/>
         <source>has at least %1 GB working memory</source>
-        <translation>קיים לפחות %1 גיגה - בייט של זכרון פעולה</translation>
+        <translation>קיים לפחות %1 GB של זכרון פעולה</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="120"/>
         <source>The system does not have enough working memory. At least %1 GB is required.</source>
-        <translation>כמות הזכרון הנדרשת לפעולה לא מספיקה. נדרש לפחות %1 גיגה - בייט.</translation>
+        <translation>כמות הזכרון הנדרשת לפעולה, לא מספיקה. נדרש לפחות %1 GB.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="128"/>
@@ -1928,7 +1927,7 @@ The installer will quit and all changes will be lost.</source>
         <location filename="../src/modules/users/SetHostNameJob.cpp" line="75"/>
         <location filename="../src/modules/users/SetHostNameJob.cpp" line="86"/>
         <source>Cannot write hostname to target system</source>
-        <translation>נכשלה כתיבת שם העמדה למערכת המטרה.</translation>
+        <translation>נכשלה כתיבת שם העמדה למערכת המטרה</translation>
     </message>
 </context>
 <context>
@@ -2261,7 +2260,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="75"/>
         <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Copyright 2017 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;Thanks to: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Lisa Vitolo, Philip Müller, Pier Luigi Fiorini, Rohan Garg and the &lt;a href=&quot;https://www.transifex.com/calamares/calamares/&quot;&gt;Calamares translators team&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;http://calamares.io/&quot;&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - Liberating Software.</source>
-        <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;עבור %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;זכויות יוצרים 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;זכויות יוצרים 2017 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;תודות ל: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Lisa Vitolo, Philip Müller, Pier Luigi Fiorini, Rohan Garg and the ול&lt;a href=&quot;https://www.transifex.com/calamares/calamares/&quot;&gt;צוות התרגום של Calamares&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;פיתוח &lt;a href=&quot;http://calamares.io/&quot;&gt;Calamares&lt;/a&gt; בחסות &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - משחררים תוכנה.</translation>
+        <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;עבור %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;זכויות יוצרים 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;זכויות יוצרים 2017 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;תודות ל: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Lisa Vitolo, Philip Müller, Pier Luigi Fiorini, Rohan Garg ול&lt;a href=&quot;https://www.transifex.com/calamares/calamares/&quot;&gt;צוות התרגום של Calamares&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;פיתוח &lt;a href=&quot;http://calamares.io/&quot;&gt;Calamares&lt;/a&gt; בחסות &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - משחררים תוכנה.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="201"/>
