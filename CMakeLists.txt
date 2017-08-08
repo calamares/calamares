@@ -226,10 +226,10 @@ install(
     FILES
         "${PROJECT_BINARY_DIR}/CalamaresConfig.cmake"
         "${PROJECT_BINARY_DIR}/CalamaresConfigVersion.cmake"
-        "CmakeModules/CalamaresAddPlugin.cmake"
-        "CmakeModules/CalamaresAddModuleSubdirectory.cmake"
-        "CmakeModules/CalamaresAddLibrary.cmake"
-        "CmakeModules/CalamaresAddBrandingSubdirectory.cmake"
+        "CMakeModules/CalamaresAddPlugin.cmake"
+        "CMakeModules/CalamaresAddModuleSubdirectory.cmake"
+        "CMakeModules/CalamaresAddLibrary.cmake"
+        "CMakeModules/CalamaresAddBrandingSubdirectory.cmake"
     DESTINATION
         "${CMAKE_INSTALL_CMAKEDIR}"
 )
