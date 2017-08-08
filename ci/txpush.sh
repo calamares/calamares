@@ -32,3 +32,5 @@ for MODULE_DIR in `find src/modules -maxdepth 1 -mindepth 1 -type d`; do
 done
 
 tx push --source --no-interactive -r calamares.calamares-master
+tx push --no-interactive -r calamares.fdo
+

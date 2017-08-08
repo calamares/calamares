@@ -14,6 +14,9 @@ tx pull --force --source --all
 git add --verbose lang/calamares*.ts
 git commit --author='Calamares CI <groot@kde.org>' --message='[core] Automatic merge of Transifex translations' | true
 
+git add --verbose lang/desktop*.desktop calamares.desktop
+git commit --author='Calamares CI <groot@kde.rg>' --message='[desktop] Automatic merge of Transifex translations' | true
+
 # Transifex updates the PO-Created timestamp also when nothing interesting
 # has happened, so drop the files which have just 1 line changed (the
 # PO-Created line). This applies only to modules which use po-files.
