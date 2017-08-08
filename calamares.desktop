@@ -11,3 +11,14 @@ Icon=calamares
 Terminal=false
 StartupNotify=true
 Categories=Qt;System;
+
+
+# Translations
+Name[en_GB]=Calamares
+Icon[en_GB]=calamares
+GenericName[en_GB]=System Installer
+Comment[en_GB]=Calamares — System Installer
+Name[nl]=Calamares
+Icon[nl]=calamares
+GenericName[nl]=Installatieprogramma
+Comment[nl]=Calamares — Installatieprogramma
