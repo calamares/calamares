@@ -14,3 +14,7 @@ Categories=Qt;System;
 
 
 # Translations
+Name[de]=Calamares
+Icon[de]=calamares
+GenericName[de]=Installation des Betriebssystems
+Comment[de]=Calamares - Installation des Betriebssystems

@@ -14,3 +14,7 @@ Categories=Qt;System;
 
 
 # Translations
+Name[da]=Calamares
+Icon[da]=calamares
+GenericName[da]=Systeminstallationsprogram
+Comment[da]=Calamares — Systeminstallationsprogram

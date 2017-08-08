@@ -14,3 +14,7 @@ Categories=Qt;System;
 
 
 # Translations
+Name[ast]=Calamares
+Icon[ast]=calamares
+GenericName[ast]=Instalador del sistema
+Comment[ast]=Calamares — Instalador del sistema

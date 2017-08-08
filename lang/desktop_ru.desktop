@@ -14,3 +14,7 @@ Categories=Qt;System;
 
 
 # Translations
+Name[ru]=Calamares
+Icon[ru]=calamares
+GenericName[ru]=Установщик системы
+Comment[ru]=Calamares - Установщик системы
