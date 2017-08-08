@@ -43,6 +43,12 @@ module's name, type, interface and possibly other properties. The name
 of the module as defined in `module.desc` must be the same as the name
 of the module's directory.
 
+Module descriptors must have the following keys:
+- *name* (an identifier; must be the same as the directory name)
+- *type* ("job" or "view")
+- *interface* (see below for the different interfaces; generally we
+  refer to the kinds of modules by their interface)
+
 ## Module-specific configuration
 
 A Calamares module *may* read a module configuration file,
@@ -77,6 +83,8 @@ or the experimental pythonqt job- and viewmodule interfaces.
 
 To add a Python or process jobmodule, put it in a subdirectory and make sure
 it has a `module.desc`. It will be picked up automatically by our CMake magic.
+For all kinds of Python jobs, the key *script* must be set to the name of
+the main python file for the job. This is almost universally "main.py".
 
 `CMakeLists.txt` is *not* used for Python and process jobmodules.
 
