@@ -272,7 +272,7 @@ LocaleConfiguration::fromLanguageAndLocation( const QString& languageLocale,
 
 
 bool
-LocaleConfiguration::isEmpty()
+LocaleConfiguration::isEmpty() const
 {
     return lang.isEmpty() &&
          lc_numeric.isEmpty() &&
