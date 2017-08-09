@@ -1,3 +1,6 @@
+# Internal macro for adding the C++ / Qt translations to the
+# build and install tree. Should be called only once, from
+# src/calamares/CMakeLists.txt.
 macro(add_calamares_translations language)
     list( APPEND CALAMARES_LANGUAGES ${ARGV} )
 
@@ -40,3 +43,26 @@ macro(add_calamares_translations language)
     )
 endmacro()
 
+# Internal macro for Python translations
+#
+# Translations of the Python modules that don't have their own
+# lang/ subdirectories -- these are collected in top-level
+# lang/python_<lang>.po
+macro(add_calamares_python_translations language)
+    set( CALAMARES_LANGUAGES "" )
+    list( APPEND CALAMARES_LANGUAGES ${ARGV} )
+
+    set( TS_FILES "" )  # Actually po / mo files
+    foreach( lang ${CALAMARES_LANGUAGES} )
+        if( lang STREQUAL "en" )
+            message( STATUS "Skipping Python translations for en_US" )
+        else()
+            list( APPEND TS_FILES "${CMAKE_SOURCE_DIR}/lang/python_${lang}.po;${CMAKE_SOURCE_DIR}/lang/python_${lang}.mo" )
+        endif()
+    endforeach()
+
+    install(
+        FILES ${TS_FILES}
+        DESTINATION ${CMAKE_INSTALL_DATADIR}/calamares/lang/
+    )
+endmacro()
