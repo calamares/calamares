@@ -39,18 +39,27 @@ def run():
     accumulator = strftime("%Y-%m-%d %H:%M:%S", gmtime()) + "\n"
     accumulator += "Calamares version: " + libcalamares.VERSION_SHORT + "\n"
     accumulator += "This job's name: " + libcalamares.job.pretty_name + "\n"
-    accumulator += "This job's path: " + libcalamares.job.working_path + "\n"
+    accumulator += "This job's path: " + libcalamares.job.working_path
+    libcalamares.utils.debug(accumulator)
+
+    accumulator = "*** Job configuration ";
     accumulator += str(libcalamares.job.configuration)
-    accumulator += "   *** globalstorage test ***\n"
+    libcalamares.utils.debug(accumulator)
+
+    accumulator = "*** globalstorage test ***"
     accumulator += "lala: "
     accumulator += str(libcalamares.globalstorage.contains("lala")) + "\n"
     accumulator += "foo: "
     accumulator += str(libcalamares.globalstorage.contains("foo")) + "\n"
-    accumulator += "count: " + str(libcalamares.globalstorage.count()) + "\n"
+    accumulator += "count: " + str(libcalamares.globalstorage.count())
+    libcalamares.utils.debug(accumulator)
+
     libcalamares.globalstorage.insert("item2", "value2")
     libcalamares.globalstorage.insert("item3", 3)
-    accumulator += "keys: {}\n".format(str(libcalamares.globalstorage.keys()))
-    accumulator += "remove: {}\n".format(
+    accumulator = "keys: {}\n".format(str(libcalamares.globalstorage.keys()))
+    libcalamares.utils.debug(accumulator)
+
+    accumulator = "remove: {}\n".format(
        str(libcalamares.globalstorage.remove("item2")))
     accumulator += "values: {} {} {}\n".format(
         str(libcalamares.globalstorage.value("foo")),
