@@ -117,10 +117,10 @@ UIDLLEXPORT QSize defaultIconSize();
 /**
  * @brief Size constants for the main Calamares window.
  */
-constexpr int windowMinimumWidth = 800;
-constexpr int windowMinimumHeight = 520;
-constexpr int windowPreferredWidth = 1024;
-constexpr int windowPreferredHeight = 520;
+constexpr int windowMinimumWidth = 790;
+constexpr int windowMinimumHeight = 570;
+constexpr int windowPreferredWidth = 1000;
+constexpr int windowPreferredHeight = 590;
 }
 
 #endif // CALAMARESUTILSGUI_H

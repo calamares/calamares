@@ -76,7 +76,7 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
 
     QBoxLayout* sideLayout = new QVBoxLayout;
     sideBox->setLayout( sideLayout );
-    sideBox->setFixedWidth( qBound( 100, CalamaresUtils::defaultFontHeight() * 12, w < windowPreferredWidth ? 100 : 190 ) );
+    sideBox->setFixedWidth( qBound( 100, CalamaresUtils::defaultFontHeight() * 11, w < windowPreferredWidth ? 100 : 190 ) );
     sideBox->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
 
     QHBoxLayout* logoLayout = new QHBoxLayout;
@@ -94,7 +94,7 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
         logoLabel->setPalette( plt );
     }
     logoLabel->setAlignment( Qt::AlignCenter );
-    logoLabel->setFixedSize( 80, 80 );
+    logoLabel->setFixedSize( 180, 80 );
     logoLabel->setPixmap( Calamares::Branding::instance()->
                           image( Calamares::Branding::ProductIcon,
                                  logoLabel->size() ) );
