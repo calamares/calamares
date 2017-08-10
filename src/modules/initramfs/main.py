@@ -27,7 +27,8 @@ def run():
 
     :return:
     """
-    return_code = target_env_call(["update-initramfs", "-k", "all", "-u"])
+    return_code = target_env_call(["update-initramfs", "-k", "all", "-c",
+                                   "-t"])
 
     if return_code != 0:
         return (
