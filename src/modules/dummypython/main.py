@@ -51,7 +51,7 @@ def run():
     accumulator += "This job's path: " + libcalamares.job.working_path
     libcalamares.utils.debug(accumulator)
 
-    accumulator = "*** Job configuration ";
+    accumulator = "*** Job configuration "
     accumulator += str(libcalamares.job.configuration)
     libcalamares.utils.debug(accumulator)
 
