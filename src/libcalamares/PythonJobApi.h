@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014-2016, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -60,9 +61,9 @@ std::string check_target_env_output( const boost::python::list& args,
 
 std::string obscure( const std::string& string );
 
-inline int _handle_check_target_env_call_error( int ec, const QString& cmd );
-
 void debug( const std::string& s );
+
+inline int _handle_check_target_env_call_error( int ec, const QString& cmd );
 
 class PythonJobInterface
 {
@@ -72,6 +73,7 @@ public:
     std::string moduleName;
     std::string prettyName;
     std::string workingPath;
+    std::string gettextPath;
 
     boost::python::dict configuration;
 

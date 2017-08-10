@@ -57,9 +57,12 @@ macro(add_calamares_python_translations language)
         if( lang STREQUAL "en" )
             message( STATUS "Skipping Python translations for en_US" )
         else()
-            list( APPEND TS_FILES "${CMAKE_SOURCE_DIR}/lang/python_${lang}.po;${CMAKE_SOURCE_DIR}/lang/python_${lang}.mo" )
+            list( APPEND TS_FILES "${CMAKE_SOURCE_DIR}/lang/python/${lang}/LC_MESSAGES/python.po;${CMAKE_SOURCE_DIR}/lang/python/${lang}/LC_MESSAGES/python.mo" )
         endif()
     endforeach()
+
+    file( MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/_lang )
+    file( COPY ${CMAKE_SOURCE_DIR}/lang/python DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/_lang )
 
     install(
         FILES ${TS_FILES}

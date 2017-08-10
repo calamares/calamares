@@ -70,6 +70,7 @@ BOOST_PYTHON_MODULE( libcalamares )
         .def_readonly( "module_name",   &CalamaresPython::PythonJobInterface::moduleName )
         .def_readonly( "pretty_name",   &CalamaresPython::PythonJobInterface::prettyName )
         .def_readonly( "working_path",  &CalamaresPython::PythonJobInterface::workingPath )
+        .def_readonly( "gettext_path",  &CalamaresPython::PythonJobInterface::gettextPath )
         .def_readonly( "configuration", &CalamaresPython::PythonJobInterface::configuration )
         .def(
             "setprogress",
@@ -85,7 +86,8 @@ BOOST_PYTHON_MODULE( libcalamares )
         .def( "insert",     &CalamaresPython::GlobalStoragePythonWrapper::insert )
         .def( "keys",       &CalamaresPython::GlobalStoragePythonWrapper::keys )
         .def( "remove",     &CalamaresPython::GlobalStoragePythonWrapper::remove )
-        .def( "value",      &CalamaresPython::GlobalStoragePythonWrapper::value );
+        .def( "value",      &CalamaresPython::GlobalStoragePythonWrapper::value )
+        .def( "gettext_languages", &CalamaresPython::GlobalStoragePythonWrapper::gettext_languages );
 
     // libcalamares.utils submodule starts here
     bp::object utilsModule( bp::handle<>( bp::borrowed( PyImport_AddModule( "libcalamares.utils" ) ) ) );
@@ -297,16 +299,35 @@ PythonJob::exec()
                                            scriptNamespace );
 
         bp::object entryPoint = scriptNamespace[ "run" ];
-        bp::extract< std::string > entryPoint_doc_attr(entryPoint.attr( "__doc__" ) );
+        bp::object prettyNameFunc = scriptNamespace[ "pretty_name" ];
 
-        if ( entryPoint_doc_attr.check() )
+        if ( !prettyNameFunc.is_none() )
         {
-            m_description = QString::fromStdString( entryPoint_doc_attr() ).trimmed();
-            auto i_newline = m_description.indexOf('\n');
-            if ( i_newline > 0 )
-                m_description.truncate( i_newline );
-            cDebug() << "Job" << prettyName() << "->" << m_description;
-            emit progress( 0 );
+            bp::extract< std::string > prettyNameResult( prettyNameFunc() );
+            if ( prettyNameResult.check() )
+            {
+                m_description = QString::fromStdString( prettyNameResult() ).trimmed();
+            }
+            if ( !m_description.isEmpty() )
+            {
+                cDebug() << "Job" << prettyName() << "-pretty_name->" << m_description;
+                emit progress( 0 );
+            }
+        }
+
+        if ( m_description.isEmpty() )
+        {
+            bp::extract< std::string > entryPoint_doc_attr(entryPoint.attr( "__doc__" ) );
+
+            if ( entryPoint_doc_attr.check() )
+            {
+                m_description = QString::fromStdString( entryPoint_doc_attr() ).trimmed();
+                auto i_newline = m_description.indexOf('\n');
+                if ( i_newline > 0 )
+                    m_description.truncate( i_newline );
+                cDebug() << "Job" << prettyName() << "->" << m_description;
+                emit progress( 0 );
+            }
         }
 
         bp::object runResult = entryPoint();

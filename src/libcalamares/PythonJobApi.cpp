@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014-2016, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -177,10 +178,19 @@ debug( const std::string& s )
 PythonJobInterface::PythonJobInterface( Calamares::PythonJob* parent )
     : m_parent( parent )
 {
-    moduleName = QDir( m_parent->m_workingPath ).dirName().toStdString();
+    auto moduleDir = QDir( m_parent->m_workingPath );
+    moduleName = moduleDir.dirName().toStdString();
     prettyName = m_parent->prettyName().toStdString();
     workingPath = m_parent->m_workingPath.toStdString();
     configuration = CalamaresPython::variantMapToPyDict( m_parent->m_configurationMap );
+
+    if (moduleDir.cd("../_lang/python"))
+        gettextPath = moduleDir.absolutePath().toStdString();
+    else
+    {
+        debug( "No _lang/ directory for translations." );
+        gettextPath = std::string();
+    }
 }
 
 
