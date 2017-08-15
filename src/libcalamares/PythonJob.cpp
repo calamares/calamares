@@ -86,8 +86,7 @@ BOOST_PYTHON_MODULE( libcalamares )
         .def( "insert",     &CalamaresPython::GlobalStoragePythonWrapper::insert )
         .def( "keys",       &CalamaresPython::GlobalStoragePythonWrapper::keys )
         .def( "remove",     &CalamaresPython::GlobalStoragePythonWrapper::remove )
-        .def( "value",      &CalamaresPython::GlobalStoragePythonWrapper::value )
-        .def( "gettext_languages", &CalamaresPython::GlobalStoragePythonWrapper::gettext_languages );
+        .def( "value",      &CalamaresPython::GlobalStoragePythonWrapper::value );
 
     // libcalamares.utils submodule starts here
     bp::object utilsModule( bp::handle<>( bp::borrowed( PyImport_AddModule( "libcalamares.utils" ) ) ) );
@@ -216,6 +215,14 @@ BOOST_PYTHON_MODULE( libcalamares )
         "Returns a string, generated using a simple symmetric encryption.\n"
         "Applying the function to a string obscured by this function will result "
         "in the original string."
+    );
+
+    
+    bp::def( 
+        "gettext_languages", 
+        &CalamaresPython::gettext_languages, 
+        bp::args(),
+        "Returns list of languages (most to least-specific) for gettext."
     );
 }
 

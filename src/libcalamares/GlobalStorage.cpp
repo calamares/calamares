@@ -126,33 +126,6 @@ GlobalStoragePythonWrapper::insert( const std::string& key,
 }
 
 bp::list
-GlobalStoragePythonWrapper::gettext_languages() const
-{
-    bp::list pyList;
-    QVariant localeConf_ = m_gs->value( "localeConf" );
-    if ( localeConf_.canConvert< QVariantMap >() )
-    {
-        QVariant lang_ = localeConf_.value< QVariantMap >()[ "LANG" ];
-        if ( lang_.canConvert< QString >() )
-        {
-            QString lang = lang_.value< QString >();
-            pyList.append( lang.toStdString() );
-            if ( lang.indexOf( '.' ) > 0)
-            {
-                lang.truncate( lang.indexOf( '.' ) );
-                pyList.append( lang.toStdString() );
-            }
-            if ( lang.indexOf( '_' ) > 0)
-            {
-                lang.truncate( lang.indexOf( '_' ) );
-                pyList.append( lang.toStdString() );
-            }
-        }
-    }
-    return pyList;
-}
-
-bp::list
 GlobalStoragePythonWrapper::keys() const
 {
     bp::list pyList;

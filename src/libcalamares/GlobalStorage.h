@@ -87,10 +87,6 @@ public:
     int remove( const std::string& key );
     boost::python::api::object value( const std::string& key ) const;
 
-    // Special case to simplify Python code, gets localeConf["LANG"]
-    // from the global store, in list form with language variants
-    // expanded (e.g [ "en_GB.UTF-8", "en_GB", "en" ] ).
-    boost::python::list gettext_languages() const;
 private:
     Calamares::GlobalStorage* m_gs;
 };

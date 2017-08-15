@@ -61,6 +61,10 @@ std::string check_target_env_output( const boost::python::list& args,
 
 std::string obscure( const std::string& string );
 
+std::string gettext_path();
+
+std::list< std::string > gettext_languages();
+
 void debug( const std::string& s );
 
 inline int _handle_check_target_env_call_error( int ec, const QString& cmd );
