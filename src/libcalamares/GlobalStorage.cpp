@@ -18,11 +18,13 @@
  */
 
 #include "GlobalStorage.h"
+#include "JobQueue.h"
 
 #include "utils/Logger.h"
 
 #ifdef WITH_PYTHON
 #include "PythonHelper.h"
+
 
 #undef slots
 #include <boost/python/list.hpp>
@@ -99,8 +101,13 @@ GlobalStorage::debugDump() const
 namespace CalamaresPython
 {
 
+// The special handling for nullptr is only for the testing
+// script for the python bindings, which passes in None;
+// normal use will have a GlobalStorage from JobQueue::instance()
+// passed in. Testing use will leak the allocated GlobalStorage
+// object, but that's OK for testing.
 GlobalStoragePythonWrapper::GlobalStoragePythonWrapper( Calamares::GlobalStorage* gs )
-    : m_gs( gs )
+    : m_gs( gs ? gs : new Calamares::GlobalStorage )
 {}
 
 bool
