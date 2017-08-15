@@ -67,8 +67,8 @@ def main():
                         help="Dir containing the Python module.")
     parser.add_argument("globalstorage_yaml", nargs="?",
                         help="A yaml file to initialize GlobalStorage.")
-    help_desc = "A yaml file to initialize the configuration dict."
-    parser.add_argument("configuration_yaml", nargs="?", help=help_desc)
+    parser.add_argument("configuration_yaml", nargs="?",
+                        help="A yaml file to initialize the Job.")
     args = parser.parse_args()
 
     print("Testing module in: " + args.moduledir)
