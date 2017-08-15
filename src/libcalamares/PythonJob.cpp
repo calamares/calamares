@@ -221,7 +221,6 @@ BOOST_PYTHON_MODULE( libcalamares )
     bp::def( 
         "gettext_languages", 
         &CalamaresPython::gettext_languages, 
-        bp::args(),
         "Returns list of languages (most to least-specific) for gettext."
     );
 }

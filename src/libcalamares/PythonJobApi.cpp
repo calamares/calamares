@@ -24,6 +24,9 @@
 #include "utils/CalamaresUtilsSystem.h"
 #include "utils/CalamaresUtils.h"
 
+#include "GlobalStorage.h"
+#include "JobQueue.h"
+
 #include <QDir>
 
 #undef slots
@@ -211,24 +214,24 @@ obscure( const std::string& string )
 std::list< std::string >
 gettext_languages()
 {
-    bp::list pyList;
-    QVariant localeConf_ = m_gs->value( "localeConf" );
+    std::list< std::string > pyList;
+    QVariant localeConf_ = Calamares::JobQueue::instance()->globalStorage()->value( "localeConf" );
     if ( localeConf_.canConvert< QVariantMap >() )
     {
         QVariant lang_ = localeConf_.value< QVariantMap >()[ "LANG" ];
         if ( lang_.canConvert< QString >() )
         {
             QString lang = lang_.value< QString >();
-            pyList.append( lang.toStdString() );
+            pyList.push_back( lang.toStdString() );
             if ( lang.indexOf( '.' ) > 0)
             {
                 lang.truncate( lang.indexOf( '.' ) );
-                pyList.append( lang.toStdString() );
+                pyList.push_back( lang.toStdString() );
             }
             if ( lang.indexOf( '_' ) > 0)
             {
                 lang.truncate( lang.indexOf( '_' ) );
-                pyList.append( lang.toStdString() );
+                pyList.push_back( lang.toStdString() );
             }
         }
     }
