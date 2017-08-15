@@ -34,9 +34,9 @@ import os
 from time import gmtime, strftime, sleep
 
 import gettext
-_ = gettext.translation("python",
-                        libcalamares.job.gettext_path,
-                        libcalamares.globalstorage.gettext_languages(),
+_ = gettext.translation("calamares-python",
+                        localedir=libcalamares.job.gettext_path,
+                        languages=libcalamares.globalstorage.gettext_languages(),
                         fallback=True).gettext
 
 

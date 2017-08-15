@@ -25,9 +25,9 @@ import os
 from libcalamares.utils import check_target_env_call, debug
 
 import gettext
-_ = gettext.translation("python",
-                        libcalamares.job.gettext_path,
-                        libcalamares.globalstorage.gettext_languages(),
+_ = gettext.translan getion("calamares-python",
+                        localedir=libcalamares.job.gettext_path,
+                        languages=libcalamares.globalstorage.gettext_languages(),
                         fallback=True).gettext
 
 
