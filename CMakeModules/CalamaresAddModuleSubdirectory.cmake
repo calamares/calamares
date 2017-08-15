@@ -1,4 +1,5 @@
 include( CMakeColors )
+include( CalamaresAddTranslations )
 
 set( MODULE_DATA_DESTINATION share/calamares/modules )
 
@@ -32,14 +33,6 @@ function( calamares_add_module_subdirectory )
             endif()
         endforeach()
 
-        # We copy over the lang directory, if any
-        if( IS_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/${SUBDIRECTORY}/lang" )
-          file( COPY "${CMAKE_CURRENT_SOURCE_DIR}/${SUBDIRECTORY}/lang"
-                DESTINATION "${CMAKE_CURRENT_BINARY_DIR}/${SUBDIRECTORY}" )
-          install( DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/${SUBDIRECTORY}/lang"
-                   DESTINATION ${MODULE_DESTINATION} )
-        endif()
-
         message( "-- ${BoldYellow}Found ${CALAMARES_APPLICATION_NAME} module: ${BoldRed}${SUBDIRECTORY}${ColorReset}" )
         if( NOT CMAKE_BUILD_TYPE STREQUAL "Release" )
             message( "   ${Green}TYPE:${ColorReset} jobmodule" )
@@ -54,6 +47,16 @@ function( calamares_add_module_subdirectory )
             endif()
             message( "" )
         endif()
+        # We copy over the lang directory, if any
+        if( IS_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/${SUBDIRECTORY}/lang" )
+            install_calamares_gettext_translations(
+                ${SUBDIRECTORY}
+                SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/${SUBDIRECTORY}/lang"
+                FILENAME ${SUBDIRECTORY}.mo
+                RENAME calamares-${SUBDIRECTORY}.mo
+            )
+        endif()
+
     else()
         message( "-- ${BoldYellow}Warning:${ColorReset} tried to add module subdirectory ${BoldRed}${SUBDIRECTORY}${ColorReset} which has no CMakeLists.txt or module.desc." )
         message( "" )
