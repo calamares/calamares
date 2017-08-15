@@ -25,10 +25,10 @@ import os
 from libcalamares.utils import check_target_env_call, debug
 
 import gettext
-_ = gettext.translan getion("calamares-python",
-                        localedir=libcalamares.utils.gettext_path,
-                        languages=libcalamares.utils.gettext_languages(),
-                        fallback=True).gettext
+_ = gettext.translantion("calamares-python",
+                         localedir=libcalamares.utils.gettext_path,
+                         languages=libcalamares.utils.gettext_languages(),
+                         fallback=True).gettext
 
 
 def pretty_name():
