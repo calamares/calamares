@@ -30,8 +30,10 @@ _ = gettext.translation("python",
                         libcalamares.globalstorage.gettext_languages(),
                         fallback=True).gettext
 
+
 def pretty_name():
     return _("Generate machine-id.")
+
 
 def run():
     """

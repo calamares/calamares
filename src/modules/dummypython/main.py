@@ -39,8 +39,10 @@ _ = gettext.translation("python",
                         libcalamares.globalstorage.gettext_languages(),
                         fallback=True).gettext
 
+
 def pretty_name():
     return _("Dummy python job.")
+
 
 def run():
     """Dummy python job."""
@@ -81,15 +83,15 @@ def run():
     sleep(1)
 
     try:
-        l = list(libcalamares.job.configuration["a_list"])
+        configlist = list(libcalamares.job.configuration["a_list"])
     except KeyError:
-        l = ["no list"]
+        configlist = ["no list"]
 
     c = 1
-    for k in l:
+    for k in configlist:
         libcalamares.utils.debug(_("Dummy python step {}").format(str(k)))
         sleep(1)
-        libcalamares.job.setprogress( c * 1.0 / len(l) )
+        libcalamares.job.setprogress(c * 1.0 / len(configlist))
         c += 1
 
     sleep(3)
