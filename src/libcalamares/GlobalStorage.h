@@ -87,8 +87,14 @@ public:
     int remove( const std::string& key );
     boost::python::api::object value( const std::string& key ) const;
 
+    // This is a helper for scripts that do not go through
+    // the JobQueue (i.e. the module testpython script),
+    // which allocate their own (singleton) GlobalStorage.
+    static Calamares::GlobalStorage* globalStorageInstance() { return s_gs_instance; }
+
 private:
     Calamares::GlobalStorage* m_gs;
+    static Calamares::GlobalStorage* s_gs_instance;  // See globalStorageInstance()
 };
 
 } // namespace CalamaresPython

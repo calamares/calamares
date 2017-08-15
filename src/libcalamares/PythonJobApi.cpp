@@ -186,14 +186,6 @@ PythonJobInterface::PythonJobInterface( Calamares::PythonJob* parent )
     prettyName = m_parent->prettyName().toStdString();
     workingPath = m_parent->m_workingPath.toStdString();
     configuration = CalamaresPython::variantMapToPyDict( m_parent->m_configurationMap );
-
-    if (moduleDir.cd("../_lang/python"))
-        gettextPath = moduleDir.absolutePath().toStdString();
-    else
-    {
-        debug( "No _lang/ directory for translations." );
-        gettextPath = std::string();
-    }
 }
 
 
@@ -211,31 +203,50 @@ obscure( const std::string& string )
     return CalamaresUtils::obscure( QString::fromStdString( string ) ).toStdString();
 }
 
-std::list< std::string >
+bp::list
 gettext_languages()
 {
-    std::list< std::string > pyList;
-    QVariant localeConf_ = Calamares::JobQueue::instance()->globalStorage()->value( "localeConf" );
+    bp::list pyList;
+
+    // There are two ways that Python jobs can be initialised:
+    //  - through JobQueue, in which case that has an instance which holds
+    //    a GlobalStorage object, or
+    //  - through the Python test-script, which initialises its
+    //    own GlobalStoragePythonWrapper, which then holds a
+    //    GlobalStorage object for all of Python.
+    Calamares::JobQueue* jq = Calamares::JobQueue::instance();
+    Calamares::GlobalStorage* gs = jq ? jq->globalStorage() : CalamaresPython::GlobalStoragePythonWrapper::globalStorageInstance();
+
+    QVariant localeConf_ = gs->value( "localeConf" );
     if ( localeConf_.canConvert< QVariantMap >() )
     {
         QVariant lang_ = localeConf_.value< QVariantMap >()[ "LANG" ];
         if ( lang_.canConvert< QString >() )
         {
             QString lang = lang_.value< QString >();
-            pyList.push_back( lang.toStdString() );
+            pyList.append( lang.toStdString() );
             if ( lang.indexOf( '.' ) > 0)
             {
                 lang.truncate( lang.indexOf( '.' ) );
-                pyList.push_back( lang.toStdString() );
+                pyList.append( lang.toStdString() );
             }
             if ( lang.indexOf( '_' ) > 0)
             {
                 lang.truncate( lang.indexOf( '_' ) );
-                pyList.push_back( lang.toStdString() );
+                pyList.append( lang.toStdString() );
             }
         }
     }
     return pyList;
 }
+
+std::string
+gettext_path()
+{
+    // TODO: distinguish between -d runs and normal runs
+    // TODO: can we detect DESTDIR-installs?
+    return std::string();
+}
+
 
 }

@@ -70,7 +70,6 @@ BOOST_PYTHON_MODULE( libcalamares )
         .def_readonly( "module_name",   &CalamaresPython::PythonJobInterface::moduleName )
         .def_readonly( "pretty_name",   &CalamaresPython::PythonJobInterface::prettyName )
         .def_readonly( "working_path",  &CalamaresPython::PythonJobInterface::workingPath )
-        .def_readonly( "gettext_path",  &CalamaresPython::PythonJobInterface::gettextPath )
         .def_readonly( "configuration", &CalamaresPython::PythonJobInterface::configuration )
         .def(
             "setprogress",
@@ -222,6 +221,12 @@ BOOST_PYTHON_MODULE( libcalamares )
         "gettext_languages", 
         &CalamaresPython::gettext_languages, 
         "Returns list of languages (most to least-specific) for gettext."
+    );
+
+    bp::def(
+        "gettext_path",
+        &CalamaresPython::gettext_path,
+        "Returns path for gettext search."
     );
 }
 

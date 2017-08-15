@@ -63,7 +63,7 @@ std::string obscure( const std::string& string );
 
 std::string gettext_path();
 
-std::list< std::string > gettext_languages();
+boost::python::list gettext_languages();
 
 void debug( const std::string& s );
 
@@ -77,7 +77,6 @@ public:
     std::string moduleName;
     std::string prettyName;
     std::string workingPath;
-    std::string gettextPath;
 
     boost::python::dict configuration;
 

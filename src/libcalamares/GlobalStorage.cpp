@@ -101,14 +101,22 @@ GlobalStorage::debugDump() const
 namespace CalamaresPython
 {
 
+Calamares::GlobalStorage* GlobalStoragePythonWrapper::s_gs_instance = nullptr;
+
 // The special handling for nullptr is only for the testing
 // script for the python bindings, which passes in None;
 // normal use will have a GlobalStorage from JobQueue::instance()
 // passed in. Testing use will leak the allocated GlobalStorage
 // object, but that's OK for testing.
 GlobalStoragePythonWrapper::GlobalStoragePythonWrapper( Calamares::GlobalStorage* gs )
-    : m_gs( gs ? gs : new Calamares::GlobalStorage )
-{}
+    : m_gs( gs ? gs : s_gs_instance )
+{
+    if (!m_gs)
+    {
+        s_gs_instance = new Calamares::GlobalStorage;
+        m_gs = s_gs_instance;
+    }
+}
 
 bool
 GlobalStoragePythonWrapper::contains( const std::string& key ) const

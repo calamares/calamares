@@ -35,7 +35,7 @@ from time import gmtime, strftime, sleep
 
 import gettext
 _ = gettext.translation("calamares-python",
-                        localedir=libcalamares.utils.gettext_path,
+                        localedir=libcalamares.utils.gettext_path(),
                         languages=libcalamares.utils.gettext_languages(),
                         fallback=True).gettext
 
@@ -46,6 +46,11 @@ def pretty_name():
 
 def run():
     """Dummy python job."""
+    libcalamares.utils.debug("LocaleDir=" +
+                             str(libcalamares.utils.gettext_path()))
+    libcalamares.utils.debug("Languages=" +
+                             str(libcalamares.utils.gettext_languages()))
+
     os.system("/bin/sh -c \"touch ~/calamares-dummypython\"")
     accumulator = strftime("%Y-%m-%d %H:%M:%S", gmtime()) + "\n"
     accumulator += "Calamares version: " + libcalamares.VERSION_SHORT + "\n"
