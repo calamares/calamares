@@ -99,7 +99,6 @@ function( install_calamares_gettext_translations )
     set( INSTALLED_TRANSLATIONS "" )
     foreach( lang ${CALAMARES_TRANSLATION_LANGUAGES} )  # Global
         set( lang_mo "${TRANSLATION_SOURCE_DIR}/${lang}/LC_MESSAGES/${TRANSLATION_FILENAME}" )
-        message(STATUS "  Examining ${lang_mo}")
         if( lang STREQUAL "en" )
             message( STATUS "  Skipping ${TRANSLATION_NAME} translations for en_US" )
         else( EXISTS ${lang_mo} )
