@@ -70,6 +70,8 @@ def main():
                         help="A yaml file to initialize GlobalStorage.")
     parser.add_argument("configuration_yaml", nargs="?",
                         help="A yaml file to initialize the Job.")
+    parser.add_argument("--lang", "-l", nargs="?", default=None,
+                        help="Set translation language.")
     args = parser.parse_args()
 
     print("Testing module in: " + args.moduledir)
@@ -85,6 +87,8 @@ def main():
     # Parameter None creates a new, empty GlobalStorage
     libcalamares.globalstorage = libcalamares.GlobalStorage(None)
     libcalamares.globalstorage.insert("testing", True)
+    if args.lang:
+        libcalamares.globalstorage.insert("localeConf", {"LANG": args.lang})
 
     # if a file for simulating globalStorage contents is provided, load it
     if args.globalstorage_yaml:
