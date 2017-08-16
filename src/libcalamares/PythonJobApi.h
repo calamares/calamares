@@ -61,7 +61,7 @@ std::string check_target_env_output( const boost::python::list& args,
 
 std::string obscure( const std::string& string );
 
-std::string gettext_path();
+boost::python::object gettext_path();
 
 boost::python::list gettext_languages();
 

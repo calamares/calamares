@@ -240,12 +240,12 @@ gettext_languages()
     return pyList;
 }
 
-std::string
+bp::object
 gettext_path()
 {
     // TODO: distinguish between -d runs and normal runs
     // TODO: can we detect DESTDIR-installs?
-    return std::string();
+    return bp::object();  // None
 }
 
 
