@@ -49,7 +49,7 @@ endmacro()
 #
 # Translations of the Python modules that don't have their own
 # lang/ subdirectories -- these are collected in top-level
-# lang/python_<lang>.po
+# lang/python/<lang>/LC_MESSAGES/python.mo
 macro(add_calamares_python_translations language)
     set( CALAMARES_LANGUAGES "" )
     list( APPEND CALAMARES_LANGUAGES ${ARGV} )
@@ -110,6 +110,12 @@ function( install_calamares_gettext_translations )
             )
             # TODO: make translations available in build dir too, for
             #       translation when running calamares -d from builddir.
+            set(_build_lc ${CMAKE_BINARY_DIR}/lang/${lang}/LC_MESSAGES/)
+            file(COPY ${lang_mo} DESTINATION ${_build_lc})
+            if (NOT TRANSLATION_NAME STREQUAL TRANSLATION_RENAME)
+                file(RENAME ${_build_lc}${TRANSLATION_NAME}.mo ${_build_lc}${TRANSLATION_RENAME})
+            endif()
+
         endif()
     endforeach()
 endfunction()
