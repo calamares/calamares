@@ -254,7 +254,7 @@ gettext_languages()
 static void
 _add_localedirs(QStringList &pathList, const QString &candidate)
 {
-    if (!candidate.isEmpty())
+    if (!candidate.isEmpty() && !pathList.contains(candidate))
     {
         pathList.prepend(candidate);
         if (QDir(candidate).cd("lang"))
