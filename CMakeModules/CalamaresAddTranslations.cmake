@@ -112,8 +112,8 @@ function( install_calamares_gettext_translations )
             #       translation when running calamares -d from builddir.
             set(_build_lc ${CMAKE_BINARY_DIR}/lang/${lang}/LC_MESSAGES/)
             file(COPY ${lang_mo} DESTINATION ${_build_lc})
-            if (NOT TRANSLATION_NAME STREQUAL TRANSLATION_RENAME)
-                file(RENAME ${_build_lc}${TRANSLATION_NAME}.mo ${_build_lc}${TRANSLATION_RENAME})
+            if (NOT TRANSLATION_FILENAME STREQUAL TRANSLATION_RENAME)
+                file(RENAME ${_build_lc}${TRANSLATION_FILENAME} ${_build_lc}${TRANSLATION_RENAME})
             endif()
 
         endif()
