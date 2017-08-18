@@ -27,7 +27,9 @@
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 
+#include <QCoreApplication>
 #include <QDir>
+#include <QStandardPaths>
 
 #undef slots
 #include <boost/python.hpp>
@@ -203,10 +205,10 @@ obscure( const std::string& string )
     return CalamaresUtils::obscure( QString::fromStdString( string ) ).toStdString();
 }
 
-bp::list
-gettext_languages()
+static QStringList
+_gettext_languages()
 {
-    bp::list pyList;
+    QStringList languages;
 
     // There are two ways that Python jobs can be initialised:
     //  - through JobQueue, in which case that has an instance which holds
@@ -224,20 +226,42 @@ gettext_languages()
         if ( lang_.canConvert< QString >() )
         {
             QString lang = lang_.value< QString >();
-            pyList.append( lang.toStdString() );
+            languages.append(lang);
             if ( lang.indexOf( '.' ) > 0)
             {
                 lang.truncate( lang.indexOf( '.' ) );
-                pyList.append( lang.toStdString() );
+                languages.append(lang);
             }
             if ( lang.indexOf( '_' ) > 0)
             {
                 lang.truncate( lang.indexOf( '_' ) );
-                pyList.append( lang.toStdString() );
+                languages.append(lang);
             }
         }
     }
+    return languages;
+}
+
+bp::list
+gettext_languages()
+{
+    bp::list pyList;
+    for (auto lang : _gettext_languages())
+        pyList.append( lang.toStdString() );
     return pyList;
+}
+
+static void
+_add_localedirs(QStringList &pathList, const QString &candidate)
+{
+    if (!candidate.isEmpty())
+    {
+        pathList.prepend(candidate);
+        if (QDir(candidate).cd("lang"))
+        {
+            pathList.prepend(candidate + "/lang");
+        }
+    }
 }
 
 bp::object
@@ -245,6 +269,21 @@ gettext_path()
 {
     // TODO: distinguish between -d runs and normal runs
     // TODO: can we detect DESTDIR-installs?
+    QStringList candidatePaths = QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, "locale", QStandardPaths::LocateDirectory);
+    QString extra = QCoreApplication::applicationDirPath();
+    _add_localedirs(candidatePaths, extra);
+    _add_localedirs(candidatePaths, QDir().canonicalPath());
+
+    cDebug() << "Standard paths" << candidatePaths;
+
+    for (auto lang : _gettext_languages())
+        for (auto localedir : candidatePaths)
+        {
+            QDir ldir(localedir);
+            cDebug() << "Checking" << lang << "in" <<ldir.canonicalPath();
+            if (ldir.cd(lang))
+                return bp::object( localedir.toStdString() );
+        }
     return bp::object();  // None
 }
 
