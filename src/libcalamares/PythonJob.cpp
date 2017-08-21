@@ -312,6 +312,7 @@ PythonJob::exec()
         bp::object entryPoint = scriptNamespace[ "run" ];
         bp::object prettyNameFunc = scriptNamespace[ "pretty_name" ];
 
+        cDebug() << "Job file" << scriptFI.absoluteFilePath();
         if ( !prettyNameFunc.is_none() )
         {
             bp::extract< std::string > prettyNameResult( prettyNameFunc() );
@@ -321,7 +322,7 @@ PythonJob::exec()
             }
             if ( !m_description.isEmpty() )
             {
-                cDebug() << "Job" << prettyName() << "-pretty_name->" << m_description;
+                cDebug() << "Job" << prettyName() << "(func) ->" << m_description;
                 emit progress( 0 );
             }
         }
@@ -336,7 +337,7 @@ PythonJob::exec()
                 auto i_newline = m_description.indexOf('\n');
                 if ( i_newline > 0 )
                     m_description.truncate( i_newline );
-                cDebug() << "Job" << prettyName() << "->" << m_description;
+                cDebug() << "Job" << prettyName() << "(doc) ->" << m_description;
                 emit progress( 0 );
             }
         }
