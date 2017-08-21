@@ -57,6 +57,12 @@ public:
 
 private:
     FinishedPage* m_widget;
+
+    /**
+     * @brief At the end of installation (when this step is activated),
+     *      send a desktop notification via DBus that the install is done.
+     */
+    void sendNotification();
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( FinishedViewStepFactory )
