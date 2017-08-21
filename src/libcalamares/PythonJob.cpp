@@ -215,6 +215,19 @@ BOOST_PYTHON_MODULE( libcalamares )
         "Applying the function to a string obscured by this function will result "
         "in the original string."
     );
+
+    
+    bp::def( 
+        "gettext_languages", 
+        &CalamaresPython::gettext_languages, 
+        "Returns list of languages (most to least-specific) for gettext."
+    );
+
+    bp::def(
+        "gettext_path",
+        &CalamaresPython::gettext_path,
+        "Returns path for gettext search."
+    );
 }
 
 
@@ -297,16 +310,36 @@ PythonJob::exec()
                                            scriptNamespace );
 
         bp::object entryPoint = scriptNamespace[ "run" ];
-        bp::extract< std::string > entryPoint_doc_attr(entryPoint.attr( "__doc__" ) );
+        bp::object prettyNameFunc = scriptNamespace[ "pretty_name" ];
 
-        if ( entryPoint_doc_attr.check() )
+        cDebug() << "Job file" << scriptFI.absoluteFilePath();
+        if ( !prettyNameFunc.is_none() )
         {
-            m_description = QString::fromStdString( entryPoint_doc_attr() ).trimmed();
-            auto i_newline = m_description.indexOf('\n');
-            if ( i_newline > 0 )
-                m_description.truncate( i_newline );
-            cDebug() << "Job" << prettyName() << "->" << m_description;
-            emit progress( 0 );
+            bp::extract< std::string > prettyNameResult( prettyNameFunc() );
+            if ( prettyNameResult.check() )
+            {
+                m_description = QString::fromStdString( prettyNameResult() ).trimmed();
+            }
+            if ( !m_description.isEmpty() )
+            {
+                cDebug() << "Job" << prettyName() << "(func) ->" << m_description;
+                emit progress( 0 );
+            }
+        }
+
+        if ( m_description.isEmpty() )
+        {
+            bp::extract< std::string > entryPoint_doc_attr(entryPoint.attr( "__doc__" ) );
+
+            if ( entryPoint_doc_attr.check() )
+            {
+                m_description = QString::fromStdString( entryPoint_doc_attr() ).trimmed();
+                auto i_newline = m_description.indexOf('\n');
+                if ( i_newline > 0 )
+                    m_description.truncate( i_newline );
+                cDebug() << "Job" << prettyName() << "(doc) ->" << m_description;
+                emit progress( 0 );
+            }
         }
 
         bp::object runResult = entryPoint();

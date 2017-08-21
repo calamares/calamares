@@ -21,6 +21,12 @@ test -f "CMakeLists.txt" || { echo "! Not at Calamares top-level" ; exit 1 ; }
 test -f ".tx/config" || { echo "! Not at Calamares top-level" ; exit 1 ; }
 test -f "calamares.desktop" || { echo "! Not at Calamares top-level" ; exit 1 ; }
 
+if test "x$1" = "x--no-tx" ; then
+  tx() {
+    echo "Skipped tx $*"
+  }
+fi
+
 ### CREATE TRANSLATIONS
 #
 # Use local tools (depending on type of source) to create translation
@@ -30,7 +36,7 @@ export QT_SELECT=5
 lupdate src/ -ts -no-obsolete lang/calamares_en.ts
 
 tx push --source --no-interactive -r calamares.calamares-master
-tx push --no-interactive -r calamares.fdo
+tx push --source --no-interactive -r calamares.fdo
 
 ### PYTHON MODULES
 #
@@ -47,6 +53,7 @@ tx push --no-interactive -r calamares.fdo
 # Ubuntu
 PYGETTEXT=pygettext3
 
+SHARED_PYTHON=""
 for MODULE_DIR in $(find src/modules -maxdepth 1 -mindepth 1 -type d) ; do
   FILES=$(find "$MODULE_DIR" -name "*.py" -a -type f)
   if test -n "$FILES" ; then
@@ -57,6 +64,14 @@ for MODULE_DIR in $(find src/modules -maxdepth 1 -mindepth 1 -type d) ; do
         tx set -r calamares.${MODULE_NAME} --source -l en ${MODULE_DIR}/lang/${MODULE_NAME}.pot
         tx push --source --no-interactive -r calamares.${MODULE_NAME}
       fi
+    else
+      SHARED_PYTHON="$SHARED_PYTHON $FILES"
     fi
   fi
 done
+
+if test -n "$SHARED_PYTHON" ; then
+  ${PYGETTEXT} -p lang -d python $SHARED_PYTHON
+  tx set -r calamares.python --source -l en lang/python.pot
+  tx push --source --no-interactive -r calamares.python
+fi

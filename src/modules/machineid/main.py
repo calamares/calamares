@@ -22,7 +22,17 @@
 
 import libcalamares
 import os
-from libcalamares.utils import check_target_env_call
+from libcalamares.utils import check_target_env_call, debug
+
+import gettext
+_ = gettext.translation("calamares-python",
+                        localedir=libcalamares.utils.gettext_path(),
+                        languages=libcalamares.utils.gettext_languages(),
+                        fallback=True).gettext
+
+
+def pretty_name():
+    return _("Generate machine-id.")
 
 
 def run():

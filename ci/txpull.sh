@@ -43,7 +43,7 @@ BOILERPLATE="Automatic merge of Transifex translations"
 git add --verbose lang/calamares*.ts
 git commit "$AUTHOR" --message="[core] $BOILERPLATE" | true
 
-git add --verbose lang/desktop*.desktop calamares.desktop
+git add --verbose calamares.desktop
 git commit "$AUTHOR" --message="[desktop] $BOILERPLATE" | true
 
 # Transifex updates the PO-Created timestamp also when nothing interesting
@@ -67,5 +67,11 @@ for MODULE_DIR in $(find src/modules -maxdepth 1 -mindepth 1 -type d) ; do
     fi
   fi
 done
+
+for POFILE in $(find lang -name "python.po") ; do
+  msgfmt -o ${POFILE%.po}.mo $POFILE
+done
+git add --verbose lang/python*
+git commit "$AUTHOR" --message="[python] $BOILERPLATE" | true
 
 # git push --set-upstream origin master

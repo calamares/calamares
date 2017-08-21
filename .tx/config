@@ -18,3 +18,9 @@ source_file = calamares.desktop
 source_lang = en
 type = DESKTOP
 
+[calamares.python]
+file_filter = lang/python/<lang>/LC_MESSAGES/python.po
+source_file = lang/python.pot
+source_lang = en
+type = PO
+

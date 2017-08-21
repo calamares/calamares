@@ -316,4 +316,4 @@ Helper::handleLastError()
 }
 
 
-} // namespace Calamares
+} // namespace CalamaresPython

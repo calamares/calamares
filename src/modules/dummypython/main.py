@@ -5,6 +5,7 @@
 #
 #   Copyright 2014, Teo Mrnjavac <teo@kde.org>
 #   Copyright 2017, Alf Gaida <agaida@siduction.org>
+#   Copyright 2017, Adriaan de Groot <groot@kde.org>
 #
 #   Calamares is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -32,9 +33,24 @@ import libcalamares
 import os
 from time import gmtime, strftime, sleep
 
+import gettext
+_ = gettext.translation("calamares-python",
+                        localedir=libcalamares.utils.gettext_path(),
+                        languages=libcalamares.utils.gettext_languages(),
+                        fallback=True).gettext
+
+
+def pretty_name():
+    return _("Dummy python job.")
+
 
 def run():
     """Dummy python job."""
+    libcalamares.utils.debug("LocaleDir=" +
+                             str(libcalamares.utils.gettext_path()))
+    libcalamares.utils.debug("Languages=" +
+                             str(libcalamares.utils.gettext_languages()))
+
     os.system("/bin/sh -c \"touch ~/calamares-dummypython\"")
     accumulator = strftime("%Y-%m-%d %H:%M:%S", gmtime()) + "\n"
     accumulator += "Calamares version: " + libcalamares.VERSION_SHORT + "\n"
@@ -65,11 +81,26 @@ def run():
         str(libcalamares.globalstorage.value("foo")),
         str(libcalamares.globalstorage.value("item2")),
         str(libcalamares.globalstorage.value("item3")))
-
-    libcalamares.job.setprogress(0.1)
     libcalamares.utils.debug(accumulator)
 
+    libcalamares.utils.debug("Run dummy python")
+
+    sleep(1)
+
+    try:
+        configlist = list(libcalamares.job.configuration["a_list"])
+    except KeyError:
+        configlist = ["no list"]
+
+    c = 1
+    for k in configlist:
+        libcalamares.utils.debug(_("Dummy python step {}").format(str(k)))
+        sleep(1)
+        libcalamares.job.setprogress(c * 1.0 / len(configlist))
+        c += 1
+
     sleep(3)
+
     # To indicate an error, return a tuple of:
     # (message, detailed-error-message)
     return None
