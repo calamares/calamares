@@ -271,8 +271,16 @@ gettext_path()
     // TODO: can we detect DESTDIR-installs?
     QStringList candidatePaths = QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, "locale", QStandardPaths::LocateDirectory);
     QString extra = QCoreApplication::applicationDirPath();
-    _add_localedirs(candidatePaths, extra);
-    _add_localedirs(candidatePaths, QDir().canonicalPath());
+    _add_localedirs(candidatePaths, extra);  // Often /usr/local/bin
+    if ( !extra.isEmpty() )
+    {
+        QDir d(extra);
+        if (d.cd("../share/locale"))  // Often /usr/local/bin/../share/locale -> /usr/local/share/locale
+        {
+            _add_localedirs(candidatePaths, d.canonicalPath());
+        }
+    }
+    _add_localedirs(candidatePaths, QDir().canonicalPath());  // .
 
     cDebug() << "Standard paths" << candidatePaths;
 
