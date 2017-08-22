@@ -188,32 +188,32 @@ Salida:
 <context>
     <name>Calamares::PythonJob</name>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="252"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="265"/>
         <source>Running %1 operation.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="267"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="280"/>
         <source>Bad working directory path</source>
         <translation>La ruta del directorio de trabajo es incorrecta</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="268"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="281"/>
         <source>Working directory %1 for python job %2 is not readable.</source>
         <translation>El directorio de trabajo %1 para el script de python %2 no se puede leer.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="278"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="291"/>
         <source>Bad main script file</source>
         <translation>Script principal erróneo</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="279"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="292"/>
         <source>Main script file %1 for python job %2 is not readable.</source>
         <translation>El script principal %1 del proceso python %2 no es accesible.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="335"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="368"/>
         <source>Boost.Python error in job &quot;%1&quot;.</source>
         <translation>Error Boost.Python en el proceso &quot;%1&quot;.</translation>
     </message>
@@ -1037,8 +1037,18 @@ The installer will quit and all changes will be lost.</source>
 <context>
     <name>FinishedViewStep</name>
     <message>
-        <location filename="../src/modules/finished/FinishedViewStep.cpp" line="51"/>
+        <location filename="../src/modules/finished/FinishedViewStep.cpp" line="56"/>
         <source>Finish</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/finished/FinishedViewStep.cpp" line="117"/>
+        <source>Installation Complete</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/finished/FinishedViewStep.cpp" line="118"/>
+        <source>The installation of %1 is complete.</source>
         <translation type="unfinished"/>
     </message>
 </context>

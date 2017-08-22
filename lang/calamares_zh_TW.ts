@@ -188,32 +188,32 @@ Output:
 <context>
     <name>Calamares::PythonJob</name>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="252"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="265"/>
         <source>Running %1 operation.</source>
         <translation>正在執行 %1 操作。</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="267"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="280"/>
         <source>Bad working directory path</source>
         <translation>不良的工作目錄路徑</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="268"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="281"/>
         <source>Working directory %1 for python job %2 is not readable.</source>
         <translation>Python 行程 %2 作用中的目錄 %1 不具讀取權限。</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="278"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="291"/>
         <source>Bad main script file</source>
         <translation>錯誤的主要腳本檔</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="279"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="292"/>
         <source>Main script file %1 for python job %2 is not readable.</source>
         <translation>Python 行程 %2 的主要腳本檔 %1 無法讀取。</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="335"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="368"/>
         <source>Boost.Python error in job &quot;%1&quot;.</source>
         <translation>行程 %1 中 Boost.Python 錯誤。</translation>
     </message>
@@ -1038,9 +1038,19 @@ The installer will quit and all changes will be lost.</source>
 <context>
     <name>FinishedViewStep</name>
     <message>
-        <location filename="../src/modules/finished/FinishedViewStep.cpp" line="51"/>
+        <location filename="../src/modules/finished/FinishedViewStep.cpp" line="56"/>
         <source>Finish</source>
         <translation>完成</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/finished/FinishedViewStep.cpp" line="117"/>
+        <source>Installation Complete</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/finished/FinishedViewStep.cpp" line="118"/>
+        <source>The installation of %1 is complete.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

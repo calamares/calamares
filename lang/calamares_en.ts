@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="en">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="en" version="2.1">
 <context>
     <name>BootInfoWidget</name>
     <message>
@@ -1047,12 +1045,12 @@ The installer will quit and all changes will be lost.</translation>
     <message>
         <location filename="../src/modules/finished/FinishedViewStep.cpp" line="117"/>
         <source>Installation Complete</source>
-        <translation type="unfinished"></translation>
+        <translation>Installation Complete</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedViewStep.cpp" line="118"/>
         <source>The installation of %1 is complete.</source>
-        <translation type="unfinished"></translation>
+        <translation>The installation of %1 is complete.</translation>
     </message>
 </context>
 <context>

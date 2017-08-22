@@ -188,32 +188,32 @@ Izpis:
 <context>
     <name>Calamares::PythonJob</name>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="252"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="265"/>
         <source>Running %1 operation.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="267"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="280"/>
         <source>Bad working directory path</source>
         <translation>Nepravilna pot delovne mape</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="268"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="281"/>
         <source>Working directory %1 for python job %2 is not readable.</source>
         <translation>Ni mogoče brati delovne mape %1 za pythonovo opravilo %2.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="278"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="291"/>
         <source>Bad main script file</source>
         <translation>Nepravilna datoteka glavnega skripta</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="279"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="292"/>
         <source>Main script file %1 for python job %2 is not readable.</source>
         <translation>Ni mogoče brati datoteke %1 glavnega skripta za pythonovo opravilo %2.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="335"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="368"/>
         <source>Boost.Python error in job &quot;%1&quot;.</source>
         <translation>Napaka Boost.Python v opravilu &quot;%1&quot;.</translation>
     </message>
@@ -1038,8 +1038,18 @@ Namestilni program se bo končal in vse spremembe bodo izgubljene.</translation>
 <context>
     <name>FinishedViewStep</name>
     <message>
-        <location filename="../src/modules/finished/FinishedViewStep.cpp" line="51"/>
+        <location filename="../src/modules/finished/FinishedViewStep.cpp" line="56"/>
         <source>Finish</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/finished/FinishedViewStep.cpp" line="117"/>
+        <source>Installation Complete</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/finished/FinishedViewStep.cpp" line="118"/>
+        <source>The installation of %1 is complete.</source>
         <translation type="unfinished"/>
     </message>
 </context>

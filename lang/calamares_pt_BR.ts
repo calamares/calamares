@@ -188,32 +188,32 @@ Saída:
 <context>
     <name>Calamares::PythonJob</name>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="252"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="265"/>
         <source>Running %1 operation.</source>
         <translation>Executando operação %1.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="267"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="280"/>
         <source>Bad working directory path</source>
         <translation>Caminho de diretório de trabalho ruim</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="268"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="281"/>
         <source>Working directory %1 for python job %2 is not readable.</source>
         <translation>Diretório de trabalho %1 para a tarefa do python %2 não é legível.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="278"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="291"/>
         <source>Bad main script file</source>
         <translation>Arquivo de script principal ruim</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="279"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="292"/>
         <source>Main script file %1 for python job %2 is not readable.</source>
         <translation>Arquivo de script principal %1 para a tarefa do python %2 não é legível.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="335"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="368"/>
         <source>Boost.Python error in job &quot;%1&quot;.</source>
         <translation>Boost.Python erro na tarefa &quot;%1&quot;.</translation>
     </message>
@@ -292,7 +292,7 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="276"/>
         <source>&amp;Done</source>
-        <translation>&amp;Completo</translation>
+        <translation>Completo</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="277"/>
@@ -1040,9 +1040,19 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
 <context>
     <name>FinishedViewStep</name>
     <message>
-        <location filename="../src/modules/finished/FinishedViewStep.cpp" line="51"/>
+        <location filename="../src/modules/finished/FinishedViewStep.cpp" line="56"/>
         <source>Finish</source>
         <translation>Concluir</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/finished/FinishedViewStep.cpp" line="117"/>
+        <source>Installation Complete</source>
+        <translation>Instalação Completa</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/finished/FinishedViewStep.cpp" line="118"/>
+        <source>The installation of %1 is complete.</source>
+        <translation>A instalação do %1 está completa.</translation>
     </message>
 </context>
 <context>
