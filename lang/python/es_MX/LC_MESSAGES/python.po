@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2017-08-09 06:34-0400\n"
+"POT-Creation-Date: 2017-08-21 17:55-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Language-Team: Spanish (Mexico) (https://www.transifex.com/calamares/teams/20061/es_MX/)\n"
 "MIME-Version: 1.0\n"
@@ -15,18 +15,14 @@ msgstr ""
 "Language: es_MX\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/modules/dummypython/main.py:39
+#: src/modules/dummypython/main.py:44
 msgid "Dummy python job."
 msgstr ""
 
-#: src/modules/dummypython/main.py:77
+#: src/modules/dummypython/main.py:97
 msgid "Dummy python step {}"
 msgstr ""
 
-#: src/modules/machineid/main.py:30
+#: src/modules/machineid/main.py:35
 msgid "Generate machine-id."
-msgstr ""
-
-#: src/modules/machineid/main.py:60
-msgid "Done machineid"
 msgstr ""
