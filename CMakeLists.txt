@@ -185,6 +185,50 @@ set( CALAMARES_LIBRARIES calamares )
 
 set( THIRDPARTY_DIR "${CMAKE_SOURCE_DIR}/thirdparty" )
 
+### Example Distro
+#
+# For testing purposes Calamares includes a very, very, limited sample
+# distro called "Generic". The root filesystem of "Generic" lives in
+# data/example-root and can be squashed up as part of the build, so
+# that a pure-upstream run of ./calamares -d from the build directory
+# (with all the default settings and configurations) can actually
+# do an complete example run.
+#
+# Some binaries from the build host (e.g. /bin and /lib) are also
+# squashed into the example filesystem.
+#
+# To build the example distro (for use by the default, example,
+# unsquashfs module), build the target 'example-distro', eg.:
+#
+#   make example-distro
+#
+find_program( mksquashfs_PROGRAM mksquashfs )
+macro_log_feature( mksquashfs_PROGRAM "mksquashfs" "Create example distro" "http://tldp.org/HOWTO/SquashFS-HOWTO/creatingandusing.html")
+if( mksquashfs_PROGRAM )
+    set( src_fs ${CMAKE_SOURCE_DIR}/data/example-root/ )
+    set( dst_fs ${CMAKE_BINARY_DIR}/example.sqfs )
+    if( EXISTS ${src_fs} )
+        # Collect directories needed for a minimal binary distro,
+        # based on the build host. If /lib64 exists, assume it is needed.
+        # Note that the last path component is added to the root, so
+        # if you add /usr/sbin here, it will be put into /sbin_1.
+        # Add such paths to /etc/profile under ${src_fs}.
+        set( candidate_fs /sbin /bin /lib /lib64 )
+        set( host_fs "" )
+        foreach( c_fs ${candidate_fs} )
+            if( EXISTS ${c_fs} )
+                list( APPEND host_fs ${c_fs} )
+            endif()
+        endforeach()
+        add_custom_command(
+            OUTPUT ${dst_fs}
+            COMMAND ${mksquashfs_PROGRAM} ${src_fs} ${dst_fs} -all-root
+            COMMAND ${mksquashfs_PROGRAM} ${host_fs} ${dst_fs} -all-root
+        )
+        add_custom_target(example-distro DEPENDS ${dst_fs})
+    endif()
+endif()
+
 add_subdirectory( thirdparty )
 add_subdirectory( src )
 
