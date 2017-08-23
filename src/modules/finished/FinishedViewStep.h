@@ -55,6 +55,9 @@ public:
 
     void setConfigurationMap( const QVariantMap& configurationMap ) override;
 
+public slots:
+    void onInstallationFailed( const QString& message, const QString& details );
+
 private:
     FinishedPage* m_widget;
 
@@ -63,6 +66,8 @@ private:
      *      send a desktop notification via DBus that the install is done.
      */
     void sendNotification();
+
+    bool installFailed;
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( FinishedViewStepFactory )
