@@ -195,8 +195,14 @@ System::targetEnvOutput( const QStringList& args,
         return -1;
     }
 
-    cLog() << "Finished. Exit code:" << process.exitCode();
-    return process.exitCode();
+    auto r = process.exitCode();
+    cLog() << "Finished. Exit code:" << r;
+    if ( r != 0 )
+    {
+        cLog() << "Target cmd" << args;
+        cLog() << "Target out" << output;
+    }
+    return r;
 }
 
 
