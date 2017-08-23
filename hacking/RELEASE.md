@@ -24,6 +24,9 @@ The Calamares release process
 [transifex]: https://www.transifex.com/calamares/calamares/dashboard/
 
 #### (1) Preparation
+
+* Bump version in `CMakeLists.txt`, *CALAMARES_VERSION* variables, and set
+  RC to a non-zero value (e.g. doing -rc1, -rc2, ...). Push that.
 * Check `README.md` and everything in `hacking`, make sure it's all still
   relevant. Run `hacking/calamaresstyle` to check the C++ code style.
   Python code is checked as part of the Travis CI builds.
@@ -38,8 +41,6 @@ The Calamares release process
 * Update the list of enabled translation languages in `CMakeLists.txt`.
   Check the [translation site][transifex] for the list of languages with
   fairly complete translations.
-* Bump version in `CMakeLists.txt`, *CALAMARES_VERSION* variables, and set
-  RC to a non-zero value (e.g. doing -rc1, -rc2, ...). Push that.
 
 #### (2) Tarball
 * Create tarball: `git-archive-all -v calamares-1.1-rc1.tar.gz` . Double check
@@ -47,6 +48,7 @@ The Calamares release process
 * Test tarball.
 
 #### (3) Tag
+* Set RC to zero in `CMakeLists.txt` if this is the actual release.
 * `git tag -s v1.1.0` Make sure the signing key is known in GitHub, so that the
   tag is shown as a verified tag. Do not sign -rc tags.
 * Generate MD5 and SHA256 checksums.
@@ -59,5 +61,5 @@ The Calamares release process
 * Update download page.
 * Publish release article on `calamares.io`.
 * Publicize on social networks.
-* Update release date on JIRA.
+* Close associated milestone on GitHub if this is the actual release.
 * Publish blog post.
