@@ -310,7 +310,7 @@ PythonJob::exec()
                                            scriptNamespace );
 
         bp::object entryPoint = scriptNamespace[ "run" ];
-        bp::object prettyNameFunc = scriptNamespace[ "pretty_name" ];
+        bp::object prettyNameFunc = bp::getattr(scriptNamespace, "pretty_name", bp::object());
 
         cDebug() << "Job file" << scriptFI.absoluteFilePath();
         if ( !prettyNameFunc.is_none() )
