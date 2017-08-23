@@ -15,10 +15,10 @@ welcomeExpandingLogo:   true
 strings:
     productName:         Generic GNU/Linux
     shortProductName:    Generic
-    version:             1.0 LTS
-    shortVersion:        1.0
-    versionedName:       Generic GNU/Linux 1.0 LTS "Rusty Trombone"
-    shortVersionedName:  Generic 1.0
+    version:             2017.8 LTS
+    shortVersion:        2017.8
+    versionedName:       Generic GNU/Linux 2017.8 LTS "Soapy Sousaphone"
+    shortVersionedName:  Generic 2017.8
     bootloaderEntryName: Generic
     productUrl:          http://calamares.io/
     supportUrl:          http://calamares.io/bugs/
