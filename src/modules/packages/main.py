@@ -21,112 +21,205 @@
 #   You should have received a copy of the GNU General Public License
 #   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
 
+import abc
+from string import Template
 import subprocess
+
 import libcalamares
 from libcalamares.utils import check_target_env_call, target_env_call
-from string import Template
 
 
-class PackageManager:
+class PackageManager(metaclass=abc.ABCMeta):
     """
-    Package manager class.
+    Package manager base class. A subclass implements package management
+    for a specific backend, and must have a class property `backend`
+    with the string identifier for that backend.
 
-    :param backend:
+    Subclasses are collected below to populate the list of possible
+    backends.
     """
-    def __init__(self, backend):
-        self.backend = backend
+    backend = None
 
+    @abc.abstractmethod
     def install(self, pkgs, from_local=False):
-        """ Installs packages.
+        pass
 
-        :param pkgs:
-        :param from_local:
-        """
-        if self.backend == "packagekit":
-            for pkg in pkgs:
-                check_target_env_call(["pkcon", "-py", "install", pkg])
-        elif self.backend == "zypp":
-            check_target_env_call(["zypper", "--non-interactive",
-                                   "--quiet-install", "install",
-                                   "--auto-agree-with-licenses",
-                                   "install"] + pkgs)
-        elif self.backend == "yum":
-            check_target_env_call(["yum", "install", "-y"] + pkgs)
-        elif self.backend == "dnf":
-            check_target_env_call(["dnf", "install", "-y"] + pkgs)
-        elif self.backend == "urpmi":
-            check_target_env_call(["urpmi", "--download-all", "--no-suggests",
-                                   "--no-verify-rpm", "--fastunsafe",
-                                   "--ignoresize", "--nolock",
-                                   "--auto"] + pkgs)
-        elif self.backend == "apt":
-            check_target_env_call(["apt-get", "-q", "-y", "install"] + pkgs)
-        elif self.backend == "pacman":
-            if from_local:
-                pacman_flags = "-U"
-            else:
-                pacman_flags = "-Sy"
-
-            check_target_env_call(["pacman", pacman_flags,
-                                   "--noconfirm"] + pkgs)
-        elif self.backend == "portage":
-            check_target_env_call(["emerge", "-v"] + pkgs)
-        elif self.backend == "entropy":
-            check_target_env_call(["equo", "i"] + pkgs)
-
+    @abc.abstractmethod
     def remove(self, pkgs):
         """ Removes packages.
 
         :param pkgs:
         """
-        if self.backend == "packagekit":
-            for pkg in pkgs:
-                check_target_env_call(["pkcon", "-py", "remove", pkg])
-        elif self.backend == "zypp":
-            check_target_env_call(["zypper", "--non-interactive",
-                                   "remove"] + pkgs)
-        elif self.backend == "yum":
-            check_target_env_call(["yum", "--disablerepo=*", "-C", "-y",
-                                   "remove"] + pkgs)
-        elif self.backend == "dnf":
-            # ignore the error code for now because dnf thinks removing a
-            # nonexistent package is an error
-            target_env_call(["dnf", "--disablerepo=*", "-C", "-y",
-                             "remove"] + pkgs)
-        elif self.backend == "urpmi":
-            check_target_env_call(["urpme", "--auto"] + pkgs)
-        elif self.backend == "apt":
-            check_target_env_call(["apt-get", "--purge", "-q", "-y",
-                                   "remove"] + pkgs)
-            check_target_env_call(["apt-get", "--purge", "-q", "-y",
-                                   "autoremove"])
-        elif self.backend == "pacman":
-            check_target_env_call(["pacman", "-Rs", "--noconfirm"] + pkgs)
-        elif self.backend == "portage":
-            check_target_env_call(["emerge", "-C"] + pkgs)
-            check_target_env_call(["emerge", "--depclean", "-q"])
-        elif self.backend == "entropy":
-            check_target_env_call(["equo", "rm"] + pkgs)
+        pass
 
+    @abc.abstractmethod
     def update_db(self):
-        if self.backend == "packagekit":
-            check_target_env_call(["pkcon", "refresh"])
-        elif self.backend == "zypp":
-            check_target_env_call(["zypper", "--non-interactive", "update"])
-        elif self.backend == "urpmi":
-            check_target_env_call(["urpmi.update", "-a"])
-        elif self.backend == "apt":
-            check_target_env_call(["apt-get", "update"])
-        elif self.backend == "pacman":
-            check_target_env_call(["pacman", "-Sy"])
-        elif self.backend == "portage":
-            check_target_env_call(["emerge", "--sync"])
-        elif self.backend == "entropy":
-            check_target_env_call(["equo", "update"])
+        pass
 
     def run(self, script):
         if script != "":
             check_target_env_call(script.split(" "))
+
+
+class PMPackageKit(PackageManager):
+    backend = "packagekit"
+
+    def install(self, pkgs, from_local=False):
+        for pkg in pkgs:
+            check_target_env_call(["pkcon", "-py", "install", pkg])
+
+    def remove(self, pkgs):
+        for pkg in pkgs:
+            check_target_env_call(["pkcon", "-py", "remove", pkg])
+
+    def update_db(self):
+        check_target_env_call(["pkcon", "refresh"])
+
+
+class PMZypp(PackageManager):
+    backend = "zypp"
+
+    def install(self, pkgs, from_local=False):
+        check_target_env_call(["zypper", "--non-interactive",
+                                "--quiet-install", "install",
+                                "--auto-agree-with-licenses",
+                                "install"] + pkgs)
+
+    def remove(self, pkgs):
+        check_target_env_call(["zypper", "--non-interactive",
+                                "remove"] + pkgs)
+
+    def update_db(self):
+        check_target_env_call(["zypper", "--non-interactive", "update"])
+
+
+class PMYum(PackageManager):
+    backend = "yum"
+
+    def install(self, pkgs, from_local=False):
+        check_target_env_call(["yum", "install", "-y"] + pkgs)
+
+    def remove(self, pkgs):
+        check_target_env_call(["yum", "--disablerepo=*", "-C", "-y",
+                                "remove"] + pkgs)
+
+    def update_db(self):
+        # Doesn't need updates
+        pass
+
+
+class PMDnf(PackageManager):
+    backend = "dnf"
+
+    def install(self, pkgs, from_local=False):
+        check_target_env_call(["dnf", "install", "-y"] + pkgs)
+
+    def remove(self, pkgs):
+        # ignore the error code for now because dnf thinks removing a
+        # nonexistent package is an error
+        target_env_call(["dnf", "--disablerepo=*", "-C", "-y",
+                            "remove"] + pkgs)
+
+    def update_db(self):
+        # Doesn't need to update explicitly
+        pass
+
+
+class PMUrpmi(PackageManager):
+    backend = "urpmi";
+
+    def install(self, pkgs, from_local=False):
+        check_target_env_call(["urpmi", "--download-all", "--no-suggests",
+                                "--no-verify-rpm", "--fastunsafe",
+                                "--ignoresize", "--nolock",
+                                "--auto"] + pkgs)
+
+    def remove(self, pkgs):
+        check_target_env_call(["urpme", "--auto"] + pkgs)
+
+    def update_db(self):
+        check_target_env_call(["urpmi.update", "-a"])
+
+
+class PMApt(PackageManager):
+    backend = "apt"
+
+    def install(self, pkgs, from_local=False):
+        check_target_env_call(["apt-get", "-q", "-y", "install"] + pkgs)
+
+    def remove(self, pkgs):
+        check_target_env_call(["apt-get", "--purge", "-q", "-y",
+                                "remove"] + pkgs)
+        check_target_env_call(["apt-get", "--purge", "-q", "-y",
+                                "autoremove"])
+
+    def update_db(self):
+        check_target_env_call(["apt-get", "update"])
+
+
+class PMPacman(PackageManager):
+    backend = "pacman"
+
+    def install(self, pkgs, from_local=False):
+        if from_local:
+            pacman_flags = "-U"
+        else:
+            pacman_flags = "-Sy"
+
+        check_target_env_call(["pacman", pacman_flags,
+                                "--noconfirm"] + pkgs)
+
+    def remove(self, pkgs):
+        check_target_env_call(["pacman", "-Rs", "--noconfirm"] + pkgs)
+
+    def update_db(self):
+        check_target_env_call(["pacman", "-Sy"])
+
+
+class PMPortage(PackageManager):
+    backend = "portage"
+
+    def install(self, pkgs, from_local=False):
+        check_target_env_call(["emerge", "-v"] + pkgs)
+
+    def remove(self, pkgs):
+        check_target_env_call(["emerge", "-C"] + pkgs)
+        check_target_env_call(["emerge", "--depclean", "-q"])
+
+    def update_db(self):
+        check_target_env_call(["emerge", "--sync"])
+
+
+class PMEntropy(PackageManager):
+    backend = "entropy"
+
+    def install(self, pkgs, from_local=False):
+        check_target_env_call(["equo", "i"] + pkgs)
+
+    def remove(self, pkgs):
+        check_target_env_call(["equo", "rm"] + pkgs)
+
+    def update_db(self):
+        check_target_env_call(["equo", "update"])
+
+
+class PMDummy(PackageManager):
+    backend = "dummy"
+
+    def install(self, pkgs, from_local=False):
+        libcalamares.utils.debug("Installing " + str(pkgs))
+
+    def remove(self, pkgs):
+        libcalamares.utils.debug("Removing " + str(pkgs))
+
+    def update_db(self):
+        libcalamares.utils.debug("Updating DB")
+
+
+backend_managers = [
+    (c.backend, c)
+    for c in globals().values()
+    if type(c) is abc.ABCMeta and issubclass(c, PackageManager) and c.backend ]
 
 
 def subst_locale(list):
@@ -204,11 +297,13 @@ def run():
     """
     backend = libcalamares.job.configuration.get("backend")
 
-    if backend not in ("packagekit", "zypp", "yum", "dnf", "urpmi", "apt",
-                       "pacman", "portage", "entropy"):
+    for identifier, impl in backend_managers:
+        if identifier == backend:
+            pkgman = impl()
+            break
+    else:
         return "Bad backend", "backend=\"{}\"".format(backend)
 
-    pkgman = PackageManager(backend)
     operations = libcalamares.job.configuration.get("operations", [])
 
     update_db = libcalamares.job.configuration.get("update_db", False)
