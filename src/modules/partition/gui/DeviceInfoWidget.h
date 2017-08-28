@@ -34,9 +34,13 @@ public:
 
     void setPartitionTableType( PartitionTable::TableType type );
 
+public slots:
+    void retranslateUi();
+
 private:
     QLabel* m_ptIcon;
     QLabel* m_ptLabel;
+    PartitionTable::TableType m_tableType;
 };
 
 #endif // DEVICEINFOWIDGET_H

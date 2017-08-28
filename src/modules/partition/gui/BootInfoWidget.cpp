@@ -21,6 +21,7 @@
 #include "core/PartUtils.h"
 
 #include "utils/CalamaresUtilsGui.h"
+#include "utils/Retranslator.h"
 
 #include <QDir>
 #include <QLabel>
@@ -59,6 +60,12 @@ BootInfoWidget::BootInfoWidget( QWidget* parent )
     m_bootIcon->setPalette( palette );
     m_bootLabel->setPalette( palette );
 
+    CALAMARES_RETRANSLATE( retranslateUi(); )
+}
+
+void
+BootInfoWidget::retranslateUi()
+{
     m_bootIcon->setToolTip( tr( "The <strong>boot environment</strong> of this system.<br><br>"
                                 "Older x86 systems only support <strong>BIOS</strong>.<br>"
                                 "Modern systems usually use <strong>EFI</strong>, but "

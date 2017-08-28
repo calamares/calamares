@@ -19,9 +19,11 @@
 
 #include "DeviceInfoWidget.h"
 
-#include <utils/CalamaresUtilsGui.h>
-#include <JobQueue.h>
-#include <GlobalStorage.h>
+#include "utils/CalamaresUtilsGui.h"
+#include "utils/Logger.h"
+#include "utils/Retranslator.h"
+#include "JobQueue.h"
+#include "GlobalStorage.h"
 
 #include <QDir>
 #include <QLabel>
@@ -44,9 +46,10 @@ DeviceInfoWidget::DeviceInfoWidget( QWidget* parent )
 
     m_ptIcon->setMargin( 0 );
     m_ptIcon->setFixedSize( iconSize );
-    m_ptIcon->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::PartitionTable,
-                                                        CalamaresUtils::Original,
-                                                        iconSize ) );
+    m_ptIcon->setPixmap(
+        CalamaresUtils::defaultPixmap( CalamaresUtils::PartitionTable,
+                                       CalamaresUtils::Original,
+                                       iconSize ) );
 
     QFontMetrics fm = QFontMetrics( QFont() );
     m_ptLabel->setMinimumWidth( fm.boundingRect( "Amiga" ).width() + CalamaresUtils::defaultFontHeight() / 2 );
@@ -60,28 +63,24 @@ DeviceInfoWidget::DeviceInfoWidget( QWidget* parent )
     m_ptIcon->setPalette( palette );
     m_ptLabel->setPalette( palette );
 
-    m_ptIcon->setToolTip( tr( "The type of <strong>partition table</strong> on the "
-                              "selected storage device.<br><br>"
-                              "The only way to change the partition table type is to "
-                              "erase and recreate the partition table from scratch, "
-                              "which destroys all data on the storage device.<br>"
-                              "This installer will keep the current partition table "
-                              "unless you explicitly choose otherwise.<br>"
-                              "If unsure, on modern systems GPT is preferred." ) );
-
-    bool isEfi = false;
-    if ( QDir( "/sys/firmware/efi/efivars" ).exists() )
-        isEfi = true;
+    CALAMARES_RETRANSLATE( retranslateUi(); )
 }
 
 
 void
 DeviceInfoWidget::setPartitionTableType( PartitionTable::TableType type )
 {
-    QString typeString = PartitionTable::tableTypeToName( type ).toUpper();
+    m_tableType = type;
+    retranslateUi();
+}
+
+void
+DeviceInfoWidget::retranslateUi()
+{
+    QString typeString = PartitionTable::tableTypeToName( m_tableType ).toUpper();
 
     // fix up if the name shouldn't be uppercase:
-    switch ( type )
+    switch ( m_tableType )
     {
     case PartitionTable::msdos:
     case PartitionTable::msdos_sectorbased:
@@ -108,7 +107,7 @@ DeviceInfoWidget::setPartitionTableType( PartitionTable::TableType type )
                                 "table." )
                             .arg( typeString );
 
-    switch ( type )
+    switch ( m_tableType )
     {
     case PartitionTable::loop:
         toolTipString = tr( "This is a <strong>loop</strong> "
@@ -146,5 +145,13 @@ DeviceInfoWidget::setPartitionTableType( PartitionTable::TableType type )
 
     m_ptLabel->setText( typeString );
     m_ptLabel->setToolTip( toolTipString );
-}
 
+    m_ptIcon->setToolTip( tr( "The type of <strong>partition table</strong> on the "
+                            "selected storage device.<br><br>"
+                            "The only way to change the partition table type is to "
+                            "erase and recreate the partition table from scratch, "
+                            "which destroys all data on the storage device.<br>"
+                            "This installer will keep the current partition table "
+                            "unless you explicitly choose otherwise.<br>"
+                            "If unsure, on modern systems GPT is preferred." ) );
+}
