@@ -25,6 +25,7 @@
 #include "core/PartitionCoreModule.h"
 #include "core/PartitionInfo.h"
 #include "core/PartitionModel.h"
+#include "core/PartUtils.h"
 #include "core/KPMHelpers.h"
 #include "gui/CreatePartitionDialog.h"
 #include "gui/EditExistingPartitionDialog.h"
@@ -59,7 +60,7 @@ PartitionPage::PartitionPage( PartitionCoreModule* core, QWidget* parent )
     , m_core( core )
     , m_isEfi( false )
 {
-    m_isEfi = QDir( "/sys/firmware/efi/efivars" ).exists();
+    m_isEfi = PartUtils::isEfiSystem();
 
     m_ui->setupUi( this );
     m_ui->partitionLabelsView->setVisible(

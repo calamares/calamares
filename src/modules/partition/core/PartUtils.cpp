@@ -151,7 +151,7 @@ canBeResized( PartitionCoreModule* core, const QString& partitionPath )
 }
 
 
-FstabEntryList
+static FstabEntryList
 lookForFstabEntries( const QString& partitionPath )
 {
     FstabEntryList fstabEntries;
@@ -195,7 +195,7 @@ lookForFstabEntries( const QString& partitionPath )
 }
 
 
-QString
+static QString
 findPartitionPathForMountPoint( const FstabEntryList& fstab,
                                 const QString& mountPoint )
 {
@@ -326,6 +326,12 @@ runOsprober( PartitionCoreModule* core )
     Calamares::JobQueue::instance()->globalStorage()->insert( "osproberLines", osproberCleanLines );
 
     return osproberEntries;
+}
+
+bool
+isEfiSystem()
+{
+    return QDir( "/sys/firmware/efi/efivars" ).exists();
 }
 
 }  // nmamespace PartUtils

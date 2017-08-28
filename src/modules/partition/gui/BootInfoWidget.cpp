@@ -18,8 +18,9 @@
 
 
 #include "BootInfoWidget.h"
+#include "core/PartUtils.h"
 
-#include <utils/CalamaresUtilsGui.h>
+#include "utils/CalamaresUtilsGui.h"
 
 #include <QDir>
 #include <QLabel>
@@ -64,12 +65,8 @@ BootInfoWidget::BootInfoWidget( QWidget* parent )
                                 "may also show up as BIOS if started in compatibility "
                                 "mode." ) );
 
-    bool isEfi = false;
-    if ( QDir( "/sys/firmware/efi/efivars" ).exists() )
-        isEfi = true;
-
     QString bootToolTip;
-    if ( isEfi )
+    if ( PartUtils::isEfiSystem() )
     {
         m_bootLabel->setText( "EFI " );
         bootToolTip = tr( "This system was started with an <strong>EFI</strong> "

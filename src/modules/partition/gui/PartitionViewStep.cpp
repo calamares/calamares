@@ -386,7 +386,7 @@ PartitionViewStep::onLeave()
 
     if ( m_widget->currentWidget() == m_manualPartitionPage )
     {
-        if ( QDir( "/sys/firmware/efi/efivars" ).exists() )
+        if ( PartUtils::isEfiSystem() )
         {
             QString espMountPoint = Calamares::JobQueue::instance()->globalStorage()->
                                         value( "efiSystemPartition").toString();

@@ -167,7 +167,7 @@ PartitionCoreModule::doInit()
 
     //FIXME: this should be removed in favor of
     //       proper KPM support for EFI
-    if ( QDir( "/sys/firmware/efi/efivars" ).exists() )
+    if ( PartUtils::isEfiSystem() )
         scanForEfiSystemPartitions();
 }
 
@@ -461,7 +461,7 @@ PartitionCoreModule::refresh()
 
     //FIXME: this should be removed in favor of
     //       proper KPM support for EFI
-    if ( QDir( "/sys/firmware/efi/efivars" ).exists() )
+    if ( PartUtils::isEfiSystem() )
         scanForEfiSystemPartitions();
 }
 

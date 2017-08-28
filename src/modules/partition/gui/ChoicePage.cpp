@@ -146,7 +146,7 @@ void
 ChoicePage::init( PartitionCoreModule* core )
 {
     m_core = core;
-    m_isEfi = QDir( "/sys/firmware/efi/efivars" ).exists();
+    m_isEfi = PartUtils::isEfiSystem();
 
     setupChoices();
 
@@ -680,7 +680,7 @@ ChoicePage::doReplaceSelectedPartition( const QModelIndex& current )
             m_core->revertDevice( selectedDevice() );
         }
 
-        // if the partition is unallocated(free space), we don't replace it but create new one 
+        // if the partition is unallocated(free space), we don't replace it but create new one
         // with the same first and last sector
         Partition* selectedPartition =
             static_cast< Partition* >( current.data( PartitionModel::PartitionPtrRole )
@@ -1311,7 +1311,7 @@ ChoicePage::setupActions()
         m_grp->setExclusive( true );
     }
 
-    bool isEfi = QDir( "/sys/firmware/efi/efivars" ).exists();
+    bool isEfi = PartUtils::isEfiSystem();
     bool efiSystemPartitionFound = !m_core->efiSystemPartitions().isEmpty();
 
     if ( isEfi && !efiSystemPartitionFound )

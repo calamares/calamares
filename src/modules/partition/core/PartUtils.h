@@ -62,6 +62,11 @@ bool canBeResized( PartitionCoreModule* core, const QString& partitionPath );
  */
 OsproberEntryList runOsprober( PartitionCoreModule* core );
 
+/**
+ * @brief Is this system EFI-enabled? Decides based on /sys/firmware/efi
+ */
+bool isEfiSystem();
+
 }
 
 #endif // PARTUTILS_H

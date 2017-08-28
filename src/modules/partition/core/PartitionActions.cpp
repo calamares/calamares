@@ -22,6 +22,7 @@
 #include "core/KPMHelpers.h"
 #include "core/PartitionInfo.h"
 #include "core/PartitionCoreModule.h"
+#include "core/PartUtils.h"
 
 #include "utils/CalamaresUtilsSystem.h"
 #include "JobQueue.h"
@@ -118,9 +119,7 @@ doAutopartition( PartitionCoreModule* core, Device* dev, const QString& luksPass
 {
     Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
 
-    bool isEfi = false;
-    if ( QDir( "/sys/firmware/efi/efivars" ).exists() )
-        isEfi = true;
+    bool isEfi = PartUtils::isEfiSystem();
 
     QString defaultFsType = gs->value( "defaultFileSystemType" ).toString();
     if ( FileSystem::typeForName( defaultFsType ) == FileSystem::Unknown )
