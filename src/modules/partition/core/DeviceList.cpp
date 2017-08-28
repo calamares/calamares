@@ -52,8 +52,9 @@ hasRootPartition( Device* device )
     return false;
 }
 
+/* Unused */
 static bool
-isMounted( Device* device )
+hasMountedPartitions( Device* device )
 {
     cDebug() << "Checking for mounted partitions in" << device->deviceNode();
     for ( auto it = PartitionIterator::begin( device ); it != PartitionIterator::end( device ); ++it )
@@ -128,8 +129,7 @@ QList< Device* > getDevices( DeviceType which, qint64 minimumSize )
         }
         else if ( writableOnly && (
                 hasRootPartition( *it ) ||
-                isIso9660( *it ) ||
-                isMounted( *it ) )
+                isIso9660( *it ) )
            )
         {
             cDebug() << "  .. Removing" << it;
