@@ -58,7 +58,7 @@ isMounted( Device* device )
     cDebug() << "Checking for mounted partitions in" << device->deviceNode();
     for ( auto it = PartitionIterator::begin( device ); it != PartitionIterator::end( device ); ++it )
     {
-        if ( ! ( *it )->mountPoint().isEmpty() )
+        if ( ! ( *it )->isMounted() )
         {
             cDebug() << "  .." << ( *it )->partitionPath() << "is mounted on" << ( *it )->mountPoint();
             return true;
