@@ -88,6 +88,7 @@ def main():
     libcalamares.globalstorage = libcalamares.GlobalStorage(None)
     libcalamares.globalstorage.insert("testing", True)
     if args.lang:
+        libcalamares.globalstorage.insert("locale", args.lang)
         libcalamares.globalstorage.insert("localeConf", {"LANG": args.lang})
 
     # if a file for simulating globalStorage contents is provided, load it
