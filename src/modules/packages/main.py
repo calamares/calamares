@@ -249,24 +249,53 @@ class PMDummy(PackageManager):
         libcalamares.utils.debug("Running script '" + str(script) + "'")
 
 
+# Collect all the subclasses of PackageManager defined above,
+# and index them based on the backend property of each class.
 backend_managers = [
     (c.backend, c)
     for c in globals().values()
     if type(c) is abc.ABCMeta and issubclass(c, PackageManager) and c.backend]
 
 
-def subst_locale(list):
-    ret = []
+def subst_locale(plist):
+    """
+    Returns a locale-aware list of packages, based on @p plist.
+    Package names that contain LOCALE are localized with the
+    BCP47 name of the chosen system locale; if the system
+    locale is 'en' (e.g. English, US) then these localized
+    packages are dropped from the list.
+
+    @param plist: list[str|dict]
+        Candidate packages to install.
+    @return: list[str|dict]
+    """
     locale = libcalamares.globalstorage.value("locale")
-    if locale:
-        for e in list:
-            if locale != "en":
-                entry = Template(e)
-                ret.append(entry.safe_substitute(LOCALE=locale))
-            elif 'LOCALE' not in e:
-                ret.append(e)
-    else:
-        ret = list
+    if not locale:
+        return plist
+
+    ret = []
+    for packagedata in plist:
+        if isinstance(packagedata, str):
+            packagename = packagedata
+        else:
+            packagename = packagedata["package"]
+
+        # Update packagename: substitute LOCALE, and drop packages
+        # if locale is en and LOCALE is in the package name.
+        if locale != "en":
+            packagename = Template(packagename).safe_substitute(LOCALE=locale)
+        elif 'LOCALE' in packagename:
+            packagename = None
+
+        if packagename is not None:
+            # Put it back in packagedata
+            if isinstance(packagedata, str):
+                packagedata = packagename
+            else:
+                packagedata["package"] = packagename
+
+            ret.append(packagedata)
+
     return ret
 
 
@@ -280,8 +309,11 @@ def run_operations(pkgman, entry):
     for key in entry.keys():
         entry[key] = subst_locale(entry[key])
         if key == "install":
-            for package in entry[key]:
-                pkgman.install_package(package)
+            if all([isinstance(x, str) for x in entry[key]]):
+                pkgman.install(entry[key])
+            else:
+                for package in entry[key]:
+                    pkgman.install_package(package)
         elif key == "try_install":
             # we make a separate package manager call for each package so a
             # single failing package won't stop all of them

@@ -6,6 +6,7 @@ operations:
       package: vi
       post-script: rm /tmp/foo
     - wget
+    - binutils
   - remove:
     - vi
     - wget
