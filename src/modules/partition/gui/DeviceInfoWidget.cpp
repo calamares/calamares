@@ -33,6 +33,7 @@ DeviceInfoWidget::DeviceInfoWidget( QWidget* parent )
     : QWidget( parent )
     , m_ptIcon( new QLabel )
     , m_ptLabel( new QLabel )
+    , m_tableType( PartitionTable::unknownTableType )
 {
     QHBoxLayout* mainLayout = new QHBoxLayout;
     setLayout( mainLayout );
