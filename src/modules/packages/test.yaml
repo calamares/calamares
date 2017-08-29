@@ -1,5 +1,6 @@
+backend: dummy
 rootMountPoint: /tmp/mount
-packageOperations:
+operations:
   - install:
     - pre-script: touch /tmp/foo
       package: vi

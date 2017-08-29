@@ -42,13 +42,26 @@ class PackageManager(metaclass=abc.ABCMeta):
 
     @abc.abstractmethod
     def install(self, pkgs, from_local=False):
+        """
+        Install a list of packages (named) into the system.
+        Although this handles lists, in practice it is called
+        with one package at a time.
+
+        @param pkgs: list[str]
+            list of package names
+        @param from_local: bool
+            if True, then these are local packages (on disk) and the
+            pkgs names are paths.
+        """
         pass
 
     @abc.abstractmethod
     def remove(self, pkgs):
-        """ Removes packages.
+        """
+        Removes packages.
 
-        :param pkgs:
+        @param pkgs: list[str]
+            list of package names
         """
         pass
 
@@ -59,6 +72,23 @@ class PackageManager(metaclass=abc.ABCMeta):
     def run(self, script):
         if script != "":
             check_target_env_call(script.split(" "))
+
+    def install_package(self, packagedata, from_local=False):
+        """
+        Install a package from a single entry in the install list.
+        This can be either a single package name, or an object
+        with pre- and post-scripts.
+
+        @param packagedata: str|dict
+        @param from_local: bool
+            see install.from_local
+        """
+        if isinstance(packagedata, str):
+            self.install([packagedata], from_local=from_local)
+        else:
+            self.run(packagedata["pre-script"])
+            self.install([packagedata["package"]], from_local=from_local)
+            self.run(packagedata["post-script"])
 
 
 class PMPackageKit(PackageManager):
@@ -81,13 +111,13 @@ class PMZypp(PackageManager):
 
     def install(self, pkgs, from_local=False):
         check_target_env_call(["zypper", "--non-interactive",
-                                "--quiet-install", "install",
-                                "--auto-agree-with-licenses",
-                                "install"] + pkgs)
+                               "--quiet-install", "install",
+                               "--auto-agree-with-licenses",
+                               "install"] + pkgs)
 
     def remove(self, pkgs):
         check_target_env_call(["zypper", "--non-interactive",
-                                "remove"] + pkgs)
+                               "remove"] + pkgs)
 
     def update_db(self):
         check_target_env_call(["zypper", "--non-interactive", "update"])
@@ -101,7 +131,7 @@ class PMYum(PackageManager):
 
     def remove(self, pkgs):
         check_target_env_call(["yum", "--disablerepo=*", "-C", "-y",
-                                "remove"] + pkgs)
+                               "remove"] + pkgs)
 
     def update_db(self):
         # Doesn't need updates
@@ -118,7 +148,7 @@ class PMDnf(PackageManager):
         # ignore the error code for now because dnf thinks removing a
         # nonexistent package is an error
         target_env_call(["dnf", "--disablerepo=*", "-C", "-y",
-                            "remove"] + pkgs)
+                         "remove"] + pkgs)
 
     def update_db(self):
         # Doesn't need to update explicitly
@@ -126,13 +156,13 @@ class PMDnf(PackageManager):
 
 
 class PMUrpmi(PackageManager):
-    backend = "urpmi";
+    backend = "urpmi"
 
     def install(self, pkgs, from_local=False):
         check_target_env_call(["urpmi", "--download-all", "--no-suggests",
-                                "--no-verify-rpm", "--fastunsafe",
-                                "--ignoresize", "--nolock",
-                                "--auto"] + pkgs)
+                               "--no-verify-rpm", "--fastunsafe",
+                               "--ignoresize", "--nolock",
+                               "--auto"] + pkgs)
 
     def remove(self, pkgs):
         check_target_env_call(["urpme", "--auto"] + pkgs)
@@ -149,9 +179,9 @@ class PMApt(PackageManager):
 
     def remove(self, pkgs):
         check_target_env_call(["apt-get", "--purge", "-q", "-y",
-                                "remove"] + pkgs)
+                               "remove"] + pkgs)
         check_target_env_call(["apt-get", "--purge", "-q", "-y",
-                                "autoremove"])
+                               "autoremove"])
 
     def update_db(self):
         check_target_env_call(["apt-get", "update"])
@@ -167,7 +197,7 @@ class PMPacman(PackageManager):
             pacman_flags = "-Sy"
 
         check_target_env_call(["pacman", pacman_flags,
-                                "--noconfirm"] + pkgs)
+                               "--noconfirm"] + pkgs)
 
     def remove(self, pkgs):
         check_target_env_call(["pacman", "-Rs", "--noconfirm"] + pkgs)
@@ -215,11 +245,14 @@ class PMDummy(PackageManager):
     def update_db(self):
         libcalamares.utils.debug("Updating DB")
 
+    def run(self, script):
+        libcalamares.utils.debug("Running script '" + str(script) + "'")
+
 
 backend_managers = [
     (c.backend, c)
     for c in globals().values()
-    if type(c) is abc.ABCMeta and issubclass(c, PackageManager) and c.backend ]
+    if type(c) is abc.ABCMeta and issubclass(c, PackageManager) and c.backend]
 
 
 def subst_locale(list):
@@ -247,33 +280,18 @@ def run_operations(pkgman, entry):
     for key in entry.keys():
         entry[key] = subst_locale(entry[key])
         if key == "install":
-            if isinstance(entry[key], list):
-                for package in entry[key]:
-                    pkgman.run(package["pre-script"])
-                    pkgman.install([package["package"]])
-                    pkgman.run(package["post-script"])
-            else:
-                pkgman.install(entry[key])
+            for package in entry[key]:
+                pkgman.install_package(package)
         elif key == "try_install":
             # we make a separate package manager call for each package so a
             # single failing package won't stop all of them
             for package in entry[key]:
-                if isinstance(package, str):
-                    try:
-                        pkgman.install([package])
-                    except subprocess.CalledProcessError:
-                        warn_text = "WARNING: could not install package "
-                        warn_text += package
-                        libcalamares.utils.debug(warn_text)
-                else:
-                    try:
-                        pkgman.run(package["pre-script"])
-                        pkgman.install([package["package"]])
-                        pkgman.run(package["post-script"])
-                    except subprocess.CalledProcessError:
-                        warn_text = "WARNING: could not install packages "
-                        warn_text += package["package"]
-                        libcalamares.utils.debug(warn_text)
+                try:
+                    pkgman.install_package(package)
+                except subprocess.CalledProcessError:
+                    warn_text = "WARNING: could not install package "
+                    warn_text += str(package)
+                    libcalamares.utils.debug(warn_text)
         elif key == "remove":
             pkgman.remove(entry[key])
         elif key == "try_remove":
