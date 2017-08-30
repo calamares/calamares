@@ -28,6 +28,22 @@ import subprocess
 import libcalamares
 from libcalamares.utils import check_target_env_call, target_env_call
 
+import gettext
+_ = gettext.translation("calamares-python",
+                        localedir=libcalamares.utils.gettext_path(),
+                        languages=libcalamares.utils.gettext_languages(),
+                        fallback=True).gettext
+
+
+total_packages = 0
+completed_packages = 0
+
+def pretty_name():
+    if (not (total_packages and completed_packages))
+        return _("Install packages.")
+    else
+        return _("Installing packages, {} of {}.").format(str(completed_packages), str(total_packages))
+
 
 class PackageManager(metaclass=abc.ABCMeta):
     """
@@ -306,6 +322,15 @@ def run_operations(pkgman, entry):
     :param pkgman:
     :param entry:
     """
+    global total_packages, completed_packages
+    total_packages = 0
+    completed_packages = 0
+    for packagelist in entry.values():
+        total_packages += len(packagelist)
+    if not total_packages:
+        # Avoids potential divide-by-zero in progress reporting
+        return
+
     for key in entry.keys():
         entry[key] = subst_locale(entry[key])
         if key == "install":
@@ -336,6 +361,9 @@ def run_operations(pkgman, entry):
                     libcalamares.utils.debug(warn_text)
         elif key == "localInstall":
             pkgman.install(entry[key], from_local=True)
+
+        completed_packages += len(entry[key])
+        libcalamares.job.setprogress(completed_packages * 1.0 / total_packages)
 
 
 def run():
