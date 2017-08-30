@@ -27,22 +27,64 @@ import subprocess
 
 import libcalamares
 from libcalamares.utils import check_target_env_call, target_env_call
+from libcalamares.utils import gettext_path, gettext_languages
 
 import gettext
-_ = gettext.translation("calamares-python",
-                        localedir=libcalamares.utils.gettext_path(),
-                        languages=libcalamares.utils.gettext_languages(),
-                        fallback=True).gettext
+_translation = gettext.translation("calamares-python",
+                                   localedir=gettext_path(),
+                                   languages=gettext_languages(),
+                                   fallback=True)
+_ = _translation.gettext
+_n = _translation.ngettext
 
 
 total_packages = 0
 completed_packages = 0
 
+INSTALL = object()
+REMOVE = object()
+mode_packages = None  # Changes to INSTALL or REMOVE
+
+
+def _change_mode(mode):
+    global mode_packages
+    mode_packages = mode
+    libcalamares.job.setprogress(completed_packages * 1.0 / total_packages)
+
+
 def pretty_name():
-    if (not (total_packages and completed_packages))
+    if mode_packages is INSTALL:
+        if not total_packages:
+            return _("Install packages.")
+        elif not completed_packages:
+            return _n("Installing package.",
+                      "Installing %(num)d packages.", total_packages) % \
+                          {"num": total_packages}
+        elif completed_packages < total_packages:
+            return _n("Installing package, %(count)d of one.",
+                      "Installing packages, %(count)d of %(total)d.") % \
+                {"total": total_packages, "count": completed_packages}
+        else:
+            return _n("Installed one package.",
+                      "Installed %(num)d packages.", total_packages) % \
+                          {"num": total_packages}
+    elif mode_packages is REMOVE:
+        if not total_packages:
+            return _("Remove packages.")
+        elif not completed_packages:
+            return _n("Removing package.",
+                      "Removing %(num)d packages.", total_packages) % \
+                          {"num": total_packages}
+        elif completed_packages < total_packages:
+            return _("Removing packages, %(count)d of %(total)d.") % \
+                {"total": total_packages, "count": completed_packages}
+        else:
+            return _n("Removed one package.",
+                      "Removed %(num)d packages.", total_packages) % \
+                          {"num": total_packages}
+    else:
+        # No mode, generic description
         return _("Install packages.")
-    else
-        return _("Installing packages, {} of {}.").format(str(completed_packages), str(total_packages))
 
 
 class PackageManager(metaclass=abc.ABCMeta):
@@ -322,24 +364,19 @@ def run_operations(pkgman, entry):
     :param pkgman:
     :param entry:
     """
-    global total_packages, completed_packages
-    total_packages = 0
-    completed_packages = 0
-    for packagelist in entry.values():
-        total_packages += len(packagelist)
-    if not total_packages:
-        # Avoids potential divide-by-zero in progress reporting
-        return
+    global completed_packages, mode_packages
 
     for key in entry.keys():
         entry[key] = subst_locale(entry[key])
         if key == "install":
+            _change_mode(INSTALL)
             if all([isinstance(x, str) for x in entry[key]]):
                 pkgman.install(entry[key])
             else:
                 for package in entry[key]:
                     pkgman.install_package(package)
         elif key == "try_install":
+            _change_mode(INSTALL)
             # we make a separate package manager call for each package so a
             # single failing package won't stop all of them
             for package in entry[key]:
@@ -350,8 +387,10 @@ def run_operations(pkgman, entry):
                     warn_text += str(package)
                     libcalamares.utils.debug(warn_text)
         elif key == "remove":
+            _change_mode(REMOVE)
             pkgman.remove(entry[key])
         elif key == "try_remove":
+            _change_mode(REMOVE)
             for package in entry[key]:
                 try:
                     pkgman.remove([package])
@@ -360,10 +399,12 @@ def run_operations(pkgman, entry):
                     warn_text += package
                     libcalamares.utils.debug(warn_text)
         elif key == "localInstall":
+            _change_mode(INSTALL)
             pkgman.install(entry[key], from_local=True)
 
         completed_packages += len(entry[key])
         libcalamares.job.setprogress(completed_packages * 1.0 / total_packages)
+        libcalamares.utils.debug(pretty_name())
 
 
 def run():
@@ -373,6 +414,8 @@ def run():
 
     :return:
     """
+    global mode_packages, total_packages, completed_packages
+
     backend = libcalamares.job.configuration.get("backend")
 
     for identifier, impl in backend_managers:
@@ -382,17 +425,29 @@ def run():
     else:
         return "Bad backend", "backend=\"{}\"".format(backend)
 
-    operations = libcalamares.job.configuration.get("operations", [])
-
     update_db = libcalamares.job.configuration.get("update_db", False)
     if update_db and libcalamares.globalstorage.value("hasInternet"):
         pkgman.update_db()
 
+    operations = libcalamares.job.configuration.get("operations", [])
+    if libcalamares.globalstorage.contains("packageOperations"):
+        operations += libcalamares.globalstorage.value("packageOperations")
+
+    mode_packages = None
+    total_packages = 0
+    completed_packages = 0
+    for op in operations:
+        for packagelist in op.values():
+            total_packages += len(packagelist)
+
+    if not total_packages:
+        # Avoids potential divide-by-zero in progress reporting
+        return None
+
     for entry in operations:
         run_operations(pkgman, entry)
 
-    if libcalamares.globalstorage.contains("packageOperations"):
-        run_operations(pkgman,
-                       libcalamares.globalstorage.value("packageOperations"))
+    mode_packages = None
+    libcalamares.job.setprogress(1.0)
 
     return None
