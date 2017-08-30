@@ -122,6 +122,7 @@ PartitionCoreModule::doInit()
     cDebug() << "node\tcapacity\tname\tprettyName";
     for ( auto device : devices )
     {
+        // Gives ownership of the Device* to the DeviceInfo object
         auto deviceInfo = new DeviceInfo( device );
         m_deviceInfos << deviceInfo;
         cDebug() << device->deviceNode() << device->capacity() << device->name() << device->prettyName();

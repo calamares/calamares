@@ -106,11 +106,21 @@ operator <<( QDebug& s, QList< Device* >::iterator& it )
     return s;
 }
 
+using DeviceList = QList< Device* >;
+
+static inline DeviceList::iterator
+erase(DeviceList& l, DeviceList::iterator& it)
+{
+    Device* p = *it;
+    auto r = l.erase( it );
+    if (p)
+        delete p;
+    return r;
+}
+
 QList< Device* > getDevices( DeviceType which, qint64 minimumSize )
 {
     bool writableOnly = (which == DeviceType::WritableOnly);
-
-    using DeviceList = QList< Device* >;
 
     CoreBackend* backend = CoreBackendManager::self()->backend();
     DeviceList devices = backend->scanDevices( true );
@@ -123,8 +133,8 @@ QList< Device* > getDevices( DeviceType which, qint64 minimumSize )
                 ( *it )->deviceNode().startsWith( "/dev/zram" )
         )
         {
-            cDebug() << "  .. Removing" << it;
-            it = devices.erase( it );
+            cDebug() << "  .. Removing zram" << it;
+            it = erase(devices, it );
 
         }
         else if ( writableOnly && (
@@ -132,13 +142,13 @@ QList< Device* > getDevices( DeviceType which, qint64 minimumSize )
                 isIso9660( *it ) )
            )
         {
-            cDebug() << "  .. Removing" << it;
-            it = devices.erase( it );
+            cDebug() << "  .. Removing root-or-CD" << it;
+            it = erase(devices, it );
         }
         else if ( (minimumSize >= 0) && !( (*it)->capacity() > minimumSize ) )
         {
             cDebug() << "  .. Removing too-small" << it;
-            it = devices.erase( it );
+            it = erase(devices, it );
         }
         else
             ++it;
