@@ -126,7 +126,15 @@ check_big_enough(long long required_space)
             break;
         }
     }
-    ped_device_free_all();
+
+    // We would free the devices to release allocated memory,
+    // but other modules might be using partman use well,
+    // and they can hold pointers to libparted structures in
+    // other threads.
+    //
+    // So prefer to leak memory, instead.
+    //
+    // ped_device_free_all();
 
     return big_enough;
 }
