@@ -57,7 +57,13 @@ ModuleManager::ModuleManager( const QStringList& paths, QObject* parent )
 
 
 ModuleManager::~ModuleManager()
-{}
+{
+    // The map is populated with Module::fromDescriptor(), which allocates on the heap.
+    for( auto moduleptr : m_loadedModulesByInstanceKey )
+    {
+        delete moduleptr;
+    }
+}
 
 
 void

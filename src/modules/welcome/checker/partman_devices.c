@@ -112,7 +112,7 @@ process_device(PedDevice *dev)
 int
 check_big_enough(long long required_space)
 {
-    PedDevice *dev;
+    PedDevice *dev = NULL;
     ped_exception_fetch_all();
     ped_device_probe_all();
 
