@@ -38,8 +38,9 @@ _ = _translation.gettext
 _n = _translation.ngettext
 
 
-total_packages = 0
-completed_packages = 0
+total_packages = 0  # For the entire job
+completed_packages = 0  # Done so far for this job
+group_packages = 0  # One group of packages from an -install or -remove entry
 
 INSTALL = object()
 REMOVE = object()
@@ -53,38 +54,22 @@ def _change_mode(mode):
 
 
 def pretty_name():
-    if mode_packages is INSTALL:
-        if not total_packages:
-            return _("Install packages.")
-        elif not completed_packages:
-            return _n("Installing package.",
-                      "Installing %(num)d packages.", total_packages) % \
-                          {"num": total_packages}
-        elif completed_packages < total_packages:
-            return _n("Installing package, %(count)d of one.",
-                      "Installing packages, %(count)d of %(total)d.") % \
-                {"total": total_packages, "count": completed_packages}
-        else:
-            return _n("Installed one package.",
-                      "Installed %(num)d packages.", total_packages) % \
-                          {"num": total_packages}
+    if not group_packages:
+        # Outside the context of an operation
+        s = _("Processing packages (%(count)d / %(total)d)")
+    elif mode_packages is INSTALL:
+        s = _n("Installing one package.",
+               "Installing %(num)d packages.", group_packages)
     elif mode_packages is REMOVE:
-        if not total_packages:
-            return _("Remove packages.")
-        elif not completed_packages:
-            return _n("Removing package.",
-                      "Removing %(num)d packages.", total_packages) % \
-                          {"num": total_packages}
-        elif completed_packages < total_packages:
-            return _("Removing packages, %(count)d of %(total)d.") % \
-                {"total": total_packages, "count": completed_packages}
-        else:
-            return _n("Removed one package.",
-                      "Removed %(num)d packages.", total_packages) % \
-                          {"num": total_packages}
+        s = _n("Removing one package.",
+               "Removing %(num)d packages.", group_packages)
     else:
         # No mode, generic description
-        return _("Install packages.")
+        s = _("Install packages.")
+
+    return s % {"num": group_packages,
+                "count": completed_packages,
+                "total": total_packages}
 
 
 class PackageManager(metaclass=abc.ABCMeta):
@@ -364,10 +349,11 @@ def run_operations(pkgman, entry):
     :param pkgman:
     :param entry:
     """
-    global completed_packages, mode_packages
+    global group_packages, completed_packages, mode_packages
 
     for key in entry.keys():
         entry[key] = subst_locale(entry[key])
+        group_packages = len(entry[key])
         if key == "install":
             _change_mode(INSTALL)
             if all([isinstance(x, str) for x in entry[key]]):
@@ -406,6 +392,9 @@ def run_operations(pkgman, entry):
         libcalamares.job.setprogress(completed_packages * 1.0 / total_packages)
         libcalamares.utils.debug(pretty_name())
 
+    group_packages = 0
+    _change_mode(None)
+
 
 def run():
     """
@@ -414,7 +403,7 @@ def run():
 
     :return:
     """
-    global mode_packages, total_packages, completed_packages
+    global mode_packages, total_packages, completed_packages, group_packages
 
     backend = libcalamares.job.configuration.get("backend")
 
@@ -445,9 +434,13 @@ def run():
         return None
 
     for entry in operations:
+        group_packages = 0
+        libcalamares.utils.debug(pretty_name())
         run_operations(pkgman, entry)
 
     mode_packages = None
+
     libcalamares.job.setprogress(1.0)
+    libcalamares.utils.debug(pretty_name())
 
     return None
