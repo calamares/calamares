@@ -65,11 +65,12 @@ def write_mkinitcpio_lines(hooks, modules, files, root_mount_point):
     :param files:
     :param root_mount_point:
     """
+    hostfile = "/etc/mkinitcpio.conf"
     try:
-        with open("/etc/mkinitcpio.conf", "r") as mkinitcpio_file:
+        with open(hostfile, "r") as mkinitcpio_file:
             mklins = [x.strip() for x in mkinitcpio_file.readlines()]
     except FileNotFoundError:
-        libcalamares.utils.debug("Could not open host file /etc/mkinitcpio.conf")
+        libcalamares.utils.debug("Could not open host file '%s'" % hostfile)
         mklins = []
 
     for i in range(len(mklins)):
