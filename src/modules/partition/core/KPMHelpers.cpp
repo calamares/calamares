@@ -23,6 +23,7 @@
 #include "core/PartitionIterator.h"
 
 // KPMcore
+#include <kpmcore/core/device.h>
 #include <kpmcore/core/partition.h>
 #include <kpmcore/fs/filesystemfactory.h>
 #include <kpmcore/backend/corebackendmanager.h>
@@ -114,7 +115,11 @@ createNewPartition( PartitionNode* parent,
                     qint64 lastSector,
                     PartitionTable::Flags flags )
 {
-    FileSystem* fs = FileSystemFactory::create( fsType, firstSector, lastSector );
+    FileSystem* fs = FileSystemFactory::create( fsType, firstSector, lastSector
+#ifdef WITH_KPMCORE22
+                                                ,device.logicalSize()
+#endif
+    );
     return new Partition(
                parent,
                device,
@@ -147,7 +152,11 @@ createNewEncryptedPartition( PartitionNode* parent,
     FS::luks* fs = dynamic_cast< FS::luks* >(
                            FileSystemFactory::create( FileSystem::Luks,
                                                       firstSector,
-                                                      lastSector ) );
+                                                      lastSector
+#ifdef WITH_KPMCORE22
+                                                     ,device.logicalSize()
+#endif
+                                                      ) );
     if ( !fs )
     {
         qDebug() << "ERROR: cannot create LUKS filesystem. Giving up.";
@@ -177,6 +186,9 @@ clonePartition( Device* device, Partition* partition )
                          partition->fileSystem().type(),
                          partition->firstSector(),
                          partition->lastSector()
+#ifdef WITH_KPMCORE22
+                        ,device->logicalSize()
+#endif
                      );
     return new Partition( partition->parent(),
                           *device,
