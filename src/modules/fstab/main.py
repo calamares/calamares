@@ -262,12 +262,20 @@ class FstabGenerator(object):
                 check=check,
                 )
 
-        return dict(device="UUID=" + partition["uuid"],
-                    mount_point=mount_point or "swap",
-                    fs=filesystem,
-                    options=options,
-                    check=check,
-                    )
+        if "luksMapperName" in partition:
+            return dict(device="/dev/mapper/" + partition["luksMapperName"],
+                        mount_point=mount_point or "swap",
+                        fs=filesystem,
+                        options=options,
+                        check=check,
+                        )
+        else:
+            return dict(device="UUID=" + partition["uuid"],
+                        mount_point=mount_point or "swap",
+                        fs=filesystem,
+                        options=options,
+                        check=check,
+                        )
 
     def print_fstab_line(self, dct, file=None):
         """ Prints line to '/etc/fstab' file. """
