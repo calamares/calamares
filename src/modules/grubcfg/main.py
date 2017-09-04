@@ -40,6 +40,8 @@ def modify_grub_default(partitions, root_mount_point, distributor):
     dracut_bin = libcalamares.utils.target_env_call(
         ["sh", "-c", "which dracut"]
         )
+    have_dracut = dracut_bin == 0  # Shell exit value 0 means success
+
     use_splash = ""
     swap_uuid = ""
     swap_outer_uuid = ""
@@ -50,7 +52,7 @@ def modify_grub_default(partitions, root_mount_point, distributor):
 
     cryptdevice_params = []
 
-    if dracut_bin == 0:
+    if have_dracut:
         for partition in partitions:
             if partition["fs"] == "linuxswap":
                 swap_uuid = partition["uuid"]
