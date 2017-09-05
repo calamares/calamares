@@ -137,12 +137,14 @@ QList< Device* > getDevices( DeviceType which, qint64 minimumSize )
             it = erase(devices, it );
 
         }
-        else if ( writableOnly && (
-                hasRootPartition( *it ) ||
-                isIso9660( *it ) )
-           )
+        else if ( writableOnly && hasRootPartition( *it ) )
         {
-            cDebug() << "  .. Removing root-or-CD" << it;
+            cDebug() << "  .. Removing device with root filesystem (/) on it" << it;
+            it = erase(devices, it );
+        }
+        else if ( writableOnly && isIso9660( *it ) )
+        {
+            cDebug() << "  .. Removing device with iso9660 filesystem (probably a CD) on it" << it;
             it = erase(devices, it );
         }
         else if ( (minimumSize >= 0) && !( (*it)->capacity() > minimumSize ) )
