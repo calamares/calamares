@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -23,6 +24,7 @@
 #include "ExecutionViewStep.h"
 #include "utils/Retranslator.h"
 #include "utils/CalamaresUtilsGui.h"
+#include "utils/Logger.h"
 #include "ViewManager.h"
 
 #include <QBoxLayout>
@@ -96,6 +98,20 @@ SummaryPage::onActivate()
         itemBodyLayout->addSpacing( CalamaresUtils::defaultFontHeight() * 2 );
     }
     m_layout->addStretch();
+
+    m_scrollArea->setWidget( m_contentWidget );
+
+    auto summarySize = m_contentWidget->sizeHint();
+    if ( summarySize.height() > m_scrollArea->size().height() )
+    {
+        auto enlarge = 2 + summarySize.height() - m_scrollArea->size().height();
+        auto widgetSize = this->size();
+        widgetSize.setHeight( widgetSize.height() + enlarge );
+
+        cDebug() << "Summary widget is larger than viewport, enlarge by" << enlarge << "to" << widgetSize;
+
+        emit m_thisViewStep->enlarge( QSize( 0, enlarge ) );  // Only expand height
+    }
 }
 
 Calamares::ViewStepList
@@ -133,7 +149,6 @@ SummaryPage::createContentWidget()
     m_contentWidget = new QWidget;
     m_layout = new QVBoxLayout( m_contentWidget );
     CalamaresUtils::unmarginLayout( m_layout );
-    m_scrollArea->setWidget( m_contentWidget );
 }
 
 QLabel*

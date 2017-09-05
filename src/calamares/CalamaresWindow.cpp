@@ -55,7 +55,7 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
 
     cDebug() << "Available size" << availableSize;
 
-    if ( (availableSize.width() < windowPreferredWidth) || (availableSize.height() < windowPreferredHeight) )
+    if ( ( availableSize.width() < windowPreferredWidth ) || ( availableSize.height() < windowPreferredHeight ) )
         cDebug() << "  Small screen detected.";
     QSize minimumSize( qBound( windowMinimumWidth, availableSize.width(), windowPreferredWidth ),
                        qBound( windowMinimumHeight, availableSize.height(), windowPreferredHeight ) );
@@ -131,9 +131,7 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
             else
             {
                 if ( m_debugWindow )
-                {
                     m_debugWindow->deleteLater();
-                }
             }
         } );
     }
@@ -142,6 +140,19 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
     CalamaresUtils::unmarginLayout( mainLayout );
 
     Calamares::ViewManager* vm = Calamares::ViewManager::instance( this );
+    connect( vm, &Calamares::ViewManager::enlarge, this, &CalamaresWindow::enlarge );
 
     mainLayout->addWidget( vm->centralWidget() );
+}
+
+void
+CalamaresWindow::enlarge( QSize enlarge )
+{
+    auto mainGeometry = this->geometry();
+    QSize availableSize = qApp->desktop()->availableGeometry( this ).size();
+
+    auto h = qBound( 0, mainGeometry.height() + enlarge.height(), availableSize.height() );
+    auto w = this->size().width();
+
+    resize( w, h );
 }

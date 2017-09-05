@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -93,13 +94,22 @@ public:
     virtual QList< job_ptr > jobs() const = 0;
 
     void setModuleInstanceKey( const QString& instanceKey );
-    QString moduleInstanceKey() const { return m_instanceKey; }
+    QString moduleInstanceKey() const
+    {
+        return m_instanceKey;
+    }
 
     virtual void setConfigurationMap( const QVariantMap& configurationMap );
 
 signals:
     void nextStatusChanged( bool status );
     void done();
+
+    /* Emitted when the viewstep thinks it needs more space than is currently
+     * available for display. @p enlarge is the requested additional space,
+     * e.g. 24px vertical. This request may be silently ignored.
+     */
+    void enlarge( QSize enlarge ) const;
 
 protected:
     QString m_instanceKey;
