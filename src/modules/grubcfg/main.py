@@ -91,7 +91,7 @@ def modify_grub_default(partitions, root_mount_point, distributor):
     if swap_uuid:
         kernel_params.append("resume=UUID={!s}".format(swap_uuid))
 
-    if dracut_bin == 0 and swap_outer_uuid:
+    if have_dracut and swap_outer_uuid:
         kernel_params.append("rd.luks.uuid={!s}".format(swap_outer_uuid))
 
     distributor_line = "GRUB_DISTRIBUTOR='{!s}'".format(distributor_replace)
