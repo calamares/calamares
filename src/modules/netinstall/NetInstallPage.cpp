@@ -64,14 +64,59 @@ NetInstallPage::isReady()
     return true;
 }
 
-void NetInstallPage::readGroups( const QByteArray& yamlData )
+bool
+NetInstallPage::readGroups( const QByteArray& yamlData )
 {
-    YAML::Node groups = YAML::Load( yamlData.constData() );
-    Q_ASSERT( groups.IsSequence() );
-    m_groups = new PackageModel( groups );
-    CALAMARES_RETRANSLATE(
-        m_groups->setHeaderData( 0, Qt::Horizontal, tr( "Name" ) );
-        m_groups->setHeaderData( 0, Qt::Horizontal, tr( "Description" ) ); )
+    try
+    {
+        YAML::Node groups = YAML::Load( yamlData.constData() );
+
+        if ( !groups.IsSequence() )
+            cDebug() << "WARNING: netinstall groups data does not form a sequence.";
+        Q_ASSERT( groups.IsSequence() );
+        m_groups = new PackageModel( groups );
+        CALAMARES_RETRANSLATE(
+            m_groups->setHeaderData( 0, Qt::Horizontal, tr( "Name" ) );
+            m_groups->setHeaderData( 0, Qt::Horizontal, tr( "Description" ) ); )
+        return true;
+
+    }
+    catch ( YAML::Exception& e )
+    {
+        cDebug() << "WARNING: YAML error " << e.what() << "in netinstall groups data.";
+        if ( ( e.mark.line >= 0 ) && ( e.mark.column >= 0 ) )
+        {
+            // Try to show the line where it happened.
+            int linestart = 0;
+            for ( int linecount = 0; linecount < e.mark.line; ++linecount )
+            {
+                linestart = yamlData.indexOf( '\n', linestart );
+                // No more \ns found, weird
+                if ( linestart < 0 )
+                    break;
+                linestart += 1;  // Skip that \n
+            }
+            int lineend = linestart;
+            if ( linestart >= 0 )
+            {
+                lineend = yamlData.indexOf( '\n', linestart );
+                if ( lineend < 0 )
+                    lineend = yamlData.length();
+            }
+
+            int rangestart = linestart;
+            int rangeend = lineend;
+            // Adjust range (linestart..lineend) so it's not too long
+            if ( ( linestart >= 0 ) && ( e.mark.column > 30 ) )
+                rangestart += ( e.mark.column - 30 );
+            if ( ( linestart >= 0 ) && ( rangeend - rangestart > 40 ) )
+                rangeend = rangestart + 40;
+
+            if ( linestart >= 0 )
+                cDebug() << "WARNING: offending YAML data:" << yamlData.mid( rangestart, rangeend-rangestart ).constData();
+        }
+        return false;
+    }
 }
 
 void
@@ -84,7 +129,13 @@ NetInstallPage::dataIsHere( QNetworkReply* reply )
         return;
     }
 
-    readGroups( reply->readAll() );
+    if ( !readGroups( reply->readAll() ) )
+    {
+        cDebug() << "Netinstall groups data was received, but invalid.";
+        ui->netinst_status->setText( tr( "Network Installation. (Disabled: Unable to fetch package lists, check your network connection)" ) );
+        reply->deleteLater();
+        return;
+    }
 
     ui->groupswidget->setModel( m_groups );
     ui->groupswidget->header()->setSectionResizeMode( 0, QHeaderView::ResizeToContents );

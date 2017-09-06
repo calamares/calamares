@@ -2,6 +2,7 @@
  *   Copyright 2016, Luca Giambonini <almack@chakraos.org>
  *   Copyright 2016, Lisa Vitolo     <shainer@chakraos.org>
  *   Copyright 2017, Kyle Robbertze  <krobbertze@gmail.com>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -67,7 +68,7 @@ private:
     // Takes the YAML data representing the groups and reads them into the
     // m_groups and m_groupOrder internal structures. See the README.md
     // of this module to know the format expected of the YAML files.
-    void readGroups( const QByteArray& yamlData );
+    bool readGroups( const QByteArray& yamlData );
 
     Ui::Page_NetInst* ui;
 
