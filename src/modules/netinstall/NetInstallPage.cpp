@@ -83,38 +83,7 @@ NetInstallPage::readGroups( const QByteArray& yamlData )
     }
     catch ( YAML::Exception& e )
     {
-        cDebug() << "WARNING: YAML error " << e.what() << "in netinstall groups data.";
-        if ( ( e.mark.line >= 0 ) && ( e.mark.column >= 0 ) )
-        {
-            // Try to show the line where it happened.
-            int linestart = 0;
-            for ( int linecount = 0; linecount < e.mark.line; ++linecount )
-            {
-                linestart = yamlData.indexOf( '\n', linestart );
-                // No more \ns found, weird
-                if ( linestart < 0 )
-                    break;
-                linestart += 1;  // Skip that \n
-            }
-            int lineend = linestart;
-            if ( linestart >= 0 )
-            {
-                lineend = yamlData.indexOf( '\n', linestart );
-                if ( lineend < 0 )
-                    lineend = yamlData.length();
-            }
-
-            int rangestart = linestart;
-            int rangeend = lineend;
-            // Adjust range (linestart..lineend) so it's not too long
-            if ( ( linestart >= 0 ) && ( e.mark.column > 30 ) )
-                rangestart += ( e.mark.column - 30 );
-            if ( ( linestart >= 0 ) && ( rangeend - rangestart > 40 ) )
-                rangeend = rangestart + 40;
-
-            if ( linestart >= 0 )
-                cDebug() << "WARNING: offending YAML data:" << yamlData.mid( rangestart, rangeend-rangestart ).constData();
-        }
+        CalamaresUtils::explainYamlException( e, yamlData, "netinstall groups data" );
         return false;
     }
 }
