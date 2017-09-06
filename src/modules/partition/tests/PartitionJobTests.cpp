@@ -217,7 +217,11 @@ PartitionJobTests::newCreatePartitionJob( Partition* freeSpacePartition, Partiti
         lastSector = firstSector + size / m_device->logicalSize();
     else
         lastSector = freeSpacePartition->lastSector();
-    FileSystem* fs = FileSystemFactory::create( type, firstSector, lastSector );
+    FileSystem* fs = FileSystemFactory::create( type, firstSector, lastSector
+#ifdef WITH_KPMCORE22
+        ,m_device->logicalSize()
+#endif
+    );
 
     Partition* partition = new Partition(
         freeSpacePartition->parent(),
