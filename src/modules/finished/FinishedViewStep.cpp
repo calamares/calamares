@@ -35,8 +35,6 @@ FinishedViewStep::FinishedViewStep( QObject* parent )
     , m_widget( new FinishedPage() )
     , installFailed( false )
 {
-    cDebug() << "FinishedViewStep()";
-
     auto jq = Calamares::JobQueue::instance();
     connect( jq, &Calamares::JobQueue::failed,
              m_widget, &FinishedPage::onInstallationFailed );
@@ -64,7 +62,6 @@ FinishedViewStep::prettyName() const
 QWidget*
 FinishedViewStep::widget()
 {
-    cDebug() << "FinishedViewStep::widget()";
     return m_widget;
 }
 
@@ -140,7 +137,6 @@ FinishedViewStep::sendNotification()
 void
 FinishedViewStep::onActivate()
 {
-    cDebug() << "FinishedViewStep::onActivate()";
     m_widget->setUpRestart();
 
     sendNotification();
@@ -150,7 +146,6 @@ FinishedViewStep::onActivate()
 QList< Calamares::job_ptr >
 FinishedViewStep::jobs() const
 {
-    cDebug() << "FinishedViewStep::jobs";
     return QList< Calamares::job_ptr >();
 }
 
