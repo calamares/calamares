@@ -156,7 +156,7 @@ Settings::Settings( const QString& settingsFilePath,
         }
         catch ( YAML::Exception& e )
         {
-            cDebug() << "WARNING: YAML parser error " << e.what();
+            cDebug() << "WARNING: YAML parser error " << e.what() << "in" << file.fileName();
         }
     }
     else

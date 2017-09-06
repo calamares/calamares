@@ -179,7 +179,7 @@ Branding::Branding( const QString& brandingFilePath,
         }
         catch ( YAML::Exception& e )
         {
-            cDebug() << "WARNING: YAML parser error " << e.what();
+            cDebug() << "WARNING: YAML parser error " << e.what() << "in" << file.fileName();
         }
 
         QDir translationsDir( componentDir.filePath( "lang" ) );
