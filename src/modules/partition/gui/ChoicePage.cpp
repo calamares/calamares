@@ -1130,6 +1130,15 @@ ChoicePage::createBootloaderComboBox( QWidget* parent )
 }
 
 
+static inline void
+force_uncheck(QButtonGroup* grp, PrettyRadioButton* button)
+{
+    button->hide();
+    grp->setExclusive( false );
+    button->buttonWidget()->setChecked( false );
+    grp->setExclusive( true );
+}
+
 /**
  * @brief ChoicePage::setupActions happens every time a new Device* is selected in the
  *      device picker. Sets up the text and visibility of the partitioning actions based
@@ -1149,29 +1158,19 @@ ChoicePage::setupActions()
         m_deviceInfoWidget->setPartitionTableType( PartitionTable::unknownTableType );
 
     bool atLeastOneCanBeResized = false;
+    bool atLeastOneCanBeReplaced = false;
+    bool atLeastOneIsMounted = false;  // Suppress 'erase' if so
 
     for ( auto it = PartitionIterator::begin( currentDevice );
           it != PartitionIterator::end( currentDevice ); ++it )
     {
         if ( PartUtils::canBeResized( *it ) )
-        {
             atLeastOneCanBeResized = true;
-            break;
-        }
-    }
-
-    bool atLeastOneCanBeReplaced = false;
-
-    for ( auto it = PartitionIterator::begin( currentDevice );
-          it != PartitionIterator::end( currentDevice ); ++it )
-    {
         if ( PartUtils::canBeReplaced( *it ) )
-        {
             atLeastOneCanBeReplaced = true;
-            break;
-        }
+        if ( (*it)->isMounted() )
+            atLeastOneIsMounted = true;
     }
-
 
     if ( osproberEntriesForCurrentDevice.count() == 0 )
     {
@@ -1249,18 +1248,6 @@ ChoicePage::setupActions()
                                           .arg( *Calamares::Branding::ShortVersionedName ) );
             )
         }
-
-        m_replaceButton->show();
-
-        if ( atLeastOneCanBeResized )
-            m_alongsideButton->show();
-        else
-        {
-            m_alongsideButton->hide();
-            m_grp->setExclusive( false );
-            m_alongsideButton->buttonWidget()->setChecked( false );
-            m_grp->setExclusive( true );
-        }
     }
     else
     {
@@ -1284,39 +1271,22 @@ ChoicePage::setupActions()
                                           "Replaces a partition with %1." )
                                       .arg( *Calamares::Branding::ShortVersionedName ) );
         )
-
-        m_replaceButton->show();
-
-        if ( atLeastOneCanBeResized )
-            m_alongsideButton->show();
-        else
-        {
-            m_alongsideButton->hide();
-            m_grp->setExclusive( false );
-            m_alongsideButton->buttonWidget()->setChecked( false );
-            m_grp->setExclusive( true );
-        }
     }
 
     if ( atLeastOneCanBeReplaced )
         m_replaceButton->show();
     else
-    {
-        m_replaceButton->hide();
-        m_grp->setExclusive( false );
-        m_replaceButton->buttonWidget()->setChecked( false );
-        m_grp->setExclusive( true );
-    }
+        force_uncheck( m_grp, m_replaceButton );
 
     if ( atLeastOneCanBeResized )
         m_alongsideButton->show();
     else
-    {
-        m_alongsideButton->hide();
-        m_grp->setExclusive( false );
-        m_alongsideButton->buttonWidget()->setChecked( false );
-        m_grp->setExclusive( true );
-    }
+        force_uncheck( m_grp, m_alongsideButton );
+
+    if ( !atLeastOneIsMounted )
+        m_eraseButton->show();  // None mounted
+    else
+        force_uncheck( m_grp, m_eraseButton );
 
     bool isEfi = PartUtils::isEfiSystem();
     bool efiSystemPartitionFound = !m_core->efiSystemPartitions().isEmpty();

@@ -45,6 +45,9 @@ canBeReplaced( Partition* candidate )
     if ( !candidate )
         return false;
 
+    if ( candidate->isMounted() )
+        return false;
+
     bool ok = false;
     double requiredStorageGB = Calamares::JobQueue::instance()
                                     ->globalStorage()
@@ -81,6 +84,9 @@ canBeResized( Partition* candidate )
         return false;
 
     if ( KPMHelpers::isPartitionFreeSpace( candidate ) )
+        return false;
+
+    if ( candidate->isMounted() )
         return false;
 
     if ( candidate->roles().has( PartitionRole::Primary ) )
