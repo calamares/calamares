@@ -60,6 +60,7 @@ for MODULE_DIR in $(find src/modules -maxdepth 1 -mindepth 1 -type d) ; do
     if [ -d ${MODULE_DIR}/lang ]; then
       # Convert PO files to MO files
       for POFILE in $(find ${MODULE_DIR} -name "*.po") ; do
+        sed -i'' '/^"Content-Type/s/CHARSET/UTF-8/' $POFILE
         msgfmt -o ${POFILE%.po}.mo $POFILE
       done
       git add --verbose ${MODULE_DIR}/lang/*
@@ -69,6 +70,7 @@ for MODULE_DIR in $(find src/modules -maxdepth 1 -mindepth 1 -type d) ; do
 done
 
 for POFILE in $(find lang -name "python.po") ; do
+  sed -i'' '/^"Content-Type/s/CHARSET/UTF-8/' $POFILE
   msgfmt -o ${POFILE%.po}.mo $POFILE
 done
 git add --verbose lang/python*
