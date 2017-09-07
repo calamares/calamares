@@ -806,9 +806,12 @@ ChoicePage::updateDeviceStatePreview()
 
     cDebug() << "Updating partitioning state widgets.";
     qDeleteAll( m_previewBeforeFrame->children() );
-    m_previewBeforeFrame->layout()->deleteLater();
 
-    QVBoxLayout* layout = new QVBoxLayout;
+    auto layout = m_previewBeforeFrame->layout();
+    if ( layout )
+        layout->deleteLater();  // Doesn't like nullptr
+
+    layout = new QVBoxLayout;
     m_previewBeforeFrame->setLayout( layout );
     CalamaresUtils::unmarginLayout( layout );
     layout->setSpacing( 6 );
@@ -829,7 +832,7 @@ ChoicePage::updateDeviceStatePreview()
 
     // The QObject parents tree is meaningful for memory management here,
     // see qDeleteAll above.
-    deviceBefore->setParent( model );
+    deviceBefore->setParent( model );  // Can't reparent across threads
     model->setParent( m_beforePartitionBarsView );
 
     m_beforePartitionBarsView->setModel( model );
@@ -838,7 +841,8 @@ ChoicePage::updateDeviceStatePreview()
     // Make the bars and labels view use the same selectionModel.
     auto sm = m_beforePartitionLabelsView->selectionModel();
     m_beforePartitionLabelsView->setSelectionModel( m_beforePartitionBarsView->selectionModel() );
-    sm->deleteLater();
+    if ( sm )
+        sm->deleteLater();
 
     switch ( m_choice )
     {
@@ -874,7 +878,10 @@ ChoicePage::updateActionChoicePreview( ChoicePage::Choice choice )
 
     cDebug() << "Updating partitioning preview widgets.";
     qDeleteAll( m_previewAfterFrame->children() );
-    m_previewAfterFrame->layout()->deleteLater();
+
+    auto oldlayout = m_previewAfterFrame->layout();
+    if ( oldlayout )
+        oldlayout->deleteLater();
 
     QVBoxLayout* layout = new QVBoxLayout;
     m_previewAfterFrame->setLayout( layout );
