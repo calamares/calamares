@@ -6,6 +6,8 @@
 #   Copyright 2014-2015, Philip Müller <philm@manjaro.org>
 #   Copyright 2015-2017, Teo Mrnjavac <teo@kde.org>
 #   Copyright 2017, Alf Gaida <agaida@siduction.org>
+#   Copyright 2017, Adriaan de Groot <groot@kde.org>
+#   Copyright 2017, Gabriel Craciunescu <crazy@frugalware.org>
 #
 #   Calamares is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -29,6 +31,8 @@ def modify_grub_default(partitions, root_mount_point, distributor):
     """
     Configures '/etc/default/grub' for hibernation and plymouth.
 
+    @see bootloader/main.py, for similar handling of kernel parameters
+
     :param partitions:
     :param root_mount_point:
     :param distributor:
@@ -45,6 +49,7 @@ def modify_grub_default(partitions, root_mount_point, distributor):
     use_splash = ""
     swap_uuid = ""
     swap_outer_uuid = ""
+    swap_outer_mappername = None
 
     if libcalamares.globalstorage.contains("hasPlymouth"):
         if libcalamares.globalstorage.value("hasPlymouth"):
@@ -54,30 +59,35 @@ def modify_grub_default(partitions, root_mount_point, distributor):
 
     if have_dracut:
         for partition in partitions:
-            if partition["fs"] == "linuxswap":
+            has_luks = "luksMapperName" in partition
+            if partition["fs"] == "linuxswap" and not has_luks:
                 swap_uuid = partition["uuid"]
 
-            if (partition["fs"] == "linuxswap"
-                    and "luksMapperName" in partition):
+            if (partition["fs"] == "linuxswap" and has_luks):
                 swap_outer_uuid = partition["luksUuid"]
+                swap_outer_mappername = partition["luksMapperName"]
 
-            if (partition["mountPoint"] == "/"
-                    and "luksMapperName" in partition):
+            if (partition["mountPoint"] == "/" and has_luks):
                 cryptdevice_params = [
                     "rd.luks.uuid={!s}".format(partition["luksUuid"])
                     ]
     else:
         for partition in partitions:
-            if partition["fs"] == "linuxswap":
+            has_luks = "luksMapperName" in partition
+            if partition["fs"] == "linuxswap" and not has_luks:
                 swap_uuid = partition["uuid"]
 
-            if (partition["mountPoint"] == "/"
-                    and "luksMapperName" in partition):
+            if (partition["mountPoint"] == "/" and has_luks):
                 cryptdevice_params = [
                     "cryptdevice=UUID={!s}:{!s}".format(
                         partition["luksUuid"], partition["luksMapperName"]
                         ),
-                    "root=/dev/mapper/{!s}".format(partition["luksMapperName"])
+                    "root=/dev/mapper/{!s}".format(
+                        partition["luksMapperName"]
+                        ),
+                    "resume=/dev/mapper/{!s}".format(
+                        partition["luksMapperName"]
+                        )
                 ]
 
     kernel_params = ["quiet"]
@@ -93,6 +103,9 @@ def modify_grub_default(partitions, root_mount_point, distributor):
 
     if have_dracut and swap_outer_uuid:
         kernel_params.append("rd.luks.uuid={!s}".format(swap_outer_uuid))
+    if have_dracut and swap_outer_mappername:
+        kernel_params.append("resume=/dev/mapper/{!s}".format(
+            swap_outer_mappername))
 
     distributor_line = "GRUB_DISTRIBUTOR='{!s}'".format(distributor_replace)
 
