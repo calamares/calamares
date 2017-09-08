@@ -27,6 +27,8 @@
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
 #include "utils/CalamaresUtilsSystem.h"
+#include "utils/Units.h"
+
 #include "JobQueue.h"
 #include "GlobalStorage.h"
 
@@ -77,12 +79,12 @@ RequirementsChecker::RequirementsChecker( QObject* parent )
         bool isRoot = false;
         bool enoughScreen = (availableSize.width() >= CalamaresUtils::windowPreferredWidth) && (availableSize.height() >= CalamaresUtils::windowPreferredHeight);
 
-        qint64 requiredStorageB = m_requiredStorageGB * 1073741824L; /*powers of 2*/
+        qint64 requiredStorageB = CalamaresUtils::GiBtoBytes(m_requiredStorageGB);
         cDebug() << "Need at least storage bytes:" << requiredStorageB;
         if ( m_entriesToCheck.contains( "storage" ) )
             enoughStorage = checkEnoughStorage( requiredStorageB );
 
-        qint64 requiredRamB = m_requiredRamGB * 1073741824L; /*powers of 2*/
+        qint64 requiredRamB = CalamaresUtils::GiBtoBytes(m_requiredRamGB);
         cDebug() << "Need at least ram bytes:" << requiredRamB;
         if ( m_entriesToCheck.contains( "ram" ) )
             enoughRam = checkEnoughRam( requiredRamB );
