@@ -41,11 +41,11 @@
 
 
 #ifdef Q_OS_LINUX
-const char* k_usage =
+static const char k_usage[] =
     "Usage:\n"
     "  CrashReporter <dumpFilePath> <linuxBacktracePath>\n";
 #else
-const char* k_usage =
+static const char k_usage[] =
     "Usage:\n"
     "  CrashReporter <dumpFilePath>\n";
 #endif
