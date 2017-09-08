@@ -474,8 +474,7 @@ ChoicePage::doAlongsideSetupSplitter( const QModelIndex& current,
                 part->partitionPath(),
                 qRound64( part->used() * 1.1 ),
                 part->capacity() - requiredStorageB,
-                part->capacity() / 2,
-                *Calamares::Branding::ProductName );
+                part->capacity() / 2 );
 
     if ( m_isEfi )
         setupEfiSystemPartitionSelector();
