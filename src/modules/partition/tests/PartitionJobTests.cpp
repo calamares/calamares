@@ -80,7 +80,7 @@ generateTestData( qint64 size )
     // Fill the array explicitly to keep Valgrind happy
     for ( auto it = ba.data() ; it < ba.data() + size ; ++it )
     {
-        *it = rand() % 256;
+        *it = char( rand() & 0xff );
     }
     return ba;
 }
