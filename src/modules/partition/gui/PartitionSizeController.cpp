@@ -22,6 +22,8 @@
 #include "core/ColorUtils.h"
 #include "core/KPMHelpers.h"
 
+#include "utils/Units.h"
+
 // Qt
 #include <QSpinBox>
 
@@ -185,7 +187,7 @@ PartitionSizeController::doUpdateSpinBox()
 {
     if ( !m_spinBox )
         return;
-    qint64 mbSize = m_partition->length() * m_device->logicalSize() / 1024 / 1024;
+    int mbSize = CalamaresUtils::BytesToMiB( m_partition->length() * m_device->logicalSize() );
     m_spinBox->setValue( mbSize );
     if ( m_currentSpinBoxValue != -1 &&    //if it's not the first time we're setting it
          m_currentSpinBoxValue != mbSize ) //and the operation changes the SB value

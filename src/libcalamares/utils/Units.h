@@ -56,5 +56,10 @@ constexpr qint64 GiBtoBytes( double m )
     return qint64(m * 1024 * 1024 * 1024);
 }
 
+constexpr int BytesToMiB( qint64 b )
+{
+    return int( b / 1024 / 1024 );
+}
+
 }  // namespace
 #endif

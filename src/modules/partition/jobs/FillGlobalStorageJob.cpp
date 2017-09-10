@@ -41,8 +41,6 @@
 
 typedef QHash<QString, QString> UuidForPartitionHash;
 
-static const char* UUID_DIR = "/dev/disk/by-uuid";
-
 static UuidForPartitionHash
 findPartitionUuids( QList < Device* > devices )
 {
