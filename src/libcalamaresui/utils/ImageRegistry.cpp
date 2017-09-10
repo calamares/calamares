@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Originally from Tomahawk,
  *   Copyright 2012, Christian Muehlhaeuser <muesli@tomahawk-player.org>
@@ -54,7 +55,7 @@ ImageRegistry::icon( const QString& image, CalamaresUtils::ImageMode mode )
 qint64
 ImageRegistry::cacheKey( const QSize& size, float opacity, QColor tint )
 {
-    return size.width() * 100 + size.height() * 10 + ( opacity * 100.0 ) + tint.value();
+    return size.width() * 100 + size.height() * 10 + int( opacity * 100.0 ) + tint.value();
 }
 
 

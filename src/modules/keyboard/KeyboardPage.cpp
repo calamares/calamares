@@ -54,7 +54,7 @@ findLayout( const KeyboardLayoutModel* klm, const QString& currentLayout )
 }
 
 KeyboardPage::KeyboardPage( QWidget* parent )
-    : QWidget()
+    : QWidget( parent )
     , ui( new Ui::Page_Keyboard )
     , m_keyboardPreview( new KeyBoardPreview( this ) )
     , m_defaultIndex( 0 )
@@ -321,6 +321,8 @@ static inline QStringList xkbmap_args( QStringList&& r, const QString& layout, c
 void
 KeyboardPage::onListVariantCurrentItemChanged( QListWidgetItem* current, QListWidgetItem* previous )
 {
+    Q_UNUSED( previous );
+
     QPersistentModelIndex layoutIndex = ui->listLayout->currentIndex();
     LayoutItem* variantItem = dynamic_cast< LayoutItem* >( current );
 

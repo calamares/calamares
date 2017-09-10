@@ -53,9 +53,10 @@
 RequirementsChecker::RequirementsChecker( QObject* parent )
     : QObject( parent )
     , m_widget( new QWidget() )
+    , m_requiredStorageGB( -1 )
+    , m_requiredRamGB( -1 )
     , m_actualWidget( new CheckerWidget() )
     , m_verdict( false )
-    , m_requiredStorageGB( -1 )
 {
     QBoxLayout* mainLayout = new QHBoxLayout;
     m_widget->setLayout( mainLayout );

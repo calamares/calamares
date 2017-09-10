@@ -134,9 +134,6 @@ KeyboardViewStep::onLeave()
 void
 KeyboardViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
-    // Save the settings to the global settings for the SetKeyboardLayoutJob to use
-    Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
-
     if ( configurationMap.contains( "xOrgConfFileName" ) &&
          configurationMap.value( "xOrgConfFileName" ).type() == QVariant::String &&
          !configurationMap.value( "xOrgConfFileName" ).toString().isEmpty() )

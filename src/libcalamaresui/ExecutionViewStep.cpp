@@ -165,7 +165,7 @@ ExecutionViewStep::appendJobModuleInstanceKey( const QString& instanceKey )
 void
 ExecutionViewStep::updateFromJobQueue( qreal percent, const QString& message )
 {
-    m_progressBar->setValue( percent * m_progressBar->maximum() );
+    m_progressBar->setValue( int( percent * m_progressBar->maximum() ) );
     m_label->setText( message );
 }
 
