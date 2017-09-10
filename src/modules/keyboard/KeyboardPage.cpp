@@ -37,6 +37,18 @@
 #include <QProcess>
 #include <QPushButton>
 
+class LayoutItem : public QListWidgetItem
+{
+public:
+    QString data;
+
+    virtual ~LayoutItem();
+};
+
+LayoutItem::~LayoutItem()
+{
+}
+
 static QPersistentModelIndex
 findLayout( const KeyboardLayoutModel* klm, const QString& currentLayout )
 {
