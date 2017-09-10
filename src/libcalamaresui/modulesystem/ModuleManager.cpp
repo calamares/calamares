@@ -219,14 +219,14 @@ ModuleManager::loadModules()
                 }
 
                 auto findCustomInstance =
-                        [ customInstances ]( const QString& moduleName,
-                                             const QString& instanceId ) -> int
+                        [ customInstances ]( const QString& module,
+                                             const QString& id) -> int
                 {
                     for ( int i = 0; i < customInstances.count(); ++i )
                     {
                         auto thisInstance = customInstances[ i ];
-                        if ( thisInstance.value( "module" ) == moduleName &&
-                             thisInstance.value( "id" ) == instanceId )
+                        if ( thisInstance.value( "module" ) == module &&
+                             thisInstance.value( "id" ) == id )
                             return i;
                     }
                     return -1;
