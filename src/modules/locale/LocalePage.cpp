@@ -282,7 +282,7 @@ LocalePage::init( const QString& initialRegion,
     }
     else
     {
-        m_tzWidget->setCurrentLocation( "Europe", "Berlin" );
+        m_tzWidget->setCurrentLocation( "America", "New_York" );
     }
     emit m_tzWidget->locationChanged( m_tzWidget->getCurrentLocation() );
 

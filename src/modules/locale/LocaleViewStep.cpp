@@ -271,8 +271,8 @@ LocaleViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     }
     else
     {
-        m_startingTimezone = qMakePair( QStringLiteral( "Europe" ),
-                                        QStringLiteral( "Berlin" ) );
+        m_startingTimezone = qMakePair( QStringLiteral( "America" ),
+                                        QStringLiteral( "New_York" ) );
     }
 
     if ( configurationMap.contains( "localeGenPath" ) &&
