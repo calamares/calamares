@@ -100,9 +100,9 @@ public:
     /**
      * @brief instanceKey returns the instance key of this module.
      * @return a string with the instance key.
-     * A module instance's instance key is modulename@instanceid.
-     * @example "partition@partition" (default configuration) or
-     * "locale@someconfig" (custom configuration)
+     * A module instance's instance key is modulename\@instanceid.
+     * For instance, "partition\@partition" (default configuration) or
+     * "locale\@someconfig" (custom configuration)
      */
     virtual QString instanceKey() const final;
 
