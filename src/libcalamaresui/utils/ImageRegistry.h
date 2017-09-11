@@ -35,11 +35,11 @@ public:
     explicit ImageRegistry();
 
     QIcon icon( const QString& image, CalamaresUtils::ImageMode mode = CalamaresUtils::Original );
-    QPixmap pixmap( const QString& image, const QSize& size, CalamaresUtils::ImageMode mode = CalamaresUtils::Original, float opacity = 1.0, QColor tint = QColor( 0, 0, 0, 0 ) );
+    QPixmap pixmap( const QString& image, const QSize& size, CalamaresUtils::ImageMode mode = CalamaresUtils::Original, qreal opacity = 1.0, QColor tint = QColor( 0, 0, 0, 0 ) );
 
 private:
-    qint64 cacheKey( const QSize& size, float opacity, QColor tint );
-    void putInCache( const QString& image, const QSize& size, CalamaresUtils::ImageMode mode, float opacity, const QPixmap& pixmap, QColor tint );
+    qint64 cacheKey( const QSize& size, qreal opacity, QColor tint );
+    void putInCache( const QString& image, const QSize& size, CalamaresUtils::ImageMode mode, qreal opacity, const QPixmap& pixmap, QColor tint );
 
     static ImageRegistry* s_instance;
 };
