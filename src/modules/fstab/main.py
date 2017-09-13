@@ -233,6 +233,8 @@ class FstabGenerator(object):
 
         if not mount_point and not filesystem == "swap":
             return None
+        if not mount_point:
+            mount_point = "swap"
 
         options = self.mount_options.get(filesystem,
                                          self.mount_options["default"])
@@ -253,41 +255,19 @@ class FstabGenerator(object):
             self.root_is_ssd = is_ssd
 
         if filesystem == "btrfs" and "subvol" in partition:
-            if has_luks:
-                return dict(
-                    device="/dev/mapper/" + partition["luksMapperName"],
-                    mount_point=mount_point,
-                    fs=filesystem,
-                    options=",".join(
-                        ["subvol={}".format(partition["subvol"]), options]
-                        ),
-                    check=check,
-                    )
-            else:
-                return dict(
-                    device="UUID=" + partition["uuid"],
-                    mount_point=mount_point,
-                    fs=filesystem,
-                    options=",".join(
-                        ["subvol={}".format(partition["subvol"]), options]
-                        ),
-                    check=check,
-                    )
+            options="subvol={},".format(partition["subvol"]) + options
 
         if has_luks:
-            return dict(device="/dev/mapper/" + partition["luksMapperName"],
-                        mount_point=mount_point or "swap",
-                        fs=filesystem,
-                        options=options,
-                        check=check,
-                        )
+            device="/dev/mapper/" + partition["luksMapperName"]
         else:
-            return dict(device="UUID=" + partition["uuid"],
-                        mount_point=mount_point or "swap",
-                        fs=filesystem,
-                        options=options,
-                        check=check,
-                        )
+            device="UUID=" + partition["uuid"]
+
+        return dict(device=device,
+                    mount_point=mount_point,
+                    fs=filesystem,
+                    options=options,
+                    check=check,
+                    )
 
     def print_fstab_line(self, dct, file=None):
         """ Prints line to '/etc/fstab' file. """
