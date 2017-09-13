@@ -32,7 +32,7 @@ public:
                          bool runInChroot = false,
                          int secondsTimeout = 30,
                          QObject* parent = nullptr );
-    virtual ~ProcessJob();
+    virtual ~ProcessJob() override;
 
     QString prettyName() const override;
     QString prettyStatusMessage() const override;

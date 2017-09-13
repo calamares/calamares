@@ -42,7 +42,7 @@ protected:
 private:
     friend class Module; //so only the superclass can instantiate
     explicit CppJobModule();
-    virtual ~CppJobModule();
+    virtual ~CppJobModule() override;
 
     QPluginLoader* m_loader;
     job_ptr m_job;

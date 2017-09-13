@@ -43,7 +43,7 @@ protected:
 private:
     friend class Module; //so only the superclass can instantiate
     explicit ViewModule();
-    virtual ~ViewModule();
+    virtual ~ViewModule() override;
 
     QPluginLoader* m_loader;
     ViewStep* m_viewStep = nullptr;

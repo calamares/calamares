@@ -34,7 +34,7 @@ namespace Calamares
 {
 
 PluginFactory::PluginFactory()
-    : d_ptr(new PluginFactoryPrivate)
+    : d_ptr_p(new PluginFactoryPrivate)
 {
     Q_D(PluginFactory);
     d->q_ptr = this;
@@ -43,14 +43,14 @@ PluginFactory::PluginFactory()
 }
 
 PluginFactory::PluginFactory(PluginFactoryPrivate &d)
-    : d_ptr(&d)
+    : d_ptr_p(&d)
 {
     factorycleanup()->add(this);
 }
 
 PluginFactory::~PluginFactory()
 {
-    delete d_ptr;
+    delete d_ptr_p;
 }
 
 void PluginFactory::doRegisterPlugin(const QString &keyword, const QMetaObject *metaObject, CreateInstanceFunction instanceFunction)
@@ -97,7 +97,7 @@ QObject *PluginFactory::create(const char *iface, QWidget *parentWidget, QObject
 {
     Q_D(PluginFactory);
 
-    QObject *obj = 0;
+    QObject *obj( nullptr );
 
     const QList<PluginFactoryPrivate::Plugin> candidates(d->createInstanceHash.values(keyword));
     // for !keyword.isEmpty() candidates.count() is 0 or 1
