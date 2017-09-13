@@ -57,7 +57,7 @@ cmake_policy( SET CMP0028 NEW ) # double colons in KF5::Foo and Qt5::Foo are nec
 cmake_policy( SET CMP0043 OLD )
 
 include( MacroOptionalFindPackage )
-include( MacroLogFeature )
+include( FeatureSummary )
 
 set( QT_VERSION 5.6.0 )
 
@@ -80,35 +80,29 @@ if( CMAKE_SYSTEM_PROCESSOR MATCHES "arm" OR NOT EXISTS "${CMAKE_CURRENT_SOURCE_D
     set( WITH_CRASHREPORTER OFF )
 endif()
 
-macro_optional_find_package( PythonLibs 3.3 )
-macro_log_feature(
-    PYTHONLIBS_FOUND
-    "Python"
-    "C interface libraries for the Python 3 interpreter."
-    "http://python.org"
-    FALSE "3.3"
-    "Python 3 is used for some Calamares job modules."
+find_package( PythonLibs 3.3 OPTIONAL )
+set_package_properties(
+    PYTHONLIBS PROPERTIES
+    DESCRIPTION "C interface libraries for the Python 3 interpreter."
+    URL "http://python.org"
+    PURPOSE "Python 3 is used for some Calamares job modules."
 )
 
 if ( PYTHONLIBS_FOUND )
     include( BoostPython3 )
     find_boost_python3( 1.54.0 ${PYTHONLIBS_VERSION_STRING} CALAMARES_BOOST_PYTHON3_FOUND )
-    macro_log_feature(
-        CALAMARES_BOOST_PYTHON3_FOUND
-        "Boost.Python"
-        "A C++ library which enables seamless interoperability between C++ and Python 3."
-        "http://www.boost.org"
-        FALSE "1.54.0"
-        "Boost.Python is used for interfacing with Calamares job modules written in Python 3."
+    set_package_properties(
+        CALAMARES_BOOST_PYTHON3 PROPERTIES
+        DESCRIPTION "A C++ library which enables seamless interoperability between C++ and Python 3."
+        URL "http://www.boost.org"
+        PURPOSE "Boost.Python is used for interfacing with Calamares job modules written in Python 3."
     )
 
     macro_optional_find_package( PythonQt )
-    macro_log_feature( PYTHONQT_FOUND
-        "PythonQt"
-        "A Python embedding solution for Qt applications."
-        "http://pythonqt.sourceforge.net"
-        FALSE "3.1"
-        "PythonQt is used for the Python modules API."
+    set_package_properties( PYTHONQT PROPERTIES
+        DESCRIPTION "A Python embedding solution for Qt applications."
+        URL "http://pythonqt.sourceforge.net"
+        PURPOSE "PythonQt is used for the Python modules API."
     )
 endif()
 
@@ -203,8 +197,12 @@ set( THIRDPARTY_DIR "${CMAKE_SOURCE_DIR}/thirdparty" )
 #   make example-distro
 #
 find_program( mksquashfs_PROGRAM mksquashfs )
-macro_log_feature( mksquashfs_PROGRAM "mksquashfs" "Create example distro" "http://tldp.org/HOWTO/SquashFS-HOWTO/creatingandusing.html")
+set_package_properties( mksquashfs PROPERTIES
+    DESCRIPTION "Create example distro"
+    URL "http://tldp.org/HOWTO/SquashFS-HOWTO/creatingandusing.html"
+)
 if( mksquashfs_PROGRAM )
+    set( mksquashfs_FOUND ON )
     set( src_fs ${CMAKE_SOURCE_DIR}/data/example-root/ )
     set( dst_fs ${CMAKE_BINARY_DIR}/example.sqfs )
     if( EXISTS ${src_fs} )
@@ -227,12 +225,22 @@ if( mksquashfs_PROGRAM )
         )
         add_custom_target(example-distro DEPENDS ${dst_fs})
     endif()
+else()
+    set( mksquashfs_FOUND OFF )
 endif()
+# Doesn't list mksquashfs as an optional dep, though, because it
+# hasn't been sent through the find_package() scheme.
+set_package_properties( mksquashfs PROPERTIES
+    DESCRIPTION "Create squashed filesystems"
+    URL "http://tldp.org/HOWTO/SquashFS-HOWTO/creatingandusing.html"
+    PURPOSE "Create example distro"
+    TYPE OPTIONAL
+)
 
 add_subdirectory( thirdparty )
 add_subdirectory( src )
 
-macro_display_feature_log()
+feature_summary(WHAT ALL)
 
 if( NOT WITH_PYTHON )
     message( "-- WARNING: Building Calamares without Python support. Legacy Python job modules will not work.\n" )
