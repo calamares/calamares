@@ -56,7 +56,6 @@ cmake_policy( SET CMP0023 OLD )
 cmake_policy( SET CMP0028 NEW ) # double colons in KF5::Foo and Qt5::Foo are necessarily IMPORTED or ALIAS targets, don't search further
 cmake_policy( SET CMP0043 OLD )
 
-include( MacroOptionalFindPackage )
 include( FeatureSummary )
 
 set( QT_VERSION 5.6.0 )
