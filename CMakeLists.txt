@@ -52,10 +52,6 @@ if( CMAKE_COMPILER_IS_GNUCXX )
     endif()
 endif()
 
-cmake_policy( SET CMP0023 OLD )
-cmake_policy( SET CMP0028 NEW ) # double colons in KF5::Foo and Qt5::Foo are necessarily IMPORTED or ALIAS targets, don't search further
-cmake_policy( SET CMP0043 OLD )
-
 include( FeatureSummary )
 
 set( QT_VERSION 5.6.0 )
@@ -79,7 +75,7 @@ endif ()
 #     set( WITH_CRASHREPORTER OFF )
 # endif()
 
-find_package( PythonLibs 3.3 OPTIONAL )
+find_package( PythonLibs 3.3 )
 set_package_properties(
     PYTHONLIBS PROPERTIES
     DESCRIPTION "C interface libraries for the Python 3 interpreter."
@@ -97,7 +93,7 @@ if ( PYTHONLIBS_FOUND )
         PURPOSE "Boost.Python is used for interfacing with Calamares job modules written in Python 3."
     )
 
-    macro_optional_find_package( PythonQt )
+    find_package( PythonQt )
     set_package_properties( PYTHONQT PROPERTIES
         DESCRIPTION "A Python embedding solution for Qt applications."
         URL "http://pythonqt.sourceforge.net"
