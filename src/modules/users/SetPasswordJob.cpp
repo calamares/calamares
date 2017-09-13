@@ -27,7 +27,11 @@
 #include <QDir>
 
 #include <random>
+
+#ifndef NO_CRYPT_H
 #include <crypt.h>
+#endif
+#include <unistd.h>
 
 
 SetPasswordJob::SetPasswordJob( const QString& userName, const QString& newPassword )
