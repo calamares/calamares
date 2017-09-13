@@ -145,7 +145,7 @@ void QtWaitingSpinner::updateTimer() {
 }
 
 int QtWaitingSpinner::countTimeout(int lines, qreal speed) {
-	return 1000 / (lines * speed);
+	return int( 1000.0 / (lines * speed) );
 }
 
 int QtWaitingSpinner::lineDistance(int from, int to, int lines) {
@@ -161,7 +161,7 @@ QColor QtWaitingSpinner::countTrailColor(int distance, int lines, int trail, int
 		return color;
 	}
 	const qreal minAlphaF = qreal(minOpacity) / 100.0;
-	int distanceThreshold = ceil( (lines - 1) * qreal(trail) / 100.0);
+	int distanceThreshold = int( ceil( (lines - 1) * qreal(trail) / 100.0) );
 	if (distance > distanceThreshold) {
 		color.setAlphaF(minAlphaF);
 		return color;

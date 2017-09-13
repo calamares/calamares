@@ -18,9 +18,9 @@
 
 #include "PackageTreeItem.h"
 
-PackageTreeItem::PackageTreeItem( const ItemData& data, PackageTreeItem* parent ) :
-    m_data( data ),
-    m_parentItem( parent )
+PackageTreeItem::PackageTreeItem( const ItemData& data, PackageTreeItem* parent )
+    : m_parentItem( parent )
+    , m_data( data )
 { }
 
 PackageTreeItem::PackageTreeItem( const QString packageName, PackageTreeItem* parent ) :

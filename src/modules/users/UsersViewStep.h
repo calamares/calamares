@@ -36,7 +36,7 @@ class PLUGINDLLEXPORT UsersViewStep : public Calamares::ViewStep
 
 public:
     explicit UsersViewStep( QObject* parent = nullptr );
-    virtual ~UsersViewStep();
+    virtual ~UsersViewStep() override;
 
     QString prettyName() const override;
 

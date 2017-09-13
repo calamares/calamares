@@ -33,7 +33,7 @@ public:
     QString prettyStatusMessage() const override;
     Calamares::JobResult exec() override;
 
-    static QString make_salt(size_t length);
+    static QString make_salt(int length);
 
 private:
     QString m_userName;

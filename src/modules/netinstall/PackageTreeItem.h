@@ -37,10 +37,10 @@ public:
         bool isHidden = false;
         Qt::CheckState selected = Qt::Unchecked;
     };
-    explicit PackageTreeItem( const ItemData& data, PackageTreeItem* parent = 0 );
-    explicit PackageTreeItem( const QString packageName, PackageTreeItem* parent = 0 );
-    explicit PackageTreeItem( PackageTreeItem* parent = 0 );
-    ~PackageTreeItem();
+    explicit PackageTreeItem( const ItemData& data, PackageTreeItem* parent = nullptr );
+    explicit PackageTreeItem( const QString packageName, PackageTreeItem* parent = nullptr );
+    explicit PackageTreeItem( PackageTreeItem* parent = nullptr );
+    ~PackageTreeItem() override;
 
     void appendChild( PackageTreeItem* child );
     PackageTreeItem* child( int row );

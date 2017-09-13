@@ -126,6 +126,8 @@ bool
 PackageModel::setHeaderData( int section, Qt::Orientation orientation,
                              const QVariant& value, int role )
 {
+    Q_UNUSED( role );
+
     if ( orientation == Qt::Horizontal )
     {
         if ( m_columnHeadings.value( section ) != QVariant() )

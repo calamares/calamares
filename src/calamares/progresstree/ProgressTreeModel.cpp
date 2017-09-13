@@ -96,6 +96,10 @@ ProgressTreeModel::data( const QModelIndex& index, int role ) const
 QVariant
 ProgressTreeModel::headerData( int section, Qt::Orientation orientation, int role ) const
 {
+    Q_UNUSED( section );
+    Q_UNUSED( orientation );
+    Q_UNUSED( role );
+
     return QVariant();
 }
 
@@ -146,12 +150,11 @@ ProgressTreeModel::indexFromItem( ProgressTreeItem* item )
     if ( !item || !item->parent() )
         return QModelIndex();
 
-
     // Reconstructs a QModelIndex from a ProgressTreeItem that is somewhere in the tree.
-    // Traverses the item to the root node, then rebuilds the qmodeindices from there
+    // Traverses the item to the root node, then rebuilds the qmodelindices from there
     // back down; each int is the row of that item in the parent.
     /**
-     * In this diagram, if the \param item is G, childIndexList will contain [0, 2, 0]
+     * In this diagram, if the item is G, childIndexList will contain [0, 2, 0]
      *
      *    A
      *      D

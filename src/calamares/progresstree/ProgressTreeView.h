@@ -34,8 +34,8 @@ class ProgressTreeView : public QTreeView
 public:
     static ProgressTreeView* instance();
 
-    explicit ProgressTreeView( QWidget* parent = 0 );
-    virtual ~ProgressTreeView();
+    explicit ProgressTreeView( QWidget* parent = nullptr );
+    virtual ~ProgressTreeView() override;
 
     /**
      * @brief setModel assigns a model to this view.

@@ -39,7 +39,7 @@ public:
     };
 
     explicit ProgressTreeModel( QObject* parent = nullptr );
-    virtual ~ProgressTreeModel();
+    virtual ~ProgressTreeModel() override;
 
     // Reimplemented from QAbstractItemModel
     Qt::ItemFlags flags( const QModelIndex& index ) const override;
