@@ -29,7 +29,7 @@
 #include "utils/Logger.h"
 
 static QHash< QString, QHash< int, QHash< qint64, QPixmap > > > s_cache;
-ImageRegistry* ImageRegistry::s_instance = 0;
+ImageRegistry* ImageRegistry::s_instance = nullptr;
 
 
 ImageRegistry*

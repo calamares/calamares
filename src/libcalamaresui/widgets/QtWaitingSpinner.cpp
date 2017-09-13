@@ -57,7 +57,7 @@ void QtWaitingSpinner::paintEvent(QPaintEvent* /*ev*/) {
 	for (int i = 0; i < myLinesNumber; ++i) {
 		painter.save();
 		painter.translate(myRadius + myLength, myRadius + myLength);
-		qreal rotateAngle = (qreal)360 * qreal(i) / qreal(myLinesNumber);
+		qreal rotateAngle = 360.0 * qreal(i) / qreal(myLinesNumber);
 		painter.rotate(rotateAngle);
 		painter.translate(myRadius, 0);
 		int distance = lineDistance(i, myCurrentCounter, myLinesNumber);
@@ -160,14 +160,14 @@ QColor QtWaitingSpinner::countTrailColor(int distance, int lines, int trail, int
 	if (distance == 0) {
 		return color;
 	}
-	const qreal minAlphaF = (qreal)minOpacity / 100;
-	int distanceThreshold = ceil( (lines - 1) * (qreal)trail / 100);
+	const qreal minAlphaF = qreal(minOpacity) / 100.0;
+	int distanceThreshold = ceil( (lines - 1) * qreal(trail) / 100.0);
 	if (distance > distanceThreshold) {
 		color.setAlphaF(minAlphaF);
 		return color;
 	}
-	qreal alphaDiff = color.alphaF() - (qreal)minAlphaF;
-	qreal gradation = alphaDiff / (qreal)(distanceThreshold + 1);
+	qreal alphaDiff = color.alphaF() - minAlphaF;
+	qreal gradation = alphaDiff / qreal(distanceThreshold + 1);
 	qreal resultAlpha = color.alphaF() - gradation * distance;
 	resultAlpha = std::min(1.0, std::max(0.0, resultAlpha)); //if alpha is out of bound, force it to bounds
 	color.setAlphaF(resultAlpha);

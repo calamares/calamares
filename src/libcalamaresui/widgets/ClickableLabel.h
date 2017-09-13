@@ -28,14 +28,14 @@ class ClickableLabel : public QLabel
 public:
     explicit ClickableLabel( QWidget* parent = nullptr, Qt::WindowFlags f = 0 );
     explicit ClickableLabel( const QString& text, QWidget* parent = nullptr, Qt::WindowFlags f = 0 );
-    virtual ~ClickableLabel();
+    virtual ~ClickableLabel() override;
 
 signals:
     void clicked();
 
 protected:
-    virtual void mousePressEvent( QMouseEvent* event );
-    virtual void mouseReleaseEvent( QMouseEvent* event );
+    virtual void mousePressEvent( QMouseEvent* event ) override;
+    virtual void mouseReleaseEvent( QMouseEvent* event ) override;
 
 private:
     QTime m_time;

@@ -35,7 +35,7 @@ class PackageModel : public QAbstractItemModel
     Q_OBJECT
 
 public:
-    explicit PackageModel( const YAML::Node& data, QObject* parent = 0 );
+    explicit PackageModel( const YAML::Node& data, QObject* parent = nullptr );
     ~PackageModel();
 
     QVariant data( const QModelIndex& index, int role ) const override;

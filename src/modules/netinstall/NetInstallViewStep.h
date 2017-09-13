@@ -34,7 +34,7 @@ class PLUGINDLLEXPORT NetInstallViewStep : public Calamares::ViewStep
 
 public:
     explicit NetInstallViewStep( QObject* parent = nullptr );
-    virtual ~NetInstallViewStep();
+    virtual ~NetInstallViewStep() override;
 
     QString prettyName() const override;
     QString prettyStatus() const override;

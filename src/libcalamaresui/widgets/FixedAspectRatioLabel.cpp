@@ -42,6 +42,7 @@ FixedAspectRatioLabel::setPixmap( const QPixmap& pixmap )
 void
 FixedAspectRatioLabel::resizeEvent( QResizeEvent* event )
 {
+    Q_UNUSED( event );
     QLabel::setPixmap( m_pixmap.scaled(
                            contentsRect().size(),
                            Qt::KeepAspectRatio,
