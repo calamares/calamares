@@ -192,10 +192,6 @@ set( THIRDPARTY_DIR "${CMAKE_SOURCE_DIR}/thirdparty" )
 #   make example-distro
 #
 find_program( mksquashfs_PROGRAM mksquashfs )
-set_package_properties( mksquashfs PROPERTIES
-    DESCRIPTION "Create example distro"
-    URL "http://tldp.org/HOWTO/SquashFS-HOWTO/creatingandusing.html"
-)
 if( mksquashfs_PROGRAM )
     set( mksquashfs_FOUND ON )
     set( src_fs ${CMAKE_SOURCE_DIR}/data/example-root/ )

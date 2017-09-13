@@ -45,9 +45,6 @@ function(calamares_add_library)
         add_library(${target} SHARED ${LIBRARY_SOURCES})
     endif()
 
-    # HACK: add qt modules - every lib should define its own set of modules
-    qt5_use_modules(${target} Core Gui Widgets ${LIBRARY_QT5_MODULES})
-
     # definitions - can this be moved into set_target_properties below?
     add_definitions(${QT_DEFINITIONS})
     set_target_properties(${target} PROPERTIES AUTOMOC TRUE)
@@ -67,9 +64,15 @@ function(calamares_add_library)
     endif()
 
     # add link targets
-    target_link_libraries(${target} ${CALAMARES_LIBRARIES})
+    target_link_libraries(${target} 
+        LINK_PUBLIC ${CALAMARES_LIBRARIES}
+        Qt5::Core
+        Qt5::Gui
+        Qt5::Widgets
+        ${LIBRARY_QT5_MODULES}
+    )
     if(LIBRARY_LINK_LIBRARIES)
-        target_link_libraries(${target} ${LIBRARY_LINK_LIBRARIES})
+        target_link_libraries(${target} LINK_PUBLIC ${LIBRARY_LINK_LIBRARIES})
     endif()
     if(LIBRARY_LINK_PRIVATE_LIBRARIES)
         target_link_libraries(${target} LINK_PRIVATE ${LIBRARY_LINK_PRIVATE_LIBRARIES})

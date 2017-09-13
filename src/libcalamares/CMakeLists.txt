@@ -81,17 +81,9 @@ set_target_properties( calamares
         SOVERSION ${CALAMARES_VERSION_SHORT}
 )
 
-qt5_use_modules( calamares Core )
-
-
 target_link_libraries( calamares
-    LINK_PRIVATE
-    # internal deps, if any
-    ${OPTIONAL_PRIVATE_LIBRARIES}
-
-    LINK_PUBLIC
-    # External deps
-    Qt5::Core
+    LINK_PRIVATE ${OPTIONAL_PRIVATE_LIBRARIES}
+    LINK_PUBLIC Qt5::Core
 )
 
 install( TARGETS calamares

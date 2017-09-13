@@ -55,7 +55,6 @@ if( WITH_CRASHREPORTER )
     list( APPEND LINK_LIBRARIES ${LINK_LIBRARIES} pthread crashreporter-handler )
 endif()
 
-qt5_use_modules( calamares_bin Core Widgets )
 target_link_libraries( calamares_bin
     PRIVATE
         ${CALAMARES_LIBRARIES}
