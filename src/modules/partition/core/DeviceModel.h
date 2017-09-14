@@ -32,8 +32,8 @@ class DeviceModel : public QAbstractListModel
 {
     Q_OBJECT
 public:
-    DeviceModel( QObject* parent = 0 );
-    ~DeviceModel();
+    DeviceModel( QObject* parent = nullptr );
+    ~DeviceModel() override;
 
     /**
      * Init the model with the list of devices. Does *not* take ownership of the

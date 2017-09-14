@@ -36,7 +36,7 @@ class PartitionLabelsView : public QAbstractItemView
     Q_OBJECT
 public:
     explicit PartitionLabelsView( QWidget* parent = nullptr );
-    virtual ~PartitionLabelsView();
+    virtual ~PartitionLabelsView() override;
 
     QSize minimumSizeHint() const override;
 
