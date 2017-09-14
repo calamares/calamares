@@ -72,7 +72,7 @@ CreatePartitionTableJob::prettyStatusMessage() const
 Calamares::JobResult
 CreatePartitionTableJob::exec()
 {
-    Report report( 0 );
+    Report report( nullptr );
     QString message = tr( "The installer failed to create a partition table on %1." ).arg( m_device->name() );
 
     CoreBackend* backend = CoreBackendManager::self()->backend();
