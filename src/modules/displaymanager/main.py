@@ -480,12 +480,9 @@ def run():
                 )
 
             if (os.path.exists(greeter_path)):
-                greeter_configured = False
-
                 # configure first found lightdm-greeter
-                for entry in os.scandir(greeter_path):
-                    if entry.name.endswith('.desktop') \
-                            and not greeter_configured:
+                for entry in os.listdir(greeter_path):
+                    if entry.name.endswith('.desktop'):
                         greeter = entry.name.split('.')[0]
                         libcalamares.utils.debug(
                             "found greeter {!s}".format(greeter)
@@ -500,9 +497,8 @@ def run():
                         libcalamares.utils.debug(
                             "{!s} configured as greeter.".format(greeter)
                             )
-                        greeter_configured = True
-
-                if not greeter_configured:
+                        break
+                else:
                     return ("No lightdm greeter installed.")
         else:
             libcalamares.utils.debug("lightdm selected but not installed")
