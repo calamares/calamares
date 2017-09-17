@@ -30,7 +30,23 @@ if( CMAKE_CXX_COMPILER_ID MATCHES "Clang" )
     set( CMAKE_C_FLAGS_RELEASE          "-O4 -DNDEBUG" )
     set( CMAKE_C_FLAGS_RELWITHDEBINFO   "-O2 -g" )
 
-    set( CMAKE_CXX_FLAGS                "${CMAKE_CXX_FLAGS} -Weverything -Wno-c++98-compat -Wno-c++98-compat-pedantic -Wno-padded -Wno-undefined-reinterpret-cast -Wno-global-constructors -Wno-exit-time-destructors -Wno-missing-prototypes -Wno-documentation-unknown-command")
+    # Clang warnings: doing *everything* is counter-productive, since it warns
+    # about things which we can't fix (e.g. C++98 incompatibilities, but
+    # Calaares is C++14).
+    foreach( CLANG_WARNINGS
+        -Weverything
+        -Wno-c++98-compat
+        -Wno-c++98-compat-pedantic
+        -Wno-padded
+        -Wno-undefined-reinterpret-cast
+        -Wno-global-constructors
+        -Wno-exit-time-destructors
+        -Wno-missing-prototypes
+        -Wno-documentation-unknown-command
+    )
+        string( APPEND CMAKE_CXX_FLAGS " ${CLANG_WARNINGS}" )
+    endforeach()
+
     set( CMAKE_CXX_FLAGS_DEBUG          "-g" )
     set( CMAKE_CXX_FLAGS_MINSIZEREL     "-Os -DNDEBUG" )
     set( CMAKE_CXX_FLAGS_RELEASE        "-O4 -DNDEBUG" )
