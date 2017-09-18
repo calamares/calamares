@@ -1,4 +1,4 @@
-project( libcalamares )
+project( libcalamares CXX )
 
 add_definitions(
     ${QT_DEFINITIONS}
@@ -19,24 +19,40 @@ set( libSources
     JobQueue.cpp
     ProcessJob.cpp
 )
-set( kdsagSources
-    kdsingleapplicationguard/kdsingleapplicationguard.cpp
-    kdsingleapplicationguard/kdsharedmemorylocker.cpp
-    kdsingleapplicationguard/kdtoolsglobal.cpp
-    kdsingleapplicationguard/kdlockedsharedmemorypointer.cpp
+
+include_directories(
+    ${CMAKE_CURRENT_BINARY_DIR}
+    ${CMAKE_CURRENT_SOURCE_DIR}
 )
-set( utilSources
+
+# Build subdirs as their own separate OBJECT libraries,
+# to allow changing compiler warnings on their code.
+set( utilsSources
     utils/CalamaresUtils.cpp
     utils/CalamaresUtilsSystem.cpp
     utils/Logger.cpp
     utils/PluginFactory.cpp
     utils/Retranslator.cpp
 )
-
-include_directories(
-    ${CMAKE_CURRENT_BINARY_DIR}
-    ${CMAKE_CURRENT_SOURCE_DIR}
+add_library( utilsLib OBJECT ${utilsSources} )
+target_compile_options( utilsLib PUBLIC -fPIC )
+target_include_directories( utilsLib PUBLIC
+    $<TARGET_PROPERTY:Qt5::Core,INTERFACE_INCLUDE_DIRECTORIES>
 )
+set_target_properties( utilsLib PROPERTIES AUTOMOC TRUE )
+
+set( kdsagSources
+    kdsingleapplicationguard/kdsingleapplicationguard.cpp
+    kdsingleapplicationguard/kdsharedmemorylocker.cpp
+    kdsingleapplicationguard/kdtoolsglobal.cpp
+    kdsingleapplicationguard/kdlockedsharedmemorypointer.cpp
+)
+add_library( kdsagLib OBJECT ${kdsagSources} )
+target_compile_options( kdsagLib PUBLIC -fPIC )
+target_include_directories( kdsagLib PUBLIC
+    $<TARGET_PROPERTY:Qt5::Core,INTERFACE_INCLUDE_DIRECTORIES>
+)
+set_target_properties( kdsagLib PROPERTIES AUTOMOC TRUE )
 
 
 if( WITH_PYTHON )
@@ -75,7 +91,10 @@ if( WITH_PYTHONQT )
 endif()
 
 
-add_library( calamares SHARED ${libSources} ${kdsagSources} ${utilSources} )
+add_library( calamares SHARED ${libSources}
+    $<TARGET_OBJECTS:kdsagLib>
+    $<TARGET_OBJECTS:utilsLib>
+)
 set_target_properties( calamares
     PROPERTIES
         AUTOMOC TRUE
