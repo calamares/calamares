@@ -20,6 +20,7 @@
 
 #include "UsersPage.h"
 
+#include "utils/Logger.h"
 #include "JobQueue.h"
 #include "GlobalStorage.h"
 
@@ -159,11 +160,23 @@ UsersViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     {
         m_widget->setAutologinDefault( configurationMap.value( "doAutologin" ).toBool() );
     }
-    
+
     if ( configurationMap.contains( "doReusePassword" ) &&
          configurationMap.value( "doReusePassword" ).type() == QVariant::Bool )
     {
         m_widget->setReusePasswordDefault( configurationMap.value( "doReusePassword" ).toBool() );
+    }
+
+    if ( configurationMap.contains( "passwordRequirements" ) &&
+        configurationMap.value( "passwordRequirements" ).type() == QVariant::Map )
+    {
+        auto pr_checks( configurationMap.value( "passwordRequirements" ).toMap() );
+
+        for (decltype(pr_checks)::const_iterator i = pr_checks.constBegin();
+            i != pr_checks.constEnd(); ++i)
+        {
+            m_widget->addPasswordCheck( i.key(), i.value() );
+        }
     }
 }
 
