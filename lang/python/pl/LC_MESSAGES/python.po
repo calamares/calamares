@@ -33,26 +33,26 @@ msgstr "Krok dummy python {}"
 #: src/modules/packages/main.py:59
 #, python-format
 msgid "Processing packages (%(count)d / %(total)d)"
-msgstr ""
+msgstr "Przetwarzanie pakietów (%(count)d / %(total)d)"
 
 #: src/modules/packages/main.py:61
 #, python-format
 msgid "Installing one package."
 msgid_plural "Installing %(num)d packages."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Instalowanie jednego pakietu."
+msgstr[1] "Instalowanie %(num)d pakietów."
+msgstr[2] "Instalowanie %(num)d pakietów."
+msgstr[3] "Instalowanie pakietów (%(num)d)."
 
 #: src/modules/packages/main.py:64
 #, python-format
 msgid "Removing one package."
 msgid_plural "Removing %(num)d packages."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Usuwanie jednego pakietu."
+msgstr[1] "Usuwanie %(num)d pakietów."
+msgstr[2] "Usuwanie %(num)d pakietów."
+msgstr[3] "Usuwanie pakietów (%(num)d)."
 
 #: src/modules/packages/main.py:68
 msgid "Install packages."
-msgstr ""
+msgstr "Zainstaluj pakiety."

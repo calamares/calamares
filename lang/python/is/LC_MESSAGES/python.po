@@ -33,22 +33,22 @@ msgstr "Dummy python step {}"
 #: src/modules/packages/main.py:59
 #, python-format
 msgid "Processing packages (%(count)d / %(total)d)"
-msgstr ""
+msgstr "Vinnslupakkar (%(count)d / %(total)d)"
 
 #: src/modules/packages/main.py:61
 #, python-format
 msgid "Installing one package."
 msgid_plural "Installing %(num)d packages."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Setja upp einn pakka."
+msgstr[1] "Setur upp %(num)d pakka."
 
 #: src/modules/packages/main.py:64
 #, python-format
 msgid "Removing one package."
 msgid_plural "Removing %(num)d packages."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Fjarlægi einn pakka."
+msgstr[1] "Fjarlægi %(num)d pakka."
 
 #: src/modules/packages/main.py:68
 msgid "Install packages."
-msgstr ""
+msgstr "Setja upp pakka."
