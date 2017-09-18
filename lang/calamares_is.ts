@@ -1050,7 +1050,7 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
         <location filename="../src/modules/finished/FinishedViewStep.cpp" line="127"/>
         <source>The installation of %1 is complete.</source>
-        <translation type="unfinished"/>
+        <translation>Uppsetningu af %1 er lokið.</translation>
     </message>
 </context>
 <context>
@@ -1162,12 +1162,12 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
         <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="66"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Hætta við</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="67"/>
         <source>&amp;OK</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Í lagi</translation>
     </message>
 </context>
 <context>
@@ -1857,7 +1857,7 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="153"/>
         <source>The screen is too small to display the installer.</source>
-        <translation type="unfinished"/>
+        <translation>Skjárinn er of lítill til að birta uppsetningarforritið.</translation>
     </message>
 </context>
 <context>
