@@ -24,7 +24,8 @@
 
 class QPluginLoader;
 
-namespace Calamares {
+namespace Calamares
+{
 
 class ViewStep;
 
@@ -43,7 +44,7 @@ protected:
 private:
     friend class Module; //so only the superclass can instantiate
     explicit ViewModule();
-    virtual ~ViewModule() override;
+    virtual ~ViewModule();
 
     QPluginLoader* m_loader;
     ViewStep* m_viewStep = nullptr;

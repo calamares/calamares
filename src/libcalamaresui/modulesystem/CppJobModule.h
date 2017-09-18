@@ -25,7 +25,8 @@
 
 class QPluginLoader;
 
-namespace Calamares {
+namespace Calamares
+{
 
 class UIDLLEXPORT CppJobModule : public Module
 {
@@ -42,7 +43,7 @@ protected:
 private:
     friend class Module; //so only the superclass can instantiate
     explicit CppJobModule();
-    virtual ~CppJobModule() override;
+    virtual ~CppJobModule();
 
     QPluginLoader* m_loader;
     job_ptr m_job;

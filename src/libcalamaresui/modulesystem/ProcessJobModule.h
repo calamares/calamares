@@ -23,7 +23,8 @@
 
 #include "UiDllMacro.h"
 
-namespace Calamares {
+namespace Calamares
+{
 
 class UIDLLEXPORT ProcessJobModule : public Module
 {
@@ -40,7 +41,7 @@ protected:
 private:
     friend class Module;
     explicit ProcessJobModule();
-    virtual ~ProcessJobModule() override;
+    virtual ~ProcessJobModule();
 
     QString m_command;
     QString m_workingPath;
