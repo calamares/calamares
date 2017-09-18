@@ -43,6 +43,14 @@ BOILERPLATE="Automatic merge of Transifex translations"
 git add --verbose lang/calamares*.ts
 git commit "$AUTHOR" --message="[core] $BOILERPLATE" | true
 
+rm -f lang/desktop*.desktop
+awk '
+	BEGIN {skip=0;}
+	/^# Translations/ {skip=1;}
+	{if (!skip || (length($0)>1 && $0 != "# Translations")) {
+		skip=0; print $0;
+	}}' < calamares.desktop > calamares.desktop.new
+mv calamares.desktop.new calamares.desktop
 git add --verbose calamares.desktop
 git commit "$AUTHOR" --message="[desktop] $BOILERPLATE" | true
 
