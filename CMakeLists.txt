@@ -77,7 +77,6 @@ find_package( YAMLCPP 0.5.1 REQUIRED )
 find_package( PolkitQt5-1 REQUIRED )
 
 option( WITH_PYTHON "Enable Python modules API (requires Boost.Python)." ON )
-# option( WITH_CRASHREPORTER "Build with CrashReporter" OFF )
 option( INSTALL_CONFIG "Install configuration files" ON )
 option( WITH_PYTHONQT "Enable next generation Python modules API (experimental, requires PythonQt)." OFF )
 option( BUILD_TESTING "Build the testing tree." ON )
@@ -85,11 +84,6 @@ option( BUILD_TESTING "Build the testing tree." ON )
 if( BUILD_TESTING )
     enable_testing()
 endif ()
-
-# if( CMAKE_SYSTEM_PROCESSOR MATCHES "arm" OR NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/libcrashreporter-qt/CMakeLists.txt" )
-#     message( STATUS "Build of crashreporter disabled." )
-#     set( WITH_CRASHREPORTER OFF )
-# endif()
 
 find_package( PythonLibs 3.3 )
 set_package_properties(
