@@ -20,7 +20,7 @@ list( APPEND calamaresui_SOURCES
 
     widgets/ClickableLabel.cpp
     widgets/FixedAspectRatioLabel.cpp
-    widgets/QtWaitingSpinner.cpp
+    widgets/waitingspinnerwidget.cpp
     widgets/WaitingWidget.cpp
 
     ExecutionViewStep.cpp
