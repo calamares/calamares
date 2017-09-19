@@ -19,14 +19,6 @@ set( libSources
     JobQueue.cpp
     ProcessJob.cpp
 )
-
-include_directories(
-    ${CMAKE_CURRENT_BINARY_DIR}
-    ${CMAKE_CURRENT_SOURCE_DIR}
-)
-
-# Build subdirs as their own separate OBJECT libraries,
-# to allow changing compiler warnings on their code.
 set( utilsSources
     utils/CalamaresUtils.cpp
     utils/CalamaresUtilsSystem.cpp
@@ -34,26 +26,19 @@ set( utilsSources
     utils/PluginFactory.cpp
     utils/Retranslator.cpp
 )
-add_library( utilsLib OBJECT ${utilsSources} )
-target_compile_options( utilsLib PUBLIC -fPIC )
-target_include_directories( utilsLib PUBLIC
-    $<TARGET_PROPERTY:Qt5::Core,INTERFACE_INCLUDE_DIRECTORIES>
-)
-set_target_properties( utilsLib PROPERTIES AUTOMOC TRUE )
-
 set( kdsagSources
     kdsingleapplicationguard/kdsingleapplicationguard.cpp
     kdsingleapplicationguard/kdsharedmemorylocker.cpp
     kdsingleapplicationguard/kdtoolsglobal.cpp
     kdsingleapplicationguard/kdlockedsharedmemorypointer.cpp
 )
-add_library( kdsagLib OBJECT ${kdsagSources} )
-target_compile_options( kdsagLib PUBLIC -fPIC )
-target_include_directories( kdsagLib PUBLIC
-    $<TARGET_PROPERTY:Qt5::Core,INTERFACE_INCLUDE_DIRECTORIES>
-)
-set_target_properties( kdsagLib PROPERTIES AUTOMOC TRUE )
+set_source_files_properties( ${kdsagSources}
+    PROPERTIES COMPILE_FLAGS "${SUPPRESS_3RDPARTY_WARNINGS}" )
 
+include_directories(
+    ${CMAKE_CURRENT_BINARY_DIR}
+    ${CMAKE_CURRENT_SOURCE_DIR}
+)
 
 if( WITH_PYTHON )
     set( libSources
@@ -91,10 +76,7 @@ if( WITH_PYTHONQT )
 endif()
 
 
-add_library( calamares SHARED ${libSources}
-    $<TARGET_OBJECTS:kdsagLib>
-    $<TARGET_OBJECTS:utilsLib>
-)
+add_library( calamares SHARED ${libSources} ${kdsagSources} ${utilsSources} )
 set_target_properties( calamares
     PROPERTIES
         AUTOMOC TRUE

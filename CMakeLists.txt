@@ -65,6 +65,13 @@ if( CMAKE_CXX_COMPILER_ID MATCHES "Clang" )
         string( APPEND CMAKE_CXX_FLAGS " ${CLANG_WARNINGS}" )
     endforeach()
 
+    # Third-party code where we don't care so much about compiler warnings
+    # (because it's uncomfortable to patch) get different flags; use
+    #       set_source_files_properties( <file>
+    #           PROPERTIES COMPILE_FLAGS "${SUPPRESS_3RDPARTY_WARNINGS}" )
+    # to switch off warnings for those sources.
+    set( SUPPRESS_3RDPARTY_WARNINGS "-Wno-everything" )
+
     set( CMAKE_CXX_FLAGS_DEBUG          "-g" )
     set( CMAKE_CXX_FLAGS_MINSIZEREL     "-Os -DNDEBUG" )
     set( CMAKE_CXX_FLAGS_RELEASE        "-O4 -DNDEBUG" )
@@ -76,6 +83,8 @@ if( CMAKE_CXX_COMPILER_ID MATCHES "Clang" )
 else()
     set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wl,--no-undefined" )
     set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wl,--fatal-warnings -Wnon-virtual-dtor -Woverloaded-virtual -Werror=return-type" )
+
+    set( SUPPRESS_3RDPARTY_WARNINGS "" )
 endif()
 
 if( CMAKE_COMPILER_IS_GNUCXX )
