@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Based on KPluginFactory from KCoreAddons, KDE project
  *   Copyright 2007, Matthias Kretz <kretz@kde.org>
