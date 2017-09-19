@@ -37,11 +37,20 @@
 #include <QRegExp>
 #include <QRegExpValidator>
 
-/** Add a standard pixmap to a label. */
-static void
-markLabel( QLabel* label, CalamaresUtils::ImageType i )
+/** Add an error message and pixmap to a label. */
+static inline void
+labelError( QLabel* pix, QLabel* label, const QString& message )
 {
-    label->setPixmap( CalamaresUtils::defaultPixmap( i, CalamaresUtils::Original, label->size() ) );
+    label->setText( message );
+    pix->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::No, CalamaresUtils::Original, label->size() ) );
+}
+
+/** Clear error, indicate OK on a label. */
+static inline void
+labelOk( QLabel* pix, QLabel* label )
+{
+    label->clear();
+    pix->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::Yes, CalamaresUtils::Original, label->size() ) );
 }
 
 UsersPage::UsersPage( QWidget* parent )
@@ -273,23 +282,19 @@ UsersPage::validateUsernameText( const QString& textRef )
     }
     else if ( text.length() > USERNAME_MAX_LENGTH )
     {
-        markLabel( ui->labelUsername, CalamaresUtils::No );
-        ui->labelUsernameError->setText(
-            tr( "Your username is too long." ) );
-
+        labelError( ui->labelUsername, ui->labelUsernameError,
+                    tr( "Your username is too long." ) );
         m_readyUsername = false;
     }
     else if ( val.validate( text, pos ) == QValidator::Invalid )
     {
-        markLabel( ui->labelUsername, CalamaresUtils::No );
-        ui->labelUsernameError->setText(
-            tr( "Your username contains invalid characters. Only lowercase letters and numbers are allowed." ) );
-
+        labelError( ui->labelUsername, ui->labelUsernameError,
+                    tr( "Your username contains invalid characters. Only lowercase letters and numbers are allowed." ) );
         m_readyUsername = false;
     }
-    else {
-        markLabel( ui->labelUsername, CalamaresUtils::Yes );
-        ui->labelUsernameError->clear();
+    else
+    {
+        labelOk( ui->labelUsername, ui->labelUsernameError );
         m_readyUsername = true;
     }
 
@@ -321,34 +326,25 @@ UsersPage::validateHostnameText( const QString& textRef )
     }
     else if ( text.length() < HOSTNAME_MIN_LENGTH )
     {
-        markLabel( ui->labelHostname, CalamaresUtils::No );
-        ui->labelHostnameError->setText(
-            tr( "Your hostname is too short." ) );
-
+        labelError( ui->labelHostname, ui->labelHostnameError,
+                    tr( "Your hostname is too short." ) );
         m_readyHostname = false;
-
     }
     else if ( text.length() > HOSTNAME_MAX_LENGTH )
     {
-        markLabel( ui->labelHostname, CalamaresUtils::No );
-        ui->labelHostnameError->setText(
-            tr( "Your hostname is too long." ) );
-
+        labelError( ui->labelHostname, ui->labelHostnameError,
+                    tr( "Your hostname is too long." ) );
         m_readyHostname = false;
-
     }
     else if ( val.validate( text, pos ) == QValidator::Invalid )
     {
-        markLabel( ui->labelHostname, CalamaresUtils::No );
-        ui->labelHostnameError->setText(
-            tr( "Your hostname contains invalid characters. Only letters, numbers and dashes are allowed." ) );
-
+        labelError( ui->labelHostname, ui->labelHostnameError,
+                    tr( "Your hostname contains invalid characters. Only letters, numbers and dashes are allowed." ) );
         m_readyHostname = false;
     }
     else
     {
-        markLabel( ui->labelHostname, CalamaresUtils::Yes );
-        ui->labelHostnameError->clear();
+        labelOk( ui->labelHostname, ui->labelHostnameError );
         m_readyHostname = true;
     }
 
@@ -361,6 +357,7 @@ UsersPage::onPasswordTextChanged( const QString& )
     QString pw1 = ui->textBoxUserPassword->text();
     QString pw2 = ui->textBoxUserVerifiedPassword->text();
 
+    // TODO: 3.3: remove empty-check and leave it to passwordRequirements
     if ( pw1.isEmpty() && pw2.isEmpty() )
     {
         ui->labelUserPasswordError->clear();
@@ -369,8 +366,8 @@ UsersPage::onPasswordTextChanged( const QString& )
     }
     else if ( pw1 != pw2 )
     {
-        ui->labelUserPasswordError->setText( tr( "Your passwords do not match!" ) );
-        markLabel( ui->labelUserPassword, CalamaresUtils::No );
+        labelError( ui->labelUserPassword, ui->labelUserPasswordError,
+                    tr( "Your passwords do not match!" ) );
         m_readyPassword = false;
     }
     else
@@ -381,17 +378,16 @@ UsersPage::onPasswordTextChanged( const QString& )
             QString s = pc.filter( pw1 );
             if ( !s.isEmpty() )
             {
-                ui->labelUserPasswordError->setText( s );
-                markLabel( ui->labelUserPassword, CalamaresUtils::No );
+                labelError( ui->labelUserPassword, ui->labelUserPasswordError, s );
                 ok = false;
                 m_readyPassword = false;
+                break;
             }
         }
 
         if ( ok )
         {
-            ui->labelUserPasswordError->clear();
-            markLabel( ui->labelUserPassword, CalamaresUtils::Yes );
+            labelOk( ui->labelUserPassword, ui->labelUserPasswordError );
             m_readyPassword = true;
         }
     }
@@ -405,6 +401,7 @@ UsersPage::onRootPasswordTextChanged( const QString& )
     QString pw1 = ui->textBoxRootPassword->text();
     QString pw2 = ui->textBoxVerifiedRootPassword->text();
 
+    // TODO: 3.3: remove empty-check and leave it to passwordRequirements
     if ( pw1.isEmpty() && pw2.isEmpty() )
     {
         ui->labelRootPasswordError->clear();
@@ -413,8 +410,8 @@ UsersPage::onRootPasswordTextChanged( const QString& )
     }
     else if ( pw1 != pw2 )
     {
-        ui->labelRootPasswordError->setText( tr( "Your passwords do not match!" ) );
-        markLabel( ui->labelRootPassword, CalamaresUtils::No );
+        labelError( ui->labelRootPassword, ui->labelRootPasswordError,
+                    tr( "Your passwords do not match!" ) );
         m_readyRootPassword = false;
     }
     else
@@ -425,17 +422,16 @@ UsersPage::onRootPasswordTextChanged( const QString& )
             QString s = pc.filter( pw1 );
             if ( !s.isEmpty() )
             {
-                ui->labelRootPasswordError->setText( s );
-                markLabel( ui->labelRootPassword, CalamaresUtils::No );
+                labelError( ui->labelRootPassword, ui->labelRootPasswordError, s );
                 ok = false;
                 m_readyRootPassword = false;
+                break;
             }
         }
 
         if ( ok )
         {
-            ui->labelRootPasswordError->clear();
-            markLabel( ui->labelRootPassword, CalamaresUtils::Yes );
+            labelOk( ui->labelRootPassword, ui->labelRootPasswordError );
             m_readyRootPassword = true;
         }
     }
