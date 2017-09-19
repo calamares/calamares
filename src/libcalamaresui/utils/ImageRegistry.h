@@ -1,3 +1,9 @@
+/* === This file is part of Calamares - <https://github.com/calamares> ===
+ *
+ *   SPDX-License-Identifier: GPLv3+
+ *   License-Filename: LICENSES/GPLv3+-ImageRegistry
+ */
+
 /*
  *   Copyright 2012, Christian Muehlhaeuser <muesli@tomahawk-player.org>
 
