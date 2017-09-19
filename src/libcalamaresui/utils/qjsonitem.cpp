@@ -1,3 +1,9 @@
+/* === This file is part of Calamares - <https://github.com/calamares> ===
+ *
+ *   SPDX-License-Identifier: GPL-3.0+
+ *   License-Filename: LICENSES/GPLv3+-QJsonModel
+ */
+
 /***********************************************
     Copyright (C) 2014  Schutz Sacha
     This file is part of QJsonModel (https://github.com/dridk/QJsonmodel).
