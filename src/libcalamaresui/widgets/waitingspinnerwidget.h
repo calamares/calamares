@@ -1,3 +1,9 @@
+/* === This file is part of Calamares - <https://github.com/calamares> ===
+ *
+ *   SPDX-License-Identifier: MIT
+ *   License-Filename: LICENSES/MIT-QtWaitingSpinner
+ */
+
 /* Original Work Copyright (c) 2012-2014 Alexander Turkin
    Modified 2014 by William Hallatt
    Modified 2015 by Jacob Dawid
