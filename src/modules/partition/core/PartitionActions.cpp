@@ -45,19 +45,21 @@ using CalamaresUtils::operator""_MiB;
 qint64
 swapSuggestion( const qint64 availableSpaceB )
 {
-    // swap(mem) = max(2, 2 * mem), if mem < 2 GiB
-    //           = mem,             if 2 GiB <= mem < 8 GiB
-    //           = mem / 2,         if 8 GIB <= mem < 64 GiB
-    //           = 4 GiB,           if mem >= 64 GiB
-
+    /* If suspend-to-disk is demanded, then we always need enough
+     * swap to write the whole memory to disk -- between 2GB and 8GB
+     * RAM give proportionally more swap, and from 8GB RAM keep
+     * swap = RAM.
+     *
+     * If suspend-to-disk is not demanded, then ramp up more slowly,
+     * to 8GB swap at 16GB memory, and then drop to 4GB for "large
+     * memory" machines, on the assumption that those don't need swap
+     * because they have tons of memory (or whatever they are doing,
+     * had better not run into swap).
+     */
     qint64 suggestedSwapSizeB = 0;
-    qint64 availableRamB = CalamaresUtils::System::instance()->getPhysicalMemoryB();
-    qreal overestimationFactor = 1.01;
-    if ( !availableRamB )
-    {
-        availableRamB = CalamaresUtils::System::instance()->getTotalMemoryB();
-        overestimationFactor = 1.10;
-    }
+    auto memory = CalamaresUtils::System::instance()->getTotalMemoryB();
+    qint64 availableRamB = memory.first;
+    qreal overestimationFactor = memory.second;
 
     bool ensureSuspendToDisk =
         Calamares::JobQueue::instance()->globalStorage()->
@@ -80,8 +82,8 @@ swapSuggestion( const qint64 availableSpaceB )
             suggestedSwapSizeB = qMax( 2_GiB, availableRamB * 2 );
         else if ( availableRamB >= 2_GiB && availableRamB < 8_GiB )
             suggestedSwapSizeB = availableRamB;
-        else if ( availableRamB >= 8_GiB && availableRamB < 64_GiB )
-            suggestedSwapSizeB = availableRamB / 2;
+        else if ( availableRamB >= 8_GiB && availableRamB < 16_GiB )
+            suggestedSwapSizeB = 8_GiB;
         else
             suggestedSwapSizeB = 4_GiB;
 

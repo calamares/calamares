@@ -231,14 +231,7 @@ System::targetEnvOutput( const QString& command,
 }
 
 
-qint64
-System::getPhysicalMemoryB()
-{
-    return 0;
-}
-
-
-qint64
+QPair<quint64, float>
 System::getTotalMemoryB()
 {
 #ifdef Q_OS_LINUX
@@ -246,20 +239,21 @@ System::getTotalMemoryB()
     int r = sysinfo( &i );
 
     if (r)
-        return 0;
+        return qMakePair(0, 0.0);
 
-    return qint64( i.mem_unit ) * i.totalram;
+    return qMakePair(quint64( i.mem_unit ) * quint64( i.totalram ), 1.1);
 #elif defined( Q_OS_FREEBSD )
     unsigned long memsize;
     size_t s = sizeof(memsize);
 
     int r = sysctlbyname("vm.kmem_size", &memsize, &s, NULL, 0);
     if (r)
-        return 0;
+        return qMakePair(0, 0.0);
 
-    return memsize;
+    return qMakePair(memsize, 1.01);
+#else
+    return qMakePair(0, 0.0);  // Unsupported
 #endif
-    return 0;  // Unsupported
 }
 
 

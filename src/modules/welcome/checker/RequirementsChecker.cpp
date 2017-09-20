@@ -310,9 +310,9 @@ RequirementsChecker::checkEnoughStorage( qint64 requiredSpace )
 bool
 RequirementsChecker::checkEnoughRam( qint64 requiredRam )
 {
-    qint64 availableRam = CalamaresUtils::System::instance()->getPhysicalMemoryB();
-    if ( !availableRam )
-        availableRam = CalamaresUtils::System::instance()->getTotalMemoryB();
+    // Ignore the guesstimate-factor; we get an under-estimate
+    // which is probably the usable RAM for programs.
+    quint64 availableRam = CalamaresUtils::System::instance()->getTotalMemoryB().first;
     return availableRam >= requiredRam * 0.95; // because MemTotal is variable
 }
 

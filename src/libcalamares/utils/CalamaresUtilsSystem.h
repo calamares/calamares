@@ -100,9 +100,19 @@ public:
 
     /**
      * @brief getTotalMemoryB returns the total main memory, in bytes.
+     *
+     * Since it is difficult to get the RAM memory size exactly -- either
+     * by reading information from the DIMMs, which may fail on virtual hosts
+     * or from asking the kernel, which doesn't report some memory areas --
+     * this returns a pair of guessed-size (in bytes) and a "guesstimate factor"
+     * which says how good the guess is. Generally, assume the *real* memory
+     * available is size * guesstimate.
+     *
+     * If nothing can be found, returns a 0 size and 0 guesstimate.
+     *
+     * @return size, guesstimate-factor
      */
-    DLLEXPORT qint64 getTotalMemoryB();     //Always underguessed, but always works on Linux
-    DLLEXPORT qint64 getPhysicalMemoryB();  //Better guess, doesn't work in VirualBox
+    DLLEXPORT QPair<quint64, float> getTotalMemoryB();
 
 private:
     static System* s_instance;
