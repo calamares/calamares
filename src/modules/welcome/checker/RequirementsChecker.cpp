@@ -357,7 +357,7 @@ RequirementsChecker::checkHasPower()
     QDBusInterface upowerIntf( UPOWER_SVC_NAME,
                                UPOWER_PATH,
                                UPOWER_INTF_NAME,
-                               QDBusConnection::systemBus(), 0 );
+                               QDBusConnection::systemBus() );
 
     bool onBattery = upowerIntf.property( "OnBattery" ).toBool();
 

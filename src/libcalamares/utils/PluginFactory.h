@@ -223,7 +223,7 @@ public:
      * \returns A pointer to the created object is returned, or 0 if an error occurred.
      */
     template<typename T>
-    T* create( QObject* parent = 0 );
+    T* create( QObject* parent = nullptr );
 
     /**
      * Use this method to create an object. It will try to create an object which inherits
@@ -236,7 +236,7 @@ public:
      * \returns A pointer to the created object is returned, or 0 if an error occurred.
      */
     template<typename T>
-    T* create( const QString& keyword, QObject* parent = 0 );
+    T* create( const QString& keyword, QObject* parent = nullptr );
 
 Q_SIGNALS:
     void objectCreated( QObject* object );
@@ -322,7 +322,7 @@ protected:
     static QObject* createInstance( QWidget* parentWidget, QObject* parent )
     {
         Q_UNUSED( parentWidget );
-        ParentType* p = 0;
+        ParentType* p = nullptr;
         if ( parent )
         {
             p = qobject_cast<ParentType*>( parent );
@@ -339,7 +339,7 @@ template<typename T>
 inline T* PluginFactory::create( QObject* parent )
 {
     QObject* o = create( T::staticMetaObject.className(),
-                         parent && parent->isWidgetType() ? reinterpret_cast<QWidget*>( parent ) : 0,
+                         parent && parent->isWidgetType() ? reinterpret_cast<QWidget*>( parent ) : nullptr,
                          parent,
                          QString() );
 
@@ -353,7 +353,7 @@ template<typename T>
 inline T* PluginFactory::create( const QString& keyword, QObject* parent )
 {
     QObject* o = create( T::staticMetaObject.className(),
-                         parent && parent->isWidgetType() ? reinterpret_cast<QWidget*>( parent ) : 0,
+                         parent && parent->isWidgetType() ? reinterpret_cast<QWidget*>( parent ) : nullptr,
                          parent,
                          keyword );
 

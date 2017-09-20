@@ -104,7 +104,7 @@ QObject* PluginFactory::create( const char* iface, QWidget* parentWidget, QObjec
 {
     Q_D( PluginFactory );
 
-    QObject* obj = 0;
+    QObject* obj = nullptr;
 
     const QList<PluginFactoryPrivate::Plugin> candidates( d->createInstanceHash.values( keyword ) );
     // for !keyword.isEmpty() candidates.count() is 0 or 1
