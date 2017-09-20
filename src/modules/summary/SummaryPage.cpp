@@ -36,9 +36,10 @@ static const int SECTION_SPACING = 12;
 SummaryPage::SummaryPage( const SummaryViewStep* thisViewStep, QWidget* parent )
     : QWidget()
     , m_thisViewStep( thisViewStep )
-    , m_scrollArea( new QScrollArea( this ) )
     , m_contentWidget( nullptr )
+    , m_scrollArea( new QScrollArea( this ) )
 {
+    Q_UNUSED( parent );
     Q_ASSERT( m_thisViewStep );
     QVBoxLayout* layout = new QVBoxLayout( this );
     layout->setContentsMargins( 0, 0, 0, 0 );
@@ -65,7 +66,6 @@ SummaryPage::onActivate()
 {
     createContentWidget();
 
-    QString text;
     bool first = true;
     const Calamares::ViewStepList steps =
         stepsForSummary( Calamares::ViewManager::instance()->viewSteps() );
