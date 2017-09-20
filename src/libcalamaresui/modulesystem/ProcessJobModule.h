@@ -42,7 +42,7 @@ protected:
 private:
     friend class Module;
     explicit ProcessJobModule();
-    virtual ~ProcessJobModule();
+    virtual ~ProcessJobModule() override;
 
     QString m_command;
     QString m_workingPath;

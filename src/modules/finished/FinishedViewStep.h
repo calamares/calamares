@@ -34,7 +34,7 @@ class PLUGINDLLEXPORT FinishedViewStep : public Calamares::ViewStep
 
 public:
     explicit FinishedViewStep( QObject* parent = nullptr );
-    virtual ~FinishedViewStep();
+    virtual ~FinishedViewStep() override;
 
     QString prettyName() const override;
 
