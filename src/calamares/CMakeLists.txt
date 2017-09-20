@@ -27,8 +27,6 @@ include_directories(
     ${CMAKE_CURRENT_BINARY_DIR}
     ${CMAKE_CURRENT_BINARY_DIR}/../libcalamares
 
-    ${THIRDPARTY_DIR}/libcrashreporter-qt/src/
-
     ../libcalamares
     ../libcalamaresui
 )
@@ -50,10 +48,6 @@ SET_TARGET_PROPERTIES(calamares_bin
         ENABLE_EXPORTS TRUE
         RUNTIME_OUTPUT_NAME calamares
 )
-
-if( WITH_CRASHREPORTER )
-    list( APPEND LINK_LIBRARIES ${LINK_LIBRARIES} pthread crashreporter-handler )
-endif()
 
 target_link_libraries( calamares_bin
     PRIVATE

@@ -30,11 +30,6 @@ The Calamares release process
 * Check `README.md` and everything in `hacking`, make sure it's all still
   relevant. Run `hacking/calamaresstyle` to check the C++ code style.
   Python code is checked as part of the Travis CI builds.
-* Update submodules.
-  ```
-    git submodule  # Note list of submodules
-    git submodule update thirdparty/libcrashreporter-qt
-  ```
 * Check defaults in `settings.conf` and other configuration files.
 * Pull latest translations from Transifex. This is done nightly on Jenkins,
   so a manual pull is rarely necessary.
