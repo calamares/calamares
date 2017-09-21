@@ -58,7 +58,7 @@ PartitionSizeController::setPartResizerWidget( PartResizerWidget* widget, bool f
     Q_ASSERT( m_device );
 
     if ( m_partResizerWidget )
-        disconnect( m_partResizerWidget, 0, this, 0 );
+        disconnect( m_partResizerWidget, nullptr, this, nullptr );
 
     m_dirty = false;
     m_currentSpinBoxValue = -1;
@@ -108,7 +108,7 @@ void
 PartitionSizeController::setSpinBox( QSpinBox* spinBox )
 {
     if ( m_spinBox )
-        disconnect( m_spinBox, 0, this, 0 );
+        disconnect( m_spinBox, nullptr, this, nullptr );
     m_spinBox = spinBox;
     m_spinBox->setMaximum( std::numeric_limits< int >::max() );
     connectWidgets();

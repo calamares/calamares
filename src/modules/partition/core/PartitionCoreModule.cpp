@@ -270,8 +270,8 @@ PartitionCoreModule::deletePartition( Device* device, Partition* partition )
             if ( !KPMHelpers::isPartitionFreeSpace( childPartition ) )
                 lst << childPartition;
 
-        for ( auto partition : lst )
-            deletePartition( device, partition );
+        for ( auto childPartition : lst )
+            deletePartition( device, childPartition );
     }
 
     QList< Calamares::job_ptr >& jobs = deviceInfo->jobs;
@@ -441,7 +441,7 @@ PartitionCoreModule::osproberEntries() const
 }
 
 void
-PartitionCoreModule::refreshPartition( Device* device, Partition* partition )
+PartitionCoreModule::refreshPartition( Device* device, Partition* )
 {
     // Keep it simple for now: reset the model. This can be improved to cause
     // the model to emit dataChanged() for the affected row instead, avoiding

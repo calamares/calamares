@@ -38,7 +38,7 @@ public:
         IsPartitionRole
     };
 
-    BootLoaderModel( QObject* parent = 0 );
+    BootLoaderModel( QObject* parent = nullptr );
     ~BootLoaderModel() override;
 
     /**
