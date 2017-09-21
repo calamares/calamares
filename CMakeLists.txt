@@ -110,8 +110,8 @@ find_package( Qt5 ${QT_VERSION} CONFIG REQUIRED Core Gui Widgets LinguistTools S
 find_package( YAMLCPP 0.5.1 REQUIRED )
 find_package( PolkitQt5-1 REQUIRED )
 
-option( WITH_PYTHON "Enable Python modules API (requires Boost.Python)." ON )
 option( INSTALL_CONFIG "Install configuration files" ON )
+option( WITH_PYTHON "Enable Python modules API (requires Boost.Python)." ON )
 option( WITH_PYTHONQT "Enable next generation Python modules API (experimental, requires PythonQt)." OFF )
 option( BUILD_TESTING "Build the testing tree." ON )
 
@@ -121,7 +121,7 @@ endif ()
 
 find_package( PythonLibs 3.3 )
 set_package_properties(
-    PYTHONLIBS PROPERTIES
+    PythonLibs PROPERTIES
     DESCRIPTION "C interface libraries for the Python 3 interpreter."
     URL "http://python.org"
     PURPOSE "Python 3 is used for some Calamares job modules."
@@ -129,7 +129,7 @@ set_package_properties(
 
 if ( PYTHONLIBS_FOUND )
     include( BoostPython3 )
-    find_boost_python3( 1.54.0 ${PYTHONLIBS_VERSION_STRING} CALAMARES_BOOST_PYTHON3_FOUND )
+    find_boost_python3( 1.54.0 ${PYTHONLIBS_VERSION_STRING} CALAMARES_BOOST_PYTHON3 )
     set_package_properties(
         CALAMARES_BOOST_PYTHON3 PROPERTIES
         DESCRIPTION "A C++ library which enables seamless interoperability between C++ and Python 3."
@@ -138,7 +138,7 @@ if ( PYTHONLIBS_FOUND )
     )
 
     find_package( PythonQt )
-    set_package_properties( PYTHONQT PROPERTIES
+    set_package_properties( PythonQt PROPERTIES
         DESCRIPTION "A Python embedding solution for Qt applications."
         URL "http://pythonqt.sourceforge.net"
         PURPOSE "PythonQt is used for the Python modules API."
