@@ -483,8 +483,8 @@ def run():
             if (os.path.exists(greeter_path)):
                 # configure first found lightdm-greeter
                 for entry in os.listdir(greeter_path):
-                    if entry.name.endswith('.desktop'):
-                        greeter = entry.name.split('.')[0]
+                    if entry.endswith('.desktop'):
+                        greeter = entry.split('.')[0]
                         libcalamares.utils.debug(
                             "found greeter {!s}".format(greeter)
                             )
