@@ -67,8 +67,7 @@ if( CMAKE_CXX_COMPILER_ID MATCHES "Clang" )
 
     # Third-party code where we don't care so much about compiler warnings
     # (because it's uncomfortable to patch) get different flags; use
-    #       set_source_files_properties( <file>
-    #           PROPERTIES COMPILE_FLAGS "${SUPPRESS_3RDPARTY_WARNINGS}" )
+    #       mark_thirdparty_code( <file> [<file>...] )
     # to switch off warnings for those sources.
     set( SUPPRESS_3RDPARTY_WARNINGS "-Wno-everything" )
 
@@ -86,6 +85,14 @@ else()
 
     set( SUPPRESS_3RDPARTY_WARNINGS "" )
 endif()
+
+macro(mark_thirdparty_code)
+    set_source_files_properties( ${ARGV}
+        PROPERTIES
+            COMPILE_FLAGS "${SUPPRESS_3RDPARTY_WARNINGS}"
+            COMPILE_DEFINITIONS "THIRDPARTY"
+    )
+endmacro()
 
 if( CMAKE_COMPILER_IS_GNUCXX )
     if( CMAKE_CXX_COMPILER_VERSION VERSION_GREATER 4.9 OR

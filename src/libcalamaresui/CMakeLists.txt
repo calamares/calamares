@@ -1,6 +1,6 @@
 project( libcalamaresui CXX )
 
-list( APPEND calamaresui_SOURCES
+set( calamaresui_SOURCES
     modulesystem/CppJobModule.cpp
     modulesystem/Module.cpp
     modulesystem/ModuleManager.cpp
@@ -29,7 +29,15 @@ list( APPEND calamaresui_SOURCES
     ViewManager.cpp
 )
 
-list( APPEND calamaresui_UI
+# Don't warn about third-party sources
+mark_thirdparty_code(
+    utils/ImageRegistry.cpp
+    utils/qjsonitem.cpp
+    utils/qjsonmodel.cpp
+    widgets/waitingspinnerwidget.cpp
+)
+
+set( calamaresui_UI
     utils/DebugWindow.ui
 )
 
