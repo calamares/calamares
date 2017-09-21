@@ -29,7 +29,7 @@
 #
 #   cmake . -DSKIP_MODULES="partition luksbootkeycfg"
 
-project( calamares CXX )
+project( calamares C CXX )
 
 cmake_minimum_required( VERSION 3.2 )
 
