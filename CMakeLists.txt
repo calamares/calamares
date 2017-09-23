@@ -124,24 +124,22 @@ set_package_properties(
     PythonLibs PROPERTIES
     DESCRIPTION "C interface libraries for the Python 3 interpreter."
     URL "http://python.org"
-    PURPOSE "Python 3 is used for some Calamares job modules."
+    PURPOSE "Python 3 is used for Python job modules."
 )
 
 if ( PYTHONLIBS_FOUND )
     include( BoostPython3 )
     find_boost_python3( 1.54.0 ${PYTHONLIBS_VERSION_STRING} CALAMARES_BOOST_PYTHON3_FOUND )
     set_package_properties(
-        CALAMARES_BOOST_PYTHON3 PROPERTIES
-        DESCRIPTION "A C++ library which enables seamless interoperability between C++ and Python 3."
-        URL "http://www.boost.org"
-        PURPOSE "Boost.Python is used for interfacing with Calamares job modules written in Python 3."
+        Boost PROPERTIES
+        PURPOSE "Boost.Python is used for Python job modules."
     )
 
     find_package( PythonQt )
     set_package_properties( PythonQt PROPERTIES
         DESCRIPTION "A Python embedding solution for Qt applications."
         URL "http://pythonqt.sourceforge.net"
-        PURPOSE "PythonQt is used for the Python modules API."
+        PURPOSE "PythonQt is used for Python view modules."
     )
 endif()
 
@@ -241,8 +239,8 @@ if( mksquashfs_PROGRAM )
     set( src_fs ${CMAKE_SOURCE_DIR}/data/example-root/ )
     set( dst_fs ${CMAKE_BINARY_DIR}/example.sqfs )
     if( EXISTS ${src_fs} )
-        # Collect directories needed for a minimal binary distro,
         # based on the build host. If /lib64 exists, assume it is needed.
+        # Collect directories needed for a minimal binary distro,
         # Note that the last path component is added to the root, so
         # if you add /usr/sbin here, it will be put into /sbin_1.
         # Add such paths to /etc/profile under ${src_fs}.
@@ -275,19 +273,11 @@ set_package_properties( mksquashfs PROPERTIES
 # add_subdirectory( thirdparty )
 add_subdirectory( src )
 
+add_feature_info(Python ${WITH_PYTHON} "Python job modules")
+add_feature_info(PythonQt ${WITH_PYTHONQT} "Python view modules")
+add_feature_info(Config ${INSTALL_CONFIG} "Install Calamares configuration")
+
 feature_summary(WHAT ALL)
-
-if( NOT WITH_PYTHON )
-    message( "-- WARNING: Building Calamares without Python support. Legacy Python job modules will not work.\n" )
-endif()
-if( NOT WITH_PYTHONQT )
-    message( "-- WARNING: Building Calamares without PythonQt support. Python modules will not work.\n" )
-endif()
-
-
-if( NOT INSTALL_CONFIG )
-    message( "-- WARNING: Configuration files will not be installed.\n" )
-endif()
 
 # Add all targets to the build-tree export set
 set( CMAKE_INSTALL_CMAKEDIR "${CMAKE_INSTALL_LIBDIR}/cmake/Calamares" CACHE PATH  "Installation directory for CMake files" )
