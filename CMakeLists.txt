@@ -129,7 +129,7 @@ set_package_properties(
 
 if ( PYTHONLIBS_FOUND )
     include( BoostPython3 )
-    find_boost_python3( 1.54.0 ${PYTHONLIBS_VERSION_STRING} CALAMARES_BOOST_PYTHON3 )
+    find_boost_python3( 1.54.0 ${PYTHONLIBS_VERSION_STRING} CALAMARES_BOOST_PYTHON3_FOUND )
     set_package_properties(
         CALAMARES_BOOST_PYTHON3 PROPERTIES
         DESCRIPTION "A C++ library which enables seamless interoperability between C++ and Python 3."
