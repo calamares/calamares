@@ -173,7 +173,7 @@ Output:
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="111"/>
         <source>External command finished with errors</source>
-        <translation>Ekstern kommando blev færdiggjort uden fejl</translation>
+        <translation>Ekstern kommando blev færdiggjort med fejl</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/ProcessJob.cpp" line="112"/>
@@ -702,7 +702,7 @@ Installationsprogrammet vil stoppe og alle ændringer vil gå tabt.</translation
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="66"/>
         <source>Creating new %1 partition table on %2.</source>
-        <translation>Opretter ny %1 partitionstabel på %2.</translation>
+        <translation>Opretter ny %1-partitionstabel på %2.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="76"/>
@@ -984,7 +984,7 @@ Installationsprogrammet vil stoppe og alle ændringer vil gå tabt.</translation
     <message>
         <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="147"/>
         <source>Install %1 on &lt;strong&gt;new&lt;/strong&gt; %2 system partition.</source>
-        <translation>Installér %1 på den &lt;strong&gt;nye&lt;/strong&gt; %2 systempartition.</translation>
+        <translation>Installér %1 på &lt;strong&gt;nye&lt;/strong&gt; %2-systempartition.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="151"/>
@@ -994,7 +994,7 @@ Installationsprogrammet vil stoppe og alle ændringer vil gå tabt.</translation
     <message>
         <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="159"/>
         <source>Install %2 on %3 system partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation>Installér %2 på %3 systempartition &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+        <translation>Installér %2 på %3-systempartition &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="164"/>
@@ -1772,7 +1772,7 @@ Installationsprogrammet vil stoppe og alle ændringer vil gå tabt.</translation
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="216"/>
         <source>%1 system partition (%2)</source>
-        <translation>%1 systempartition (%2)</translation>
+        <translation>%1-systempartition (%2)</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="227"/>

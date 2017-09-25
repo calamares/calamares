@@ -1163,12 +1163,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="66"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished"/>
+        <translation>中止（&amp;C）</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="67"/>
         <source>&amp;OK</source>
-        <translation type="unfinished"/>
+        <translation>了解（&amp;O）</translation>
     </message>
 </context>
 <context>
