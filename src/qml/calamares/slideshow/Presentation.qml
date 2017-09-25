@@ -1,5 +1,8 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
+ *     - added looping, keys-instead-of-shortcut
+ *
  *   SPDX-License-Identifier: LGPL-2.1
  *   License-Filename: LICENSES/LGPLv2.1-Presentation
  */
@@ -98,6 +101,8 @@ Item {
     onCurrentSlideChanged: {
         switchSlides(root.slides[_lastShownSlide], root.slides[currentSlide], currentSlide > _lastShownSlide)
         _lastShownSlide = currentSlide
+        // Always keep focus on the slideshow
+        root.focus = true
     }
 
     function goToNextSlide() {
@@ -110,6 +115,8 @@ Item {
         }
         if (currentSlide + 1 < root.slides.length)
             ++currentSlide;
+        else
+            currentSlide = 0;  // Loop at the end
     }
 
     function goToPreviousSlide() {
@@ -142,6 +149,13 @@ Item {
             _userNum = 0;
         }
     }
+
+    focus: true  // Keep focus
+
+    // Navigation through key events, too
+    Keys.onSpacePressed: goToNextSlide()
+    Keys.onRightPressed: goToNextSlide()
+    Keys.onLeftPressed: goToPreviousSlide()
 
     // navigate with arrow keys
     Shortcut { sequence: StandardKey.MoveToNextLine; enabled: root.arrowNavigation; onActivated: goToNextSlide() }
