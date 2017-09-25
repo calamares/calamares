@@ -111,7 +111,7 @@ FinishedViewStep::sendNotification()
 {
     // If the installation failed, don't send notification popup;
     // there's a (modal) dialog popped up with the failure notice.
-    if (installFailed)
+    if ( installFailed )
         return;
 
     QDBusInterface notify( "org.freedesktop.Notifications", "/org/freedesktop/Notifications", "org.freedesktop.Notifications" );
@@ -154,8 +154,8 @@ FinishedViewStep::jobs() const
 void
 FinishedViewStep::onInstallationFailed( const QString& message, const QString& details )
 {
-    Q_UNUSED(message);
-    Q_UNUSED(details);
+    Q_UNUSED( message );
+    Q_UNUSED( details );
     installFailed = true;
 }
 
@@ -182,7 +182,7 @@ FinishedViewStep::setConfigurationMap( const QVariantMap& configurationMap )
         }
     }
     if ( configurationMap.contains( "notifyOnFinished" ) &&
-        configurationMap.value( "notifyOnFinished" ).type() == QVariant::Bool )
+            configurationMap.value( "notifyOnFinished" ).type() == QVariant::Bool )
         m_notifyOnFinished = configurationMap.value( "notifyOnFinished" ).toBool();
 }
 
