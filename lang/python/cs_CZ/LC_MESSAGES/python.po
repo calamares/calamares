@@ -53,4 +53,4 @@ msgstr[2] ""
 
 #: src/modules/packages/main.py:68
 msgid "Install packages."
-msgstr ""
+msgstr "Instalovat balíčky."

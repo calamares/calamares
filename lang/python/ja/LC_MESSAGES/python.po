@@ -33,20 +33,20 @@ msgstr "Dummy python step {}"
 #: src/modules/packages/main.py:59
 #, python-format
 msgid "Processing packages (%(count)d / %(total)d)"
-msgstr ""
+msgstr "パッケージの処理中 (%(count)d / %(total)d)"
 
 #: src/modules/packages/main.py:61
 #, python-format
 msgid "Installing one package."
 msgid_plural "Installing %(num)d packages."
-msgstr[0] ""
+msgstr[0] " %(num)d パッケージのインストール中。"
 
 #: src/modules/packages/main.py:64
 #, python-format
 msgid "Removing one package."
 msgid_plural "Removing %(num)d packages."
-msgstr[0] ""
+msgstr[0] " %(num)d パッケージの削除中。"
 
 #: src/modules/packages/main.py:68
 msgid "Install packages."
-msgstr ""
+msgstr "パッケージのインストール"
