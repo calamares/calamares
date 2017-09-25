@@ -47,7 +47,7 @@ if( WITH_PYTHON )
         PythonJobApi.cpp
     )
     set_source_files_properties( PythonJob.cpp
-        PROPERTIES COMPILE_FLAGS ${SUPPRESS_BOOST_WARNINGS}
+        PROPERTIES COMPILE_FLAGS "${SUPPRESS_BOOST_WARNINGS}"
     )
 
     include_directories(${PYTHON_INCLUDE_DIRS})
