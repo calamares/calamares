@@ -70,6 +70,7 @@ if( CMAKE_CXX_COMPILER_ID MATCHES "Clang" )
     #       mark_thirdparty_code( <file> [<file>...] )
     # to switch off warnings for those sources.
     set( SUPPRESS_3RDPARTY_WARNINGS "-Wno-everything" )
+    set( SUPPRESS_BOOST_WARNINGS " -Wno-zero-as-null-pointer-constant -Wno-disabled-macro-expansion" )
 
     set( CMAKE_CXX_FLAGS_DEBUG          "-g" )
     set( CMAKE_CXX_FLAGS_MINSIZEREL     "-Os -DNDEBUG" )
@@ -84,6 +85,7 @@ else()
     set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wl,--fatal-warnings -Wnon-virtual-dtor -Woverloaded-virtual -Werror=return-type" )
 
     set( SUPPRESS_3RDPARTY_WARNINGS "" )
+    set( SUPPRESS_BOOST_WARNINGS "" )
 endif()
 
 macro(mark_thirdparty_code)
