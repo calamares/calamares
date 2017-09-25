@@ -38,8 +38,13 @@ The Calamares release process
   fairly complete translations.
 
 #### (2) Tarball
-* Create tarball: `git-archive-all -v calamares-1.1-rc1.tar.gz` . Double check
-  that the tarball matches the version number.
+* Create tarball: `git-archive-all -v calamares-1.1-rc1.tar.gz` or without
+  the helper script,
+  ```
+    V=calamares-3.1.5
+    git archive -o $V.tar.gz --prefix $V/ master
+  ```
+  Double check that the tarball matches the version number.
 * Test tarball.
 
 #### (3) Tag
