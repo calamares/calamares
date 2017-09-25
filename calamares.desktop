@@ -12,7 +12,7 @@ Terminal=false
 StartupNotify=true
 Categories=Qt;System;
 
-# Translations
+
 Name[ca]=Calamares
 Icon[ca]=calamares
 GenericName[ca]=Instal·lador de sistema
