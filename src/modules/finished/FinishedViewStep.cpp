@@ -34,6 +34,7 @@ FinishedViewStep::FinishedViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
     , m_widget( new FinishedPage() )
     , installFailed( false )
+    , m_notifyOnFinished( false )
 {
     auto jq = Calamares::JobQueue::instance();
     connect( jq, &Calamares::JobQueue::failed,
@@ -139,7 +140,8 @@ FinishedViewStep::onActivate()
 {
     m_widget->setUpRestart();
 
-    sendNotification();
+    if ( m_notifyOnFinished )
+        sendNotification();
 }
 
 
@@ -179,6 +181,9 @@ FinishedViewStep::setConfigurationMap( const QVariantMap& configurationMap )
                 m_widget->setRestartNowCommand( "systemctl -i reboot" );
         }
     }
+    if ( configurationMap.contains( "notifyOnFinished" ) &&
+        configurationMap.value( "notifyOnFinished" ).type() == QVariant::Bool )
+        m_notifyOnFinished = configurationMap.value( "notifyOnFinished" ).toBool();
 }
 
 CALAMARES_PLUGIN_FACTORY_DEFINITION( FinishedViewStepFactory, registerPlugin<FinishedViewStep>(); )

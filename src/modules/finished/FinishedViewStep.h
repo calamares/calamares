@@ -68,6 +68,7 @@ private:
     void sendNotification();
 
     bool installFailed;
+    bool m_notifyOnFinished;
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( FinishedViewStepFactory )
