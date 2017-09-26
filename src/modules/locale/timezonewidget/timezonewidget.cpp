@@ -107,7 +107,7 @@ QPoint TimeZoneWidget::getLocationPosition(double longitude, double latitude) {
     if (y >= height)
         y -= height;
 
-    return QPoint((int)x, (int)y);
+    return QPoint( int(x), int(y) );
 }
 
 
