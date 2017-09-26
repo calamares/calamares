@@ -22,7 +22,11 @@
 
 #include "core/DeviceModel.h"
 #include "core/KPMHelpers.h"
+#include "core/PartitionIterator.h"
 
+#include <kpmcore/backend/corebackend.h>
+#include <kpmcore/backend/corebackendmanager.h>
+#include <kpmcore/core/device.h>
 #include <kpmcore/core/partition.h>
 
 #include <utils/Logger.h>
@@ -39,6 +43,9 @@ bool
 canBeReplaced( Partition* candidate )
 {
     if ( !candidate )
+        return false;
+
+    if ( candidate->isMounted() )
         return false;
 
     bool ok = false;
@@ -77,6 +84,9 @@ canBeResized( Partition* candidate )
         return false;
 
     if ( KPMHelpers::isPartitionFreeSpace( candidate ) )
+        return false;
+
+    if ( candidate->isMounted() )
         return false;
 
     if ( candidate->roles().has( PartitionRole::Primary ) )
@@ -147,7 +157,7 @@ canBeResized( PartitionCoreModule* core, const QString& partitionPath )
 }
 
 
-FstabEntryList
+static FstabEntryList
 lookForFstabEntries( const QString& partitionPath )
 {
     FstabEntryList fstabEntries;
@@ -191,7 +201,7 @@ lookForFstabEntries( const QString& partitionPath )
 }
 
 
-QString
+static QString
 findPartitionPathForMountPoint( const FstabEntryList& fstab,
                                 const QString& mountPoint )
 {
@@ -324,5 +334,10 @@ runOsprober( PartitionCoreModule* core )
     return osproberEntries;
 }
 
-
+bool
+isEfiSystem()
+{
+    return QDir( "/sys/firmware/efi/efivars" ).exists();
 }
+
+}  // nmamespace PartUtils

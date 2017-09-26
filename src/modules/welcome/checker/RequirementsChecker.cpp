@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014-2017, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -26,12 +27,16 @@
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
 #include "utils/CalamaresUtilsSystem.h"
+#include "utils/Units.h"
+
 #include "JobQueue.h"
 #include "GlobalStorage.h"
 
+#include <QApplication>
 #include <QBoxLayout>
 #include <QDBusConnection>
 #include <QDBusInterface>
+#include <QDesktopWidget>
 #include <QDir>
 #include <QEventLoop>
 #include <QFile>
@@ -48,9 +53,10 @@
 RequirementsChecker::RequirementsChecker( QObject* parent )
     : QObject( parent )
     , m_widget( new QWidget() )
+    , m_requiredStorageGB( -1 )
+    , m_requiredRamGB( -1 )
     , m_actualWidget( new CheckerWidget() )
     , m_verdict( false )
-    , m_requiredStorageGB( -1 )
 {
     QBoxLayout* mainLayout = new QHBoxLayout;
     m_widget->setLayout( mainLayout );
@@ -59,6 +65,8 @@ RequirementsChecker::RequirementsChecker( QObject* parent )
     WaitingWidget* waitingWidget = new WaitingWidget( QString() );
     mainLayout->addWidget( waitingWidget );
     CALAMARES_RETRANSLATE( waitingWidget->setText( tr( "Gathering system information..." ) ); )
+
+    QSize availableSize = qApp->desktop()->availableGeometry( m_widget ).size();
 
     QTimer* timer = new QTimer;
     timer->setSingleShot( true );
@@ -70,13 +78,14 @@ RequirementsChecker::RequirementsChecker( QObject* parent )
         bool hasPower = false;
         bool hasInternet = false;
         bool isRoot = false;
+        bool enoughScreen = (availableSize.width() >= CalamaresUtils::windowPreferredWidth) && (availableSize.height() >= CalamaresUtils::windowPreferredHeight);
 
-        qint64 requiredStorageB = m_requiredStorageGB * 1073741824L; /*powers of 2*/
+        qint64 requiredStorageB = CalamaresUtils::GiBtoBytes(m_requiredStorageGB);
         cDebug() << "Need at least storage bytes:" << requiredStorageB;
         if ( m_entriesToCheck.contains( "storage" ) )
             enoughStorage = checkEnoughStorage( requiredStorageB );
 
-        qint64 requiredRamB = m_requiredRamGB * 1073741824L; /*powers of 2*/
+        qint64 requiredRamB = CalamaresUtils::GiBtoBytes(m_requiredRamGB);
         cDebug() << "Need at least ram bytes:" << requiredRamB;
         if ( m_entriesToCheck.contains( "ram" ) )
             enoughRam = checkEnoughRam( requiredRamB );
@@ -140,7 +149,14 @@ RequirementsChecker::RequirementsChecker( QObject* parent )
                     isRoot,
                     m_entriesToRequire.contains( entry )
                 } );
-
+            else if ( entry == "screen" )
+                checkEntries.append( {
+                    entry,
+                    [this]{ return QString(); }, // we hide it
+                    [this]{ return tr( "The screen is too small to display the installer." ); },
+                    enoughScreen,
+                    false
+                } );
         }
 
         m_actualWidget->init( checkEntries );
@@ -294,9 +310,9 @@ RequirementsChecker::checkEnoughStorage( qint64 requiredSpace )
 bool
 RequirementsChecker::checkEnoughRam( qint64 requiredRam )
 {
-    qint64 availableRam = CalamaresUtils::System::instance()->getPhysicalMemoryB();
-    if ( !availableRam )
-        availableRam = CalamaresUtils::System::instance()->getTotalMemoryB();
+    // Ignore the guesstimate-factor; we get an under-estimate
+    // which is probably the usable RAM for programs.
+    quint64 availableRam = CalamaresUtils::System::instance()->getTotalMemoryB().first;
     return availableRam >= requiredRam * 0.95; // because MemTotal is variable
 }
 
@@ -341,7 +357,7 @@ RequirementsChecker::checkHasPower()
     QDBusInterface upowerIntf( UPOWER_SVC_NAME,
                                UPOWER_PATH,
                                UPOWER_INTF_NAME,
-                               QDBusConnection::systemBus(), 0 );
+                               QDBusConnection::systemBus() );
 
     bool onBattery = upowerIntf.property( "OnBattery" ).toBool();
 

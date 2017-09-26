@@ -1,6 +1,7 @@
 /*
  *   Copyright 2016, Luca Giambonini <almack@chakraos.org>
  *   Copyright 2016, Lisa Vitolo     <shainer@chakraos.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -34,7 +35,7 @@ class PLUGINDLLEXPORT NetInstallViewStep : public Calamares::ViewStep
 
 public:
     explicit NetInstallViewStep( QObject* parent = nullptr );
-    virtual ~NetInstallViewStep();
+    virtual ~NetInstallViewStep() override;
 
     QString prettyName() const override;
     QString prettyStatus() const override;

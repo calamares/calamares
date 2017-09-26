@@ -47,8 +47,7 @@ static bool s_isAppDataDirOverridden = false;
 
 static QTranslator* s_brandingTranslator = nullptr;
 static QTranslator* s_translator = nullptr;
-static QTranslator* s_qtTranslator = nullptr;
-static QString s_translatorLocaleName = QString();
+static QString s_translatorLocaleName;
 
 
 static bool
@@ -207,25 +206,6 @@ installTranslator( const QLocale& locale,
     QCoreApplication::installTranslator( translator );
     s_translator = translator;
 
-    // Qt translations
-    translator = new QTranslator( parent );
-    if ( translator->load( QString( ":/lang/qt_" ) + localeName ) )
-    {
-        qDebug() << "Translation: Qt: Using system locale:" << localeName;
-    }
-    else
-    {
-        qDebug() << "Translation: Qt: Using default locale, system locale one not found:" << localeName;
-    }
-
-    if ( s_qtTranslator )
-    {
-        QCoreApplication::removeTranslator( s_qtTranslator );
-        delete s_qtTranslator;
-    }
-    QCoreApplication::installTranslator( translator );
-    s_qtTranslator = translator;
-
     s_translatorLocaleName = localeName;
 }
 
@@ -342,7 +322,7 @@ obscure( const QString& string )
 void
 crash()
 {
-    volatile int* a = (int*)(NULL);
+    volatile int* a = nullptr;
     *a = 1;
 }
 

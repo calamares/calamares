@@ -1,29 +1,16 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
+ *     - added looping, keys-instead-of-shortcut
  *
- *   Based on the QML Presentation System.
- *   Copyright (C) 2012 Digia Plc and/or its subsidiary(-ies).
- *   Header reproduced verbatim below.
- *
- *   Calamares is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
- *
- *   Calamares is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
+ *   SPDX-License-Identifier: LGPL-2.1
+ *   License-Filename: LICENSES/LGPLv2.1-Presentation
  */
 
 /****************************************************************************
 **
-** Copyright (C) 2012 Digia Plc and/or its subsidiary(-ies).
-** Contact: http://www.qt-project.org/legal
+** Copyright (C) 2016 The Qt Company Ltd.
+** Contact: https://www.qt.io/licensing/
 **
 ** This file is part of the QML Presentation System.
 **
@@ -62,18 +49,20 @@
 ****************************************************************************/
 
 
-import QtQuick 2.0
+import QtQuick 2.5
 import QtQuick.Window 2.0
 
 Item {
     id: root
 
     property variant slides: []
-    property int currentSlide;
+    property int currentSlide: 0
 
     property bool showNotes: false;
     property bool allowDelay: true;
-    property bool loop: true;
+    property alias mouseNavigation: mouseArea.enabled
+    property bool arrowNavigation: true
+    property bool keyShortcutsEnabled: true
 
     property color titleColor: textColor;
     property color textColor: "black"
@@ -83,6 +72,7 @@ Item {
     // Private API
     property bool _faded: false
     property int _userNum;
+    property int _lastShownSlide: 0
 
     Component.onCompleted: {
         var slideCount = 0;
@@ -98,16 +88,21 @@ Item {
         root._userNum = 0;
 
         // Make first slide visible...
-        if (root.slides.length > 0) {
-            root.currentSlide = 0;
+        if (root.slides.length > 0)
             root.slides[root.currentSlide].visible = true;
-        }
     }
 
     function switchSlides(from, to, forward) {
         from.visible = false
         to.visible = true
         return true
+    }
+
+    onCurrentSlideChanged: {
+        switchSlides(root.slides[_lastShownSlide], root.slides[currentSlide], currentSlide > _lastShownSlide)
+        _lastShownSlide = currentSlide
+        // Always keep focus on the slideshow
+        root.focus = true
     }
 
     function goToNextSlide() {
@@ -118,38 +113,18 @@ Item {
             if (root.slides[currentSlide]._advance())
                 return;
         }
-        if (root.currentSlide + 1 < root.slides.length) {
-            var from = slides[currentSlide]
-            var to = slides[currentSlide + 1]
-            if (switchSlides(from, to, true)) {
-                currentSlide = currentSlide + 1;
-                root.focus = true;
-            }
-        }
-        else {
-            if (root.loop) {
-                var from = slides[currentSlide]
-                var to = slides[0]
-                if (switchSlides(from, to, true)) {
-                    currentSlide = 0;
-		    root.focus = true;
-                }
-            }
-        }
+        if (currentSlide + 1 < root.slides.length)
+            ++currentSlide;
+        else
+            currentSlide = 0;  // Loop at the end
     }
 
     function goToPreviousSlide() {
         root._userNum = 0
         if (root._faded)
             return
-        if (root.currentSlide - 1 >= 0) {
-            var from = slides[currentSlide]
-            var to = slides[currentSlide - 1]
-           if (switchSlides(from, to, false)) {
-                currentSlide = currentSlide - 1;
-               root.focus = true;
-           }
-        }
+        if (currentSlide - 1 >= 0)
+            --currentSlide;
     }
 
     function goToUserSlide() {
@@ -158,37 +133,44 @@ Item {
             return
         if (_userNum < 0)
             goToNextSlide()
-        else if (root.currentSlide != _userNum) {
-            var from = slides[currentSlide]
-            var to = slides[_userNum]
-           if (switchSlides(from, to, _userNum > currentSlide)) {
-                currentSlide = _userNum;
-               root.focus = true;
-           }
+        else {
+            currentSlide = _userNum;
+            root.focus = true;
         }
     }
 
-    focus: true
-
-    Keys.onSpacePressed: goToNextSlide()
-    Keys.onRightPressed: goToNextSlide()
-    Keys.onDownPressed: goToNextSlide()
-    Keys.onLeftPressed: goToPreviousSlide()
-    Keys.onUpPressed: goToPreviousSlide()
-    Keys.onEscapePressed: Qt.quit()
+    // directly type in the slide number: depends on root having focus
     Keys.onPressed: {
         if (event.key >= Qt.Key_0 && event.key <= Qt.Key_9)
             _userNum = 10 * _userNum + (event.key - Qt.Key_0)
         else {
             if (event.key == Qt.Key_Return || event.key == Qt.Key_Enter)
                 goToUserSlide();
-            else if (event.key == Qt.Key_Backspace)
-                goToPreviousSlide();
-            else if (event.key == Qt.Key_C)
-                root._faded = !root._faded;
             _userNum = 0;
         }
     }
+
+    focus: true  // Keep focus
+
+    // Navigation through key events, too
+    Keys.onSpacePressed: goToNextSlide()
+    Keys.onRightPressed: goToNextSlide()
+    Keys.onLeftPressed: goToPreviousSlide()
+
+    // navigate with arrow keys
+    Shortcut { sequence: StandardKey.MoveToNextLine; enabled: root.arrowNavigation; onActivated: goToNextSlide() }
+    Shortcut { sequence: StandardKey.MoveToPreviousLine; enabled: root.arrowNavigation; onActivated: goToPreviousSlide() }
+    Shortcut { sequence: StandardKey.MoveToNextChar; enabled: root.arrowNavigation; onActivated: goToNextSlide() }
+    Shortcut { sequence: StandardKey.MoveToPreviousChar; enabled: root.arrowNavigation; onActivated: goToPreviousSlide() }
+
+    // presentation-specific single-key shortcuts (which interfere with normal typing)
+    Shortcut { sequence: " "; enabled: root.keyShortcutsEnabled; onActivated: goToNextSlide() }
+    Shortcut { sequence: "c"; enabled: root.keyShortcutsEnabled; onActivated: root._faded = !root._faded }
+
+    // standard shortcuts
+    Shortcut { sequence: StandardKey.MoveToNextPage; onActivated: goToNextSlide() }
+    Shortcut { sequence: StandardKey.MoveToPreviousPage; onActivated: goToPreviousSlide() }
+    Shortcut { sequence: StandardKey.Quit; onActivated: Qt.quit() }
 
     Rectangle {
         z: 1000
@@ -219,16 +201,61 @@ Item {
         title: "QML Presentation: Notes"
         visible: root.showNotes
 
-        Text {
+        Flickable {
             anchors.fill: parent
-            anchors.margins: parent.height * 0.1;
+            contentWidth: parent.width
+            contentHeight: textContainer.height
 
-            font.pixelSize: 16
-            wrapMode: Text.WordWrap
+            Item {
+                id: textContainer
+                width: parent.width
+                height: notesText.height + 2 * notesText.padding
 
-            property string notes: root.slides[root.currentSlide].notes;
-            text: notes == "" ? "Slide has no notes..." : notes;
-            font.italic: notes == "";
+                Text {
+                    id: notesText
+
+                    property real padding: 16;
+
+                    x: padding
+                    y: padding
+                    width: parent.width - 2 * padding
+
+
+                    font.pixelSize: 16
+                    wrapMode: Text.WordWrap
+
+                    property string notes: root.slides[root.currentSlide].notes;
+
+                    onNotesChanged: {
+                        var result = "";
+
+                        var lines = notes.split("\n");
+                        var beginNewLine = false
+                        for (var i=0; i<lines.length; ++i) {
+                            var line = lines[i].trim();
+                            if (line.length == 0) {
+                                beginNewLine = true;
+                            } else {
+                                if (beginNewLine && result.length) {
+                                    result += "\n\n"
+                                    beginNewLine = false
+                                }
+                                if (result.length > 0)
+                                    result += " ";
+                                result += line;
+                            }
+                        }
+
+                        if (result.length == 0) {
+                            font.italic = true;
+                            text = "no notes.."
+                        } else {
+                            font.italic = false;
+                            text = result;
+                        }
+                    }
+                }
+            }
         }
     }
 }

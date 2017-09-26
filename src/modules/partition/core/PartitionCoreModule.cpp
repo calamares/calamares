@@ -2,6 +2,7 @@
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -21,6 +22,7 @@
 
 #include "core/BootLoaderModel.h"
 #include "core/ColorUtils.h"
+#include "core/DeviceList.h"
 #include "core/DeviceModel.h"
 #include "core/PartitionInfo.h"
 #include "core/PartitionIterator.h"
@@ -53,45 +55,6 @@
 #include <QProcess>
 #include <QFutureWatcher>
 #include <QtConcurrent/QtConcurrent>
-
-static bool
-hasRootPartition( Device* device )
-{
-    for ( auto it = PartitionIterator::begin( device ); it != PartitionIterator::end( device ); ++it )
-        if ( ( *it )->mountPoint() == "/" )
-            return true;
-    return false;
-}
-
-static bool
-isIso9660( const Device* device )
-{
-    QString path = device->deviceNode();
-    if ( path.isEmpty() )
-        return false;
-
-    QProcess blkid;
-    blkid.start( "blkid", { path } );
-    blkid.waitForFinished();
-    QString output = QString::fromLocal8Bit( blkid.readAllStandardOutput() );
-    if ( output.contains( "iso9660" ) )
-        return true;
-
-    if ( device->partitionTable() &&
-         !device->partitionTable()->children().isEmpty() )
-    {
-        for ( const Partition* partition : device->partitionTable()->children() )
-        {
-            path = partition->partitionPath();
-            blkid.start( "blkid", { path } );
-            blkid.waitForFinished();
-            QString output = QString::fromLocal8Bit( blkid.readAllStandardOutput() );
-            if ( output.contains( "iso9660" ) )
-                return true;
-        }
-    }
-    return false;
-}
 
 //- DeviceInfo ---------------------------------------------
 PartitionCoreModule::DeviceInfo::DeviceInfo( Device* _device )
@@ -152,25 +115,19 @@ PartitionCoreModule::doInit()
 {
     FileSystemFactory::init();
 
-    CoreBackend* backend = CoreBackendManager::self()->backend();
-    QList< Device* > devices = backend->scanDevices( true );
+    using DeviceList = QList< Device* >;
+    DeviceList devices = PartUtils::getDevices( PartUtils::DeviceType::WritableOnly );
 
-    // Remove the device which contains / from the list
-    for ( QList< Device* >::iterator it = devices.begin(); it != devices.end(); )
-        if ( hasRootPartition( *it ) ||
-             (*it)->deviceNode().startsWith( "/dev/zram") ||
-             isIso9660( *it ) )
-            it = devices.erase( it );
-        else
-            ++it;
-
-    cDebug() << "LIST OF DETECTED DEVICES:\nnode\tcapacity\tname\tprettyName";
+    cDebug() << "LIST OF DETECTED DEVICES:";
+    cDebug() << "node\tcapacity\tname\tprettyName";
     for ( auto device : devices )
     {
+        // Gives ownership of the Device* to the DeviceInfo object
         auto deviceInfo = new DeviceInfo( device );
         m_deviceInfos << deviceInfo;
         cDebug() << device->deviceNode() << device->capacity() << device->name() << device->prettyName();
     }
+    cDebug() << ".." << devices.count() << "devices detected.";
     m_deviceModel->init( devices );
 
     // The following PartUtils::runOsprober call in turn calls PartUtils::canBeResized,
@@ -190,32 +147,29 @@ PartitionCoreModule::doInit()
     for ( auto deviceInfo : m_deviceInfos )
     {
         for ( auto it = PartitionIterator::begin( deviceInfo->device.data() );
-              it != PartitionIterator::end( deviceInfo->device.data() ); ++it )
+                it != PartitionIterator::end( deviceInfo->device.data() ); ++it )
         {
             Partition* partition = *it;
             for ( auto jt = m_osproberLines.begin();
-                  jt != m_osproberLines.end(); ++jt )
+                    jt != m_osproberLines.end(); ++jt )
             {
                 if ( jt->path == partition->partitionPath() &&
-                     partition->fileSystem().supportGetUUID() != FileSystem::cmdSupportNone &&
-                     !partition->fileSystem().uuid().isEmpty() )
-                {
+                        partition->fileSystem().supportGetUUID() != FileSystem::cmdSupportNone &&
+                        !partition->fileSystem().uuid().isEmpty() )
                     jt->uuid = partition->fileSystem().uuid();
-                }
             }
         }
     }
 
     for ( auto deviceInfo : m_deviceInfos )
-    {
         deviceInfo->partitionModel->init( deviceInfo->device.data(), m_osproberLines );
-    }
 
     m_bootLoaderModel->init( devices );
 
-    if ( QDir( "/sys/firmware/efi/efivars" ).exists() )
-        scanForEfiSystemPartitions(); //FIXME: this should be removed in favor of
-                                      //       proper KPM support for EFI
+    //FIXME: this should be removed in favor of
+    //       proper KPM support for EFI
+    if ( PartUtils::isEfiSystem() )
+        scanForEfiSystemPartitions();
 }
 
 PartitionCoreModule::~PartitionCoreModule()
@@ -276,8 +230,8 @@ PartitionCoreModule::createPartitionTable( Device* device, PartitionTable::Table
 }
 
 void
-PartitionCoreModule::createPartition( Device *device,
-                                      Partition *partition,
+PartitionCoreModule::createPartition( Device* device,
+                                      Partition* partition,
                                       PartitionTable::Flags flags )
 {
     auto deviceInfo = infoForDevice( device );
@@ -316,8 +270,8 @@ PartitionCoreModule::deletePartition( Device* device, Partition* partition )
             if ( !KPMHelpers::isPartitionFreeSpace( childPartition ) )
                 lst << childPartition;
 
-        for ( auto partition : lst )
-            deletePartition( device, partition );
+        for ( auto childPartition : lst )
+            deletePartition( device, childPartition );
     }
 
     QList< Calamares::job_ptr >& jobs = deviceInfo->jobs;
@@ -447,9 +401,7 @@ PartitionCoreModule::jobs() const
 
     QStringList jobsDebug;
     foreach ( auto job, lst )
-    {
         jobsDebug.append( job->prettyName() );
-    }
 
     cDebug() << "PartitionCodeModule has been asked for jobs. About to return:"
              << jobsDebug.join( "\n" );
@@ -489,7 +441,7 @@ PartitionCoreModule::osproberEntries() const
 }
 
 void
-PartitionCoreModule::refreshPartition( Device* device, Partition* partition )
+PartitionCoreModule::refreshPartition( Device* device, Partition* )
 {
     // Keep it simple for now: reset the model. This can be improved to cause
     // the model to emit dataChanged() for the affected row instead, avoiding
@@ -507,9 +459,11 @@ PartitionCoreModule::refresh()
     updateHasRootMountPoint();
     updateIsDirty();
     m_bootLoaderModel->update();
-    if ( QDir( "/sys/firmware/efi/efivars" ).exists() )
-        scanForEfiSystemPartitions(); //FIXME: this should be removed in favor of
-                                      //       proper KPM support for EFI
+
+    //FIXME: this should be removed in favor of
+    //       proper KPM support for EFI
+    if ( PartUtils::isEfiSystem() )
+        scanForEfiSystemPartitions();
 }
 
 void PartitionCoreModule::updateHasRootMountPoint()
@@ -551,7 +505,7 @@ PartitionCoreModule::scanForEfiSystemPartitions()
 
     QList< Partition* > efiSystemPartitions =
         KPMHelpers::findPartitions( devices,
-                                 []( Partition* partition ) -> bool
+                                    []( Partition* partition ) -> bool
     {
         if ( partition->activeFlags().testFlag( PartitionTable::FlagEsp ) )
         {
@@ -571,7 +525,7 @@ PartitionCoreModule::DeviceInfo*
 PartitionCoreModule::infoForDevice( const Device* device ) const
 {
     for ( auto it = m_deviceInfos.constBegin();
-          it != m_deviceInfos.constEnd(); ++it )
+            it != m_deviceInfos.constEnd(); ++it )
     {
         if ( ( *it )->device.data() == device )
             return *it;
@@ -617,9 +571,7 @@ void
 PartitionCoreModule::revertAllDevices()
 {
     foreach ( DeviceInfo* devInfo, m_deviceInfos )
-    {
         revertDevice( devInfo->device.data() );
-    }
     refresh();
 }
 
@@ -633,7 +585,7 @@ PartitionCoreModule::revertDevice( Device* dev )
         return;
     devInfo->forgetChanges();
     CoreBackend* backend = CoreBackendManager::self()->backend();
-    Device *newDev = backend->scanDevice( devInfo->device->deviceNode() );
+    Device* newDev = backend->scanDevice( devInfo->device->deviceNode() );
     devInfo->device.reset( newDev );
     devInfo->partitionModel->init( newDev, m_osproberLines );
 
@@ -670,9 +622,7 @@ void
 PartitionCoreModule::clearJobs()
 {
     foreach ( DeviceInfo* deviceInfo, m_deviceInfos )
-    {
         deviceInfo->forgetChanges();
-    }
     updateIsDirty();
 }
 

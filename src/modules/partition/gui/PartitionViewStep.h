@@ -2,6 +2,7 @@
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
  *   Copyright 2014-2016, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -41,8 +42,8 @@ class PLUGINDLLEXPORT PartitionViewStep : public Calamares::ViewStep
     Q_OBJECT
 
 public:
-    explicit PartitionViewStep( QObject* parent = 0 );
-    virtual ~PartitionViewStep();
+    explicit PartitionViewStep( QObject* parent = nullptr );
+    virtual ~PartitionViewStep() override;
 
     QString prettyName() const override;
     QWidget* createSummaryWidget() const override;

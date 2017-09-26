@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -34,8 +35,8 @@ class ProgressTreeView : public QTreeView
 public:
     static ProgressTreeView* instance();
 
-    explicit ProgressTreeView( QWidget* parent = 0 );
-    virtual ~ProgressTreeView();
+    explicit ProgressTreeView( QWidget* parent = nullptr );
+    virtual ~ProgressTreeView() override;
 
     /**
      * @brief setModel assigns a model to this view.

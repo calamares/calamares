@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -23,7 +24,8 @@
 
 #include "UiDllMacro.h"
 
-namespace Calamares {
+namespace Calamares
+{
 
 class UIDLLEXPORT ProcessJobModule : public Module
 {
@@ -40,7 +42,7 @@ protected:
 private:
     friend class Module;
     explicit ProcessJobModule();
-    virtual ~ProcessJobModule();
+    virtual ~ProcessJobModule() override;
 
     QString m_command;
     QString m_workingPath;

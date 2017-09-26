@@ -33,7 +33,7 @@ public:
                                                         const QStringList& availableLocales,
                                                         const QString& countryCode );
 
-    bool isEmpty();
+    bool isEmpty() const;
 
     // These become all uppercase in locale.conf, but we keep them lowercase here to
     // avoid confusion with locale.h.

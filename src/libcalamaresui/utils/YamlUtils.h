@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -22,9 +23,12 @@
 #include <QStringList>
 #include <QVariant>
 
+class QByteArray;
+
 namespace YAML
 {
 class Node;
+class Exception;
 }
 
 void operator>>( const YAML::Node& node, QStringList& v );
@@ -36,6 +40,13 @@ QVariant yamlToVariant( const YAML::Node& node );
 QVariant yamlScalarToVariant( const YAML::Node& scalarNode );
 QVariant yamlSequenceToVariant( const YAML::Node& sequenceNode );
 QVariant yamlMapToVariant( const YAML::Node& mapNode );
+
+/**
+ * Given an exception from the YAML parser library, explain
+ * what is going on in terms of the data passed to the parser.
+ * Uses @p label when labeling the data source (e.g. "netinstall data")
+ */
+void explainYamlException( const YAML::Exception& e, const QByteArray& data, const char *label );
 
 } //ns
 

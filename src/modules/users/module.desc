@@ -1,7 +1,0 @@
-# Module metadata file for users viewmodule
-# Syntax is YAML 1.2
----
-type:      "view"     #core or view
-name:      "users"    #the module name. must be unique and same as the parent directory
-interface: "qtplugin" #can be: qtplugin, python, process, ...
-load:      "libcalamares_viewmodule_users.so"

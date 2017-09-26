@@ -30,7 +30,7 @@
 #include "utils/Logger.h"
 
 // static
-const QString DracutLuksCfgJob::CONFIG_FILE = QStringLiteral( "/etc/dracut.conf.d/calamares-luks.conf" );
+const QLatin1Literal DracutLuksCfgJob::CONFIG_FILE( "/etc/dracut.conf.d/calamares-luks.conf" );
 
 // static
 const char *DracutLuksCfgJob::CONFIG_FILE_HEADER =
@@ -50,7 +50,7 @@ const char *DracutLuksCfgJob::CONFIG_FILE_CRYPTTAB_LINE =
     "install_items+=\" /etc/crypttab \"\n";
 
 // static
-const QString DracutLuksCfgJob::CONFIG_FILE_SWAPLINE = QStringLiteral( "# enable automatic resume from swap\nadd_device+=\" /dev/disk/by-uuid/%1 \"\n" );
+const QLatin1Literal DracutLuksCfgJob::CONFIG_FILE_SWAPLINE( "# enable automatic resume from swap\nadd_device+=\" /dev/disk/by-uuid/%1 \"\n" );
 
 // static
 QString
@@ -156,7 +156,7 @@ DracutLuksCfgJob::exec()
         if ( ! swapOuterUuid.isEmpty() )
         {
             cDebug() << "[DRACUTLUKSCFG]: Swap outer UUID" << swapOuterUuid;
-            outStream << CONFIG_FILE_SWAPLINE.arg( swapOuterUuid ).toLatin1();
+            outStream << QString(CONFIG_FILE_SWAPLINE).arg( swapOuterUuid ).toLatin1();
         }
         cDebug() << "[DRACUTLUKSCFG]: Wrote config to" << realConfigFilePath;
     } else

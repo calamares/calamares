@@ -1,7 +1,0 @@
-# Module metadata file for netinstall module
-# Syntax is YAML 1.2
----
-type:      "view"
-name:      "netinstall"
-interface: "qtplugin"
-load:      "libcalamares_viewmodule_netinstall.so"

@@ -25,6 +25,7 @@
 #include "core/PartitionCoreModule.h"
 #include "core/PartitionInfo.h"
 #include "core/PartitionModel.h"
+#include "core/PartUtils.h"
 #include "core/KPMHelpers.h"
 #include "gui/CreatePartitionDialog.h"
 #include "gui/EditExistingPartitionDialog.h"
@@ -55,11 +56,11 @@
 PartitionPage::PartitionPage( PartitionCoreModule* core, QWidget* parent )
     : QWidget( parent )
     , m_ui( new Ui_PartitionPage )
-    , m_lastSelectedBootLoaderIndex(-1)
     , m_core( core )
+    , m_lastSelectedBootLoaderIndex(-1)
     , m_isEfi( false )
 {
-    m_isEfi = QDir( "/sys/firmware/efi/efivars" ).exists();
+    m_isEfi = PartUtils::isEfiSystem();
 
     m_ui->setupUi( this );
     m_ui->partitionLabelsView->setVisible(
@@ -372,7 +373,7 @@ PartitionPage::updateFromCurrentDevice()
     // Establish connection here because selection model is destroyed when
     // model changes
     connect( m_ui->partitionTreeView->selectionModel(), &QItemSelectionModel::currentChanged,
-             [ this ]( const QModelIndex& index, const QModelIndex& oldIndex )
+             [ this ]( const QModelIndex&, const QModelIndex& )
     {
         updateButtons();
     } );

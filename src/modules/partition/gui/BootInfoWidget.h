@@ -30,6 +30,9 @@ class BootInfoWidget : public QWidget
 public:
     explicit BootInfoWidget( QWidget* parent = nullptr );
 
+public slots:
+    void retranslateUi();
+
 private:
     QLabel* m_bootIcon;
     QLabel* m_bootLabel;

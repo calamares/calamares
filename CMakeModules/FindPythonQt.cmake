@@ -21,13 +21,20 @@ find_path(PYTHONQT_INCLUDE_DIR PythonQt.h
   PATHS "${PYTHONQT_INSTALL_DIR}/include/PythonQt"
         "${PYTHONQT_INSTALL_DIR}/src"
   DOC "Path to the PythonQt include directory")
+
+# Minimum v3.1 is needed
 find_library(PYTHONQT_LIBRARY_RELEASE PythonQt PATHS "${PYTHONQT_INSTALL_DIR}/lib" DOC "The PythonQt library.")
 find_library(PYTHONQT_LIBRARY_DEBUG NAMES PythonQt${CTK_CMAKE_DEBUG_POSTFIX} PythonQt${CMAKE_DEBUG_POSTFIX} PythonQt PATHS "${PYTHONQT_INSTALL_DIR}/lib" DOC "The PythonQt library.")
 find_library(PYTHONQT_QTALL_LIBRARY_RELEASE PythonQt_QtAll PATHS "${PYTHONQT_INSTALL_DIR}/lib" DOC "Full Qt bindings for the PythonQt library.")
 find_library(PYTHONQT_QTALL_LIBRARY_DEBUG NAMES PythonQt_QtAll${CTK_CMAKE_DEBUG_POSTFIX} PythonQt_QtAll${CMAKE_DEBUG_POSTFIX} PythonQt_QtAll PATHS "${PYTHONQT_INSTALL_DIR}/lib" DOC "Full Qt bindings for the PythonQt library.")
 
-set(PYTHONQT_LIBRARY)
+# Also check for v3.2+
+find_library(PYTHONQT_LIBRARY_RELEASE PythonQt-Qt5-Python3 PATHS "${PYTHONQT_INSTALL_DIR}/lib" DOC "The PythonQt library.")
+find_library(PYTHONQT_LIBRARY_DEBUG NAMES PythonQt-Qt5-Python3${CTK_CMAKE_DEBUG_POSTFIX} PythonQt-Qt5-Python3${CMAKE_DEBUG_POSTFIX} PythonQt-Qt5-Python3 PATHS "${PYTHONQT_INSTALL_DIR}/lib" DOC "The PythonQt library.")
+find_library(PYTHONQT_QTALL_LIBRARY_RELEASE PythonQt_QtAll-Qt5-Python3 PATHS "${PYTHONQT_INSTALL_DIR}/lib" DOC "Full Qt bindings for the PythonQt library.")
+find_library(PYTHONQT_QTALL_LIBRARY_DEBUG NAMES PythonQt_QtAll-Qt5-Python3${CTK_CMAKE_DEBUG_POSTFIX} PythonQt_QtAll-Qt5-Python3${CMAKE_DEBUG_POSTFIX} PythonQt_QtAll-Qt5-Python3 PATHS "${PYTHONQT_INSTALL_DIR}/lib" DOC "Full Qt bindings for the PythonQt library.")
 
+set(PYTHONQT_LIBRARY)
 if(PYTHONQT_LIBRARY_RELEASE)
   list(APPEND PYTHONQT_LIBRARY optimized ${PYTHONQT_LIBRARY_RELEASE})
 endif()
@@ -59,6 +66,7 @@ endif()
 # All upper case _FOUND variable is maintained for backwards compatibility.
 set(PYTHONQT_FOUND 0)
 set(PythonQt_FOUND 0)
+
 if(PYTHONQT_INCLUDE_DIR AND PYTHONQT_LIBRARY AND PYTHONQT_QTALL_LIBRARY)
   # Currently CMake'ified PythonQt only supports building against a python Release build.
   # This applies independently of CTK build type (Release, Debug, ...)

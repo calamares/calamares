@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright (c) 2017, Kyle Robbertze <kyle@aims.ac.za>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -35,14 +36,14 @@ class PackageModel : public QAbstractItemModel
     Q_OBJECT
 
 public:
-    explicit PackageModel( const YAML::Node& data, QObject* parent = 0 );
-    ~PackageModel();
+    explicit PackageModel( const YAML::Node& data, QObject* parent = nullptr );
+    ~PackageModel() override;
 
     QVariant data( const QModelIndex& index, int role ) const override;
     bool setData( const QModelIndex& index, const QVariant& value,
                   int role = Qt::EditRole ) override;
     bool setHeaderData( int section, Qt::Orientation orientation,
-                        const QVariant& value, int role = Qt::EditRole );
+                        const QVariant& value, int role = Qt::EditRole ) override;
     Qt::ItemFlags flags( const QModelIndex& index ) const override;
     QVariant headerData( int section, Qt::Orientation orientation,
                          int role = Qt::DisplayRole ) const override;

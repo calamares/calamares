@@ -21,6 +21,7 @@
 
 #include "core/ColorUtils.h"
 #include "core/PartitionInfo.h"
+#include "core/PartUtils.h"
 #include "core/KPMHelpers.h"
 #include "gui/PartitionSizeController.h"
 
@@ -66,12 +67,12 @@ CreatePartitionDialog::CreatePartitionDialog( Device* device, PartitionNode* par
     m_ui->encryptWidget->hide();
 
     QStringList mountPoints = { "/", "/boot", "/home", "/opt", "/usr", "/var" };
-    if ( QDir( "/sys/firmware/efi/efivars" ).exists() )
+    if ( PartUtils::isEfiSystem() )
         mountPoints << Calamares::JobQueue::instance()->globalStorage()->value( "efiSystemPartition" ).toString();
     mountPoints.removeDuplicates();
     mountPoints.sort();
     m_ui->mountPointComboBox->addItems( mountPoints );
-    
+
     if ( device->partitionTable()->type() == PartitionTable::msdos ||
          device->partitionTable()->type() == PartitionTable::msdos_sectorbased )
         initMbrPartitionTypeUi();

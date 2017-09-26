@@ -13,3 +13,6 @@ foreach( SUBDIRECTORY ${SUBDIRECTORIES} )
         calamares_add_module_subdirectory( ${SUBDIRECTORY} )
     endif()
 endforeach()
+
+include( CalamaresAddTranslations )
+add_calamares_python_translations( ${CALAMARES_TRANSLATION_LANGUAGES} )

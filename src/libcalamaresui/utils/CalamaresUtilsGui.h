@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -92,7 +93,7 @@ UIDLLEXPORT QPixmap defaultPixmap( ImageType type,
  */
 UIDLLEXPORT QPixmap createRoundedImage( const QPixmap& avatar,
                                         const QSize& size,
-                                        float frameWidthPct = 0.20 );
+                                        float frameWidthPct = 0.20f );
 
 /**
  * @brief unmarginLayout recursively walks the QLayout tree and removes all margins.
@@ -113,6 +114,13 @@ UIDLLEXPORT int defaultFontHeight();    // in pixels, DPI-specific
 UIDLLEXPORT QFont defaultFont();
 UIDLLEXPORT QSize defaultIconSize();
 
+/**
+ * @brief Size constants for the main Calamares window.
+ */
+constexpr int windowMinimumWidth = 800;
+constexpr int windowMinimumHeight = 520;
+constexpr int windowPreferredWidth = 1024;
+constexpr int windowPreferredHeight = 520;
 }
 
 #endif // CALAMARESUTILSGUI_H

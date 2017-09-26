@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -17,14 +18,17 @@
  */
 #include "YamlUtils.h"
 
+#include "utils/Logger.h"
+
 #include <yaml-cpp/yaml.h>
 
+#include <QByteArray>
 #include <QRegExp>
 
 void
 operator>>( const YAML::Node& node, QStringList& v )
 {
-    for ( int i = 0; i < node.size(); ++i )
+    for ( size_t i = 0; i < node.size(); ++i )
     {
         v.append( QString::fromStdString( node[ i ].as< std::string >() ) );
     }
@@ -51,9 +55,11 @@ yamlToVariant( const YAML::Node& node )
         return yamlMapToVariant( node );
 
     case YAML::NodeType::Null:
+    case YAML::NodeType::Undefined:
         return QVariant();
     }
 
+    // NOTREACHED
     return QVariant();
 }
 
@@ -102,4 +108,42 @@ yamlMapToVariant( const YAML::Node& mapNode )
 }
 
 
+void
+explainYamlException( const YAML::Exception& e, const QByteArray& yamlData, const char *label )
+{
+    cDebug() << "WARNING: YAML error " << e.what() << "in" << label << '.';
+    if ( ( e.mark.line >= 0 ) && ( e.mark.column >= 0 ) )
+    {
+        // Try to show the line where it happened.
+        int linestart = 0;
+        for ( int linecount = 0; linecount < e.mark.line; ++linecount )
+        {
+            linestart = yamlData.indexOf( '\n', linestart );
+            // No more \ns found, weird
+            if ( linestart < 0 )
+                break;
+            linestart += 1;  // Skip that \n
+        }
+        int lineend = linestart;
+        if ( linestart >= 0 )
+        {
+            lineend = yamlData.indexOf( '\n', linestart );
+            if ( lineend < 0 )
+                lineend = yamlData.length();
+        }
+
+        int rangestart = linestart;
+        int rangeend = lineend;
+        // Adjust range (linestart..lineend) so it's not too long
+        if ( ( linestart >= 0 ) && ( e.mark.column > 30 ) )
+            rangestart += ( e.mark.column - 30 );
+        if ( ( linestart >= 0 ) && ( rangeend - rangestart > 40 ) )
+            rangeend = rangestart + 40;
+
+        if ( linestart >= 0 )
+            cDebug() << "WARNING: offending YAML data:" << yamlData.mid( rangestart, rangeend-rangestart ).constData();
+
+    }
 }
+
+}  // namespace

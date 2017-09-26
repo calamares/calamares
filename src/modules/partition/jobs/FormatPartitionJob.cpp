@@ -78,7 +78,7 @@ FormatPartitionJob::prettyStatusMessage() const
 Calamares::JobResult
 FormatPartitionJob::exec()
 {
-    Report report( 0 );
+    Report report( nullptr );  // Root of the report tree, no parent
     QString partitionPath = m_partition->partitionPath();
     QString message = tr( "The installer failed to format partition %1 on disk '%2'." ).arg( partitionPath, m_device->name() );
 

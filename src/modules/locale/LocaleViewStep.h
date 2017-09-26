@@ -37,7 +37,7 @@ class PLUGINDLLEXPORT LocaleViewStep : public Calamares::ViewStep
 
 public:
     explicit LocaleViewStep( QObject* parent = nullptr );
-    virtual ~LocaleViewStep();
+    virtual ~LocaleViewStep() override;
 
     QString prettyName() const override;
     QString prettyStatus() const override;

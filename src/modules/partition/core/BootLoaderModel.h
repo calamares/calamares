@@ -38,8 +38,8 @@ public:
         IsPartitionRole
     };
 
-    BootLoaderModel( QObject* parent = 0 );
-    ~BootLoaderModel();
+    BootLoaderModel( QObject* parent = nullptr );
+    ~BootLoaderModel() override;
 
     /**
      * Init the model with the list of devices. Does *not* take ownership of the

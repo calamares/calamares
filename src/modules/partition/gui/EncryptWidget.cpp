@@ -23,6 +23,7 @@
 
 EncryptWidget::EncryptWidget( QWidget* parent )
     : QWidget( parent )
+    , m_state( EncryptionDisabled )
 {
     setupUi( this );
 

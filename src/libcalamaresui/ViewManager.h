@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -43,12 +44,10 @@ class UIDLLEXPORT ViewManager : public QObject
 public:
     /**
      * @brief instance access to the ViewManager singleton.
-     * @return
+     * @return pointer to the singleton instance.
      */
     static ViewManager* instance();
-
-    explicit ViewManager( QObject* parent = nullptr );
-    virtual ~ViewManager();
+    static ViewManager* instance( QObject* parent );
 
     /**
      * @brief centralWidget always returns the central widget in the Calamares main
@@ -113,8 +112,12 @@ public slots:
 
 signals:
     void currentStepChanged();
+    void enlarge( QSize enlarge ) const;  // See ViewStep::enlarge()
 
 private:
+    explicit ViewManager( QObject* parent = nullptr );
+    virtual ~ViewManager();
+
     void insertViewStep( int before, ViewStep* step );
 
     static ViewManager* s_instance;

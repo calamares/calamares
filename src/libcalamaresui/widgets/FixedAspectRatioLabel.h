@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -27,10 +28,10 @@ class FixedAspectRatioLabel : public QLabel
     Q_OBJECT
 public:
     explicit FixedAspectRatioLabel( QWidget* parent = nullptr );
-    virtual ~FixedAspectRatioLabel();
+    virtual ~FixedAspectRatioLabel() override;
 
 public slots:
-    virtual void setPixmap( const QPixmap &pixmap );
+    void setPixmap( const QPixmap &pixmap );
     void resizeEvent( QResizeEvent* event ) override;
 
 private:

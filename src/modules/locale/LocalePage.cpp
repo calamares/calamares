@@ -233,11 +233,9 @@ LocalePage::updateLocaleLabels()
     LocaleConfiguration lc = m_selectedLocaleConfiguration.isEmpty() ?
                              guessLocaleConfiguration() :
                              m_selectedLocaleConfiguration;
-    m_localeLabel->setText( tr( "The system language will be set to %1." )
-                            .arg( prettyLCLocale( lc.lang ) ) );
-
-    m_formatsLabel->setText( tr( "The numbers and dates locale will be set to %1." )
-                            .arg( prettyLCLocale( lc.lc_numeric ) ) );
+    auto labels = prettyLocaleStatus( lc );
+    m_localeLabel->setText( labels.first );
+    m_formatsLabel->setText( labels.second );
 }
 
 
@@ -284,7 +282,7 @@ LocalePage::init( const QString& initialRegion,
     }
     else
     {
-        m_tzWidget->setCurrentLocation( "Europe", "Berlin" );
+        m_tzWidget->setCurrentLocation( "America", "New_York" );
     }
     emit m_tzWidget->locationChanged( m_tzWidget->getCurrentLocation() );
 
@@ -383,6 +381,15 @@ LocalePage::init( const QString& initialRegion,
     updateGlobalStorage();
 }
 
+std::pair< QString, QString > LocalePage::prettyLocaleStatus( const LocaleConfiguration& lc ) const
+{
+    return std::make_pair< QString, QString >(
+        tr( "The system language will be set to %1." )
+            .arg( prettyLCLocale( lc.lang ) ),
+        tr( "The numbers and dates locale will be set to %1." )
+                            .arg( prettyLCLocale( lc.lc_numeric ) )
+                                             );
+}
 
 QString
 LocalePage::prettyStatus() const
@@ -391,6 +398,13 @@ LocalePage::prettyStatus() const
     status += tr( "Set timezone to %1/%2.<br/>" )
               .arg( m_regionCombo->currentText() )
               .arg( m_zoneCombo->currentText() );
+
+    LocaleConfiguration lc = m_selectedLocaleConfiguration.isEmpty() ?
+                guessLocaleConfiguration() :
+                m_selectedLocaleConfiguration;
+    auto labels = prettyLocaleStatus(lc);
+    status += labels.first + "<br/>";
+    status += labels.second + "<br/>";
 
     return status;
 }
@@ -433,7 +447,7 @@ LocalePage::onActivate()
 
 
 LocaleConfiguration
-LocalePage::guessLocaleConfiguration()
+LocalePage::guessLocaleConfiguration() const
 {
     QLocale myLocale;   // User-selected language
 
@@ -455,7 +469,7 @@ LocalePage::guessLocaleConfiguration()
 
 
 QString
-LocalePage::prettyLCLocale( const QString& lcLocale )
+LocalePage::prettyLCLocale( const QString& lcLocale ) const
 {
     QString localeString = lcLocale;
     if ( localeString.endsWith( " UTF-8" ) )

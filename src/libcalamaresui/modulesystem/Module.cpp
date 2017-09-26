@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -75,18 +76,22 @@ Module::fromDescriptor( const QVariantMap& moduleDescriptor,
                << instanceId;
         return nullptr;
     }
-    if ( typeString == "view" )
+    if ( ( typeString == "view" ) || ( typeString == "viewmodule" ) )
     {
         if ( intfString == "qtplugin" )
         {
             m = new ViewModule();
         }
-#ifdef WITH_PYTHONQT
         else if ( intfString == "pythonqt" )
         {
+#ifdef WITH_PYTHONQT
             m = new PythonQtViewModule();
-        }
+#else
+            cLog() << "PythonQt modules are not supported in this version of Calamares.";
 #endif
+        }
+        else
+            cLog() << "Bad interface" << intfString << "for module type" << typeString;
     }
     else if ( typeString == "job" )
     {
@@ -98,17 +103,25 @@ Module::fromDescriptor( const QVariantMap& moduleDescriptor,
         {
             m = new ProcessJobModule();
         }
-#ifdef WITH_PYTHON
         else if ( intfString == "python" )
         {
+#ifdef WITH_PYTHON
             m = new PythonJobModule();
-        }
+#else
+            cLog() << "Python modules are not supported in this version of Calamares.";
 #endif
+        }
+        else
+            cLog() << "Bad interface" << intfString << "for module type" << typeString;
     }
+    else
+        cLog() << "Bad module type" << typeString;
+
     if ( !m )
     {
-        cLog() << Q_FUNC_INFO << "bad module type or interface string"
-               << instanceId << typeString << intfString;
+        cLog() << "Bad module type (" << typeString
+            << ") or interface string (" << intfString
+            << ") for module " << instanceId;
         return nullptr;
     }
 

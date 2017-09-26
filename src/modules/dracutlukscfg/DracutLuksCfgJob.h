@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2016, Kevin Kofler <kevin.kofler@chello.at>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -34,18 +35,18 @@ class PLUGINDLLEXPORT DracutLuksCfgJob : public Calamares::CppJob
 
 public:
     explicit DracutLuksCfgJob( QObject* parent = nullptr );
-    virtual ~DracutLuksCfgJob();
+    virtual ~DracutLuksCfgJob() override;
 
     QString prettyName() const override;
 
     Calamares::JobResult exec() override;
 
 private:
-    static const QString CONFIG_FILE;
+    static const QLatin1Literal CONFIG_FILE;
     static const char *CONFIG_FILE_HEADER;
     static const char *CONFIG_FILE_CRYPTTAB_KEYFILE_LINE;
     static const char *CONFIG_FILE_CRYPTTAB_LINE;
-    static const QString CONFIG_FILE_SWAPLINE;
+    static const QLatin1Literal CONFIG_FILE_SWAPLINE;
 
     static QString rootMountPoint();
     static QVariantList partitions();

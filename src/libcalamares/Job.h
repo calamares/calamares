@@ -29,6 +29,9 @@ namespace Calamares {
 class DLLEXPORT JobResult
 {
 public:
+    JobResult( const JobResult& rhs ) = delete;
+    JobResult( JobResult&& rhs );
+
     virtual ~JobResult() {}
 
     virtual operator bool() const;

@@ -116,27 +116,36 @@ LocaleViewStep::fetchGeoIpTimezone()
     {
         if ( reply->error() == QNetworkReply::NoError )
         {
-            YAML::Node doc = YAML::Load( reply->readAll() );
+            QByteArray data = reply->readAll();
 
-            QVariant var = CalamaresUtils::yamlToVariant( doc );
-            if ( !var.isNull() &&
-                 var.isValid() &&
-                 var.type() == QVariant::Map )
+            try
             {
-                QVariantMap map = var.toMap();
-                if ( map.contains( "time_zone" ) &&
-                     !map.value( "time_zone" ).toString().isEmpty() )
+                YAML::Node doc = YAML::Load( reply->readAll() );
+
+                QVariant var = CalamaresUtils::yamlToVariant( doc );
+                if ( !var.isNull() &&
+                    var.isValid() &&
+                    var.type() == QVariant::Map )
                 {
-                    QString timezoneString = map.value( "time_zone" ).toString();
-                    QStringList timezone = timezoneString.split( '/', QString::SkipEmptyParts );
-                    if ( timezone.size() >= 2 )
+                    QVariantMap map = var.toMap();
+                    if ( map.contains( "time_zone" ) &&
+                        !map.value( "time_zone" ).toString().isEmpty() )
                     {
-                        cDebug() << "GeoIP reporting" << timezoneString;
-                        QString region = timezone.takeFirst();
-                        QString zone = timezone.join( '/' );
-                        m_startingTimezone = qMakePair( region, zone );
+                        QString timezoneString = map.value( "time_zone" ).toString();
+                        QStringList tzParts = timezoneString.split( '/', QString::SkipEmptyParts );
+                        if ( tzParts.size() >= 2 )
+                        {
+                            cDebug() << "GeoIP reporting" << timezoneString;
+                            QString region = tzParts.takeFirst();
+                            QString zone = tzParts.join( '/' );
+                            m_startingTimezone = qMakePair( region, zone );
+                        }
                     }
                 }
+            }
+            catch ( YAML::Exception& e )
+            {
+                CalamaresUtils::explainYamlException( e, data, "GeoIP data");
             }
         }
 
@@ -262,8 +271,8 @@ LocaleViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     }
     else
     {
-        m_startingTimezone = qMakePair( QStringLiteral( "Europe" ),
-                                        QStringLiteral( "Berlin" ) );
+        m_startingTimezone = qMakePair( QStringLiteral( "America" ),
+                                        QStringLiteral( "New_York" ) );
     }
 
     if ( configurationMap.contains( "localeGenPath" ) &&

@@ -224,7 +224,8 @@ class FstabGenerator(object):
 
     def generate_fstab_line_info(self, partition):
         """ Generates information for each fstab entry. """
-        filesystem = partition["fs"]
+        filesystem = partition["fs"].lower()
+        has_luks = "luksMapperName" in partition
         mount_point = partition["mountPoint"]
         disk_name = disk_name_for_partition(partition)
         is_ssd = disk_name in self.ssd_disks
@@ -232,6 +233,8 @@ class FstabGenerator(object):
 
         if not mount_point and not filesystem == "swap":
             return None
+        if not mount_point:
+            mount_point = "swap"
 
         options = self.mount_options.get(filesystem,
                                          self.mount_options["default"])
@@ -252,18 +255,15 @@ class FstabGenerator(object):
             self.root_is_ssd = is_ssd
 
         if filesystem == "btrfs" and "subvol" in partition:
-            return dict(
-                device="UUID=" + partition["uuid"],
-                mount_point=mount_point,
-                fs=filesystem,
-                options=",".join(
-                    ["subvol={}".format(partition["subvol"]), options]
-                    ),
-                check=check,
-                )
+            options="subvol={},".format(partition["subvol"]) + options
 
-        return dict(device="UUID=" + partition["uuid"],
-                    mount_point=mount_point or "swap",
+        if has_luks:
+            device="/dev/mapper/" + partition["luksMapperName"]
+        else:
+            device="UUID=" + partition["uuid"]
+
+        return dict(device=device,
+                    mount_point=mount_point,
                     fs=filesystem,
                     options=options,
                     check=check,

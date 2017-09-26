@@ -50,8 +50,13 @@ public:
     void onActivate();
 
 private:
-    LocaleConfiguration guessLocaleConfiguration();
-    QString prettyLCLocale( const QString& localesMap );
+    LocaleConfiguration guessLocaleConfiguration() const;
+    QString prettyLCLocale( const QString& localesMap ) const;
+
+    // For the given locale config, return two strings describing
+    // the settings for language and numbers.
+    std::pair< QString, QString > prettyLocaleStatus( const LocaleConfiguration& ) const;
+
     void updateGlobalStorage();
     void updateLocaleLabels();
 

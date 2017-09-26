@@ -2,6 +2,7 @@
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
  *   Copyright 2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -63,7 +64,7 @@ DeletePartitionJob::prettyStatusMessage() const
 Calamares::JobResult
 DeletePartitionJob::exec()
 {
-    Report report( 0 );
+    Report report( nullptr );
     QString message = tr( "The installer failed to delete partition %1." ).arg( m_partition->devicePath() );
 
     if ( m_device->deviceNode() != m_partition->devicePath() )

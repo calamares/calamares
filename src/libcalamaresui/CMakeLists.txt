@@ -1,6 +1,6 @@
-set( CALAMARESUI_LIBRARY_TARGET calamaresui )
+project( libcalamaresui CXX )
 
-list( APPEND ${CALAMARESUI_LIBRARY_TARGET}_SOURCES
+set( calamaresui_SOURCES
     modulesystem/CppJobModule.cpp
     modulesystem/Module.cpp
     modulesystem/ModuleManager.cpp
@@ -20,7 +20,7 @@ list( APPEND ${CALAMARESUI_LIBRARY_TARGET}_SOURCES
 
     widgets/ClickableLabel.cpp
     widgets/FixedAspectRatioLabel.cpp
-    widgets/QtWaitingSpinner.cpp
+    widgets/waitingspinnerwidget.cpp
     widgets/WaitingWidget.cpp
 
     ExecutionViewStep.cpp
@@ -29,12 +29,20 @@ list( APPEND ${CALAMARESUI_LIBRARY_TARGET}_SOURCES
     ViewManager.cpp
 )
 
-list( APPEND ${CALAMARESUI_LIBRARY_TARGET}_UI
+# Don't warn about third-party sources
+mark_thirdparty_code(
+    utils/ImageRegistry.cpp
+    utils/qjsonitem.cpp
+    utils/qjsonmodel.cpp
+    widgets/waitingspinnerwidget.cpp
+)
+
+set( calamaresui_UI
     utils/DebugWindow.ui
 )
 
 if( WITH_PYTHON )
-    list( APPEND ${CALAMARESUI_LIBRARY_TARGET}_SOURCES
+    list( APPEND calamaresui_SOURCES
         modulesystem/PythonJobModule.cpp
     )
 endif()
@@ -43,7 +51,7 @@ if( WITH_PYTHONQT )
     include_directories(${PYTHON_INCLUDE_DIRS})
     include_directories(${PYTHONQT_INCLUDE_DIR})
 
-    list( APPEND ${CALAMARESUI_LIBRARY_TARGET}_SOURCES
+    list( APPEND calamaresui_SOURCES
         modulesystem/PythonQtViewModule.cpp
         utils/PythonQtUtils.cpp
         viewpages/PythonQtJob.cpp
@@ -58,12 +66,12 @@ if( WITH_PYTHONQT )
     )
 endif()
 
-calamares_add_library( ${CALAMARESUI_LIBRARY_TARGET}
-    SOURCES ${${CALAMARESUI_LIBRARY_TARGET}_SOURCES}
-    UI ${${CALAMARESUI_LIBRARY_TARGET}_UI}
+calamares_add_library( calamaresui
+    SOURCES ${calamaresui_SOURCES}
+    UI ${calamaresui_UI}
     EXPORT_MACRO UIDLLEXPORT_PRO
     LINK_PRIVATE_LIBRARIES
-        yaml-cpp
+        ${YAMLCPP_LIBRARY}
         Qt5::Svg
         Qt5::QuickWidgets
         ${OPTIONAL_PRIVATE_LIBRARIES}

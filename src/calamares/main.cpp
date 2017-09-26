@@ -23,9 +23,6 @@
 #include "utils/CalamaresUtils.h"
 #include "utils/Logger.h"
 #include "CalamaresConfig.h"
-#ifdef WITH_CRASHREPORTER
-    #include "libcrashreporter-handler/Handler.h"
-#endif
 
 #include <QCommandLineParser>
 #include <QDebug>
@@ -35,13 +32,6 @@ int
 main( int argc, char* argv[] )
 {
     CalamaresApplication a( argc, argv );
-
-#ifdef WITH_CRASHREPORTER
-    CrashReporter::Handler* handler =
-            new CrashReporter::Handler( QDir::tempPath(),
-                                        true,
-                                        "calamares_crash_reporter" );
-#endif
 
     QCommandLineParser parser;
     parser.setApplicationDescription( "Distribution-independent installer framework" );

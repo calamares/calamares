@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright (c) 2017, Kyle Robbertze <kyle@aims.ac.za>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -18,9 +19,9 @@
 
 #include "PackageTreeItem.h"
 
-PackageTreeItem::PackageTreeItem( const ItemData& data, PackageTreeItem* parent ) :
-    m_data( data ),
-    m_parentItem( parent )
+PackageTreeItem::PackageTreeItem( const ItemData& data, PackageTreeItem* parent )
+    : m_parentItem( parent )
+    , m_data( data )
 { }
 
 PackageTreeItem::PackageTreeItem( const QString packageName, PackageTreeItem* parent ) :

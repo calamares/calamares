@@ -194,7 +194,7 @@
    <item>
     <widget class="QLabel" name="username_extra_label_2">
      <property name="styleSheet">
-      <string>font-weight: normal</string>
+      <string notr="true">font-weight: normal</string>
      </property>
      <property name="text">
       <string>&lt;small&gt;If more than one person will use this computer, you can set up multiple accounts after installation.&lt;/small&gt;</string>

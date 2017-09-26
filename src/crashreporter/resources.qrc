@@ -1,5 +1,0 @@
-<RCC>
-    <qresource prefix="/">
-        <file alias="squid.svg">../../data/images/squid.svg</file>
-    </qresource>
-</RCC>
