@@ -115,13 +115,12 @@ CreateUserJob::exec()
     {
         QString autologinGroup;
         if ( gs->contains( "autologinGroup" ) &&
-             !gs->value( "autologinGroup" ).toString().isEmpty() )
+                !gs->value( "autologinGroup" ).toString().isEmpty() )
+        {
             autologinGroup = gs->value( "autologinGroup" ).toString();
-        else
-            autologinGroup = QStringLiteral( "autologin" );
-
-        CalamaresUtils::System::instance()->targetEnvCall( { "groupadd", autologinGroup } );
-        defaultGroups.append( QString( ",%1" ).arg( autologinGroup ) );
+            CalamaresUtils::System::instance()->targetEnvCall( { "groupadd", autologinGroup } );
+            defaultGroups.append( QString( ",%1" ).arg( autologinGroup ) );
+        }
     }
 
     // If we're looking to reuse the contents of an existing /home

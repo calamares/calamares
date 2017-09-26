@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -90,7 +91,7 @@ public:
         ColumnCount // Must remain last
     };
 
-    PartitionModel( QObject* parent = 0 );
+    PartitionModel( QObject* parent = nullptr );
     /**
      * device must remain alive for the life of PartitionModel
      */

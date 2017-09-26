@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright (c) 2017, Kyle Robbertze <kyle@aims.ac.za>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -37,10 +38,10 @@ public:
         bool isHidden = false;
         Qt::CheckState selected = Qt::Unchecked;
     };
-    explicit PackageTreeItem( const ItemData& data, PackageTreeItem* parent = 0 );
-    explicit PackageTreeItem( const QString packageName, PackageTreeItem* parent = 0 );
-    explicit PackageTreeItem( PackageTreeItem* parent = 0 );
-    ~PackageTreeItem();
+    explicit PackageTreeItem( const ItemData& data, PackageTreeItem* parent = nullptr );
+    explicit PackageTreeItem( const QString packageName, PackageTreeItem* parent = nullptr );
+    explicit PackageTreeItem( PackageTreeItem* parent = nullptr );
+    ~PackageTreeItem() override;
 
     void appendChild( PackageTreeItem* child );
     PackageTreeItem* child( int row );

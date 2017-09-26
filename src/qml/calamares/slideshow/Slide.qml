@@ -1,3 +1,9 @@
+/* === This file is part of Calamares - <https://github.com/calamares> ===
+ *
+ *   SPDX-License-Identifier: LGPL-2.1
+ *   License-Filename: LICENSES/LGPLv2.1-Presentation
+ */
+
 /****************************************************************************
 **
 ** Copyright (C) 2012 Digia Plc and/or its subsidiary(-ies).
@@ -167,20 +173,19 @@ Item {
 
                 Rectangle {
                     id: dot
-                    y: baseFontSize * row.indentFactor / 2
-                    width: baseFontSize / 4
-                    height: baseFontSize / 4
+                    anchors.baseline: text.baseline
+                    anchors.baselineOffset: -text.font.pixelSize / 2
+                    width: text.font.pixelSize / 3
+                    height: text.font.pixelSize / 3
                     color: slide.textColor
                     radius: width / 2
-                    smooth: true
                     opacity: text.text.length == 0 ? 0 : 1
                 }
 
-                Rectangle {
+                Item {
                     id: space
-                    width: dot.width * 2
+                    width: dot.width * 1.5
                     height: 1
-                    color: "#00ffffff"
                 }
 
                 Text {

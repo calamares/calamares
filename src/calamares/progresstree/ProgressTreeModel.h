@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -39,7 +40,7 @@ public:
     };
 
     explicit ProgressTreeModel( QObject* parent = nullptr );
-    virtual ~ProgressTreeModel();
+    virtual ~ProgressTreeModel() override;
 
     // Reimplemented from QAbstractItemModel
     Qt::ItemFlags flags( const QModelIndex& index ) const override;

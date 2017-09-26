@@ -36,7 +36,7 @@ class PLUGINDLLEXPORT LicenseViewStep : public Calamares::ViewStep
 
 public:
     explicit LicenseViewStep( QObject* parent = nullptr );
-    virtual ~LicenseViewStep();
+    virtual ~LicenseViewStep() override;
 
     QString prettyName() const override;
 
@@ -52,7 +52,7 @@ public:
     bool isAtEnd() const override;
 
     QList< Calamares::job_ptr > jobs() const override;
-    
+
     void setConfigurationMap( const QVariantMap& configurationMap ) override;
 
 private:

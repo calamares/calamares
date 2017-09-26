@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -19,7 +20,7 @@
 #include "WaitingWidget.h"
 
 #include "utils/CalamaresUtilsGui.h"
-#include "QtWaitingSpinner.h"
+#include "waitingspinnerwidget.h"
 
 #include <QBoxLayout>
 #include <QLabel>
@@ -34,7 +35,7 @@ WaitingWidget::WaitingWidget( const QString& text, QWidget* parent )
     waitingLayout->addLayout( pbLayout );
     pbLayout->addStretch();
 
-    QtWaitingSpinner* spnr = new QtWaitingSpinner();
+    WaitingSpinnerWidget* spnr = new WaitingSpinnerWidget();
     pbLayout->addWidget( spnr );
 
     pbLayout->addStretch();
@@ -43,9 +44,9 @@ WaitingWidget::WaitingWidget( const QString& text, QWidget* parent )
 
     int spnrSize = m_waitingLabel->fontMetrics().height() * 4;
     spnr->setFixedSize( spnrSize, spnrSize );
-    spnr->setRadius( spnrSize / 2 );
-    spnr->setLength( spnrSize / 2 );
-    spnr->setWidth( spnrSize / 8 );
+    spnr->setInnerRadius( spnrSize / 2 );
+    spnr->setLineLength( spnrSize / 2 );
+    spnr->setLineWidth( spnrSize / 8 );
     spnr->start();
 
     m_waitingLabel->setAlignment( Qt::AlignCenter );

@@ -27,6 +27,8 @@
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
 #include "utils/CalamaresUtilsSystem.h"
+#include "utils/Units.h"
+
 #include "JobQueue.h"
 #include "GlobalStorage.h"
 
@@ -51,9 +53,10 @@
 RequirementsChecker::RequirementsChecker( QObject* parent )
     : QObject( parent )
     , m_widget( new QWidget() )
+    , m_requiredStorageGB( -1 )
+    , m_requiredRamGB( -1 )
     , m_actualWidget( new CheckerWidget() )
     , m_verdict( false )
-    , m_requiredStorageGB( -1 )
 {
     QBoxLayout* mainLayout = new QHBoxLayout;
     m_widget->setLayout( mainLayout );
@@ -77,12 +80,12 @@ RequirementsChecker::RequirementsChecker( QObject* parent )
         bool isRoot = false;
         bool enoughScreen = (availableSize.width() >= CalamaresUtils::windowPreferredWidth) && (availableSize.height() >= CalamaresUtils::windowPreferredHeight);
 
-        qint64 requiredStorageB = m_requiredStorageGB * 1073741824L; /*powers of 2*/
+        qint64 requiredStorageB = CalamaresUtils::GiBtoBytes(m_requiredStorageGB);
         cDebug() << "Need at least storage bytes:" << requiredStorageB;
         if ( m_entriesToCheck.contains( "storage" ) )
             enoughStorage = checkEnoughStorage( requiredStorageB );
 
-        qint64 requiredRamB = m_requiredRamGB * 1073741824L; /*powers of 2*/
+        qint64 requiredRamB = CalamaresUtils::GiBtoBytes(m_requiredRamGB);
         cDebug() << "Need at least ram bytes:" << requiredRamB;
         if ( m_entriesToCheck.contains( "ram" ) )
             enoughRam = checkEnoughRam( requiredRamB );
@@ -307,9 +310,9 @@ RequirementsChecker::checkEnoughStorage( qint64 requiredSpace )
 bool
 RequirementsChecker::checkEnoughRam( qint64 requiredRam )
 {
-    qint64 availableRam = CalamaresUtils::System::instance()->getPhysicalMemoryB();
-    if ( !availableRam )
-        availableRam = CalamaresUtils::System::instance()->getTotalMemoryB();
+    // Ignore the guesstimate-factor; we get an under-estimate
+    // which is probably the usable RAM for programs.
+    quint64 availableRam = CalamaresUtils::System::instance()->getTotalMemoryB().first;
     return availableRam >= requiredRam * 0.95; // because MemTotal is variable
 }
 
@@ -354,7 +357,7 @@ RequirementsChecker::checkHasPower()
     QDBusInterface upowerIntf( UPOWER_SVC_NAME,
                                UPOWER_PATH,
                                UPOWER_INTF_NAME,
-                               QDBusConnection::systemBus(), 0 );
+                               QDBusConnection::systemBus() );
 
     bool onBattery = upowerIntf.property( "OnBattery" ).toBool();
 

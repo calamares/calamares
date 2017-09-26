@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -36,6 +37,14 @@ class CalamaresWindow : public QWidget
 public:
     CalamaresWindow( QWidget* parent = nullptr );
     virtual ~CalamaresWindow() {}
+
+public slots:
+    /**
+     * This asks the main window to grow by @p enlarge pixels, to accomodate
+     * larger-than-expected window contents. The enlargement may be silently
+     * ignored.
+     */
+    void enlarge( QSize enlarge );
 
 private:
     QPointer< Calamares::DebugWindow > m_debugWindow;

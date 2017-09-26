@@ -52,7 +52,7 @@ namespace Logger
         virtual ~CDebug();
     };
 
-    DLLEXPORT void CalamaresLogHandler( QtMsgType type, const char* msg );
+    DLLEXPORT void CalamaresLogHandler( QtMsgType type, const QMessageLogContext& context, const QString& msg );
     DLLEXPORT void setupLogfile();
     DLLEXPORT QString logFile();
 }

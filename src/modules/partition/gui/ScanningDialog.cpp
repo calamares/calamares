@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -18,7 +19,7 @@
 
 #include "ScanningDialog.h"
 
-#include "widgets/QtWaitingSpinner.h"
+#include "widgets/waitingspinnerwidget.h"
 
 #include <QBoxLayout>
 #include <QLabel>
@@ -37,7 +38,7 @@ ScanningDialog::ScanningDialog( const QString& text,
     QHBoxLayout* dialogLayout = new QHBoxLayout;
     setLayout( dialogLayout );
 
-    QtWaitingSpinner* spinner = new QtWaitingSpinner;
+    WaitingSpinnerWidget* spinner = new WaitingSpinnerWidget();
     dialogLayout->addWidget( spinner );
     spinner->start();
 

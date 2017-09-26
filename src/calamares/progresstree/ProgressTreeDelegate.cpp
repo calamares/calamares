@@ -64,8 +64,6 @@ ProgressTreeDelegate::paint( QPainter* painter,
                              const QStyleOptionViewItem& option,
                              const QModelIndex& index) const
 {
-    bool isFirstLevel = !index.parent().isValid();
-
     QStyleOptionViewItem opt = option;
 
     painter->save();

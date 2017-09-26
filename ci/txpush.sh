@@ -47,11 +47,7 @@ tx push --source --no-interactive -r calamares.fdo
 # - python modules without lang/, which use one shared catalog
 #
 
-# Arch
-# PYGETTEXT=/usr/lib/python3.5/Tools/i18n/pygettext.py
-
-# Ubuntu
-PYGETTEXT=pygettext3
+PYGETTEXT="xgettext --keyword=_n:1,2 -L python"
 
 SHARED_PYTHON=""
 for MODULE_DIR in $(find src/modules -maxdepth 1 -mindepth 1 -type d) ; do
@@ -59,9 +55,11 @@ for MODULE_DIR in $(find src/modules -maxdepth 1 -mindepth 1 -type d) ; do
   if test -n "$FILES" ; then
     MODULE_NAME=$(basename ${MODULE_DIR})
     if [ -d ${MODULE_DIR}/lang ]; then
-      ${PYGETTEXT} -p ${MODULE_DIR}/lang -d ${MODULE_NAME} ${MODULE_DIR}/*.py
-      if [ -f ${MODULE_DIR}/lang/${MODULE_NAME}.pot ]; then
-        tx set -r calamares.${MODULE_NAME} --source -l en ${MODULE_DIR}/lang/${MODULE_NAME}.pot
+      ${PYGETTEXT} -p ${MODULE_DIR}/lang -d ${MODULE_NAME} -o ${MODULE_NAME}.pot ${MODULE_DIR}/*.py
+      POTFILE="${MODULE_DIR}/lang/${MODULE_NAME}.pot"
+      if [ -f "$POTFILE" ]; then
+        sed -i'' '/^"Content-Type/s/CHARSET/UTF-8/' "$POTFILE"
+        tx set -r calamares.${MODULE_NAME} --source -l en "$POTFILE"
         tx push --source --no-interactive -r calamares.${MODULE_NAME}
       fi
     else
@@ -71,7 +69,9 @@ for MODULE_DIR in $(find src/modules -maxdepth 1 -mindepth 1 -type d) ; do
 done
 
 if test -n "$SHARED_PYTHON" ; then
-  ${PYGETTEXT} -p lang -d python $SHARED_PYTHON
-  tx set -r calamares.python --source -l en lang/python.pot
+  ${PYGETTEXT} -p lang -d python -o python.pot $SHARED_PYTHON
+  POTFILE="lang/python.pot"
+  sed -i'' '/^"Content-Type/s/CHARSET/UTF-8/' "$POTFILE"
+  tx set -r calamares.python --source -l en "$POTFILE"
   tx push --source --no-interactive -r calamares.python
 fi

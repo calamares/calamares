@@ -109,9 +109,7 @@ ViewManager::ViewManager( QObject* parent )
                 qApp->quit();
         }
         else // Means we're at the end, no need to confirm.
-        {
             qApp->quit();
-        }
     } );
 
     connect( JobQueue::instance(), &JobQueue::failed,
@@ -145,16 +143,15 @@ ViewManager::addViewStep( ViewStep* step )
 
 
 void
-ViewManager::insertViewStep( int before, ViewStep* step)
+ViewManager::insertViewStep( int before, ViewStep* step )
 {
     m_steps.insert( before, step );
     QLayout* layout = step->widget()->layout();
     if ( layout )
-    {
         layout->setContentsMargins( 0, 0, 0, 0 );
-    }
     m_stack->insertWidget( before, step->widget() );
 
+    connect( step, &ViewStep::enlarge, this, &ViewManager::enlarge );
     connect( step, &ViewStep::nextStatusChanged,
              this, [this]( bool status )
     {
@@ -180,19 +177,17 @@ ViewManager::onInstallationFailed( const QString& message, const QString& detail
 
     QMessageBox* msgBox = new QMessageBox();
     msgBox->setIcon( QMessageBox::Critical );
-    msgBox->setWindowTitle( tr("Error") );
+    msgBox->setWindowTitle( tr( "Error" ) );
     msgBox->setText( "<strong>" + tr( "Installation Failed" ) + "</strong>" );
     msgBox->setStandardButtons( QMessageBox::Close );
     msgBox->button( QMessageBox::Close )->setText( tr( "&Close" ) );
 
     QString text = "<p>" + message + "</p>";
     if ( !details.isEmpty() )
-    {
         text += "<p>" + details + "</p>";
-    }
     msgBox->setInformativeText( text );
 
-    connect(msgBox, &QMessageBox::buttonClicked, qApp, &QApplication::quit);
+    connect( msgBox, &QMessageBox::buttonClicked, qApp, &QApplication::quit );
     cLog() << "Calamares will quit when the dialog closes.";
     msgBox->show();
 }
@@ -230,8 +225,8 @@ ViewManager::next()
         // and right before switching to an execution phase.
         // Depending on Calamares::Settings, we show an "are you sure" prompt or not.
         if ( Calamares::Settings::instance()->showPromptBeforeExecution() &&
-             m_currentStep + 1 < m_steps.count() &&
-             qobject_cast< ExecutionViewStep* >( m_steps.at( m_currentStep + 1 ) ) )
+                m_currentStep + 1 < m_steps.count() &&
+                qobject_cast< ExecutionViewStep* >( m_steps.at( m_currentStep + 1 ) ) )
         {
             int reply =
                 QMessageBox::question( m_widget,
@@ -263,15 +258,13 @@ ViewManager::next()
         }
     }
     else
-    {
         step->next();
-    }
 
     m_next->setEnabled( !executing && m_steps.at( m_currentStep )->isNextEnabled() );
     m_back->setEnabled( !executing && m_steps.at( m_currentStep )->isBackEnabled() );
 
     if ( m_currentStep == m_steps.count() -1 &&
-         m_steps.last()->isAtEnd() )
+            m_steps.last()->isAtEnd() )
     {
         m_quit->setText( tr( "&Done" ) );
         m_quit->setToolTip( tr( "The installation is complete. Close the installer." ) );
@@ -292,9 +285,7 @@ ViewManager::back()
         emit currentStepChanged();
     }
     else if ( !step->isAtBeginning() )
-    {
         step->back();
-    }
     else return;
 
     m_next->setEnabled( m_steps.at( m_currentStep )->isNextEnabled() );

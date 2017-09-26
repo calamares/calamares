@@ -40,7 +40,7 @@ protected:
 private:
     friend class Module;
     explicit PythonJobModule();
-    virtual ~PythonJobModule();
+    virtual ~PythonJobModule() override;
 
     QString m_scriptFileName;
     QString m_workingPath;

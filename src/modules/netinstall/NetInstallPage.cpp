@@ -64,14 +64,28 @@ NetInstallPage::isReady()
     return true;
 }
 
-void NetInstallPage::readGroups( const QByteArray& yamlData )
+bool
+NetInstallPage::readGroups( const QByteArray& yamlData )
 {
-    YAML::Node groups = YAML::Load( yamlData.constData() );
-    Q_ASSERT( groups.IsSequence() );
-    m_groups = new PackageModel( groups );
-    CALAMARES_RETRANSLATE(
-        m_groups->setHeaderData( 0, Qt::Horizontal, tr( "Name" ) );
-        m_groups->setHeaderData( 0, Qt::Horizontal, tr( "Description" ) ); )
+    try
+    {
+        YAML::Node groups = YAML::Load( yamlData.constData() );
+
+        if ( !groups.IsSequence() )
+            cDebug() << "WARNING: netinstall groups data does not form a sequence.";
+        Q_ASSERT( groups.IsSequence() );
+        m_groups = new PackageModel( groups );
+        CALAMARES_RETRANSLATE(
+            m_groups->setHeaderData( 0, Qt::Horizontal, tr( "Name" ) );
+            m_groups->setHeaderData( 0, Qt::Horizontal, tr( "Description" ) ); )
+        return true;
+
+    }
+    catch ( YAML::Exception& e )
+    {
+        CalamaresUtils::explainYamlException( e, yamlData, "netinstall groups data" );
+        return false;
+    }
 }
 
 void
@@ -84,7 +98,13 @@ NetInstallPage::dataIsHere( QNetworkReply* reply )
         return;
     }
 
-    readGroups( reply->readAll() );
+    if ( !readGroups( reply->readAll() ) )
+    {
+        cDebug() << "Netinstall groups data was received, but invalid.";
+        ui->netinst_status->setText( tr( "Network Installation. (Disabled: Unable to fetch package lists, check your network connection)" ) );
+        reply->deleteLater();
+        return;
+    }
 
     ui->groupswidget->setModel( m_groups );
     ui->groupswidget->header()->setSectionResizeMode( 0, QHeaderView::ResizeToContents );

@@ -63,13 +63,6 @@ protected slots:
                                           QListWidgetItem* previous );
 
 private:
-    class LayoutItem : public QListWidgetItem
-    {
-    public:
-        QString data;
-        KeyboardGlobal::KeyboardInfo info;
-    };
-
     void updateVariants( const QPersistentModelIndex& currentItem,
                          QString currentVariant = QString() );
 

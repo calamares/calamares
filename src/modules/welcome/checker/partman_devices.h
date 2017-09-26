@@ -19,6 +19,14 @@
 #ifndef PARTMAN_DEVICES_H
 #define PARTMAN_DEVICES_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 int check_big_enough(long long required_space);
+
+#ifdef __cplusplus
+}  // extern "C"
+#endif
 
 #endif // PARTMAN_DEVICES_H

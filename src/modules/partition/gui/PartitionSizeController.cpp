@@ -22,6 +22,8 @@
 #include "core/ColorUtils.h"
 #include "core/KPMHelpers.h"
 
+#include "utils/Units.h"
+
 // Qt
 #include <QSpinBox>
 
@@ -56,7 +58,7 @@ PartitionSizeController::setPartResizerWidget( PartResizerWidget* widget, bool f
     Q_ASSERT( m_device );
 
     if ( m_partResizerWidget )
-        disconnect( m_partResizerWidget, 0, this, 0 );
+        disconnect( m_partResizerWidget, nullptr, this, nullptr );
 
     m_dirty = false;
     m_currentSpinBoxValue = -1;
@@ -106,7 +108,7 @@ void
 PartitionSizeController::setSpinBox( QSpinBox* spinBox )
 {
     if ( m_spinBox )
-        disconnect( m_spinBox, 0, this, 0 );
+        disconnect( m_spinBox, nullptr, this, nullptr );
     m_spinBox = spinBox;
     m_spinBox->setMaximum( std::numeric_limits< int >::max() );
     connectWidgets();
@@ -185,7 +187,7 @@ PartitionSizeController::doUpdateSpinBox()
 {
     if ( !m_spinBox )
         return;
-    qint64 mbSize = m_partition->length() * m_device->logicalSize() / 1024 / 1024;
+    int mbSize = CalamaresUtils::BytesToMiB( m_partition->length() * m_device->logicalSize() );
     m_spinBox->setValue( mbSize );
     if ( m_currentSpinBoxValue != -1 &&    //if it's not the first time we're setting it
          m_currentSpinBoxValue != mbSize ) //and the operation changes the SB value

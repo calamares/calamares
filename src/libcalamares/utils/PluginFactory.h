@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Based on KPluginFactory from KCoreAddons, KDE project
  *   Copyright 2007, Matthias Kretz <kretz@kde.org>
@@ -199,7 +200,7 @@ namespace Calamares
 class DLLEXPORT PluginFactory : public QObject
 {
     Q_OBJECT
-    Q_DECLARE_PRIVATE(PluginFactory)
+    Q_DECLARE_PRIVATE( PluginFactory )
 public:
     /**
      * This constructor creates a factory for a plugin.
@@ -222,7 +223,7 @@ public:
      * \returns A pointer to the created object is returned, or 0 if an error occurred.
      */
     template<typename T>
-    T *create(QObject *parent = 0);
+    T* create( QObject* parent = nullptr );
 
     /**
      * Use this method to create an object. It will try to create an object which inherits
@@ -235,34 +236,35 @@ public:
      * \returns A pointer to the created object is returned, or 0 if an error occurred.
      */
     template<typename T>
-    T *create(const QString &keyword, QObject *parent = 0);
+    T* create( const QString& keyword, QObject* parent = nullptr );
 
 Q_SIGNALS:
-    void objectCreated(QObject *object);
+    void objectCreated( QObject* object );
 
 protected:
     /**
      * Function pointer type to a function that instantiates a plugin.
      */
-    typedef QObject *(*CreateInstanceFunction)(QWidget *, QObject *);
+    typedef QObject* ( *CreateInstanceFunction )( QWidget*, QObject* );
 
     /**
      * This is used to detect the arguments need for the constructor of plugin classes.
      * You can inherit it, if you want to add new classes and still keep support for the old ones.
      */
     template<class impl>
-    struct InheritanceChecker {
-        CreateInstanceFunction createInstanceFunction(QWidget *)
+    struct InheritanceChecker
+    {
+        CreateInstanceFunction createInstanceFunction( QWidget* )
         {
             return &createInstance<impl, QWidget>;
         }
-        CreateInstanceFunction createInstanceFunction(...)
+        CreateInstanceFunction createInstanceFunction( ... )
         {
             return &createInstance<impl, QObject>;
         }
     };
 
-    explicit PluginFactory(PluginFactoryPrivate &dd);
+    explicit PluginFactory( PluginFactoryPrivate& dd );
 
     /**
      * Registers a plugin with the factory. Call this function from the constructor of the
@@ -292,14 +294,14 @@ protected:
      * \endcode
      */
     template<class T>
-    void registerPlugin(const QString &keyword = QString(),
-                        CreateInstanceFunction instanceFunction
-                        = InheritanceChecker<T>().createInstanceFunction(reinterpret_cast<T *>(0)))
+    void registerPlugin( const QString& keyword = QString(),
+                         CreateInstanceFunction instanceFunction
+                         = InheritanceChecker<T>().createInstanceFunction( reinterpret_cast<T*>( 0 ) ) )
     {
-        doRegisterPlugin(keyword, &T::staticMetaObject, instanceFunction);
+        doRegisterPlugin( keyword, &T::staticMetaObject, instanceFunction );
     }
 
-    PluginFactoryPrivate *const d_ptr;
+    PluginFactoryPrivate* const d_ptr;
 
     /**
      * This function is called when the factory asked to create an Object.
@@ -314,56 +316,55 @@ protected:
      * \param keyword A string that uniquely identifies the plugin. If a KService is used this
      * keyword is read from the X-KDE-PluginKeyword entry in the .desktop file.
      */
-    virtual QObject *create(const char *iface, QWidget *parentWidget, QObject *parent, const QString &keyword);
+    virtual QObject* create( const char* iface, QWidget* parentWidget, QObject* parent, const QString& keyword );
 
     template<class impl, class ParentType>
-    static QObject *createInstance(QWidget *parentWidget, QObject *parent)
+    static QObject* createInstance( QWidget* parentWidget, QObject* parent )
     {
-        Q_UNUSED(parentWidget);
-        ParentType *p = 0;
-        if (parent) {
-            p = qobject_cast<ParentType *>(parent);
-            Q_ASSERT(p);
+        Q_UNUSED( parentWidget );
+        ParentType* p = nullptr;
+        if ( parent )
+        {
+            p = qobject_cast<ParentType*>( parent );
+            Q_ASSERT( p );
         }
-        return new impl(p);
+        return new impl( p );
     }
 
 private:
-    void doRegisterPlugin(const QString &keyword, const QMetaObject *metaObject, CreateInstanceFunction instanceFunction);
+    void doRegisterPlugin( const QString& keyword, const QMetaObject* metaObject, CreateInstanceFunction instanceFunction );
 };
 
 template<typename T>
-inline T *PluginFactory::create(QObject *parent)
+inline T* PluginFactory::create( QObject* parent )
 {
-    QObject *o = create(T::staticMetaObject.className(),
-                        parent && parent->isWidgetType() ? reinterpret_cast<QWidget *>(parent) : 0,
-                        parent,
-                        QString());
+    QObject* o = create( T::staticMetaObject.className(),
+                         parent && parent->isWidgetType() ? reinterpret_cast<QWidget*>( parent ) : nullptr,
+                         parent,
+                         QString() );
 
-    T *t = qobject_cast<T *>(o);
-    if (!t) {
+    T* t = qobject_cast<T*>( o );
+    if ( !t )
         delete o;
-    }
     return t;
 }
 
 template<typename T>
-inline T *PluginFactory::create(const QString &keyword, QObject *parent)
+inline T* PluginFactory::create( const QString& keyword, QObject* parent )
 {
-    QObject *o = create(T::staticMetaObject.className(),
-                        parent && parent->isWidgetType() ? reinterpret_cast<QWidget *>(parent) : 0,
-                        parent,
-                        keyword);
+    QObject* o = create( T::staticMetaObject.className(),
+                         parent && parent->isWidgetType() ? reinterpret_cast<QWidget*>( parent ) : nullptr,
+                         parent,
+                         keyword );
 
-    T *t = qobject_cast<T *>(o);
-    if (!t) {
+    T* t = qobject_cast<T*>( o );
+    if ( !t )
         delete o;
-    }
     return t;
 }
 
 }
 
-Q_DECLARE_INTERFACE(Calamares::PluginFactory, CalamaresPluginFactory_iid)
+Q_DECLARE_INTERFACE( Calamares::PluginFactory, CalamaresPluginFactory_iid )
 
 #endif // CALAMARESPLUGINFACTORY_H

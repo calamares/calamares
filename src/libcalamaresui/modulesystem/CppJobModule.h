@@ -2,6 +2,7 @@
  *
  *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
  *   Copyright 2016, Kevin Kofler <kevin.kofler@chello.at>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -25,7 +26,8 @@
 
 class QPluginLoader;
 
-namespace Calamares {
+namespace Calamares
+{
 
 class UIDLLEXPORT CppJobModule : public Module
 {
@@ -42,7 +44,7 @@ protected:
 private:
     friend class Module; //so only the superclass can instantiate
     explicit CppJobModule();
-    virtual ~CppJobModule();
+    virtual ~CppJobModule() override;
 
     QPluginLoader* m_loader;
     job_ptr m_job;

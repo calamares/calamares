@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright (c) 2017, Kyle Robbertze <kyle@aims.ac.za>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -126,6 +127,8 @@ bool
 PackageModel::setHeaderData( int section, Qt::Orientation orientation,
                              const QVariant& value, int role )
 {
+    Q_UNUSED( role );
+
     if ( orientation == Qt::Horizontal )
     {
         if ( m_columnHeadings.value( section ) != QVariant() )

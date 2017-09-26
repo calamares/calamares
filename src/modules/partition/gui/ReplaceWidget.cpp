@@ -347,7 +347,7 @@ ReplaceWidget::updateFromCurrentDevice( QComboBox* devicesComboBox )
 
     QAbstractItemModel* oldModel = m_ui->partitionTreeView->model();
     if ( oldModel )
-        disconnect( oldModel, 0, this, 0 );
+        disconnect( oldModel, nullptr, this, nullptr );
 
     PartitionModel* model = m_core->partitionModelForDevice( device );
     m_ui->partitionTreeView->setModel( model );

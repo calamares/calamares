@@ -25,6 +25,7 @@
 #include "core/PartUtils.h"
 
 #include "utils/CalamaresUtilsSystem.h"
+#include "utils/Units.h"
 #include "JobQueue.h"
 #include "utils/Logger.h"
 #include "GlobalStorage.h"
@@ -36,42 +37,29 @@
 
 namespace PartitionActions
 {
-constexpr qint64 operator ""_MiB( unsigned long long m )
-{
-    return m * static_cast< qint64 >( 1024 ) * 1024;
-}
-
-constexpr qint64 operator ""_GiB( unsigned long long m )
-{
-    return operator ""_MiB(m) * static_cast< qint64 >( 1024 );
-}
-
-constexpr qint64 toMiB( unsigned long long m )
-{
-    return operator ""_MiB( m );
-}
-
-constexpr qint64 toGiB( unsigned long long m )
-{
-    return operator ""_GiB( m );
-}
+using CalamaresUtils::GiBtoBytes;
+using CalamaresUtils::MiBtoBytes;
+using CalamaresUtils::operator""_GiB;
+using CalamaresUtils::operator""_MiB;
 
 qint64
 swapSuggestion( const qint64 availableSpaceB )
 {
-    // swap(mem) = max(2, 2 * mem), if mem < 2 GiB
-    //           = mem,             if 2 GiB <= mem < 8 GiB
-    //           = mem / 2,         if 8 GIB <= mem < 64 GiB
-    //           = 4 GiB,           if mem >= 64 GiB
-
+    /* If suspend-to-disk is demanded, then we always need enough
+     * swap to write the whole memory to disk -- between 2GB and 8GB
+     * RAM give proportionally more swap, and from 8GB RAM keep
+     * swap = RAM.
+     *
+     * If suspend-to-disk is not demanded, then ramp up more slowly,
+     * to 8GB swap at 16GB memory, and then drop to 4GB for "large
+     * memory" machines, on the assumption that those don't need swap
+     * because they have tons of memory (or whatever they are doing,
+     * had better not run into swap).
+     */
     qint64 suggestedSwapSizeB = 0;
-    qint64 availableRamB = CalamaresUtils::System::instance()->getPhysicalMemoryB();
-    qreal overestimationFactor = 1.01;
-    if ( !availableRamB )
-    {
-        availableRamB = CalamaresUtils::System::instance()->getTotalMemoryB();
-        overestimationFactor = 1.10;
-    }
+    auto memory = CalamaresUtils::System::instance()->getTotalMemoryB();
+    qint64 availableRamB = memory.first;
+    qreal overestimationFactor = memory.second;
 
     bool ensureSuspendToDisk =
         Calamares::JobQueue::instance()->globalStorage()->
@@ -94,8 +82,8 @@ swapSuggestion( const qint64 availableSpaceB )
             suggestedSwapSizeB = qMax( 2_GiB, availableRamB * 2 );
         else if ( availableRamB >= 2_GiB && availableRamB < 8_GiB )
             suggestedSwapSizeB = availableRamB;
-        else if ( availableRamB >= 8_GiB && availableRamB < 64_GiB )
-            suggestedSwapSizeB = availableRamB / 2;
+        else if ( availableRamB >= 8_GiB && availableRamB < 16_GiB )
+            suggestedSwapSizeB = 8_GiB;
         else
             suggestedSwapSizeB = 4_GiB;
 
@@ -140,11 +128,11 @@ doAutopartition( PartitionCoreModule* core, Device* dev, const QString& luksPass
         empty_space_size = 1;
     }
 
-    qint64 firstFreeSector = toMiB(empty_space_size) / dev->logicalSize() + 1;
+    qint64 firstFreeSector = MiBtoBytes(empty_space_size) / dev->logicalSize() + 1;
 
     if ( isEfi )
     {
-        qint64 lastSector = firstFreeSector + ( toMiB(uefisys_part_size) / dev->logicalSize() );
+        qint64 lastSector = firstFreeSector + ( MiBtoBytes(uefisys_part_size) / dev->logicalSize() );
         core->createPartitionTable( dev, PartitionTable::gpt );
         Partition* efiPartition = KPMHelpers::createNewPartition(
             dev->partitionTable(),
@@ -175,7 +163,7 @@ doAutopartition( PartitionCoreModule* core, Device* dev, const QString& luksPass
         qint64 availableSpaceB = ( dev->totalLogical() - firstFreeSector ) * dev->logicalSize();
         suggestedSwapSizeB = swapSuggestion( availableSpaceB );
         qint64 requiredSpaceB =
-                toGiB( gs->value( "requiredStorageGB" ).toDouble() + 0.1 + 2.0 ) +
+                GiBtoBytes( gs->value( "requiredStorageGB" ).toDouble() + 0.1 + 2.0 ) +
                 suggestedSwapSizeB;
 
         // If there is enough room for ESP + root + swap, create swap, otherwise don't.

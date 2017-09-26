@@ -15,6 +15,6 @@ calamares_add_plugin( netinstall
     LINK_PRIVATE_LIBRARIES
         calamaresui
         Qt5::Network
-        yaml-cpp
+        ${YAMLCPP_LIBRARY}
     SHARED_LIB
 )

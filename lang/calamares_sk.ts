@@ -2,17 +2,17 @@
 <context>
     <name>BootInfoWidget</name>
     <message>
-        <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="61"/>
+        <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="69"/>
         <source>The &lt;strong&gt;boot environment&lt;/strong&gt; of this system.&lt;br&gt;&lt;br&gt;Older x86 systems only support &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Modern systems usually use &lt;strong&gt;EFI&lt;/strong&gt;, but may also show up as BIOS if started in compatibility mode.</source>
         <translation>&lt;strong&gt;Zavádzacie prostredie&lt;/strong&gt; tohto systému.&lt;br&gt;&lt;br&gt;Staršie systémy architektúry x86 podporujú iba &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Moderné systémy obvykle používajú &lt;strong&gt;EFI&lt;/strong&gt;, ale tiež sa môžu zobraziť ako BIOS, ak sú spustené v režime kompatiblitiy.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="75"/>
+        <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="79"/>
         <source>This system was started with an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from an EFI environment, this installer must deploy a boot loader application, like &lt;strong&gt;GRUB&lt;/strong&gt; or &lt;strong&gt;systemd-boot&lt;/strong&gt; on an &lt;strong&gt;EFI System Partition&lt;/strong&gt;. This is automatic, unless you choose manual partitioning, in which case you must choose it or create it on your own.</source>
         <translation>Tento systém bol spustený so zavádzacím prostredím &lt;strong&gt;EFI&lt;/strong&gt;.&lt;br&gt;&lt;br&gt;Na konfiguráciu spustenia z prostredia EFI, musí inštalátor umiestniť aplikáciu zavádzača, ako je &lt;strong&gt;GRUB&lt;/strong&gt; alebo &lt;strong&gt;systemd-boot&lt;/strong&gt; na &lt;strong&gt;oddiel systému EFI&lt;/strong&gt;. Toto je vykonané automaticky, pokiaľ nezvolíte ručné rozdelenie oddielov, v tom prípade ho musíte zvoliť alebo vytvoriť ručne.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="87"/>
+        <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="91"/>
         <source>This system was started with a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from a BIOS environment, this installer must install a boot loader, like &lt;strong&gt;GRUB&lt;/strong&gt;, either at the beginning of a partition or on the &lt;strong&gt;Master Boot Record&lt;/strong&gt; near the beginning of the partition table (preferred). This is automatic, unless you choose manual partitioning, in which case you must set it up on your own.</source>
         <translation>Tento systém bol spustený so zavádzacím prostredím &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;&lt;br&gt;Na konfiguráciu spustenia z prostredia BIOS, musí inštalátor nainštalovať zavádzač, ako je &lt;strong&gt;GRUB&lt;/strong&gt;, buď na začiatok oddielu alebo na &lt;strong&gt;hlavný zavádzací záznam (MBR)&lt;/strong&gt; pri začiatku tabuľky oddielov (preferované). Toto je vykonané automaticky, pokiaľ nezvolíte ručné rozdelenie oddielov, v tom prípade ho musíte nainštalovať ručne.</translation>
     </message>
@@ -591,27 +591,27 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
         <translation>Veľ&amp;kosť:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="65"/>
+        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="66"/>
         <source>En&amp;crypt</source>
         <translation>Zaši&amp;frovať</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="161"/>
+        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="162"/>
         <source>Logical</source>
         <translation>Logický</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="166"/>
+        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="167"/>
         <source>Primary</source>
         <translation>Primárny</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="183"/>
+        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="184"/>
         <source>GPT</source>
         <translation>GPT</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="268"/>
+        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="269"/>
         <source>Mountpoint already in use. Please select another one.</source>
         <translation>Bod pripojenia sa už používa. Prosím, vyberte iný.</translation>
     </message>
@@ -824,7 +824,7 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
 <context>
     <name>DeviceInfoWidget</name>
     <message>
-        <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="63"/>
+        <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="150"/>
         <source>The type of &lt;strong&gt;partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The only way to change the partition table type is to erase and recreate the partition table from scratch, which destroys all data on the storage device.&lt;br&gt;This installer will keep the current partition table unless you explicitly choose otherwise.&lt;br&gt;If unsure, on modern systems GPT is preferred.</source>
         <translation>Typ &lt;strong&gt;tabuľky oddielov&lt;/strong&gt; na vybratom úložnom zariadení.&lt;br&gt;&lt;br&gt;Jediným spôsobom ako zmeniť tabuľku oddielov je vymazanie a znovu vytvorenie tabuľky oddielov od začiatku, čím sa zničia všetky údaje úložnom zariadení.&lt;br&gt;Inštalátor ponechá aktuálnu tabuľku oddielov, pokiaľ sa výlučne nerozhodnete inak.&lt;br&gt;Ak nie ste si istý, na moderných systémoch sa preferuje typ tabuľky oddielov GPT.</translation>
     </message>
@@ -941,7 +941,7 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
         <translation>Značky:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.cpp" line="306"/>
+        <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.cpp" line="307"/>
         <source>Mountpoint already in use. Please select another one.</source>
         <translation>Bod pripojenia sa už používa. Prosím, vyberte iný.</translation>
     </message>
@@ -969,7 +969,7 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
         <translation>Potvrdenie hesla</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="150"/>
+        <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="151"/>
         <source>Please enter the same passphrase in both boxes.</source>
         <translation>Prosím, zadajte rovnaké heslo do oboch polí.</translation>
     </message>
@@ -1038,19 +1038,19 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
 <context>
     <name>FinishedViewStep</name>
     <message>
-        <location filename="../src/modules/finished/FinishedViewStep.cpp" line="56"/>
+        <location filename="../src/modules/finished/FinishedViewStep.cpp" line="60"/>
         <source>Finish</source>
         <translation>Dokončenie</translation>
     </message>
     <message>
-        <location filename="../src/modules/finished/FinishedViewStep.cpp" line="117"/>
+        <location filename="../src/modules/finished/FinishedViewStep.cpp" line="126"/>
         <source>Installation Complete</source>
-        <translation type="unfinished"/>
+        <translation>Inštalácia dokončená</translation>
     </message>
     <message>
-        <location filename="../src/modules/finished/FinishedViewStep.cpp" line="118"/>
+        <location filename="../src/modules/finished/FinishedViewStep.cpp" line="127"/>
         <source>The installation of %1 is complete.</source>
-        <translation type="unfinished"/>
+        <translation>Inštalácia distribúcie %1s je dokončená.</translation>
     </message>
 </context>
 <context>
@@ -1158,6 +1158,16 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
         <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="41"/>
         <source>The system locale setting affects the language and character set for some command line user interface elements.&lt;br/&gt;The current setting is &lt;strong&gt;%1&lt;/strong&gt;.</source>
         <translation>Miestne nastavenie systému ovplyvní jazyk a znakovú sadu niektorých prvkov používateľského rozhrania v príkazovom riadku.&lt;br/&gt;Aktuálne nastavenie je &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="66"/>
+        <source>&amp;Cancel</source>
+        <translation>&amp;Zrušiť</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="67"/>
+        <source>&amp;OK</source>
+        <translation>&amp;OK</translation>
     </message>
 </context>
 <context>
@@ -1575,7 +1585,7 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
         <translation>Nainštalovať &amp;zavádzač na:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="160"/>
+        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="161"/>
         <source>Are you sure you want to create a new partition table on %1?</source>
         <translation>Naozaj chcete vytvoriť novú tabuľku oddielov na zariadení %1?</translation>
     </message>

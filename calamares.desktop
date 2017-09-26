@@ -13,10 +13,6 @@ StartupNotify=true
 Categories=Qt;System;
 
 
-# Translations
-
-
-# Translations
 Name[ca]=Calamares
 Icon[ca]=calamares
 GenericName[ca]=Instal·lador de sistema
@@ -49,10 +45,18 @@ Name[hr]=Calamares
 Icon[hr]=calamares
 GenericName[hr]=Instalacija sustava
 Comment[hr]=Calamares — Instalacija sustava
+Name[hu]=Calamares
+Icon[hu]=calamares
+GenericName[hu]=Rendszer Telepítő
+Comment[hu]=Calamares — Rendszer Telepítő
 Name[id]=Calamares
 Icon[id]=calamares
 GenericName[id]=Pemasang
 Comment[id]=Calamares — Pemasang Sistem
+Name[is]=Calamares
+Icon[is]=calamares
+GenericName[is]=Kerfis uppsetning
+Comment[is]=Calamares — Kerfis uppsetning
 Name[ja]=Calamares
 Icon[ja]=calamares
 GenericName[ja]=システムインストーラー

@@ -27,7 +27,11 @@
 #include <QDir>
 
 #include <random>
+
+#ifndef NO_CRYPT_H
 #include <crypt.h>
+#endif
+#include <unistd.h>
 
 
 SetPasswordJob::SetPasswordJob( const QString& userName, const QString& newPassword )
@@ -54,7 +58,7 @@ SetPasswordJob::prettyStatusMessage() const
 
 /// Returns a modular hashing salt for method 6 (SHA512) with a 16 character random salt.
 QString
-SetPasswordJob::make_salt(size_t length)
+SetPasswordJob::make_salt(int length)
 {
     Q_ASSERT(length >= 8);
     Q_ASSERT(length <= 128);
@@ -73,7 +77,7 @@ SetPasswordJob::make_salt(size_t length)
     std::mt19937_64 twister(seed);
 
     std::uint64_t next;
-    size_t current_length = 0;
+    int current_length = 0;
 
     QString salt_string;
     salt_string.reserve(length + 10);

@@ -50,11 +50,11 @@ FinishedPage::FinishedPage( QWidget* parent )
     CALAMARES_RETRANSLATE(
         ui->retranslateUi( this );
         ui->mainText->setText( tr( "<h1>All done.</h1><br/>"
-                             "%1 has been installed on your computer.<br/>"
-                             "You may now restart into your new system, or continue "
-                             "using the %2 Live environment." )
-                         .arg( *Calamares::Branding::VersionedName )
-                         .arg( *Calamares::Branding::ProductName ) );
+                                   "%1 has been installed on your computer.<br/>"
+                                   "You may now restart into your new system, or continue "
+                                   "using the %2 Live environment." )
+                               .arg( *Calamares::Branding::VersionedName )
+                               .arg( *Calamares::Branding::ProductName ) );
     )
 }
 
@@ -90,7 +90,7 @@ FinishedPage::setUpRestart()
                  this, [this]
         {
             if ( ui->restartCheckBox->isVisible() &&
-                 ui->restartCheckBox->isChecked() )
+                    ui->restartCheckBox->isChecked() )
                 QProcess::execute( "/bin/sh", { "-c", m_restartNowCommand } );
         } );
     }
@@ -108,9 +108,9 @@ FinishedPage::onInstallationFailed( const QString& message, const QString& detai
 {
     Q_UNUSED( details );
     ui->mainText->setText( tr( "<h1>Installation Failed</h1><br/>"
-                             "%1 has not been installed on your computer.<br/>"
-                             "The error message was: %2." )
-                        .arg( *Calamares::Branding::VersionedName )
-                        .arg( message ) );
+                               "%1 has not been installed on your computer.<br/>"
+                               "The error message was: %2." )
+                           .arg( *Calamares::Branding::VersionedName )
+                           .arg( message ) );
     setRestartNowEnabled( false );
 }

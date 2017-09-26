@@ -43,7 +43,7 @@ static const int LABELS_MARGIN = LABEL_PARTITION_SQUARE_MARGIN;
 static const int CORNER_RADIUS = 2;
 
 
-QStringList
+static QStringList
 buildUnknownDisklabelTexts( Device* dev )
 {
     QStringList texts = { QObject::tr( "Unpartitioned space or unknown partition table" ),
@@ -54,7 +54,7 @@ buildUnknownDisklabelTexts( Device* dev )
 
 PartitionLabelsView::PartitionLabelsView( QWidget* parent )
     : QAbstractItemView( parent )
-    , canBeSelected( []( const QModelIndex& ) { return true; } )
+    , m_canBeSelected( []( const QModelIndex& ) { return true; } )
     , m_extendedPartitionHidden( false )
 {
     setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Fixed );
@@ -100,6 +100,8 @@ PartitionLabelsView::sizeHint() const
 void
 PartitionLabelsView::paintEvent( QPaintEvent* event )
 {
+    Q_UNUSED( event );
+
     QPainter painter( viewport() );
     painter.fillRect( rect(), palette().window() );
     painter.setRenderHint( QPainter::Antialiasing );
@@ -292,7 +294,6 @@ PartitionLabelsView::drawLabels( QPainter* painter,
          !modl->device()->partitionTable() ) // No disklabel or unknown
     {
         QStringList texts = buildUnknownDisklabelTexts( modl->device() );
-        QSize labelSize = sizeForLabel( texts );
         QColor labelColor = ColorUtils::unknownDisklabelColor();
         drawLabel( painter, texts, labelColor, QPoint( rect.x(), rect.y() ), false /*can't be selected*/ );
     }
@@ -467,6 +468,8 @@ PartitionLabelsView::visualRect( const QModelIndex& idx ) const
 QRegion
 PartitionLabelsView::visualRegionForSelection( const QItemSelection& selection ) const
 {
+    Q_UNUSED( selection );
+
     return QRegion();
 }
 
@@ -516,7 +519,7 @@ PartitionLabelsView::setSelectionModel( QItemSelectionModel* selectionModel )
 void
 PartitionLabelsView::setSelectionFilter( SelectionFilter canBeSelected )
 {
-    this->canBeSelected = canBeSelected;
+    m_canBeSelected = canBeSelected;
 }
 
 
@@ -530,6 +533,9 @@ PartitionLabelsView::setExtendedPartitionHidden( bool hidden )
 QModelIndex
 PartitionLabelsView::moveCursor( CursorAction cursorAction, Qt::KeyboardModifiers modifiers )
 {
+    Q_UNUSED( cursorAction );
+    Q_UNUSED( modifiers );
+
     return QModelIndex();
 }
 
@@ -537,6 +543,8 @@ PartitionLabelsView::moveCursor( CursorAction cursorAction, Qt::KeyboardModifier
 bool
 PartitionLabelsView::isIndexHidden( const QModelIndex& index ) const
 {
+    Q_UNUSED( index );
+
     return false;
 }
 
@@ -545,7 +553,7 @@ void
 PartitionLabelsView::setSelection( const QRect& rect, QItemSelectionModel::SelectionFlags flags )
 {
     QModelIndex eventIndex = indexAt( rect.topLeft() );
-    if ( canBeSelected( eventIndex ) )
+    if ( m_canBeSelected( eventIndex ) )
         selectionModel()->select( eventIndex, flags );
 }
 
@@ -567,7 +575,7 @@ PartitionLabelsView::mouseMoveEvent( QMouseEvent* event )
 
     if ( oldHoveredIndex != m_hoveredIndex )
     {
-        if ( m_hoveredIndex.isValid() && !canBeSelected( m_hoveredIndex ) )
+        if ( m_hoveredIndex.isValid() && !m_canBeSelected( m_hoveredIndex ) )
             QGuiApplication::setOverrideCursor( Qt::ForbiddenCursor );
         else
             QGuiApplication::restoreOverrideCursor();
@@ -580,6 +588,8 @@ PartitionLabelsView::mouseMoveEvent( QMouseEvent* event )
 void
 PartitionLabelsView::leaveEvent( QEvent* event )
 {
+    Q_UNUSED( event );
+
     QGuiApplication::restoreOverrideCursor();
     if ( m_hoveredIndex.isValid() )
     {
@@ -593,7 +603,7 @@ void
 PartitionLabelsView::mousePressEvent( QMouseEvent* event )
 {
     QModelIndex candidateIndex = indexAt( event->pos() );
-    if ( canBeSelected( candidateIndex ) )
+    if ( m_canBeSelected( candidateIndex ) )
         QAbstractItemView::mousePressEvent( event );
     else
         event->accept();
