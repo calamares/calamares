@@ -259,13 +259,30 @@ KeyboardPage::guessLayout( const QStringList& langParts )
         for ( int i = 0; i < klm->rowCount(); ++i )
         {
             QModelIndex idx = klm->index( i );
-            if ( idx.isValid() &&
-                    ( idx.data( KeyboardLayoutModel::KeyboardLayoutKeyRole ).toString().compare( *countryPart, Qt::CaseInsensitive ) == 0 ) )
+            QString name = idx.isValid() ? idx.data( KeyboardLayoutModel::KeyboardLayoutKeyRole ).toString() : QString();
+            if ( idx.isValid() && ( name.compare( *countryPart, Qt::CaseInsensitive ) == 0 ) )
             {
-                cDebug() << "   .. matched" << idx.data( KeyboardLayoutModel::KeyboardLayoutKeyRole ).toString();
+                cDebug() << "   .. matched" << name;
                 ui->listLayout->setCurrentIndex( idx );
                 foundCountryPart = true;
                 break;
+            }
+        }
+        if ( foundCountryPart )
+        {
+            ++countryPart;
+            if ( countryPart != langParts.rend() )
+            {
+                cDebug() << "Next level:" << *countryPart;
+                for (int variantnumber = 0; variantnumber < ui->listVariant->count(); ++variantnumber)
+                {
+                    LayoutItem *variantdata = dynamic_cast< LayoutItem* >( ui->listVariant->item( variantnumber ) );
+                    if ( variantdata && (variantdata->data.compare( *countryPart, Qt::CaseInsensitive ) == 0) )
+                    {
+                        ui->listVariant->setCurrentItem( variantdata );
+                        cDebug() << " .. matched variant" << variantdata->data << ' ' << variantdata->text();
+                    }
+                }
             }
         }
     }
@@ -275,6 +292,12 @@ KeyboardPage::guessLayout( const QStringList& langParts )
 void
 KeyboardPage::onActivate()
 {
+    static auto specialCaseMap = QMap<std::string, std::string>( {
+        { "ar_EG", "ara" },
+        { "ca_ES", "cat_ES" },
+        { "as_ES", "ast_ES" },
+    } );
+
     ui->listLayout->setFocus();
 
     // Try to preselect a layout, depending on language and locale
@@ -293,6 +316,15 @@ KeyboardPage::onActivate()
             lang.truncate( index );
 
         lang.replace( '-', '_' );  // Normalize separators
+    }
+    if ( !lang.isEmpty() && specialCaseMap.contains( lang.toStdString() ) )
+    {
+        QLatin1String newLang( specialCaseMap.value( lang.toStdString() ).c_str() );
+        cDebug() << " .. special case language" << lang << '>' << newLang;
+        lang = newLang;
+    }
+    if ( !lang.isEmpty() )
+    {
         const auto langParts = lang.split( '_', QString::SkipEmptyParts );
 
         QString country = QLocale::countryToString( QLocale( lang ).country() );
