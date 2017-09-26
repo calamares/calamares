@@ -61,15 +61,13 @@ void
 KeyboardLayoutModel::init()
 {
     KeyboardGlobal::LayoutsMap layouts =
-            KeyboardGlobal::getKeyboardLayouts();
+        KeyboardGlobal::getKeyboardLayouts();
     for ( KeyboardGlobal::LayoutsMap::const_iterator it = layouts.constBegin();
-          it != layouts.constEnd(); ++it )
-    {
+            it != layouts.constEnd(); ++it )
         m_layouts.append( qMakePair( it.key(), it.value() ) );
-    }
 
     std::stable_sort( m_layouts.begin(), m_layouts.end(), []( const QPair< QString, KeyboardGlobal::KeyboardInfo >& a,
-                                                              const QPair< QString, KeyboardGlobal::KeyboardInfo >& b )
+                      const QPair< QString, KeyboardGlobal::KeyboardInfo >& b )
     {
         return a.second.description < b.second.description;
     } );
