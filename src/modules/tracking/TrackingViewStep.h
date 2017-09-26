@@ -35,7 +35,7 @@ class PLUGINDLLEXPORT TrackingViewStep : public Calamares::ViewStep
 
 public:
     explicit TrackingViewStep( QObject* parent = nullptr );
-    virtual ~TrackingViewStep();
+    virtual ~TrackingViewStep() override;
 
     QString prettyName() const override;
 
@@ -51,7 +51,7 @@ public:
     bool isAtEnd() const override;
 
     QList< Calamares::job_ptr > jobs() const override;
-    
+
     void setConfigurationMap( const QVariantMap& configurationMap ) override;
 
 private:
