@@ -150,9 +150,6 @@ ModuleManager::doInit()
             cDebug() << "ModuleManager bad search path" << path;
         }
     }
-    // At this point m_availableModules is filled with whatever was found in the
-    // search paths.
-    checkDependencies();
     emit initDone();
 }
 
@@ -318,35 +315,4 @@ ModuleManager::loadModules()
     } );
 }
 
-
-void
-ModuleManager::checkDependencies()
-{
-    // This goes through the map of available modules, and deletes those whose
-    // dependencies are not met, if any.
-    bool somethingWasRemovedBecauseOfUnmetDependencies = false;
-    forever
-    {
-        for ( auto it = m_availableDescriptorsByModuleName.begin();
-              it != m_availableDescriptorsByModuleName.end(); ++it )
-        {
-            foreach ( const QString& depName,
-                      (*it).value( "requiredModules" ).toStringList() )
-            {
-                if ( !m_availableDescriptorsByModuleName.contains( depName ) )
-                {
-                    somethingWasRemovedBecauseOfUnmetDependencies = true;
-                    m_availableDescriptorsByModuleName.erase( it );
-                    break;
-                }
-            }
-            if ( somethingWasRemovedBecauseOfUnmetDependencies )
-                break;
-        }
-        if ( !somethingWasRemovedBecauseOfUnmetDependencies )
-            break;
-    }
-}
-
-
-}
+}  // namespace

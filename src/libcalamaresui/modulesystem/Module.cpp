@@ -233,13 +233,6 @@ Module::instanceKey() const
 }
 
 
-QStringList
-Module::requiredModules() const
-{
-    return m_requiredModules;
-}
-
-
 QString
 Module::location() const
 {

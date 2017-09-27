@@ -88,8 +88,6 @@ private slots:
     void doInit();
 
 private:
-    void checkDependencies();
-
     QMap< QString, QVariantMap > m_availableDescriptorsByModuleName;
     QMap< QString, QString > m_moduleDirectoriesByModuleName;
     QMap< QString, Module* > m_loadedModulesByInstanceKey;
