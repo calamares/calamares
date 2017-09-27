@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -25,6 +26,15 @@
 #include <QDir>
 #include <QProcess>
 #include <QRegularExpression>
+
+#ifdef Q_OS_LINUX
+#include <sys/sysinfo.h>
+#endif
+
+#ifdef Q_OS_FREEBSD
+#include <sys/types.h>
+#include <sys/sysctl.h>
+#endif
 
 namespace CalamaresUtils
 {
@@ -195,8 +205,14 @@ System::targetEnvOutput( const QStringList& args,
         return -1;
     }
 
-    cLog() << "Finished. Exit code:" << process.exitCode();
-    return process.exitCode();
+    auto r = process.exitCode();
+    cLog() << "Finished. Exit code:" << r;
+    if ( r != 0 )
+    {
+        cLog() << "Target cmd" << args;
+        cLog() << "Target out" << output;
+    }
+    return r;
 }
 
 
@@ -215,50 +231,29 @@ System::targetEnvOutput( const QString& command,
 }
 
 
-qint64
-System::getPhysicalMemoryB()
-{
-        QProcess p;
-        p.start( "dmidecode", { "-t", "17" } );
-        p.waitForFinished();
-        QStringList lines = QString::fromLocal8Bit( p.readAllStandardOutput() ).split( '\n' );
-        lines = lines.filter( QRegularExpression( "^\\W*Size:\\W\\d*\\WMB" ) );
-        if ( !lines.isEmpty() )
-            return 0;
-
-        qint64 availableRamMb = 0;
-        foreach( const QString& line, lines )
-        {
-            bool ok = false;
-            availableRamMb += line.simplified()
-                                  .split( ' ' )
-                                  .value( 1 )
-                                  .toInt( &ok );
-            if ( !ok )
-                return 0;
-        }
-        qint64 availableRam = availableRamMb * 1024 * 1024;
-        return availableRam;
-}
-
-
-qint64
+QPair<quint64, float>
 System::getTotalMemoryB()
 {
-    // A line in meminfo looks like this, with {print $2} we grab the second column.
-    // MemTotal:        8133432 kB
+#ifdef Q_OS_LINUX
+    struct sysinfo i;
+    int r = sysinfo( &i );
 
-    QProcess p;
-    p.start( "awk", { "/MemTotal/ {print $2}", "/proc/meminfo" } );
-    p.waitForFinished();
-    QString memoryLine = p.readAllStandardOutput().simplified();
+    if (r)
+        return qMakePair(0, 0.0);
 
-    bool ok = false;
-    qint64 availableRam = memoryLine.toLongLong( &ok ) * 1024;
-    if ( !ok )
-        return 0;
+    return qMakePair(quint64( i.mem_unit ) * quint64( i.totalram ), 1.1);
+#elif defined( Q_OS_FREEBSD )
+    unsigned long memsize;
+    size_t s = sizeof(memsize);
 
-    return availableRam;
+    int r = sysctlbyname("vm.kmem_size", &memsize, &s, NULL, 0);
+    if (r)
+        return qMakePair(0, 0.0);
+
+    return qMakePair(memsize, 1.01);
+#else
+    return qMakePair(0, 0.0);  // Unsupported
+#endif
 }
 
 

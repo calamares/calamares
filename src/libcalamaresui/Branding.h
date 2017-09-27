@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -36,6 +37,11 @@ class UIDLLEXPORT Branding : public QObject
 {
     Q_OBJECT
 public:
+    /**
+     * Descriptive strings in the configuration file. use
+     * e.g. *Branding::ProductName to get the string value for
+     * the product name.
+     */
     enum StringEntry : short
     {
         ProductName,
@@ -62,7 +68,8 @@ public:
     {
         SidebarBackground,
         SidebarText,
-        SidebarTextSelect
+        SidebarTextSelect,
+        SidebarTextHighlight
     };
 
     static Branding* instance();
@@ -81,6 +88,9 @@ public:
     QPixmap image( Branding::ImageEntry imageEntry, const QSize& size ) const;
     QString slideshowPath() const;
 
+    bool welcomeStyleCalamares() const { return m_welcomeStyleCalamares; }
+    bool welcomeExpandingLogo() const { return m_welcomeExpandingLogo; }
+
     /**
      * Creates a map called "branding" in the global storage, and inserts an
      * entry for each of the branding strings. This makes the branding
@@ -91,9 +101,9 @@ public:
 private:
     static Branding* s_instance;
 
-    static QStringList s_stringEntryStrings;
-    static QStringList s_imageEntryStrings;
-    static QStringList s_styleEntryStrings;
+    static const QStringList s_stringEntryStrings;
+    static const QStringList s_imageEntryStrings;
+    static const QStringList s_styleEntryStrings;
 
     void bail( const QString& message );
 
@@ -104,7 +114,12 @@ private:
     QMap< QString, QString > m_style;
     QString m_slideshowPath;
     QString m_translationsPathPrefix;
+
+    bool m_welcomeStyleCalamares;
+    bool m_welcomeExpandingLogo;
 };
+
+template<typename U> inline QString operator*(U e) { return Branding::instance()->string( e ); }
 
 }
 

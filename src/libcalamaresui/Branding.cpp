@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -44,7 +45,7 @@ Branding::instance()
 }
 
 
-QStringList Branding::s_stringEntryStrings =
+const QStringList Branding::s_stringEntryStrings =
 {
     "productName",
     "version",
@@ -60,18 +61,19 @@ QStringList Branding::s_stringEntryStrings =
 };
 
 
-QStringList Branding::s_imageEntryStrings =
+const QStringList Branding::s_imageEntryStrings =
 {
     "productLogo",
     "productIcon",
     "productWelcome"
 };
 
-QStringList Branding::s_styleEntryStrings =
+const QStringList Branding::s_styleEntryStrings =
 {
     "sidebarBackground",
     "sidebarText",
-    "sidebarTextSelect"
+    "sidebarTextSelect",
+    "sidebarTextHighlight"
 };
 
 
@@ -79,6 +81,9 @@ Branding::Branding( const QString& brandingFilePath,
                     QObject* parent )
     : QObject( parent )
     , m_descriptorPath( brandingFilePath )
+    , m_componentName()
+    , m_welcomeStyleCalamares( false )
+    , m_welcomeExpandingLogo( true )
 {
     cDebug() << "Using Calamares branding file at" << brandingFilePath;
     QFile file( brandingFilePath );
@@ -104,6 +109,9 @@ Branding::Branding( const QString& brandingFilePath,
 
             if ( !doc[ "strings" ].IsMap() )
                 bail( "Syntax error in strings map." );
+
+            m_welcomeStyleCalamares = doc[ "welcomeStyleCalamares" ].as< bool >( false );
+            m_welcomeExpandingLogo = doc[ "welcomeExpandingLogo" ].as< bool >( true );
 
             QVariantMap strings =
                 CalamaresUtils::yamlMapToVariant( doc[ "strings" ] ).toMap();
@@ -171,7 +179,7 @@ Branding::Branding( const QString& brandingFilePath,
         }
         catch ( YAML::Exception& e )
         {
-            cDebug() << "WARNING: YAML parser error " << e.what();
+            cDebug() << "WARNING: YAML parser error " << e.what() << "in" << file.fileName();
         }
 
         QDir translationsDir( componentDir.filePath( "lang" ) );
@@ -188,7 +196,14 @@ Branding::Branding( const QString& brandingFilePath,
     }
 
     s_instance = this;
-    cDebug() << "Loaded branding component" << m_componentName;
+    if ( m_componentName.isEmpty() )
+    {
+        cDebug() << "WARNING: failed to load component from" << brandingFilePath;
+    }
+    else
+    {
+        cDebug() << "Loaded branding component" << m_componentName;
+    }
 }
 
 
@@ -263,12 +278,11 @@ Branding::slideshowPath() const
     return m_slideshowPath;
 }
 
-
 void
 Branding::setGlobals( GlobalStorage* globalStorage ) const
 {
     QVariantMap brandingMap;
-    foreach ( const QString& key, s_stringEntryStrings )
+    for ( const QString& key : s_stringEntryStrings )
         brandingMap.insert( key, m_strings.value( key ) );
     globalStorage->insert( "branding", brandingMap );
 }

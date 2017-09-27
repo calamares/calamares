@@ -44,7 +44,15 @@ SetPartFlagsJob::SetPartFlagsJob( Device* device,
 QString
 SetPartFlagsJob::prettyName() const
 {
-    return tr( "Set flags on partition %1." ).arg( partition()->partitionPath() );
+    if ( !partition()->partitionPath().isEmpty() )
+        return tr( "Set flags on partition %1." ).arg( partition()->partitionPath() );
+
+    if ( !partition()->fileSystem().name().isEmpty() )
+        return tr( "Set flags on %1MB %2 partition." )
+                .arg( partition()->capacity() /1024 /1024)
+                .arg( partition()->fileSystem().name() );
+
+    return tr( "Set flags on new partition." );
 }
 
 
@@ -53,13 +61,34 @@ SetPartFlagsJob::prettyDescription() const
 {
     QStringList flagsList = PartitionTable::flagNames( m_flags );
     if ( flagsList.count() == 0 )
-        return tr( "Clear flags on partition <strong>%1</strong>." )
-                .arg( partition()->partitionPath() );
+    {
+        if ( !partition()->partitionPath().isEmpty() )
+            return tr( "Clear flags on partition <strong>%1</strong>." )
+                    .arg( partition()->partitionPath() );
 
-    return tr( "Flag partition <strong>%1</strong> as "
-               "<strong>%2</strong>." )
-            .arg( partition()->partitionPath() )
-            .arg( flagsList.join( ", " ) );
+        if ( !partition()->fileSystem().name().isEmpty() )
+            return tr( "Clear flags on %1MB <strong>%2</strong> partition." )
+                    .arg( partition()->capacity() /1024 /1024)
+                    .arg( partition()->fileSystem().name() );
+
+        return tr( "Clear flags on new partition." );
+    }
+
+    if ( !partition()->partitionPath().isEmpty() )
+        return tr( "Flag partition <strong>%1</strong> as "
+                   "<strong>%2</strong>." )
+                .arg( partition()->partitionPath() )
+                .arg( flagsList.join( ", " ) );
+
+    if ( !partition()->fileSystem().name().isEmpty() )
+        return tr( "Flag %1MB <strong>%2</strong> partition as "
+                   "<strong>%3</strong>." )
+                .arg( partition()->capacity() /1024 /1024)
+                .arg( partition()->fileSystem().name() )
+                .arg( flagsList.join( ", " ) );
+
+    return tr( "Flag new partition as <strong>%1</strong>." )
+                .arg( flagsList.join( ", " ) );
 }
 
 
@@ -68,13 +97,34 @@ SetPartFlagsJob::prettyStatusMessage() const
 {
     QStringList flagsList = PartitionTable::flagNames( m_flags );
     if ( flagsList.count() == 0 )
-        return tr( "Clearing flags on partition <strong>%1</strong>." )
-                .arg( partition()->partitionPath() );
+    {
+        if ( !partition()->partitionPath().isEmpty() )
+            return tr( "Clearing flags on partition <strong>%1</strong>." )
+                    .arg( partition()->partitionPath() );
 
-    return tr( "Setting flags <strong>%2</strong> on partition "
-               "<strong>%1</strong>." )
-            .arg( partition()->partitionPath() )
-            .arg( flagsList.join( ", " ) );
+        if ( !partition()->fileSystem().name().isEmpty() )
+            return tr( "Clearing flags on %1MB <strong>%2</strong> partition." )
+                    .arg( partition()->capacity() /1024 /1024)
+                    .arg( partition()->fileSystem().name() );
+
+        return tr( "Clearing flags on new partition." );
+    }
+
+    if ( !partition()->partitionPath().isEmpty() )
+        return tr( "Setting flags <strong>%2</strong> on partition "
+                   "<strong>%1</strong>." )
+                .arg( partition()->partitionPath() )
+                .arg( flagsList.join( ", " ) );
+
+    if ( !partition()->fileSystem().name().isEmpty() )
+        return tr( "Setting flags <strong>%3</strong> on "
+                   "%1MB <strong>%2</strong> partition." )
+                .arg( partition()->capacity() /1024 /1024)
+                .arg( partition()->fileSystem().name() )
+                .arg( flagsList.join( ", " ) );
+
+    return tr( "Setting flags <strong>%1</strong> on new partition." )
+                .arg( flagsList.join( ", " ) );
 }
 
 

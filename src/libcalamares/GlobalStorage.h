@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -57,6 +58,8 @@ public:
     int remove( const QString& key );
     QVariant value( const QString& key ) const;
 
+    void debugDump() const;
+
 signals:
     void changed();
 
@@ -83,8 +86,15 @@ public:
     boost::python::list keys() const;
     int remove( const std::string& key );
     boost::python::api::object value( const std::string& key ) const;
+
+    // This is a helper for scripts that do not go through
+    // the JobQueue (i.e. the module testpython script),
+    // which allocate their own (singleton) GlobalStorage.
+    static Calamares::GlobalStorage* globalStorageInstance() { return s_gs_instance; }
+
 private:
     Calamares::GlobalStorage* m_gs;
+    static Calamares::GlobalStorage* s_gs_instance;  // See globalStorageInstance()
 };
 
 } // namespace CalamaresPython

@@ -60,8 +60,13 @@ private:
     void editExistingPartition( Device*, Partition* );
     void updateBootLoaderInstallPath();
     void updateFromCurrentDevice();
+    void updateBootLoaderIndex();
+
+    QStringList getCurrentUsedMountpoints();
 
     QMutex m_revertMutex;
+    int    m_lastSelectedBootLoaderIndex;
+    bool   m_isEfi;
 };
 
 #endif // PARTITIONPAGE_H

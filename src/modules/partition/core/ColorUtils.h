@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
+ *   Copyright 2016, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -33,6 +34,12 @@ QColor freeSpaceColor();
 
 QColor unknownDisklabelColor();
 
+/**
+ * @brief colorForPartition iterates over partitions, caches their colors and returns
+ * a color for the given partition.
+ * @param partition the partition for which to return a color.
+ * @return a color for the partition.
+ */
 QColor colorForPartition( Partition* partition );
 
 /**
@@ -40,6 +47,11 @@ QColor colorForPartition( Partition* partition );
  * which would be created in freeSpacePartition
  */
 QColor colorForPartitionInFreeSpace( Partition* freeSpacePartition );
+
+/**
+ * @brief invalidateCache clears the partition colors cache.
+ */
+void invalidateCache();
 
 }
 

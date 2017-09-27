@@ -27,6 +27,7 @@
 #include <kpmcore/core/partition.h>
 #include <kpmcore/util/report.h>
 
+#include <QDir>
 #include <QProcess>
 #include <QStringList>
 
@@ -71,8 +72,8 @@ ClearMountsJob::exec()
     process.start();
     process.waitForFinished();
 
-    QString partitions = process.readAllStandardOutput();
-    QStringList partitionsList = partitions.simplified().split( ' ' );
+    const QString partitions = process.readAllStandardOutput();
+    const QStringList partitionsList = partitions.simplified().split( ' ' );
 
     // Build a list of partitions of type 82 (Linux swap / Solaris).
     // We then need to clear them just in case they contain something resumable from a
@@ -99,13 +100,22 @@ ClearMountsJob::exec()
         *it = (*it).simplified().split( ' ' ).first();
     }
 
+    const QStringList cryptoDevices = getCryptoDevices();
+    for ( const QString &mapperPath : cryptoDevices )
+    {
+        tryUmount( mapperPath );
+        QString news = tryCryptoClose( mapperPath );
+        if ( !news.isEmpty() )
+            goodNews.append( news );
+    }
+
     // First we umount all LVM logical volumes we can find
     process.start( "lvscan", { "-a" } );
     process.waitForFinished();
     if ( process.exitCode() == 0 ) //means LVM2 tools are installed
     {
-        QStringList lvscanLines = QString::fromLocal8Bit( process.readAllStandardOutput() ).split( '\n' );
-        foreach ( const QString& lvscanLine, lvscanLines )
+        const QStringList lvscanLines = QString::fromLocal8Bit( process.readAllStandardOutput() ).split( '\n' );
+        for ( const QString& lvscanLine : lvscanLines )
         {
             QString lvPath = lvscanLine.simplified().split( ' ' ).value( 1 ); //second column
             lvPath = lvPath.replace( '\'', "" );
@@ -128,8 +138,8 @@ ClearMountsJob::exec()
         {
             QSet< QString > vgSet;
 
-            QStringList pvdisplayLines = pvdisplayOutput.split( '\n' );
-            foreach ( const QString& pvdisplayLine, pvdisplayLines )
+            const QStringList pvdisplayLines = pvdisplayOutput.split( '\n' );
+            for ( const QString& pvdisplayLine : pvdisplayLines )
             {
                 QString pvPath = pvdisplayLine.simplified().split( ' ' ).value( 0 );
                 QString vgName = pvdisplayLine.simplified().split( ' ' ).value( 1 );
@@ -151,7 +161,16 @@ ClearMountsJob::exec()
     else
         cDebug() << "WARNING: this system does not seem to have LVM2 tools.";
 
-    foreach ( QString p, partitionsList )
+    const QStringList cryptoDevices2 = getCryptoDevices();
+    for ( const QString &mapperPath : cryptoDevices2 )
+    {
+        tryUmount( mapperPath );
+        QString news = tryCryptoClose( mapperPath );
+        if ( !news.isEmpty() )
+            goodNews.append( news );
+    }
+
+    for ( const QString &p : partitionsList )
     {
         QString partPath = QString( "/dev/%1" ).arg( p );
 
@@ -213,4 +232,34 @@ ClearMountsJob::tryClearSwap( const QString& partPath )
         return QString();
 
     return QString( "Successfully cleared swap %1." ).arg( partPath );
+}
+
+
+QString
+ClearMountsJob::tryCryptoClose( const QString& mapperPath )
+{
+    QProcess process;
+    process.start( "cryptsetup", { "close", mapperPath } );
+    process.waitForFinished();
+    if ( process.exitCode() == 0 )
+        return QString( "Successfully closed mapper device %1." ).arg( mapperPath );
+
+    return QString();
+}
+
+
+QStringList
+ClearMountsJob::getCryptoDevices() const
+{
+    QDir mapperDir( "/dev/mapper" );
+    const QFileInfoList fiList = mapperDir.entryInfoList( QDir::Files );
+    QStringList list;
+    QProcess process;
+    for ( const QFileInfo &fi : fiList )
+    {
+        if ( fi.baseName() == "control" )
+            continue;
+        list.append( fi.absoluteFilePath() );
+    }
+    return list;
 }

@@ -35,8 +35,8 @@
 
 
 static const int VIEW_HEIGHT = qMax( CalamaresUtils::defaultFontHeight() + 8, // wins out with big fonts
-                                     (int)( CalamaresUtils::defaultFontHeight() * 0.6 ) + 22 ); // wins out with small fonts
-static const int CORNER_RADIUS = 3;
+                                     int( CalamaresUtils::defaultFontHeight() * 0.6 ) + 22 ); // wins out with small fonts
+static constexpr int CORNER_RADIUS = 3;
 static const int EXTENDED_PARTITION_MARGIN = qMax( 4, VIEW_HEIGHT / 6 );
 
 // The SELECTION_MARGIN is applied within a hardcoded 2px padding anyway, so
@@ -54,8 +54,8 @@ static const int SELECTION_MARGIN = qMin( ( EXTENDED_PARTITION_MARGIN - 2 ) / 2,
 PartitionBarsView::PartitionBarsView( QWidget* parent )
     : QAbstractItemView( parent )
     , m_nestedPartitionsMode( NoNestedPartitions )
-    , m_hoveredIndex( QModelIndex() )
     , canBeSelected( []( const QModelIndex& ) { return true; } )
+    , m_hoveredIndex( QModelIndex() )
 {
     setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Fixed );
     setFrameStyle( QFrame::NoFrame );
@@ -422,14 +422,14 @@ PartitionBarsView::setSelectionFilter( std::function< bool ( const QModelIndex& 
 
 
 QModelIndex
-PartitionBarsView::moveCursor( CursorAction cursorAction, Qt::KeyboardModifiers modifiers )
+PartitionBarsView::moveCursor( CursorAction, Qt::KeyboardModifiers )
 {
     return QModelIndex();
 }
 
 
 bool
-PartitionBarsView::isIndexHidden( const QModelIndex& index ) const
+PartitionBarsView::isIndexHidden( const QModelIndex& ) const
 {
     return false;
 }
@@ -491,7 +491,7 @@ PartitionBarsView::mouseMoveEvent( QMouseEvent* event )
 
 
 void
-PartitionBarsView::leaveEvent( QEvent* event )
+PartitionBarsView::leaveEvent( QEvent* )
 {
     QGuiApplication::restoreOverrideCursor();
     if ( m_hoveredIndex.isValid() )

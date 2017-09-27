@@ -2,6 +2,7 @@
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
  *   Copyright 2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -20,6 +21,7 @@
 #include "jobs/CreatePartitionJob.h"
 
 #include "utils/Logger.h"
+#include "utils/Units.h"
 
 // KPMcore
 #include <kpmcore/backend/corebackend.h>
@@ -47,7 +49,7 @@ CreatePartitionJob::prettyName() const
 {
     return tr( "Create new %2MB partition on %4 (%3) with file system %1." )
             .arg( m_partition->fileSystem().name() )
-            .arg( m_partition->capacity() / 1024 / 1024 )
+            .arg( CalamaresUtils::BytesToMiB( m_partition->capacity() ) )
             .arg( m_device->name() )
             .arg( m_device->deviceNode() );
 }
@@ -59,7 +61,7 @@ CreatePartitionJob::prettyDescription() const
     return tr( "Create new <strong>%2MB</strong> partition on <strong>%4</strong> "
                "(%3) with file system <strong>%1</strong>." )
             .arg( m_partition->fileSystem().name() )
-            .arg( m_partition->capacity() / 1024 / 1024 )
+            .arg( CalamaresUtils::BytesToMiB( m_partition->capacity() ) )
             .arg( m_device->name() )
             .arg( m_device->deviceNode() );
 }
@@ -79,7 +81,7 @@ CreatePartitionJob::exec()
     int step = 0;
     const qreal stepCount = 4;
 
-    Report report( 0 );
+    Report report( nullptr );
     QString message = tr( "The installer failed to create partition on disk '%1'." ).arg( m_device->name() );
 
     progress( step++ / stepCount );

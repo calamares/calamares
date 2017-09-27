@@ -1,13 +1,24 @@
 ---
 componentName:  default
 
+# This selects between different welcome texts. When false, uses
+# the traditional "Welcome to the %1 installer.", and when true,
+# uses "Welcome to the Calamares installer for %1." This allows
+# to distinguish this installer from other installers for the
+# same distribution.
+welcomeStyleCalamares:   false
+
+# Should the welcome image (productWelcome, below) be scaled
+# up beyond its natural size?
+welcomeExpandingLogo:   true
+
 strings:
     productName:         Generic GNU/Linux
     shortProductName:    Generic
-    version:             1.0 LTS
-    shortVersion:        1.0
-    versionedName:       Generic GNU/Linux 1.0 LTS "Rusty Trombone"
-    shortVersionedName:  Generic 1.0
+    version:             2017.8 LTS
+    shortVersion:        2017.8
+    versionedName:       Generic GNU/Linux 2017.8 LTS "Soapy Sousaphone"
+    shortVersionedName:  Generic 2017.8
     bootloaderEntryName: Generic
     productUrl:          http://calamares.io/
     supportUrl:          http://calamares.io/bugs/
@@ -21,7 +32,16 @@ images:
 
 slideshow:               "show.qml"
 
+# Colors for text and background components.
+#
+#  - sidebarBackground is the background of the sidebar
+#  - sidebarText is the (foreground) text color
+#  - sidebarTextHighlight sets the background of the selected (current) step.
+#    Optional, and defaults to the application palette.
+#  - sidebarSelect is the text color of the selected step.
+#
 style:
    sidebarBackground:    "#292F34"
    sidebarText:          "#FFFFFF"
    sidebarTextSelect:    "#292F34"
+   sidebarTextHighlight: "#D35400"

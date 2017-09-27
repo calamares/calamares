@@ -1,9 +1,11 @@
-project( libcalamares )
+project( libcalamares CXX )
 
-add_definitions( ${QT_DEFINITIONS} )
-add_definitions( -DQT_SHARED )
-add_definitions( -DQT_SHAREDPOINTER_TRACK_POINTERS )
-add_definitions( -DDLLEXPORT_PRO )
+add_definitions(
+    ${QT_DEFINITIONS}
+    -DQT_SHARED
+    -DQT_SHAREDPOINTER_TRACK_POINTERS
+    -DDLLEXPORT_PRO
+)
 
 configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/CalamaresConfig.h.in
                 ${CMAKE_CURRENT_BINARY_DIR}/CalamaresConfig.h )
@@ -11,29 +13,31 @@ configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/../calamares/CalamaresVersion.h.in
                 ${CMAKE_CURRENT_BINARY_DIR}/CalamaresVersion.h )
 
 set( libSources
+    CppJob.cpp
     GlobalStorage.cpp
     Job.cpp
     JobQueue.cpp
     ProcessJob.cpp
-
+)
+set( utilsSources
+    utils/CalamaresUtils.cpp
+    utils/CalamaresUtilsSystem.cpp
+    utils/Logger.cpp
+    utils/PluginFactory.cpp
+    utils/Retranslator.cpp
+)
+set( kdsagSources
     kdsingleapplicationguard/kdsingleapplicationguard.cpp
     kdsingleapplicationguard/kdsharedmemorylocker.cpp
     kdsingleapplicationguard/kdtoolsglobal.cpp
     kdsingleapplicationguard/kdlockedsharedmemorypointer.cpp
-
-    utils/CalamaresUtils.cpp
-    utils/CalamaresUtilsSystem.cpp
-    utils/Logger.cpp
-    utils/Retranslator.cpp
 )
+mark_thirdparty_code( ${kdsagSources} )
 
 include_directories(
     ${CMAKE_CURRENT_BINARY_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}
-
-    ${QT_INCLUDE_DIR}
 )
-
 
 if( WITH_PYTHON )
     set( libSources
@@ -41,6 +45,9 @@ if( WITH_PYTHON )
         PythonHelper.cpp
         PythonJob.cpp
         PythonJobApi.cpp
+    )
+    set_source_files_properties( PythonJob.cpp
+        PROPERTIES COMPILE_FLAGS "${SUPPRESS_BOOST_WARNINGS}"
     )
 
     include_directories(${PYTHON_INCLUDE_DIRS})
@@ -56,8 +63,22 @@ if( WITH_PYTHON )
     )
 endif()
 
+if( WITH_PYTHONQT )
+    include_directories(${PYTHON_INCLUDE_DIRS})
+    link_directories(${PYTHON_LIBRARIES})
 
-add_library( calamares SHARED ${libSources} )
+    include_directories(${PYTHONQT_INCLUDE_DIR})
+    link_directories(${PYTHONQT_LIBRARY})
+
+    set( OPTIONAL_PRIVATE_LIBRARIES
+        ${OPTIONAL_PRIVATE_LIBRARIES}
+        ${PYTHON_LIBRARIES}
+        ${PYTHONQT_LIBRARY}
+    )
+endif()
+
+
+add_library( calamares SHARED ${libSources} ${kdsagSources} ${utilsSources} )
 set_target_properties( calamares
     PROPERTIES
         AUTOMOC TRUE
@@ -65,17 +86,9 @@ set_target_properties( calamares
         SOVERSION ${CALAMARES_VERSION_SHORT}
 )
 
-qt5_use_modules( calamares Core )
-
-
 target_link_libraries( calamares
-    LINK_PRIVATE
-    # internal deps, if any
-    ${OPTIONAL_PRIVATE_LIBRARIES}
-
-    LINK_PUBLIC
-    # External deps
-    Qt5::Core
+    LINK_PRIVATE ${OPTIONAL_PRIVATE_LIBRARIES}
+    LINK_PUBLIC Qt5::Core
 )
 
 install( TARGETS calamares

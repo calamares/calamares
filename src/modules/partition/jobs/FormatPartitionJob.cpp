@@ -1,7 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
- *   Copyright 2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2015-2016, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -35,6 +35,7 @@
 
 // Qt
 #include <QScopedPointer>
+#include <QThread>
 
 FormatPartitionJob::FormatPartitionJob( Device* device, Partition* partition )
     : PartitionJob( partition )
@@ -77,7 +78,7 @@ FormatPartitionJob::prettyStatusMessage() const
 Calamares::JobResult
 FormatPartitionJob::exec()
 {
-    Report report( 0 );
+    Report report( nullptr );  // Root of the report tree, no parent
     QString partitionPath = m_partition->partitionPath();
     QString message = tr( "The installer failed to format partition %1 on disk '%2'." ).arg( partitionPath, m_device->name() );
 
@@ -101,10 +102,27 @@ FormatPartitionJob::exec()
     }
 
     FileSystem& fs = m_partition->fileSystem();
-    if ( !fs.create( report, partitionPath ) )
+
+    bool ok = fs.create( report, partitionPath );
+    int retries = 0;
+    const int MAX_RETRIES = 10;
+    while ( !ok )
+    {
+        cDebug() << "Partition" << m_partition->partitionPath()
+                 << "might not be ready yet, retrying (" << ++retries
+                 << "/" << MAX_RETRIES << ") ...";
+        QThread::sleep( 2 /*seconds*/ );
+        ok = fs.create( report, partitionPath );
+
+        if ( retries == MAX_RETRIES )
+            break;
+    }
+
+    if ( !ok )
     {
         return Calamares::JobResult::error(
-                   tr( "The installer failed to create file system on partition %1." ).arg( partitionPath ),
+                   tr( "The installer failed to create file system on partition %1." )
+                   .arg( partitionPath ),
                    report.toText()
                );
     }

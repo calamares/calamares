@@ -34,7 +34,7 @@ class PLUGINDLLEXPORT SummaryViewStep : public Calamares::ViewStep
 
 public:
     explicit SummaryViewStep( QObject* parent = nullptr );
-    virtual ~SummaryViewStep();
+    virtual ~SummaryViewStep() override;
 
     QString prettyName() const override;
 
@@ -52,6 +52,7 @@ public:
     QList< Calamares::job_ptr > jobs() const override;
 
     void onActivate() override;
+    void onLeave() override;
 
 private:
     SummaryPage* m_widget;

@@ -1,0 +1,5 @@
+---
+type:       "job"
+name:       "luksopenswaphookcfg"
+interface:  "python"
+script:     "main.py"

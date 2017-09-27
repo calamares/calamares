@@ -43,18 +43,18 @@ static const int LABELS_MARGIN = LABEL_PARTITION_SQUARE_MARGIN;
 static const int CORNER_RADIUS = 2;
 
 
-QStringList
+static QStringList
 buildUnknownDisklabelTexts( Device* dev )
 {
     QStringList texts = { QObject::tr( "Unpartitioned space or unknown partition table" ),
-                          KFormat().formatByteSize( dev->totalSectors() * dev->logicalSectorSize() ) };
+                          KFormat().formatByteSize( dev->totalLogical() * dev->logicalSize() ) };
     return texts;
 }
 
 
 PartitionLabelsView::PartitionLabelsView( QWidget* parent )
     : QAbstractItemView( parent )
-    , canBeSelected( []( const QModelIndex& ) { return true; } )
+    , m_canBeSelected( []( const QModelIndex& ) { return true; } )
     , m_extendedPartitionHidden( false )
 {
     setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Fixed );
@@ -100,6 +100,8 @@ PartitionLabelsView::sizeHint() const
 void
 PartitionLabelsView::paintEvent( QPaintEvent* event )
 {
+    Q_UNUSED( event );
+
     QPainter painter( viewport() );
     painter.fillRect( rect(), palette().window() );
     painter.setRenderHint( QPainter::Antialiasing );
@@ -161,7 +163,7 @@ PartitionLabelsView::getIndexesToDraw( const QModelIndex& parent ) const
         //HACK: horrible special casing follows.
         //      To save vertical space, we choose to hide short instances of free space.
         //      Arbitrary limit: 10MB.
-        const qint64 maxHiddenB = 10'000'000;
+        const qint64 maxHiddenB = 10000000;
         if ( index.data( PartitionModel::IsFreeSpaceRole ).toBool() &&
              index.data( PartitionModel::SizeRole ).toLongLong() <  maxHiddenB )
             continue;
@@ -199,13 +201,15 @@ PartitionLabelsView::buildTexts( const QModelIndex& index ) const
             firstLine = tr( "EFI system" );
         else if ( index.data( PartitionModel::FileSystemTypeRole ).toInt() == FileSystem::LinuxSwap )
             firstLine = tr( "Swap" );
-        else
+        else if ( !mountPoint.isEmpty() )
             firstLine = tr( "New partition for %1" ).arg( mountPoint );
+        else
+            firstLine = tr( "New partition" );
     }
     else if ( index.data( PartitionModel::OsproberNameRole ).toString().isEmpty() )
     {
         firstLine = index.data().toString();
-        if ( firstLine.startsWith( "/dev/sd" ) )
+        if ( firstLine.startsWith( "/dev/" ) )
             firstLine.remove( 0, 5 );   // "/dev/"
     }
     else
@@ -238,11 +242,11 @@ PartitionLabelsView::drawLabels( QPainter* painter,
     if ( !modl )
         return;
 
-    QModelIndexList indexesToDraw = getIndexesToDraw( parent );
+    const QModelIndexList indexesToDraw = getIndexesToDraw( parent );
 
     int label_x = rect.x();
     int label_y = rect.y();
-    foreach ( const QModelIndex& index, indexesToDraw )
+    for ( const QModelIndex& index : indexesToDraw )
     {
         QStringList texts = buildTexts( index );
 
@@ -290,7 +294,6 @@ PartitionLabelsView::drawLabels( QPainter* painter,
          !modl->device()->partitionTable() ) // No disklabel or unknown
     {
         QStringList texts = buildUnknownDisklabelTexts( modl->device() );
-        QSize labelSize = sizeForLabel( texts );
         QColor labelColor = ColorUtils::unknownDisklabelColor();
         drawLabel( painter, texts, labelColor, QPoint( rect.x(), rect.y() ), false /*can't be selected*/ );
     }
@@ -304,12 +307,12 @@ PartitionLabelsView::sizeForAllLabels( int maxLineWidth ) const
     if ( !modl )
         return QSize();
 
-    QModelIndexList indexesToDraw = getIndexesToDraw( QModelIndex() );
+    const QModelIndexList indexesToDraw = getIndexesToDraw( QModelIndex() );
 
     int lineLength = 0;
     int numLines = 1;
     int singleLabelHeight = 0;
-    foreach ( const QModelIndex& index, indexesToDraw )
+    for ( const QModelIndex& index : indexesToDraw )
     {
         QStringList texts = buildTexts( index );
 
@@ -347,7 +350,7 @@ PartitionLabelsView::sizeForLabel( const QStringList& text ) const
 {
     int vertOffset = 0;
     int width = 0;
-    foreach ( const QString& textLine, text )
+    for ( const QString& textLine : text )
     {
         QSize textSize = fontMetrics().size( Qt::TextSingleLine, textLine );
 
@@ -369,7 +372,7 @@ PartitionLabelsView::drawLabel( QPainter* painter,
     painter->setPen( Qt::black );
     int vertOffset = 0;
     int width = 0;
-    foreach ( const QString& textLine, text )
+    for ( const QString& textLine : text )
     {
         QSize textSize = painter->fontMetrics().size( Qt::TextSingleLine, textLine );
         painter->drawText( pos.x()+LABEL_PARTITION_SQUARE_MARGIN,
@@ -400,12 +403,12 @@ PartitionLabelsView::indexAt( const QPoint& point ) const
     if ( !modl )
         return QModelIndex();
 
-    QModelIndexList indexesToDraw = getIndexesToDraw( QModelIndex() );
+    const QModelIndexList indexesToDraw = getIndexesToDraw( QModelIndex() );
 
     QRect rect = this->rect();
     int label_x = rect.x();
     int label_y = rect.y();
-    foreach ( const QModelIndex& index, indexesToDraw )
+    for ( const QModelIndex& index : indexesToDraw )
     {
         QStringList texts = buildTexts( index );
 
@@ -435,12 +438,12 @@ PartitionLabelsView::visualRect( const QModelIndex& idx ) const
     if ( !modl )
         return QRect();
 
-    QModelIndexList indexesToDraw = getIndexesToDraw( QModelIndex() );
+    const QModelIndexList indexesToDraw = getIndexesToDraw( QModelIndex() );
 
     QRect rect = this->rect();
     int label_x = rect.x();
     int label_y = rect.y();
-    foreach ( const QModelIndex& index, indexesToDraw )
+    for ( const QModelIndex& index : indexesToDraw )
     {
         QStringList texts = buildTexts( index );
 
@@ -465,6 +468,8 @@ PartitionLabelsView::visualRect( const QModelIndex& idx ) const
 QRegion
 PartitionLabelsView::visualRegionForSelection( const QItemSelection& selection ) const
 {
+    Q_UNUSED( selection );
+
     return QRegion();
 }
 
@@ -514,7 +519,7 @@ PartitionLabelsView::setSelectionModel( QItemSelectionModel* selectionModel )
 void
 PartitionLabelsView::setSelectionFilter( SelectionFilter canBeSelected )
 {
-    this->canBeSelected = canBeSelected;
+    m_canBeSelected = canBeSelected;
 }
 
 
@@ -528,6 +533,9 @@ PartitionLabelsView::setExtendedPartitionHidden( bool hidden )
 QModelIndex
 PartitionLabelsView::moveCursor( CursorAction cursorAction, Qt::KeyboardModifiers modifiers )
 {
+    Q_UNUSED( cursorAction );
+    Q_UNUSED( modifiers );
+
     return QModelIndex();
 }
 
@@ -535,6 +543,8 @@ PartitionLabelsView::moveCursor( CursorAction cursorAction, Qt::KeyboardModifier
 bool
 PartitionLabelsView::isIndexHidden( const QModelIndex& index ) const
 {
+    Q_UNUSED( index );
+
     return false;
 }
 
@@ -543,7 +553,7 @@ void
 PartitionLabelsView::setSelection( const QRect& rect, QItemSelectionModel::SelectionFlags flags )
 {
     QModelIndex eventIndex = indexAt( rect.topLeft() );
-    if ( canBeSelected( eventIndex ) )
+    if ( m_canBeSelected( eventIndex ) )
         selectionModel()->select( eventIndex, flags );
 }
 
@@ -565,7 +575,7 @@ PartitionLabelsView::mouseMoveEvent( QMouseEvent* event )
 
     if ( oldHoveredIndex != m_hoveredIndex )
     {
-        if ( m_hoveredIndex.isValid() && !canBeSelected( m_hoveredIndex ) )
+        if ( m_hoveredIndex.isValid() && !m_canBeSelected( m_hoveredIndex ) )
             QGuiApplication::setOverrideCursor( Qt::ForbiddenCursor );
         else
             QGuiApplication::restoreOverrideCursor();
@@ -578,6 +588,8 @@ PartitionLabelsView::mouseMoveEvent( QMouseEvent* event )
 void
 PartitionLabelsView::leaveEvent( QEvent* event )
 {
+    Q_UNUSED( event );
+
     QGuiApplication::restoreOverrideCursor();
     if ( m_hoveredIndex.isValid() )
     {
@@ -591,7 +603,7 @@ void
 PartitionLabelsView::mousePressEvent( QMouseEvent* event )
 {
     QModelIndex candidateIndex = indexAt( event->pos() );
-    if ( canBeSelected( candidateIndex ) )
+    if ( m_canBeSelected( candidateIndex ) )
         QAbstractItemView::mousePressEvent( event );
     else
         event->accept();

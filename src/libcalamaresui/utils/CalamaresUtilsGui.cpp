@@ -39,6 +39,7 @@ static int s_defaultFontHeight = 0;
 QPixmap
 defaultPixmap( ImageType type, ImageMode mode, const QSize& size )
 {
+    Q_UNUSED( mode );
     QPixmap pixmap;
 
     switch ( type )
@@ -106,9 +107,6 @@ defaultPixmap( ImageType type, ImageMode mode, const QSize& size )
     case Squid:
         pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/squid.svg", size );
         break;
-
-    default:
-        break;
     }
 
     if ( pixmap.isNull() )
@@ -142,7 +140,7 @@ createRoundedImage( const QPixmap& pixmap, const QSize& size, float frameWidthPc
         return QPixmap();
 
     QPixmap scaledAvatar = pixmap.scaled( width, height, Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
-    if ( frameWidthPct == 0.00 )
+    if ( frameWidthPct == 0.00f )
         return scaledAvatar;
 
     QPixmap frame( width, height );
@@ -159,7 +157,7 @@ createRoundedImage( const QPixmap& pixmap, const QSize& size, float frameWidthPc
 
     painter.setBrush( brush );
     painter.setPen( pen );
-    painter.drawRoundedRect( outerRect, frameWidthPct * 100.0, frameWidthPct * 100.0, Qt::RelativeSize );
+    painter.drawRoundedRect( outerRect, qreal(frameWidthPct) * 100.0, qreal(frameWidthPct) * 100.0, Qt::RelativeSize );
 
 /*    painter.setBrush( Qt::transparent );
     painter.setPen( Qt::white );
@@ -225,7 +223,7 @@ setDefaultFontSize( int points )
 QSize
 defaultIconSize()
 {
-    const int w = defaultFontHeight() * 1.6;
+    const int w = int(defaultFontHeight() * 1.6);
     return QSize( w, w );
 }
 

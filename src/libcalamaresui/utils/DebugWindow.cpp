@@ -26,6 +26,12 @@
 #include "modulesystem/ModuleManager.h"
 #include "modulesystem/Module.h"
 
+#ifdef WITH_PYTHONQT
+#include <gui/PythonQtScriptingConsole.h>
+#include "ViewManager.h"
+#include "viewpages/PythonQtViewStep.h"
+#endif
+
 #include <QJsonDocument>
 #include <QSplitter>
 #include <QStringListModel>
@@ -59,7 +65,7 @@ DebugWindow::DebugWindow()
              this, [ this ]( const QList< Calamares::job_ptr >& jobs )
     {
         QStringList text;
-        foreach( auto job, jobs )
+        for ( const auto &job : jobs )
         {
             text.append( job->prettyName() );
         }
@@ -68,11 +74,6 @@ DebugWindow::DebugWindow()
     } );
 
     // Modules page
-    QSplitter* splitter = new QSplitter( modulesTab );
-    modulesTab->layout()->addWidget( splitter );
-    splitter->addWidget( modulesListView );
-    splitter->addWidget( moduleConfigView );
-
     QStringListModel* modulesModel = new QStringListModel( ModuleManager::instance()->loadedInstanceKeys() );
     modulesListView->setModel( modulesModel );
     modulesListView->setSelectionMode( QAbstractItemView::SingleSelection );
@@ -80,8 +81,80 @@ DebugWindow::DebugWindow()
     QJsonModel* moduleConfigModel = new QJsonModel( this );
     moduleConfigView->setModel( moduleConfigModel );
 
+#ifdef WITH_PYTHONQT
+    QPushButton* pythonConsoleButton = new QPushButton;
+    pythonConsoleButton->setText( "Attach Python console" );
+    modulesVerticalLayout->insertWidget( 1, pythonConsoleButton );
+    pythonConsoleButton->hide();
+
+    QObject::connect( pythonConsoleButton, &QPushButton::clicked,
+                      this, [ this, moduleConfigModel ]
+    {
+        QString moduleName = modulesListView->currentIndex().data().toString();
+        Module* module = ModuleManager::instance()->moduleInstance( moduleName );
+        if ( module->interface() != Module::PythonQtInterface ||
+             module->type() != Module::View )
+            return;
+
+        for ( ViewStep* step : ViewManager::instance()->viewSteps() )
+        {
+            if ( step->moduleInstanceKey() == module->instanceKey() )
+            {
+                PythonQtViewStep* pqvs =
+                    qobject_cast< PythonQtViewStep* >( step );
+                if ( pqvs )
+                {
+                    QWidget* consoleWindow = new QWidget;
+
+                    QWidget* console = pqvs->createScriptingConsole();
+                    console->setParent( consoleWindow );
+
+                    QVBoxLayout* layout = new QVBoxLayout;
+                    consoleWindow->setLayout( layout );
+                    layout->addWidget( console );
+
+                    QHBoxLayout* bottomLayout = new QHBoxLayout;
+                    layout->addLayout( bottomLayout );
+
+                    QLabel* bottomLabel = new QLabel( consoleWindow );
+                    bottomLayout->addWidget( bottomLabel );
+                    QString line =
+                        QString( "Module: <font color=\"#008000\"><code>%1</code></font><br/>"
+                                 "Python class: <font color=\"#008000\"><code>%2</code></font>" )
+                            .arg( module->instanceKey() )
+                            .arg( console->property( "classname" ).toString() );
+                    bottomLabel->setText( line );
+
+                    QPushButton* closeButton = new QPushButton( consoleWindow );
+                    closeButton->setText( "&Close" );
+                    QObject::connect( closeButton, &QPushButton::clicked,
+                                      [ consoleWindow ]
+                    {
+                        consoleWindow->close();
+                    } );
+                    bottomLayout->addWidget( closeButton );
+                    bottomLabel->setSizePolicy( QSizePolicy::Expanding,
+                                                QSizePolicy::Preferred );
+
+                    consoleWindow->setParent( this );
+                    consoleWindow->setWindowFlags( Qt::Window );
+                    consoleWindow->setWindowTitle( "Calamares Python console" );
+                    consoleWindow->setAttribute( Qt::WA_DeleteOnClose, true );
+                    consoleWindow->showNormal();
+                    break;
+                }
+            }
+        }
+    } );
+
+#endif
+
     connect( modulesListView->selectionModel(), &QItemSelectionModel::selectionChanged,
-             this, [ this, moduleConfigModel ]
+             this, [ this, moduleConfigModel
+#ifdef WITH_PYTHONQT
+             , pythonConsoleButton
+#endif
+             ]
     {
         QString moduleName = modulesListView->currentIndex().data().toString();
         Module* module = ModuleManager::instance()->moduleInstance( moduleName );
@@ -89,6 +162,13 @@ DebugWindow::DebugWindow()
         {
             moduleConfigModel->loadJson( QJsonDocument::fromVariant( module->configurationMap() ).toJson() );
             moduleConfigView->expandAll();
+            moduleTypeLabel->setText( module->typeString() );
+            moduleInterfaceLabel->setText( module->interfaceString() );
+#ifdef WITH_PYTHONQT
+            pythonConsoleButton->setVisible(
+                        module->interface() == Module::PythonQtInterface &&
+                        module->type() == Module::View );
+#endif
         }
     } );
 

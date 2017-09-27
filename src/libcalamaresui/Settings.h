@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -57,9 +58,6 @@ public:
 private:
     static Settings* s_instance;
 
-    bool m_debug;
-    bool m_doChroot;
-
     QStringList m_modulesSearchPaths;
 
     QList< QMap< QString, QString > > m_customModuleInstances;
@@ -67,6 +65,8 @@ private:
 
     QString m_brandingComponentName;
 
+    bool m_debug;
+    bool m_doChroot;
     bool m_promptInstall;
 };
 

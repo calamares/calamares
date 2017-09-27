@@ -7,3 +7,20 @@ source_file = lang/calamares_en.ts
 source_lang = en
 type = QT
 
+[calamares.dummypythonqt]
+file_filter = src/modules/dummypythonqt/lang/<lang>/LC_MESSAGES/dummypythonqt.po
+source_file = src/modules/dummypythonqt/lang/dummypythonqt.pot
+source_lang = en
+
+[calamares.fdo]
+file_filter = lang/desktop_<lang>.desktop
+source_file = calamares.desktop
+source_lang = en
+type = DESKTOP
+
+[calamares.python]
+file_filter = lang/python/<lang>/LC_MESSAGES/python.po
+source_file = lang/python.pot
+source_lang = en
+type = PO
+

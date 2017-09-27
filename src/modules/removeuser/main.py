@@ -4,6 +4,7 @@
 # === This file is part of Calamares - <http://github.com/calamares> ===
 #
 #   Copyright 2015, Teo Mrnjavac <teo@kde.org>
+#   Copyright 2017. Alf Gaida <agaida@siduction.org>
 #
 #   Calamares is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -23,12 +24,16 @@ import libcalamares
 
 
 def run():
-    """ Remove live user from target system """
+    """
+    Remove live user from target system
+    """
     username = libcalamares.job.configuration["username"]
 
     try:
-        libcalamares.utils.check_target_env_call(["userdel", "-f", "-r", username])
+        libcalamares.utils.check_target_env_call(["userdel", "-f",
+                                                  "-r", username])
     except subprocess.CalledProcessError as e:
-        libcalamares.utils.debug("Cannot remove user.", "'userdel' terminated with exit code {}.".format(e.returncode))
-
+        libcalamares.utils.debug("Cannot remove user. "
+                                 "'userdel' terminated with exit code "
+                                 "{}.".format(e.returncode))
     return None

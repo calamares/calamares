@@ -34,7 +34,7 @@ class PLUGINDLLEXPORT FinishedViewStep : public Calamares::ViewStep
 
 public:
     explicit FinishedViewStep( QObject* parent = nullptr );
-    virtual ~FinishedViewStep();
+    virtual ~FinishedViewStep() override;
 
     QString prettyName() const override;
 
@@ -55,8 +55,20 @@ public:
 
     void setConfigurationMap( const QVariantMap& configurationMap ) override;
 
+public slots:
+    void onInstallationFailed( const QString& message, const QString& details );
+
 private:
     FinishedPage* m_widget;
+
+    /**
+     * @brief At the end of installation (when this step is activated),
+     *      send a desktop notification via DBus that the install is done.
+     */
+    void sendNotification();
+
+    bool installFailed;
+    bool m_notifyOnFinished;
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( FinishedViewStepFactory )

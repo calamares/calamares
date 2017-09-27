@@ -53,6 +53,11 @@ class PartitionCoreModule : public QObject
 {
     Q_OBJECT
 public:
+    /**
+     * @brief The SummaryInfo struct is a wrapper for PartitionModel instances for
+     * a given Device.
+     * Each Device gets a mutable "after" model and an immutable "before" model.
+     */
     struct SummaryInfo
     {
         QString deviceName;
@@ -64,19 +69,41 @@ public:
     PartitionCoreModule( QObject* parent = nullptr );
     ~PartitionCoreModule();
 
+    /**
+     * @brief init performs a devices scan and initializes all KPMcore data
+     * structures.
+     * This function is thread safe.
+     */
+    void init();
+
+    /**
+     * @brief deviceModel returns a model which exposes a list of available
+     * storage devices.
+     * @return the device model.
+     */
     DeviceModel* deviceModel() const;
 
-    PartitionModel* partitionModelForDevice( Device* device ) const;
+    /**
+     * @brief partitionModelForDevice returns the PartitionModel for the given device.
+     * @param device the device for which to get a model.
+     * @return a PartitionModel which represents the partitions of a device.
+     */
+    PartitionModel* partitionModelForDevice( const Device* device ) const;
 
     //HACK: all devices change over time, and together make up the state of the CoreModule.
     //      However this makes it hard to show the *original* state of a device.
-    //      With this horrible hack we rescan a single device node to create a Device object
-    //      that contains the current state of a disk regardless of subsequent changes.
-    //      This should probably be redone some other way.
+    //      For each DeviceInfo we keep a second Device object that contains the
+    //      current state of a disk regardless of subsequent changes.
     //              -- Teo 4/2015
     //FIXME: make this horrible method private. -- Teo 12/2015
-    static Device* createImmutableDeviceCopy( Device* device );
+    Device* immutableDeviceCopy( const Device* device );
 
+    /**
+     * @brief bootLoaderModel returns a model which represents the available boot
+     * loader locations.
+     * The single BootLoaderModel instance belongs to the PCM.
+     * @return the BootLoaderModel.
+     */
     QAbstractItemModel* bootLoaderModel() const;
 
     void createPartitionTable( Device* device, PartitionTable::TableType type );
@@ -94,21 +121,35 @@ public:
 
     void setBootLoaderInstallPath( const QString& path );
 
+    /**
+     * @brief jobs creates and returns a list of jobs which can then apply the changes
+     * requested by the user.
+     * @return a list of jobs.
+     */
     QList< Calamares::job_ptr > jobs() const;
 
     bool hasRootMountPoint() const;
 
     QList< Partition* > efiSystemPartitions() const;
+
+    /**
+     * @brief findPartitionByMountPoint returns a Partition* for a given mount point.
+     * @param mountPoint the mount point to find a partition for.
+     * @return a pointer to a Partition object.
+     * Note that this function looks for partitions in live devices (the "proposed"
+     * state), not the immutable copies. Comparisons with Partition* objects that
+     * refer to immutable Device*s will fail.
+     */
     Partition* findPartitionByMountPoint( const QString& mountPoint ) const;
 
-    void revert();
-    void revertAllDevices();
-    void revertDevice( Device* dev );
-    void asyncRevertDevice( Device* dev, std::function< void() > callback );
+    void revert();                      // full revert, thread safe, calls doInit
+    void revertAllDevices();            // convenience function, calls revertDevice
+    void revertDevice( Device* dev );   // rescans a single Device and updates DeviceInfo
+    void asyncRevertDevice( Device* dev, std::function< void() > callback ); //like revertDevice, but asynchronous
 
-    void clearJobs();
+    void clearJobs();   // only clear jobs, the Device* states are preserved
 
-    bool isDirty();
+    bool isDirty();     // true if there are pending changes, otherwise false
 
     /**
      * To be called when a partition has been altered, but only for changes
@@ -123,9 +164,9 @@ public:
      */
     QList< SummaryInfo > createSummaryInfo() const;
 
-    void dumpQueue() const;
+    void dumpQueue() const; // debug output
 
-    OsproberEntryList osproberEntries() const;
+    const OsproberEntryList osproberEntries() const;    // os-prober data structure, cached
 
 Q_SIGNALS:
     void hasRootMountPointChanged( bool value );
@@ -145,6 +186,7 @@ private:
         ~DeviceInfo();
         QScopedPointer< Device > device;
         QScopedPointer< PartitionModel > partitionModel;
+        const QScopedPointer< Device > immutableDevice;
         QList< Calamares::job_ptr > jobs;
 
         void forgetChanges();
@@ -159,12 +201,12 @@ private:
     bool m_isDirty = false;
     QString m_bootLoaderInstallPath;
 
-    void init();
+    void doInit();
     void updateHasRootMountPoint();
     void updateIsDirty();
     void scanForEfiSystemPartitions();
 
-    DeviceInfo* infoForDevice( Device* ) const;
+    DeviceInfo* infoForDevice( const Device* ) const;
 
     OsproberEntryList m_osproberLines;
 

@@ -57,7 +57,13 @@ ModuleManager::ModuleManager( const QStringList& paths, QObject* parent )
 
 
 ModuleManager::~ModuleManager()
-{}
+{
+    // The map is populated with Module::fromDescriptor(), which allocates on the heap.
+    for( auto moduleptr : m_loadedModulesByInstanceKey )
+    {
+        delete moduleptr;
+    }
+}
 
 
 void
@@ -77,13 +83,13 @@ ModuleManager::doInit()
     // the module name, and must contain a settings file named module.desc.
     // If at any time the module loading procedure finds something unexpected, it
     // silently skips to the next module or search path. --Teo 6/2014
-    foreach ( const QString& path, m_paths )
+    for ( const QString& path : m_paths )
     {
         QDir currentDir( path );
         if ( currentDir.exists() && currentDir.isReadable() )
         {
-            QStringList subdirs = currentDir.entryList( QDir::AllDirs | QDir::NoDotAndDotDot );
-            foreach ( const QString& subdir, subdirs )
+            const QStringList subdirs = currentDir.entryList( QDir::AllDirs | QDir::NoDotAndDotDot );
+            for ( const QString& subdir : subdirs )
             {
                 currentDir.setPath( path );
                 bool success = currentDir.cd( subdir );
@@ -179,8 +185,8 @@ ModuleManager::loadModules()
         QList< QMap< QString, QString > > customInstances =
                 Settings::instance()->customModuleInstances();
 
-        for ( const QPair< ModuleAction, QStringList >& modulePhase :
-                  Settings::instance()->modulesSequence() )
+        const auto modulesSequence = Settings::instance()->modulesSequence();
+        for ( const auto &modulePhase : modulesSequence )
         {
             ModuleAction currentAction = modulePhase.first;
 
@@ -213,14 +219,14 @@ ModuleManager::loadModules()
                 }
 
                 auto findCustomInstance =
-                        [ customInstances ]( const QString& moduleName,
-                                             const QString& instanceId ) -> int
+                        [ customInstances ]( const QString& module,
+                                             const QString& id) -> int
                 {
                     for ( int i = 0; i < customInstances.count(); ++i )
                     {
                         auto thisInstance = customInstances[ i ];
-                        if ( thisInstance.value( "module" ) == moduleName &&
-                             thisInstance.value( "id" ) == instanceId )
+                        if ( thisInstance.value( "module" ) == module &&
+                             thisInstance.value( "id" ) == id )
                             return i;
                     }
                     return -1;
@@ -302,10 +308,6 @@ ModuleManager::loadModules()
                     {
                         evs = new ExecutionViewStep( ViewManager::instance() );
                         ViewManager::instance()->addViewStep( evs );
-                    }
-                    else
-                    {
-                        cDebug() << "LAST VS IS EVS!";
                     }
 
                     evs->appendJobModuleInstanceKey( instanceKey );

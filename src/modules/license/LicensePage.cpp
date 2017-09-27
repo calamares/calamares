@@ -97,7 +97,7 @@ LicensePage::setEntries( const QList< LicenseEntry >& entriesList )
     CalamaresUtils::clearLayout( ui->licenseEntriesLayout );
 
     bool required = false;
-    foreach ( const LicenseEntry& entry, entriesList )
+    for ( const LicenseEntry& entry : entriesList )
     {
         if ( entry.required )
         {
@@ -134,7 +134,7 @@ LicensePage::setEntries( const QList< LicenseEntry >& entriesList )
         ui->retranslateUi( this );
     )
 
-    foreach ( const LicenseEntry& entry, entriesList )
+    for ( const LicenseEntry& entry : entriesList )
     {
         QWidget* widget = new QWidget( this );
         QPalette pal( palette() );

@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -46,8 +47,8 @@ Settings::Settings( const QString& settingsFilePath,
                     QObject* parent )
     : QObject( parent )
     , m_debug( debugMode )
-    , m_promptInstall( false )
     , m_doChroot( true )
+    , m_promptInstall( false )
 {
     cDebug() << "Using Calamares settings file at" << settingsFilePath;
     QFile file( settingsFilePath );
@@ -98,7 +99,8 @@ Settings::Settings( const QString& settingsFilePath,
                         = CalamaresUtils::yamlToVariant( config[ "instances" ] ).toList();
                 if ( instancesV.type() == QVariant::List )
                 {
-                    foreach ( const QVariant& instancesVListItem, instancesV.toList() )
+                    const auto instances = instancesV.toList();
+                    for ( const QVariant& instancesVListItem : instances )
                     {
                         if ( instancesVListItem.type() != QVariant::Map )
                             continue;
@@ -123,7 +125,8 @@ Settings::Settings( const QString& settingsFilePath,
                 QVariant sequenceV
                         = CalamaresUtils::yamlToVariant( config[ "sequence" ] );
                 Q_ASSERT( sequenceV.type() == QVariant::List );
-                foreach ( const QVariant& sequenceVListItem, sequenceV.toList() )
+                const auto sequence = sequenceV.toList();
+                for ( const QVariant& sequenceVListItem : sequence )
                 {
                     if ( sequenceVListItem.type() != QVariant::Map )
                         continue;
@@ -153,7 +156,7 @@ Settings::Settings( const QString& settingsFilePath,
         }
         catch ( YAML::Exception& e )
         {
-            cDebug() << "WARNING: YAML parser error " << e.what();
+            cDebug() << "WARNING: YAML parser error " << e.what() << "in" << file.fileName();
         }
     }
     else

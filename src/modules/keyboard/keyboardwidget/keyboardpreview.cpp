@@ -24,13 +24,12 @@
 
 KeyBoardPreview::KeyBoardPreview( QWidget* parent )
     : QWidget( parent )
+    , layout( "us" )
     , space( 0 )
     , usable_width( 0 )
     , key_w( 0 )
 {
     setMinimumSize(700, 191);
-
-    layout = "us";
 
     // We must set up the font size in pixels to fit the keys
     lowerFont = QFont("Helvetica", 10, QFont::DemiBold);
@@ -62,14 +61,14 @@ KeyBoardPreview::KeyBoardPreview( QWidget* parent )
 
 
 
-void KeyBoardPreview::setLayout(QString layout) {
-    this->layout = layout;
+void KeyBoardPreview::setLayout(QString _layout) {
+    layout = _layout;
 }
 
 
 
-void KeyBoardPreview::setVariant(QString variant) {
-    this->variant = variant;
+void KeyBoardPreview::setVariant(QString _variant) {
+    variant = _variant;
 
     if (!loadCodes())
         return;
@@ -122,9 +121,9 @@ bool KeyBoardPreview::loadCodes() {
     // Clear codes
     codes.clear();
 
-    QStringList list = QString(process.readAll()).split("\n", QString::SkipEmptyParts);
+    const QStringList list = QString(process.readAll()).split("\n", QString::SkipEmptyParts);
 
-    foreach(QString line, list) {
+    for (const QString &line : list) {
         if (!line.startsWith("keycode") || !line.contains('='))
             continue;
 
@@ -235,10 +234,10 @@ void KeyBoardPreview::paintEvent(QPaintEvent* event) {
 
     for (int i = 0; i < 4; i++) {
         if (first_key_w > 0) {
-            first_key_w = first_key_w*1.375;
+            first_key_w = int(first_key_w * 1.375);
 
             if (kb == &kbList[KB_105] && i == 3)
-                first_key_w = key_w * 1.275;
+                first_key_w = int(key_w * 1.275);
 
             p.drawRoundedRect(QRectF(6, y, first_key_w, key_w), rx, rx);
             x = 6 + first_key_w + space;
@@ -253,7 +252,7 @@ void KeyBoardPreview::paintEvent(QPaintEvent* event) {
         int rw=usable_width-x;
         int ii=0;
 
-        foreach (int k, kb->keys.at(i)) {
+        for (int k : kb->keys.at(i)) {
             QRectF rect = QRectF(x, y, key_w, key_w);
 
             if (ii == kb->keys.at(i).size()-1 && last_end)

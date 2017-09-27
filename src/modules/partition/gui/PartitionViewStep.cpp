@@ -1,7 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
- *   Copyright 2014-2016, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2017, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -42,6 +42,7 @@
 
 #include <kpmcore/core/device.h>
 #include <kpmcore/core/partition.h>
+#include <kpmcore/fs/filesystem.h>
 
 // Qt
 #include <QApplication>
@@ -52,13 +53,15 @@
 #include <QProcess>
 #include <QStackedWidget>
 #include <QTimer>
+#include <QtConcurrent/QtConcurrent>
+#include <QFutureWatcher>
 
 PartitionViewStep::PartitionViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
+    , m_core( nullptr )
     , m_widget( new QStackedWidget() )
-    , m_core( new PartitionCoreModule( this ) )
     , m_choicePage( nullptr )
-    , m_manualPartitionPage( new PartitionPage( m_core ) )
+    , m_manualPartitionPage( nullptr )
 {
     m_widget->setContentsMargins( 0, 0, 0, 0 );
 
@@ -66,7 +69,16 @@ PartitionViewStep::PartitionViewStep( QObject* parent )
     m_widget->addWidget( m_waitingWidget );
     CALAMARES_RETRANSLATE( qobject_cast< WaitingWidget* >( m_waitingWidget )->setText( tr( "Gathering system information..." ) ); )
 
+    m_core = new PartitionCoreModule( this ); // Unusable before init is complete!
     // We're not done loading, but we need the configuration map first.
+}
+
+
+void
+PartitionViewStep::initPartitionCoreModule()
+{
+    Q_ASSERT( m_core );
+    m_core->init();
 }
 
 
@@ -74,6 +86,9 @@ void
 PartitionViewStep::continueLoading()
 {
     Q_ASSERT( !m_choicePage );
+    Q_ASSERT( !m_manualPartitionPage );
+
+    m_manualPartitionPage = new PartitionPage( m_core );
     m_choicePage = new ChoicePage();
 
     m_choicePage->init( m_core );
@@ -141,20 +156,18 @@ PartitionViewStep::createSummaryWidget() const
         {
         case ChoicePage::Alongside:
             modeText = tr( "Install %1 <strong>alongside</strong> another operating system." )
-                       .arg( Calamares::Branding::instance()->
-                             string( Calamares::Branding::ShortVersionedName ) );
+                       .arg( *Calamares::Branding::ShortVersionedName );
             break;
         case ChoicePage::Erase:
             modeText = tr( "<strong>Erase</strong> disk and install %1." )
-                       .arg( Calamares::Branding::instance()->
-                             string( Calamares::Branding::ShortVersionedName ) );
+                       .arg( *Calamares::Branding::ShortVersionedName );
             break;
         case ChoicePage::Replace:
             modeText = tr( "<strong>Replace</strong> a partition with %1." )
-                       .arg( Calamares::Branding::instance()->
-                             string( Calamares::Branding::ShortVersionedName ) );
+                       .arg( *Calamares::Branding::ShortVersionedName );
             break;
-        default:
+        case ChoicePage::NoChoice:
+        case ChoicePage::Manual:
             modeText = tr( "<strong>Manual</strong> partitioning." );
         }
         modeLabel->setText( modeText );
@@ -169,26 +182,24 @@ PartitionViewStep::createSummaryWidget() const
             {
             case ChoicePage::Alongside:
                 modeText = tr( "Install %1 <strong>alongside</strong> another operating system on disk <strong>%2</strong> (%3)." )
-                           .arg( Calamares::Branding::instance()->
-                                 string( Calamares::Branding::ShortVersionedName ) )
+                           .arg( *Calamares::Branding::ShortVersionedName )
                            .arg( info.deviceNode )
                            .arg( info.deviceName );
                 break;
             case ChoicePage::Erase:
                 modeText = tr( "<strong>Erase</strong> disk <strong>%2</strong> (%3) and install %1." )
-                           .arg( Calamares::Branding::instance()->
-                                 string( Calamares::Branding::ShortVersionedName ) )
+                           .arg( *Calamares::Branding::ShortVersionedName )
                            .arg( info.deviceNode )
                            .arg( info.deviceName );
                 break;
             case ChoicePage::Replace:
                 modeText = tr( "<strong>Replace</strong> a partition on disk <strong>%2</strong> (%3) with %1." )
-                           .arg( Calamares::Branding::instance()->
-                                 string( Calamares::Branding::ShortVersionedName ) )
+                           .arg( *Calamares::Branding::ShortVersionedName )
                            .arg( info.deviceNode )
                            .arg( info.deviceName );
                 break;
-            default:
+            case ChoicePage::NoChoice:
+            case ChoicePage::Manual:
                 modeText = tr( "<strong>Manual</strong> partitioning on disk <strong>%1</strong> (%2)." )
                            .arg( info.deviceNode )
                            .arg( info.deviceName );
@@ -235,6 +246,7 @@ PartitionViewStep::createSummaryWidget() const
         previewLabels->setModel( info.partitionModelAfter );
         preview->setSelectionMode( QAbstractItemView::NoSelection );
         previewLabels->setSelectionMode( QAbstractItemView::NoSelection );
+        previewLabels->setCustomNewRootLabel( *Calamares::Branding::BootloaderEntryName );
         info.partitionModelAfter->setParent( widget );
         field = new QVBoxLayout;
         CalamaresUtils::unmarginLayout( field );
@@ -254,7 +266,6 @@ PartitionViewStep::createSummaryWidget() const
         QLabel* jobsLabel = new QLabel( widget );
         mainLayout->addWidget( jobsLabel );
         jobsLabel->setText( jobsLines.join( "<br/>" ) );
-        int m = CalamaresUtils::defaultFontHeight() / 2;
         jobsLabel->setMargin( CalamaresUtils::defaultFontHeight() / 2 );
         QPalette pal;
         pal.setColor( QPalette::Background, pal.background().color().lighter( 108 ) );
@@ -354,8 +365,10 @@ void
 PartitionViewStep::onActivate()
 {
     // if we're coming back to PVS from the next VS
-    if ( m_widget->currentWidget() == m_choicePage )
+    if ( m_widget->currentWidget() == m_choicePage &&
+         m_choicePage->currentChoice() == ChoicePage::Alongside )
     {
+        m_choicePage->applyActionChoice( ChoicePage::Alongside );
 //        m_choicePage->reset();
         //FIXME: ReplaceWidget should be reset maybe?
     }
@@ -373,7 +386,7 @@ PartitionViewStep::onLeave()
 
     if ( m_widget->currentWidget() == m_manualPartitionPage )
     {
-        if ( QDir( "/sys/firmware/efi/efivars" ).exists() )
+        if ( PartUtils::isEfiSystem() )
         {
             QString espMountPoint = Calamares::JobQueue::instance()->globalStorage()->
                                         value( "efiSystemPartition").toString();
@@ -392,8 +405,7 @@ PartitionViewStep::onLeave()
                                   "<strong>%2</strong>.<br/><br/>"
                                   "You can continue without setting up an EFI system "
                                   "partition but your system may fail to start." )
-                              .arg( Calamares::Branding::instance()->
-                                    string( Calamares::Branding::ShortProductName ) )
+                              .arg( *Calamares::Branding::ShortProductName )
                               .arg( espMountPoint );
             }
             else if ( esp && !esp->activeFlags().testFlag( PartitionTable::FlagEsp ) )
@@ -408,8 +420,7 @@ PartitionViewStep::onLeave()
                                   "<br/><br/>"
                                   "You can continue without setting the flag but your "
                                   "system may fail to start." )
-                              .arg( Calamares::Branding::instance()->
-                                    string( Calamares::Branding::ShortProductName ) )
+                              .arg( *Calamares::Branding::ShortProductName )
                               .arg( espMountPoint );
             }
 
@@ -418,7 +429,39 @@ PartitionViewStep::onLeave()
                 QMessageBox::warning( m_manualPartitionPage,
                                       message,
                                       description );
-                return;
+            }
+        }
+
+        Partition* root_p = m_core->findPartitionByMountPoint( "/" );
+        Partition* boot_p = m_core->findPartitionByMountPoint( "/boot" );
+
+        if ( root_p and boot_p )
+        {
+            QString message;
+            QString description;
+
+            // If the root partition is encrypted, and there's a separate boot
+            // partition which is not encrypted
+            if ( root_p->fileSystem().type() == FileSystem::Luks &&
+                 boot_p->fileSystem().type() != FileSystem::Luks )
+            {
+                message = tr( "Boot partition not encrypted" );
+                description = tr( "A separate boot partition was set up together with "
+                                  "an encrypted root partition, but the boot partition "
+                                  "is not encrypted."
+                                  "<br/><br/>"
+                                  "There are security concerns with this kind of "
+                                  "setup, because important system files are kept "
+                                  "on an unencrypted partition.<br/>"
+                                  "You may continue if you wish, but filesystem "
+                                  "unlocking will happen later during system startup."
+                                  "<br/>To encrypt the boot partition, go back and "
+                                  "recreate it, selecting <strong>Encrypt</strong> "
+                                  "in the partition creation window." );
+
+                QMessageBox::warning( m_manualPartitionPage,
+                                      message,
+                                      description );
             }
         }
     }
@@ -452,6 +495,16 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
         gs->insert( "ensureSuspendToDisk", true );
     }
 
+    if ( configurationMap.contains( "neverCreateSwap" ) &&
+         configurationMap.value( "neverCreateSwap" ).type() == QVariant::Bool )
+    {
+        gs->insert( "neverCreateSwap", configurationMap.value( "neverCreateSwap" ).toBool() );
+    }
+    else
+    {
+        gs->insert( "neverCreateSwap", false );
+    }
+
     if ( configurationMap.contains( "drawNestedPartitions" ) &&
          configurationMap.value( "drawNestedPartitions" ).type() == QVariant::Bool )
     {
@@ -463,7 +516,60 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
         gs->insert( "drawNestedPartitions", false );
     }
 
-    QTimer::singleShot( 0, this, &PartitionViewStep::continueLoading );
+    if ( configurationMap.contains( "alwaysShowPartitionLabels" ) &&
+         configurationMap.value( "alwaysShowPartitionLabels" ).type() == QVariant::Bool )
+    {
+        gs->insert( "alwaysShowPartitionLabels",
+                    configurationMap.value( "alwaysShowPartitionLabels", true ).toBool() );
+    }
+    else
+    {
+        gs->insert( "alwaysShowPartitionLabels", true );
+    }
+
+    if ( configurationMap.contains( "defaultFileSystemType" ) &&
+         configurationMap.value( "defaultFileSystemType" ).type() == QVariant::String &&
+         !configurationMap.value( "defaultFileSystemType" ).toString().isEmpty() )
+    {
+        QString typeString = configurationMap.value( "defaultFileSystemType" ).toString();
+        gs->insert( "defaultFileSystemType", typeString );
+        if ( FileSystem::typeForName( typeString ) == FileSystem::Unknown )
+        {
+            cDebug() << "WARNING: bad default filesystem configuration for partition module. Reverting to ext4 as default.";
+            gs->insert( "defaultFileSystemType", "ext4" );
+        }
+    }
+    else
+    {
+        gs->insert( "defaultFileSystemType", QStringLiteral( "ext4" ) );
+    }
+
+    if ( configurationMap.contains( "enableLuksAutomatedPartitioning" ) &&
+         configurationMap.value( "enableLuksAutomatedPartitioning" ).type() == QVariant::Bool )
+    {
+        gs->insert( "enableLuksAutomatedPartitioning",
+                    configurationMap.value( "enableLuksAutomatedPartitioning" ).toBool() );
+    }
+    else
+    {
+        gs->insert( "enableLuksAutomatedPartitioning", true );
+    }
+
+
+    // Now that we have the config, we load the PartitionCoreModule in the background
+    // because it could take a while. Then when it's done, we can set up the widgets
+    // and remove the spinner.
+    QFutureWatcher< void >* watcher = new QFutureWatcher< void >();
+    connect( watcher, &QFutureWatcher< void >::finished,
+             this, [ this, watcher ]
+    {
+        continueLoading();
+        watcher->deleteLater();
+    } );
+
+    QFuture< void > future =
+            QtConcurrent::run( this, &PartitionViewStep::initPartitionCoreModule );
+    watcher->setFuture( future );
 }
 
 

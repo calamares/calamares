@@ -34,18 +34,18 @@
 #include <QStyleOption>
 
 static const int VIEW_HEIGHT = qMax( CalamaresUtils::defaultFontHeight() + 8, // wins out with big fonts
-                                     (int)( CalamaresUtils::defaultFontHeight() * 0.6 ) + 22 ); // wins out with small fonts
+                                     int( CalamaresUtils::defaultFontHeight() * 0.6 ) + 22 ); // wins out with small fonts
 static const int CORNER_RADIUS = 3;
 static const int EXTENDED_PARTITION_MARGIN = qMax( 4, VIEW_HEIGHT / 6 );
 
 PartitionSplitterWidget::PartitionSplitterWidget( QWidget* parent )
     : QWidget( parent )
-    , m_resizing( false )
     , m_itemToResize( PartitionSplitterItem::null() )
     , m_itemToResizeNext( PartitionSplitterItem::null() )
     , m_itemMinSize( 0 )
     , m_itemMaxSize( 0 )
     , m_itemPrefSize( 0 )
+    , m_resizing( false )
     , m_resizeHandleX( 0 )
     , HANDLE_SNAP( QApplication::startDragDistance() )
     , m_drawNestedPartitions( false )
@@ -105,7 +105,7 @@ PartitionSplitterWidget::setupItems( const QVector<PartitionSplitterItem>& items
     m_items.clear();
     m_items = items;
     repaint();
-    foreach ( const PartitionSplitterItem& item, items )
+    for ( const PartitionSplitterItem& item : items )
         cDebug() << "PSI added item" << item.itemPath << "size" << item.size;
 }
 
@@ -114,8 +114,7 @@ void
 PartitionSplitterWidget::setSplitPartition( const QString& path,
                                             qint64 minSize,
                                             qint64 maxSize,
-                                            qint64 preferredSize,
-                                            const QString& newLabel )
+                                            qint64 preferredSize )
 {
     cDebug() << Q_FUNC_INFO << "path:" << path
              << "\nminSize:" << minSize
@@ -287,6 +286,8 @@ PartitionSplitterWidget::minimumSizeHint() const
 void
 PartitionSplitterWidget::paintEvent( QPaintEvent* event )
 {
+    Q_UNUSED( event );
+
     QPainter painter( this );
     painter.fillRect( rect(), palette().window() );
     painter.setRenderHint( QPainter::Antialiasing );
@@ -400,6 +401,8 @@ PartitionSplitterWidget::mouseMoveEvent( QMouseEvent* event )
 void
 PartitionSplitterWidget::mouseReleaseEvent( QMouseEvent* event )
 {
+    Q_UNUSED( event );
+
     m_resizing = false;
 }
 
@@ -491,7 +494,7 @@ PartitionSplitterWidget::drawResizeHandle( QPainter* painter,
 
     painter->setRenderHint( QPainter::Antialiasing, false );
     painter->setPen( Qt::black );
-    painter->drawLine( x, 0, x, h - 1 );
+    painter->drawLine( x, 0, x, int(h) - 1 );
 }
 
 
@@ -511,20 +514,20 @@ PartitionSplitterWidget::drawPartitions( QPainter* painter,
     for ( int row = 0; row < count; ++row )
     {
         const PartitionSplitterItem& item = items[ row ];
-        int width;
+        qreal width;
         if ( row < count - 1 )
             width = totalWidth * ( item.size / total );
         else
             // Make sure we fill the last pixel column
             width = rect.right() - x + 1;
 
-        drawSection( painter, rect, x, width, item );
+        drawSection( painter, rect, x, int(width), item );
         if ( !item.children.isEmpty() )
         {
             QRect subRect(
                 x + EXTENDED_PARTITION_MARGIN,
                 rect.y() + EXTENDED_PARTITION_MARGIN,
-                width - 2 * EXTENDED_PARTITION_MARGIN,
+                int(width) - 2 * EXTENDED_PARTITION_MARGIN,
                 rect.height() - 2 * EXTENDED_PARTITION_MARGIN
             );
             drawPartitions( painter, subRect, item.children );
@@ -600,7 +603,7 @@ PartitionSplitterWidget::computeItemsVector( const QVector< PartitionSplitterIte
             PartitionSplitterItem thisItem = originalItems[ row ];
             QPair< QVector< PartitionSplitterItem >, qreal > pair = computeItemsVector( thisItem.children );
             thisItem.children = pair.first;
-            thisItem.size = pair.second;
+            thisItem.size = qint64(pair.second);
             items += thisItem;
             total += thisItem.size;
         }
@@ -614,7 +617,7 @@ PartitionSplitterWidget::computeItemsVector( const QVector< PartitionSplitterIte
         if ( items[ row ].size < 0.01 * total ) // If this item is smaller than 1% of everything,
         {                                       // force its width to 1%.
             adjustedTotal -= items[ row ].size;
-            items[ row ].size = 0.01 * total;
+            items[ row ].size = qint64(0.01 * total);
             adjustedTotal += items[ row ].size;
         }
     }

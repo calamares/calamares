@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2015, Rohan Garg <rohan@garg.io>
+ *   Copyright 2016, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -19,7 +20,13 @@
 #include "WebViewStep.h"
 
 #include <QVariant>
+
+#ifdef WEBVIEW_WITH_WEBKIT
 #include <QWebView>
+#else
+#include <QWebEngineView>
+#include <QtWebEngine>
+#endif
 
 CALAMARES_PLUGIN_FACTORY_DEFINITION( WebViewStepFactory, registerPlugin<WebViewStep>(); )
 
@@ -27,7 +34,20 @@ WebViewStep::WebViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
 {
     emit nextStatusChanged( true );
-    m_view = new QWebView;
+#ifdef WEBVIEW_WITH_WEBENGINE
+    QtWebEngine::initialize();
+#endif
+    m_view = new C_QWEBVIEW();
+#ifdef WEBVIEW_WITH_WEBKIT
+    m_view->settings()->setFontFamily( QWebSettings::StandardFont,
+                                       m_view->settings()->
+                                       fontFamily( QWebSettings::SansSerifFont ) );
+    m_view->setRenderHints( QPainter::Antialiasing |
+                            QPainter::TextAntialiasing |
+                            QPainter::HighQualityAntialiasing |
+                            QPainter::SmoothPixmapTransform |
+                            QPainter::NonCosmeticDefaultPen );
+#endif
 }
 
 

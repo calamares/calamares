@@ -23,6 +23,7 @@
 #include "kdsingleapplicationguard/kdsingleapplicationguard.h"
 #include "utils/CalamaresUtils.h"
 #include "utils/Logger.h"
+#include "CalamaresConfig.h"
 
 #ifdef WITH_KCRASH
 #include <KF5/KCrash/KCrash>

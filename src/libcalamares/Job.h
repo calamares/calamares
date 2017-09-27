@@ -29,37 +29,36 @@ namespace Calamares {
 class DLLEXPORT JobResult
 {
 public:
-    operator bool() const;
+    JobResult( const JobResult& rhs ) = delete;
+    JobResult( JobResult&& rhs );
 
-    QString message() const;
-    void setMessage( const QString& message );
+    virtual ~JobResult() {}
 
-    QString details() const;
-    void setDetails( const QString& details );
+    virtual operator bool() const;
+
+    virtual QString message() const;
+    virtual void setMessage( const QString& message );
+
+    virtual QString details() const;
+    virtual void setDetails( const QString& details );
 
     static JobResult ok();
 
     static JobResult error( const QString& message, const QString& details = QString() );
 
+protected:
+    explicit JobResult( bool ok, const QString& message, const QString& details );
+
 private:
     bool m_ok;
     QString m_message;
     QString m_details;
-
-    JobResult( bool ok, const QString& message, const QString& details );
 };
 
 class DLLEXPORT Job : public QObject
 {
     Q_OBJECT
 public:
-    enum State
-    {
-        Pending = 0,
-        Running,
-        Finished
-    };
-
     explicit Job( QObject* parent = nullptr );
     virtual ~Job();
 

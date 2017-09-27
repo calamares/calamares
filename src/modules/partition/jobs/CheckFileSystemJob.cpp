@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
+ *   Copyright 2016, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -18,10 +19,14 @@
 
 #include "jobs/CheckFileSystemJob.h"
 
+#include <utils/Logger.h>
+
 // KPMcore
 #include <kpmcore/core/partition.h>
 #include <kpmcore/fs/filesystem.h>
 #include <kpmcore/util/report.h>
+
+#include <QThread>
 
 CheckFileSystemJob::CheckFileSystemJob( Partition* partition )
     : PartitionJob( partition )
@@ -53,6 +58,20 @@ CheckFileSystemJob::exec()
 
     Report report( nullptr );
     bool ok = fs.check( report, partition()->partitionPath() );
+    int retries = 0;
+    const int MAX_RETRIES = 10;
+    while ( !ok )
+    {
+        cDebug() << "Partition" << partition()->partitionPath()
+                 << "might not be ready yet, retrying (" << ++retries
+                 << "/" << MAX_RETRIES << ") ...";
+        QThread::sleep( 2 /*seconds*/ );
+        ok = fs.check( report, partition()->partitionPath() );
+
+        if ( retries == MAX_RETRIES )
+            break;
+    }
+
     if ( !ok )
         return Calamares::JobResult::error(
                    tr( "The file system check on partition %1 failed." )

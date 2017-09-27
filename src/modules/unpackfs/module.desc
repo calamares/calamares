@@ -3,4 +3,4 @@
 type:       "job"
 name:       "unpackfs"
 interface:  "python"
-script:     "main.py"   #assumed relative to the current directory
+script:     "main.py"

@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2016, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -29,6 +29,7 @@
 #include <QFutureWatcher>
 
 class LocalePage;
+class WaitingWidget;
 
 class PLUGINDLLEXPORT LocaleViewStep : public Calamares::ViewStep
 {
@@ -36,7 +37,7 @@ class PLUGINDLLEXPORT LocaleViewStep : public Calamares::ViewStep
 
 public:
     explicit LocaleViewStep( QObject* parent = nullptr );
-    virtual ~LocaleViewStep();
+    virtual ~LocaleViewStep() override;
 
     QString prettyName() const override;
     QString prettyStatus() const override;
@@ -59,9 +60,14 @@ public:
 
     void setConfigurationMap( const QVariantMap& configurationMap ) override;
 
+private slots:
+    void setUpPage();
+
 private:
+    void fetchGeoIpTimezone();
     QWidget* m_widget;
     QFutureWatcher< void > m_initWatcher;
+    WaitingWidget* m_waitingWidget;
 
     LocalePage* m_actualWidget;
     bool m_nextEnabled;
@@ -69,6 +75,7 @@ private:
 
     QPair< QString, QString > m_startingTimezone;
     QString m_localeGenPath;
+    QString m_geoipUrl;
 
     QList< Calamares::job_ptr > m_jobs;
 };

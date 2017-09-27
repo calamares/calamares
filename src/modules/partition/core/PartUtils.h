@@ -29,13 +29,43 @@ class Partition;
 namespace PartUtils
 {
 
+/**
+ * @brief canBeReplaced checks whether the given Partition satisfies the criteria
+ * for replacing it with the new OS.
+ * @param candidate the candidate partition to replace.
+ * @return true if the criteria are met, otherwise false.
+ */
 bool canBeReplaced( Partition* candidate );
 
+/**
+ * @brief canBeReplaced checks whether the given Partition satisfies the criteria
+ * for resizing (shrinking) it to make room for a new OS.
+ * @param candidate the candidate partition to resize.
+ * @return true if the criteria are met, otherwise false.
+ */
 bool canBeResized( Partition* candidate );
 
+/**
+ * @brief canBeReplaced checks whether the given Partition satisfies the criteria
+ * for resizing (shrinking) it to make room for a new OS.
+ * @param core the PartitionCoreModule instance.
+ * @param partitionPath the device path of the candidate partition to resize.
+ * @return true if the criteria are met, otherwise false.
+ */
 bool canBeResized( PartitionCoreModule* core, const QString& partitionPath );
 
+/**
+ * @brief runOsprober executes os-prober, parses the output and writes relevant
+ * data to GlobalStorage.
+ * @param core the PartitionCoreModule instance.
+ * @return a list of os-prober entries, parsed.
+ */
 OsproberEntryList runOsprober( PartitionCoreModule* core );
+
+/**
+ * @brief Is this system EFI-enabled? Decides based on /sys/firmware/efi
+ */
+bool isEfiSystem();
 
 }
 

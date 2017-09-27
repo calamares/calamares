@@ -1,0 +1,26 @@
+#!/bin/sh
+
+  PREREQ=""
+
+  prereqs()
+  {
+          echo "$PREREQ"
+  }
+
+  case $1 in
+  # get pre-requisites
+  prereqs)
+          prereqs
+          exit 0
+          ;;
+  esac
+
+  . /usr/share/initramfs-tools/hook-functions
+  if [ -f /crypto_keyfile.bin ]
+  then
+  	cp /crypto_keyfile.bin ${DESTDIR}
+  fi
+  if [ -f /etc/crypttab ]
+  then
+  	cp /etc/crypttab ${DESTDIR}/etc/
+  fi

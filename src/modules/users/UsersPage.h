@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Portions from the Manjaro Installation Framework
  *   by Roland Singer <roland@manjaro.org>
@@ -27,7 +28,10 @@
 
 #include <QWidget>
 
-namespace Ui {
+#include <functional>
+
+namespace Ui
+{
 class Page_UserSetup;
 }
 
@@ -48,6 +52,8 @@ public:
     void setAutologinDefault( bool checked );
     void setReusePasswordDefault( bool checked );
 
+    void addPasswordCheck( const QString& key, const QVariant& value );
+
 protected slots:
     void onFullNameTextEdited( const QString& );
     void fillSuggestions();
@@ -64,11 +70,47 @@ signals:
 private:
     Ui::Page_UserSetup* ui;
 
+    /**
+     * Support for (dynamic) checks on the password's validity.
+     * This can be used to implement password requirements like
+     * "at least 6 characters". Function addPasswordCheck()
+     * instantiates these and adds them to the list of checks.
+     */
+    class PasswordCheck
+    {
+    public:
+        /** Return true if the string is acceptable. */
+        using AcceptFunc = std::function<bool( const QString& )>;
+        using MessageFunc = std::function<QString()>;
+
+        /** Generate a @p message if @p filter returns true */
+        PasswordCheck( MessageFunc message, AcceptFunc filter );
+        /** Yields @p message if @p filter returns true */
+        PasswordCheck( const QString& message, AcceptFunc filter );
+        /** Null check, always returns empty */
+        PasswordCheck();
+
+        /** Applies this check to the given password string @p s
+         *  and returns an empty string if the password is ok
+         *  according to this filter. Returns a message describing
+         *  what is wrong if not.
+         */
+        QString filter( const QString& s ) const
+        {
+            return m_accept( s ) ? QString() : m_message();
+        }
+
+    private:
+        MessageFunc m_message;
+        AcceptFunc m_accept;
+    } ;
+    QVector<PasswordCheck> m_passwordChecks;
+
     const QRegExp USERNAME_RX = QRegExp( "^[a-z_][a-z0-9_-]*[$]?$" );
     const QRegExp HOSTNAME_RX = QRegExp( "^[a-zA-Z0-9][-a-zA-Z0-9_]*$" );
     const int USERNAME_MAX_LENGTH = 31;
     const int HOSTNAME_MIN_LENGTH = 2;
-    const int HOSTNAME_MAX_LENGTH = 24;
+    const int HOSTNAME_MAX_LENGTH = 63;
 
     bool m_readyFullName;
     bool m_readyUsername;

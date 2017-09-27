@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -18,13 +19,14 @@
 
 #include <PartitionJobTests.h>
 
+#include "utils/Units.h"
+
 #include <jobs/CreatePartitionJob.h>
 #include <jobs/CreatePartitionTableJob.h>
 #include <jobs/ResizePartitionJob.h>
 #include <core/KPMHelpers.h>
 
 // CalaPM
-#include <CalaPM.h>
 #include <backend/corebackend.h>
 #include <backend/corebackendmanager.h>
 #include <fs/filesystemfactory.h>
@@ -36,9 +38,8 @@
 
 QTEST_GUILESS_MAIN( PartitionJobTests )
 
-static const qint64 MB = 1024 * 1024;
-
 using namespace Calamares;
+using CalamaresUtils::operator""_MiB;
 
 class PartitionMounter
 {
@@ -79,7 +80,7 @@ generateTestData( qint64 size )
     // Fill the array explicitly to keep Valgrind happy
     for ( auto it = ba.data() ; it < ba.data() + size ; ++it )
     {
-        *it = rand() % 256;
+        *it = char( rand() & 0xff );
     }
     return ba;
 }
@@ -121,6 +122,8 @@ firstFreePartition( PartitionNode* parent )
 //- QueueRunner ---------------------------------------------------------------
 QueueRunner::QueueRunner( JobQueue* queue )
     : m_queue( queue )
+    , m_finished( false )  // Same initalizations as in ::run()
+    , m_success( true )
 {
     connect( m_queue, &JobQueue::finished, this, &QueueRunner::onFinished );
     connect( m_queue, &JobQueue::failed, this, &QueueRunner::onFailed );
@@ -166,7 +169,7 @@ PartitionJobTests::initTestCase()
         QSKIP( "Skipping test, CALAMARES_TEST_DISK is not set. It should point to a disk which can be safely formatted" );
     }
 
-    QVERIFY( CalaPM::init() );
+    QVERIFY( KPMHelpers::initKPMcore() );
     FileSystemFactory::init();
 
     refreshDevice();
@@ -212,10 +215,14 @@ PartitionJobTests::newCreatePartitionJob( Partition* freeSpacePartition, Partiti
     qint64 lastSector;
 
     if ( size > 0 )
-        lastSector = firstSector + size / m_device->logicalSectorSize();
+        lastSector = firstSector + size / m_device->logicalSize();
     else
         lastSector = freeSpacePartition->lastSector();
-    FileSystem* fs = FileSystemFactory::create( type, firstSector, lastSector );
+    FileSystem* fs = FileSystemFactory::create( type, firstSector, lastSector
+#ifdef WITH_KPMCORE22
+        ,m_device->logicalSize()
+#endif
+    );
 
     Partition* partition = new Partition(
         freeSpacePartition->parent(),
@@ -241,7 +248,7 @@ PartitionJobTests::testCreatePartition()
 
     freePartition = firstFreePartition( m_device->partitionTable() );
     QVERIFY( freePartition );
-    job = newCreatePartitionJob( freePartition, PartitionRole( PartitionRole::Primary ), FileSystem::Ext4, 1 * MB);
+    job = newCreatePartitionJob( freePartition, PartitionRole( PartitionRole::Primary ), FileSystem::Ext4, 1_MiB);
     Partition* partition1 = job->partition();
     QVERIFY( partition1 );
     job->updatePreview();
@@ -249,7 +256,7 @@ PartitionJobTests::testCreatePartition()
 
     freePartition = firstFreePartition( m_device->partitionTable() );
     QVERIFY( freePartition );
-    job = newCreatePartitionJob( freePartition, PartitionRole( PartitionRole::Primary ), FileSystem::LinuxSwap, 1 * MB);
+    job = newCreatePartitionJob( freePartition, PartitionRole( PartitionRole::Primary ), FileSystem::LinuxSwap, 1_MiB);
     Partition* partition2 = job->partition();
     QVERIFY( partition2 );
     job->updatePreview();
@@ -257,7 +264,7 @@ PartitionJobTests::testCreatePartition()
 
     freePartition = firstFreePartition( m_device->partitionTable() );
     QVERIFY( freePartition );
-    job = newCreatePartitionJob( freePartition, PartitionRole( PartitionRole::Primary ), FileSystem::Fat32, 1 * MB);
+    job = newCreatePartitionJob( freePartition, PartitionRole( PartitionRole::Primary ), FileSystem::Fat32, 1_MiB);
     Partition* partition3 = job->partition();
     QVERIFY( partition3 );
     job->updatePreview();
@@ -282,7 +289,7 @@ PartitionJobTests::testCreatePartitionExtended()
 
     freePartition = firstFreePartition( m_device->partitionTable() );
     QVERIFY( freePartition );
-    job = newCreatePartitionJob( freePartition, PartitionRole( PartitionRole::Primary ), FileSystem::Ext4, 10 * MB);
+    job = newCreatePartitionJob( freePartition, PartitionRole( PartitionRole::Primary ), FileSystem::Ext4, 10_MiB);
     Partition* partition1 = job->partition();
     QVERIFY( partition1 );
     job->updatePreview();
@@ -290,7 +297,7 @@ PartitionJobTests::testCreatePartitionExtended()
 
     freePartition = firstFreePartition( m_device->partitionTable() );
     QVERIFY( freePartition );
-    job = newCreatePartitionJob( freePartition, PartitionRole( PartitionRole::Extended ), FileSystem::Extended, 10 * MB);
+    job = newCreatePartitionJob( freePartition, PartitionRole( PartitionRole::Extended ), FileSystem::Extended, 10_MiB);
     job->updatePreview();
     m_queue.enqueue( job_ptr( job ) );
     Partition* extendedPartition = job->partition();
@@ -335,7 +342,7 @@ PartitionJobTests::testResizePartition()
     QFETCH( int, newStartMB );
     QFETCH( int, newSizeMB );
 
-    const qint64 sectorForMB = MB / m_device->logicalSectorSize();
+    const qint64 sectorForMB = 1_MiB / m_device->logicalSize();
 
     qint64 oldFirst = sectorForMB * oldStartMB;
     qint64 oldLast  = oldFirst + sectorForMB * oldSizeMB - 1;
@@ -344,7 +351,7 @@ PartitionJobTests::testResizePartition()
 
     // Make the test data file smaller than the full size of the partition to
     // accomodate for the file system overhead
-    const QByteArray testData = generateTestData( ( qMin( oldSizeMB, newSizeMB ) ) * MB * 3 / 4 );
+    const QByteArray testData = generateTestData( CalamaresUtils::MiBtoBytes( qMin( oldSizeMB, newSizeMB ) ) * 3 / 4 );
     const QString testName = "test.data";
 
     // Setup: create the test partition

@@ -134,8 +134,7 @@ ReplaceWidget::onPartitionSelected()
                       tr( "Select where to install %1.<br/>"
                           "<font color=\"red\">Warning: </font>this will delete all files "
                           "on the selected partition." )
-                          .arg( Calamares::Branding::instance()->
-                                string( Calamares::Branding::VersionedName ) ) );
+                          .arg( *Calamares::Branding::VersionedName ) );
         setNextEnabled( false );
         return;
     }
@@ -149,7 +148,7 @@ ReplaceWidget::onPartitionSelected()
     PartitionModel* model = qobject_cast< PartitionModel* >( m_ui->partitionTreeView->model() );
     if ( model && ok )
     {
-        QStringList osproberLines = Calamares::JobQueue::instance()
+        const QStringList osproberLines = Calamares::JobQueue::instance()
                                     ->globalStorage()
                                     ->value( "osproberLines" ).toStringList();
 
@@ -168,8 +167,7 @@ ReplaceWidget::onPartitionSelected()
             updateStatus( CalamaresUtils::Fail,
                           tr( "%1 cannot be installed on empty space. Please select an "
                               "existing partition." )
-                          .arg( Calamares::Branding::instance()->
-                                string( Calamares::Branding::VersionedName ) ) );
+                          .arg( *Calamares::Branding::VersionedName ) );
             setNextEnabled( false );
             return;
         }
@@ -179,8 +177,7 @@ ReplaceWidget::onPartitionSelected()
             updateStatus( CalamaresUtils::Fail,
                           tr( "%1 cannot be installed on an extended partition. Please select an "
                               "existing primary or logical partition." )
-                          .arg( Calamares::Branding::instance()->
-                                string( Calamares::Branding::VersionedName ) ) );
+                          .arg( *Calamares::Branding::VersionedName ) );
             setNextEnabled( false );
             return;
         }
@@ -189,15 +186,14 @@ ReplaceWidget::onPartitionSelected()
         {
             updateStatus( CalamaresUtils::Fail,
                           tr( "%1 cannot be installed on this partition." )
-                          .arg( Calamares::Branding::instance()->
-                                string( Calamares::Branding::VersionedName ) ) );
+                          .arg( *Calamares::Branding::VersionedName ) );
             setNextEnabled( false );
             return;
         }
 
         QString prettyName = tr( "Data partition (%1)" )
                              .arg( partition->fileSystem().name() );
-        foreach ( const QString& line, osproberLines )
+        for ( const QString& line : osproberLines )
         {
             QStringList lineColumns = line.split( ':' );
 
@@ -232,8 +228,7 @@ ReplaceWidget::onPartitionSelected()
                               "The partition %1 is too small for %2. Please select a partition "
                               "with capacity at least %3 GiB." )
                           .arg( partition->partitionPath() )
-                          .arg( Calamares::Branding::instance()->
-                                string( Calamares::Branding::VersionedName ) )
+                          .arg( *Calamares::Branding::VersionedName )
                           .arg( requiredSpaceB / ( 1024. * 1024. * 1024. ),
                                 0, 'f', 1 )
                           .arg( prettyName ) );
@@ -256,8 +251,7 @@ ReplaceWidget::onPartitionSelected()
                                   "An EFI system partition cannot be found anywhere "
                                   "on this system. Please go back and use manual "
                                   "partitioning to set up %1." )
-                              .arg( Calamares::Branding::instance()->
-                                    string( Calamares::Branding::ShortProductName ) )
+                              .arg( *Calamares::Branding::ShortProductName )
                               .arg( prettyName ) );
                 setNextEnabled( false );
             }
@@ -268,16 +262,14 @@ ReplaceWidget::onPartitionSelected()
                                   "%1 will be installed on %2.<br/>"
                                   "<font color=\"red\">Warning: </font>all data on partition "
                                   "%2 will be lost.")
-                                .arg( Calamares::Branding::instance()->
-                                    string( Calamares::Branding::VersionedName ) )
+                                .arg( *Calamares::Branding::VersionedName )
                                 .arg( partition->partitionPath() )
                                 .arg( prettyName ) );
                 m_ui->bootStatusLabel->show();
                 m_ui->bootStatusLabel->setText(
                     tr( "The EFI system partition at %1 will be used for starting %2." )
                         .arg( efiSystemPartitions.first()->partitionPath() )
-                        .arg( Calamares::Branding::instance()->
-                              string( Calamares::Branding::ShortProductName ) ) );
+                        .arg( *Calamares::Branding::ShortProductName ) );
                 setNextEnabled( true );
             }
             else
@@ -287,8 +279,7 @@ ReplaceWidget::onPartitionSelected()
                                   "%1 will be installed on %2.<br/>"
                                   "<font color=\"red\">Warning: </font>all data on partition "
                                   "%2 will be lost.")
-                                .arg( Calamares::Branding::instance()->
-                                    string( Calamares::Branding::VersionedName ) )
+                                .arg( *Calamares::Branding::VersionedName )
                                 .arg( partition->partitionPath() )
                                 .arg( prettyName ) );
                 m_ui->bootStatusLabel->show();
@@ -312,8 +303,7 @@ ReplaceWidget::onPartitionSelected()
                               "%1 will be installed on %2.<br/>"
                               "<font color=\"red\">Warning: </font>all data on partition "
                               "%2 will be lost.")
-                            .arg( Calamares::Branding::instance()->
-                                string( Calamares::Branding::VersionedName ) )
+                            .arg( *Calamares::Branding::VersionedName )
                             .arg( partition->partitionPath() )
                             .arg( prettyName ) );
             setNextEnabled( true );
@@ -357,7 +347,7 @@ ReplaceWidget::updateFromCurrentDevice( QComboBox* devicesComboBox )
 
     QAbstractItemModel* oldModel = m_ui->partitionTreeView->model();
     if ( oldModel )
-        disconnect( oldModel, 0, this, 0 );
+        disconnect( oldModel, nullptr, this, nullptr );
 
     PartitionModel* model = m_core->partitionModelForDevice( device );
     m_ui->partitionTreeView->setModel( model );

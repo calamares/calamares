@@ -1,6 +1,12 @@
+backend: dummy
 rootMountPoint: /tmp/mount
-packageOperations:
+operations:
   - install:
-    - vi
+    - pre-script: touch /tmp/foo
+      package: vi
+      post-script: rm /tmp/foo
+    - wget
+    - binutils
   - remove:
     - vi
+    - wget

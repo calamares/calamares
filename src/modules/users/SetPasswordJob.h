@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -31,6 +32,8 @@ public:
     QString prettyName() const override;
     QString prettyStatusMessage() const override;
     Calamares::JobResult exec() override;
+
+    static QString make_salt(int length);
 
 private:
     QString m_userName;

@@ -1,22 +1,27 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Originally from QJsonModel <https://github.com/dridk/QJsonmodel>
- *   Copyright 2015, Sacha Schutz <sacha@labsquare.org>
- *
- *   Calamares is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
- *
- *   Calamares is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
+ *   SPDX-License-Identifier: GPL-3.0+
+ *   License-Filename: LICENSES/GPLv3+-QJsonModel
  */
 
+/***********************************************
+    Copyright (C) 2014  Schutz Sacha
+    This file is part of QJsonModel (https://github.com/dridk/QJsonmodel).
+
+    QJsonModel is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    QJsonModel is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with QJsonModel.  If not, see <http://www.gnu.org/licenses/>.
+
+**********************************************/
 
 #include "qjsonmodel.h"
 #include <QFile>
@@ -35,13 +40,6 @@ QJsonModel::QJsonModel(QObject *parent) :
 
 
 }
-
-
-QJsonModel::~QJsonModel()
-{
-    delete mRootItem;
-}
-
 
 bool QJsonModel::load(const QString &fileName)
 {
@@ -68,7 +66,11 @@ bool QJsonModel::loadJson(const QByteArray &json)
     if (!mDocument.isNull())
     {
         beginResetModel();
-        mRootItem = QJsonTreeItem::load(QJsonValue(mDocument.object()));
+        if (mDocument.isArray()) {
+            mRootItem = QJsonTreeItem::load(QJsonValue(mDocument.array()));
+        } else {
+            mRootItem = QJsonTreeItem::load(QJsonValue(mDocument.object()));
+        }
         endResetModel();
         return true;
     }

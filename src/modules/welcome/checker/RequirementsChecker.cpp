@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2017, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -26,16 +27,24 @@
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
 #include "utils/CalamaresUtilsSystem.h"
+#include "utils/Units.h"
+
 #include "JobQueue.h"
 #include "GlobalStorage.h"
 
+#include <QApplication>
 #include <QBoxLayout>
 #include <QDBusConnection>
 #include <QDBusInterface>
+#include <QDesktopWidget>
 #include <QDir>
+#include <QEventLoop>
 #include <QFile>
 #include <QFileInfo>
 #include <QLabel>
+#include <QNetworkAccessManager>
+#include <QNetworkRequest>
+#include <QNetworkReply>
 #include <QProcess>
 #include <QTimer>
 
@@ -44,9 +53,10 @@
 RequirementsChecker::RequirementsChecker( QObject* parent )
     : QObject( parent )
     , m_widget( new QWidget() )
+    , m_requiredStorageGB( -1 )
+    , m_requiredRamGB( -1 )
     , m_actualWidget( new CheckerWidget() )
     , m_verdict( false )
-    , m_requiredStorageGB( -1 )
 {
     QBoxLayout* mainLayout = new QHBoxLayout;
     m_widget->setLayout( mainLayout );
@@ -55,6 +65,8 @@ RequirementsChecker::RequirementsChecker( QObject* parent )
     WaitingWidget* waitingWidget = new WaitingWidget( QString() );
     mainLayout->addWidget( waitingWidget );
     CALAMARES_RETRANSLATE( waitingWidget->setText( tr( "Gathering system information..." ) ); )
+
+    QSize availableSize = qApp->desktop()->availableGeometry( m_widget ).size();
 
     QTimer* timer = new QTimer;
     timer->setSingleShot( true );
@@ -66,13 +78,14 @@ RequirementsChecker::RequirementsChecker( QObject* parent )
         bool hasPower = false;
         bool hasInternet = false;
         bool isRoot = false;
+        bool enoughScreen = (availableSize.width() >= CalamaresUtils::windowPreferredWidth) && (availableSize.height() >= CalamaresUtils::windowPreferredHeight);
 
-        qint64 requiredStorageB = m_requiredStorageGB * 1073741824L; /*powers of 2*/
+        qint64 requiredStorageB = CalamaresUtils::GiBtoBytes(m_requiredStorageGB);
         cDebug() << "Need at least storage bytes:" << requiredStorageB;
         if ( m_entriesToCheck.contains( "storage" ) )
             enoughStorage = checkEnoughStorage( requiredStorageB );
 
-        qint64 requiredRamB = m_requiredRamGB * 1073741824L; /*powers of 2*/
+        qint64 requiredRamB = CalamaresUtils::GiBtoBytes(m_requiredRamGB);
         cDebug() << "Need at least ram bytes:" << requiredRamB;
         if ( m_entriesToCheck.contains( "ram" ) )
             enoughRam = checkEnoughRam( requiredRamB );
@@ -136,7 +149,14 @@ RequirementsChecker::RequirementsChecker( QObject* parent )
                     isRoot,
                     m_entriesToRequire.contains( entry )
                 } );
-
+            else if ( entry == "screen" )
+                checkEntries.append( {
+                    entry,
+                    [this]{ return QString(); }, // we hide it
+                    [this]{ return tr( "The screen is too small to display the installer." ); },
+                    enoughScreen,
+                    false
+                } );
         }
 
         m_actualWidget->init( checkEntries );
@@ -185,8 +205,10 @@ RequirementsChecker::widget() const
 void
 RequirementsChecker::setConfigurationMap( const QVariantMap& configurationMap )
 {
+    bool incompleteConfiguration = false;
     if ( configurationMap.contains( "requiredStorage" ) &&
-         configurationMap.value( "requiredStorage" ).type() == QVariant::Double )
+         ( configurationMap.value( "requiredStorage" ).type() == QVariant::Double ||
+           configurationMap.value( "requiredStorage" ).type() == QVariant::Int ) )
     {
         bool ok = false;
         m_requiredStorageGB = configurationMap.value( "requiredStorage" ).toDouble( &ok );
@@ -198,19 +220,46 @@ RequirementsChecker::setConfigurationMap( const QVariantMap& configurationMap )
     else
     {
         m_requiredStorageGB = 3.;
+        incompleteConfiguration = true;
     }
 
     if ( configurationMap.contains( "requiredRam" ) &&
-         configurationMap.value( "requiredRam" ).type() == QVariant::Double )
+         ( configurationMap.value( "requiredRam" ).type() == QVariant::Double ||
+           configurationMap.value( "requiredRam" ).type() == QVariant::Int ) )
     {
         bool ok = false;
         m_requiredRamGB = configurationMap.value( "requiredRam" ).toDouble( &ok );
         if ( !ok )
+        {
             m_requiredRamGB = 1.;
+            incompleteConfiguration = true;
+        }
     }
     else
     {
         m_requiredRamGB = 1.;
+        incompleteConfiguration = true;
+    }
+
+    if ( configurationMap.contains( "internetCheckUrl" ) &&
+         configurationMap.value( "internetCheckUrl" ).type() == QVariant::String )
+    {
+        m_checkHasInternetUrl = configurationMap.value( "internetCheckUrl" ).toString().trimmed();
+        if ( m_checkHasInternetUrl.isEmpty() ||
+             !QUrl( m_checkHasInternetUrl ).isValid() )
+        {
+            cDebug() << "Invalid internetCheckUrl in welcome.conf" << m_checkHasInternetUrl
+                     << "reverting to default (http://example.com).";
+            m_checkHasInternetUrl = "http://example.com";
+            incompleteConfiguration = true;
+        }
+    }
+    else
+    {
+        cDebug() << "internetCheckUrl is undefined in welcome.conf, "
+                    "reverting to default (http://example.com).";
+        m_checkHasInternetUrl = "http://example.com";
+        incompleteConfiguration = true;
     }
 
     if ( configurationMap.contains( "check" ) &&
@@ -219,12 +268,27 @@ RequirementsChecker::setConfigurationMap( const QVariantMap& configurationMap )
         m_entriesToCheck.clear();
         m_entriesToCheck.append( configurationMap.value( "check" ).toStringList() );
     }
+    else
+        incompleteConfiguration = true;
 
     if ( configurationMap.contains( "required" ) &&
          configurationMap.value( "required" ).type() == QVariant::List )
     {
         m_entriesToRequire.clear();
         m_entriesToRequire.append( configurationMap.value( "required" ).toStringList() );
+    }
+    else
+        incompleteConfiguration = true;
+
+    if ( incompleteConfiguration )
+    {
+        cDebug() << "WARNING: The RequirementsChecker configuration map provided by "
+                    "the welcome module configuration file is incomplete or "
+                    "incorrect.\n"
+                    "Startup will continue for debugging purposes, but one or "
+                    "more checks might not function correctly.\n"
+                    "RequirementsChecker configuration map:\n"
+                 << configurationMap;
     }
 }
 
@@ -246,9 +310,9 @@ RequirementsChecker::checkEnoughStorage( qint64 requiredSpace )
 bool
 RequirementsChecker::checkEnoughRam( qint64 requiredRam )
 {
-    qint64 availableRam = CalamaresUtils::System::instance()->getPhysicalMemoryB();
-    if ( !availableRam )
-        availableRam = CalamaresUtils::System::instance()->getTotalMemoryB();
+    // Ignore the guesstimate-factor; we get an under-estimate
+    // which is probably the usable RAM for programs.
+    quint64 availableRam = CalamaresUtils::System::instance()->getTotalMemoryB().first;
     return availableRam >= requiredRam * 0.95; // because MemTotal is variable
 }
 
@@ -262,9 +326,8 @@ RequirementsChecker::checkBatteryExists()
         return false;
 
     QDir baseDir( basePath.absoluteFilePath() );
-    foreach ( auto item, baseDir.entryList( QDir::AllDirs |
-                                            QDir::Readable |
-                                            QDir::NoDotAndDotDot ) )
+    const auto entries = baseDir.entryList( QDir::AllDirs | QDir::Readable | QDir::NoDotAndDotDot );
+    for ( const auto &item : entries )
     {
         QFileInfo typePath( baseDir.absoluteFilePath( QString( "%1/type" )
                                                       .arg( item ) ) );
@@ -294,7 +357,7 @@ RequirementsChecker::checkHasPower()
     QDBusInterface upowerIntf( UPOWER_SVC_NAME,
                                UPOWER_PATH,
                                UPOWER_INTF_NAME,
-                               QDBusConnection::systemBus(), 0 );
+                               QDBusConnection::systemBus() );
 
     bool onBattery = upowerIntf.property( "OnBattery" ).toBool();
 
@@ -314,28 +377,24 @@ RequirementsChecker::checkHasPower()
 bool
 RequirementsChecker::checkHasInternet()
 {
-    const QString NM_SVC_NAME( "org.freedesktop.NetworkManager" );
-    const QString NM_INTF_NAME( "org.freedesktop.NetworkManager" );
-    const QString NM_PATH( "/org/freedesktop/NetworkManager" );
-    const int NM_STATE_CONNECTED_GLOBAL = 70;
+    // default to true in the QNetworkAccessManager::UnknownAccessibility case
+    QNetworkAccessManager qnam( this );
+    bool hasInternet = qnam.networkAccessible() == QNetworkAccessManager::Accessible;
 
-    QDBusInterface nmIntf( NM_SVC_NAME,
-                           NM_PATH,
-                           NM_INTF_NAME,
-                           QDBusConnection::systemBus(), 0 );
-
-    bool ok = false;
-    int nmState = nmIntf.property( "state" ).toInt( &ok );
-
-    if ( !ok || !nmIntf.isValid() )
+    if ( !hasInternet && qnam.networkAccessible() == QNetworkAccessManager::UnknownAccessibility )
     {
-        // We can't talk to NM, so no idea.  Wild guess: we're connected
-        // using ssh with X forwarding, and are therefore connected.  This
-        // allows us to proceed with a minimum of complaint.
-        return true;
+        QNetworkRequest req = QNetworkRequest( QUrl( m_checkHasInternetUrl ) );
+        QNetworkReply* reply = qnam.get( req );
+        QEventLoop loop;
+        connect( reply, &QNetworkReply::finished,
+                 &loop, &QEventLoop::quit );
+        loop.exec();
+        if( reply->bytesAvailable() )
+            hasInternet = true;
     }
 
-    return nmState == NM_STATE_CONNECTED_GLOBAL;
+    Calamares::JobQueue::instance()->globalStorage()->insert( "hasInternet", hasInternet );
+    return hasInternet;
 }
 
 

@@ -1,21 +1,77 @@
-project( calamares CXX )
+# === This file is part of Calamares - <https://github.com/calamares> ===
+#
+#   Calamares is free software: you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation, either version 3 of the License, or
+#   (at your option) any later version.
+#
+#   Calamares is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
+#
+#   SPDX-License-Identifier: GPL-3.0+
+#   License-Filename: LICENSE
+#
+###
+#
+# Generally, this CMakeLists.txt will find all the dependencies for Calamares
+# and complain appropriately. See below (later in this file) for CMake-level
+# options. There are some "secret" options as well:
+#
+#   SKIP_MODULES    : a space or semicolon-separated list of directory names
+#                     under src/modules that should not be built.
+#
+# Example usage:
+#
+#   cmake . -DSKIP_MODULES="partition luksbootkeycfg"
 
-# The partition manager uses ECM but ECMConfig.cmake
-# will complain if we require CMake less than 2.8.13,
-# so never change this.
-cmake_minimum_required( VERSION 2.8.12 )
+project( calamares C CXX )
 
-set( CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/CMakeModules" )
+cmake_minimum_required( VERSION 3.2 )
+
+set( CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMakeModules" )
+
+set( CMAKE_CXX_STANDARD 14 )
+set( CMAKE_CXX_STANDARD_REQUIRED ON )
+set( CMAKE_C_STANDARD 99 )
+set( CMAKE_C_STANDARD_REQUIRED ON )
 
 if( CMAKE_CXX_COMPILER_ID MATCHES "Clang" )
     message( STATUS "Found Clang ${CMAKE_CXX_COMPILER_VERSION}, setting up Clang-specific compiler flags." )
-    set( CMAKE_C_FLAGS                  "${CMAKE_C_FLAGS} -Wall -std=c99" )
+    set( CMAKE_C_FLAGS                  "${CMAKE_C_FLAGS} -Wall" )
     set( CMAKE_C_FLAGS_DEBUG            "-g" )
     set( CMAKE_C_FLAGS_MINSIZEREL       "-Os -DNDEBUG" )
     set( CMAKE_C_FLAGS_RELEASE          "-O4 -DNDEBUG" )
     set( CMAKE_C_FLAGS_RELWITHDEBINFO   "-O2 -g" )
 
-    set( CMAKE_CXX_FLAGS                "${CMAKE_CXX_FLAGS} -Weverything -std=c++14" )
+    # Clang warnings: doing *everything* is counter-productive, since it warns
+    # about things which we can't fix (e.g. C++98 incompatibilities, but
+    # Calaares is C++14).
+    foreach( CLANG_WARNINGS
+        -Weverything
+        -Wno-c++98-compat
+        -Wno-c++98-compat-pedantic
+        -Wno-padded
+        -Wno-undefined-reinterpret-cast
+        -Wno-global-constructors
+        -Wno-exit-time-destructors
+        -Wno-missing-prototypes
+        -Wno-documentation-unknown-command
+    )
+        string( APPEND CMAKE_CXX_FLAGS " ${CLANG_WARNINGS}" )
+    endforeach()
+
+    # Third-party code where we don't care so much about compiler warnings
+    # (because it's uncomfortable to patch) get different flags; use
+    #       mark_thirdparty_code( <file> [<file>...] )
+    # to switch off warnings for those sources.
+    set( SUPPRESS_3RDPARTY_WARNINGS "-Wno-everything" )
+    set( SUPPRESS_BOOST_WARNINGS " -Wno-zero-as-null-pointer-constant -Wno-disabled-macro-expansion" )
+
     set( CMAKE_CXX_FLAGS_DEBUG          "-g" )
     set( CMAKE_CXX_FLAGS_MINSIZEREL     "-Os -DNDEBUG" )
     set( CMAKE_CXX_FLAGS_RELEASE        "-O4 -DNDEBUG" )
@@ -25,10 +81,20 @@ if( CMAKE_CXX_COMPILER_ID MATCHES "Clang" )
 
     set( CMAKE_SHARED_LINKER_FLAGS "-Wl,--no-undefined" )
 else()
-    set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c99" )
-    set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -Wl,--no-undefined" )
-    set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -Wl,--fatal-warnings -Wnon-virtual-dtor -Woverloaded-virtual -Werror=return-type" )
+    set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wl,--no-undefined" )
+    set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wl,--fatal-warnings -Wnon-virtual-dtor -Woverloaded-virtual -Werror=return-type" )
+
+    set( SUPPRESS_3RDPARTY_WARNINGS "" )
+    set( SUPPRESS_BOOST_WARNINGS "" )
 endif()
+
+macro(mark_thirdparty_code)
+    set_source_files_properties( ${ARGV}
+        PROPERTIES
+            COMPILE_FLAGS "${SUPPRESS_3RDPARTY_WARNINGS}"
+            COMPILE_DEFINITIONS "THIRDPARTY"
+    )
+endmacro()
 
 if( CMAKE_COMPILER_IS_GNUCXX )
     if( CMAKE_CXX_COMPILER_VERSION VERSION_GREATER 4.9 OR
@@ -38,66 +104,64 @@ if( CMAKE_COMPILER_IS_GNUCXX )
     endif()
 endif()
 
-cmake_policy( SET CMP0023 OLD )
-cmake_policy( SET CMP0028 NEW ) # double colons in KF5::Foo and Qt5::Foo are necessarily IMPORTED or ALIAS targets, don't search further
+include( FeatureSummary )
 
-# Keep cmake 3.0 quiet
-if( POLICY CMP0043 )
-    cmake_policy( SET CMP0043 OLD )
-endif()
-
-include( MacroOptionalFindPackage )
-include( MacroLogFeature )
-
-set( QT_VERSION 5.4.0 )
+set( QT_VERSION 5.6.0 )
 
 find_package( Qt5 ${QT_VERSION} CONFIG REQUIRED Core Gui Widgets LinguistTools Svg Quick QuickWidgets )
-find_package( YamlCpp 0.5.1 REQUIRED )
+find_package( YAMLCPP 0.5.1 REQUIRED )
 find_package( PolkitQt5-1 REQUIRED )
-
-option( WITH_KF5Crash "Enable crash reporting with KCrash." ON )
-
-macro_optional_find_package( KF5Crash 5.18 )
-macro_log_feature(
-    KF5Crash_FOUND
-    "KCrash"
-    "Helper library for submitting crash reports with DrKonqi by KDE."
-    "http://api.kde.org/frameworks-api/frameworks5-apidocs/kcrash/html/namespaceKCrash.html"
-    FALSE "5.18"
-    "KCrash is used if a crash happens when running in a Plasma session."
-)
-
-if ( KF5Crash_FOUND )
-    find_package( KF5CoreAddons 5.18 REQUIRED )
+find_package(ECM 5.18 NO_MODULE)
+if( ECM_FOUND )
+    set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${CMAKE_MODULE_PATH})
 endif()
 
-option( WITH_PYTHON "Enable Python modules support." ON )
+option( INSTALL_CONFIG "Install configuration files" ON )
+option( WITH_PYTHON "Enable Python modules API (requires Boost.Python)." ON )
+option( WITH_PYTHONQT "Enable next generation Python modules API (experimental, requires PythonQt)." OFF )
+option( WITH_KF5Crash "Enable crash reporting with KCrash." ON )
+option( BUILD_TESTING "Build the testing tree." ON )
 
-macro_optional_find_package( PythonLibs 3.3 )
-macro_log_feature(
-    PYTHONLIBS_FOUND
-    "Python"
-    "C interface libraries for the Python 3 interpreter."
-    "http://python.org"
-    FALSE "3.3"
-    "Python 3 is used for some Calamares job modules."
+find_package( KF5 5.18 COMPONENTS CoreAddons Crash OPTIONAL )
+if( KF5Crash_DIR )  # Why not a _FOUND mechanism?
+    find_package( KF5 5.18 COMPONENTS CoreAddons REQUIRED )
+else()
+    set( WITH_KF5Crash OFF )
+endif()
+
+if( BUILD_TESTING )
+    enable_testing()
+endif ()
+
+find_package( PythonLibs 3.3 )
+set_package_properties(
+    PythonLibs PROPERTIES
+    DESCRIPTION "C interface libraries for the Python 3 interpreter."
+    URL "http://python.org"
+    PURPOSE "Python 3 is used for Python job modules."
 )
 
 if ( PYTHONLIBS_FOUND )
     include( BoostPython3 )
     find_boost_python3( 1.54.0 ${PYTHONLIBS_VERSION_STRING} CALAMARES_BOOST_PYTHON3_FOUND )
-    macro_log_feature(
-        CALAMARES_BOOST_PYTHON3_FOUND
-        "Boost.Python"
-        "A C++ library which enables seamless interoperability between C++ and Python 3."
-        "http://www.boost.org"
-        FALSE "1.54.0"
-        "Boost.Python is used for interfacing with Calamares job modules written in Python 3."
+    set_package_properties(
+        Boost PROPERTIES
+        PURPOSE "Boost.Python is used for Python job modules."
+    )
+
+    find_package( PythonQt )
+    set_package_properties( PythonQt PROPERTIES
+        DESCRIPTION "A Python embedding solution for Qt applications."
+        URL "http://pythonqt.sourceforge.net"
+        PURPOSE "PythonQt is used for Python view modules."
     )
 endif()
 
-if ( PYTHONLIBS_NOTFOUND OR NOT CALAMARES_BOOST_PYTHON3_FOUND )
+if( PYTHONLIBS_NOTFOUND OR NOT CALAMARES_BOOST_PYTHON3_FOUND )
     set( WITH_PYTHON OFF )
+endif()
+if( PYTHONLIBS_NOTFOUND OR NOT PYTHONQT_FOUND )
+    set( WITH_PYTHONQT OFF )
 endif()
 
 ###
@@ -107,11 +171,12 @@ set( CALAMARES_ORGANIZATION_NAME "Calamares" )
 set( CALAMARES_ORGANIZATION_DOMAIN "github.com/calamares" )
 set( CALAMARES_APPLICATION_NAME  "Calamares" )
 set( CALAMARES_DESCRIPTION_SUMMARY "The distribution-independent installer framework" )
-set( CALAMARES_TRANSLATION_LANGUAGES ar ast bg ca cs_CZ da de el en en_GB es_MX es eu fr hu id is it_IT ja lt nl pl pt_BR pt_PT ro ru sv th tr_TR zh_CN zh_TW )
+set( CALAMARES_TRANSLATION_LANGUAGES ar ast bg ca cs_CZ da de el en en_GB es_MX es eu fr he hr hu id is it_IT ja lt nl pl pt_BR pt_PT ro ru sk sv th tr_TR zh_CN zh_TW )
 
-set( CALAMARES_VERSION_MAJOR 2 )
+### Bump version here
+set( CALAMARES_VERSION_MAJOR 3 )
 set( CALAMARES_VERSION_MINOR 1 )
-set( CALAMARES_VERSION_PATCH 0 )
+set( CALAMARES_VERSION_PATCH 5 )
 set( CALAMARES_VERSION_RC 0 )
 
 set( CALAMARES_VERSION ${CALAMARES_VERSION_MAJOR}.${CALAMARES_VERSION_MINOR}.${CALAMARES_VERSION_PATCH} )
@@ -160,21 +225,74 @@ configure_file(
 )
 
 # Early configure these files as we need them later on
-configure_file( CalamaresUse.cmake.in "${PROJECT_BINARY_DIR}/CalamaresUse.cmake" @ONLY )
-file( COPY CalamaresAddLibrary.cmake DESTINATION "${PROJECT_BINARY_DIR}" )
-file( COPY CalamaresAddModuleSubdirectory.cmake DESTINATION "${PROJECT_BINARY_DIR}" )
-file( COPY CalamaresAddPlugin.cmake DESTINATION "${PROJECT_BINARY_DIR}" )
-file( COPY CalamaresAddBrandingSubdirectory.cmake DESTINATION "${PROJECT_BINARY_DIR}" )
-
+set( CALAMARES_CMAKE_DIR "${CMAKE_SOURCE_DIR}/CMakeModules" )
 set( CALAMARES_LIBRARIES calamares )
 
+set( THIRDPARTY_DIR "${CMAKE_SOURCE_DIR}/thirdparty" )
+
+### Example Distro
+#
+# For testing purposes Calamares includes a very, very, limited sample
+# distro called "Generic". The root filesystem of "Generic" lives in
+# data/example-root and can be squashed up as part of the build, so
+# that a pure-upstream run of ./calamares -d from the build directory
+# (with all the default settings and configurations) can actually
+# do an complete example run.
+#
+# Some binaries from the build host (e.g. /bin and /lib) are also
+# squashed into the example filesystem.
+#
+# To build the example distro (for use by the default, example,
+# unsquashfs module), build the target 'example-distro', eg.:
+#
+#   make example-distro
+#
+find_program( mksquashfs_PROGRAM mksquashfs )
+if( mksquashfs_PROGRAM )
+    set( mksquashfs_FOUND ON )
+    set( src_fs ${CMAKE_SOURCE_DIR}/data/example-root/ )
+    set( dst_fs ${CMAKE_BINARY_DIR}/example.sqfs )
+    if( EXISTS ${src_fs} )
+        # based on the build host. If /lib64 exists, assume it is needed.
+        # Collect directories needed for a minimal binary distro,
+        # Note that the last path component is added to the root, so
+        # if you add /usr/sbin here, it will be put into /sbin_1.
+        # Add such paths to /etc/profile under ${src_fs}.
+        set( candidate_fs /sbin /bin /lib /lib64 )
+        set( host_fs "" )
+        foreach( c_fs ${candidate_fs} )
+            if( EXISTS ${c_fs} )
+                list( APPEND host_fs ${c_fs} )
+            endif()
+        endforeach()
+        add_custom_command(
+            OUTPUT ${dst_fs}
+            COMMAND ${mksquashfs_PROGRAM} ${src_fs} ${dst_fs} -all-root
+            COMMAND ${mksquashfs_PROGRAM} ${host_fs} ${dst_fs} -all-root
+        )
+        add_custom_target(example-distro DEPENDS ${dst_fs})
+    endif()
+else()
+    set( mksquashfs_FOUND OFF )
+endif()
+# Doesn't list mksquashfs as an optional dep, though, because it
+# hasn't been sent through the find_package() scheme.
+set_package_properties( mksquashfs PROPERTIES
+    DESCRIPTION "Create squashed filesystems"
+    URL "http://tldp.org/HOWTO/SquashFS-HOWTO/creatingandusing.html"
+    PURPOSE "Create example distro"
+    TYPE OPTIONAL
+)
+
+# add_subdirectory( thirdparty )
 add_subdirectory( src )
 
-macro_display_feature_log()
+add_feature_info(Python ${WITH_PYTHON} "Python job modules")
+add_feature_info(PythonQt ${WITH_PYTHONQT} "Python view modules")
+add_feature_info(Config ${INSTALL_CONFIG} "Install Calamares configuration")
+add_feature_info(KCrash ${WITH_KF5Crash} "Crash dumps via KCrash")
 
-if ( NOT WITH_PYTHON )
-    message( "-- WARNING: Building Calamares without Python support. Python modules will not work.\n" )
-endif()
+feature_summary(WHAT ALL)
 
 # Add all targets to the build-tree export set
 set( CMAKE_INSTALL_CMAKEDIR "${CMAKE_INSTALL_LIBDIR}/cmake/Calamares" CACHE PATH  "Installation directory for CMake files" )
@@ -200,11 +318,10 @@ install(
     FILES
         "${PROJECT_BINARY_DIR}/CalamaresConfig.cmake"
         "${PROJECT_BINARY_DIR}/CalamaresConfigVersion.cmake"
-        "${PROJECT_BINARY_DIR}/CalamaresUse.cmake"
-        "${PROJECT_BINARY_DIR}/CalamaresAddPlugin.cmake"
-        "${PROJECT_BINARY_DIR}/CalamaresAddModuleSubdirectory.cmake"
-        "${PROJECT_BINARY_DIR}/CalamaresAddLibrary.cmake"
-        "${PROJECT_BINARY_DIR}/CalamaresAddBrandingSubdirectory.cmake"
+        "CMakeModules/CalamaresAddPlugin.cmake"
+        "CMakeModules/CalamaresAddModuleSubdirectory.cmake"
+        "CMakeModules/CalamaresAddLibrary.cmake"
+        "CMakeModules/CalamaresAddBrandingSubdirectory.cmake"
     DESTINATION
         "${CMAKE_INSTALL_CMAKEDIR}"
 )
@@ -217,12 +334,14 @@ install(
         "${CMAKE_INSTALL_CMAKEDIR}"
 )
 
-install(
-    FILES
-        settings.conf
-    DESTINATION
-        share/calamares
-)
+if( INSTALL_CONFIG )
+    install(
+        FILES
+            settings.conf
+        DESTINATION
+            share/calamares
+    )
+endif()
 
 install(
   FILES
@@ -236,6 +355,13 @@ install(
       calamares.desktop
   DESTINATION
       ${CMAKE_INSTALL_DATADIR}/applications
+)
+
+install(
+    FILES
+        man/calamares.8
+    DESTINATION
+        ${CMAKE_INSTALL_MANDIR}/man8/
 )
 
 # uninstall target

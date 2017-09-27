@@ -2,6 +2,7 @@
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
  *   Copyright 2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -83,6 +84,9 @@ PartitionIterator::operator!=( const PartitionIterator& other ) const
 PartitionIterator
 PartitionIterator::begin( Device* device )
 {
+    if ( !device )
+        return PartitionIterator( nullptr );
+    Q_ASSERT(device);
     PartitionTable* table = device->partitionTable();
     if ( !table )
         return PartitionIterator( nullptr );
@@ -105,6 +109,8 @@ PartitionIterator::begin( PartitionTable* table )
 PartitionIterator
 PartitionIterator::end( Device* device )
 {
+    if ( !device )
+        return PartitionIterator( nullptr );
     PartitionTable* table = device->partitionTable();
     if ( !table )
         return PartitionIterator( nullptr );

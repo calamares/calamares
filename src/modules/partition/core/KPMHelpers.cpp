@@ -23,9 +23,11 @@
 #include "core/PartitionIterator.h"
 
 // KPMcore
+#include <kpmcore/core/device.h>
 #include <kpmcore/core/partition.h>
 #include <kpmcore/fs/filesystemfactory.h>
 #include <kpmcore/backend/corebackendmanager.h>
+#include <kpmcore/fs/luks.h>
 
 #include <QDebug>
 
@@ -42,10 +44,7 @@ initKPMcore()
         return true;
 
     QByteArray backendName = qgetenv( "KPMCORE_BACKEND" );
-    if ( backendName.isEmpty() )
-        backendName = "pmlibpartedbackendplugin";
-
-    if ( !CoreBackendManager::self()->load( backendName ) )
+    if ( !CoreBackendManager::self()->load( backendName.isEmpty() ? CoreBackendManager::defaultBackendName() : backendName ) )
     {
         qWarning() << "Failed to load backend plugin" << backendName;
         return false;
@@ -116,7 +115,11 @@ createNewPartition( PartitionNode* parent,
                     qint64 lastSector,
                     PartitionTable::Flags flags )
 {
-    FileSystem* fs = FileSystemFactory::create( fsType, firstSector, lastSector );
+    FileSystem* fs = FileSystemFactory::create( fsType, firstSector, lastSector
+#ifdef WITH_KPMCORE22
+                                                ,device.logicalSize()
+#endif
+    );
     return new Partition(
                parent,
                device,
@@ -133,12 +136,59 @@ createNewPartition( PartitionNode* parent,
 
 
 Partition*
+createNewEncryptedPartition( PartitionNode* parent,
+                             const Device& device,
+                             const PartitionRole& role,
+                             FileSystem::Type fsType,
+                             qint64 firstSector,
+                             qint64 lastSector,
+                             const QString& passphrase,
+                             PartitionTable::Flags flags )
+{
+    PartitionRole::Roles newRoles = role.roles();
+    if ( !role.has( PartitionRole::Luks ) )
+        newRoles |= PartitionRole::Luks;
+
+    FS::luks* fs = dynamic_cast< FS::luks* >(
+                           FileSystemFactory::create( FileSystem::Luks,
+                                                      firstSector,
+                                                      lastSector
+#ifdef WITH_KPMCORE22
+                                                     ,device.logicalSize()
+#endif
+                                                      ) );
+    if ( !fs )
+    {
+        qDebug() << "ERROR: cannot create LUKS filesystem. Giving up.";
+        return nullptr;
+    }
+
+    fs->createInnerFileSystem( fsType );
+    fs->setPassphrase( passphrase );
+    Partition* p = new Partition( parent,
+                                  device,
+                                  PartitionRole( newRoles ),
+                                  fs, fs->firstSector(), fs->lastSector(),
+                                  QString() /* path */,
+                                  PartitionTable::FlagNone /* availableFlags */,
+                                  QString() /* mountPoint */,
+                                  false /* mounted */,
+                                  flags /* activeFlags */,
+                                  Partition::StateNew );
+    return p;
+}
+
+
+Partition*
 clonePartition( Device* device, Partition* partition )
 {
     FileSystem* fs = FileSystemFactory::create(
                          partition->fileSystem().type(),
                          partition->firstSector(),
                          partition->lastSector()
+#ifdef WITH_KPMCORE22
+                        ,device->logicalSize()
+#endif
                      );
     return new Partition( partition->parent(),
                           *device,
@@ -163,7 +213,7 @@ prettyNameForFileSystemType( FileSystem::Type t )
     case FileSystem::Unformatted:
         return QObject::tr( "unformatted" );
     case FileSystem::LinuxSwap:
-        return "swap";
+        return QObject::tr( "swap" );
     case FileSystem::Fat16:
     case FileSystem::Fat32:
     case FileSystem::Ntfs:

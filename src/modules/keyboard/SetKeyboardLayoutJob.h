@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2016, Teo Mrnjavac <teo@kde.org>
  *   Copyright 2014, Kevin Kofler <kevin.kofler@chello.at>
  *
  *   Calamares is free software: you can redistribute it and/or modify
@@ -31,7 +31,8 @@ public:
                           const QString& layout,
                           const QString& variant,
                           const QString& xOrgConfFileName,
-                          const QString& convertedKeymapPath );
+                          const QString& convertedKeymapPath,
+                          bool writeEtcDefaultKeyboard );
 
     QString prettyName() const override;
     Calamares::JobResult exec() override;
@@ -41,13 +42,15 @@ private:
     QString findLegacyKeymap() const;
     bool writeVConsoleData( const QString& vconsoleConfPath,
                             const QString& convertedKeymapPath ) const;
-    bool writeX11Data( const QString& keyboardConfPath  ) const;
+    bool writeX11Data( const QString& keyboardConfPath ) const;
+    bool writeDefaultKeyboardData( const QString& defaultKeyboardPath ) const;
 
     QString m_model;
     QString m_layout;
     QString m_variant;
     QString m_xOrgConfFileName;
     QString m_convertedKeymapPath;
+    const bool m_writeEtcDefaultKeyboard;
 };
 
 #endif /* SETKEYBOARDLAYOUTJOB_H */

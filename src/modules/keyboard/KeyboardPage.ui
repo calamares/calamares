@@ -87,7 +87,7 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset>
+        <iconset resource="keyboard.qrc">
          <normaloff>:/images/restore.png</normaloff>:/images/restore.png</iconset>
        </property>
        <property name="iconSize">
@@ -106,7 +106,7 @@
       <number>9</number>
      </property>
      <item>
-      <widget class="QListWidget" name="listLayout"/>
+      <widget class="QListView" name="listLayout"/>
      </item>
      <item>
       <widget class="QListWidget" name="listVariant"/>
@@ -141,6 +141,8 @@
   <tabstop>LE_TestKeyboard</tabstop>
   <tabstop>buttonRestore</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="keyboard.qrc"/>
+ </resources>
  <connections/>
 </ui>

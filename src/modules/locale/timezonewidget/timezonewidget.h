@@ -48,7 +48,7 @@ class TimeZoneWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit TimeZoneWidget(QWidget* parent = 0);
+    explicit TimeZoneWidget(QWidget* parent = nullptr);
 
     LocaleGlobal::Location getCurrentLocation() { return currentLocation; }
     void setCurrentLocation(QString region, QString zone);

@@ -1,8 +1,8 @@
-find_package(ECM 0.0.13 REQUIRED NO_MODULE)
+find_package(ECM 5.10.0 REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${CMAKE_MODULE_PATH})
 
-include(KDEInstallDirs)       # this seems to be necessary for KF5::CoreAddons
-include(GenerateExportHeader) # this too, because KDE frameworks always want omnomnom more stuff
+include(KDEInstallDirs)
+include(GenerateExportHeader)
 
 find_package( KF5 REQUIRED Service Parts )
 
@@ -19,7 +19,7 @@ calamares_add_plugin( interactiveterminal
     SOURCES
         InteractiveTerminalViewStep.cpp
         InteractiveTerminalPage.cpp
-    LINK_LIBRARIES
+    LINK_PRIVATE_LIBRARIES
         calamaresui
         KF5::Service
         KF5::Parts

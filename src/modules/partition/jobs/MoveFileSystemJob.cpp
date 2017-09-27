@@ -145,8 +145,12 @@ MoveFileSystemJob::copyBlocks( Report& report, CopyTargetDevice& target, CopySou
 
     qint64 blocksCopied = 0;
 
-    void* buffer = malloc( blockSize * source.sectorSize() );
-    int percent = 0;
+    Q_ASSERT( blockSize > 0 );
+    Q_ASSERT( source.sectorSize() > 0 );
+    Q_ASSERT( blockSize * source.sectorSize() > 0 );
+
+    void* buffer = malloc( size_t( blockSize * source.sectorSize() ) );
+    qint64 percent = 0;
 
     while ( blocksCopied < blocksToCopy )
     {
@@ -161,7 +165,7 @@ MoveFileSystemJob::copyBlocks( Report& report, CopyTargetDevice& target, CopySou
         if ( ++blocksCopied * 100 / blocksToCopy != percent )
         {
             percent = blocksCopied * 100 / blocksToCopy;
-            progress( qreal( percent ) / 100. );
+            progress( percent / 100. );
         }
     }
 

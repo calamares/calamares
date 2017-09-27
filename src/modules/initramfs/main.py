@@ -4,6 +4,7 @@
 # === This file is part of Calamares - <http://github.com/calamares> ===
 #
 #   Copyright 2014, Philip Müller <philm@manjaro.org>
+#   Copyright 2017, Alf Gaida <agaida@siduction.org>
 #
 #   Calamares is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -26,7 +27,11 @@ def run():
 
     :return:
     """
-    return_code = target_env_call(["update-initramfs", "-k", "all", "-u"])
+    return_code = target_env_call(["update-initramfs", "-k", "all", "-c",
+                                   "-t"])
 
     if return_code != 0:
-        return "Failed to run update-initramfs on the target", "The exit code was {}".format(return_code)
+        return (
+            "Failed to run update-initramfs on the target",
+            "The exit code was {}".format(return_code)
+            )

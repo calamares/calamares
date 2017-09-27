@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -40,7 +41,7 @@ LCLocaleDialog::LCLocaleDialog( const QString& guessedLCLocale,
     upperText->setText( tr( "The system locale setting affects the language and character "
                             "set for some command line user interface elements.<br/>"
                             "The current setting is <strong>%1</strong>." )
-                            .arg( guessedLCLocale ) );
+                        .arg( guessedLCLocale ) );
     mainLayout->addWidget( upperText );
     setMinimumWidth( upperText->fontMetrics().height() * 24 );
 
@@ -60,8 +61,11 @@ LCLocaleDialog::LCLocaleDialog( const QString& guessedLCLocale,
     }
 
     QDialogButtonBox* dbb = new QDialogButtonBox( QDialogButtonBox::Ok | QDialogButtonBox::Cancel,
-                                                  Qt::Horizontal,
-                                                  this );
+            Qt::Horizontal,
+            this );
+    dbb->button( QDialogButtonBox::Cancel )->setText( tr( "&Cancel" ) );
+    dbb->button( QDialogButtonBox::Ok )->setText( tr( "&OK" ) );
+
     mainLayout->addWidget( dbb );
 
     connect( dbb->button( QDialogButtonBox::Ok ), &QPushButton::clicked,
@@ -69,6 +73,8 @@ LCLocaleDialog::LCLocaleDialog( const QString& guessedLCLocale,
     connect( dbb->button( QDialogButtonBox::Cancel ), &QPushButton::clicked,
              this, &QDialog::reject );
 
+    connect( m_localesWidget, &QListWidget::itemDoubleClicked,
+             this, &QDialog::accept );
     connect( m_localesWidget, &QListWidget::itemSelectionChanged,
              [this, dbb]()
     {
@@ -80,9 +86,7 @@ LCLocaleDialog::LCLocaleDialog( const QString& guessedLCLocale,
     } );
 
     if ( selected > -1 )
-    {
         m_localesWidget->setCurrentRow( selected );
-    }
 }
 
 

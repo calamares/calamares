@@ -1,0 +1,22 @@
+language:
+  - cpp
+  - python
+
+python:
+  - 3.5
+
+sudo: required
+
+services:
+  - docker
+
+notifications:
+  irc:
+    - "chat.freenode.net#calamares"
+
+install:
+  - docker build -t calamares .
+
+script:
+  - docker run -v $PWD:/src --tmpfs /build:rw,size=65536k calamares bash -lc "cd /build && cmake -DWEBVIEW_FORCE_WEBKIT=1 -DKDE_INSTALL_USE_QT_SYS_PATHS=ON /src && make -j2 && make install DESTDIR=/build/INSTALL_ROOT"
+

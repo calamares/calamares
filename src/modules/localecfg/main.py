@@ -5,6 +5,7 @@
 #
 #   Copyright 2014, Anke Boersma <demm@kaosx.us>
 #   Copyright 2015, Philip Müller <philm@manjaro.org>
+#   Copyright 2016, Teo Mrnjavac <teo@kde.org>
 #
 #   Calamares is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -27,11 +28,22 @@ import libcalamares
 
 def run():
     """ Create locale """
-    us = '#en_US'
-    locale = libcalamares.globalstorage.value("lcLocale")
+    en_us_locale = 'en_US.UTF-8'
+    locale_conf = libcalamares.globalstorage.value("localeConf")
 
-    if not locale:
-        locale = 'en_US.UTF-8 UTF-8'
+    if not locale_conf:
+        locale_conf = {
+            'LANG': 'en_US.UTF-8',
+            'LC_NUMERIC': 'en_US.UTF-8',
+            'LC_TIME': 'en_US.UTF-8',
+            'LC_MONETARY': 'en_US.UTF-8',
+            'LC_PAPER': 'en_US.UTF-8',
+            'LC_NAME': 'en_US.UTF-8',
+            'LC_ADDRESS': 'en_US.UTF-8',
+            'LC_TELEPHONE': 'en_US.UTF-8',
+            'LC_MEASUREMENT': 'en_US.UTF-8',
+            'LC_IDENTIFICATION': 'en_US.UTF-8'
+        }
 
     install_path = libcalamares.globalstorage.value("rootMountPoint")
 
@@ -47,26 +59,37 @@ def run():
         with open("{!s}/etc/locale.gen".format(install_path), "r") as gen:
             text = gen.readlines()
 
-        # always enable en_US
+        # we want unique values, so locale_values should have 1 or 2 items
+        locale_values = set(locale_conf.values())
+
         with open("{!s}/etc/locale.gen".format(install_path), "w") as gen:
             for line in text:
-                if us in line and line[0] == "#":
+                # always enable en_US
+                if en_us_locale in line and line[0] == "#":
                     # uncomment line
-                    line = line[1:]
+                    line = line[1:].lstrip()
 
-                if locale in line and line[0] == "#":
-                    # uncomment line
-                    line = line[1:]
+                for locale_value in locale_values:
+                    if locale_value in line and line[0] == "#":
+                        # uncomment line
+                        line = line[1:].lstrip()
 
                 gen.write(line)
 
         libcalamares.utils.target_env_call(['locale-gen'])
         print('locale.gen done')
 
+    # write /etc/locale.conf
     locale_conf_path = os.path.join(install_path, "etc/locale.conf")
+    with open(locale_conf_path, "w") as lcf:
+        for k, v in locale_conf.items():
+            lcf.write("{!s}={!s}\n".format(k, v))
 
-    with open(locale_conf_path, "w") as locale_conf:
-        locale_split = locale.split(' ')[0]
-        locale_conf.write("LANG={!s}\n".format(locale_split))
+    # write /etc/default/locale if /etc/default exists and is a dir
+    etc_default_path = os.path.join(install_path, "etc/default")
+    if os.path.isdir(etc_default_path):
+        with open(os.path.join(etc_default_path, "locale"), "w") as edl:
+            for k, v in locale_conf.items():
+                edl.write("{!s}={!s}\n".format(k, v))
 
     return None

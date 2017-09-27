@@ -21,6 +21,12 @@
 namespace Calamares
 {
 
+JobResult::JobResult( JobResult&& rhs ) :
+      m_ok( rhs.m_ok )
+    , m_message( std::move( rhs.m_message ) )
+    , m_details( std::move( rhs.m_details ) )
+{
+}
 
 JobResult::operator bool() const
 {
@@ -54,7 +60,6 @@ JobResult::setDetails( const QString& details )
 {
     m_details = details;
 }
-
 
 JobResult
 JobResult::ok()

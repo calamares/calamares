@@ -4,6 +4,7 @@
 # === This file is part of Calamares - <http://github.com/calamares> ===
 #
 #   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+#   Copyright 2017, Adriaan de Groot <groot@kde.org>
 #
 #   Calamares is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -68,7 +69,9 @@ def main():
     parser.add_argument("globalstorage_yaml", nargs="?",
                         help="A yaml file to initialize GlobalStorage.")
     parser.add_argument("configuration_yaml", nargs="?",
-                        help="A yaml file to initialize the configuration dict.")
+                        help="A yaml file to initialize the Job.")
+    parser.add_argument("--lang", "-l", nargs="?", default=None,
+                        help="Set translation language.")
     args = parser.parse_args()
 
     print("Testing module in: " + args.moduledir)
@@ -81,7 +84,12 @@ def main():
         print("Only Python jobs can be tested.")
         return 1
 
-    libcalamares.globalstorage = libcalamares.GlobalStorage()
+    # Parameter None creates a new, empty GlobalStorage
+    libcalamares.globalstorage = libcalamares.GlobalStorage(None)
+    libcalamares.globalstorage.insert("testing", True)
+    if args.lang:
+        libcalamares.globalstorage.insert("locale", args.lang)
+        libcalamares.globalstorage.insert("localeConf", {"LANG": args.lang})
 
     # if a file for simulating globalStorage contents is provided, load it
     if args.globalstorage_yaml:

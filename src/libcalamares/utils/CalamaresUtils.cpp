@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2013-2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2013-2016, Teo Mrnjavac <teo@kde.org>
  *
  *   Originally from Tomahawk, portions:
  *   Copyright 2010-2011, Christian Muehlhaeuser <muesli@tomahawk-player.org>
@@ -47,7 +47,7 @@ static bool s_isAppDataDirOverridden = false;
 
 static QTranslator* s_brandingTranslator = nullptr;
 static QTranslator* s_translator = nullptr;
-static QTranslator* s_qtTranslator = nullptr;
+static QString s_translatorLocaleName;
 
 
 static bool
@@ -206,24 +206,14 @@ installTranslator( const QLocale& locale,
     QCoreApplication::installTranslator( translator );
     s_translator = translator;
 
-    // Qt translations
-    translator = new QTranslator( parent );
-    if ( translator->load( QString( ":/lang/qt_" ) + localeName ) )
-    {
-        qDebug() << "Translation: Qt: Using system locale:" << localeName;
-    }
-    else
-    {
-        qDebug() << "Translation: Qt: Using default locale, system locale one not found:" << localeName;
-    }
+    s_translatorLocaleName = localeName;
+}
 
-    if ( s_qtTranslator )
-    {
-        QCoreApplication::removeTranslator( s_qtTranslator );
-        delete s_qtTranslator;
-    }
-    QCoreApplication::installTranslator( translator );
-    s_qtTranslator = translator;
+
+QString
+translatorLocaleName()
+{
+    return s_translatorLocaleName;
 }
 
 
@@ -273,7 +263,7 @@ removeDiacritics( const QString& string )
     };
 
     QString output;
-    foreach ( QChar c, string )
+    for ( const QChar &c : string )
     {
         int i = diacriticLetters.indexOf( c );
         if ( i < 0 )
@@ -332,7 +322,7 @@ obscure( const QString& string )
 void
 crash()
 {
-    volatile int* a = (int*)(NULL);
+    volatile int* a = nullptr;
     *a = 1;
 }
 

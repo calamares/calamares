@@ -112,7 +112,7 @@ process_device(PedDevice *dev)
 int
 check_big_enough(long long required_space)
 {
-    PedDevice *dev;
+    PedDevice *dev = NULL;
     ped_exception_fetch_all();
     ped_device_probe_all();
 
@@ -126,7 +126,15 @@ check_big_enough(long long required_space)
             break;
         }
     }
-    ped_device_free_all();
+
+    // We would free the devices to release allocated memory,
+    // but other modules might be using partman use well,
+    // and they can hold pointers to libparted structures in
+    // other threads.
+    //
+    // So prefer to leak memory, instead.
+    //
+    // ped_device_free_all();
 
     return big_enough;
 }

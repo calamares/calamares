@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -26,16 +27,16 @@ class ClickableLabel : public QLabel
 {
     Q_OBJECT
 public:
-    explicit ClickableLabel( QWidget* parent = nullptr, Qt::WindowFlags f = 0 );
-    explicit ClickableLabel( const QString& text, QWidget* parent = nullptr, Qt::WindowFlags f = 0 );
-    virtual ~ClickableLabel();
+    explicit ClickableLabel( QWidget* parent = nullptr );
+    explicit ClickableLabel( const QString& text, QWidget* parent = nullptr );
+    virtual ~ClickableLabel() override;
 
 signals:
     void clicked();
 
 protected:
-    virtual void mousePressEvent( QMouseEvent* event );
-    virtual void mouseReleaseEvent( QMouseEvent* event );
+    virtual void mousePressEvent( QMouseEvent* event ) override;
+    virtual void mouseReleaseEvent( QMouseEvent* event ) override;
 
 private:
     QTime m_time;

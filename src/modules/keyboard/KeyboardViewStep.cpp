@@ -29,6 +29,7 @@ KeyboardViewStep::KeyboardViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
     , m_widget( new KeyboardPage() )
     , m_nextEnabled( false )
+    , m_writeEtcDefaultKeyboard( true )
 {
     m_widget->init();
     m_nextEnabled = true;
@@ -123,7 +124,9 @@ void
 KeyboardViewStep::onLeave()
 {
     m_widget->finalize();
-    m_jobs = m_widget->createJobs( m_xOrgConfFileName, m_convertedKeymapPath );
+    m_jobs = m_widget->createJobs( m_xOrgConfFileName,
+                                   m_convertedKeymapPath,
+                                   m_writeEtcDefaultKeyboard );
     m_prettyStatus = m_widget->prettyStatus();
 }
 
@@ -131,9 +134,6 @@ KeyboardViewStep::onLeave()
 void
 KeyboardViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
-    // Save the settings to the global settings for the SetKeyboardLayoutJob to use
-    Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
-
     if ( configurationMap.contains( "xOrgConfFileName" ) &&
          configurationMap.value( "xOrgConfFileName" ).type() == QVariant::String &&
          !configurationMap.value( "xOrgConfFileName" ).toString().isEmpty() )
@@ -156,5 +156,15 @@ KeyboardViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     else
     {
         m_convertedKeymapPath = QString();
+    }
+
+    if ( configurationMap.contains( "writeEtcDefaultKeyboard" ) &&
+         configurationMap.value( "writeEtcDefaultKeyboard" ).type() == QVariant::Bool )
+    {
+        m_writeEtcDefaultKeyboard = configurationMap.value( "writeEtcDefaultKeyboard" ).toBool();
+    }
+    else
+    {
+        m_writeEtcDefaultKeyboard = true;
     }
 }

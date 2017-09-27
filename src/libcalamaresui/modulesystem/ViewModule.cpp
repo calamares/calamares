@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -39,7 +40,7 @@ ViewModule::type() const
 Module::Interface
 ViewModule::interface() const
 {
-    return QtPlugin;
+    return QtPluginInterface;
 }
 
 
@@ -51,25 +52,26 @@ ViewModule::loadSelf()
         PluginFactory* pf = qobject_cast< PluginFactory* >( m_loader->instance() );
         if ( !pf )
         {
-            cDebug() << Q_FUNC_INFO << m_loader->errorString();
+            cDebug() << Q_FUNC_INFO << "No factory:" << m_loader->errorString();
             return;
         }
 
         m_viewStep = pf->create< Calamares::ViewStep >();
         if ( !m_viewStep )
         {
-            cDebug() << Q_FUNC_INFO << m_loader->errorString();
+            cDebug() << Q_FUNC_INFO << "create() failed" << m_loader->errorString();
             return;
         }
-        cDebug() << "ViewModule loading self for instance" << instanceKey()
-                 << "\nViewModule at address" << this
-                 << "\nCalamares::PluginFactory at address" << pf
-                 << "\nViewStep at address" << m_viewStep;
+//        cDebug() << "ViewModule loading self for instance" << instanceKey()
+//                 << "\nViewModule at address" << this
+//                 << "\nCalamares::PluginFactory at address" << pf
+//                 << "\nViewStep at address" << m_viewStep;
 
         m_viewStep->setModuleInstanceKey( instanceKey() );
         m_viewStep->setConfigurationMap( m_configurationMap );
         ViewManager::instance()->addViewStep( m_viewStep );
         m_loaded = true;
+        cDebug() << "ViewModule" << instanceKey() << "loading complete.";
     }
 }
 
@@ -95,10 +97,10 @@ ViewModule::initFrom( const QVariantMap& moduleDescriptor )
     // If a load path is not specified, we look for a plugin to load in the directory.
     if ( load.isEmpty() || !QLibrary::isLibrary( load ) )
     {
-        QStringList ls = directory.entryList( QStringList{ "*.so" } );
+        const QStringList ls = directory.entryList( QStringList{ "*.so" } );
         if ( !ls.isEmpty() )
         {
-            foreach ( QString entry, ls )
+            for ( QString entry : ls )
             {
                 entry = directory.absoluteFilePath( entry );
                 if ( QLibrary::isLibrary( entry ) )

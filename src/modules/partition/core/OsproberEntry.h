@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2016, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -21,12 +21,27 @@
 
 #include <QStringList>
 
+struct FstabEntry
+{
+    QString partitionNode;
+    QString mountPoint;
+    QString fsType;
+    QString options;
+    int dump;
+    int pass;
+};
+
+typedef QList< FstabEntry > FstabEntryList;
+
 struct OsproberEntry
 {
     QString prettyName;
     QString path;
+    QString uuid;
     bool canBeResized;
     QStringList line;
+    FstabEntryList fstab;
+    QString homePath;
 };
 
 typedef QList< OsproberEntry > OsproberEntryList;

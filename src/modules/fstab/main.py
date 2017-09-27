@@ -4,6 +4,8 @@
 # === This file is part of Calamares - <http://github.com/calamares> ===
 #
 #   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
+#   Copyright 2016, Teo Mrnjavac <teo@kde.org>
+#   Copyright 2017, Alf Gaida <agaida@siduction.org>
 #
 #   Calamares is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -20,17 +22,32 @@
 
 import os
 import re
+import subprocess
 
 import libcalamares
 
 
-HEADER = """# /etc/fstab: static file system information.
+FSTAB_HEADER = """# /etc/fstab: static file system information.
 #
 # Use 'blkid' to print the universally unique identifier for a device; this may
 # be used with UUID= as a more robust way to name devices that works even if
 # disks are added and removed. See fstab(5).
 #
-# <file system>                           <mount point>  <type>  <options>  <dump>  <pass>"""
+# <file system>             <mount point>  <type>  <options>  <dump>  <pass>"""
+
+CRYPTTAB_HEADER = """# /etc/crypttab: mappings for encrypted partitions.
+#
+# Each mapped device will be created in /dev/mapper, so your /etc/fstab
+# should use the /dev/mapper/<name> paths for encrypted devices.
+#
+# See crypttab(5) for the supported syntax.
+#
+# NOTE: Do not list your root (/) partition here, it must be set up
+#       beforehand by the initramfs (/etc/mkinitcpio.conf). The same applies
+#       to encrypted swap, which should be set up with mkinitcpio-openswap
+#       for resume support.
+#
+# <name>               <device>                         <password> <options>"""
 
 # Turn Parted filesystem names into fstab names
 FS_MAP = {
@@ -61,8 +78,8 @@ def is_ssd_disk(disk_name):
         # Should not happen unless sysfs changes, but better safe than sorry
         return False
 
-    with open(filename) as f:
-        return f.read() == "0\n"
+    with open(filename) as sysfile:
+        return sysfile.read() == "0\n"
 
 
 def disk_name_for_partition(partition):
@@ -73,7 +90,7 @@ def disk_name_for_partition(partition):
     """
     name = os.path.basename(partition["device"])
 
-    if name.startswith("/dev/mmcblk"):
+    if name.startswith("/dev/mmcblk") or name.startswith("/dev/nvme"):
         return re.sub("p[0-9]+$", "", name)
 
     return re.sub("[0-9]+$", "", name)
@@ -87,11 +104,13 @@ class FstabGenerator(object):
     :param mount_options:
     :param ssd_extra_mount_options:
     """
-    def __init__(self, partitions, root_mount_point, mount_options, ssd_extra_mount_options):
+    def __init__(self, partitions, root_mount_point, mount_options,
+                 ssd_extra_mount_options, crypttab_options):
         self.partitions = partitions
         self.root_mount_point = root_mount_point
         self.mount_options = mount_options
         self.ssd_extra_mount_options = ssd_extra_mount_options
+        self.crypttab_options = crypttab_options
         self.ssd_disks = set()
         self.root_is_ssd = False
 
@@ -102,6 +121,7 @@ class FstabGenerator(object):
         """
         self.find_ssd_disks()
         self.generate_fstab()
+        self.generate_crypttab()
         self.create_mount_points()
 
         return None
@@ -111,19 +131,86 @@ class FstabGenerator(object):
         disks = {disk_name_for_partition(x) for x in self.partitions}
         self.ssd_disks = {x for x in disks if is_ssd_disk(x)}
 
+    def generate_crypttab(self):
+        """ Create crypttab. """
+        mkdir_p(os.path.join(self.root_mount_point, "etc"))
+        crypttab_path = os.path.join(self.root_mount_point, "etc", "crypttab")
+
+        with open(crypttab_path, "w") as crypttab_file:
+            print(CRYPTTAB_HEADER, file=crypttab_file)
+
+            for partition in self.partitions:
+                dct = self.generate_crypttab_line_info(partition)
+
+                if dct:
+                    self.print_crypttab_line(dct, file=crypttab_file)
+
+    def generate_crypttab_line_info(self, partition):
+        """ Generates information for each crypttab entry. """
+        if "luksMapperName" not in partition or "luksUuid" not in partition:
+            return None
+
+        mapper_name = partition["luksMapperName"]
+        mount_point = partition["mountPoint"]
+        luks_uuid = partition["luksUuid"]
+        if not mapper_name or not luks_uuid:
+            return None
+
+        return dict(
+            name=mapper_name,
+            device="UUID=" + luks_uuid,
+            password="/crypto_keyfile.bin",
+            options=self.crypttab_options,
+        )
+
+    def print_crypttab_line(self, dct, file=None):
+        """ Prints line to '/etc/crypttab' file. """
+        line = "{:21} {:<45} {} {}".format(dct["name"],
+                                           dct["device"],
+                                           dct["password"],
+                                           dct["options"],
+                                           )
+
+        print(line, file=file)
+
     def generate_fstab(self):
         """ Create fstab. """
         mkdir_p(os.path.join(self.root_mount_point, "etc"))
         fstab_path = os.path.join(self.root_mount_point, "etc", "fstab")
 
-        with open(fstab_path, "w") as fl:
-            print(HEADER, file=fl)
+        with open(fstab_path, "w") as fstab_file:
+            print(FSTAB_HEADER, file=fstab_file)
 
             for partition in self.partitions:
-                dct = self.generate_fstab_line_info(partition)
+                # Special treatment for a btrfs root with @ and @home
+                # subvolumes
+                if (partition["fs"] == "btrfs"
+                   and partition["mountPoint"] == "/"):
+                    output = subprocess.check_output(['btrfs',
+                                                      'subvolume',
+                                                      'list',
+                                                      self.root_mount_point])
+                    output_lines = output.splitlines()
+                    for line in output_lines:
+                        if line.endswith(b'path @'):
+                            root_entry = partition
+                            root_entry["subvol"] = "@"
+                            dct = self.generate_fstab_line_info(root_entry)
+                            if dct:
+                                self.print_fstab_line(dct, file=fstab_file)
+                        elif line.endswith(b'path @home'):
+                            home_entry = partition
+                            home_entry["mountPoint"] = "/home"
+                            home_entry["subvol"] = "@home"
+                            dct = self.generate_fstab_line_info(home_entry)
+                            if dct:
+                                self.print_fstab_line(dct, file=fstab_file)
 
-                if dct:
-                    self.print_fstab_line(dct, file=fl)
+                else:
+                    dct = self.generate_fstab_line_info(partition)
+
+                    if dct:
+                        self.print_fstab_line(dct, file=fstab_file)
 
             if self.root_is_ssd:
                 # Mount /tmp on a tmpfs
@@ -133,26 +220,26 @@ class FstabGenerator(object):
                            options="defaults,noatime,mode=1777",
                            check=0,
                            )
-                self.print_fstab_line(dct, file=fl)
+                self.print_fstab_line(dct, file=fstab_file)
 
     def generate_fstab_line_info(self, partition):
-        """ Generates information for each fstab entry.
-
-        :param partition:
-        :return:
-        """
-        fs = partition["fs"]
+        """ Generates information for each fstab entry. """
+        filesystem = partition["fs"].lower()
+        has_luks = "luksMapperName" in partition
         mount_point = partition["mountPoint"]
         disk_name = disk_name_for_partition(partition)
         is_ssd = disk_name in self.ssd_disks
-        fs = FS_MAP.get(fs, fs)
+        filesystem = FS_MAP.get(filesystem, filesystem)
 
-        if not mount_point and not fs == "swap":
+        if not mount_point and not filesystem == "swap":
             return None
+        if not mount_point:
+            mount_point = "swap"
 
-        options = self.mount_options.get(fs, self.mount_options["default"])
+        options = self.mount_options.get(filesystem,
+                                         self.mount_options["default"])
         if is_ssd:
-            extra = self.ssd_extra_mount_options.get(fs)
+            extra = self.ssd_extra_mount_options.get(filesystem)
 
             if extra:
                 options += "," + extra
@@ -167,25 +254,29 @@ class FstabGenerator(object):
         if mount_point == "/":
             self.root_is_ssd = is_ssd
 
-        return dict(device="UUID=" + partition["uuid"],
-                    mount_point=mount_point or "swap",
-                    fs=fs,
+        if filesystem == "btrfs" and "subvol" in partition:
+            options="subvol={},".format(partition["subvol"]) + options
+
+        if has_luks:
+            device="/dev/mapper/" + partition["luksMapperName"]
+        else:
+            device="UUID=" + partition["uuid"]
+
+        return dict(device=device,
+                    mount_point=mount_point,
+                    fs=filesystem,
                     options=options,
                     check=check,
                     )
 
     def print_fstab_line(self, dct, file=None):
-        """ Prints line to '/etc/fstab' file.
-
-        :param dct:
-        :param file:
-        """
-        line = "{:41} {:<14} {:<7} {:<10} 0       {}".format(dct["device"],
-                                                             dct["mount_point"],
-                                                             dct["fs"],
-                                                             dct["options"],
-                                                             dct["check"],
-                                                             )
+        """ Prints line to '/etc/fstab' file. """
+        line = "{:41} {:<14} {:<7} {:<10} 0 {}".format(dct["device"],
+                                                       dct["mount_point"],
+                                                       dct["fs"],
+                                                       dct["options"],
+                                                       dct["check"],
+                                                       )
         print(line, file=file)
 
     def create_mount_points(self):
@@ -200,12 +291,17 @@ def run():
 
     :return:
     """
-    gs = libcalamares.globalstorage
+    global_storage = libcalamares.globalstorage
     conf = libcalamares.job.configuration
-    partitions = gs.value("partitions")
-    root_mount_point = gs.value("rootMountPoint")
+    partitions = global_storage.value("partitions")
+    root_mount_point = global_storage.value("rootMountPoint")
     mount_options = conf["mountOptions"]
     ssd_extra_mount_options = conf.get("ssdExtraMountOptions", {})
-    generator = FstabGenerator(partitions, root_mount_point, mount_options, ssd_extra_mount_options)
+    crypttab_options = conf.get("crypttabOptions", "luks")
+    generator = FstabGenerator(partitions,
+                               root_mount_point,
+                               mount_options,
+                               ssd_extra_mount_options,
+                               crypttab_options)
 
     return generator.run()

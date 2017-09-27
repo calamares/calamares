@@ -28,7 +28,8 @@
 #include <boost/python/list.hpp>
 #include <boost/python/object.hpp>
 
-namespace CalamaresPython {
+namespace CalamaresPython
+{
 
 boost::python::object   variantToPyObject( const QVariant& variant );
 QVariant                variantFromPyObject( const boost::python::object& pyObject );
@@ -38,6 +39,9 @@ QVariantList            variantListFromPyList( const boost::python::list& pyList
 
 boost::python::dict     variantMapToPyDict( const QVariantMap& variantMap );
 QVariantMap             variantMapFromPyDict( const boost::python::dict& pyDict );
+
+boost::python::dict     variantHashToPyDict( const QVariantHash& variantHash );
+QVariantHash            variantHashFromPyDict( const boost::python::dict& pyDict );
 
 
 class Helper : public QObject

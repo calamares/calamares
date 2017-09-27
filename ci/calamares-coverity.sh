@@ -20,18 +20,18 @@ make DESTDIR="$WORKSPACE/prefix" install
 
 cd "$WORKSPACE"
 
-wget https://scan.coverity.com/download/linux-64 --no-check-certificate \
+wget https://scan.coverity.com/download/cxx/linux64 --no-check-certificate \
      --post-data "token=ll90T04noQ4cORJx_zczKA&project=calamares%2Fcalamares" \
-     -O coverity_tool.tgz
+     -O coverity_tool.tar.gz
 mkdir "$WORKSPACE/coveritytool"
-tar xvf coverity_tool.tgz -C "$WORKSPACE/coveritytool" --strip-components 1
+tar xvf coverity_tool.tar.gz -C "$WORKSPACE/coveritytool" --strip-components 2
 export PATH="$WORKSPACE/coveritytool/bin:$PATH"
 
 rm -Rf "$WORKSPACE/build"
 mkdir "$WORKSPACE/build"
 cd "$WORKSPACE/build"
 
-CMAKE_PREFIX_PATH="$WORKSPACE/prefix/usr" cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr ..
+CMAKE_PREFIX_PATH="$WORKSPACE/prefix/usr" cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr -DWEBVIEW_FORCE_WEBKIT=1 ..
 nice -n 18 cov-build --dir cov-int make -j2
 
 tar caf calamares-ci.tar.xz cov-int

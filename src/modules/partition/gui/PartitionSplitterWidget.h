@@ -40,9 +40,10 @@ struct PartitionSplitterItem
     qint64 size;
     Status status;
 
-    QVector< PartitionSplitterItem > children;
+    using ChildVector = QVector< PartitionSplitterItem >;
+    ChildVector children;
 
-    static PartitionSplitterItem null() { return { QString(), QColor(), false, 0, Normal }; }
+    static PartitionSplitterItem null() { return { QString(), QColor(), false, 0, Normal, ChildVector() }; }
 
     bool isNull() const { return itemPath.isEmpty() && size == 0 && status == Normal; }
     operator bool() const { return !isNull(); }
@@ -59,8 +60,7 @@ public:
     void setSplitPartition( const QString& path,
                             qint64 minSize,
                             qint64 maxSize,
-                            qint64 preferredSize,
-                            const QString& newLabel );
+                            qint64 preferredSize );
 
     qint64 splitPartitionSize() const;
     qint64 newPartitionSize() const;

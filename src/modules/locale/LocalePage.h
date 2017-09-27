@@ -21,6 +21,8 @@
 
 #include "Typedefs.h"
 
+#include "LocaleConfiguration.h"
+
 #include <QWidget>
 
 class QComboBox;
@@ -43,14 +45,20 @@ public:
 
     QList< Calamares::job_ptr > createJobs();
 
-    QString lcLocale();
+    QMap< QString, QString > localesMap();
 
     void onActivate();
 
 private:
-    QString guessLCLocale();
-    QString prettyLCLocale( const QString& lcLocale );
+    LocaleConfiguration guessLocaleConfiguration() const;
+    QString prettyLCLocale( const QString& localesMap ) const;
+
+    // For the given locale config, return two strings describing
+    // the settings for language and numbers.
+    std::pair< QString, QString > prettyLocaleStatus( const LocaleConfiguration& ) const;
+
     void updateGlobalStorage();
+    void updateLocaleLabels();
 
     TimeZoneWidget* m_tzWidget;
     QComboBox* m_regionCombo;
@@ -60,8 +68,10 @@ private:
     QLabel* m_zoneLabel;
     QLabel* m_localeLabel;
     QPushButton* m_localeChangeButton;
+    QLabel* m_formatsLabel;
+    QPushButton* m_formatsChangeButton;
 
-    QString m_selectedLocale;
+    LocaleConfiguration m_selectedLocaleConfiguration;
 
     QStringList m_localeGenLines;
 

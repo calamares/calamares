@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -27,19 +28,40 @@
 namespace Calamares
 {
 
+/**
+ * @brief The ViewStep class is the base class for all view modules.
+ * A view module is a Calamares module which has at least one UI page (exposed as
+ * ViewStep::widget), and can optionally create Calamares jobs at runtime.
+ * As of early 2017, a view module can be implemented by deriving from ViewStep
+ * in C++ (as a Qt Plugin) or in Python with the PythonQt interface (which also
+ * mimics the ViewStep class).
+ *
+ * A ViewStep can describe itself in human-readable format for the SummaryPage
+ * (which shows all of the things which have been collected to be done in the
+ * next exec-step) through prettyStatus() and createSummaryWidget().
+ */
 class UIDLLEXPORT ViewStep : public QObject
 {
     Q_OBJECT
 public:
     explicit ViewStep( QObject* parent = nullptr );
-    virtual ~ViewStep();
+    virtual ~ViewStep() override;
 
     virtual QString prettyName() const = 0;
+
+    /**
+     * Optional. May return a non-empty string describing what this
+     * step is going to do (should be translated). This is also used
+     * in the summary page to describe what is going to be done.
+     * Return an empty string to provide no description.
+     */
     virtual QString prettyStatus() const;
 
     /**
-     * Optional. Should return a widget which will be inserted in the summary
-     * page. The caller takes ownership of the widget.
+     * Optional. May return a widget which will be inserted in the summary
+     * page. The caller takes ownership of the widget. Return nullptr to
+     * provide no widget. In general, this is only used for complicated
+     * steps where prettyStatus() is not sufficient.
      */
     virtual QWidget* createSummaryWidget() const;
 
@@ -72,13 +94,22 @@ public:
     virtual QList< job_ptr > jobs() const = 0;
 
     void setModuleInstanceKey( const QString& instanceKey );
-    QString moduleInstanceKey() const { return m_instanceKey; }
+    QString moduleInstanceKey() const
+    {
+        return m_instanceKey;
+    }
 
     virtual void setConfigurationMap( const QVariantMap& configurationMap );
 
 signals:
     void nextStatusChanged( bool status );
     void done();
+
+    /* Emitted when the viewstep thinks it needs more space than is currently
+     * available for display. @p enlarge is the requested additional space,
+     * e.g. 24px vertical. This request may be silently ignored.
+     */
+    void enlarge( QSize enlarge ) const;
 
 protected:
     QString m_instanceKey;
