@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-04 08:16-0400\n"
+"POT-Creation-Date: 2017-09-28 10:35-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Kristján Magnússon <kristjanmagnus@gmail.com>, 2017\n"
 "Language-Team: Icelandic (https://www.transifex.com/calamares/teams/20061/is/)\n"
@@ -17,18 +17,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: is\n"
 "Plural-Forms: nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);\n"
-
-#: src/modules/machineid/main.py:35
-msgid "Generate machine-id."
-msgstr "Generate machine-id."
-
-#: src/modules/dummypython/main.py:44
-msgid "Dummy python job."
-msgstr "Dummy python job."
-
-#: src/modules/dummypython/main.py:97
-msgid "Dummy python step {}"
-msgstr "Dummy python step {}"
 
 #: src/modules/packages/main.py:59
 #, python-format
@@ -52,3 +40,15 @@ msgstr[1] "Fjarlægi %(num)d pakka."
 #: src/modules/packages/main.py:68
 msgid "Install packages."
 msgstr "Setja upp pakka."
+
+#: src/modules/dummypython/main.py:44
+msgid "Dummy python job."
+msgstr "Dummy python job."
+
+#: src/modules/dummypython/main.py:97
+msgid "Dummy python step {}"
+msgstr "Dummy python step {}"
+
+#: src/modules/machineid/main.py:35
+msgid "Generate machine-id."
+msgstr "Generate machine-id."
