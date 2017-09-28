@@ -13,6 +13,8 @@ StartupNotify=true
 Categories=Qt;System;
 
 
+
+
 Name[ca]=Calamares
 Icon[ca]=calamares
 GenericName[ca]=Instal·lador de sistema
