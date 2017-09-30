@@ -8,20 +8,7 @@ find_package( KF5 REQUIRED CoreAddons )
 # These are needed because KPMcore links publicly against ConfigCore, I18n, IconThemes, KIOCore and Service
 find_package( KF5 REQUIRED Config I18n IconThemes KIO Service )
 
-find_package( KPMcore 3.1.50 QUIET )
-if ( ${KPMcore_FOUND} )
-    add_definitions(-DWITH_KPMCORE22)
-endif()
-find_package( KPMcore 3.0.3 REQUIRED )
-find_library( atasmart_LIB atasmart )
-find_library( blkid_LIB blkid )
-if( NOT atasmart_LIB )
-  message( WARNING "atasmart library not found." )
-endif()
-if( NOT blkid_LIB )
-  message( WARNING "blkid library not found." )
-endif()
-
+find_package( KPMcore 3.2 REQUIRED )
 
 include_directories( ${KPMCORE_INCLUDE_DIR} )
 include_directories( ${PROJECT_BINARY_DIR}/src/libcalamaresui )
