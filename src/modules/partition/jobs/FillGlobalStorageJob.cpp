@@ -85,7 +85,7 @@ mapForPartition( Partition* partition, const QString& uuid )
     map[ "device" ] = partition->partitionPath();
     map[ "mountPoint" ] = PartitionInfo::mountPoint( partition );
     map[ "fsName" ] = partition->fileSystem().name();
-    map[ "fs" ] = partition->fileSystem().name( QStringLiteral("C") );  // Untranslated
+    map[ "fs" ] = partition->fileSystem().name( { QStringLiteral("C") } );  // Untranslated
     if ( partition->fileSystem().type() == FileSystem::Luks &&
          dynamic_cast< FS::luks& >( partition->fileSystem() ).innerFS() )
         map[ "fs" ] = dynamic_cast< FS::luks& >( partition->fileSystem() ).innerFS()->name();
