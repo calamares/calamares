@@ -12,6 +12,6 @@ set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${CMAKE_MODULE_PATH})
 include(KDEInstallDirs)
 include(GenerateExportHeader)
 find_package( KF5 REQUIRED CoreAddons )
-find_package( KF5 REQUIRED Config I18n IconThemes KIO Service )
+find_package( KF5 REQUIRED Config I18n Service WidgetsAddons )
 
-find_package( KPMcore 3.0.3 REQUIRED )
+find_package( KPMcore 3.2 REQUIRED )

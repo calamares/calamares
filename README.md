@@ -27,8 +27,8 @@ Modules:
   * UPower
 * partition:
   * extra-cmake-modules
-  * KF5: KCoreAddons, KConfig, KI18n, KIconThemes, KIO, KService
-  * KPMcore >= 3.0.3
+  * KF5: KCoreAddons, KConfig, KI18n, KService, KWidgetsAddons
+  * KPMcore >= 3.2
 * bootloader:
   * systemd-boot or GRUB
 * unpackfs:
