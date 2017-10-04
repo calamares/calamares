@@ -265,11 +265,8 @@ else()
 endif()
 # Doesn't list mksquashfs as an optional dep, though, because it
 # hasn't been sent through the find_package() scheme.
-set_package_properties( mksquashfs PROPERTIES
-    DESCRIPTION "Create squashed filesystems"
-    URL "http://tldp.org/HOWTO/SquashFS-HOWTO/creatingandusing.html"
-    PURPOSE "Create example distro"
-    TYPE OPTIONAL
+add_feature_info( mksquashfs mksquashfs_FOUND
+    "Create squashed filesystems for the example distro"
 )
 
 # add_subdirectory( thirdparty )
