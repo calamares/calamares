@@ -3,11 +3,8 @@ set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${CMAKE_MODULE_PATH})
 
 include(KDEInstallDirs)
 include(GenerateExportHeader)
-find_package( KF5 REQUIRED CoreAddons )
-
-# These are needed because KPMcore links publicly against ConfigCore, I18n, WidgetsAddons and Service
 find_package( Qt5 REQUIRED DBus )
-find_package( KF5 REQUIRED Config I18n WidgetsAddons Service )
+find_package( KF5 REQUIRED Config CoreAddons I18n WidgetsAddons )
 
 find_package( KPMcore 3.2 REQUIRED )
 
