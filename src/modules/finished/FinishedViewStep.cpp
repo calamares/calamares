@@ -178,7 +178,7 @@ FinishedViewStep::setConfigurationMap( const QVariantMap& configurationMap )
                     configurationMap.value( "restartNowCommand" ).type() == QVariant::String )
                 m_widget->setRestartNowCommand( configurationMap.value( "restartNowCommand" ).toString() );
             else
-                m_widget->setRestartNowCommand( "systemctl -i reboot" );
+                m_widget->setRestartNowCommand( "shutdown -r now" );
         }
     }
     if ( configurationMap.contains( "notifyOnFinished" ) &&
