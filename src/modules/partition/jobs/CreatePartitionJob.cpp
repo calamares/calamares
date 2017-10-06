@@ -30,6 +30,7 @@
 #include <kpmcore/backend/corebackendpartition.h>
 #include <kpmcore/backend/corebackendpartitiontable.h>
 #include <kpmcore/core/device.h>
+#include <kpmcore/core/lvmdevice.h>
 #include <kpmcore/core/partition.h>
 #include <kpmcore/core/partitiontable.h>
 #include <kpmcore/fs/filesystem.h>
@@ -78,51 +79,81 @@ CreatePartitionJob::prettyStatusMessage() const
 Calamares::JobResult
 CreatePartitionJob::exec()
 {
-    int step = 0;
-    const qreal stepCount = 4;
-
+    QString partitionPath;
+    FileSystem *fs;
     Report report( nullptr );
-    QString message = tr( "The installer failed to create partition on disk '%1'." ).arg( m_device->name() );
 
-    progress( step++ / stepCount );
-    CoreBackend* backend = CoreBackendManager::self()->backend();
-    QScopedPointer<CoreBackendDevice> backendDevice( backend->openDevice( m_device->deviceNode() ) );
-    if ( !backendDevice.data() )
+    if (m_device->type() == Device::Disk_Device) {
+        int step = 0;
+        const qreal stepCount = 4;
+        QString message = tr( "The installer failed to create partition on disk '%1'." ).arg( m_device->name() );
+
+        progress( step++ / stepCount );
+        CoreBackend* backend = CoreBackendManager::self()->backend();
+        QScopedPointer<CoreBackendDevice> backendDevice( backend->openDevice( m_device->deviceNode() ) );
+        if ( !backendDevice.data() )
+        {
+            return Calamares::JobResult::error(
+                       message,
+                       tr( "Could not open device '%1'." ).arg( m_device->deviceNode() )
+                   );
+        }
+
+        progress( step++ / stepCount );
+        QScopedPointer<CoreBackendPartitionTable> backendPartitionTable( backendDevice->openPartitionTable() );
+        if ( !backendPartitionTable.data() )
+        {
+            return Calamares::JobResult::error(
+                       message,
+                       tr( "Could not open partition table." )
+                   );
+        }
+
+        progress( step++ / stepCount );
+        partitionPath = backendPartitionTable->createPartition( report, *m_partition );
+        if ( partitionPath.isEmpty() )
+        {
+            return Calamares::JobResult::error(
+                       message,
+                       report.toText()
+                   );
+        }
+        m_partition->setPartitionPath( partitionPath );
+        backendPartitionTable->commit();
+
+        progress( step++ / stepCount );
+        fs = &m_partition->fileSystem();
+        if ( fs->type() == FileSystem::Unformatted || fs->type() == FileSystem::Extended )
+            return Calamares::JobResult::ok();
+
+        if ( !backendPartitionTable->setPartitionSystemType( report, *m_partition ) )
+        {
+            return Calamares::JobResult::error(
+                       tr( "The installer failed to update partition table on disk '%1'." ).arg( m_device->name() ),
+                       report.toText()
+                   );
+        }
+
+        backendPartitionTable->commit();
+    }
+    else
     {
-        return Calamares::JobResult::error(
-                   message,
-                   tr( "Could not open device '%1'." ).arg( m_device->deviceNode() )
-               );
+        LvmDevice *dev = dynamic_cast<LvmDevice*>(m_device);
+        m_partition->setState(Partition::StateNone);
+
+        partitionPath = m_partition->partitionPath();
+        QString lvname  = partitionPath.right(partitionPath.length() - partitionPath.lastIndexOf(QStringLiteral("/")) - 1);
+        if ( !LvmDevice::createLV(report, *dev, *m_partition, lvname))
+        {
+            return Calamares::JobResult::error(
+                       tr( "The installer failed to create LVM logical volume %1." ).arg( lvname ),
+                       report.toText()
+                   );
+        }
+        fs = &m_partition->fileSystem();
     }
 
-    progress( step++ / stepCount );
-    QScopedPointer<CoreBackendPartitionTable> backendPartitionTable( backendDevice->openPartitionTable() );
-    if ( !backendPartitionTable.data() )
-    {
-        return Calamares::JobResult::error(
-                   message,
-                   tr( "Could not open partition table." )
-               );
-    }
-
-    progress( step++ / stepCount );
-    QString partitionPath = backendPartitionTable->createPartition( report, *m_partition );
-    if ( partitionPath.isEmpty() )
-    {
-        return Calamares::JobResult::error(
-                   message,
-                   report.toText()
-               );
-    }
-    m_partition->setPartitionPath( partitionPath );
-    backendPartitionTable->commit();
-
-    progress( step++ / stepCount );
-    FileSystem& fs = m_partition->fileSystem();
-    if ( fs.type() == FileSystem::Unformatted || fs.type() == FileSystem::Extended )
-        return Calamares::JobResult::ok();
-
-    if ( !fs.create( report, partitionPath ) )
+    if ( !fs->create( report, partitionPath ) )
     {
         return Calamares::JobResult::error(
                    tr( "The installer failed to create file system on partition %1." ).arg( partitionPath ),
@@ -130,15 +161,6 @@ CreatePartitionJob::exec()
                );
     }
 
-    if ( !backendPartitionTable->setPartitionSystemType( report, *m_partition ) )
-    {
-        return Calamares::JobResult::error(
-                   tr( "The installer failed to update partition table on disk '%1'." ).arg( m_device->name() ),
-                   report.toText()
-               );
-    }
-
-    backendPartitionTable->commit();
     return Calamares::JobResult::ok();
 }
 
