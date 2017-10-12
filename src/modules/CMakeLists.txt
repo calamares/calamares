@@ -1,5 +1,10 @@
 include( CMakeColors )
 
+if( BUILD_TESTING )
+    add_executable( test_conf test_conf.cpp )
+    target_link_libraries( test_conf ${YAMLCPP_LIBRARY} )
+endif()
+
 file( GLOB SUBDIRECTORIES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "*" )
 string( REPLACE " " ";" SKIP_LIST "${SKIP_MODULES}" )
 foreach( SUBDIRECTORY ${SUBDIRECTORIES} )
