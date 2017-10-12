@@ -63,7 +63,7 @@ CreatePartitionDialog::CreatePartitionDialog( Device* device, PartitionNode* par
     , m_usedMountPoints( usedMountPoints )
 {
     m_ui->setupUi( this );
-    m_ui->encryptWidget->setText( tr( "En&crypt" ) );
+    m_ui->encryptWidget->setText( tr( "&Encrypt" ) );
     m_ui->encryptWidget->hide();
 
     QStringList mountPoints = { "/", "/boot", "/home", "/opt", "/usr", "/var" };
