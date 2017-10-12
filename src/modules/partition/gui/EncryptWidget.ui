@@ -29,7 +29,7 @@
    <item>
     <widget class="QCheckBox" name="m_encryptCheckBox">
      <property name="text">
-      <string>En&amp;crypt system</string>
+      <string>&amp;Encrypt system</string>
      </property>
     </widget>
    </item>
