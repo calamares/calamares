@@ -35,7 +35,7 @@
      <item row="0" column="0">
       <widget class="QLabel" name="label">
        <property name="text">
-        <string>Si&amp;ze:</string>
+        <string>&amp;Size:</string>
        </property>
        <property name="buddy">
         <cstring>sizeSpinBox</cstring>
@@ -74,7 +74,7 @@
        <item>
         <widget class="QRadioButton" name="extendedRadioButton">
          <property name="text">
-          <string>E&amp;xtended</string>
+          <string>&amp;Extended</string>
          </property>
         </widget>
        </item>
@@ -116,7 +116,7 @@
      <item row="3" column="0">
       <widget class="QLabel" name="label_2">
        <property name="text">
-        <string>Fi&amp;le System:</string>
+        <string>&amp;File System:</string>
        </property>
        <property name="buddy">
         <cstring>fsComboBox</cstring>
