@@ -631,7 +631,7 @@ Installationsprogrammet vil stoppe og alle ændringer vil gå tabt.</translation
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="73"/>
         <source>Creating new %1 partition on %2.</source>
-        <translation>Opretter ny %1 partition på %2.</translation>
+        <translation>Opretter ny %1-partition på %2.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="85"/>
@@ -692,12 +692,12 @@ Installationsprogrammet vil stoppe og alle ændringer vil gå tabt.</translation
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="50"/>
         <source>Create new %1 partition table on %2.</source>
-        <translation>Opret en ny %1 partitionstabel på %2.</translation>
+        <translation>Opret en ny %1-partitionstabel på %2.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="57"/>
         <source>Create new &lt;strong&gt;%1&lt;/strong&gt; partition table on &lt;strong&gt;%2&lt;/strong&gt; (%3).</source>
-        <translation>Opret en ny &lt;strong&gt;%1&lt;/strong&gt; partitionstabel på &lt;strong&gt;%2&lt;/strong&gt; (%3).</translation>
+        <translation>Opret en ny &lt;strong&gt;%1&lt;/strong&gt;-partitionstabel på &lt;strong&gt;%2&lt;/strong&gt; (%3).</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="67"/>
@@ -984,7 +984,7 @@ Installationsprogrammet vil stoppe og alle ændringer vil gå tabt.</translation
     <message>
         <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="191"/>
         <source>Install %1 on &lt;strong&gt;new&lt;/strong&gt; %2 system partition.</source>
-        <translation>Installér %1 på &lt;strong&gt;nye&lt;/strong&gt; %2-systempartition.</translation>
+        <translation>Installér %1 på &lt;strong&gt;ny&lt;/strong&gt; %2-systempartition.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="195"/>

@@ -1939,7 +1939,7 @@ The installer will quit and all changes will be lost.</source>
         <location filename="../src/modules/users/SetHostNameJob.cpp" line="61"/>
         <location filename="../src/modules/users/SetHostNameJob.cpp" line="68"/>
         <source>Internal Error</source>
-        <translation type="unfinished"/>
+        <translation>अंतर्गत त्रूटी </translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetHostNameJob.cpp" line="75"/>
@@ -2137,7 +2137,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="43"/>
         <source>Set timezone to %1/%2</source>
-        <translation type="unfinished"/>
+        <translation>%1/%2 हा वेळक्षेत्र निश्चित करा</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="71"/>
@@ -2152,7 +2152,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="86"/>
         <source>Cannot set timezone.</source>
-        <translation type="unfinished"/>
+        <translation>वेळक्षेत्र निश्चित करु शकत नाही</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="87"/>
@@ -2162,12 +2162,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="96"/>
         <source>Cannot set timezone,</source>
-        <translation type="unfinished"/>
+        <translation>वेळक्षेत्र निश्चित करु शकत नाही,</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="97"/>
         <source>Cannot open /etc/timezone for writing</source>
-        <translation type="unfinished"/>
+        <translation> /etc/timezone लिहिण्याकरिता उघडू शकत नाही</translation>
     </message>
 </context>
 <context>
@@ -2183,7 +2183,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/summary/SummaryViewStep.cpp" line="43"/>
         <source>Summary</source>
-        <translation type="unfinished"/>
+        <translation>सारांश</translation>
     </message>
 </context>
 <context>
@@ -2191,43 +2191,43 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="287"/>
         <source>Your username is too long.</source>
-        <translation type="unfinished"/>
+        <translation>तुमचा वापरकर्तानाव  खूप लांब आहे</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="293"/>
         <source>Your username contains invalid characters. Only lowercase letters and numbers are allowed.</source>
-        <translation type="unfinished"/>
+        <translation>तुमच्या वापरकर्तानावात अवैध अक्षरे आहेत. फक्त अक्षरे, अंक आणि डॅश स्वीकारले जातील.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="331"/>
         <source>Your hostname is too short.</source>
-        <translation type="unfinished"/>
+        <translation>तुमचा संगणकनाव खूप लहान आहे</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="337"/>
         <source>Your hostname is too long.</source>
-        <translation type="unfinished"/>
+        <translation>तुमचा संगणकनाव खूप लांब आहे</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="343"/>
         <source>Your hostname contains invalid characters. Only letters, numbers and dashes are allowed.</source>
-        <translation type="unfinished"/>
+        <translation>तुमच्या संगणकनावात अवैध अक्षरे आहेत. फक्त अक्षरे, अंक आणि डॅश स्वीकारले जातील.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="371"/>
         <location filename="../src/modules/users/UsersPage.cpp" line="415"/>
         <source>Your passwords do not match!</source>
-        <translation type="unfinished"/>
+        <translation>तुमचा परवलीशब्द जुळत नाही</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="494"/>
         <source>Password is too short</source>
-        <translation type="unfinished"/>
+        <translation>परवलीशब्द खूप लहान आहे</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="513"/>
         <source>Password is too long</source>
-        <translation type="unfinished"/>
+        <translation>परवलीशब्द खूप लांब आहे</translation>
     </message>
 </context>
 <context>
@@ -2235,7 +2235,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/UsersViewStep.cpp" line="50"/>
         <source>Users</source>
-        <translation type="unfinished"/>
+        <translation>वापरकर्ते</translation>
     </message>
 </context>
 <context>
@@ -2243,47 +2243,47 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>स्वरुप</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="75"/>
         <source>&amp;Language:</source>
-        <translation type="unfinished"/>
+        <translation>&amp;भाषा :</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="176"/>
         <source>&amp;Release notes</source>
-        <translation type="unfinished"/>
+        <translation>&amp;प्रकाशन टिपा</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="166"/>
         <source>&amp;Known issues</source>
-        <translation type="unfinished"/>
+        <translation>&amp;ज्ञात त्रुटी</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="156"/>
         <source>&amp;Support</source>
-        <translation type="unfinished"/>
+        <translation>%1 पाठबळ</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="146"/>
         <source>&amp;About</source>
-        <translation type="unfinished"/>
+        <translation>&amp;विषयी</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="60"/>
         <source>&lt;h1&gt;Welcome to the %1 installer.&lt;/h1&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;h1&gt;‌%1 अधिष्ठापकमधे स्वागत आहे.&lt;/h1&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="60"/>
         <source>&lt;h1&gt;Welcome to the Calamares installer for %1.&lt;/h1&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;h1&gt;‌%1 साठी असलेल्या अधिष्ठापकमध्ये स्वागत आहे.&lt;/h1&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="73"/>
         <source>About %1 installer</source>
-        <translation type="unfinished"/>
+        <translation>%1 अधिष्ठापक बद्दल</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="75"/>
@@ -2293,7 +2293,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="201"/>
         <source>%1 support</source>
-        <translation type="unfinished"/>
+        <translation>%1 पाठबळ</translation>
     </message>
 </context>
 <context>
@@ -2301,7 +2301,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/welcome/WelcomeViewStep.cpp" line="51"/>
         <source>Welcome</source>
-        <translation type="unfinished"/>
+        <translation>स्वागत</translation>
     </message>
 </context>
 </TS>
