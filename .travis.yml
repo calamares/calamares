@@ -12,7 +12,7 @@ services:
 
 notifications:
   irc:
-    - "chat.freenode.net#calamares"
+    - "$IRC_NOTIFY_CHANNEL"
 
 install:
   - docker build -t calamares .
