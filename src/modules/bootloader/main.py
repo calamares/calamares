@@ -262,10 +262,10 @@ def install_grub(efi_directory, fw_type):
         # Workaround for some UEFI firmwares
         efi_file_source = {"32": os.path.join(install_efi_directory_firmware,
                                               efi_bootloader_id,
-                                              "grubia32.efi"),
+                                              "bootia32.efi"),
                            "64": os.path.join(install_efi_directory_firmware,
                                               efi_bootloader_id,
-                                              "grubx64.efi")}
+                                              "bootx64.efi")}
         shutil.copy2(efi_file_source[efi_bitness], install_efi_boot_directory)
     else:
         print("Bootloader: grub (bios)")
