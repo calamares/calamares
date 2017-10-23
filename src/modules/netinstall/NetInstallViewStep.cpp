@@ -135,10 +135,17 @@ NetInstallViewStep::onLeave()
 
     for ( auto package : packages )
     {
-        QMap<QString, QVariant> details;
-        details.insert( "pre-script", package.preScript );
-        details.insert( "package", package.packageName );
-        details.insert( "post-script", package.postScript );
+        QVariant details( package.packageName );
+        // If it's a package with a pre- or post-script, replace
+        // with the more complicated datastructure.
+        if (!package.preScript.isEmpty() || !package.postScript.isEmpty())
+        {
+            QMap<QString, QVariant> sdetails;
+            sdetails.insert( "pre-script", package.preScript );
+            sdetails.insert( "package", package.packageName );
+            sdetails.insert( "post-script", package.postScript );
+            details = sdetails;
+        }
         if ( package.isCritical )
             installPackages.append( details );
         else
