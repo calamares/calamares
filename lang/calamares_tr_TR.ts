@@ -2230,12 +2230,12 @@ Sistem güç kaynağına bağlı değil.</translation>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="494"/>
         <source>Password is too short</source>
-        <translation type="unfinished"/>
+        <translation>Şifre çok kısa</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="513"/>
         <source>Password is too long</source>
-        <translation type="unfinished"/>
+        <translation>Şifre çok uzun</translation>
     </message>
 </context>
 <context>
