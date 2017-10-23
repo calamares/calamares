@@ -126,10 +126,11 @@ NetInstallViewStep::onLeave()
     cDebug() << "Leaving netinstall, adding packages to be installed"
              << "to global storage";
 
-    QMap<QString, QVariant> packagesWithOperation;
     QList<PackageTreeItem::ItemData> packages = m_widget->selectedPackages();
     QVariantList installPackages;
     QVariantList tryInstallPackages;
+    QVariantList packageOperations;
+
     cDebug() << "Processing";
 
     for ( auto package : packages )
@@ -145,14 +146,22 @@ NetInstallViewStep::onLeave()
     }
 
     if ( !installPackages.empty() )
-        packagesWithOperation.insert( "install", QVariant( installPackages ) );
+    {
+        QMap<QString, QVariant> op;
+        op.insert( "install", QVariant( installPackages ) );
+        packageOperations.append(op);
+    }
     if ( !tryInstallPackages.empty() )
-        packagesWithOperation.insert( "try_install", QVariant( tryInstallPackages ) );
+    {
+        QMap<QString, QVariant> op;
+        op.insert( "try_install", QVariant( tryInstallPackages ) );
+        packageOperations.append(op);
+    }
 
-    if ( !packagesWithOperation.isEmpty() )
+    if ( !packageOperations.isEmpty() )
     {
         Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
-        gs->insert( "packageOperations", QVariant( packagesWithOperation ) );
+        gs->insert( "packageOperations", QVariant( packageOperations ) );
     }
 }
 
