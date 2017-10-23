@@ -1,6 +1,4 @@
-language:
-  - cpp
-  - python
+language: cpp
 
 python:
   - 3.5
