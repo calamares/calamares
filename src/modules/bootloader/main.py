@@ -8,7 +8,7 @@
 #   Copyright 2014, Daniel Hillenbrand <codeworkx@bbqlinux.org>
 #   Copyright 2014, Benjamin Vaudour <benjamin.vaudour@yahoo.fr>
 #   Copyright 2014, Kevin Kofler <kevin.kofler@chello.at>
-#   Copyright 2015, Philip Mueller <philm@manjaro.org>
+#   Copyright 2015-2017, Philip Mueller <philm@manjaro.org>
 #   Copyright 2016-2017, Teo Mrnjavac <teo@kde.org>
 #   Copyright 2017, Alf Gaida <agaida@siduction.org>
 #   Copyright 2017, Adriaan de Groot <groot@kde.org>
@@ -266,7 +266,13 @@ def install_grub(efi_directory, fw_type):
                            "64": os.path.join(install_efi_directory_firmware,
                                               efi_bootloader_id,
                                               "grubx64.efi")}
-        shutil.copy2(efi_file_source[efi_bitness], install_efi_boot_directory)
+
+        efi_file_target = {"32": os.path.join(install_efi_boot_directory,
+                                              "bootia32.efi"),
+                           "64": os.path.join(install_efi_boot_directory,
+                                              "bootx64.efi")}
+
+        shutil.copy2(efi_file_source[efi_bitness], efi_file_target[efi_bitness])
     else:
         print("Bootloader: grub (bios)")
         if libcalamares.globalstorage.value("bootLoader") is None:
