@@ -90,11 +90,17 @@ def test_module(moduledir, globalconfigfilename, moduleconfigfilename, lang):
             gs_doc = yaml.load(f)
         for key, value in gs_doc.items():
             libcalamares.globalstorage.insert(key, value)
+        print("Global configuration '" + globalconfigfilename + "' loaded.")
+    else:
+        print("No global configuration loaded.")
 
     cfg_doc = dict()
     if moduleconfigfilename:
         with open(moduleconfigfilename) as f:
             cfg_doc = yaml.load(f)
+            print("Local configuration '" + moduleconfigfilename + "' loaded.")
+    else:
+        print("No module configuration loaded.")
 
     libcalamares.job = Job(moduledir, doc, cfg_doc)
 
