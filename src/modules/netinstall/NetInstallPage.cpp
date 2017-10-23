@@ -101,7 +101,7 @@ NetInstallPage::dataIsHere( QNetworkReply* reply )
     if ( !readGroups( reply->readAll() ) )
     {
         cDebug() << "Netinstall groups data was received, but invalid.";
-        ui->netinst_status->setText( tr( "Network Installation. (Disabled: Unable to fetch package lists, check your network connection)" ) );
+        ui->netinst_status->setText( tr( "Network Installation. (Disabled: Received invalid groups data)" ) );
         reply->deleteLater();
         return;
     }
