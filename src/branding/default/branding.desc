@@ -43,7 +43,7 @@ welcomeExpandingLogo:   true
 # productIcon is used as the window icon, and will (usually) be used
 #       by the window manager to represent the application. This image
 #       should be square, and may be displayed by the window manager
-#       as small as 32x32 (but possibly larger).
+#       as small as 16x16 (but possibly larger).
 # productLogo is used as the logo at the top of the left-hand column
 #       which shows the steps to be taken. The image should be square,
 #       and is displayed at 80x80 pixels (also on HiDPI).
