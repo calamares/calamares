@@ -269,10 +269,10 @@ def install_grub(efi_directory, fw_type):
 
         # Workaround for some UEFI firmwares
         efi_file_source = os.path.join(install_efi_directory_firmware,
-                                          efi_bootloader_id,
-                                          efi_grub_file),
+                                       efi_bootloader_id,
+                                       efi_grub_file),
         efi_file_target = os.path.join(install_efi_boot_directory,
-                                          efi_boot_file),
+                                       efi_boot_file),
 
         shutil.copy2(efi_file_source, efi_file_target)
     else:
