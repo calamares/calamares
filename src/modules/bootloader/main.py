@@ -13,6 +13,7 @@
 #   Copyright 2017, Alf Gaida <agaida@siduction.org>
 #   Copyright 2017, Adriaan de Groot <groot@kde.org>
 #   Copyright 2017, Gabriel Craciunescu <crazy@frugalware.org>
+#   Copyright 2017, Ben Green <Bezzy1999@hotmail.com>
 #
 #   Calamares is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -235,10 +236,18 @@ def install_grub(efi_directory, fw_type):
             # if the kernel is older than 4.0, the UEFI bitness likely isn't
             # exposed to the userspace so we assume a 64 bit UEFI here
             efi_bitness = "64"
-        bitness_translate = {"32": "--target=i386-efi",
-                             "64": "--target=x86_64-efi"}
+
+        if efi_bitness == "32":
+            efi_target = "i386-efi"
+            efi_grub_file = "grubia32.efi"
+            efi_boot_file = "bootia32.efi"
+        elif efi_bitness == "64":
+            efi_target = "x86_64-efi"
+            efi_grub_file = "grubx64.efi"
+            efi_boot_file = "bootx64.efi"
+
         check_target_env_call([libcalamares.job.configuration["grubInstall"],
-                               bitness_translate[efi_bitness],
+                               "--target=" + efi_target,
                                "--efi-directory=" + efi_directory,
                                "--bootloader-id=" + efi_bootloader_id,
                                "--force"])
@@ -260,19 +269,13 @@ def install_grub(efi_directory, fw_type):
             os.makedirs(install_efi_boot_directory)
 
         # Workaround for some UEFI firmwares
-        efi_file_source = {"32": os.path.join(install_efi_directory_firmware,
-                                              efi_bootloader_id,
-                                              "grubia32.efi"),
-                           "64": os.path.join(install_efi_directory_firmware,
-                                              efi_bootloader_id,
-                                              "grubx64.efi")}
+        efi_file_source = os.path.join(install_efi_directory_firmware,
+                                       efi_bootloader_id,
+                                       efi_grub_file),
+        efi_file_target = os.path.join(install_efi_boot_directory,
+                                       efi_boot_file),
 
-        efi_file_target = {"32": os.path.join(install_efi_boot_directory,
-                                              "bootia32.efi"),
-                           "64": os.path.join(install_efi_boot_directory,
-                                              "bootx64.efi")}
-
-        shutil.copy2(efi_file_source[efi_bitness], efi_file_target[efi_bitness])
+        shutil.copy2(efi_file_source, efi_file_target)
     else:
         print("Bootloader: grub (bios)")
         if libcalamares.globalstorage.value("bootLoader") is None:
