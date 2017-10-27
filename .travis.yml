@@ -16,5 +16,5 @@ install:
   - docker build -t calamares .
 
 script:
-  - docker run -v $PWD:/src --tmpfs /build:rw,size=65536k calamares bash -lc "cd /build && cmake -DWEBVIEW_FORCE_WEBKIT=1 -DKDE_INSTALL_USE_QT_SYS_PATHS=ON /src && make -j2 && make install DESTDIR=/build/INSTALL_ROOT"
+  - docker run -v $PWD:/src --tmpfs /build:rw,size=65536k -e SRCDIR=/src -e BUILDDIR=/build calamares "/src/ci/travis.sh"
 
