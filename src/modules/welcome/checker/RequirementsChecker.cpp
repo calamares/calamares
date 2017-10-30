@@ -99,8 +99,12 @@ RequirementsChecker::RequirementsChecker( QObject* parent )
         if ( m_entriesToCheck.contains( "root" ) )
             isRoot = checkIsRoot();
 
-        cDebug() << "enoughStorage, enoughRam, hasPower, hasInternet, isRoot: "
-                 << enoughStorage << enoughRam << hasPower << hasInternet << isRoot;
+        cDebug() << "RequirementsChecker output:"
+                 << " enoughStorage:" << enoughStorage
+                 << " enoughRam:" << enoughRam
+                 << " hasPower:" << hasPower
+                 << " hasInternet:" << hasInternet
+                 << " isRoot:" << isRoot;
 
         QList< PrepareEntry > checkEntries;
         foreach ( const QString& entry, m_entriesToCheck )
