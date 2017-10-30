@@ -281,10 +281,6 @@ LocaleViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     {
         m_localeGenPath = configurationMap.value( "localeGenPath" ).toString();
     }
-    else
-    {
-        m_localeGenPath = QStringLiteral( "/etc/locale.gen" );
-    }
 
     // Optional
     if ( configurationMap.contains( "geoipUrl" ) &&
