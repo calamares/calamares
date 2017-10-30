@@ -131,6 +131,8 @@ UsersViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     }
     else
     {
+        // Warn here these groups may really not match what the distro want
+        cDebug() << "WARNING: Using fallback groups. Please check defaultGroups in users.conf";
         m_defaultGroups = QStringList{ "lp", "video", "network", "storage", "wheel", "audio" };
     }
 
