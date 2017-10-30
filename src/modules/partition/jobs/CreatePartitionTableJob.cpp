@@ -87,22 +87,34 @@ CreatePartitionTableJob::exec()
     }
 
     QScopedPointer< PartitionTable > table( createTable() );
-    cDebug() << "Creating new partition table of type" << table->typeName()
-             << ", uncommitted yet:\n" << table;
+    cDebug() << "Creating new partition table of type:" << table->typeName()
+             << " - Uncommitted yet:" << table;
 
     QProcess lsblk;
     lsblk.setProgram( "lsblk" );
     lsblk.setProcessChannelMode( QProcess::MergedChannels );
     lsblk.start();
     lsblk.waitForFinished();
-    cDebug() << "lsblk:\n" << lsblk.readAllStandardOutput();
+
+    QByteArray byte = lsblk.readAllStandardOutput();
+    QStringList lines = QString(byte).split(("\n"),QString::SkipEmptyParts);
+    cDebug() << "CreatePartitionTableJob asked for lsblk output:";
+
+    foreach (auto line, lines)
+        cDebug() << " " << line;
 
     QProcess mount;
     mount.setProgram( "mount" );
     mount.setProcessChannelMode( QProcess::MergedChannels );
     mount.start();
     mount.waitForFinished();
-    cDebug() << "mount:\n" << mount.readAllStandardOutput();
+
+    QByteArray mbyte = mount.readAllStandardOutput();
+    QStringList mlines = QString(mbyte).split(("\n"),QString::SkipEmptyParts);
+    cDebug() << "CreatePartitionTableJob asked for mount output:";
+
+    foreach (auto mline, mlines)
+        cDebug() << " " << mline;
 
     bool ok = backendDevice->createPartitionTable( report, *table );
     if ( !ok )

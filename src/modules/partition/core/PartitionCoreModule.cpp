@@ -403,8 +403,9 @@ PartitionCoreModule::jobs() const
     foreach ( auto job, lst )
         jobsDebug.append( job->prettyName() );
 
-    cDebug() << "PartitionCodeModule has been asked for jobs. About to return:"
-             << jobsDebug.join( "\n" );
+    cDebug() << "PartitionCodeModule has been asked for jobs. About to return:";
+     foreach ( auto item, jobsDebug )
+        cDebug() << " " << item;
 
     return lst;
 }
