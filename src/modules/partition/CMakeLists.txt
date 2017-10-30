@@ -9,10 +9,22 @@ find_package( KF5 REQUIRED CoreAddons )
 find_package( KF5 REQUIRED Config I18n IconThemes KIO Service )
 
 find_package( KPMcore 3.1.50 QUIET )
-if ( ${KPMcore_FOUND} )
+if ( KPMcore_FOUND )
     add_definitions(-DWITH_KPMCORE22)
 endif()
-find_package( KPMcore 3.0.3 REQUIRED )
+find_package( KPMcore 3.0.3 QUIET )
+# 3.0.3 and newer has fixes for NVMe support; allow 3.0.2, but warn
+# about it .. needs to use a different feature name because it otherwise
+# gets reported as KPMcore (the package).
+if ( KPMcore_FOUND )
+    message( STATUS "KPMCore supports NVMe operations" )
+    add_feature_info( KPMcoreNVMe KPMcore_FOUND "KPMcore with NVMe support" )
+else()
+    find_package( KPMcore 3.0.2 REQUIRED )
+    message( WARNING "KPMCore 3.0.2 is known to have bugs with NVMe devices" )
+    add_feature_info( KPMcoreNVMe KPMcore_FOUND "Older KPMcore with no NVMe support" )
+endif()
+
 find_library( atasmart_LIB atasmart )
 find_library( blkid_LIB blkid )
 if( NOT atasmart_LIB )
