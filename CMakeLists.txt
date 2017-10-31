@@ -166,8 +166,8 @@ set( CALAMARES_TRANSLATION_LANGUAGES ar ast bg ca cs_CZ da de el en en_GB es_MX 
 ### Bump version here
 set( CALAMARES_VERSION_MAJOR 3 )
 set( CALAMARES_VERSION_MINOR 1 )
-set( CALAMARES_VERSION_PATCH 7 )
-set( CALAMARES_VERSION_RC 0 )
+set( CALAMARES_VERSION_PATCH 8 )
+set( CALAMARES_VERSION_RC 1 )
 
 set( CALAMARES_VERSION ${CALAMARES_VERSION_MAJOR}.${CALAMARES_VERSION_MINOR}.${CALAMARES_VERSION_PATCH} )
 set( CALAMARES_VERSION_SHORT "${CALAMARES_VERSION}" )
@@ -267,9 +267,9 @@ else()
 endif()
 # Doesn't list mksquashfs as an optional dep, though, because it
 # hasn't been sent through the find_package() scheme.
-add_feature_info( mksquashfs mksquashfs_FOUND
-    "Create squashed filesystems for the example distro"
-)
+#
+# "http://tldp.org/HOWTO/SquashFS-HOWTO/creatingandusing.html"
+add_feature_info( ExampleDistro ${mksquashfs_FOUND} "Create example-distro target.")
 
 # add_subdirectory( thirdparty )
 add_subdirectory( src )

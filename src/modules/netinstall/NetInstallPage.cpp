@@ -3,6 +3,7 @@
  *   Copyright 2016, Lisa Vitolo     <shainer@chakraos.org>
  *   Copyright 2017, Kyle Robbertze  <krobbertze@gmail.com>
  *   Copyright 2017, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2017, Gabriel Craciunescu <crazy@frugalware.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -77,7 +78,7 @@ NetInstallPage::readGroups( const QByteArray& yamlData )
         m_groups = new PackageModel( groups );
         CALAMARES_RETRANSLATE(
             m_groups->setHeaderData( 0, Qt::Horizontal, tr( "Name" ) );
-            m_groups->setHeaderData( 0, Qt::Horizontal, tr( "Description" ) ); )
+            m_groups->setHeaderData( 1, Qt::Horizontal, tr( "Description" ) ); )
         return true;
 
     }
