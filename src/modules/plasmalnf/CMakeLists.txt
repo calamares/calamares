@@ -1,6 +1,6 @@
 find_package(ECM ${ECM_VERSION} REQUIRED NO_MODULE)
 
-find_package( KF5 REQUIRED CoreAddons Service )
+find_package( KF5 5.29 REQUIRED CoreAddons Plasma Service )
 
 calamares_add_plugin( plasmalnf
     TYPE job
@@ -9,5 +9,7 @@ calamares_add_plugin( plasmalnf
         PlasmaLnfJob.cpp
     LINK_PRIVATE_LIBRARIES
         calamares
+        KF5::Plasma
+        KF5::Service
     SHARED_LIB
 )

@@ -18,9 +18,17 @@
 
 #include "PlasmaLnfJob.h"
 
-#include <QProcess>
 #include <QDateTime>
+#include <QDir>
+#include <QProcess>
+#include <QStandardPaths>
 #include <QThread>
+
+#include <KService>
+#include <KServiceTypeTrader>
+#include <KPluginLoader>  // Future
+
+#include <Plasma/PluginLoader>  // TODO: port to KPluginLoader
 
 #include "CalamaresVersion.h"
 #include "JobQueue.h"
@@ -45,11 +53,53 @@ PlasmaLnfJob::prettyName() const
     return tr( "Plasma Look-and-Feel Job" );
 }
 
+static void _themes_by_service()
+{
+    KService::List services;
+    KServiceTypeTrader* trader = KServiceTypeTrader::self();
+
+    services = trader->query("Plasma/Theme");
+    int c = 0;
+    for ( const auto s : services )
+    {
+        cDebug() << "Plasma theme '" << s->name() << '\'';
+        c++;
+    }
+    cDebug() << "Plasma themes by service found" << c;
+}
+
+static void _themes_by_kcm()
+{
+    QString component;
+    QList<Plasma::Package> packages;
+    QStringList paths;
+    const QStringList dataPaths = QStandardPaths::standardLocations(QStandardPaths::GenericDataLocation);
+
+    for (const QString &path : dataPaths) {
+        QDir dir(path + "/plasma/look-and-feel");
+        paths << dir.entryList(QDir::AllDirs | QDir::NoDotAndDotDot);
+    }
+
+    for (const QString &path : paths) {
+        Plasma::Package pkg = Plasma::PluginLoader::self()->loadPackage(QStringLiteral("Plasma/LookAndFeel"));
+        pkg.setPath(path);
+        pkg.setFallbackPackage(Plasma::Package());
+        if (component.isEmpty() || !pkg.filePath(component.toUtf8()).isEmpty()) {
+            packages << pkg;
+            cDebug() << "Plasma theme '" << pkg.metadata().pluginName() << '\'';
+        }
+    }
+    cDebug() << "Plasma themes by kcm found" << packages.length();
+}
+
 
 Calamares::JobResult
 PlasmaLnfJob::exec()
 {
     cDebug() << "Plasma Look-and-Feel Job";
+
+    _themes_by_service();
+    _themes_by_kcm();
 
     return Calamares::JobResult::ok();
 }
