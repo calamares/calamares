@@ -51,8 +51,6 @@ private:
     qint64 m_oldLastSector;
     qint64 m_newFirstSector;
     qint64 m_newLastSector;
-
-    Calamares::JobResult execJobList( const QList< Calamares::job_ptr >& jobs );
 };
 
 #endif /* RESIZEPARTITIONJOB_H */
