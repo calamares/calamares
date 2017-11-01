@@ -18,6 +18,15 @@
 #
 #   You should have received a copy of the GNU General Public License
 #   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
+"""
+Testing tool to run a single Python module; optionally a
+global configuration and module configuration can be read
+from YAML files. Give a full path to the module-directory,
+and also full paths to the configuration files. An empty
+configuration file name, or "-" (a single dash) is used
+to indicate that no file should be read -- useful to load
+a module configuratioon file without a global configuration.
+"""
 
 import argparse
 import os
@@ -57,26 +66,10 @@ class Job:
         print("Job set progress to {}%.".format(progress * 100))
 
 
-def main():
-    """
+def test_module(moduledir, globalconfigfilename, moduleconfigfilename, lang):
+    print("Testing module in: " + moduledir)
 
-
-    :return:
-    """
-    parser = argparse.ArgumentParser()
-    parser.add_argument("moduledir",
-                        help="Dir containing the Python module.")
-    parser.add_argument("globalstorage_yaml", nargs="?",
-                        help="A yaml file to initialize GlobalStorage.")
-    parser.add_argument("configuration_yaml", nargs="?",
-                        help="A yaml file to initialize the Job.")
-    parser.add_argument("--lang", "-l", nargs="?", default=None,
-                        help="Set translation language.")
-    args = parser.parse_args()
-
-    print("Testing module in: " + args.moduledir)
-
-    confpath = os.path.join(args.moduledir, "module.desc")
+    confpath = os.path.join(moduledir, "module.desc")
     with open(confpath) as f:
         doc = yaml.load(f)
 
@@ -87,32 +80,66 @@ def main():
     # Parameter None creates a new, empty GlobalStorage
     libcalamares.globalstorage = libcalamares.GlobalStorage(None)
     libcalamares.globalstorage.insert("testing", True)
-    if args.lang:
-        libcalamares.globalstorage.insert("locale", args.lang)
-        libcalamares.globalstorage.insert("localeConf", {"LANG": args.lang})
+    if lang:
+        libcalamares.globalstorage.insert("locale", lang)
+        libcalamares.globalstorage.insert("localeConf", {"LANG": lang})
 
     # if a file for simulating globalStorage contents is provided, load it
-    if args.globalstorage_yaml:
-        with open(args.globalstorage_yaml) as f:
+    if globalconfigfilename:
+        with open(globalconfigfilename) as f:
             gs_doc = yaml.load(f)
         for key, value in gs_doc.items():
             libcalamares.globalstorage.insert(key, value)
+        print("Global configuration '" + globalconfigfilename + "' loaded.")
+    else:
+        print("No global configuration loaded.")
 
     cfg_doc = dict()
-    if args.configuration_yaml:
-        with open(args.configuration_yaml) as f:
+    if moduleconfigfilename:
+        with open(moduleconfigfilename) as f:
             cfg_doc = yaml.load(f)
+            print("Local configuration '" + moduleconfigfilename + "' loaded.")
+    else:
+        print("No module configuration loaded.")
 
-    libcalamares.job = Job(args.moduledir, doc, cfg_doc)
+    libcalamares.job = Job(moduledir, doc, cfg_doc)
 
-    scriptpath = os.path.abspath(args.moduledir)
+    scriptpath = os.path.abspath(moduledir)
     sys.path.append(scriptpath)
-    import main
+    import main  # Assumed to import main from module itself
 
     print("Output from module:")
     print(main.run())
 
     return 0
+
+
+def munge_filename(filename):
+    """
+    Maps files "" (empty) and "-" (just a dash) to None,
+    to simplify processing elsewhere.
+    """
+    if not filename or filename == "-":
+        return None
+    return filename
+
+
+def main():
+    parser = argparse.ArgumentParser(description=globals()["__doc__"])
+    parser.add_argument("moduledir",
+                        help="Dir containing the Python module.")
+    parser.add_argument("globalstorage_yaml", nargs="?",
+                        help="A yaml file to initialize GlobalStorage.")
+    parser.add_argument("configuration_yaml", nargs="?",
+                        help="A yaml file to initialize the Job.")
+    parser.add_argument("--lang", "-l", nargs="?", default=None,
+                        help="Set translation language.")
+    args = parser.parse_args()
+
+    return test_module(args.moduledir,
+                       munge_filename(args.globalstorage_yaml),
+                       munge_filename(args.configuration_yaml),
+                       args.lang)
 
 
 if __name__ == "__main__":

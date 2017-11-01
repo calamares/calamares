@@ -72,9 +72,10 @@ calamares_add_library( calamaresui
     EXPORT_MACRO UIDLLEXPORT_PRO
     LINK_PRIVATE_LIBRARIES
         ${YAMLCPP_LIBRARY}
+        ${OPTIONAL_PRIVATE_LIBRARIES}
+    LINK_LIBRARIES
         Qt5::Svg
         Qt5::QuickWidgets
-        ${OPTIONAL_PRIVATE_LIBRARIES}
     RESOURCES libcalamaresui.qrc
     EXPORT CalamaresLibraryDepends
     VERSION ${CALAMARES_VERSION_SHORT}

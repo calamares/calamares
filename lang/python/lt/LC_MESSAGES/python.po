@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-04 08:16-0400\n"
+"POT-Creation-Date: 2017-09-28 10:35-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Moo <moose@mail.ru>, 2017\n"
 "Language-Team: Lithuanian (https://www.transifex.com/calamares/teams/20061/lt/)\n"
@@ -17,18 +17,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: lt\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-
-#: src/modules/machineid/main.py:35
-msgid "Generate machine-id."
-msgstr "Generuoti machine-id."
-
-#: src/modules/dummypython/main.py:44
-msgid "Dummy python job."
-msgstr "Fiktyvi python uÅ¾duotis."
-
-#: src/modules/dummypython/main.py:97
-msgid "Dummy python step {}"
-msgstr "Fiktyvus python Å¾ingsnis {}"
 
 #: src/modules/packages/main.py:59
 #, python-format
@@ -54,3 +42,15 @@ msgstr[2] "Šalinama %(num)d paketų."
 #: src/modules/packages/main.py:68
 msgid "Install packages."
 msgstr "Įdiegti paketus."
+
+#: src/modules/dummypython/main.py:44
+msgid "Dummy python job."
+msgstr "Fiktyvi python uÅ¾duotis."
+
+#: src/modules/dummypython/main.py:97
+msgid "Dummy python step {}"
+msgstr "Fiktyvus python Å¾ingsnis {}"
+
+#: src/modules/machineid/main.py:35
+msgid "Generate machine-id."
+msgstr "Generuoti machine-id."

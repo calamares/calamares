@@ -126,18 +126,26 @@ NetInstallViewStep::onLeave()
     cDebug() << "Leaving netinstall, adding packages to be installed"
              << "to global storage";
 
-    QMap<QString, QVariant> packagesWithOperation;
     QList<PackageTreeItem::ItemData> packages = m_widget->selectedPackages();
     QVariantList installPackages;
     QVariantList tryInstallPackages;
-    cDebug() << "Processing";
+    QVariantList packageOperations;
+
+    cDebug() << "Processing" << packages.length() << "packages from netinstall.";
 
     for ( auto package : packages )
     {
-        QMap<QString, QVariant> details;
-        details.insert( "pre-script", package.preScript );
-        details.insert( "package", package.packageName );
-        details.insert( "post-script", package.postScript );
+        QVariant details( package.packageName );
+        // If it's a package with a pre- or post-script, replace
+        // with the more complicated datastructure.
+        if (!package.preScript.isEmpty() || !package.postScript.isEmpty())
+        {
+            QMap<QString, QVariant> sdetails;
+            sdetails.insert( "pre-script", package.preScript );
+            sdetails.insert( "package", package.packageName );
+            sdetails.insert( "post-script", package.postScript );
+            details = sdetails;
+        }
         if ( package.isCritical )
             installPackages.append( details );
         else
@@ -145,14 +153,24 @@ NetInstallViewStep::onLeave()
     }
 
     if ( !installPackages.empty() )
-        packagesWithOperation.insert( "install", QVariant( installPackages ) );
+    {
+        QMap<QString, QVariant> op;
+        op.insert( "install", QVariant( installPackages ) );
+        packageOperations.append(op);
+        cDebug() << "  .." << installPackages.length() << "critical packages.";
+    }
     if ( !tryInstallPackages.empty() )
-        packagesWithOperation.insert( "try_install", QVariant( tryInstallPackages ) );
+    {
+        QMap<QString, QVariant> op;
+        op.insert( "try_install", QVariant( tryInstallPackages ) );
+        packageOperations.append(op);
+        cDebug() << "  .." << tryInstallPackages.length() << "non-critical packages.";
+    }
 
-    if ( !packagesWithOperation.isEmpty() )
+    if ( !packageOperations.isEmpty() )
     {
         Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
-        gs->insert( "packageOperations", QVariant( packagesWithOperation ) );
+        gs->insert( "packageOperations", QVariant( packageOperations ) );
     }
 }
 

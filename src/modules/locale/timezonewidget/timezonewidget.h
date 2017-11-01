@@ -48,14 +48,17 @@ class TimeZoneWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit TimeZoneWidget(QWidget* parent = 0);
+    explicit TimeZoneWidget( QWidget* parent = nullptr );
 
-    LocaleGlobal::Location getCurrentLocation() { return currentLocation; }
-    void setCurrentLocation(QString region, QString zone);
-    void setCurrentLocation(LocaleGlobal::Location location);
+    LocaleGlobal::Location getCurrentLocation()
+    {
+        return currentLocation;
+    }
+    void setCurrentLocation( QString region, QString zone );
+    void setCurrentLocation( LocaleGlobal::Location location );
 
 signals:
-    void locationChanged(LocaleGlobal::Location location);
+    void locationChanged( LocaleGlobal::Location location );
 
 private:
     QFont font;
@@ -63,10 +66,14 @@ private:
     QList<QImage> timeZoneImages;
     LocaleGlobal::Location currentLocation;
 
-    QPoint getLocationPosition(double longitude, double latitude);
+    QPoint getLocationPosition( const LocaleGlobal::Location& l )
+    {
+        return getLocationPosition( l.longitude, l.latitude );
+    }
+    QPoint getLocationPosition( double longitude, double latitude );
 
-    void paintEvent(QPaintEvent* event);
-    void mousePressEvent(QMouseEvent* event);
+    void paintEvent( QPaintEvent* event );
+    void mousePressEvent( QMouseEvent* event );
 };
 
 #endif // TIMEZONEWIDGET_H

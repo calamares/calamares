@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-04 08:16-0400\n"
+"POT-Creation-Date: 2017-09-28 10:35-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Ricardo Simões <xmcorporation@gmail.com>, 2017\n"
 "Language-Team: Portuguese (Portugal) (https://www.transifex.com/calamares/teams/20061/pt_PT/)\n"
@@ -17,18 +17,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: pt_PT\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-#: src/modules/machineid/main.py:35
-msgid "Generate machine-id."
-msgstr "Gerar id-máquina"
-
-#: src/modules/dummypython/main.py:44
-msgid "Dummy python job."
-msgstr "Tarefa Dummy python."
-
-#: src/modules/dummypython/main.py:97
-msgid "Dummy python step {}"
-msgstr "Passo Dummy python {}"
 
 #: src/modules/packages/main.py:59
 #, python-format
@@ -52,3 +40,15 @@ msgstr[1] "A remover %(num)d pacotes."
 #: src/modules/packages/main.py:68
 msgid "Install packages."
 msgstr "Instalar pacotes."
+
+#: src/modules/dummypython/main.py:44
+msgid "Dummy python job."
+msgstr "Tarefa Dummy python."
+
+#: src/modules/dummypython/main.py:97
+msgid "Dummy python step {}"
+msgstr "Passo Dummy python {}"
+
+#: src/modules/machineid/main.py:35
+msgid "Generate machine-id."
+msgstr "Gerar id-máquina"
