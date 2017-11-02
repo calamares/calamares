@@ -3,6 +3,7 @@
  *   Copyright 2014-2017, Teo Mrnjavac <teo@kde.org>
  *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
  *   Copyright 2019, Collabora Ltd <arnaud.ferraris@collabora.com>
+ *   Copyright 2020, Gabriel Craciunescu <crazy@frugalware.org>
  *
  *   Portions from the Manjaro Installation Framework
  *   by Roland Singer <roland@manjaro.org>
@@ -40,6 +41,7 @@
 #include "utils/String.h"
 
 #include <QBoxLayout>
+#include <QFile>
 #include <QLabel>
 #include <QLineEdit>
 #include <QRegExp>
@@ -303,7 +305,27 @@ UsersPage::fillSuggestions()
     {
         if ( !cleanParts.isEmpty() && !cleanParts.first().isEmpty() )
         {
-            QString hostnameSuggestion = QString( "%1-pc" ).arg( cleanParts.first() );
+
+            QString dmiProductName;
+            QString hostnameSuggestion;
+            // yes validateHostnameText() but these files can be a mess
+            QRegExp dmirx( "[^a-zA-Z0-9]", Qt::CaseInsensitive );
+            QFile dmiFile( QStringLiteral( "/sys/devices/virtual/dmi/id/product_name" ) );
+
+            if ( dmiFile.exists() &&
+                 dmiFile.open(QIODevice::ReadOnly))
+            {
+                dmiProductName = QString::fromLocal8Bit( dmiFile.readAll().simplified().data() )
+                                 .toLower().replace(dmirx, " ").remove(' ');
+            }
+            if ( !dmiProductName.isEmpty() )
+            {
+                hostnameSuggestion = QString( "%1-%2" ).arg( cleanParts.first() ).arg( dmiProductName );
+            }
+            else
+            {
+               hostnameSuggestion = QString( "%1-pc" ).arg( cleanParts.first() );
+            }
             if ( HOSTNAME_RX.indexIn( hostnameSuggestion ) != -1 )
             {
                 ui->textBoxHostname->setText( hostnameSuggestion );
