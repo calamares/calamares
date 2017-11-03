@@ -53,10 +53,10 @@ ProcessJobModule::loadSelf()
 }
 
 
-QList< job_ptr >
+JobList
 ProcessJobModule::jobs() const
 {
-    return QList< job_ptr >() << m_job;
+    return JobList() << m_job;
 }
 
 

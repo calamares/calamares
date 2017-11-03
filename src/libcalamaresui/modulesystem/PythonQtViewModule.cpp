@@ -171,7 +171,7 @@ PythonQtViewModule::loadSelf()
 }
 
 
-QList< job_ptr >
+JobList
 PythonQtViewModule::jobs() const
 {
     return m_viewStep->jobs();
