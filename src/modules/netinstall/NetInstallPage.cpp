@@ -113,7 +113,13 @@ NetInstallPage::dataIsHere( QNetworkReply* reply )
 
 QList<PackageTreeItem::ItemData> NetInstallPage::selectedPackages() const
 {
-    return m_groups->getPackages();
+    if ( m_groups )
+        return m_groups->getPackages();
+    else
+    {
+        cDebug() << "WARNING: no netinstall groups are available.";
+        return QList<PackageTreeItem::ItemData>();
+    }
 }
 
 void NetInstallPage::loadGroupList()
