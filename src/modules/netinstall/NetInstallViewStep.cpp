@@ -2,6 +2,7 @@
  *   Copyright 2016, Luca Giambonini <almack@chakraos.org>
  *   Copyright 2016, Lisa Vitolo <shainer@chakraos.org>
  *   Copyright 2017, Kyle Robbertze  <krobbertze@gmail.com>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -30,11 +31,11 @@ CALAMARES_PLUGIN_FACTORY_DEFINITION( NetInstallViewStepFactory, registerPlugin<N
 NetInstallViewStep::NetInstallViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
     , m_widget( new NetInstallPage() )
-    , m_nextEnabled( true )
+    , m_nextEnabled( false )
 {
     emit nextStatusChanged( true );
     connect( m_widget, &NetInstallPage::checkReady,
-             this, &NetInstallViewStep::nextStatusChanged );
+             this, &NetInstallViewStep::nextIsReady );
 }
 
 
@@ -178,6 +179,11 @@ NetInstallViewStep::onLeave()
 void
 NetInstallViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
+    m_widget->setRequired(
+        configurationMap.contains( "required" ) &&
+        configurationMap.value( "required" ).type() == QVariant::Bool &&
+        configurationMap.value( "required" ).toBool() );
+
     if ( configurationMap.contains( "groupsUrl" ) &&
             configurationMap.value( "groupsUrl" ).type() == QVariant::String )
     {
@@ -185,4 +191,11 @@ NetInstallViewStep::setConfigurationMap( const QVariantMap& configurationMap )
             "groupsUrl", configurationMap.value( "groupsUrl" ).toString() );
         m_widget->loadGroupList();
     }
+}
+
+void
+NetInstallViewStep::nextIsReady( bool b )
+{
+    m_nextEnabled = b;
+    emit nextStatusChanged( b );
 }
