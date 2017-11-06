@@ -9,11 +9,18 @@ if(NOT PYTHONLIBS_FOUND)
   message(FATAL_ERROR "error: Python is required to build PythonQt")
 endif()
 
+# Cut X.Y[.Z] down to just X.Y
 string(REGEX REPLACE
     "^([0-9][0-9]*)\.([0-9][0-9]*)"
-    "\\1"
-    PYTHONLIBS_MAJMIN
+    "\\1.\\2@"
+    _PYTHONLIBS_MAJMIN
     ${PYTHONLIBS_VERSION_STRING}
+)
+string(REGEX REPLACE
+    "@.*"
+    ""
+    PYTHONLIBS_MAJMIN
+    ${_PYTHONLIBS_MAJMIN}
 )
 
 if(NOT EXISTS "${PYTHONQT_INSTALL_DIR}")
@@ -30,7 +37,7 @@ find_path(PYTHONQT_INCLUDE_DIR PythonQt.h
   DOC "Path to the PythonQt include directory")
 
 if ( NOT PythonQt_FIND_QUIETLY )
-    message( STATUS "Searching for PythonQt (Python ${PYTHONLIBS_MAJMIN}) .." )
+    message( STATUS "Searching for PythonQt (PythonLibs ${PYTHONLIBS_MAJMIN}) .." )
     if ( PYTHONQT_INCLUDE_DIR )
         message( STATUS "  .. found include ${PYTHONQT_INCLUDE_DIR}" )
     endif()
@@ -99,8 +106,12 @@ if(PYTHONQT_QTALL_LIBRARY_DEBUG)
 endif()
 
 if ( NOT PythonQt_FIND_QUIETLY )
-    message( STATUS "  .. found library ${PYTHONQT_LIBRARY}" )
-    message( STATUS "  .. found qtall   ${PYTHONQT_QTALL_LIBRARY}" )
+    if ( PYTHONQT_LIBRARY )
+        message( STATUS "  .. found library ${PYTHONQT_LIBRARY}" )
+    endif()
+    if ( PYTHONQT_QTALL_LIBRARY )
+        message( STATUS "  .. found qtall   ${PYTHONQT_QTALL_LIBRARY}" )
+    endif()
 endif()
 
 
