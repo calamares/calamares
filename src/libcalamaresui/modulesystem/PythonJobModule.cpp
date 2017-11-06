@@ -53,10 +53,10 @@ PythonJobModule::loadSelf()
 }
 
 
-QList< job_ptr >
+JobList
 PythonJobModule::jobs() const
 {
-    return QList< job_ptr >() << m_job;
+    return JobList() << m_job;
 }
 
 

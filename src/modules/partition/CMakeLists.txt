@@ -8,6 +8,9 @@ find_package( KF5 REQUIRED CoreAddons )
 # These are needed because KPMcore links publicly against ConfigCore, I18n, IconThemes, KIOCore and Service
 find_package( KF5 REQUIRED Config I18n IconThemes KIO Service )
 
+# Compatibility: KPMCore 3.2 has a different API, so detect it
+# first and add a define for it; otherwise we need 3.0.3 for NVMe
+# support; 3.0.2 works as well, but is buggy (#697)
 find_package( KPMcore 3.1.50 QUIET )
 if ( KPMcore_FOUND )
     add_definitions(-DWITH_KPMCORE22)

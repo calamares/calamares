@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-04 08:16-0400\n"
+"POT-Creation-Date: 2017-09-28 10:35-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Mingcong Bai <jeffbai@aosc.xyz>, 2017\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/calamares/teams/20061/zh_CN/)\n"
@@ -17,18 +17,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: zh_CN\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-
-#: src/modules/machineid/main.py:35
-msgid "Generate machine-id."
-msgstr "生成 machine-id。"
-
-#: src/modules/dummypython/main.py:44
-msgid "Dummy python job."
-msgstr "占位 Python 任务。"
-
-#: src/modules/dummypython/main.py:97
-msgid "Dummy python step {}"
-msgstr "占位 Python 步骤 {}"
 
 #: src/modules/packages/main.py:59
 #, python-format
@@ -50,3 +38,15 @@ msgstr[0] ""
 #: src/modules/packages/main.py:68
 msgid "Install packages."
 msgstr ""
+
+#: src/modules/dummypython/main.py:44
+msgid "Dummy python job."
+msgstr "占位 Python 任务。"
+
+#: src/modules/dummypython/main.py:97
+msgid "Dummy python step {}"
+msgstr "占位 Python 步骤 {}"
+
+#: src/modules/machineid/main.py:35
+msgid "Generate machine-id."
+msgstr "生成 machine-id。"

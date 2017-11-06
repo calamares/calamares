@@ -24,6 +24,7 @@
 
 // KPMcore
 #include <kpmcore/core/partition.h>
+#include <kpmcore/fs/luks.h>
 
 // Qt
 #include <QColor>
@@ -86,9 +87,19 @@ colorForPartition( Partition* partition )
         return EXTENDED_COLOR;
 
     if ( partition->fileSystem().supportGetUUID() != FileSystem::cmdSupportNone &&
-         !partition->fileSystem().uuid().isEmpty() &&
-         s_partitionColorsCache.contains( partition->fileSystem().uuid() ) )
-        return s_partitionColorsCache[ partition->fileSystem().uuid() ];
+         !partition->fileSystem().uuid().isEmpty() )
+    {
+        if ( partition->fileSystem().type() == FileSystem::Luks )
+        {
+            FS::luks& luksFs = dynamic_cast< FS::luks& >( partition->fileSystem() );
+            if ( !luksFs.outerUuid().isEmpty() &&
+                 s_partitionColorsCache.contains( luksFs.outerUuid() ) )
+                return s_partitionColorsCache[ luksFs.outerUuid() ];
+        }
+
+        if ( s_partitionColorsCache.contains( partition->fileSystem().uuid() ) )
+            return s_partitionColorsCache[ partition->fileSystem().uuid() ];
+    }
 
     // No partition-specific color needed, pick one from our list, but skip
     // free space: we don't want a partition to change colors if space before
@@ -119,8 +130,20 @@ colorForPartition( Partition* partition )
 
     if ( partition->fileSystem().supportGetUUID() != FileSystem::cmdSupportNone &&
          !partition->fileSystem().uuid().isEmpty() )
-        s_partitionColorsCache.insert( partition->fileSystem().uuid(),
-                                       PARTITION_COLORS[ colorIdx % NUM_PARTITION_COLORS ] );
+    {
+        if ( partition->fileSystem().type() == FileSystem::Luks )
+        {
+            FS::luks& luksFs = dynamic_cast< FS::luks& >( partition->fileSystem() );
+            if ( !luksFs.outerUuid().isEmpty() )
+            {
+                s_partitionColorsCache.insert( luksFs.outerUuid(),
+                                               PARTITION_COLORS[ colorIdx % NUM_PARTITION_COLORS ] );
+            }
+        }
+        else
+            s_partitionColorsCache.insert( partition->fileSystem().uuid(),
+                                           PARTITION_COLORS[ colorIdx % NUM_PARTITION_COLORS ] );
+    }
     return PARTITION_COLORS[ colorIdx % NUM_PARTITION_COLORS ];
 }
 

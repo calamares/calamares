@@ -20,6 +20,7 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "utils/Logger.h"
 #include "keyboardpreview.h"
 
 KeyBoardPreview::KeyBoardPreview( QWidget* parent )
@@ -113,10 +114,16 @@ bool KeyBoardPreview::loadCodes() {
     process.setEnvironment(QStringList() << "LANG=C" << "LC_MESSAGES=C");
     process.start("ckbcomp", param);
     if (!process.waitForStarted())
+    {
+        cDebug() << "WARNING: ckbcomp not found , keyboard preview disabled";
         return false;
+    }
 
     if (!process.waitForFinished())
+    {
+        cDebug() << "WARNING: ckbcomp failed, keyboard preview disabled";
         return false;
+    }
 
     // Clear codes
     codes.clear();

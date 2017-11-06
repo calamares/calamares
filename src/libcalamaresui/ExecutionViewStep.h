@@ -52,7 +52,7 @@ public:
 
     void onActivate() override;
 
-    QList< job_ptr > jobs() const override;
+    JobList jobs() const override;
 
     void appendJobModuleInstanceKey( const QString& instanceKey );
 

@@ -21,6 +21,7 @@ calamares_add_plugin( interactiveterminal
         InteractiveTerminalPage.cpp
     LINK_PRIVATE_LIBRARIES
         calamaresui
+    LINK_LIBRARIES
         KF5::Service
         KF5::Parts
     SHARED_LIB

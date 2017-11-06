@@ -37,7 +37,7 @@ public:
     Interface interface() const override;
 
     void loadSelf() override;
-    QList< job_ptr > jobs() const override;
+    JobList jobs() const override;
 
 protected:
     void initFrom( const QVariantMap& moduleDescriptor ) override;

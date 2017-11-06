@@ -76,7 +76,7 @@ ViewModule::loadSelf()
 }
 
 
-QList< job_ptr >
+JobList
 ViewModule::jobs() const
 {
     return m_viewStep->jobs();

@@ -3,6 +3,7 @@ include( CMakeColors )
 if( BUILD_TESTING )
     add_executable( test_conf test_conf.cpp )
     target_link_libraries( test_conf ${YAMLCPP_LIBRARY} )
+    target_include_directories( test_conf PUBLIC ${YAMLCPP_INCLUDE_DIR} )
 endif()
 
 file( GLOB SUBDIRECTORIES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "*" )
