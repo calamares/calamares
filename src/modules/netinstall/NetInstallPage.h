@@ -46,17 +46,24 @@ public:
 
     void onActivate();
 
-    bool isReady();
-
     // Retrieves the groups, with name, description and packages, from
     // the remote URL configured in the settings. Assumes the URL is already
     // in the global storage. This should be called before displaying the page.
     void loadGroupList();
 
+    // Sets the "required" state of netinstall data. Influences whether
+    // corrupt or unavailable data causes checkReady() to be emitted
+    // true (not-required) or false.
+    void setRequired( bool );
+    bool getRequired() const
+    {
+        return m_required;
+    }
+
     // Returns the list of packages belonging to groups that are
     // selected in the view in this given moment. No data is cached here, so
     // this function does not have constant time.
-    QList<PackageTreeItem::ItemData> selectedPackages() const;
+    PackageModel::PackageItemDataList selectedPackages() const;
 
 public slots:
     void dataIsHere( QNetworkReply* );
@@ -76,6 +83,7 @@ private:
     QNetworkAccessManager m_networkManager;
 
     PackageModel* m_groups;
+    bool m_required;
 };
 
 #endif // NETINSTALLPAGE_H

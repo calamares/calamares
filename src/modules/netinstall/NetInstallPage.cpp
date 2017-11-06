@@ -58,14 +58,6 @@ NetInstallPage::NetInstallPage( QWidget* parent )
 }
 
 bool
-NetInstallPage::isReady()
-{
-    // nothing to wait for, the data are immediately ready
-    // if the user does not select any group nothing is installed
-    return true;
-}
-
-bool
 NetInstallPage::readGroups( const QByteArray& yamlData )
 {
     try
@@ -92,10 +84,13 @@ NetInstallPage::readGroups( const QByteArray& yamlData )
 void
 NetInstallPage::dataIsHere( QNetworkReply* reply )
 {
+    // If m_required is *false* then we still say we're ready
+    // even if the reply is corrupt or missing.
     if ( reply->error() != QNetworkReply::NoError )
     {
         cDebug() << reply->errorString();
         ui->netinst_status->setText( tr( "Network Installation. (Disabled: Unable to fetch package lists, check your network connection)" ) );
+        emit checkReady( !m_required );
         return;
     }
 
@@ -104,6 +99,7 @@ NetInstallPage::dataIsHere( QNetworkReply* reply )
         cDebug() << "Netinstall groups data was received, but invalid.";
         ui->netinst_status->setText( tr( "Network Installation. (Disabled: Received invalid groups data)" ) );
         reply->deleteLater();
+        emit checkReady( !m_required );
         return;
     }
 
@@ -112,15 +108,23 @@ NetInstallPage::dataIsHere( QNetworkReply* reply )
     ui->groupswidget->header()->setSectionResizeMode( 1, QHeaderView::Stretch );
 
     reply->deleteLater();
-    emit checkReady( isReady() );
+    emit checkReady( true );
 }
 
-QList<PackageTreeItem::ItemData> NetInstallPage::selectedPackages() const
+PackageModel::PackageItemDataList
+NetInstallPage::selectedPackages() const
 {
-    return m_groups->getPackages();
+    if ( m_groups )
+        return m_groups->getPackages();
+    else
+    {
+        cDebug() << "WARNING: no netinstall groups are available.";
+        return PackageModel::PackageItemDataList();
+    }
 }
 
-void NetInstallPage::loadGroupList()
+void
+NetInstallPage::loadGroupList()
 {
     QString confUrl(
         Calamares::JobQueue::instance()->globalStorage()->value(
@@ -139,7 +143,15 @@ void NetInstallPage::loadGroupList()
     m_networkManager.get( request );
 }
 
-void NetInstallPage::onActivate()
+void
+NetInstallPage::setRequired( bool b )
+{
+    m_required = b;
+}
+
+
+void
+NetInstallPage::onActivate()
 {
     ui->groupswidget->setFocus();
 }
