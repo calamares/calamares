@@ -139,7 +139,7 @@ NetInstallViewStep::onLeave()
         QVariant details( package.packageName );
         // If it's a package with a pre- or post-script, replace
         // with the more complicated datastructure.
-        if (!package.preScript.isEmpty() || !package.postScript.isEmpty())
+        if ( !package.preScript.isEmpty() || !package.postScript.isEmpty() )
         {
             QMap<QString, QVariant> sdetails;
             sdetails.insert( "pre-script", package.preScript );
@@ -157,14 +157,14 @@ NetInstallViewStep::onLeave()
     {
         QMap<QString, QVariant> op;
         op.insert( "install", QVariant( installPackages ) );
-        packageOperations.append(op);
+        packageOperations.append( op );
         cDebug() << "  .." << installPackages.length() << "critical packages.";
     }
     if ( !tryInstallPackages.empty() )
     {
         QMap<QString, QVariant> op;
         op.insert( "try_install", QVariant( tryInstallPackages ) );
-        packageOperations.append(op);
+        packageOperations.append( op );
         cDebug() << "  .." << tryInstallPackages.length() << "non-critical packages.";
     }
 

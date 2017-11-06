@@ -55,7 +55,10 @@ public:
     // corrupt or unavailable data causes checkReady() to be emitted
     // true (not-required) or false.
     void setRequired( bool );
-    bool getRequired() const { return m_required; }
+    bool getRequired() const
+    {
+        return m_required;
+    }
 
     // Returns the list of packages belonging to groups that are
     // selected in the view in this given moment. No data is cached here, so

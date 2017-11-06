@@ -111,7 +111,8 @@ NetInstallPage::dataIsHere( QNetworkReply* reply )
     emit checkReady( true );
 }
 
-QList<PackageTreeItem::ItemData> NetInstallPage::selectedPackages() const
+QList<PackageTreeItem::ItemData>
+NetInstallPage::selectedPackages() const
 {
     if ( m_groups )
         return m_groups->getPackages();
@@ -122,7 +123,8 @@ QList<PackageTreeItem::ItemData> NetInstallPage::selectedPackages() const
     }
 }
 
-void NetInstallPage::loadGroupList()
+void
+NetInstallPage::loadGroupList()
 {
     QString confUrl(
         Calamares::JobQueue::instance()->globalStorage()->value(
@@ -141,13 +143,15 @@ void NetInstallPage::loadGroupList()
     m_networkManager.get( request );
 }
 
-void NetInstallPage::setRequired(bool b)
+void
+NetInstallPage::setRequired( bool b )
 {
     m_required = b;
 }
 
 
-void NetInstallPage::onActivate()
+void
+NetInstallPage::onActivate()
 {
     ui->groupswidget->setFocus();
 }
