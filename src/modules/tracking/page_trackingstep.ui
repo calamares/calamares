@@ -25,11 +25,57 @@
         <item>
          <layout class="QVBoxLayout" name="verticalLayout_2">
           <item>
-           <widget class="QLabel" name="label">
-            <property name="text">
-             <string>Explanation of install-tracking.</string>
-            </property>
-           </widget>
+           <layout class="QHBoxLayout" name="horizontalLayout_2">
+            <item>
+             <widget class="QLabel" name="installActionIcon">
+              <property name="maximumSize">
+               <size>
+                <width>64</width>
+                <height>64</height>
+               </size>
+              </property>
+              <property name="baseSize">
+               <size>
+                <width>64</width>
+                <height>64</height>
+               </size>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="pixmap">
+               <pixmap resource="page_trackingstep.qrc">:/tracking/phone.png</pixmap>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="installExplanation">
+              <property name="text">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Installation tracking helps %1 count how many people use it. If you enable install-tracking, at the end of the installation, information about your hardware will be sent &lt;span style=&quot; font-weight:600;&quot;&gt;one time only&lt;/span&gt; to our servers. To see what will be sent, click on the help-icon.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+              <property name="textFormat">
+               <enum>Qt::RichText</enum>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="toolButton">
+              <property name="text">
+               <string>...</string>
+              </property>
+              <property name="icon">
+               <iconset resource="page_trackingstep.qrc">
+                <normaloff>:/tracking/data/images/information.svgz</normaloff>:/tracking/data/images/information.svgz</iconset>
+              </property>
+              <property name="arrowType">
+               <enum>Qt::NoArrow</enum>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </item>
           <item>
            <widget class="QCheckBox" name="checkBox">
@@ -52,11 +98,51 @@
         <item>
          <layout class="QVBoxLayout" name="verticalLayout_4">
           <item>
-           <widget class="QLabel" name="label_2">
-            <property name="text">
-             <string>Explanation of machine-tracking.</string>
-            </property>
-           </widget>
+           <layout class="QHBoxLayout" name="horizontalLayout_3">
+            <item>
+             <widget class="QLabel" name="machineActionIcon">
+              <property name="maximumSize">
+               <size>
+                <width>64</width>
+                <height>64</height>
+               </size>
+              </property>
+              <property name="baseSize">
+               <size>
+                <width>64</width>
+                <height>64</height>
+               </size>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="pixmap">
+               <pixmap resource="page_trackingstep.qrc">:/tracking/machine.png</pixmap>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="machineExplanation">
+              <property name="text">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Machine tracking helps %1 count how many people use it on an ongoing basis. If you enable machine-tracking, the system will send limited information about your hardware and installed software &lt;span style=&quot; font-weight:600;&quot;&gt;periodically&lt;/span&gt; to our servers. For information about the kind of information being sent, click on the help icon.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="toolButton_2">
+              <property name="text">
+               <string>...</string>
+              </property>
+              <property name="icon">
+               <iconset resource="page_trackingstep.qrc">
+                <normaloff>:/tracking/data/images/information.svgz</normaloff>:/tracking/data/images/information.svgz</iconset>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </item>
           <item>
            <widget class="QCheckBox" name="checkBox_2">
@@ -79,11 +165,51 @@
         <item>
          <layout class="QVBoxLayout" name="verticalLayout_5">
           <item>
-           <widget class="QLabel" name="label_3">
-            <property name="text">
-             <string>Explanation of user-tracking.</string>
-            </property>
-           </widget>
+           <layout class="QHBoxLayout" name="horizontalLayout_4">
+            <item>
+             <widget class="QLabel" name="userActionIcon">
+              <property name="maximumSize">
+               <size>
+                <width>64</width>
+                <height>64</height>
+               </size>
+              </property>
+              <property name="baseSize">
+               <size>
+                <width>64</width>
+                <height>64</height>
+               </size>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="pixmap">
+               <pixmap resource="page_trackingstep.qrc">:/tracking/binoculars.png</pixmap>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="userExplanation">
+              <property name="text">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;User tracking helps %1 understand how people use the system and the applications. If you enable user-tracking, the system will send information about your use of the installed software &lt;span style=&quot; font-weight:600;&quot;&gt;regularly&lt;/span&gt; to our servers. For information about the kind of information being sent and the policies that apply, click on the help icon.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+              <property name="wordWrap">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="toolButton_3">
+              <property name="text">
+               <string>...</string>
+              </property>
+              <property name="icon">
+               <iconset resource="page_trackingstep.qrc">
+                <normaloff>:/tracking/data/images/information.svgz</normaloff>:/tracking/data/images/information.svgz</iconset>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </item>
           <item>
            <widget class="QCheckBox" name="checkBox_3">
@@ -101,6 +227,8 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="page_trackingstep.qrc"/>
+ </resources>
  <connections/>
 </ui>

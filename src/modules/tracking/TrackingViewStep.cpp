@@ -19,6 +19,7 @@
 #include "JobQueue.h"
 #include "GlobalStorage.h"
 #include "utils/Logger.h"
+#include "utils/CalamaresUtils.h"
 
 #include "TrackingViewStep.h"
 #include "TrackingPage.h"
@@ -45,7 +46,7 @@ TrackingViewStep::~TrackingViewStep()
 QString
 TrackingViewStep::prettyName() const
 {
-    return tr( "Telemetry and Tracking" );
+    return tr( "Telemetry" );
 }
 
 
@@ -71,8 +72,7 @@ TrackingViewStep::back()
 bool
 TrackingViewStep::isNextEnabled() const
 {
-//     return m_widget->isNextEnabled();
-    return false;
+    return true;
 }
 
 
@@ -100,10 +100,38 @@ TrackingViewStep::isAtEnd() const
 QList< Calamares::job_ptr >
 TrackingViewStep::jobs() const
 {
+    cDebug() << "Tracking jobs ..";
     return QList< Calamares::job_ptr >();
 }
+
+
+static
+bool getTrackingEnabled( const QVariantMap& configurationMap, const QString& key, TrackingEnabled& track )
+{
+    cDebug() << "Tracking configuration" << key;
+
+    // Switch it off by default
+    track.settingEnabled = false;
+    track.userEnabled = false;
+
+    bool success = false;
+    auto config = CalamaresUtils::getSubMap( configurationMap, key, success );
+
+    if ( success )
+    {
+        track.settingEnabled = CalamaresUtils::getBool( config, "enabled", false );
+        track.userEnabled = track.settingEnabled && CalamaresUtils::getBool( config, "default", false );
+    }
+    cDebug() << "  .. Install tracking: enabled=" <<track.settingEnabled << "default=" << track.userEnabled;
+
+    return track.settingEnabled;
+}
+
 
 void
 TrackingViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
+    getTrackingEnabled( configurationMap, "install", m_installTracking );
+    getTrackingEnabled( configurationMap, "machine", m_machineTracking );
+    getTrackingEnabled( configurationMap, "user", m_userTracking );
 }

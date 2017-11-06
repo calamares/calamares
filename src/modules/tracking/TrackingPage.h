@@ -33,6 +33,15 @@ class TrackingPage : public QWidget
 public:
     explicit TrackingPage( QWidget* parent = nullptr );
 
+    enum class TrackingType
+    {
+        InstallTracking,
+        MachineTracking,
+        UserTracking
+    } ;
+
+    void showTrackingOption( TrackingType t, bool show );
+
 private:
     Ui::TrackingPage* ui;
 };

@@ -42,3 +42,29 @@ TrackingPage::TrackingPage(QWidget *parent)
     ui->setupUi( this );
 }
 
+void TrackingPage::showTrackingOption(TrackingType t, bool show)
+{
+    QGroupBox *group = nullptr;
+
+    cDebug() << "Showing tracking option" << int(t) << show;
+    switch ( t )
+    {
+        case TrackingType::InstallTracking:
+            group = ui->installTrackingBox;
+            break;
+        case TrackingType::MachineTracking:
+            group = ui->machineTrackingBox;
+            break;
+        case TrackingType::UserTracking:
+            group = ui->UserTrackingBox;
+            break;
+    }
+
+    if ( group != nullptr )
+        if ( show )
+            group->show();
+        else
+            group->hide();
+    else
+        cDebug() << "  .. unknown option" << int(t);
+}

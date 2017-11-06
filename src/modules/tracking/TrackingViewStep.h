@@ -29,6 +29,12 @@
 
 class TrackingPage;
 
+struct TrackingEnabled
+{
+    bool settingEnabled;  // Enabled in config file
+    bool userEnabled;     // User checked "yes"
+};
+
 class PLUGINDLLEXPORT TrackingViewStep : public Calamares::ViewStep
 {
     Q_OBJECT
@@ -56,6 +62,8 @@ public:
 
 private:
     TrackingPage* m_widget;
+
+    TrackingEnabled m_installTracking, m_machineTracking, m_userTracking;
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( TrackingViewStepFactory )
