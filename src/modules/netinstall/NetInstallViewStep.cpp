@@ -127,7 +127,7 @@ NetInstallViewStep::onLeave()
     cDebug() << "Leaving netinstall, adding packages to be installed"
              << "to global storage";
 
-    QList<PackageTreeItem::ItemData> packages = m_widget->selectedPackages();
+    PackageModel::PackageItemDataList packages = m_widget->selectedPackages();
     QVariantList installPackages;
     QVariantList tryInstallPackages;
     QVariantList packageOperations;

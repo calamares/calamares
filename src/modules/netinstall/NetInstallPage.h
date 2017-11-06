@@ -63,7 +63,7 @@ public:
     // Returns the list of packages belonging to groups that are
     // selected in the view in this given moment. No data is cached here, so
     // this function does not have constant time.
-    QList<PackageTreeItem::ItemData> selectedPackages() const;
+    PackageModel::PackageItemDataList selectedPackages() const;
 
 public slots:
     void dataIsHere( QNetworkReply* );

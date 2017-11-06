@@ -111,7 +111,7 @@ NetInstallPage::dataIsHere( QNetworkReply* reply )
     emit checkReady( true );
 }
 
-QList<PackageTreeItem::ItemData>
+PackageModel::PackageItemDataList
 NetInstallPage::selectedPackages() const
 {
     if ( m_groups )
@@ -119,7 +119,7 @@ NetInstallPage::selectedPackages() const
     else
     {
         cDebug() << "WARNING: no netinstall groups are available.";
-        return QList<PackageTreeItem::ItemData>();
+        return PackageModel::PackageItemDataList();
     }
 }
 
