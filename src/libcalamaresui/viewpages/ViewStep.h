@@ -91,7 +91,7 @@ public:
      */
     virtual void onLeave();
 
-    virtual QList< job_ptr > jobs() const = 0;
+    virtual JobList jobs() const = 0;
 
     void setModuleInstanceKey( const QString& instanceKey );
     QString moduleInstanceKey() const
