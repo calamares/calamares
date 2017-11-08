@@ -61,6 +61,9 @@ public:
 private:
     QVariantMap setTrackingOption( const QVariantMap& configurationMap, const QString& key, TrackingType t );
 
+    TrackingPage* m_widget;
+    QString m_installTrackingUrl;
+
     struct TrackingEnabled
     {
         bool settingEnabled;  // Enabled in config file
@@ -70,10 +73,10 @@ private:
             : settingEnabled( false )
             , userEnabled( false )
         {}
+
+        bool enabled() const { return settingEnabled && userEnabled; }
     };
     TrackingEnabled m_installTracking, m_machineTracking, m_userTracking;
-
-    TrackingPage* m_widget;
 
     inline TrackingEnabled& tracking( TrackingType t )
     {

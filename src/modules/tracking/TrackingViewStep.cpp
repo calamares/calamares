@@ -20,6 +20,7 @@
 #include "GlobalStorage.h"
 #include "utils/Logger.h"
 #include "utils/CalamaresUtils.h"
+#include "utils/CalamaresUtilsSystem.h"
 
 #include "TrackingViewStep.h"
 #include "TrackingPage.h"
@@ -113,6 +114,22 @@ QList< Calamares::job_ptr >
 TrackingViewStep::jobs() const
 {
     cDebug() << "Tracking jobs ..";
+    if ( m_installTracking.enabled() )
+    {
+        QString installUrl = m_installTrackingUrl;
+        const auto s = CalamaresUtils::System::instance();
+
+        QString memory, disk;
+        memory.setNum( s->getTotalMemoryB().first );
+        disk.setNum( s->getTotalDiskB() );
+
+        installUrl
+            .replace( "$CPU", s->getCpuDescription() )
+            .replace( "$MEMORY",  memory )
+            .replace( "$DISK", disk );
+
+        cDebug() << "  .. install-tracking URL" << installUrl;
+    }
     return QList< Calamares::job_ptr >();
 }
 
@@ -132,7 +149,7 @@ QVariantMap TrackingViewStep::setTrackingOption(const QVariantMap& configuration
         settingEnabled = CalamaresUtils::getBool( config, "enabled", false );
         userEnabled = settingEnabled && CalamaresUtils::getBool( config, "default", false );
     }
-    cDebug() << "  .. Install tracking: enabled=" << settingEnabled << "default=" << userEnabled;
+    cDebug() << "  .. settable=" << settingEnabled << "default=" << userEnabled;
 
     auto trackingConfiguration = tracking( t );
     trackingConfiguration.settingEnabled = settingEnabled;
@@ -148,7 +165,11 @@ QVariantMap TrackingViewStep::setTrackingOption(const QVariantMap& configuration
 void
 TrackingViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
-    setTrackingOption( configurationMap, "install", TrackingType::InstallTracking );
+    QVariantMap config;
+
+    config = setTrackingOption( configurationMap, "install", TrackingType::InstallTracking );
+    m_installTrackingUrl = CalamaresUtils::getString( config, "url" );
+
     setTrackingOption( configurationMap, "machine", TrackingType::MachineTracking );
     setTrackingOption( configurationMap, "user", TrackingType::UserTracking );
 }
