@@ -105,6 +105,11 @@ namespace CalamaresUtils
     DLLEXPORT bool getBool( const QVariantMap& map, const QString& key, bool d );
 
     /**
+     * Get a string value from a mapping; returns empty QString if no value.
+     */
+    DLLEXPORT QString getString( const QVariantMap& map, const QString& key );
+
+    /**
      * Returns a sub-map (i.e. a nested map) from the given mapping with the
      * given key. @p success is set to true if the @p key exists
      * in @p map and converts to a map, false otherwise.
