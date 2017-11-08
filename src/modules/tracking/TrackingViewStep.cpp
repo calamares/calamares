@@ -110,10 +110,12 @@ void TrackingViewStep::onLeave()
 }
 
 
-QList< Calamares::job_ptr >
+Calamares::JobList
 TrackingViewStep::jobs() const
 {
-    cDebug() << "Tracking jobs ..";
+    Calamares::JobList l;
+
+    cDebug() << "Creating tracking jobs ..";
     if ( m_installTracking.enabled() )
     {
         QString installUrl = m_installTrackingUrl;
@@ -130,7 +132,7 @@ TrackingViewStep::jobs() const
 
         cDebug() << "  .. install-tracking URL" << installUrl;
     }
-    return QList< Calamares::job_ptr >();
+    return l;
 }
 
 
