@@ -19,6 +19,8 @@
 #ifndef TRACKINGVIEWSTEP_H
 #define TRACKINGVIEWSTEP_H
 
+#include "TrackingType.h"
+
 #include <utils/PluginFactory.h>
 #include <viewpages/ViewStep.h>
 #include <PluginDllMacro.h>
@@ -28,12 +30,6 @@
 #include <QVariantMap>
 
 class TrackingPage;
-
-struct TrackingEnabled
-{
-    bool settingEnabled;  // Enabled in config file
-    bool userEnabled;     // User checked "yes"
-};
 
 class PLUGINDLLEXPORT TrackingViewStep : public Calamares::ViewStep
 {
@@ -56,14 +52,38 @@ public:
     bool isAtBeginning() const override;
     bool isAtEnd() const override;
 
+    void onLeave() override;
+
     QList< Calamares::job_ptr > jobs() const override;
 
     void setConfigurationMap( const QVariantMap& configurationMap ) override;
 
 private:
+    void setTrackingOption( const QVariantMap& configurationMap, const QString& key, TrackingType t );
+
+    struct TrackingEnabled
+    {
+        bool settingEnabled;  // Enabled in config file
+        bool userEnabled;     // User checked "yes"
+
+        TrackingEnabled()
+            : settingEnabled( false )
+            , userEnabled( false )
+        {}
+    };
+    TrackingEnabled m_installTracking, m_machineTracking, m_userTracking;
+
     TrackingPage* m_widget;
 
-    TrackingEnabled m_installTracking, m_machineTracking, m_userTracking;
+    inline TrackingEnabled& tracking( TrackingType t )
+    {
+        if (t == TrackingType::UserTracking)
+            return m_userTracking;
+        else if (t == TrackingType::MachineTracking)
+            return m_machineTracking;
+        else
+            return m_installTracking;
+    }
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( TrackingViewStepFactory )

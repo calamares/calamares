@@ -97,6 +97,17 @@ TrackingViewStep::isAtEnd() const
 }
 
 
+void TrackingViewStep::onLeave()
+{
+    cDebug() << "Install tracking:" <<
+        (tracking( TrackingType::InstallTracking ).userEnabled = m_widget->getTrackingOption( TrackingType::InstallTracking ));
+    cDebug() << "Machine tracking:" <<
+        (tracking( TrackingType::MachineTracking ).userEnabled = m_widget->getTrackingOption( TrackingType::MachineTracking ));
+    cDebug() << "   User tracking:" <<
+        (tracking( TrackingType::UserTracking ).userEnabled = m_widget->getTrackingOption( TrackingType::UserTracking ));
+}
+
+
 QList< Calamares::job_ptr >
 TrackingViewStep::jobs() const
 {
@@ -105,33 +116,35 @@ TrackingViewStep::jobs() const
 }
 
 
-static
-bool getTrackingEnabled( const QVariantMap& configurationMap, const QString& key, TrackingEnabled& track )
+void TrackingViewStep::setTrackingOption(const QVariantMap& configurationMap, const QString& key, TrackingType t)
 {
     cDebug() << "Tracking configuration" << key;
 
-    // Switch it off by default
-    track.settingEnabled = false;
-    track.userEnabled = false;
+    bool settingEnabled = false;
+    bool userEnabled = false;
 
     bool success = false;
     auto config = CalamaresUtils::getSubMap( configurationMap, key, success );
 
     if ( success )
     {
-        track.settingEnabled = CalamaresUtils::getBool( config, "enabled", false );
-        track.userEnabled = track.settingEnabled && CalamaresUtils::getBool( config, "default", false );
+        settingEnabled = CalamaresUtils::getBool( config, "enabled", false );
+        userEnabled = settingEnabled && CalamaresUtils::getBool( config, "default", false );
     }
-    cDebug() << "  .. Install tracking: enabled=" <<track.settingEnabled << "default=" << track.userEnabled;
+    cDebug() << "  .. Install tracking: enabled=" << settingEnabled << "default=" << userEnabled;
 
-    return track.settingEnabled;
+    auto trackingConfiguration = tracking( t );
+    trackingConfiguration.settingEnabled = settingEnabled;
+    trackingConfiguration.userEnabled = userEnabled;
+
+    m_widget->setTrackingOption(t, settingEnabled, userEnabled);
 }
 
 
 void
 TrackingViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
-    getTrackingEnabled( configurationMap, "install", m_installTracking );
-    getTrackingEnabled( configurationMap, "machine", m_machineTracking );
-    getTrackingEnabled( configurationMap, "user", m_userTracking );
+    setTrackingOption( configurationMap, "install", TrackingType::InstallTracking );
+    setTrackingOption( configurationMap, "machine", TrackingType::MachineTracking );
+    setTrackingOption( configurationMap, "user", TrackingType::UserTracking );
 }

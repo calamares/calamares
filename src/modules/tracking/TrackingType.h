@@ -16,38 +16,14 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef TRACKINGPAGE_H
-#define TRACKINGPAGE_H
+#ifndef TRACKINGTYPE_H
+#define TRACKINGTYPE_H
 
-#include "TrackingType.h"
-
-#include <QWidget>
-#include <QUrl>
-
-namespace Ui
+enum class TrackingType
 {
-class TrackingPage;
-}
+    InstallTracking,
+    MachineTracking,
+    UserTracking
+} ;
 
-class TrackingPage : public QWidget
-{
-    Q_OBJECT
-public:
-    explicit TrackingPage( QWidget* parent = nullptr );
-
-    /**
-     * Enables or disables the tracking-option block for the given
-     * tracking option @p t, and sets the initial state of the
-     * checkbox to the @p user default.
-     */
-    void setTrackingOption( TrackingType t, bool setting, bool user );
-    /**
-     * Returns the state of the user checkbox for tracking option @p t.
-     */
-    bool getTrackingOption( TrackingType t );
-
-private:
-    Ui::TrackingPage* ui;
-};
-
-#endif //TRACKINGPAGE_H
+#endif //TRACKINGTYPE_H

@@ -20,6 +20,7 @@
 
 #include "ui_page_trackingstep.h"
 
+#include "Branding.h"
 #include "JobQueue.h"
 #include "GlobalStorage.h"
 #include "utils/Logger.h"
@@ -39,32 +40,66 @@ TrackingPage::TrackingPage(QWidget *parent)
     : QWidget( parent )
     , ui( new Ui::TrackingPage )
 {
+    using StringEntry = Calamares::Branding::StringEntry;
+
     ui->setupUi( this );
+    CALAMARES_RETRANSLATE(
+        ui->installExplanation->setText( tr( "Installation tracking helps %1 count how many people use it. If you enable install-tracking, at the end of the installation, information about your hardware will be sent <b>one time only</b> to our servers. To see what will be sent, click on the help-icon." ).arg( *StringEntry::ShortProductName ) );
+        ui->machineExplanation->setText( tr( "Machine tracking helps %1 count how many people use it on an ongoing basis. If you enable machine-tracking, the system will send limited information about your hardware and installed software <b>periodically</b> to our servers. For information about the kind of information being sent, click on the help icon." ).arg( *StringEntry::ShortProductName ) );
+        ui->userExplanation->setText( tr( "User tracking helps %1 understand how people use the system and the applications. If you enable user-tracking, the system will send information about your use of the installed software <b>regularly</b> to our servers. For information about the kind of information being sent and the policies that apply, click on the help icon." ).arg( *StringEntry::ShortProductName ) );
+    )
 }
 
-void TrackingPage::showTrackingOption(TrackingType t, bool show)
+void TrackingPage::setTrackingOption(TrackingType t, bool setting, bool user)
 {
-    QGroupBox *group = nullptr;
+    QGroupBox* group = nullptr;
+    QCheckBox* check = nullptr;
 
-    cDebug() << "Showing tracking option" << int(t) << show;
     switch ( t )
     {
         case TrackingType::InstallTracking:
             group = ui->installTrackingBox;
+            check = ui->installCheckBox;
             break;
         case TrackingType::MachineTracking:
             group = ui->machineTrackingBox;
+            check = ui->machineCheckBox;
             break;
         case TrackingType::UserTracking:
-            group = ui->UserTrackingBox;
+            group = ui->userTrackingBox;
+            check = ui->userCheckBox;
             break;
     }
 
-    if ( group != nullptr )
-        if ( show )
+    if ( (group != nullptr) && (check != nullptr))
+    {
+        if ( setting )
             group->show();
         else
             group->hide();
+
+        check->setChecked( user );
+    }
     else
         cDebug() << "  .. unknown option" << int(t);
+}
+
+bool TrackingPage::getTrackingOption(TrackingType t)
+{
+    QCheckBox* check = nullptr;
+
+    switch ( t )
+    {
+        case TrackingType::InstallTracking:
+            check = ui->installCheckBox;
+            break;
+        case TrackingType::MachineTracking:
+            check = ui->machineCheckBox;
+            break;
+        case TrackingType::UserTracking:
+            check = ui->userCheckBox;
+            break;
+    }
+
+    return (check != nullptr) && check->isChecked();
 }
