@@ -151,7 +151,7 @@ QVariantMap TrackingViewStep::setTrackingOption(const QVariantMap& configuration
     }
     cDebug() << "  .. settable=" << settingEnabled << "default=" << userEnabled;
 
-    auto trackingConfiguration = tracking( t );
+    TrackingEnabled& trackingConfiguration = tracking( t );
     trackingConfiguration.settingEnabled = settingEnabled;
     trackingConfiguration.userEnabled = userEnabled;
 
