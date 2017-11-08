@@ -46,6 +46,8 @@ public:
      */
     bool getTrackingOption( TrackingType t );
 
+    void setTrackingPolicy( TrackingType t, QString url );
+
 private:
     Ui::TrackingPage* ui;
 };

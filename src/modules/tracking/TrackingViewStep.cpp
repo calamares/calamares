@@ -24,6 +24,7 @@
 #include "TrackingViewStep.h"
 #include "TrackingPage.h"
 
+#include <QDesktopServices>
 #include <QVariantMap>
 
 CALAMARES_PLUGIN_FACTORY_DEFINITION( TrackingViewStepFactory, registerPlugin<TrackingViewStep>(); )
@@ -116,7 +117,7 @@ TrackingViewStep::jobs() const
 }
 
 
-void TrackingViewStep::setTrackingOption(const QVariantMap& configurationMap, const QString& key, TrackingType t)
+QVariantMap TrackingViewStep::setTrackingOption(const QVariantMap& configurationMap, const QString& key, TrackingType t)
 {
     cDebug() << "Tracking configuration" << key;
 
@@ -138,6 +139,9 @@ void TrackingViewStep::setTrackingOption(const QVariantMap& configurationMap, co
     trackingConfiguration.userEnabled = userEnabled;
 
     m_widget->setTrackingOption(t, settingEnabled, userEnabled);
+    m_widget->setTrackingPolicy(t, CalamaresUtils::getString( config, "policy" ) );
+
+    return config;
 }
 
 

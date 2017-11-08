@@ -44,6 +44,7 @@ TrackingPage::TrackingPage(QWidget *parent)
 
     ui->setupUi( this );
     CALAMARES_RETRANSLATE(
+        ui->retranslateUi( this );
         ui->installExplanation->setText( tr( "Installation tracking helps %1 count how many people use it. If you enable install-tracking, at the end of the installation, information about your hardware will be sent <b>one time only</b> to our servers. To see what will be sent, click on the help-icon." ).arg( *StringEntry::ShortProductName ) );
         ui->machineExplanation->setText( tr( "Machine tracking helps %1 count how many people use it on an ongoing basis. If you enable machine-tracking, the system will send limited information about your hardware and installed software <b>periodically</b> to our servers. For information about the kind of information being sent, click on the help icon." ).arg( *StringEntry::ShortProductName ) );
         ui->userExplanation->setText( tr( "User tracking helps %1 understand how people use the system and the applications. If you enable user-tracking, the system will send information about your use of the installed software <b>regularly</b> to our servers. For information about the kind of information being sent and the policies that apply, click on the help icon." ).arg( *StringEntry::ShortProductName ) );
@@ -81,7 +82,7 @@ void TrackingPage::setTrackingOption(TrackingType t, bool setting, bool user)
         check->setChecked( user );
     }
     else
-        cDebug() << "  .. unknown option" << int(t);
+        cDebug() << "WARNING: unknown tracking option" << int(t);
 }
 
 bool TrackingPage::getTrackingOption(TrackingType t)
@@ -102,4 +103,32 @@ bool TrackingPage::getTrackingOption(TrackingType t)
     }
 
     return (check != nullptr) && check->isChecked();
+}
+
+void TrackingPage::setTrackingPolicy(TrackingType t, QString url)
+{
+    QToolButton *button = nullptr;
+    switch( t )
+    {
+        case TrackingType::InstallTracking:
+            button = ui->installPolicyButton;
+            break;
+        case TrackingType::MachineTracking:
+            button = ui->machinePolicyButton;
+            break;
+        case TrackingType::UserTracking:
+            button = ui->userPolicyButton;
+            break;
+    }
+
+    if ( button != nullptr )
+        if ( url.isEmpty() )
+            button->hide();
+        else
+        {
+            connect( button, &QToolButton::clicked, [url]{ QDesktopServices::openUrl( url ); } );
+            cDebug() << "Tracking policy" << int(t) << "set to" << url;
+        }
+    else
+        cDebug() << "WARNING: unknown tracking option" << int(t);
 }

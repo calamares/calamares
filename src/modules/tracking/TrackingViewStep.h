@@ -59,7 +59,7 @@ public:
     void setConfigurationMap( const QVariantMap& configurationMap ) override;
 
 private:
-    void setTrackingOption( const QVariantMap& configurationMap, const QString& key, TrackingType t );
+    QVariantMap setTrackingOption( const QVariantMap& configurationMap, const QString& key, TrackingType t );
 
     struct TrackingEnabled
     {
