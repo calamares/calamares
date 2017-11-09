@@ -22,8 +22,9 @@
 #include "utils/CalamaresUtils.h"
 #include "utils/CalamaresUtilsSystem.h"
 
-#include "TrackingViewStep.h"
+#include "TrackingJobs.h"
 #include "TrackingPage.h"
+#include "TrackingViewStep.h"
 
 #include <QDesktopServices>
 #include <QVariantMap>
