@@ -26,9 +26,16 @@
 
 TrackingInstallJob::TrackingInstallJob( const QString& url )
     : m_url( url )
-    , m_networkManager( new QNetworkAccessManager( this ) )
+    , m_networkManager( nullptr )
     , m_semaphore( new QSemaphore( 1 ) )
 {
+}
+
+TrackingInstallJob::~TrackingInstallJob()
+{
+    Q_ASSERT( m_semaphore->available() == 1 );
+    delete m_semaphore;
+    delete m_networkManager;
 }
 
 QString TrackingInstallJob::prettyName() const
@@ -48,6 +55,8 @@ QString TrackingInstallJob::prettyStatusMessage() const
 
 Calamares::JobResult TrackingInstallJob::exec()
 {
+    m_networkManager = new QNetworkAccessManager();
+
     QNetworkRequest request;
     request.setUrl( QUrl( m_url ) );
     // Follows all redirects except unsafe ones (https to http).
