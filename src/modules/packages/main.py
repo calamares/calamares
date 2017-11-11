@@ -344,10 +344,18 @@ def subst_locale(plist):
 
 def run_operations(pkgman, entry):
     """
-    Call package manager with given parameters.
+    Call package manager with suitable parameters for the given
+    package actions.
 
-    :param pkgman:
-    :param entry:
+    :param pkgman: PackageManager
+        This is the manager that does the actual work.
+    :param entry: dict
+        Keys are the actions -- e.g. "install" -- to take, and the values
+        are the (list of) packages to apply the action to. The actions are
+        not iterated in a specific order, so it is recommended to use only
+        one action per dictionary. The list of packages may be package
+        names (strings) or package information dictionaries with pre-
+        and post-scripts.
     """
     global group_packages, completed_packages, mode_packages
 

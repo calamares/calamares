@@ -60,6 +60,9 @@ public:
 
     void setConfigurationMap( const QVariantMap& configurationMap ) override;
 
+public slots:
+    void nextIsReady( bool );
+
 private:
     NetInstallPage* m_widget;
     bool m_nextEnabled;

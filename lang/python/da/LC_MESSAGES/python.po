@@ -28,7 +28,7 @@ msgstr "Forarbejder pakker (%(count)d / %(total)d)"
 msgid "Installing one package."
 msgid_plural "Installing %(num)d packages."
 msgstr[0] "Installerer én pakke."
-msgstr[1] "Installer %(num)d pakker."
+msgstr[1] "Installerer %(num)d pakker."
 
 #: src/modules/packages/main.py:64
 #, python-format

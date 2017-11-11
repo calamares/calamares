@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-04 08:16-0400\n"
+"POT-Creation-Date: 2017-09-28 10:34-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: pavelrz <pavel@rzehak.cz>, 2016\n"
 "Language-Team: Czech (Czech Republic) (https://www.transifex.com/calamares/teams/20061/cs_CZ/)\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: src/modules/dummypythonqt/main.py:84
 msgid "Click me!"
-msgstr "Klikni na mě!"
+msgstr "Klikněte na mě!"
 
 #: src/modules/dummypythonqt/main.py:94
 msgid "A new QLabel."
@@ -36,7 +36,7 @@ msgstr "Testovací úloha PythonQt"
 
 #: src/modules/dummypythonqt/main.py:186
 msgid "This is the Dummy PythonQt Job. The dummy job says: {}"
-msgstr "Toto je testovací úloha PythonQt. Testovací úloha říká: {}"
+msgstr "Toto je testovací úloha PythonQt. Testovací úloha sděluje: {}"
 
 #: src/modules/dummypythonqt/main.py:190
 msgid "A status message for Dummy PythonQt Job."

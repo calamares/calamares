@@ -62,7 +62,7 @@ DebugWindow::DebugWindow()
     // JobQueue page
     jobQueueText->setReadOnly( true );
     connect( JobQueue::instance(), &JobQueue::queueChanged,
-             this, [ this ]( const QList< Calamares::job_ptr >& jobs )
+             this, [ this ]( const JobList& jobs )
     {
         QStringList text;
         for ( const auto &job : jobs )

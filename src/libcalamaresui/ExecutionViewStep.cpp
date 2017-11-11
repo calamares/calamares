@@ -148,10 +148,10 @@ ExecutionViewStep::onActivate()
 }
 
 
-QList< Calamares::job_ptr >
+JobList
 ExecutionViewStep::jobs() const
 {
-    return QList< Calamares::job_ptr >();
+    return JobList();
 }
 
 

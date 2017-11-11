@@ -43,7 +43,6 @@ calamares_add_plugin( partition
         gui/PrettyRadioButton.cpp
         gui/ScanningDialog.cpp
         gui/ReplaceWidget.cpp
-        jobs/CheckFileSystemJob.cpp
         jobs/ClearMountsJob.cpp
         jobs/ClearTempMountsJob.cpp
         jobs/CreatePartitionJob.cpp
@@ -51,7 +50,6 @@ calamares_add_plugin( partition
         jobs/DeletePartitionJob.cpp
         jobs/FillGlobalStorageJob.cpp
         jobs/FormatPartitionJob.cpp
-        jobs/MoveFileSystemJob.cpp
         jobs/PartitionJob.cpp
         jobs/ResizePartitionJob.cpp
         jobs/SetPartitionFlagsJob.cpp
