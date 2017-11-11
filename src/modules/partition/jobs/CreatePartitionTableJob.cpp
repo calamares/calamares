@@ -26,7 +26,6 @@
 #include <kpmcore/backend/corebackend.h>
 #include <kpmcore/backend/corebackendmanager.h>
 #include <kpmcore/backend/corebackenddevice.h>
-#include <kpmcore/backend/corebackendpartition.h>
 #include <kpmcore/backend/corebackendpartitiontable.h>
 #include <kpmcore/core/device.h>
 #include <kpmcore/core/partition.h>
