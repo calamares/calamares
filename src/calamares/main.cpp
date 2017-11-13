@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -51,7 +52,9 @@ main( int argc, char* argv[] )
                           "https://calamares.io/bugs" );
     KAboutData::setApplicationData( aboutData );
     KCrash::initialize();
-    KCrash::setCrashHandler();
+    // KCrash::setCrashHandler();
+    KCrash::setDrKonqiEnabled( true );
+    KCrash::setFlags( KCrash::SaferDialog | KCrash::AlwaysDirectly );
     // TODO: umount anything in /tmp/calamares-... as an emergency save function
 #endif
 
