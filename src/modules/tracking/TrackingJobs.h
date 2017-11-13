@@ -44,7 +44,6 @@ private:
     const QString m_url;
 
     QNetworkAccessManager* m_networkManager;
-    QSemaphore* m_semaphore;
 };
 
 #endif

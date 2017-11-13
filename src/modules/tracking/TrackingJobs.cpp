@@ -20,21 +20,20 @@
 
 #include "utils/Logger.h"
 
+#include <QEventLoop>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QSemaphore>
+#include <QTimer>
 
 TrackingInstallJob::TrackingInstallJob( const QString& url )
     : m_url( url )
     , m_networkManager( nullptr )
-    , m_semaphore( new QSemaphore( 1 ) )
 {
 }
 
 TrackingInstallJob::~TrackingInstallJob()
 {
-    Q_ASSERT( m_semaphore->available() == 1 );
-    delete m_semaphore;
     delete m_networkManager;
 }
 
@@ -65,30 +64,36 @@ Calamares::JobResult TrackingInstallJob::exec()
     // sourceforge.net), so let's set a more descriptive one.
     request.setRawHeader( "User-Agent", "Mozilla/5.0 (compatible; Calamares)" );
 
+    QTimer timeout;
+    timeout.setSingleShot(true);
+
+    QEventLoop loop;
+
     connect( m_networkManager, &QNetworkAccessManager::finished,
              this, &TrackingInstallJob::dataIsHere );
+    connect( m_networkManager, &QNetworkAccessManager::finished,
+             &loop, &QEventLoop::quit );
+    connect( &timeout, &QTimer::timeout,
+             &loop, &QEventLoop::quit );
 
-    if ( !m_semaphore->tryAcquire( 1, 500 /* ms */ ) )
-    {
-        // Something's wrong ..
-        cDebug() << "WARNING: could not set up semaphore for install-tracking.";
-        return Calamares::JobResult::error( tr( "Internal error in install-tracking." ),
-                                            tr( "Could not get semaphore for install-tracking." ) );
-    }
     m_networkManager->get( request );  // The semaphore is released when data is received
-    if ( !m_semaphore->tryAcquire( 1, 5000 /* ms */ ) )
+    timeout.start( 5000 /* ms */ );
+
+    loop.exec();
+
+    if ( !timeout.isActive() )
     {
         cDebug() << "WARNING: install-tracking request timed out.";
         return Calamares::JobResult::error( tr( "Internal error in install-tracking." ),
                                             tr( "HTTP request timed out." ) );
     }
+    timeout.stop();
 
     return Calamares::JobResult::ok();
 }
 
 void TrackingInstallJob::dataIsHere( QNetworkReply* reply )
 {
-    if ( m_semaphore )
-        m_semaphore->release( 1 );
+    cDebug() << "Install-tracking request OK";
     reply->deleteLater();
 }
