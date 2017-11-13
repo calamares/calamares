@@ -124,10 +124,8 @@ option( WITH_PYTHONQT "Enable next generation Python modules API (experimental, 
 option( WITH_KF5Crash "Enable crash reporting with KCrash." ON )
 option( BUILD_TESTING "Build the testing tree." ON )
 
-find_package( KF5 5.18 COMPONENTS CoreAddons Crash OPTIONAL )
-if( KF5Crash_DIR )  # Why not a _FOUND mechanism?
-    find_package( KF5 5.18 COMPONENTS CoreAddons REQUIRED )
-else()
+find_package( KF5 COMPONENTS CoreAddons Crash )
+if( NOT KF5Crash_FOUND )
     set( WITH_KF5Crash OFF )
 endif()
 
