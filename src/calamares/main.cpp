@@ -49,7 +49,7 @@ main( int argc, char* argv[] )
                           QString(),
                           QString(),
                           "https://calamares.io",
-                          "https://calamares.io/bugs" );
+                          "https://github.com/calamares/calamares/issues" );
     KAboutData::setApplicationData( aboutData );
     KCrash::initialize();
     // KCrash::setCrashHandler();
