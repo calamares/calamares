@@ -24,6 +24,7 @@
 
 ProgressTreeModel::ProgressTreeModel( QObject* parent )
     : QAbstractItemModel( parent )
+    , m_rootItem( nullptr )
 {
     setupModelData();
 }
@@ -134,6 +135,8 @@ ProgressTreeModel::columnCount( const QModelIndex& parent ) const
 void
 ProgressTreeModel::setupModelData()
 {
+    delete m_rootItem;
+
     m_rootItem = new ProgressTreeRoot();
     const Calamares::ViewManager* vm = Calamares::ViewManager::instance();
 
