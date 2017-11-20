@@ -79,7 +79,7 @@ RequirementsChecker::RequirementsChecker( QObject* parent )
         bool hasPower = false;
         bool hasInternet = false;
         bool isRoot = false;
-        bool enoughScreen = (availableSize.width() >= CalamaresUtils::windowPreferredWidth) && (availableSize.height() >= CalamaresUtils::windowPreferredHeight);
+        bool enoughScreen = (availableSize.width() >= CalamaresUtils::windowMinimumWidth) && (availableSize.height() >= CalamaresUtils::windowMinimumHeight);
 
         qint64 requiredStorageB = CalamaresUtils::GiBtoBytes(m_requiredStorageGB);
         cDebug() << "Need at least storage bytes:" << requiredStorageB;
