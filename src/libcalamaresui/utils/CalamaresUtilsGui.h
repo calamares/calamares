@@ -55,7 +55,10 @@ enum ImageType : int
     PartitionReplaceOs,
     PartitionTable,
     BootEnvironment,
-    Squid
+    Squid,
+    StatusOk,         // Icons for the requirements checker
+    StatusWarning,
+    StatusError
 };
 
 /**
