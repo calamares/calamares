@@ -62,7 +62,7 @@ CheckerWidget::init( const QList< PrepareEntry >& checkEntries )
     {
         if ( !entry.checked )
         {
-            CheckItemWidget* ciw = new CheckItemWidget( entry.checked );
+            CheckItemWidget* ciw = new CheckItemWidget( entry.checked, entry.required );
             CALAMARES_RETRANSLATE( ciw->setText( entry.negatedText() ); )
             m_entriesLayout->addWidget( ciw );
             ciw->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred );
@@ -182,7 +182,7 @@ CheckerWidget::showDetailsDialog( const QList< PrepareEntry >& checkEntries )
         if ( entry.enumerationText().isEmpty() )
             continue;
 
-        CheckItemWidget* ciw = new CheckItemWidget( entry.checked );
+        CheckItemWidget* ciw = new CheckItemWidget( entry.checked, entry.required );
         CALAMARES_RETRANSLATE( ciw->setText( entry.enumerationText() ); )
         entriesLayout->addWidget( ciw );
         ciw->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred );

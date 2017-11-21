@@ -62,7 +62,6 @@ ProgressTreeView::ProgressTreeView( QWidget* parent )
 
 ProgressTreeView::~ProgressTreeView()
 {
-
 }
 
 
