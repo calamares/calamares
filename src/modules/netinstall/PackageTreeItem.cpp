@@ -169,16 +169,22 @@ PackageTreeItem::setSelected( Qt::CheckState isSelected )
     PackageTreeItem* currentItem = parentItem();
     while ( currentItem != nullptr )
     {
+        if ( currentItem->childCount() == 0)
+        {
+            currentItem = currentItem->parentItem();
+            continue;
+        }
+
         int childrenSelected = 0;
-        bool isChildPartiallySelected = false;
+        int childrenPartiallySelected = 0;
         for ( int i = 0; i < currentItem->childCount(); i++ )
         {
             if ( currentItem->child( i )->isSelected() == Qt::Checked )
                 childrenSelected++;
             if ( currentItem->child( i )->isSelected() == Qt::PartiallyChecked )
-                isChildPartiallySelected = true;
+                childrenPartiallySelected++;
         }
-        if ( !childrenSelected  && !isChildPartiallySelected )
+        if ( !childrenSelected  && !childrenPartiallySelected)
             currentItem->m_data.selected = Qt::Unchecked;
         else if ( childrenSelected == currentItem->childCount() )
             currentItem->m_data.selected = Qt::Checked;
