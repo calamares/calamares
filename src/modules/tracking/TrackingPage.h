@@ -39,14 +39,23 @@ public:
      * Enables or disables the tracking-option block for the given
      * tracking option @p t, and sets the initial state of the
      * checkbox to the @p user default.
+     *
+     * Call this in ascending order of tracking type.
      */
-    void setTrackingOption( TrackingType t, bool setting, bool user );
+    void enableTrackingOption( TrackingType t, bool enabled );
     /**
-     * Returns the state of the user checkbox for tracking option @p t.
+     * Returns whether tracking type @p is selected by the user
+     * (i.e. is the radio button for that level, or for a higher
+     * tracking level, enabled).
      */
     bool getTrackingOption( TrackingType t );
 
+    /* URL for given level @p t */
     void setTrackingPolicy( TrackingType t, QString url );
+    /* URL for the global link */
+    void setGeneralPolicy( QString url );
+    /* Select one of the four levels by name */
+    void setTrackingLevel( const QString& level );
 
 private:
     Ui::TrackingPage* ui;

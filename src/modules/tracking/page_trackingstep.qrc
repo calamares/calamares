@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="tracking">
+    <file>none.png</file>
     <file>machine.png</file>
     <file>../../../data/images/information.svgz</file>
     <file>binoculars.png</file>

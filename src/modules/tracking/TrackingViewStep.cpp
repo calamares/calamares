@@ -102,12 +102,12 @@ TrackingViewStep::isAtEnd() const
 
 void TrackingViewStep::onLeave()
 {
-    cDebug() << "Install tracking:" <<
-        (tracking( TrackingType::InstallTracking ).userEnabled = m_widget->getTrackingOption( TrackingType::InstallTracking ));
-    cDebug() << "Machine tracking:" <<
-        (tracking( TrackingType::MachineTracking ).userEnabled = m_widget->getTrackingOption( TrackingType::MachineTracking ));
-    cDebug() << "   User tracking:" <<
-        (tracking( TrackingType::UserTracking ).userEnabled = m_widget->getTrackingOption( TrackingType::UserTracking ));
+    m_installTracking.userEnabled =  m_widget->getTrackingOption( TrackingType::InstallTracking );
+    m_machineTracking.userEnabled =  m_widget->getTrackingOption( TrackingType::MachineTracking );
+    m_userTracking.userEnabled =  m_widget->getTrackingOption( TrackingType::UserTracking );
+    cDebug() << "Install tracking:" << m_installTracking.enabled();
+    cDebug() << "Machine tracking:" << m_machineTracking.enabled();
+    cDebug() << "   User tracking:" << m_userTracking.enabled();
 }
 
 
@@ -141,10 +141,7 @@ TrackingViewStep::jobs() const
 
 QVariantMap TrackingViewStep::setTrackingOption(const QVariantMap& configurationMap, const QString& key, TrackingType t)
 {
-    cDebug() << "Tracking configuration" << key;
-
     bool settingEnabled = false;
-    bool userEnabled = false;
 
     bool success = false;
     auto config = CalamaresUtils::getSubMap( configurationMap, key, success );
@@ -152,15 +149,13 @@ QVariantMap TrackingViewStep::setTrackingOption(const QVariantMap& configuration
     if ( success )
     {
         settingEnabled = CalamaresUtils::getBool( config, "enabled", false );
-        userEnabled = settingEnabled && CalamaresUtils::getBool( config, "default", false );
     }
-    cDebug() << "  .. settable=" << settingEnabled << "default=" << userEnabled;
 
     TrackingEnabled& trackingConfiguration = tracking( t );
     trackingConfiguration.settingEnabled = settingEnabled;
-    trackingConfiguration.userEnabled = userEnabled;
+    trackingConfiguration.userEnabled = false;
 
-    m_widget->setTrackingOption(t, settingEnabled, userEnabled);
+    m_widget->enableTrackingOption(t, settingEnabled);
     m_widget->setTrackingPolicy(t, CalamaresUtils::getString( config, "policy" ) );
 
     return config;
@@ -177,4 +172,7 @@ TrackingViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 
     setTrackingOption( configurationMap, "machine", TrackingType::MachineTracking );
     setTrackingOption( configurationMap, "user", TrackingType::UserTracking );
+
+    m_widget->setGeneralPolicy( CalamaresUtils::getString( configurationMap, "policy" ) );
+    m_widget->setTrackingLevel( CalamaresUtils::getString( configurationMap, "default" ) );
 }

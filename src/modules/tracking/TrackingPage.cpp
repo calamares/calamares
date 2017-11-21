@@ -28,13 +28,9 @@
 #include "utils/Retranslator.h"
 #include "ViewManager.h"
 
-#include <QApplication>
-#include <QBoxLayout>
+#include <QButtonGroup>
 #include <QDesktopServices>
-#include <QFocusEvent>
 #include <QLabel>
-#include <QComboBox>
-#include <QMessageBox>
 
 TrackingPage::TrackingPage(QWidget *parent)
     : QWidget( parent )
@@ -45,41 +41,44 @@ TrackingPage::TrackingPage(QWidget *parent)
     ui->setupUi( this );
     CALAMARES_RETRANSLATE(
         ui->retranslateUi( this );
-        ui->installExplanation->setText( tr( "Installation tracking helps %1 count how many people use it. If you enable install-tracking, at the end of the installation, information about your hardware will be sent <b>one time only</b> to our servers. To see what will be sent, click on the help-icon." ).arg( *StringEntry::ShortProductName ) );
-        ui->machineExplanation->setText( tr( "Machine tracking helps %1 count how many people use it on an ongoing basis. If you enable machine-tracking, the system will send limited information about your hardware and installed software <b>periodically</b> to our servers. For information about the kind of information being sent, click on the help icon." ).arg( *StringEntry::ShortProductName ) );
-        ui->userExplanation->setText( tr( "User tracking helps %1 understand how people use the system and the applications. If you enable user-tracking, the system will send information about your use of the installed software <b>regularly</b> to our servers. For information about the kind of information being sent and the policies that apply, click on the help icon." ).arg( *StringEntry::ShortProductName ) );
+        ui->generalExplanation->setText( tr( "Install tracking helps %1 to see how many users they have, what hardware they install %1 to and (with the last two options below), get continuous information about preferred applications. To see what will be sent, please click the help icon next to each area." ).arg( *StringEntry::ShortProductName ) );
+        ui->installExplanation->setText( tr( "By selecting this you will send information about your installation and hardware. This information will <b>only be sent once</b> after the installation finishes." ) );
+        ui->machineExplanation->setText( tr( "By selecting this you will <b>periodically</b> send information about your installation, hardware and applications, to %1." ).arg( *StringEntry::ShortProductName ) );
+        ui->userExplanation->setText( tr( "By selecting this you will <b>regularly</b> send information about your installation, hardware, applications and usage patterns, to %1." ).arg( *StringEntry::ShortProductName ) );
     )
+
+    QButtonGroup *group = new QButtonGroup( this );
+    group->setExclusive( true );
+    group->addButton( ui->noneRadio );
+    group->addButton( ui->installRadio );
+    group->addButton( ui->machineRadio );
+    group->addButton( ui->userRadio );
+    ui->noneRadio->setChecked( true );
 }
 
-void TrackingPage::setTrackingOption(TrackingType t, bool setting, bool user)
+void TrackingPage::enableTrackingOption(TrackingType t, bool enabled)
 {
-    QGroupBox* group = nullptr;
-    QCheckBox* check = nullptr;
+    QWidget* group = nullptr;
 
     switch ( t )
     {
         case TrackingType::InstallTracking:
-            group = ui->installTrackingBox;
-            check = ui->installCheckBox;
+            group = ui->installGroup;
             break;
         case TrackingType::MachineTracking:
-            group = ui->machineTrackingBox;
-            check = ui->machineCheckBox;
+            group = ui->machineGroup;
             break;
         case TrackingType::UserTracking:
-            group = ui->userTrackingBox;
-            check = ui->userCheckBox;
+            group = ui->userGroup;
             break;
     }
 
-    if ( (group != nullptr) && (check != nullptr))
+    if ( group != nullptr )
     {
-        if ( setting )
+        if ( enabled )
             group->show();
         else
             group->hide();
-
-        check->setChecked( user );
     }
     else
         cDebug() << "WARNING: unknown tracking option" << int(t);
@@ -87,22 +86,22 @@ void TrackingPage::setTrackingOption(TrackingType t, bool setting, bool user)
 
 bool TrackingPage::getTrackingOption(TrackingType t)
 {
-    QCheckBox* check = nullptr;
+    bool enabled = false;
 
+    // A tracking type is enabled if it is checked, or
+    // any higher level is checked.
     switch ( t )
     {
         case TrackingType::InstallTracking:
-            check = ui->installCheckBox;
-            break;
+            enabled |= ui->installRadio->isChecked();
+            // FALLTHRU
         case TrackingType::MachineTracking:
-            check = ui->machineCheckBox;
-            break;
+            enabled |= ui->machineRadio->isChecked();
+            // FALLTHRU
         case TrackingType::UserTracking:
-            check = ui->userCheckBox;
-            break;
+            enabled |= ui->userRadio->isChecked();
     }
-
-    return (check != nullptr) && check->isChecked();
+    return enabled;
 }
 
 void TrackingPage::setTrackingPolicy(TrackingType t, QString url)
@@ -131,4 +130,37 @@ void TrackingPage::setTrackingPolicy(TrackingType t, QString url)
         }
     else
         cDebug() << "WARNING: unknown tracking option" << int(t);
+}
+
+void TrackingPage::setGeneralPolicy( QString url )
+{
+    if ( url.isEmpty() )
+        ui->generalPolicyLabel->hide();
+    else
+    {
+        ui->generalPolicyLabel->show();
+        ui->generalPolicyLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
+        ui->generalPolicyLabel->show();
+        connect( ui->generalPolicyLabel, &QLabel::linkActivated, [url]{ QDesktopServices::openUrl( url ); } );
+    }
+}
+
+void TrackingPage::setTrackingLevel(const QString& l)
+{
+    QString level = l.toLower();
+    QRadioButton* button = nullptr;
+
+    if (level.isEmpty() || level == "none")
+        button = ui->noneRadio;
+    else if (level == "install")
+        button = ui->installRadio;
+    else if (level == "machine")
+        button = ui->machineRadio;
+    else if (level == "user")
+        button = ui->userRadio;
+
+    if ( button != nullptr )
+        button->setChecked( true );
+    else
+        cDebug() << "WARNING: unknown default tracking level" << l;
 }
