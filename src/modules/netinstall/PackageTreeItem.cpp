@@ -101,6 +101,13 @@ PackageTreeItem::parentItem()
     return m_parentItem;
 }
 
+const PackageTreeItem*
+PackageTreeItem::parentItem() const
+{
+    return m_parentItem;
+}
+
+
 QString
 PackageTreeItem::prettyName() const
 {
@@ -142,6 +149,26 @@ PackageTreeItem::setHidden( bool isHidden )
 {
     m_data.isHidden = isHidden;
 }
+
+bool
+PackageTreeItem::hiddenSelected() const
+{
+    Q_ASSERT( m_data.isHidden );
+    if (! m_data.selected )
+        return false;
+
+    const PackageTreeItem* currentItem = parentItem();
+    while ( currentItem != nullptr )
+    {
+        if ( !currentItem->isHidden() )
+            return currentItem->isSelected() != Qt::Unchecked;
+        currentItem = currentItem->parentItem();
+    }
+
+    /* Has no non-hiddent parents */
+    return m_data.selected;
+}
+
 
 bool
 PackageTreeItem::isCritical() const

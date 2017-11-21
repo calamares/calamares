@@ -49,16 +49,30 @@ public:
     int columnCount() const;
     QVariant data( int column ) const override;
     int row() const;
+
     PackageTreeItem* parentItem();
+    const PackageTreeItem* parentItem() const;
+
     QString prettyName() const;
     QString description() const;
     QString preScript() const;
     QString packageName() const;
     QString postScript() const;
+
     bool isHidden() const;
     void setHidden( bool isHidden );
+    /**
+     * @brief Is this hidden item, considered "selected"?
+     *
+     * This asserts when called on a non-hidden item.
+     * A hidden item has its own selected state, but really
+     * falls under the selectedness of the parent item.
+     */
+    bool hiddenSelected() const;
+
     bool isCritical() const;
     void setCritical( bool isCritical );
+
     Qt::CheckState isSelected() const;
     void setSelected( Qt::CheckState isSelected );
     void setChildrenSelected( Qt::CheckState isSelected );
