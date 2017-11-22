@@ -97,3 +97,24 @@ void TrackingInstallJob::dataIsHere( QNetworkReply* reply )
     cDebug() << "Install-tracking request OK";
     reply->deleteLater();
 }
+
+QString TrackingMachineNeonJob::prettyName() const
+{
+    return tr( "Machine feedback" );
+}
+
+QString TrackingMachineNeonJob::prettyDescription() const
+{
+    return prettyName();
+}
+
+QString TrackingMachineNeonJob::prettyStatusMessage() const
+{
+    return tr( "Configuring machine feedback." );
+}
+
+Calamares::JobResult TrackingMachineNeonJob::exec()
+{
+    return Calamares::JobResult::error( tr( "Error in machine feedback configuration." ),
+                                        tr( "Could not configure machine feedback correctly." ) );
+}

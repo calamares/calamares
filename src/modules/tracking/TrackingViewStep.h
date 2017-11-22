@@ -63,6 +63,7 @@ private:
 
     TrackingPage* m_widget;
     QString m_installTrackingUrl;
+    QString m_machineTrackingStyle;
 
     struct TrackingEnabled
     {

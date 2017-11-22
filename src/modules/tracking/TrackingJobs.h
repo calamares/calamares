@@ -46,4 +46,15 @@ private:
     QNetworkAccessManager* m_networkManager;
 };
 
+class TrackingMachineNeonJob : public Calamares::Job
+{
+    Q_OBJECT
+public:
+    QString prettyName() const override;
+    QString prettyDescription() const override;
+    QString prettyStatusMessage() const override;
+    Calamares::JobResult exec() override;
+};
+
+
 #endif

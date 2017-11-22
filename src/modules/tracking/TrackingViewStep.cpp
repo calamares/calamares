@@ -31,6 +31,13 @@
 
 CALAMARES_PLUGIN_FACTORY_DEFINITION( TrackingViewStepFactory, registerPlugin<TrackingViewStep>(); )
 
+/** @brief Is @p s a valid machine-tracking style. */
+static bool isValidStyle( const QString& s )
+{
+    static QStringList knownStyles { "neon" };
+    return knownStyles.contains( s );
+}
+
 TrackingViewStep::TrackingViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
     , m_widget( new TrackingPage )
@@ -117,7 +124,7 @@ TrackingViewStep::jobs() const
     Calamares::JobList l;
 
     cDebug() << "Creating tracking jobs ..";
-    if ( m_installTracking.enabled() )
+    if ( m_installTracking.enabled() && !m_installTrackingUrl.isEmpty() )
     {
         QString installUrl = m_installTrackingUrl;
         const auto s = CalamaresUtils::System::instance();
@@ -134,6 +141,13 @@ TrackingViewStep::jobs() const
         cDebug() << "  .. install-tracking URL" << installUrl;
 
         l.append( Calamares::job_ptr( new TrackingInstallJob( installUrl ) ) );
+    }
+
+    if ( m_machineTracking.enabled() && !m_machineTrackingStyle.isEmpty() )
+    {
+        Q_ASSERT( isValidStyle( m_machineTrackingStyle ) );
+        if ( m_machineTrackingStyle == "neon" )
+            l.append( Calamares::job_ptr( new TrackingMachineNeonJob() ) );
     }
     return l;
 }
@@ -161,7 +175,6 @@ QVariantMap TrackingViewStep::setTrackingOption(const QVariantMap& configuration
     return config;
 }
 
-
 void
 TrackingViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
@@ -170,7 +183,11 @@ TrackingViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     config = setTrackingOption( configurationMap, "install", TrackingType::InstallTracking );
     m_installTrackingUrl = CalamaresUtils::getString( config, "url" );
 
-    setTrackingOption( configurationMap, "machine", TrackingType::MachineTracking );
+    config = setTrackingOption( configurationMap, "machine", TrackingType::MachineTracking );
+    auto s = CalamaresUtils::getString( config, "style" );
+    if ( isValidStyle( s ) )
+        m_machineTrackingStyle = s;
+
     setTrackingOption( configurationMap, "user", TrackingType::UserTracking );
 
     m_widget->setGeneralPolicy( CalamaresUtils::getString( configurationMap, "policy" ) );
