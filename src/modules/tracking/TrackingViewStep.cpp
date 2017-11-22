@@ -49,7 +49,7 @@ TrackingViewStep::~TrackingViewStep()
 QString
 TrackingViewStep::prettyName() const
 {
-    return tr( "Telemetry" );
+    return tr( "Feedback" );
 }
 
 
