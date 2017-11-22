@@ -18,6 +18,7 @@
 
 #include "TrackingJobs.h"
 
+#include "utils/CalamaresUtilsSystem.h"
 #include "utils/Logger.h"
 
 #include <QEventLoop>
@@ -115,6 +116,24 @@ QString TrackingMachineNeonJob::prettyStatusMessage() const
 
 Calamares::JobResult TrackingMachineNeonJob::exec()
 {
-    return Calamares::JobResult::error( tr( "Error in machine feedback configuration." ),
-                                        tr( "Could not configure machine feedback correctly." ) );
+    int r = CalamaresUtils::System::instance()->targetEnvCall(
+        "/bin/sh",
+        QString(),  // Working dir
+        QString(
+R"x(MACHINE_ID=`cat /etc/machine-id`
+sed -i "s,URI =.*,URI = http://releases.neon.kde.org/meta-release/${MACHINE_ID}," /etc/update-manager/meta-release
+sed -i "s,URI_LTS =.*,URI_LTS = http://releases.neon.kde.org/meta-release-lts/${MACHINE_ID}," /etc/update-manager/meta-release
+echo "$MACHINE_ID" > /tmp/derp
+true
+)x"),
+        1);
+
+    if ( r == 0 )
+        return Calamares::JobResult::ok();
+    else if ( r > 0 )
+        return Calamares::JobResult::error( tr( "Error in machine feedback configuration." ),
+                                            tr( "Could not configure machine feedback correctly, script error %1." ).arg( r ) );
+    else
+        return Calamares::JobResult::error( tr( "Error in machine feedback configuration." ),
+                                            tr( "Could not configure machine feedback correctly, Calamares error %1." ).arg( r ) );
 }
