@@ -39,17 +39,17 @@ TrackingInstallJob::~TrackingInstallJob()
 
 QString TrackingInstallJob::prettyName() const
 {
-    return tr( "Install-tracking" );
+    return tr( "Installation feedback" );
 }
 
 QString TrackingInstallJob::prettyDescription() const
 {
-    return tr( "Install-tracking" );
+    return prettyName();
 }
 
 QString TrackingInstallJob::prettyStatusMessage() const
 {
-    return tr( "Sending install-tracking information." );
+    return tr( "Sending installation feedback." );
 }
 
 Calamares::JobResult TrackingInstallJob::exec()
@@ -94,7 +94,7 @@ Calamares::JobResult TrackingInstallJob::exec()
 
 void TrackingInstallJob::dataIsHere( QNetworkReply* reply )
 {
-    cDebug() << "Install-tracking request OK";
+    cDebug() << "Installation feedback request OK";
     reply->deleteLater();
 }
 
