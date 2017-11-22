@@ -59,7 +59,7 @@
          <string/>
         </property>
         <property name="pixmap">
-         <pixmap resource="page_trackingstep.qrc">:/tracking/none.png</pixmap>
+         <pixmap resource="page_trackingstep.qrc">:/tracking/level-none.png</pixmap>
         </property>
        </widget>
       </item>
@@ -110,7 +110,7 @@
          <string/>
         </property>
         <property name="pixmap">
-         <pixmap resource="page_trackingstep.qrc">:/tracking/phone.png</pixmap>
+         <pixmap resource="page_trackingstep.qrc">:/tracking/level-install.png</pixmap>
         </property>
        </widget>
       </item>
@@ -172,7 +172,7 @@
          <string/>
         </property>
         <property name="pixmap">
-         <pixmap resource="page_trackingstep.qrc">:/tracking/machine.png</pixmap>
+         <pixmap resource="page_trackingstep.qrc">:/tracking/level-machine.png</pixmap>
         </property>
        </widget>
       </item>
@@ -234,7 +234,7 @@
          <string/>
         </property>
         <property name="pixmap">
-         <pixmap resource="page_trackingstep.qrc">:/tracking/binoculars.png</pixmap>
+         <pixmap resource="page_trackingstep.qrc">:/tracking/level-user.png</pixmap>
         </property>
        </widget>
       </item>

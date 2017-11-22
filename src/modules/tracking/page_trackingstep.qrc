@@ -1,9 +1,9 @@
 <RCC>
   <qresource prefix="tracking">
-    <file>none.png</file>
-    <file>machine.png</file>
+    <file>level-none.png</file>
+    <file>level-install.png</file>
+    <file>level-machine.png</file>
+    <file>level-user.png</file>
     <file>../../../data/images/information.svgz</file>
-    <file>binoculars.png</file>
-    <file>phone.png</file>
   </qresource>
 </RCC>
