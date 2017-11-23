@@ -123,7 +123,6 @@ Calamares::JobResult TrackingMachineNeonJob::exec()
 R"x(MACHINE_ID=`cat /etc/machine-id`
 sed -i "s,URI =.*,URI = http://releases.neon.kde.org/meta-release/${MACHINE_ID}," /etc/update-manager/meta-release
 sed -i "s,URI_LTS =.*,URI_LTS = http://releases.neon.kde.org/meta-release-lts/${MACHINE_ID}," /etc/update-manager/meta-release
-echo "$MACHINE_ID" > /tmp/derp
 true
 )x"),
         1);
