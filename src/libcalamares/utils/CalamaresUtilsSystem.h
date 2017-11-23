@@ -112,7 +112,21 @@ public:
      *
      * @return size, guesstimate-factor
      */
-    DLLEXPORT QPair<quint64, float> getTotalMemoryB();
+    DLLEXPORT QPair<quint64, float> getTotalMemoryB() const;
+
+    /**
+     * @brief getCpuDescription returns a string describing the CPU.
+     *
+     * Returns the value of the "model name" line in /proc/cpuinfo.
+     */
+    DLLEXPORT QString getCpuDescription() const;
+
+    /**
+     * @brief getTotalDiskB returns the total disk attached, in bytes.
+     *
+     * If nothing can be found, returns a 0.
+     */
+    DLLEXPORT quint64 getTotalDiskB() const;
 
 private:
     static System* s_instance;

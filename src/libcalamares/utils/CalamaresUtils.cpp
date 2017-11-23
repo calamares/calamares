@@ -340,6 +340,18 @@ getBool( const QVariantMap& map, const QString& key, bool d )
     return result;
 }
 
+QString
+getString(const QVariantMap& map, const QString& key)
+{
+    if ( map.contains( key ) )
+    {
+        auto v = map.value( key );
+        if ( v.type() == QVariant::String )
+            return v.toString();
+    }
+    return QString();
+}
+
 QVariantMap
 getSubMap( const QVariantMap& map, const QString& key, bool& success )
 {

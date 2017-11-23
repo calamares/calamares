@@ -232,7 +232,7 @@ System::targetEnvOutput( const QString& command,
 
 
 QPair<quint64, float>
-System::getTotalMemoryB()
+System::getTotalMemoryB() const
 {
 #ifdef Q_OS_LINUX
     struct sysinfo i;
@@ -257,4 +257,33 @@ System::getTotalMemoryB()
 }
 
 
+QString
+System::getCpuDescription() const
+{
+    QString model;
+
+#ifdef Q_OS_LINUX
+    QFile file("/proc/cpuinfo");
+    if ( file.open(QIODevice::ReadOnly | QIODevice::Text) )
+        while ( !file.atEnd() )
+        {
+            QByteArray line = file.readLine();
+            if ( line.startsWith( "model name" ) && (line.indexOf( ':' ) > 0) )
+            {
+                model = QString::fromLatin1( line.right(line.length() - line.indexOf( ':' ) ) );
+                break;
+            }
+        }
+#elif defined( Q_OS_FREEBSD )
+    // This would use sysctl "hw.model", which has a string value
+#endif
+    return model.simplified();
 }
+
+quint64
+System::getTotalDiskB() const
+{
+    return 0;
+}
+
+}  // namespace
