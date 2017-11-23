@@ -40,6 +40,14 @@ set( CMAKE_CXX_STANDARD_REQUIRED ON )
 set( CMAKE_C_STANDARD 99 )
 set( CMAKE_C_STANDARD_REQUIRED ON )
 
+if(NOT CMAKE_VERSION VERSION_LESS "3.10.0")
+    list(APPEND CMAKE_AUTOMOC_MACRO_NAMES 
+        "K_PLUGIN_FACTORY_WITH_JSON"
+        "K_EXPORT_PLASMA_DATAENGINE_WITH_JSON"
+        "K_EXPORT_PLASMA_RUNNER"
+    )
+endif()
+
 if( CMAKE_CXX_COMPILER_ID MATCHES "Clang" )
     message( STATUS "Found Clang ${CMAKE_CXX_COMPILER_VERSION}, setting up Clang-specific compiler flags." )
     set( CMAKE_C_FLAGS                  "${CMAKE_C_FLAGS} -Wall" )
