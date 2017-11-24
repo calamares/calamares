@@ -40,7 +40,8 @@ public:
     };
     explicit PackageTreeItem( const ItemData& data, PackageTreeItem* parent = nullptr );
     explicit PackageTreeItem( const QString packageName, PackageTreeItem* parent = nullptr );
-    explicit PackageTreeItem( PackageTreeItem* parent = nullptr );
+    explicit PackageTreeItem( PackageTreeItem* parent );
+    explicit PackageTreeItem();  // The root of the tree; always selected, named <root>
     ~PackageTreeItem() override;
 
     void appendChild( PackageTreeItem* child );

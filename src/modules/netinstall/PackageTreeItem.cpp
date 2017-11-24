@@ -19,6 +19,8 @@
 
 #include "PackageTreeItem.h"
 
+#include "utils/Logger.h"
+
 PackageTreeItem::PackageTreeItem( const ItemData& data, PackageTreeItem* parent )
     : m_parentItem( parent )
     , m_data( data )
@@ -36,7 +38,15 @@ PackageTreeItem::PackageTreeItem( const QString packageName, PackageTreeItem* pa
 
 PackageTreeItem::PackageTreeItem( PackageTreeItem* parent ) :
     m_parentItem( parent )
-{   }
+{
+}
+
+PackageTreeItem::PackageTreeItem::PackageTreeItem() :
+    PackageTreeItem( QString(), nullptr )
+{
+    m_data.selected = Qt::Checked;
+    m_data.name = QLatin1Literal( "<root>" );
+}
 
 PackageTreeItem::~PackageTreeItem()
 {
@@ -191,40 +201,47 @@ PackageTreeItem::isSelected() const
 void
 PackageTreeItem::setSelected( Qt::CheckState isSelected )
 {
+    if ( parentItem() == nullptr )
+        // This is the root, it is always checked so don't change state
+        return;
+
     m_data.selected = isSelected;
     setChildrenSelected( isSelected );
-    PackageTreeItem* currentItem = parentItem();
-    while ( currentItem != nullptr )
-    {
-        if ( currentItem->childCount() == 0)
-        {
-            currentItem = currentItem->parentItem();
-            continue;
-        }
 
-        int childrenSelected = 0;
-        int childrenPartiallySelected = 0;
-        for ( int i = 0; i < currentItem->childCount(); i++ )
-        {
-            if ( currentItem->child( i )->isSelected() == Qt::Checked )
-                childrenSelected++;
-            if ( currentItem->child( i )->isSelected() == Qt::PartiallyChecked )
-                childrenPartiallySelected++;
-        }
-        if ( !childrenSelected  && !childrenPartiallySelected)
-            currentItem->m_data.selected = Qt::Unchecked;
-        else if ( childrenSelected == currentItem->childCount() )
-            currentItem->m_data.selected = Qt::Checked;
-        else
-            currentItem->m_data.selected = Qt::PartiallyChecked;
+    // Look for suitable parent item which may change checked-state
+    // when one of its children changes.
+    PackageTreeItem* currentItem = parentItem();
+    while ( ( currentItem != nullptr ) && ( currentItem->childCount() == 0 ) )
+    {
         currentItem = currentItem->parentItem();
     }
+    if ( currentItem == nullptr )
+        // Reached the root .. don't bother
+        return;
+
+    // Figure out checked-state based on the children
+    int childrenSelected = 0;
+    int childrenPartiallySelected = 0;
+    for ( int i = 0; i < currentItem->childCount(); i++ )
+    {
+        if ( currentItem->child( i )->isSelected() == Qt::Checked )
+            childrenSelected++;
+        if ( currentItem->child( i )->isSelected() == Qt::PartiallyChecked )
+            childrenPartiallySelected++;
+    }
+    if ( !childrenSelected  && !childrenPartiallySelected)
+        currentItem->setSelected( Qt::Unchecked );
+    else if ( childrenSelected == currentItem->childCount() )
+        currentItem->setSelected( Qt::Checked );
+    else
+        currentItem->setSelected( Qt::PartiallyChecked );
 }
 
 void
 PackageTreeItem::setChildrenSelected( Qt::CheckState isSelected )
 {
     if ( isSelected != Qt::PartiallyChecked )
+        // Children are never root; don't need to use setSelected on them.
         for ( auto child : m_childItems )
         {
             child->m_data.selected = isSelected;
