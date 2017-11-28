@@ -257,9 +257,9 @@ Helper::handleLastError()
         bp::str pystr( h_type );
         bp::extract< std::string > extracted( pystr );
         if ( extracted.check() )
-            typeMsg = QString::fromStdString( extracted() ).toHtmlEscaped();
+            typeMsg = QString::fromStdString( extracted() ).trimmed();
 
-        if ( typeMsg.trimmed().isEmpty() )
+        if ( typeMsg.isEmpty() )
             typeMsg = tr( "Unknown exception type" );
     }
 
@@ -270,9 +270,9 @@ Helper::handleLastError()
         bp::str pystr( h_val );
         bp::extract< std::string > extracted( pystr );
         if ( extracted.check() )
-            valMsg = QString::fromStdString( extracted() ).toHtmlEscaped();
+            valMsg = QString::fromStdString( extracted() ).trimmed();
 
-        if ( valMsg.trimmed().isEmpty() )
+        if ( valMsg.isEmpty() )
             valMsg = tr( "unparseable Python error" );
     }
 
@@ -286,9 +286,9 @@ Helper::handleLastError()
         bp::object pystr( bp::str( "\n" ).join( tb_list ) );
         bp::extract< std::string > extracted( pystr );
         if ( extracted.check() )
-            tbMsg = QString::fromStdString( extracted() ).toHtmlEscaped();
+            tbMsg = QString::fromStdString( extracted() ).trimmed();
 
-        if ( tbMsg.trimmed().isEmpty() )
+        if ( tbMsg.isEmpty() )
             tbMsg = tr( "unparseable Python traceback" );
     }
 
@@ -298,17 +298,26 @@ Helper::handleLastError()
 
     QStringList msgList;
 
+    Logger::CDebug debug;
+    debug.noquote() << "Python Error:\n";
+
     if ( !typeMsg.isEmpty() )
-        msgList.append( QString( "<strong>%1</strong>" ).arg( typeMsg ) );
+    {
+        debug << typeMsg << '\n';
+        msgList.append( QString( "<strong>%1</strong>" ).arg( typeMsg.toHtmlEscaped() ) );
+    }
 
     if ( !valMsg.isEmpty() )
-        msgList.append( valMsg );
+    {
+        debug << valMsg << '\n';
+        msgList.append( valMsg.toHtmlEscaped() );
+    }
 
     if ( !tbMsg.isEmpty() )
     {
         msgList.append( "Traceback:" );
-        msgList.append( QString( "<pre>%1</pre>" ).arg( tbMsg ) );
-        cDebug() << "tbMsg" << tbMsg;
+        msgList.append( QString( "<pre>%1</pre>" ).arg( tbMsg.toHtmlEscaped() ) );
+        debug << tbMsg << '\n';
     }
 
     // Return a string made of the msgList items, wrapped in <div> tags
