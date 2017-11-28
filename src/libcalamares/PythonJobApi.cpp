@@ -37,21 +37,21 @@
 namespace bp = boost::python;
 
 static int
-_handle_check_target_env_call_error( int ec, const QString& cmd, const QString& output = QString() )
+_handle_check_target_env_call_error( const CalamaresUtils::ProcessResult& ec, const QString& cmd )
 {
-    if ( !ec )
-        return ec;
+    if ( !ec.first )
+        return ec.first;
 
     QString raise = QString( "import subprocess\n"
                              "e = subprocess.CalledProcessError(%1,\"%2\")\n" )
-                    .arg( ec )
+                    .arg( ec.first )
                     .arg( cmd );
-    if ( !output.isEmpty() )
-        raise.append( QStringLiteral("e.output = \"\"\"%1\"\"\"\n").arg( output ) );
+    if ( !ec.second.isEmpty() )
+        raise.append( QStringLiteral("e.output = \"\"\"%1\"\"\"\n").arg( ec.second ) );
     raise.append("raise e");
     bp::exec( raise.toStdString().c_str() );
     bp::throw_error_already_set();
-    return ec;
+    return ec.first;
 }
 
 namespace CalamaresPython
@@ -83,16 +83,26 @@ _bp_list_to_qstringlist( const bp::list& args )
     return list;
 }
 
+static inline CalamaresUtils::ProcessResult
+_target_env_command(
+    const QStringList& args,
+    const std::string& stdin,
+    int timeout )
+{
+    return CalamaresUtils::System::instance()->
+        targetEnvCommand( args,
+                          QString(),
+                          QString::fromStdString( stdin ),
+                          timeout );
+}
+
 int
 target_env_call( const std::string& command,
                  const std::string& stdin,
                  int timeout )
 {
-    return CalamaresUtils::System::instance()->
-           targetEnvCall( QString::fromStdString( command ),
-                          QString(),
-                          QString::fromStdString( stdin ),
-                          timeout );
+    return _target_env_command(
+        QStringList{ QString::fromStdString( command ) }, stdin, timeout ).first;
 }
 
 
@@ -101,11 +111,8 @@ target_env_call( const bp::list& args,
                  const std::string& stdin,
                  int timeout )
 {
-    return CalamaresUtils::System::instance()->
-           targetEnvCall( _bp_list_to_qstringlist( args ),
-                          QString(),
-                          QString::fromStdString( stdin ),
-                          timeout );
+    return _target_env_command(
+        _bp_list_to_qstringlist( args ), stdin, timeout ).first;
 }
 
 
@@ -114,7 +121,8 @@ check_target_env_call( const std::string& command,
                        const std::string& stdin,
                        int timeout )
 {
-    int ec = target_env_call( command, stdin, timeout );
+    auto ec = _target_env_command(
+        QStringList{ QString::fromStdString( command ) }, stdin, timeout );
     return _handle_check_target_env_call_error( ec, QString::fromStdString( command ) );
 }
 
@@ -124,9 +132,9 @@ check_target_env_call( const bp::list& args,
                        const std::string& stdin,
                        int timeout )
 {
-    int ec = target_env_call( args, stdin, timeout );
-    if ( !ec )
-        return ec;
+    auto ec = _target_env_command( _bp_list_to_qstringlist( args ), stdin, timeout );
+    if ( !ec.first )
+        return ec.first;
 
     QStringList failedCmdList = _bp_list_to_qstringlist( args );
     return _handle_check_target_env_call_error( ec, failedCmdList.join( ' ' ) );
@@ -138,15 +146,10 @@ check_target_env_output( const std::string& command,
                          const std::string& stdin,
                          int timeout )
 {
-    QString output;
-    int ec = CalamaresUtils::System::instance()->
-             targetEnvOutput( QString::fromStdString( command ),
-                              output,
-                              QString(),
-                              QString::fromStdString( stdin ),
-                              timeout );
+    auto ec = _target_env_command(
+        QStringList{ QString::fromStdString( command ) }, stdin, timeout );
     _handle_check_target_env_call_error( ec, QString::fromStdString( command ) );
-    return output.toStdString();
+    return ec.second.toStdString();
 }
 
 
@@ -155,16 +158,11 @@ check_target_env_output( const bp::list& args,
                          const std::string& stdin,
                          int timeout )
 {
-    QString output;
     QStringList list = _bp_list_to_qstringlist( args );
-    int ec = CalamaresUtils::System::instance()->
-             targetEnvOutput( list,
-                              output,
-                              QString(),
-                              QString::fromStdString( stdin ),
-                              timeout );
+    auto ec = _target_env_command(
+        list, stdin, timeout );
     _handle_check_target_env_call_error( ec, list.join( ' ' ) );
-    return output.toStdString();
+    return ec.second.toStdString();
 }
 
 void
