@@ -274,6 +274,19 @@ Helper::handleLastError()
 
         if ( valMsg.isEmpty() )
             valMsg = tr( "unparseable Python error" );
+
+        // Special-case: CalledProcessError has an attribute "output" with the command output,
+        // add that to the printed message.
+        if ( typeMsg.contains( "CalledProcessError" ) )
+        {
+            bp::object exceptionObject( h_val );
+            auto a = exceptionObject.attr( "output" );
+            bp::str outputString( a );
+            bp::extract< std::string > extractedOutput( outputString );
+
+            if ( extractedOutput.check() )
+                valMsg.append( QString::fromStdString( extractedOutput() ) );
+        }
     }
 
     QString tbMsg;
