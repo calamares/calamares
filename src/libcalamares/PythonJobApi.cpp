@@ -71,6 +71,18 @@ mount( const std::string& device_path,
 }
 
 
+static inline QStringList
+_bp_list_to_qstringlist( const bp::list& args )
+{
+    QStringList list;
+    for ( int i = 0; i < bp::len( args ); ++i )
+    {
+        list.append( QString::fromStdString(
+                         bp::extract< std::string >( args[ i ] ) ) );
+    }
+    return list;
+}
+
 int
 target_env_call( const std::string& command,
                  const std::string& stdin,
@@ -89,15 +101,8 @@ target_env_call( const bp::list& args,
                  const std::string& stdin,
                  int timeout )
 {
-    QStringList list;
-    for ( int i = 0; i < bp::len( args ); ++i )
-    {
-        list.append( QString::fromStdString(
-                         bp::extract< std::string >( args[ i ] ) ) );
-    }
-
     return CalamaresUtils::System::instance()->
-           targetEnvCall( list,
+           targetEnvCall( _bp_list_to_qstringlist( args ),
                           QString(),
                           QString::fromStdString( stdin ),
                           timeout );
@@ -123,13 +128,7 @@ check_target_env_call( const bp::list& args,
     if ( !ec )
         return ec;
 
-    QStringList failedCmdList;
-    for ( int i = 0; i < bp::len( args ); ++i )
-    {
-        failedCmdList.append( QString::fromStdString(
-                                  bp::extract< std::string >( args[ i ] ) ) );
-    }
-
+    QStringList failedCmdList = _bp_list_to_qstringlist( args );
     return _handle_check_target_env_call_error( ec, failedCmdList.join( ' ' ) );
 }
 
@@ -157,13 +156,7 @@ check_target_env_output( const bp::list& args,
                          int timeout )
 {
     QString output;
-    QStringList list;
-    for ( int i = 0; i < bp::len( args ); ++i )
-    {
-        list.append( QString::fromStdString(
-                         bp::extract< std::string >( args[ i ] ) ) );
-    }
-
+    QStringList list = _bp_list_to_qstringlist( args );
     int ec = CalamaresUtils::System::instance()->
              targetEnvOutput( list,
                               output,
