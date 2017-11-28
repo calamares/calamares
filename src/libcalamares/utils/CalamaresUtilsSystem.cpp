@@ -209,8 +209,8 @@ System::targetEnvOutput( const QStringList& args,
     cLog() << "Finished. Exit code:" << r;
     if ( r != 0 )
     {
-        cLog() << "Target cmd" << args;
-        cLog() << "Target out" << output;
+        cLog() << "Target cmd:" << args;
+        cLog().noquote() << "Target output:\n" << output;
     }
     return r;
 }
