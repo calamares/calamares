@@ -36,6 +36,24 @@
 
 namespace bp = boost::python;
 
+static int
+_handle_check_target_env_call_error( int ec, const QString& cmd, const QString& output = QString() )
+{
+    if ( !ec )
+        return ec;
+
+    QString raise = QString( "import subprocess\n"
+                             "e = subprocess.CalledProcessError(%1,\"%2\")\n" )
+                    .arg( ec )
+                    .arg( cmd );
+    if ( !output.isEmpty() )
+        raise.append( QStringLiteral("e.output = \"\"\"%1\"\"\"\n").arg( output ) );
+    raise.append("raise e");
+    bp::exec( raise.toStdString().c_str() );
+    bp::throw_error_already_set();
+    return ec;
+}
+
 namespace CalamaresPython
 {
 
@@ -155,23 +173,6 @@ check_target_env_output( const bp::list& args,
     _handle_check_target_env_call_error( ec, list.join( ' ' ) );
     return output.toStdString();
 }
-
-
-int
-_handle_check_target_env_call_error( int ec, const QString& cmd )
-{
-    if ( !ec )
-        return ec;
-
-    QString raise = QString( "import subprocess\n"
-                             "raise subprocess.CalledProcessError(%1,\"%2\")" )
-                    .arg( ec )
-                    .arg( cmd );
-    bp::exec( raise.toStdString().c_str() );
-    bp::throw_error_already_set();
-    return ec;
-}
-
 
 void
 debug( const std::string& s )
