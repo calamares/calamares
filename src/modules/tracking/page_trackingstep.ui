@@ -56,7 +56,7 @@ margin-left: 2em;</string>
          <string/>
         </property>
         <property name="pixmap">
-         <pixmap resource="page_trackingstep.qrc">:/tracking/level-none.png</pixmap>
+         <pixmap resource="page_trackingstep.qrc">:/tracking/level-none.svg</pixmap>
         </property>
        </widget>
       </item>
@@ -107,7 +107,7 @@ margin-left: 2em;</string>
          <string/>
         </property>
         <property name="pixmap">
-         <pixmap resource="page_trackingstep.qrc">:/tracking/level-install.png</pixmap>
+         <pixmap resource="page_trackingstep.qrc">:/tracking/level-install.svg</pixmap>
         </property>
        </widget>
       </item>
@@ -169,7 +169,7 @@ margin-left: 2em;</string>
          <string/>
         </property>
         <property name="pixmap">
-         <pixmap resource="page_trackingstep.qrc">:/tracking/level-machine.png</pixmap>
+         <pixmap resource="page_trackingstep.qrc">:/tracking/level-machine.svg</pixmap>
         </property>
        </widget>
       </item>
@@ -231,7 +231,7 @@ margin-left: 2em;</string>
          <string/>
         </property>
         <property name="pixmap">
-         <pixmap resource="page_trackingstep.qrc">:/tracking/level-user.png</pixmap>
+         <pixmap resource="page_trackingstep.qrc">:/tracking/level-user.svg</pixmap>
         </property>
        </widget>
       </item>
