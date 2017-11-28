@@ -288,8 +288,18 @@ Helper::handleLastError()
             bp::str outputString( a );
             bp::extract< std::string > extractedOutput( outputString );
 
+            QString output;
             if ( extractedOutput.check() )
-                valMsg.append( QString::fromStdString( extractedOutput() ) );
+            {
+                output = QString::fromStdString( extractedOutput() ).trimmed();
+            }
+            if ( !output.isEmpty() )
+            {
+                // Replace the Type of the error by the warning string,
+                // and use the output of the command (e.g. its stderr) as value.
+                typeMsg = valMsg;
+                valMsg = output;
+            }
         }
         debug << valMsg << '\n';
     }
@@ -323,7 +333,7 @@ Helper::handleLastError()
 
     if ( !tbMsg.isEmpty() )
     {
-        msgList.append( "Traceback:" );
+        msgList.append( QStringLiteral( "<br/>Traceback:" ) );
         msgList.append( QString( "<pre>%1</pre>" ).arg( tbMsg.toHtmlEscaped() ) );
     }
 
