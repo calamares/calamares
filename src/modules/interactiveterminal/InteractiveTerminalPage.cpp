@@ -46,12 +46,12 @@ InteractiveTerminalPage::InteractiveTerminalPage( QWidget* parent )
     m_layout->addWidget( m_headerLabel );
 }
 
-static void
-errorKonsoleNotInstalled( QWidget* parent)
+void
+InteractiveTerminalPage::errorKonsoleNotInstalled()
 {
-    QMessageBox::critical( parent,
-                           parent->tr( "Konsole not installed"),
-                           parent->tr( "Please install KDE Konsole and try again!" ),
+    QMessageBox::critical( this,
+                           tr( "Konsole not installed"),
+                           tr( "Please install KDE Konsole and try again!" ),
                            QMessageBox::Ok );
 }
 
@@ -68,7 +68,7 @@ InteractiveTerminalPage::onActivate()
     {
         // And all of this hoping the Konsole application is installed. If not,
         // tough cookies.
-        errorKonsoleNotInstalled( this );
+        errorKonsoleNotInstalled();
         return ;
     }
 
@@ -80,7 +80,7 @@ InteractiveTerminalPage::onActivate()
     if ( !p )
     {
         // One more opportunity for the loading operation to fail.
-        errorKonsoleNotInstalled( this );
+        errorKonsoleNotInstalled();
         return;
     }
 
@@ -89,7 +89,7 @@ InteractiveTerminalPage::onActivate()
     if ( !t )
     {
         // This is why we can't have nice things.
-        errorKonsoleNotInstalled( this );
+        errorKonsoleNotInstalled();
         return;
     }
 
