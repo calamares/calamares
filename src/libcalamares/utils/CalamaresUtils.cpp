@@ -326,5 +326,47 @@ crash()
     *a = 1;
 }
 
+bool
+getBool( const QVariantMap& map, const QString& key, bool d )
+{
+    bool result = d;
+    if ( map.contains( key ) )
+    {
+        auto v = map.value( key );
+        if ( v.type() == QVariant::Bool )
+            result = v.toBool();
+    }
+
+    return result;
+}
+
+QString
+getString(const QVariantMap& map, const QString& key)
+{
+    if ( map.contains( key ) )
+    {
+        auto v = map.value( key );
+        if ( v.type() == QVariant::String )
+            return v.toString();
+    }
+    return QString();
+}
+
+QVariantMap
+getSubMap( const QVariantMap& map, const QString& key, bool& success )
+{
+    success = false;
+
+    if ( map.contains( key ) )
+    {
+        auto v = map.value( key );
+        if ( v.type() == QVariant::Map )
+        {
+            success = true;
+            return v.toMap();
+        }
+    }
+    return QVariantMap();
+}
 
 }

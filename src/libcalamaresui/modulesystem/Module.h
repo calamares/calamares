@@ -70,7 +70,6 @@ public:
         ProcessInterface,
         PythonQtInterface
     };
-    virtual ~Module();
 
     /**
      * @brief fromDescriptor creates a new Module object of the correct type.
@@ -84,6 +83,7 @@ public:
                                    const QString& instanceId,
                                    const QString& configFileName,
                                    const QString& moduleDirectory );
+    virtual ~Module();
 
     /**
      * @brief name returns the name of this module.
@@ -152,7 +152,7 @@ public:
      * @brief jobs returns any jobs exposed by this module.
      * @return a list of jobs (can be empty).
      */
-    virtual QList< job_ptr > jobs() const = 0;
+    virtual JobList jobs() const = 0;
 
     /**
      * @brief configurationMap returns the contents of the configuration file for

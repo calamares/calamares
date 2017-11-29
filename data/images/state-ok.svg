@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 8">
+  <defs id="defs3051">
+    <style type="text/css" id="current-color-scheme">
+      .ColorScheme-PositiveText {
+        color:#27ae60;
+      }
+      </style>
+  </defs>
+  <path
+      style="fill:currentColor;fill-opacity:1;stroke:none" 
+     class="ColorScheme-PositiveText"
+    d="M 4 0 C 1.784 0 0 1.784 0 4 C 0 6.216 1.784 8 4 8 C 6.216 8 8 6.216 8 4 C 8 1.784 6.216 0 4 0 z "
+      />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:none"
+       d="M 6 2 L 3 5 L 2 4 L 1 5 L 2 6 L 3 7 L 7 3 L 6 2 z "
+        />
+</svg>

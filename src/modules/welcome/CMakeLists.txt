@@ -12,7 +12,7 @@ set( CHECKER_SOURCES
     checker/partman_devices.c
 )
 set( CHECKER_LINK_LIBRARIES
-    ${LIBPARTED_LIBS}
+    ${LIBPARTED_LIBRARY}
     Qt5::DBus
     Qt5::Network
 )

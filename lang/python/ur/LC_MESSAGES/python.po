@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-04 08:16-0400\n"
+"POT-Creation-Date: 2017-11-06 06:02-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Language-Team: Urdu (https://www.transifex.com/calamares/teams/20061/ur/)\n"
 "MIME-Version: 1.0\n"
@@ -16,18 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ur\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-#: src/modules/machineid/main.py:35
-msgid "Generate machine-id."
-msgstr ""
-
-#: src/modules/dummypython/main.py:44
-msgid "Dummy python job."
-msgstr ""
-
-#: src/modules/dummypython/main.py:97
-msgid "Dummy python step {}"
-msgstr ""
 
 #: src/modules/packages/main.py:59
 #, python-format
@@ -50,4 +38,16 @@ msgstr[1] ""
 
 #: src/modules/packages/main.py:68
 msgid "Install packages."
+msgstr ""
+
+#: src/modules/dummypython/main.py:44
+msgid "Dummy python job."
+msgstr ""
+
+#: src/modules/dummypython/main.py:97
+msgid "Dummy python step {}"
+msgstr ""
+
+#: src/modules/machineid/main.py:35
+msgid "Generate machine-id."
 msgstr ""

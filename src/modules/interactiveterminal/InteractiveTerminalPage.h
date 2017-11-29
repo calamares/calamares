@@ -39,6 +39,8 @@ private:
     QWidget* m_termHostWidget;
     QString m_command;
     QLabel* m_headerLabel;
+
+    void errorKonsoleNotInstalled();
 };
 
 #endif // INTERACTIVETERMINALPAGE_H

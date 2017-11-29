@@ -33,12 +33,17 @@
 
 QJsonModel::QJsonModel(QObject *parent) :
     QAbstractItemModel(parent)
+    , mRootItem( new QJsonTreeItem )
 {
-    mRootItem = new QJsonTreeItem;
     mHeaders.append("key");
     mHeaders.append("value");
 
 
+}
+
+QJsonModel::~QJsonModel()
+{
+    delete mRootItem;
 }
 
 bool QJsonModel::load(const QString &fileName)
@@ -66,6 +71,7 @@ bool QJsonModel::loadJson(const QByteArray &json)
     if (!mDocument.isNull())
     {
         beginResetModel();
+        delete mRootItem;
         if (mDocument.isArray()) {
             mRootItem = QJsonTreeItem::load(QJsonValue(mDocument.array()));
         } else {

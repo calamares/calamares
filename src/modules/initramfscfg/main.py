@@ -24,6 +24,8 @@
 #   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
 
 import libcalamares
+
+import inspect
 import os
 import shutil
 

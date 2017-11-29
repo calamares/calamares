@@ -40,6 +40,18 @@ set( CMAKE_CXX_STANDARD_REQUIRED ON )
 set( CMAKE_C_STANDARD 99 )
 set( CMAKE_C_STANDARD_REQUIRED ON )
 
+# CMake 3.9, 3.10 compatibility
+if( POLICY CMP0071 )
+    cmake_policy( SET CMP0071 NEW )
+endif()
+if(NOT CMAKE_VERSION VERSION_LESS "3.10.0")
+    list(APPEND CMAKE_AUTOMOC_MACRO_NAMES 
+        "K_PLUGIN_FACTORY_WITH_JSON"
+        "K_EXPORT_PLASMA_DATAENGINE_WITH_JSON"
+        "K_EXPORT_PLASMA_RUNNER"
+    )
+endif()
+
 if( CMAKE_CXX_COMPILER_ID MATCHES "Clang" )
     message( STATUS "Found Clang ${CMAKE_CXX_COMPILER_VERSION}, setting up Clang-specific compiler flags." )
     set( CMAKE_C_FLAGS                  "${CMAKE_C_FLAGS} -Wall" )
@@ -50,7 +62,7 @@ if( CMAKE_CXX_COMPILER_ID MATCHES "Clang" )
 
     # Clang warnings: doing *everything* is counter-productive, since it warns
     # about things which we can't fix (e.g. C++98 incompatibilities, but
-    # Calaares is C++14).
+    # Calamares is C++14).
     foreach( CLANG_WARNINGS
         -Weverything
         -Wno-c++98-compat
@@ -88,6 +100,8 @@ else()
     set( SUPPRESS_BOOST_WARNINGS "" )
 endif()
 
+# Use mark_thirdparty_code() to reduce warnings from the compiler
+# on code that we're not going to fix. Call this with a list of files.
 macro(mark_thirdparty_code)
     set_source_files_properties( ${ARGV}
         PROPERTIES
@@ -111,11 +125,21 @@ set( QT_VERSION 5.6.0 )
 find_package( Qt5 ${QT_VERSION} CONFIG REQUIRED Core Gui Widgets LinguistTools Svg Quick QuickWidgets )
 find_package( YAMLCPP 0.5.1 REQUIRED )
 find_package( PolkitQt5-1 REQUIRED )
+find_package(ECM 5.18 NO_MODULE)
+if( ECM_FOUND )
+    set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${CMAKE_MODULE_PATH})
+endif()
 
 option( INSTALL_CONFIG "Install configuration files" ON )
 option( WITH_PYTHON "Enable Python modules API (requires Boost.Python)." ON )
 option( WITH_PYTHONQT "Enable next generation Python modules API (experimental, requires PythonQt)." OFF )
+option( WITH_KF5Crash "Enable crash reporting with KCrash." ON )
 option( BUILD_TESTING "Build the testing tree." ON )
+
+find_package( KF5 COMPONENTS CoreAddons Crash )
+if( NOT KF5Crash_FOUND )
+    set( WITH_KF5Crash OFF )
+endif()
 
 if( BUILD_TESTING )
     enable_testing()
@@ -159,13 +183,13 @@ set( CALAMARES_ORGANIZATION_NAME "Calamares" )
 set( CALAMARES_ORGANIZATION_DOMAIN "github.com/calamares" )
 set( CALAMARES_APPLICATION_NAME  "Calamares" )
 set( CALAMARES_DESCRIPTION_SUMMARY "The distribution-independent installer framework" )
-set( CALAMARES_TRANSLATION_LANGUAGES ar ast bg ca cs_CZ da de el en en_GB es_MX es eu fr he hr hu id is it_IT ja lt nl pl pt_BR pt_PT ro ru sk sv th tr_TR zh_CN zh_TW )
+set( CALAMARES_TRANSLATION_LANGUAGES ar ast bg ca cs_CZ da de el en en_GB es_MX es eu fr he hi hr hu id is it_IT ja lt mr nl pl pt_BR pt_PT ro ru sk sq sv th tr_TR zh_CN zh_TW )
 
 ### Bump version here
 set( CALAMARES_VERSION_MAJOR 3 )
-set( CALAMARES_VERSION_MINOR 1 )
-set( CALAMARES_VERSION_PATCH 5 )
-set( CALAMARES_VERSION_RC 0 )
+set( CALAMARES_VERSION_MINOR 2 )
+set( CALAMARES_VERSION_PATCH 0 )
+set( CALAMARES_VERSION_RC 1 )
 
 set( CALAMARES_VERSION ${CALAMARES_VERSION_MAJOR}.${CALAMARES_VERSION_MINOR}.${CALAMARES_VERSION_PATCH} )
 set( CALAMARES_VERSION_SHORT "${CALAMARES_VERSION}" )
@@ -265,12 +289,9 @@ else()
 endif()
 # Doesn't list mksquashfs as an optional dep, though, because it
 # hasn't been sent through the find_package() scheme.
-set_package_properties( mksquashfs PROPERTIES
-    DESCRIPTION "Create squashed filesystems"
-    URL "http://tldp.org/HOWTO/SquashFS-HOWTO/creatingandusing.html"
-    PURPOSE "Create example distro"
-    TYPE OPTIONAL
-)
+#
+# "http://tldp.org/HOWTO/SquashFS-HOWTO/creatingandusing.html"
+add_feature_info( ExampleDistro ${mksquashfs_FOUND} "Create example-distro target.")
 
 # add_subdirectory( thirdparty )
 add_subdirectory( src )
@@ -278,6 +299,7 @@ add_subdirectory( src )
 add_feature_info(Python ${WITH_PYTHON} "Python job modules")
 add_feature_info(PythonQt ${WITH_PYTHONQT} "Python view modules")
 add_feature_info(Config ${INSTALL_CONFIG} "Install Calamares configuration")
+add_feature_info(KCrash ${WITH_KF5Crash} "Crash dumps via KCrash")
 
 feature_summary(WHAT ALL)
 

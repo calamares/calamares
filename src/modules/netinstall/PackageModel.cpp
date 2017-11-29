@@ -163,7 +163,8 @@ PackageModel::getPackages() const
 {
     QList<PackageTreeItem*> items = getItemPackages( m_rootItem );
     for ( auto package : m_hiddenItems )
-        items.append( getItemPackages( package ) );
+        if ( package->hiddenSelected() )
+            items.append( getItemPackages( package ) );
     QList<PackageTreeItem::ItemData> packages;
     for ( auto item : items )
     {

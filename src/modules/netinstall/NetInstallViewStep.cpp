@@ -2,6 +2,7 @@
  *   Copyright 2016, Luca Giambonini <almack@chakraos.org>
  *   Copyright 2016, Lisa Vitolo <shainer@chakraos.org>
  *   Copyright 2017, Kyle Robbertze  <krobbertze@gmail.com>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -30,11 +31,11 @@ CALAMARES_PLUGIN_FACTORY_DEFINITION( NetInstallViewStepFactory, registerPlugin<N
 NetInstallViewStep::NetInstallViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
     , m_widget( new NetInstallPage() )
-    , m_nextEnabled( true )
+    , m_nextEnabled( false )
 {
     emit nextStatusChanged( true );
     connect( m_widget, &NetInstallPage::checkReady,
-             this, &NetInstallViewStep::nextStatusChanged );
+             this, &NetInstallViewStep::nextIsReady );
 }
 
 
@@ -126,18 +127,26 @@ NetInstallViewStep::onLeave()
     cDebug() << "Leaving netinstall, adding packages to be installed"
              << "to global storage";
 
-    QMap<QString, QVariant> packagesWithOperation;
-    QList<PackageTreeItem::ItemData> packages = m_widget->selectedPackages();
+    PackageModel::PackageItemDataList packages = m_widget->selectedPackages();
     QVariantList installPackages;
     QVariantList tryInstallPackages;
-    cDebug() << "Processing";
+    QVariantList packageOperations;
+
+    cDebug() << "Processing" << packages.length() << "packages from netinstall.";
 
     for ( auto package : packages )
     {
-        QMap<QString, QVariant> details;
-        details.insert( "pre-script", package.preScript );
-        details.insert( "package", package.packageName );
-        details.insert( "post-script", package.postScript );
+        QVariant details( package.packageName );
+        // If it's a package with a pre- or post-script, replace
+        // with the more complicated datastructure.
+        if ( !package.preScript.isEmpty() || !package.postScript.isEmpty() )
+        {
+            QMap<QString, QVariant> sdetails;
+            sdetails.insert( "pre-script", package.preScript );
+            sdetails.insert( "package", package.packageName );
+            sdetails.insert( "post-script", package.postScript );
+            details = sdetails;
+        }
         if ( package.isCritical )
             installPackages.append( details );
         else
@@ -145,14 +154,24 @@ NetInstallViewStep::onLeave()
     }
 
     if ( !installPackages.empty() )
-        packagesWithOperation.insert( "install", QVariant( installPackages ) );
+    {
+        QMap<QString, QVariant> op;
+        op.insert( "install", QVariant( installPackages ) );
+        packageOperations.append( op );
+        cDebug() << "  .." << installPackages.length() << "critical packages.";
+    }
     if ( !tryInstallPackages.empty() )
-        packagesWithOperation.insert( "try_install", QVariant( tryInstallPackages ) );
+    {
+        QMap<QString, QVariant> op;
+        op.insert( "try_install", QVariant( tryInstallPackages ) );
+        packageOperations.append( op );
+        cDebug() << "  .." << tryInstallPackages.length() << "non-critical packages.";
+    }
 
-    if ( !packagesWithOperation.isEmpty() )
+    if ( !packageOperations.isEmpty() )
     {
         Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
-        gs->insert( "packageOperations", QVariant( packagesWithOperation ) );
+        gs->insert( "packageOperations", QVariant( packageOperations ) );
     }
 }
 
@@ -160,6 +179,11 @@ NetInstallViewStep::onLeave()
 void
 NetInstallViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
+    m_widget->setRequired(
+        configurationMap.contains( "required" ) &&
+        configurationMap.value( "required" ).type() == QVariant::Bool &&
+        configurationMap.value( "required" ).toBool() );
+
     if ( configurationMap.contains( "groupsUrl" ) &&
             configurationMap.value( "groupsUrl" ).type() == QVariant::String )
     {
@@ -167,4 +191,11 @@ NetInstallViewStep::setConfigurationMap( const QVariantMap& configurationMap )
             "groupsUrl", configurationMap.value( "groupsUrl" ).toString() );
         m_widget->loadGroupList();
     }
+}
+
+void
+NetInstallViewStep::nextIsReady( bool b )
+{
+    m_nextEnabled = b;
+    emit nextStatusChanged( b );
 }

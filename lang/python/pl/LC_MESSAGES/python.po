@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-04 08:16-0400\n"
+"POT-Creation-Date: 2017-11-06 06:02-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: m4sk1n <m4sk1n@vivaldi.net>, 2017\n"
 "Language-Team: Polish (https://www.transifex.com/calamares/teams/20061/pl/)\n"
@@ -17,18 +17,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: pl\n"
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
-
-#: src/modules/machineid/main.py:35
-msgid "Generate machine-id."
-msgstr "Generuj machine-id."
-
-#: src/modules/dummypython/main.py:44
-msgid "Dummy python job."
-msgstr "Zadanie Dummy Python"
-
-#: src/modules/dummypython/main.py:97
-msgid "Dummy python step {}"
-msgstr "Krok dummy python {}"
 
 #: src/modules/packages/main.py:59
 #, python-format
@@ -42,7 +30,7 @@ msgid_plural "Installing %(num)d packages."
 msgstr[0] "Instalowanie jednego pakietu."
 msgstr[1] "Instalowanie %(num)d pakietów."
 msgstr[2] "Instalowanie %(num)d pakietów."
-msgstr[3] "Instalowanie pakietów (%(num)d)."
+msgstr[3] "Instalowanie%(num)d pakietów."
 
 #: src/modules/packages/main.py:64
 #, python-format
@@ -51,8 +39,20 @@ msgid_plural "Removing %(num)d packages."
 msgstr[0] "Usuwanie jednego pakietu."
 msgstr[1] "Usuwanie %(num)d pakietów."
 msgstr[2] "Usuwanie %(num)d pakietów."
-msgstr[3] "Usuwanie pakietów (%(num)d)."
+msgstr[3] "Usuwanie %(num)d pakietów."
 
 #: src/modules/packages/main.py:68
 msgid "Install packages."
 msgstr "Zainstaluj pakiety."
+
+#: src/modules/dummypython/main.py:44
+msgid "Dummy python job."
+msgstr "Zadanie fikcyjne Python."
+
+#: src/modules/dummypython/main.py:97
+msgid "Dummy python step {}"
+msgstr "Krok fikcyjny Python {}"
+
+#: src/modules/machineid/main.py:35
+msgid "Generate machine-id."
+msgstr "Generuj machine-id."

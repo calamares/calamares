@@ -16,5 +16,8 @@
         <file alias="images/boot-environment.svg">../../data/images/boot-environment.svg</file>
         <file alias="images/partition-table.svg">../../data/images/partition-table.svg</file>
         <file alias="images/squid.svg">../../data/images/squid.svg</file>
+        <file alias="images/state-ok.svg">../../data/images/state-ok.svg</file>
+        <file alias="images/state-warning.svg">../../data/images/state-warning.svg</file>
+        <file alias="images/state-error.svg">../../data/images/state-error.svg</file>
     </qresource>
 </RCC>

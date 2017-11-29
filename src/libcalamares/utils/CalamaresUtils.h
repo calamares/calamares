@@ -97,6 +97,27 @@ namespace CalamaresUtils
      * @brief crash makes Calamares crash immediately.
      */
     DLLEXPORT void crash();
+
+    /**
+     * Get a bool value from a mapping with a given key; returns the default
+     * if no value is stored in the map.
+     */
+    DLLEXPORT bool getBool( const QVariantMap& map, const QString& key, bool d );
+
+    /**
+     * Get a string value from a mapping; returns empty QString if no value.
+     */
+    DLLEXPORT QString getString( const QVariantMap& map, const QString& key );
+
+    /**
+     * Returns a sub-map (i.e. a nested map) from the given mapping with the
+     * given key. @p success is set to true if the @p key exists
+     * in @p map and converts to a map, false otherwise.
+     *
+     * Returns an empty map if there is no such key or it is not a map-value.
+     * (e.g. if @p success is false).
+     */
+    DLLEXPORT QVariantMap getSubMap( const QVariantMap& map, const QString& key, bool& success );
 }
 
 #endif // CALAMARESUTILS_H
