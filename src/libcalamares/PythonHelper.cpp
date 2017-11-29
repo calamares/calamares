@@ -183,6 +183,16 @@ variantHashFromPyDict( const boost::python::dict& pyDict )
 
 Helper* Helper::s_instance = nullptr;
 
+static inline void add_if_lib_exists( const QDir& dir, const char* name, QStringList& list )
+{
+    if ( ! ( dir.exists() && dir.isReadable() ) )
+        return;
+
+    QFileInfo fi( dir.absoluteFilePath( name ) );
+    if ( fi.exists() && fi.isReadable() )
+        list.append( fi.dir().absolutePath() );
+}
+
 Helper::Helper( QObject* parent )
     : QObject( parent )
 {
@@ -196,20 +206,11 @@ Helper::Helper( QObject* parent )
         m_mainNamespace = m_mainModule.attr( "__dict__" );
 
         // If we're running from the build dir
-        QFileInfo fi( QDir::current().absoluteFilePath( "libcalamares.so" ) );
-        if ( fi.exists() && fi.isReadable() )
-            m_pythonPaths.append( fi.dir().absolutePath() );
+        add_if_lib_exists( QDir::current(), "libcalamares.so", m_pythonPaths );
 
         QDir calaPythonPath( CalamaresUtils::systemLibDir().absolutePath() +
                              QDir::separator() + "calamares" );
-        if ( calaPythonPath.exists() &&
-                calaPythonPath.isReadable() )
-        {
-            QFileInfo fi( calaPythonPath.absoluteFilePath( "libcalamares.so" ) );
-            if ( fi.exists() && fi.isReadable() )
-                m_pythonPaths.append( fi.dir().absolutePath() );
-        }
-
+        add_if_lib_exists( calaPythonPath, "libcalamares.so", m_pythonPaths );
 
         bp::object sys = bp::import( "sys" );
 
