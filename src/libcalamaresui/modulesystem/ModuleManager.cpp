@@ -315,4 +315,18 @@ ModuleManager::loadModules()
     } );
 }
 
+void
+ModuleManager::checkRequirements()
+{
+    QTimer::singleShot( 0, this, [ this ]()
+    {
+        for (const auto& module : m_loadedModulesByInstanceKey )
+        {
+            module->checkRequirements();
+        }
+
+        emit modulesChecked();
+    } );
+}
+
 }  // namespace

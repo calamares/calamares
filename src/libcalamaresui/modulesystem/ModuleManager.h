@@ -80,9 +80,16 @@ public:
      */
     void loadModules();
 
+    /**
+     * @brief Starts asynchronous requirements checking for each module.
+     * When this is done, the signal modulesChecked is emitted.
+     */
+    void checkRequirements();
+
 signals:
     void initDone();
     void modulesLoaded();
+    void modulesChecked();
 
 private slots:
     void doInit();

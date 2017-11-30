@@ -355,6 +355,7 @@ void
 CalamaresApplication::initViewSteps()
 {
     cDebug() << "STARTUP: loadModules for all modules done";
+    m_moduleManager->checkRequirements();
     m_mainwindow->show();
     ProgressTreeModel* m = new ProgressTreeModel( nullptr );
     ProgressTreeView::instance()->setModel( m );
