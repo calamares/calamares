@@ -33,8 +33,6 @@ WelcomeViewStep::WelcomeViewStep( QObject* parent )
 {
     emit nextStatusChanged( true );
     m_widget = new WelcomePage( m_requirementsChecker );
-    connect( m_requirementsChecker, &RequirementsChecker::verdictChanged,
-             this, &WelcomeViewStep::nextStatusChanged );
 }
 
 

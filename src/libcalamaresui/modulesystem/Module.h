@@ -20,6 +20,7 @@
 #ifndef CALAMARES_MODULE_H
 #define CALAMARES_MODULE_H
 
+#include "Requirement.h"
 #include "UiDllMacro.h"
 
 #include <Typedefs.h>
@@ -165,7 +166,7 @@ public:
     /**
      * @brief Check the requirements of this module.
      */
-    virtual void checkRequirements();
+    virtual RequirementsList checkRequirements();
 
 protected:
     explicit Module();

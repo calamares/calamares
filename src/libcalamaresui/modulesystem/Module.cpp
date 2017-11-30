@@ -297,9 +297,10 @@ Module::initFrom( const QVariantMap& moduleDescriptor )
     m_name = moduleDescriptor.value( "name" ).toString();
 }
 
-void
+RequirementsList
 Module::checkRequirements()
 {
+    return RequirementsList();
 }
 
 } //ns

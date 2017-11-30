@@ -19,6 +19,7 @@
 #ifndef MODULELOADER_H
 #define MODULELOADER_H
 
+#include "Requirement.h"
 #include "Typedefs.h"
 
 #include <QObject>
@@ -29,6 +30,7 @@ namespace Calamares
 {
 
 class Module;
+class RequirementEntry;  // from Requirement.h
 
 /**
  * @brief The ModuleManager class is a singleton which manages Calamares modules.
@@ -89,7 +91,8 @@ public:
 signals:
     void initDone();
     void modulesLoaded();
-    void modulesChecked();
+    void requirementsComplete( bool );
+    void requirementsResult( RequirementsList& );
 
 private slots:
     void doInit();

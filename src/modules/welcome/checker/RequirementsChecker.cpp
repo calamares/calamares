@@ -23,12 +23,14 @@
 #include "CheckerWidget.h"
 #include "partman_devices.h"
 
+#include "modulesystem/Requirement.h"
 #include "widgets/WaitingWidget.h"
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
 #include "utils/CalamaresUtilsSystem.h"
 #include "utils/Units.h"
+
 
 #include "JobQueue.h"
 #include "GlobalStorage.h"
@@ -107,7 +109,7 @@ RequirementsChecker::RequirementsChecker( QObject* parent )
                  << " hasInternet:" << hasInternet
                  << " isRoot:" << isRoot;
 
-        QList< PrepareEntry > checkEntries;
+        Calamares::RequirementsList checkEntries;
         foreach ( const QString& entry, m_entriesToCheck )
         {
             if ( entry == "storage" )
@@ -171,7 +173,7 @@ RequirementsChecker::RequirementsChecker( QObject* parent )
         m_widget->layout()->addWidget( m_actualWidget );
 
         bool canGoNext = true;
-        foreach ( const PrepareEntry& entry, checkEntries )
+        foreach ( const auto& entry, checkEntries )
         {
             if ( !entry.checked && entry.required )
             {

@@ -53,12 +53,12 @@ CheckerWidget::CheckerWidget( QWidget* parent )
 
 
 void
-CheckerWidget::init( const QList< PrepareEntry >& checkEntries )
+CheckerWidget::init( const Calamares::RequirementsList& checkEntries )
 {
     bool allChecked = true;
     bool requirementsSatisfied = true;
 
-    for ( const PrepareEntry& entry : checkEntries )
+    for ( const auto& entry : checkEntries )
     {
         if ( !entry.checked )
         {
@@ -162,7 +162,7 @@ CheckerWidget::init( const QList< PrepareEntry >& checkEntries )
 
 
 void
-CheckerWidget::showDetailsDialog( const QList< PrepareEntry >& checkEntries )
+CheckerWidget::showDetailsDialog( const Calamares::RequirementsList& checkEntries )
 {
     QDialog* detailsDialog = new QDialog( this );
     QBoxLayout* mainLayout = new QVBoxLayout;
@@ -177,7 +177,7 @@ CheckerWidget::showDetailsDialog( const QList< PrepareEntry >& checkEntries )
     CalamaresUtils::unmarginLayout( entriesLayout );
     mainLayout->addLayout( entriesLayout );
 
-    for ( const PrepareEntry& entry : checkEntries )
+    for ( const auto& entry : checkEntries )
     {
         if ( entry.enumerationText().isEmpty() )
             continue;

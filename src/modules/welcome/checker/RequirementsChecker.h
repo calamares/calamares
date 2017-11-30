@@ -23,30 +23,8 @@
 #include <QObject>
 #include <QStringList>
 
-#include <functional>
-
 class CheckerWidget;
 class QWidget;
-
-/**
- * An indication of a requirement, which is checked in preparation
- * for system installation. An entry has a name and some explanation,
- * as well as three meaningful states:
- *  - checked = true, the requirement is met (green)
- *  - checked = false, the requirement is not met
- *      - required = false, warn about it (yellow), no failure
- *      - required = true, prohibit installation (red)
- */
-struct PrepareEntry
-{
-    QString name;
-    std::function< QString() > enumerationText; //Partial string, inserted in a
-                                                //list of requirements to satisfy.
-    std::function< QString() > negatedText;     //Complete sentence about this requirement
-                                                //not having been met.
-    bool checked;
-    bool required;
-};
 
 class RequirementsChecker : public QObject
 {

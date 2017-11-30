@@ -318,14 +318,27 @@ ModuleManager::loadModules()
 void
 ModuleManager::checkRequirements()
 {
+    cDebug() << "Checking module requirements ..";
     QTimer::singleShot( 0, this, [ this ]()
     {
+        bool acceptable = true;
+
         for (const auto& module : m_loadedModulesByInstanceKey )
         {
-            module->checkRequirements();
+            auto l = module->checkRequirements();
+            if ( l.length() > 0 )
+            {
+                cDebug() << "  .." << module->name() << l.length() << "requirements";
+                emit requirementsResult( l );
+            }
+            for (const auto& r : l)
+            {
+                if (r.required && !r.checked)
+                    acceptable = false;
+            }
         }
 
-        emit modulesChecked();
+        emit requirementsComplete( acceptable );
     } );
 }
 

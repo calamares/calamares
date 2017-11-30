@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
- *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -15,30 +15,5 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
+#include "Requirement.h"
 
-#ifndef CHECKERWIDGET_H
-#define CHECKERWIDGET_H
-
-#include "modulesystem/Requirement.h"
-#include "RequirementsChecker.h"
-
-#include <QBoxLayout>
-#include <QWidget>
-
-class CheckerWidget : public QWidget
-{
-    Q_OBJECT
-public:
-    explicit CheckerWidget( QWidget* parent = nullptr );
-
-    void init( const Calamares::RequirementsList& checkEntries );
-
-private:
-    void showDetailsDialog( const Calamares::RequirementsList& checkEntries );
-
-    QBoxLayout* m_mainLayout;
-    QBoxLayout* m_entriesLayout;
-    int m_paddingSize;
-};
-
-#endif // CHECKERWIDGET_H
