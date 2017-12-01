@@ -55,8 +55,12 @@ def _change_mode(mode):
 
 def pretty_name():
     if not group_packages:
-        # Outside the context of an operation
-        s = _("Processing packages (%(count)d / %(total)d)")
+        if (total_packages > 0):
+            # Outside the context of an operation
+            s = _("Processing packages (%(count)d / %(total)d)")
+        else:
+            s = _("Install packages.")
+
     elif mode_packages is INSTALL:
         s = _n("Installing one package.",
                "Installing %(num)d packages.", group_packages)
