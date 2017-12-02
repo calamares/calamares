@@ -209,8 +209,8 @@ PartitionViewStep::createSummaryWidget() const
         else // multiple disk previews!
         {
             diskInfoLabel->setText( tr( "Disk <strong>%1</strong> (%2)" )
-                                        .arg( info.deviceNode )
-                                        .arg( info.deviceName ) );
+                                    .arg( info.deviceNode )
+                                    .arg( info.deviceName ) );
         }
         formLayout->addRow( diskInfoLabel );
 
@@ -219,9 +219,9 @@ PartitionViewStep::createSummaryWidget() const
         QVBoxLayout* field;
 
         PartitionBarsView::NestedPartitionsMode mode = Calamares::JobQueue::instance()->globalStorage()->
-                                                       value( "drawNestedPartitions" ).toBool() ?
-                                                           PartitionBarsView::DrawNestedPartitions :
-                                                           PartitionBarsView::NoNestedPartitions;
+                value( "drawNestedPartitions" ).toBool() ?
+                PartitionBarsView::DrawNestedPartitions :
+                PartitionBarsView::NoNestedPartitions;
         preview = new PartitionBarsView;
         preview->setNestedPartitionsMode( mode );
         previewLabels = new PartitionLabelsView;
@@ -259,7 +259,7 @@ PartitionViewStep::createSummaryWidget() const
     foreach ( const Calamares::job_ptr& job, jobs() )
     {
         if ( !job->prettyDescription().isEmpty() )
-        jobsLines.append( job->prettyDescription() );
+            jobsLines.append( job->prettyDescription() );
     }
     if ( !jobsLines.isEmpty() )
     {
@@ -352,8 +352,8 @@ PartitionViewStep::isAtEnd() const
     if ( m_choicePage == m_widget->currentWidget() )
     {
         if ( m_choicePage->currentChoice() == ChoicePage::Erase ||
-             m_choicePage->currentChoice() == ChoicePage::Replace ||
-             m_choicePage->currentChoice() == ChoicePage::Alongside )
+                m_choicePage->currentChoice() == ChoicePage::Replace ||
+                m_choicePage->currentChoice() == ChoicePage::Alongside )
             return true;
         return false;
     }
@@ -366,7 +366,7 @@ PartitionViewStep::onActivate()
 {
     // if we're coming back to PVS from the next VS
     if ( m_widget->currentWidget() == m_choicePage &&
-         m_choicePage->currentChoice() == ChoicePage::Alongside )
+            m_choicePage->currentChoice() == ChoicePage::Alongside )
     {
         m_choicePage->applyActionChoice( ChoicePage::Alongside );
 //        m_choicePage->reset();
@@ -389,7 +389,7 @@ PartitionViewStep::onLeave()
         if ( PartUtils::isEfiSystem() )
         {
             QString espMountPoint = Calamares::JobQueue::instance()->globalStorage()->
-                                        value( "efiSystemPartition").toString();
+                                    value( "efiSystemPartition" ).toString();
             Partition* esp = m_core->findPartitionByMountPoint( espMountPoint );
 
             QString message;
@@ -443,7 +443,7 @@ PartitionViewStep::onLeave()
             // If the root partition is encrypted, and there's a separate boot
             // partition which is not encrypted
             if ( root_p->fileSystem().type() == FileSystem::Luks &&
-                 boot_p->fileSystem().type() != FileSystem::Luks )
+                    boot_p->fileSystem().type() != FileSystem::Luks )
             {
                 message = tr( "Boot partition not encrypted" );
                 description = tr( "A separate boot partition was set up together with "
@@ -475,61 +475,45 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     // the EraseDiskPage, but also in the bootloader configuration modules (grub, bootloader).
     Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
     if ( configurationMap.contains( "efiSystemPartition" ) &&
-         configurationMap.value( "efiSystemPartition" ).type() == QVariant::String &&
-         !configurationMap.value( "efiSystemPartition" ).toString().isEmpty() )
-    {
+            configurationMap.value( "efiSystemPartition" ).type() == QVariant::String &&
+            !configurationMap.value( "efiSystemPartition" ).toString().isEmpty() )
         gs->insert( "efiSystemPartition", configurationMap.value( "efiSystemPartition" ).toString() );
-    }
     else
-    {
         gs->insert( "efiSystemPartition", QStringLiteral( "/boot/efi" ) );
-    }
 
     if ( configurationMap.contains( "ensureSuspendToDisk" ) &&
-         configurationMap.value( "ensureSuspendToDisk" ).type() == QVariant::Bool )
-    {
+            configurationMap.value( "ensureSuspendToDisk" ).type() == QVariant::Bool )
         gs->insert( "ensureSuspendToDisk", configurationMap.value( "ensureSuspendToDisk" ).toBool() );
-    }
     else
-    {
         gs->insert( "ensureSuspendToDisk", true );
-    }
 
     if ( configurationMap.contains( "neverCreateSwap" ) &&
-         configurationMap.value( "neverCreateSwap" ).type() == QVariant::Bool )
-    {
+            configurationMap.value( "neverCreateSwap" ).type() == QVariant::Bool )
         gs->insert( "neverCreateSwap", configurationMap.value( "neverCreateSwap" ).toBool() );
-    }
     else
-    {
         gs->insert( "neverCreateSwap", false );
-    }
 
     if ( configurationMap.contains( "drawNestedPartitions" ) &&
-         configurationMap.value( "drawNestedPartitions" ).type() == QVariant::Bool )
+            configurationMap.value( "drawNestedPartitions" ).type() == QVariant::Bool )
     {
         gs->insert( "drawNestedPartitions",
                     configurationMap.value( "drawNestedPartitions", false ).toBool() );
     }
     else
-    {
         gs->insert( "drawNestedPartitions", false );
-    }
 
     if ( configurationMap.contains( "alwaysShowPartitionLabels" ) &&
-         configurationMap.value( "alwaysShowPartitionLabels" ).type() == QVariant::Bool )
+            configurationMap.value( "alwaysShowPartitionLabels" ).type() == QVariant::Bool )
     {
         gs->insert( "alwaysShowPartitionLabels",
                     configurationMap.value( "alwaysShowPartitionLabels", true ).toBool() );
     }
     else
-    {
         gs->insert( "alwaysShowPartitionLabels", true );
-    }
 
     if ( configurationMap.contains( "defaultFileSystemType" ) &&
-         configurationMap.value( "defaultFileSystemType" ).type() == QVariant::String &&
-         !configurationMap.value( "defaultFileSystemType" ).toString().isEmpty() )
+            configurationMap.value( "defaultFileSystemType" ).type() == QVariant::String &&
+            !configurationMap.value( "defaultFileSystemType" ).toString().isEmpty() )
     {
         QString typeString = configurationMap.value( "defaultFileSystemType" ).toString();
         gs->insert( "defaultFileSystemType", typeString );
@@ -540,20 +524,16 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
         }
     }
     else
-    {
         gs->insert( "defaultFileSystemType", QStringLiteral( "ext4" ) );
-    }
 
     if ( configurationMap.contains( "enableLuksAutomatedPartitioning" ) &&
-         configurationMap.value( "enableLuksAutomatedPartitioning" ).type() == QVariant::Bool )
+            configurationMap.value( "enableLuksAutomatedPartitioning" ).type() == QVariant::Bool )
     {
         gs->insert( "enableLuksAutomatedPartitioning",
                     configurationMap.value( "enableLuksAutomatedPartitioning" ).toBool() );
     }
     else
-    {
         gs->insert( "enableLuksAutomatedPartitioning", true );
-    }
 
 
     // Now that we have the config, we load the PartitionCoreModule in the background
@@ -568,7 +548,7 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     } );
 
     QFuture< void > future =
-            QtConcurrent::run( this, &PartitionViewStep::initPartitionCoreModule );
+        QtConcurrent::run( this, &PartitionViewStep::initPartitionCoreModule );
     watcher->setFuture( future );
 }
 
@@ -583,13 +563,13 @@ Calamares::RequirementsList PartitionViewStep::checkRequirements()
 {
     Calamares::RequirementsList l;
     l.append(
-        {
-            QLatin1Literal("partitions"),
-            []{ return QString(); },
-            [this]{ return tr("There are no partitons to install on."); },
-            false,  // satisfied
-            true    // required
-        });
+    {
+        QLatin1Literal( "partitions" ),
+        []{ return QString(); },
+        [this]{ return tr( "There are no partitons to install on." ); },
+        false,  // satisfied
+        true    // required
+    } );
 
     return l;
 
