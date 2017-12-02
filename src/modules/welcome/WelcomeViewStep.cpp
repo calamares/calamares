@@ -131,3 +131,8 @@ WelcomeViewStep::setConfigurationMap( const QVariantMap& configurationMap )
         cDebug() << "WARNING: no valid requirements map found in welcome "
                     "module configuration.";
 }
+
+Calamares::RequirementsList WelcomeViewStep::checkRequirements()
+{
+    return m_requirementsChecker->checkRequirements( m_widget );
+}

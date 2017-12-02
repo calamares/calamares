@@ -57,6 +57,8 @@ public:
 
     void setConfigurationMap( const QVariantMap& configurationMap ) override;
 
+    Calamares::RequirementsList checkRequirements() override;
+
 private:
     WelcomePage* m_widget;
     RequirementsChecker* m_requirementsChecker;
