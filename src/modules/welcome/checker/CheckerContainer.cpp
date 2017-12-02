@@ -1,0 +1,72 @@
+/* === This file is part of Calamares - <https://github.com/calamares> ===
+ *
+ *   Copyright 2014-2017, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2017, Gabriel Craciunescu <crazy@frugalware.org>
+ *
+ *   Calamares is free software: you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation, either version 3 of the License, or
+ *   (at your option) any later version.
+ *
+ *   Calamares is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/* Based on code extracted from RequirementsChecker.cpp */
+
+#include "CheckerContainer.h"
+
+#include "CheckerWidget.h"
+
+#include "utils/CalamaresUtilsGui.h"
+#include "utils/Logger.h"
+#include "utils/Retranslator.h"
+#include "widgets/WaitingWidget.h"
+
+CheckerContainer::CheckerContainer(QWidget* parent)
+    : QWidget( parent )
+    , m_waitingWidget( new WaitingWidget( QString() ) )
+    , m_checkerWidget( new CheckerWidget() )
+    , m_verdict( false )
+{
+    QBoxLayout* mainLayout = new QHBoxLayout;
+    setLayout( mainLayout );
+    CalamaresUtils::unmarginLayout( mainLayout );
+
+    mainLayout->addWidget( m_waitingWidget );
+    CALAMARES_RETRANSLATE( m_waitingWidget->setText( tr( "Gathering system information..." ) ); )
+}
+
+CheckerContainer::~CheckerContainer()
+{
+    delete m_waitingWidget;
+    delete m_checkerWidget;
+}
+
+void CheckerContainer::requirementsComplete( bool ok )
+{
+    m_checkerWidget->init( m_requirements );
+    layout()->removeWidget( m_waitingWidget );
+    m_waitingWidget->deleteLater();
+    m_waitingWidget = nullptr;  // Don't delete in constructor
+    m_checkerWidget->setParent( this );
+    layout()->addWidget( m_checkerWidget );
+
+    m_verdict = ok;
+}
+
+void CheckerContainer::requirementsChecked(const Calamares::RequirementsList& l)
+{
+    m_requirements.append( l );
+}
+
+bool CheckerContainer::verdict() const
+{
+    return m_verdict;
+}

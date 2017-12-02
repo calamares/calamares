@@ -32,7 +32,7 @@ WelcomeViewStep::WelcomeViewStep( QObject* parent )
     , m_requirementsChecker( new RequirementsChecker( this ) )
 {
     emit nextStatusChanged( true );
-    m_widget = new WelcomePage( m_requirementsChecker );
+    m_widget = new WelcomePage();
 }
 
 
@@ -72,7 +72,7 @@ WelcomeViewStep::back()
 bool
 WelcomeViewStep::isNextEnabled() const
 {
-    return m_requirementsChecker->verdict();
+    return m_widget->verdict();
 }
 
 
@@ -131,4 +131,3 @@ WelcomeViewStep::setConfigurationMap( const QVariantMap& configurationMap )
         cDebug() << "WARNING: no valid requirements map found in welcome "
                     "module configuration.";
 }
-

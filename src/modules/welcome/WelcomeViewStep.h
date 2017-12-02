@@ -21,6 +21,7 @@
 
 #include <QObject>
 
+#include <modulesystem/Requirement.h>
 #include <utils/PluginFactory.h>
 #include <viewpages/ViewStep.h>
 
@@ -58,7 +59,6 @@ public:
 
 private:
     WelcomePage* m_widget;
-
     RequirementsChecker* m_requirementsChecker;
 };
 

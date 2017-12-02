@@ -6,8 +6,9 @@ find_package( Qt5 ${QT_VERSION} CONFIG REQUIRED DBus Network )
 include_directories( ${PROJECT_BINARY_DIR}/src/libcalamaresui )
 
 set( CHECKER_SOURCES
-    checker/CheckItemWidget.cpp
+    checker/CheckerContainer.cpp
     checker/CheckerWidget.cpp
+    checker/CheckItemWidget.cpp
     checker/RequirementsChecker.cpp
     checker/partman_devices.c
 )

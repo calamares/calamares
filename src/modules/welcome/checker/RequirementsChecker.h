@@ -23,24 +23,17 @@
 #include <QObject>
 #include <QStringList>
 
-class CheckerWidget;
-class QWidget;
+#include "modulesystem/Requirement.h"
 
 class RequirementsChecker : public QObject
 {
     Q_OBJECT
 public:
     explicit RequirementsChecker( QObject* parent = nullptr );
-    virtual ~RequirementsChecker();
-
-    QWidget* widget() const;
 
     void setConfigurationMap( const QVariantMap& configurationMap );
 
-    bool verdict() const;
-
-signals:
-    void verdictChanged( bool );
+    Calamares::RequirementsList checkRequirements( QWidget* some_widget );
 
 private:
     QStringList m_entriesToCheck;
@@ -54,13 +47,9 @@ private:
     bool checkIsRoot();
     void detectFirmwareType();
 
-    QWidget* m_widget;
     qreal m_requiredStorageGB;
     qreal m_requiredRamGB;
     QString m_checkHasInternetUrl;
-
-    CheckerWidget* m_actualWidget;
-    bool m_verdict;
 };
 
 #endif // REQUIREMENTSCHECKER_H

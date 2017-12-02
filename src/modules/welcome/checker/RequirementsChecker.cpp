@@ -20,7 +20,7 @@
 
 #include "RequirementsChecker.h"
 
-#include "CheckerWidget.h"
+#include "CheckerContainer.h"
 #include "partman_devices.h"
 
 #include "modulesystem/Requirement.h"
@@ -55,157 +55,105 @@
 
 RequirementsChecker::RequirementsChecker( QObject* parent )
     : QObject( parent )
-    , m_widget( new QWidget() )
     , m_requiredStorageGB( -1 )
     , m_requiredRamGB( -1 )
-    , m_actualWidget( new CheckerWidget() )
-    , m_verdict( false )
 {
-    QBoxLayout* mainLayout = new QHBoxLayout;
-    m_widget->setLayout( mainLayout );
-    CalamaresUtils::unmarginLayout( mainLayout );
+}
 
-    WaitingWidget* waitingWidget = new WaitingWidget( QString() );
-    mainLayout->addWidget( waitingWidget );
-    CALAMARES_RETRANSLATE( waitingWidget->setText( tr( "Gathering system information..." ) ); )
+Calamares::RequirementsList RequirementsChecker::checkRequirements(QWidget* some_widget)
+{
+    QSize availableSize = qApp->desktop()->availableGeometry( some_widget ).size();
 
-    QSize availableSize = qApp->desktop()->availableGeometry( m_widget ).size();
+    bool enoughStorage = false;
+    bool enoughRam = false;
+    bool hasPower = false;
+    bool hasInternet = false;
+    bool isRoot = false;
+    bool enoughScreen = (availableSize.width() >= CalamaresUtils::windowMinimumWidth) && (availableSize.height() >= CalamaresUtils::windowMinimumHeight);
 
-    QTimer* timer = new QTimer;
-    timer->setSingleShot( true );
-    connect( timer, &QTimer::timeout,
-             [=]()
+    qint64 requiredStorageB = CalamaresUtils::GiBtoBytes(m_requiredStorageGB);
+    cDebug() << "Need at least storage bytes:" << requiredStorageB;
+    if ( m_entriesToCheck.contains( "storage" ) )
+        enoughStorage = checkEnoughStorage( requiredStorageB );
+
+    qint64 requiredRamB = CalamaresUtils::GiBtoBytes(m_requiredRamGB);
+    cDebug() << "Need at least ram bytes:" << requiredRamB;
+    if ( m_entriesToCheck.contains( "ram" ) )
+        enoughRam = checkEnoughRam( requiredRamB );
+
+    if ( m_entriesToCheck.contains( "power" ) )
+        hasPower = checkHasPower();
+
+    if ( m_entriesToCheck.contains( "internet" ) )
+        hasInternet = checkHasInternet();
+
+    if ( m_entriesToCheck.contains( "root" ) )
+        isRoot = checkIsRoot();
+
+    cDebug() << "RequirementsChecker output:"
+                << " enoughStorage:" << enoughStorage
+                << " enoughRam:" << enoughRam
+                << " hasPower:" << hasPower
+                << " hasInternet:" << hasInternet
+                << " isRoot:" << isRoot;
+
+    Calamares::RequirementsList checkEntries;
+    foreach ( const QString& entry, m_entriesToCheck )
     {
-        bool enoughStorage = false;
-        bool enoughRam = false;
-        bool hasPower = false;
-        bool hasInternet = false;
-        bool isRoot = false;
-        bool enoughScreen = (availableSize.width() >= CalamaresUtils::windowMinimumWidth) && (availableSize.height() >= CalamaresUtils::windowMinimumHeight);
-
-        qint64 requiredStorageB = CalamaresUtils::GiBtoBytes(m_requiredStorageGB);
-        cDebug() << "Need at least storage bytes:" << requiredStorageB;
-        if ( m_entriesToCheck.contains( "storage" ) )
-            enoughStorage = checkEnoughStorage( requiredStorageB );
-
-        qint64 requiredRamB = CalamaresUtils::GiBtoBytes(m_requiredRamGB);
-        cDebug() << "Need at least ram bytes:" << requiredRamB;
-        if ( m_entriesToCheck.contains( "ram" ) )
-            enoughRam = checkEnoughRam( requiredRamB );
-
-        if ( m_entriesToCheck.contains( "power" ) )
-            hasPower = checkHasPower();
-
-        if ( m_entriesToCheck.contains( "internet" ) )
-            hasInternet = checkHasInternet();
-
-        if ( m_entriesToCheck.contains( "root" ) )
-            isRoot = checkIsRoot();
-
-        cDebug() << "RequirementsChecker output:"
-                 << " enoughStorage:" << enoughStorage
-                 << " enoughRam:" << enoughRam
-                 << " hasPower:" << hasPower
-                 << " hasInternet:" << hasInternet
-                 << " isRoot:" << isRoot;
-
-        Calamares::RequirementsList checkEntries;
-        foreach ( const QString& entry, m_entriesToCheck )
-        {
-            if ( entry == "storage" )
-                checkEntries.append( {
-                    entry,
-                    [this]{ return tr( "has at least %1 GB available drive space" )
-                        .arg( m_requiredStorageGB ); },
-                    [this]{ return tr( "There is not enough drive space. At least %1 GB is required." )
-                        .arg( m_requiredStorageGB ); },
-                    enoughStorage,
-                    m_entriesToRequire.contains( entry )
-                } );
-            else if ( entry == "ram" )
-                checkEntries.append( {
-                    entry,
-                    [this]{ return tr( "has at least %1 GB working memory" )
-                        .arg( m_requiredRamGB ); },
-                    [this]{ return tr( "The system does not have enough working memory. At least %1 GB is required." )
-                        .arg( m_requiredRamGB ); },
-                    enoughRam,
-                    m_entriesToRequire.contains( entry )
-                } );
-            else if ( entry == "power" )
-                checkEntries.append( {
-                    entry,
-                    [this]{ return tr( "is plugged in to a power source" ); },
-                    [this]{ return tr( "The system is not plugged in to a power source." ); },
-                    hasPower,
-                    m_entriesToRequire.contains( entry )
-                } );
-            else if ( entry == "internet" )
-                checkEntries.append( {
-                    entry,
-                    [this]{ return tr( "is connected to the Internet" ); },
-                    [this]{ return tr( "The system is not connected to the Internet." ); },
-                    hasInternet,
-                    m_entriesToRequire.contains( entry )
-                } );
-            else if ( entry == "root" )
-                checkEntries.append( {
-                    entry,
-                    [this]{ return QString(); }, //we hide it
-                    [this]{ return tr( "The installer is not running with administrator rights." ); },
-                    isRoot,
-                    m_entriesToRequire.contains( entry )
-                } );
-            else if ( entry == "screen" )
-                checkEntries.append( {
-                    entry,
-                    [this]{ return QString(); }, // we hide it
-                    [this]{ return tr( "The screen is too small to display the installer." ); },
-                    enoughScreen,
-                    false
-                } );
-        }
-
-        m_actualWidget->init( checkEntries );
-        m_widget->layout()->removeWidget( waitingWidget );
-        waitingWidget->deleteLater();
-        m_actualWidget->setParent( m_widget );
-        m_widget->layout()->addWidget( m_actualWidget );
-
-        bool canGoNext = true;
-        foreach ( const auto& entry, checkEntries )
-        {
-            if ( !entry.checked && entry.required )
-            {
-                canGoNext = false;
-                break;
-            }
-        }
-        m_verdict = canGoNext;
-        emit verdictChanged( m_verdict );
-
-        if ( canGoNext )
-            detectFirmwareType();
-
-        timer->deleteLater();
-    } );
-    timer->start( 0 );
-
-    emit verdictChanged( true );
-}
-
-
-RequirementsChecker::~RequirementsChecker()
-{
-    if ( m_widget && m_widget->parent() == nullptr )
-        m_widget->deleteLater();
-}
-
-
-QWidget*
-RequirementsChecker::widget() const
-{
-    return m_widget;
+        if ( entry == "storage" )
+            checkEntries.append( {
+                entry,
+                [this]{ return tr( "has at least %1 GB available drive space" )
+                    .arg( m_requiredStorageGB ); },
+                [this]{ return tr( "There is not enough drive space. At least %1 GB is required." )
+                    .arg( m_requiredStorageGB ); },
+                enoughStorage,
+                m_entriesToRequire.contains( entry )
+            } );
+        else if ( entry == "ram" )
+            checkEntries.append( {
+                entry,
+                [this]{ return tr( "has at least %1 GB working memory" )
+                    .arg( m_requiredRamGB ); },
+                [this]{ return tr( "The system does not have enough working memory. At least %1 GB is required." )
+                    .arg( m_requiredRamGB ); },
+                enoughRam,
+                m_entriesToRequire.contains( entry )
+            } );
+        else if ( entry == "power" )
+            checkEntries.append( {
+                entry,
+                [this]{ return tr( "is plugged in to a power source" ); },
+                [this]{ return tr( "The system is not plugged in to a power source." ); },
+                hasPower,
+                m_entriesToRequire.contains( entry )
+            } );
+        else if ( entry == "internet" )
+            checkEntries.append( {
+                entry,
+                [this]{ return tr( "is connected to the Internet" ); },
+                [this]{ return tr( "The system is not connected to the Internet." ); },
+                hasInternet,
+                m_entriesToRequire.contains( entry )
+            } );
+        else if ( entry == "root" )
+            checkEntries.append( {
+                entry,
+                [this]{ return QString(); }, //we hide it
+                [this]{ return tr( "The installer is not running with administrator rights." ); },
+                isRoot,
+                m_entriesToRequire.contains( entry )
+            } );
+        else if ( entry == "screen" )
+            checkEntries.append( {
+                entry,
+                [this]{ return QString(); }, // we hide it
+                [this]{ return tr( "The screen is too small to display the installer." ); },
+                enoughScreen,
+                false
+            } );
+    }
+    return checkEntries;
 }
 
 
@@ -297,13 +245,6 @@ RequirementsChecker::setConfigurationMap( const QVariantMap& configurationMap )
                     "RequirementsChecker configuration map:\n"
                  << configurationMap;
     }
-}
-
-
-bool
-RequirementsChecker::verdict() const
-{
-    return m_verdict;
 }
 
 
