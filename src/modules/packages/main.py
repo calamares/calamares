@@ -426,6 +426,11 @@ def run():
     else:
         return "Bad backend", "backend=\"{}\"".format(backend)
 
+    skip_this = libcalamares.job.configuration.get("skip_if_no_internet", false)
+    if skip_this and not libcalamares.globalstorage.value("hasInternet"):
+        cDebug() << "WARNING: packages installation has been skipped: no internet";
+        return None
+
     update_db = libcalamares.job.configuration.get("update_db", False)
     if update_db and libcalamares.globalstorage.value("hasInternet"):
         pkgman.update_db()
