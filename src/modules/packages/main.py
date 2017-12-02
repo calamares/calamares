@@ -428,7 +428,7 @@ def run():
 
     skip_this = libcalamares.job.configuration.get("skip_if_no_internet", False)
     if skip_this and not libcalamares.globalstorage.value("hasInternet"):
-        cDebug() << "WARNING: packages installation has been skipped: no internet";
+        libcalamares.utils.debug( "WARNING: packages installation has been skipped: no internet" )
         return None
 
     update_db = libcalamares.job.configuration.get("update_db", False)
