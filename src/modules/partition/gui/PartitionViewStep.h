@@ -33,6 +33,8 @@ class PartitionPage;
 class PartitionCoreModule;
 class QStackedWidget;
 
+template<typename T> class QFutureWatcher;
+
 /**
  * The starting point of the module. Instantiates PartitionCoreModule,
  * ChoicePage and PartitionPage, then connects them.
@@ -78,6 +80,7 @@ private:
     PartitionPage*    m_manualPartitionPage;
 
     QWidget*          m_waitingWidget;
+    QFutureWatcher<void>* m_future;
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( PartitionViewStepFactory )

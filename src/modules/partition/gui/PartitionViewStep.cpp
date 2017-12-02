@@ -539,17 +539,18 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     // Now that we have the config, we load the PartitionCoreModule in the background
     // because it could take a while. Then when it's done, we can set up the widgets
     // and remove the spinner.
-    QFutureWatcher< void >* watcher = new QFutureWatcher< void >();
-    connect( watcher, &QFutureWatcher< void >::finished,
-             this, [ this, watcher ]
+    m_future = new QFutureWatcher< void >();
+    connect( m_future, &QFutureWatcher< void >::finished,
+             this, [ this ]
     {
         continueLoading();
-        watcher->deleteLater();
+        this->m_future->deleteLater();
+        this->m_future = nullptr;
     } );
 
     QFuture< void > future =
         QtConcurrent::run( this, &PartitionViewStep::initPartitionCoreModule );
-    watcher->setFuture( future );
+    m_future->setFuture( future );
 }
 
 
@@ -561,13 +562,16 @@ PartitionViewStep::jobs() const
 
 Calamares::RequirementsList PartitionViewStep::checkRequirements()
 {
+    if (m_future)
+        m_future->waitForFinished();
+
     Calamares::RequirementsList l;
     l.append(
     {
         QLatin1Literal( "partitions" ),
         []{ return QString(); },
         [this]{ return tr( "There are no partitons to install on." ); },
-        false,  // satisfied
+        m_core->deviceModel()->rowCount() > 0,  // satisfied
         true    // required
     } );
 
