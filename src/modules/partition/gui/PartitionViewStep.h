@@ -66,6 +66,8 @@ public:
 
     QList< Calamares::job_ptr > jobs() const override;
 
+    Calamares::RequirementsList checkRequirements() override;
+
 private:
     void initPartitionCoreModule();
     void continueLoading();

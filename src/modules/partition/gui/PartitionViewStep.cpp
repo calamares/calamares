@@ -579,5 +579,21 @@ PartitionViewStep::jobs() const
     return m_core->jobs();
 }
 
+Calamares::RequirementsList PartitionViewStep::checkRequirements()
+{
+    Calamares::RequirementsList l;
+    l.append(
+        {
+            QLatin1Literal("partitions"),
+            []{ return QString(); },
+            [this]{ return tr("There are no partitons to install on."); },
+            false,  // satisfied
+            true    // required
+        });
+
+    return l;
+
+}
+
 
 CALAMARES_PLUGIN_FACTORY_DEFINITION( PartitionViewStepFactory, registerPlugin<PartitionViewStep>(); )
