@@ -22,6 +22,7 @@
 
 #include <QObject>
 
+#include "modulesystem/Requirement.h"
 #include "../UiDllMacro.h"
 #include "Typedefs.h"
 
@@ -100,6 +101,8 @@ public:
     }
 
     virtual void setConfigurationMap( const QVariantMap& configurationMap );
+
+    virtual RequirementsList checkRequirements();
 
 signals:
     void nextStatusChanged( bool status );

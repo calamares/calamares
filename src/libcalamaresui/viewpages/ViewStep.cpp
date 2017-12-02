@@ -66,4 +66,10 @@ ViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     Q_UNUSED( configurationMap );
 }
 
+
+RequirementsList ViewStep::checkRequirements()
+{
+    return RequirementsList();
+}
+
 }

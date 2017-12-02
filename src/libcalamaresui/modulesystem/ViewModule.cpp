@@ -126,4 +126,10 @@ ViewModule::~ViewModule()
     delete m_loader;
 }
 
+RequirementsList
+ViewModule::checkRequirements()
+{
+    return m_viewStep->checkRequirements();
+}
+
 } // namespace Calamares
