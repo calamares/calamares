@@ -107,10 +107,10 @@ void PlasmaLnfViewStep::onLeave()
 }
 
 
-Calamares::JobList
+QList<Calamares::job_ptr>
 PlasmaLnfViewStep::jobs() const
 {
-    Calamares::JobList l;
+    QList<Calamares::job_ptr> l;
 
     cDebug() << "Creating Plasma LNF jobs ..";
     if ( !m_themeId.isEmpty() && !m_lnfPath.isEmpty() )
@@ -124,7 +124,10 @@ PlasmaLnfViewStep::jobs() const
 void
 PlasmaLnfViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
-    m_lnfPath = CalamaresUtils::getString( configurationMap, "lnftool" );
+    QString lnfPath;
+    if ( configurationMap.contains( "lnftool" ) && configurationMap.value( "lnftool" ).type() == QVariant::String )
+        lnfPath = configurationMap.value( "lnftool" ).toString();
+    m_lnfPath = lnfPath;
     Calamares::set_lnftool( m_lnfPath );
 
     if (m_lnfPath.isEmpty())
