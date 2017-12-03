@@ -75,12 +75,9 @@ PlasmaLnfJob::exec()
     auto system = CalamaresUtils::System::instance();
     Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
 
-    QStringList command;
-
-    if ( !system->doChroot() )
-        command << "sudo" << "-E" << "-H" << "-u" << gs->value("username").toString();
-
-    command << m_lnfPath << "-platform" << "minimal" << "--resetLayout" << "--apply" << m_id;
+    QStringList command( {
+        "sudo", "-E", "-H", "-u", gs->value("username").toString(),
+        m_lnfPath, "-platform", "minimal", "--resetLayout", "--apply", m_id } );
 
     int r = system->targetEnvCall( command );
     if (r)
