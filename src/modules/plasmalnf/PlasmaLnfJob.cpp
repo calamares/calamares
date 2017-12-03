@@ -83,7 +83,7 @@ PlasmaLnfJob::exec()
     else
     {
         r = system->targetEnvCall( QStringList(
-            { "sudo", "-u", gs->value("username").toString(), m_lnfPath, "-a", m_id } ) );
+            { "sudo", "-E", "-u", gs->value("username").toString(), m_lnfPath, "-a", m_id } ) );
     }
 
     if (r)
