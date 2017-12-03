@@ -72,6 +72,7 @@ PlasmaLnfJob::exec()
 {
     cDebug() << "Plasma Look-and-Feel Job";
 
+#if 0
     int r = 0;
     auto system = CalamaresUtils::System::instance();
     Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
@@ -90,6 +91,7 @@ PlasmaLnfJob::exec()
         return Calamares::JobResult::error(
             tr( "Could not select KDE Plasma Look-and-Feel package" ),
             tr( "Could not select KDE Plasma Look-and-Feel package" ) );
+#endif
     return Calamares::JobResult::ok();
 }
 
