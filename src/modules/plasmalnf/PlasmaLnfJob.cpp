@@ -72,26 +72,22 @@ PlasmaLnfJob::exec()
 {
     cDebug() << "Plasma Look-and-Feel Job";
 
-#if 0
-    int r = 0;
     auto system = CalamaresUtils::System::instance();
     Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
 
-    if ( system->doChroot() )
-    {
-        r = system->targetEnvCall( QStringList( { m_lnfPath, "--resetlayout", "--apply", m_id } ) );
-    }
-    else
-    {
-        r = system->targetEnvCall( QStringList(
-            { "sudo", "-E", "-u", gs->value("username").toString(), m_lnfPath, "-a", m_id } ) );
-    }
+    QStringList command;
 
+    if ( !system->doChroot() )
+        command << "sudo" << "-E" << "-H" << "-u" << gs->value("username").toString();
+
+    command << m_lnfPath << "-platform" << "minimal" << "--resetLayout" << "--apply" << m_id;
+
+    int r = system->targetEnvCall( command );
     if (r)
         return Calamares::JobResult::error(
             tr( "Could not select KDE Plasma Look-and-Feel package" ),
             tr( "Could not select KDE Plasma Look-and-Feel package" ) );
-#endif
+
     return Calamares::JobResult::ok();
 }
 

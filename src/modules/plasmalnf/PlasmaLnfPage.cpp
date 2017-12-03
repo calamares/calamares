@@ -58,7 +58,7 @@ PlasmaLnfPage::activated(const QString& name)
     cDebug() << "Changed to" << name;
 
     QProcess lnftool;
-    lnftool.start( Calamares::lnftool(), {"--resetlayout", "--apply", name} );
+    lnftool.start( Calamares::lnftool(), {"--resetLayout", "--apply", name} );
 
     if ( lnftool.waitForStarted(1000) && lnftool.waitForFinished( 1000 ) && (lnftool.exitCode() == 0) && (lnftool.exitStatus() == QProcess::NormalExit ) )
         ; // OK
