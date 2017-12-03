@@ -34,6 +34,7 @@
 #include "JobQueue.h"
 #include "GlobalStorage.h"
 
+#include "utils/CalamaresUtilsSystem.h"
 #include "utils/Logger.h"
 
 PlasmaLnfJob::PlasmaLnfJob( const QString& lnfPath, const QString& id )
@@ -71,6 +72,24 @@ PlasmaLnfJob::exec()
 {
     cDebug() << "Plasma Look-and-Feel Job";
 
+    int r = 0;
+    auto system = CalamaresUtils::System::instance();
+    Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
+
+    if ( system->doChroot() )
+    {
+        r = system->targetEnvCall( QStringList( { m_lnfPath, "-a", m_id } ) );
+    }
+    else
+    {
+        r = system->targetEnvCall( QStringList(
+            { "sudo", "-u", gs->value("username").toString(), m_lnfPath, "-a", m_id } ) );
+    }
+
+    if (r)
+        return Calamares::JobResult::error(
+            tr( "Could not select KDE Plasma Look-and-Feel package" ),
+            tr( "Could not select KDE Plasma Look-and-Feel package" ) );
     return Calamares::JobResult::ok();
 }
 
