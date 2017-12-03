@@ -22,30 +22,24 @@
 #include <QObject>
 #include <QVariantMap>
 
-#include <CppJob.h>
+#include <Job.h>
 
-#include <utils/PluginFactory.h>
-
-#include <PluginDllMacro.h>
-
-class PLUGINDLLEXPORT PlasmaLnfJob : public Calamares::CppJob
+class PlasmaLnfJob : public Calamares::Job
 {
     Q_OBJECT
 
 public:
-    explicit PlasmaLnfJob( QObject* parent = nullptr );
+    explicit PlasmaLnfJob( const QString& id );
     virtual ~PlasmaLnfJob() override;
 
     QString prettyName() const override;
+    QString prettyDescription() const override;
+    QString prettyStatusMessage() const override;
 
     Calamares::JobResult exec() override;
 
-    void setConfigurationMap( const QVariantMap& configurationMap ) override;
-
 private:
-    QVariantMap m_configurationMap;
+    QString m_id;
 };
-
-CALAMARES_PLUGIN_FACTORY_DECLARATION( PlasmaLnfJobFactory )
 
 #endif // PLASMALNFJOB_H

@@ -36,8 +36,8 @@
 
 #include "utils/Logger.h"
 
-PlasmaLnfJob::PlasmaLnfJob( QObject* parent )
-    : Calamares::CppJob( parent )
+PlasmaLnfJob::PlasmaLnfJob( const QString& id )
+    : m_id(id)
 {
 }
 
@@ -53,43 +53,15 @@ PlasmaLnfJob::prettyName() const
     return tr( "Plasma Look-and-Feel Job" );
 }
 
-static void _themes_by_service()
+QString
+PlasmaLnfJob::prettyDescription() const
 {
-    KService::List services;
-    KServiceTypeTrader* trader = KServiceTypeTrader::self();
-
-    services = trader->query("Plasma/Theme");
-    int c = 0;
-    for ( const auto s : services )
-    {
-        cDebug() << "Plasma theme '" << s->name() << '\'';
-        c++;
-    }
-    cDebug() << "Plasma themes by service found" << c;
+    return prettyName();
 }
 
-static void _themes_by_kcm()
+QString PlasmaLnfJob::prettyStatusMessage() const
 {
-    QString component;
-    QList<Plasma::Package> packages;
-    QStringList paths;
-    const QStringList dataPaths = QStandardPaths::standardLocations(QStandardPaths::GenericDataLocation);
-
-    for (const QString &path : dataPaths) {
-        QDir dir(path + "/plasma/look-and-feel");
-        paths << dir.entryList(QDir::AllDirs | QDir::NoDotAndDotDot);
-    }
-
-    for (const QString &path : paths) {
-        Plasma::Package pkg = Plasma::PluginLoader::self()->loadPackage(QStringLiteral("Plasma/LookAndFeel"));
-        pkg.setPath(path);
-        pkg.setFallbackPackage(Plasma::Package());
-        if (component.isEmpty() || !pkg.filePath(component.toUtf8()).isEmpty()) {
-            packages << pkg;
-            cDebug() << "Plasma theme '" << pkg.metadata().pluginName() << '\'';
-        }
-    }
-    cDebug() << "Plasma themes by kcm found" << packages.length();
+    return prettyName();
 }
 
 
@@ -98,17 +70,6 @@ PlasmaLnfJob::exec()
 {
     cDebug() << "Plasma Look-and-Feel Job";
 
-    _themes_by_service();
-    _themes_by_kcm();
-
     return Calamares::JobResult::ok();
 }
 
-
-void
-PlasmaLnfJob::setConfigurationMap( const QVariantMap& configurationMap )
-{
-    m_configurationMap = configurationMap;
-}
-
-CALAMARES_PLUGIN_FACTORY_DEFINITION( PlasmaLnfJobFactory, registerPlugin<PlasmaLnfJob>(); )

@@ -64,4 +64,7 @@ PlasmaLnfPage::activated(const QString& name)
         ; // OK
     else
         cDebug() << "WARNING: could not apply look-and-feel" << name;
+
+
+    emit plasmaThemeSelected( name );
 }

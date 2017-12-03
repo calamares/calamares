@@ -56,8 +56,12 @@ public:
 
     void setConfigurationMap( const QVariantMap& configurationMap ) override;
 
+public slots:
+    void themeSelected( const QString &id );
+
 private:
     PlasmaLnfPage* m_widget;
+    QString m_themeId;
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( PlasmaLnfViewStepFactory )

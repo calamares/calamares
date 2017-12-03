@@ -36,6 +36,9 @@ public:
 public slots:
     void activated(const QString& name);
 
+signals:
+    void plasmaThemeSelected( const QString &id );
+
 private:
     Ui::PlasmaLnfPage* ui;
 };

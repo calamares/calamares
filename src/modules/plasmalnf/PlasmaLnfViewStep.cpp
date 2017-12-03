@@ -35,6 +35,7 @@ PlasmaLnfViewStep::PlasmaLnfViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
     , m_widget( new PlasmaLnfPage )
 {
+    connect( m_widget, &PlasmaLnfPage::plasmaThemeSelected, this, &PlasmaLnfViewStep::themeSelected );
     emit nextStatusChanged( false );
 }
 
@@ -111,6 +112,10 @@ PlasmaLnfViewStep::jobs() const
     Calamares::JobList l;
 
     cDebug() << "Creating Plasma LNF jobs ..";
+    if ( !m_themeId.isEmpty() )
+    {
+        l.append( Calamares::job_ptr( new PlasmaLnfJob( m_themeId ) ) );
+    }
     return l;
 }
 
@@ -118,4 +123,10 @@ PlasmaLnfViewStep::jobs() const
 void
 PlasmaLnfViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
+}
+
+void
+PlasmaLnfViewStep::themeSelected( const QString& id )
+{
+    m_themeId = id;
 }
