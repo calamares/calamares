@@ -1,6 +1,6 @@
 find_package(ECM ${ECM_VERSION} REQUIRED NO_MODULE)
 
-find_package( KF5 5.29 REQUIRED CoreAddons Plasma Service Package )
+find_package( KF5 5.29 REQUIRED CoreAddons Plasma Package )
 
 calamares_add_plugin( plasmalnf
     TYPE viewmodule
@@ -16,6 +16,5 @@ calamares_add_plugin( plasmalnf
         calamaresui
         KF5::Package
         KF5::Plasma
-        KF5::Service
     SHARED_LIB
 )

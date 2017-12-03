@@ -29,10 +29,27 @@
 #include "utils/Retranslator.h"
 #include "ViewManager.h"
 
+#include <KPackage/Package>
+#include <KPackage/PackageLoader>
+
 #include <QButtonGroup>
 #include <QDesktopServices>
 #include <QLabel>
 #include <QProcess>
+
+static QStringList plasma_themes()
+{
+    QStringList packages;
+
+    QList<KPluginMetaData> pkgs = KPackage::PackageLoader::self()->listPackages("Plasma/LookAndFeel");
+
+    for (const KPluginMetaData &data : pkgs) {
+        packages << data.pluginId();
+    }
+
+    return packages;
+}
+
 
 PlasmaLnfPage::PlasmaLnfPage(QWidget *parent)
     : QWidget( parent )
@@ -46,8 +63,7 @@ PlasmaLnfPage::PlasmaLnfPage(QWidget *parent)
         ui->generalExplanation->setText( tr( "Please choose a look-and-feel for the KDE Plasma Desktop, below." ) );
     )
 
-    Calamares::themes_by_package();
-    ui->lnfCombo->addItems( Calamares::plasma_themes() );
+    ui->lnfCombo->addItems( plasma_themes() );
 
     QObject::connect<void(QComboBox::*)(const QString&)>(ui->lnfCombo, &QComboBox::activated, this, &PlasmaLnfPage::activated);
 }

@@ -26,14 +26,6 @@ namespace Calamares
 {
 QString lnftool();
 void set_lnftool( const QString& );
-
-    /* Internal */
-QStringList themes_by_package();
-QStringList themes_by_service();
-QStringList themes_by_kcm();
-QStringList themes_by_lnftool();
-
-QStringList plasma_themes();
 }
 
 #endif // PLASMALNFINFO_H
