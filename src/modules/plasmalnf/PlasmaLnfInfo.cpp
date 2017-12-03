@@ -120,9 +120,21 @@ QStringList plasma_themes()
     return l;
 }
 
+static QString *p_lnfPath = nullptr;
+
 QString lnftool()
 {
-    return "/home/adridg/bin/lookandfeeltool";
+    if ( !p_lnfPath )
+        p_lnfPath = new QString("/usr/bin/lookandfeeltool");
+
+    return *p_lnfPath;
+}
+
+void set_lnftool( const QString& lnfPath )
+{
+    if (p_lnfPath)
+        delete p_lnfPath;
+    p_lnfPath = new QString( lnfPath );
 }
 
 }  // namespace Calamares

@@ -22,6 +22,7 @@
 #include "utils/CalamaresUtils.h"
 #include "utils/CalamaresUtilsSystem.h"
 
+#include "PlasmaLnfInfo.h"
 #include "PlasmaLnfJob.h"
 #include "PlasmaLnfPage.h"
 #include "PlasmaLnfViewStep.h"
@@ -112,9 +113,9 @@ PlasmaLnfViewStep::jobs() const
     Calamares::JobList l;
 
     cDebug() << "Creating Plasma LNF jobs ..";
-    if ( !m_themeId.isEmpty() )
+    if ( !m_themeId.isEmpty() && !m_lnfPath.isEmpty() )
     {
-        l.append( Calamares::job_ptr( new PlasmaLnfJob( m_themeId ) ) );
+        l.append( Calamares::job_ptr( new PlasmaLnfJob( m_lnfPath, m_themeId ) ) );
     }
     return l;
 }
@@ -123,6 +124,11 @@ PlasmaLnfViewStep::jobs() const
 void
 PlasmaLnfViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
+    m_lnfPath = CalamaresUtils::getString( configurationMap, "lnftool" );
+    Calamares::set_lnftool( m_lnfPath );
+
+    if (m_lnfPath.isEmpty())
+        cDebug() << "WARNING: no lnftool given for plasmalnf module.";
 }
 
 void

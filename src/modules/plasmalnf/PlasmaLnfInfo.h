@@ -19,11 +19,13 @@
 #ifndef PLASMALNFINFO_H
 #define PLASMALNFINFO_H
 
+#include <QString>
 #include <QStringList>
 
 namespace Calamares
 {
 QString lnftool();
+void set_lnftool( const QString& );
 
     /* Internal */
 QStringList themes_by_package();

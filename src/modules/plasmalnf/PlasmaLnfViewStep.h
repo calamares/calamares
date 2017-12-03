@@ -61,6 +61,7 @@ public slots:
 
 private:
     PlasmaLnfPage* m_widget;
+    QString m_lnfPath;
     QString m_themeId;
 };
 

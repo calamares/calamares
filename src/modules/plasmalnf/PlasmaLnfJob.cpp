@@ -36,8 +36,9 @@
 
 #include "utils/Logger.h"
 
-PlasmaLnfJob::PlasmaLnfJob( const QString& id )
-    : m_id(id)
+PlasmaLnfJob::PlasmaLnfJob( const QString& lnfPath, const QString& id )
+    : m_lnfPath( lnfPath )
+    , m_id(id)
 {
 }
 

@@ -29,7 +29,7 @@ class PlasmaLnfJob : public Calamares::Job
     Q_OBJECT
 
 public:
-    explicit PlasmaLnfJob( const QString& id );
+    explicit PlasmaLnfJob( const QString& lnfPath, const QString& id );
     virtual ~PlasmaLnfJob() override;
 
     QString prettyName() const override;
@@ -39,6 +39,7 @@ public:
     Calamares::JobResult exec() override;
 
 private:
+    QString m_lnfPath;
     QString m_id;
 };
 
