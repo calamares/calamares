@@ -75,13 +75,21 @@ PlasmaLnfPage::activated(const QString& name)
     QProcess lnftool;
     lnftool.start( m_lnfPath, {"--resetLayout", "--apply", name} );
 
-    if ( lnftool.waitForStarted(1000) && lnftool.waitForFinished( 1000 ) && (lnftool.exitCode() == 0) && (lnftool.exitStatus() == QProcess::NormalExit ) )
-        ; // OK
+    if ( !lnftool.waitForStarted( 1000 ) )
+    {
+        cDebug() << "WARNING: could not start look-and-feel" << m_lnfPath;
+        return;
+    }
+    if ( !lnftool.waitForFinished() )
+    {
+        cDebug() << "WARNING:" << m_lnfPath << "timed out.";
+        return;
+    }
+
+    if ( (lnftool.exitCode() == 0) && (lnftool.exitStatus() == QProcess::NormalExit ) )
+        emit plasmaThemeSelected( name );
     else
         cDebug() << "WARNING: could not apply look-and-feel" << name;
-
-
-    emit plasmaThemeSelected( name );
 }
 
 void
