@@ -79,7 +79,7 @@ PlasmaLnfJob::exec()
 
     if ( system->doChroot() )
     {
-        r = system->targetEnvCall( QStringList( { m_lnfPath, "-a", m_id } ) );
+        r = system->targetEnvCall( QStringList( { m_lnfPath, "--resetlayout", "--apply", m_id } ) );
     }
     else
     {
