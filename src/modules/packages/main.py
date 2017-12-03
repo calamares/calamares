@@ -55,8 +55,12 @@ def _change_mode(mode):
 
 def pretty_name():
     if not group_packages:
-        # Outside the context of an operation
-        s = _("Processing packages (%(count)d / %(total)d)")
+        if (total_packages > 0):
+            # Outside the context of an operation
+            s = _("Processing packages (%(count)d / %(total)d)")
+        else:
+            s = _("Install packages.")
+
     elif mode_packages is INSTALL:
         s = _n("Installing one package.",
                "Installing %(num)d packages.", group_packages)
@@ -421,6 +425,11 @@ def run():
             break
     else:
         return "Bad backend", "backend=\"{}\"".format(backend)
+
+    skip_this = libcalamares.job.configuration.get("skip_if_no_internet", False)
+    if skip_this and not libcalamares.globalstorage.value("hasInternet"):
+        libcalamares.utils.debug( "WARNING: packages installation has been skipped: no internet" )
+        return None
 
     update_db = libcalamares.job.configuration.get("update_db", False)
     if update_db and libcalamares.globalstorage.value("hasInternet"):

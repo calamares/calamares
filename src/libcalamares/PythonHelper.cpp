@@ -234,7 +234,7 @@ Helper::~Helper()
 {}
 
 
-boost::python::object
+boost::python::dict
 Helper::createCleanNamespace()
 {
     // To make sure we run each script with a clean namespace, we only fetch the
