@@ -33,6 +33,8 @@ class PlasmaLnfPage : public QWidget
 public:
     explicit PlasmaLnfPage( QWidget* parent = nullptr );
 
+    void setLnfPath( const QString& path );
+
 public slots:
     void activated(const QString& name);
 
@@ -41,6 +43,7 @@ signals:
 
 private:
     Ui::PlasmaLnfPage* ui;
+    QString m_lnfPath;
 };
 
 #endif //PLASMALNFPAGE_H

@@ -17,7 +17,6 @@
  */
 
 #include "PlasmaLnfPage.h"
-#include "PlasmaLnfInfo.h"
 
 #include "ui_page_plasmalnf.h"
 
@@ -74,7 +73,7 @@ PlasmaLnfPage::activated(const QString& name)
     cDebug() << "Changed to" << name;
 
     QProcess lnftool;
-    lnftool.start( Calamares::lnftool(), {"--resetLayout", "--apply", name} );
+    lnftool.start( m_lnfPath, {"--resetLayout", "--apply", name} );
 
     if ( lnftool.waitForStarted(1000) && lnftool.waitForFinished( 1000 ) && (lnftool.exitCode() == 0) && (lnftool.exitStatus() == QProcess::NormalExit ) )
         ; // OK
@@ -83,4 +82,10 @@ PlasmaLnfPage::activated(const QString& name)
 
 
     emit plasmaThemeSelected( name );
+}
+
+void
+PlasmaLnfPage::setLnfPath(const QString& path)
+{
+    m_lnfPath = path;
 }

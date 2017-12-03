@@ -22,7 +22,6 @@
 #include "utils/CalamaresUtils.h"
 #include "utils/CalamaresUtilsSystem.h"
 
-#include "PlasmaLnfInfo.h"
 #include "PlasmaLnfJob.h"
 #include "PlasmaLnfPage.h"
 #include "PlasmaLnfViewStep.h"
@@ -128,7 +127,7 @@ PlasmaLnfViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     if ( configurationMap.contains( "lnftool" ) && configurationMap.value( "lnftool" ).type() == QVariant::String )
         lnfPath = configurationMap.value( "lnftool" ).toString();
     m_lnfPath = lnfPath;
-    Calamares::set_lnftool( m_lnfPath );
+    m_widget->setLnfPath( m_lnfPath );
 
     if (m_lnfPath.isEmpty())
         cDebug() << "WARNING: no lnftool given for plasmalnf module.";

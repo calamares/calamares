@@ -9,7 +9,6 @@ calamares_add_plugin( plasmalnf
         PlasmaLnfViewStep.cpp
         PlasmaLnfPage.cpp
         PlasmaLnfJob.cpp
-        PlasmaLnfInfo.cpp
     UI
         page_plasmalnf.ui
     LINK_PRIVATE_LIBRARIES
