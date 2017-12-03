@@ -114,6 +114,8 @@ public:
      */
     DLLEXPORT QPair<quint64, float> getTotalMemoryB();
 
+    DLLEXPORT bool doChroot() const;
+
 private:
     static System* s_instance;
 
