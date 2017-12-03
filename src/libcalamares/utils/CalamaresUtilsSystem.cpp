@@ -243,4 +243,10 @@ System::getTotalDiskB() const
     return 0;
 }
 
+bool
+System::doChroot() const
+{
+    return m_doChroot;
+}
+
 }  // namespace

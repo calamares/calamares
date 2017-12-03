@@ -170,6 +170,8 @@ public:
      */
     DLLEXPORT quint64 getTotalDiskB() const;
 
+    DLLEXPORT bool doChroot() const;
+
 private:
     static System* s_instance;
 
