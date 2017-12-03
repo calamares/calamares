@@ -32,6 +32,7 @@
 #include <QButtonGroup>
 #include <QDesktopServices>
 #include <QLabel>
+#include <QProcess>
 
 PlasmaLnfPage::PlasmaLnfPage(QWidget *parent)
     : QWidget( parent )
@@ -45,7 +46,22 @@ PlasmaLnfPage::PlasmaLnfPage(QWidget *parent)
         ui->generalExplanation->setText( tr( "Please choose a look-and-feel for the KDE Plasma Desktop, below." ) );
     )
 
-    Calamares::themes_by_service();
-    ui->lnfCombo->addItems( Calamares::themes_by_lnftool() );
+    Calamares::themes_by_package();
+    ui->lnfCombo->addItems( Calamares::plasma_themes() );
+
+    QObject::connect<void(QComboBox::*)(const QString&)>(ui->lnfCombo, &QComboBox::activated, this, &PlasmaLnfPage::activated);
 }
 
+void
+PlasmaLnfPage::activated(const QString& name)
+{
+    cDebug() << "Changed to" << name;
+
+    QProcess lnftool;
+    lnftool.start( Calamares::lnftool(), {"--apply", name} );
+
+    if ( lnftool.waitForStarted(1000) && lnftool.waitForFinished( 1000 ) && (lnftool.exitCode() == 0) && (lnftool.exitStatus() == QProcess::NormalExit ) )
+        ; // OK
+    else
+        cDebug() << "WARNING: could not apply look-and-feel" << name;
+}

@@ -33,6 +33,9 @@ class PlasmaLnfPage : public QWidget
 public:
     explicit PlasmaLnfPage( QWidget* parent = nullptr );
 
+public slots:
+    void activated(const QString& name);
+
 private:
     Ui::PlasmaLnfPage* ui;
 };

@@ -29,12 +29,28 @@
 #include <KPluginLoader>  // Future
 
 #include <Plasma/PluginLoader>  // TODO: port to KPluginLoader
+#include <KPackage/Package>
+#include <KPackage/PackageLoader>
 
 #include "utils/Logger.h"
 
 
 namespace Calamares
 {
+
+QStringList themes_by_package()
+{
+    QStringList packages;
+
+    QList<KPluginMetaData> pkgs = KPackage::PackageLoader::self()->listPackages("Plasma/LookAndFeel");
+
+    for (const KPluginMetaData &data : pkgs) {
+        packages << data.pluginId();
+    }
+
+    return packages;
+}
+
 
 QStringList themes_by_service()
 {
@@ -88,12 +104,25 @@ QStringList themes_by_lnftool()
     QStringList packages;
 
     QProcess lnftool;
-    lnftool.start( "lookandfeeltool", {"--list"} );
+    lnftool.start( Calamares::lnftool(), {"--list"} );
     if ( lnftool.waitForStarted(1000) && lnftool.waitForFinished( 1000 ) && (lnftool.exitCode() == 0) && (lnftool.exitStatus() == QProcess::NormalExit ) )
     {
         packages = QString::fromLocal8Bit( lnftool.readAllStandardOutput() ).trimmed().split('\n');
     }
     return packages;
+}
+
+QStringList plasma_themes()
+{
+    QStringList l( themes_by_package() );
+    if (l.isEmpty())
+        return themes_by_lnftool();
+    return l;
+}
+
+QString lnftool()
+{
+    return "/home/adridg/bin/lookandfeeltool";
 }
 
 }  // namespace Calamares
