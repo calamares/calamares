@@ -17,6 +17,7 @@
  */
 
 #include "PlasmaLnfPage.h"
+#include "PlasmaLnfInfo.h"
 
 #include "ui_page_plasmalnf.h"
 
@@ -43,5 +44,8 @@ PlasmaLnfPage::PlasmaLnfPage(QWidget *parent)
         ui->retranslateUi( this );
         ui->generalExplanation->setText( tr( "Please choose a look-and-feel for the KDE Plasma Desktop, below." ) );
     )
+
+    Calamares::themes_by_service();
+    ui->lnfCombo->addItems( Calamares::themes_by_lnftool() );
 }
 

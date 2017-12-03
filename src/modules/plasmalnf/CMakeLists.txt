@@ -8,9 +8,12 @@ calamares_add_plugin( plasmalnf
     SOURCES
         PlasmaLnfViewStep.cpp
         PlasmaLnfPage.cpp
+        PlasmaLnfInfo.cpp
     UI
         page_plasmalnf.ui
     LINK_PRIVATE_LIBRARIES
         calamaresui
+        KF5::Plasma
+        KF5::Service
     SHARED_LIB
 )
