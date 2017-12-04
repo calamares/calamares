@@ -21,6 +21,7 @@
 
 #include <QList>
 #include <QString>
+#include <QStringList>
 #include <QWidget>
 
 namespace Ui
@@ -43,6 +44,7 @@ public:
     explicit PlasmaLnfPage( QWidget* parent = nullptr );
 
     void setLnfPath( const QString& path );
+    void setEnabledThemes( const QStringList& themes );
 
 public slots:
     void activated( int index );
@@ -51,8 +53,11 @@ signals:
     void plasmaThemeSelected( const QString& id );
 
 private:
+    void winnowThemes();
+
     Ui::PlasmaLnfPage* ui;
     QString m_lnfPath;
+    QStringList m_enabledThemes;
     PlasmaLnfList m_availableLnf;
 };
 

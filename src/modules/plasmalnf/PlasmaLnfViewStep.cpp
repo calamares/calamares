@@ -135,6 +135,15 @@ PlasmaLnfViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     if ( configurationMap.contains( "liveuser" ) && configurationMap.value( "liveuser" ).type() == QVariant::String )
         liveUser = configurationMap.value( "liveuser" ).toString();
     m_liveUser = liveUser;
+
+    if ( configurationMap.contains( "themes" ) &&
+        configurationMap.value( "themes" ).type() == QVariant::List )
+    {
+        QStringList enabledThemes( configurationMap.value( "themes" ).toStringList() );
+        if ( enabledThemes.length() == 1 )
+            cDebug() << "WARNING: only one theme enabled in plasmalnf";
+        m_widget->setEnabledThemes( enabledThemes );
+    }
 }
 
 void

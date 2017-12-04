@@ -34,11 +34,11 @@ static PlasmaLnfList plasma_themes()
 
     for ( const KPluginMetaData& data : pkgs )
     {
-        packages << PlasmaLnfDescriptor{ data.pluginId(), data.name() };
-        cDebug() << "LNF Package" << data.pluginId();
-        cDebug() << "  .." << data.name();
-        cDebug() << "  .." << data.description();
-        cDebug() << "  .." << 'V' << data.isValid() << 'H' << data.isHidden() << 'D' << data.isEnabledByDefault();
+        if ( data.isValid() && !data.isHidden() && !data.name().isEmpty() )
+        {
+            packages << PlasmaLnfDescriptor{ data.pluginId(), data.name() };
+            cDebug() << "LNF Package" << data.pluginId();
+        }
     }
 
     return packages;
@@ -55,9 +55,7 @@ PlasmaLnfPage::PlasmaLnfPage( QWidget* parent )
         ui->retranslateUi( this );
         ui->generalExplanation->setText( tr( "Please choose a look-and-feel for the KDE Plasma Desktop, below." ) );
         m_availableLnf = plasma_themes();
-        ui->lnfCombo->clear();
-        for ( const auto& p : m_availableLnf )
-            ui->lnfCombo->addItem( p.name );
+        winnowThemes();
     }
     )
 
@@ -82,4 +80,19 @@ void
 PlasmaLnfPage::setLnfPath( const QString& path )
 {
     m_lnfPath = path;
+}
+
+void
+PlasmaLnfPage::setEnabledThemes(const QStringList& themes)
+{
+    m_enabledThemes = themes;
+    winnowThemes();
+}
+
+void PlasmaLnfPage::winnowThemes()
+{
+    ui->lnfCombo->clear();
+    for ( const auto& p : m_availableLnf )
+        if ( m_enabledThemes.isEmpty() || m_enabledThemes.contains( p.id ) )
+            ui->lnfCombo->addItem( p.name );
 }
