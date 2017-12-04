@@ -125,6 +125,11 @@ PlasmaLnfViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 
     if ( m_lnfPath.isEmpty() )
         cDebug() << "WARNING: no lnftool given for plasmalnf module.";
+
+    QString liveUser;
+    if ( configurationMap.contains( "liveuser" ) && configurationMap.value( "liveuser" ).type() == QVariant::String )
+        liveUser = configurationMap.value( "liveuser" ).toString();
+    m_liveUser = liveUser;
 }
 
 void
@@ -133,7 +138,10 @@ PlasmaLnfViewStep::themeSelected( const QString& id )
     m_themeId = id;
 
     QProcess lnftool;
-    lnftool.start( m_lnfPath, {"--resetLayout", "--apply", id} );
+    if ( !m_liveUser.isEmpty() )
+        lnftool.start( "sudo", {"-E", "-H", "-u", m_liveUser, m_lnfPath, "--resetLayout", "--apply", id} );
+    else
+        lnftool.start( m_lnfPath, {"--resetLayout", "--apply", id} );
 
     if ( !lnftool.waitForStarted( 1000 ) )
     {

@@ -63,6 +63,7 @@ private:
     PlasmaLnfPage* m_widget;
     QString m_lnfPath;
     QString m_themeId;
+    QString m_liveUser;
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( PlasmaLnfViewStepFactory )
