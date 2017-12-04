@@ -108,8 +108,13 @@ PlasmaLnfViewStep::jobs() const
     QList<Calamares::job_ptr> l;
 
     cDebug() << "Creating Plasma LNF jobs ..";
-    if ( !m_themeId.isEmpty() && !m_lnfPath.isEmpty() )
-        l.append( Calamares::job_ptr( new PlasmaLnfJob( m_lnfPath, m_themeId ) ) );
+    if ( !m_themeId.isEmpty() )
+    {
+        if ( !m_lnfPath.isEmpty() )
+            l.append( Calamares::job_ptr( new PlasmaLnfJob( m_lnfPath, m_themeId ) ) );
+        else
+            cDebug() << "WARNING: no lnftool given for plasmalnf module.";
+    }
     return l;
 }
 
