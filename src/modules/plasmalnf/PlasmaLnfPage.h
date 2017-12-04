@@ -19,8 +19,9 @@
 #ifndef PLASMALNFPAGE_H
 #define PLASMALNFPAGE_H
 
+#include <QList>
+#include <QString>
 #include <QWidget>
-#include <QUrl>
 
 namespace Ui
 {

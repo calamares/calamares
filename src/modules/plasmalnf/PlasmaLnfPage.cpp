@@ -20,28 +20,20 @@
 
 #include "ui_page_plasmalnf.h"
 
-#include "Branding.h"
-#include "JobQueue.h"
-#include "GlobalStorage.h"
 #include "utils/Logger.h"
-#include "utils/CalamaresUtilsGui.h"
 #include "utils/Retranslator.h"
-#include "ViewManager.h"
 
 #include <KPackage/Package>
 #include <KPackage/PackageLoader>
-
-#include <QButtonGroup>
-#include <QDesktopServices>
-#include <QLabel>
 
 static PlasmaLnfList plasma_themes()
 {
     PlasmaLnfList packages;
 
-    QList<KPluginMetaData> pkgs = KPackage::PackageLoader::self()->listPackages("Plasma/LookAndFeel");
+    QList<KPluginMetaData> pkgs = KPackage::PackageLoader::self()->listPackages( "Plasma/LookAndFeel" );
 
-    for (const KPluginMetaData &data : pkgs) {
+    for ( const KPluginMetaData& data : pkgs )
+    {
         packages << PlasmaLnfDescriptor{ data.pluginId(), data.name() };
         cDebug() << "LNF Package" << data.pluginId();
         cDebug() << "  .." << data.name();
@@ -53,30 +45,29 @@ static PlasmaLnfList plasma_themes()
 }
 
 
-PlasmaLnfPage::PlasmaLnfPage(QWidget *parent)
+PlasmaLnfPage::PlasmaLnfPage( QWidget* parent )
     : QWidget( parent )
     , ui( new Ui::PlasmaLnfPage )
 {
-    using StringEntry = Calamares::Branding::StringEntry;
-
     ui->setupUi( this );
     CALAMARES_RETRANSLATE(
+    {
         ui->retranslateUi( this );
         ui->generalExplanation->setText( tr( "Please choose a look-and-feel for the KDE Plasma Desktop, below." ) );
         m_availableLnf = plasma_themes();
         ui->lnfCombo->clear();
         for ( const auto& p : m_availableLnf )
             ui->lnfCombo->addItem( p.name );
+    }
     )
 
-
-    QObject::connect<void(QComboBox::*)(int)>(ui->lnfCombo, &QComboBox::activated, this, &PlasmaLnfPage::activated);
+    QObject::connect<void( QComboBox::* )( int )>( ui->lnfCombo, &QComboBox::activated, this, &PlasmaLnfPage::activated );
 }
 
 void
 PlasmaLnfPage::activated( int index )
 {
-    if ( (index < 0) || (index > m_availableLnf.length()) )
+    if ( ( index < 0 ) || ( index > m_availableLnf.length() ) )
     {
         cDebug() << "Plasma LNF index" << index << "out of range.";
         return;
@@ -88,7 +79,7 @@ PlasmaLnfPage::activated( int index )
 }
 
 void
-PlasmaLnfPage::setLnfPath(const QString& path)
+PlasmaLnfPage::setLnfPath( const QString& path )
 {
     m_lnfPath = path;
 }

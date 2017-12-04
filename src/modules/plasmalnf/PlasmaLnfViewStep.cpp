@@ -15,18 +15,13 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
-
-#include "JobQueue.h"
-#include "GlobalStorage.h"
-#include "utils/Logger.h"
-#include "utils/CalamaresUtils.h"
-#include "utils/CalamaresUtilsSystem.h"
+#include "PlasmaLnfViewStep.h"
 
 #include "PlasmaLnfJob.h"
 #include "PlasmaLnfPage.h"
-#include "PlasmaLnfViewStep.h"
 
-#include <QDesktopServices>
+#include "utils/Logger.h"
+
 #include <QProcess>
 #include <QVariantMap>
 
@@ -114,9 +109,7 @@ PlasmaLnfViewStep::jobs() const
 
     cDebug() << "Creating Plasma LNF jobs ..";
     if ( !m_themeId.isEmpty() && !m_lnfPath.isEmpty() )
-    {
         l.append( Calamares::job_ptr( new PlasmaLnfJob( m_lnfPath, m_themeId ) ) );
-    }
     return l;
 }
 
@@ -130,7 +123,7 @@ PlasmaLnfViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     m_lnfPath = lnfPath;
     m_widget->setLnfPath( m_lnfPath );
 
-    if (m_lnfPath.isEmpty())
+    if ( m_lnfPath.isEmpty() )
         cDebug() << "WARNING: no lnftool given for plasmalnf module.";
 }
 
@@ -153,7 +146,7 @@ PlasmaLnfViewStep::themeSelected( const QString& id )
         return;
     }
 
-    if ( (lnftool.exitCode() == 0) && (lnftool.exitStatus() == QProcess::NormalExit ) )
+    if ( ( lnftool.exitCode() == 0 ) && ( lnftool.exitStatus() == QProcess::NormalExit ) )
         cDebug() << "Plasma look-and-feel applied" << id;
     else
         cDebug() << "WARNING: could not apply look-and-feel" << id;

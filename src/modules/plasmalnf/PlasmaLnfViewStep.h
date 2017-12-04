@@ -57,7 +57,7 @@ public:
     void setConfigurationMap( const QVariantMap& configurationMap ) override;
 
 public slots:
-    void themeSelected( const QString &id );
+    void themeSelected( const QString& id );
 
 private:
     PlasmaLnfPage* m_widget;
