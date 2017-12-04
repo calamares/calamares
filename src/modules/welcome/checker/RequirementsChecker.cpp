@@ -218,12 +218,16 @@ RequirementsChecker::setConfigurationMap( const QVariantMap& configurationMap )
         bool ok = false;
         m_requiredStorageGB = configurationMap.value( "requiredStorage" ).toDouble( &ok );
         if ( !ok )
+        {
+            cDebug() << "WARNING: RequirementsChecker entry 'requiredStorage' is invalid.";
             m_requiredStorageGB = 3.;
+        }
 
         Calamares::JobQueue::instance()->globalStorage()->insert( "requiredStorageGB", m_requiredStorageGB );
     }
     else
     {
+        cDebug() << "WARNING: RequirementsChecker entry 'requiredStorage' is missing.";
         m_requiredStorageGB = 3.;
         incompleteConfiguration = true;
     }
@@ -236,12 +240,14 @@ RequirementsChecker::setConfigurationMap( const QVariantMap& configurationMap )
         m_requiredRamGB = configurationMap.value( "requiredRam" ).toDouble( &ok );
         if ( !ok )
         {
+            cDebug() << "WARNING: RequirementsChecker entry 'requiredRam' is invalid.";
             m_requiredRamGB = 1.;
             incompleteConfiguration = true;
         }
     }
     else
     {
+        cDebug() << "WARNING: RequirementsChecker entry 'requiredRam' is missing.";
         m_requiredRamGB = 1.;
         incompleteConfiguration = true;
     }
@@ -253,7 +259,7 @@ RequirementsChecker::setConfigurationMap( const QVariantMap& configurationMap )
         if ( m_checkHasInternetUrl.isEmpty() ||
              !QUrl( m_checkHasInternetUrl ).isValid() )
         {
-            cDebug() << "Invalid internetCheckUrl in welcome.conf" << m_checkHasInternetUrl
+            cDebug() << "WARNING: RequirementsChecker entry 'internetCheckUrl' is invalid in welcome.conf" << m_checkHasInternetUrl
                      << "reverting to default (http://example.com).";
             m_checkHasInternetUrl = "http://example.com";
             incompleteConfiguration = true;
@@ -261,8 +267,9 @@ RequirementsChecker::setConfigurationMap( const QVariantMap& configurationMap )
     }
     else
     {
-        cDebug() << "internetCheckUrl is undefined in welcome.conf, "
+        cDebug() << "WARNING: RequirementsChecker entry 'internetCheckUrl' is undefined in welcome.conf,"
                     "reverting to default (http://example.com).";
+
         m_checkHasInternetUrl = "http://example.com";
         incompleteConfiguration = true;
     }
@@ -274,7 +281,10 @@ RequirementsChecker::setConfigurationMap( const QVariantMap& configurationMap )
         m_entriesToCheck.append( configurationMap.value( "check" ).toStringList() );
     }
     else
+    {
+        cDebug() << "WARNING: RequirementsChecker entry 'check' is incomplete.";
         incompleteConfiguration = true;
+    }
 
     if ( configurationMap.contains( "required" ) &&
          configurationMap.value( "required" ).type() == QVariant::List )
@@ -283,18 +293,13 @@ RequirementsChecker::setConfigurationMap( const QVariantMap& configurationMap )
         m_entriesToRequire.append( configurationMap.value( "required" ).toStringList() );
     }
     else
+    {
+        cDebug() << "WARNING: RequirementsChecker entry 'required' is incomplete.";
         incompleteConfiguration = true;
+    }
 
     if ( incompleteConfiguration )
-    {
-        cDebug() << "WARNING: The RequirementsChecker configuration map provided by "
-                    "the welcome module configuration file is incomplete or "
-                    "incorrect.\n"
-                    "Startup will continue for debugging purposes, but one or "
-                    "more checks might not function correctly.\n"
-                    "RequirementsChecker configuration map:\n"
-                 << configurationMap;
-    }
+        cDebug() << "WARNING: RequirementsChecker configuration map:\n" << configurationMap;
 }
 
 

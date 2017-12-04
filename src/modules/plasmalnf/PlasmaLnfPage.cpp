@@ -17,54 +17,69 @@
  */
 
 #include "PlasmaLnfPage.h"
-#include "PlasmaLnfInfo.h"
 
 #include "ui_page_plasmalnf.h"
 
-#include "Branding.h"
-#include "JobQueue.h"
-#include "GlobalStorage.h"
 #include "utils/Logger.h"
-#include "utils/CalamaresUtilsGui.h"
 #include "utils/Retranslator.h"
-#include "ViewManager.h"
 
-#include <QButtonGroup>
-#include <QDesktopServices>
-#include <QLabel>
-#include <QProcess>
+#include <KPackage/Package>
+#include <KPackage/PackageLoader>
 
-PlasmaLnfPage::PlasmaLnfPage(QWidget *parent)
+static PlasmaLnfList plasma_themes()
+{
+    PlasmaLnfList packages;
+
+    QList<KPluginMetaData> pkgs = KPackage::PackageLoader::self()->listPackages( "Plasma/LookAndFeel" );
+
+    for ( const KPluginMetaData& data : pkgs )
+    {
+        packages << PlasmaLnfDescriptor{ data.pluginId(), data.name() };
+        cDebug() << "LNF Package" << data.pluginId();
+        cDebug() << "  .." << data.name();
+        cDebug() << "  .." << data.description();
+        cDebug() << "  .." << 'V' << data.isValid() << 'H' << data.isHidden() << 'D' << data.isEnabledByDefault();
+    }
+
+    return packages;
+}
+
+
+PlasmaLnfPage::PlasmaLnfPage( QWidget* parent )
     : QWidget( parent )
     , ui( new Ui::PlasmaLnfPage )
 {
-    using StringEntry = Calamares::Branding::StringEntry;
-
     ui->setupUi( this );
     CALAMARES_RETRANSLATE(
+    {
         ui->retranslateUi( this );
         ui->generalExplanation->setText( tr( "Please choose a look-and-feel for the KDE Plasma Desktop, below." ) );
+        m_availableLnf = plasma_themes();
+        ui->lnfCombo->clear();
+        for ( const auto& p : m_availableLnf )
+            ui->lnfCombo->addItem( p.name );
+    }
     )
 
-    Calamares::themes_by_package();
-    ui->lnfCombo->addItems( Calamares::plasma_themes() );
-
-    QObject::connect<void(QComboBox::*)(const QString&)>(ui->lnfCombo, &QComboBox::activated, this, &PlasmaLnfPage::activated);
+    QObject::connect<void( QComboBox::* )( int )>( ui->lnfCombo, &QComboBox::activated, this, &PlasmaLnfPage::activated );
 }
 
 void
-PlasmaLnfPage::activated(const QString& name)
+PlasmaLnfPage::activated( int index )
 {
-    cDebug() << "Changed to" << name;
+    if ( ( index < 0 ) || ( index > m_availableLnf.length() ) )
+    {
+        cDebug() << "Plasma LNF index" << index << "out of range.";
+        return;
+    }
 
-    QProcess lnftool;
-    lnftool.start( Calamares::lnftool(), {"--resetLayout", "--apply", name} );
+    const PlasmaLnfDescriptor& lnf = m_availableLnf.at( index );
+    cDebug() << "Changed to" << index << lnf.id << lnf.name;
+    emit plasmaThemeSelected( lnf.id );
+}
 
-    if ( lnftool.waitForStarted(1000) && lnftool.waitForFinished( 1000 ) && (lnftool.exitCode() == 0) && (lnftool.exitStatus() == QProcess::NormalExit ) )
-        ; // OK
-    else
-        cDebug() << "WARNING: could not apply look-and-feel" << name;
-
-
-    emit plasmaThemeSelected( name );
+void
+PlasmaLnfPage::setLnfPath( const QString& path )
+{
+    m_lnfPath = path;
 }

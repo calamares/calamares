@@ -15,19 +15,15 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
-
-#include "JobQueue.h"
-#include "GlobalStorage.h"
-#include "utils/Logger.h"
-#include "utils/CalamaresUtils.h"
-#include "utils/CalamaresUtilsSystem.h"
-
-#include "PlasmaLnfInfo.h"
-#include "PlasmaLnfJob.h"
-#include "PlasmaLnfPage.h"
 #include "PlasmaLnfViewStep.h"
 
-#include <QDesktopServices>
+#include "PlasmaLnfJob.h"
+#include "PlasmaLnfPage.h"
+
+#include "utils/CalamaresUtils.h"
+#include "utils/Logger.h"
+
+#include <QProcess>
 #include <QVariantMap>
 
 CALAMARES_PLUGIN_FACTORY_DEFINITION( PlasmaLnfViewStepFactory, registerPlugin<PlasmaLnfViewStep>(); )
@@ -114,9 +110,7 @@ PlasmaLnfViewStep::jobs() const
 
     cDebug() << "Creating Plasma LNF jobs ..";
     if ( !m_themeId.isEmpty() && !m_lnfPath.isEmpty() )
-    {
         l.append( Calamares::job_ptr( new PlasmaLnfJob( m_lnfPath, m_themeId ) ) );
-    }
     return l;
 }
 
@@ -125,14 +119,38 @@ void
 PlasmaLnfViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
     m_lnfPath = CalamaresUtils::getString( configurationMap, "lnftool" );
-    Calamares::set_lnftool( m_lnfPath );
+    m_widget->setLnfPath( m_lnfPath );
 
-    if (m_lnfPath.isEmpty())
+    if ( m_lnfPath.isEmpty() )
         cDebug() << "WARNING: no lnftool given for plasmalnf module.";
+
+    m_liveUser = CalamaresUtils::getString( configurationMap, "liveuser" );
 }
 
 void
 PlasmaLnfViewStep::themeSelected( const QString& id )
 {
     m_themeId = id;
+
+    QProcess lnftool;
+    if ( !m_liveUser.isEmpty() )
+        lnftool.start( "sudo", {"-E", "-H", "-u", m_liveUser, m_lnfPath, "--resetLayout", "--apply", id} );
+    else
+        lnftool.start( m_lnfPath, {"--resetLayout", "--apply", id} );
+
+    if ( !lnftool.waitForStarted( 1000 ) )
+    {
+        cDebug() << "WARNING: could not start look-and-feel" << m_lnfPath;
+        return;
+    }
+    if ( !lnftool.waitForFinished() )
+    {
+        cDebug() << "WARNING:" << m_lnfPath << "timed out.";
+        return;
+    }
+
+    if ( ( lnftool.exitCode() == 0 ) && ( lnftool.exitStatus() == QProcess::NormalExit ) )
+        cDebug() << "Plasma look-and-feel applied" << id;
+    else
+        cDebug() << "WARNING: could not apply look-and-feel" << id;
 }

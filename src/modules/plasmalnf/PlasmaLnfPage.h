@@ -19,13 +19,22 @@
 #ifndef PLASMALNFPAGE_H
 #define PLASMALNFPAGE_H
 
+#include <QList>
+#include <QString>
 #include <QWidget>
-#include <QUrl>
 
 namespace Ui
 {
 class PlasmaLnfPage;
 }
+
+struct PlasmaLnfDescriptor
+{
+    QString id;
+    QString name;
+} ;
+
+using PlasmaLnfList = QList<PlasmaLnfDescriptor>;
 
 class PlasmaLnfPage : public QWidget
 {
@@ -33,14 +42,18 @@ class PlasmaLnfPage : public QWidget
 public:
     explicit PlasmaLnfPage( QWidget* parent = nullptr );
 
+    void setLnfPath( const QString& path );
+
 public slots:
-    void activated(const QString& name);
+    void activated( int index );
 
 signals:
-    void plasmaThemeSelected( const QString &id );
+    void plasmaThemeSelected( const QString& id );
 
 private:
     Ui::PlasmaLnfPage* ui;
+    QString m_lnfPath;
+    PlasmaLnfList m_availableLnf;
 };
 
 #endif //PLASMALNFPAGE_H
