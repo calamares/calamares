@@ -27,6 +27,7 @@
 #include "PlasmaLnfViewStep.h"
 
 #include <QDesktopServices>
+#include <QProcess>
 #include <QVariantMap>
 
 CALAMARES_PLUGIN_FACTORY_DEFINITION( PlasmaLnfViewStepFactory, registerPlugin<PlasmaLnfViewStep>(); )
@@ -137,4 +138,23 @@ void
 PlasmaLnfViewStep::themeSelected( const QString& id )
 {
     m_themeId = id;
+
+    QProcess lnftool;
+    lnftool.start( m_lnfPath, {"--resetLayout", "--apply", id} );
+
+    if ( !lnftool.waitForStarted( 1000 ) )
+    {
+        cDebug() << "WARNING: could not start look-and-feel" << m_lnfPath;
+        return;
+    }
+    if ( !lnftool.waitForFinished() )
+    {
+        cDebug() << "WARNING:" << m_lnfPath << "timed out.";
+        return;
+    }
+
+    if ( (lnftool.exitCode() == 0) && (lnftool.exitStatus() == QProcess::NormalExit ) )
+        cDebug() << "Plasma look-and-feel applied" << id;
+    else
+        cDebug() << "WARNING: could not apply look-and-feel" << id;
 }

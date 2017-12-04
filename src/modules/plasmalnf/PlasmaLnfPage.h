@@ -27,6 +27,14 @@ namespace Ui
 class PlasmaLnfPage;
 }
 
+struct PlasmaLnfDescriptor
+{
+    QString id;
+    QString name;
+} ;
+
+using PlasmaLnfList = QList<PlasmaLnfDescriptor>;
+
 class PlasmaLnfPage : public QWidget
 {
     Q_OBJECT
@@ -36,14 +44,15 @@ public:
     void setLnfPath( const QString& path );
 
 public slots:
-    void activated(const QString& name);
+    void activated( int index );
 
 signals:
-    void plasmaThemeSelected( const QString &id );
+    void plasmaThemeSelected( const QString& id );
 
 private:
     Ui::PlasmaLnfPage* ui;
     QString m_lnfPath;
+    PlasmaLnfList m_availableLnf;
 };
 
 #endif //PLASMALNFPAGE_H

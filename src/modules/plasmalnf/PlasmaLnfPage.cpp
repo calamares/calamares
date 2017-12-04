@@ -34,16 +34,19 @@
 #include <QButtonGroup>
 #include <QDesktopServices>
 #include <QLabel>
-#include <QProcess>
 
-static QStringList plasma_themes()
+static PlasmaLnfList plasma_themes()
 {
-    QStringList packages;
+    PlasmaLnfList packages;
 
     QList<KPluginMetaData> pkgs = KPackage::PackageLoader::self()->listPackages("Plasma/LookAndFeel");
 
     for (const KPluginMetaData &data : pkgs) {
-        packages << data.pluginId();
+        packages << PlasmaLnfDescriptor{ data.pluginId(), data.name() };
+        cDebug() << "LNF Package" << data.pluginId();
+        cDebug() << "  .." << data.name();
+        cDebug() << "  .." << data.description();
+        cDebug() << "  .." << 'V' << data.isValid() << 'H' << data.isHidden() << 'D' << data.isEnabledByDefault();
     }
 
     return packages;
@@ -60,36 +63,28 @@ PlasmaLnfPage::PlasmaLnfPage(QWidget *parent)
     CALAMARES_RETRANSLATE(
         ui->retranslateUi( this );
         ui->generalExplanation->setText( tr( "Please choose a look-and-feel for the KDE Plasma Desktop, below." ) );
+        m_availableLnf = plasma_themes();
+        ui->lnfCombo->clear();
+        for ( const auto& p : m_availableLnf )
+            ui->lnfCombo->addItem( p.name );
     )
 
-    ui->lnfCombo->addItems( plasma_themes() );
 
-    QObject::connect<void(QComboBox::*)(const QString&)>(ui->lnfCombo, &QComboBox::activated, this, &PlasmaLnfPage::activated);
+    QObject::connect<void(QComboBox::*)(int)>(ui->lnfCombo, &QComboBox::activated, this, &PlasmaLnfPage::activated);
 }
 
 void
-PlasmaLnfPage::activated(const QString& name)
+PlasmaLnfPage::activated( int index )
 {
-    cDebug() << "Changed to" << name;
-
-    QProcess lnftool;
-    lnftool.start( m_lnfPath, {"--resetLayout", "--apply", name} );
-
-    if ( !lnftool.waitForStarted( 1000 ) )
+    if ( (index < 0) || (index > m_availableLnf.length()) )
     {
-        cDebug() << "WARNING: could not start look-and-feel" << m_lnfPath;
-        return;
-    }
-    if ( !lnftool.waitForFinished() )
-    {
-        cDebug() << "WARNING:" << m_lnfPath << "timed out.";
+        cDebug() << "Plasma LNF index" << index << "out of range.";
         return;
     }
 
-    if ( (lnftool.exitCode() == 0) && (lnftool.exitStatus() == QProcess::NormalExit ) )
-        emit plasmaThemeSelected( name );
-    else
-        cDebug() << "WARNING: could not apply look-and-feel" << name;
+    const PlasmaLnfDescriptor& lnf = m_availableLnf.at( index );
+    cDebug() << "Changed to" << index << lnf.id << lnf.name;
+    emit plasmaThemeSelected( lnf.id );
 }
 
 void
