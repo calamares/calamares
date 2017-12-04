@@ -136,6 +136,11 @@ void
 PlasmaLnfViewStep::themeSelected( const QString& id )
 {
     m_themeId = id;
+    if ( m_lnfPath.isEmpty() )
+    {
+        cDebug() << "WARNING: no lnftool given for plasmalnf module.";
+        return;
+    }
 
     QProcess lnftool;
     if ( !m_liveUser.isEmpty() )
