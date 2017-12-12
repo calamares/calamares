@@ -56,6 +56,8 @@
 #include <QtConcurrent/QtConcurrent>
 #include <QFutureWatcher>
 
+#include <unistd.h>  // For sleep(3)
+
 PartitionViewStep::PartitionViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
     , m_core( nullptr )
@@ -564,6 +566,8 @@ Calamares::RequirementsList PartitionViewStep::checkRequirements()
 {
     if (m_future)
         m_future->waitForFinished();
+
+    sleep(3);
 
     Calamares::RequirementsList l;
     l.append(
