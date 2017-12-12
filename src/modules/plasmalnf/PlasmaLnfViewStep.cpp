@@ -19,6 +19,7 @@
 
 #include "PlasmaLnfJob.h"
 #include "PlasmaLnfPage.h"
+#include "ThemeInfo.h"
 
 #include "utils/Logger.h"
 
@@ -139,10 +140,20 @@ PlasmaLnfViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     if ( configurationMap.contains( "themes" ) &&
         configurationMap.value( "themes" ).type() == QVariant::List )
     {
-        QStringList enabledThemes( configurationMap.value( "themes" ).toStringList() );
-        if ( enabledThemes.length() == 1 )
+        ThemeInfoList allThemes;
+        auto themeList = configurationMap.value( "themes" ).toList();
+        for ( const auto& i : themeList )
+            if ( i.type() == QVariant::Map )
+            {
+                auto iv = i.toMap();
+                allThemes.append( ThemeInfo( iv.value( "theme" ).toString(), QString(), iv.value( "image" ).toString() ) );
+            }
+            else if ( i.type() == QVariant::String )
+                allThemes.append( ThemeInfo( i.toString(), QString() ) );
+
+        if ( allThemes.length() == 1 )
             cDebug() << "WARNING: only one theme enabled in plasmalnf";
-        m_widget->setEnabledThemes( enabledThemes );
+        m_widget->setEnabledThemes( allThemes );
     }
 }
 

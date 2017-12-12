@@ -26,9 +26,9 @@
 #include <KPackage/Package>
 #include <KPackage/PackageLoader>
 
-static PlasmaLnfList plasma_themes()
+static ThemeInfoList plasma_themes()
 {
-    PlasmaLnfList packages;
+    ThemeInfoList packages;
 
     QList<KPluginMetaData> pkgs = KPackage::PackageLoader::self()->listPackages( "Plasma/LookAndFeel" );
 
@@ -36,8 +36,7 @@ static PlasmaLnfList plasma_themes()
     {
         if ( data.isValid() && !data.isHidden() && !data.name().isEmpty() )
         {
-            packages << PlasmaLnfDescriptor{ data.pluginId(), data.name() };
-            cDebug() << "LNF Package" << data.pluginId();
+            packages << ThemeInfo{ data.pluginId(), data.name() };
         }
     }
 
@@ -54,7 +53,6 @@ PlasmaLnfPage::PlasmaLnfPage( QWidget* parent )
     {
         ui->retranslateUi( this );
         ui->generalExplanation->setText( tr( "Please choose a look-and-feel for the KDE Plasma Desktop, below." ) );
-        m_availableLnf = plasma_themes();
         winnowThemes();
     }
     )
@@ -65,13 +63,13 @@ PlasmaLnfPage::PlasmaLnfPage( QWidget* parent )
 void
 PlasmaLnfPage::activated( int index )
 {
-    if ( ( index < 0 ) || ( index > m_availableLnf.length() ) )
+    if ( ( index < 0 ) || ( index > m_enabledThemes.length() ) )
     {
         cDebug() << "Plasma LNF index" << index << "out of range.";
         return;
     }
 
-    const PlasmaLnfDescriptor& lnf = m_availableLnf.at( index );
+    const ThemeInfo& lnf = m_enabledThemes.at( index );
     cDebug() << "Changed to" << index << lnf.id << lnf.name;
     emit plasmaThemeSelected( lnf.id );
 }
@@ -83,16 +81,27 @@ PlasmaLnfPage::setLnfPath( const QString& path )
 }
 
 void
-PlasmaLnfPage::setEnabledThemes(const QStringList& themes)
+PlasmaLnfPage::setEnabledThemes(const ThemeInfoList& themes)
 {
-    m_enabledThemes = themes;
+    if ( themes.isEmpty() )
+        m_enabledThemes = plasma_themes();
+    else
+        m_enabledThemes = themes;
     winnowThemes();
 }
 
 void PlasmaLnfPage::winnowThemes()
 {
+    auto plasmaThemes = plasma_themes();
     ui->lnfCombo->clear();
-    for ( const auto& p : m_availableLnf )
-        if ( m_enabledThemes.isEmpty() || m_enabledThemes.contains( p.id ) )
-            ui->lnfCombo->addItem( p.name );
+    for ( auto& enabled_theme : m_enabledThemes )
+    {
+        ThemeInfo* t = plasmaThemes.findById( enabled_theme.id );
+        if ( t != nullptr )
+        {
+            enabled_theme.name = t->name;
+            ui->lnfCombo->addItem( enabled_theme.name );
+            cDebug() << "Enabled" << enabled_theme.id << "as" << enabled_theme.name;
+        }
+    }
 }

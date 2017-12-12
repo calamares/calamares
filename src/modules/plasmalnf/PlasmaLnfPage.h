@@ -24,18 +24,12 @@
 #include <QStringList>
 #include <QWidget>
 
+#include "ThemeInfo.h"
+
 namespace Ui
 {
 class PlasmaLnfPage;
 }
-
-struct PlasmaLnfDescriptor
-{
-    QString id;
-    QString name;
-} ;
-
-using PlasmaLnfList = QList<PlasmaLnfDescriptor>;
 
 class PlasmaLnfPage : public QWidget
 {
@@ -44,7 +38,7 @@ public:
     explicit PlasmaLnfPage( QWidget* parent = nullptr );
 
     void setLnfPath( const QString& path );
-    void setEnabledThemes( const QStringList& themes );
+    void setEnabledThemes( const ThemeInfoList& themes );
 
 public slots:
     void activated( int index );
@@ -57,8 +51,7 @@ private:
 
     Ui::PlasmaLnfPage* ui;
     QString m_lnfPath;
-    QStringList m_enabledThemes;
-    PlasmaLnfList m_availableLnf;
+    ThemeInfoList m_enabledThemes;
 };
 
 #endif //PLASMALNFPAGE_H
