@@ -22,9 +22,13 @@
 #include <QList>
 #include <QString>
 
-class QDebug;
-
-
+/** @brief describes a single plasma LnF theme.
+ *
+ * A theme description has an id, which is really the name of the desktop
+ * file (e.g. org.kde.breeze.desktop), a name which is human-readable and
+ * translated, and an optional image Page, which points to a local screenshot
+ * of that theme.
+ */
 struct ThemeInfo
 {
     QString id;
@@ -46,6 +50,7 @@ struct ThemeInfo
 class ThemeInfoList : public QList< ThemeInfo >
 {
 public:
+    /** @brief Looks for a given @p id in the list of themes, returns nullptr if not found. */
     ThemeInfo* findById( const QString& id )
     {
         for ( ThemeInfo& i : *this )
@@ -56,6 +61,7 @@ public:
         return nullptr;
     }
 
+    /** @brief Looks for a given @p id in the list of themes, returns nullptr if not found. */
     const ThemeInfo* findById( const QString& id ) const
     {
         for ( const ThemeInfo& i : *this )
@@ -66,6 +72,7 @@ public:
         return nullptr;
     }
 
+    /** @brief Checks if a given @p id is in the list of themes. */
     bool contains( const QString& id ) const
     {
         return findById( id ) != nullptr;
