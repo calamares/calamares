@@ -53,7 +53,8 @@ PlasmaLnfPage::PlasmaLnfPage( QWidget* parent )
     {
         ui->retranslateUi( this );
         ui->generalExplanation->setText( tr( "Please choose a look-and-feel for the KDE Plasma Desktop, below." ) );
-        winnowThemes();
+        updateThemeNames();
+        fillUi();
     }
     )
 
@@ -87,21 +88,59 @@ PlasmaLnfPage::setEnabledThemes(const ThemeInfoList& themes)
         m_enabledThemes = plasma_themes();
     else
         m_enabledThemes = themes;
+
+    updateThemeNames();
     winnowThemes();
+    fillUi();
 }
 
-void PlasmaLnfPage::winnowThemes()
+void PlasmaLnfPage::updateThemeNames()
 {
     auto plasmaThemes = plasma_themes();
-    ui->lnfCombo->clear();
     for ( auto& enabled_theme : m_enabledThemes )
     {
         ThemeInfo* t = plasmaThemes.findById( enabled_theme.id );
         if ( t != nullptr )
         {
             enabled_theme.name = t->name;
-            ui->lnfCombo->addItem( enabled_theme.name );
-            cDebug() << "Enabled" << enabled_theme.id << "as" << enabled_theme.name;
         }
+    }
+}
+
+void PlasmaLnfPage::winnowThemes()
+{
+    auto plasmaThemes = plasma_themes();
+    bool winnowed = true;
+    int winnow_index = 0;
+    while ( winnowed )
+    {
+        winnowed = false;
+        winnow_index = 0;
+
+        for ( auto& enabled_theme : m_enabledThemes )
+        {
+            ThemeInfo* t = plasmaThemes.findById( enabled_theme.id );
+            if ( t == nullptr )
+            {
+                cDebug() << "Removing" << enabled_theme.id;
+                winnowed = true;
+                break;
+            }
+            ++winnow_index;
+        }
+
+        if ( winnowed )
+        {
+            m_enabledThemes.removeAt( winnow_index );
+        }
+    }
+}
+
+void PlasmaLnfPage::fillUi()
+{
+    ui->lnfCombo->clear();
+    for ( auto& theme : m_enabledThemes )
+    {
+        ui->lnfCombo->addItem( theme.name );
     }
 }

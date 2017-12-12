@@ -47,7 +47,12 @@ signals:
     void plasmaThemeSelected( const QString& id );
 
 private:
+    /** @brief Intersect the list of enabled themes with the installed ones. */
     void winnowThemes();
+    /** @brief Get the translated names for all enabled themes. */
+    void updateThemeNames();
+    /** @brief show enabled themes in the UI. */
+    void fillUi();
 
     Ui::PlasmaLnfPage* ui;
     QString m_lnfPath;
