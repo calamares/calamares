@@ -19,6 +19,7 @@
 #include "PlasmaLnfPage.h"
 
 #include "ui_page_plasmalnf.h"
+#include "ThemeWidget.h"
 
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
@@ -47,6 +48,7 @@ static ThemeInfoList plasma_themes()
 PlasmaLnfPage::PlasmaLnfPage( QWidget* parent )
     : QWidget( parent )
     , ui( new Ui::PlasmaLnfPage )
+    , m_buttonGroup( nullptr )
 {
     ui->setupUi( this );
     CALAMARES_RETRANSLATE(
@@ -57,22 +59,6 @@ PlasmaLnfPage::PlasmaLnfPage( QWidget* parent )
         fillUi();
     }
     )
-
-    QObject::connect<void( QComboBox::* )( int )>( ui->lnfCombo, &QComboBox::activated, this, &PlasmaLnfPage::activated );
-}
-
-void
-PlasmaLnfPage::activated( int index )
-{
-    if ( ( index < 0 ) || ( index > m_enabledThemes.length() ) )
-    {
-        cDebug() << "Plasma LNF index" << index << "out of range.";
-        return;
-    }
-
-    const ThemeInfo& lnf = m_enabledThemes.at( index );
-    cDebug() << "Changed to" << index << lnf.id << lnf.name;
-    emit plasmaThemeSelected( lnf.id );
 }
 
 void
@@ -138,9 +124,23 @@ void PlasmaLnfPage::winnowThemes()
 
 void PlasmaLnfPage::fillUi()
 {
-    ui->lnfCombo->clear();
+    if ( m_enabledThemes.isEmpty() )
+    {
+        return;
+    }
+
+    if ( m_buttonGroup )
+        delete m_buttonGroup;
+    m_buttonGroup = new QButtonGroup( this );
+    m_buttonGroup->setExclusive( true );
+
+    int c = 1; // After the general explanation
     for ( auto& theme : m_enabledThemes )
     {
-        ui->lnfCombo->addItem( theme.name );
+        ThemeWidget* w = new ThemeWidget( theme );
+        m_buttonGroup->addButton( w->button() );
+        ui->verticalLayout->insertWidget( c, w );
+        connect( w, &ThemeWidget::themeSelected, this, &PlasmaLnfPage::plasmaThemeSelected);
+        ++c;
     }
 }

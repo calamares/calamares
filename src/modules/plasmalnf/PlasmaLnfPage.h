@@ -19,12 +19,14 @@
 #ifndef PLASMALNFPAGE_H
 #define PLASMALNFPAGE_H
 
+#include <QButtonGroup>
 #include <QList>
 #include <QString>
 #include <QStringList>
 #include <QWidget>
 
 #include "ThemeInfo.h"
+#include "ThemeWidget.h"
 
 namespace Ui
 {
@@ -40,9 +42,6 @@ public:
     void setLnfPath( const QString& path );
     void setEnabledThemes( const ThemeInfoList& themes );
 
-public slots:
-    void activated( int index );
-
 signals:
     void plasmaThemeSelected( const QString& id );
 
@@ -57,6 +56,9 @@ private:
     Ui::PlasmaLnfPage* ui;
     QString m_lnfPath;
     ThemeInfoList m_enabledThemes;
+
+    QButtonGroup *m_buttonGroup;
+    QList< ThemeWidget* > m_widgets;
 };
 
 #endif //PLASMALNFPAGE_H
