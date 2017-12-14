@@ -23,14 +23,12 @@
 
 #include "utils/Logger.h"
 
-#include <kpmcore/core/partition.h>
-#include <kpmcore/backend/corebackend.h>
-#include <kpmcore/backend/corebackenddevice.h>
-#include <kpmcore/backend/corebackendmanager.h>
-#include <kpmcore/backend/corebackendpartition.h>
-#include <kpmcore/backend/corebackendpartitiontable.h>
-#include <kpmcore/core/device.h>
-#include <kpmcore/util/report.h>
+// KPMcore
+#include <core/device.h>
+#include <core/partition.h>
+#include <fs/filesystem.h>
+#include <ops/setpartflagsoperation.h>
+#include <util/report.h>
 
 SetPartFlagsJob::SetPartFlagsJob( Device* device,
                                             Partition* partition,
@@ -131,76 +129,15 @@ SetPartFlagsJob::prettyStatusMessage() const
 Calamares::JobResult
 SetPartFlagsJob::exec()
 {
-    PartitionTable::Flags oldFlags = partition()->availableFlags();
-    if ( oldFlags == m_flags )
-        return Calamares::JobResult::ok();
-
-    CoreBackend* backend = CoreBackendManager::self()->backend();
+    Report report (nullptr);
+    SetPartFlagsOperation op(*m_device, *partition(), m_flags);
+    op.setStatus(Operation::StatusRunning);
+    connect(&op, &Operation::progress, [&](int percent) { emit progress(percent / 100.0); } );
 
     QString errorMessage = tr( "The installer failed to set flags on partition %1." )
                            .arg( m_partition->partitionPath() );
+    if (op.execute(report))
+        return Calamares::JobResult::ok();
 
-    QScopedPointer< CoreBackendDevice > backendDevice( backend->openDevice( m_device->deviceNode() ) );
-    if ( !backendDevice.data() )
-    {
-        return Calamares::JobResult::error(
-                   errorMessage,
-                   tr( "Could not open device '%1'." ).arg( m_device->deviceNode() )
-               );
-    }
-
-    QScopedPointer< CoreBackendPartitionTable > backendPartitionTable( backendDevice->openPartitionTable() );
-    if ( !backendPartitionTable.data() )
-    {
-        return Calamares::JobResult::error(
-                   errorMessage,
-                   tr( "Could not open partition table on device '%1'." ).arg( m_device->deviceNode() )
-               );
-    }
-
-    QScopedPointer< CoreBackendPartition > backendPartition(
-            ( partition()->roles().has( PartitionRole::Extended ) )
-            ? backendPartitionTable->getExtendedPartition()
-            : backendPartitionTable->getPartitionBySector( partition()->firstSector() )
-    );
-    if ( !backendPartition.data() ) {
-        return Calamares::JobResult::error(
-                   errorMessage,
-                   tr( "Could not find partition '%1'." ).arg( partition()->partitionPath() )
-               );
-    }
-
-    quint32 count = 0;
-
-    foreach( const PartitionTable::Flag& f, PartitionTable::flagList() )
-    {
-        emit progress(++count);
-
-        const bool state = ( m_flags & f ) ? true : false;
-
-        Report report( nullptr );
-        if ( !backendPartition->setFlag( report, f, state ) )
-        {
-            cDebug() << QStringLiteral( "WARNING: Could not set flag %2 on "
-                                        "partition '%1'." )
-                           .arg( partition()->partitionPath() )
-                           .arg( PartitionTable::flagName( f ) );
-        }
-    }
-
-    // HACK: Partition (in KPMcore) declares SetPartFlagsJob as friend, but this actually
-    //       refers to an unrelated class SetPartFlagsJob which is in KPMcore but is not
-    //       exported.
-    //       Obviously here we are relying on having a class in Calamares with the same
-    //       name as a private one in KPMcore, which is awful, but it's the least evil
-    //       way to call Partition::setFlags (KPMcore's SetPartFlagsJob needs its friend
-    //       status for the very same reason).
-    m_partition->setFlags( m_flags );
-
-    backendPartitionTable->commit();
-
-    return Calamares::JobResult::ok();
+    return Calamares::JobResult::error(errorMessage, report.toText());
 }
-
-
-#include "SetPartitionFlagsJob.moc"
