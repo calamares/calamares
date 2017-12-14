@@ -34,6 +34,7 @@ ThemeWidget::ThemeWidget(const ThemeInfo& info, QWidget* parent)
 
     layout->addWidget( m_check );
     layout->addWidget( new QLabel( "Image", this ) );
+    layout->addWidget( new QLabel( info.description, this ) );
 
     connect( m_check, &QRadioButton::clicked, this, &ThemeWidget::clicked );
 }

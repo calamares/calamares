@@ -22,6 +22,8 @@
 #include <QList>
 #include <QString>
 
+class KPluginMetaData;
+
 /** @brief describes a single plasma LnF theme.
  *
  * A theme description has an id, which is really the name of the desktop
@@ -33,16 +35,24 @@ struct ThemeInfo
 {
     QString id;
     QString name;
+    QString description;
     QString imagePath;
 
     ThemeInfo()
     {}
 
-    ThemeInfo( const QString& _id, const QString& _name, const QString& image = QString() )
+    explicit ThemeInfo( const QString& _id )
         : id( _id )
-        , name( _name )
+    {
+    }
+
+    explicit ThemeInfo( const QString& _id, const QString& image )
+        : id( _id )
         , imagePath( image )
     {}
+
+    // Defined in PlasmaLnfPage.cpp
+    explicit ThemeInfo( const KPluginMetaData& );
 
     bool isValid() const { return !id.isEmpty(); }
 } ;

@@ -23,7 +23,8 @@
 
 class QAbstractButton;
 class QRadioButton;
-class ThemeInfo;
+
+struct ThemeInfo;
 
 class ThemeWidget : public QWidget
 {

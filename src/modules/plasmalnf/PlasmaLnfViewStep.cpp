@@ -142,14 +142,17 @@ PlasmaLnfViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     {
         ThemeInfoList allThemes;
         auto themeList = configurationMap.value( "themes" ).toList();
+        // Create the ThemInfo objects for the listed themes; information
+        // about the themes from Plasma (e.g. human-readable name and description)
+        // are filled in by update_names() in PlasmaLnfPage.
         for ( const auto& i : themeList )
             if ( i.type() == QVariant::Map )
             {
                 auto iv = i.toMap();
-                allThemes.append( ThemeInfo( iv.value( "theme" ).toString(), QString(), iv.value( "image" ).toString() ) );
+                allThemes.append( ThemeInfo( iv.value( "theme" ).toString(), iv.value( "image" ).toString() ) );
             }
             else if ( i.type() == QVariant::String )
-                allThemes.append( ThemeInfo( i.toString(), QString() ) );
+                allThemes.append( ThemeInfo( i.toString() ) );
 
         if ( allThemes.length() == 1 )
             cDebug() << "WARNING: only one theme enabled in plasmalnf";

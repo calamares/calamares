@@ -19,13 +19,19 @@
 #include "PlasmaLnfPage.h"
 
 #include "ui_page_plasmalnf.h"
-#include "ThemeWidget.h"
 
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
 
 #include <KPackage/Package>
 #include <KPackage/PackageLoader>
+
+ThemeInfo::ThemeInfo( const KPluginMetaData& data )
+    : id( data.pluginId() )
+    , name( data.name() )
+    , description( data.description() )
+{
+}
 
 static ThemeInfoList plasma_themes()
 {
@@ -37,7 +43,7 @@ static ThemeInfoList plasma_themes()
     {
         if ( data.isValid() && !data.isHidden() && !data.name().isEmpty() )
         {
-            packages << ThemeInfo{ data.pluginId(), data.name() };
+            packages << ThemeInfo{ data };
         }
     }
 
@@ -89,6 +95,7 @@ void PlasmaLnfPage::updateThemeNames()
         if ( t != nullptr )
         {
             enabled_theme.name = t->name;
+            enabled_theme.description = t->description;
         }
     }
 }
