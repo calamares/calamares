@@ -135,10 +135,7 @@ SetPartFlagsJob::exec()
     Report report ( nullptr );
     SetPartFlagsOperation op( *m_device, *partition(), m_flags );
     op.setStatus( Operation::StatusRunning );
-    connect( &op, &Operation::progress, [&]( int percent )
-    {
-        emit progress( percent / 100.0 );
-    } );
+    connect( &op, &Operation::progress, this, &SetPartFlagsJob::progress );
 
     QString errorMessage = tr( "The installer failed to set flags on partition %1." )
                            .arg( m_partition->partitionPath() );

@@ -37,6 +37,14 @@ public:
         return m_partition;
     }
 
+public slots:
+    /** @brief Translate from KPMCore to Calamares progress.
+     *
+     * KPMCore presents progress as an integer percent from 0 .. 100,
+     * while Calamares uses a qreal from 0 .. 1.00 .
+     */
+    void progress( int percent );
+
 protected:
     Partition* m_partition;
 };
