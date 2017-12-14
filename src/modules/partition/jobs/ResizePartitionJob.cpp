@@ -20,10 +20,14 @@
 
 #include "jobs/ResizePartitionJob.h"
 
+#include "utils/Units.h"
+
 // KPMcore
 #include <core/device.h>
 #include <ops/resizeoperation.h>
 #include <util/report.h>
+
+using CalamaresUtils::BytesToMiB;
 
 //- ResizePartitionJob ---------------------------------------------------------
 ResizePartitionJob::ResizePartitionJob( Device* device, Partition* partition, qint64 firstSector, qint64 lastSector )
@@ -51,8 +55,8 @@ ResizePartitionJob::prettyDescription() const
     return tr( "Resize <strong>%2MB</strong> partition <strong>%1</strong> to "
                "<strong>%3MB</strong>." )
             .arg( partition()->partitionPath() )
-            .arg( ( m_oldLastSector - m_oldFirstSector + 1 ) * partition()->sectorSize() / 1024 / 1024 )
-            .arg( ( m_newLastSector - m_newFirstSector + 1 ) * partition()->sectorSize() / 1024 / 1024 );
+            .arg( ( BytesToMiB( m_oldLastSector - m_oldFirstSector + 1 ) * partition()->sectorSize() ) )
+            .arg( ( BytesToMiB( m_newLastSector - m_newFirstSector + 1 ) * partition()->sectorSize() ) );
 }
 
 
@@ -62,8 +66,8 @@ ResizePartitionJob::prettyStatusMessage() const
     return tr( "Resizing %2MB partition %1 to "
                "%3MB." )
             .arg( partition()->partitionPath() )
-            .arg( ( m_oldLastSector - m_oldFirstSector + 1 ) * partition()->sectorSize() / 1024 / 1024 )
-            .arg( ( m_newLastSector - m_newFirstSector + 1 ) * partition()->sectorSize() / 1024 / 1024 );
+            .arg( ( BytesToMiB( m_oldLastSector - m_oldFirstSector + 1 ) * partition()->sectorSize() ) )
+            .arg( ( BytesToMiB( m_newLastSector - m_newFirstSector + 1 ) * partition()->sectorSize() ) );
 }
 
 

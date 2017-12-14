@@ -22,6 +22,7 @@
 #include "SetPartitionFlagsJob.h"
 
 #include "utils/Logger.h"
+#include "utils/Units.h"
 
 // KPMcore
 #include <core/device.h>
@@ -29,6 +30,8 @@
 #include <fs/filesystem.h>
 #include <ops/setpartflagsoperation.h>
 #include <util/report.h>
+
+using CalamaresUtils::BytesToMiB;
 
 SetPartFlagsJob::SetPartFlagsJob( Device* device,
                                   Partition* partition,
@@ -47,7 +50,7 @@ SetPartFlagsJob::prettyName() const
 
     if ( !partition()->fileSystem().name().isEmpty() )
         return tr( "Set flags on %1MB %2 partition." )
-               .arg( partition()->capacity() /1024 /1024 )
+               .arg( BytesToMiB( partition()->capacity() ) )
                .arg( partition()->fileSystem().name() );
 
     return tr( "Set flags on new partition." );
@@ -66,7 +69,7 @@ SetPartFlagsJob::prettyDescription() const
 
         if ( !partition()->fileSystem().name().isEmpty() )
             return tr( "Clear flags on %1MB <strong>%2</strong> partition." )
-                   .arg( partition()->capacity() /1024 /1024 )
+                   .arg( BytesToMiB( partition()->capacity() ) )
                    .arg( partition()->fileSystem().name() );
 
         return tr( "Clear flags on new partition." );
@@ -81,7 +84,7 @@ SetPartFlagsJob::prettyDescription() const
     if ( !partition()->fileSystem().name().isEmpty() )
         return tr( "Flag %1MB <strong>%2</strong> partition as "
                    "<strong>%3</strong>." )
-               .arg( partition()->capacity() /1024 /1024 )
+               .arg( BytesToMiB( partition()->capacity() ) )
                .arg( partition()->fileSystem().name() )
                .arg( flagsList.join( ", " ) );
 
@@ -102,7 +105,7 @@ SetPartFlagsJob::prettyStatusMessage() const
 
         if ( !partition()->fileSystem().name().isEmpty() )
             return tr( "Clearing flags on %1MB <strong>%2</strong> partition." )
-                   .arg( partition()->capacity() /1024 /1024 )
+                   .arg( BytesToMiB( partition()->capacity() ) )
                    .arg( partition()->fileSystem().name() );
 
         return tr( "Clearing flags on new partition." );
@@ -117,7 +120,7 @@ SetPartFlagsJob::prettyStatusMessage() const
     if ( !partition()->fileSystem().name().isEmpty() )
         return tr( "Setting flags <strong>%3</strong> on "
                    "%1MB <strong>%2</strong> partition." )
-               .arg( partition()->capacity() /1024 /1024 )
+               .arg( BytesToMiB( partition()->capacity() ) )
                .arg( partition()->fileSystem().name() )
                .arg( flagsList.join( ", " ) );
 
