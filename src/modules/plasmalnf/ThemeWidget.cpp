@@ -32,9 +32,9 @@ ThemeWidget::ThemeWidget(const ThemeInfo& info, QWidget* parent)
     QHBoxLayout* layout = new QHBoxLayout( this );
     this->setLayout( layout );
 
-    layout->addWidget( m_check );
-    layout->addWidget( new QLabel( "Image", this ) );
-    layout->addWidget( new QLabel( info.description, this ) );
+    layout->addWidget( m_check, 1 );
+    layout->addWidget( new QLabel( "Image", this ), 1 );
+    layout->addWidget( new QLabel( info.description, this ), 3 );
 
     connect( m_check, &QRadioButton::clicked, this, &ThemeWidget::clicked );
 }
