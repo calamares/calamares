@@ -19,6 +19,7 @@
 #ifndef TYPEDEFS_H
 #define TYPEDEFS_H
 
+#include <QList>
 #include <QSharedPointer>
 
 namespace Calamares
@@ -26,6 +27,7 @@ namespace Calamares
 class Job;
 
 typedef QSharedPointer< Job > job_ptr;
+using JobList = QList< job_ptr >;
 
 enum ModuleAction : char
 {

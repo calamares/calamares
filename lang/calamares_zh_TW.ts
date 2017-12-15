@@ -2225,12 +2225,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="494"/>
         <source>Password is too short</source>
-        <translation type="unfinished"/>
+        <translation>密碼太短</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="513"/>
         <source>Password is too long</source>
-        <translation type="unfinished"/>
+        <translation>密碼太長</translation>
     </message>
 </context>
 <context>

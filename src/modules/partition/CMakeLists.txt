@@ -6,7 +6,7 @@ include(GenerateExportHeader)
 find_package( Qt5 REQUIRED DBus )
 find_package( KF5 REQUIRED Config CoreAddons I18n WidgetsAddons )
 
-find_package( KPMcore 3.2 REQUIRED )
+find_package( KPMcore 3.3 REQUIRED )
 
 include_directories( ${KPMCORE_INCLUDE_DIR} )
 include_directories( ${PROJECT_BINARY_DIR}/src/libcalamaresui )
@@ -43,7 +43,6 @@ calamares_add_plugin( partition
         gui/PrettyRadioButton.cpp
         gui/ScanningDialog.cpp
         gui/ReplaceWidget.cpp
-        jobs/CheckFileSystemJob.cpp
         jobs/ClearMountsJob.cpp
         jobs/ClearTempMountsJob.cpp
         jobs/CreatePartitionJob.cpp
@@ -51,7 +50,6 @@ calamares_add_plugin( partition
         jobs/DeletePartitionJob.cpp
         jobs/FillGlobalStorageJob.cpp
         jobs/FormatPartitionJob.cpp
-        jobs/MoveFileSystemJob.cpp
         jobs/PartitionJob.cpp
         jobs/ResizePartitionJob.cpp
         jobs/SetPartitionFlagsJob.cpp

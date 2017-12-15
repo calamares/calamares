@@ -240,7 +240,7 @@ Išvestis:
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="76"/>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="301"/>
         <source>Cancel installation without changing the system.</source>
-        <translation>Atsisakyti diegimo, nieko nekeisti sistemoje.</translation>
+        <translation>Atsisakyti diegimo, nieko sistemoje nekeičiant.</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="99"/>
@@ -277,7 +277,7 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="234"/>
         <source>The %1 installer is about to make changes to your disk in order to install %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
-        <translation>%1 diegimo programa, siekdama įdiegti %2, ketina atlikti pakeitimus diske.&lt;br/&gt;&lt;strong&gt;Negalėsite atšaukti šių pakeitimų.&lt;/strong&gt;</translation>
+        <translation>%1 diegimo programa, siekdama įdiegti %2, ketina atlikti pakeitimus diske.&lt;br/&gt;&lt;strong&gt;Šių pakeitimų atšaukti nebegalėsite.&lt;/strong&gt;</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="239"/>
@@ -369,12 +369,12 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="113"/>
         <source>This computer does not satisfy some of the recommended requirements for installing %1.&lt;br/&gt;Installation can continue, but some features might be disabled.</source>
-        <translation>Šis kompiuteris netenkina kai kurių %1 diegimui rekomenduojamų reikalavimų.&lt;br/&gt;Diegti galite, bet kai kurios funkcijos gali būti išjungtos.</translation>
+        <translation>Šis kompiuteris netenkina kai kurių %1 diegimui rekomenduojamų reikalavimų.&lt;br/&gt;Diegimą galima tęsti, tačiau kai kurios funkcijos gali būti išjungtos.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="151"/>
         <source>This program will ask you some questions and set up %2 on your computer.</source>
-        <translation>Programa užduos klausimus ir padės įsidiegti %2.</translation>
+        <translation>Programa užduos kelis klausimus ir padės įsidiegti %2.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="174"/>
@@ -908,12 +908,12 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="70"/>
         <source>Format</source>
-        <translation>Suženklinti</translation>
+        <translation>Formatuoti</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="89"/>
         <source>Warning: Formatting the partition will erase all existing data.</source>
-        <translation>Įspėjimas: suženklinant skaidinį, sunaikinami visi jame esantys duomenys.</translation>
+        <translation>Įspėjimas: Formatuojant skaidinį, sunaikinami visi jame esantys duomenys.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="99"/>
@@ -1058,22 +1058,22 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="49"/>
         <source>Format partition %1 (file system: %2, size: %3 MB) on %4.</source>
-        <translation>Suženklinti skaidinį %1 (failų sistema: %2, dydis: %3 MB) diske %4.</translation>
+        <translation>Formatuoti skaidinį %1 (failų sistema: %2, dydis: %3 MB) diske %4.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="60"/>
         <source>Format &lt;strong&gt;%3MB&lt;/strong&gt; partition &lt;strong&gt;%1&lt;/strong&gt; with file system &lt;strong&gt;%2&lt;/strong&gt;.</source>
-        <translation>Suženklinti &lt;strong&gt;%3MB&lt;/strong&gt; skaidinį &lt;strong&gt;%1&lt;/strong&gt; su failų sistema &lt;strong&gt;%2&lt;/strong&gt;.</translation>
+        <translation>Formatuoti &lt;strong&gt;%3MB&lt;/strong&gt; skaidinį &lt;strong&gt;%1&lt;/strong&gt; su failų sistema &lt;strong&gt;%2&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="71"/>
         <source>Formatting partition %1 with file system %2.</source>
-        <translation>Suženklinamas skaidinys %1 su %2 failų sistema.</translation>
+        <translation>Formatuojamas skaidinys %1 su %2 failų sistema.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="83"/>
         <source>The installer failed to format partition %1 on disk &apos;%2&apos;.</source>
-        <translation>Diegimo programai nepavyko suženklinti „%2“ disko skaidinio %1.</translation>
+        <translation>Diegimo programai nepavyko formatuoti „%2“ disko skaidinio %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="91"/>
@@ -1237,7 +1237,7 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="202"/>
         <source>&lt;a href=&quot;%1&quot;&gt;view license agreement&lt;/a&gt;</source>
-        <translation>&lt;a href=&quot;%1&quot;&gt;žiūrėti licenciją&lt;/a&gt;</translation>
+        <translation>&lt;a href=&quot;%1&quot;&gt;žiūrėti licencijos sutartį&lt;/a&gt;</translation>
     </message>
 </context>
 <context>
@@ -1578,7 +1578,7 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="121"/>
         <source>&amp;Delete</source>
-        <translation>Ša&amp;linti</translation>
+        <translation>Iš&amp;trinti</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="148"/>
@@ -2225,12 +2225,12 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="494"/>
         <source>Password is too short</source>
-        <translation type="unfinished"/>
+        <translation>Slaptažodis yra per trumpas</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="513"/>
         <source>Password is too long</source>
-        <translation type="unfinished"/>
+        <translation>Slaptažodis yra per ilgas</translation>
     </message>
 </context>
 <context>

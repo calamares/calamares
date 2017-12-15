@@ -159,10 +159,10 @@ PythonQtViewStep::isAtEnd() const
 }
 
 
-QList< Calamares::job_ptr >
+JobList
 PythonQtViewStep::jobs() const
 {
-    QList< Calamares::job_ptr > jobs;
+    JobList jobs;
 
     PythonQtObjectPtr jobsCallable = PythonQt::self()->lookupCallable( m_obj, "jobs" );
     if ( jobsCallable.isNull() )

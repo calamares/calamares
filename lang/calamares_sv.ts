@@ -1162,12 +1162,12 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
         <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="66"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Avsluta</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="67"/>
         <source>&amp;OK</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Okej</translation>
     </message>
 </context>
 <context>
@@ -1185,17 +1185,17 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="115"/>
         <source>&lt;h1&gt;License Agreement&lt;/h1&gt;This setup procedure will install proprietary software that is subject to licensing terms.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;h1&gt;Licensavtal&lt;/h1&gt;Denna installationsprocedur kommer att installera proprietär mjukvara som omfattas av licensvillkor.</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="118"/>
         <source>Please review the End User License Agreements (EULAs) above.&lt;br/&gt;If you do not agree with the terms, the setup procedure cannot continue.</source>
-        <translation type="unfinished"/>
+        <translation>Läs igenom End User Agreements (EULA:s) ovan.&lt;br/&gt;Om du inte accepterar villkoren kan inte installationsproceduren fortsätta.</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="124"/>
         <source>&lt;h1&gt;License Agreement&lt;/h1&gt;This setup procedure can install proprietary software that is subject to licensing terms in order to provide additional features and enhance the user experience.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;h1&gt;Licensavtal&lt;/h1&gt;Denna installationsprocedur kan installera proprietär mjukvara som omfattas av licensvillkor för att tillhandahålla ytterligare funktioner och förbättra användarupplevelsen.</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="129"/>
@@ -1253,7 +1253,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
         <location filename="../src/modules/locale/LocalePage.cpp" line="387"/>
         <source>The system language will be set to %1.</source>
-        <translation type="unfinished"/>
+        <translation>Systemspråket kommer ändras till %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/LocalePage.cpp" line="389"/>
@@ -1285,7 +1285,7 @@ Alla ändringar kommer att gå förlorade.</translation>
         <location filename="../src/modules/locale/LocalePage.cpp" line="480"/>
         <source>%1 (%2)</source>
         <extracomment>Language (Country)</extracomment>
-        <translation type="unfinished"/>
+        <translation>%1 (%2)</translation>
     </message>
 </context>
 <context>
@@ -1355,18 +1355,18 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
         <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="79"/>
         <source>Name</source>
-        <translation type="unfinished"/>
+        <translation>Namn</translation>
     </message>
     <message>
         <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="80"/>
         <source>Description</source>
-        <translation type="unfinished"/>
+        <translation>Beskrivning</translation>
     </message>
     <message>
         <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="97"/>
         <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="104"/>
         <source>Network Installation. (Disabled: Unable to fetch package lists, check your network connection)</source>
-        <translation type="unfinished"/>
+        <translation>Nätverksinstallation. (Inaktiverad: Kan inte hämta paketlistor, kontrollera nätverksanslutningen)</translation>
     </message>
 </context>
 <context>
@@ -1374,7 +1374,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
         <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="51"/>
         <source>Package selection</source>
-        <translation type="unfinished"/>
+        <translation>Paketval</translation>
     </message>
 </context>
 <context>
@@ -1500,7 +1500,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="207"/>
         <source>New partition</source>
-        <translation type="unfinished"/>
+        <translation>Ny partition</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="224"/>
@@ -1858,7 +1858,7 @@ Alla ändringar kommer att gå förlorade.</translation>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="156"/>
         <source>The screen is too small to display the installer.</source>
-        <translation type="unfinished"/>
+        <translation>Skärmen är för liten för att visa installationshanteraren.</translation>
     </message>
 </context>
 <context>

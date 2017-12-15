@@ -2225,12 +2225,12 @@ L&apos;installateur se fermera et les changements seront perdus.</translation>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="494"/>
         <source>Password is too short</source>
-        <translation type="unfinished"/>
+        <translation>Le mot de passe est trop court</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="513"/>
         <source>Password is too long</source>
-        <translation type="unfinished"/>
+        <translation>Le mot de passe est trop long</translation>
     </message>
 </context>
 <context>

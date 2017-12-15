@@ -46,7 +46,7 @@ public:
     bool isAtBeginning() const override;
     bool isAtEnd() const override;
 
-    QList< Calamares::job_ptr > jobs() const override;
+    JobList jobs() const override;
 
     void setConfigurationMap( const QVariantMap& configurationMap ) override;
 

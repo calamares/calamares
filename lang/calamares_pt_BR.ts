@@ -2227,12 +2227,12 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="494"/>
         <source>Password is too short</source>
-        <translation type="unfinished"/>
+        <translation>A senha é muito curta</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="513"/>
         <source>Password is too long</source>
-        <translation type="unfinished"/>
+        <translation>A senha é muito longa</translation>
     </message>
 </context>
 <context>
