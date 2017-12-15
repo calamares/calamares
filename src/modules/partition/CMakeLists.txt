@@ -6,7 +6,7 @@ include(GenerateExportHeader)
 find_package( Qt5 REQUIRED DBus )
 find_package( KF5 REQUIRED Config CoreAddons I18n WidgetsAddons )
 
-find_package( KPMcore 3.2 REQUIRED )
+find_package( KPMcore 3.3 REQUIRED )
 
 include_directories( ${KPMCORE_INCLUDE_DIR} )
 include_directories( ${PROJECT_BINARY_DIR}/src/libcalamaresui )
