@@ -21,3 +21,12 @@
 PartitionJob::PartitionJob( Partition* partition )
     : m_partition( partition )
 {}
+
+void PartitionJob::progress(int percent)
+{
+    if ( percent < 0 )
+        percent = 0;
+    if ( percent > 100 )
+        percent = 100;
+    emit progress( qreal( percent / 100.0 ) );
+}

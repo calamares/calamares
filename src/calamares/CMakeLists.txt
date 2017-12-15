@@ -49,6 +49,13 @@ SET_TARGET_PROPERTIES(calamares_bin
         RUNTIME_OUTPUT_NAME calamares
 )
 
+if( WITH_KF5Crash )
+    set( LINK_LIBRARIES
+        KF5::CoreAddons
+        KF5::Crash
+    )
+endif()
+
 target_link_libraries( calamares_bin
     PRIVATE
         ${CALAMARES_LIBRARIES}

@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -183,6 +184,16 @@ variantHashFromPyDict( const boost::python::dict& pyDict )
 
 Helper* Helper::s_instance = nullptr;
 
+static inline void add_if_lib_exists( const QDir& dir, const char* name, QStringList& list )
+{
+    if ( ! ( dir.exists() && dir.isReadable() ) )
+        return;
+
+    QFileInfo fi( dir.absoluteFilePath( name ) );
+    if ( fi.exists() && fi.isReadable() )
+        list.append( fi.dir().absolutePath() );
+}
+
 Helper::Helper( QObject* parent )
     : QObject( parent )
 {
@@ -196,20 +207,11 @@ Helper::Helper( QObject* parent )
         m_mainNamespace = m_mainModule.attr( "__dict__" );
 
         // If we're running from the build dir
-        QFileInfo fi( QDir::current().absoluteFilePath( "libcalamares.so" ) );
-        if ( fi.exists() && fi.isReadable() )
-            m_pythonPaths.append( fi.dir().absolutePath() );
+        add_if_lib_exists( QDir::current(), "libcalamares.so", m_pythonPaths );
 
         QDir calaPythonPath( CalamaresUtils::systemLibDir().absolutePath() +
                              QDir::separator() + "calamares" );
-        if ( calaPythonPath.exists() &&
-                calaPythonPath.isReadable() )
-        {
-            QFileInfo fi( calaPythonPath.absoluteFilePath( "libcalamares.so" ) );
-            if ( fi.exists() && fi.isReadable() )
-                m_pythonPaths.append( fi.dir().absolutePath() );
-        }
-
+        add_if_lib_exists( calaPythonPath, "libcalamares.so", m_pythonPaths );
 
         bp::object sys = bp::import( "sys" );
 
@@ -232,7 +234,7 @@ Helper::~Helper()
 {}
 
 
-boost::python::object
+boost::python::dict
 Helper::createCleanNamespace()
 {
     // To make sure we run each script with a clean namespace, we only fetch the
@@ -247,8 +249,11 @@ Helper::createCleanNamespace()
 QString
 Helper::handleLastError()
 {
-    PyObject* type = nullptr, *val = nullptr, *tb = nullptr;
-    PyErr_Fetch( &type, &val, &tb );
+    PyObject* type = nullptr, *val = nullptr, *traceback_p = nullptr;
+    PyErr_Fetch( &type, &val, &traceback_p );
+
+    Logger::CDebug debug;
+    debug.noquote() << "Python Error:\n";
 
     QString typeMsg;
     if ( type != nullptr )
@@ -257,10 +262,11 @@ Helper::handleLastError()
         bp::str pystr( h_type );
         bp::extract< std::string > extracted( pystr );
         if ( extracted.check() )
-            typeMsg = QString::fromStdString( extracted() ).toHtmlEscaped();
+            typeMsg = QString::fromStdString( extracted() ).trimmed();
 
-        if ( typeMsg.trimmed().isEmpty() )
+        if ( typeMsg.isEmpty() )
             typeMsg = tr( "Unknown exception type" );
+        debug << typeMsg << '\n';
     }
 
     QString valMsg;
@@ -270,26 +276,51 @@ Helper::handleLastError()
         bp::str pystr( h_val );
         bp::extract< std::string > extracted( pystr );
         if ( extracted.check() )
-            valMsg = QString::fromStdString( extracted() ).toHtmlEscaped();
+            valMsg = QString::fromStdString( extracted() ).trimmed();
 
-        if ( valMsg.trimmed().isEmpty() )
+        if ( valMsg.isEmpty() )
             valMsg = tr( "unparseable Python error" );
+
+        // Special-case: CalledProcessError has an attribute "output" with the command output,
+        // add that to the printed message.
+        if ( typeMsg.contains( "CalledProcessError" ) )
+        {
+            bp::object exceptionObject( h_val );
+            auto a = exceptionObject.attr( "output" );
+            bp::str outputString( a );
+            bp::extract< std::string > extractedOutput( outputString );
+
+            QString output;
+            if ( extractedOutput.check() )
+            {
+                output = QString::fromStdString( extractedOutput() ).trimmed();
+            }
+            if ( !output.isEmpty() )
+            {
+                // Replace the Type of the error by the warning string,
+                // and use the output of the command (e.g. its stderr) as value.
+                typeMsg = valMsg;
+                valMsg = output;
+            }
+        }
+        debug << valMsg << '\n';
     }
 
     QString tbMsg;
-    if ( tb != nullptr )
+    if ( traceback_p != nullptr )
     {
-        bp::handle<> h_tb( tb );
-        bp::object tb( bp::import( "traceback" ) );
-        bp::object format_tb( tb.attr( "format_tb" ) );
+        bp::handle<> h_tb( traceback_p );
+        bp::object traceback_module( bp::import( "traceback" ) );
+        bp::object format_tb( traceback_module.attr( "format_tb" ) );
         bp::object tb_list( format_tb( h_tb ) );
         bp::object pystr( bp::str( "\n" ).join( tb_list ) );
         bp::extract< std::string > extracted( pystr );
         if ( extracted.check() )
-            tbMsg = QString::fromStdString( extracted() ).toHtmlEscaped();
+            tbMsg = QString::fromStdString( extracted() ).trimmed();
 
-        if ( tbMsg.trimmed().isEmpty() )
+        if ( tbMsg.isEmpty() )
             tbMsg = tr( "unparseable Python traceback" );
+        debug << tbMsg << '\n';
     }
 
     if ( typeMsg.isEmpty() && valMsg.isEmpty() && tbMsg.isEmpty() )
@@ -297,18 +328,15 @@ Helper::handleLastError()
 
 
     QStringList msgList;
-
     if ( !typeMsg.isEmpty() )
-        msgList.append( QString( "<strong>%1</strong>" ).arg( typeMsg ) );
-
+        msgList.append( QString( "<strong>%1</strong>" ).arg( typeMsg.toHtmlEscaped() ) );
     if ( !valMsg.isEmpty() )
-        msgList.append( valMsg );
+        msgList.append( valMsg.toHtmlEscaped() );
 
     if ( !tbMsg.isEmpty() )
     {
-        msgList.append( "Traceback:" );
-        msgList.append( QString( "<pre>%1</pre>" ).arg( tbMsg ) );
-        cDebug() << "tbMsg" << tbMsg;
+        msgList.append( QStringLiteral( "<br/>Traceback:" ) );
+        msgList.append( QString( "<pre>%1</pre>" ).arg( tbMsg.toHtmlEscaped() ) );
     }
 
     // Return a string made of the msgList items, wrapped in <div> tags

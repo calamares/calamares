@@ -27,10 +27,10 @@ strings:
     versionedName:       Generic GNU/Linux 2017.8 LTS "Soapy Sousaphone"
     shortVersionedName:  Generic 2017.8
     bootloaderEntryName: Generic
-    productUrl:          http://calamares.io/
-    supportUrl:          http://calamares.io/bugs/
-    knownIssuesUrl:      http://calamares.io/about/
-    releaseNotesUrl:     http://calamares.io/about/
+    productUrl:          https://calamares.io/
+    supportUrl:          https://github.com/calamares/calamares/issues
+    knownIssuesUrl:      https://calamares.io/about/
+    releaseNotesUrl:     https://calamares.io/about/
 
 # Should the welcome image (productWelcome, below) be scaled
 # up beyond its natural size? If false, the image does not grow

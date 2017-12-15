@@ -51,7 +51,7 @@ public:
     explicit Helper( QObject* parent = nullptr );
     virtual ~Helper();
 
-    boost::python::object createCleanNamespace();
+    boost::python::dict createCleanNamespace();
 
     QString handleLastError();
 

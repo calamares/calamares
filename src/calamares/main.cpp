@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -19,10 +20,16 @@
 
 #include "CalamaresApplication.h"
 
+#include "CalamaresConfig.h"
 #include "kdsingleapplicationguard/kdsingleapplicationguard.h"
 #include "utils/CalamaresUtils.h"
 #include "utils/Logger.h"
 #include "CalamaresConfig.h"
+
+#ifdef WITH_KCRASH
+#include <KF5/KCrash/KCrash>
+#include <KF5/KCoreAddons/KAboutData>
+#endif
 
 #include <QCommandLineParser>
 #include <QDebug>
@@ -32,6 +39,24 @@ int
 main( int argc, char* argv[] )
 {
     CalamaresApplication a( argc, argv );
+
+#ifdef WITH_KCRASH
+    KAboutData aboutData( "calamares",
+                          "Calamares",
+                          a.applicationVersion(),
+                          "The universal system installer",
+                          KAboutLicense::GPL_V3,
+                          QString(),
+                          QString(),
+                          "https://calamares.io",
+                          "https://github.com/calamares/calamares/issues" );
+    KAboutData::setApplicationData( aboutData );
+    KCrash::initialize();
+    // KCrash::setCrashHandler();
+    KCrash::setDrKonqiEnabled( true );
+    KCrash::setFlags( KCrash::SaferDialog | KCrash::AlwaysDirectly );
+    // TODO: umount anything in /tmp/calamares-... as an emergency save function
+#endif
 
     QCommandLineParser parser;
     parser.setApplicationDescription( "Distribution-independent installer framework" );
