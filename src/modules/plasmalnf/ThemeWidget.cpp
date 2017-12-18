@@ -20,6 +20,8 @@
 
 #include "ThemeInfo.h"
 
+#include "utils/Logger.h"
+
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QRadioButton>
@@ -33,7 +35,25 @@ ThemeWidget::ThemeWidget(const ThemeInfo& info, QWidget* parent)
     this->setLayout( layout );
 
     layout->addWidget( m_check, 1 );
-    layout->addWidget( new QLabel( "Image", this ), 1 );
+
+    constexpr QSize image_size{240, 160};
+
+    QPixmap image( info.imagePath );
+    if ( image.isNull() )
+    {
+        // Not found or not specified, so convert the name into some (horrible, likely)
+        // color instead.
+        image = QPixmap( image_size );
+        uint hash_color = qHash( info.imagePath );
+        cDebug() << "Theme image" << info.imagePath << "not found, hash" << hash_color;
+        image.fill( QColor( QRgb( hash_color ) ) );
+    }
+    else
+        image.scaled( image_size );
+
+    QLabel* image_label = new QLabel( this );
+    image_label->setPixmap( image );
+    layout->addWidget( image_label, 1 );
     layout->addWidget( new QLabel( info.description, this ), 3 );
 
     connect( m_check, &QRadioButton::clicked, this, &ThemeWidget::clicked );
