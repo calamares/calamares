@@ -30,6 +30,7 @@ ThemeInfo::ThemeInfo( const KPluginMetaData& data )
     : id( data.pluginId() )
     , name( data.name() )
     , description( data.description() )
+    , widget( nullptr )
 {
 }
 
@@ -136,18 +137,27 @@ void PlasmaLnfPage::fillUi()
         return;
     }
 
-    if ( m_buttonGroup )
-        delete m_buttonGroup;
-    m_buttonGroup = new QButtonGroup( this );
-    m_buttonGroup->setExclusive( true );
+    if ( !m_buttonGroup )
+    {
+        m_buttonGroup = new QButtonGroup( this );
+        m_buttonGroup->setExclusive( true );
+    }
 
     int c = 1; // After the general explanation
     for ( auto& theme : m_enabledThemes )
     {
-        ThemeWidget* w = new ThemeWidget( theme );
-        m_buttonGroup->addButton( w->button() );
-        ui->verticalLayout->insertWidget( c, w );
-        connect( w, &ThemeWidget::themeSelected, this, &PlasmaLnfPage::plasmaThemeSelected);
+        if ( !theme.widget )
+        {
+            ThemeWidget* w = new ThemeWidget( theme );
+            m_buttonGroup->addButton( w->button() );
+            ui->verticalLayout->insertWidget( c, w );
+            connect( w, &ThemeWidget::themeSelected, this, &PlasmaLnfPage::plasmaThemeSelected);
+            theme.widget = w;
+        }
+        else
+        {
+            theme.widget->updateThemeName( theme );
+        }
         ++c;
     }
 }

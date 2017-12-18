@@ -22,6 +22,7 @@
 #include <QWidget>
 
 class QAbstractButton;
+class QLabel;
 class QRadioButton;
 
 struct ThemeInfo;
@@ -34,6 +35,8 @@ public:
 
     QAbstractButton* button() const;
 
+    void updateThemeName( const ThemeInfo& info );
+
 signals:
     void themeSelected( const QString& id );
 
@@ -43,6 +46,7 @@ public slots:
 private:
     QString m_id;
     QRadioButton* m_check;
+    QLabel* m_description;
 } ;
 
 #endif

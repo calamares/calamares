@@ -29,6 +29,7 @@
 ThemeWidget::ThemeWidget(const ThemeInfo& info, QWidget* parent)
     : QWidget( parent )
     , m_check( new QRadioButton( info.name.isEmpty() ? info.id : info.name, parent ) )
+    , m_description( new QLabel( info.description, parent ) )
     , m_id( info.id )
 {
     QHBoxLayout* layout = new QHBoxLayout( this );
@@ -44,7 +45,7 @@ ThemeWidget::ThemeWidget(const ThemeInfo& info, QWidget* parent)
         // Not found or not specified, so convert the name into some (horrible, likely)
         // color instead.
         image = QPixmap( image_size );
-        uint hash_color = qHash( info.imagePath );
+        uint hash_color = qHash( info.imagePath.isEmpty() ? info.id : info.imagePath );
         cDebug() << "Theme image" << info.imagePath << "not found, hash" << hash_color;
         image.fill( QColor( QRgb( hash_color ) ) );
     }
@@ -54,7 +55,7 @@ ThemeWidget::ThemeWidget(const ThemeInfo& info, QWidget* parent)
     QLabel* image_label = new QLabel( this );
     image_label->setPixmap( image );
     layout->addWidget( image_label, 1 );
-    layout->addWidget( new QLabel( info.description, this ), 3 );
+    layout->addWidget( m_description, 3 );
 
     connect( m_check, &QRadioButton::clicked, this, &ThemeWidget::clicked );
 }
@@ -70,4 +71,10 @@ QAbstractButton*
 ThemeWidget::button() const
 {
     return m_check;
+}
+
+void ThemeWidget::updateThemeName(const ThemeInfo& info)
+{
+    m_check->setText( info.name );
+    m_description->setText( info.description );
 }

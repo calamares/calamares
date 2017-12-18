@@ -23,6 +23,7 @@
 #include <QString>
 
 class KPluginMetaData;
+class ThemeWidget;
 
 /** @brief describes a single plasma LnF theme.
  *
@@ -37,18 +38,22 @@ struct ThemeInfo
     QString name;
     QString description;
     QString imagePath;
+    ThemeWidget* widget;
 
     ThemeInfo()
+        : widget( nullptr )
     {}
 
     explicit ThemeInfo( const QString& _id )
         : id( _id )
+        , widget( nullptr )
     {
     }
 
     explicit ThemeInfo( const QString& _id, const QString& image )
         : id( _id )
         , imagePath( image )
+        , widget( nullptr )
     {}
 
     // Defined in PlasmaLnfPage.cpp
