@@ -16,10 +16,6 @@
   <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0">
    <item>
     <widget class="QLabel" name="generalExplanation">
-     <property name="styleSheet">
-      <string notr="true">margin-bottom: 1ex;
-margin-left: 2em;</string>
-     </property>
      <property name="text">
       <string>Placeholder</string>
      </property>
