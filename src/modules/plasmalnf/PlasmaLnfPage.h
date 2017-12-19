@@ -33,6 +33,12 @@ namespace Ui
 class PlasmaLnfPage;
 }
 
+/** @brief Page for selecting a Plasma Look-and-Feel theme.
+ *
+ * You must call setEnabledThemes -- either overload -- once
+ * to get the selection widgets. Note that calling that with
+ * an empty list will result in zero (0) selectable themes.
+ */
 class PlasmaLnfPage : public QWidget
 {
     Q_OBJECT
@@ -40,7 +46,10 @@ public:
     explicit PlasmaLnfPage( QWidget* parent = nullptr );
 
     void setLnfPath( const QString& path );
+    /** @brief enable only the listed themes. */
     void setEnabledThemes( const ThemeInfoList& themes );
+    /** @brief enable all installed plasma themes. */
+    void setEnabledThemesAll();
 
 signals:
     void plasmaThemeSelected( const QString& id );

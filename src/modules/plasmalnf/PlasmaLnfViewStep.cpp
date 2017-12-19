@@ -158,6 +158,8 @@ PlasmaLnfViewStep::setConfigurationMap( const QVariantMap& configurationMap )
             cDebug() << "WARNING: only one theme enabled in plasmalnf";
         m_widget->setEnabledThemes( allThemes );
     }
+    else
+        m_widget->setEnabledThemesAll();  // All of them
 }
 
 void

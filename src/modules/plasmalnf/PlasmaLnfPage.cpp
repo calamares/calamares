@@ -77,15 +77,19 @@ PlasmaLnfPage::setLnfPath( const QString& path )
 void
 PlasmaLnfPage::setEnabledThemes(const ThemeInfoList& themes)
 {
-    if ( themes.isEmpty() )
-        m_enabledThemes = plasma_themes();
-    else
-        m_enabledThemes = themes;
+    m_enabledThemes = themes;
 
     updateThemeNames();
     winnowThemes();
     fillUi();
 }
+
+void
+PlasmaLnfPage::setEnabledThemesAll()
+{
+    setEnabledThemes( plasma_themes() );
+}
+
 
 void PlasmaLnfPage::updateThemeNames()
 {
