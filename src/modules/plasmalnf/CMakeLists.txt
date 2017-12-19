@@ -10,6 +10,8 @@ calamares_add_plugin( plasmalnf
         PlasmaLnfPage.cpp
         PlasmaLnfJob.cpp
         ThemeWidget.cpp
+    RESOURCES
+        page_plasmalnf.qrc
     UI
         page_plasmalnf.ui
     LINK_PRIVATE_LIBRARIES

@@ -37,10 +37,15 @@ ThemeWidget::ThemeWidget(const ThemeInfo& info, QWidget* parent)
 
     layout->addWidget( m_check, 1 );
 
-    constexpr QSize image_size{240, 160};
+    constexpr QSize image_size{120, 80};
 
     QPixmap image( info.imagePath );
-    if ( image.isNull() )
+    if ( info.imagePath.isEmpty() )
+    {
+        // Image can't possibly be valid
+        image = QPixmap( ":/view-preview.png" );
+    }
+    else if ( image.isNull() )
     {
         // Not found or not specified, so convert the name into some (horrible, likely)
         // color instead.
