@@ -114,6 +114,16 @@ find_package( Qt5 ${QT_VERSION} CONFIG REQUIRED Core Gui Widgets LinguistTools S
 find_package( YAMLCPP 0.5.1 REQUIRED )
 find_package( PolkitQt5-1 REQUIRED )
 
+# Find ECM once, and add it to the module search path; Calamares
+# modules that need ECM can do
+#   find_package(ECM ${ECM_VERSION} REQUIRED NO_MODULE),
+# no need to mess with the module path after.
+set( ECM_VERSION 5.10.0 )
+find_package(ECM ${ECM_VERSION} NO_MODULE)
+if( ECM_FOUND )
+    set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${CMAKE_MODULE_PATH})
+endif()
+
 option( INSTALL_CONFIG "Install configuration files" ON )
 option( WITH_PYTHON "Enable Python modules API (requires Boost.Python)." ON )
 option( WITH_PYTHONQT "Enable next generation Python modules API (experimental, requires PythonQt)." OFF )

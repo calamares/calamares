@@ -256,5 +256,10 @@ System::getTotalMemoryB()
 #endif
 }
 
-
+bool
+System::doChroot() const
+{
+    return m_doChroot;
 }
+
+}  // namespace
