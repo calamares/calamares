@@ -13,7 +13,7 @@ Every source file must have a license header, with a list of copyright holders a
 
 Example:
 ```
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2013-2014, Random Person <name@example.com>
  *   Copyright 2010,      Someone Else <someone@example.com>

@@ -1,5 +1,5 @@
 
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright (c) 2017, Kyle Robbertze <kyle@aims.ac.za>
  *   Copyright 2017, Adriaan de Groot <groot@kde.org>

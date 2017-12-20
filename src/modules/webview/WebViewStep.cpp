@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2015, Rohan Garg <rohan@garg.io>
  *   Copyright 2016, Teo Mrnjavac <teo@kde.org>
