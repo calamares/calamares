@@ -26,19 +26,26 @@
 #include <KPackage/Package>
 #include <KPackage/PackageLoader>
 
-static PlasmaLnfList plasma_themes()
+ThemeInfo::ThemeInfo( const KPluginMetaData& data )
+    : id( data.pluginId() )
+    , name( data.name() )
+    , description( data.description() )
+    , widget( nullptr )
 {
-    PlasmaLnfList packages;
+}
+
+static ThemeInfoList plasma_themes()
+{
+    ThemeInfoList packages;
 
     QList<KPluginMetaData> pkgs = KPackage::PackageLoader::self()->listPackages( "Plasma/LookAndFeel" );
 
     for ( const KPluginMetaData& data : pkgs )
     {
-        packages << PlasmaLnfDescriptor{ data.pluginId(), data.name() };
-        cDebug() << "LNF Package" << data.pluginId();
-        cDebug() << "  .." << data.name();
-        cDebug() << "  .." << data.description();
-        cDebug() << "  .." << 'V' << data.isValid() << 'H' << data.isHidden() << 'D' << data.isEnabledByDefault();
+        if ( data.isValid() && !data.isHidden() && !data.name().isEmpty() )
+        {
+            packages << ThemeInfo{ data };
+        }
     }
 
     return packages;
@@ -48,38 +55,113 @@ static PlasmaLnfList plasma_themes()
 PlasmaLnfPage::PlasmaLnfPage( QWidget* parent )
     : QWidget( parent )
     , ui( new Ui::PlasmaLnfPage )
+    , m_buttonGroup( nullptr )
 {
     ui->setupUi( this );
     CALAMARES_RETRANSLATE(
     {
         ui->retranslateUi( this );
-        ui->generalExplanation->setText( tr( "Please choose a look-and-feel for the KDE Plasma Desktop, below." ) );
-        m_availableLnf = plasma_themes();
-        ui->lnfCombo->clear();
-        for ( const auto& p : m_availableLnf )
-            ui->lnfCombo->addItem( p.name );
+        ui->generalExplanation->setText( tr( "Please choose a look-and-feel for the KDE Plasma Desktop. You can also skip this step and configure the look-and-feel once the system is installed." ) );
+        updateThemeNames();
+        fillUi();
     }
     )
-
-    QObject::connect<void( QComboBox::* )( int )>( ui->lnfCombo, &QComboBox::activated, this, &PlasmaLnfPage::activated );
-}
-
-void
-PlasmaLnfPage::activated( int index )
-{
-    if ( ( index < 0 ) || ( index > m_availableLnf.length() ) )
-    {
-        cDebug() << "Plasma LNF index" << index << "out of range.";
-        return;
-    }
-
-    const PlasmaLnfDescriptor& lnf = m_availableLnf.at( index );
-    cDebug() << "Changed to" << index << lnf.id << lnf.name;
-    emit plasmaThemeSelected( lnf.id );
 }
 
 void
 PlasmaLnfPage::setLnfPath( const QString& path )
 {
     m_lnfPath = path;
+}
+
+void
+PlasmaLnfPage::setEnabledThemes(const ThemeInfoList& themes)
+{
+    m_enabledThemes = themes;
+
+    updateThemeNames();
+    winnowThemes();
+    fillUi();
+}
+
+void
+PlasmaLnfPage::setEnabledThemesAll()
+{
+    setEnabledThemes( plasma_themes() );
+}
+
+
+void PlasmaLnfPage::updateThemeNames()
+{
+    auto plasmaThemes = plasma_themes();
+    for ( auto& enabled_theme : m_enabledThemes )
+    {
+        ThemeInfo* t = plasmaThemes.findById( enabled_theme.id );
+        if ( t != nullptr )
+        {
+            enabled_theme.name = t->name;
+            enabled_theme.description = t->description;
+        }
+    }
+}
+
+void PlasmaLnfPage::winnowThemes()
+{
+    auto plasmaThemes = plasma_themes();
+    bool winnowed = true;
+    int winnow_index = 0;
+    while ( winnowed )
+    {
+        winnowed = false;
+        winnow_index = 0;
+
+        for ( auto& enabled_theme : m_enabledThemes )
+        {
+            ThemeInfo* t = plasmaThemes.findById( enabled_theme.id );
+            if ( t == nullptr )
+            {
+                cDebug() << "Removing" << enabled_theme.id;
+                winnowed = true;
+                break;
+            }
+            ++winnow_index;
+        }
+
+        if ( winnowed )
+        {
+            m_enabledThemes.removeAt( winnow_index );
+        }
+    }
+}
+
+void PlasmaLnfPage::fillUi()
+{
+    if ( m_enabledThemes.isEmpty() )
+    {
+        return;
+    }
+
+    if ( !m_buttonGroup )
+    {
+        m_buttonGroup = new QButtonGroup( this );
+        m_buttonGroup->setExclusive( true );
+    }
+
+    int c = 1; // After the general explanation
+    for ( auto& theme : m_enabledThemes )
+    {
+        if ( !theme.widget )
+        {
+            ThemeWidget* w = new ThemeWidget( theme );
+            m_buttonGroup->addButton( w->button() );
+            ui->verticalLayout->insertWidget( c, w );
+            connect( w, &ThemeWidget::themeSelected, this, &PlasmaLnfPage::plasmaThemeSelected);
+            theme.widget = w;
+        }
+        else
+        {
+            theme.widget->updateThemeName( theme );
+        }
+        ++c;
+    }
 }

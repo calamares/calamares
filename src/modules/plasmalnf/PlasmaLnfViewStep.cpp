@@ -19,6 +19,7 @@
 
 #include "PlasmaLnfJob.h"
 #include "PlasmaLnfPage.h"
+#include "ThemeInfo.h"
 
 #include "utils/CalamaresUtils.h"
 #include "utils/Logger.h"
@@ -109,8 +110,13 @@ PlasmaLnfViewStep::jobs() const
     Calamares::JobList l;
 
     cDebug() << "Creating Plasma LNF jobs ..";
-    if ( !m_themeId.isEmpty() && !m_lnfPath.isEmpty() )
-        l.append( Calamares::job_ptr( new PlasmaLnfJob( m_lnfPath, m_themeId ) ) );
+    if ( !m_themeId.isEmpty() )
+    {
+        if ( !m_lnfPath.isEmpty() )
+            l.append( Calamares::job_ptr( new PlasmaLnfJob( m_lnfPath, m_themeId ) ) );
+        else
+            cDebug() << "WARNING: no lnftool given for plasmalnf module.";
+    }
     return l;
 }
 
@@ -125,12 +131,41 @@ PlasmaLnfViewStep::setConfigurationMap( const QVariantMap& configurationMap )
         cDebug() << "WARNING: no lnftool given for plasmalnf module.";
 
     m_liveUser = CalamaresUtils::getString( configurationMap, "liveuser" );
+
+    if ( configurationMap.contains( "themes" ) &&
+        configurationMap.value( "themes" ).type() == QVariant::List )
+    {
+        ThemeInfoList allThemes;
+        auto themeList = configurationMap.value( "themes" ).toList();
+        // Create the ThemInfo objects for the listed themes; information
+        // about the themes from Plasma (e.g. human-readable name and description)
+        // are filled in by update_names() in PlasmaLnfPage.
+        for ( const auto& i : themeList )
+            if ( i.type() == QVariant::Map )
+            {
+                auto iv = i.toMap();
+                allThemes.append( ThemeInfo( iv.value( "theme" ).toString(), iv.value( "image" ).toString() ) );
+            }
+            else if ( i.type() == QVariant::String )
+                allThemes.append( ThemeInfo( i.toString() ) );
+
+        if ( allThemes.length() == 1 )
+            cDebug() << "WARNING: only one theme enabled in plasmalnf";
+        m_widget->setEnabledThemes( allThemes );
+    }
+    else
+        m_widget->setEnabledThemesAll();  // All of them
 }
 
 void
 PlasmaLnfViewStep::themeSelected( const QString& id )
 {
     m_themeId = id;
+    if ( m_lnfPath.isEmpty() )
+    {
+        cDebug() << "WARNING: no lnftool given for plasmalnf module.";
+        return;
+    }
 
     QProcess lnftool;
     if ( !m_liveUser.isEmpty() )

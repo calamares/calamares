@@ -19,23 +19,26 @@
 #ifndef PLASMALNFPAGE_H
 #define PLASMALNFPAGE_H
 
+#include <QButtonGroup>
 #include <QList>
 #include <QString>
+#include <QStringList>
 #include <QWidget>
+
+#include "ThemeInfo.h"
+#include "ThemeWidget.h"
 
 namespace Ui
 {
 class PlasmaLnfPage;
 }
 
-struct PlasmaLnfDescriptor
-{
-    QString id;
-    QString name;
-} ;
-
-using PlasmaLnfList = QList<PlasmaLnfDescriptor>;
-
+/** @brief Page for selecting a Plasma Look-and-Feel theme.
+ *
+ * You must call setEnabledThemes -- either overload -- once
+ * to get the selection widgets. Note that calling that with
+ * an empty list will result in zero (0) selectable themes.
+ */
 class PlasmaLnfPage : public QWidget
 {
     Q_OBJECT
@@ -43,17 +46,28 @@ public:
     explicit PlasmaLnfPage( QWidget* parent = nullptr );
 
     void setLnfPath( const QString& path );
-
-public slots:
-    void activated( int index );
+    /** @brief enable only the listed themes. */
+    void setEnabledThemes( const ThemeInfoList& themes );
+    /** @brief enable all installed plasma themes. */
+    void setEnabledThemesAll();
 
 signals:
     void plasmaThemeSelected( const QString& id );
 
 private:
+    /** @brief Intersect the list of enabled themes with the installed ones. */
+    void winnowThemes();
+    /** @brief Get the translated names for all enabled themes. */
+    void updateThemeNames();
+    /** @brief show enabled themes in the UI. */
+    void fillUi();
+
     Ui::PlasmaLnfPage* ui;
     QString m_lnfPath;
-    PlasmaLnfList m_availableLnf;
+    ThemeInfoList m_enabledThemes;
+
+    QButtonGroup *m_buttonGroup;
+    QList< ThemeWidget* > m_widgets;
 };
 
 #endif //PLASMALNFPAGE_H
