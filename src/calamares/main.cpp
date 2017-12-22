@@ -56,6 +56,7 @@ main( int argc, char* argv[] )
     KCrash::setDrKonqiEnabled( true );
     KCrash::setFlags( KCrash::SaferDialog | KCrash::AlwaysDirectly );
     // TODO: umount anything in /tmp/calamares-... as an emergency save function
+    a.setApplicationDisplayName( QString() );
 #endif
 
     QCommandLineParser parser;
