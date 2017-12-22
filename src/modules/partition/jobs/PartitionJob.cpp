@@ -22,7 +22,7 @@ PartitionJob::PartitionJob( Partition* partition )
     : m_partition( partition )
 {}
 
-void PartitionJob::progress(int percent)
+void PartitionJob::iprogress(int percent)
 {
     if ( percent < 0 )
         percent = 0;
