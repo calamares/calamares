@@ -3,15 +3,27 @@ include( CalamaresAddTranslations )
 
 set( MODULE_DATA_DESTINATION share/calamares/modules )
 
+# Convenience function to indicate that a module has been skipped
+# (optionally also why). Call this in the module's CMakeLists.txt
+macro( calamares_skip_module )
+    set( SKIPPED_MODULES ${SKIPPED_MODULES} ${ARGV} PARENT_SCOPE )
+endmacro()
+
 function( calamares_add_module_subdirectory )
     set( SUBDIRECTORY ${ARGV0} )
 
+    set( SKIPPED_MODULES )
     set( MODULE_CONFIG_FILES "" )
 
     # If this subdirectory has a CMakeLists.txt, we add_subdirectory it...
     if( EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/${SUBDIRECTORY}/CMakeLists.txt" )
         add_subdirectory( ${SUBDIRECTORY} )
         file( GLOB MODULE_CONFIG_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}/${SUBDIRECTORY} "${SUBDIRECTORY}/*.conf" )
+        # Module has indicated it should be skipped, show that in
+        # the calling CMakeLists (which is src/modules/CMakeLists.txt normally).
+        if ( SKIPPED_MODULES )
+            set( SKIPPED_MODULES ${SKIPPED_MODULES} PARENT_SCOPE )
+        endif()
     # ...otherwise, we look for a module.desc.
     elseif( EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/${SUBDIRECTORY}/module.desc" )
         set( MODULES_DIR ${CMAKE_INSTALL_LIBDIR}/calamares/modules )
