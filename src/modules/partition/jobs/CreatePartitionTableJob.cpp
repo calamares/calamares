@@ -31,7 +31,6 @@
 #include <util/report.h>
 
 // Qt
-#include <QScopedPointer>
 #include <QProcess>
 
 CreatePartitionTableJob::CreatePartitionTableJob( Device* device, PartitionTable::TableType type )
@@ -72,7 +71,7 @@ CreatePartitionTableJob::exec()
     Report report( nullptr );
     QString message = tr( "The installer failed to create a partition table on %1." ).arg( m_device->name() );
 
-    PartitionTable* table( createTable() );
+    PartitionTable* table = m_device->partitionTable();
     cDebug() << "Creating new partition table of type" << table->typeName()
              << ", uncommitted yet:\n" << table;
 

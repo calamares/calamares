@@ -32,9 +32,6 @@
 #include <kpmcore/ops/newoperation.h>
 #include <kpmcore/util/report.h>
 
-// Qt
-#include <QScopedPointer>
-
 CreatePartitionJob::CreatePartitionJob( Device* device, Partition* partition )
     : PartitionJob( partition )
     , m_device( device )

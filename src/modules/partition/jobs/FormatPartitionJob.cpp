@@ -29,10 +29,6 @@
 #include <ops/createfilesystemoperation.h>
 #include <util/report.h>
 
-// Qt
-#include <QScopedPointer>
-#include <QThread>
-
 FormatPartitionJob::FormatPartitionJob( Device* device, Partition* partition )
     : PartitionJob( partition )
     , m_device( device )
