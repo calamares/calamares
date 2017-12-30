@@ -123,7 +123,7 @@ def modify_mkinitcpio_conf(partitions, root_mount_point):
         if partition["fs"] == "btrfs":
             btrfs = "yes"
 
-        if partition["fs"] == "lvm2 pv":
+        if "lvm2" in partition["fs"]:
             lvm2 = "yes"
 
         if partition["mountPoint"] == "/" and "luksMapperName" in partition:
