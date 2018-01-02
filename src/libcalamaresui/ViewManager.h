@@ -1,7 +1,7 @@
 /* === This file is part of Calamares - <http://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2017, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -86,6 +86,13 @@ public:
      */
     int currentStepIndex() const;
 
+    /**
+     * @ brief Called when "Cancel" is clicked; asks for confirmation.
+     * Other means of closing Calamares also call this method, e.g. alt-F4.
+     * At the end of installation, no confirmation is asked. Returns true
+     * if the user confirms closing the window.
+     */
+    bool confirmCancelInstallation();
 
 public slots:
     /**
