@@ -55,14 +55,7 @@ CalamaresApplication::CalamaresApplication( int& argc, char* argv[] )
 
     QFont f = font();
 
-    cDebug() << "Default font ====="
-             << "\nPixel size:   " << f.pixelSize()
-             << "\nPoint size:   " << f.pointSize()
-             << "\nPoint sizeF:  " << f.pointSizeF()
-             << "\nFont family:  " << f.family()
-             << "\nMetric height:" << QFontMetrics( f ).height();
-    // The following line blocks for 15s on Qt 5.1.0
-    cDebug() << "Font height:" << QFontMetrics( f ).height();
+    cDebug() << "Default font size" << f.pointSize() << ';' << f.pixelSize() << "px";
     CalamaresUtils::setDefaultFontSize( f.pointSize() );
 
     cDebug() << "Available languages:" << QString( CALAMARES_TRANSLATION_LANGUAGES ).split( ';' );
