@@ -26,8 +26,9 @@ Modules:
   * NetworkManager
   * UPower (optional, runtime)
 * partition:
-  * KF5: KCoreAddons, KConfig, KI18n, KIconThemes, KIO, KService
-  * KPMcore >= 3.0.2
+  * extra-cmake-modules
+  * KF5: KCoreAddons, KConfig, KI18n, KService, KWidgetsAddons
+  * KPMcore >= 3.3
 * bootloader:
   * systemd-boot or GRUB
 * unpackfs:

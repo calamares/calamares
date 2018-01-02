@@ -1,5 +1,4 @@
 find_package( Qt5 COMPONENTS Gui Test REQUIRED )
-find_package( KF5 COMPONENTS Service REQUIRED )
 
 include( ECMAddTests )
 
@@ -31,7 +30,6 @@ ecm_add_test( ${partitionjobtests_SRCS}
         kpmcore
         Qt5::Core
         Qt5::Test
-        KF5::Service
 )
 
 set_target_properties( partitionjobtests PROPERTIES AUTOMOC TRUE )

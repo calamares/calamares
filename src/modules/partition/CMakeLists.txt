@@ -2,40 +2,10 @@ find_package(ECM ${ECM_VERSION} REQUIRED NO_MODULE)
 
 include(KDEInstallDirs)
 include(GenerateExportHeader)
-find_package( KF5 REQUIRED CoreAddons )
+find_package( Qt5 REQUIRED DBus )
+find_package( KF5 REQUIRED Config CoreAddons I18n WidgetsAddons )
 
-# These are needed because KPMcore links publicly against ConfigCore, I18n, IconThemes, KIOCore and Service
-find_package( KF5 REQUIRED Config I18n IconThemes KIO Service )
-
-# Compatibility: KPMCore 3.2 has a different API, so detect it
-# first and add a define for it; otherwise we need 3.0.3 for NVMe
-# support; 3.0.2 works as well, but is buggy (#697)
-find_package( KPMcore 3.1.50 QUIET )
-if ( KPMcore_FOUND )
-    add_definitions(-DWITH_KPMCORE22)
-endif()
-find_package( KPMcore 3.0.3 QUIET )
-# 3.0.3 and newer has fixes for NVMe support; allow 3.0.2, but warn
-# about it .. needs to use a different feature name because it otherwise
-# gets reported as KPMcore (the package).
-if ( KPMcore_FOUND )
-    message( STATUS "KPMCore supports NVMe operations" )
-    add_feature_info( KPMcoreNVMe KPMcore_FOUND "KPMcore with NVMe support" )
-else()
-    find_package( KPMcore 3.0.2 REQUIRED )
-    message( WARNING "KPMCore 3.0.2 is known to have bugs with NVMe devices" )
-    add_feature_info( KPMcoreNVMe KPMcore_FOUND "Older KPMcore with no NVMe support" )
-endif()
-
-find_library( atasmart_LIB atasmart )
-find_library( blkid_LIB blkid )
-if( NOT atasmart_LIB )
-  message( WARNING "atasmart library not found." )
-endif()
-if( NOT blkid_LIB )
-  message( WARNING "blkid library not found." )
-endif()
-
+find_package( KPMcore 3.3 REQUIRED )
 
 include_directories( ${KPMCORE_INCLUDE_DIR} )
 include_directories( ${PROJECT_BINARY_DIR}/src/libcalamaresui )

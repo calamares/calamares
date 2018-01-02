@@ -146,6 +146,16 @@
       </spacer>
      </item>
      <item row="6" column="0">
+      <widget class="QLabel" name="lvNameLabel">
+       <property name="text">
+        <string>LVM LV name</string>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="1">
+      <widget class="QLineEdit" name="lvNameLineEdit"/>
+     </item>
+     <item row="7" column="0">
       <widget class="QLabel" name="mountPointLabel">
        <property name="text">
         <string>&amp;Mount Point:</string>
@@ -155,7 +165,7 @@
        </property>
       </widget>
      </item>
-     <item row="6" column="1">
+     <item row="7" column="1">
       <widget class="QComboBox" name="mountPointComboBox">
        <property name="editable">
         <bool>true</bool>
@@ -165,21 +175,21 @@
        </property>
       </widget>
      </item>
-     <item row="7" column="1">
+     <item row="8" column="1">
       <widget class="QLabel" name="labelMountPoint">
        <property name="text">
         <string/>
        </property>
       </widget>
      </item>
-     <item row="8" column="0">
+     <item row="9" column="0">
       <widget class="QLabel" name="label_3">
        <property name="text">
         <string>Flags:</string>
        </property>
       </widget>
      </item>
-     <item row="8" column="1">
+     <item row="9" column="1">
       <widget class="QListWidget" name="m_listFlags">
        <property name="alternatingRowColors">
         <bool>true</bool>
@@ -192,7 +202,7 @@
        </property>
       </widget>
      </item>
-     <item row="9" column="0">
+     <item row="10" column="0">
       <spacer name="verticalSpacer">
        <property name="orientation">
         <enum>Qt::Vertical</enum>
