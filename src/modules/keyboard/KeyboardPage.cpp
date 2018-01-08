@@ -292,10 +292,29 @@ KeyboardPage::guessLayout( const QStringList& langParts )
 void
 KeyboardPage::onActivate()
 {
+    /* Guessing a keyboard layout based on the locale means
+     * mapping between language identifiers in <lang>_<country>
+     * format to keyboard mappings, which are <country>_<layout>
+     * format; in addition, some countries have multiple languages,
+     * so fr_BE and nl_BE want different layouts (both Belgian)
+     * and sometimes the language-country name doesn't match the
+     * keyboard-country name at all (e.g. Ellas vs. Greek).
+     *
+     * This is a table of language-to-keyboard mappings. The
+     * language identifier is the key, while the value is
+     * a string that is used instead of the real language
+     * identifier in guessing -- so it should be something
+     * like <layout>_<country>.
+     */
     static auto specialCaseMap = QMap<std::string, std::string>( {
-        { "ar_EG", "ara" },
-        { "ca_ES", "cat_ES" },
-        { "as_ES", "ast_ES" },
+        { "ar_EG", "ara" },    /* Egyptian Arabic */
+        { "ca_ES", "cat_ES" }, /* Catalan */
+        { "as_ES", "ast_ES" }, /* Asturian */
+        { "en_CA", "eng_CA" }, /* Canadian English */
+        { "el_CY", "gr" },     /* Greek in Cyprus */
+        { "el_GR", "gr" },     /* Greek in Greeze */
+        { "ig_NG", "igbo_NG" }, /* Igbo in Nigeria */
+        { "ha_NG", "hausa_NG" } /* Hausa */
     } );
 
     ui->listLayout->setFocus();
