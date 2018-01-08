@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *   Copyright 2017, Adriaan de Groot <groot@kde.org>
@@ -62,7 +62,7 @@ CheckerWidget::init( const QList< PrepareEntry >& checkEntries )
     {
         if ( !entry.checked )
         {
-            CheckItemWidget* ciw = new CheckItemWidget( entry.checked );
+            CheckItemWidget* ciw = new CheckItemWidget( entry.checked, entry.required );
             CALAMARES_RETRANSLATE( ciw->setText( entry.negatedText() ); )
             m_entriesLayout->addWidget( ciw );
             ciw->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred );
@@ -182,7 +182,7 @@ CheckerWidget::showDetailsDialog( const QList< PrepareEntry >& checkEntries )
         if ( entry.enumerationText().isEmpty() )
             continue;
 
-        CheckItemWidget* ciw = new CheckItemWidget( entry.checked );
+        CheckItemWidget* ciw = new CheckItemWidget( entry.checked, entry.required );
         CALAMARES_RETRANSLATE( ciw->setText( entry.enumerationText() ); )
         entriesLayout->addWidget( ciw );
         ciw->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred );

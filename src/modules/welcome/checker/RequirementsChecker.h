@@ -1,6 +1,7 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2017, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -27,6 +28,15 @@
 class CheckerWidget;
 class QWidget;
 
+/**
+ * An indication of a requirement, which is checked in preparation
+ * for system installation. An entry has a name and some explanation,
+ * as well as three meaningful states:
+ *  - checked = true, the requirement is met (green)
+ *  - checked = false, the requirement is not met
+ *      - required = false, warn about it (yellow), no failure
+ *      - required = true, prohibit installation (red)
+ */
 struct PrepareEntry
 {
     QString name;

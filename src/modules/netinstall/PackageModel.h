@@ -1,4 +1,5 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright (c) 2017, Kyle Robbertze <kyle@aims.ac.za>
  *   Copyright 2017, Adriaan de Groot <groot@kde.org>
@@ -28,14 +29,13 @@
 
 #include <yaml-cpp/yaml.h>
 
-// Required forward declarations
-class PackageTreeItem;
-
 class PackageModel : public QAbstractItemModel
 {
     Q_OBJECT
 
 public:
+    using PackageItemDataList = QList< PackageTreeItem::ItemData >;
+
     explicit PackageModel( const YAML::Node& data, QObject* parent = nullptr );
     ~PackageModel() override;
 
@@ -52,7 +52,7 @@ public:
     QModelIndex parent( const QModelIndex& index ) const override;
     int rowCount( const QModelIndex& parent = QModelIndex() ) const override;
     int columnCount( const QModelIndex& parent = QModelIndex() ) const override;
-    QList<PackageTreeItem::ItemData> getPackages() const;
+    PackageItemDataList getPackages() const;
     QList<PackageTreeItem*> getItemPackages( PackageTreeItem* item ) const;
 
 private:

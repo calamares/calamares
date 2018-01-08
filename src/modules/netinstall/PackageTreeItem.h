@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright (c) 2017, Kyle Robbertze <kyle@aims.ac.za>
  *   Copyright 2017, Adriaan de Groot <groot@kde.org>
@@ -40,7 +40,8 @@ public:
     };
     explicit PackageTreeItem( const ItemData& data, PackageTreeItem* parent = nullptr );
     explicit PackageTreeItem( const QString packageName, PackageTreeItem* parent = nullptr );
-    explicit PackageTreeItem( PackageTreeItem* parent = nullptr );
+    explicit PackageTreeItem( PackageTreeItem* parent );
+    explicit PackageTreeItem();  // The root of the tree; always selected, named <root>
     ~PackageTreeItem() override;
 
     void appendChild( PackageTreeItem* child );
@@ -49,16 +50,30 @@ public:
     int columnCount() const;
     QVariant data( int column ) const override;
     int row() const;
+
     PackageTreeItem* parentItem();
+    const PackageTreeItem* parentItem() const;
+
     QString prettyName() const;
     QString description() const;
     QString preScript() const;
     QString packageName() const;
     QString postScript() const;
+
     bool isHidden() const;
     void setHidden( bool isHidden );
+    /**
+     * @brief Is this hidden item, considered "selected"?
+     *
+     * This asserts when called on a non-hidden item.
+     * A hidden item has its own selected state, but really
+     * falls under the selectedness of the parent item.
+     */
+    bool hiddenSelected() const;
+
     bool isCritical() const;
     void setCritical( bool isCritical );
+
     Qt::CheckState isSelected() const;
     void setSelected( Qt::CheckState isSelected );
     void setChildrenSelected( Qt::CheckState isSelected );

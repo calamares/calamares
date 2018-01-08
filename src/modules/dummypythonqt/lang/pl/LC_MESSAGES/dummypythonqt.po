@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-04 08:16-0400\n"
+"POT-Creation-Date: 2017-11-06 06:02-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: m4sk1n <m4sk1n@vivaldi.net>, 2016\n"
+"Last-Translator: Piotr Strębski <strebski@gmail.com>, 2017\n"
 "Language-Team: Polish (https://www.transifex.com/calamares/teams/20061/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,16 +28,16 @@ msgstr "Nowy QLabel."
 
 #: src/modules/dummypythonqt/main.py:97
 msgid "Dummy PythonQt ViewStep"
-msgstr "Dummy PythonQt ViewStep"
+msgstr "Podgląd kroków fikcyjnego PythonQt"
 
 #: src/modules/dummypythonqt/main.py:183
 msgid "The Dummy PythonQt Job"
-msgstr "Zadanie Dummy PythonQt"
+msgstr "Zadanie fikcyjne PythonQt"
 
 #: src/modules/dummypythonqt/main.py:186
 msgid "This is the Dummy PythonQt Job. The dummy job says: {}"
-msgstr "To jest zadanie Dummy PythonQt mówiące: {}"
+msgstr "To jest zadanie fikcyjne PythonQt mówiące: {}"
 
 #: src/modules/dummypythonqt/main.py:190
 msgid "A status message for Dummy PythonQt Job."
-msgstr "Wiadomość o stanie zadania Dummy PythonQt."
+msgstr "Wiadomość o stanie zadania fikcyjnego PythonQt."

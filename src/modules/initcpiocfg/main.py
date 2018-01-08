@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# === This file is part of Calamares - <http://github.com/calamares> ===
+# === This file is part of Calamares - <https://github.com/calamares> ===
 #
 #   Copyright 2014, Rohan Garg <rohan@kde.org>
 #   Copyright 2015, Philip Müller <philm@manjaro.org>
@@ -100,6 +100,7 @@ def modify_mkinitcpio_conf(partitions, root_mount_point):
     cpu = cpuinfo()
     swap_uuid = ""
     btrfs = ""
+    lvm2 = ""
     hooks = ["base", "udev", "autodetect", "modconf", "block", "keyboard",
              "keymap"]
     modules = []
@@ -122,6 +123,9 @@ def modify_mkinitcpio_conf(partitions, root_mount_point):
         if partition["fs"] == "btrfs":
             btrfs = "yes"
 
+        if "lvm2" in partition["fs"]:
+            lvm2 = "yes"
+
         if partition["mountPoint"] == "/" and "luksMapperName" in partition:
             encrypt_hook = True
 
@@ -136,6 +140,9 @@ def modify_mkinitcpio_conf(partitions, root_mount_point):
                os.path.join(root_mount_point, "crypto_keyfile.bin")
                ):
             files.append("/crypto_keyfile.bin")
+
+    if lvm2:
+        hooks.append("lvm2")
 
     if swap_uuid != "":
         if encrypt_hook and openswap_hook:

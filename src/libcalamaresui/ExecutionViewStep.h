@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
@@ -52,7 +52,7 @@ public:
 
     void onActivate() override;
 
-    QList< job_ptr > jobs() const override;
+    JobList jobs() const override;
 
     void appendJobModuleInstanceKey( const QString& instanceKey );
 

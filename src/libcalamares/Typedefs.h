@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
  *
@@ -19,6 +19,7 @@
 #ifndef TYPEDEFS_H
 #define TYPEDEFS_H
 
+#include <QList>
 #include <QSharedPointer>
 
 namespace Calamares
@@ -26,6 +27,7 @@ namespace Calamares
 class Job;
 
 typedef QSharedPointer< Job > job_ptr;
+using JobList = QList< job_ptr >;
 
 enum ModuleAction : char
 {

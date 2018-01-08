@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
  *
@@ -53,10 +53,10 @@ PythonJobModule::loadSelf()
 }
 
 
-QList< job_ptr >
+JobList
 PythonJobModule::jobs() const
 {
-    return QList< job_ptr >() << m_job;
+    return JobList() << m_job;
 }
 
 

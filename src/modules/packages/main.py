@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# === This file is part of Calamares - <http://github.com/calamares> ===
+# === This file is part of Calamares - <https://github.com/calamares> ===
 #
 #   Copyright 2014, Pier Luigi Fiorini <pierluigi.fiorini@gmail.com>
 #   Copyright 2015-2017, Teo Mrnjavac <teo@kde.org>
@@ -55,8 +55,12 @@ def _change_mode(mode):
 
 def pretty_name():
     if not group_packages:
-        # Outside the context of an operation
-        s = _("Processing packages (%(count)d / %(total)d)")
+        if (total_packages > 0):
+            # Outside the context of an operation
+            s = _("Processing packages (%(count)d / %(total)d)")
+        else:
+            s = _("Install packages.")
+
     elif mode_packages is INSTALL:
         s = _n("Installing one package.",
                "Installing %(num)d packages.", group_packages)
@@ -344,10 +348,18 @@ def subst_locale(plist):
 
 def run_operations(pkgman, entry):
     """
-    Call package manager with given parameters.
+    Call package manager with suitable parameters for the given
+    package actions.
 
-    :param pkgman:
-    :param entry:
+    :param pkgman: PackageManager
+        This is the manager that does the actual work.
+    :param entry: dict
+        Keys are the actions -- e.g. "install" -- to take, and the values
+        are the (list of) packages to apply the action to. The actions are
+        not iterated in a specific order, so it is recommended to use only
+        one action per dictionary. The list of packages may be package
+        names (strings) or package information dictionaries with pre-
+        and post-scripts.
     """
     global group_packages, completed_packages, mode_packages
 
@@ -413,6 +425,11 @@ def run():
             break
     else:
         return "Bad backend", "backend=\"{}\"".format(backend)
+
+    skip_this = libcalamares.job.configuration.get("skip_if_no_internet", False)
+    if skip_this and not libcalamares.globalstorage.value("hasInternet"):
+        libcalamares.utils.debug( "WARNING: packages installation has been skipped: no internet" )
+        return None
 
     update_db = libcalamares.job.configuration.get("update_db", False)
     if update_db and libcalamares.globalstorage.value("hasInternet"):

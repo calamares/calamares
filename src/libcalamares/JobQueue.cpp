@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *
@@ -46,7 +46,7 @@ public:
 #endif
     }
 
-    void setJobs( const QList< job_ptr >& jobs )
+    void setJobs( const JobList& jobs )
     {
         m_jobs = jobs;
     }
@@ -73,7 +73,7 @@ public:
     }
 
 private:
-    QList< job_ptr > m_jobs;
+    JobList m_jobs;
     JobQueue* m_queue;
     int m_jobIndex;
 
@@ -164,7 +164,7 @@ JobQueue::enqueue( const job_ptr& job )
 
 
 void
-JobQueue::enqueue( const QList< job_ptr >& jobs )
+JobQueue::enqueue( const JobList& jobs )
 {
     Q_ASSERT( !m_thread->isRunning() );
     m_jobs.append( jobs );

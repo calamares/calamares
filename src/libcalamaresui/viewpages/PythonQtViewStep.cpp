@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2016, Teo Mrnjavac <teo@kde.org>
  *
@@ -159,10 +159,10 @@ PythonQtViewStep::isAtEnd() const
 }
 
 
-QList< Calamares::job_ptr >
+JobList
 PythonQtViewStep::jobs() const
 {
-    QList< Calamares::job_ptr > jobs;
+    JobList jobs;
 
     PythonQtObjectPtr jobsCallable = PythonQt::self()->lookupCallable( m_obj, "jobs" );
     if ( jobsCallable.isNull() )

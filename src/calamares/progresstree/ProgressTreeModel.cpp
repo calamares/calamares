@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *   Copyright 2017, Adriaan de Groot <groot@kde.org>
@@ -24,6 +24,7 @@
 
 ProgressTreeModel::ProgressTreeModel( QObject* parent )
     : QAbstractItemModel( parent )
+    , m_rootItem( nullptr )
 {
     setupModelData();
 }
@@ -39,7 +40,7 @@ Qt::ItemFlags
 ProgressTreeModel::flags( const QModelIndex& index ) const
 {
     if ( !index.isValid() )
-        return 0;
+        return Qt::ItemFlags();
 
     return Qt::ItemIsEnabled;
 }
@@ -134,6 +135,8 @@ ProgressTreeModel::columnCount( const QModelIndex& parent ) const
 void
 ProgressTreeModel::setupModelData()
 {
+    delete m_rootItem;
+
     m_rootItem = new ProgressTreeRoot();
     const Calamares::ViewManager* vm = Calamares::ViewManager::instance();
 

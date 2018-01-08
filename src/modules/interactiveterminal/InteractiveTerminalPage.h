@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *
@@ -39,6 +39,8 @@ private:
     QWidget* m_termHostWidget;
     QString m_command;
     QLabel* m_headerLabel;
+
+    void errorKonsoleNotInstalled();
 };
 
 #endif // INTERACTIVETERMINALPAGE_H

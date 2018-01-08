@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
  *   Copyright 2016, Kevin Kofler <kevin.kofler@chello.at>
@@ -75,10 +75,10 @@ CppJobModule::loadSelf()
 }
 
 
-QList< job_ptr >
+JobList
 CppJobModule::jobs() const
 {
-    return QList< job_ptr >() << m_job;
+    return JobList() << m_job;
 }
 
 

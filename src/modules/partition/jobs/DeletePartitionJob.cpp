@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
  *   Copyright 2015, Teo Mrnjavac <teo@kde.org>
@@ -21,15 +21,12 @@
 #include "jobs/DeletePartitionJob.h"
 
 // KPMcore
-#include <kpmcore/backend/corebackend.h>
-#include <kpmcore/backend/corebackendmanager.h>
-#include <kpmcore/backend/corebackenddevice.h>
-#include <kpmcore/backend/corebackendpartitiontable.h>
-#include <kpmcore/core/device.h>
-#include <kpmcore/core/partition.h>
-#include <kpmcore/core/partitiontable.h>
-#include <kpmcore/fs/filesystem.h>
-#include <kpmcore/util/report.h>
+#include <core/device.h>
+#include <core/partition.h>
+#include <core/partitiontable.h>
+#include <fs/filesystem.h>
+#include <ops/deleteoperation.h>
+#include <util/report.h>
 
 DeletePartitionJob::DeletePartitionJob( Device* device, Partition* partition )
     : PartitionJob( partition )
@@ -65,48 +62,14 @@ Calamares::JobResult
 DeletePartitionJob::exec()
 {
     Report report( nullptr );
+    DeleteOperation op(*m_device, m_partition);
+    op.setStatus(Operation::StatusRunning);
+
     QString message = tr( "The installer failed to delete partition %1." ).arg( m_partition->devicePath() );
+    if (op.execute(report))
+        return Calamares::JobResult::ok();
 
-    if ( m_device->deviceNode() != m_partition->devicePath() )
-    {
-        return Calamares::JobResult::error(
-                   message,
-                   tr( "Partition (%1) and device (%2) do not match." )
-                   .arg( m_partition->devicePath() )
-                   .arg( m_device->deviceNode() )
-               );
-    }
-
-    CoreBackend* backend = CoreBackendManager::self()->backend();
-    QScopedPointer<CoreBackendDevice> backendDevice( backend->openDevice( m_device->deviceNode() ) );
-    if ( !backendDevice.data() )
-    {
-        return Calamares::JobResult::error(
-                   message,
-                   tr( "Could not open device %1." ).arg( m_device->deviceNode() )
-               );
-    }
-
-    QScopedPointer<CoreBackendPartitionTable> backendPartitionTable( backendDevice->openPartitionTable() );
-    if ( !backendPartitionTable.data() )
-    {
-        return Calamares::JobResult::error(
-                   message,
-                   tr( "Could not open partition table." )
-               );
-    }
-
-    bool ok = backendPartitionTable->deletePartition( report, *m_partition );
-    if ( !ok )
-    {
-        return Calamares::JobResult::error(
-                   message,
-                   report.toText()
-               );
-    }
-
-    backendPartitionTable->commit();
-    return Calamares::JobResult::ok();
+    return Calamares::JobResult::error(message, report.toText());
 }
 
 void

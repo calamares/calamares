@@ -1,7 +1,7 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2017, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -88,30 +88,8 @@ ViewManager::ViewManager( QObject* parent )
     connect( m_back, &QPushButton::clicked, this, &ViewManager::back );
     m_back->setEnabled( false );
 
-    connect( m_quit, &QPushButton::clicked,
-             this, [this]()
-    {
-        // If it's NOT the last page of the last step, we ask for confirmation
-        if ( !( m_currentStep == m_steps.count() -1 &&
-                m_steps.last()->isAtEnd() ) )
-        {
-            QMessageBox mb( QMessageBox::Question,
-                            tr( "Cancel installation?" ),
-                            tr( "Do you really want to cancel the current install process?\n"
-                                "The installer will quit and all changes will be lost." ),
-                            QMessageBox::Yes | QMessageBox::No,
-                            m_widget );
-            mb.setDefaultButton( QMessageBox::No );
-            mb.button( QMessageBox::Yes )->setText( tr( "&Yes" ) );
-            mb.button( QMessageBox::No )->setText( tr( "&No" ) );
-            int response = mb.exec();
-            if ( response == QMessageBox::Yes )
-                qApp->quit();
-        }
-        else // Means we're at the end, no need to confirm.
-            qApp->quit();
-    } );
-
+    connect( m_quit, &QPushButton::clicked, this,
+             [this]() { if ( this->confirmCancelInstallation() ) qApp->quit(); } );
     connect( JobQueue::instance(), &JobQueue::failed,
              this, &ViewManager::onInstallationFailed );
     connect( JobQueue::instance(), &JobQueue::finished,
@@ -302,4 +280,26 @@ ViewManager::back()
     }
 }
 
+bool ViewManager::confirmCancelInstallation()
+{
+    // If it's NOT the last page of the last step, we ask for confirmation
+    if ( !( m_currentStep == m_steps.count() -1 &&
+            m_steps.last()->isAtEnd() ) )
+    {
+        QMessageBox mb( QMessageBox::Question,
+                        tr( "Cancel installation?" ),
+                        tr( "Do you really want to cancel the current install process?\n"
+                            "The installer will quit and all changes will be lost." ),
+                        QMessageBox::Yes | QMessageBox::No,
+                        m_widget );
+        mb.setDefaultButton( QMessageBox::No );
+        mb.button( QMessageBox::Yes )->setText( tr( "&Yes" ) );
+        mb.button( QMessageBox::No )->setText( tr( "&No" ) );
+        int response = mb.exec();
+        return response == QMessageBox::Yes;
+    }
+    else // Means we're at the end, no need to confirm.
+        return true;
 }
+
+}  // namespace

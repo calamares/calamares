@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-04 08:16-0400\n"
+"POT-Creation-Date: 2017-11-06 06:02-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Christian Spaan <gyges@gmx.net>, 2017\n"
 "Language-Team: German (https://www.transifex.com/calamares/teams/20061/de/)\n"
@@ -28,7 +28,7 @@ msgstr "Ein neues QLabel."
 
 #: src/modules/dummypythonqt/main.py:97
 msgid "Dummy PythonQt ViewStep"
-msgstr ""
+msgstr "Dummy PythonQt ViewStep"
 
 #: src/modules/dummypythonqt/main.py:183
 msgid "The Dummy PythonQt Job"

@@ -1,13 +1,19 @@
 Hacking on Calamares
 ====================
 
+These are the guidelines for hacking on Calamares. Except for the licensing,
+which **must** be GPLv3+, these are guidelines and -- like PEP8 -- the most
+important thing is to know when you can ignore them.
+
+
 Licensing
 ---------
-Calamares is released under the terms of the GNU GPL, version 3 or later. Every source file must have a license header, with a list of copyright holders and years.
+Calamares is released under the terms of the GNU GPL, version 3 or later.
+Every source file must have a license header, with a list of copyright holders and years.
 
 Example:
 ```
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2013-2014, Random Person <name@example.com>
  *   Copyright 2010,      Someone Else <someone@example.com>
@@ -34,9 +40,9 @@ organization, etc.
 Please add your name to files you touch when making any contribution (even if
 it's just a typo-fix which might not be copyrightable in all jurisdictions).
 
-Formatting
-----------
 
+Formatting C++
+--------------
 This formatting guide applies to C++ code only; for Python modules, we use
 [pycodestyle][https://github.com/PyCQA/pycodestyle] to apply a check of
 some PEP8 guidelines.
@@ -48,10 +54,10 @@ some PEP8 guidelines.
 * No space before brackets, except for keywords, for example `function( argument )` but
   `if ( condition )`.
 * For pointer and reference variable declarations, put a space before the variable name
-  and no space between the type and the `*` or `&`.
-* `for`, `if`, `else`, `while` and similar statements put the brackets on the next line,
-  although brackets are not needed for single statements.
-* Function and class definitions have their brackets on separate lines.
+  and no space between the type and the `*` or `&`, e.g. `int* p`.
+* `for`, `if`, `else`, `while` and similar statements put the braces on the next line,
+  if the following block is more than one statement. Use no braces for single statements.
+* Function and class definitions have their braces on separate lines.
 * A function implementation's return type is on its own line.
 * `CamelCase.{cpp,h}` style file names.
 
@@ -63,8 +69,9 @@ MyClass::myMethod( QStringList list, const QString& name )
     if ( list.isEmpty() )
         return false;
 
+    cDebug() << "Items in list ..";
     foreach ( const QString& string, list )
-        cDebug() << "Current string is " << string;
+        cDebug() << "  .." << string;
 
     switch ( m_enumValue )
     {
@@ -77,13 +84,14 @@ MyClass::myMethod( QStringList list, const QString& name )
 }
 ```
 
-You can use the `hacking/calamaresstyle` script to run
+You can use the `ci/calamaresstyle` script to run
 [astyle](http://astyle.sf.net) on your code and have it formatted the right
 way.
 
 **NOTE:** An .editorconfig file is included to assist with formatting. In
 order to take advantage of this functionality you will need to acquire the
 [EditorConfig](http://editorconfig.org/#download) plug-in for your editor.
+
 
 Naming
 ------
@@ -97,6 +105,7 @@ Naming
     * If it's a getter for a boolean, prefix with 'is', so `isCondition()`.
     * A setter is `setVariable( arg )`.
 
+
 Includes
 --------
 Header includes should be listed in the following order:
@@ -109,8 +118,9 @@ Header includes should be listed in the following order:
 
 They should also be sorted alphabetically for ease of locating them.
 
-Includes in a header file should be kept to the absolute minimum, as to keep compile times short. This can be achieved by using forward declarations instead of includes,
-like `class QListView;`.
+Includes in a header file should be kept to the absolute minimum, as to keep
+compile times short. This can be achieved by using forward declarations
+instead of includes, like `class QListView;`.
 
 Example:
 ```
@@ -129,6 +139,7 @@ Example:
 
 Use include guards, not `#pragma once`.
 
+
 C++ tips
 --------
 All C++11 features are acceptable, and the use of new C++11 features is encouraged when
@@ -141,8 +152,8 @@ range-based `for` syntax introduced with C++11 is preferred ([see this blog post
 
 When re-implementing a virtual method, always add the `override` keyword.
 
-Try to keep your code const correct. Declare methods const if they don't mutate the 
-object, and use const variables. It improves safety, and also makes it easier to 
+Try to keep your code const correct. Declare methods const if they don't mutate the
+object, and use const variables. It improves safety, and also makes it easier to
 understand the code.
 
 For the Qt signal-slot system, the new (Qt5) syntax is to be preferred because it allows
@@ -160,10 +171,31 @@ connect( m_moduleManager, &Calamares::ModuleManager::modulesLoaded, [this]
 });
 ```
 
-Debugging
----------
-Use `cDebug()` and `cLog()` from `utils/Logger.h`.
-
-
 [1]: http://blog.qt.digia.com/blog/2011/05/26/cpp0x-in-qt/
 [2]: http://qt-project.org/wiki/New_Signal_Slot_Syntax
+
+
+Debugging
+---------
+Use `cDebug()` and `cLog()` from `utils/Logger.h`. You can pass a debug-level to
+either macro (1 is debugging, higher is less important). Use `cLog()` for warning
+messages. It is recommended to add *WARNING* as the first part of a warning
+message.
+
+For log messages that are continued across multiple calls to `cDebug()`,
+in particular listing things, conventional formatting is as follows:
+* End the first debug message with ` ..`
+* Indent following lines with `  ..`
+
+
+Commit Messages
+---------------
+Keep commit messages short(-ish) and try to describe what is being changed
+*as well as why*. Use the commit keywords for GitHub, especially *FIXES:*
+to auto-close issues when they are resolved.
+
+For functional changes to Calamares modules or libraries, try to put
+*[modulename]* in front of the first line of the commit message.
+
+For non-functional changes to infrastructure, try to label the change
+with the kind of change, e.g. *CMake* or *i18n* or *Documentation*.

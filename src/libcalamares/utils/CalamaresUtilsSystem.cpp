@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
  *   Copyright 2017, Adriaan de Groot <groot@kde.org>
@@ -92,42 +92,14 @@ System::mount( const QString& devicePath,
     return QProcess::execute( program, args );
 }
 
-int
-System::targetEnvCall( const QStringList& args,
-            const QString& workingPath,
-            const QString& stdInput,
-            int timeoutSec )
+ProcessResult
+System::targetEnvCommand(
+    const QStringList& args,
+    const QString& workingPath,
+    const QString& stdInput,
+    int timeoutSec )
 {
-    QString discard;
-    return targetEnvOutput( args,
-                         discard,
-                         workingPath,
-                         stdInput,
-                         timeoutSec );
-}
-
-
-int
-System::targetEnvCall( const QString& command,
-            const QString& workingPath,
-            const QString& stdInput,
-            int timeoutSec )
-{
-    return targetEnvCall( QStringList{ command },
-                       workingPath,
-                       stdInput,
-                       timeoutSec );
-}
-
-
-int
-System::targetEnvOutput( const QStringList& args,
-              QString& output,
-              const QString& workingPath,
-              const QString& stdInput,
-              int timeoutSec )
-{
-    output.clear();
+    QString output;
 
     if ( !Calamares::JobQueue::instance() )
         return -3;
@@ -209,30 +181,15 @@ System::targetEnvOutput( const QStringList& args,
     cLog() << "Finished. Exit code:" << r;
     if ( r != 0 )
     {
-        cLog() << "Target cmd" << args;
-        cLog() << "Target out" << output;
+        cLog() << "Target cmd:" << args;
+        cLog().noquote() << "Target output:\n" << output;
     }
-    return r;
-}
-
-
-int
-System::targetEnvOutput( const QString& command,
-              QString& output,
-              const QString& workingPath,
-              const QString& stdInput,
-              int timeoutSec )
-{
-    return targetEnvOutput( QStringList{ command },
-                         output,
-                         workingPath,
-                         stdInput,
-                         timeoutSec );
+    return ProcessResult(r, output);
 }
 
 
 QPair<quint64, float>
-System::getTotalMemoryB()
+System::getTotalMemoryB() const
 {
 #ifdef Q_OS_LINUX
     struct sysinfo i;
@@ -257,4 +214,39 @@ System::getTotalMemoryB()
 }
 
 
+QString
+System::getCpuDescription() const
+{
+    QString model;
+
+#ifdef Q_OS_LINUX
+    QFile file("/proc/cpuinfo");
+    if ( file.open(QIODevice::ReadOnly | QIODevice::Text) )
+        while ( !file.atEnd() )
+        {
+            QByteArray line = file.readLine();
+            if ( line.startsWith( "model name" ) && (line.indexOf( ':' ) > 0) )
+            {
+                model = QString::fromLatin1( line.right(line.length() - line.indexOf( ':' ) ) );
+                break;
+            }
+        }
+#elif defined( Q_OS_FREEBSD )
+    // This would use sysctl "hw.model", which has a string value
+#endif
+    return model.simplified();
 }
+
+quint64
+System::getTotalDiskB() const
+{
+    return 0;
+}
+
+bool
+System::doChroot() const
+{
+    return m_doChroot;
+}
+
+}  // namespace

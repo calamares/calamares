@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
  *   Copyright 2017, Adriaan de Groot <groot@kde.org>
@@ -38,6 +38,10 @@ public:
     QString prettyName() const override;
     QString prettyStatusMessage() const override;
     JobResult exec() override;
+
+protected:
+    /** @brief Explain a typical external process failure. */
+    static JobResult explainProcess( int errorCode, const QString& command, const QString& output, int timeout );
 
 private:
     int callOutput( const QString& command,

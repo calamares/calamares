@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *
@@ -46,6 +46,14 @@ InteractiveTerminalPage::InteractiveTerminalPage( QWidget* parent )
     m_layout->addWidget( m_headerLabel );
 }
 
+void
+InteractiveTerminalPage::errorKonsoleNotInstalled()
+{
+    QMessageBox::critical( this,
+                           tr( "Konsole not installed"),
+                           tr( "Please install KDE Konsole and try again!" ),
+                           QMessageBox::Ok );
+}
 
 void
 InteractiveTerminalPage::onActivate()
@@ -60,15 +68,7 @@ InteractiveTerminalPage::onActivate()
     {
         // And all of this hoping the Konsole application is installed. If not,
         // tough cookies.
-        // Maybe linking against a library seemed too simple and elegant so
-        // someone decided to have a terminal widget depend on over 9000 other
-        // KDElibs things that have nothing to do with a terminal widget, and
-        // have the loading happen at runtime so it's more likely to fail at
-        // an inconvenient time.
-        QMessageBox::critical( this,
-                               tr( "Konsole not installed"),
-                               tr( "Please install the kde konsole and try again!" ),
-                               QMessageBox::Ok);
+        errorKonsoleNotInstalled();
         return ;
     }
 
@@ -80,10 +80,7 @@ InteractiveTerminalPage::onActivate()
     if ( !p )
     {
         // One more opportunity for the loading operation to fail.
-        QMessageBox::critical( this,
-                               tr( "Konsole not installed"),
-                               tr( "Please install the kde konsole and try again!" ),
-                               QMessageBox::Ok);
+        errorKonsoleNotInstalled();
         return;
     }
 
@@ -92,10 +89,7 @@ InteractiveTerminalPage::onActivate()
     if ( !t )
     {
         // This is why we can't have nice things.
-        QMessageBox::critical( this,
-                               tr( "Konsole not installed"),
-                               tr( "Please install the kde konsole and try again!" ),
-                               QMessageBox::Ok);
+        errorKonsoleNotInstalled();
         return;
     }
 

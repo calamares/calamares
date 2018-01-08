@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright (c) 2017, Kyle Robbertze <kyle@aims.ac.za>
  *   Copyright 2017, Adriaan de Groot <groot@kde.org>
@@ -163,7 +163,8 @@ PackageModel::getPackages() const
 {
     QList<PackageTreeItem*> items = getItemPackages( m_rootItem );
     for ( auto package : m_hiddenItems )
-        items.append( getItemPackages( package ) );
+        if ( package->hiddenSelected() )
+            items.append( getItemPackages( package ) );
     QList<PackageTreeItem::ItemData> packages;
     for ( auto item : items )
     {

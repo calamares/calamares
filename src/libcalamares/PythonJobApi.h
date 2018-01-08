@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2016, Teo Mrnjavac <teo@kde.org>
  *   Copyright 2017, Adriaan de Groot <groot@kde.org>
@@ -66,8 +66,6 @@ boost::python::object gettext_path();
 boost::python::list gettext_languages();
 
 void debug( const std::string& s );
-
-inline int _handle_check_target_env_call_error( int ec, const QString& cmd );
 
 class PythonJobInterface
 {

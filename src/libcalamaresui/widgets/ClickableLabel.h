@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
  *   Copyright 2017, Adriaan de Groot <groot@kde.org>
@@ -27,8 +27,8 @@ class ClickableLabel : public QLabel
 {
     Q_OBJECT
 public:
-    explicit ClickableLabel( QWidget* parent = nullptr, Qt::WindowFlags f = 0 );
-    explicit ClickableLabel( const QString& text, QWidget* parent = nullptr, Qt::WindowFlags f = 0 );
+    explicit ClickableLabel( QWidget* parent = nullptr );
+    explicit ClickableLabel( const QString& text, QWidget* parent = nullptr );
     virtual ~ClickableLabel() override;
 
 signals:

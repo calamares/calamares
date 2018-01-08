@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *
@@ -55,14 +55,7 @@ CalamaresApplication::CalamaresApplication( int& argc, char* argv[] )
 
     QFont f = font();
 
-    cDebug() << "Default font ====="
-             << "\nPixel size:   " << f.pixelSize()
-             << "\nPoint size:   " << f.pointSize()
-             << "\nPoint sizeF:  " << f.pointSizeF()
-             << "\nFont family:  " << f.family()
-             << "\nMetric height:" << QFontMetrics( f ).height();
-    // The following line blocks for 15s on Qt 5.1.0
-    cDebug() << "Font height:" << QFontMetrics( f ).height();
+    cDebug() << "Default font size" << f.pointSize() << ';' << f.pixelSize() << "px";
     CalamaresUtils::setDefaultFontSize( f.pointSize() );
 
     cDebug() << "Available languages:" << QString( CALAMARES_TRANSLATION_LANGUAGES ).split( ';' );
@@ -356,7 +349,7 @@ CalamaresApplication::initViewSteps()
 {
     cDebug() << "STARTUP: loadModules for all modules done";
     m_mainwindow->show();
-    ProgressTreeModel* m = new ProgressTreeModel( this );
+    ProgressTreeModel* m = new ProgressTreeModel( nullptr );
     ProgressTreeView::instance()->setModel( m );
     cDebug() << "STARTUP: Window now visible and ProgressTreeView populated";
 }

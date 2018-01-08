@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2016, Teo Mrnjavac <teo@kde.org>
  *
@@ -46,7 +46,7 @@ public:
     bool isAtBeginning() const override;
     bool isAtEnd() const override;
 
-    QList< Calamares::job_ptr > jobs() const override;
+    JobList jobs() const override;
 
     void setConfigurationMap( const QVariantMap& configurationMap ) override;
 

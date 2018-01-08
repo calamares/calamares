@@ -232,13 +232,13 @@ Výstup:
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="75"/>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="309"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="300"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Zrušiť</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="76"/>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="310"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="301"/>
         <source>Cancel installation without changing the system.</source>
         <translation>Zruší inštaláciu bez zmeny systému.</translation>
     </message>
@@ -265,47 +265,47 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
         <translation>_Nie</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="186"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="183"/>
         <source>&amp;Close</source>
         <translation>_Zavrieť</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="238"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="233"/>
         <source>Continue with setup?</source>
         <translation>Pokračovať v inštalácii?</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="239"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="234"/>
         <source>The %1 installer is about to make changes to your disk in order to install %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
         <translation>Inštalátor distribúcie %1 sa chystá vykonať zmeny na vašom disku, aby nainštaloval distribúciu %2. &lt;br/&gt;&lt;strong&gt;Tieto zmeny nebudete môcť vrátiť späť.&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="244"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="239"/>
         <source>&amp;Install now</source>
         <translation>&amp;Inštalovať teraz</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="245"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="240"/>
         <source>Go &amp;back</source>
         <translation>Prejsť s&amp;päť</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="276"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="269"/>
         <source>&amp;Done</source>
         <translation>_Dokončiť</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="277"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="270"/>
         <source>The installation is complete. Close the installer.</source>
         <translation>Inštalácia je dokončená. Zatvorí inštalátor.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="183"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="180"/>
         <source>Error</source>
         <translation>Chyba</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="184"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="181"/>
         <source>Installation Failed</source>
         <translation>Inštalácia zlyhala</translation>
     </message>
@@ -347,19 +347,6 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
     </message>
 </context>
 <context>
-    <name>CheckFileSystemJob</name>
-    <message>
-        <location filename="../src/modules/partition/jobs/CheckFileSystemJob.cpp" line="39"/>
-        <source>Checking file system on partition %1.</source>
-        <translation>Kontroluje sa systém súborov na oddieli %1.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/jobs/CheckFileSystemJob.cpp" line="77"/>
-        <source>The file system check on partition %1 failed.</source>
-        <translation>Kontrola systému súborov na oddieli %1 zlyhala.</translation>
-    </message>
-</context>
-<context>
     <name>CheckerWidget</name>
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="96"/>
@@ -374,7 +361,7 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="151"/>
         <source>This program will ask you some questions and set up %2 on your computer.</source>
-        <translation>Tento program sa vás spýta na niekoľko otázok a nainštaluje distribúciu %2 do vášho počítača.</translation>
+        <translation>Tento program vám položí niekoľko otázok a nainštaluje distribúciu %2 do vášho počítača.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="174"/>
@@ -405,12 +392,12 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
         <translation>&lt;strong&gt;Ručné rozdelenie oddielov&lt;/strong&gt;&lt;br/&gt;Môžete vytvoriť alebo zmeniť veľkosť oddielov podľa seba.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="972"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="978"/>
         <source>Boot loader location:</source>
         <translation>Umiestnenie zavádzača:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="916"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="922"/>
         <source>%1 will be shrunk to %2MB and a new %3MB partition will be created for %4.</source>
         <translation>Oddiel %1 bude zmenšený na %2MB a nový %3MB oddiel bude vytvorený pre distribúciu %4.</translation>
     </message>
@@ -421,83 +408,83 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="127"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="898"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="944"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1023"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="904"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="950"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1029"/>
         <source>Current:</source>
         <translation>Teraz:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="776"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="775"/>
         <source>Reuse %1 as home partition for %2.</source>
         <translation>Opakované použitie oddielu %1 ako domovského pre distribúciu %2.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="899"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="905"/>
         <source>&lt;strong&gt;Select a partition to shrink, then drag the bottom bar to resize&lt;/strong&gt;</source>
         <translation>&lt;strong&gt;Vyberte oddiel na zmenšenie a potom potiahnutím spodného pruhu zmeňte veľkosť&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1014"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1020"/>
         <source>&lt;strong&gt;Select a partition to install on&lt;/strong&gt;</source>
         <translation>&lt;strong&gt;Vyberte oddiel, na ktorý sa má inštalovať&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1070"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1076"/>
         <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
         <translation>Oddiel systému EFI sa nedá v tomto počítači nájsť. Prosím, prejdite späť a použite ručné rozdelenie oddielov na inštaláciu distribúcie %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1079"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1085"/>
         <source>The EFI system partition at %1 will be used for starting %2.</source>
         <translation>Oddie lsystému EFI na %1 bude použitý na spustenie distribúcie %2.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1087"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1093"/>
         <source>EFI system partition:</source>
         <translation>Oddiel systému EFI:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1172"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1177"/>
         <source>This storage device does not seem to have an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>Zdá sa, že toto úložné zariadenie neobsahuje operačný systém. Čo by ste chceli urobiť?&lt;br/&gt;Budete môcť skontrolovať a potvrdiť vaše voľby pred uplatnením akejkoľvek zmeny na úložnom zariadení.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1177"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1214"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1236"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1272"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1182"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1219"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1241"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1265"/>
         <source>&lt;strong&gt;Erase disk&lt;/strong&gt;&lt;br/&gt;This will &lt;font color=&quot;red&quot;&gt;delete&lt;/font&gt; all data currently present on the selected storage device.</source>
-        <translation>&lt;strong&gt;Vymazanie disku&lt;/strong&gt;&lt;br/&gt;Týmto sa &lt;font color=&quot;red&quot;&gt;odstránia&lt;/font&gt; všetky údaje momentálne sa nachádzajúce na vybratom úložnom zariadení.</translation>
+        <translation>&lt;strong&gt;Vymazanie disku&lt;/strong&gt;&lt;br/&gt;Týmto sa &lt;font color=&quot;red&quot;&gt;odstránia&lt;/font&gt; všetky údaje momentálne sa nachádzajúce na vybranom úložnom zariadení.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1204"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1209"/>
         <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>Toto úložné zariadenie obsahuje operačný systém %1. Čo by ste chceli urobiť?&lt;br/&gt;Budete môcť skontrolovať a potvrdiť vaše voľby pred uplatnením akejkoľvek zmeny na úložnom zariadení.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1181"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1210"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1232"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1268"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1186"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1215"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1237"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1261"/>
         <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
         <translation>&lt;strong&gt;Inštalácia popri súčasnom systéme&lt;/strong&gt;&lt;br/&gt;Inštalátor zmenší oddiel a uvoľní miesto pre distribúciu %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1185"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1219"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1240"/>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1276"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1190"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1224"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1245"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1269"/>
         <source>&lt;strong&gt;Replace a partition&lt;/strong&gt;&lt;br/&gt;Replaces a partition with %1.</source>
         <translation>&lt;strong&gt;Nahradenie oddielu&lt;/strong&gt;&lt;br/&gt;Nahradí oddiel distribúciou %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1227"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1232"/>
         <source>This storage device already has an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>Toto úložné zariadenie už obsahuje operačný systém. Čo by ste chceli urobiť?&lt;br/&gt;Budete môcť skontrolovať a potvrdiť vaše voľby pred uplatnením akejkoľvek zmeny na úložnom zariadení.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1263"/>
+        <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1256"/>
         <source>This storage device has multiple operating systems on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
         <translation>Toto úložné zariadenie obsahuje viacero operačných systémov. Čo by ste chceli urobiť?&lt;br/&gt;Budete môcť skontrolovať a potvrdiť vaše voľby pred uplatnením akejkoľvek zmeny na úložnom zariadení.</translation>
     </message>
@@ -619,42 +606,42 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
 <context>
     <name>CreatePartitionJob</name>
     <message>
-        <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="48"/>
+        <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="50"/>
         <source>Create new %2MB partition on %4 (%3) with file system %1.</source>
         <translation>Vytvoriť nový %2MB oddiel na zariadení %4 (%3) so systémom súborov %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="59"/>
+        <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="61"/>
         <source>Create new &lt;strong&gt;%2MB&lt;/strong&gt; partition on &lt;strong&gt;%4&lt;/strong&gt; (%3) with file system &lt;strong&gt;%1&lt;/strong&gt;.</source>
         <translation>Vytvoriť nový &lt;strong&gt;%2MB&lt;/strong&gt; oddiel na zariadení &lt;strong&gt;%4&lt;/strong&gt; (%3) so systémom súborov &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="71"/>
+        <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="73"/>
         <source>Creating new %1 partition on %2.</source>
         <translation>Vytvára sa nový %1 oddiel na zariadení %2.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="83"/>
+        <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="85"/>
         <source>The installer failed to create partition on disk &apos;%1&apos;.</source>
         <translation>Inštalátor zlyhal pri vytváraní oddielu na disku „%1“.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="92"/>
+        <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="94"/>
         <source>Could not open device &apos;%1&apos;.</source>
         <translation>Nepodarilo sa otvoriť zariadenie „%1“.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="102"/>
+        <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="104"/>
         <source>Could not open partition table.</source>
         <translation>Nepodarilo sa otvoriť tabuľku oddielov.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="126"/>
+        <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="128"/>
         <source>The installer failed to create file system on partition %1.</source>
         <translation>Inštalátor zlyhal pri vytváraní systému súborov na oddieli %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="134"/>
+        <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="136"/>
         <source>The installer failed to update partition table on disk &apos;%1&apos;.</source>
         <translation>Inštalátor zlyhal pri aktualizovaní tabuľky oddielov na disku „%1“.</translation>
     </message>
@@ -690,27 +677,27 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
 <context>
     <name>CreatePartitionTableJob</name>
     <message>
-        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="49"/>
+        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="50"/>
         <source>Create new %1 partition table on %2.</source>
         <translation>Vytvoriť novú tabuľku oddielov typu %1 na zariadení %2.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="56"/>
+        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="57"/>
         <source>Create new &lt;strong&gt;%1&lt;/strong&gt; partition table on &lt;strong&gt;%2&lt;/strong&gt; (%3).</source>
         <translation>Vytvoriť novú &lt;strong&gt;%1&lt;/strong&gt; tabuľku oddielov na zariadení &lt;strong&gt;%2&lt;/strong&gt; (%3).</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="66"/>
+        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="67"/>
         <source>Creating new %1 partition table on %2.</source>
         <translation>Vytvára sa nová tabuľka oddielov typu %1 na zariadení %2.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="76"/>
+        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="77"/>
         <source>The installer failed to create a partition table on %1.</source>
         <translation>Inštalátor zlyhal pri vytváraní tabuľky oddielov na zariadení %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="84"/>
+        <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="85"/>
         <source>Could not open device %1.</source>
         <translation>Nepodarilo sa otvoriť zariadenie %1.</translation>
     </message>
@@ -753,32 +740,32 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
         <translation>Nedá sa otvoriť súbor skupín na čítanie.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="160"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="159"/>
         <source>Cannot create user %1.</source>
         <translation>Nedá sa vytvoriť používateľ %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="162"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="161"/>
         <source>useradd terminated with error code %1.</source>
         <translation>Príkaz useradd ukončený s chybovým kódom %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="171"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="170"/>
         <source>Cannot add user %1 to groups: %2.</source>
         <translation>Nedá sa pridať používateľ %1 do skupín: %2.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="174"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="173"/>
         <source>usermod terminated with error code %1.</source>
         <translation>Príkaz usermod ukončený s chybovým kódom %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="184"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="183"/>
         <source>Cannot set home directory ownership for user %1.</source>
         <translation>Nedá sa nastaviť vlastníctvo domovského adresára pre používateľa %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="186"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="185"/>
         <source>chown terminated with error code %1.</source>
         <translation>Príkaz chown ukončený s chybovým kódom %1.</translation>
     </message>
@@ -786,37 +773,37 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
 <context>
     <name>DeletePartitionJob</name>
     <message>
-        <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="42"/>
+        <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="43"/>
         <source>Delete partition %1.</source>
         <translation>Odstrániť oddiel %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="50"/>
+        <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="51"/>
         <source>Delete partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
         <translation>Odstrániť oddiel &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="58"/>
+        <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="59"/>
         <source>Deleting partition %1.</source>
         <translation>Odstraňuje sa oddiel %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="67"/>
+        <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="68"/>
         <source>The installer failed to delete partition %1.</source>
         <translation>Inštalátor zlyhal pri odstraňovaní oddielu %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="73"/>
+        <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="74"/>
         <source>Partition (%1) and device (%2) do not match.</source>
         <translation>Oddiel (%1) a zariadenie (%2) sa nezhodujú..</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="85"/>
+        <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="86"/>
         <source>Could not open device %1.</source>
         <translation>Nepodarilo sa otvoriť zariadenie %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="94"/>
+        <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="95"/>
         <source>Could not open partition table.</source>
         <translation>Nepodarilo sa otvoriť tabuľku oddielov.</translation>
     </message>
@@ -826,7 +813,7 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="150"/>
         <source>The type of &lt;strong&gt;partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The only way to change the partition table type is to erase and recreate the partition table from scratch, which destroys all data on the storage device.&lt;br&gt;This installer will keep the current partition table unless you explicitly choose otherwise.&lt;br&gt;If unsure, on modern systems GPT is preferred.</source>
-        <translation>Typ &lt;strong&gt;tabuľky oddielov&lt;/strong&gt; na vybratom úložnom zariadení.&lt;br&gt;&lt;br&gt;Jediným spôsobom ako zmeniť tabuľku oddielov je vymazanie a znovu vytvorenie tabuľky oddielov od začiatku, čím sa zničia všetky údaje úložnom zariadení.&lt;br&gt;Inštalátor ponechá aktuálnu tabuľku oddielov, pokiaľ sa výlučne nerozhodnete inak.&lt;br&gt;Ak nie ste si istý, na moderných systémoch sa preferuje typ tabuľky oddielov GPT.</translation>
+        <translation>Typ &lt;strong&gt;tabuľky oddielov&lt;/strong&gt; na vybranom úložnom zariadení.&lt;br&gt;&lt;br&gt;Jediným spôsobom ako zmeniť tabuľku oddielov je vymazanie a znovu vytvorenie tabuľky oddielov od začiatku, čím sa zničia všetky údaje úložnom zariadení.&lt;br&gt;Inštalátor ponechá aktuálnu tabuľku oddielov, pokiaľ sa výlučne nerozhodnete inak.&lt;br&gt;Ak nie ste si istý, na moderných systémoch sa preferuje typ tabuľky oddielov GPT.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="107"/>
@@ -841,7 +828,7 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="121"/>
         <source>This installer &lt;strong&gt;cannot detect a partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The device either has no partition table, or the partition table is corrupted or of an unknown type.&lt;br&gt;This installer can create a new partition table for you, either automatically, or through the manual partitioning page.</source>
-        <translation>Inštalátor &lt;strong&gt;nemôže rozpoznať tabuľku oddielov&lt;/strong&gt; na vybratom úložnom zariadení.&lt;br&gt;&lt;br&gt;Zariadenie buď neobsahuje žiadnu tabuľku oddielov, alebo je tabuľka oddielov poškodená, alebo je neznámeho typu.&lt;br&gt;Inštalátor môže vytvoriť novú tabuľku oddielov buď automaticky alebo prostredníctvom stránky s ručným rozdelením oddielov.</translation>
+        <translation>Inštalátor &lt;strong&gt;nemôže rozpoznať tabuľku oddielov&lt;/strong&gt; na vybranom úložnom zariadení.&lt;br&gt;&lt;br&gt;Zariadenie buď neobsahuje žiadnu tabuľku oddielov, alebo je tabuľka oddielov poškodená, alebo je neznámeho typu.&lt;br&gt;Inštalátor môže vytvoriť novú tabuľku oddielov buď automaticky alebo prostredníctvom stránky s ručným rozdelením oddielov.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="131"/>
@@ -977,37 +964,37 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
 <context>
     <name>FillGlobalStorageJob</name>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="123"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="167"/>
         <source>Set partition information</source>
         <translation>Nastaviť informácie o oddieli</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="147"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="191"/>
         <source>Install %1 on &lt;strong&gt;new&lt;/strong&gt; %2 system partition.</source>
         <translation>Inštalovať distribúciu %1 na &lt;strong&gt;novom&lt;/strong&gt; %2 systémovom oddieli.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="151"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="195"/>
         <source>Set up &lt;strong&gt;new&lt;/strong&gt; %2 partition with mount point &lt;strong&gt;%1&lt;/strong&gt;.</source>
         <translation>Nastaviť &lt;strong&gt;nový&lt;/strong&gt; %2 oddiel s bodom pripojenia &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="159"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="203"/>
         <source>Install %2 on %3 system partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
         <translation>Inštalovať distribúciu %2 na %3 systémovom oddieli &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="164"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="208"/>
         <source>Set up %3 partition &lt;strong&gt;%1&lt;/strong&gt; with mount point &lt;strong&gt;%2&lt;/strong&gt;.</source>
         <translation>Nastaviť %3 oddiel &lt;strong&gt;%1&lt;/strong&gt; s bodom pripojenia &lt;strong&gt;%2&lt;/strong&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="176"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="220"/>
         <source>Install boot loader on &lt;strong&gt;%1&lt;/strong&gt;.</source>
         <translation>Inštalovať zavádzač do &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="186"/>
+        <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="230"/>
         <source>Setting up mount points.</source>
         <translation>Nastavujú sa body pripojení.</translation>
     </message>
@@ -1038,17 +1025,17 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
 <context>
     <name>FinishedViewStep</name>
     <message>
-        <location filename="../src/modules/finished/FinishedViewStep.cpp" line="60"/>
+        <location filename="../src/modules/finished/FinishedViewStep.cpp" line="59"/>
         <source>Finish</source>
         <translation>Dokončenie</translation>
     </message>
     <message>
-        <location filename="../src/modules/finished/FinishedViewStep.cpp" line="126"/>
+        <location filename="../src/modules/finished/FinishedViewStep.cpp" line="124"/>
         <source>Installation Complete</source>
         <translation>Inštalácia dokončená</translation>
     </message>
     <message>
-        <location filename="../src/modules/finished/FinishedViewStep.cpp" line="127"/>
+        <location filename="../src/modules/finished/FinishedViewStep.cpp" line="125"/>
         <source>The installation of %1 is complete.</source>
         <translation>Inštalácia distribúcie %1s je dokončená.</translation>
     </message>
@@ -1129,12 +1116,12 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
 <context>
     <name>KeyboardPage</name>
     <message>
-        <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="208"/>
+        <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="220"/>
         <source>Set keyboard model to %1.&lt;br/&gt;</source>
         <translation>Nastavenie modelu klávesnice na %1.&lt;br/&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="210"/>
+        <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="222"/>
         <source>Set keyboard layout to %1/%2.</source>
         <translation>Nastavenie rozloženia klávesnice na %1/%2.</translation>
     </message>
@@ -1296,82 +1283,38 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
         <translation>Načítavajú sa údaje umiestnenia...</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocaleViewStep.cpp" line="160"/>
+        <location filename="../src/modules/locale/LocaleViewStep.cpp" line="169"/>
         <source>Location</source>
         <translation>Umiestnenie</translation>
     </message>
 </context>
 <context>
-    <name>MoveFileSystemJob</name>
-    <message>
-        <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="66"/>
-        <source>Move file system of partition %1.</source>
-        <translation>Presun systému súborov oddielu %1.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="80"/>
-        <source>Could not open file system on partition %1 for moving.</source>
-        <translation>Nepodarilo sa otvoriť systém súborov na oddieli %1 pre presun.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="86"/>
-        <source>Could not create target for moving file system on partition %1.</source>
-        <translation>Nepodarilo sa vytvoriť cieľ pre presun systému súborov na oddieli %1.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="95"/>
-        <source>Moving of partition %1 failed, changes have been rolled back.</source>
-        <translation>Presun oddielu %1 zlyhal. Zmeny boli odvolané.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="101"/>
-        <source>Moving of partition %1 failed. Roll back of the changes have failed.</source>
-        <translation>Presun oddielu %1 zlyhal. Odvolanie zmien zlyhalo.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="113"/>
-        <source>Updating boot sector after the moving of partition %1 failed.</source>
-        <translation>Zlyhala aktualizácia zavádzacieho sektoru po presune oddielu %1.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="127"/>
-        <source>The logical sector sizes in the source and target for copying are not the same. This is currently unsupported.</source>
-        <translation>Veľkosti logických sektorov v zdroji a cieli kopírovania nie sú rovnaké. Toto nie je momentálne podporované.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="197"/>
-        <source>Source and target for copying do not overlap: Rollback is not required.</source>
-        <translation>Zdroj a cieľ kopírovania sa neprekrývajú. Odvolanie nie je potrebné.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="221"/>
-        <location filename="../src/modules/partition/jobs/MoveFileSystemJob.cpp" line="229"/>
-        <source>Could not open device %1 to rollback copying.</source>
-        <translation>Nepodarilo sa otvoriť zariadenie %1 na odvolanie kopírovania.</translation>
-    </message>
-</context>
-<context>
     <name>NetInstallPage</name>
     <message>
-        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="73"/>
+        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="72"/>
         <source>Name</source>
         <translation>Názov</translation>
     </message>
     <message>
-        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="74"/>
+        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="73"/>
         <source>Description</source>
         <translation>Popis</translation>
     </message>
     <message>
-        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="83"/>
+        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="92"/>
         <source>Network Installation. (Disabled: Unable to fetch package lists, check your network connection)</source>
         <translation>Sieťová inštalácia. (Zakázaná: Nie je možné získať zoznamy balíkov. Skontrolujte vaše sieťové pripojenie.)</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="100"/>
+        <source>Network Installation. (Disabled: Received invalid groups data)</source>
+        <translation>Sieťová inštalácia. (Zakázaná: Boli prijaté neplatné údaje o skupinách)</translation>
     </message>
 </context>
 <context>
     <name>NetInstallViewStep</name>
     <message>
-        <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="51"/>
+        <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="52"/>
         <source>Package selection</source>
         <translation>Výber balíkov</translation>
     </message>
@@ -1467,42 +1410,42 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
 <context>
     <name>PartitionLabelsView</name>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="191"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="193"/>
         <source>Root</source>
         <translation>Koreňový adresár</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="194"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="196"/>
         <source>Home</source>
         <translation>Domovský adresár</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="196"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="198"/>
         <source>Boot</source>
         <translation>Zavádzač</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="199"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="201"/>
         <source>EFI system</source>
         <translation>Systém EFI</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="201"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="203"/>
         <source>Swap</source>
         <translation>Odkladací priestor</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="203"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="205"/>
         <source>New partition for %1</source>
         <translation>Nový oddiel pre %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="205"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="207"/>
         <source>New partition</source>
         <translation>Nový oddiel</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="222"/>
+        <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="224"/>
         <source>%1  %2</source>
         <translation>%1  %2</translation>
     </message>
@@ -1685,7 +1628,7 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="449"/>
         <source>A separate boot partition was set up together with an encrypted root partition, but the boot partition is not encrypted.&lt;br/&gt;&lt;br/&gt;There are security concerns with this kind of setup, because important system files are kept on an unencrypted partition.&lt;br/&gt;You may continue if you wish, but filesystem unlocking will happen later during system startup.&lt;br/&gt;To encrypt the boot partition, go back and recreate it, selecting &lt;strong&gt;Encrypt&lt;/strong&gt; in the partition creation window.</source>
-        <translation>Spolu so zašifrovaným koreňovým oddielom bol nainštalovaný oddelený zavádzací oddiel, ktorý ale nie je zašifrovaný.&lt;br/&gt;&lt;br/&gt;S týmto typom inštalácie je ohrozená bezpečnosť, pretože dôležité systémové súbory sú uchovávané na nezašifrovanom oddieli.&lt;br/&gt;Ak si to želáte, môžete pokračovať, ale neskôr, počas spúšťania systému sa vykoná odomknutie systému súborov.&lt;br/&gt;Na zašifrovanie zavádzacieho oddielu prejdite späť a vytvorte ju znovu vybratím voľby &lt;strong&gt;Zašifrovať&lt;/strong&gt; v okne vytvárania oddielu.</translation>
+        <translation>Spolu so zašifrovaným koreňovým oddielom bol nainštalovaný oddelený zavádzací oddiel, ktorý ale nie je zašifrovaný.&lt;br/&gt;&lt;br/&gt;S týmto typom inštalácie je ohrozená bezpečnosť, pretože dôležité systémové súbory sú uchovávané na nezašifrovanom oddieli.&lt;br/&gt;Ak si to želáte, môžete pokračovať, ale neskôr, počas spúšťania systému sa vykoná odomknutie systému súborov.&lt;br/&gt;Na zašifrovanie zavádzacieho oddielu prejdite späť a vytvorte ju znovu vybraním voľby &lt;strong&gt;Zašifrovať&lt;/strong&gt; v okne vytvárania oddielu.</translation>
     </message>
 </context>
 <context>
@@ -1702,22 +1645,22 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
         <translation>Predvolený</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="198"/>
+        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="210"/>
         <source>unknown</source>
         <translation>neznámy</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="200"/>
+        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="212"/>
         <source>extended</source>
         <translation>rozšírený</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="202"/>
+        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="214"/>
         <source>unformatted</source>
         <translation>nenaformátovaný</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="204"/>
+        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="216"/>
         <source>swap</source>
         <translation>odkladací</translation>
     </message>
@@ -1737,12 +1680,12 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="134"/>
         <source>Select where to install %1.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;this will delete all files on the selected partition.</source>
-        <translation>Vyberte, kde sa má nainštalovať distribúcia %1.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Upozornenie: &lt;/font&gt;týmto sa odstránia všetky súbory na vybratom oddieli.</translation>
+        <translation>Vyberte, kam sa má nainštalovať distribúcia %1.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Upozornenie: &lt;/font&gt;týmto sa odstránia všetky súbory na vybranom oddieli.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="160"/>
         <source>The selected item does not appear to be a valid partition.</source>
-        <translation>Zdá sa, že vybratá položka nie je platným oddielom.</translation>
+        <translation>Zdá sa, že vybraná položka nie je platným oddielom.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="168"/>
@@ -1805,117 +1748,93 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
 <context>
     <name>RequirementsChecker</name>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="64"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="68"/>
         <source>Gathering system information...</source>
         <translation>Zbierajú sa informácie o počítači...</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="108"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="116"/>
         <source>has at least %1 GB available drive space</source>
         <translation>obsahuje aspoň %1 GB voľného miesta na disku</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="110"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="118"/>
         <source>There is not enough drive space. At least %1 GB is required.</source>
         <translation>Nie je dostatok miesta na disku. Vyžaduje sa aspoň %1 GB.</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="118"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="126"/>
         <source>has at least %1 GB working memory</source>
         <translation>obsahuje aspoň %1 GB voľnej operačnej pamäte</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="120"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="128"/>
         <source>The system does not have enough working memory. At least %1 GB is required.</source>
         <translation>Počítač neobsahuje dostatok operačnej pamäte. Vyžaduje sa aspoň %1 GB.</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="128"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="136"/>
         <source>is plugged in to a power source</source>
         <translation>je pripojený k zdroju napájania</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="129"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="137"/>
         <source>The system is not plugged in to a power source.</source>
         <translation>Počítač nie je pripojený k zdroju napájania.</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="136"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="144"/>
         <source>is connected to the Internet</source>
         <translation>je pripojený k internetu</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="137"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="145"/>
         <source>The system is not connected to the Internet.</source>
         <translation>Počítač nie je pripojený k internetu.</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="145"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="153"/>
         <source>The installer is not running with administrator rights.</source>
         <translation>Inštalátor nie je spustený s právami správcu.</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="153"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="161"/>
         <source>The screen is too small to display the installer.</source>
         <translation>Obrazovka je príliš malá na to, aby bolo možné zobraziť inštalátor.</translation>
     </message>
 </context>
 <context>
-    <name>ResizeFileSystemJob</name>
-    <message>
-        <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="76"/>
-        <source>Resize file system on partition %1.</source>
-        <translation>Zmena veľkosti súborového systému na oddieli %1.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="91"/>
-        <source>Parted failed to resize filesystem.</source>
-        <translation>Program Parted zlyhal pri zmene veľkosti systému súborov.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="101"/>
-        <source>Failed to resize filesystem.</source>
-        <translation>Zlyhala zmena veľkosti systému súborov.</translation>
-    </message>
-</context>
-<context>
     <name>ResizePartitionJob</name>
     <message>
-        <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="187"/>
+        <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="44"/>
         <source>Resize partition %1.</source>
         <translation>Zmena veľkosti oddielu %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="194"/>
+        <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="51"/>
         <source>Resize &lt;strong&gt;%2MB&lt;/strong&gt; partition &lt;strong&gt;%1&lt;/strong&gt; to &lt;strong&gt;%3MB&lt;/strong&gt;.</source>
         <translation>Zmena veľkosti &lt;strong&gt;%2MB&lt;/strong&gt; oddielu &lt;strong&gt;%1&lt;/strong&gt; na &lt;strong&gt;%3MB&lt;/strong&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="205"/>
+        <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="62"/>
         <source>Resizing %2MB partition %1 to %3MB.</source>
         <translation>Mení sa veľkosť %2MB oddielu %1 na %3MB.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="232"/>
-        <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="298"/>
+        <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="81"/>
         <source>The installer failed to resize partition %1 on disk &apos;%2&apos;.</source>
         <translation>Inštalátor zlyhal pri zmene veľkosti oddielu %1 na disku „%2“.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="237"/>
-        <source>Could not open device &apos;%1&apos;.</source>
-        <translation>Nepodarilo sa otvoriť zariadenie „%1“.</translation>
     </message>
 </context>
 <context>
     <name>ScanningDialog</name>
     <message>
-        <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="83"/>
+        <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="84"/>
         <source>Scanning storage devices...</source>
         <translation>Prehľadávajú sa úložné zariadenia...</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="84"/>
+        <location filename="../src/modules/partition/gui/ScanningDialog.cpp" line="85"/>
         <source>Partitioning</source>
         <translation>Rozdelenie oddielov</translation>
     </message>
@@ -2079,57 +1998,44 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
     </message>
 </context>
 <context>
-    <name>SetPartGeometryJob</name>
-    <message>
-        <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="144"/>
-        <source>Update geometry of partition %1.</source>
-        <translation>Aktualizovanie geometrie oddielu %1.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="156"/>
-        <source>Failed to change the geometry of the partition.</source>
-        <translation>Zlyhala zmena geometrie oddielu.</translation>
-    </message>
-</context>
-<context>
     <name>SetPasswordJob</name>
     <message>
-        <location filename="../src/modules/users/SetPasswordJob.cpp" line="44"/>
+        <location filename="../src/modules/users/SetPasswordJob.cpp" line="48"/>
         <source>Set password for user %1</source>
         <translation>Nastavenie hesla pre používateľa %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/SetPasswordJob.cpp" line="51"/>
+        <location filename="../src/modules/users/SetPasswordJob.cpp" line="55"/>
         <source>Setting password for user %1.</source>
         <translation>Nastavuje sa heslo pre používateľa %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/SetPasswordJob.cpp" line="108"/>
+        <location filename="../src/modules/users/SetPasswordJob.cpp" line="112"/>
         <source>Bad destination system path.</source>
         <translation>Nesprávny cieľ systémovej cesty.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/SetPasswordJob.cpp" line="109"/>
+        <location filename="../src/modules/users/SetPasswordJob.cpp" line="113"/>
         <source>rootMountPoint is %1</source>
         <translation>rootMountPoint je %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/SetPasswordJob.cpp" line="119"/>
+        <location filename="../src/modules/users/SetPasswordJob.cpp" line="123"/>
         <source>Cannot disable root account.</source>
         <translation>Nedá sa zakázať účet správcu.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/SetPasswordJob.cpp" line="120"/>
+        <location filename="../src/modules/users/SetPasswordJob.cpp" line="124"/>
         <source>passwd terminated with error code %1.</source>
         <translation>Príkaz passwd ukončený s chybovým kódom %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/SetPasswordJob.cpp" line="135"/>
+        <location filename="../src/modules/users/SetPasswordJob.cpp" line="139"/>
         <source>Cannot set password for user %1.</source>
         <translation>Nedá sa nastaviť heslo pre používateľa %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/SetPasswordJob.cpp" line="137"/>
+        <location filename="../src/modules/users/SetPasswordJob.cpp" line="141"/>
         <source>usermod terminated with error code %1.</source>
         <translation>Príkaz usermod ukončený s chybovým kódom %1.</translation>
     </message>
@@ -2144,7 +2050,7 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
     <message>
         <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="71"/>
         <source>Cannot access selected timezone path.</source>
-        <translation>Nedá sa získať prístup k vybratej ceste časovej zóny.</translation>
+        <translation>Nedá sa získať prístup k vybranej ceste časovej zóny.</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="72"/>
@@ -2175,7 +2081,7 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
 <context>
     <name>SummaryPage</name>
     <message>
-        <location filename="../src/modules/summary/SummaryPage.cpp" line="46"/>
+        <location filename="../src/modules/summary/SummaryPage.cpp" line="49"/>
         <source>This is an overview of what will happen once you start the install procedure.</source>
         <translation>Toto je prehľad toho, čo sa stane, keď spustíte inštaláciu.</translation>
     </message>
@@ -2191,41 +2097,51 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
 <context>
     <name>UsersPage</name>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="275"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="287"/>
         <source>Your username is too long.</source>
         <translation>Vaše používateľské meno je príliš dlhé.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="285"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="293"/>
         <source>Your username contains invalid characters. Only lowercase letters and numbers are allowed.</source>
         <translation>Vaše používateľské meno obsahuje neplatné znaky. Povolené sú iba písmená, čísla a pomlčky.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="329"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="331"/>
         <source>Your hostname is too short.</source>
         <translation>Váš názov hostiteľa je príliš krátky.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="340"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="337"/>
         <source>Your hostname is too long.</source>
         <translation>Váš názov hostiteľa je príliš dlhý.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="351"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="343"/>
         <source>Your hostname contains invalid characters. Only letters, numbers and dashes are allowed.</source>
         <translation>Váš názov hostiteľa obsahuje neplatné znaky. Povolené sú iba písmená, čísla a pomlčky.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/UsersPage.cpp" line="382"/>
+        <location filename="../src/modules/users/UsersPage.cpp" line="371"/>
         <location filename="../src/modules/users/UsersPage.cpp" line="415"/>
         <source>Your passwords do not match!</source>
         <translation>Vaše heslá sa nezhodujú!</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/users/UsersPage.cpp" line="494"/>
+        <source>Password is too short</source>
+        <translation>Heslo je príliš krátke</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/users/UsersPage.cpp" line="513"/>
+        <source>Password is too long</source>
+        <translation>Heslo je príliš dlhé</translation>
     </message>
 </context>
 <context>
     <name>UsersViewStep</name>
     <message>
-        <location filename="../src/modules/users/UsersViewStep.cpp" line="48"/>
+        <location filename="../src/modules/users/UsersViewStep.cpp" line="51"/>
         <source>Users</source>
         <translation>Používatelia</translation>
     </message>
@@ -2293,7 +2209,7 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
     <message>
         <location filename="../src/modules/welcome/WelcomeViewStep.cpp" line="51"/>
         <source>Welcome</source>
-        <translation>Vitajte</translation>
+        <translation>Uvítanie</translation>
     </message>
 </context>
 </TS>

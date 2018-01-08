@@ -6,6 +6,7 @@ At installation time, the user is presented with the choice to install groups of
 Calamares will then invoke the correct backend to install the packages.
 
 ## Configuration of the packages
+
 Every distribution can choose which groups to display and which packages should be in the groups.
 
 The *netinstall.conf* file should have this format:
@@ -48,7 +49,8 @@ If you set both *hidden* and *selected* for a group, you are basically creating 
 which will always be installed in the user's system.
 
 ## Configuration of the module
-Here is the set of instructions to have the module work in your Calamares. As of July 2016, this has been successfully 
+
+Here is the set of instructions to have the module work in your Calamares. As of July 2016, this has been successfully
 tested using the live installation of Chakra Fermi.
 
 First, if the module is used, we need to require a working Internet connection, otherwise the module will be
@@ -63,7 +65,8 @@ If not present, add the **packages** job in the **exec** list. This is the job t
 to install packages. Make sure it is configured to use the correct package manager for your distribution; this
 is configured in src/modules/packages/packages.conf.
 
-The exec list should be:
+The **exec** list in *settings.conf* should contain the following items in
+order (it's ok for other jobs to be listed inbetween them, though):
 
   - unpackfs
   - networkcfg
@@ -74,10 +77,10 @@ structure; **networkcfg** set ups a working network in the chroot; and finally *
 in the chroot.
 
 ## Common issues
+
 If launching the package manager command returns you negative exit statuses and nothing is actually invoked, this
 is likely an error in the setup of the chroot; check that the parameter **rootMountPoint** is set to the correct
 value in the Calamares configuration.
 
 If the command is run, but exits with error, check that the network is working in the chroot. Make sure /etc/resolv.conf
 exists and that it's not empty.
-

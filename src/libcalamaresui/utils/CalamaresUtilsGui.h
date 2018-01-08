@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *   Copyright 2017, Adriaan de Groot <groot@kde.org>
@@ -55,7 +55,10 @@ enum ImageType : int
     PartitionReplaceOs,
     PartitionTable,
     BootEnvironment,
-    Squid
+    Squid,
+    StatusOk,         // Icons for the requirements checker
+    StatusWarning,
+    StatusError
 };
 
 /**

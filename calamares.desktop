@@ -13,6 +13,10 @@ StartupNotify=true
 Categories=Qt;System;
 
 
+
+
+
+
 Name[ca]=Calamares
 Icon[ca]=calamares
 GenericName[ca]=Instal·lador de sistema
@@ -25,6 +29,10 @@ Name[de]=Calamares
 Icon[de]=calamares
 GenericName[de]=Installation des Betriebssystems
 Comment[de]=Calamares - Installation des Betriebssystems
+Name[el]=Calamares
+Icon[el]=calamares
+GenericName[el]=Εγκατάσταση συστήματος
+Comment[el]=Calamares — Εγκατάσταση συστήματος
 Name[en_GB]=Calamares
 Icon[en_GB]=calamares
 GenericName[en_GB]=System Installer
@@ -64,7 +72,15 @@ Comment[ja]=Calamares — システムインストーラー
 Name[lt]=Calamares
 Icon[lt]=calamares
 GenericName[lt]=Sistemos diegimas į kompiuterį
-Comment[lt]=Calamares — sistemos diegyklė
+Comment[lt]=Calamares — Sistemos diegimo programa
+Name[it_IT]=Calamares
+Icon[it_IT]=calamares
+GenericName[it_IT]=Programma di installazione
+Comment[it_IT]=Calamares — Installare il Sistema
+Name[nb]=Calamares
+Icon[nb]=calamares
+GenericName[nb]=Systeminstallatør
+Comment[nb]=Calamares-systeminstallatør
 Name[nl]=Calamares
 Icon[nl]=calamares
 GenericName[nl]=Installatieprogramma
@@ -79,8 +95,8 @@ GenericName[pt_BR]=Instalador de Sistema
 Comment[pt_BR]=Calamares — Instalador de Sistema
 Name[cs_CZ]=Calamares
 Icon[cs_CZ]=calamares
-GenericName[cs_CZ]=Instalační program systému
-Comment[cs_CZ]=Calamares - instalační program systému
+GenericName[cs_CZ]=Instalátor systému
+Comment[cs_CZ]=Calamares – instalátor operačních systémů
 Name[ru]=Calamares
 Icon[ru]=calamares
 GenericName[ru]=Установщик системы
@@ -89,6 +105,10 @@ Name[sk]=Calamares
 Icon[sk]=calamares
 GenericName[sk]=Inštalátor systému
 Comment[sk]=Calamares — Inštalátor systému
+Name[sq]=Calamares
+Icon[sq]=calamares
+GenericName[sq]=Instalues Sistemi
+Comment[sq]=Calamares — Instalues Sistemi
 Name[sv]=Calamares
 Icon[sv]=calamares
 GenericName[sv]=Systeminstallerare

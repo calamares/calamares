@@ -24,6 +24,6 @@
 
 > …
 
-#### Include the installation.log:
+#### Include the installation.log (usually ~/Calamares/Calamares/Calamares.log, of the user Calamares runs as):
 
 > …

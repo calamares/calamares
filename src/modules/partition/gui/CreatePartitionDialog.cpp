@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
  *   Copyright 2016, Teo Mrnjavac <teo@kde.org>
@@ -43,6 +43,8 @@
 #include <QDir>
 #include <QListWidgetItem>
 #include <QPushButton>
+#include <QRegularExpression>
+#include <QRegularExpressionValidator>
 #include <QSet>
 
 static QSet< FileSystem::Type > s_unmountableFS(
@@ -65,6 +67,19 @@ CreatePartitionDialog::CreatePartitionDialog( Device* device, PartitionNode* par
     m_ui->setupUi( this );
     m_ui->encryptWidget->setText( tr( "En&crypt" ) );
     m_ui->encryptWidget->hide();
+
+    if (m_device->type() == Device::Disk_Device) {
+        m_ui->lvNameLabel->hide();
+        m_ui->lvNameLineEdit->hide();
+    }
+    if (m_device->type() == Device::LVM_Device) {
+        /* LVM logical volume name can consist of: letters numbers _ . - +
+         * It cannot start with underscore _ and must not be equal to . or .. or any entry in /dev/
+         * QLineEdit accepts QValidator::Intermediate, so we just disable . at the beginning */
+        QRegularExpression re(QStringLiteral(R"(^(?!_|\.)[\w\-.+]+)"));
+        QRegularExpressionValidator *validator = new QRegularExpressionValidator(re, this);
+        m_ui->lvNameLineEdit->setValidator(validator);
+    }
 
     QStringList mountPoints = { "/", "/boot", "/home", "/opt", "/usr", "/var" };
     if ( PartUtils::isEfiSystem() )
@@ -225,6 +240,10 @@ CreatePartitionDialog::createPartition()
             m_role,
             fsType, first, last, newFlags()
         );
+    }
+
+    if (m_device->type() == Device::LVM_Device) {
+        partition->setPartitionPath(m_device->deviceNode() + QStringLiteral("/") + m_ui->lvNameLineEdit->text().trimmed());
     }
 
     PartitionInfo::setMountPoint( partition, m_ui->mountPointComboBox->currentText() );

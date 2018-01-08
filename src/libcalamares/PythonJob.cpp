@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2016, Teo Mrnjavac <teo@kde.org>
  *
@@ -216,10 +216,10 @@ BOOST_PYTHON_MODULE( libcalamares )
         "in the original string."
     );
 
-    
-    bp::def( 
-        "gettext_languages", 
-        &CalamaresPython::gettext_languages, 
+
+    bp::def(
+        "gettext_languages",
+        &CalamaresPython::gettext_languages,
         "Returns list of languages (most to least-specific) for gettext."
     );
 
@@ -296,7 +296,7 @@ PythonJob::exec()
 
     try
     {
-        bp::object scriptNamespace = helper()->createCleanNamespace();
+        bp::dict scriptNamespace = helper()->createCleanNamespace();
 
         bp::object calamaresModule = bp::import( "libcalamares" );
         bp::dict calamaresNamespace = bp::extract< bp::dict >( calamaresModule.attr( "__dict__" ) );
@@ -310,7 +310,7 @@ PythonJob::exec()
                                            scriptNamespace );
 
         bp::object entryPoint = scriptNamespace[ "run" ];
-        bp::object prettyNameFunc = bp::getattr(scriptNamespace, "pretty_name", bp::object());
+        bp::object prettyNameFunc = scriptNamespace.get("pretty_name", bp::object());
 
         cDebug() << "Job file" << scriptFI.absoluteFilePath();
         if ( !prettyNameFunc.is_none() )

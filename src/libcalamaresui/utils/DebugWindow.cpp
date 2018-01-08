@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2015-2016, Teo Mrnjavac <teo@kde.org>
  *
@@ -62,7 +62,7 @@ DebugWindow::DebugWindow()
     // JobQueue page
     jobQueueText->setReadOnly( true );
     connect( JobQueue::instance(), &JobQueue::queueChanged,
-             this, [ this ]( const QList< Calamares::job_ptr >& jobs )
+             this, [ this ]( const JobList& jobs )
     {
         QStringList text;
         for ( const auto &job : jobs )

@@ -19,16 +19,16 @@ Main:
 * yaml-cpp >= 0.5.1
 * Python >= 3.3
 * Boost.Python >= 1.55.0
-* dmidecode
+* extra-cmake-modules (recommended; required for some modules)
 
 Modules:
 * welcome:
   * NetworkManager
-  * UPower
+  * UPower (optional, runtime)
 * partition:
   * extra-cmake-modules
-  * KF5: KCoreAddons, KConfig, KI18n, KIconThemes, KIO, KService
-  * KPMcore >= 3.0.3
+  * KF5: KCoreAddons, KConfig, KI18n, KService, KWidgetsAddons
+  * KPMcore >= 3.3
 * bootloader:
   * systemd-boot or GRUB
 * unpackfs:
@@ -37,4 +37,7 @@ Modules:
 
 ### Building
 
-See [wiki](https://github.com/calamares/calamares/wiki) for up to date building and deployment instructions.
+See [wiki](https://github.com/calamares/calamares/wiki) for up to date
+[building](https://github.com/calamares/calamares/wiki/Developer's-Guide)
+and [deployment](https://github.com/calamares/calamares/wiki/Deployer's-Guide)
+instructions.

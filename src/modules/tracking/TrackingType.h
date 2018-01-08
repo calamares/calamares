@@ -1,6 +1,6 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -16,23 +16,14 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef CHECKFILESYSTEMJOB_H
-#define CHECKFILESYSTEMJOB_H
+#ifndef TRACKINGTYPE_H
+#define TRACKINGTYPE_H
 
-#include <jobs/PartitionJob.h>
-
-/**
- * Runs a file system check on an existing partition.
- */
-class CheckFileSystemJob : public PartitionJob
+enum class TrackingType
 {
-    Q_OBJECT
-public:
-    CheckFileSystemJob( Partition* partition );
+    InstallTracking,
+    MachineTracking,
+    UserTracking
+} ;
 
-    QString prettyName() const override;
-    QString prettyStatusMessage() const override;
-    Calamares::JobResult exec() override;
-};
-
-#endif /* CHECKFILESYSTEMJOB_H */
+#endif //TRACKINGTYPE_H

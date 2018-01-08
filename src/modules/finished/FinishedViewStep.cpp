@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *   Copyright 2017, Adriaan de Groot <groot@kde.org>
@@ -178,7 +178,7 @@ FinishedViewStep::setConfigurationMap( const QVariantMap& configurationMap )
                     configurationMap.value( "restartNowCommand" ).type() == QVariant::String )
                 m_widget->setRestartNowCommand( configurationMap.value( "restartNowCommand" ).toString() );
             else
-                m_widget->setRestartNowCommand( "systemctl -i reboot" );
+                m_widget->setRestartNowCommand( "shutdown -r now" );
         }
     }
     if ( configurationMap.contains( "notifyOnFinished" ) &&

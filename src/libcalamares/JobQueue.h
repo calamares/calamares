@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *
@@ -42,11 +42,11 @@ public:
     GlobalStorage* globalStorage() const;
 
     void enqueue( const job_ptr& job );
-    void enqueue( const QList< job_ptr >& jobs );
+    void enqueue( const JobList& jobs );
     void start();
 
 signals:
-    void queueChanged( const QList< job_ptr >& jobs );
+    void queueChanged( const JobList& jobs );
     void progress( qreal percent, const QString& prettyName );
     void finished();
     void failed( const QString& message, const QString& details );
@@ -54,7 +54,7 @@ signals:
 private:
     static JobQueue* s_instance;
 
-    QList< job_ptr > m_jobs;
+    JobList m_jobs;
     JobThread* m_thread;
     GlobalStorage* m_storage;
 };

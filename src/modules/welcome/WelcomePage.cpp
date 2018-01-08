@@ -1,8 +1,8 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *   Copyright 2015,      Anke Boersma <demm@kaosx.us>
- *   Copyright 2017, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -82,7 +82,7 @@ WelcomePage::WelcomePage( RequirementsChecker* requirementsChecker, QWidget* par
                             " Philip Müller, Pier Luigi Fiorini, Rohan Garg and the <a "
                             "href=\"https://www.transifex.com/calamares/calamares/\">Calamares "
                             "translators team</a>.<br/><br/>"
-                            "<a href=\"http://calamares.io/\">Calamares</a> "
+                            "<a href=\"https://calamares.io/\">Calamares</a> "
                             "development is sponsored by <br/>"
                             "<a href=\"http://www.blue-systems.com/\">Blue Systems</a> - "
                             "Liberating Software."

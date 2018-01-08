@@ -1,6 +1,7 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -106,6 +107,18 @@ defaultPixmap( ImageType type, ImageMode mode, const QSize& size )
 
     case Squid:
         pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/squid.svg", size );
+        break;
+
+    case StatusOk:
+        pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/state-ok.svg", size );
+        break;
+
+    case StatusWarning:
+        pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/state-warning.svg", size );
+        break;
+
+    case StatusError:
+        pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/state-error.svg", size );
         break;
     }
 
