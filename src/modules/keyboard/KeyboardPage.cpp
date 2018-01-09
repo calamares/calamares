@@ -306,8 +306,28 @@ KeyboardPage::onActivate()
      * identifier in guessing -- so it should be something
      * like <layout>_<country>.
      */
-    static auto specialCaseMap = QMap<std::string, std::string>( {
-        { "ar_EG", "ara" },    /* Egyptian Arabic */
+    static constexpr char arabic[] = "ara";
+    static const auto specialCaseMap = QMap<std::string, std::string>( {
+        /* Most Arab countries map to Arabic keyboard (Default) */
+        { "ar_AE", arabic },
+        { "ar_BH", arabic },
+        { "ar_DZ", arabic },
+        { "ar_EG", arabic },
+        { "ar_IN", arabic },
+        { "ar_IQ", arabic },
+        { "ar_JO", arabic },
+        { "ar_KW", arabic },
+        { "ar_LB", arabic },
+        { "ar_LY", arabic },
+        /* Not Morocco: use layout ma */
+        { "ar_OM", arabic },
+        { "ar_QA", arabic },
+        { "ar_SA", arabic },
+        { "ar_SD", arabic },
+        { "ar_SS", arabic },
+        /* Not Syria: use layout sy */
+        { "ar_TN", arabic },
+        { "ar_YE", arabic },
         { "ca_ES", "cat_ES" }, /* Catalan */
         { "as_ES", "ast_ES" }, /* Asturian */
         { "en_CA", "eng_CA" }, /* Canadian English */
