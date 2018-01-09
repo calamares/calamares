@@ -504,16 +504,7 @@ PartitionCoreModule::scanForEfiSystemPartitions()
     }
 
     QList< Partition* > efiSystemPartitions =
-        KPMHelpers::findPartitions( devices,
-                                    []( Partition* partition ) -> bool
-    {
-        if ( partition->activeFlags().testFlag( PartitionTable::FlagEsp ) )
-        {
-            cDebug() << "Found EFI system partition at" << partition->partitionPath();
-            return true;
-        }
-        return false;
-    } );
+        KPMHelpers::findPartitions( devices, PartUtils::isEfiBootable );
 
     if ( efiSystemPartitions.isEmpty() )
         cDebug() << "WARNING: system is EFI but no EFI system partitions found.";
