@@ -218,7 +218,7 @@ class UnpackOperation:
 
             return None
         finally:
-            shutil.rmtree(source_mount_path)
+            shutil.rmtree(source_mount_path, ignore_errors=True, onerror=None)
 
     def mount_image(self, entry, imgmountdir):
         """
