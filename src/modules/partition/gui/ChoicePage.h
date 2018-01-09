@@ -113,8 +113,12 @@ private:
     void setupChoices();
     QComboBox* createBootloaderComboBox( QWidget* parentButton );
     Device* selectedDevice();
-    void applyDeviceChoice();
-    void continueApplyDeviceChoice();
+
+    /* Change the UI depending on the device selected. */
+    void hideButtons();  // Hide everything when no device
+    void applyDeviceChoice();  // Start scanning new device
+    void continueApplyDeviceChoice();  // .. called after scan
+
     void updateDeviceStatePreview();
     void updateActionChoicePreview( ChoicePage::Choice choice );
     void setupActions();
