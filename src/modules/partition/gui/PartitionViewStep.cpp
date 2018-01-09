@@ -408,7 +408,7 @@ PartitionViewStep::onLeave()
                               .arg( *Calamares::Branding::ShortProductName )
                               .arg( espMountPoint );
             }
-            else if ( esp && !esp->activeFlags().testFlag( PartitionTable::FlagEsp ) )
+            else if ( esp && !PartUtils::isEfiBootable( esp ) )
             {
                 message = tr( "EFI system partition flag not set" );
                 description = tr( "An EFI system partition is necessary to start %1."
