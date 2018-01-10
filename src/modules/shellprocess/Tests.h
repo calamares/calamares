@@ -30,7 +30,12 @@ public:
 
 private Q_SLOTS:
     void initTestCase();
-    void testProcessList();
+    // Check the sample config file is processed correctly
+    void testProcessListSampleConfig();
+    // Create from a YAML list
+    void testProcessListFromList();
+    // Create from a simple YAML string
+    void testProcessListFromString();
 };
 
 #endif

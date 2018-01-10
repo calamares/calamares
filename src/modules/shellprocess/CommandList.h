@@ -19,21 +19,18 @@
 #ifndef COMMANDLIST_H
 #define COMMANDLIST_H
 
+#include <QStringList>
 #include <QVariant>
 
-class CommandList
+class CommandList : protected QStringList
 {
-    class Private;
-
 public:
     CommandList();
     CommandList(const QVariant& v);
     ~CommandList();
 
-    bool isEmpty() const;
-
-private:
-    Private *m_d;
+    using QStringList::isEmpty;
+    using QStringList::count;
 } ;
 
 #endif // COMMANDLIST_H

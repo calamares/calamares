@@ -18,53 +18,50 @@
 
 #include "CommandList.h"
 
+#include "utils/Logger.h"
+
 #include <QVariantList>
 
-class CommandList::Private
+static QStringList get_variant_stringlist(const QVariantList& l)
 {
-public:
-    Private( const QVariantList& l );
-    ~Private();
-} ;
-
-CommandList::Private::Private(const QVariantList& l)
-{
+    QStringList retl;
+    unsigned int c = 0;
+    for ( const auto& v : l )
+    {
+        if ( v.type() == QVariant::String )
+            retl.append( v.toString() );
+        else
+            cDebug() << "WARNING Bad CommandList element" << c << v.type() << v;
+        ++c;
+    }
+    return retl;
 }
-
-CommandList::Private::~Private()
-{
-}
-
-
 
 CommandList::CommandList()
-    : m_d( nullptr )
 {
 }
 
 CommandList::CommandList::CommandList(const QVariant& v)
     : CommandList()
 {
-    if ( ( v.type() == QVariant::List ) )
+    if ( v.type() == QVariant::List )
     {
         const auto v_list = v.toList();
         if ( v_list.count() )
         {
-            m_d = new Private( v_list );
+            append( get_variant_stringlist( v_list ) );
         }
+        else
+            cDebug() << "WARNING: Empty CommandList";
     }
+    else if ( v.type() == QVariant::String )
+    {
+        append( v.toString() );
+    }
+    else
+        cDebug() << "WARNING: CommandList does not understand variant" << v.type();
 }
 
 CommandList::~CommandList()
 {
-    delete m_d;
-    m_d = nullptr;  // TODO: UniquePtr
-}
-
-bool CommandList::isEmpty() const
-{
-    if ( !m_d )
-        return true;
-
-    return false;  // FIXME: actually count things
 }

@@ -44,7 +44,7 @@ ShellProcessTests::initTestCase()
 }
 
 void
-ShellProcessTests::testProcessList()
+ShellProcessTests::testProcessListSampleConfig()
 {
     YAML::Node doc;
 
@@ -62,4 +62,52 @@ ShellProcessTests::testProcessList()
     CommandList cl(
         CalamaresUtils::yamlMapToVariant( doc ).toMap().value( "script" ) );
     QVERIFY( !cl.isEmpty() );
+    QCOMPARE( cl.count(), 2 );
+}
+
+void ShellProcessTests::testProcessListFromList()
+{
+    YAML::Node doc = YAML::Load( R"(---
+script:
+    - "ls /tmp"
+    - "ls /nonexistent"
+    - "/bin/false"
+)" );
+    CommandList cl(
+        CalamaresUtils::yamlMapToVariant( doc ).toMap().value( "script" ) );
+    QVERIFY( !cl.isEmpty() );
+    QCOMPARE( cl.count(), 3 );
+
+    // Contains 1 bad element
+    doc = YAML::Load( R"(---
+script:
+    - "ls /tmp"
+    - false
+    - "ls /nonexistent"
+)" );
+    CommandList cl1(
+        CalamaresUtils::yamlMapToVariant( doc ).toMap().value( "script" ) );
+    QVERIFY( !cl1.isEmpty() );
+    QCOMPARE( cl1.count(), 2 );  // One element ignored
+}
+
+void ShellProcessTests::testProcessListFromString()
+{
+    YAML::Node doc = YAML::Load( R"(---
+script: "ls /tmp"
+)" );
+    CommandList cl(
+        CalamaresUtils::yamlMapToVariant( doc ).toMap().value( "script" ) );
+    QVERIFY( !cl.isEmpty() );
+    QCOMPARE( cl.count(), 1 );
+
+    // Not a string
+    doc = YAML::Load( R"(---
+script: false
+)" );
+    CommandList cl1(
+        CalamaresUtils::yamlMapToVariant( doc ).toMap().value( "script" ) );
+    QVERIFY( cl1.isEmpty() );
+    QCOMPARE( cl1.count(), 0 );
+
 }
