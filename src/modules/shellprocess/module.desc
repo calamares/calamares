@@ -1,0 +1,5 @@
+---
+type:      "job"
+name:      "shellprocess"
+interface: "qtplugin"
+load:      "libcalamares_job_shellprocess.so"
