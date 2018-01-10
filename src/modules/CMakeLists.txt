@@ -1,5 +1,3 @@
-include( CMakeColors )
-
 # The variable SKIP_MODULES can be set to skip particular modules;
 # individual modules can also decide they must be skipped (e.g. OS-specific
 # modules, or ones with unmet dependencies). Collect the skipped modules
@@ -31,13 +29,9 @@ foreach( SUBDIRECTORY ${SUBDIRECTORIES} )
     endif()
 endforeach()
 
-if ( LIST_SKIPPED_MODULES )
-    message( "${ColorReset}-- Skipped modules:" )
-    foreach( SUBDIRECTORY ${LIST_SKIPPED_MODULES} )
-        message( "${ColorReset}--   Skipped ${BoldRed}${SUBDIRECTORY}${ColorReset}." )
-    endforeach()
-    message( "" )
-endif()
+# This is *also* done in top-level, so list is displayed
+# both before and after the feature summary.
+calamares_explain_skipped_modules( ${LIST_SKIPPED_MODULES} )
 
 include( CalamaresAddTranslations )
 add_calamares_python_translations( ${CALAMARES_TRANSLATION_LANGUAGES} )

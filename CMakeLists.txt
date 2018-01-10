@@ -45,7 +45,7 @@ if( POLICY CMP0071 )
     cmake_policy( SET CMP0071 NEW )
 endif()
 if(NOT CMAKE_VERSION VERSION_LESS "3.10.0")
-    list(APPEND CMAKE_AUTOMOC_MACRO_NAMES 
+    list(APPEND CMAKE_AUTOMOC_MACRO_NAMES
         "K_PLUGIN_FACTORY_WITH_JSON"
         "K_EXPORT_PLASMA_DATAENGINE_WITH_JSON"
         "K_EXPORT_PLASMA_RUNNER"
@@ -119,6 +119,7 @@ if( CMAKE_COMPILER_IS_GNUCXX )
 endif()
 
 include( FeatureSummary )
+include( CMakeColors )
 
 set( QT_VERSION 5.6.0 )
 
@@ -312,6 +313,12 @@ add_feature_info(Config ${INSTALL_CONFIG} "Install Calamares configuration")
 add_feature_info(KCrash ${WITH_KF5Crash} "Crash dumps via KCrash")
 
 feature_summary(WHAT ALL)
+
+get_directory_property( SKIPPED_MODULES
+    DIRECTORY src/modules
+    DEFINITION LIST_SKIPPED_MODULES
+)
+calamares_explain_skipped_modules( ${SKIPPED_MODULES} )
 
 # Add all targets to the build-tree export set
 set( CMAKE_INSTALL_CMAKEDIR "${CMAKE_INSTALL_LIBDIR}/cmake/Calamares" CACHE PATH  "Installation directory for CMake files" )

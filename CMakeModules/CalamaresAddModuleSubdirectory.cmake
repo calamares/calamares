@@ -1,4 +1,3 @@
-include( CMakeColors )
 include( CalamaresAddTranslations )
 
 set( MODULE_DATA_DESTINATION share/calamares/modules )
@@ -8,6 +7,16 @@ set( MODULE_DATA_DESTINATION share/calamares/modules )
 macro( calamares_skip_module )
     set( SKIPPED_MODULES ${SKIPPED_MODULES} ${ARGV} PARENT_SCOPE )
 endmacro()
+
+function( calamares_explain_skipped_modules )
+    if ( ARGN )
+        message( "${ColorReset}-- Skipped modules:" )
+        foreach( SUBDIRECTORY ${ARGN} )
+            message( "${ColorReset}--   Skipped ${BoldRed}${SUBDIRECTORY}${ColorReset}." )
+        endforeach()
+        message( "" )
+    endif()
+endfunction()
 
 function( calamares_add_module_subdirectory )
     set( SUBDIRECTORY ${ARGV0} )
