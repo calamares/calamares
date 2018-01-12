@@ -82,7 +82,7 @@ ProcessJob::exec()
                          QString(),
                          m_timeoutSec );
 
-    return explainProcess( ec, m_command, output, m_timeoutSec );
+    return CalamaresUtils::ProcessResult::explainProcess( this, ec, m_command, output, m_timeoutSec );
 }
 
 
@@ -142,43 +142,6 @@ ProcessJob::callOutput( const QString& command,
 
     cLog() << "Finished. Exit code:" << process.exitCode();
     return process.exitCode();
-}
-
-
-JobResult
-ProcessJob::explainProcess( int ec, const QString& command, const QString& output, int timeout )
-{
-    if ( ec == 0 )
-        return JobResult::ok();
-
-    if ( ec == -1 ) //Crash!
-        return JobResult::error( tr( "External command crashed" ),
-                                 tr( "Command %1 crashed.\nOutput:\n%2" )
-                                        .arg( command )
-                                        .arg( output ) );
-
-    if ( ec == -2 )
-        return JobResult::error( tr( "External command failed to start" ),
-                                 tr( "Command %1 failed to start." )
-                                    .arg( command ) );
-
-    if ( ec == -3 )
-        return JobResult::error( tr( "Internal error when starting command" ),
-                                 tr( "Bad parameters for process job call." ) );
-
-    if ( ec == -4 )
-        return JobResult::error( tr( "External command failed to finish" ),
-                                 tr( "Command %1 failed to finish in %2s.\nOutput:\n%3" )
-                                    .arg( command )
-                                    .arg( timeout )
-                                    .arg( output ) );
-
-    //Any other exit code
-    return JobResult::error( tr( "External command finished with errors" ),
-                             tr( "Command %1 finished with exit code %2.\nOutput:\n%3" )
-                                .arg( command )
-                                .arg( ec )
-                                .arg( output ) );
 }
 
 } // namespace Calamares

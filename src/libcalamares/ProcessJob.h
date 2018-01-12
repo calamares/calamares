@@ -39,10 +39,6 @@ public:
     QString prettyStatusMessage() const override;
     JobResult exec() override;
 
-protected:
-    /** @brief Explain a typical external process failure. */
-    static JobResult explainProcess( int errorCode, const QString& command, const QString& output, int timeout );
-
 private:
     int callOutput( const QString& command,
                     QString& output,
