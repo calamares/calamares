@@ -31,6 +31,9 @@ public:
 
     using QStringList::isEmpty;
     using QStringList::count;
+    using QStringList::cbegin;
+    using QStringList::cend;
+    using QStringList::const_iterator;
 } ;
 
 #endif // COMMANDLIST_H
