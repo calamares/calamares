@@ -313,7 +313,12 @@ RequirementsChecker::verdict() const
 bool
 RequirementsChecker::checkEnoughStorage( qint64 requiredSpace )
 {
+#ifdef WITHOUT_LIBPARTED
+    cDebug() << "WARNING: RequirementsChecker is configured without libparted.";
+    return false;
+#else
     return check_big_enough( requiredSpace );
+#endif
 }
 
 
