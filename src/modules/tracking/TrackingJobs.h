@@ -30,7 +30,7 @@ class TrackingInstallJob : public Calamares::Job
     Q_OBJECT
 public:
     TrackingInstallJob( const QString& url );
-    ~TrackingInstallJob();
+    ~TrackingInstallJob() override;
 
     QString prettyName() const override;
     QString prettyDescription() const override;

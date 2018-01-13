@@ -144,7 +144,7 @@ Qt::ItemFlags
 PackageModel::flags( const QModelIndex& index ) const
 {
     if ( !index.isValid() )
-        return 0;
+        return Qt::ItemFlags();
     if ( index.column() == 0 )
         return Qt::ItemIsUserCheckable | QAbstractItemModel::flags( index );
     return QAbstractItemModel::flags( index );

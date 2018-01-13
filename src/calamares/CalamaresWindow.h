@@ -37,7 +37,7 @@ class CalamaresWindow : public QWidget
     Q_OBJECT
 public:
     CalamaresWindow( QWidget* parent = nullptr );
-    virtual ~CalamaresWindow() {}
+    virtual ~CalamaresWindow() override {}
 
 public slots:
     /**
