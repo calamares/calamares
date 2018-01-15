@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-06 06:02-0500\n"
+"POT-Creation-Date: 2017-12-21 16:44+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Language-Team: Persian (https://www.transifex.com/calamares/teams/20061/fa/)\n"
 "MIME-Version: 1.0\n"
@@ -16,27 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: fa\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-
-#: src/modules/packages/main.py:59
-#, python-format
-msgid "Processing packages (%(count)d / %(total)d)"
-msgstr ""
-
-#: src/modules/packages/main.py:61
-#, python-format
-msgid "Installing one package."
-msgid_plural "Installing %(num)d packages."
-msgstr[0] ""
-
-#: src/modules/packages/main.py:64
-#, python-format
-msgid "Removing one package."
-msgid_plural "Removing %(num)d packages."
-msgstr[0] ""
-
-#: src/modules/packages/main.py:68
-msgid "Install packages."
-msgstr ""
 
 #: src/modules/dummypython/main.py:44
 msgid "Dummy python job."
@@ -49,3 +28,24 @@ msgstr ""
 #: src/modules/machineid/main.py:35
 msgid "Generate machine-id."
 msgstr ""
+
+#: src/modules/packages/main.py:60
+#, python-format
+msgid "Processing packages (%(count)d / %(total)d)"
+msgstr ""
+
+#: src/modules/packages/main.py:62 src/modules/packages/main.py:72
+msgid "Install packages."
+msgstr ""
+
+#: src/modules/packages/main.py:65
+#, python-format
+msgid "Installing one package."
+msgid_plural "Installing %(num)d packages."
+msgstr[0] ""
+
+#: src/modules/packages/main.py:68
+#, python-format
+msgid "Removing one package."
+msgid_plural "Removing %(num)d packages."
+msgstr[0] ""
