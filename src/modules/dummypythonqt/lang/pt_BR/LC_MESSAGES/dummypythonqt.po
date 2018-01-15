@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-04 08:16-0400\n"
+"POT-Creation-Date: 2017-12-21 16:44+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Guilherme M.S. <guimarcalsilva@gmail.com>, 2017\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/calamares/teams/20061/pt_BR/)\n"
@@ -28,16 +28,16 @@ msgstr "Uma nova QLabel."
 
 #: src/modules/dummypythonqt/main.py:97
 msgid "Dummy PythonQt ViewStep"
-msgstr "ViewStep do PythonQt fictício"
+msgstr "ViewStep do Modelo PythonQt"
 
 #: src/modules/dummypythonqt/main.py:183
 msgid "The Dummy PythonQt Job"
-msgstr "O trabalho de modelo do PythonQt"
+msgstr "A Tarefa de Modelo PythonQt"
 
 #: src/modules/dummypythonqt/main.py:186
 msgid "This is the Dummy PythonQt Job. The dummy job says: {}"
-msgstr "Este é o trabalho do modelo PythonQt. O trabalho fictício diz: {}"
+msgstr "Esta é a Tarefa Modelo PythonQt. A tarefa modelo diz: {}"
 
 #: src/modules/dummypythonqt/main.py:190
 msgid "A status message for Dummy PythonQt Job."
-msgstr "Uma mensagem de status para Trabalho Fictício PythonQt."
+msgstr "Uma mensagem de status para a Tarefa Modelo PythonQt."
