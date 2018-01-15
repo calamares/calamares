@@ -19,8 +19,13 @@
 #ifndef COMMANDLIST_H
 #define COMMANDLIST_H
 
+#include "Job.h"
+
 #include <QStringList>
 #include <QVariant>
+
+namespace CalamaresUtils
+{
 
 class CommandList : protected QStringList
 {
@@ -29,7 +34,12 @@ public:
     CommandList( const QVariant& v, bool doChroot = true );
     ~CommandList();
 
-    bool doChroot() const { return m_doChroot; }
+    bool doChroot() const
+    {
+        return m_doChroot;
+    }
+
+    Calamares::JobResult run( const QObject* parent );
 
     using QStringList::isEmpty;
     using QStringList::count;
@@ -41,4 +51,5 @@ private:
     bool m_doChroot;
 } ;
 
+}  // namespace
 #endif // COMMANDLIST_H

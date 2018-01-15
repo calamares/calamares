@@ -2,7 +2,6 @@ calamares_add_plugin( shellprocess
     TYPE job
     EXPORT_MACRO PLUGINDLLEXPORT_PRO
     SOURCES
-        CommandList.cpp
         ShellProcessJob.cpp
     LINK_PRIVATE_LIBRARIES
         calamares
@@ -16,7 +15,6 @@ if( ECM_FOUND )
 
     ecm_add_test(
             Tests.cpp
-            CommandList.cpp
         TEST_NAME
             shellprocesstest
         LINK_LIBRARIES

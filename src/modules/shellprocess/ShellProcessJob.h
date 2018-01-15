@@ -24,11 +24,11 @@
 
 #include <CppJob.h>
 
+#include <utils/CommandList.h>
 #include <utils/PluginFactory.h>
 
 #include <PluginDllMacro.h>
 
-class CommandList;
 
 class PLUGINDLLEXPORT ShellProcessJob : public Calamares::CppJob
 {
@@ -45,7 +45,7 @@ public:
     void setConfigurationMap( const QVariantMap& configurationMap ) override;
 
 private:
-    CommandList *m_commands;
+    CalamaresUtils::CommandList* m_commands;
     bool m_dontChroot;
 };
 

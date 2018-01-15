@@ -18,8 +18,6 @@
 
 #include "ShellProcessJob.h"
 
-#include "CommandList.h"
-
 #include <QProcess>
 #include <QDateTime>
 #include <QThread>
@@ -30,9 +28,8 @@
 
 #include "utils/CalamaresUtils.h"
 #include "utils/CalamaresUtilsSystem.h"
+#include "utils/CommandList.h"
 #include "utils/Logger.h"
-
-class CommandList;
 
 ShellProcessJob::ShellProcessJob( QObject* parent )
     : Calamares::CppJob( parent )
@@ -59,56 +56,14 @@ ShellProcessJob::prettyName() const
 Calamares::JobResult
 ShellProcessJob::exec()
 {
-    using CalamaresUtils::System;
-    System::RunLocation location = m_dontChroot ? System::RunLocation::RunInHost : System::RunLocation::RunInTarget;
 
     if ( ! m_commands || m_commands->isEmpty() )
     {
-        cDebug() << "WARNING: No commands to execute";
+        cDebug() << "WARNING: No commands to execute" << moduleInstanceKey();
         return Calamares::JobResult::ok();
     }
 
-    /* Figure out the replacement for @@ROOT@@ */
-    QString root = QStringLiteral( "/" );
-    Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
-    if ( location == System::RunLocation::RunInTarget )
-    {
-         if ( !gs || !gs->contains( "rootMountPoint" ) )
-         {
-             cDebug() << "ERROR: No rootMountPoint defined.";
-             return Calamares::JobResult::error( tr( "Could not run command." ),
-                                                 tr( "No rootMountPoint is defined, so command cannot be run in the target environment." ) );
-         }
-         root = gs->value( "rootMountPoint" ).toString();
-    }
-
-    for ( CommandList::const_iterator i = m_commands->cbegin(); i != m_commands->cend(); ++i )
-    {
-        QString processed_cmd = *i;
-        processed_cmd.replace( "@@ROOT@@", root );  // FIXME?
-        bool suppress_result = false;
-        if ( processed_cmd.startsWith( '-' ) )
-        {
-            suppress_result = true;
-            processed_cmd.remove( 0, 1 );  // Drop the -  // FIXME?
-        }
-
-        QStringList shell_cmd { "/bin/sh", "-c" };
-        shell_cmd << processed_cmd;
-
-        CalamaresUtils::ProcessResult r = System::runCommand(
-            location, shell_cmd, QString(), QString(), 10 );
-
-        if ( r.getExitCode() != 0 )
-        {
-            if ( suppress_result )
-                cDebug() << "Error code" << r.getExitCode() << "ignored by ShellProcess configuration.";
-            else
-                return r.explainProcess( this, processed_cmd, 10 );
-        }
-    }
-
-    return Calamares::JobResult::ok();
+    return m_commands->run( this );
 }
 
 
@@ -119,7 +74,7 @@ ShellProcessJob::setConfigurationMap( const QVariantMap& configurationMap )
 
     if ( configurationMap.contains( "script" ) )
     {
-        m_commands = new CommandList( configurationMap.value( "script" ) );
+        m_commands = new CalamaresUtils::CommandList( configurationMap.value( "script" ), !m_dontChroot );
         if ( m_commands->isEmpty() )
             cDebug() << "ShellProcessJob: \"script\" contains no commands for" << moduleInstanceKey();
     }

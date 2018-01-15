@@ -17,8 +17,8 @@
  */
 
 #include "Tests.h"
-#include "CommandList.h"
 
+#include "utils/CommandList.h"
 #include "utils/YamlUtils.h"
 
 #include <yaml-cpp/yaml.h>
@@ -29,6 +29,8 @@
 #include <QStringList>
 
 QTEST_GUILESS_MAIN( ShellProcessTests )
+
+using CommandList = CalamaresUtils::CommandList;
 
 ShellProcessTests::ShellProcessTests()
 {
