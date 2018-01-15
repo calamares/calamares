@@ -25,15 +25,20 @@
 class CommandList : protected QStringList
 {
 public:
-    CommandList();
-    CommandList(const QVariant& v);
+    CommandList( bool doChroot = true );
+    CommandList( const QVariant& v, bool doChroot = true );
     ~CommandList();
+
+    bool doChroot() const { return m_doChroot; }
 
     using QStringList::isEmpty;
     using QStringList::count;
     using QStringList::cbegin;
     using QStringList::cend;
     using QStringList::const_iterator;
+
+private:
+    bool m_doChroot;
 } ;
 
 #endif // COMMANDLIST_H

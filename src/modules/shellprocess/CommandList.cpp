@@ -37,12 +37,13 @@ static QStringList get_variant_stringlist(const QVariantList& l)
     return retl;
 }
 
-CommandList::CommandList()
+CommandList::CommandList( bool doChroot )
+    : m_doChroot( doChroot )
 {
 }
 
-CommandList::CommandList::CommandList(const QVariant& v)
-    : CommandList()
+CommandList::CommandList::CommandList( const QVariant& v, bool doChroot )
+    : CommandList( doChroot )
 {
     if ( v.type() == QVariant::List )
     {
