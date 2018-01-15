@@ -1,7 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2017, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -93,7 +93,8 @@ System::mount( const QString& devicePath,
 }
 
 ProcessResult
-System::targetEnvCommand(
+System::runCommand(
+    System::RunLocation location,
     const QStringList& args,
     const QString& workingPath,
     const QString& stdInput,
@@ -105,8 +106,8 @@ System::targetEnvCommand(
         return -3;
 
     Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
-    if ( !gs ||
-         ( m_doChroot && !gs->contains( "rootMountPoint" ) ) )
+    if ( ( location == System::RunLocation::RunInTarget ) &&
+         ( !gs || !gs->contains( "rootMountPoint" ) ) )
     {
         cLog() << "No rootMountPoint in global storage";
         return -3;
@@ -116,7 +117,7 @@ System::targetEnvCommand(
     QString program;
     QStringList arguments;
 
-    if ( m_doChroot )
+    if ( location == System::RunLocation::RunInTarget )
     {
         QString destDir = gs->value( "rootMountPoint" ).toString();
         if ( !QDir( destDir ).exists() )
@@ -247,6 +248,47 @@ bool
 System::doChroot() const
 {
     return m_doChroot;
+}
+
+Calamares::JobResult
+ProcessResult::explainProcess( const QObject* parent, int ec, const QString& command, const QString& output, int timeout )
+{
+    using Calamares::JobResult;
+
+    if ( ec == 0 )
+        return JobResult::ok();
+
+    QString outputMessage = output.isEmpty() ? QStringLiteral("\nThere was no output from the command.")
+        : (parent->tr("\nOutput:\n") + output);
+
+    if ( ec == -1 ) //Crash!
+        return JobResult::error( parent->tr( "External command crashed." ),
+                                 parent->tr( "Command <i>%1</i> crashed." )
+                                        .arg( command )
+                                        + outputMessage );
+
+    if ( ec == -2 )
+        return JobResult::error( parent->tr( "External command failed to start." ),
+                                 parent->tr( "Command <i>%1</i> failed to start." )
+                                    .arg( command ) );
+
+    if ( ec == -3 )
+        return JobResult::error( parent->tr( "Internal error when starting command." ),
+                                 parent->tr( "Bad parameters for process job call." ) );
+
+    if ( ec == -4 )
+        return JobResult::error( parent->tr( "External command failed to finish." ),
+                                 parent->tr( "Command <i>%1</i> failed to finish in %2 seconds." )
+                                    .arg( command )
+                                    .arg( timeout )
+                                    + outputMessage );
+
+    //Any other exit code
+    return JobResult::error( parent->tr( "External command finished with errors." ),
+                             parent->tr( "Command <i>%1</i> finished with exit code %2." )
+                                .arg( command )
+                                .arg( ec )
+                                + outputMessage );
 }
 
 }  // namespace
