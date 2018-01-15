@@ -108,7 +108,7 @@ Calamares::JobResult CommandList::run( const QObject* parent )
         if ( r.getExitCode() != 0 )
         {
             if ( suppress_result )
-                cDebug() << "Error code" << r.getExitCode() << "ignored by ShellProcess configuration.";
+                cDebug() << "Error code" << r.getExitCode() << "ignored by CommandList configuration.";
             else
                 return r.explainProcess( parent, processed_cmd, 10 );
         }
