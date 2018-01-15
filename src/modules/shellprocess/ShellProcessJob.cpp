@@ -118,8 +118,10 @@ ShellProcessJob::setConfigurationMap( const QVariantMap& configurationMap )
     {
         m_commands = new CommandList( configurationMap.value( "script" ) );
         if ( m_commands->isEmpty() )
-            cDebug() << "ShellProcessJob: \"script\" contains no commands.";
+            cDebug() << "ShellProcessJob: \"script\" contains no commands for" << moduleInstanceKey();
     }
+    else
+        cDebug() << "WARNING: No script given for ShellProcessJob" << moduleInstanceKey();
 }
 
 CALAMARES_PLUGIN_FACTORY_DEFINITION( ShellProcessJobFactory, registerPlugin<ShellProcessJob>(); )
