@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2017, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -22,11 +22,12 @@
 #include <QObject>
 #include <QVariantMap>
 
-#include <CppJob.h>
+#include "CppJob.h"
+#include "PluginDllMacro.h"
 
-#include <utils/PluginFactory.h>
+#include "utils/PluginFactory.h"
 
-#include <PluginDllMacro.h>
+struct ContextualProcessBinding;
 
 class PLUGINDLLEXPORT ContextualProcessJob : public Calamares::CppJob
 {
@@ -43,7 +44,8 @@ public:
     void setConfigurationMap( const QVariantMap& configurationMap ) override;
 
 private:
-    QVariantMap m_configurationMap;
+    QList<ContextualProcessBinding*> m_commands;
+    bool m_dontChroot;
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( ContextualProcessJobFactory )

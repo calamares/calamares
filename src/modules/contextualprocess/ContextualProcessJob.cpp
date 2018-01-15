@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2017, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -26,7 +26,36 @@
 #include "JobQueue.h"
 #include "GlobalStorage.h"
 
+#include "utils/CalamaresUtils.h"
+#include "utils/CommandList.h"
 #include "utils/Logger.h"
+
+struct ContextualProcessBinding
+{
+    ContextualProcessBinding( const QString& _n, const QString& _v, CalamaresUtils::CommandList* _c )
+        : variable( _n )
+        , value( _v )
+        , commands( _c )
+    {
+    }
+
+    ~ContextualProcessBinding();
+
+    int count() const
+    {
+        return commands ? commands->count() : 0;
+    }
+
+    QString variable;
+    QString value;
+    CalamaresUtils::CommandList* commands;
+} ;
+
+
+ContextualProcessBinding::~ContextualProcessBinding()
+{
+    delete commands;
+}
 
 ContextualProcessJob::ContextualProcessJob( QObject* parent )
     : Calamares::CppJob( parent )
@@ -36,6 +65,7 @@ ContextualProcessJob::ContextualProcessJob( QObject* parent )
 
 ContextualProcessJob::~ContextualProcessJob()
 {
+    qDeleteAll( m_commands );
 }
 
 
@@ -49,8 +79,17 @@ ContextualProcessJob::prettyName() const
 Calamares::JobResult
 ContextualProcessJob::exec()
 {
-    QThread::sleep( 3 );
+    Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
 
+    for ( const ContextualProcessBinding* binding : m_commands )
+    {
+        if ( gs->contains( binding->variable ) && ( gs->value( binding->variable ).toString() == binding->value ) )
+        {
+            Calamares::JobResult r = binding->commands->run( this );
+            if ( !r )
+                return r;
+        }
+    }
     return Calamares::JobResult::ok();
 }
 
@@ -58,7 +97,41 @@ ContextualProcessJob::exec()
 void
 ContextualProcessJob::setConfigurationMap( const QVariantMap& configurationMap )
 {
-    m_configurationMap = configurationMap;
+    m_dontChroot = CalamaresUtils::getBool( configurationMap, "dontChroot", false );
+
+    for ( QVariantMap::const_iterator iter = configurationMap.cbegin(); iter != configurationMap.cend(); ++iter )
+    {
+        QString variableName = iter.key();
+        if ( variableName.isEmpty() || ( variableName == "dontChroot" ) )
+            continue;
+
+        if ( iter.value().type() != QVariant::Map )
+        {
+            cDebug() << "WARNING:" << moduleInstanceKey() << "bad configuration values for" << variableName;
+            continue;
+        }
+
+        QVariantMap values = iter.value().toMap();
+        for ( QVariantMap::const_iterator valueiter = values.cbegin(); valueiter != values.cend(); ++valueiter )
+        {
+            QString valueString = valueiter.key();
+            if ( variableName.isEmpty() )
+            {
+                cDebug() << "WARNING:" << moduleInstanceKey() << "variable" << variableName << "unrecognized value" << valueiter.key();
+                continue;
+            }
+
+            CalamaresUtils::CommandList* commands = new CalamaresUtils::CommandList( valueiter.value(), !m_dontChroot );
+
+            if ( commands->count() > 0 )
+            {
+                m_commands.append( new ContextualProcessBinding( variableName, valueString, commands ) );
+                cDebug() << variableName << '=' << valueString << "will execute" << commands->count() << "commands";
+            }
+            else
+                delete commands;
+        }
+    }
 }
 
 CALAMARES_PLUGIN_FACTORY_DEFINITION( ContextualProcessJobFactory, registerPlugin<ContextualProcessJob>(); )
