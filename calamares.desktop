@@ -17,6 +17,8 @@ Categories=Qt;System;
 
 
 
+
+
 Name[ca]=Calamares
 Icon[ca]=calamares
 GenericName[ca]=Instal·lador de sistema
@@ -65,6 +67,10 @@ Name[is]=Calamares
 Icon[is]=calamares
 GenericName[is]=Kerfis uppsetning
 Comment[is]=Calamares — Kerfis uppsetning
+Name[cs_CZ]=Calamares
+Icon[cs_CZ]=calamares
+GenericName[cs_CZ]=Instalátor systému
+Comment[cs_CZ]=Calamares – instalátor operačních systémů
 Name[ja]=Calamares
 Icon[ja]=calamares
 GenericName[ja]=システムインストーラー
@@ -93,10 +99,10 @@ Name[pt_BR]=Calamares
 Icon[pt_BR]=calamares
 GenericName[pt_BR]=Instalador de Sistema
 Comment[pt_BR]=Calamares — Instalador de Sistema
-Name[cs_CZ]=Calamares
-Icon[cs_CZ]=calamares
-GenericName[cs_CZ]=Instalátor systému
-Comment[cs_CZ]=Calamares – instalátor operačních systémů
+Name[ro]=Calamares
+Icon[ro]=calamares
+GenericName[ro]=Instalator de sistem
+Comment[ro]=Calamares — Instalator de sistem
 Name[ru]=Calamares
 Icon[ru]=calamares
 GenericName[ru]=Установщик системы
@@ -109,6 +115,8 @@ Name[sq]=Calamares
 Icon[sq]=calamares
 GenericName[sq]=Instalues Sistemi
 Comment[sq]=Calamares — Instalues Sistemi
+GenericName[fi_FI]=Järjestelmän Asennusohjelma
+Comment[fi_FI]=Calamares — Järjestelmän Asentaja
 Name[sv]=Calamares
 Icon[sv]=calamares
 GenericName[sv]=Systeminstallerare
