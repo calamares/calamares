@@ -99,9 +99,12 @@ ShellProcessJob::exec()
         CalamaresUtils::ProcessResult r = System::runCommand(
             location, shell_cmd, QString(), QString(), 10 );
 
-        if ( ( r.getExitCode() != 0 ) && !suppress_result )
+        if ( r.getExitCode() != 0 )
         {
-            return Calamares::JobResult::error( tr( "Could not run command." ), r.getOutput() );
+            if ( suppress_result )
+                cDebug() << "Error code" << r.getExitCode() << "ignored by ShellProcess configuration.";
+            else
+                return Calamares::JobResult::error( tr( "Could not run command." ), r.getOutput() );
         }
     }
 
