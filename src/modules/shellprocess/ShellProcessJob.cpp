@@ -104,7 +104,7 @@ ShellProcessJob::exec()
             if ( suppress_result )
                 cDebug() << "Error code" << r.getExitCode() << "ignored by ShellProcess configuration.";
             else
-                return Calamares::JobResult::error( tr( "Could not run command." ), r.getOutput() );
+                return r.explainProcess( this, processed_cmd, 10 );
         }
     }
 

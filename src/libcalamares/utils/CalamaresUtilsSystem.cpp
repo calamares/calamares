@@ -258,34 +258,37 @@ ProcessResult::explainProcess( const QObject* parent, int ec, const QString& com
     if ( ec == 0 )
         return JobResult::ok();
 
+    QString outputMessage = output.isEmpty() ? QStringLiteral("\nThere was no output from the command.")
+        : (parent->tr("\nOutput:\n") + output);
+
     if ( ec == -1 ) //Crash!
-        return JobResult::error( parent->tr( "External command crashed" ),
-                                 parent->tr( "Command %1 crashed.\nOutput:\n%2" )
+        return JobResult::error( parent->tr( "External command crashed." ),
+                                 parent->tr( "Command <i>%1</i> crashed." )
                                         .arg( command )
-                                        .arg( output ) );
+                                        + outputMessage );
 
     if ( ec == -2 )
-        return JobResult::error( parent->tr( "External command failed to start" ),
-                                 parent->tr( "Command %1 failed to start." )
+        return JobResult::error( parent->tr( "External command failed to start." ),
+                                 parent->tr( "Command <i>%1</i> failed to start." )
                                     .arg( command ) );
 
     if ( ec == -3 )
-        return JobResult::error( parent->tr( "Internal error when starting command" ),
+        return JobResult::error( parent->tr( "Internal error when starting command." ),
                                  parent->tr( "Bad parameters for process job call." ) );
 
     if ( ec == -4 )
-        return JobResult::error( parent->tr( "External command failed to finish" ),
-                                 parent->tr( "Command %1 failed to finish in %2s.\nOutput:\n%3" )
+        return JobResult::error( parent->tr( "External command failed to finish." ),
+                                 parent->tr( "Command <i>%1</i> failed to finish in %2 seconds." )
                                     .arg( command )
                                     .arg( timeout )
-                                    .arg( output ) );
+                                    + outputMessage );
 
     //Any other exit code
-    return JobResult::error( parent->tr( "External command finished with errors" ),
-                             parent->tr( "Command %1 finished with exit code %2.\nOutput:\n%3" )
+    return JobResult::error( parent->tr( "External command finished with errors." ),
+                             parent->tr( "Command <i>%1</i> finished with exit code %2." )
                                 .arg( command )
                                 .arg( ec )
-                                .arg( output ) );
+                                + outputMessage );
 }
 
 }  // namespace
