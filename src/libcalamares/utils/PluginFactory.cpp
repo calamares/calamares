@@ -33,41 +33,38 @@ namespace Calamares
 {
 
 PluginFactory::PluginFactory()
-    : d_ptr( new PluginFactoryPrivate )
+    : pd_ptr( new PluginFactoryPrivate )
 {
-    Q_D( PluginFactory );
-    d->q_ptr = this;
+    pd_ptr->q_ptr = this;
 
     factorycleanup()->add( this );
 }
 
 PluginFactory::PluginFactory( PluginFactoryPrivate& d )
-    : d_ptr( &d )
+    : pd_ptr( &d )
 {
     factorycleanup()->add( this );
 }
 
 PluginFactory::~PluginFactory()
 {
-    delete d_ptr;
+    delete pd_ptr;
 }
 
 void PluginFactory::doRegisterPlugin( const QString& keyword, const QMetaObject* metaObject, CreateInstanceFunction instanceFunction )
 {
-    Q_D( PluginFactory );
-
     Q_ASSERT( metaObject );
 
     // we allow different interfaces to be registered without keyword
     if ( !keyword.isEmpty() )
     {
-        if ( d->createInstanceHash.contains( keyword ) )
+        if ( pd_ptr->createInstanceHash.contains( keyword ) )
             qWarning() << "A plugin with the keyword" << keyword << "was already registered. A keyword must be unique!";
-        d->createInstanceHash.insert( keyword, PluginFactoryPrivate::Plugin( metaObject, instanceFunction ) );
+        pd_ptr->createInstanceHash.insert( keyword, PluginFactoryPrivate::Plugin( metaObject, instanceFunction ) );
     }
     else
     {
-        const QList<PluginFactoryPrivate::Plugin> clashes( d->createInstanceHash.values( keyword ) );
+        const QList<PluginFactoryPrivate::Plugin> clashes( pd_ptr->createInstanceHash.values( keyword ) );
         const QMetaObject* superClass = metaObject->superClass();
         if ( superClass )
         {
@@ -94,17 +91,15 @@ void PluginFactory::doRegisterPlugin( const QString& keyword, const QMetaObject*
                 }
             }
         }
-        d->createInstanceHash.insertMulti( keyword, PluginFactoryPrivate::Plugin( metaObject, instanceFunction ) );
+        pd_ptr->createInstanceHash.insertMulti( keyword, PluginFactoryPrivate::Plugin( metaObject, instanceFunction ) );
     }
 }
 
 QObject* PluginFactory::create( const char* iface, QWidget* parentWidget, QObject* parent, const QString& keyword )
 {
-    Q_D( PluginFactory );
-
     QObject* obj = nullptr;
 
-    const QList<PluginFactoryPrivate::Plugin> candidates( d->createInstanceHash.values( keyword ) );
+    const QList<PluginFactoryPrivate::Plugin> candidates( pd_ptr->createInstanceHash.values( keyword ) );
     // for !keyword.isEmpty() candidates.count() is 0 or 1
 
     for ( const PluginFactoryPrivate::Plugin& plugin : candidates )

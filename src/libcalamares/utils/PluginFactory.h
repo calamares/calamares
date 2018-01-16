@@ -148,7 +148,7 @@ namespace Calamares
 class DLLEXPORT PluginFactory : public QObject
 {
     Q_OBJECT
-    Q_DECLARE_PRIVATE( PluginFactory )
+    friend class PluginFactoryPrivate;
 public:
     /**
      * This constructor creates a factory for a plugin.
@@ -249,7 +249,7 @@ protected:
         doRegisterPlugin( keyword, &T::staticMetaObject, instanceFunction );
     }
 
-    PluginFactoryPrivate* const d_ptr;
+    PluginFactoryPrivate* const pd_ptr;
 
     /**
      * This function is called when the factory asked to create an Object.
