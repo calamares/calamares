@@ -111,13 +111,11 @@ namespace Calamares
  * T(QObject *parent, const QVariantList &args)
  * \endcode
  *
- * You should typically use either CALAMARES_PLUGIN_FACTORY() or
- * CALAMARES_PLUGIN_FACTORY_WITH_JSON() in your plugin code to create the factory.  The
- * typical pattern is
+ * You should typically use CALAMARES_PLUGIN_FACTORY_DEFINITION() in your plugin code to 
+ * create the factory.  The pattern is
  *
  * \code
- * #include <PluginFactory.h>
- * #include <plugininterface.h>
+ * #include "utils/PluginFactory.h"
  *
  * class MyPlugin : public PluginInterface
  * {
@@ -127,10 +125,9 @@ namespace Calamares
  *     {}
  * };
  *
- * CALAMARES_PLUGIN_FACTORY(MyPluginFactory,
+ * CALAMARES_PLUGIN_FACTORY_DEFINITION(MyPluginFactory,
  *                  registerPlugin<MyPlugin>();
  *                 )
- * #include <myplugin.moc>
  * \endcode
  *
  * If you want to load a library use KPluginLoader.
