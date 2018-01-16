@@ -29,8 +29,6 @@
 
 Q_GLOBAL_STATIC( QObjectCleanupHandler, factorycleanup )
 
-extern int kLibraryDebugArea();
-
 namespace Calamares
 {
 
