@@ -100,6 +100,7 @@ ViewManager::ViewManager( QObject* parent )
 ViewManager::~ViewManager()
 {
     m_widget->deleteLater();
+    s_instance = nullptr;
 }
 
 
