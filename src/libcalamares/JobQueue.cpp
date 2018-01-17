@@ -41,9 +41,6 @@ public:
         , m_queue( queue )
         , m_jobIndex( 0 )
     {
-#ifdef WITH_PYTHON
-        new CalamaresPython::Helper( this );
-#endif
     }
 
     void setJobs( const JobList& jobs )

@@ -381,8 +381,10 @@ PythonJob::emitProgress( qreal progressValue )
 CalamaresPython::Helper*
 PythonJob::helper()
 {
-    return CalamaresPython::Helper::s_instance;
-
+    auto ptr = CalamaresPython::Helper::s_instance;
+    if (!ptr)
+        ptr = new CalamaresPython::Helper;
+    return ptr;
 }
 
 
