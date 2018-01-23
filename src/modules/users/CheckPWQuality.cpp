@@ -20,6 +20,7 @@
 
 #include "utils/Logger.h"
 
+#include <QString>
 #include <QWidget>
 
 #ifdef HAVE_LIBPWQUALITY
@@ -53,7 +54,7 @@ PasswordCheck::PasswordCheck( MessageFunc m, AcceptFunc a )
 // Try to trick Transifex into accepting these strings
 #define tr parent->tr
 
-DEFINE_CHECK_FUNC(minLength)
+DEFINE_CHECK_FUNC( minLength )
 {
     int minLength = -1;
     if ( value.canConvert( QVariant::Int ) )
@@ -75,7 +76,7 @@ DEFINE_CHECK_FUNC(minLength)
     }
 }
 
-DEFINE_CHECK_FUNC(maxLength)
+DEFINE_CHECK_FUNC( maxLength )
 {
     int maxLength = -1;
     if ( value.canConvert( QVariant::Int ) )
@@ -105,14 +106,17 @@ DEFINE_CHECK_FUNC(maxLength)
 class PWSettingsHolder
 {
 public:
+    static constexpr int arbitrary_minimum_strength = 40;
+
     PWSettingsHolder()
         : m_settings( pwquality_default_settings() )
+        , m_auxerror( nullptr )
     {
     }
 
     ~PWSettingsHolder()
     {
-        cDebug() << "Freeing PWQ@" << (void *)m_settings;
+        cDebug() << "Freeing PWQ@" << ( void* )m_settings;
         pwquality_free_settings( m_settings );
     }
 
@@ -125,14 +129,158 @@ public:
     /// Checks the given password @p pwd against the current configuration
     int check( const QString& pwd )
     {
-        return pwquality_check(m_settings, pwd.toUtf8().constData(), nullptr, nullptr, nullptr);
+        void* auxerror = nullptr;
+        int r = pwquality_check( m_settings, pwd.toUtf8().constData(), nullptr, nullptr, &auxerror );
+        m_rv = r;
+        return r;
     }
 
+    bool hasExplanation() const
+    {
+        return m_rv < 0;
+    }
+
+#define tr parent->tr
+    /* This is roughly the same as the function pwquality_strerror,
+     * only with QStrings instead, and using the Qt translation scheme.
+     * It is used under the terms of the GNU GPL v3 or later, as
+     * allowed by the libpwquality license (LICENSES/GPLv2+-libpwquality)
+     */
+    QString explanation( QWidget* parent )
+    {
+        void* auxerror = m_auxerror;
+        m_auxerror = nullptr;
+
+        if ( m_rv >= arbitrary_minimum_strength )
+            return QString();
+        if ( m_rv >= 0 )
+            return tr( "Password is too weak" );
+
+        switch ( m_rv )
+        {
+        case PWQ_ERROR_MEM_ALLOC:
+            if ( auxerror )
+            {
+                QString s = tr( "Memory allocation error when setting '%1'" ).arg( ( const char* )auxerror );
+                free( auxerror );
+                return s;
+            }
+            return tr( "Memory allocation error" );
+        case PWQ_ERROR_SAME_PASSWORD:
+            return tr( "The password is the same as the old one" );
+        case PWQ_ERROR_PALINDROME:
+            return tr( "The password is a palindrome" );
+        case PWQ_ERROR_CASE_CHANGES_ONLY:
+            return tr( "The password differs with case changes only" );
+        case PWQ_ERROR_TOO_SIMILAR:
+            return tr( "The password is too similar to the old one" );
+        case PWQ_ERROR_USER_CHECK:
+            return tr( "The password contains the user name in some form" );
+        case PWQ_ERROR_GECOS_CHECK:
+            return tr( "The password contains words from the real name of the user in some form" );
+        case PWQ_ERROR_BAD_WORDS:
+            return tr( "The password contains forbidden words in some form" );
+        case PWQ_ERROR_MIN_DIGITS:
+            if ( auxerror )
+                return tr( "The password contains less than %1 digits" ).arg( ( long )auxerror );
+            return tr( "The password contains too few digits" );
+        case PWQ_ERROR_MIN_UPPERS:
+            if ( auxerror )
+                return tr( "The password contains less than %1 uppercase letters" ).arg( ( long )auxerror );
+            return tr( "The password contains too few uppercase letters" );
+        case PWQ_ERROR_MIN_LOWERS:
+            if ( auxerror )
+                return tr( "The password contains less than %1 lowercase letters" ).arg( ( long )auxerror );
+            return tr( "The password contains too few lowercase letters" );
+        case PWQ_ERROR_MIN_OTHERS:
+            if ( auxerror )
+                return tr( "The password contains less than %1 non-alphanumeric characters" ).arg( ( long )auxerror );
+            return tr( "The password contains too few non-alphanumeric characters" );
+        case PWQ_ERROR_MIN_LENGTH:
+            if ( auxerror )
+                return tr( "The password is shorter than %1 characters" ).arg( ( long )auxerror );
+            return tr( "The password is too short" );
+        case PWQ_ERROR_ROTATED:
+            return tr( "The password is just rotated old one" );
+        case PWQ_ERROR_MIN_CLASSES:
+            if ( auxerror )
+                return tr( "The password contains less than %1 character classes" ).arg( ( long )auxerror );
+            return tr( "The password does not contain enough character classes" );
+        case PWQ_ERROR_MAX_CONSECUTIVE:
+            if ( auxerror )
+                return tr( "The password contains more than %1 same characters consecutively" ).arg( ( long )auxerror );
+            return tr( "The password contains too many same characters consecutively" );
+        case PWQ_ERROR_MAX_CLASS_REPEAT:
+            if ( auxerror )
+                return tr( "The password contains more than %1 characters of the same class consecutively" ).arg( ( long )auxerror );
+            return tr( "The password contains too many characters of the same class consecutively" );
+        case PWQ_ERROR_MAX_SEQUENCE:
+            if ( auxerror )
+                return tr( "The password contains monotonic sequence longer than %1 characters" ).arg( ( long )auxerror );
+            return tr( "The password contains too long of a monotonic character sequence" );
+        case PWQ_ERROR_EMPTY_PASSWORD:
+            return tr( "No password supplied" );
+        case PWQ_ERROR_RNG:
+            return tr( "Cannot obtain random numbers from the RNG device" );
+        case PWQ_ERROR_GENERATION_FAILED:
+            return tr( "Password generation failed - required entropy too low for settings" );
+        case PWQ_ERROR_CRACKLIB_CHECK:
+            if ( auxerror )
+            {
+                /* Here the string comes from cracklib, don't free? */
+                return tr( "The password fails the dictionary check - %1" ).arg( ( const char* )auxerror );
+            }
+            return tr( "The password fails the dictionary check" );
+        case PWQ_ERROR_UNKNOWN_SETTING:
+            if ( auxerror )
+            {
+                QString s = tr( "Unknown setting - %1" ).arg( ( const char* )auxerror );
+                free( auxerror );
+                return s;
+            }
+            return tr( "Unknown setting" );
+        case PWQ_ERROR_INTEGER:
+            if ( auxerror )
+            {
+                QString s = tr( "Bad integer value of setting - %1" ).arg( ( const char* )auxerror );
+                free( auxerror );
+                return s;
+            }
+            return tr( "Bad integer value" );
+        case PWQ_ERROR_NON_INT_SETTING:
+            if ( auxerror )
+            {
+                QString s = tr( "Setting %1 is not of integer type" ).arg( ( const char* )auxerror );
+                free( auxerror );
+                return s;
+            }
+            return tr( "Setting is not of integer type" );
+        case PWQ_ERROR_NON_STR_SETTING:
+            if ( auxerror )
+            {
+                QString s = tr( "Setting %1 is not of string type" ).arg( ( const char* )auxerror );
+                free( auxerror );
+                return s;
+            }
+            return tr( "Setting is not of string type" );
+        case PWQ_ERROR_CFGFILE_OPEN:
+            return tr( "Opening the configuration file failed" );
+        case PWQ_ERROR_CFGFILE_MALFORMED:
+            return tr( "The configuration file is malformed" );
+        case PWQ_ERROR_FATAL_FAILURE:
+            return tr( "Fatal failure" );
+        default:
+            return tr( "Unknown error" );
+        }
+    }
+#undef tr
 private:
     pwquality_settings_t* m_settings;
+    int m_rv;
+    void* m_auxerror;
 } ;
 
-DEFINE_CHECK_FUNC(libpwquality)
+DEFINE_CHECK_FUNC( libpwquality )
 {
     if ( !value.canConvert( QVariant::List ) )
     {
@@ -145,11 +293,11 @@ DEFINE_CHECK_FUNC(libpwquality)
     auto settings = std::make_shared<PWSettingsHolder>();
     for ( const auto& v : l )
     {
-        if (v.type() == QVariant::String)
+        if ( v.type() == QVariant::String )
         {
             QString option = v.toString();
             int r = settings->set( option );
-            if (r)
+            if ( r )
                 cDebug() << " .. WARNING: unrecognized libpwquality setting" << option;
             else
             {
@@ -162,22 +310,22 @@ DEFINE_CHECK_FUNC(libpwquality)
     }
 
     /* Something actually added? */
-    if (requirement_count)
+    if ( requirement_count )
     {
         checks.push_back(
             PasswordCheck(
-                [parent]()
+                [parent,settings]()
                 {
-                    return tr( "Password is too weak" );
+                    return settings->explanation( parent );
                 },
                 [settings]( const QString& s )
                 {
                     int r = settings->check( s );
                     if ( r < 0 )
                         cDebug() << "WARNING: libpwquality error" << r;
-                    else if ( r < 40 )
+                    else if ( r < settings->arbitrary_minimum_strength )
                         cDebug() << "Password strength" << r << "too low";
-                    return r >= 40;
+                    return r >= settings->arbitrary_minimum_strength;
                 }
             ) );
     }
