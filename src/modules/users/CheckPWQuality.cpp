@@ -22,6 +22,16 @@
 
 #include <QWidget>
 
+#ifdef HAVE_LIBPWQUALITY
+#include <pwquality.h>
+#endif
+
+#include <memory>
+
+static void _default_cleanup()
+{
+}
+
 PasswordCheck::PasswordCheck()
     : m_message()
     , m_accept( []( const QString& s ){ return true; } )
@@ -87,6 +97,41 @@ DEFINE_CHECK_FUNC(maxLength)
 }
 
 #ifdef HAVE_LIBPWQUALITY
+/**
+ * Class that acts as a RAII placeholder for pwquality_settings_t pointers.
+ * Gets a new pointer and ensures it is deleted only once; provides
+ * convenience functions for setting options and checking passwords.
+ */
+class PWSettingsHolder
+{
+public:
+    PWSettingsHolder()
+        : m_settings( pwquality_default_settings() )
+    {
+    }
+
+    ~PWSettingsHolder()
+    {
+        cDebug() << "Freeing PWQ@" << (void *)m_settings;
+        pwquality_free_settings( m_settings );
+    }
+
+    /// Sets an option via the configuration string @p v, <key>=<value> style.
+    int set( const QString& v )
+    {
+        return pwquality_set_option( m_settings, v.toUtf8().constData() );
+    }
+
+    /// Checks the given password @p pwd against the current configuration
+    int check( const QString& pwd )
+    {
+        return pwquality_check(m_settings, pwd.toUtf8().constData(), nullptr, nullptr, nullptr);
+    }
+
+private:
+    pwquality_settings_t* m_settings;
+} ;
+
 DEFINE_CHECK_FUNC(libpwquality)
 {
     if ( !value.canConvert( QVariant::List ) )
@@ -97,10 +142,44 @@ DEFINE_CHECK_FUNC(libpwquality)
 
     QVariantList l = value.toList();
     unsigned int requirement_count = 0;
+    auto settings = std::make_shared<PWSettingsHolder>();
     for ( const auto& v : l )
     {
-        cDebug() << " .. " << v.type() << v;
-        // TODO: pass strings on to libpwquality
+        if (v.type() == QVariant::String)
+        {
+            QString option = v.toString();
+            int r = settings->set( option );
+            if (r)
+                cDebug() << " .. WARNING: unrecognized libpwquality setting" << option;
+            else
+            {
+                cDebug() << " .. libpwquality setting" << option;
+                ++requirement_count;
+            }
+        }
+        else
+            cDebug() << " .. WARNING: unrecognized libpwquality setting" << v;
+    }
+
+    /* Something actually added? */
+    if (requirement_count)
+    {
+        checks.push_back(
+            PasswordCheck(
+                [parent]()
+                {
+                    return tr( "Password is too weak" );
+                },
+                [settings]( const QString& s )
+                {
+                    int r = settings->check( s );
+                    if ( r < 0 )
+                        cDebug() << "WARNING: libpwquality error" << r;
+                    else if ( r < 40 )
+                        cDebug() << "Password strength" << r << "too low";
+                    return r >= 40;
+                }
+            ) );
     }
 }
 #endif
