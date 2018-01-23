@@ -19,6 +19,8 @@ Categories=Qt;System;
 
 
 
+
+
 Name[ca]=Calamares
 Icon[ca]=calamares
 GenericName[ca]=Instal·lador de sistema
@@ -115,6 +117,8 @@ Name[sq]=Calamares
 Icon[sq]=calamares
 GenericName[sq]=Instalues Sistemi
 Comment[sq]=Calamares — Instalues Sistemi
+Name[fi_FI]=Calamares
+Icon[fi_FI]=calamares
 GenericName[fi_FI]=Järjestelmän Asennusohjelma
 Comment[fi_FI]=Calamares — Järjestelmän Asentaja
 Name[sv]=Calamares
