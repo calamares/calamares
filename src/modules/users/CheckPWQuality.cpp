@@ -89,6 +89,18 @@ DEFINE_CHECK_FUNC(maxLength)
 #ifdef HAVE_LIBPWQUALITY
 DEFINE_CHECK_FUNC(libpwquality)
 {
+    if ( !value.canConvert( QVariant::List ) )
+    {
+        cDebug() << "WARNING: libpwquality settings is not a list";
+        return;
+    }
 
+    QVariantList l = value.toList();
+    unsigned int requirement_count = 0;
+    for ( const auto& v : l )
+    {
+        cDebug() << " .. " << v.type() << v;
+        // TODO: pass strings on to libpwquality
+    }
 }
 #endif
