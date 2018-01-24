@@ -130,6 +130,8 @@ UsersPage::createJobs( const QStringList& defaultGroupsList )
     if ( !isReady() )
         return list;
 
+    Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
+
     Calamares::Job* j;
     j = new CreateUserJob( ui->textBoxUsername->text(),
                            ui->textBoxFullName->text().isEmpty() ?
@@ -145,6 +147,7 @@ UsersPage::createJobs( const QStringList& defaultGroupsList )
 
     if ( m_writeRootPassword )
     {
+        gs->insert( "reuseRootPassword", ui->checkBoxReusePassword->isChecked() );
         if ( ui->checkBoxReusePassword->isChecked() )
             j = new SetPasswordJob( "root",
                                     ui->textBoxUserPassword->text() );
@@ -163,7 +166,6 @@ UsersPage::createJobs( const QStringList& defaultGroupsList )
     j = new SetHostNameJob( ui->textBoxHostname->text() );
     list.append( Calamares::job_ptr( j ) );
 
-    Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
     gs->insert( "hostname", ui->textBoxHostname->text() );
     if ( ui->checkBoxAutoLogin->isChecked() )
         gs->insert( "autologinUser", ui->textBoxUsername->text() );
