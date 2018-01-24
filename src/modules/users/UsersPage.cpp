@@ -455,68 +455,23 @@ UsersPage::setReusePasswordDefault( bool checked )
     emit checkReady( isReady() );
 }
 
-UsersPage::PasswordCheck::PasswordCheck()
-    : m_message()
-    , m_accept( []( const QString& s )
-{
-    return true;
-} )
-{
-}
-
-UsersPage::PasswordCheck::PasswordCheck( const QString& m, AcceptFunc a )
-    : m_message( [m](){ return m; } )
-    , m_accept( a )
-{
-}
-
-UsersPage::PasswordCheck::PasswordCheck( MessageFunc m, AcceptFunc a )
-    : m_message( m )
-    , m_accept( a )
-{
-}
-
 void
 UsersPage::addPasswordCheck( const QString& key, const QVariant& value )
 {
     if ( key == "minLength" )
     {
-        int minLength = -1;
-        if ( value.canConvert( QVariant::Int ) )
-            minLength = value.toInt();
-        if ( minLength > 0 )
-        {
-            cDebug() << key << " .. set to" << minLength;
-            m_passwordChecks.push_back(
-                PasswordCheck(
-                    []()
-            {
-                return tr( "Password is too short" );
-            },
-            [minLength]( const QString& s )
-            {
-                return s.length() >= minLength;
-            } ) );
-        }
+        add_check_minLength( this, m_passwordChecks, value );
     }
     else if ( key == "maxLength" )
     {
-        int maxLength = -1;
-        if ( value.canConvert( QVariant::Int ) )
-            maxLength = value.toInt();
-        if ( maxLength > 0 )
-        {
-            cDebug() << key << " .. set to" << maxLength;
-            m_passwordChecks.push_back(
-                PasswordCheck( []()
-            {
-                return tr( "Password is too long" );
-            }, [maxLength]( const QString& s )
-            {
-                return s.length() <= maxLength;
-            } ) );
-        }
+        add_check_maxLength( this, m_passwordChecks, value );
     }
+#ifdef CHECK_PWQUALITY
+    else if ( key == "libpwquality" )
+    {
+        add_check_libpwquality( this, m_passwordChecks, value );
+    }
+#endif
     else
-        cDebug() << "WARNING: Unknown password-check key" << '"' << key << '"';
+        cDebug() << "WARNING: Unknown password-check key" << key;
 }
