@@ -53,6 +53,19 @@ PasswordCheck::PasswordCheck( MessageFunc m, AcceptFunc a )
 
 // Try to trick Transifex into accepting these strings
 #define tr parent->tr
+struct LengthExplainer
+{
+    static QString too_short( QWidget* parent )
+    {
+        return tr( "Password is too short" );
+    }
+
+    static QString too_long( QWidget* parent )
+    {
+        return tr( "Password is too long" );
+    }
+} ;
+#undef tr
 
 DEFINE_CHECK_FUNC( minLength )
 {
@@ -66,7 +79,7 @@ DEFINE_CHECK_FUNC( minLength )
             PasswordCheck(
                 [parent]()
                 {
-                    return tr( "Password is too short" );
+                    return LengthExplainer::too_short( parent );
                 },
                 [minLength]( const QString& s )
                 {
@@ -88,8 +101,9 @@ DEFINE_CHECK_FUNC( maxLength )
             PasswordCheck(
                 [parent]()
                 {
-                    return tr( "Password is too long" );
-                }, [maxLength]( const QString& s )
+                    return LengthExplainer::too_long( parent );
+                },
+                [maxLength]( const QString& s )
                 {
                     return s.length() <= maxLength;
                 }
