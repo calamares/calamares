@@ -231,7 +231,9 @@ Helper::Helper( QObject* parent )
 }
 
 Helper::~Helper()
-{}
+{
+    s_instance = nullptr;
+}
 
 
 boost::python::dict

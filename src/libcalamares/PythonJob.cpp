@@ -322,7 +322,7 @@ PythonJob::exec()
             }
             if ( !m_description.isEmpty() )
             {
-                cDebug() << "Job" << prettyName() << "(func) ->" << m_description;
+                cDebug() << "Job description from pretty_name" << prettyName() << "=" << m_description;
                 emit progress( 0 );
             }
         }
@@ -337,7 +337,7 @@ PythonJob::exec()
                 auto i_newline = m_description.indexOf('\n');
                 if ( i_newline > 0 )
                     m_description.truncate( i_newline );
-                cDebug() << "Job" << prettyName() << "(doc) ->" << m_description;
+                cDebug() << "Job description from __doc__" << prettyName() << "=" << m_description;
                 emit progress( 0 );
             }
         }
@@ -381,8 +381,10 @@ PythonJob::emitProgress( qreal progressValue )
 CalamaresPython::Helper*
 PythonJob::helper()
 {
-    return CalamaresPython::Helper::s_instance;
-
+    auto ptr = CalamaresPython::Helper::s_instance;
+    if (!ptr)
+        ptr = new CalamaresPython::Helper;
+    return ptr;
 }
 
 

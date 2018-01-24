@@ -42,7 +42,7 @@ class ModuleManager : public QObject
     Q_OBJECT
 public:
     explicit ModuleManager( const QStringList& paths, QObject* parent = nullptr );
-    virtual ~ModuleManager();
+    virtual ~ModuleManager() override;
 
     static ModuleManager* instance();
 
