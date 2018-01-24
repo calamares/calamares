@@ -129,6 +129,9 @@ DummyCppJob::exec()
     emit progress( 0.1 );
     cDebug() << "[DUMMYCPP]: " << accumulator;
 
+    globalStorage->debugDump();
+    emit progress( 0.5 );
+
     QThread::sleep( 3 );
 
     return Calamares::JobResult::ok();
