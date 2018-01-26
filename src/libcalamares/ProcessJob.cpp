@@ -128,7 +128,8 @@ ProcessJob::callOutput( const QString& command,
     if ( !process.waitForFinished( timeoutSec ? ( timeoutSec * 1000 ) : -1 ) )
     {
         cLog() << "Timed out. output so far:";
-        cLog() << process.readAllStandardOutput();
+        output.append( QString::fromLocal8Bit( process.readAllStandardOutput() ).trimmed() );
+        cLog() << output;
         return -4;
     }
 
