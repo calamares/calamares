@@ -211,6 +211,36 @@ void
 RequirementsChecker::setConfigurationMap( const QVariantMap& configurationMap )
 {
     bool incompleteConfiguration = false;
+
+    if ( configurationMap.contains( "check" ) &&
+         configurationMap.value( "check" ).type() == QVariant::List )
+    {
+        m_entriesToCheck.clear();
+        m_entriesToCheck.append( configurationMap.value( "check" ).toStringList() );
+    }
+    else
+    {
+        cDebug() << "WARNING: RequirementsChecker entry 'check' is incomplete.";
+        incompleteConfiguration = true;
+    }
+
+    if ( configurationMap.contains( "required" ) &&
+         configurationMap.value( "required" ).type() == QVariant::List )
+    {
+        m_entriesToRequire.clear();
+        m_entriesToRequire.append( configurationMap.value( "required" ).toStringList() );
+    }
+    else
+    {
+        cDebug() << "WARNING: RequirementsChecker entry 'required' is incomplete.";
+        incompleteConfiguration = true;
+    }
+
+    // Help out with consistency, but don't fix
+    for ( const auto& r : m_entriesToRequire )
+        if ( !m_entriesToCheck.contains( r ) )
+            cDebug() << "WARNING: RequirementsChecker requires" << r << "but does not check it.";
+
     if ( configurationMap.contains( "requiredStorage" ) &&
          ( configurationMap.value( "requiredStorage" ).type() == QVariant::Double ||
            configurationMap.value( "requiredStorage" ).type() == QVariant::Int ) )
@@ -271,30 +301,6 @@ RequirementsChecker::setConfigurationMap( const QVariantMap& configurationMap )
                     "reverting to default (http://example.com).";
 
         m_checkHasInternetUrl = "http://example.com";
-        incompleteConfiguration = true;
-    }
-
-    if ( configurationMap.contains( "check" ) &&
-         configurationMap.value( "check" ).type() == QVariant::List )
-    {
-        m_entriesToCheck.clear();
-        m_entriesToCheck.append( configurationMap.value( "check" ).toStringList() );
-    }
-    else
-    {
-        cDebug() << "WARNING: RequirementsChecker entry 'check' is incomplete.";
-        incompleteConfiguration = true;
-    }
-
-    if ( configurationMap.contains( "required" ) &&
-         configurationMap.value( "required" ).type() == QVariant::List )
-    {
-        m_entriesToRequire.clear();
-        m_entriesToRequire.append( configurationMap.value( "required" ).toStringList() );
-    }
-    else
-    {
-        cDebug() << "WARNING: RequirementsChecker entry 'required' is incomplete.";
         incompleteConfiguration = true;
     }
 
