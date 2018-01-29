@@ -45,7 +45,6 @@ public:
 
 private:
     QList<ContextualProcessBinding*> m_commands;
-    bool m_dontChroot;
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( ContextualProcessJobFactory )

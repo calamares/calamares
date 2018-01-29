@@ -34,7 +34,6 @@
 ShellProcessJob::ShellProcessJob( QObject* parent )
     : Calamares::CppJob( parent )
     , m_commands( nullptr )
-    , m_dontChroot( false )
 {
 }
 
@@ -70,11 +69,14 @@ ShellProcessJob::exec()
 void
 ShellProcessJob::setConfigurationMap( const QVariantMap& configurationMap )
 {
-    m_dontChroot = CalamaresUtils::getBool( configurationMap, "dontChroot", false );
+    bool dontChroot = CalamaresUtils::getBool( configurationMap, "dontChroot", false );
+    int timeout = CalamaresUtils::getInteger( configurationMap, "timeout", 10 );
+    if ( timeout < 1 )
+        timeout = 10;
 
     if ( configurationMap.contains( "script" ) )
     {
-        m_commands = new CalamaresUtils::CommandList( configurationMap.value( "script" ), !m_dontChroot );
+        m_commands = new CalamaresUtils::CommandList( configurationMap.value( "script" ), !dontChroot, timeout );
         if ( m_commands->isEmpty() )
             cDebug() << "ShellProcessJob: \"script\" contains no commands for" << moduleInstanceKey();
     }

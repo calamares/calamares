@@ -64,7 +64,9 @@ ShellProcessTests::testProcessListSampleConfig()
     CommandList cl(
         CalamaresUtils::yamlMapToVariant( doc ).toMap().value( "script" ) );
     QVERIFY( !cl.isEmpty() );
-    QCOMPARE( cl.count(), 2 );
+    QCOMPARE( cl.count(), 3 );
+    QCOMPARE( cl.at(0).timeout(), -1 );
+    QCOMPARE( cl.at(2).timeout(), 3600 );  // slowloris
 }
 
 void ShellProcessTests::testProcessListFromList()
