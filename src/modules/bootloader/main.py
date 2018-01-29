@@ -269,13 +269,14 @@ def install_grub(efi_directory, fw_type):
             os.makedirs(install_efi_boot_directory)
 
         # Workaround for some UEFI firmwares
-        efi_file_source = os.path.join(install_efi_directory_firmware,
-                                       efi_bootloader_id,
-                                       efi_grub_file)
-        efi_file_target = os.path.join(install_efi_boot_directory,
-                                       efi_boot_file)
+        if libcalamares.job.configuration.get("installEFIFallback", True):
+            efi_file_source = os.path.join(install_efi_directory_firmware,
+                                        efi_bootloader_id,
+                                        efi_grub_file)
+            efi_file_target = os.path.join(install_efi_boot_directory,
+                                        efi_boot_file)
 
-        shutil.copy2(efi_file_source, efi_file_target)
+            shutil.copy2(efi_file_source, efi_file_target)
     else:
         print("Bootloader: grub (bios)")
         if libcalamares.globalstorage.value("bootLoader") is None:
