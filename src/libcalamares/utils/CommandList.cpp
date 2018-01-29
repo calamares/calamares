@@ -21,6 +21,7 @@
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 
+#include "utils/CalamaresUtils.h"
 #include "utils/CalamaresUtilsSystem.h"
 #include "utils/Logger.h"
 
@@ -28,6 +29,17 @@
 
 namespace CalamaresUtils
 {
+
+static CommandLine get_variant_object( const QVariantMap& m )
+{
+    QString command = CalamaresUtils::getString( m, "command" );
+    int timeout = CalamaresUtils::getInteger( m, "timeout", -1 );
+
+    if ( !command.isEmpty() )
+        return CommandLine( command, timeout );
+    cDebug() << "WARNING Bad CommandLine element" << m;
+    return CommandLine();
+}
 
 static CommandList_t get_variant_stringlist( const QVariantList& l, int timeout )
 {
@@ -37,6 +49,13 @@ static CommandList_t get_variant_stringlist( const QVariantList& l, int timeout 
     {
         if ( v.type() == QVariant::String )
             retl.append( CommandLine( v.toString(), timeout ) );
+        else if ( v.type() == QVariant::Map )
+        {
+            auto c( get_variant_object( v.toMap() ) );
+            if ( c.isValid() )
+                retl.append( c );
+            // Otherwise warning is already given
+        }
         else
             cDebug() << "WARNING Bad CommandList element" << c << v.type() << v;
         ++c;
@@ -63,6 +82,13 @@ CommandList::CommandList::CommandList( const QVariant& v, bool doChroot, int tim
     }
     else if ( v.type() == QVariant::String )
         append( v.toString() );
+    else if ( v.type() == QVariant::Map )
+    {
+        auto c( get_variant_object( v.toMap() ) );
+        if ( c.isValid() )
+            append( c );
+        // Otherwise warning is already given
+    }
     else
         cDebug() << "WARNING: CommandList does not understand variant" << v.type();
 }

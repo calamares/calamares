@@ -33,6 +33,12 @@ namespace CalamaresUtils
  */
 struct CommandLine : public QPair< QString, int >
 {
+    /// An invalid command line
+    CommandLine()
+        : QPair< QString, int >( QString(), -1 )
+    {
+    }
+
     CommandLine( const QString& s )
         : QPair< QString, int >( s, 10 )
     {
@@ -51,6 +57,11 @@ struct CommandLine : public QPair< QString, int >
     int timeout() const
     {
         return second;
+    }
+
+    bool isValid() const
+    {
+        return !first.isEmpty();
     }
 } ;
 
@@ -82,6 +93,7 @@ public:
     using CommandList_t::cbegin;
     using CommandList_t::cend;
     using CommandList_t::const_iterator;
+    using CommandList_t::at;
 
 protected:
     using CommandList_t::append;
