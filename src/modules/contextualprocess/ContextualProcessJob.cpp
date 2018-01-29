@@ -97,12 +97,15 @@ ContextualProcessJob::exec()
 void
 ContextualProcessJob::setConfigurationMap( const QVariantMap& configurationMap )
 {
-    m_dontChroot = CalamaresUtils::getBool( configurationMap, "dontChroot", false );
+    bool dontChroot = CalamaresUtils::getBool( configurationMap, "dontChroot", false );
+    int timeout = CalamaresUtils::getInteger( configurationMap, "timeout", 10 );
+    if ( timeout < 1 )
+        timeout = 10;
 
     for ( QVariantMap::const_iterator iter = configurationMap.cbegin(); iter != configurationMap.cend(); ++iter )
     {
         QString variableName = iter.key();
-        if ( variableName.isEmpty() || ( variableName == "dontChroot" ) )
+        if ( variableName.isEmpty() || ( variableName == "dontChroot" ) || ( variableName == "timeout" ) )
             continue;
 
         if ( iter.value().type() != QVariant::Map )
@@ -121,7 +124,7 @@ ContextualProcessJob::setConfigurationMap( const QVariantMap& configurationMap )
                 continue;
             }
 
-            CalamaresUtils::CommandList* commands = new CalamaresUtils::CommandList( valueiter.value(), !m_dontChroot );
+            CalamaresUtils::CommandList* commands = new CalamaresUtils::CommandList( valueiter.value(), !dontChroot, timeout );
 
             if ( commands->count() > 0 )
             {

@@ -64,7 +64,9 @@ ShellProcessTests::testProcessListSampleConfig()
     CommandList cl(
         CalamaresUtils::yamlMapToVariant( doc ).toMap().value( "script" ) );
     QVERIFY( !cl.isEmpty() );
-    QCOMPARE( cl.count(), 2 );
+    QCOMPARE( cl.count(), 3 );
+    QCOMPARE( cl.at(0).timeout(), -1 );
+    QCOMPARE( cl.at(2).timeout(), 3600 );  // slowloris
 }
 
 void ShellProcessTests::testProcessListFromList()
@@ -102,6 +104,8 @@ script: "ls /tmp"
         CalamaresUtils::yamlMapToVariant( doc ).toMap().value( "script" ) );
     QVERIFY( !cl.isEmpty() );
     QCOMPARE( cl.count(), 1 );
+    QCOMPARE( cl.at(0).timeout(), 10 );
+    QCOMPARE( cl.at(0).command(), QStringLiteral( "ls /tmp" ) );
 
     // Not a string
     doc = YAML::Load( R"(---
@@ -112,4 +116,36 @@ script: false
     QVERIFY( cl1.isEmpty() );
     QCOMPARE( cl1.count(), 0 );
 
+}
+
+void ShellProcessTests::testProcessFromObject()
+{
+    YAML::Node doc = YAML::Load( R"(---
+script:
+    command: "ls /tmp"
+    timeout: 20
+)" );
+    CommandList cl(
+        CalamaresUtils::yamlMapToVariant( doc ).toMap().value( "script" ) );
+    QVERIFY( !cl.isEmpty() );
+    QCOMPARE( cl.count(), 1 );
+    QCOMPARE( cl.at(0).timeout(), 20 );
+    QCOMPARE( cl.at(0).command(), QStringLiteral( "ls /tmp" ) );
+}
+
+void ShellProcessTests::testProcessListFromObject()
+{
+    YAML::Node doc = YAML::Load( R"(---
+script:
+    - command: "ls /tmp"
+      timeout: 12
+    - "-/bin/false"
+)" );
+    CommandList cl(
+        CalamaresUtils::yamlMapToVariant( doc ).toMap().value( "script" ) );
+    QVERIFY( !cl.isEmpty() );
+    QCOMPARE( cl.count(), 2 );
+    QCOMPARE( cl.at(0).timeout(), 12 );
+    QCOMPARE( cl.at(0).command(), QStringLiteral( "ls /tmp" ) );
+    QCOMPARE( cl.at(1).timeout(), -1 );  // not set
 }

@@ -46,7 +46,6 @@ public:
 
 private:
     CalamaresUtils::CommandList* m_commands;
-    bool m_dontChroot;
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( ShellProcessJobFactory )

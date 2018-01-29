@@ -36,6 +36,10 @@ private Q_SLOTS:
     void testProcessListFromList();
     // Create from a simple YAML string
     void testProcessListFromString();
+    // Create from a single complex YAML
+    void testProcessFromObject();
+    // Create from a complex YAML list
+    void testProcessListFromObject();
 };
 
 #endif

@@ -110,9 +110,14 @@ namespace CalamaresUtils
     DLLEXPORT QString getString( const QVariantMap& map, const QString& key );
 
     /**
-     * Get an integer value from a mapping; returns @p default if no value.
+     * Get an integer value from a mapping; returns @p d if no value.
      */
     DLLEXPORT int getInteger( const QVariantMap& map, const QString& key, int d );
+
+    /**
+     * Get a double value from a mapping (integers are converted); returns @p d if no value.
+     */
+    DLLEXPORT double getDouble( const QVariantMap& map, const QString& key, double d );
 
     /**
      * Returns a sub-map (i.e. a nested map) from the given mapping with the
