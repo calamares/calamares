@@ -113,3 +113,30 @@ script: false
     QCOMPARE( cl1.count(), 0 );
 
 }
+
+void ShellProcessTests::testProcessFromObject()
+{
+    YAML::Node doc = YAML::Load( R"(---
+script:
+    command: "ls /tmp"
+    timeout: 20
+)" );
+    CommandList cl(
+        CalamaresUtils::yamlMapToVariant( doc ).toMap().value( "script" ) );
+    QVERIFY( !cl.isEmpty() );
+    QCOMPARE( cl.count(), 1 );
+}
+
+void ShellProcessTests::testProcessListFromObject()
+{
+    YAML::Node doc = YAML::Load( R"(---
+script:
+    - command: "ls /tmp"
+      timeout: 20
+    - "-/bin/false"
+)" );
+    CommandList cl(
+        CalamaresUtils::yamlMapToVariant( doc ).toMap().value( "script" ) );
+    QVERIFY( !cl.isEmpty() );
+    QCOMPARE( cl.count(), 2 );
+}
