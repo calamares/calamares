@@ -26,14 +26,17 @@
 
 #include <QVariantList>
 
-static QStringList get_variant_stringlist( const QVariantList& l )
+namespace CalamaresUtils
 {
-    QStringList retl;
+
+static CommandList_t get_variant_stringlist( const QVariantList& l, int timeout )
+{
+    CommandList_t retl;
     unsigned int c = 0;
     for ( const auto& v : l )
     {
         if ( v.type() == QVariant::String )
-            retl.append( v.toString() );
+            retl.append( CommandLine( v.toString(), timeout ) );
         else
             cDebug() << "WARNING Bad CommandList element" << c << v.type() << v;
         ++c;
@@ -41,22 +44,20 @@ static QStringList get_variant_stringlist( const QVariantList& l )
     return retl;
 }
 
-namespace CalamaresUtils
-{
-
-CommandList::CommandList( bool doChroot )
+CommandList::CommandList( bool doChroot, int timeout )
     : m_doChroot( doChroot )
+    , m_timeout( timeout )
 {
 }
 
-CommandList::CommandList::CommandList( const QVariant& v, bool doChroot )
-    : CommandList( doChroot )
+CommandList::CommandList::CommandList( const QVariant& v, bool doChroot, int timeout )
+    : CommandList( doChroot, timeout )
 {
     if ( v.type() == QVariant::List )
     {
         const auto v_list = v.toList();
         if ( v_list.count() )
-            append( get_variant_stringlist( v_list ) );
+            append( get_variant_stringlist( v_list, m_timeout ) );
         else
             cDebug() << "WARNING: Empty CommandList";
     }
@@ -90,7 +91,7 @@ Calamares::JobResult CommandList::run( const QObject* parent )
 
     for ( CommandList::const_iterator i = cbegin(); i != cend(); ++i )
     {
-        QString processed_cmd = *i;
+        QString processed_cmd = i->command();
         processed_cmd.replace( "@@ROOT@@", root );  // FIXME?
         bool suppress_result = false;
         if ( processed_cmd.startsWith( '-' ) )
@@ -103,7 +104,7 @@ Calamares::JobResult CommandList::run( const QObject* parent )
         shell_cmd << processed_cmd;
 
         ProcessResult r = System::runCommand(
-                              location, shell_cmd, QString(), QString(), 10 );
+                              location, shell_cmd, QString(), QString(), i->timeout() );
 
         if ( r.getExitCode() != 0 )
         {
@@ -115,6 +116,12 @@ Calamares::JobResult CommandList::run( const QObject* parent )
     }
 
     return Calamares::JobResult::ok();
+}
+
+void
+CommandList::append( const QString& s )
+{
+    append( CommandLine( s, m_timeout ) );
 }
 
 }  // namespace

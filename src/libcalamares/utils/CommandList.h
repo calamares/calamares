@@ -27,11 +27,47 @@
 namespace CalamaresUtils
 {
 
-class CommandList : protected QStringList
+/**
+ * Each command can have an associated timeout in seconds. The timeout
+ * defaults to 10 seconds. Provide some convenience naming and construction.
+ */
+struct CommandLine : public QPair< QString, int >
+{
+    CommandLine( const QString& s )
+        : QPair< QString, int >( s, 10 )
+    {
+    }
+
+    CommandLine( const QString& s, int t )
+        : QPair< QString, int >( s, t)
+    {
+    }
+
+    QString command() const
+    {
+        return first;
+    }
+
+    int timeout() const
+    {
+        return second;
+    }
+} ;
+
+/** @brief Abbreviation, used internally. */
+using CommandList_t = QList< CommandLine >;
+
+/**
+ * A list of commands; the list may have its own default timeout
+ * for commands (which is then applied to each individual command
+ * that doesn't have one of its own).
+ */
+class CommandList : protected CommandList_t
 {
 public:
-    CommandList( bool doChroot = true );
-    CommandList( const QVariant& v, bool doChroot = true );
+    /** @brief empty command-list with timeout to apply to entries. */
+    CommandList( bool doChroot = true, int timeout = 10 );
+    CommandList( const QVariant& v, bool doChroot = true, int timeout = 10 );
     ~CommandList();
 
     bool doChroot() const
@@ -41,14 +77,19 @@ public:
 
     Calamares::JobResult run( const QObject* parent );
 
-    using QStringList::isEmpty;
-    using QStringList::count;
-    using QStringList::cbegin;
-    using QStringList::cend;
-    using QStringList::const_iterator;
+    using CommandList_t::isEmpty;
+    using CommandList_t::count;
+    using CommandList_t::cbegin;
+    using CommandList_t::cend;
+    using CommandList_t::const_iterator;
+
+protected:
+    using CommandList_t::append;
+    void append( const QString& );
 
 private:
     bool m_doChroot;
+    int m_timeout;
 } ;
 
 }  // namespace
