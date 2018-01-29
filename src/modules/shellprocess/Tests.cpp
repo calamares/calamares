@@ -145,5 +145,5 @@ script:
     QCOMPARE( cl.count(), 2 );
     QCOMPARE( cl.at(0).timeout(), 12 );
     QCOMPARE( cl.at(0).command(), QStringLiteral( "ls /tmp" ) );
-    QCOMPARE( cl.at(1).timeout(), 10 );  // default
+    QCOMPARE( cl.at(1).timeout(), -1 );  // not set
 }

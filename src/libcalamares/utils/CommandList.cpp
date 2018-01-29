@@ -33,7 +33,7 @@ namespace CalamaresUtils
 static CommandLine get_variant_object( const QVariantMap& m )
 {
     QString command = CalamaresUtils::getString( m, "command" );
-    int timeout = CalamaresUtils::getInteger( m, "timeout", -1 );
+    int timeout = CalamaresUtils::getInteger( m, "timeout", CommandLine::TimeoutNotSet );
 
     if ( !command.isEmpty() )
         return CommandLine( command, timeout );
@@ -41,14 +41,14 @@ static CommandLine get_variant_object( const QVariantMap& m )
     return CommandLine();
 }
 
-static CommandList_t get_variant_stringlist( const QVariantList& l, int timeout )
+static CommandList_t get_variant_stringlist( const QVariantList& l )
 {
     CommandList_t retl;
     unsigned int c = 0;
     for ( const auto& v : l )
     {
         if ( v.type() == QVariant::String )
-            retl.append( CommandLine( v.toString(), timeout ) );
+            retl.append( CommandLine( v.toString(), CommandLine::TimeoutNotSet ) );
         else if ( v.type() == QVariant::Map )
         {
             auto c( get_variant_object( v.toMap() ) );
@@ -76,7 +76,7 @@ CommandList::CommandList::CommandList( const QVariant& v, bool doChroot, int tim
     {
         const auto v_list = v.toList();
         if ( v_list.count() )
-            append( get_variant_stringlist( v_list, m_timeout ) );
+            append( get_variant_stringlist( v_list ) );
         else
             cDebug() << "WARNING: Empty CommandList";
     }
@@ -118,26 +118,27 @@ Calamares::JobResult CommandList::run( const QObject* parent )
     for ( CommandList::const_iterator i = cbegin(); i != cend(); ++i )
     {
         QString processed_cmd = i->command();
-        processed_cmd.replace( "@@ROOT@@", root );  // FIXME?
+        processed_cmd.replace( "@@ROOT@@", root );
         bool suppress_result = false;
         if ( processed_cmd.startsWith( '-' ) )
         {
             suppress_result = true;
-            processed_cmd.remove( 0, 1 );  // Drop the -  // FIXME?
+            processed_cmd.remove( 0, 1 );  // Drop the -
         }
 
         QStringList shell_cmd { "/bin/sh", "-c" };
         shell_cmd << processed_cmd;
 
+        int timeout = i->timeout() >= 0 ? i->timeout() : m_timeout;
         ProcessResult r = System::runCommand(
-                              location, shell_cmd, QString(), QString(), i->timeout() );
+                              location, shell_cmd, QString(), QString(), timeout );
 
         if ( r.getExitCode() != 0 )
         {
             if ( suppress_result )
                 cDebug() << "Error code" << r.getExitCode() << "ignored by CommandList configuration.";
             else
-                return r.explainProcess( parent, processed_cmd, 10 );
+                return r.explainProcess( parent, processed_cmd, timeout );
         }
     }
 

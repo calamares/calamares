@@ -33,14 +33,16 @@ namespace CalamaresUtils
  */
 struct CommandLine : public QPair< QString, int >
 {
+    enum { TimeoutNotSet = -1 };
+
     /// An invalid command line
     CommandLine()
-        : QPair< QString, int >( QString(), -1 )
+        : QPair< QString, int >( QString(), TimeoutNotSet )
     {
     }
 
     CommandLine( const QString& s )
-        : QPair< QString, int >( s, 10 )
+        : QPair< QString, int >( s, TimeoutNotSet )
     {
     }
 
