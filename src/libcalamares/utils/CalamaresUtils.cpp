@@ -366,6 +366,22 @@ getInteger( const QVariantMap& map, const QString& key, int d )
     return result;
 }
 
+double
+getDouble( const QVariantMap& map, const QString& key, double d )
+{
+    double result = d;
+    if ( map.contains( key ) )
+    {
+        auto v = map.value( key );
+        if ( v.type() == QVariant::Int )
+            result = v.toInt();
+        else if ( v.type() == QVariant::Double )
+            result = v.toDouble();
+    }
+
+    return result;
+}
+
 QVariantMap
 getSubMap( const QVariantMap& map, const QString& key, bool& success )
 {
