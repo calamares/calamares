@@ -44,13 +44,11 @@ def get_uuid():
     :return:
     """
     root_mount_point = libcalamares.globalstorage.value("rootMountPoint")
-    print("Root mount point: \"{!s}\"".format(root_mount_point))
     partitions = libcalamares.globalstorage.value("partitions")
-    print("Partitions: \"{!s}\"".format(partitions))
 
     for partition in partitions:
         if partition["mountPoint"] == "/":
-            print("Root partition uuid: \"{!s}\"".format(partition["uuid"]))
+            libcalamares.utils.debug("Root partition uuid: \"{!s}\"".format(partition["uuid"]))
             return partition["uuid"]
 
     return ""
@@ -175,7 +173,7 @@ def install_systemd_boot(efi_directory):
 
     :param efi_directory:
     """
-    print("Bootloader: systemd-boot")
+    libcalamares.utils.debug("Bootloader: systemd-boot")
     install_path = libcalamares.globalstorage.value("rootMountPoint")
     install_efi_directory = install_path + efi_directory
     uuid = get_uuid()
@@ -197,10 +195,10 @@ def install_systemd_boot(efi_directory):
                      "--path={!s}".format(install_efi_directory),
                      "install"])
     kernel_line = get_kernel_line("default")
-    print("Configure: \"{!s}\"".format(kernel_line))
+    libcalamares.utils.debug("Configure: \"{!s}\"".format(kernel_line))
     create_systemd_boot_conf(uuid, conf_path, kernel_line)
     kernel_line = get_kernel_line("fallback")
-    print("Configure: \"{!s}\"".format(kernel_line))
+    libcalamares.utils.debug("Configure: \"{!s}\"".format(kernel_line))
     create_systemd_boot_conf(uuid, fallback_path, kernel_line)
     create_loader(loader_path)
 
@@ -213,7 +211,7 @@ def install_grub(efi_directory, fw_type):
     :param fw_type:
     """
     if fw_type == "efi":
-        print("Bootloader: grub (efi)")
+        libcalamares.utils.debug("Bootloader: grub (efi)")
         install_path = libcalamares.globalstorage.value("rootMountPoint")
         install_efi_directory = install_path + efi_directory
 
@@ -281,7 +279,7 @@ def install_grub(efi_directory, fw_type):
 
             shutil.copy2(efi_file_source, efi_file_target)
     else:
-        print("Bootloader: grub (bios)")
+        libcalamares.utils.debug("Bootloader: grub (bios)")
         if libcalamares.globalstorage.value("bootLoader") is None:
             return
 
