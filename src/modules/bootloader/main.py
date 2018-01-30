@@ -11,7 +11,7 @@
 #   Copyright 2015-2017, Philip Mueller <philm@manjaro.org>
 #   Copyright 2016-2017, Teo Mrnjavac <teo@kde.org>
 #   Copyright 2017, Alf Gaida <agaida@siduction.org>
-#   Copyright 2017, Adriaan de Groot <groot@kde.org>
+#   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
 #   Copyright 2017, Gabriel Craciunescu <crazy@frugalware.org>
 #   Copyright 2017, Ben Green <Bezzy1999@hotmail.com>
 #
@@ -269,7 +269,10 @@ def install_grub(efi_directory, fw_type):
             os.makedirs(install_efi_boot_directory)
 
         # Workaround for some UEFI firmwares
-        if libcalamares.job.configuration.get("installEFIFallback", True):
+        FALLBACK = "installEFIFallback"
+        libcalamares.utils.debug("UEFI Fallback: " + str(libcalamares.job.configuration.get(FALLBACK, "<unset>")))
+        if libcalamares.job.configuration.get(FALLBACK, True):
+            libcalamares.utils.debug("  .. installing '{!s}' fallback firmware".format(efi_boot_file))
             efi_file_source = os.path.join(install_efi_directory_firmware,
                                         efi_bootloader_id,
                                         efi_grub_file)
