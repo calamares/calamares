@@ -296,6 +296,19 @@ class PMDummy(PackageManager):
         libcalamares.utils.debug("Running script '" + str(script) + "'")
 
 
+class PMPisi(PackageManager):
+    backend = "pisi"
+
+    def install(self, pkgs, from_local=False):
+        check_target_env_call(["pisi", "install" "-y"] + pkgs)
+
+    def remove(self, pkgs):
+        check_target_env_call(["pisi", "remove", "-y"] + pkgs)
+
+    def update_db(self):
+        check_target_env_call(["pisi", "update-repo"])
+
+
 # Collect all the subclasses of PackageManager defined above,
 # and index them based on the backend property of each class.
 backend_managers = [
