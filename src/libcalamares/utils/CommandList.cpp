@@ -25,6 +25,7 @@
 #include "utils/CalamaresUtilsSystem.h"
 #include "utils/Logger.h"
 
+#include <QCoreApplication>
 #include <QVariantList>
 
 namespace CalamaresUtils
@@ -109,8 +110,8 @@ Calamares::JobResult CommandList::run( const QObject* parent )
         if ( !gs || !gs->contains( "rootMountPoint" ) )
         {
             cDebug() << "ERROR: No rootMountPoint defined.";
-            return Calamares::JobResult::error( parent->tr( "Could not run command." ),
-                                                parent->tr( "No rootMountPoint is defined, so command cannot be run in the target environment." ) );
+            return Calamares::JobResult::error( QCoreApplication::translate( "CommandList", "Could not run command." ),
+                                                QCoreApplication::translate( "CommandList", "No rootMountPoint is defined, so command cannot be run in the target environment." ) );
         }
         root = gs->value( "rootMountPoint" ).toString();
     }
