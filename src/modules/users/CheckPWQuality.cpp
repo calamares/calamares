@@ -20,6 +20,7 @@
 
 #include "utils/Logger.h"
 
+#include <QCoreApplication>
 #include <QString>
 #include <QWidget>
 
@@ -51,22 +52,6 @@ PasswordCheck::PasswordCheck( MessageFunc m, AcceptFunc a )
 {
 }
 
-// Try to trick Transifex into accepting these strings
-#define tr parent->tr
-struct LengthExplainer
-{
-    static QString too_short( QWidget* parent )
-    {
-        return tr( "Password is too short" );
-    }
-
-    static QString too_long( QWidget* parent )
-    {
-        return tr( "Password is too long" );
-    }
-} ;
-#undef tr
-
 DEFINE_CHECK_FUNC( minLength )
 {
     int minLength = -1;
@@ -77,9 +62,9 @@ DEFINE_CHECK_FUNC( minLength )
         cDebug() << " .. minLength set to" << minLength;
         checks.push_back(
             PasswordCheck(
-                [parent]()
+                []()
                 {
-                    return LengthExplainer::too_short( parent );
+                    return QCoreApplication::translate( "PWQ", "Password is too short" );
                 },
                 [minLength]( const QString& s )
                 {
@@ -99,9 +84,9 @@ DEFINE_CHECK_FUNC( maxLength )
         cDebug() << " .. maxLength set to" << maxLength;
         checks.push_back(
             PasswordCheck(
-                [parent]()
+                []()
                 {
-                    return LengthExplainer::too_long( parent );
+                    return QCoreApplication::translate("PWQ", "Password is too long" );
                 },
                 [maxLength]( const QString& s )
                 {
@@ -154,7 +139,6 @@ public:
         return m_rv < 0;
     }
 
-#define tr parent->tr
     /* This is roughly the same as the function pwquality_strerror,
      * only with QStrings instead, and using the Qt translation scheme.
      * It is used under the terms of the GNU GPL v3 or later, as
@@ -168,123 +152,123 @@ public:
         if ( m_rv >= arbitrary_minimum_strength )
             return QString();
         if ( m_rv >= 0 )
-            return tr( "Password is too weak" );
+            return QCoreApplication::translate( "PWQ",  "Password is too weak" );
 
         switch ( m_rv )
         {
         case PWQ_ERROR_MEM_ALLOC:
             if ( auxerror )
             {
-                QString s = tr( "Memory allocation error when setting '%1'" ).arg( ( const char* )auxerror );
+                QString s = QCoreApplication::translate( "PWQ", "Memory allocation error when setting '%1'" ).arg( ( const char* )auxerror );
                 free( auxerror );
                 return s;
             }
-            return tr( "Memory allocation error" );
+            return QCoreApplication::translate( "PWQ", "Memory allocation error" );
         case PWQ_ERROR_SAME_PASSWORD:
-            return tr( "The password is the same as the old one" );
+            return QCoreApplication::translate( "PWQ", "The password is the same as the old one" );
         case PWQ_ERROR_PALINDROME:
-            return tr( "The password is a palindrome" );
+            return QCoreApplication::translate( "PWQ", "The password is a palindrome" );
         case PWQ_ERROR_CASE_CHANGES_ONLY:
-            return tr( "The password differs with case changes only" );
+            return QCoreApplication::translate( "PWQ", "The password differs with case changes only" );
         case PWQ_ERROR_TOO_SIMILAR:
-            return tr( "The password is too similar to the old one" );
+            return QCoreApplication::translate( "PWQ", "The password is too similar to the old one" );
         case PWQ_ERROR_USER_CHECK:
-            return tr( "The password contains the user name in some form" );
+            return QCoreApplication::translate( "PWQ", "The password contains the user name in some form" );
         case PWQ_ERROR_GECOS_CHECK:
-            return tr( "The password contains words from the real name of the user in some form" );
+            return QCoreApplication::translate( "PWQ", "The password contains words from the real name of the user in some form" );
         case PWQ_ERROR_BAD_WORDS:
-            return tr( "The password contains forbidden words in some form" );
+            return QCoreApplication::translate( "PWQ", "The password contains forbidden words in some form" );
         case PWQ_ERROR_MIN_DIGITS:
             if ( auxerror )
-                return tr( "The password contains less than %1 digits" ).arg( ( long )auxerror );
-            return tr( "The password contains too few digits" );
+                return QCoreApplication::translate( "PWQ", "The password contains less than %1 digits" ).arg( ( long )auxerror );
+            return QCoreApplication::translate( "PWQ", "The password contains too few digits" );
         case PWQ_ERROR_MIN_UPPERS:
             if ( auxerror )
-                return tr( "The password contains less than %1 uppercase letters" ).arg( ( long )auxerror );
-            return tr( "The password contains too few uppercase letters" );
+                return QCoreApplication::translate( "PWQ", "The password contains less than %1 uppercase letters" ).arg( ( long )auxerror );
+            return QCoreApplication::translate( "PWQ", "The password contains too few uppercase letters" );
         case PWQ_ERROR_MIN_LOWERS:
             if ( auxerror )
-                return tr( "The password contains less than %1 lowercase letters" ).arg( ( long )auxerror );
-            return tr( "The password contains too few lowercase letters" );
+                return QCoreApplication::translate( "PWQ", "The password contains less than %1 lowercase letters" ).arg( ( long )auxerror );
+            return QCoreApplication::translate( "PWQ", "The password contains too few lowercase letters" );
         case PWQ_ERROR_MIN_OTHERS:
             if ( auxerror )
-                return tr( "The password contains less than %1 non-alphanumeric characters" ).arg( ( long )auxerror );
-            return tr( "The password contains too few non-alphanumeric characters" );
+                return QCoreApplication::translate( "PWQ", "The password contains less than %1 non-alphanumeric characters" ).arg( ( long )auxerror );
+            return QCoreApplication::translate( "PWQ", "The password contains too few non-alphanumeric characters" );
         case PWQ_ERROR_MIN_LENGTH:
             if ( auxerror )
-                return tr( "The password is shorter than %1 characters" ).arg( ( long )auxerror );
-            return tr( "The password is too short" );
+                return QCoreApplication::translate( "PWQ", "The password is shorter than %1 characters" ).arg( ( long )auxerror );
+            return QCoreApplication::translate( "PWQ", "The password is too short" );
         case PWQ_ERROR_ROTATED:
-            return tr( "The password is just rotated old one" );
+            return QCoreApplication::translate( "PWQ", "The password is just rotated old one" );
         case PWQ_ERROR_MIN_CLASSES:
             if ( auxerror )
-                return tr( "The password contains less than %1 character classes" ).arg( ( long )auxerror );
-            return tr( "The password does not contain enough character classes" );
+                return QCoreApplication::translate( "PWQ", "The password contains less than %1 character classes" ).arg( ( long )auxerror );
+            return QCoreApplication::translate( "PWQ", "The password does not contain enough character classes" );
         case PWQ_ERROR_MAX_CONSECUTIVE:
             if ( auxerror )
-                return tr( "The password contains more than %1 same characters consecutively" ).arg( ( long )auxerror );
-            return tr( "The password contains too many same characters consecutively" );
+                return QCoreApplication::translate( "PWQ", "The password contains more than %1 same characters consecutively" ).arg( ( long )auxerror );
+            return QCoreApplication::translate( "PWQ", "The password contains too many same characters consecutively" );
         case PWQ_ERROR_MAX_CLASS_REPEAT:
             if ( auxerror )
-                return tr( "The password contains more than %1 characters of the same class consecutively" ).arg( ( long )auxerror );
-            return tr( "The password contains too many characters of the same class consecutively" );
+                return QCoreApplication::translate( "PWQ", "The password contains more than %1 characters of the same class consecutively" ).arg( ( long )auxerror );
+            return QCoreApplication::translate( "PWQ", "The password contains too many characters of the same class consecutively" );
         case PWQ_ERROR_MAX_SEQUENCE:
             if ( auxerror )
-                return tr( "The password contains monotonic sequence longer than %1 characters" ).arg( ( long )auxerror );
-            return tr( "The password contains too long of a monotonic character sequence" );
+                return QCoreApplication::translate( "PWQ", "The password contains monotonic sequence longer than %1 characters" ).arg( ( long )auxerror );
+            return QCoreApplication::translate( "PWQ", "The password contains too long of a monotonic character sequence" );
         case PWQ_ERROR_EMPTY_PASSWORD:
-            return tr( "No password supplied" );
+            return QCoreApplication::translate( "PWQ", "No password supplied" );
         case PWQ_ERROR_RNG:
-            return tr( "Cannot obtain random numbers from the RNG device" );
+            return QCoreApplication::translate( "PWQ", "Cannot obtain random numbers from the RNG device" );
         case PWQ_ERROR_GENERATION_FAILED:
-            return tr( "Password generation failed - required entropy too low for settings" );
+            return QCoreApplication::translate( "PWQ", "Password generation failed - required entropy too low for settings" );
         case PWQ_ERROR_CRACKLIB_CHECK:
             if ( auxerror )
             {
                 /* Here the string comes from cracklib, don't free? */
-                return tr( "The password fails the dictionary check - %1" ).arg( ( const char* )auxerror );
+                return QCoreApplication::translate( "PWQ", "The password fails the dictionary check - %1" ).arg( ( const char* )auxerror );
             }
-            return tr( "The password fails the dictionary check" );
+            return QCoreApplication::translate( "PWQ", "The password fails the dictionary check" );
         case PWQ_ERROR_UNKNOWN_SETTING:
             if ( auxerror )
             {
-                QString s = tr( "Unknown setting - %1" ).arg( ( const char* )auxerror );
+                QString s = QCoreApplication::translate( "PWQ", "Unknown setting - %1" ).arg( ( const char* )auxerror );
                 free( auxerror );
                 return s;
             }
-            return tr( "Unknown setting" );
+            return QCoreApplication::translate( "PWQ", "Unknown setting" );
         case PWQ_ERROR_INTEGER:
             if ( auxerror )
             {
-                QString s = tr( "Bad integer value of setting - %1" ).arg( ( const char* )auxerror );
+                QString s = QCoreApplication::translate( "PWQ", "Bad integer value of setting - %1" ).arg( ( const char* )auxerror );
                 free( auxerror );
                 return s;
             }
-            return tr( "Bad integer value" );
+            return QCoreApplication::translate( "PWQ", "Bad integer value" );
         case PWQ_ERROR_NON_INT_SETTING:
             if ( auxerror )
             {
-                QString s = tr( "Setting %1 is not of integer type" ).arg( ( const char* )auxerror );
+                QString s = QCoreApplication::translate( "PWQ", "Setting %1 is not of integer type" ).arg( ( const char* )auxerror );
                 free( auxerror );
                 return s;
             }
-            return tr( "Setting is not of integer type" );
+            return QCoreApplication::translate( "PWQ", "Setting is not of integer type" );
         case PWQ_ERROR_NON_STR_SETTING:
             if ( auxerror )
             {
-                QString s = tr( "Setting %1 is not of string type" ).arg( ( const char* )auxerror );
+                QString s = QCoreApplication::translate( "PWQ", "Setting %1 is not of string type" ).arg( ( const char* )auxerror );
                 free( auxerror );
                 return s;
             }
-            return tr( "Setting is not of string type" );
+            return QCoreApplication::translate( "PWQ", "Setting is not of string type" );
         case PWQ_ERROR_CFGFILE_OPEN:
-            return tr( "Opening the configuration file failed" );
+            return QCoreApplication::translate( "PWQ", "Opening the configuration file failed" );
         case PWQ_ERROR_CFGFILE_MALFORMED:
-            return tr( "The configuration file is malformed" );
+            return QCoreApplication::translate( "PWQ", "The configuration file is malformed" );
         case PWQ_ERROR_FATAL_FAILURE:
-            return tr( "Fatal failure" );
+            return QCoreApplication::translate( "PWQ", "Fatal failure" );
         default:
-            return tr( "Unknown error" );
+            return QCoreApplication::translate( "PWQ", "Unknown error" );
         }
     }
 #undef tr
