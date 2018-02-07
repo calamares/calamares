@@ -24,11 +24,11 @@ msgstr "Fiktívna úloha jazyka python."
 
 #: src/modules/dummypython/main.py:97
 msgid "Dummy python step {}"
-msgstr ""
+msgstr "Fiktívny krok {} jazyka python"
 
 #: src/modules/machineid/main.py:35
 msgid "Generate machine-id."
-msgstr ""
+msgstr "Generovanie identifikátora počítača."
 
 #: src/modules/packages/main.py:60
 #, python-format
