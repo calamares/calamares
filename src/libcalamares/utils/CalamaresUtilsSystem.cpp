@@ -252,7 +252,7 @@ System::doChroot() const
 }
 
 Calamares::JobResult
-ProcessResult::explainProcess( const QObject* parent, int ec, const QString& command, const QString& output, int timeout )
+ProcessResult::explainProcess( int ec, const QString& command, const QString& output, int timeout )
 {
     using Calamares::JobResult;
 

@@ -41,7 +41,6 @@ public:
 
     /** @brief Explain a typical external process failure.
      *
-     * @param parent    Used as context for translation calls.
      * @param errorCode Return code from runCommand() or similar
      *                  (negative values get special explanation). The member
      *                  function uses the exit code stored in the ProcessResult
@@ -53,18 +52,18 @@ public:
      * @param timeout   Timeout passed to the process runner, for explaining
      *                  error code -4 (timeout).
      */
-    static Calamares::JobResult explainProcess( const QObject* parent, int errorCode, const QString& command, const QString& output, int timeout );
+    static Calamares::JobResult explainProcess( int errorCode, const QString& command, const QString& output, int timeout );
 
     /// @brief Convenience wrapper for explainProcess()
-    inline Calamares::JobResult explainProcess( const QObject* parent, const QString& command, int timeout ) const
+    inline Calamares::JobResult explainProcess( const QString& command, int timeout ) const
     {
-        return explainProcess( parent, getExitCode(), command, getOutput(), timeout );
+        return explainProcess( getExitCode(), command, getOutput(), timeout );
     }
 
     /// @brief Convenience wrapper for explainProcess()
-    inline Calamares::JobResult explainProcess( const QObject* parent, const QStringList& command, int timeout ) const
+    inline Calamares::JobResult explainProcess( const QStringList& command, int timeout ) const
     {
-        return explainProcess( parent, getExitCode(), command.join( ' ' ), getOutput(), timeout );
+        return explainProcess( getExitCode(), command.join( ' ' ), getOutput(), timeout );
     }
 } ;
 

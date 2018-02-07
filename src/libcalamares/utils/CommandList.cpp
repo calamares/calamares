@@ -98,7 +98,7 @@ CommandList::~CommandList()
 {
 }
 
-Calamares::JobResult CommandList::run( const QObject* parent )
+Calamares::JobResult CommandList::run()
 {
     System::RunLocation location = m_doChroot ? System::RunLocation::RunInTarget : System::RunLocation::RunInHost;
 
@@ -139,7 +139,7 @@ Calamares::JobResult CommandList::run( const QObject* parent )
             if ( suppress_result )
                 cDebug() << "Error code" << r.getExitCode() << "ignored by CommandList configuration.";
             else
-                return r.explainProcess( parent, processed_cmd, timeout );
+                return r.explainProcess( processed_cmd, timeout );
         }
     }
 

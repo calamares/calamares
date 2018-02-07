@@ -82,7 +82,7 @@ ProcessJob::exec()
                          QString(),
                          m_timeoutSec );
 
-    return CalamaresUtils::ProcessResult::explainProcess( this, ec, m_command, output, m_timeoutSec );
+    return CalamaresUtils::ProcessResult::explainProcess( ec, m_command, output, m_timeoutSec );
 }
 
 

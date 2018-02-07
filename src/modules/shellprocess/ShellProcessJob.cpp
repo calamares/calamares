@@ -62,7 +62,7 @@ ShellProcessJob::exec()
         return Calamares::JobResult::ok();
     }
 
-    return m_commands->run( this );
+    return m_commands->run();
 }
 
 

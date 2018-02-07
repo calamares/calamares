@@ -462,16 +462,16 @@ UsersPage::addPasswordCheck( const QString& key, const QVariant& value )
 {
     if ( key == "minLength" )
     {
-        add_check_minLength( this, m_passwordChecks, value );
+        add_check_minLength( m_passwordChecks, value );
     }
     else if ( key == "maxLength" )
     {
-        add_check_maxLength( this, m_passwordChecks, value );
+        add_check_maxLength( m_passwordChecks, value );
     }
 #ifdef CHECK_PWQUALITY
     else if ( key == "libpwquality" )
     {
-        add_check_libpwquality( this, m_passwordChecks, value );
+        add_check_libpwquality( m_passwordChecks, value );
     }
 #endif
     else

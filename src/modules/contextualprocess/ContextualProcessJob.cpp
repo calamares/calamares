@@ -85,7 +85,7 @@ ContextualProcessJob::exec()
     {
         if ( gs->contains( binding->variable ) && ( gs->value( binding->variable ).toString() == binding->value ) )
         {
-            Calamares::JobResult r = binding->commands->run( this );
+            Calamares::JobResult r = binding->commands->run();
             if ( !r )
                 return r;
         }

@@ -144,7 +144,7 @@ public:
      * It is used under the terms of the GNU GPL v3 or later, as
      * allowed by the libpwquality license (LICENSES/GPLv2+-libpwquality)
      */
-    QString explanation( QWidget* parent )
+    QString explanation()
     {
         void* auxerror = m_auxerror;
         m_auxerror = nullptr;
@@ -312,9 +312,9 @@ DEFINE_CHECK_FUNC( libpwquality )
     {
         checks.push_back(
             PasswordCheck(
-                [parent,settings]()
+                [settings]()
                 {
-                    return settings->explanation( parent );
+                    return settings->explanation();
                 },
                 [settings]( const QString& s )
                 {

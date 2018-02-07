@@ -69,7 +69,7 @@ using PasswordCheckList = QVector<PasswordCheck>;
  * an error, though).
  */
 #define _xDEFINE_CHECK_FUNC(x) \
-    add_check_##x( QWidget* parent, PasswordCheckList& checks, const QVariant& value )
+    add_check_##x( PasswordCheckList& checks, const QVariant& value )
 #define DEFINE_CHECK_FUNC(x) void _xDEFINE_CHECK_FUNC(x)
 #define DECLARE_CHECK_FUNC(x) void _xDEFINE_CHECK_FUNC(x);
 

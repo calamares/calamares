@@ -88,7 +88,7 @@ public:
         return m_doChroot;
     }
 
-    Calamares::JobResult run( const QObject* parent );
+    Calamares::JobResult run();
 
     using CommandList_t::isEmpty;
     using CommandList_t::count;
