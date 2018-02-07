@@ -33,6 +33,7 @@ function( calamares_add_module_subdirectory )
         # the calling CMakeLists (which is src/modules/CMakeLists.txt normally).
         if ( SKIPPED_MODULES )
             set( SKIPPED_MODULES ${SKIPPED_MODULES} PARENT_SCOPE )
+            set( MODULE_CONFIG_FILES "" )
         endif()
     # ...otherwise, we look for a module.desc.
     elseif( EXISTS "${_mod_dir}/module.desc" )
