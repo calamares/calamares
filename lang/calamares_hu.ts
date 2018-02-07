@@ -276,7 +276,7 @@ Minden változtatás elveszik, ha kilépsz a telepítőből.</translation>
     <message>
         <location filename="../src/libcalamares/utils/CommandList.cpp" line="85"/>
         <source>Could not run command.</source>
-        <translation type="unfinished"/>
+        <translation>A parancsot nem lehet futtatni.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/utils/CommandList.cpp" line="86"/>
@@ -296,12 +296,12 @@ Output:
     <message>
         <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="265"/>
         <source>External command crashed.</source>
-        <translation type="unfinished"/>
+        <translation>Külső parancs összeomlott.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="266"/>
         <source>Command &lt;i&gt;%1&lt;/i&gt; crashed.</source>
-        <translation type="unfinished"/>
+        <translation>Parancs &lt;i&gt;%1&lt;/i&gt; összeomlott.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="271"/>
@@ -326,7 +326,7 @@ Output:
     <message>
         <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="280"/>
         <source>External command failed to finish.</source>
-        <translation type="unfinished"/>
+        <translation>Külső parancs nem fejeződött be.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="281"/>

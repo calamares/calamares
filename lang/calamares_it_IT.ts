@@ -276,12 +276,12 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
     <message>
         <location filename="../src/libcalamares/utils/CommandList.cpp" line="85"/>
         <source>Could not run command.</source>
-        <translation type="unfinished"/>
+        <translation>Impossibile eseguire il comando.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/utils/CommandList.cpp" line="86"/>
         <source>No rootMountPoint is defined, so command cannot be run in the target environment.</source>
-        <translation type="unfinished"/>
+        <translation>Non è stato definito alcun rootMountPoint, quindi il comando non può essere eseguito nell&apos;ambiente di destinazione.</translation>
     </message>
 </context>
 <context>
@@ -291,32 +291,34 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
         <source>
 Output:
 </source>
-        <translation type="unfinished"/>
+        <translation>
+Output:
+</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="265"/>
         <source>External command crashed.</source>
-        <translation type="unfinished"/>
+        <translation>Il comando esterno si è arrestato.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="266"/>
         <source>Command &lt;i&gt;%1&lt;/i&gt; crashed.</source>
-        <translation type="unfinished"/>
+        <translation>Il comando &lt;i&gt;%1&lt;/i&gt; si è arrestato.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="271"/>
         <source>External command failed to start.</source>
-        <translation type="unfinished"/>
+        <translation>Il comando esterno non si è avviato.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="272"/>
         <source>Command &lt;i&gt;%1&lt;/i&gt; failed to start.</source>
-        <translation type="unfinished"/>
+        <translation>Il comando %1 non si è avviato.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="276"/>
         <source>Internal error when starting command.</source>
-        <translation type="unfinished"/>
+        <translation>Errore interno all&apos;avvio del comando.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="277"/>
@@ -326,22 +328,22 @@ Output:
     <message>
         <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="280"/>
         <source>External command failed to finish.</source>
-        <translation type="unfinished"/>
+        <translation>Il comando esterno non è stato portato a termine.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="281"/>
         <source>Command &lt;i&gt;%1&lt;/i&gt; failed to finish in %2 seconds.</source>
-        <translation type="unfinished"/>
+        <translation>Il comando &lt;i&gt;%1&lt;/i&gt; non è stato portato a termine in %2 secondi.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="287"/>
         <source>External command finished with errors.</source>
-        <translation type="unfinished"/>
+        <translation>Il comando esterno è terminato con errori.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="288"/>
         <source>Command &lt;i&gt;%1&lt;/i&gt; finished with exit code %2.</source>
-        <translation type="unfinished"/>
+        <translation>Il comando &lt;i&gt;%1&lt;/i&gt; è terminato con codice di uscita %2.</translation>
     </message>
 </context>
 <context>
@@ -584,7 +586,7 @@ Output:
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="151"/>
         <source>LVM LV name</source>
-        <translation type="unfinished"/>
+        <translation>Nome LVM LV</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="188"/>
