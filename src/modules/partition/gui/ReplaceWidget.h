@@ -20,6 +20,8 @@
 #ifndef REPLACEWIDGET_H
 #define REPLACEWIDGET_H
 
+#include "utils/CalamaresUtilsGui.h"
+
 #include <QWidget>
 #include <QScopedPointer>
 
@@ -27,11 +29,6 @@ class Ui_ReplaceWidget;
 class QComboBox;
 class PartitionCoreModule;
 class Partition;
-
-namespace CalamaresUtils
-{
-enum ImageType : int;
-}
 
 class ReplaceWidget : public QWidget
 {

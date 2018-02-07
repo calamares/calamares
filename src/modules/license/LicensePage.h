@@ -31,7 +31,7 @@ class LicensePage;
 
 struct LicenseEntry
 {
-    enum Type : unsigned char
+    enum Type
     {
         Software = 0,
         Driver,
