@@ -65,6 +65,7 @@ WaitingSpinnerWidget::WaitingSpinnerWidget(Qt::WindowModality modality,
 
 void WaitingSpinnerWidget::initialize() {
     _color = Qt::black;
+    _textColor = Qt::white;
     _roundness = 100.0;
     _minimumTrailOpacity = 3.14159265358979323846;
     _trailFadePercentage = 80.0;
@@ -98,6 +99,7 @@ void WaitingSpinnerWidget::paintEvent(QPaintEvent *) {
         painter.save();
         painter.translate(_innerRadius + _lineLength,
                           _innerRadius + _lineLength);
+        painter.translate((width() - _imageSize.width()) / 2, 0);
         qreal rotateAngle =
                 static_cast<qreal>(360 * i) / static_cast<qreal>(_numberOfLines);
         painter.rotate(rotateAngle);
@@ -113,6 +115,12 @@ void WaitingSpinnerWidget::paintEvent(QPaintEvent *) {
                     QRect(0, -_lineWidth / 2, _lineLength, _lineWidth), _roundness,
                     _roundness, Qt::RelativeSize);
         painter.restore();
+    }
+
+    if (!_text.isEmpty()) {
+        painter.setPen(QPen(_textColor));
+        painter.drawText(QRect(0, _imageSize.height(), width(), height() - _imageSize.height()), 
+                Qt::AlignBottom | Qt::AlignHCenter, _text);
     }
 }
 
@@ -166,8 +174,21 @@ void WaitingSpinnerWidget::setInnerRadius(int radius) {
     updateSize();
 }
 
+void WaitingSpinnerWidget::setText(QString text) {
+    _text = text;
+    updateSize();
+}
+
 QColor WaitingSpinnerWidget::color() {
     return _color;
+}
+
+QColor WaitingSpinnerWidget::textColor() {
+    return _textColor;
+}
+
+QString WaitingSpinnerWidget::text() {
+    return _text;
 }
 
 qreal WaitingSpinnerWidget::roundness() {
@@ -214,6 +235,10 @@ void WaitingSpinnerWidget::setColor(QColor color) {
     _color = color;
 }
 
+void WaitingSpinnerWidget::setTextColor(QColor color) {
+    _textColor = color;
+}
+
 void WaitingSpinnerWidget::setRevolutionsPerSecond(qreal revolutionsPerSecond) {
     _revolutionsPerSecond = revolutionsPerSecond;
     updateTimer();
@@ -237,7 +262,14 @@ void WaitingSpinnerWidget::rotate() {
 
 void WaitingSpinnerWidget::updateSize() {
     int size = (_innerRadius + _lineLength) * 2;
-    setFixedSize(size, size);
+    _imageSize = QSize(size, size);
+    if (_text.isEmpty()) {
+        setFixedSize(size, size);
+    } else {
+        QFontMetrics fm(font());
+        QSize textSize = QSize(fm.width(_text), fm.height());
+        setFixedSize(std::max(size, textSize.width()), size + size / 4 + textSize.height());
+    }
 }
 
 void WaitingSpinnerWidget::updateTimer() {
