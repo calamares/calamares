@@ -41,7 +41,7 @@ AUTHOR="--author='Calamares CI <groot@kde.org>'"
 BOILERPLATE="Automatic merge of Transifex translations"
 
 git add --verbose lang/calamares*.ts
-git commit "$AUTHOR" --message="[core] $BOILERPLATE" | true
+git commit "$AUTHOR" --message="i18n: $BOILERPLATE" | true
 
 rm -f lang/desktop*.desktop
 awk '
@@ -72,7 +72,7 @@ for MODULE_DIR in $(find src/modules -maxdepth 1 -mindepth 1 -type d) ; do
         msgfmt -o ${POFILE%.po}.mo $POFILE
       done
       git add --verbose ${MODULE_DIR}/lang/*
-      git commit "$AUTHOR" --message="[${MODULE_NAME}] $BOILERPLATE" | true
+      git commit "$AUTHOR" --message="i18n: [${MODULE_NAME}] $BOILERPLATE" | true
     fi
   fi
 done
@@ -82,6 +82,6 @@ for POFILE in $(find lang -name "python.po") ; do
   msgfmt -o ${POFILE%.po}.mo $POFILE
 done
 git add --verbose lang/python*
-git commit "$AUTHOR" --message="[python] $BOILERPLATE" | true
+git commit "$AUTHOR" --message="i18n: [python] $BOILERPLATE" | true
 
 # git push --set-upstream origin master
