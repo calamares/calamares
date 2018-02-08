@@ -271,7 +271,7 @@ public:
             return QCoreApplication::translate( "PWQ", "Unknown error" );
         }
     }
-#undef tr
+
 private:
     pwquality_settings_t* m_settings;
     int m_rv;

@@ -291,7 +291,6 @@ ProcessResult::explainProcess( int ec, const QString& command, const QString& ou
                                 .arg( command )
                                 .arg( ec )
                                 + outputMessage );
-#undef trIndirect
 }
 
 }  // namespace
