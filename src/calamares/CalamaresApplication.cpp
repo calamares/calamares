@@ -89,7 +89,7 @@ CalamaresApplication::init()
 
 CalamaresApplication::~CalamaresApplication()
 {
-    cDebug( LOGVERBOSE ) << "Shutting down Calamares...";
+    cDebug( Logger::LOGVERBOSE ) << "Shutting down Calamares...";
 
 //    if ( JobQueue::instance() )
 //        JobQueue::instance()->stop();
@@ -98,7 +98,7 @@ CalamaresApplication::~CalamaresApplication()
 
 //    delete JobQueue::instance();
 
-    cDebug( LOGVERBOSE ) << "Finished shutdown.";
+    cDebug( Logger::LOGVERBOSE ) << "Finished shutdown.";
 }
 
 
