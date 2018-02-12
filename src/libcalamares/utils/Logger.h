@@ -65,5 +65,7 @@ namespace Logger
 
 #define cLog Logger::CLog
 #define cDebug Logger::CDebug
+#define cWarning() Logger::CDebug(Logger::LOGWARNING) << "WARNING:"
+#define cError() Logger::CDebug(Logger::LOGERROR) << "ERROR:"
 
 #endif // CALAMARES_LOGGER_H
