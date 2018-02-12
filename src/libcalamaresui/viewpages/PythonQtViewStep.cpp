@@ -80,7 +80,7 @@ QWidget*
 PythonQtViewStep::widget()
 {
     if ( m_widget->layout()->count() > 1 )
-        cDebug() << "WARNING: PythonQtViewStep wrapper widget has more than 1 child. "
+        cWarning() << "PythonQtViewStep wrapper widget has more than 1 child. "
                     "This should never happen.";
 
     bool nothingChanged = m_cxt.evalScript(

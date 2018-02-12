@@ -145,7 +145,7 @@ Module::fromDescriptor( const QVariantMap& moduleDescriptor,
     }
     catch ( YAML::Exception& e )
     {
-        cDebug() << "WARNING: YAML parser error " << e.what();
+        cWarning() << "YAML parser error " << e.what();
         delete m;
         return nullptr;
     }
@@ -197,8 +197,7 @@ Module::loadConfigurationFile( const QString& configFileName ) //throws YAML::Ex
             }
             if ( !doc.IsMap() )
             {
-                cLog() << Q_FUNC_INFO << "bad module configuration format"
-                         << path;
+                cWarning() << "Bad module configuration format" << path;
                 return;
             }
 

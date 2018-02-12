@@ -116,7 +116,7 @@ ModuleManager::doInit()
                         }
                         catch ( YAML::Exception& e )
                         {
-                            cDebug() << "WARNING: YAML parser error " << e.what();
+                            cWarning() << "YAML parser error " << e.what();
                             continue;
                         }
                     }
@@ -140,7 +140,7 @@ ModuleManager::doInit()
                 }
                 else
                 {
-                    cDebug() << Q_FUNC_INFO << "cannot cd into module directory "
+                    cWarning() << "Cannot cd into module directory "
                              << path << "/" << subdir;
                 }
             }
@@ -200,7 +200,7 @@ ModuleManager::loadModules()
                 if ( moduleEntrySplit.length() < 1 ||
                      moduleEntrySplit.length() > 2 )
                 {
-                    cDebug() << "Wrong module entry format for module" << moduleEntry << "."
+                    cError() << "Wrong module entry format for module" << moduleEntry << "."
                              << "\nCalamares will now quit.";
                     qApp->exit( 1 );
                     return;
@@ -212,7 +212,7 @@ ModuleManager::loadModules()
                 if ( !m_availableDescriptorsByModuleName.contains( moduleName ) ||
                      m_availableDescriptorsByModuleName.value( moduleName ).isEmpty() )
                 {
-                    cDebug() << "Module" << moduleName << "not found in module search paths."
+                    cError() << "Module" << moduleName << "not found in module search paths."
                              << "\nCalamares will now quit.";
                     qApp->exit( 1 );
                     return;
@@ -240,7 +240,7 @@ ModuleManager::loadModules()
                     }
                     else //ought to be a custom instance, but cannot find instance entry
                     {
-                        cDebug() << "Custom instance" << moduleEntry << "not found in custom instances section."
+                        cError() << "Custom instance" << moduleEntry << "not found in custom instances section."
                                  << "\nCalamares will now quit.";
                         qApp->exit( 1 );
                         return;
@@ -263,7 +263,7 @@ ModuleManager::loadModules()
                     m_loadedModulesByInstanceKey.value( instanceKey, nullptr );
                 if ( thisModule && !thisModule->isLoaded() )
                 {
-                    cDebug() << "Module" << instanceKey << "exists but not loaded."
+                    cError() << "Module" << instanceKey << "exists but not loaded."
                              << "\nCalamares will now quit.";
                     qApp->exit( 1 );
                     return;
@@ -282,7 +282,7 @@ ModuleManager::loadModules()
                                                 m_moduleDirectoriesByModuleName.value( moduleName ) );
                     if ( !thisModule )
                     {
-                        cDebug() << "Module" << instanceKey << "cannot be created from descriptor.";
+                        cWarning() << "Module" << instanceKey << "cannot be created from descriptor.";
                         Q_ASSERT( thisModule );
                         continue;
                     }
@@ -292,7 +292,7 @@ ModuleManager::loadModules()
                     Q_ASSERT( thisModule->isLoaded() );
                     if ( !thisModule->isLoaded() )
                     {
-                        cDebug() << "Module" << moduleName << "loading FAILED";
+                        cWarning() << "Module" << moduleName << "loading FAILED";
                         continue;
                     }
                 }
