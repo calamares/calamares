@@ -47,7 +47,8 @@ log( const char* msg, unsigned int debugLevel, bool toDisk = true )
     if ( !s_threshold )
     {
         if ( qApp->arguments().contains( "--debug" ) ||
-             qApp->arguments().contains( "-d" ) )
+             qApp->arguments().contains( "-d" ) ||
+             qApp->arguments().contains( "-D" ) )
             s_threshold = LOGVERBOSE;
         else
 #ifdef QT_NO_DEBUG
