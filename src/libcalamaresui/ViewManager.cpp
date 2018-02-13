@@ -192,6 +192,11 @@ ViewManager::currentStepIndex() const
     return m_currentStep;
 }
 
+static inline bool
+stepNextWillExecute(const ViewStepList& steps, int index)
+{
+    return ( index + 1 < steps.count() ) && qobject_cast< ExecutionViewStep* >( steps.at( index + 1 ) );
+}
 
 void
 ViewManager::next()
@@ -203,9 +208,7 @@ ViewManager::next()
         // Special case when the user clicks next on the very last page in a view phase
         // and right before switching to an execution phase.
         // Depending on Calamares::Settings, we show an "are you sure" prompt or not.
-        if ( Calamares::Settings::instance()->showPromptBeforeExecution() &&
-                m_currentStep + 1 < m_steps.count() &&
-                qobject_cast< ExecutionViewStep* >( m_steps.at( m_currentStep + 1 ) ) )
+        if ( Calamares::Settings::instance()->showPromptBeforeExecution() && stepNextWillExecute( m_steps, m_currentStep ) )
         {
             int reply =
                 QMessageBox::question( m_widget,
@@ -242,14 +245,28 @@ ViewManager::next()
     m_next->setEnabled( !executing && m_steps.at( m_currentStep )->isNextEnabled() );
     m_back->setEnabled( !executing && m_steps.at( m_currentStep )->isBackEnabled() );
 
-    if ( m_currentStep == m_steps.count() -1 &&
-            m_steps.last()->isAtEnd() )
+    updateButtonLabels();
+}
+
+void
+ViewManager::updateButtonLabels()
+{
+    if ( stepNextWillExecute( m_steps, m_currentStep ) )
+        m_next->setText( tr( "&Install" ) );
+    else
+        m_next->setText( tr( "&Next" ) );
+
+    if ( m_currentStep == m_steps.count() -1 && m_steps.last()->isAtEnd() )
     {
         m_quit->setText( tr( "&Done" ) );
         m_quit->setToolTip( tr( "The installation is complete. Close the installer." ) );
     }
+    else
+    {
+        m_quit->setText( tr( "&Cancel" ) );
+        m_quit->setToolTip( tr( "Cancel installation without changing the system." ) );
+    }
 }
-
 
 void
 ViewManager::back()
@@ -273,12 +290,7 @@ ViewManager::back()
     if ( m_currentStep == 0 && m_steps.first()->isAtBeginning() )
         m_back->setEnabled( false );
 
-    if ( !( m_currentStep == m_steps.count() -1 &&
-            m_steps.last()->isAtEnd() ) )
-    {
-        m_quit->setText( tr( "&Cancel" ) );
-        m_quit->setToolTip( tr( "Cancel installation without changing the system." ) );
-    }
+    updateButtonLabels();
 }
 
 bool ViewManager::confirmCancelInstallation()
