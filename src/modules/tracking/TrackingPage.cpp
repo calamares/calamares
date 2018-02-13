@@ -81,7 +81,7 @@ void TrackingPage::enableTrackingOption(TrackingType t, bool enabled)
             group->hide();
     }
     else
-        cDebug() << "WARNING: unknown tracking option" << int(t);
+        cWarning() << "unknown tracking option" << int(t);
 }
 
 bool TrackingPage::getTrackingOption(TrackingType t)
@@ -129,7 +129,7 @@ void TrackingPage::setTrackingPolicy(TrackingType t, QString url)
             cDebug() << "Tracking policy" << int(t) << "set to" << url;
         }
     else
-        cDebug() << "WARNING: unknown tracking option" << int(t);
+        cWarning() << "unknown tracking option" << int(t);
 }
 
 void TrackingPage::setGeneralPolicy( QString url )
@@ -162,5 +162,5 @@ void TrackingPage::setTrackingLevel(const QString& l)
     if ( button != nullptr )
         button->setChecked( true );
     else
-        cDebug() << "WARNING: unknown default tracking level" << l;
+        cWarning() << "unknown default tracking level" << l;
 }

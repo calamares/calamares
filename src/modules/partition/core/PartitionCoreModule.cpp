@@ -507,7 +507,7 @@ PartitionCoreModule::scanForEfiSystemPartitions()
         KPMHelpers::findPartitions( devices, PartUtils::isEfiBootable );
 
     if ( efiSystemPartitions.isEmpty() )
-        cDebug() << "WARNING: system is EFI but no EFI system partitions found.";
+        cWarning() << "system is EFI but no EFI system partitions found.";
 
     m_efiSystemPartitions = efiSystemPartitions;
 }
