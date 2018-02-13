@@ -475,5 +475,5 @@ UsersPage::addPasswordCheck( const QString& key, const QVariant& value )
     }
 #endif
     else
-        cDebug() << "WARNING: Unknown password-check key" << key;
+        cWarning() << "Unknown password-check key" << key;
 }

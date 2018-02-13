@@ -220,7 +220,7 @@ RequirementsChecker::setConfigurationMap( const QVariantMap& configurationMap )
     }
     else
     {
-        cDebug() << "WARNING: RequirementsChecker entry 'check' is incomplete.";
+        cWarning() << "RequirementsChecker entry 'check' is incomplete.";
         incompleteConfiguration = true;
     }
 
@@ -232,14 +232,14 @@ RequirementsChecker::setConfigurationMap( const QVariantMap& configurationMap )
     }
     else
     {
-        cDebug() << "WARNING: RequirementsChecker entry 'required' is incomplete.";
+        cWarning() << "RequirementsChecker entry 'required' is incomplete.";
         incompleteConfiguration = true;
     }
 
     // Help out with consistency, but don't fix
     for ( const auto& r : m_entriesToRequire )
         if ( !m_entriesToCheck.contains( r ) )
-            cDebug() << "WARNING: RequirementsChecker requires" << r << "but does not check it.";
+            cWarning() << "RequirementsChecker requires" << r << "but does not check it.";
 
     if ( configurationMap.contains( "requiredStorage" ) &&
          ( configurationMap.value( "requiredStorage" ).type() == QVariant::Double ||
@@ -249,7 +249,7 @@ RequirementsChecker::setConfigurationMap( const QVariantMap& configurationMap )
         m_requiredStorageGB = configurationMap.value( "requiredStorage" ).toDouble( &ok );
         if ( !ok )
         {
-            cDebug() << "WARNING: RequirementsChecker entry 'requiredStorage' is invalid.";
+            cWarning() << "RequirementsChecker entry 'requiredStorage' is invalid.";
             m_requiredStorageGB = 3.;
         }
 
@@ -257,7 +257,7 @@ RequirementsChecker::setConfigurationMap( const QVariantMap& configurationMap )
     }
     else
     {
-        cDebug() << "WARNING: RequirementsChecker entry 'requiredStorage' is missing.";
+        cWarning() << "RequirementsChecker entry 'requiredStorage' is missing.";
         m_requiredStorageGB = 3.;
         incompleteConfiguration = true;
     }
@@ -270,14 +270,14 @@ RequirementsChecker::setConfigurationMap( const QVariantMap& configurationMap )
         m_requiredRamGB = configurationMap.value( "requiredRam" ).toDouble( &ok );
         if ( !ok )
         {
-            cDebug() << "WARNING: RequirementsChecker entry 'requiredRam' is invalid.";
+            cWarning() << "RequirementsChecker entry 'requiredRam' is invalid.";
             m_requiredRamGB = 1.;
             incompleteConfiguration = true;
         }
     }
     else
     {
-        cDebug() << "WARNING: RequirementsChecker entry 'requiredRam' is missing.";
+        cWarning() << "RequirementsChecker entry 'requiredRam' is missing.";
         m_requiredRamGB = 1.;
         incompleteConfiguration = true;
     }
@@ -289,7 +289,7 @@ RequirementsChecker::setConfigurationMap( const QVariantMap& configurationMap )
         if ( m_checkHasInternetUrl.isEmpty() ||
              !QUrl( m_checkHasInternetUrl ).isValid() )
         {
-            cDebug() << "WARNING: RequirementsChecker entry 'internetCheckUrl' is invalid in welcome.conf" << m_checkHasInternetUrl
+            cWarning() << "RequirementsChecker entry 'internetCheckUrl' is invalid in welcome.conf" << m_checkHasInternetUrl
                      << "reverting to default (http://example.com).";
             m_checkHasInternetUrl = "http://example.com";
             incompleteConfiguration = true;
@@ -297,7 +297,7 @@ RequirementsChecker::setConfigurationMap( const QVariantMap& configurationMap )
     }
     else
     {
-        cDebug() << "WARNING: RequirementsChecker entry 'internetCheckUrl' is undefined in welcome.conf,"
+        cWarning() << "RequirementsChecker entry 'internetCheckUrl' is undefined in welcome.conf,"
                     "reverting to default (http://example.com).";
 
         m_checkHasInternetUrl = "http://example.com";
@@ -305,7 +305,7 @@ RequirementsChecker::setConfigurationMap( const QVariantMap& configurationMap )
     }
 
     if ( incompleteConfiguration )
-        cDebug() << "WARNING: RequirementsChecker configuration map:\n" << configurationMap;
+        cWarning() << "RequirementsChecker configuration map:\n" << configurationMap;
 }
 
 
@@ -320,7 +320,7 @@ bool
 RequirementsChecker::checkEnoughStorage( qint64 requiredSpace )
 {
 #ifdef WITHOUT_LIBPARTED
-    cDebug() << "WARNING: RequirementsChecker is configured without libparted.";
+    cWarning() << "RequirementsChecker is configured without libparted.";
     return false;
 #else
     return check_big_enough( requiredSpace );

@@ -281,11 +281,11 @@ runOsprober( PartitionCoreModule* core )
     osprober.start();
     if ( !osprober.waitForStarted() )
     {
-        cDebug() << "ERROR: os-prober cannot start.";
+        cError() << "os-prober cannot start.";
     }
     else if ( !osprober.waitForFinished( 60000 ) )
     {
-        cDebug() << "ERROR: os-prober timed out.";
+        cError() << "os-prober timed out.";
     }
     else
     {

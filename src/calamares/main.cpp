@@ -63,11 +63,14 @@ main( int argc, char* argv[] )
     parser.setApplicationDescription( "Distribution-independent installer framework" );
     parser.addHelpOption();
     parser.addVersionOption();
-    QCommandLineOption debugOption( QStringList() << "d" << "debug",
-                                      "Verbose output for debugging purposes." );
+    QCommandLineOption debugOption( QStringList{ "d", "debug"},
+                                    "Also look in current directory for configuration. Implies -D." );
     parser.addOption( debugOption );
 
-    QCommandLineOption configOption( QStringList() << "c" << "config",
+    parser.addOption( QCommandLineOption( QStringLiteral("D"),
+                                          "Verbose output for debugging purposes." ) );
+
+    QCommandLineOption configOption( QStringList{ "c", "config"},
                                      "Configuration directory to use, for testing purposes.", "config" );
     parser.addOption( configOption );
 

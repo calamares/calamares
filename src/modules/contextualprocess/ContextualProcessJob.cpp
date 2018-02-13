@@ -110,7 +110,7 @@ ContextualProcessJob::setConfigurationMap( const QVariantMap& configurationMap )
 
         if ( iter.value().type() != QVariant::Map )
         {
-            cDebug() << "WARNING:" << moduleInstanceKey() << "bad configuration values for" << variableName;
+            cWarning() << moduleInstanceKey() << "bad configuration values for" << variableName;
             continue;
         }
 
@@ -120,7 +120,7 @@ ContextualProcessJob::setConfigurationMap( const QVariantMap& configurationMap )
             QString valueString = valueiter.key();
             if ( variableName.isEmpty() )
             {
-                cDebug() << "WARNING:" << moduleInstanceKey() << "variable" << variableName << "unrecognized value" << valueiter.key();
+                cWarning() << moduleInstanceKey() << "variable" << variableName << "unrecognized value" << valueiter.key();
                 continue;
             }
 

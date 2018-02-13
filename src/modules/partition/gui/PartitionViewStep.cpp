@@ -426,6 +426,7 @@ PartitionViewStep::onLeave()
 
             if ( !message.isEmpty() )
             {
+                cWarning() << message;
                 QMessageBox::warning( m_manualPartitionPage,
                                       message,
                                       description );
@@ -535,7 +536,7 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
         gs->insert( "defaultFileSystemType", typeString );
         if ( FileSystem::typeForName( typeString ) == FileSystem::Unknown )
         {
-            cDebug() << "WARNING: bad default filesystem configuration for partition module. Reverting to ext4 as default.";
+            cWarning() << "bad default filesystem configuration for partition module. Reverting to ext4 as default.";
             gs->insert( "defaultFileSystemType", "ext4" );
         }
     }

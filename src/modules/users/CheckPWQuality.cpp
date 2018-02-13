@@ -282,7 +282,7 @@ DEFINE_CHECK_FUNC( libpwquality )
 {
     if ( !value.canConvert( QVariant::List ) )
     {
-        cDebug() << "WARNING: libpwquality settings is not a list";
+        cWarning() << "libpwquality settings is not a list";
         return;
     }
 
@@ -296,7 +296,7 @@ DEFINE_CHECK_FUNC( libpwquality )
             QString option = v.toString();
             int r = settings->set( option );
             if ( r )
-                cDebug() << " .. WARNING: unrecognized libpwquality setting" << option;
+                cWarning() << "unrecognized libpwquality setting" << option;
             else
             {
                 cDebug() << " .. libpwquality setting" << option;
@@ -304,7 +304,7 @@ DEFINE_CHECK_FUNC( libpwquality )
             }
         }
         else
-            cDebug() << " .. WARNING: unrecognized libpwquality setting" << v;
+            cWarning() << "unrecognized libpwquality setting" << v;
     }
 
     /* Something actually added? */
@@ -320,7 +320,7 @@ DEFINE_CHECK_FUNC( libpwquality )
                 {
                     int r = settings->check( s );
                     if ( r < 0 )
-                        cDebug() << "WARNING: libpwquality error" << r;
+                        cWarning() << "libpwquality error" << r;
                     else if ( r < settings->arbitrary_minimum_strength )
                         cDebug() << "Password strength" << r << "too low";
                     return r >= settings->arbitrary_minimum_strength;

@@ -25,13 +25,19 @@
 
 #include "DllMacro.h"
 
-#define LOGDEBUG 1
-#define LOGINFO 2
-#define LOGEXTRA 5
-#define LOGVERBOSE 8
-
 namespace Logger
 {
+    enum
+    {
+        LOG_DISABLE = 0,
+        LOGERROR = 1,
+        LOGWARNING = 2,
+        LOGINFO  = 3,
+        LOGEXTRA = 5,
+        LOGDEBUG = 6,
+        LOGVERBOSE = 8
+    } ;
+
     class DLLEXPORT CLog : public QDebug
     {
     public:
@@ -59,5 +65,7 @@ namespace Logger
 
 #define cLog Logger::CLog
 #define cDebug Logger::CDebug
+#define cWarning() Logger::CDebug(Logger::LOGWARNING) << "WARNING:"
+#define cError() Logger::CDebug(Logger::LOGERROR) << "ERROR:"
 
 #endif // CALAMARES_LOGGER_H

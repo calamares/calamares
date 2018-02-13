@@ -166,7 +166,7 @@ Branding::Branding( const QString& brandingFilePath,
             }
             else
                 bail( "Syntax error in slideshow sequence." );
-            
+
             if ( !doc[ "style" ].IsMap() )
                 bail( "Syntax error in style map." );
 
@@ -179,12 +179,12 @@ Branding::Branding( const QString& brandingFilePath,
         }
         catch ( YAML::Exception& e )
         {
-            cDebug() << "WARNING: YAML parser error " << e.what() << "in" << file.fileName();
+            cWarning() << "YAML parser error " << e.what() << "in" << file.fileName();
         }
 
         QDir translationsDir( componentDir.filePath( "lang" ) );
         if ( !translationsDir.exists() )
-            cDebug() << "WARNING: the selected branding component does not ship translations.";
+            cWarning() << "the selected branding component does not ship translations.";
         m_translationsPathPrefix = translationsDir.absolutePath();
         m_translationsPathPrefix.append( QString( "%1calamares-%2" )
                                             .arg( QDir::separator() )
@@ -192,13 +192,13 @@ Branding::Branding( const QString& brandingFilePath,
     }
     else
     {
-        cDebug() << "WARNING: Cannot read " << file.fileName();
+        cWarning() << "Cannot read " << file.fileName();
     }
 
     s_instance = this;
     if ( m_componentName.isEmpty() )
     {
-        cDebug() << "WARNING: failed to load component from" << brandingFilePath;
+        cWarning() << "Failed to load component from" << brandingFilePath;
     }
     else
     {
@@ -291,7 +291,7 @@ Branding::setGlobals( GlobalStorage* globalStorage ) const
 void
 Branding::bail( const QString& message )
 {
-    cLog() << "FATAL ERROR in"
+    cError() << "FATAL in"
            << m_descriptorPath
            << "\n" + message;
     ::exit( EXIT_FAILURE );

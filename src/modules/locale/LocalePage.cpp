@@ -346,7 +346,7 @@ LocalePage::init( const QString& initialRegion,
 
     if ( m_localeGenLines.isEmpty() )
     {
-        cDebug() << "WARNING: cannot acquire a list of available locales."
+        cWarning() << "cannot acquire a list of available locales."
                     << "The locale and localecfg modules will be broken as long as this "
                     "system does not provide"
                     << "\n\t  "
@@ -454,7 +454,7 @@ LocalePage::guessLocaleConfiguration() const
     // If we cannot say anything about available locales
     if ( m_localeGenLines.isEmpty() )
     {
-        cDebug() << "WARNING: guessLocaleConfiguration can't guess from an empty list.";
+        cWarning() << "guessLocaleConfiguration can't guess from an empty list.";
         return LocaleConfiguration::createDefault();
     }
 

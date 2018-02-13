@@ -223,7 +223,7 @@ Helper::Helper( QObject* parent )
     }
     else
     {
-        cDebug() << "WARNING: creating PythonHelper more than once. This is very bad.";
+        cWarning() << "creating PythonHelper more than once. This is very bad.";
         return;
     }
 
