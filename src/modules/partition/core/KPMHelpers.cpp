@@ -29,6 +29,8 @@
 #include <kpmcore/backend/corebackendmanager.h>
 #include <kpmcore/fs/luks.h>
 
+#include "utils/Logger.h"
+
 #include <QDebug>
 
 
@@ -46,7 +48,7 @@ initKPMcore()
     QByteArray backendName = qgetenv( "KPMCORE_BACKEND" );
     if ( !CoreBackendManager::self()->load( backendName.isEmpty() ? CoreBackendManager::defaultBackendName() : backendName ) )
     {
-        qWarning() << "Failed to load backend plugin" << backendName;
+        cWarning() << "Failed to load backend plugin" << backendName;
         return false;
     }
     s_KPMcoreInited = true;
@@ -155,7 +157,7 @@ createNewEncryptedPartition( PartitionNode* parent,
                                                       ) );
     if ( !fs )
     {
-        qDebug() << "ERROR: cannot create LUKS filesystem. Giving up.";
+        cError() << "cannot create LUKS filesystem. Giving up.";
         return nullptr;
     }
 

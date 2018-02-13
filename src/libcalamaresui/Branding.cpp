@@ -291,7 +291,7 @@ Branding::setGlobals( GlobalStorage* globalStorage ) const
 void
 Branding::bail( const QString& message )
 {
-    cLog() << "FATAL ERROR in"
+    cError() << "FATAL in"
            << m_descriptorPath
            << "\n" + message;
     ::exit( EXIT_FAILURE );
