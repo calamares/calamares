@@ -83,8 +83,6 @@ add_library( calamares SHARED ${libSources} ${kdsagSources} ${utilsSources} )
 set_target_properties( calamares
     PROPERTIES
         AUTOMOC TRUE
-        VERSION ${CALAMARES_VERSION_SHORT}
-        SOVERSION ${CALAMARES_VERSION_SHORT}
 )
 
 target_link_libraries( calamares
@@ -95,16 +93,9 @@ target_link_libraries( calamares
 install( TARGETS calamares
     EXPORT CalamaresLibraryDepends
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}/calamares/
+    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}/calamares/
 )
-
-# Make symlink lib/calamares/libcalamares.so to lib/libcalamares.so.VERSION so
-# lib/calamares can be used as module path for the Python interpreter.
-install( CODE "
-    file( MAKE_DIRECTORY \"\$ENV{DESTDIR}/${CMAKE_INSTALL_FULL_LIBDIR}/calamares\" )
-    execute_process( COMMAND \"${CMAKE_COMMAND}\" -E create_symlink ../libcalamares.so.${CALAMARES_VERSION_SHORT} libcalamares.so WORKING_DIRECTORY \"\$ENV{DESTDIR}/${CMAKE_INSTALL_FULL_LIBDIR}/calamares\" )
-")
 
 # Install header files
 file( GLOB rootHeaders "*.h" )

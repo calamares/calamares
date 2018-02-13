@@ -78,5 +78,6 @@ calamares_add_library( calamaresui
         Qt5::QuickWidgets
     RESOURCES libcalamaresui.qrc
     EXPORT CalamaresLibraryDepends
-    VERSION ${CALAMARES_VERSION_SHORT}
+    NO_VERSION
+    INSTALL_BINDIR ${CMAKE_INSTALL_LIBDIR}/calamares/
 )
