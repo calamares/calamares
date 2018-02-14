@@ -126,16 +126,12 @@ set( QT_VERSION 5.6.0 )
 find_package( Qt5 ${QT_VERSION} CONFIG REQUIRED Core Gui Widgets LinguistTools Svg Quick QuickWidgets )
 find_package( YAMLCPP 0.5.1 REQUIRED )
 find_package( PolkitQt5-1 REQUIRED )
-find_package(ECM 5.18 NO_MODULE)
-if( ECM_FOUND )
-    set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${CMAKE_MODULE_PATH})
-endif()
 
 # Find ECM once, and add it to the module search path; Calamares
 # modules that need ECM can do
 #   find_package(ECM ${ECM_VERSION} REQUIRED NO_MODULE),
 # no need to mess with the module path after.
-set( ECM_VERSION 5.10.0 )
+set( ECM_VERSION 5.18 )
 find_package(ECM ${ECM_VERSION} NO_MODULE)
 if( ECM_FOUND )
     set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${CMAKE_MODULE_PATH})
