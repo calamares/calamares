@@ -340,16 +340,20 @@ file( RELATIVE_PATH CONF_REL_INCLUDE_DIR "${CMAKE_INSTALL_FULL_CMAKEDIR}" "${CMA
 
 configure_file( CalamaresConfig.cmake.in "${PROJECT_BINARY_DIR}/CalamaresConfig.cmake" @ONLY )
 configure_file( CalamaresConfigVersion.cmake.in "${PROJECT_BINARY_DIR}/CalamaresConfigVersion.cmake" @ONLY )
+configure_file( CalamaresUse.cmake.in "${PROJECT_BINARY_DIR}/CalamaresUse.cmake" @ONLY )
 
 # Install the cmake files
 install(
     FILES
         "${PROJECT_BINARY_DIR}/CalamaresConfig.cmake"
         "${PROJECT_BINARY_DIR}/CalamaresConfigVersion.cmake"
+        "${PROJECT_BINARY_DIR}/CalamaresUse.cmake"
         "CMakeModules/CalamaresAddPlugin.cmake"
         "CMakeModules/CalamaresAddModuleSubdirectory.cmake"
         "CMakeModules/CalamaresAddLibrary.cmake"
         "CMakeModules/CalamaresAddBrandingSubdirectory.cmake"
+        "CMakeModules/CalamaresAddTranslations.cmake"
+        "CMakeModules/CMakeColors.cmake"
     DESTINATION
         "${CMAKE_INSTALL_CMAKEDIR}"
 )
