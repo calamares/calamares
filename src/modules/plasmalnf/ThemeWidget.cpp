@@ -39,7 +39,7 @@ ThemeWidget::ThemeWidget(const ThemeInfo& info, QWidget* parent)
     layout->addWidget( m_check, 1 );
 
     const QSize image_size{
-        qMax(12 * CalamaresUtils::defaultFontHeight(), 120), 
+        qMax(12 * CalamaresUtils::defaultFontHeight(), 120),
         qMax(8 * CalamaresUtils::defaultFontHeight(), 80) };
 
     QPixmap image( info.imagePath );
@@ -57,8 +57,8 @@ ThemeWidget::ThemeWidget(const ThemeInfo& info, QWidget* parent)
         cDebug() << "Theme image" << info.imagePath << "not found, hash" << hash_color;
         image.fill( QColor( QRgb( hash_color ) ) );
     }
-    else
-        image.scaled( image_size );
+
+    image = image.scaled( image_size, Qt::KeepAspectRatio, Qt::SmoothTransformation );
 
     QLabel* image_label = new QLabel( this );
     image_label->setPixmap( image );
