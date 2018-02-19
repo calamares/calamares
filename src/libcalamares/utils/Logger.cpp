@@ -154,10 +154,6 @@ setupLogfile()
     qInstallMessageHandler( CalamaresLogHandler );
 }
 
-}
-
-using namespace Logger;
-
 CLog::CLog( unsigned int debugLevel )
     : QDebug( &m_msg )
     , m_debugLevel( debugLevel )
@@ -170,6 +166,8 @@ CLog::~CLog()
     log( m_msg.toUtf8().data(), m_debugLevel );
 }
 
-Logger::CDebug::~CDebug()
+CDebug::~CDebug()
 {
 }
+
+}  // namespace
