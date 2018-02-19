@@ -129,6 +129,8 @@ ContextualProcessJob::exec()
             if ( !r )
                 return r;
         }
+        else
+            cWarning() << "ContextualProcess checks for unknown variable" << binding->variable;
     }
     return Calamares::JobResult::ok();
 }
