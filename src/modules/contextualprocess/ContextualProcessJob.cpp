@@ -175,4 +175,19 @@ ContextualProcessJob::setConfigurationMap( const QVariantMap& configurationMap )
     }
 }
 
+int
+ContextualProcessJob::count()
+{
+    return m_commands.count();
+}
+
+int
+ContextualProcessJob::count(const QString& variableName)
+{
+    for ( const ContextualProcessBinding* binding : m_commands )
+        if ( binding->variable == variableName )
+            return binding->checks.count();
+    return -1;
+}
+
 CALAMARES_PLUGIN_FACTORY_DEFINITION( ContextualProcessJobFactory, registerPlugin<ContextualProcessJob>(); )
