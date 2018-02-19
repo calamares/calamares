@@ -40,7 +40,6 @@ FinishedPage::FinishedPage( QWidget* parent )
     , ui( new Ui::FinishedPage )
     , m_restartSetUp( false )
 {
-    cDebug() << "FinishedPage()";
     ui->setupUi( this );
 
     ui->mainText->setAlignment( Qt::AlignCenter );
