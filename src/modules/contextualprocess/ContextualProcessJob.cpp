@@ -30,10 +30,6 @@
 #include "utils/CommandList.h"
 #include "utils/Logger.h"
 
-/**
- * Passing a CommandList to ValueCheck gives ownership of the CommandList to
- * the ValueCheck, which will delete the CommandList when needed.
- */
 struct ValueCheck : public QPair<QString, CalamaresUtils::CommandList*>
 {
     ValueCheck( const QString& value, CalamaresUtils::CommandList* commands )
@@ -43,7 +39,9 @@ struct ValueCheck : public QPair<QString, CalamaresUtils::CommandList*>
 
     ~ValueCheck()
     {
-        delete second;
+        // We don't own the commandlist, the binding holding this valuecheck
+        // does, so don't delete. This is closely tied to (temporaries created
+        // by) pass-by-value in QList::append().
     }
 
     QString value() const { return first; }
@@ -62,8 +60,7 @@ struct ContextualProcessBinding
     /**
      * @brief add commands to be executed when @p value is matched.
      *
-     * Ownership of the CommandList passes to the ValueCheck held
-     * by this binding.
+     * Ownership of the CommandList passes to this binding.
      */
     void append( const QString& value, CalamaresUtils::CommandList* commands )
     {
@@ -95,6 +92,10 @@ struct ContextualProcessBinding
 ContextualProcessBinding::~ContextualProcessBinding()
 {
     wildcard = nullptr;
+    for ( const auto& c : checks )
+    {
+        delete c.commands();
+    }
 }
 
 ContextualProcessJob::ContextualProcessJob( QObject* parent )
