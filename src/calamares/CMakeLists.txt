@@ -42,7 +42,7 @@ add_calamares_translations( ${CALAMARES_TRANSLATION_LANGUAGES} )
 set( final_src ${calamaresUi_H} ${calamaresSources} ${calamaresRc} ${trans_outfile} )
 
 add_executable( calamares_bin ${final_src} )
-SET_TARGET_PROPERTIES(calamares_bin
+set_target_properties(calamares_bin
     PROPERTIES
         AUTOMOC TRUE
         ENABLE_EXPORTS TRUE

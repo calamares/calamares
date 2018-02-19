@@ -92,9 +92,8 @@ target_link_libraries( calamares
 
 install( TARGETS calamares
     EXPORT CalamaresLibraryDepends
-    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}/calamares/
-    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}/calamares/
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
 )
 
 # Install header files

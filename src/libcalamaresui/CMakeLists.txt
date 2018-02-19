@@ -79,5 +79,4 @@ calamares_add_library( calamaresui
     RESOURCES libcalamaresui.qrc
     EXPORT CalamaresLibraryDepends
     NO_VERSION
-    INSTALL_BINDIR ${CMAKE_INSTALL_LIBDIR}/calamares/
 )
