@@ -343,21 +343,27 @@ isEfiSystem()
 bool
 isEfiBootable( const Partition* candidate )
 {
+    cDebug() << "Check EFI bootable" << candidate->partitionPath() << candidate->devicePath();
+    cDebug() << " .. flags" << candidate->activeFlags();
+
     /* If bit 17 is set, old-style Esp flag, it's OK */
     if ( candidate->activeFlags().testFlag( PartitionTable::FlagEsp ) )
         return true;
 
-
     /* Otherwise, if it's a GPT table, Boot (bit 0) is the same as Esp */
     const PartitionNode* root = candidate;
     while ( root && !root->isRoot() )
+    {
         root = root->parent();
+        cDebug() << " .. moved towards root" << (void *)root;
+    }
 
     // Strange case: no root found, no partition table node?
     if ( !root )
         return false;
 
     const PartitionTable* table = dynamic_cast<const PartitionTable*>( root );
+    cDebug() << "  .. partition table" << (void *)table << "type" << ( table ? table->type() : PartitionTable::TableType::unknownTableType );
     return table && ( table->type() == PartitionTable::TableType::gpt ) &&
         candidate->activeFlags().testFlag( PartitionTable::FlagBoot );
 }
