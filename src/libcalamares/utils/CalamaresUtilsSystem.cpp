@@ -58,8 +58,15 @@ System::~System()
 {}
 
 
-System*System::instance()
+System*
+System::instance()
 {
+    if ( !s_instance )
+    {
+        cError() << "No Calamares system-object has been created.";
+        cError() << " .. using a bogus instance instead.";
+        return new System( true, nullptr );
+    }
     return s_instance;
 }
 
