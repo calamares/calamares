@@ -24,6 +24,7 @@
 #include "CalamaresUtils.h"
 
 #include "CalamaresConfig.h"
+#include "Logger.h"
 
 #include <QCoreApplication>
 #include <QDebug>
@@ -166,11 +167,11 @@ installTranslator( const QLocale& locale,
                                    "_",
                                    brandingTranslationsDir.absolutePath() ) )
             {
-                qDebug() << "Translation: Branding component: Using system locale:" << localeName;
+                cDebug() << "Translation: Branding using locale:" << localeName;
             }
             else
             {
-                qDebug() << "Translation: Branding component: Using default locale, system locale one not found:" << localeName;
+                cDebug() << "Translation: Branding using default, system locale not found:" << localeName;
                 translator->load( brandingTranslationsPrefix + "en" );
             }
 
@@ -189,11 +190,11 @@ installTranslator( const QLocale& locale,
     translator = new QTranslator( parent );
     if ( translator->load( QString( ":/lang/calamares_" ) + localeName ) )
     {
-        qDebug() << "Translation: Calamares: Using system locale:" << localeName;
+        cDebug() << "Translation: Calamares using locale:" << localeName;
     }
     else
     {
-        qDebug() << "Translation: Calamares: Using default locale, system locale one not found:" << localeName;
+        cDebug() << "Translation: Calamares using default, system locale not found:" << localeName;
         translator->load( QString( ":/lang/calamares_en" ) );
     }
 
