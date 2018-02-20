@@ -25,6 +25,19 @@ import subprocess
 import shutil
 
 import libcalamares
+from libcalamares.utils import gettext_path, gettext_languages
+
+import gettext
+_translation = gettext.translation("calamares-python",
+                                   localedir=gettext_path(),
+                                   languages=gettext_languages(),
+                                   fallback=True)
+_ = _translation.gettext
+_n = _translation.ngettext
+
+
+def pretty_name():
+    return _( "Unmount file systems." )
 
 
 def list_mounts(root_mount_point):
