@@ -61,6 +61,17 @@ namespace Logger
     DLLEXPORT void CalamaresLogHandler( QtMsgType type, const QMessageLogContext& context, const QString& msg );
     DLLEXPORT void setupLogfile();
     DLLEXPORT QString logFile();
+
+    /**
+     * @brief Set a log level for future logging.
+     *
+     * Pass in a value from the LOG* enum, above. Use 0 to
+     * disable logging. Values greater than LOGVERBOSE are
+     * limited to LOGVERBOSE, which will log everything.
+     *
+     * Practical values are 0, 1, 2, and 6.
+     */
+    DLLEXPORT void setupLogLevel( unsigned int level );
 }
 
 #define cLog Logger::CLog

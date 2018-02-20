@@ -35,31 +35,28 @@
 #define LOGFILE_SIZE 1024 * 256
 
 static std::ofstream logfile;
-static unsigned int s_threshold = 0;  // Set to non-zero on first logging call
+static unsigned int s_threshold =
+#ifdef QT_NO_DEBUG
+            Logger::LOG_DISABLE;
+#else
+            Logger::LOGEXTRA + 1;  // Comparison is < in log() function
+#endif
 static QMutex s_mutex;
 
 namespace Logger
 {
 
+void
+setupLogLevel(unsigned int level)
+{
+    if ( level > LOGVERBOSE )
+        level = LOGVERBOSE;
+    s_threshold = level + 1;  // Comparison is < in log() function
+}
+
 static void
 log( const char* msg, unsigned int debugLevel, bool toDisk = true )
 {
-    if ( !s_threshold )
-    {
-        if ( qApp->arguments().contains( "--debug" ) ||
-             qApp->arguments().contains( "-d" ) ||
-             qApp->arguments().contains( "-D" ) )
-            s_threshold = LOGVERBOSE;
-        else
-#ifdef QT_NO_DEBUG
-            s_threshold = LOG_DISABLE;
-#else
-            s_threshold = LOGEXTRA;
-#endif
-        // Comparison is < threshold, below
-        ++s_threshold;
-    }
-
     if ( toDisk || debugLevel < s_threshold )
     {
         QMutexLocker lock( &s_mutex );
