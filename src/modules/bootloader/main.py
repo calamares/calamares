@@ -299,6 +299,12 @@ def install_grub(efi_directory, fw_type):
                            "-o", libcalamares.job.configuration["grubCfg"]])
 
 
+def install_secureboot(efi_directory):
+    """
+    Installs the secureboot shim in the system by calling efibootmgr.
+    """
+    raise NotImplementedError
+
 def vfat_correct_case(parent, name):
     for candidate in os.listdir(parent):
         if name.lower() == candidate.lower():
@@ -320,8 +326,14 @@ def prepare_bootloader(fw_type):
 
     if efi_boot_loader == "systemd-boot" and fw_type == "efi":
         install_systemd_boot(efi_directory)
-    else:
+    elif efi_boot_loader == "sb-shim" and fw_type == "efi":
+        install_secureboot(efi_directory)
+    elif efi_boot_loader == "grub" or fw_type != "efi":
         install_grub(efi_directory, fw_type)
+    else:
+        libcalamares.utils.debug( "WARNING: the combination of "
+            "boot-loader '{!s}' and firmware '{!s}' "
+            "is not supported.".format(efi_boot_loader, fw_type) )
 
 
 def run():
