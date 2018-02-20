@@ -5,6 +5,7 @@
 #
 #   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
 #   Copyright 2016, Anke Boersma <demm@kaosx.us>
+#   Copyright 2018, Adriaan de Groot <groot@kde.org>
 #
 #   Calamares is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -65,7 +66,7 @@ def run():
             try:
                 shutil.copy2(log_source, log_destination)
             except Exception as e:
-                libcalamares.utils.debug("WARNING Could not preserve file {!s}, "
+                libcalamares.utils.warning("Could not preserve file {!s}, "
                                        "error {!s}".format(log_source, e))
 
     if not root_mount_point:
