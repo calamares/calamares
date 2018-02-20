@@ -167,6 +167,18 @@ def create_loader(loader_path):
             loader_file.write(line)
 
 
+def efi_label():
+    if "efiBootloaderId" in libcalamares.job.configuration:
+        efi_bootloader_id = libcalamares.job.configuration[
+                                "efiBootloaderId"]
+    else:
+        branding = libcalamares.globalstorage.value("branding")
+        efi_bootloader_id = branding["bootloaderEntryName"]
+
+    file_name_sanitizer = str.maketrans(" /", "_-")
+    return efi_bootloader_id.translate(file_name_sanitizer)
+
+
 def install_systemd_boot(efi_directory):
     """
     Installs systemd-boot as bootloader for EFI setups.
@@ -218,14 +230,8 @@ def install_grub(efi_directory, fw_type):
         if not os.path.isdir(install_efi_directory):
             os.makedirs(install_efi_directory)
 
-        if "efiBootloaderId" in libcalamares.job.configuration:
-            efi_bootloader_id = libcalamares.job.configuration[
-                                    "efiBootloaderId"]
-        else:
-            branding = libcalamares.globalstorage.value("branding")
-            distribution = branding["bootloaderEntryName"]
-            file_name_sanitizer = str.maketrans(" /", "_-")
-            efi_bootloader_id = distribution.translate(file_name_sanitizer)
+        efi_bootloader_id = efi_label()
+
         # get bitness of the underlying UEFI
         try:
             sysfile = open("/sys/firmware/efi/fw_platform_size", "r")
@@ -303,7 +309,17 @@ def install_secureboot(efi_directory):
     """
     Installs the secureboot shim in the system by calling efibootmgr.
     """
-    raise NotImplementedError
+    efi_bootloader_id = efi_label()
+    subprocess.call([
+        "/usr/sbin/efibootmgr",
+        "-c",
+        "-w",
+        "-L", efi_bootloader_id,
+        "-d", path,  # TODO
+        "-p", num,   # TODO
+        "-l", efidir)# TODO
+
+
 
 def vfat_correct_case(parent, name):
     for candidate in os.listdir(parent):
