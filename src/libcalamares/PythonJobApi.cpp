@@ -171,6 +171,11 @@ debug( const std::string& s )
     cDebug() << "[PYTHON JOB]: " << QString::fromStdString( s );
 }
 
+void
+warning( const std::string& s )
+{
+    cWarning() << "[PYTHON JOB]: " << QString::fromStdString( s );
+}
 
 PythonJobInterface::PythonJobInterface( Calamares::PythonJob* parent )
     : m_parent( parent )
