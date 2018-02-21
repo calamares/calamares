@@ -126,16 +126,12 @@ set( QT_VERSION 5.6.0 )
 find_package( Qt5 ${QT_VERSION} CONFIG REQUIRED Core Gui Widgets LinguistTools Svg Quick QuickWidgets )
 find_package( YAMLCPP 0.5.1 REQUIRED )
 find_package( PolkitQt5-1 REQUIRED )
-find_package(ECM 5.18 NO_MODULE)
-if( ECM_FOUND )
-    set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${CMAKE_MODULE_PATH})
-endif()
 
 # Find ECM once, and add it to the module search path; Calamares
 # modules that need ECM can do
 #   find_package(ECM ${ECM_VERSION} REQUIRED NO_MODULE),
 # no need to mess with the module path after.
-set( ECM_VERSION 5.10.0 )
+set( ECM_VERSION 5.18 )
 find_package(ECM ${ECM_VERSION} NO_MODULE)
 if( ECM_FOUND )
     set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${CMAKE_MODULE_PATH})
@@ -340,16 +336,20 @@ file( RELATIVE_PATH CONF_REL_INCLUDE_DIR "${CMAKE_INSTALL_FULL_CMAKEDIR}" "${CMA
 
 configure_file( CalamaresConfig.cmake.in "${PROJECT_BINARY_DIR}/CalamaresConfig.cmake" @ONLY )
 configure_file( CalamaresConfigVersion.cmake.in "${PROJECT_BINARY_DIR}/CalamaresConfigVersion.cmake" @ONLY )
+configure_file( CalamaresUse.cmake.in "${PROJECT_BINARY_DIR}/CalamaresUse.cmake" @ONLY )
 
 # Install the cmake files
 install(
     FILES
         "${PROJECT_BINARY_DIR}/CalamaresConfig.cmake"
         "${PROJECT_BINARY_DIR}/CalamaresConfigVersion.cmake"
+        "${PROJECT_BINARY_DIR}/CalamaresUse.cmake"
         "CMakeModules/CalamaresAddPlugin.cmake"
         "CMakeModules/CalamaresAddModuleSubdirectory.cmake"
         "CMakeModules/CalamaresAddLibrary.cmake"
         "CMakeModules/CalamaresAddBrandingSubdirectory.cmake"
+        "CMakeModules/CalamaresAddTranslations.cmake"
+        "CMakeModules/CMakeColors.cmake"
     DESTINATION
         "${CMAKE_INSTALL_CMAKEDIR}"
 )
