@@ -103,39 +103,16 @@ ModuleManager::doInit()
                         continue;
                     }
 
-                    QFile descriptorFile( descriptorFileInfo.absoluteFilePath() );
-                    QVariant moduleDescriptor;
-                    if ( descriptorFile.exists() && descriptorFile.open( QFile::ReadOnly | QFile::Text ) )
+                    bool ok = false;
+                    QVariantMap moduleDescriptorMap = CalamaresUtils::loadYaml( descriptorFileInfo, &ok );
+                    QString moduleName = ok ? moduleDescriptorMap.value( "name" ).toString() : QString();
+
+                    if ( ok && ( moduleName == currentDir.dirName() ) &&
+                            !m_availableDescriptorsByModuleName.contains( moduleName ) )
                     {
-                        QByteArray ba = descriptorFile.readAll();
-                        try
-                        {
-                            YAML::Node doc = YAML::Load( ba.constData() );
-
-                            moduleDescriptor = CalamaresUtils::yamlToVariant( doc );
-                        }
-                        catch ( YAML::Exception& e )
-                        {
-                            cWarning() << "YAML parser error " << e.what();
-                            continue;
-                        }
-                    }
-
-
-                    if ( moduleDescriptor.isValid() &&
-                         !moduleDescriptor.isNull() &&
-                         moduleDescriptor.type() == QVariant::Map )
-                    {
-                        QVariantMap moduleDescriptorMap = moduleDescriptor.toMap();
-
-                        if ( moduleDescriptorMap.value( "name" ) == currentDir.dirName() &&
-                             !m_availableDescriptorsByModuleName.contains( moduleDescriptorMap.value( "name" ).toString() ) )
-                        {
-                            m_availableDescriptorsByModuleName.insert( moduleDescriptorMap.value( "name" ).toString(),
-                                                                       moduleDescriptorMap );
-                            m_moduleDirectoriesByModuleName.insert( moduleDescriptorMap.value( "name" ).toString(),
-                                                                    descriptorFileInfo.absoluteDir().absolutePath() );
-                        }
+                        m_availableDescriptorsByModuleName.insert( moduleName, moduleDescriptorMap );
+                        m_moduleDirectoriesByModuleName.insert( moduleName,
+                                                                descriptorFileInfo.absoluteDir().absolutePath() );
                     }
                 }
                 else
