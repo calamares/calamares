@@ -1,7 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2017, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -24,6 +24,7 @@
 #include <QVariant>
 
 class QByteArray;
+class QFileInfo;
 
 namespace YAML
 {
@@ -35,6 +36,15 @@ void operator>>( const YAML::Node& node, QStringList& v );
 
 namespace CalamaresUtils
 {
+/**
+ * Loads a given @p filename and returns the YAML data
+ * as a QVariantMap. If filename doesn't exist, or is
+ * malformed in some way, returns an empty map and sets
+ * @p *ok to false. Otherwise sets @p *ok to true.
+ */
+QVariantMap loadYaml( const QString& filename, bool* ok = nullptr );
+/** Convenience overload. */
+QVariantMap loadYaml( const QFileInfo&, bool* ok = nullptr );
 
 QVariant yamlToVariant( const YAML::Node& node );
 QVariant yamlScalarToVariant( const YAML::Node& scalarNode );

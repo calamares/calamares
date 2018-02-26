@@ -1,7 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2017, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -23,6 +23,8 @@
 #include <yaml-cpp/yaml.h>
 
 #include <QByteArray>
+#include <QFile>
+#include <QFileInfo>
 #include <QRegExp>
 
 void
@@ -144,6 +146,48 @@ explainYamlException( const YAML::Exception& e, const QByteArray& yamlData, cons
             cWarning() << "offending YAML data:" << yamlData.mid( rangestart, rangeend-rangestart ).constData();
 
     }
+}
+
+QVariantMap
+loadYaml(const QFileInfo& fi, bool* ok)
+{
+    return loadYaml( fi.absoluteFilePath(), ok );
+}
+
+QVariantMap
+loadYaml(const QString& filename, bool* ok)
+{
+    if ( ok )
+        *ok = false;
+
+    QFile descriptorFile( filename );
+    QVariant moduleDescriptor;
+    if ( descriptorFile.exists() && descriptorFile.open( QFile::ReadOnly | QFile::Text ) )
+    {
+        QByteArray ba = descriptorFile.readAll();
+        try
+        {
+            YAML::Node doc = YAML::Load( ba.constData() );
+            moduleDescriptor = CalamaresUtils::yamlToVariant( doc );
+        }
+        catch ( YAML::Exception& e )
+        {
+            explainYamlException( e, ba, filename.toLatin1().constData() );
+            return QVariantMap();
+        }
+    }
+
+
+    if ( moduleDescriptor.isValid() &&
+         !moduleDescriptor.isNull() &&
+         moduleDescriptor.type() == QVariant::Map )
+    {
+        if ( ok )
+            *ok = true;
+        return moduleDescriptor.toMap();
+    }
+
+    return QVariantMap();
 }
 
 }  // namespace
