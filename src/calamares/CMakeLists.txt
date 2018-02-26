@@ -68,3 +68,9 @@ install( FILES ${CMAKE_SOURCE_DIR}/data/images/squid.svg
     RENAME calamares.svg
     DESTINATION ${CMAKE_INSTALL_DATADIR}/icons/hicolor/scalable/apps
 )
+
+if( BUILD_TESTING )
+    add_executable( loadmodule testmain.cpp )
+    target_link_libraries( loadmodule ${CALAMARES_LIBRARIES} Qt5::Core Qt5::Widgets calamaresui )
+    # Don't install, it's just for enable_testing
+endif()
