@@ -114,6 +114,19 @@ void
 explainYamlException( const YAML::Exception& e, const QByteArray& yamlData, const char *label )
 {
     cWarning() << "YAML error " << e.what() << "in" << label << '.';
+    explainYamlException( e, yamlData );
+}
+
+void
+explainYamlException( const YAML::Exception& e, const QByteArray& yamlData, const QString& label )
+{
+    cWarning() << "YAML error " << e.what() << "in" << label << '.';
+    explainYamlException( e, yamlData );
+}
+
+void
+explainYamlException( const YAML::Exception& e, const QByteArray& yamlData )
+{
     if ( ( e.mark.line >= 0 ) && ( e.mark.column >= 0 ) )
     {
         // Try to show the line where it happened.
@@ -172,7 +185,7 @@ loadYaml(const QString& filename, bool* ok)
         }
         catch ( YAML::Exception& e )
         {
-            explainYamlException( e, ba, filename.toLatin1().constData() );
+            explainYamlException( e, ba, filename );
             return QVariantMap();
         }
     }

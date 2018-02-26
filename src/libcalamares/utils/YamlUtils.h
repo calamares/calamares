@@ -57,6 +57,8 @@ QVariant yamlMapToVariant( const YAML::Node& mapNode );
  * Uses @p label when labeling the data source (e.g. "netinstall data")
  */
 void explainYamlException( const YAML::Exception& e, const QByteArray& data, const char *label );
+void explainYamlException( const YAML::Exception& e, const QByteArray& data, const QString& label );
+void explainYamlException( const YAML::Exception& e, const QByteArray& data );
 
 } //ns
 

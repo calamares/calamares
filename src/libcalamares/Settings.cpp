@@ -156,12 +156,12 @@ Settings::Settings( const QString& settingsFilePath,
         }
         catch ( YAML::Exception& e )
         {
-            cWarning() << "YAML parser error " << e.what() << "in" << file.fileName();
+            CalamaresUtils::explainYamlException( e, ba, file.fileName() );
         }
     }
     else
     {
-        cWarning() << "Cannot read " << file.fileName();
+        cWarning() << "Cannot read settings file" << file.fileName();
     }
 
     s_instance = this;
