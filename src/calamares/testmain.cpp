@@ -28,6 +28,7 @@
 
 #include "Settings.h"
 #include "Job.h"
+#include "JobQueue.h"
 
 #include <QCommandLineOption>
 #include <QCommandLineParser>
@@ -155,6 +156,8 @@ main( int argc, char* argv[] )
         return 1;
 
     std::unique_ptr< Calamares::Settings > settings_p( new Calamares::Settings( QString(), true ) );
+    std::unique_ptr< Calamares::JobQueue > jobqueue_p( new Calamares::JobQueue( nullptr ) );
+
     cDebug() << "Calamares test module-loader" << module.moduleName();
     Calamares::Module* m = load_module( module );
     if ( !m )
