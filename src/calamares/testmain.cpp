@@ -27,6 +27,7 @@
 #include "modulesystem/Module.h"
 
 #include "Settings.h"
+#include "Job.h"
 
 #include <QCommandLineOption>
 #include <QCommandLineParser>
@@ -35,7 +36,16 @@
 
 #include <memory>
 
-static QString
+struct ModuleConfig : public QPair< QString, QString >
+{
+    ModuleConfig( const QString& a, const QString& b ) : QPair< QString, QString >(a, b) { }
+    ModuleConfig() : QPair< QString, QString >( QString(), QString() ) { }
+
+    QString moduleName() const { return first; }
+    QString configFile() const { return second; }
+} ;
+
+static ModuleConfig
 handle_args( QCoreApplication& a )
 {
     QCommandLineOption debugLevelOption( QStringLiteral("D"),
@@ -68,22 +78,23 @@ handle_args( QCoreApplication& a )
     {
         cError() << "Missing <module> path.\n";
         parser.showHelp();
-        return QString();  // NOTREACHED
+        return ModuleConfig();  // NOTREACHED
     }
-    if ( args.size() > 1 )
+    if ( args.size() > 2 )
     {
         cError() << "More than one <module> path.\n";
         parser.showHelp();
-        return QString();  // NOTREACHED
+        return ModuleConfig();  // NOTREACHED
     }
 
-    return args.first();
+    return ModuleConfig( args.first(), args.size() == 2 ? args.at(1) : QString() );
 }
 
 
 static Calamares::Module*
-load_module( const QString& moduleName )
+load_module( const ModuleConfig& moduleConfig )
 {
+    QString moduleName = moduleConfig.moduleName();
     QFileInfo fi;
 
     bool ok = false;
@@ -123,7 +134,10 @@ load_module( const QString& moduleName )
     }
 
     QString moduleDirectory = fi.absolutePath();
-    QString configFile = moduleDirectory + '/' + name + ".conf";
+    QString configFile(
+        moduleConfig.configFile().isEmpty()
+        ? moduleDirectory + '/' + name + ".conf"
+        : moduleConfig.configFile() );
 
     Calamares::Module* module = Calamares::Module::fromDescriptor(
         descriptor, name, configFile, moduleDirectory );
@@ -136,17 +150,39 @@ main( int argc, char* argv[] )
 {
     QCoreApplication a( argc, argv );
 
-    QString module = handle_args( a );
-    if ( module.isEmpty() )
+    ModuleConfig module = handle_args( a );
+    if ( module.moduleName().isEmpty() )
         return 1;
 
     std::unique_ptr< Calamares::Settings > settings_p( new Calamares::Settings( QString(), true ) );
-    cDebug() << "Calamares test module-loader" << module;
+    cDebug() << "Calamares test module-loader" << module.moduleName();
     Calamares::Module* m = load_module( module );
     if ( !m )
     {
-        cError() << "No module.desc data found in" << module;
+        cError() << "No module.desc data found in" << module.moduleName();
         return 1;
+    }
+
+    if ( !m->isLoaded() )
+        m->loadSelf();
+
+    if ( !m->isLoaded() )
+    {
+        cError() << "Module" << module.moduleName() << "could not be loaded.";
+        return 1;
+    }
+
+    cDebug() << "Module" << m->name() << m->typeString() << m->interfaceString();
+
+    Calamares::JobList jobList = m->jobs();
+    unsigned int count = 1;
+    for ( const auto& p : jobList )
+    {
+        cDebug() << count << p->prettyName();
+        Calamares::JobResult r = p->exec();
+        if ( !r )
+            cDebug() << count << ".. failed" << r;
+        ++count;
     }
 
     return 0;
