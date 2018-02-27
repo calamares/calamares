@@ -117,7 +117,7 @@ System::runCommand(
     if ( ( location == System::RunLocation::RunInTarget ) &&
          ( !gs || !gs->contains( "rootMountPoint" ) ) )
     {
-        cLog() << "No rootMountPoint in global storage";
+        cWarning() << "No rootMountPoint in global storage";
         return -3;
     }
 
@@ -130,7 +130,7 @@ System::runCommand(
         QString destDir = gs->value( "rootMountPoint" ).toString();
         if ( !QDir( destDir ).exists() )
         {
-            cLog() << "rootMountPoint points to a dir which does not exist";
+            cWarning() << "rootMountPoint points to a dir which does not exist";
             return -3;
         }
 
@@ -153,15 +153,15 @@ System::runCommand(
         if ( QDir( workingPath ).exists() )
             process.setWorkingDirectory( QDir( workingPath ).absolutePath() );
         else
-            cLog() << "Invalid working directory:" << workingPath;
+            cWarning() << "Invalid working directory:" << workingPath;
             return -3;
     }
 
-    cLog() << "Running" << program << arguments;
+    cDebug() << "Running" << program << arguments;
     process.start();
     if ( !process.waitForStarted() )
     {
-        cLog() << "Process failed to start" << process.error();
+        cWarning() << "Process failed to start" << process.error();
         return -2;
     }
 
@@ -173,8 +173,8 @@ System::runCommand(
 
     if ( !process.waitForFinished( timeoutSec ? ( timeoutSec * 1000 ) : -1 ) )
     {
-        cLog() << "Timed out. output so far:";
-        cLog() << process.readAllStandardOutput();
+        cWarning() << "Timed out. output so far:\n" <<
+            process.readAllStandardOutput();
         return -4;
     }
 
@@ -182,16 +182,16 @@ System::runCommand(
 
     if ( process.exitStatus() == QProcess::CrashExit )
     {
-        cLog() << "Process crashed";
+        cWarning() << "Process crashed";
         return -1;
     }
 
     auto r = process.exitCode();
-    cLog() << "Finished. Exit code:" << r;
+    cDebug() << "Finished. Exit code:" << r;
     if ( r != 0 )
     {
-        cLog() << "Target cmd:" << args;
-        cLog().noquote() << "Target output:\n" << output;
+        cDebug() << "Target cmd:" << args;
+        cDebug().noquote() << "Target output:\n" << output;
     }
     return ProcessResult(r, output);
 }
