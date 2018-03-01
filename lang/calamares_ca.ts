@@ -1865,7 +1865,7 @@ Sortida:
     <message>
         <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="279"/>
         <source>Bad parameters for process job call.</source>
-        <translation>Paràmetres incorrectes per a la crida del procés.</translation>
+        <translation>Paràmetres incorrectes per a la crida de la tasca del procés.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="282"/>
