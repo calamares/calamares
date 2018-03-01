@@ -162,7 +162,7 @@ main( int argc, char* argv[] )
     Calamares::Module* m = load_module( module );
     if ( !m )
     {
-        cError() << "No module.desc data found in" << module.moduleName();
+        cError() << "Could not load module" << module.moduleName();
         return 1;
     }
 
