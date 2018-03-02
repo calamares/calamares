@@ -18,10 +18,6 @@ set( calamaresSources
     progresstree/ViewStepItem.cpp
 )
 
-set( calamaresUi
-    CalamaresWindow.ui
-)
-
 include_directories(
     .
     ${CMAKE_CURRENT_BINARY_DIR}
@@ -33,36 +29,42 @@ include_directories(
 
 include( GNUInstallDirs )
 
-qt5_wrap_ui( calamaresUi_H ${calamaresUi} )
-
-#qt_add_resources( calamaresRc "../../resources.qrc" )
-
 # Translations
-include( ${CMAKE_SOURCE_DIR}/lang/translations.cmake )
+include( CalamaresAddTranslations )
 add_calamares_translations( ${CALAMARES_TRANSLATION_LANGUAGES} )
 
-set( final_src ${calamaresUi_H} ${calamaresSources} ${calamaresRc} ${trans_outfile} )
+set( final_src ${calamaresSources} ${calamaresRc} ${trans_outfile} )
 
 add_executable( calamares_bin ${final_src} )
-SET_TARGET_PROPERTIES(calamares_bin
+set_target_properties(calamares_bin
     PROPERTIES
         AUTOMOC TRUE
         ENABLE_EXPORTS TRUE
         RUNTIME_OUTPUT_NAME calamares
 )
 
+if( WITH_KF5Crash )
+    set( LINK_LIBRARIES
+        KF5::CoreAddons
+        KF5::Crash
+    )
+endif()
 
-qt5_use_modules( calamares_bin Core Widgets )
 target_link_libraries( calamares_bin
-    ${LINK_LIBRARIES}
-    ${CALAMARES_LIBRARIES}
-    calamaresui
-    Qt5::Core
-    Qt5::Widgets
-    yaml-cpp
+    PRIVATE
+        ${CALAMARES_LIBRARIES}
+        calamaresui
+        Qt5::Core
+        Qt5::Widgets
+        ${LINK_LIBRARIES}
 )
 
 install( TARGETS calamares_bin
     BUNDLE DESTINATION .
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+)
+
+install( FILES ${CMAKE_SOURCE_DIR}/data/images/squid.svg
+    RENAME calamares.svg
+    DESTINATION ${CMAKE_INSTALL_DATADIR}/icons/hicolor/scalable/apps
 )

@@ -1,6 +1,7 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2016, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -21,13 +22,37 @@
 #include "PythonHelper.h"
 #include "utils/Logger.h"
 #include "utils/CalamaresUtilsSystem.h"
+#include "utils/CalamaresUtils.h"
 
+#include "GlobalStorage.h"
+#include "JobQueue.h"
+
+#include <QCoreApplication>
 #include <QDir>
+#include <QStandardPaths>
 
 #undef slots
 #include <boost/python.hpp>
 
 namespace bp = boost::python;
+
+static int
+_handle_check_target_env_call_error( const CalamaresUtils::ProcessResult& ec, const QString& cmd )
+{
+    if ( !ec.first )
+        return ec.first;
+
+    QString raise = QString( "import subprocess\n"
+                             "e = subprocess.CalledProcessError(%1,\"%2\")\n" )
+                    .arg( ec.first )
+                    .arg( cmd );
+    if ( !ec.second.isEmpty() )
+        raise.append( QStringLiteral("e.output = \"\"\"%1\"\"\"\n").arg( ec.second ) );
+    raise.append("raise e");
+    bp::exec( raise.toStdString().c_str() );
+    bp::throw_error_already_set();
+    return ec.first;
+}
 
 namespace CalamaresPython
 {
@@ -38,128 +63,107 @@ mount( const std::string& device_path,
        const std::string& filesystem_name,
        const std::string& options )
 {
-    return CalamaresUtils::mount( QString::fromStdString( device_path ),
-                                  QString::fromStdString( mount_point ),
-                                  QString::fromStdString( filesystem_name ),
-                                  QString::fromStdString( options ) );
+    return CalamaresUtils::System::instance()->
+           mount( QString::fromStdString( device_path ),
+                  QString::fromStdString( mount_point ),
+                  QString::fromStdString( filesystem_name ),
+                  QString::fromStdString( options ) );
 }
 
 
-int
-chroot_call( const std::string& command,
-             const std::string& stdin,
-             int timeout )
-{
-    return CalamaresUtils::chrootCall( QString::fromStdString( command ),
-                                       QString(),
-                                       QString::fromStdString( stdin ),
-                                       timeout );
-}
-
-
-int
-chroot_call( const bp::list& args,
-             const std::string& stdin,
-             int timeout )
+static inline QStringList
+_bp_list_to_qstringlist( const bp::list& args )
 {
     QStringList list;
     for ( int i = 0; i < bp::len( args ); ++i )
     {
         list.append( QString::fromStdString(
-            bp::extract< std::string >( args[ i ] ) ) );
+                         bp::extract< std::string >( args[ i ] ) ) );
     }
+    return list;
+}
 
-    return CalamaresUtils::chrootCall( list,
-                                       QString(),
-                                       QString::fromStdString( stdin ),
-                                       timeout );
+static inline CalamaresUtils::ProcessResult
+_target_env_command(
+    const QStringList& args,
+    const std::string& stdin,
+    int timeout )
+{
+    return CalamaresUtils::System::instance()->
+        targetEnvCommand( args,
+                          QString(),
+                          QString::fromStdString( stdin ),
+                          timeout );
+}
+
+int
+target_env_call( const std::string& command,
+                 const std::string& stdin,
+                 int timeout )
+{
+    return _target_env_command(
+        QStringList{ QString::fromStdString( command ) }, stdin, timeout ).first;
 }
 
 
 int
-check_chroot_call( const std::string& command,
-                   const std::string& stdin,
-                   int timeout )
+target_env_call( const bp::list& args,
+                 const std::string& stdin,
+                 int timeout )
 {
-    int ec = chroot_call( command, stdin, timeout );
-    return _handle_check_chroot_call_error( ec, QString::fromStdString( command ) );
+    return _target_env_command(
+        _bp_list_to_qstringlist( args ), stdin, timeout ).first;
 }
 
 
 int
-check_chroot_call( const bp::list& args,
-                   const std::string& stdin,
-                   int timeout )
+check_target_env_call( const std::string& command,
+                       const std::string& stdin,
+                       int timeout )
 {
-    int ec = chroot_call( args, stdin, timeout );
-    if ( !ec )
-        return ec;
+    auto ec = _target_env_command(
+        QStringList{ QString::fromStdString( command ) }, stdin, timeout );
+    return _handle_check_target_env_call_error( ec, QString::fromStdString( command ) );
+}
 
-    QStringList failedCmdList;
-    for ( int i = 0; i < bp::len( args ); ++i )
-    {
-        failedCmdList.append( QString::fromStdString(
-            bp::extract< std::string >( args[ i ] ) ) );
-    }
 
-    return _handle_check_chroot_call_error( ec, failedCmdList.join( ' ' ) );
+int
+check_target_env_call( const bp::list& args,
+                       const std::string& stdin,
+                       int timeout )
+{
+    auto ec = _target_env_command( _bp_list_to_qstringlist( args ), stdin, timeout );
+    if ( !ec.first )
+        return ec.first;
+
+    QStringList failedCmdList = _bp_list_to_qstringlist( args );
+    return _handle_check_target_env_call_error( ec, failedCmdList.join( ' ' ) );
 }
 
 
 std::string
-check_chroot_output( const std::string& command,
-                     const std::string& stdin,
-                     int timeout )
+check_target_env_output( const std::string& command,
+                         const std::string& stdin,
+                         int timeout )
 {
-    QString output;
-    int ec = CalamaresUtils::chrootOutput( QString::fromStdString( command ),
-                                           output,
-                                           QString(),
-                                           QString::fromStdString( stdin ),
-                                           timeout );
-    _handle_check_chroot_call_error( ec, QString::fromStdString( command ) );
-    return output.toStdString();
+    auto ec = _target_env_command(
+        QStringList{ QString::fromStdString( command ) }, stdin, timeout );
+    _handle_check_target_env_call_error( ec, QString::fromStdString( command ) );
+    return ec.second.toStdString();
 }
 
 
 std::string
-check_chroot_output( const bp::list& args,
-                     const std::string& stdin,
-                     int timeout )
+check_target_env_output( const bp::list& args,
+                         const std::string& stdin,
+                         int timeout )
 {
-    QString output;
-    QStringList list;
-    for ( int i = 0; i < bp::len( args ); ++i )
-    {
-        list.append( QString::fromStdString(
-            bp::extract< std::string >( args[ i ] ) ) );
-    }
-
-    int ec = CalamaresUtils::chrootOutput( list,
-                                           output,
-                                           QString(),
-                                           QString::fromStdString( stdin ),
-                                           timeout );
-    _handle_check_chroot_call_error( ec, list.join( ' ' ) );
-    return output.toStdString();
+    QStringList list = _bp_list_to_qstringlist( args );
+    auto ec = _target_env_command(
+        list, stdin, timeout );
+    _handle_check_target_env_call_error( ec, list.join( ' ' ) );
+    return ec.second.toStdString();
 }
-
-
-int
-_handle_check_chroot_call_error( int ec, const QString& cmd )
-{
-    if ( !ec )
-        return ec;
-
-    QString raise = QString( "import subprocess\n"
-                             "raise subprocess.CalledProcessError(%1,\"%2\")" )
-                        .arg( ec )
-                        .arg( cmd );
-    bp::exec( raise.toStdString().c_str() );
-    bp::throw_error_already_set();
-    return ec;
-}
-
 
 void
 debug( const std::string& s )
@@ -167,11 +171,17 @@ debug( const std::string& s )
     cDebug() << "[PYTHON JOB]: " << QString::fromStdString( s );
 }
 
+void
+warning( const std::string& s )
+{
+    cWarning() << "[PYTHON JOB]: " << QString::fromStdString( s );
+}
 
 PythonJobInterface::PythonJobInterface( Calamares::PythonJob* parent )
     : m_parent( parent )
 {
-    moduleName = QDir( m_parent->m_workingPath ).dirName().toStdString();
+    auto moduleDir = QDir( m_parent->m_workingPath );
+    moduleName = moduleDir.dirName().toStdString();
     prettyName = m_parent->prettyName().toStdString();
     workingPath = m_parent->m_workingPath.toStdString();
     configuration = CalamaresPython::variantMapToPyDict( m_parent->m_configurationMap );
@@ -184,5 +194,99 @@ PythonJobInterface::setprogress( qreal progress )
     if ( progress >= 0 && progress <= 1 )
         m_parent->emitProgress( progress );
 }
+
+
+std::string
+obscure( const std::string& string )
+{
+    return CalamaresUtils::obscure( QString::fromStdString( string ) ).toStdString();
+}
+
+static QStringList
+_gettext_languages()
+{
+    QStringList languages;
+
+    // There are two ways that Python jobs can be initialised:
+    //  - through JobQueue, in which case that has an instance which holds
+    //    a GlobalStorage object, or
+    //  - through the Python test-script, which initialises its
+    //    own GlobalStoragePythonWrapper, which then holds a
+    //    GlobalStorage object for all of Python.
+    Calamares::JobQueue* jq = Calamares::JobQueue::instance();
+    Calamares::GlobalStorage* gs = jq ? jq->globalStorage() : CalamaresPython::GlobalStoragePythonWrapper::globalStorageInstance();
+
+    QVariant localeConf_ = gs->value( "localeConf" );
+    if ( localeConf_.canConvert< QVariantMap >() )
+    {
+        QVariant lang_ = localeConf_.value< QVariantMap >()[ "LANG" ];
+        if ( lang_.canConvert< QString >() )
+        {
+            QString lang = lang_.value< QString >();
+            languages.append( lang );
+            if ( lang.indexOf( '.' ) > 0 )
+            {
+                lang.truncate( lang.indexOf( '.' ) );
+                languages.append( lang );
+            }
+            if ( lang.indexOf( '_' ) > 0 )
+            {
+                lang.truncate( lang.indexOf( '_' ) );
+                languages.append( lang );
+            }
+        }
+    }
+    return languages;
+}
+
+bp::list
+gettext_languages()
+{
+    bp::list pyList;
+    for ( auto lang : _gettext_languages() )
+        pyList.append( lang.toStdString() );
+    return pyList;
+}
+
+static void
+_add_localedirs( QStringList& pathList, const QString& candidate )
+{
+    if ( !candidate.isEmpty() && !pathList.contains( candidate ) )
+    {
+        pathList.prepend( candidate );
+        if ( QDir( candidate ).cd( "lang" ) )
+            pathList.prepend( candidate + "/lang" );
+    }
+}
+
+bp::object
+gettext_path()
+{
+    // TODO: distinguish between -d runs and normal runs
+    // TODO: can we detect DESTDIR-installs?
+    QStringList candidatePaths = QStandardPaths::locateAll( QStandardPaths::GenericDataLocation, "locale", QStandardPaths::LocateDirectory );
+    QString extra = QCoreApplication::applicationDirPath();
+    _add_localedirs( candidatePaths, extra ); // Often /usr/local/bin
+    if ( !extra.isEmpty() )
+    {
+        QDir d( extra );
+        if ( d.cd( "../share/locale" ) ) // Often /usr/local/bin/../share/locale -> /usr/local/share/locale
+            _add_localedirs( candidatePaths, d.canonicalPath() );
+    }
+    _add_localedirs( candidatePaths, QDir().canonicalPath() ); // .
+
+    cDebug() << "Standard paths" << candidatePaths;
+
+    for ( auto lang : _gettext_languages() )
+        for ( auto localedir : candidatePaths )
+        {
+            QDir ldir( localedir );
+            cDebug() << "Checking" << lang << "in" <<ldir.canonicalPath();
+            if ( ldir.cd( lang ) )
+                return bp::object( localedir.toStdString() );
+        }
+    return bp::object();  // None
+}
+
 
 }

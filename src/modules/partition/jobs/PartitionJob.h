@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
  *
@@ -36,6 +36,14 @@ public:
     {
         return m_partition;
     }
+
+public slots:
+    /** @brief Translate from KPMCore to Calamares progress.
+     *
+     * KPMCore presents progress as an integer percent from 0 .. 100,
+     * while Calamares uses a qreal from 0 .. 1.00 .
+     */
+    void iprogress( int percent );
 
 protected:
     Partition* m_partition;

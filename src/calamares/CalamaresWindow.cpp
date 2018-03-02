@@ -1,6 +1,7 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -29,6 +30,7 @@
 
 #include <QApplication>
 #include <QBoxLayout>
+#include <QCloseEvent>
 #include <QDesktopWidget>
 #include <QLabel>
 #include <QTreeView>
@@ -36,22 +38,33 @@
 CalamaresWindow::CalamaresWindow( QWidget* parent )
     : QWidget( parent )
     , m_debugWindow( nullptr )
+    , m_viewManager( nullptr )
 {
-    // Hide close button
-    setWindowFlags( Qt::Window | Qt::WindowTitleHint | Qt::CustomizeWindowHint );
-
     CALAMARES_RETRANSLATE(
         setWindowTitle( tr( "%1 Installer" )
-                        .arg( Calamares::Branding::instance()->
-                              string( Calamares::Branding::ProductName ) ) );
+                        .arg( *Calamares::Branding::ProductName ) );
     )
 
-    setMinimumSize( 1010, 520 );
-    QSize availableSize = qApp->desktop()->availableGeometry( this ).size();
-    int w = qBound( 1010, CalamaresUtils::defaultFontHeight() * 60, availableSize.width() );
-    int h = qBound( 520,  CalamaresUtils::defaultFontHeight() * 36, availableSize.height() );
+    using CalamaresUtils::windowMinimumHeight;
+    using CalamaresUtils::windowMinimumWidth;
+    using CalamaresUtils::windowPreferredHeight;
+    using CalamaresUtils::windowPreferredWidth;
 
-    cDebug() << "Proposed window size:" << w << h;
+    QSize availableSize = qApp->desktop()->availableGeometry( this ).size();
+
+    cDebug() << "Available size" << availableSize;
+
+    if ( ( availableSize.width() < windowPreferredWidth ) || ( availableSize.height() < windowPreferredHeight ) )
+        cDebug() << "  Small screen detected.";
+    QSize minimumSize( qBound( windowMinimumWidth, availableSize.width(), windowPreferredWidth ),
+                       qBound( windowMinimumHeight, availableSize.height(), windowPreferredHeight ) );
+    setMinimumSize( minimumSize );
+
+
+    int w = qBound( minimumSize.width(), CalamaresUtils::defaultFontHeight() * 60, availableSize.width() );
+    int h = qBound( minimumSize.height(),  CalamaresUtils::defaultFontHeight() * 36, availableSize.height() );
+
+    cDebug() << "  Proposed window size:" << w << h;
     resize( w, h );
 
     QBoxLayout* mainLayout = new QHBoxLayout;
@@ -62,7 +75,7 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
 
     QBoxLayout* sideLayout = new QVBoxLayout;
     sideBox->setLayout( sideLayout );
-    sideBox->setFixedWidth( qMax( 190, CalamaresUtils::defaultFontHeight() * 12 ) );
+    sideBox->setFixedWidth( qBound( 100, CalamaresUtils::defaultFontHeight() * 12, w < windowPreferredWidth ? 100 : 190 ) );
     sideBox->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
 
     QHBoxLayout* logoLayout = new QHBoxLayout;
@@ -82,7 +95,7 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
     logoLabel->setAlignment( Qt::AlignCenter );
     logoLabel->setFixedSize( 80, 80 );
     logoLabel->setPixmap( Calamares::Branding::instance()->
-                          image( Calamares::Branding::ProductIcon,
+                          image( Calamares::Branding::ProductLogo,
                                  logoLabel->size() ) );
     logoLayout->addWidget( logoLabel );
     logoLayout->addStretch();
@@ -117,9 +130,7 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
             else
             {
                 if ( m_debugWindow )
-                {
                     m_debugWindow->deleteLater();
-                }
             }
         } );
     }
@@ -127,7 +138,32 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
     CalamaresUtils::unmarginLayout( sideLayout );
     CalamaresUtils::unmarginLayout( mainLayout );
 
-    Calamares::ViewManager* vm = new Calamares::ViewManager( this );
+    m_viewManager = Calamares::ViewManager::instance( this );
+    connect( m_viewManager, &Calamares::ViewManager::enlarge, this, &CalamaresWindow::enlarge );
 
-    mainLayout->addWidget( vm->centralWidget() );
+    mainLayout->addWidget( m_viewManager->centralWidget() );
+}
+
+void
+CalamaresWindow::enlarge( QSize enlarge )
+{
+    auto mainGeometry = this->geometry();
+    QSize availableSize = qApp->desktop()->availableGeometry( this ).size();
+
+    auto h = qBound( 0, mainGeometry.height() + enlarge.height(), availableSize.height() );
+    auto w = this->size().width();
+
+    resize( w, h );
+}
+
+void
+CalamaresWindow::closeEvent( QCloseEvent* event )
+{
+    if ( ( !m_viewManager ) || m_viewManager->confirmCancelInstallation() )
+    {
+        event->accept();
+        qApp->quit();
+    }
+    else
+        event->ignore();
 }

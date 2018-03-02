@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *
@@ -38,6 +38,8 @@ public:
 private:
     QString tryUmount( const QString& partPath );
     QString tryClearSwap( const QString& partPath );
+    QString tryCryptoClose( const QString& mapperPath );
+    QStringList getCryptoDevices() const;
     Device* m_device;
 };
 

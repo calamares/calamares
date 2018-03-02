@@ -1,6 +1,7 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -20,9 +21,8 @@
 
 #include "utils/Logger.h"
 #include "viewpages/ViewStep.h"
-#include "InstallationViewStep.h"
+#include "ExecutionViewStep.h"
 #include "JobQueue.h"
-#include "modulesystem/ModuleManager.h"
 #include "utils/Retranslator.h"
 #include "Branding.h"
 #include "Settings.h"
@@ -30,6 +30,7 @@
 #include <QApplication>
 #include <QBoxLayout>
 #include <QMessageBox>
+#include <QMetaObject>
 
 namespace Calamares
 {
@@ -42,15 +43,21 @@ ViewManager::instance()
     return s_instance;
 }
 
+ViewManager*
+ViewManager::instance( QObject* parent )
+{
+    Q_ASSERT( !s_instance );
+    s_instance = new ViewManager( parent );
+    return s_instance;
+}
+
 ViewManager::ViewManager( QObject* parent )
     : QObject( parent )
-    , m_widget( new QWidget() )
     , m_currentStep( 0 )
-    , m_installationViewStep( nullptr )
-    , m_phase( Prepare )
-    , m_finishedStep( nullptr )
+    , m_widget( new QWidget() )
 {
-    s_instance = this;
+    Q_ASSERT( !s_instance );
+
     QBoxLayout* mainLayout = new QVBoxLayout;
     m_widget->setLayout( mainLayout );
 
@@ -66,6 +73,7 @@ ViewManager::ViewManager( QObject* parent )
         m_back->setText( tr( "&Back" ) );
         m_next->setText( tr( "&Next" ) );
         m_quit->setText( tr( "&Cancel" ) );
+        m_quit->setToolTip( tr( "Cancel installation without changing the system." ) );
     )
 
     QBoxLayout* bottomLayout = new QHBoxLayout;
@@ -80,35 +88,19 @@ ViewManager::ViewManager( QObject* parent )
     connect( m_back, &QPushButton::clicked, this, &ViewManager::back );
     m_back->setEnabled( false );
 
-    m_installationViewStep = new InstallationViewStep( this );
-
-    connect( m_quit, &QPushButton::clicked,
-             this, [this]()
-    {
-        if ( m_steps.at( m_currentStep ) == m_installationViewStep ||
-             !( m_currentStep == m_steps.count() -1 &&
-                m_steps.last()->isAtEnd() ) )
-        {
-            int response = QMessageBox::question( m_widget,
-                            tr( "Cancel installation?" ),
-                            tr( "Do you really want to cancel the current install process?\n"
-                                "The installer will quit and all changes will be lost." ),
-                            QMessageBox::Yes | QMessageBox::No,
-                            QMessageBox::No );
-            if ( response == QMessageBox::Yes )
-                qApp->quit();
-        }
-        else //we're at the end
-        {
-            qApp->quit();
-        }
-    } );
+    connect( m_quit, &QPushButton::clicked, this,
+             [this]() { if ( this->confirmCancelInstallation() ) qApp->quit(); } );
+    connect( JobQueue::instance(), &JobQueue::failed,
+             this, &ViewManager::onInstallationFailed );
+    connect( JobQueue::instance(), &JobQueue::finished,
+             this, &ViewManager::next );
 }
 
 
 ViewManager::~ViewManager()
 {
     m_widget->deleteLater();
+    s_instance = nullptr;
 }
 
 
@@ -123,44 +115,22 @@ void
 ViewManager::addViewStep( ViewStep* step )
 {
     insertViewStep( m_steps.size(), step );
-
-    if ( m_phase == Prepare )
-    {
-        m_prepareSteps.append( step );
-        // If this is the first inserted view step, update status of "Next" button
-        if ( m_prepareSteps.count() == 1 )
-            m_next->setEnabled( step->isNextEnabled() );
-    }
-    else if ( m_phase == PostInstall )
-    {
-        //FIXME: allow multiple postinstall pages
-        if ( !m_finishedStep )
-            m_finishedStep = step;
-    }
+    // If this is the first inserted view step, update status of "Next" button
+    if ( m_steps.count() == 1 )
+        m_next->setEnabled( step->isNextEnabled() );
 }
 
 
 void
-ViewManager::setUpInstallationStep()
-{
-    if ( m_installationViewStep && !m_steps.contains( m_installationViewStep ) )
-    {
-        insertViewStep( m_steps.count(), m_installationViewStep );
-    }
-}
-
-
-void
-ViewManager::insertViewStep( int before, ViewStep* step)
+ViewManager::insertViewStep( int before, ViewStep* step )
 {
     m_steps.insert( before, step );
     QLayout* layout = step->widget()->layout();
     if ( layout )
-    {
         layout->setContentsMargins( 0, 0, 0, 0 );
-    }
     m_stack->insertWidget( before, step->widget() );
 
+    connect( step, &ViewStep::enlarge, this, &ViewManager::enlarge );
     connect( step, &ViewStep::nextStatusChanged,
              this, [this]( bool status )
     {
@@ -184,35 +154,28 @@ ViewManager::onInstallationFailed( const QString& message, const QString& detail
     cLog() << "- message:" << message;
     cLog() << "- details:" << details;
 
-    QMessageBox msgBox;
-    msgBox.setIcon( QMessageBox::Critical );
-    msgBox.setWindowTitle( tr("Error") );
-    msgBox.setText( "<strong>" + tr( "Installation Failed" ) + "</strong>" );
-    msgBox.setStandardButtons( QMessageBox::Close );
+    QMessageBox* msgBox = new QMessageBox();
+    msgBox->setIcon( QMessageBox::Critical );
+    msgBox->setWindowTitle( tr( "Error" ) );
+    msgBox->setText( "<strong>" + tr( "Installation Failed" ) + "</strong>" );
+    msgBox->setStandardButtons( QMessageBox::Close );
+    msgBox->button( QMessageBox::Close )->setText( tr( "&Close" ) );
 
     QString text = "<p>" + message + "</p>";
     if ( !details.isEmpty() )
-    {
         text += "<p>" + details + "</p>";
-    }
-    msgBox.setInformativeText( text );
+    msgBox->setInformativeText( text );
 
-    msgBox.exec();
-    QApplication::quit();
+    connect( msgBox, &QMessageBox::buttonClicked, qApp, &QApplication::quit );
+    cLog() << "Calamares will quit when the dialog closes.";
+    msgBox->show();
 }
 
 
-QList< ViewStep* >
-ViewManager::prepareSteps() const
+ViewStepList
+ViewManager::viewSteps() const
 {
-    return m_prepareSteps;
-}
-
-
-ViewStep*
-ViewManager::installationStep() const
-{
-    return m_installationViewStep;
+    return m_steps;
 }
 
 
@@ -223,33 +186,29 @@ ViewManager::currentStep() const
 }
 
 
-ViewStep*
-ViewManager::finishedStep() const
-{
-    return m_finishedStep;
-}
-
-
 int
 ViewManager::currentStepIndex() const
 {
     return m_currentStep;
 }
 
+static inline bool
+stepNextWillExecute(const ViewStepList& steps, int index)
+{
+    return ( index + 1 < steps.count() ) && qobject_cast< ExecutionViewStep* >( steps.at( index + 1 ) );
+}
 
 void
 ViewManager::next()
 {
     ViewStep* step = m_steps.at( m_currentStep );
-    bool installing = false;
+    bool executing = false;
     if ( step->isAtEnd() )
     {
-        // Special case when the user clicks next on the very last page in the Prepare phase
-        // and right before switching to the Install phase.
+        // Special case when the user clicks next on the very last page in a view phase
+        // and right before switching to an execution phase.
         // Depending on Calamares::Settings, we show an "are you sure" prompt or not.
-        if ( Calamares::Settings::instance()->showPromptBeforeInstall() &&
-             m_currentStep + 1 < m_steps.count() &&
-             m_steps.at( m_currentStep + 1 ) == m_installationViewStep )
+        if ( Calamares::Settings::instance()->showPromptBeforeExecution() && stepNextWillExecute( m_steps, m_currentStep ) )
         {
             int reply =
                 QMessageBox::question( m_widget,
@@ -257,10 +216,8 @@ ViewManager::next()
                                        tr( "The %1 installer is about to make changes to your "
                                            "disk in order to install %2.<br/><strong>You will not be able "
                                            "to undo these changes.</strong>" )
-                                       .arg( Calamares::Branding::instance()->string(
-                                                Calamares::Branding::ShortProductName ) )
-                                       .arg( Calamares::Branding::instance()->string(
-                                                Calamares::Branding::ShortVersionedName ) ),
+                                       .arg( *Calamares::Branding::ShortProductName )
+                                       .arg( *Calamares::Branding::ShortVersionedName ),
                                        tr( "&Install now" ),
                                        tr( "Go &back" ),
                                        QString(),
@@ -274,36 +231,42 @@ ViewManager::next()
         m_stack->setCurrentIndex( m_currentStep );
         step->onLeave();
         m_steps.at( m_currentStep )->onActivate();
-        installing = m_steps.at( m_currentStep ) == m_installationViewStep;
+        executing = qobject_cast< ExecutionViewStep* >( m_steps.at( m_currentStep ) ) != nullptr;
         emit currentStepChanged();
-        if ( installing )
+        if ( executing )
         {
-            emit phaseChangeRequested( Calamares::Install );
-            m_phase = Install;
             m_back->setEnabled( false );
             m_next->setEnabled( false );
-            connect( Calamares::JobQueue::instance(), &Calamares::JobQueue::finished,
-                     this, [this]
-            {
-                emit phaseChangeRequested( Calamares::PostInstall );
-                m_phase = PostInstall;
-                m_next->setEnabled( true );
-            } );
         }
     }
     else
-    {
         step->next();
-    }
 
-    m_next->setEnabled( !installing && m_steps.at( m_currentStep )->isNextEnabled() );
-    m_back->setEnabled( !installing && m_steps.at( m_currentStep )->isBackEnabled() );
+    m_next->setEnabled( !executing && m_steps.at( m_currentStep )->isNextEnabled() );
+    m_back->setEnabled( !executing && m_steps.at( m_currentStep )->isBackEnabled() );
 
-    if ( m_currentStep == m_steps.count() -1 &&
-         m_steps.last()->isAtEnd() )
-        m_quit->setText( tr( "&Quit" ) );
+    updateButtonLabels();
 }
 
+void
+ViewManager::updateButtonLabels()
+{
+    if ( stepNextWillExecute( m_steps, m_currentStep ) )
+        m_next->setText( tr( "&Install" ) );
+    else
+        m_next->setText( tr( "&Next" ) );
+
+    if ( m_currentStep == m_steps.count() -1 && m_steps.last()->isAtEnd() )
+    {
+        m_quit->setText( tr( "&Done" ) );
+        m_quit->setToolTip( tr( "The installation is complete. Close the installer." ) );
+    }
+    else
+    {
+        m_quit->setText( tr( "&Cancel" ) );
+        m_quit->setToolTip( tr( "Cancel installation without changing the system." ) );
+    }
+}
 
 void
 ViewManager::back()
@@ -318,9 +281,7 @@ ViewManager::back()
         emit currentStepChanged();
     }
     else if ( !step->isAtBeginning() )
-    {
         step->back();
-    }
     else return;
 
     m_next->setEnabled( m_steps.at( m_currentStep )->isNextEnabled() );
@@ -329,9 +290,29 @@ ViewManager::back()
     if ( m_currentStep == 0 && m_steps.first()->isAtBeginning() )
         m_back->setEnabled( false );
 
-    if ( !( m_currentStep == m_steps.count() -1 &&
-            m_steps.last()->isAtEnd() ) )
-        m_quit->setText( tr( "&Cancel" ) );
+    updateButtonLabels();
 }
 
+bool ViewManager::confirmCancelInstallation()
+{
+    // If it's NOT the last page of the last step, we ask for confirmation
+    if ( !( m_currentStep == m_steps.count() -1 &&
+            m_steps.last()->isAtEnd() ) )
+    {
+        QMessageBox mb( QMessageBox::Question,
+                        tr( "Cancel installation?" ),
+                        tr( "Do you really want to cancel the current install process?\n"
+                            "The installer will quit and all changes will be lost." ),
+                        QMessageBox::Yes | QMessageBox::No,
+                        m_widget );
+        mb.setDefaultButton( QMessageBox::No );
+        mb.button( QMessageBox::Yes )->setText( tr( "&Yes" ) );
+        mb.button( QMessageBox::No )->setText( tr( "&No" ) );
+        int response = mb.exec();
+        return response == QMessageBox::Yes;
+    }
+    else // Means we're at the end, no need to confirm.
+        return true;
 }
+
+}  // namespace

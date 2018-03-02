@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
  *
@@ -21,6 +21,7 @@
 
 #include <QWidget>
 #include <QScopedPointer>
+#include <QMutex>
 
 class PartitionCoreModule;
 class Ui_PartitionPage;
@@ -42,11 +43,12 @@ public:
     explicit PartitionPage( PartitionCoreModule* core, QWidget* parent = nullptr );
     ~PartitionPage();
 
+    void onRevertClicked();
+
 private:
     QScopedPointer< Ui_PartitionPage > m_ui;
     PartitionCoreModule* m_core;
     void updateButtons();
-    void onRevertClicked();
     void onNewPartitionTableClicked();
     void onCreateClicked();
     void onEditClicked();
@@ -58,6 +60,13 @@ private:
     void editExistingPartition( Device*, Partition* );
     void updateBootLoaderInstallPath();
     void updateFromCurrentDevice();
+    void updateBootLoaderIndex();
+
+    QStringList getCurrentUsedMountpoints();
+
+    QMutex m_revertMutex;
+    int    m_lastSelectedBootLoaderIndex;
+    bool   m_isEfi;
 };
 
 #endif // PARTITIONPAGE_H

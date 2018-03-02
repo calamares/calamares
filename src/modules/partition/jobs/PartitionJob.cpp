@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
  *
@@ -21,3 +21,12 @@
 PartitionJob::PartitionJob( Partition* partition )
     : m_partition( partition )
 {}
+
+void PartitionJob::iprogress(int percent)
+{
+    if ( percent < 0 )
+        percent = 0;
+    if ( percent > 100 )
+        percent = 100;
+    emit progress( qreal( percent / 100.0 ) );
+}

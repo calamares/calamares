@@ -1,6 +1,6 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2016, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -21,15 +21,32 @@
 
 #include <QWidget>
 
+#include <functional>
+
+class Device;
 
 struct PartitionSplitterItem
 {
+    enum Status
+    {
+        Normal = 0,
+        Resizing,
+        ResizingNext
+    };
+
     QString itemPath;
     QColor color;
     bool isFreeSpace;
     qint64 size;
+    Status status;
 
-    QList< PartitionSplitterItem > children;
+    using ChildVector = QVector< PartitionSplitterItem >;
+    ChildVector children;
+
+    static PartitionSplitterItem null() { return { QString(), QColor(), false, 0, Normal, ChildVector() }; }
+
+    bool isNull() const { return itemPath.isEmpty() && size == 0 && status == Normal; }
+    operator bool() const { return !isNull(); }
 };
 
 class PartitionSplitterWidget : public QWidget
@@ -38,18 +55,18 @@ class PartitionSplitterWidget : public QWidget
 public:
     explicit PartitionSplitterWidget( QWidget* parent = nullptr );
 
-    void init( const QList< PartitionSplitterItem >& items );
+    void init( Device* dev, bool drawNestedPartitions );
 
     void setSplitPartition( const QString& path,
                             qint64 minSize,
                             qint64 maxSize,
-                            qint64 preferredSize,
-                            const QString& newLabel );
+                            qint64 preferredSize );
 
     qint64 splitPartitionSize() const;
     qint64 newPartitionSize() const;
 
     QSize sizeHint() const override;
+    QSize minimumSizeHint() const override;
 
 signals:
     void partitionResized( const QString&, qint64, qint64 );
@@ -61,23 +78,30 @@ protected:
     void mouseReleaseEvent( QMouseEvent* event ) override;
 
 private:
+    void setupItems( const QVector< PartitionSplitterItem >& items );
+
     void drawPartitions( QPainter* painter,
                          const QRect& rect,
-                         const QList< PartitionSplitterItem >& items );
+                         const QVector< PartitionSplitterItem >& itemList );
     void drawSection( QPainter* painter, const QRect& rect_, int x, int width,
                       const PartitionSplitterItem& item );
     void drawResizeHandle( QPainter* painter,
                            const QRect& rect_,
                            int x );
 
-    template < typename F >
-    PartitionSplitterItem* _findItem( QList< PartitionSplitterItem >& items,
-                                      F condition );
+    PartitionSplitterItem _findItem( QVector< PartitionSplitterItem >& items,
+                                     std::function< bool ( PartitionSplitterItem& ) > condition ) const;
 
-    QList< PartitionSplitterItem > m_items;
+    int _eachItem( QVector< PartitionSplitterItem >& items,
+                   std::function< bool ( PartitionSplitterItem& ) > operation ) const;
+
+    QPair< QVector< PartitionSplitterItem >, qreal >
+    computeItemsVector( const QVector< PartitionSplitterItem >& originalItems ) const;
+
+    QVector< PartitionSplitterItem > m_items;
     QString m_itemToResizePath;
-    PartitionSplitterItem* m_itemToResize;
-    PartitionSplitterItem* m_itemToResizeNext;
+    PartitionSplitterItem m_itemToResize;
+    PartitionSplitterItem m_itemToResizeNext;
 
     qint64 m_itemMinSize;
     qint64 m_itemMaxSize;
@@ -86,6 +110,8 @@ private:
     int m_resizeHandleX;
 
     const int HANDLE_SNAP;
+
+    bool m_drawNestedPartitions;
 };
 
 #endif // PARTITIONSPLITTERWIDGET_H

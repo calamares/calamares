@@ -1,0 +1,43 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-09-04 08:16-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Dušan Kazik <prescott66@gmail.com>, 2016\n"
+"Language-Team: Slovak (https://www.transifex.com/calamares/teams/20061/sk/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: sk\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+
+#: src/modules/dummypythonqt/main.py:84
+msgid "Click me!"
+msgstr "Kliknite sem!"
+
+#: src/modules/dummypythonqt/main.py:94
+msgid "A new QLabel."
+msgstr "Nová menovka QLabel."
+
+#: src/modules/dummypythonqt/main.py:97
+msgid "Dummy PythonQt ViewStep"
+msgstr ""
+
+#: src/modules/dummypythonqt/main.py:183
+msgid "The Dummy PythonQt Job"
+msgstr "Fiktívna úloha PythonQt"
+
+#: src/modules/dummypythonqt/main.py:186
+msgid "This is the Dummy PythonQt Job. The dummy job says: {}"
+msgstr "Toto je fiktívna úloha PythonQt. Fiktívna úloha hovorí: {}"
+
+#: src/modules/dummypythonqt/main.py:190
+msgid "A status message for Dummy PythonQt Job."
+msgstr "Stavová správa pre fiktívnu úlohu PythonQt."

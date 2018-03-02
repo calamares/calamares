@@ -1,6 +1,7 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -24,6 +25,7 @@
 
 #include <QDir>
 #include <QFile>
+#include <QPair>
 
 #include <yaml-cpp/yaml.h>
 
@@ -45,6 +47,7 @@ Settings::Settings( const QString& settingsFilePath,
                     QObject* parent )
     : QObject( parent )
     , m_debug( debugMode )
+    , m_doChroot( true )
     , m_promptInstall( false )
 {
     cDebug() << "Using Calamares settings file at" << settingsFilePath;
@@ -89,21 +92,76 @@ Settings::Settings( const QString& settingsFilePath,
                 }
             }
 
-            config[ "prepare" ] >> m_modulesPrepareList;
-            config[ "install" ] >> m_modulesInstallList;
-            config[ "postinstall" ] >> m_modulesPostInstallList;
+            // Parse the custom instances section
+            if ( config[ "instances" ] )
+            {
+                QVariant instancesV
+                        = CalamaresUtils::yamlToVariant( config[ "instances" ] ).toList();
+                if ( instancesV.type() == QVariant::List )
+                {
+                    const auto instances = instancesV.toList();
+                    for ( const QVariant& instancesVListItem : instances )
+                    {
+                        if ( instancesVListItem.type() != QVariant::Map )
+                            continue;
+                        QVariantMap instancesVListItemMap =
+                                instancesVListItem.toMap();
+                        QMap< QString, QString > instanceMap;
+                        for ( auto it = instancesVListItemMap.constBegin();
+                              it != instancesVListItemMap.constEnd(); ++it )
+                        {
+                            if ( it.value().type() != QVariant::String )
+                                continue;
+                            instanceMap.insert( it.key(), it.value().toString() );
+                        }
+                        m_customModuleInstances.append( instanceMap );
+                    }
+                }
+            }
+
+            // Parse the modules sequence section
+            Q_ASSERT( config[ "sequence" ] ); // It better exist!
+            {
+                QVariant sequenceV
+                        = CalamaresUtils::yamlToVariant( config[ "sequence" ] );
+                Q_ASSERT( sequenceV.type() == QVariant::List );
+                const auto sequence = sequenceV.toList();
+                for ( const QVariant& sequenceVListItem : sequence )
+                {
+                    if ( sequenceVListItem.type() != QVariant::Map )
+                        continue;
+                    QString thisActionS = sequenceVListItem.toMap().firstKey();
+                    ModuleAction thisAction;
+                    if ( thisActionS == "show" )
+                        thisAction = ModuleAction::Show;
+                    else if ( thisActionS == "exec" )
+                        thisAction = ModuleAction::Exec;
+                    else
+                        continue;
+
+                    QStringList thisActionRoster = sequenceVListItem
+                                                   .toMap()
+                                                   .value( thisActionS )
+                                                   .toStringList();
+                    m_modulesSequence.append( qMakePair( thisAction,
+                                                         thisActionRoster ) );
+                }
+            }
+
             m_brandingComponentName = QString::fromStdString( config[ "branding" ]
                                                               .as< std::string >() );
             m_promptInstall = config[ "prompt-install" ].as< bool >();
+
+            m_doChroot = config[ "dont-chroot" ] ? !config[ "dont-chroot" ].as< bool >() : true;
         }
         catch ( YAML::Exception& e )
         {
-            cDebug() << "WARNING: YAML parser error " << e.what();
+            cWarning() << "YAML parser error " << e.what() << "in" << file.fileName();
         }
     }
     else
     {
-        cDebug() << "WARNING: Cannot read " << file.fileName();
+        cWarning() << "Cannot read " << file.fileName();
     }
 
     s_instance = this;
@@ -117,20 +175,17 @@ Settings::modulesSearchPaths() const
 }
 
 
-QStringList
-Settings::modules( Phase phase ) const
+QList<QMap<QString, QString> >
+Settings::customModuleInstances() const
 {
-    switch ( phase )
-    {
-    case Prepare:
-        return m_modulesPrepareList;
-    case Install:
-        return m_modulesInstallList;
-    case PostInstall:
-        return m_modulesPostInstallList;
-    default:
-        return QStringList();
-    }
+    return m_customModuleInstances;
+}
+
+
+QList< QPair< ModuleAction, QStringList > >
+Settings::modulesSequence() const
+{
+    return m_modulesSequence;
 }
 
 
@@ -142,7 +197,7 @@ Settings::brandingComponentName() const
 
 
 bool
-Settings::showPromptBeforeInstall() const
+Settings::showPromptBeforeExecution() const
 {
     return m_promptInstall;
 }
@@ -152,6 +207,12 @@ bool
 Settings::debugMode() const
 {
     return m_debug;
+}
+
+bool
+Settings::doChroot() const
+{
+    return m_doChroot;
 }
 
 

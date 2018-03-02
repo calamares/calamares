@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# === This file is part of Calamares - <http://github.com/calamares> ===
+# === This file is part of Calamares - <https://github.com/calamares> ===
 #
 #   Copyright 2014-2015, Philip Müller <philm@manjaro.org>
-#   Copyright 2015,      Teo Mrnjavac <teo@kde.org>
+#   Copyright 2015-2017, Teo Mrnjavac <teo@kde.org>
+#   Copyright 2017, Alf Gaida <agaida@siduction.org>
+#   Copyright 2017, Adriaan de Groot <groot@kde.org>
+#   Copyright 2017, Gabriel Craciunescu <crazy@frugalware.org>
 #
 #   Calamares is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -25,7 +28,10 @@ import re
 
 
 def modify_grub_default(partitions, root_mount_point, distributor):
-    """ Configures '/etc/default/grub' for hibernation and plymouth.
+    """
+    Configures '/etc/default/grub' for hibernation and plymouth.
+
+    @see bootloader/main.py, for similar handling of kernel parameters
 
     :param partitions:
     :param root_mount_point:
@@ -35,20 +41,59 @@ def modify_grub_default(partitions, root_mount_point, distributor):
     default_dir = os.path.join(root_mount_point, "etc/default")
     default_grub = os.path.join(default_dir, "grub")
     distributor_replace = distributor.replace("'", "'\\''")
-    plymouth_bin = libcalamares.utils.chroot_call(["sh", "-c", "which plymouth"])
+    dracut_bin = libcalamares.utils.target_env_call(
+        ["sh", "-c", "which dracut"]
+        )
+    have_dracut = dracut_bin == 0  # Shell exit value 0 means success
+
     use_splash = ""
     swap_uuid = ""
+    swap_outer_uuid = ""
+    swap_outer_mappername = None
 
-    libcalamares.utils.debug("which plymouth exit code: {!s}".format(plymouth_bin))
+    if libcalamares.globalstorage.contains("hasPlymouth"):
+        if libcalamares.globalstorage.value("hasPlymouth"):
+            use_splash = "splash"
 
-    if plymouth_bin == 0:
-        use_splash = "splash"
+    cryptdevice_params = []
 
-    for partition in partitions:
-        if partition["fs"] == "linuxswap":
-            swap_uuid = partition["uuid"]
+    if have_dracut:
+        for partition in partitions:
+            has_luks = "luksMapperName" in partition
+            if partition["fs"] == "linuxswap" and not has_luks:
+                swap_uuid = partition["uuid"]
+
+            if (partition["fs"] == "linuxswap" and has_luks):
+                swap_outer_uuid = partition["luksUuid"]
+                swap_outer_mappername = partition["luksMapperName"]
+
+            if (partition["mountPoint"] == "/" and has_luks):
+                cryptdevice_params = [
+                    "rd.luks.uuid={!s}".format(partition["luksUuid"])
+                    ]
+    else:
+        for partition in partitions:
+            has_luks = "luksMapperName" in partition
+            if partition["fs"] == "linuxswap" and not has_luks:
+                swap_uuid = partition["uuid"]
+
+            if (partition["mountPoint"] == "/" and has_luks):
+                cryptdevice_params = [
+                    "cryptdevice=UUID={!s}:{!s}".format(
+                        partition["luksUuid"], partition["luksMapperName"]
+                        ),
+                    "root=/dev/mapper/{!s}".format(
+                        partition["luksMapperName"]
+                        ),
+                    "resume=/dev/mapper/{!s}".format(
+                        partition["luksMapperName"]
+                        )
+                ]
 
     kernel_params = ["quiet"]
+
+    if cryptdevice_params:
+        kernel_params.extend(cryptdevice_params)
 
     if use_splash:
         kernel_params.append(use_splash)
@@ -56,7 +101,13 @@ def modify_grub_default(partitions, root_mount_point, distributor):
     if swap_uuid:
         kernel_params.append("resume=UUID={!s}".format(swap_uuid))
 
-    distributor_line = "GRUB_DISTRIBUTOR=\"{!s}\"".format(distributor_replace)
+    if have_dracut and swap_outer_uuid:
+        kernel_params.append("rd.luks.uuid={!s}".format(swap_outer_uuid))
+    if have_dracut and swap_outer_mappername:
+        kernel_params.append("resume=/dev/mapper/{!s}".format(
+            swap_outer_mappername))
+
+    distributor_line = "GRUB_DISTRIBUTOR='{!s}'".format(distributor_replace)
 
     if not os.path.exists(default_dir):
         os.mkdir(default_dir)
@@ -75,7 +126,9 @@ def modify_grub_default(partitions, root_mount_point, distributor):
 
         for i in range(len(lines)):
             if lines[i].startswith("#GRUB_CMDLINE_LINUX_DEFAULT"):
-                kernel_cmd = "GRUB_CMDLINE_LINUX_DEFAULT=\"{!s}\"".format(" ".join(kernel_params))
+                kernel_cmd = "GRUB_CMDLINE_LINUX_DEFAULT=\"{!s}\"".format(
+                    " ".join(kernel_params)
+                    )
                 lines[i] = kernel_cmd
                 have_kernel_cmd = True
             elif lines[i].startswith("GRUB_CMDLINE_LINUX_DEFAULT"):
@@ -92,20 +145,26 @@ def modify_grub_default(partitions, root_mount_point, distributor):
                 for existing_param in existing_params:
                     existing_param_name = existing_param.split("=")[0]
 
-                    if existing_param_name not in ["quiet", "resume", "splash"]:  # the only ones we ever add
+                    # the only ones we ever add
+                    if existing_param_name not in [
+                            "quiet", "resume", "splash"]:
                         kernel_params.append(existing_param)
 
-                kernel_cmd = "GRUB_CMDLINE_LINUX_DEFAULT=\"{!s}\"".format(" ".join(kernel_params))
+                kernel_cmd = "GRUB_CMDLINE_LINUX_DEFAULT=\"{!s}\"".format(
+                    " ".join(kernel_params)
+                    )
                 lines[i] = kernel_cmd
                 have_kernel_cmd = True
-            elif lines[i].startswith("#GRUB_DISTRIBUTOR") or lines[i].startswith("GRUB_DISTRIBUTOR"):
+            elif (lines[i].startswith("#GRUB_DISTRIBUTOR")
+                  or lines[i].startswith("GRUB_DISTRIBUTOR")):
                 lines[i] = distributor_line
                 have_distributor_line = True
     else:
         lines = []
 
         if "defaults" in libcalamares.job.configuration:
-            for key, value in libcalamares.job.configuration["defaults"].items():
+            for key, value in libcalamares.job.configuration[
+                    "defaults"].items():
                 if value.__class__.__name__ == "bool":
                     if value:
                         escaped_value = "true"
@@ -114,14 +173,19 @@ def modify_grub_default(partitions, root_mount_point, distributor):
                 else:
                     escaped_value = str(value).replace("'", "'\\''")
 
-                lines.append("{!s}=\"{!s}\"".format(key, escaped_value))
+                lines.append("{!s}='{!s}'".format(key, escaped_value))
 
     if not have_kernel_cmd:
-        kernel_cmd = "GRUB_CMDLINE_LINUX_DEFAULT=\"{!s}\"".format(" ".join(kernel_params))
+        kernel_cmd = "GRUB_CMDLINE_LINUX_DEFAULT=\"{!s}\"".format(
+            " ".join(kernel_params)
+            )
         lines.append(kernel_cmd)
 
     if not have_distributor_line:
         lines.append(distributor_line)
+
+    if cryptdevice_params:
+        lines.append("GRUB_ENABLE_CRYPTODISK=y")
 
     with open(default_grub, 'w') as grub_file:
         grub_file.write("\n".join(lines) + "\n")
@@ -130,14 +194,31 @@ def modify_grub_default(partitions, root_mount_point, distributor):
 
 
 def run():
-    """ Calls routine with given parameters to modify '/etc/default/grub'.
+    """
+    Calls routine with given parameters to modify '/etc/default/grub'.
 
     :return:
     """
-    if libcalamares.globalstorage.value("bootLoader") is None:
+
+    fw_type = libcalamares.globalstorage.value("firmwareType")
+
+    if (libcalamares.globalstorage.value("bootLoader") is None
+            and fw_type != "efi"):
         return None
 
     partitions = libcalamares.globalstorage.value("partitions")
+
+    if fw_type == "efi":
+        esp_found = False
+
+        for partition in partitions:
+            if (partition["mountPoint"]
+                    == libcalamares.globalstorage.value("efiSystemPartition")):
+                esp_found = True
+
+        if not esp_found:
+            return None
+
     root_mount_point = libcalamares.globalstorage.value("rootMountPoint")
     branding = libcalamares.globalstorage.value("branding")
     distributor = branding["bootloaderEntryName"]

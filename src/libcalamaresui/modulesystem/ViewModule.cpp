@@ -1,6 +1,7 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -18,11 +19,10 @@
 
 #include "ViewModule.h"
 
+#include "utils/PluginFactory.h"
 #include "utils/Logger.h"
 #include "viewpages/ViewStep.h"
 #include "ViewManager.h"
-
-#include <yaml-cpp/yaml.h>
 
 #include <QDir>
 #include <QPluginLoader>
@@ -40,7 +40,7 @@ ViewModule::type() const
 Module::Interface
 ViewModule::interface() const
 {
-    return QtPlugin;
+    return QtPluginInterface;
 }
 
 
@@ -49,20 +49,34 @@ ViewModule::loadSelf()
 {
     if ( m_loader )
     {
-        m_viewStep = qobject_cast< ViewStep* >( m_loader->instance() );
-        if ( !m_viewStep )
+        PluginFactory* pf = qobject_cast< PluginFactory* >( m_loader->instance() );
+        if ( !pf )
         {
-            cLog() << Q_FUNC_INFO << m_loader->errorString();
+            cDebug() << Q_FUNC_INFO << "No factory:" << m_loader->errorString();
             return;
         }
+
+        m_viewStep = pf->create< Calamares::ViewStep >();
+        if ( !m_viewStep )
+        {
+            cDebug() << Q_FUNC_INFO << "create() failed" << m_loader->errorString();
+            return;
+        }
+//        cDebug() << "ViewModule loading self for instance" << instanceKey()
+//                 << "\nViewModule at address" << this
+//                 << "\nCalamares::PluginFactory at address" << pf
+//                 << "\nViewStep at address" << m_viewStep;
+
+        m_viewStep->setModuleInstanceKey( instanceKey() );
         m_viewStep->setConfigurationMap( m_configurationMap );
         ViewManager::instance()->addViewStep( m_viewStep );
         m_loaded = true;
+        cDebug() << "ViewModule" << instanceKey() << "loading complete.";
     }
 }
 
 
-QList< job_ptr >
+JobList
 ViewModule::jobs() const
 {
     return m_viewStep->jobs();
@@ -70,23 +84,23 @@ ViewModule::jobs() const
 
 
 void
-ViewModule::initFrom( const YAML::Node& node )
+ViewModule::initFrom( const QVariantMap& moduleDescriptor )
 {
-    Module::initFrom( node );
+    Module::initFrom( moduleDescriptor );
     QDir directory( location() );
     QString load;
-    if ( node[ "load" ] )
+    if ( !moduleDescriptor.value( "load" ).toString().isEmpty() )
     {
-        load = QString::fromStdString( node[ "load" ].as< std::string >() );
+        load = moduleDescriptor.value( "load" ).toString();
         load = directory.absoluteFilePath( load );
     }
     // If a load path is not specified, we look for a plugin to load in the directory.
     if ( load.isEmpty() || !QLibrary::isLibrary( load ) )
     {
-        QStringList ls = directory.entryList( QStringList{ "*.so" } );
+        const QStringList ls = directory.entryList( QStringList{ "*.so" } );
         if ( !ls.isEmpty() )
         {
-            foreach ( QString entry, ls )
+            for ( QString entry : ls )
             {
                 entry = directory.absoluteFilePath( entry );
                 if ( QLibrary::isLibrary( entry ) )

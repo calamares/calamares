@@ -1,0 +1,5 @@
+---
+type:       "job"
+name:       "openrcdmcryptcfg"
+interface:  "python"
+script:     "main.py"

@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *
@@ -18,8 +18,12 @@
 
 #include "ClearTempMountsJob.h"
 
-#include <util/report.h>
-#include <utils/Logger.h>
+#include "utils/Logger.h"
+
+#include <algorithm>
+
+// KPMcore
+#include <kpmcore/util/report.h>
 
 #include <QFile>
 #include <QProcess>
@@ -72,7 +76,7 @@ ClearTempMountsJob::exec()
         lineIn = in.readLine();
     }
 
-    qSort( lst.begin(), lst.end(), []( const QPair< QString, QString >& a,
+    std::sort ( lst.begin(), lst.end(), []( const QPair< QString, QString >& a,
                                        const QPair< QString, QString >& b ) -> bool
     {
         return a.first > b.first;

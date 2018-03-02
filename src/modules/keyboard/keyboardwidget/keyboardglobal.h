@@ -1,6 +1,7 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Originally from the Manjaro Installation Framework
  *   by Roland Singer <roland@manjaro.org>
@@ -44,12 +45,15 @@ public:
         QMap< QString, QString > variants;
     };
 
-    static QMap< QString, KeyboardInfo > getKeyboardLayouts();
+    using LayoutsMap = QMap< QString, KeyboardInfo >;
+
+    static LayoutsMap getKeyboardLayouts();
     static QMap< QString, QString > getKeyboardModels();
+
 
 private:
     static QMap< QString, QString > parseKeyboardModels(QString filepath);
-    static QMap< QString, KeyboardInfo > parseKeyboardLayouts(QString filepath);
+    static LayoutsMap parseKeyboardLayouts(QString filepath);
 };
 
 #endif // KEYBOARDGLOBAL_H

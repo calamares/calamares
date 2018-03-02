@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# === This file is part of Calamares - <http://github.com/calamares> ===
+# === This file is part of Calamares - <https://github.com/calamares> ===
 #
 #   Copyright 2014, Philip Müller <philm@manjaro.org>
 #
@@ -19,13 +19,13 @@
 #   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
 
 import libcalamares
-from libcalamares.utils import check_chroot_call
+from libcalamares.utils import check_target_env_call
 
 
 def run_mkinitcpio():
     """ Runs mkinitcpio with given kernel profile """
     kernel = libcalamares.job.configuration['kernel']
-    check_chroot_call(['mkinitcpio', '-p', kernel])
+    check_target_env_call(['mkinitcpio', '-p', kernel])
 
 
 def run():

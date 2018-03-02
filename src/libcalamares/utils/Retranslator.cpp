@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
  *
@@ -29,7 +29,7 @@ Retranslator::attachRetranslator( QObject* parent,
                                   std::function< void ( void ) > retranslateFunc )
 {
     Retranslator* r = nullptr;
-    foreach ( QObject* child, parent->children() )
+    for ( QObject* child : parent->children() )
     {
         r = qobject_cast< Retranslator* >( child );
         if ( r )

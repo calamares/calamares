@@ -1,6 +1,6 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2016, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -23,6 +23,7 @@
 #include "utils/Logger.h"
 #include "utils/CalamaresUtilsSystem.h"
 
+#include <QDateTime>
 #include <QDir>
 #include <QFile>
 #include <QFileInfo>
@@ -33,13 +34,11 @@
 CreateUserJob::CreateUserJob( const QString& userName,
                               const QString& fullName,
                               bool autologin,
-                              const QString& userGroup,
                               const QStringList& defaultGroups )
     : Calamares::Job()
     , m_userName( userName )
     , m_fullName( fullName )
     , m_autologin( autologin )
-    , m_userGroup( userGroup )
     , m_defaultGroups( defaultGroups )
 {
 }
@@ -108,48 +107,77 @@ CreateUserJob::exec()
 
     foreach ( const QString& group, m_defaultGroups )
         if ( !groupsLines.contains( group ) )
-            CalamaresUtils::chrootCall( { "groupadd", group } );
+            CalamaresUtils::System::instance()->
+                    targetEnvCall( { "groupadd", group } );
 
     QString defaultGroups = m_defaultGroups.join( ',' );
     if ( m_autologin )
     {
         QString autologinGroup;
         if ( gs->contains( "autologinGroup" ) &&
-             !gs->value( "autologinGroup" ).toString().isEmpty() )
+                !gs->value( "autologinGroup" ).toString().isEmpty() )
+        {
             autologinGroup = gs->value( "autologinGroup" ).toString();
-        else
-            autologinGroup = QStringLiteral( "autologin" );
-
-        CalamaresUtils::chrootCall( { "groupadd", autologinGroup } );
-        defaultGroups.append( QString( ",%1" ).arg( autologinGroup ) );
+            CalamaresUtils::System::instance()->targetEnvCall( { "groupadd", autologinGroup } );
+            defaultGroups.append( QString( ",%1" ).arg( autologinGroup ) );
+        }
     }
 
-    int ec = CalamaresUtils::chrootCall( { "useradd",
-                                           "-m",
-                                           "-s",
-                                           "/bin/bash",
-                                           "-g",
-                                           "users",
-                                           "-G",
-                                           defaultGroups,
-                                           m_userName } );
+    // If we're looking to reuse the contents of an existing /home
+    if ( gs->value( "reuseHome" ).toBool() )
+    {
+        QString shellFriendlyHome = "/home/" + m_userName;
+        QDir existingHome( destDir.absolutePath() + shellFriendlyHome );
+        if ( existingHome.exists() )
+        {
+            QString backupDirName = "dotfiles_backup_" +
+                                    QDateTime::currentDateTime()
+                                        .toString( "yyyy-MM-dd_HH-mm-ss" );
+            existingHome.mkdir( backupDirName );
+
+            CalamaresUtils::System::instance()->
+                    targetEnvCall( { "sh",
+                                     "-c",
+                                     "mv -f " +
+                                        shellFriendlyHome + "/.* " +
+                                        shellFriendlyHome + "/" +
+                                        backupDirName
+                                   } );
+        }
+    }
+
+    int ec = CalamaresUtils::System::instance()->
+             targetEnvCall( { "useradd",
+                              "-m",
+                              "-s",
+                              "/bin/bash",
+                              "-U",
+                              "-c",
+                              m_fullName,
+                              m_userName } );
     if ( ec )
         return Calamares::JobResult::error( tr( "Cannot create user %1." )
                                                 .arg( m_userName ),
                                             tr( "useradd terminated with error code %1." )
                                                 .arg( ec ) );
 
-    ec = CalamaresUtils::chrootCall( { "chfn", "-f", m_fullName, m_userName } );
+    ec = CalamaresUtils::System::instance()->
+             targetEnvCall( { "usermod",
+                              "-aG",
+                              defaultGroups,
+                              m_userName } );
     if ( ec )
-        return Calamares::JobResult::error( tr( "Cannot set full name for user %1." )
-                                                .arg( m_userName ),
-                                            tr( "chfn terminated with error code %1." )
+        return Calamares::JobResult::error( tr( "Cannot add user %1 to groups: %2." )
+                                                .arg( m_userName )
+                                                .arg( defaultGroups ),
+                                            tr( "usermod terminated with error code %1." )
                                                 .arg( ec ) );
 
-    ec = CalamaresUtils::chrootCall( { "chown",
+    ec = CalamaresUtils::System::instance()->
+                      targetEnvCall( { "chown",
                                        "-R",
                                        QString( "%1:%2" ).arg( m_userName )
-                                                         .arg( m_userGroup ),
+                                                         .arg( m_userName ),
                                        QString( "/home/%1" ).arg( m_userName ) } );
     if ( ec )
         return Calamares::JobResult::error( tr( "Cannot set home directory ownership for user %1." )

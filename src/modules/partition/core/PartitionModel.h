@@ -1,6 +1,7 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -17,6 +18,8 @@
  */
 #ifndef PARTITIONMODEL_H
 #define PARTITIONMODEL_H
+
+#include "OsproberEntry.h"
 
 // Qt
 #include <QAbstractItemModel>
@@ -66,7 +69,17 @@ public:
         // The raw size, as a qlonglong. This is different from the DisplayRole of
         // SizeColumn, which is a human-readable string.
         SizeRole = Qt::UserRole + 1,
-        IsFreeSpaceRole
+        IsFreeSpaceRole,
+        IsPartitionNewRole,
+        FileSystemLabelRole,
+        FileSystemTypeRole,
+        PartitionPathRole,
+        PartitionPtrRole,   // passed as void*, use sparingly
+        OsproberNameRole,
+        OsproberPathRole,
+        OsproberCanBeResizedRole,
+        OsproberRawLineRole,
+        OsproberHomePartitionPathRole
     };
 
     enum Column
@@ -78,11 +91,11 @@ public:
         ColumnCount // Must remain last
     };
 
-    PartitionModel( QObject* parent = 0 );
+    PartitionModel( QObject* parent = nullptr );
     /**
      * device must remain alive for the life of PartitionModel
      */
-    void init( Device* device );
+    void init( Device* device, const OsproberEntryList& osproberEntries );
 
     // QAbstractItemModel API
     QModelIndex index( int row, int column, const QModelIndex& parent = QModelIndex() ) const override;
@@ -99,8 +112,11 @@ public:
         return m_device;
     }
 
+    void update();
+
 private:
     Device* m_device;
+    OsproberEntryList m_osproberEntries;
 };
 
 #endif /* PARTITIONMODEL_H */

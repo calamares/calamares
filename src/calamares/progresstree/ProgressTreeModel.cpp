@@ -1,6 +1,7 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -23,6 +24,7 @@
 
 ProgressTreeModel::ProgressTreeModel( QObject* parent )
     : QAbstractItemModel( parent )
+    , m_rootItem( nullptr )
 {
     setupModelData();
 }
@@ -38,7 +40,7 @@ Qt::ItemFlags
 ProgressTreeModel::flags( const QModelIndex& index ) const
 {
     if ( !index.isValid() )
-        return 0;
+        return Qt::ItemFlags();
 
     return Qt::ItemIsEnabled;
 }
@@ -96,6 +98,10 @@ ProgressTreeModel::data( const QModelIndex& index, int role ) const
 QVariant
 ProgressTreeModel::headerData( int section, Qt::Orientation orientation, int role ) const
 {
+    Q_UNUSED( section );
+    Q_UNUSED( orientation );
+    Q_UNUSED( role );
+
     return QVariant();
 }
 
@@ -129,33 +135,16 @@ ProgressTreeModel::columnCount( const QModelIndex& parent ) const
 void
 ProgressTreeModel::setupModelData()
 {
+    delete m_rootItem;
+
     m_rootItem = new ProgressTreeRoot();
     const Calamares::ViewManager* vm = Calamares::ViewManager::instance();
 
-    foreach ( const Calamares::ViewStep* step, vm->prepareSteps() )
+    const auto steps = vm->viewSteps();
+    for ( const Calamares::ViewStep* step : steps )
     {
         m_rootItem->appendChild( new ViewStepItem( step, m_rootItem ) );
     }
-
-    m_rootItem->appendChild( new ViewStepItem(
-        []() -> QString
-        {
-            return tr( "Install" );
-        },
-        [vm]() -> const Calamares::ViewStep*
-        {
-            return vm->installationStep();
-        }, m_rootItem ) );
-
-    m_rootItem->appendChild( new ViewStepItem(
-        []() -> QString
-        {
-            return tr( "Finish" );
-        },
-        [vm]() -> const Calamares::ViewStep*
-        {
-            return vm->finishedStep();
-        }, m_rootItem ) );
 }
 
 
@@ -165,12 +154,11 @@ ProgressTreeModel::indexFromItem( ProgressTreeItem* item )
     if ( !item || !item->parent() )
         return QModelIndex();
 
-
     // Reconstructs a QModelIndex from a ProgressTreeItem that is somewhere in the tree.
-    // Traverses the item to the root node, then rebuilds the qmodeindices from there
+    // Traverses the item to the root node, then rebuilds the qmodelindices from there
     // back down; each int is the row of that item in the parent.
     /**
-     * In this diagram, if the \param item is G, childIndexList will contain [0, 2, 0]
+     * In this diagram, if the item is G, childIndexList will contain [0, 2, 0]
      *
      *    A
      *      D

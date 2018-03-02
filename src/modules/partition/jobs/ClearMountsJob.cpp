@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *
@@ -18,13 +18,16 @@
 
 #include "ClearMountsJob.h"
 
-#include <core/device.h>
-#include <core/partition.h>
-#include <core/PartitionInfo.h>
-#include <core/PartitionIterator.h>
-#include <util/report.h>
-#include <utils/Logger.h>
+#include "core/PartitionInfo.h"
+#include "core/PartitionIterator.h"
+#include "utils/Logger.h"
 
+// KPMcore
+#include <kpmcore/core/device.h>
+#include <kpmcore/core/partition.h>
+#include <kpmcore/util/report.h>
+
+#include <QDir>
 #include <QProcess>
 #include <QStringList>
 
@@ -69,8 +72,8 @@ ClearMountsJob::exec()
     process.start();
     process.waitForFinished();
 
-    QString partitions = process.readAllStandardOutput();
-    QStringList partitionsList = partitions.simplified().split( ' ' );
+    const QString partitions = process.readAllStandardOutput();
+    const QStringList partitionsList = partitions.simplified().split( ' ' );
 
     // Build a list of partitions of type 82 (Linux swap / Solaris).
     // We then need to clear them just in case they contain something resumable from a
@@ -97,13 +100,22 @@ ClearMountsJob::exec()
         *it = (*it).simplified().split( ' ' ).first();
     }
 
+    const QStringList cryptoDevices = getCryptoDevices();
+    for ( const QString &mapperPath : cryptoDevices )
+    {
+        tryUmount( mapperPath );
+        QString news = tryCryptoClose( mapperPath );
+        if ( !news.isEmpty() )
+            goodNews.append( news );
+    }
+
     // First we umount all LVM logical volumes we can find
     process.start( "lvscan", { "-a" } );
     process.waitForFinished();
     if ( process.exitCode() == 0 ) //means LVM2 tools are installed
     {
-        QStringList lvscanLines = QString::fromLocal8Bit( process.readAllStandardOutput() ).split( '\n' );
-        foreach ( const QString& lvscanLine, lvscanLines )
+        const QStringList lvscanLines = QString::fromLocal8Bit( process.readAllStandardOutput() ).split( '\n' );
+        for ( const QString& lvscanLine : lvscanLines )
         {
             QString lvPath = lvscanLine.simplified().split( ' ' ).value( 1 ); //second column
             lvPath = lvPath.replace( '\'', "" );
@@ -114,7 +126,7 @@ ClearMountsJob::exec()
         }
     }
     else
-        cDebug() << "WARNING: this system does not seem to have LVM2 tools.";
+        cWarning() << "this system does not seem to have LVM2 tools.";
 
     // Then we go looking for volume groups that use this device for physical volumes
     process.start( "pvdisplay", { "-C", "--noheadings" } );
@@ -126,8 +138,8 @@ ClearMountsJob::exec()
         {
             QSet< QString > vgSet;
 
-            QStringList pvdisplayLines = pvdisplayOutput.split( '\n' );
-            foreach ( const QString& pvdisplayLine, pvdisplayLines )
+            const QStringList pvdisplayLines = pvdisplayOutput.split( '\n' );
+            for ( const QString& pvdisplayLine : pvdisplayLines )
             {
                 QString pvPath = pvdisplayLine.simplified().split( ' ' ).value( 0 );
                 QString vgName = pvdisplayLine.simplified().split( ' ' ).value( 1 );
@@ -147,9 +159,18 @@ ClearMountsJob::exec()
         }
     }
     else
-        cDebug() << "WARNING: this system does not seem to have LVM2 tools.";
+        cWarning() << "this system does not seem to have LVM2 tools.";
 
-    foreach ( QString p, partitionsList )
+    const QStringList cryptoDevices2 = getCryptoDevices();
+    for ( const QString &mapperPath : cryptoDevices2 )
+    {
+        tryUmount( mapperPath );
+        QString news = tryCryptoClose( mapperPath );
+        if ( !news.isEmpty() )
+            goodNews.append( news );
+    }
+
+    for ( const QString &p : partitionsList )
     {
         QString partPath = QString( "/dev/%1" ).arg( p );
 
@@ -198,10 +219,47 @@ QString
 ClearMountsJob::tryClearSwap( const QString& partPath )
 {
     QProcess process;
-    process.start( "mkswap", { partPath } );
+    process.start( "blkid", { "-s", "UUID", "-o", "value", partPath } );
+    process.waitForFinished();
+    QString swapPartUuid = QString::fromLocal8Bit( process.readAllStandardOutput() ).simplified();
+    if ( process.exitCode() != 0 ||
+         swapPartUuid.isEmpty() )
+        return QString();
+
+    process.start( "mkswap", { "-U", swapPartUuid, partPath } );
+    process.waitForFinished();
+    if ( process.exitCode() != 0 )
+        return QString();
+
+    return QString( "Successfully cleared swap %1." ).arg( partPath );
+}
+
+
+QString
+ClearMountsJob::tryCryptoClose( const QString& mapperPath )
+{
+    QProcess process;
+    process.start( "cryptsetup", { "close", mapperPath } );
     process.waitForFinished();
     if ( process.exitCode() == 0 )
-        return QString( "Successfully cleared swap %1." ).arg( partPath );
+        return QString( "Successfully closed mapper device %1." ).arg( mapperPath );
 
     return QString();
+}
+
+
+QStringList
+ClearMountsJob::getCryptoDevices() const
+{
+    QDir mapperDir( "/dev/mapper" );
+    const QFileInfoList fiList = mapperDir.entryInfoList( QDir::Files );
+    QStringList list;
+    QProcess process;
+    for ( const QFileInfo &fi : fiList )
+    {
+        if ( fi.baseName() == "control" )
+            continue;
+        list.append( fi.absoluteFilePath() );
+    }
+    return list;
 }

@@ -1,6 +1,7 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
+ *   Copyright 2016, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -19,11 +20,13 @@
 #ifndef CREATEPARTITIONDIALOG_H
 #define CREATEPARTITIONDIALOG_H
 
+// KPMcore
+#include <kpmcore/core/partitionrole.h>
+#include <kpmcore/core/partitiontable.h>
+
 #include <QDialog>
 #include <QScopedPointer>
 
-// CalaPM
-#include <core/partitionrole.h>
 
 class Device;
 class Partition;
@@ -39,7 +42,7 @@ class CreatePartitionDialog : public QDialog
 {
     Q_OBJECT
 public:
-    CreatePartitionDialog( Device* device, PartitionNode* parentPartition, QWidget* parentWidget = nullptr );
+    CreatePartitionDialog( Device* device, PartitionNode* parentPartition, const QStringList& usedMountPoints, QWidget* parentWidget = nullptr );
     ~CreatePartitionDialog();
 
     /**
@@ -54,15 +57,20 @@ public:
     void initFromPartitionToCreate( Partition* partition );
     Partition* createPartition();
 
+    PartitionTable::Flags newFlags() const;
+
 private Q_SLOTS:
     void updateMountPointUi();
+    void checkMountPointSelection();
 
 private:
+    void setupFlagsList();
     QScopedPointer< Ui_CreatePartitionDialog > m_ui;
     PartitionSizeController* m_partitionSizeController;
     Device* m_device;
     PartitionNode* m_parent;
     PartitionRole m_role = PartitionRole( PartitionRole::None );
+    QStringList m_usedMountPoints;
 
     void initGptPartitionTypeUi();
     void initMbrPartitionTypeUi();

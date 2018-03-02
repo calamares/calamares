@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
  *
@@ -40,9 +40,6 @@ PrettyRadioButton::PrettyRadioButton( QWidget* parent )
 
     m_label->setWordWrap( true );
     m_label->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred );
-    QMargins labelMargins = m_label->contentsMargins();
-    labelMargins.setLeft( labelMargins.left() + CalamaresUtils::defaultFontHeight() * 0.8 );
-    m_label->setContentsMargins( labelMargins );
 
     mainLayout->addWidget( m_radio );
     mainLayout->addWidget( m_label );
@@ -72,14 +69,14 @@ PrettyRadioButton::setIcon( const QIcon& icon )
 
 
 QSize
-PrettyRadioButton::iconSize()
+PrettyRadioButton::iconSize() const
 {
     return m_radio->iconSize();
 }
 
 
 QRadioButton*
-PrettyRadioButton::buttonWidget()
+PrettyRadioButton::buttonWidget() const
 {
     return m_radio;
 }

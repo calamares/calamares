@@ -1,6 +1,7 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -25,7 +26,7 @@ class CheckItemWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit CheckItemWidget( bool checked,
+    explicit CheckItemWidget( bool checked, bool required,
                               QWidget* parent = nullptr );
 
     void setText( const QString& text );

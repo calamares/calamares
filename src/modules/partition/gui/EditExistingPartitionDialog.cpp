@@ -1,6 +1,11 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
+ *   Copyright 2016, Teo Mrnjavac <teo@kde.org>
+ *
+ *   Flags handling originally from KDE Partition Manager,
+ *   Copyright 2008-2009, Volker Lanz <vl@fidra.de>
+ *   Copyright 2016,      Andrius Štikonas <andrius@stikonas.eu>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -21,7 +26,8 @@
 #include <core/ColorUtils.h>
 #include <core/PartitionCoreModule.h>
 #include <core/PartitionInfo.h>
-#include <core/PMUtils.h>
+#include "core/PartUtils.h"
+#include <core/KPMHelpers.h>
 #include <gui/PartitionSizeController.h>
 
 #include <ui_EditExistingPartitionDialog.h>
@@ -30,26 +36,28 @@
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 
-// CalaPM
-#include <core/device.h>
-#include <core/partition.h>
-#include <fs/filesystemfactory.h>
+// KPMcore
+#include <kpmcore/core/device.h>
+#include <kpmcore/core/partition.h>
+#include <kpmcore/fs/filesystemfactory.h>
 
 // Qt
 #include <QComboBox>
 #include <QDir>
+#include <QPushButton>
 
-EditExistingPartitionDialog::EditExistingPartitionDialog( Device* device, Partition* partition, QWidget* parentWidget )
+EditExistingPartitionDialog::EditExistingPartitionDialog( Device* device, Partition* partition, const QStringList& usedMountPoints, QWidget* parentWidget )
     : QDialog( parentWidget )
     , m_ui( new Ui_EditExistingPartitionDialog )
     , m_device( device )
     , m_partition( partition )
     , m_partitionSizeController( new PartitionSizeController( this ) )
+    , m_usedMountPoints( usedMountPoints )
 {
     m_ui->setupUi( this );
 
     QStringList mountPoints = { "/", "/boot", "/home", "/opt", "/usr", "/var" };
-    if ( QDir( "/sys/firmware/efi/efivars" ).exists() )
+    if ( PartUtils::isEfiSystem() )
         mountPoints << Calamares::JobQueue::instance()->globalStorage()->value( "efiSystemPartition" ).toString();
     mountPoints.removeDuplicates();
     mountPoints.sort();
@@ -60,6 +68,8 @@ EditExistingPartitionDialog::EditExistingPartitionDialog( Device* device, Partit
     m_partitionSizeController->setSpinBox( m_ui->sizeSpinBox );
 
     m_ui->mountPointComboBox->setCurrentText( PartitionInfo::mountPoint( partition ) );
+    connect( m_ui->mountPointComboBox, &QComboBox::currentTextChanged,
+             this, &EditExistingPartitionDialog::checkMountPointSelection );
 
     replacePartResizerWidget();
 
@@ -95,14 +105,57 @@ EditExistingPartitionDialog::EditExistingPartitionDialog( Device* device, Partit
     if ( fsNames.contains( m_partition->fileSystem().name() ) )
         m_ui->fileSystemComboBox->setCurrentText( m_partition->fileSystem().name() );
     else
-        m_ui->fileSystemComboBox->setCurrentText( FileSystem::nameForType( FileSystem::Ext4 ) );
+        m_ui->fileSystemComboBox->setCurrentText( Calamares::JobQueue::instance()->
+                                                      globalStorage()->
+                                                      value( "defaultFileSystemType" ).toString() );
 
     m_ui->fileSystemLabel->setEnabled( m_ui->formatRadioButton->isChecked() );
     m_ui->fileSystemComboBox->setEnabled( m_ui->formatRadioButton->isChecked() );
+
+    setupFlagsList();
 }
+
 
 EditExistingPartitionDialog::~EditExistingPartitionDialog()
 {}
+
+
+PartitionTable::Flags
+EditExistingPartitionDialog::newFlags() const
+{
+    PartitionTable::Flags flags;
+
+    for ( int i = 0; i < m_ui->m_listFlags->count(); i++ )
+        if ( m_ui->m_listFlags->item( i )->checkState() == Qt::Checked )
+            flags |= static_cast< PartitionTable::Flag >(
+                         m_ui->m_listFlags->item( i )->data( Qt::UserRole ).toInt() );
+
+    return flags;
+}
+
+
+void
+EditExistingPartitionDialog::setupFlagsList()
+{
+    int f = 1;
+    QString s;
+    while ( !( s = PartitionTable::flagName( static_cast< PartitionTable::Flag >( f ) ) ).isEmpty() )
+    {
+        if ( m_partition->availableFlags() & f )
+        {
+            QListWidgetItem* item = new QListWidgetItem( s );
+            m_ui->m_listFlags->addItem( item );
+            item->setFlags( Qt::ItemIsUserCheckable | Qt::ItemIsEnabled );
+            item->setData( Qt::UserRole, f );
+            item->setCheckState( ( m_partition->activeFlags() & f ) ?
+                                     Qt::Checked :
+                                     Qt::Unchecked );
+        }
+
+        f <<= 1;
+    }
+}
+
 
 void
 EditExistingPartitionDialog::applyChanges( PartitionCoreModule* core )
@@ -110,8 +163,14 @@ EditExistingPartitionDialog::applyChanges( PartitionCoreModule* core )
     PartitionInfo::setMountPoint( m_partition, m_ui->mountPointComboBox->currentText() );
 
     qint64 newFirstSector = m_partitionSizeController->firstSector();
-    qint64 newLastSector = m_partitionSizeController->lastSector();
-    bool partitionChanged = newFirstSector != m_partition->firstSector() || newLastSector != m_partition->lastSector();
+    qint64 newLastSector  = m_partitionSizeController->lastSector();
+    bool partResizedMoved = newFirstSector != m_partition->firstSector() ||
+                            newLastSector  != m_partition->lastSector();
+
+    cDebug() << "old boundaries:" << m_partition->firstSector()
+             << m_partition->lastSector() << m_partition->length();
+    cDebug() << "new boundaries:" << newFirstSector << newLastSector;
+    cDebug() << "dirty status:" << m_partitionSizeController->isDirty();
 
     FileSystem::Type fsType = FileSystem::Unknown;
     if ( m_ui->formatRadioButton->isChecked() )
@@ -121,22 +180,24 @@ EditExistingPartitionDialog::applyChanges( PartitionCoreModule* core )
                 : FileSystem::typeForName( m_ui->fileSystemComboBox->currentText() );
     }
 
-    if ( partitionChanged )
+    if ( partResizedMoved )
     {
         if ( m_ui->formatRadioButton->isChecked() )
         {
-            Partition* newPartition = PMUtils::createNewPartition(
+            Partition* newPartition = KPMHelpers::createNewPartition(
                                           m_partition->parent(),
                                           *m_device,
                                           m_partition->roles(),
                                           fsType,
                                           newFirstSector,
-                                          newLastSector );
+                                          newLastSector,
+                                          newFlags() );
             PartitionInfo::setMountPoint( newPartition, PartitionInfo::mountPoint( m_partition ) );
             PartitionInfo::setFormat( newPartition, true );
 
             core->deletePartition( m_device, m_partition );
             core->createPartition( m_device, newPartition );
+            core->setPartitionFlags( m_device, newPartition, newFlags() );
         }
         else
         {
@@ -144,6 +205,8 @@ EditExistingPartitionDialog::applyChanges( PartitionCoreModule* core )
                                    m_partition,
                                    newFirstSector,
                                    newLastSector );
+            if ( m_partition->activeFlags() != newFlags() )
+                core->setPartitionFlags( m_device, m_partition, newFlags() );
         }
     }
     else
@@ -155,29 +218,36 @@ EditExistingPartitionDialog::applyChanges( PartitionCoreModule* core )
             if ( m_partition->fileSystem().type() == fsType )
             {
                 core->formatPartition( m_device, m_partition );
+                if ( m_partition->activeFlags() != newFlags() )
+                    core->setPartitionFlags( m_device, m_partition, newFlags() );
             }
             else // otherwise, we delete and recreate the partition with new fs type
             {
-                Partition* newPartition = PMUtils::createNewPartition(
+                Partition* newPartition = KPMHelpers::createNewPartition(
                                               m_partition->parent(),
                                               *m_device,
                                               m_partition->roles(),
                                               fsType,
                                               m_partition->firstSector(),
-                                              m_partition->lastSector() );
+                                              m_partition->lastSector(),
+                                              newFlags() );
                 PartitionInfo::setMountPoint( newPartition, PartitionInfo::mountPoint( m_partition ) );
                 PartitionInfo::setFormat( newPartition, true );
 
                 core->deletePartition( m_device, m_partition );
                 core->createPartition( m_device, newPartition );
+                core->setPartitionFlags( m_device, newPartition, newFlags() );
             }
         }
         else
         {
             core->refreshPartition( m_device, m_partition );
+            if ( m_partition->activeFlags() != newFlags() )
+                core->setPartitionFlags( m_device, m_partition, newFlags() );
         }
     }
 }
+
 
 void
 EditExistingPartitionDialog::replacePartResizerWidget()
@@ -196,6 +266,7 @@ EditExistingPartitionDialog::replacePartResizerWidget()
 
     m_partitionSizeController->setPartResizerWidget( widget, m_ui->formatRadioButton->isChecked() );
 }
+
 
 void
 EditExistingPartitionDialog::updateMountPointPicker()
@@ -224,4 +295,21 @@ EditExistingPartitionDialog::updateMountPointPicker()
     m_ui->mountPointComboBox->setEnabled( canMount );
     if ( !canMount )
         m_ui->mountPointComboBox->setCurrentText( QString() );
+}
+
+void
+EditExistingPartitionDialog::checkMountPointSelection()
+{
+    const QString& selection = m_ui->mountPointComboBox->currentText();
+
+    if ( m_usedMountPoints.contains( selection ) )
+    {
+        m_ui->labelMountPoint->setText( tr( "Mountpoint already in use. Please select another one." ) );
+        m_ui->buttonBox->button( QDialogButtonBox::Ok )->setEnabled( false );
+    }
+    else
+    {
+        m_ui->labelMountPoint->setText( QString() );
+        m_ui->buttonBox->button( QDialogButtonBox::Ok )->setEnabled( true );
+    }
 }

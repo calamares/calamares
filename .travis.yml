@@ -1,0 +1,20 @@
+language: cpp
+
+python:
+  - 3.5
+
+sudo: required
+
+services:
+  - docker
+
+notifications:
+  irc:
+    - "chat.freenode.net#calamares"
+
+install:
+  - docker build -t calamares .
+
+script:
+  - docker run -v $PWD:/src --tmpfs /build:rw,size=65536k -e SRCDIR=/src -e BUILDDIR=/build calamares "/src/ci/travis.sh"
+

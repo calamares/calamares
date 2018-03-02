@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *
@@ -21,6 +21,12 @@
 
 #include <QStyledItemDelegate>
 
+
+/**
+ * @brief The ProgressTreeDelegate class customizes the look and feel of the
+ * ProgressTreeView elements.
+ * @see ProgressTreeView
+ */
 class ProgressTreeDelegate : public QStyledItemDelegate
 {
     Q_OBJECT

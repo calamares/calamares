@@ -1,0 +1,9 @@
+<RCC>
+  <qresource prefix="tracking">
+    <file>level-none.svg</file>
+    <file>level-install.svg</file>
+    <file>level-machine.svg</file>
+    <file>level-user.svg</file>
+    <file>../../../data/images/information.svgz</file>
+  </qresource>
+</RCC>

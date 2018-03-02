@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
  *   Copyright 2015, Teo Mrnjavac <teo@kde.org>
@@ -38,8 +38,8 @@ public:
         IsPartitionRole
     };
 
-    BootLoaderModel( QObject* parent = 0 );
-    ~BootLoaderModel();
+    BootLoaderModel( QObject* parent = nullptr );
+    ~BootLoaderModel() override;
 
     /**
      * Init the model with the list of devices. Does *not* take ownership of the

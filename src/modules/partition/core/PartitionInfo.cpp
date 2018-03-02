@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
  *
@@ -15,10 +15,11 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
-#include <core/PartitionInfo.h>
 
-// CalaPM
-#include <core/partition.h>
+#include "core/PartitionInfo.h"
+
+// KPMcore
+#include <kpmcore/core/partition.h>
 
 // Qt
 #include <QVariant>

@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *
@@ -20,9 +20,11 @@
 
 #include "SummaryPage.h"
 
+CALAMARES_PLUGIN_FACTORY_DEFINITION( SummaryViewStepFactory, registerPlugin<SummaryViewStep>(); )
+
 SummaryViewStep::SummaryViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
-    , m_widget( new SummaryPage() )
+    , m_widget( new SummaryPage( this ) )
 {
     emit nextStatusChanged( true );
 }
@@ -100,5 +102,12 @@ void
 SummaryViewStep::onActivate()
 {
     m_widget->onActivate();
+}
+
+
+void
+SummaryViewStep::onLeave()
+{
+    m_widget->createContentWidget();
 }
 

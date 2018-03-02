@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *
@@ -21,21 +21,20 @@
 
 #include <QObject>
 
-#include "viewpages/ViewStep.h"
-#include "PluginDllMacro.h"
+#include <utils/PluginFactory.h>
+#include <viewpages/ViewStep.h>
+
+#include <PluginDllMacro.h>
 
 class FinishedPage;
 
 class PLUGINDLLEXPORT FinishedViewStep : public Calamares::ViewStep
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA( IID "calamares.ViewModule/1.0" )
-
-    Q_INTERFACES( Calamares::ViewStep )
 
 public:
     explicit FinishedViewStep( QObject* parent = nullptr );
-    virtual ~FinishedViewStep();
+    virtual ~FinishedViewStep() override;
 
     QString prettyName() const override;
 
@@ -56,8 +55,22 @@ public:
 
     void setConfigurationMap( const QVariantMap& configurationMap ) override;
 
+public slots:
+    void onInstallationFailed( const QString& message, const QString& details );
+
 private:
     FinishedPage* m_widget;
+
+    /**
+     * @brief At the end of installation (when this step is activated),
+     *      send a desktop notification via DBus that the install is done.
+     */
+    void sendNotification();
+
+    bool installFailed;
+    bool m_notifyOnFinished;
 };
+
+CALAMARES_PLUGIN_FACTORY_DECLARATION( FinishedViewStepFactory )
 
 #endif // FINISHEDPAGEPLUGIN_H

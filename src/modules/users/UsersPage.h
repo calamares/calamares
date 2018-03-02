@@ -1,6 +1,7 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Portions from the Manjaro Installation Framework
  *   by Roland Singer <roland@manjaro.org>
@@ -25,9 +26,12 @@
 
 #include "Typedefs.h"
 
+#include "CheckPWQuality.h"
+
 #include <QWidget>
 
-namespace Ui {
+namespace Ui
+{
 class Page_UserSetup;
 }
 
@@ -40,13 +44,15 @@ public:
 
     bool isReady();
 
-    QList< Calamares::job_ptr > createJobs( const QString& defaultUserGroup,
-                                            const QStringList& defaultGroupsList );
+    QList< Calamares::job_ptr > createJobs( const QStringList& defaultGroupsList );
 
     void onActivate();
 
-    void setShowRootPassword( bool show );
+    void setWriteRootPassword( bool show );
     void setAutologinDefault( bool checked );
+    void setReusePasswordDefault( bool checked );
+
+    void addPasswordCheck( const QString& key, const QVariant& value );
 
 protected slots:
     void onFullNameTextEdited( const QString& );
@@ -64,11 +70,13 @@ signals:
 private:
     Ui::Page_UserSetup* ui;
 
+    PasswordCheckList m_passwordChecks;
+
     const QRegExp USERNAME_RX = QRegExp( "^[a-z_][a-z0-9_-]*[$]?$" );
-    const QRegExp HOSTNAME_RX = QRegExp( "^[a-zA-Z][-a-zA-Z0-9_]*$" );
+    const QRegExp HOSTNAME_RX = QRegExp( "^[a-zA-Z0-9][-a-zA-Z0-9_]*$" );
     const int USERNAME_MAX_LENGTH = 31;
     const int HOSTNAME_MIN_LENGTH = 2;
-    const int HOSTNAME_MAX_LENGTH = 24;
+    const int HOSTNAME_MAX_LENGTH = 63;
 
     bool m_readyFullName;
     bool m_readyUsername;
@@ -78,7 +86,7 @@ private:
     bool m_readyPassword;
     bool m_readyRootPassword;
 
-    bool m_showRootPassword;
+    bool m_writeRootPassword;
 };
 
 #endif // USERSPAGE_H

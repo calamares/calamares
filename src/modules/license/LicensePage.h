@@ -1,7 +1,8 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2015, Anke Boersma <demm@kaosx.us>
  *   Copyright 2015, Alexandre Arnt <qtgzmanager@gmail.com>
+ *   Copyright 2015, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -28,29 +29,42 @@ namespace Ui
 class LicensePage;
 }
 
+struct LicenseEntry
+{
+    enum Type
+    {
+        Software = 0,
+        Driver,
+        GpuDriver,
+        BrowserPlugin,
+        Codec,
+        Package
+    };
+
+    QString id;
+    QString prettyName;
+    QString prettyVendor;
+    Type type;
+    QUrl url;
+    bool required;
+};
+
 class LicensePage : public QWidget
 {
     Q_OBJECT
 public:
     explicit LicensePage( QWidget* parent = nullptr );
-    
-    void showLicense1Url( bool enabled );
-    void showLicense2Url( bool enabled );
-    void showLicense3Url( bool enabled );
-    void showLicense4Url( bool enabled );
-    void setLicense1Url( const QString& url );
-    void setLicense2Url( const QString& url );
-    void setLicense3Url( const QString& url );
-    void setLicense4Url( const QString& url );
-    void setLicense1Button( const QString& text );
+
+    void setEntries( const QList< LicenseEntry >& entriesList );
+
+    bool isNextEnabled() const;
+signals:
+    void nextStatusChanged( bool status );
 
 private:
     Ui::LicensePage* ui;
-    QString m_license1Url;
-    QString m_license2Url;
-    QString m_license3Url;
-    QString m_license4Url;
-    QString m_license1Button;
+
+    bool m_isNextEnabled;
 };
 
 #endif //LICENSEPAGE_H

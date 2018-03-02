@@ -1,6 +1,7 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -32,8 +33,8 @@ class DeviceModel : public QAbstractListModel
 {
     Q_OBJECT
 public:
-    DeviceModel( QObject* parent = 0 );
-    ~DeviceModel();
+    DeviceModel( QObject* parent = nullptr );
+    ~DeviceModel() override;
 
     /**
      * Init the model with the list of devices. Does *not* take ownership of the
@@ -45,6 +46,8 @@ public:
     QVariant data( const QModelIndex& index, int role = Qt::DisplayRole ) const override;
 
     Device* deviceForIndex( const QModelIndex& index ) const;
+
+    void swapDevice( Device* oldDevice, Device* newDevice );
 
 private:
     QList< Device* > m_devices;

@@ -1,6 +1,8 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2017, Gabriel Craciunescu <crazy@frugalware.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -20,8 +22,11 @@
 
 #include "UsersPage.h"
 
+#include "utils/Logger.h"
 #include "JobQueue.h"
 #include "GlobalStorage.h"
+
+CALAMARES_PLUGIN_FACTORY_DEFINITION( UsersViewStepFactory, registerPlugin<UsersViewStep>(); )
 
 UsersViewStep::UsersViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
@@ -113,21 +118,13 @@ UsersViewStep::onLeave()
 {
     m_jobs.clear();
 
-    m_jobs.append( m_widget->createJobs( m_userGroup, m_defaultGroups ) );
+    m_jobs.append( m_widget->createJobs( m_defaultGroups ) );
 }
 
 
 void
 UsersViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
-    if ( configurationMap.contains( "userGroup" ) &&
-         configurationMap.value( "userGroup" ).type() == QVariant::String )
-    {
-        m_userGroup = configurationMap.value( "userGroup" ).toString();
-    }
-    if ( m_userGroup.isEmpty() )
-        m_userGroup = QStringLiteral( "users" );
-
     if ( configurationMap.contains( "defaultGroups" ) &&
          configurationMap.value( "defaultGroups" ).type() == QVariant::List )
     {
@@ -135,6 +132,7 @@ UsersViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     }
     else
     {
+        cWarning() << "Using fallback groups. Please check defaultGroups in users.conf";
         m_defaultGroups = QStringList{ "lp", "video", "network", "storage", "wheel", "audio" };
     }
 
@@ -157,13 +155,31 @@ UsersViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     {
         Calamares::JobQueue::instance()->globalStorage()->insert( "setRootPassword",
                         configurationMap.value( "setRootPassword" ).toBool() );
-        m_widget->setShowRootPassword( configurationMap.value( "setRootPassword" ).toBool() );
+        m_widget->setWriteRootPassword( configurationMap.value( "setRootPassword" ).toBool() );
     }
 
     if ( configurationMap.contains( "doAutologin" ) &&
          configurationMap.value( "doAutologin" ).type() == QVariant::Bool )
     {
         m_widget->setAutologinDefault( configurationMap.value( "doAutologin" ).toBool() );
+    }
+
+    if ( configurationMap.contains( "doReusePassword" ) &&
+         configurationMap.value( "doReusePassword" ).type() == QVariant::Bool )
+    {
+        m_widget->setReusePasswordDefault( configurationMap.value( "doReusePassword" ).toBool() );
+    }
+
+    if ( configurationMap.contains( "passwordRequirements" ) &&
+        configurationMap.value( "passwordRequirements" ).type() == QVariant::Map )
+    {
+        auto pr_checks( configurationMap.value( "passwordRequirements" ).toMap() );
+
+        for (decltype(pr_checks)::const_iterator i = pr_checks.constBegin();
+            i != pr_checks.constEnd(); ++i)
+        {
+            m_widget->addPasswordCheck( i.key(), i.value() );
+        }
     }
 }
 

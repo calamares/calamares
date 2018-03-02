@@ -1,6 +1,7 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -21,8 +22,10 @@
 
 #include <QObject>
 
-#include "viewpages/ViewStep.h"
-#include "PluginDllMacro.h"
+#include <utils/PluginFactory.h>
+#include <viewpages/ViewStep.h>
+
+#include <PluginDllMacro.h>
 
 #include <QVariant>
 
@@ -31,13 +34,10 @@ class UsersPage;
 class PLUGINDLLEXPORT UsersViewStep : public Calamares::ViewStep
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA( IID "calamares.ViewModule/1.0" )
-
-    Q_INTERFACES( Calamares::ViewStep )
 
 public:
     explicit UsersViewStep( QObject* parent = nullptr );
-    virtual ~UsersViewStep();
+    virtual ~UsersViewStep() override;
 
     QString prettyName() const override;
 
@@ -63,8 +63,9 @@ private:
     UsersPage* m_widget;
     QList< Calamares::job_ptr > m_jobs;
 
-    QString m_userGroup;
     QStringList m_defaultGroups;
 };
+
+CALAMARES_PLUGIN_FACTORY_DECLARATION( UsersViewStepFactory )
 
 #endif // USERSPAGEPLUGIN_H

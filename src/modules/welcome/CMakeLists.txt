@@ -1,19 +1,24 @@
 include_directories( ${PROJECT_BINARY_DIR}/src/libcalamaresui )
-set( CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/CMakeModules )
-find_package( LIBPARTED REQUIRED )
-find_package( Qt5 ${QT_VERSION} CONFIG REQUIRED DBus )
 
-set_source_files_properties( checker/partman_devices.c PROPERTIES LANGUAGE CXX )
+find_package( Qt5 ${QT_VERSION} CONFIG REQUIRED DBus Network )
+
+find_package( LIBPARTED )
+if ( LIBPARTED_FOUND )
+    set( PARTMAN_SRC checker/partman_devices.c )
+    set( CHECKER_LINK_LIBRARIES ${LIBPARTED_LIBRARY} )
+else()
+    set( PARTMAN_SRC )
+    set( CHECKER_LINK_LIBRARIES )
+    add_definitions( -DWITHOUT_LIBPARTED )
+endif()
+
+include_directories( ${PROJECT_BINARY_DIR}/src/libcalamaresui )
 
 set( CHECKER_SOURCES
     checker/CheckItemWidget.cpp
     checker/CheckerWidget.cpp
     checker/RequirementsChecker.cpp
-    checker/partman_devices.c
-)
-set( CHECKER_LINK_LIBRARIES
-    ${LIBPARTED_LIBS}
-    Qt5::DBus
+    ${PARTMAN_SRC}
 )
 
 calamares_add_plugin( welcome
@@ -25,8 +30,10 @@ calamares_add_plugin( welcome
         WelcomePage.cpp
     UI
         WelcomePage.ui
-    LINK_LIBRARIES
+    LINK_PRIVATE_LIBRARIES
         calamaresui
         ${CHECKER_LINK_LIBRARIES}
+        Qt5::DBus
+        Qt5::Network
     SHARED_LIB
 )

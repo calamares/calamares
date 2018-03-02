@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *
@@ -21,21 +21,20 @@
 
 #include <QObject>
 
-#include "viewpages/ViewStep.h"
-#include "PluginDllMacro.h"
+#include <utils/PluginFactory.h>
+#include <viewpages/ViewStep.h>
+
+#include <PluginDllMacro.h>
 
 class SummaryPage;
 
 class PLUGINDLLEXPORT SummaryViewStep : public Calamares::ViewStep
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA( IID "calamares.ViewModule/1.0" )
-
-    Q_INTERFACES( Calamares::ViewStep )
 
 public:
     explicit SummaryViewStep( QObject* parent = nullptr );
-    virtual ~SummaryViewStep();
+    virtual ~SummaryViewStep() override;
 
     QString prettyName() const override;
 
@@ -53,9 +52,12 @@ public:
     QList< Calamares::job_ptr > jobs() const override;
 
     void onActivate() override;
+    void onLeave() override;
 
 private:
     SummaryPage* m_widget;
 };
+
+CALAMARES_PLUGIN_FACTORY_DECLARATION( SummaryViewStepFactory )
 
 #endif // SUMMARYPAGEPLUGIN_H

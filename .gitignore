@@ -35,8 +35,17 @@ Makefile*
 qtcreator-build
 CMakeLists.txt.user
 
+# KDevelop
+*.kdev4
+
 # PyCharm
 .idea
 
+# Visual Studio Code
+.vscode
+
 # Backup files
 *~
+
+# Kate
+*.kate-swp

@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *
@@ -21,8 +21,14 @@
 namespace Calamares
 {
 
+JobResult::JobResult( JobResult&& rhs ) :
+      m_ok( rhs.m_ok )
+    , m_message( std::move( rhs.m_message ) )
+    , m_details( std::move( rhs.m_details ) )
+{
+}
 
-Calamares::JobResult::operator bool() const
+JobResult::operator bool() const
 {
     return m_ok;
 }
@@ -54,7 +60,6 @@ JobResult::setDetails( const QString& details )
 {
     m_details = details;
 }
-
 
 JobResult
 JobResult::ok()

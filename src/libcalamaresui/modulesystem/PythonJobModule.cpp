@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
  *
@@ -20,8 +20,6 @@
 
 #include "PythonJob.h"
 
-#include <yaml-cpp/yaml.h>
-
 #include <QDir>
 
 
@@ -38,7 +36,7 @@ PythonJobModule::type() const
 Module::Interface
 PythonJobModule::interface() const
 {
-    return Python;
+    return PythonInterface;
 }
 
 
@@ -55,23 +53,23 @@ PythonJobModule::loadSelf()
 }
 
 
-QList< job_ptr >
+JobList
 PythonJobModule::jobs() const
 {
-    return QList< job_ptr >() << m_job;
+    return JobList() << m_job;
 }
 
 
 void
-PythonJobModule::initFrom( const YAML::Node& node )
+PythonJobModule::initFrom( const QVariantMap& moduleDescriptor )
 {
-    Module::initFrom( node );
+    Module::initFrom( moduleDescriptor );
     QDir directory( location() );
     m_workingPath = directory.absolutePath();
 
-    if ( node[ "script" ] )
+    if ( !moduleDescriptor.value( "script" ).toString().isEmpty() )
     {
-        m_scriptFileName = QString::fromStdString( node[ "script" ].as< std::string >() );
+        m_scriptFileName = moduleDescriptor.value( "script" ).toString();
     }
 }
 

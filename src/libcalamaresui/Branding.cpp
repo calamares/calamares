@@ -1,6 +1,7 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -44,7 +45,7 @@ Branding::instance()
 }
 
 
-QStringList Branding::s_stringEntryStrings =
+const QStringList Branding::s_stringEntryStrings =
 {
     "productName",
     "version",
@@ -60,18 +61,19 @@ QStringList Branding::s_stringEntryStrings =
 };
 
 
-QStringList Branding::s_imageEntryStrings =
+const QStringList Branding::s_imageEntryStrings =
 {
     "productLogo",
     "productIcon",
     "productWelcome"
 };
 
-QStringList Branding::s_styleEntryStrings =
+const QStringList Branding::s_styleEntryStrings =
 {
     "sidebarBackground",
     "sidebarText",
-    "sidebarTextSelect"
+    "sidebarTextSelect",
+    "sidebarTextHighlight"
 };
 
 
@@ -79,6 +81,9 @@ Branding::Branding( const QString& brandingFilePath,
                     QObject* parent )
     : QObject( parent )
     , m_descriptorPath( brandingFilePath )
+    , m_componentName()
+    , m_welcomeStyleCalamares( false )
+    , m_welcomeExpandingLogo( true )
 {
     cDebug() << "Using Calamares branding file at" << brandingFilePath;
     QFile file( brandingFilePath );
@@ -104,6 +109,9 @@ Branding::Branding( const QString& brandingFilePath,
 
             if ( !doc[ "strings" ].IsMap() )
                 bail( "Syntax error in strings map." );
+
+            m_welcomeStyleCalamares = doc[ "welcomeStyleCalamares" ].as< bool >( false );
+            m_welcomeExpandingLogo = doc[ "welcomeExpandingLogo" ].as< bool >( true );
 
             QVariantMap strings =
                 CalamaresUtils::yamlMapToVariant( doc[ "strings" ] ).toMap();
@@ -158,7 +166,7 @@ Branding::Branding( const QString& brandingFilePath,
             }
             else
                 bail( "Syntax error in slideshow sequence." );
-            
+
             if ( !doc[ "style" ].IsMap() )
                 bail( "Syntax error in style map." );
 
@@ -171,12 +179,12 @@ Branding::Branding( const QString& brandingFilePath,
         }
         catch ( YAML::Exception& e )
         {
-            cDebug() << "WARNING: YAML parser error " << e.what();
+            cWarning() << "YAML parser error " << e.what() << "in" << file.fileName();
         }
 
         QDir translationsDir( componentDir.filePath( "lang" ) );
         if ( !translationsDir.exists() )
-            cDebug() << "WARNING: the selected branding component does not ship translations.";
+            cWarning() << "the selected branding component does not ship translations.";
         m_translationsPathPrefix = translationsDir.absolutePath();
         m_translationsPathPrefix.append( QString( "%1calamares-%2" )
                                             .arg( QDir::separator() )
@@ -184,11 +192,18 @@ Branding::Branding( const QString& brandingFilePath,
     }
     else
     {
-        cDebug() << "WARNING: Cannot read " << file.fileName();
+        cWarning() << "Cannot read " << file.fileName();
     }
 
     s_instance = this;
-    cDebug() << "Loaded branding component" << m_componentName;
+    if ( m_componentName.isEmpty() )
+    {
+        cWarning() << "Failed to load component from" << brandingFilePath;
+    }
+    else
+    {
+        cDebug() << "Loaded branding component" << m_componentName;
+    }
 }
 
 
@@ -263,12 +278,11 @@ Branding::slideshowPath() const
     return m_slideshowPath;
 }
 
-
 void
 Branding::setGlobals( GlobalStorage* globalStorage ) const
 {
     QVariantMap brandingMap;
-    foreach ( const QString& key, s_stringEntryStrings )
+    for ( const QString& key : s_stringEntryStrings )
         brandingMap.insert( key, m_strings.value( key ) );
     globalStorage->insert( "branding", brandingMap );
 }
@@ -277,7 +291,7 @@ Branding::setGlobals( GlobalStorage* globalStorage ) const
 void
 Branding::bail( const QString& message )
 {
-    cLog() << "FATAL ERROR in"
+    cError() << "FATAL in"
            << m_descriptorPath
            << "\n" + message;
     ::exit( EXIT_FAILURE );

@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
  *   Copyright 2015, Teo Mrnjavac <teo@kde.org>
@@ -16,13 +16,14 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
-#include <core/BootLoaderModel.h>
 
-#include <core/PartitionInfo.h>
-#include <core/PMUtils.h>
+#include "core/BootLoaderModel.h"
 
-// CalaPM
-#include <core/device.h>
+#include "core/PartitionInfo.h"
+#include "core/KPMHelpers.h"
+
+// KPMcore
+#include <kpmcore/core/device.h>
 
 static QStandardItem*
 createBootLoaderItem( const QString& description, const QString& path, bool isPartition )
@@ -70,12 +71,12 @@ BootLoaderModel::update()
     createMbrItems();
 
     QString partitionText;
-    Partition* partition = PMUtils::findPartitionByMountPoint( m_devices, "/boot" );
+    Partition* partition = KPMHelpers::findPartitionByMountPoint( m_devices, "/boot" );
     if ( partition )
         partitionText = tr( "Boot Partition" );
     else
     {
-        partition = PMUtils::findPartitionByMountPoint( m_devices, "/" );
+        partition = KPMHelpers::findPartitionByMountPoint( m_devices, "/" );
         if ( partition )
             partitionText = tr( "System Partition" );
     }
@@ -127,4 +128,3 @@ BootLoaderModel::data( const QModelIndex& index, int role ) const
     }
     return QStandardItemModel::data( index, role );
 }
-

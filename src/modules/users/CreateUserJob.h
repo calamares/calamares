@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *
@@ -30,7 +30,6 @@ public:
     CreateUserJob( const QString& userName,
                    const QString& fullName,
                    bool autologin,
-                   const QString& userGroup,
                    const QStringList& defaultGroups );
     QString prettyName() const override;
     QString prettyDescription() const override;
@@ -41,7 +40,6 @@ private:
     QString m_userName;
     QString m_fullName;
     bool m_autologin;
-    QString m_userGroup;
     QStringList m_defaultGroups;
 };
 

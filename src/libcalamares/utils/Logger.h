@@ -1,7 +1,8 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2010-2011, Christian Muehlhaeuser <muesli@tomahawk-player.org>
  *   Copyright 2014,      Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -24,13 +25,19 @@
 
 #include "DllMacro.h"
 
-#define LOGDEBUG 1
-#define LOGINFO 2
-#define LOGEXTRA 5
-#define LOGVERBOSE 8
-
 namespace Logger
 {
+    enum
+    {
+        LOG_DISABLE = 0,
+        LOGERROR = 1,
+        LOGWARNING = 2,
+        LOGINFO  = 3,
+        LOGEXTRA = 5,
+        LOGDEBUG = 6,
+        LOGVERBOSE = 8
+    } ;
+
     class DLLEXPORT CLog : public QDebug
     {
     public:
@@ -48,14 +55,28 @@ namespace Logger
         CDebug( unsigned int debugLevel = LOGDEBUG ) : CLog( debugLevel )
         {
         }
+        virtual ~CDebug();
     };
 
-    DLLEXPORT void CalamaresLogHandler( QtMsgType type, const char* msg );
+    DLLEXPORT void CalamaresLogHandler( QtMsgType type, const QMessageLogContext& context, const QString& msg );
     DLLEXPORT void setupLogfile();
     DLLEXPORT QString logFile();
+
+    /**
+     * @brief Set a log level for future logging.
+     *
+     * Pass in a value from the LOG* enum, above. Use 0 to
+     * disable logging. Values greater than LOGVERBOSE are
+     * limited to LOGVERBOSE, which will log everything.
+     *
+     * Practical values are 0, 1, 2, and 6.
+     */
+    DLLEXPORT void setupLogLevel( unsigned int level );
 }
 
 #define cLog Logger::CLog
 #define cDebug Logger::CDebug
+#define cWarning() Logger::CDebug(Logger::LOGWARNING) << "WARNING:"
+#define cError() Logger::CDebug(Logger::LOGERROR) << "ERROR:"
 
 #endif // CALAMARES_LOGGER_H

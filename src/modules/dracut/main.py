@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# === This file is part of Calamares - <http://github.com/calamares> ===
+# === This file is part of Calamares - <https://github.com/calamares> ===
 #
 #   Copyright 2014-2015, Philip Müller <philm@manjaro.org>
 #   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+#   Copyright 2017, Alf Gaida <agaid@siduction.org>
 #
 #   Calamares is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -20,23 +21,27 @@
 #   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
 
 import libcalamares
-from libcalamares.utils import chroot_call
+from libcalamares.utils import target_env_call
 
 
 def run_dracut():
-    """ Creates initramfs, even when initramfs already exists.
+    """
+    Creates initramfs, even when initramfs already exists.
 
     :return:
     """
-    return chroot_call(['dracut', '-f'])
+    return target_env_call(['dracut', '-f'])
 
 
 def run():
-    """ Starts routine to create initramfs. It passes back the exit code if it fails.
+    """
+    Starts routine to create initramfs. It passes back the exit code
+    if it fails.
 
     :return:
     """
     return_code = run_dracut()
 
     if return_code != 0:
-        return "Failed to run dracut on the target", "The exit code was {}".format(return_code)
+        return ("Failed to run dracut on the target",
+                "The exit code was {}".format(return_code))

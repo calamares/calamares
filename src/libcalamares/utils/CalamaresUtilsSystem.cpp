@@ -1,6 +1,7 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -22,15 +23,56 @@
 #include "JobQueue.h"
 #include "GlobalStorage.h"
 
+#include <QCoreApplication>
 #include <QDir>
 #include <QProcess>
 #include <QRegularExpression>
 
+#ifdef Q_OS_LINUX
+#include <sys/sysinfo.h>
+#endif
+
+#ifdef Q_OS_FREEBSD
+#include <sys/types.h>
+#include <sys/sysctl.h>
+#endif
+
 namespace CalamaresUtils
 {
 
+System* System::s_instance = nullptr;
+
+
+System::System( bool doChroot, QObject* parent )
+    : QObject( parent )
+    , m_doChroot( doChroot )
+{
+    Q_ASSERT( !s_instance );
+    s_instance = this;
+    if ( !doChroot )
+        Calamares::JobQueue::instance()->globalStorage()->insert( "rootMountPoint", "/" );
+}
+
+
+System::~System()
+{}
+
+
+System*
+System::instance()
+{
+    if ( !s_instance )
+    {
+        cError() << "No Calamares system-object has been created.";
+        cError() << " .. using a bogus instance instead.";
+        return new System( true, nullptr );
+    }
+    return s_instance;
+}
+
+
 int
-mount( const QString& devicePath,
+System::mount( const QString& devicePath,
        const QString& mountPoint,
        const QString& filesystemName,
        const QString& options )
@@ -58,65 +100,50 @@ mount( const QString& devicePath,
     return QProcess::execute( program, args );
 }
 
-int
-chrootCall( const QStringList& args,
-            const QString& workingPath,
-            const QString& stdInput,
-            int timeoutSec )
+ProcessResult
+System::runCommand(
+    System::RunLocation location,
+    const QStringList& args,
+    const QString& workingPath,
+    const QString& stdInput,
+    int timeoutSec )
 {
-    QString discard;
-    return chrootOutput( args,
-                         discard,
-                         workingPath,
-                         stdInput,
-                         timeoutSec );
-}
-
-
-int
-chrootCall( const QString& command,
-            const QString& workingPath,
-            const QString& stdInput,
-            int timeoutSec )
-{
-    return chrootCall( QStringList{ command },
-                       workingPath,
-                       stdInput,
-                       timeoutSec );
-}
-
-
-int
-chrootOutput( const QStringList& args,
-              QString& output,
-              const QString& workingPath,
-              const QString& stdInput,
-              int timeoutSec )
-{
-    output.clear();
+    QString output;
 
     if ( !Calamares::JobQueue::instance() )
         return -3;
 
     Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
-    if ( !gs || !gs->contains( "rootMountPoint" ) )
+    if ( ( location == System::RunLocation::RunInTarget ) &&
+         ( !gs || !gs->contains( "rootMountPoint" ) ) )
     {
-        cLog() << "No rootMountPoint in global storage";
+        cWarning() << "No rootMountPoint in global storage";
         return -3;
     }
-
-    QString destDir = gs->value( "rootMountPoint" ).toString();
-    if ( !QDir( destDir ).exists() )
-    {
-        cLog() << "rootMountPoint points to a dir which does not exist";
-        return -3;
-    }
-
-    QString program( "chroot" );
-    QStringList arguments = { destDir };
-    arguments << args;
 
     QProcess process;
+    QString program;
+    QStringList arguments;
+
+    if ( location == System::RunLocation::RunInTarget )
+    {
+        QString destDir = gs->value( "rootMountPoint" ).toString();
+        if ( !QDir( destDir ).exists() )
+        {
+            cWarning() << "rootMountPoint points to a dir which does not exist";
+            return -3;
+        }
+
+        program = "chroot";
+        arguments = QStringList( { destDir } );
+        arguments << args;
+    }
+    else
+    {
+        program = "env";
+        arguments << args;
+    }
+
     process.setProgram( program );
     process.setArguments( arguments );
     process.setProcessChannelMode( QProcess::MergedChannels );
@@ -126,15 +153,15 @@ chrootOutput( const QStringList& args,
         if ( QDir( workingPath ).exists() )
             process.setWorkingDirectory( QDir( workingPath ).absolutePath() );
         else
-            cLog() << "Invalid working directory:" << workingPath;
+            cWarning() << "Invalid working directory:" << workingPath;
             return -3;
     }
 
-    cLog() << "Running" << program << arguments;
+    cDebug() << "Running" << program << arguments;
     process.start();
     if ( !process.waitForStarted() )
     {
-        cLog() << "Process failed to start" << process.error();
+        cWarning() << "Process failed to start" << process.error();
         return -2;
     }
 
@@ -146,8 +173,8 @@ chrootOutput( const QStringList& args,
 
     if ( !process.waitForFinished( timeoutSec ? ( timeoutSec * 1000 ) : -1 ) )
     {
-        cLog() << "Timed out. output so far:";
-        cLog() << process.readAllStandardOutput();
+        cWarning() << "Timed out. output so far:\n" <<
+            process.readAllStandardOutput();
         return -4;
     }
 
@@ -155,75 +182,122 @@ chrootOutput( const QStringList& args,
 
     if ( process.exitStatus() == QProcess::CrashExit )
     {
-        cLog() << "Process crashed";
+        cWarning() << "Process crashed";
         return -1;
     }
 
-    cLog() << "Finished. Exit code:" << process.exitCode();
-    return process.exitCode();
+    auto r = process.exitCode();
+    cDebug() << "Finished. Exit code:" << r;
+    if ( r != 0 )
+    {
+        cDebug() << "Target cmd:" << args;
+        cDebug().noquote() << "Target output:\n" << output;
+    }
+    return ProcessResult(r, output);
 }
 
 
-int
-chrootOutput( const QString& command,
-              QString& output,
-              const QString& workingPath,
-              const QString& stdInput,
-              int timeoutSec )
+QPair<quint64, float>
+System::getTotalMemoryB() const
 {
-    return chrootOutput( QStringList{ command },
-                         output,
-                         workingPath,
-                         stdInput,
-                         timeoutSec );
+#ifdef Q_OS_LINUX
+    struct sysinfo i;
+    int r = sysinfo( &i );
+
+    if (r)
+        return qMakePair(0, 0.0);
+
+    return qMakePair(quint64( i.mem_unit ) * quint64( i.totalram ), 1.1);
+#elif defined( Q_OS_FREEBSD )
+    unsigned long memsize;
+    size_t s = sizeof(memsize);
+
+    int r = sysctlbyname("vm.kmem_size", &memsize, &s, NULL, 0);
+    if (r)
+        return qMakePair(0, 0.0);
+
+    return qMakePair(memsize, 1.01);
+#else
+    return qMakePair(0, 0.0);  // Unsupported
+#endif
 }
 
 
-qint64
-getPhysicalMemoryB()
+QString
+System::getCpuDescription() const
 {
-        QProcess p;
-        p.start( "dmidecode", { "-t", "17" } );
-        p.waitForFinished();
-        QStringList lines = QString::fromLocal8Bit( p.readAllStandardOutput() ).split( '\n' );
-        lines = lines.filter( QRegularExpression( "^\\W*Size:\\W\\d*\\WMB" ) );
-        if ( !lines.isEmpty() )
-            return 0;
+    QString model;
 
-        qint64 availableRamMb = 0;
-        foreach( const QString& line, lines )
+#ifdef Q_OS_LINUX
+    QFile file("/proc/cpuinfo");
+    if ( file.open(QIODevice::ReadOnly | QIODevice::Text) )
+        while ( !file.atEnd() )
         {
-            bool ok = false;
-            availableRamMb += line.simplified()
-                                  .split( ' ' )
-                                  .value( 1 )
-                                  .toInt( &ok );
-            if ( !ok )
-                return 0;
+            QByteArray line = file.readLine();
+            if ( line.startsWith( "model name" ) && (line.indexOf( ':' ) > 0) )
+            {
+                model = QString::fromLatin1( line.right(line.length() - line.indexOf( ':' ) ) );
+                break;
+            }
         }
-        qint64 availableRam = availableRamMb * 1024 * 1024;
-        return availableRam;
+#elif defined( Q_OS_FREEBSD )
+    // This would use sysctl "hw.model", which has a string value
+#endif
+    return model.simplified();
 }
 
-
-qint64
-getTotalMemoryB()
+quint64
+System::getTotalDiskB() const
 {
-    // A line in meminfo looks like this, with {print $2} we grab the second column.
-    // MemTotal:        8133432 kB
-
-    QProcess p;
-    p.start( "awk", { "/MemTotal/ {print $2}", "/proc/meminfo" } );
-    p.waitForFinished();
-    QString memoryLine = p.readAllStandardOutput().simplified();
-
-    bool ok = false;
-    qint64 availableRam = memoryLine.toLongLong( &ok ) * 1024;
-    if ( !ok )
-        return 0;
-
-    return availableRam;
+    return 0;
 }
 
-
+bool
+System::doChroot() const
+{
+    return m_doChroot;
 }
+
+Calamares::JobResult
+ProcessResult::explainProcess( int ec, const QString& command, const QString& output, int timeout )
+{
+    using Calamares::JobResult;
+
+    if ( ec == 0 )
+        return JobResult::ok();
+
+    QString outputMessage = output.isEmpty()
+        ? QCoreApplication::translate( "ProcessResult", "\nThere was no output from the command.")
+        : (QCoreApplication::translate( "ProcessResult", "\nOutput:\n") + output);
+
+    if ( ec == -1 ) //Crash!
+        return JobResult::error( QCoreApplication::translate( "ProcessResult", "External command crashed." ),
+                                 QCoreApplication::translate( "ProcessResult", "Command <i>%1</i> crashed." )
+                                        .arg( command )
+                                        + outputMessage );
+
+    if ( ec == -2 )
+        return JobResult::error( QCoreApplication::translate( "ProcessResult", "External command failed to start." ),
+                                 QCoreApplication::translate( "ProcessResult", "Command <i>%1</i> failed to start." )
+                                    .arg( command ) );
+
+    if ( ec == -3 )
+        return JobResult::error( QCoreApplication::translate( "ProcessResult", "Internal error when starting command." ),
+                                 QCoreApplication::translate( "ProcessResult", "Bad parameters for process job call." ) );
+
+    if ( ec == -4 )
+        return JobResult::error( QCoreApplication::translate( "ProcessResult", "External command failed to finish." ),
+                                 QCoreApplication::translate( "ProcessResult", "Command <i>%1</i> failed to finish in %2 seconds." )
+                                    .arg( command )
+                                    .arg( timeout )
+                                    + outputMessage );
+
+    //Any other exit code
+    return JobResult::error( QCoreApplication::translate( "ProcessResult", "External command finished with errors." ),
+                             QCoreApplication::translate( "ProcessResult", "Command <i>%1</i> finished with exit code %2." )
+                                .arg( command )
+                                .arg( ec )
+                                + outputMessage );
+}
+
+}  // namespace

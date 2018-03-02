@@ -1,6 +1,6 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2013-2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2013-2016, Teo Mrnjavac <teo@kde.org>
  *
  *   Originally from Tomahawk, portions:
  *   Copyright 2010-2011, Christian Muehlhaeuser <muesli@tomahawk-player.org>
@@ -24,6 +24,7 @@
 #include "CalamaresUtils.h"
 
 #include "CalamaresConfig.h"
+#include "Logger.h"
 
 #include <QCoreApplication>
 #include <QDebug>
@@ -47,7 +48,7 @@ static bool s_isAppDataDirOverridden = false;
 
 static QTranslator* s_brandingTranslator = nullptr;
 static QTranslator* s_translator = nullptr;
-static QTranslator* s_qtTranslator = nullptr;
+static QString s_translatorLocaleName;
 
 
 static bool
@@ -166,11 +167,11 @@ installTranslator( const QLocale& locale,
                                    "_",
                                    brandingTranslationsDir.absolutePath() ) )
             {
-                qDebug() << "Translation: Branding component: Using system locale:" << localeName;
+                cDebug() << "Translation: Branding using locale:" << localeName;
             }
             else
             {
-                qDebug() << "Translation: Branding component: Using default locale, system locale one not found:" << localeName;
+                cDebug() << "Translation: Branding using default, system locale not found:" << localeName;
                 translator->load( brandingTranslationsPrefix + "en" );
             }
 
@@ -189,11 +190,11 @@ installTranslator( const QLocale& locale,
     translator = new QTranslator( parent );
     if ( translator->load( QString( ":/lang/calamares_" ) + localeName ) )
     {
-        qDebug() << "Translation: Calamares: Using system locale:" << localeName;
+        cDebug() << "Translation: Calamares using locale:" << localeName;
     }
     else
     {
-        qDebug() << "Translation: Calamares: Using default locale, system locale one not found:" << localeName;
+        cDebug() << "Translation: Calamares using default, system locale not found:" << localeName;
         translator->load( QString( ":/lang/calamares_en" ) );
     }
 
@@ -206,24 +207,14 @@ installTranslator( const QLocale& locale,
     QCoreApplication::installTranslator( translator );
     s_translator = translator;
 
-    // Qt translations
-    translator = new QTranslator( parent );
-    if ( translator->load( QString( ":/lang/qt_" ) + localeName ) )
-    {
-        qDebug() << "Translation: Qt: Using system locale:" << localeName;
-    }
-    else
-    {
-        qDebug() << "Translation: Qt: Using default locale, system locale one not found:" << localeName;
-    }
+    s_translatorLocaleName = localeName;
+}
 
-    if ( s_qtTranslator )
-    {
-        QCoreApplication::removeTranslator( s_qtTranslator );
-        delete s_qtTranslator;
-    }
-    QCoreApplication::installTranslator( translator );
-    s_qtTranslator = translator;
+
+QString
+translatorLocaleName()
+{
+    return s_translatorLocaleName;
 }
 
 
@@ -273,7 +264,7 @@ removeDiacritics( const QString& string )
     };
 
     QString output;
-    foreach ( QChar c, string )
+    for ( const QChar &c : string )
     {
         int i = diacriticLetters.indexOf( c );
         if ( i < 0 )
@@ -290,5 +281,123 @@ removeDiacritics( const QString& string )
     return output;
 }
 
+
+// Function CalamaresUtils::obscure based on KStringHandler::obscure,
+// part of KDElibs by KDE, file kstringhandler.cpp.
+// Original copyright statement follows.
+/* This file is part of the KDE libraries
+   Copyright (C) 1999 Ian Zepp (icszepp@islc.net)
+   Copyright (C) 2006 by Dominic Battre <dominic@battre.de>
+   Copyright (C) 2006 by Martin Pool <mbp@canonical.com>
+
+   This library is free software; you can redistribute it and/or
+   modify it under the terms of the GNU Library General Public
+   License as published by the Free Software Foundation; either
+   version 2 of the License, or (at your option) any later version.
+
+   This library is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+   Library General Public License for more details.
+
+   You should have received a copy of the GNU Library General Public License
+   along with this library; see the file COPYING.LIB.  If not, write to
+   the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+   Boston, MA 02110-1301, USA.
+*/
+QString
+obscure( const QString& string )
+{
+    QString result;
+    const QChar *unicode = string.unicode();
+    for ( int i = 0; i < string.length(); ++i )
+        // yes, no typo. can't encode ' ' or '!' because
+        // they're the unicode BOM. stupid scrambling. stupid.
+        result += ( unicode[ i ].unicode() <= 0x21 ) ?
+                      unicode[ i ] :
+                      QChar( 0x1001F - unicode[ i ].unicode() );
+    return result;
+}
+
+
+void
+crash()
+{
+    volatile int* a = nullptr;
+    *a = 1;
+}
+
+bool
+getBool( const QVariantMap& map, const QString& key, bool d )
+{
+    bool result = d;
+    if ( map.contains( key ) )
+    {
+        auto v = map.value( key );
+        if ( v.type() == QVariant::Bool )
+            result = v.toBool();
+    }
+
+    return result;
+}
+
+QString
+getString(const QVariantMap& map, const QString& key)
+{
+    if ( map.contains( key ) )
+    {
+        auto v = map.value( key );
+        if ( v.type() == QVariant::String )
+            return v.toString();
+    }
+    return QString();
+}
+
+int
+getInteger( const QVariantMap& map, const QString& key, int d )
+{
+    int result = d;
+    if ( map.contains( key ) )
+    {
+        auto v = map.value( key );
+        if ( v.type() == QVariant::Int )
+            result = v.toInt();
+    }
+
+    return result;
+}
+
+double
+getDouble( const QVariantMap& map, const QString& key, double d )
+{
+    double result = d;
+    if ( map.contains( key ) )
+    {
+        auto v = map.value( key );
+        if ( v.type() == QVariant::Int )
+            result = v.toInt();
+        else if ( v.type() == QVariant::Double )
+            result = v.toDouble();
+    }
+
+    return result;
+}
+
+QVariantMap
+getSubMap( const QVariantMap& map, const QString& key, bool& success )
+{
+    success = false;
+
+    if ( map.contains( key ) )
+    {
+        auto v = map.value( key );
+        if ( v.type() == QVariant::Map )
+        {
+            success = true;
+            return v.toMap();
+        }
+    }
+    return QVariantMap();
+}
 
 }

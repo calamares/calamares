@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# === This file is part of Calamares - <http://github.com/calamares> ===
+# === This file is part of Calamares - <https://github.com/calamares> ===
 #
 #   Copyright 2014, Philip Müller <philm@manjaro.org>
 #   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+#   Copyright 2017, Alf Gaida <agaida@siduction.org>
 #
 #   Calamares is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -26,11 +27,15 @@ import libcalamares
 
 
 def run():
-    """ Setup network configuration """
+    """
+    Setup network configuration
+    """
 
     root_mount_point = libcalamares.globalstorage.value("rootMountPoint")
     source_nm = "/etc/NetworkManager/system-connections/"
-    target_nm = os.path.join(root_mount_point, "etc/NetworkManager/system-connections/")
+    target_nm = os.path.join(
+        root_mount_point, "etc/NetworkManager/system-connections/"
+        )
 
     # Sanity checks.  We don't want to do anything if a network
     # configuration already exists on the target
@@ -49,8 +54,29 @@ def run():
             try:
                 shutil.copy(source_network, target_network)
             except FileNotFoundError:
-                libcalamares.utils.debug("Can't copy network configuration files in {}".format(source_network))
+                libcalamares.utils.debug(
+                    "Can't copy network configuration files in "
+                    + "{}".format(source_network)
+                    )
             except FileExistsError:
                 pass
+
+    # We need to overwrite the default resolv.conf in the chroot.
+    source_resolv = "/etc/resolv.conf"
+    target_resolv = os.path.join(root_mount_point, "etc/resolv.conf")
+    if source_resolv != target_resolv and os.path.exists(source_resolv):
+        try:
+            os.remove(target_resolv)
+        except Exception as err:
+            libcalamares.utils.debug(
+                "Couldn't remove {}: {}".format(target_resolv, err)
+                )
+
+        try:
+            shutil.copy(source_resolv, target_resolv)
+        except Exception as err:
+            libcalamares.utils.debug(
+                "Can't copy resolv.conf from {}: {}".format(source_resolv, err)
+                )
 
     return None

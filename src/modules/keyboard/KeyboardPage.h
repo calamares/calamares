@@ -1,6 +1,7 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2016, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Portions from the Manjaro Installation Framework
  *   by Roland Singer <roland@manjaro.org>
@@ -29,6 +30,7 @@
 
 #include <QListWidgetItem>
 #include <QWidget>
+#include <QTimer>
 
 namespace Ui
 {
@@ -49,26 +51,23 @@ public:
     QString prettyStatus() const;
 
     QList< Calamares::job_ptr > createJobs( const QString& xOrgConfFileName,
-                                            const QString& convertedKeymapPath );
+                                            const QString& convertedKeymapPath,
+                                            bool writeEtcDefaultKeyboard );
 
     void onActivate();
     void finalize();
 
 protected slots:
-    void onListLayoutCurrentItemChanged( QListWidgetItem* current,
-                                         QListWidgetItem* previous );
+    void onListLayoutCurrentItemChanged( const QModelIndex& current,
+                                         const QModelIndex& previous );
     void onListVariantCurrentItemChanged( QListWidgetItem* current,
                                           QListWidgetItem* previous );
 
 private:
-    class LayoutItem : public QListWidgetItem
-    {
-    public:
-        QString data;
-        KeyboardGlobal::KeyboardInfo info;
-    };
-
-    void updateVariants( LayoutItem* currentItem, QString currentVariant = QString() );
+    /// Guess a layout based on the split-apart locale
+    void guessLayout( const QStringList& langParts );
+    void updateVariants( const QPersistentModelIndex& currentItem,
+                         QString currentVariant = QString() );
 
     Ui::Page_Keyboard* ui;
     KeyBoardPreview* m_keyboardPreview;
@@ -77,6 +76,7 @@ private:
 
     QString m_selectedLayout;
     QString m_selectedVariant;
+    QTimer m_setxkbmapTimer;
 };
 
 #endif // KEYBOARDPAGE_H

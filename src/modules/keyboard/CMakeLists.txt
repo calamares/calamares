@@ -6,6 +6,7 @@ calamares_add_plugin( keyboard
     SOURCES
         KeyboardViewStep.cpp
         KeyboardPage.cpp
+        KeyboardLayoutModel.cpp
         SetKeyboardLayoutJob.cpp
         keyboardwidget/keyboardglobal.cpp
         keyboardwidget/keyboardpreview.cpp
@@ -13,7 +14,7 @@ calamares_add_plugin( keyboard
         KeyboardPage.ui
     RESOURCES
         keyboard.qrc
-    LINK_LIBRARIES
+    LINK_PRIVATE_LIBRARIES
         calamaresui
     SHARED_LIB
 )

@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
  *
@@ -22,6 +22,12 @@
 #include <QList>
 #include <QVariant>
 
+
+/**
+ * @brief The ProgressTreeItem class represents an item in the
+ * ProgressTreeModel/ProgressTreeView.
+ * Each item generally represents a ViewStep.
+ */
 class ProgressTreeItem
 {
 public:

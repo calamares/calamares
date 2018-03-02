@@ -1,6 +1,7 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2015, Anke Boersma <demm@kaosx.us>
+ *   Copyright 2015, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -19,12 +20,12 @@
 #ifndef LICENSEPAGEPLUGIN_H
 #define LICENSEPAGEPLUGIN_H
 
+#include <utils/PluginFactory.h>
+#include <viewpages/ViewStep.h>
+#include <PluginDllMacro.h>
+
 #include <QObject>
 #include <QUrl>
-
-#include "viewpages/ViewStep.h"
-#include "PluginDllMacro.h"
-
 #include <QVariantMap>
 
 class LicensePage;
@@ -32,13 +33,10 @@ class LicensePage;
 class PLUGINDLLEXPORT LicenseViewStep : public Calamares::ViewStep
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA( IID "calamares.ViewModule/1.0" )
-
-    Q_INTERFACES( Calamares::ViewStep )
 
 public:
     explicit LicenseViewStep( QObject* parent = nullptr );
-    virtual ~LicenseViewStep();
+    virtual ~LicenseViewStep() override;
 
     QString prettyName() const override;
 
@@ -54,11 +52,13 @@ public:
     bool isAtEnd() const override;
 
     QList< Calamares::job_ptr > jobs() const override;
-    
+
     void setConfigurationMap( const QVariantMap& configurationMap ) override;
 
 private:
     LicensePage* m_widget;
 };
+
+CALAMARES_PLUGIN_FACTORY_DECLARATION( LicenseViewStepFactory )
 
 #endif // LICENSEPAGEPLUGIN_H

@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
  *
@@ -62,7 +62,6 @@ ProgressTreeView::ProgressTreeView( QWidget* parent )
 
 ProgressTreeView::~ProgressTreeView()
 {
-
 }
 
 

@@ -1,6 +1,7 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -26,6 +27,7 @@
 #include <QLayout>
 #include <QPainter>
 #include <QPen>
+#include <QWidget>
 
 namespace CalamaresUtils
 {
@@ -38,6 +40,7 @@ static int s_defaultFontHeight = 0;
 QPixmap
 defaultPixmap( ImageType type, ImageMode mode, const QSize& size )
 {
+    Q_UNUSED( mode );
     QPixmap pixmap;
 
     switch ( type )
@@ -94,11 +97,28 @@ defaultPixmap( ImageType type, ImageMode mode, const QSize& size )
         pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/partition-replace-os.svg", size );
         break;
 
+    case PartitionTable:
+        pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/partition-table.svg", size );
+        break;
+
+    case BootEnvironment:
+        pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/boot-environment.svg", size );
+        break;
+
     case Squid:
         pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/squid.svg", size );
         break;
 
-    default:
+    case StatusOk:
+        pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/state-ok.svg", size );
+        break;
+
+    case StatusWarning:
+        pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/state-warning.svg", size );
+        break;
+
+    case StatusError:
+        pixmap = ImageRegistry::instance()->pixmap( RESPATH "images/state-error.svg", size );
         break;
     }
 
@@ -133,7 +153,7 @@ createRoundedImage( const QPixmap& pixmap, const QSize& size, float frameWidthPc
         return QPixmap();
 
     QPixmap scaledAvatar = pixmap.scaled( width, height, Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
-    if ( frameWidthPct == 0.00 )
+    if ( frameWidthPct == 0.00f )
         return scaledAvatar;
 
     QPixmap frame( width, height );
@@ -150,7 +170,7 @@ createRoundedImage( const QPixmap& pixmap, const QSize& size, float frameWidthPc
 
     painter.setBrush( brush );
     painter.setPen( pen );
-    painter.drawRoundedRect( outerRect, frameWidthPct * 100.0, frameWidthPct * 100.0, Qt::RelativeSize );
+    painter.drawRoundedRect( outerRect, qreal(frameWidthPct) * 100.0, qreal(frameWidthPct) * 100.0, Qt::RelativeSize );
 
 /*    painter.setBrush( Qt::transparent );
     painter.setPen( Qt::white );
@@ -197,6 +217,15 @@ defaultFontHeight()
 }
 
 
+QFont
+defaultFont()
+{
+    QFont f;
+    f.setPointSize( defaultFontSize() );
+    return f;
+}
+
+
 void
 setDefaultFontSize( int points )
 {
@@ -207,8 +236,24 @@ setDefaultFontSize( int points )
 QSize
 defaultIconSize()
 {
-    const int w = defaultFontHeight() * 1.6;
+    const int w = int(defaultFontHeight() * 1.6);
     return QSize( w, w );
+}
+
+
+void
+clearLayout( QLayout* layout )
+{
+    while ( QLayoutItem* item = layout->takeAt( 0 ) )
+    {
+        if ( QWidget* widget = item->widget() )
+            widget->deleteLater();
+
+        if ( QLayout* childLayout = item->layout() )
+            clearLayout( childLayout );
+
+        delete item;
+    }
 }
 
 

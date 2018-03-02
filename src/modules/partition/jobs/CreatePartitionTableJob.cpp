@@ -1,7 +1,8 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
  *   Copyright 2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -17,24 +18,19 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <jobs/CreatePartitionTableJob.h>
+#include "jobs/CreatePartitionTableJob.h"
 
-#include <utils/Logger.h>
+#include "utils/Logger.h"
 
-// CalaPM
-#include <backend/corebackend.h>
-#include <backend/corebackendmanager.h>
-#include <backend/corebackenddevice.h>
-#include <backend/corebackendpartition.h>
-#include <backend/corebackendpartitiontable.h>
+// KPMcore
 #include <core/device.h>
 #include <core/partition.h>
 #include <core/partitiontable.h>
 #include <fs/filesystem.h>
+#include <ops/createpartitiontableoperation.h>
 #include <util/report.h>
 
 // Qt
-#include <QScopedPointer>
 #include <QProcess>
 
 CreatePartitionTableJob::CreatePartitionTableJob( Device* device, PartitionTable::TableType type )
@@ -72,20 +68,10 @@ CreatePartitionTableJob::prettyStatusMessage() const
 Calamares::JobResult
 CreatePartitionTableJob::exec()
 {
-    Report report( 0 );
+    Report report( nullptr );
     QString message = tr( "The installer failed to create a partition table on %1." ).arg( m_device->name() );
 
-    CoreBackend* backend = CoreBackendManager::self()->backend();
-    QScopedPointer< CoreBackendDevice > backendDevice( backend->openDevice( m_device->deviceNode() ) );
-    if ( !backendDevice.data() )
-    {
-        return Calamares::JobResult::error(
-                   message,
-                   tr( "Could not open device %1." ).arg( m_device->deviceNode() )
-               );
-    }
-
-    QScopedPointer< PartitionTable > table( createTable() );
+    PartitionTable* table = m_device->partitionTable();
     cDebug() << "Creating new partition table of type" << table->typeName()
              << ", uncommitted yet:\n" << table;
 
@@ -103,20 +89,13 @@ CreatePartitionTableJob::exec()
     mount.waitForFinished();
     cDebug() << "mount:\n" << mount.readAllStandardOutput();
 
-    bool ok = backendDevice->createPartitionTable( report, *table );
-    if ( !ok )
-    {
-        return Calamares::JobResult::error(
-                    message,
-                    QString( "Text: %1\nCommand: %2\nOutput: %3\nStatus: %4" )
-                        .arg( report.toText() )
-                        .arg( report.command() )
-                        .arg( report.output() )
-                        .arg( report.status() )
-               );
-    }
+    CreatePartitionTableOperation op(*m_device, table);
+    op.setStatus(Operation::StatusRunning);
 
-    return Calamares::JobResult::ok();
+    if (op.execute(report))
+        return Calamares::JobResult::ok();
+
+    return Calamares::JobResult::error(message, report.toText());
 }
 
 void

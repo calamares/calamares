@@ -5,15 +5,18 @@ calamares_add_plugin( locale
     EXPORT_MACRO PLUGINDLLEXPORT_PRO
     SOURCES
         LCLocaleDialog.cpp
-        LocaleViewStep.cpp
+        LocaleConfiguration.cpp
         LocalePage.cpp
+        LocaleViewStep.cpp
         SetTimezoneJob.cpp
         timezonewidget/timezonewidget.cpp
         timezonewidget/localeglobal.cpp
     UI
     RESOURCES
         locale.qrc
-    LINK_LIBRARIES
+    LINK_PRIVATE_LIBRARIES
         calamaresui
+        Qt5::Network
+        ${YAMLCPP_LIBRARY}
     SHARED_LIB
 )

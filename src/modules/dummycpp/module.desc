@@ -1,0 +1,20 @@
+# Module metadata file for dummycpp job
+#
+# The metadata for C++ (qtplugin) plugins is almost never interesting:
+# the CMakeLists.txt should be using calamares_add_plugin() which will
+# generate the metadata file during the build. Only C++ plugins that
+# have strange settings should have a module.desc (non-C++ plugins,
+# on the other hand, must have one, since they don't have CMakeLists.txt).
+#
+# Syntax is YAML 1.2
+#
+# All four keys are mandatory. For C++ (qtplugin) modules, the interface
+# value must be "qtplugin"; type is one of "job" or "view"; the name
+# is the machine-identifier for the module and the load value should
+# be the filename of the library that contains the implementation.
+#
+---
+type:      "job"
+name:      "dummycpp"
+interface: "qtplugin"
+load:      "libcalamares_job_dummycpp.so"

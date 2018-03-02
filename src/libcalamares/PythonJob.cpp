@@ -1,6 +1,6 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2016, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -37,23 +37,23 @@ namespace bp = boost::python;
 BOOST_PYTHON_FUNCTION_OVERLOADS( mount_overloads,
                                  CalamaresPython::mount,
                                  2, 4 );
-BOOST_PYTHON_FUNCTION_OVERLOADS( chroot_call_str_overloads,
-                                 CalamaresPython::chroot_call,
+BOOST_PYTHON_FUNCTION_OVERLOADS( target_env_call_str_overloads,
+                                 CalamaresPython::target_env_call,
                                  1, 3 );
-BOOST_PYTHON_FUNCTION_OVERLOADS( chroot_call_list_overloads,
-                                 CalamaresPython::chroot_call,
+BOOST_PYTHON_FUNCTION_OVERLOADS( target_env_call_list_overloads,
+                                 CalamaresPython::target_env_call,
                                  1, 3 );
-BOOST_PYTHON_FUNCTION_OVERLOADS( check_chroot_call_str_overloads,
-                                 CalamaresPython::check_chroot_call,
+BOOST_PYTHON_FUNCTION_OVERLOADS( check_target_env_call_str_overloads,
+                                 CalamaresPython::check_target_env_call,
                                  1, 3 );
-BOOST_PYTHON_FUNCTION_OVERLOADS( check_chroot_call_list_overloads,
-                                 CalamaresPython::check_chroot_call,
+BOOST_PYTHON_FUNCTION_OVERLOADS( check_target_env_call_list_overloads,
+                                 CalamaresPython::check_target_env_call,
                                  1, 3 );
-BOOST_PYTHON_FUNCTION_OVERLOADS( check_chroot_output_str_overloads,
-                                 CalamaresPython::check_chroot_output,
+BOOST_PYTHON_FUNCTION_OVERLOADS( check_target_env_output_str_overloads,
+                                 CalamaresPython::check_target_env_output,
                                  1, 3 );
-BOOST_PYTHON_FUNCTION_OVERLOADS( check_chroot_output_list_overloads,
-                                 CalamaresPython::check_chroot_output,
+BOOST_PYTHON_FUNCTION_OVERLOADS( check_target_env_output_list_overloads,
+                                 CalamaresPython::check_target_env_output,
                                  1, 3 );
 BOOST_PYTHON_MODULE( libcalamares )
 {
@@ -100,6 +100,13 @@ BOOST_PYTHON_MODULE( libcalamares )
         "Writes the given string to the Calamares debug stream."
     );
     bp::def(
+        "warning",
+        &CalamaresPython::warning,
+        bp::args( "s" ),
+        "Writes the given string to the Calamares warning stream."
+    );
+
+    bp::def(
         "mount",
         &CalamaresPython::mount,
         mount_overloads(
@@ -115,11 +122,11 @@ BOOST_PYTHON_MODULE( libcalamares )
         )
     );
     bp::def(
-        "chroot_call",
+        "target_env_call",
         static_cast< int (*)( const std::string&,
                               const std::string&,
-                              int ) >( &CalamaresPython::chroot_call ),
-        chroot_call_str_overloads(
+                              int ) >( &CalamaresPython::target_env_call ),
+        target_env_call_str_overloads(
             bp::args( "command",
                       "stdin",
                       "timeout" ),
@@ -132,11 +139,11 @@ BOOST_PYTHON_MODULE( libcalamares )
         )
     );
     bp::def(
-        "chroot_call",
+        "target_env_call",
         static_cast< int (*)( const bp::list&,
                               const std::string&,
-                              int ) >( &CalamaresPython::chroot_call ),
-        chroot_call_list_overloads(
+                              int ) >( &CalamaresPython::target_env_call ),
+        target_env_call_list_overloads(
             bp::args( "args",
                       "stdin",
                       "timeout" ),
@@ -150,11 +157,11 @@ BOOST_PYTHON_MODULE( libcalamares )
     );
 
     bp::def(
-        "check_chroot_call",
+        "check_target_env_call",
         static_cast< int (*)( const std::string&,
                               const std::string&,
-                              int ) >( &CalamaresPython::check_chroot_call ),
-        check_chroot_call_str_overloads(
+                              int ) >( &CalamaresPython::check_target_env_call ),
+        check_target_env_call_str_overloads(
             bp::args( "command",
                       "stdin",
                       "timeout" ),
@@ -164,11 +171,11 @@ BOOST_PYTHON_MODULE( libcalamares )
         )
     );
     bp::def(
-        "check_chroot_call",
+        "check_target_env_call",
         static_cast< int (*)( const bp::list&,
                               const std::string&,
-                              int ) >( &CalamaresPython::check_chroot_call ),
-        check_chroot_call_list_overloads(
+                              int ) >( &CalamaresPython::check_target_env_call ),
+        check_target_env_call_list_overloads(
             bp::args( "args",
                       "stdin",
                       "timeout" ),
@@ -179,11 +186,11 @@ BOOST_PYTHON_MODULE( libcalamares )
     );
 
     bp::def(
-        "check_chroot_output",
+        "check_target_env_output",
         static_cast< std::string (*)( const std::string&,
                                       const std::string&,
-                                      int ) >( &CalamaresPython::check_chroot_output ),
-        check_chroot_output_str_overloads(
+                                      int ) >( &CalamaresPython::check_target_env_output ),
+        check_target_env_output_str_overloads(
             bp::args( "command",
                       "stdin",
                       "timeout" ),
@@ -193,11 +200,11 @@ BOOST_PYTHON_MODULE( libcalamares )
         )
     );
     bp::def(
-        "check_chroot_output",
+        "check_target_env_output",
         static_cast< std::string (*)( const bp::list&,
                                       const std::string&,
-                                      int ) >( &CalamaresPython::check_chroot_output ),
-        check_chroot_output_list_overloads(
+                                      int ) >( &CalamaresPython::check_target_env_output ),
+        check_target_env_output_list_overloads(
             bp::args( "args",
                       "stdin",
                       "timeout" ),
@@ -205,6 +212,28 @@ BOOST_PYTHON_MODULE( libcalamares )
             "Returns the program's standard output, and raises a "
             "subprocess.CalledProcessError if something went wrong."
         )
+    );
+    bp::def(
+        "obscure",
+        &CalamaresPython::obscure,
+        bp::args( "s" ),
+        "Simple string obfuscation function based on KStringHandler::obscure.\n"
+        "Returns a string, generated using a simple symmetric encryption.\n"
+        "Applying the function to a string obscured by this function will result "
+        "in the original string."
+    );
+
+
+    bp::def(
+        "gettext_languages",
+        &CalamaresPython::gettext_languages,
+        "Returns list of languages (most to least-specific) for gettext."
+    );
+
+    bp::def(
+        "gettext_path",
+        &CalamaresPython::gettext_path,
+        "Returns path for gettext search."
     );
 }
 
@@ -219,6 +248,7 @@ PythonJob::PythonJob( const QString& scriptFile,
     : Job( parent )
     , m_scriptFile( scriptFile )
     , m_workingPath( workingPath )
+    , m_description()
     , m_configurationMap( moduleConfiguration )
 {
 }
@@ -238,8 +268,11 @@ PythonJob::prettyName() const
 QString
 PythonJob::prettyStatusMessage() const
 {
-    return tr( "Running %1 operation." )
-            .arg( QDir( m_workingPath ).dirName() );
+    if ( m_description.isEmpty() )
+        return tr( "Running %1 operation." )
+                .arg( QDir( m_workingPath ).dirName() );
+    else
+        return m_description;
 }
 
 
@@ -270,7 +303,7 @@ PythonJob::exec()
 
     try
     {
-        bp::object scriptNamespace = helper()->createCleanNamespace();
+        bp::dict scriptNamespace = helper()->createCleanNamespace();
 
         bp::object calamaresModule = bp::import( "libcalamares" );
         bp::dict calamaresNamespace = bp::extract< bp::dict >( calamaresModule.attr( "__dict__" ) );
@@ -284,6 +317,37 @@ PythonJob::exec()
                                            scriptNamespace );
 
         bp::object entryPoint = scriptNamespace[ "run" ];
+        bp::object prettyNameFunc = scriptNamespace.get("pretty_name", bp::object());
+
+        cDebug() << "Job file" << scriptFI.absoluteFilePath();
+        if ( !prettyNameFunc.is_none() )
+        {
+            bp::extract< std::string > prettyNameResult( prettyNameFunc() );
+            if ( prettyNameResult.check() )
+            {
+                m_description = QString::fromStdString( prettyNameResult() ).trimmed();
+            }
+            if ( !m_description.isEmpty() )
+            {
+                cDebug() << "Job description from pretty_name" << prettyName() << "=" << m_description;
+                emit progress( 0 );
+            }
+        }
+
+        if ( m_description.isEmpty() )
+        {
+            bp::extract< std::string > entryPoint_doc_attr(entryPoint.attr( "__doc__" ) );
+
+            if ( entryPoint_doc_attr.check() )
+            {
+                m_description = QString::fromStdString( entryPoint_doc_attr() ).trimmed();
+                auto i_newline = m_description.indexOf('\n');
+                if ( i_newline > 0 )
+                    m_description.truncate( i_newline );
+                cDebug() << "Job description from __doc__" << prettyName() << "=" << m_description;
+                emit progress( 0 );
+            }
+        }
 
         bp::object runResult = entryPoint();
 
@@ -324,8 +388,10 @@ PythonJob::emitProgress( qreal progressValue )
 CalamaresPython::Helper*
 PythonJob::helper()
 {
-    return CalamaresPython::Helper::s_instance;
-
+    auto ptr = CalamaresPython::Helper::s_instance;
+    if (!ptr)
+        ptr = new CalamaresPython::Helper;
+    return ptr;
 }
 
 

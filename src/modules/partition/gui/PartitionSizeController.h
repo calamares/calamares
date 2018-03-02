@@ -1,6 +1,7 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
+ *   Copyright 2016, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -19,8 +20,8 @@
 #ifndef PARTITIONSIZECONTROLLER_H
 #define PARTITIONSIZECONTROLLER_H
 
-// CalaPM
-#include <core/partition.h>
+// KPMcore
+#include <kpmcore/core/partition.h>
 
 // Qt
 #include <QColor>
@@ -53,6 +54,8 @@ public:
     qint64 firstSector() const;
     qint64 lastSector() const;
 
+    bool isDirty() const;
+
 private:
     QPointer< PartResizerWidget > m_partResizerWidget;
     QPointer< QSpinBox > m_spinBox;
@@ -65,6 +68,10 @@ private:
 
     void connectWidgets();
     void doUpdateSpinBox();
+    void doAlignAndUpdatePartResizerWidget( qint64 fistSector, qint64 lastSector );
+
+    bool m_dirty = false;
+    qint64 m_currentSpinBoxValue = -1;
 
 private Q_SLOTS:
     void updatePartResizerWidget();

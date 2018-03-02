@@ -1,0 +1,54 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-02-07 18:58+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Besnik <besnik@programeshqip.org>, 2017\n"
+"Language-Team: Albanian (https://www.transifex.com/calamares/teams/20061/sq/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: sq\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: src/modules/dummypython/main.py:44
+msgid "Dummy python job."
+msgstr "Akt python dummy."
+
+#: src/modules/dummypython/main.py:97
+msgid "Dummy python step {}"
+msgstr "Hap python {} dummy"
+
+#: src/modules/machineid/main.py:35
+msgid "Generate machine-id."
+msgstr "Prodho machine-id."
+
+#: src/modules/packages/main.py:60
+#, python-format
+msgid "Processing packages (%(count)d / %(total)d)"
+msgstr "Po përpunohen paketat (%(count)d / %(total)d)"
+
+#: src/modules/packages/main.py:62 src/modules/packages/main.py:72
+msgid "Install packages."
+msgstr "Instalo paketa."
+
+#: src/modules/packages/main.py:65
+#, python-format
+msgid "Installing one package."
+msgid_plural "Installing %(num)d packages."
+msgstr[0] "Po instalohet një paketë."
+msgstr[1] "Po instalohen %(num)d paketa."
+
+#: src/modules/packages/main.py:68
+#, python-format
+msgid "Removing one package."
+msgid_plural "Removing %(num)d packages."
+msgstr[0] "Po hiqet një paketë."
+msgstr[1] "Po hiqen %(num)d paketa."

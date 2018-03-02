@@ -1,7 +1,7 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
- *   Copyright 2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2015-2016, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -17,13 +17,14 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <core/ColorUtils.h>
+#include "core/ColorUtils.h"
 
-#include <core/PMUtils.h>
-#include <core/PartitionIterator.h>
+#include "core/KPMHelpers.h"
+#include "core/PartitionIterator.h"
 
-// CalaPM
-#include <core/partition.h>
+// KPMcore
+#include <kpmcore/core/partition.h>
+#include <kpmcore/fs/luks.h>
 
 // Qt
 #include <QColor>
@@ -49,6 +50,7 @@ static const QColor NEW_PARTITION_COLORS[ NUM_NEW_PARTITION_COLORS ] =
 };
 static QColor FREE_SPACE_COLOR = "#777777";
 static QColor EXTENDED_COLOR = "#aaaaaa";
+static QColor UNKNOWN_DISKLABEL_COLOR = "#4d4151";
 
 static QMap< QString, QColor > s_partitionColorsCache;
 
@@ -59,6 +61,11 @@ namespace ColorUtils
 QColor freeSpaceColor()
 {
     return FREE_SPACE_COLOR;
+}
+
+QColor unknownDisklabelColor()
+{
+    return UNKNOWN_DISKLABEL_COLOR;
 }
 
 PartitionNode*
@@ -74,12 +81,25 @@ _findRootForPartition( PartitionNode* partition )
 QColor
 colorForPartition( Partition* partition )
 {
-    if ( PMUtils::isPartitionFreeSpace( partition ) )
+    if ( KPMHelpers::isPartitionFreeSpace( partition ) )
         return FREE_SPACE_COLOR;
     if ( partition->roles().has( PartitionRole::Extended ) )
         return EXTENDED_COLOR;
-    if ( s_partitionColorsCache.contains( partition->partitionPath() ) )
-        return s_partitionColorsCache[ partition->partitionPath() ];
+
+    if ( partition->fileSystem().supportGetUUID() != FileSystem::cmdSupportNone &&
+         !partition->fileSystem().uuid().isEmpty() )
+    {
+        if ( partition->fileSystem().type() == FileSystem::Luks )
+        {
+            FS::luks& luksFs = dynamic_cast< FS::luks& >( partition->fileSystem() );
+            if ( !luksFs.outerUuid().isEmpty() &&
+                 s_partitionColorsCache.contains( luksFs.outerUuid() ) )
+                return s_partitionColorsCache[ luksFs.outerUuid() ];
+        }
+
+        if ( s_partitionColorsCache.contains( partition->fileSystem().uuid() ) )
+            return s_partitionColorsCache[ partition->fileSystem().uuid() ];
+    }
 
     // No partition-specific color needed, pick one from our list, but skip
     // free space: we don't want a partition to change colors if space before
@@ -96,21 +116,34 @@ colorForPartition( Partition* partition )
         Partition* child = *it;
         if ( child == partition )
             break;
-        if ( !PMUtils::isPartitionFreeSpace( child ) &&
+        if ( !KPMHelpers::isPartitionFreeSpace( child ) &&
              !child->hasChildren() )
         {
-            if ( PMUtils::isPartitionNew( child ) )
+            if ( KPMHelpers::isPartitionNew( child ) )
                 ++newColorIdx;
-            else
-                ++colorIdx;
+            ++colorIdx;
         }
     }
 
-    if ( PMUtils::isPartitionNew( partition ) )
+    if ( KPMHelpers::isPartitionNew( partition ) )
         return NEW_PARTITION_COLORS[ newColorIdx % NUM_NEW_PARTITION_COLORS ];
 
-    s_partitionColorsCache.insert( partition->partitionPath(),
-                                   PARTITION_COLORS[ colorIdx % NUM_PARTITION_COLORS ] );
+    if ( partition->fileSystem().supportGetUUID() != FileSystem::cmdSupportNone &&
+         !partition->fileSystem().uuid().isEmpty() )
+    {
+        if ( partition->fileSystem().type() == FileSystem::Luks )
+        {
+            FS::luks& luksFs = dynamic_cast< FS::luks& >( partition->fileSystem() );
+            if ( !luksFs.outerUuid().isEmpty() )
+            {
+                s_partitionColorsCache.insert( luksFs.outerUuid(),
+                                               PARTITION_COLORS[ colorIdx % NUM_PARTITION_COLORS ] );
+            }
+        }
+        else
+            s_partitionColorsCache.insert( partition->fileSystem().uuid(),
+                                           PARTITION_COLORS[ colorIdx % NUM_PARTITION_COLORS ] );
+    }
     return PARTITION_COLORS[ colorIdx % NUM_PARTITION_COLORS ];
 }
 
@@ -129,12 +162,19 @@ colorForPartitionInFreeSpace( Partition* partition )
         Partition* child = *it;
         if ( child == partition )
             break;
-        if ( !PMUtils::isPartitionFreeSpace( child ) &&
+        if ( !KPMHelpers::isPartitionFreeSpace( child ) &&
              !child->hasChildren() &&
-             PMUtils::isPartitionNew( child ) )
+             KPMHelpers::isPartitionNew( child ) )
             ++newColorIdx;
     }
     return NEW_PARTITION_COLORS[ newColorIdx % NUM_NEW_PARTITION_COLORS ];
+}
+
+
+void
+invalidateCache()
+{
+    s_partitionColorsCache.clear();
 }
 
 } // namespace

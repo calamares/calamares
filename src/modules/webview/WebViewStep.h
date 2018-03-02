@@ -1,6 +1,8 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2015, Rohan Garg <rohan@garg.io>
+ *   Copyright 2016, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -19,25 +21,30 @@
 #ifndef WEBVIEWPLUGIN_H
 #define WEBVIEWPLUGIN_H
 
-#include <QObject>
+#include "WebViewConfig.h"
 
-#include "viewpages/ViewStep.h"
-#include "PluginDllMacro.h"
+#include <utils/PluginFactory.h>
+#include <viewpages/ViewStep.h>
+
+#include <PluginDllMacro.h>
 
 #include <QVariantMap>
 
-class QWebView;
+#ifdef WEBVIEW_WITH_WEBKIT
+#define C_QWEBVIEW QWebView
+#else
+#define C_QWEBVIEW QWebEngineView
+#endif
+
+class C_QWEBVIEW;
 
 class PLUGINDLLEXPORT WebViewStep : public Calamares::ViewStep
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA( IID "calamares.ViewModule/1.0" )
-
-    Q_INTERFACES( Calamares::ViewStep )
 
 public:
     explicit WebViewStep( QObject* parent = nullptr );
-    virtual ~WebViewStep();
+    virtual ~WebViewStep() override;
 
     QString prettyName() const override;
 
@@ -58,9 +65,11 @@ public:
     void setConfigurationMap( const QVariantMap& configurationMap ) override;
 
 private:
-    QWebView *m_view;
+    C_QWEBVIEW *m_view;
     QString m_url;
     QString m_prettyName;
 };
+
+CALAMARES_PLUGIN_FACTORY_DECLARATION( WebViewStepFactory )
 
 #endif // WEBVIEWPLUGIN_H

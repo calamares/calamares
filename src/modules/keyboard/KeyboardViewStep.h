@@ -1,6 +1,7 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -21,21 +22,20 @@
 
 #include <QObject>
 
-#include "viewpages/ViewStep.h"
-#include "PluginDllMacro.h"
+#include <utils/PluginFactory.h>
+#include <viewpages/ViewStep.h>
+
+#include <PluginDllMacro.h>
 
 class KeyboardPage;
 
 class PLUGINDLLEXPORT KeyboardViewStep : public Calamares::ViewStep
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA( IID "calamares.ViewModule/1.0" )
-
-    Q_INTERFACES( Calamares::ViewStep )
 
 public:
     explicit KeyboardViewStep( QObject* parent = nullptr );
-    virtual ~KeyboardViewStep();
+    virtual ~KeyboardViewStep() override;
 
     QString prettyName() const override;
     QString prettyStatus() const override;
@@ -65,8 +65,11 @@ private:
 
     QString m_xOrgConfFileName;
     QString m_convertedKeymapPath;
+    bool m_writeEtcDefaultKeyboard;
 
     QList< Calamares::job_ptr > m_jobs;
 };
+
+CALAMARES_PLUGIN_FACTORY_DECLARATION( KeyboardViewStepFactory )
 
 #endif // KEYBOARDVIEWSTEP_H

@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *
@@ -20,9 +20,12 @@
 
 #include "WelcomePage.h"
 #include "checker/RequirementsChecker.h"
+#include "utils/Logger.h"
 
 
 #include <QVariant>
+
+CALAMARES_PLUGIN_FACTORY_DEFINITION( WelcomeViewStepFactory, registerPlugin<WelcomeViewStep>(); )
 
 WelcomeViewStep::WelcomeViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
@@ -126,5 +129,8 @@ WelcomeViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     if ( configurationMap.contains( "requirements" ) &&
          configurationMap.value( "requirements" ).type() == QVariant::Map )
         m_requirementsChecker->setConfigurationMap( configurationMap.value( "requirements" ).toMap() );
+    else
+        cWarning() << "no valid requirements map found in welcome "
+                    "module configuration.";
 }
 

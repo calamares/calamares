@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
  *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
@@ -16,14 +16,15 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
-#include <core/DeviceModel.h>
+#include "core/DeviceModel.h"
 
-#include <core/PartitionModel.h>
+#include "core/PartitionModel.h"
 
 #include "utils/CalamaresUtilsGui.h"
+#include "utils/Logger.h"
 
-// CalaPM
-#include <core/device.h>
+// KPMcore
+#include <kpmcore/core/device.h>
 
 // KF5
 #include <KFormat>
@@ -90,6 +91,7 @@ DeviceModel::data( const QModelIndex& index, int role ) const
     }
 }
 
+
 Device*
 DeviceModel::deviceForIndex( const QModelIndex& index ) const
 {
@@ -97,4 +99,20 @@ DeviceModel::deviceForIndex( const QModelIndex& index ) const
     if ( row < 0 || row >= m_devices.count() )
         return nullptr;
     return m_devices.at( row );
+}
+
+
+void
+DeviceModel::swapDevice( Device* oldDevice, Device* newDevice )
+{
+    Q_ASSERT( oldDevice );
+    Q_ASSERT( newDevice );
+
+    int indexOfOldDevice = m_devices.indexOf( oldDevice );
+    if ( indexOfOldDevice < 0 )
+        return;
+
+    m_devices[ indexOfOldDevice ] = newDevice;
+
+    emit dataChanged( index( indexOfOldDevice ), index( indexOfOldDevice ) );
 }

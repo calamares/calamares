@@ -1,6 +1,7 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2015, Anke Boersma <demm@kaosx.us>
+ *   Copyright 2015, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -25,11 +26,15 @@
 
 #include <QVariantMap>
 
+CALAMARES_PLUGIN_FACTORY_DEFINITION( LicenseViewStepFactory, registerPlugin<LicenseViewStep>(); )
+
 LicenseViewStep::LicenseViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
+    , m_widget( new LicensePage )
 {
-    emit nextStatusChanged( true );
-    m_widget = new LicensePage;
+    emit nextStatusChanged( false );
+    connect( m_widget, &LicensePage::nextStatusChanged,
+             this, &LicenseViewStep::nextStatusChanged );
 }
 
 
@@ -69,7 +74,7 @@ LicenseViewStep::back()
 bool
 LicenseViewStep::isNextEnabled() const
 {
-    return true;
+    return m_widget->isNextEnabled();
 }
 
 
@@ -103,68 +108,46 @@ LicenseViewStep::jobs() const
 void
 LicenseViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
-    bool showLicense1Url =
-        configurationMap.contains( "showLicense1Url" ) &&
-        configurationMap.value( "showLicense1Url" ).type() == QVariant::Bool &&
-        configurationMap.value( "showLicense1Url" ).toBool();
-    bool showLicense2Url =
-        configurationMap.contains( "showLicense2Url" ) &&
-        configurationMap.value( "showLicense2Url" ).type() == QVariant::Bool &&
-        configurationMap.value( "showLicense2Url" ).toBool();
-    bool showLicense3Url =
-        configurationMap.contains( "showLicense3Url" ) &&
-        configurationMap.value( "showLicense3Url" ).type() == QVariant::Bool &&
-        configurationMap.value( "showLicense3Url" ).toBool();
-    bool showLicense4Url =
-        configurationMap.contains( "showLicense4Url" ) &&
-        configurationMap.value( "showLicense4Url" ).type() == QVariant::Bool &&
-        configurationMap.value( "showLicense4Url" ).toBool();
-        
-    QString license1Url;
-    if ( configurationMap.contains( "license1Url" ) &&
-         configurationMap.value( "license1Url" ).type() == QVariant::String )
+    QList< LicenseEntry > entriesList;
+    if ( configurationMap.contains( "entries" ) &&
+         configurationMap.value( "entries" ).type() == QVariant::List )
     {
-        license1Url = configurationMap.value( "license1Url" ).toString();
-        cDebug() << "Read: " << license1Url;
-    }
-    
-    QString license2Url;
-    if ( configurationMap.contains( "license2Url" ) &&
-         configurationMap.value( "license2Url" ).type() == QVariant::String )
-    {
-        license2Url = configurationMap.value( "license2Url" ).toString();
-    }
-    
-    QString license3Url;
-    if ( configurationMap.contains( "license3Url" ) &&
-         configurationMap.value( "license3Url" ).type() == QVariant::String )
-    {
-        license3Url = configurationMap.value( "license3Url" ).toString();
-    }
-    
-    QString license4Url;
-    if ( configurationMap.contains( "license4Url" ) &&
-         configurationMap.value( "license4Url" ).type() == QVariant::String )
-    {
-        license4Url = configurationMap.value( "license4Url" ).toString();
-    }
-    
-    QString license1Button;
-    if ( configurationMap.contains( "license1Button" ) &&
-         configurationMap.value( "license1Button" ).type() == QVariant::String )
-    {
-        license1Button = configurationMap.value( "license1Button" ).toString();
-        cDebug() << "Read: " << license1Button;
+        const auto entries = configurationMap.value( "entries" ).toList();
+        for ( const QVariant& entryV : entries )
+        {
+            if ( entryV.type() != QVariant::Map )
+                continue;
+
+            QVariantMap entryMap = entryV.toMap();
+            if ( !entryMap.contains( "id" ) ||
+                 !entryMap.contains( "name" ) ||
+                 !entryMap.contains( "url" ) )
+                continue;
+
+            LicenseEntry entry;
+            entry.id =          entryMap[ "id" ].toString();
+            entry.prettyName =  entryMap[ "name" ].toString();
+            entry.prettyVendor =entryMap.value( "vendor" ).toString();
+            entry.url =         QUrl( entryMap[ "url" ].toString() );
+            entry.required =    entryMap.value( "required", QVariant( false ) ).toBool();
+
+            QString entryType = entryMap.value( "type", "software" ).toString();
+            if ( entryType == "driver" )
+                entry.type =    LicenseEntry::Driver;
+            else if ( entryType == "gpudriver" )
+                entry.type =    LicenseEntry::GpuDriver;
+            else if ( entryType == "browserplugin" )
+                entry.type =    LicenseEntry::BrowserPlugin;
+            else if ( entryType == "codec" )
+                entry.type =    LicenseEntry::Codec;
+            else if ( entryType == "package" )
+                entry.type =    LicenseEntry::Package;
+            else
+                entry.type =    LicenseEntry::Software;
+
+            entriesList.append( entry );
+        }
     }
 
-    m_widget->showLicense1Url( showLicense1Url );
-    m_widget->showLicense2Url( showLicense2Url );
-    m_widget->showLicense3Url( showLicense3Url );
-    m_widget->showLicense4Url( showLicense4Url );
-    m_widget->setLicense1Url(license1Url);
-    m_widget->setLicense2Url(license2Url);
-    m_widget->setLicense3Url(license3Url);
-    m_widget->setLicense4Url(license4Url);
-    m_widget->setLicense1Button(license1Button);
-                          
+    m_widget->setEntries( entriesList );
 }

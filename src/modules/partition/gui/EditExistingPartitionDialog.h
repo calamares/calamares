@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
  *
@@ -19,6 +19,8 @@
 #ifndef EDITEXISTINGPARTITIONDIALOG_H
 #define EDITEXISTINGPARTITIONDIALOG_H
 
+#include <kpmcore/core/partitiontable.h>
+
 #include <QDialog>
 #include <QScopedPointer>
 
@@ -38,17 +40,23 @@ class EditExistingPartitionDialog : public QDialog
 {
     Q_OBJECT
 public:
-    EditExistingPartitionDialog( Device* device, Partition* partition, QWidget* parentWidget = nullptr );
+    EditExistingPartitionDialog( Device* device, Partition* partition, const QStringList& usedMountPoints, QWidget* parentWidget = nullptr );
     ~EditExistingPartitionDialog();
 
     void applyChanges( PartitionCoreModule* module );
+
+private slots:
+    void checkMountPointSelection();
 
 private:
     QScopedPointer< Ui_EditExistingPartitionDialog > m_ui;
     Device* m_device;
     Partition* m_partition;
     PartitionSizeController* m_partitionSizeController;
+    QStringList m_usedMountPoints;
 
+    PartitionTable::Flags newFlags() const;
+    void setupFlagsList();
     void replacePartResizerWidget();
     void updateMountPointPicker();
 };

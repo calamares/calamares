@@ -15,7 +15,7 @@ set( CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH}
         LicensePage.cpp
     UI
         LicensePage.ui
-    LINK_LIBRARIES
+    LINK_PRIVATE_LIBRARIES
         calamaresui
     SHARED_LIB
 )

@@ -1,6 +1,7 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -23,7 +24,15 @@
 
 #include <QBoxLayout>
 
+static inline void setCondition( QLabel* label, CalamaresUtils::ImageType t )
+{
+    label->setPixmap( CalamaresUtils::defaultPixmap( t,
+                                                    CalamaresUtils::Original,
+                                                    QSize( label->height(), label->height() ) ) );
+}
+
 CheckItemWidget::CheckItemWidget( bool checked,
+                                  bool required,
                                   QWidget* parent )
     : QWidget( parent )
 {
@@ -38,15 +47,13 @@ CheckItemWidget::CheckItemWidget( bool checked,
     m_textLabel->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred );
 
     if ( checked )
-        m_iconLabel->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::Yes,
-                                                               CalamaresUtils::Original,
-                                                               QSize( m_iconLabel->height(),
-                                                                      m_iconLabel->height() ) ) );
+        // Condition is satisfied
+        setCondition( m_iconLabel, CalamaresUtils::StatusOk );
     else
-        m_iconLabel->setPixmap( CalamaresUtils::defaultPixmap( CalamaresUtils::No,
-                                                               CalamaresUtils::Original,
-                                                               QSize( m_iconLabel->height(),
-                                                                      m_iconLabel->height() ) ) );
+        if ( required )
+            setCondition( m_iconLabel, CalamaresUtils::StatusError );
+        else
+            setCondition( m_iconLabel, CalamaresUtils::StatusWarning );
 }
 
 

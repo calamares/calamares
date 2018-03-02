@@ -12,27 +12,11 @@ buttons by creating various dialogs (the (...)Dialog classes) and tell
 PartitionCoreModule what to do.
 
 
-## Use of KDE Partition Manager source code
+## Use of KPMcore
 
-This module makes heavy use of code coming from [KDE Partition Manager][kpm].
-Since Partition Manager does not provide a library, we build one out of it.
-
-We maintain our [own fork][kpm-calamares-repo] of Partition Manager source code.
-The master branch in this repository follows Partition Manager [upstream master
-branch][kpm-upstream-repo]. Calamares-specific code is kept in the `calamares`
-branch of the fork. The goal is to keep the changes as small as possible to be
-able to regularly import changes from the upstream `master` branch and merge
-them into the `calamares` branch.
-
-Partition Manager code is included in the source code using a git submodule.
-
-We only use a small subset of Partition Manager code: mainly the libparted
-abstraction and some widgets like the PartResizerWidget. We notably do not use
-Partition Manager job and operation classes.
+This module depends on KPMcore, the same library used by [KDE Partition Manager][kpm].
 
 [kpm]: http://sourceforge.net/projects/partitionman/
-[kpm-calamares-repo]: http://github.com/calamares/partitionmanager
-[kpm-upstream-repo]: https://projects.kde.org/projects/extragear/sysadmin/partitionmanager/repository
 
 
 ## Partition and PartitionInfo
@@ -67,9 +51,7 @@ PartitionInfo instances or know a way to get a PartitionInfo from a Partition.
 
 The other alternative would have been to add Calamares-specific information to
 the real Partition object. This would have worked and would have made for a less
-surprising API, but it would mean more Calamares-specific patches on Partition
-Manager, making it potentially more difficult to regularly merge Partition
-Manager `master` branch into our `calamares` branch.
+surprising API, but it would mean more Calamares-specific patches on KPMcore.
 
 
 # Tests
@@ -79,7 +61,7 @@ run on storage device which does not contain any data you care about.
 
 To build them:
 
-    cd $top_build_dir/src/modules/partitions/tests
+    cd $top_build_dir
     make buildtests
 
 To run them you need to define the `CALAMARES_TEST_DISK` environment variable.
@@ -87,7 +69,7 @@ It should contain the device path to the test disk. For example, assuming you
 plugged a test USB stick identified as `/dev/sdb`, you would run the tests like
 this:
 
-    sudo CALAMARES_TEST_DISK=/dev/sdb $top_build_dir/partitiontests
+    sudo CALAMARES_TEST_DISK=/dev/sdb $top_build_dir/partitionjobtests
 
 
 # TODO
@@ -98,7 +80,7 @@ this:
 - Use os-prober to find out the installed OS. This information could then be
   used in PartitionModel and in the partition views.
 
-- PartitionPreview
+- PartitionBarsView
     - Show used space
     - Highlight selected partition
     - Make the partitions clickable

@@ -1,7 +1,8 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
- *   Copyright 2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2015-2016, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -17,29 +18,29 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <jobs/FillGlobalStorageJob.h>
+#include "jobs/FillGlobalStorageJob.h"
 
-#include <GlobalStorage.h>
-#include <JobQueue.h>
-#include <core/PartitionInfo.h>
-#include <core/PartitionIterator.h>
-#include <core/PMUtils.h>
+#include "GlobalStorage.h"
+#include "JobQueue.h"
+#include "core/PartitionInfo.h"
+#include "core/PartitionIterator.h"
+#include "core/KPMHelpers.h"
 #include "Branding.h"
 #include "utils/Logger.h"
 
-// CalaPM
+// KPMcore
 #include <core/device.h>
 #include <core/partition.h>
 #include <fs/filesystem.h>
+#include <fs/luks.h>
 
 // Qt
 #include <QDebug>
 #include <QDir>
 #include <QFileInfo>
+#include <QProcess>
 
 typedef QHash<QString, QString> UuidForPartitionHash;
-
-static const char* UUID_DIR = "/dev/disk/by-uuid";
 
 static UuidForPartitionHash
 findPartitionUuids( QList < Device* > devices )
@@ -61,18 +62,52 @@ findPartitionUuids( QList < Device* > devices )
     return hash;
 }
 
+
+static QString
+getLuksUuid( const QString& path )
+{
+    QProcess process;
+    process.setProgram( "cryptsetup" );
+    process.setArguments( { "luksUUID", path } );
+    process.start();
+    process.waitForFinished();
+    if ( process.exitStatus() != QProcess::NormalExit || process.exitCode() )
+        return QString();
+    QString uuid = QString::fromLocal8Bit( process.readAllStandardOutput() ).trimmed();
+    return uuid;
+}
+
+
 static QVariant
 mapForPartition( Partition* partition, const QString& uuid )
 {
     QVariantMap map;
     map[ "device" ] = partition->partitionPath();
     map[ "mountPoint" ] = PartitionInfo::mountPoint( partition );
-    map[ "fs" ] = partition->fileSystem().name();
+    map[ "fsName" ] = partition->fileSystem().name();
+    map[ "fs" ] = partition->fileSystem().name( { QStringLiteral("C") } );  // Untranslated
+    if ( partition->fileSystem().type() == FileSystem::Luks &&
+         dynamic_cast< FS::luks& >( partition->fileSystem() ).innerFS() )
+        map[ "fs" ] = dynamic_cast< FS::luks& >( partition->fileSystem() ).innerFS()->name();
     map[ "uuid" ] = uuid;
     cDebug() << partition->partitionPath()
              << "mtpoint:" << PartitionInfo::mountPoint( partition )
-             << "fs:" << partition->fileSystem().name()
+             << "fs:" << map[ "fs" ] << '(' << map[ "fsName" ] << ')'
              << uuid;
+
+    if ( partition->roles().has( PartitionRole::Luks ) )
+    {
+        const FileSystem& fsRef = partition->fileSystem();
+        const FS::luks* luksFs = dynamic_cast< const FS::luks* >( &fsRef );
+        if ( luksFs )
+        {
+            map[ "luksMapperName" ] = luksFs->mapperName().split( "/" ).last();
+            map[ "luksUuid" ] = getLuksUuid( partition->partitionPath() );
+            map[ "luksPassphrase" ] = luksFs->passphrase();
+            cDebug() << "luksMapperName:" << map[ "luksMapperName" ];
+        }
+    }
+
     return map;
 }
 
@@ -94,7 +129,8 @@ FillGlobalStorageJob::prettyDescription() const
 {
     QStringList lines;
 
-    foreach ( QVariant partitionItem, createPartitionList().toList() )
+    const auto partitionList = createPartitionList().toList();
+    for ( const QVariant &partitionItem : partitionList )
     {
         if ( partitionItem.type() == QVariant::Map )
         {
@@ -109,8 +145,7 @@ FillGlobalStorageJob::prettyDescription() const
             {
                 if ( mountPoint == "/" )
                     lines.append( tr( "Install %1 on <strong>new</strong> %2 system partition." )
-                                  .arg( Calamares::Branding::instance()->string(
-                                        Calamares::Branding::ShortProductName ) )
+                                  .arg( *Calamares::Branding::ShortProductName )
                                   .arg( fsType ) );
                 else
                     lines.append( tr( "Set up <strong>new</strong> %2 partition with mount point "
@@ -123,8 +158,7 @@ FillGlobalStorageJob::prettyDescription() const
                 if ( mountPoint == "/" )
                     lines.append( tr( "Install %2 on %3 system partition <strong>%1</strong>." )
                                   .arg( path )
-                                  .arg( Calamares::Branding::instance()->string(
-                                        Calamares::Branding::ShortProductName ) )
+                                  .arg( *Calamares::Branding::ShortProductName )
                                   .arg( fsType ) );
                 else
                     lines.append( tr( "Set up %3 partition <strong>%1</strong> with mount point "
@@ -162,10 +196,12 @@ FillGlobalStorageJob::exec()
         QVariant var = createBootLoaderMap();
         if ( !var.isValid() )
             cDebug() << "Failed to find path for boot loader";
+        cDebug() << "FillGlobalStorageJob writing bootLoader path:" << var;
         storage->insert( "bootLoader", var );
     }
     else
     {
+        cDebug() << "FillGlobalStorageJob writing empty bootLoader value";
         storage->insert( "bootLoader", QVariant() );
     }
     return Calamares::JobResult::ok();
@@ -195,7 +231,7 @@ FillGlobalStorageJob::createBootLoaderMap() const
     QString path = m_bootLoaderPath;
     if ( !path.startsWith( "/dev/" ) )
     {
-        Partition* partition = PMUtils::findPartitionByMountPoint( m_devices, path );
+        Partition* partition = KPMHelpers::findPartitionByMountPoint( m_devices, path );
         if ( !partition )
             return QVariant();
         path = partition->partitionPath();

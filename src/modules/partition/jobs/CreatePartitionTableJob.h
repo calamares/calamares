@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
  *   Copyright 2015, Teo Mrnjavac <teo@kde.org>
@@ -22,8 +22,8 @@
 
 #include <Job.h>
 
-// CalaPM
-#include <core/partitiontable.h>
+// KPMcore
+#include <kpmcore/core/partitiontable.h>
 
 class Device;
 

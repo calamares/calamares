@@ -1,6 +1,6 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2014-2016, Teo Mrnjavac <teo@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -18,45 +18,94 @@
 
 #include "PartitionSplitterWidget.h"
 
+#include "core/ColorUtils.h"
+#include "core/PartitionIterator.h"
+#include "core/KPMHelpers.h"
+
 #include "utils/Logger.h"
+#include "utils/CalamaresUtilsGui.h"
+
+#include <kpmcore/core/device.h>
+#include <kpmcore/core/partition.h>
 
 #include <QApplication>
 #include <QPainter>
 #include <QMouseEvent>
 #include <QStyleOption>
 
-
-static const int VIEW_HEIGHT = 30;
+static const int VIEW_HEIGHT = qMax( CalamaresUtils::defaultFontHeight() + 8, // wins out with big fonts
+                                     int( CalamaresUtils::defaultFontHeight() * 0.6 ) + 22 ); // wins out with small fonts
 static const int CORNER_RADIUS = 3;
-static const int EXTENDED_PARTITION_MARGIN = 4;
-
+static const int EXTENDED_PARTITION_MARGIN = qMax( 4, VIEW_HEIGHT / 6 );
 
 PartitionSplitterWidget::PartitionSplitterWidget( QWidget* parent )
     : QWidget( parent )
-    , m_resizing( false )
-    , m_itemToResize( nullptr )
-    , m_itemToResizeNext( nullptr )
+    , m_itemToResize( PartitionSplitterItem::null() )
+    , m_itemToResizeNext( PartitionSplitterItem::null() )
     , m_itemMinSize( 0 )
     , m_itemMaxSize( 0 )
     , m_itemPrefSize( 0 )
+    , m_resizing( false )
     , m_resizeHandleX( 0 )
     , HANDLE_SNAP( QApplication::startDragDistance() )
+    , m_drawNestedPartitions( false )
 {
     setMouseTracking( true );
 }
 
 
 void
-PartitionSplitterWidget::init( const QList<PartitionSplitterItem>& items )
+PartitionSplitterWidget::init( Device* dev, bool drawNestedPartitions )
 {
-    m_itemToResize = nullptr;
-    m_itemToResizeNext = nullptr;
+    m_drawNestedPartitions = drawNestedPartitions;
+    QVector< PartitionSplitterItem > allPartitionItems;
+    PartitionSplitterItem* extendedPartitionItem = nullptr;
+    for ( auto it = PartitionIterator::begin( dev );
+          it != PartitionIterator::end( dev ); ++it )
+    {
+        PartitionSplitterItem newItem = {
+            ( *it )->partitionPath(),
+            ColorUtils::colorForPartition( *it ),
+            KPMHelpers::isPartitionFreeSpace( *it ),
+            ( *it )->capacity(),
+            PartitionSplitterItem::Normal,
+            {}
+        };
+
+        // If we don't draw child partitions of a partitions as child partitions, we
+        // need to flatten the items tree into an items list
+        if ( drawNestedPartitions )
+        {
+            if ( ( *it )->roles().has( PartitionRole::Logical ) && extendedPartitionItem )
+                extendedPartitionItem->children.append( newItem );
+            else
+            {
+                allPartitionItems.append( newItem );
+                if ( ( *it )->roles().has( PartitionRole::Extended ) )
+                    extendedPartitionItem = &allPartitionItems.last();
+            }
+        }
+        else
+        {
+            if ( !( *it )->roles().has( PartitionRole::Extended ) )
+                allPartitionItems.append( newItem );
+        }
+    }
+
+    setupItems( allPartitionItems );
+}
+
+void
+PartitionSplitterWidget::setupItems( const QVector<PartitionSplitterItem>& items )
+{
+    m_itemToResize = PartitionSplitterItem::null();
+    m_itemToResizeNext = PartitionSplitterItem::null();
     m_itemToResizePath.clear();
 
     m_items.clear();
     m_items = items;
     repaint();
-    foreach ( const PartitionSplitterItem& item, items )
+    for ( const PartitionSplitterItem& item : items )
         cDebug() << "PSI added item" << item.itemPath << "size" << item.size;
 }
 
@@ -65,29 +114,68 @@ void
 PartitionSplitterWidget::setSplitPartition( const QString& path,
                                             qint64 minSize,
                                             qint64 maxSize,
-                                            qint64 preferredSize,
-                                            const QString& newLabel )
+                                            qint64 preferredSize )
 {
     cDebug() << Q_FUNC_INFO << "path:" << path
              << "\nminSize:" << minSize
              << "\nmaxSize:" << maxSize
              << "\nprfSize:" << preferredSize;
 
-    if ( m_itemToResize || m_itemToResizeNext || !m_itemToResizePath.isEmpty() )
+    if ( m_itemToResize && m_itemToResizeNext )
     {
-        cDebug() << "ERROR: trying to split partition but partition to split is already set.";
-        return;
+        cDebug() << "NOTICE: trying to split partition but partition to split is already set.";
+
+        // We need to remove the itemToResizeNext from wherever it is
+        for ( int i = 0; i < m_items.count(); ++i )
+        {
+            if ( m_items[ i ].itemPath == m_itemToResize.itemPath &&
+                 m_items[ i ].status == PartitionSplitterItem::Resizing &&
+                 i + 1 < m_items.count() )
+            {
+                m_items[ i ].size = m_items[ i ].size + m_itemToResizeNext.size;
+                m_items[ i ].status = PartitionSplitterItem::Normal;
+                m_items.removeAt( i + 1 );
+                m_itemToResizeNext = PartitionSplitterItem::null();
+                break;
+            }
+            else if ( !m_items[ i ].children.isEmpty() )
+            {
+                for ( int j = 0; j < m_items[ i ].children.count(); ++j )
+                {
+                    if ( m_items[ i ].children[ j ].itemPath == m_itemToResize.itemPath &&
+                         j + 1 < m_items[ i ].children.count() )
+                    {
+                        m_items[ i ].children[ j ].size =
+                                m_items[ i ].children[ j ].size + m_itemToResizeNext.size;
+                        m_items[ i ].children[ j ].status = PartitionSplitterItem::Normal;
+                        m_items[ i ].children.removeAt( j + 1 );
+                        m_itemToResizeNext = PartitionSplitterItem::null();
+                        break;
+                    }
+                }
+                if ( m_itemToResizeNext.isNull() )
+                    break;
+            }
+        }
+
+        m_itemToResize = PartitionSplitterItem::null();
+        m_itemToResizePath.clear();
     }
 
-    PartitionSplitterItem* itemToResize = _findItem( m_items,
-                                                     [ path ]( PartitionSplitterItem& item ) -> bool
+    PartitionSplitterItem itemToResize = _findItem( m_items,
+        [ path ]( PartitionSplitterItem& item ) -> bool
     {
-        return path == item.itemPath;
+        if ( path == item.itemPath )
+        {
+            item.status = PartitionSplitterItem::Resizing;
+            return true;
+        }
+        return false;
     } );
 
-    if ( !itemToResize )
+    if ( itemToResize.isNull() )
         return;
-    cDebug() << "itemToResize:" << itemToResize->itemPath;
+    cDebug() << "itemToResize:" << itemToResize.itemPath;
 
     m_itemToResize = itemToResize;
     m_itemToResizePath = path;
@@ -95,46 +183,71 @@ PartitionSplitterWidget::setSplitPartition( const QString& path,
     if ( preferredSize > maxSize )
         preferredSize = maxSize;
 
-    qint64 newSize = m_itemToResize->size - preferredSize;
-    m_itemToResize->size = preferredSize;
+    qint64 newSize = m_itemToResize.size - preferredSize;
+    m_itemToResize.size = preferredSize;
+    int opCount = _eachItem( m_items,
+               [ preferredSize ]( PartitionSplitterItem& item ) -> bool
+    {
+        if ( item.status == PartitionSplitterItem::Resizing )
+        {
+            item.size = preferredSize;
+            return true;
+        }
+        return false;
+    } );
+    cDebug() << "each splitter item opcount:" << opCount;
     m_itemMinSize = minSize;
     m_itemMaxSize = maxSize;
     m_itemPrefSize = preferredSize;
 
     for ( int i = 0; i < m_items.count(); ++i )
     {
-        if ( m_items[ i ].itemPath == itemToResize->itemPath )
+        if ( m_items[ i ].itemPath == itemToResize.itemPath )
         {
             m_items.insert( i+1,
-                            { "", QColor( "#c0392b" ), false, newSize, {} } );
-            m_itemToResizeNext = &( m_items[ i+1 ] );
+                            { "",
+                              QColor( "#c0392b" ),
+                              false,
+                              newSize,
+                              PartitionSplitterItem::ResizingNext,
+                              {} } );
+            m_itemToResizeNext = m_items[ i+1 ];
             break;
         }
         else if ( !m_items[ i ].children.isEmpty() )
         {
             for ( int j = 0; j < m_items[ i ].children.count(); ++j )
             {
-                if ( m_items[ i ].children[ j ].itemPath == itemToResize->itemPath )
+                if ( m_items[ i ].children[ j ].itemPath == itemToResize.itemPath )
                 {
                     m_items[ i ].children.insert( j+1,
-                                                  { "", QColor( "#c0392b" ), false, newSize, {} } );
-                    m_itemToResizeNext = &( m_items[ i ].children[ j+1 ] );
+                                                  { "",
+                                                    QColor( "#c0392b" ),
+                                                    false,
+                                                    newSize,
+                                                    PartitionSplitterItem::ResizingNext,
+                                                    {} } );
+                    m_itemToResizeNext = m_items[ i ].children[ j+1 ];
                     break;
                 }
             }
-            if ( m_itemToResizeNext )
+            if ( !m_itemToResizeNext.isNull() )
                 break;
         }
     }
-    repaint();
 
-    emit partitionResized( m_itemToResize->itemPath,
-                           m_itemToResize->size,
-                           m_itemToResizeNext->size );
+    emit partitionResized( m_itemToResize.itemPath,
+                           m_itemToResize.size,
+                           m_itemToResizeNext.size );
 
     cDebug() << "Items updated. Status:";
     foreach ( const PartitionSplitterItem& item, m_items )
-        cDebug() << "item" << item.itemPath << "size" << item.size;
+        cDebug() << "item" << item.itemPath << "size" << item.size << "status:" << item.status;
+
+    cDebug() << "m_itemToResize:    " << !m_itemToResize.isNull() << m_itemToResize.itemPath;
+    cDebug() << "m_itemToResizeNext:" << !m_itemToResizeNext.isNull() << m_itemToResizeNext.itemPath;
+
+    repaint();
 }
 
 
@@ -143,7 +256,7 @@ PartitionSplitterWidget::splitPartitionSize() const
 {
     if ( !m_itemToResize )
         return -1;
-    return m_itemToResize->size;
+    return m_itemToResize.size;
 }
 
 
@@ -152,7 +265,7 @@ PartitionSplitterWidget::newPartitionSize() const
 {
     if ( !m_itemToResizeNext )
         return -1;
-    return m_itemToResizeNext->size;
+    return m_itemToResizeNext.size;
 }
 
 
@@ -163,21 +276,32 @@ PartitionSplitterWidget::sizeHint() const
 }
 
 
+QSize
+PartitionSplitterWidget::minimumSizeHint() const
+{
+    return sizeHint();
+}
+
+
 void
 PartitionSplitterWidget::paintEvent( QPaintEvent* event )
 {
+    Q_UNUSED( event );
+
     QPainter painter( this );
     painter.fillRect( rect(), palette().window() );
     painter.setRenderHint( QPainter::Antialiasing );
-    if ( m_itemToResize && m_itemToResizeNext )
-        drawPartitions( &painter, rect(), m_items );
+
+    drawPartitions( &painter, rect(), m_items );
 }
 
 
 void
 PartitionSplitterWidget::mousePressEvent( QMouseEvent* event )
 {
-    if ( event->button() == Qt::LeftButton )
+    if ( m_itemToResize &&
+         m_itemToResizeNext &&
+         event->button() == Qt::LeftButton )
     {
         if ( qAbs( event->x() - m_resizeHandleX ) < HANDLE_SNAP )
             m_resizing = true;
@@ -191,33 +315,36 @@ PartitionSplitterWidget::mouseMoveEvent( QMouseEvent* event )
     if ( m_resizing )
     {
         qint64 start = 0;
-        foreach ( const PartitionSplitterItem& item, m_items )
+        QString itemPath = m_itemToResize.itemPath;
+        for ( auto it = m_items.constBegin();
+              it != m_items.constEnd(); ++it )
         {
-            if ( item.itemPath == m_itemToResize->itemPath )
+            if ( it->itemPath == itemPath )
                 break;
-            else if ( !item.children.isEmpty() )
+            else if ( !it->children.isEmpty() )
             {
                 bool done = false;
-                foreach ( const PartitionSplitterItem& child, item.children )
+                for ( auto jt = it->children.constBegin();
+                      jt != it->children.constEnd(); ++jt )
                 {
-                    if ( child.itemPath == m_itemToResize->itemPath )
+                    if ( jt->itemPath == itemPath )
                     {
                         done = true;
                         break;
                     }
-                    start += child.size;
+                    start += jt->size;
                 }
                 if ( done )
                     break;
             }
             else
-                start += item.size;
+                start += it->size;
         }
 
         qint64 total = 0;
-        for ( int row = 0; row < m_items.count(); ++row )
+        for ( auto it = m_items.constBegin(); it != m_items.constEnd(); ++it )
         {
-            total += m_items[ row ].size;
+            total += it->size;
         }
 
         int ew = rect().width(); //effective width
@@ -232,27 +359,35 @@ PartitionSplitterWidget::mouseMoveEvent( QMouseEvent* event )
 
         qint64 span = m_itemPrefSize;
         qreal percent = mx / span;
-        qint64 oldsize = m_itemToResize->size;
+        qint64 oldsize = m_itemToResize.size;
 
-        m_itemToResize->size = qRound64( span * percent );
-        m_itemToResizeNext->size -= m_itemToResize->size - oldsize;
-
-        qint64 t = 0;
-        for ( int row = 0; row < m_items.count(); ++row )
+        m_itemToResize.size = qRound64( span * percent );
+        m_itemToResizeNext.size -= m_itemToResize.size - oldsize;
+        _eachItem( m_items,
+                   [ this ]( PartitionSplitterItem& item ) -> bool
         {
-            t += m_items[ row ].size;
-        }
-        Q_ASSERT( t == total );
+            if ( item.status == PartitionSplitterItem::Resizing )
+            {
+                item.size = m_itemToResize.size;
+                return true;
+            }
+            else if ( item.status == PartitionSplitterItem::ResizingNext )
+            {
+                item.size = m_itemToResizeNext.size;
+                return true;
+            }
+            return false;
+        } );
 
         repaint();
 
-        emit partitionResized( m_itemToResize->itemPath,
-                               m_itemToResize->size,
-                               m_itemToResizeNext->size );
+        emit partitionResized( itemPath,
+                               m_itemToResize.size,
+                               m_itemToResizeNext.size );
     }
     else
     {
-        if ( m_itemToResize )
+        if ( m_itemToResize && m_itemToResizeNext )
         {
             if ( qAbs( event->x() - m_resizeHandleX ) < HANDLE_SNAP )
                 setCursor( Qt::SplitHCursor );
@@ -266,6 +401,8 @@ PartitionSplitterWidget::mouseMoveEvent( QMouseEvent* event )
 void
 PartitionSplitterWidget::mouseReleaseEvent( QMouseEvent* event )
 {
+    Q_UNUSED( event );
+
     m_resizing = false;
 }
 
@@ -321,7 +458,7 @@ PartitionSplitterWidget::drawResizeHandle( QPainter* painter,
 
     painter->setRenderHint( QPainter::Antialiasing, true );
 
-    qreal h = rect_.height();
+    qreal h = VIEW_HEIGHT; // Put the arrow in the center regardless of inner box height
     int scaleFactor = qRound( height() / static_cast< qreal >( VIEW_HEIGHT ) );
     QList< QPair< qreal, qreal > > arrow_offsets = {
         qMakePair( 0, h / 2 - 1 ),
@@ -339,7 +476,7 @@ PartitionSplitterWidget::drawResizeHandle( QPainter* painter,
     }
 
     auto p1 = arrow_offsets[ 0 ];
-    if ( m_itemToResize->size > m_itemMinSize )
+    if ( m_itemToResize.size > m_itemMinSize )
     {
         auto arrow = QPainterPath( QPointF( x + -1 * p1.first, p1.second ) );
         for ( auto p : arrow_offsets )
@@ -347,7 +484,7 @@ PartitionSplitterWidget::drawResizeHandle( QPainter* painter,
         painter->drawPath( arrow );
     }
 
-    if ( m_itemToResize->size < m_itemMaxSize )
+    if ( m_itemToResize.size < m_itemMaxSize )
     {
         auto arrow = QPainterPath( QPointF( x + p1.first, p1.second ) );
         for ( auto p : arrow_offsets )
@@ -357,69 +494,133 @@ PartitionSplitterWidget::drawResizeHandle( QPainter* painter,
 
     painter->setRenderHint( QPainter::Antialiasing, false );
     painter->setPen( Qt::black );
-    painter->drawLine( x, 0, x, h - 1 );
+    painter->drawLine( x, 0, x, int(h) - 1 );
 }
 
 
 void
 PartitionSplitterWidget::drawPartitions( QPainter* painter,
                                          const QRect& rect,
-                                         const QList< PartitionSplitterItem >& items )
+                                         const QVector< PartitionSplitterItem >& itemList )
 {
-    const int count = items.count();
+    const int count = itemList.count();
     const int totalWidth = rect.width();
 
-    qint64 total = 0;
-    for ( int row = 0; row < count; ++row )
-    {
-        total += items[ row ].size;
-    }
+    auto pair = computeItemsVector( itemList );
+    QVector< PartitionSplitterItem >& items = pair.first;
+    qreal total = pair.second;
 
     int x = rect.x();
     for ( int row = 0; row < count; ++row )
     {
         const PartitionSplitterItem& item = items[ row ];
-        int width;
+        qreal width;
         if ( row < count - 1 )
-            width = totalWidth * ( item.size / static_cast< qreal >( total ) );
+            width = totalWidth * ( item.size / total );
         else
             // Make sure we fill the last pixel column
             width = rect.right() - x + 1;
 
-        drawSection( painter, rect, x, width, item );
+        drawSection( painter, rect, x, int(width), item );
         if ( !item.children.isEmpty() )
         {
             QRect subRect(
                 x + EXTENDED_PARTITION_MARGIN,
                 rect.y() + EXTENDED_PARTITION_MARGIN,
-                width - 2 * EXTENDED_PARTITION_MARGIN,
+                int(width) - 2 * EXTENDED_PARTITION_MARGIN,
                 rect.height() - 2 * EXTENDED_PARTITION_MARGIN
             );
             drawPartitions( painter, subRect, item.children );
         }
 
-        if ( item.itemPath == m_itemToResize->itemPath )
-            m_resizeHandleX = x + width;
+        // If an item to resize and the following new item both exist,
+        // and this is not the very first partition,
+        // and the partition preceding this one is the item to resize...
+        if ( m_itemToResize &&
+             m_itemToResizeNext &&
+             row > 0 &&
+             !items[ row - 1 ].isFreeSpace &&
+             !items[ row - 1 ].itemPath.isEmpty() &&
+             items[ row - 1 ].itemPath == m_itemToResize.itemPath )
+        {
+            m_resizeHandleX = x;
+            drawResizeHandle( painter, rect, m_resizeHandleX );
+        }
 
         x += width;
     }
-    drawResizeHandle( painter, rect, m_resizeHandleX );
 }
 
 
-template < typename F >
-PartitionSplitterItem*
-PartitionSplitterWidget::_findItem( QList< PartitionSplitterItem >& items,
-                                    F condition )
+PartitionSplitterItem
+PartitionSplitterWidget::_findItem( QVector< PartitionSplitterItem >& items,
+                                    std::function< bool ( PartitionSplitterItem& ) > condition ) const
 {
     for ( auto it = items.begin(); it != items.end(); ++it)
     {
         if ( condition( *it ) )
-            return &*it;
+            return *it;
 
-        PartitionSplitterItem* candidate = _findItem( it->children, condition );
-        if ( candidate )
+        PartitionSplitterItem candidate = _findItem( it->children, condition );
+        if ( !candidate.isNull() )
             return candidate;
     }
-    return nullptr;
+    return PartitionSplitterItem::null();
+}
+
+
+int
+PartitionSplitterWidget::_eachItem( QVector< PartitionSplitterItem >& items,
+                                    std::function< bool ( PartitionSplitterItem& ) > operation ) const
+{
+    int opCount = 0;
+    for ( auto it = items.begin(); it != items.end(); ++it)
+    {
+        if ( operation( *it ) )
+            opCount++;
+
+        opCount += _eachItem( it->children, operation );
+    }
+    return opCount;
+}
+
+
+QPair< QVector< PartitionSplitterItem >, qreal >
+PartitionSplitterWidget::computeItemsVector( const QVector< PartitionSplitterItem >& originalItems ) const
+{
+    QVector< PartitionSplitterItem > items;
+
+    qreal total = 0;
+    for ( int row = 0; row < originalItems.count(); ++row )
+    {
+        if ( originalItems[ row ].children.isEmpty() )
+        {
+            items += originalItems[ row ];
+            total += originalItems[ row ].size;
+        }
+        else
+        {
+            PartitionSplitterItem thisItem = originalItems[ row ];
+            QPair< QVector< PartitionSplitterItem >, qreal > pair = computeItemsVector( thisItem.children );
+            thisItem.children = pair.first;
+            thisItem.size = qint64(pair.second);
+            items += thisItem;
+            total += thisItem.size;
+        }
+    }
+
+    // The sizes we have are perfect, but now we have to hardcode a minimum size for small
+    // partitions and compensate for it in the total.
+    qreal adjustedTotal = total;
+    for ( int row = 0; row < items.count(); ++row )
+    {
+        if ( items[ row ].size < 0.01 * total ) // If this item is smaller than 1% of everything,
+        {                                       // force its width to 1%.
+            adjustedTotal -= items[ row ].size;
+            items[ row ].size = qint64(0.01 * total);
+            adjustedTotal += items[ row ].size;
+        }
+    }
+
+    return qMakePair( items, adjustedTotal );
 }
