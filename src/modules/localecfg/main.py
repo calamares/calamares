@@ -65,12 +65,15 @@ def run():
         with open("{!s}/etc/locale.gen".format(install_path), "w") as gen:
             for line in text:
                 # always enable en_US
-                if en_us_locale in line and line[0] == "#":
+                if line.startswith(en_us_locale, 1):
                     # uncomment line
                     line = line[1:].lstrip()
 
                 for locale_value in locale_values:
-                    if locale_value in line and line[0] == "#":
+                    # check the locale value starting from
+                    # the second index because we expect that
+                    # the first one is a '#'
+                    if line.startswith(locale_value, 1):
                         # uncomment line
                         line = line[1:].lstrip()
 
