@@ -30,7 +30,9 @@
 #include "Job.h"
 #include "JobQueue.h"
 #include "Settings.h"
+#include "ViewManager.h"
 
+#include <QApplication>
 #include <QCommandLineOption>
 #include <QCommandLineParser>
 #include <QCoreApplication>
@@ -40,26 +42,10 @@
 
 struct ModuleConfig
 {
-    QString
-    moduleName() const
-    {
-        return m_module;
-    }
-    QString
-    configFile() const
-    {
-        return m_jobConfig;
-    }
-    QString
-    language() const
-    {
-        return m_language;
-    }
-    QString
-    globalConfigFile() const
-    {
-        return m_globalConfig;
-    }
+    QString moduleName() const { return m_module; }
+    QString configFile() const { return m_jobConfig; }
+    QString language() const { return m_language; }
+    QString globalConfigFile() const { return m_globalConfig; }
 
     QString m_module;
     QString m_jobConfig;
@@ -202,6 +188,7 @@ int
 main( int argc, char* argv[] )
 {
     QCoreApplication a( argc, argv );
+    QApplication* aw = nullptr;
 
     ModuleConfig module = handle_args( a );
     if ( module.moduleName().isEmpty() )
@@ -231,6 +218,13 @@ main( int argc, char* argv[] )
     {
         cError() << "Could not load module" << module.moduleName();
         return 1;
+    }
+
+    cDebug() << " .. got" << m->name() << m->typeString() << m->interfaceString();
+    if ( m->type() == Calamares::Module::Type::View )
+    {
+        aw = new QApplication( argc, argv );
+        (void)Calamares::ViewManager::instance( nullptr );
     }
 
     if ( !m->isLoaded() )
@@ -266,6 +260,11 @@ main( int argc, char* argv[] )
             }
         }
         ++count;
+    }
+
+    if ( aw )
+    {
+        delete aw;
     }
 
     return failure_count ? 1 : 0;
