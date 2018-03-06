@@ -30,31 +30,73 @@
 #include "utils/CommandList.h"
 #include "utils/Logger.h"
 
+struct ValueCheck : public QPair<QString, CalamaresUtils::CommandList*>
+{
+    ValueCheck( const QString& value, CalamaresUtils::CommandList* commands )
+        : QPair<QString, CalamaresUtils::CommandList*>(value, commands)
+    {
+    }
+
+    // ~ValueCheck()
+    //
+    // There is no destructor.
+    //
+    // We don't own the commandlist, the binding holding this valuecheck
+    // does, so don't delete. This is closely tied to (temporaries created
+    // by) pass-by-value in QList::append().
+
+    QString value() const { return first; }
+    CalamaresUtils::CommandList* commands() const { return second; }
+} ;
+
 struct ContextualProcessBinding
 {
-    ContextualProcessBinding( const QString& _n, const QString& _v, CalamaresUtils::CommandList* _c )
-        : variable( _n )
-        , value( _v )
-        , commands( _c )
+    ContextualProcessBinding( const QString& varname )
+        : variable( varname )
     {
     }
 
     ~ContextualProcessBinding();
 
-    int count() const
+    /**
+     * @brief add commands to be executed when @p value is matched.
+     *
+     * Ownership of the CommandList passes to this binding.
+     */
+    void append( const QString& value, CalamaresUtils::CommandList* commands )
     {
-        return commands ? commands->count() : 0;
+        checks.append( ValueCheck( value, commands ) );
+        if ( value == '*' )
+            wildcard = commands;
+    }
+
+    Calamares::JobResult run( const QString& value ) const
+    {
+        for ( const auto& c : checks )
+        {
+            if ( value == c.value() )
+                return c.commands()->run();
+        }
+
+        if ( wildcard )
+            return wildcard->run();
+
+        return Calamares::JobResult::ok();
     }
 
     QString variable;
-    QString value;
-    CalamaresUtils::CommandList* commands;
+    QList<ValueCheck> checks;
+    CalamaresUtils::CommandList* wildcard{ nullptr };
 } ;
 
 
 ContextualProcessBinding::~ContextualProcessBinding()
 {
-    delete commands;
+    wildcard = nullptr;
+    for ( const auto& c : checks )
+    {
+        delete c.commands();
+    }
 }
 
 ContextualProcessJob::ContextualProcessJob( QObject* parent )
@@ -83,12 +125,14 @@ ContextualProcessJob::exec()
 
     for ( const ContextualProcessBinding* binding : m_commands )
     {
-        if ( gs->contains( binding->variable ) && ( gs->value( binding->variable ).toString() == binding->value ) )
+        if ( gs->contains( binding->variable ) )
         {
-            Calamares::JobResult r = binding->commands->run();
+            Calamares::JobResult r = binding->run( gs->value( binding->variable ).toString() );
             if ( !r )
                 return r;
         }
+        else
+            cWarning() << "ContextualProcess checks for unknown variable" << binding->variable;
     }
     return Calamares::JobResult::ok();
 }
@@ -110,31 +154,42 @@ ContextualProcessJob::setConfigurationMap( const QVariantMap& configurationMap )
 
         if ( iter.value().type() != QVariant::Map )
         {
-            cDebug() << "WARNING:" << moduleInstanceKey() << "bad configuration values for" << variableName;
+            cWarning() << moduleInstanceKey() << "bad configuration values for" << variableName;
             continue;
         }
 
+        auto binding = new ContextualProcessBinding( variableName );
+        m_commands.append( binding );
         QVariantMap values = iter.value().toMap();
         for ( QVariantMap::const_iterator valueiter = values.cbegin(); valueiter != values.cend(); ++valueiter )
         {
             QString valueString = valueiter.key();
             if ( variableName.isEmpty() )
             {
-                cDebug() << "WARNING:" << moduleInstanceKey() << "variable" << variableName << "unrecognized value" << valueiter.key();
+                cWarning() << moduleInstanceKey() << "variable" << variableName << "unrecognized value" << valueiter.key();
                 continue;
             }
 
             CalamaresUtils::CommandList* commands = new CalamaresUtils::CommandList( valueiter.value(), !dontChroot, timeout );
 
-            if ( commands->count() > 0 )
-            {
-                m_commands.append( new ContextualProcessBinding( variableName, valueString, commands ) );
-                cDebug() << variableName << '=' << valueString << "will execute" << commands->count() << "commands";
-            }
-            else
-                delete commands;
+            binding->append( valueString, commands );
         }
     }
+}
+
+int
+ContextualProcessJob::count()
+{
+    return m_commands.count();
+}
+
+int
+ContextualProcessJob::count(const QString& variableName)
+{
+    for ( const ContextualProcessBinding* binding : m_commands )
+        if ( binding->variable == variableName )
+            return binding->checks.count();
+    return -1;
 }
 
 CALAMARES_PLUGIN_FACTORY_DEFINITION( ContextualProcessJobFactory, registerPlugin<ContextualProcessJob>(); )

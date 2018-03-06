@@ -58,7 +58,7 @@ ShellProcessJob::exec()
 
     if ( ! m_commands || m_commands->isEmpty() )
     {
-        cDebug() << "WARNING: No commands to execute" << moduleInstanceKey();
+        cWarning() << "No commands to execute" << moduleInstanceKey();
         return Calamares::JobResult::ok();
     }
 
@@ -81,7 +81,7 @@ ShellProcessJob::setConfigurationMap( const QVariantMap& configurationMap )
             cDebug() << "ShellProcessJob: \"script\" contains no commands for" << moduleInstanceKey();
     }
     else
-        cDebug() << "WARNING: No script given for ShellProcessJob" << moduleInstanceKey();
+        cWarning() << "No script given for ShellProcessJob" << moduleInstanceKey();
 }
 
 CALAMARES_PLUGIN_FACTORY_DEFINITION( ShellProcessJobFactory, registerPlugin<ShellProcessJob>(); )

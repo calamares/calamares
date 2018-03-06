@@ -65,7 +65,7 @@ NetInstallPage::readGroups( const QByteArray& yamlData )
         YAML::Node groups = YAML::Load( yamlData.constData() );
 
         if ( !groups.IsSequence() )
-            cDebug() << "WARNING: netinstall groups data does not form a sequence.";
+            cWarning() << "netinstall groups data does not form a sequence.";
         Q_ASSERT( groups.IsSequence() );
         m_groups = new PackageModel( groups );
         CALAMARES_RETRANSLATE(
@@ -88,7 +88,7 @@ NetInstallPage::dataIsHere( QNetworkReply* reply )
     // even if the reply is corrupt or missing.
     if ( reply->error() != QNetworkReply::NoError )
     {
-        cDebug() << "WARNING: unable to fetch netinstall package lists.";
+        cWarning() << "unable to fetch netinstall package lists.";
         cDebug() << "  ..Netinstall reply error: " << reply->error();
         cDebug() << "  ..Request for url: " << reply->url().toString() << " failed with: " << reply->errorString();
         ui->netinst_status->setText( tr( "Network Installation. (Disabled: Unable to fetch package lists, check your network connection)" ) );
@@ -98,7 +98,7 @@ NetInstallPage::dataIsHere( QNetworkReply* reply )
 
     if ( !readGroups( reply->readAll() ) )
     {
-        cDebug() << "WARNING: netinstall groups data was received, but invalid.";
+        cWarning() << "netinstall groups data was received, but invalid.";
         cDebug() << "  ..Url:     " <<  reply->url().toString();
         cDebug() << "  ..Headers: " <<  reply->rawHeaderList();
         ui->netinst_status->setText( tr( "Network Installation. (Disabled: Received invalid groups data)" ) );
@@ -122,7 +122,7 @@ NetInstallPage::selectedPackages() const
         return m_groups->getPackages();
     else
     {
-        cDebug() << "WARNING: no netinstall groups are available.";
+        cWarning() << "no netinstall groups are available.";
         return PackageModel::PackageItemDataList();
     }
 }

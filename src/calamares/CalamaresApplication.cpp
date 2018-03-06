@@ -89,7 +89,7 @@ CalamaresApplication::init()
 
 CalamaresApplication::~CalamaresApplication()
 {
-    cDebug( LOGVERBOSE ) << "Shutting down Calamares...";
+    cDebug( Logger::LOGVERBOSE ) << "Shutting down Calamares...";
 
 //    if ( JobQueue::instance() )
 //        JobQueue::instance()->stop();
@@ -98,7 +98,7 @@ CalamaresApplication::~CalamaresApplication()
 
 //    delete JobQueue::instance();
 
-    cDebug( LOGVERBOSE ) << "Finished shutdown.";
+    cDebug( Logger::LOGVERBOSE ) << "Finished shutdown.";
 }
 
 
@@ -143,7 +143,7 @@ CalamaresApplication::initQmlPath()
                            .absoluteFilePath( subpath ) );
         if ( !importPath.exists() || !importPath.isReadable() )
         {
-            cLog() << "FATAL ERROR: explicitly configured application data directory"
+            cError() << "FATAL: explicitly configured application data directory"
                    << CalamaresUtils::appDataDir().absolutePath()
                    << "does not contain a valid QML modules directory at"
                    << importPath.absolutePath()
@@ -176,7 +176,7 @@ CalamaresApplication::initQmlPath()
 
         if ( !importPath.exists() || !importPath.isReadable() )
         {
-            cLog() << "FATAL ERROR: none of the expected QML paths ("
+            cError() << "FATAL: none of the expected QML paths ("
                    << qmlDirCandidatesByPriority.join( ", " )
                    << ") exist."
                    << "\nCowardly refusing to continue startup without the QML directory.";
@@ -197,7 +197,7 @@ CalamaresApplication::initSettings()
         settingsFile = QFileInfo( CalamaresUtils::appDataDir().absoluteFilePath( "settings.conf" ) );
         if ( !settingsFile.exists() || !settingsFile.isReadable() )
         {
-            cLog() << "FATAL ERROR: explicitly configured application data directory"
+            cError() << "FATAL: explicitly configured application data directory"
                    << CalamaresUtils::appDataDir().absolutePath()
                    << "does not contain a valid settings.conf file."
                    << "\nCowardly refusing to continue startup without settings.";
@@ -230,7 +230,7 @@ CalamaresApplication::initSettings()
 
         if ( !settingsFile.exists() || !settingsFile.isReadable() )
         {
-            cLog() << "FATAL ERROR: none of the expected configuration file paths ("
+            cError() << "FATAL: none of the expected configuration file paths ("
                    << settingsFileCandidatesByPriority.join( ", " )
                    << ") contain a valid settings.conf file."
                    << "\nCowardly refusing to continue startup without settings.";
@@ -248,7 +248,7 @@ CalamaresApplication::initBranding()
     QString brandingComponentName = Calamares::Settings::instance()->brandingComponentName();
     if ( brandingComponentName.simplified().isEmpty() )
     {
-        cLog() << "FATAL ERROR: branding component not set in settings.conf";
+        cError() << "FATAL: branding component not set in settings.conf";
         ::exit( EXIT_FAILURE );
     }
 
@@ -262,7 +262,7 @@ CalamaresApplication::initBranding()
                                   .absoluteFilePath( brandingDescriptorSubpath ) );
         if ( !brandingFile.exists() || !brandingFile.isReadable() )
         {
-            cLog() << "FATAL ERROR: explicitly configured application data directory"
+            cError() << "FATAL: explicitly configured application data directory"
                    << CalamaresUtils::appDataDir().absolutePath()
                    << "does not contain a valid branding component descriptor at"
                    << brandingFile.absoluteFilePath()
@@ -299,7 +299,7 @@ CalamaresApplication::initBranding()
 
         if ( !brandingFile.exists() || !brandingFile.isReadable() )
         {
-            cLog() << "FATAL ERROR: none of the expected branding descriptor file paths ("
+            cError() << "FATAL: none of the expected branding descriptor file paths ("
                    << brandingFileCandidatesByPriority.join( ", " )
                    << ") contain a valid branding.desc file."
                    << "\nCowardly refusing to continue startup without branding.";

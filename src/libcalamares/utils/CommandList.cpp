@@ -38,7 +38,7 @@ static CommandLine get_variant_object( const QVariantMap& m )
 
     if ( !command.isEmpty() )
         return CommandLine( command, timeout );
-    cDebug() << "WARNING Bad CommandLine element" << m;
+    cWarning() << "Bad CommandLine element" << m;
     return CommandLine();
 }
 
@@ -58,7 +58,7 @@ static CommandList_t get_variant_stringlist( const QVariantList& l )
             // Otherwise warning is already given
         }
         else
-            cDebug() << "WARNING Bad CommandList element" << c << v.type() << v;
+            cWarning() << "Bad CommandList element" << c << v.type() << v;
         ++c;
     }
     return retl;
@@ -79,7 +79,7 @@ CommandList::CommandList::CommandList( const QVariant& v, bool doChroot, int tim
         if ( v_list.count() )
             append( get_variant_stringlist( v_list ) );
         else
-            cDebug() << "WARNING: Empty CommandList";
+            cWarning() << "Empty CommandList";
     }
     else if ( v.type() == QVariant::String )
         append( v.toString() );
@@ -91,7 +91,7 @@ CommandList::CommandList::CommandList( const QVariant& v, bool doChroot, int tim
         // Otherwise warning is already given
     }
     else
-        cDebug() << "WARNING: CommandList does not understand variant" << v.type();
+        cWarning() << "CommandList does not understand variant" << v.type();
 }
 
 CommandList::~CommandList()
@@ -109,7 +109,7 @@ Calamares::JobResult CommandList::run()
     {
         if ( !gs || !gs->contains( "rootMountPoint" ) )
         {
-            cDebug() << "ERROR: No rootMountPoint defined.";
+            cError() << "No rootMountPoint defined.";
             return Calamares::JobResult::error( QCoreApplication::translate( "CommandList", "Could not run command." ),
                                                 QCoreApplication::translate( "CommandList", "No rootMountPoint is defined, so command cannot be run in the target environment." ) );
         }

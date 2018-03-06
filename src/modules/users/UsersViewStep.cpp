@@ -132,7 +132,7 @@ UsersViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     }
     else
     {
-        cDebug() << "WARNING: Using fallback groups. Please check defaultGroups in users.conf";
+        cWarning() << "Using fallback groups. Please check defaultGroups in users.conf";
         m_defaultGroups = QStringList{ "lp", "video", "network", "storage", "wheel", "audio" };
     }
 

@@ -106,16 +106,16 @@ ProcessJob::callOutput( const QString& command,
             process.setWorkingDirectory( QDir( workingPath ).absolutePath() );
         else
         {
-            cLog() << "Invalid working directory:" << workingPath;
+            cWarning() << "Invalid working directory:" << workingPath;
             return -3;
         }
     }
 
-    cLog() << "Running" << command;
+    cDebug() << "Running" << command;
     process.start();
     if ( !process.waitForStarted() )
     {
-        cLog() << "Process failed to start" << process.error();
+        cWarning() << "Process failed to start" << process.error();
         return -2;
     }
 
@@ -127,9 +127,9 @@ ProcessJob::callOutput( const QString& command,
 
     if ( !process.waitForFinished( timeoutSec ? ( timeoutSec * 1000 ) : -1 ) )
     {
-        cLog() << "Timed out. output so far:";
+        cWarning() << "Timed out. output so far:";
         output.append( QString::fromLocal8Bit( process.readAllStandardOutput() ).trimmed() );
-        cLog() << output;
+        cWarning() << output;
         return -4;
     }
 
@@ -137,11 +137,11 @@ ProcessJob::callOutput( const QString& command,
 
     if ( process.exitStatus() == QProcess::CrashExit )
     {
-        cLog() << "Process crashed";
+        cWarning() << "Process crashed";
         return -1;
     }
 
-    cLog() << "Finished. Exit code:" << process.exitCode();
+    cDebug() << "Finished. Exit code:" << process.exitCode();
     return process.exitCode();
 }
 

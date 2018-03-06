@@ -41,7 +41,7 @@ AUTHOR="--author='Calamares CI <groot@kde.org>'"
 BOILERPLATE="Automatic merge of Transifex translations"
 
 git add --verbose lang/calamares*.ts
-git commit "$AUTHOR" --message="i18n: $BOILERPLATE" | true
+git commit "$AUTHOR" --message="i18n: [calamares] $BOILERPLATE" | true
 
 rm -f lang/desktop*.desktop
 awk '
@@ -52,7 +52,7 @@ awk '
 	}}' < calamares.desktop > calamares.desktop.new
 mv calamares.desktop.new calamares.desktop
 git add --verbose calamares.desktop
-git commit "$AUTHOR" --message="[desktop] $BOILERPLATE" | true
+git commit "$AUTHOR" --message="i18n: [desktop] $BOILERPLATE" | true
 
 # Transifex updates the PO-Created timestamp also when nothing interesting
 # has happened, so drop the files which have just 1 line changed (the

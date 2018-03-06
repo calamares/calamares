@@ -156,12 +156,12 @@ Settings::Settings( const QString& settingsFilePath,
         }
         catch ( YAML::Exception& e )
         {
-            cDebug() << "WARNING: YAML parser error " << e.what() << "in" << file.fileName();
+            cWarning() << "YAML parser error " << e.what() << "in" << file.fileName();
         }
     }
     else
     {
-        cDebug() << "WARNING: Cannot read " << file.fileName();
+        cWarning() << "Cannot read " << file.fileName();
     }
 
     s_instance = this;

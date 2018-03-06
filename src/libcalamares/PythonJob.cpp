@@ -100,6 +100,13 @@ BOOST_PYTHON_MODULE( libcalamares )
         "Writes the given string to the Calamares debug stream."
     );
     bp::def(
+        "warning",
+        &CalamaresPython::warning,
+        bp::args( "s" ),
+        "Writes the given string to the Calamares warning stream."
+    );
+
+    bp::def(
         "mount",
         &CalamaresPython::mount,
         mount_overloads(

@@ -115,13 +115,13 @@ bool KeyBoardPreview::loadCodes() {
     process.start("ckbcomp", param);
     if (!process.waitForStarted())
     {
-        cDebug() << "WARNING: ckbcomp not found , keyboard preview disabled";
+        cWarning() << "ckbcomp not found , keyboard preview disabled";
         return false;
     }
 
     if (!process.waitForFinished())
     {
-        cDebug() << "WARNING: ckbcomp failed, keyboard preview disabled";
+        cWarning() << "ckbcomp failed, keyboard preview disabled";
         return false;
     }
 
@@ -160,9 +160,9 @@ bool KeyBoardPreview::loadCodes() {
 
 QString KeyBoardPreview::fromUnicodeString(QString raw) {
     if (raw.startsWith("U+"))
-        return QChar(raw.mid(2).toInt(0, 16));
+        return QChar(raw.mid(2).toInt(nullptr, 16));
     else if (raw.startsWith("+U"))
-        return QChar(raw.mid(3).toInt(0, 16));
+        return QChar(raw.mid(3).toInt(nullptr, 16));
 
     return "";
 }

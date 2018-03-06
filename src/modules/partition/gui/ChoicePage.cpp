@@ -567,7 +567,7 @@ ChoicePage::onLeave()
         }
         else
         {
-            cDebug() << "ERROR: cannot set up EFI system partition.\nESP count:"
+            cError() << "cannot set up EFI system partition.\nESP count:"
                      << efiSystemPartitions.count() << "\nm_efiComboBox:"
                      << m_efiComboBox;
         }
@@ -582,7 +582,7 @@ ChoicePage::onLeave()
                 if ( d_p )
                     m_core->setBootLoaderInstallPath( d_p->deviceNode() );
                 else
-                    cDebug() << "WARNING: No device selected for bootloader.";
+                    cWarning() << "No device selected for bootloader.";
             }
             else
             {
@@ -1315,7 +1315,7 @@ ChoicePage::setupActions()
 
     if ( isEfi && !efiSystemPartitionFound )
     {
-        cDebug() << "WARNING: system is EFI but there's no EFI system partition, "
+        cWarning() << "System is EFI but there's no EFI system partition, "
                     "DISABLING alongside and replace features.";
         m_alongsideButton->hide();
         m_replaceButton->hide();

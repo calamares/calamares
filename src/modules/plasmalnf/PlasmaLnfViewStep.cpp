@@ -115,7 +115,7 @@ PlasmaLnfViewStep::jobs() const
         if ( !m_lnfPath.isEmpty() )
             l.append( Calamares::job_ptr( new PlasmaLnfJob( m_lnfPath, m_themeId ) ) );
         else
-            cDebug() << "WARNING: no lnftool given for plasmalnf module.";
+            cWarning() << "no lnftool given for plasmalnf module.";
     }
     return l;
 }
@@ -128,7 +128,7 @@ PlasmaLnfViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     m_widget->setLnfPath( m_lnfPath );
 
     if ( m_lnfPath.isEmpty() )
-        cDebug() << "WARNING: no lnftool given for plasmalnf module.";
+        cWarning() << "no lnftool given for plasmalnf module.";
 
     m_liveUser = CalamaresUtils::getString( configurationMap, "liveuser" );
 
@@ -150,7 +150,7 @@ PlasmaLnfViewStep::setConfigurationMap( const QVariantMap& configurationMap )
                 allThemes.append( ThemeInfo( i.toString() ) );
 
         if ( allThemes.length() == 1 )
-            cDebug() << "WARNING: only one theme enabled in plasmalnf";
+            cWarning() << "only one theme enabled in plasmalnf";
         m_widget->setEnabledThemes( allThemes );
     }
     else
@@ -163,7 +163,7 @@ PlasmaLnfViewStep::themeSelected( const QString& id )
     m_themeId = id;
     if ( m_lnfPath.isEmpty() )
     {
-        cDebug() << "WARNING: no lnftool given for plasmalnf module.";
+        cWarning() << "no lnftool given for plasmalnf module.";
         return;
     }
 
@@ -175,17 +175,17 @@ PlasmaLnfViewStep::themeSelected( const QString& id )
 
     if ( !lnftool.waitForStarted( 1000 ) )
     {
-        cDebug() << "WARNING: could not start look-and-feel" << m_lnfPath;
+        cWarning() << "could not start look-and-feel" << m_lnfPath;
         return;
     }
     if ( !lnftool.waitForFinished() )
     {
-        cDebug() << "WARNING:" << m_lnfPath << "timed out.";
+        cWarning() << m_lnfPath << "timed out.";
         return;
     }
 
     if ( ( lnftool.exitCode() == 0 ) && ( lnftool.exitStatus() == QProcess::NormalExit ) )
         cDebug() << "Plasma look-and-feel applied" << id;
     else
-        cDebug() << "WARNING: could not apply look-and-feel" << id;
+        cWarning() << "could not apply look-and-feel" << id;
 }

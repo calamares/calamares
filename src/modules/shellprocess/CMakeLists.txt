@@ -8,7 +8,6 @@ calamares_add_plugin( shellprocess
     SHARED_LIB
 )
 
-find_package(ECM ${ECM_VERSION} NO_MODULE)
 if( ECM_FOUND )
     find_package( Qt5 COMPONENTS Test REQUIRED )
     include( ECMAddTests )

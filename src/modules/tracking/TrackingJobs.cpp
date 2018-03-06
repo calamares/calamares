@@ -84,7 +84,7 @@ Calamares::JobResult TrackingInstallJob::exec()
 
     if ( !timeout.isActive() )
     {
-        cDebug() << "WARNING: install-tracking request timed out.";
+        cWarning() << "install-tracking request timed out.";
         return Calamares::JobResult::error( tr( "Internal error in install-tracking." ),
                                             tr( "HTTP request timed out." ) );
     }

@@ -259,7 +259,7 @@ doReplacePartition( PartitionCoreModule* core,
     if ( partition->roles().has( PartitionRole::Unallocated ) )
     {
         newRoles = PartitionRole( PartitionRole::Primary );
-        cDebug() << "WARNING: selected partition is free space";
+        cWarning() << "selected partition is free space";
         if ( partition->parent() )
         {
             Partition* parent = dynamic_cast< Partition* >( partition->parent() );
