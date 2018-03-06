@@ -7,6 +7,7 @@
  *     - drop navigation through entering a slide number
  *       (this and the 'c' key make sense in a *presentation*
  *       slideshow, not in a passive slideshow like Calamares)
+ *     - remove quit key
  *
  *   SPDX-License-Identifier: LGPL-2.1
  *   License-Filename: LICENSES/LGPLv2.1-Presentation
@@ -62,7 +63,7 @@ Item {
 
     property variant slides: []
     property int currentSlide: 0
-    
+
     property bool loopSlides: true
 
     property bool showNotes: false;
@@ -146,7 +147,6 @@ Item {
     // standard shortcuts
     Shortcut { sequence: StandardKey.MoveToNextPage; onActivated: goToNextSlide() }
     Shortcut { sequence: StandardKey.MoveToPreviousPage; onActivated: goToPreviousSlide() }
-    Shortcut { sequence: StandardKey.Quit; onActivated: Qt.quit() }
 
     MouseArea {
         id: mouseArea
