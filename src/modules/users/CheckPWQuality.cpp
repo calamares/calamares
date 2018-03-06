@@ -30,13 +30,9 @@
 
 #include <memory>
 
-static void _default_cleanup()
-{
-}
-
 PasswordCheck::PasswordCheck()
     : m_message()
-    , m_accept( []( const QString& s ){ return true; } )
+    , m_accept( []( const QString& ){ return true; } )
 {
 }
 
