@@ -1,0 +1,5 @@
+---
+type:      "job"
+name:      "contextualprocess"
+interface: "qtplugin"
+load:      "libcalamares_job_contextualprocess.so"

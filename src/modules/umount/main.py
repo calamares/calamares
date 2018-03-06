@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# === This file is part of Calamares - <http://github.com/calamares> ===
+# === This file is part of Calamares - <https://github.com/calamares> ===
 #
 #   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
 #   Copyright 2016, Anke Boersma <demm@kaosx.us>
@@ -55,11 +55,18 @@ def run():
        "destLog" in libcalamares.job.configuration):
         log_source = libcalamares.job.configuration["srcLog"]
         log_destination = libcalamares.job.configuration["destLog"]
+        # Relocate log_destination into target system
+        log_destination = '{!s}/{!s}'.format(root_mount_point, log_destination)
+        # Make sure source is a string
+        log_source = '{!s}'.format(log_source)
 
         # copy installation log before umount
-        if os.path.exists('{!s}'.format(log_source)):
-            shutil.copy2('{!s}'.format(log_source), '{!s}/{!s}'.format(
-                root_mount_point, log_destination))
+        if os.path.exists(log_source):
+            try:
+                shutil.copy2(log_source, log_destination)
+            except Exception as e:
+                libcalamares.utils.debug("WARNING Could not preserve file {!s}, "
+                                       "error {!s}".format(log_source, e))
 
     if not root_mount_point:
         return ("No mount point for root partition in globalstorage",

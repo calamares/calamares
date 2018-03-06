@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2016, Teo Mrnjavac <teo@kde.org>
  *   Copyright 2014, Kevin Kofler <kevin.kofler@chello.at>
@@ -37,11 +37,11 @@
 
 
 SetKeyboardLayoutJob::SetKeyboardLayoutJob( const QString& model,
-                                            const QString& layout,
-                                            const QString& variant,
-                                            const QString& xOrgConfFileName,
-                                            const QString& convertedKeymapPath,
-                                            bool writeEtcDefaultKeyboard)
+        const QString& layout,
+        const QString& variant,
+        const QString& xOrgConfFileName,
+        const QString& convertedKeymapPath,
+        bool writeEtcDefaultKeyboard )
     : Calamares::Job()
     , m_model( model )
     , m_layout( layout )
@@ -57,8 +57,8 @@ QString
 SetKeyboardLayoutJob::prettyName() const
 {
     return tr( "Set keyboard model to %1, layout to %2-%3" ).arg( m_model )
-                                                            .arg( m_layout )
-                                                            .arg( m_variant );
+           .arg( m_layout )
+           .arg( m_variant );
 }
 
 
@@ -74,7 +74,7 @@ SetKeyboardLayoutJob::findConvertedKeymap( const QString& convertedKeymapPath ) 
     QString name = m_variant.isEmpty() ? m_layout : ( m_layout + '-' + m_variant );
 
     if ( convertedKeymapDir.exists( name + ".map" )
-         || convertedKeymapDir.exists( name + ".map.gz" ) )
+            || convertedKeymapDir.exists( name + ".map.gz" ) )
     {
         cDebug() << "Found converted keymap" << name;
 
@@ -154,7 +154,7 @@ SetKeyboardLayoutJob::findLegacyKeymap() const
 
 bool
 SetKeyboardLayoutJob::writeVConsoleData( const QString& vconsoleConfPath,
-                                         const QString& convertedKeymapPath ) const
+        const QString& convertedKeymapPath ) const
 {
     QString keymap = findConvertedKeymap( convertedKeymapPath );
     if ( keymap.isEmpty() )
@@ -215,10 +215,10 @@ SetKeyboardLayoutJob::writeX11Data( const QString& keyboardConfPath ) const
     QTextStream stream( &file );
 
     stream << "# Read and parsed by systemd-localed. It's probably wise not to edit this file\n"
-              "# manually too freely.\n"
-              "Section \"InputClass\"\n"
-              "        Identifier \"system-keyboard\"\n"
-              "        MatchIsKeyboard \"on\"\n";
+           "# manually too freely.\n"
+           "Section \"InputClass\"\n"
+           "        Identifier \"system-keyboard\"\n"
+           "        MatchIsKeyboard \"on\"\n";
 
     if ( !m_layout.isEmpty() )
         stream << "        Option \"XkbLayout\" \"" << m_layout << "\"\n";
@@ -235,8 +235,8 @@ SetKeyboardLayoutJob::writeX11Data( const QString& keyboardConfPath ) const
     file.close();
 
     cDebug() << "Written XkbLayout" << m_layout <<
-                "; XkbModel" << m_model <<
-                "; XkbVariant" << m_variant << "to X.org file" << keyboardConfPath;
+             "; XkbModel" << m_model <<
+             "; XkbVariant" << m_variant << "to X.org file" << keyboardConfPath;
 
     return ( stream.status() == QTextStream::Ok );
 }
@@ -250,7 +250,7 @@ SetKeyboardLayoutJob::writeDefaultKeyboardData( const QString& defaultKeyboardPa
     QTextStream stream( &file );
 
     stream << "# KEYBOARD CONFIGURATION FILE\n\n"
-              "# Consult the keyboard(5) manual page.\n\n";
+           "# Consult the keyboard(5) manual page.\n\n";
 
     stream << "XKBMODEL=\"" << m_model << "\"\n";
     stream << "XKBLAYOUT=\"" << m_layout << "\"\n";
@@ -262,9 +262,9 @@ SetKeyboardLayoutJob::writeDefaultKeyboardData( const QString& defaultKeyboardPa
     file.close();
 
     cDebug() << "Written XKBMODEL" << m_model <<
-                "; XKBLAYOUT" << m_layout <<
-                "; XKBVARIANT" << m_variant <<
-                "to /etc/default/keyboard file" << defaultKeyboardPath;
+             "; XKBLAYOUT" << m_layout <<
+             "; XKBVARIANT" << m_variant <<
+             "to /etc/default/keyboard file" << defaultKeyboardPath;
 
     return ( stream.status() == QTextStream::Ok );
 }
@@ -297,15 +297,13 @@ SetKeyboardLayoutJob::exec()
     {
         xorgConfDPath = destDir.absoluteFilePath( "etc/X11/xorg.conf.d" );
         keyboardConfPath = QDir( xorgConfDPath )
-                               .absoluteFilePath( m_xOrgConfFileName );
+                           .absoluteFilePath( m_xOrgConfFileName );
     }
     destDir.mkpath( xorgConfDPath );
 
     QString defaultKeyboardPath;
     if ( QDir( destDir.absoluteFilePath( "etc/default" ) ).exists() )
-    {
         defaultKeyboardPath = destDir.absoluteFilePath( "etc/default/keyboard" );
-    }
 
     // Get the path to the destination's path to the converted key mappings
     QString convertedKeymapPath = m_convertedKeymapPath;

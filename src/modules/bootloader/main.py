@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# === This file is part of Calamares - <http://github.com/calamares> ===
+# === This file is part of Calamares - <https://github.com/calamares> ===
 #
 #   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
 #   Copyright 2014, Anke Boersma <demm@kaosx.us>
@@ -11,7 +11,7 @@
 #   Copyright 2015-2017, Philip Mueller <philm@manjaro.org>
 #   Copyright 2016-2017, Teo Mrnjavac <teo@kde.org>
 #   Copyright 2017, Alf Gaida <agaida@siduction.org>
-#   Copyright 2017, Adriaan de Groot <groot@kde.org>
+#   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
 #   Copyright 2017, Gabriel Craciunescu <crazy@frugalware.org>
 #   Copyright 2017, Ben Green <Bezzy1999@hotmail.com>
 #
@@ -44,13 +44,11 @@ def get_uuid():
     :return:
     """
     root_mount_point = libcalamares.globalstorage.value("rootMountPoint")
-    print("Root mount point: \"{!s}\"".format(root_mount_point))
     partitions = libcalamares.globalstorage.value("partitions")
-    print("Partitions: \"{!s}\"".format(partitions))
 
     for partition in partitions:
         if partition["mountPoint"] == "/":
-            print("Root partition uuid: \"{!s}\"".format(partition["uuid"]))
+            libcalamares.utils.debug("Root partition uuid: \"{!s}\"".format(partition["uuid"]))
             return partition["uuid"]
 
     return ""
@@ -175,7 +173,7 @@ def install_systemd_boot(efi_directory):
 
     :param efi_directory:
     """
-    print("Bootloader: systemd-boot")
+    libcalamares.utils.debug("Bootloader: systemd-boot")
     install_path = libcalamares.globalstorage.value("rootMountPoint")
     install_efi_directory = install_path + efi_directory
     uuid = get_uuid()
@@ -197,10 +195,10 @@ def install_systemd_boot(efi_directory):
                      "--path={!s}".format(install_efi_directory),
                      "install"])
     kernel_line = get_kernel_line("default")
-    print("Configure: \"{!s}\"".format(kernel_line))
+    libcalamares.utils.debug("Configure: \"{!s}\"".format(kernel_line))
     create_systemd_boot_conf(uuid, conf_path, kernel_line)
     kernel_line = get_kernel_line("fallback")
-    print("Configure: \"{!s}\"".format(kernel_line))
+    libcalamares.utils.debug("Configure: \"{!s}\"".format(kernel_line))
     create_systemd_boot_conf(uuid, fallback_path, kernel_line)
     create_loader(loader_path)
 
@@ -213,7 +211,7 @@ def install_grub(efi_directory, fw_type):
     :param fw_type:
     """
     if fw_type == "efi":
-        print("Bootloader: grub (efi)")
+        libcalamares.utils.debug("Bootloader: grub (efi)")
         install_path = libcalamares.globalstorage.value("rootMountPoint")
         install_efi_directory = install_path + efi_directory
 
@@ -269,15 +267,19 @@ def install_grub(efi_directory, fw_type):
             os.makedirs(install_efi_boot_directory)
 
         # Workaround for some UEFI firmwares
-        efi_file_source = os.path.join(install_efi_directory_firmware,
-                                       efi_bootloader_id,
-                                       efi_grub_file)
-        efi_file_target = os.path.join(install_efi_boot_directory,
-                                       efi_boot_file)
+        FALLBACK = "installEFIFallback"
+        libcalamares.utils.debug("UEFI Fallback: " + str(libcalamares.job.configuration.get(FALLBACK, "<unset>")))
+        if libcalamares.job.configuration.get(FALLBACK, True):
+            libcalamares.utils.debug("  .. installing '{!s}' fallback firmware".format(efi_boot_file))
+            efi_file_source = os.path.join(install_efi_directory_firmware,
+                                        efi_bootloader_id,
+                                        efi_grub_file)
+            efi_file_target = os.path.join(install_efi_boot_directory,
+                                        efi_boot_file)
 
-        shutil.copy2(efi_file_source, efi_file_target)
+            shutil.copy2(efi_file_source, efi_file_target)
     else:
-        print("Bootloader: grub (bios)")
+        libcalamares.utils.debug("Bootloader: grub (bios)")
         if libcalamares.globalstorage.value("bootLoader") is None:
             return
 

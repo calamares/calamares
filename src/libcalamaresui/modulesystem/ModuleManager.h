@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *
@@ -44,7 +44,7 @@ class ModuleManager : public QObject
     Q_OBJECT
 public:
     explicit ModuleManager( const QStringList& paths, QObject* parent = nullptr );
-    virtual ~ModuleManager();
+    virtual ~ModuleManager() override;
 
     static ModuleManager* instance();
 

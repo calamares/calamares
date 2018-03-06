@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2015-2016, Teo Mrnjavac <teo@kde.org>
  *
@@ -67,6 +67,11 @@ OsproberEntryList runOsprober( PartitionCoreModule* core );
  */
 bool isEfiSystem();
 
+/**
+ * @brief Is the given @p partition bootable in EFI? Depending on
+ * the partition table layout, this may mean different flags.
+ */
+bool isEfiBootable( const Partition* candidate );
 }
 
 #endif // PARTUTILS_H

@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
  *   Copyright 2017, Adriaan de Groot <groot@kde.org>
@@ -231,10 +231,12 @@ Helper::Helper( QObject* parent )
 }
 
 Helper::~Helper()
-{}
+{
+    s_instance = nullptr;
+}
 
 
-boost::python::object
+boost::python::dict
 Helper::createCleanNamespace()
 {
     // To make sure we run each script with a clean namespace, we only fetch the

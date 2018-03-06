@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# === This file is part of Calamares - <http://github.com/calamares> ===
+# === This file is part of Calamares - <https://github.com/calamares> ===
 #
 #   Copyright 2014, Teo Mrnjavac <teo@kde.org>
 #   Copyright 2014, Daniel Hillenbrand <codeworkx@bbqlinux.org>
@@ -218,7 +218,7 @@ class UnpackOperation:
 
             return None
         finally:
-            shutil.rmtree(source_mount_path)
+            shutil.rmtree(source_mount_path, ignore_errors=True, onerror=None)
 
     def mount_image(self, entry, imgmountdir):
         """

@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2015, Anke Boersma <demm@kaosx.us>
  *   Copyright 2015, Alexandre Arnt <qtgzmanager@gmail.com>
@@ -31,7 +31,7 @@ class LicensePage;
 
 struct LicenseEntry
 {
-    enum Type : unsigned char
+    enum Type
     {
         Software = 0,
         Driver,

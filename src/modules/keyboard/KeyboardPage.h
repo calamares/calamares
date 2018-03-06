@@ -1,6 +1,7 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2016, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *
  *   Portions from the Manjaro Installation Framework
  *   by Roland Singer <roland@manjaro.org>
@@ -63,6 +64,8 @@ protected slots:
                                           QListWidgetItem* previous );
 
 private:
+    /// Guess a layout based on the split-apart locale
+    void guessLayout( const QStringList& langParts );
     void updateVariants( const QPersistentModelIndex& currentItem,
                          QString currentVariant = QString() );
 

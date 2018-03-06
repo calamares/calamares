@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
  *
@@ -48,15 +48,15 @@ class Helper : public QObject
 {
     Q_OBJECT
 public:
-    explicit Helper( QObject* parent = nullptr );
     virtual ~Helper();
 
-    boost::python::object createCleanNamespace();
+    boost::python::dict createCleanNamespace();
 
     QString handleLastError();
 
 private:
     friend Helper* Calamares::PythonJob::helper();
+    explicit Helper( QObject* parent = nullptr );
     static Helper* s_instance;
 
     boost::python::object m_mainModule;

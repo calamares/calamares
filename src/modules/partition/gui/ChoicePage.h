@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2016, Teo Mrnjavac <teo@kde.org>
  *
@@ -113,8 +113,12 @@ private:
     void setupChoices();
     QComboBox* createBootloaderComboBox( QWidget* parentButton );
     Device* selectedDevice();
-    void applyDeviceChoice();
-    void continueApplyDeviceChoice();
+
+    /* Change the UI depending on the device selected. */
+    void hideButtons();  // Hide everything when no device
+    void applyDeviceChoice();  // Start scanning new device
+    void continueApplyDeviceChoice();  // .. called after scan
+
     void updateDeviceStatePreview();
     void updateActionChoicePreview( ChoicePage::Choice choice );
     void setupActions();

@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *
@@ -82,37 +82,7 @@ ProcessJob::exec()
                          QString(),
                          m_timeoutSec );
 
-    if ( ec == 0 )
-        return JobResult::ok();
-
-    if ( ec == -1 ) //Crash!
-        return JobResult::error( tr( "External command crashed" ),
-                                 tr( "Command %1 crashed.\nOutput:\n%2" )
-                                        .arg( m_command )
-                                        .arg( output ) );
-
-    if ( ec == -2 )
-        return JobResult::error( tr( "External command failed to start" ),
-                                 tr( "Command %1 failed to start." )
-                                    .arg( m_command ) );
-
-    if ( ec == -3 )
-        return JobResult::error( tr( "Internal error when starting command" ),
-                                 tr( "Bad parameters for process job call." ) );
-
-    if ( ec == -4 )
-        return JobResult::error( tr( "External command failed to finish" ),
-                                 tr( "Command %1 failed to finish in %2s.\nOutput:\n%3" )
-                                    .arg( m_command )
-                                    .arg( m_timeoutSec )
-                                    .arg( output ) );
-
-    //Any other exit code
-    return JobResult::error( tr( "External command finished with errors" ),
-                             tr( "Command %1 finished with exit code %2.\nOutput:\n%3" )
-                                .arg( m_command )
-                                .arg( ec )
-                                .arg( output ) );
+    return CalamaresUtils::ProcessResult::explainProcess( ec, m_command, output, m_timeoutSec );
 }
 
 
@@ -158,7 +128,8 @@ ProcessJob::callOutput( const QString& command,
     if ( !process.waitForFinished( timeoutSec ? ( timeoutSec * 1000 ) : -1 ) )
     {
         cLog() << "Timed out. output so far:";
-        cLog() << process.readAllStandardOutput();
+        output.append( QString::fromLocal8Bit( process.readAllStandardOutput() ).trimmed() );
+        cLog() << output;
         return -4;
     }
 
@@ -173,6 +144,5 @@ ProcessJob::callOutput( const QString& command,
     cLog() << "Finished. Exit code:" << process.exitCode();
     return process.exitCode();
 }
-
 
 } // namespace Calamares

@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *
@@ -41,9 +41,6 @@ public:
         , m_queue( queue )
         , m_jobIndex( 0 )
     {
-#ifdef WITH_PYTHON
-        new CalamaresPython::Helper( this );
-#endif
     }
 
     void setJobs( const JobList& jobs )

@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
  *   Copyright 2015, Teo Mrnjavac <teo@kde.org>
@@ -24,19 +24,13 @@
 #include "utils/Units.h"
 
 // KPMcore
-#include <kpmcore/backend/corebackend.h>
-#include <kpmcore/backend/corebackendmanager.h>
-#include <kpmcore/backend/corebackenddevice.h>
-#include <kpmcore/backend/corebackendpartition.h>
-#include <kpmcore/backend/corebackendpartitiontable.h>
 #include <kpmcore/core/device.h>
+#include <kpmcore/core/lvmdevice.h>
 #include <kpmcore/core/partition.h>
 #include <kpmcore/core/partitiontable.h>
 #include <kpmcore/fs/filesystem.h>
+#include <kpmcore/ops/newoperation.h>
 #include <kpmcore/util/report.h>
-
-// Qt
-#include <QScopedPointer>
 
 CreatePartitionJob::CreatePartitionJob( Device* device, Partition* partition )
     : PartitionJob( partition )
@@ -78,68 +72,15 @@ CreatePartitionJob::prettyStatusMessage() const
 Calamares::JobResult
 CreatePartitionJob::exec()
 {
-    int step = 0;
-    const qreal stepCount = 4;
-
     Report report( nullptr );
+    NewOperation op(*m_device, m_partition);
+    op.setStatus(Operation::StatusRunning);
+
     QString message = tr( "The installer failed to create partition on disk '%1'." ).arg( m_device->name() );
-
-    progress( step++ / stepCount );
-    CoreBackend* backend = CoreBackendManager::self()->backend();
-    QScopedPointer<CoreBackendDevice> backendDevice( backend->openDevice( m_device->deviceNode() ) );
-    if ( !backendDevice.data() )
-    {
-        return Calamares::JobResult::error(
-                   message,
-                   tr( "Could not open device '%1'." ).arg( m_device->deviceNode() )
-               );
-    }
-
-    progress( step++ / stepCount );
-    QScopedPointer<CoreBackendPartitionTable> backendPartitionTable( backendDevice->openPartitionTable() );
-    if ( !backendPartitionTable.data() )
-    {
-        return Calamares::JobResult::error(
-                   message,
-                   tr( "Could not open partition table." )
-               );
-    }
-
-    progress( step++ / stepCount );
-    QString partitionPath = backendPartitionTable->createPartition( report, *m_partition );
-    if ( partitionPath.isEmpty() )
-    {
-        return Calamares::JobResult::error(
-                   message,
-                   report.toText()
-               );
-    }
-    m_partition->setPartitionPath( partitionPath );
-    backendPartitionTable->commit();
-
-    progress( step++ / stepCount );
-    FileSystem& fs = m_partition->fileSystem();
-    if ( fs.type() == FileSystem::Unformatted || fs.type() == FileSystem::Extended )
+    if (op.execute(report))
         return Calamares::JobResult::ok();
 
-    if ( !fs.create( report, partitionPath ) )
-    {
-        return Calamares::JobResult::error(
-                   tr( "The installer failed to create file system on partition %1." ).arg( partitionPath ),
-                   report.toText()
-               );
-    }
-
-    if ( !backendPartitionTable->setPartitionSystemType( report, *m_partition ) )
-    {
-        return Calamares::JobResult::error(
-                   tr( "The installer failed to update partition table on disk '%1'." ).arg( m_device->name() ),
-                   report.toText()
-               );
-    }
-
-    backendPartitionTable->commit();
-    return Calamares::JobResult::ok();
+    return Calamares::JobResult::error(message, report.toText());
 }
 
 void

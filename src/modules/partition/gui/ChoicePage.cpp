@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2017, Teo Mrnjavac <teo@kde.org>
  *   Copyright 2017, Adriaan de Groot <groot@kde.org>
@@ -300,6 +300,16 @@ ChoicePage::selectedDevice()
 }
 
 
+void
+ChoicePage::hideButtons()
+{
+    m_eraseButton->hide();
+    m_replaceButton->hide();
+    m_alongsideButton->hide();
+    m_somethingElseButton->hide();
+}
+
+
 /**
  * @brief ChoicePage::applyDeviceChoice handler for the selected event of the device
  *      picker. Calls ChoicePage::selectedDevice() to get the current Device*, then
@@ -311,7 +321,10 @@ void
 ChoicePage::applyDeviceChoice()
 {
     if ( !selectedDevice() )
+    {
+        hideButtons();
         return;
+    }
 
     if ( m_core->isDirty() )
     {
@@ -342,11 +355,14 @@ ChoicePage::continueApplyDeviceChoice()
     // applyDeviceChoice() will be called again momentarily as soon as we handle the
     // PartitionCoreModule::reverted signal.
     if ( !currd )
+    {
+        hideButtons();
         return;
+    }
 
     updateDeviceStatePreview();
-    // Preview setup done. Now we show/hide choices as needed.
 
+    // Preview setup done. Now we show/hide choices as needed.
     setupActions();
 
     m_lastSelectedDeviceIndex = m_drivesCombo->currentIndex();
@@ -562,7 +578,11 @@ ChoicePage::onLeave()
         {
             if ( m_bootloaderComboBox.isNull() )
             {
-                m_core->setBootLoaderInstallPath( selectedDevice()->deviceNode() );
+                auto d_p = selectedDevice();
+                if ( d_p )
+                    m_core->setBootLoaderInstallPath( d_p->deviceNode() );
+                else
+                    cDebug() << "WARNING: No device selected for bootloader.";
             }
             else
             {
@@ -1156,6 +1176,9 @@ ChoicePage::setupActions()
     else
         m_deviceInfoWidget->setPartitionTableType( PartitionTable::unknownTableType );
 
+    // Manual partitioning is always a possibility
+    m_somethingElseButton->show();
+
     bool atLeastOneCanBeResized = false;
     bool atLeastOneCanBeReplaced = false;
     bool atLeastOneIsMounted = false;  // Suppress 'erase' if so
@@ -1332,18 +1355,16 @@ ChoicePage::updateNextEnabled()
 {
     bool enabled = false;
 
+    auto sm_p = m_beforePartitionBarsView ? m_beforePartitionBarsView->selectionModel() : nullptr;
+
     switch ( m_choice )
     {
     case NoChoice:
         enabled = false;
         break;
     case Replace:
-        enabled = m_beforePartitionBarsView->selectionModel()->
-                  currentIndex().isValid();
-        break;
     case Alongside:
-        enabled = m_beforePartitionBarsView->selectionModel()->
-                  currentIndex().isValid();
+        enabled = sm_p && sm_p->currentIndex().isValid();
         break;
     case Erase:
     case Manual:

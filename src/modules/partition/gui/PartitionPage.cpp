@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
  *   Copyright 2015-2016, Teo Mrnjavac <teo@kde.org>
@@ -119,7 +119,7 @@ PartitionPage::~PartitionPage()
 void
 PartitionPage::updateButtons()
 {
-    bool create = false, edit = false, del = false;
+    bool create = false, createTable = false, edit = false, del = false;
 
     QModelIndex index = m_ui->partitionTreeView->currentIndex();
     if ( index.isValid() )
@@ -141,11 +141,18 @@ PartitionPage::updateButtons()
         edit = !isFree && !isExtended;
         del = !isFree;
     }
+
+    if ( m_ui->deviceComboBox->currentIndex() >= 0 )
+    {
+        QModelIndex deviceIndex = m_core->deviceModel()->index( m_ui->deviceComboBox->currentIndex(), 0 );
+        if ( m_core->deviceModel()->deviceForIndex( deviceIndex )->type() != Device::LVM_Device )
+            createTable = true;
+    }
+
     m_ui->createButton->setEnabled( create );
     m_ui->editButton->setEnabled( edit );
     m_ui->deleteButton->setEnabled( del );
-
-    m_ui->newPartitionTableButton->setEnabled( m_ui->deviceComboBox->currentIndex() >= 0 );
+    m_ui->newPartitionTableButton->setEnabled( createTable );
 }
 
 void

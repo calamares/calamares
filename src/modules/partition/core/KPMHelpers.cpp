@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014,      Aurélien Gâteau <agateau@kde.org>
  *   Copyright 2015-2016, Teo Mrnjavac <teo@kde.org>
@@ -116,9 +116,7 @@ createNewPartition( PartitionNode* parent,
                     PartitionTable::Flags flags )
 {
     FileSystem* fs = FileSystemFactory::create( fsType, firstSector, lastSector
-#ifdef WITH_KPMCORE22
                                                 ,device.logicalSize()
-#endif
     );
     return new Partition(
                parent,
@@ -153,9 +151,7 @@ createNewEncryptedPartition( PartitionNode* parent,
                            FileSystemFactory::create( FileSystem::Luks,
                                                       firstSector,
                                                       lastSector
-#ifdef WITH_KPMCORE22
                                                      ,device.logicalSize()
-#endif
                                                       ) );
     if ( !fs )
     {
@@ -186,9 +182,7 @@ clonePartition( Device* device, Partition* partition )
                          partition->fileSystem().type(),
                          partition->firstSector(),
                          partition->lastSector()
-#ifdef WITH_KPMCORE22
                         ,device->logicalSize()
-#endif
                      );
     return new Partition( partition->parent(),
                           *device,

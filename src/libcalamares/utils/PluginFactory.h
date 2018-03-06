@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2015, Teo Mrnjavac <teo@kde.org>
  *   Copyright 2017, Adriaan de Groot <groot@kde.org>
@@ -37,71 +37,6 @@ class PluginFactoryPrivate;
 
 #define CalamaresPluginFactory_iid "io.calamares.PluginFactory"
 
-#define CALAMARES_PLUGIN_FACTORY_DECLARATION_WITH_BASEFACTORY_SKEL(name, baseFactory, ...) \
-    class name : public Calamares::PluginFactory \
-    { \
-        Q_OBJECT \
-        Q_INTERFACES(Calamares::PluginFactory) \
-        __VA_ARGS__ \
-    public: \
-        explicit name(); \
-        ~name(); \
-    private: \
-        void init(); \
-    };
-
-#define CALAMARES_PLUGIN_FACTORY_DECLARATION_WITH_BASEFACTORY(name, baseFactory) \
-    CALAMARES_PLUGIN_FACTORY_DECLARATION_WITH_BASEFACTORY_SKEL(name, baseFactory, Q_PLUGIN_METADATA(IID CalamaresPluginFactory_iid))
-
-#define CALAMARES_PLUGIN_FACTORY_DEFINITION_WITH_BASEFACTORY(name, baseFactory, pluginRegistrations) \
-    name::name() \
-    { \
-        pluginRegistrations \
-    } \
-    name::~name() {}
-
-#define CALAMARES_PLUGIN_FACTORY_WITH_BASEFACTORY(name, baseFactory, pluginRegistrations) \
-    CALAMARES_PLUGIN_FACTORY_DECLARATION_WITH_BASEFACTORY(name, baseFactory) \
-    CALAMARES_PLUGIN_FACTORY_DEFINITION_WITH_BASEFACTORY(name, baseFactory, pluginRegistrations)
-
-#define CALAMARES_PLUGIN_FACTORY_DECLARATION(name) CALAMARES_PLUGIN_FACTORY_DECLARATION_WITH_BASEFACTORY(name, Calamares::PluginFactory)
-#define CALAMARES_PLUGIN_FACTORY_DEFINITION(name, pluginRegistrations) CALAMARES_PLUGIN_FACTORY_DEFINITION_WITH_BASEFACTORY(name, Calamares::PluginFactory, pluginRegistrations)
-
-/**
- * \relates PluginFactory
- *
- * Create a PluginFactory subclass and export it as the root plugin object.
- *
- * \param name The name of the PluginFactory derived class.
- *
- * \param pluginRegistrations Code to be inserted into the constructor of the
- * class. Usually a series of registerPlugin() calls.
- *
- * Example:
- * \code
- * #include <PluginFactory.h>
- * #include <plugininterface.h>
- *
- * class MyPlugin : public PluginInterface
- * {
- * public:
- *     MyPlugin(QObject *parent, const QVariantList &args)
- *         : PluginInterface(parent)
- *     {}
- * };
- *
- * CALAMARES_PLUGIN_FACTORY(MyPluginFactory,
- *                  registerPlugin<MyPlugin>();
- *                 )
- *
- * #include <myplugin.moc>
- * \endcode
- *
- * \see CALAMARES_PLUGIN_FACTORY_DECLARATION
- * \see CALAMARES_PLUGIN_FACTORY_DEFINITION
- */
-#define CALAMARES_PLUGIN_FACTORY(name, pluginRegistrations) CALAMARES_PLUGIN_FACTORY_WITH_BASEFACTORY(name, Calamares::PluginFactory, pluginRegistrations)
-
 /**
  * \relates PluginFactory
  *
@@ -113,7 +48,18 @@ class PluginFactoryPrivate;
  * \see CALAMARES_PLUGIN_FACTORY
  * \see CALAMARES_PLUGIN_FACTORY_DEFINITION
  */
-#define CALAMARES_PLUGIN_FACTORY_DECLARATION(name) CALAMARES_PLUGIN_FACTORY_DECLARATION_WITH_BASEFACTORY(name, Calamares::PluginFactory)
+#define CALAMARES_PLUGIN_FACTORY_DECLARATION(name) \
+    class name : public Calamares::PluginFactory \
+    { \
+        Q_OBJECT \
+        Q_INTERFACES(Calamares::PluginFactory) \
+        Q_PLUGIN_METADATA(IID CalamaresPluginFactory_iid) \
+    public: \
+        explicit name(); \
+        ~name(); \
+    private: \
+        void init(); \
+    };
 
 /**
  * \relates PluginFactory
@@ -128,7 +74,12 @@ class PluginFactoryPrivate;
  * \see CALAMARES_PLUGIN_FACTORY
  * \see CALAMARES_PLUGIN_FACTORY_DECLARATION
  */
-#define CALAMARES_PLUGIN_FACTORY_DEFINITION(name, pluginRegistrations) CALAMARES_PLUGIN_FACTORY_DEFINITION_WITH_BASEFACTORY(name, Calamares::PluginFactory, pluginRegistrations)
+#define CALAMARES_PLUGIN_FACTORY_DEFINITION(name, pluginRegistrations) \
+    name::name() \
+    { \
+        pluginRegistrations \
+    } \
+    name::~name() {}
 
 namespace Calamares
 {
@@ -160,13 +111,11 @@ namespace Calamares
  * T(QObject *parent, const QVariantList &args)
  * \endcode
  *
- * You should typically use either CALAMARES_PLUGIN_FACTORY() or
- * CALAMARES_PLUGIN_FACTORY_WITH_JSON() in your plugin code to create the factory.  The
- * typical pattern is
+ * You should typically use CALAMARES_PLUGIN_FACTORY_DEFINITION() in your plugin code to 
+ * create the factory.  The pattern is
  *
  * \code
- * #include <PluginFactory.h>
- * #include <plugininterface.h>
+ * #include "utils/PluginFactory.h"
  *
  * class MyPlugin : public PluginInterface
  * {
@@ -176,10 +125,9 @@ namespace Calamares
  *     {}
  * };
  *
- * CALAMARES_PLUGIN_FACTORY(MyPluginFactory,
+ * CALAMARES_PLUGIN_FACTORY_DEFINITION(MyPluginFactory,
  *                  registerPlugin<MyPlugin>();
  *                 )
- * #include <myplugin.moc>
  * \endcode
  *
  * If you want to load a library use KPluginLoader.
@@ -200,7 +148,7 @@ namespace Calamares
 class DLLEXPORT PluginFactory : public QObject
 {
     Q_OBJECT
-    Q_DECLARE_PRIVATE( PluginFactory )
+    friend class PluginFactoryPrivate;
 public:
     /**
      * This constructor creates a factory for a plugin.
@@ -301,7 +249,7 @@ protected:
         doRegisterPlugin( keyword, &T::staticMetaObject, instanceFunction );
     }
 
-    PluginFactoryPrivate* const d_ptr;
+    PluginFactoryPrivate* const pd_ptr;
 
     /**
      * This function is called when the factory asked to create an Object.

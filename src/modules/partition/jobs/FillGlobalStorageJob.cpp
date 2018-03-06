@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
  *   Copyright 2015-2016, Teo Mrnjavac <teo@kde.org>
@@ -28,11 +28,11 @@
 #include "Branding.h"
 #include "utils/Logger.h"
 
-// CalaPM
-#include <kpmcore/core/device.h>
-#include <kpmcore/core/partition.h>
-#include <kpmcore/fs/filesystem.h>
-#include <kpmcore/fs/luks.h>
+// KPMcore
+#include <core/device.h>
+#include <core/partition.h>
+#include <fs/filesystem.h>
+#include <fs/luks.h>
 
 // Qt
 #include <QDebug>
@@ -77,50 +77,6 @@ getLuksUuid( const QString& path )
     return uuid;
 }
 
-// TODO: this will be available from KPMCore soon
-static const char* filesystem_labels[] = {
-    "unknown",
-    "extended",
-
-    "ext2",
-    "ext3",
-    "ext4",
-    "linuxswap",
-    "fat16",
-    "fat32",
-    "ntfs",
-    "reiser",
-    "reiser4",
-    "xfs",
-    "jfs",
-    "hfs",
-    "hfsplus",
-    "ufs",
-    "unformatted",
-    "btrfs",
-    "hpfs",
-    "luks",
-    "ocfs2",
-    "zfs",
-    "exfat",
-    "nilfs2",
-    "lvm2 pv",
-    "f2fs",
-    "udf",
-    "iso9660",
-};
-
-Q_STATIC_ASSERT_X((sizeof(filesystem_labels) / sizeof(char *)) >= FileSystem::__lastType, "Mismatch in filesystem labels");
-
-static QString
-untranslatedTypeName(FileSystem::Type t)
-{
-
-    Q_ASSERT( t >= 0 );
-    Q_ASSERT( t <= FileSystem::__lastType );
-
-    return QLatin1String(filesystem_labels[t]);
-}
 
 static QVariant
 mapForPartition( Partition* partition, const QString& uuid )
@@ -129,7 +85,7 @@ mapForPartition( Partition* partition, const QString& uuid )
     map[ "device" ] = partition->partitionPath();
     map[ "mountPoint" ] = PartitionInfo::mountPoint( partition );
     map[ "fsName" ] = partition->fileSystem().name();
-    map[ "fs" ] = untranslatedTypeName( partition->fileSystem().type() );
+    map[ "fs" ] = partition->fileSystem().name( { QStringLiteral("C") } );  // Untranslated
     if ( partition->fileSystem().type() == FileSystem::Luks &&
          dynamic_cast< FS::luks& >( partition->fileSystem() ).innerFS() )
         map[ "fs" ] = dynamic_cast< FS::luks& >( partition->fileSystem() ).innerFS()->name();

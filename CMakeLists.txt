@@ -45,7 +45,7 @@ if( POLICY CMP0071 )
     cmake_policy( SET CMP0071 NEW )
 endif()
 if(NOT CMAKE_VERSION VERSION_LESS "3.10.0")
-    list(APPEND CMAKE_AUTOMOC_MACRO_NAMES 
+    list(APPEND CMAKE_AUTOMOC_MACRO_NAMES
         "K_PLUGIN_FACTORY_WITH_JSON"
         "K_EXPORT_PLASMA_DATAENGINE_WITH_JSON"
         "K_EXPORT_PLASMA_RUNNER"
@@ -119,6 +119,7 @@ if( CMAKE_COMPILER_IS_GNUCXX )
 endif()
 
 include( FeatureSummary )
+include( CMakeColors )
 
 set( QT_VERSION 5.6.0 )
 
@@ -126,6 +127,16 @@ find_package( Qt5 ${QT_VERSION} CONFIG REQUIRED Core Gui Widgets LinguistTools S
 find_package( YAMLCPP 0.5.1 REQUIRED )
 find_package( PolkitQt5-1 REQUIRED )
 find_package(ECM 5.18 NO_MODULE)
+if( ECM_FOUND )
+    set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${CMAKE_MODULE_PATH})
+endif()
+
+# Find ECM once, and add it to the module search path; Calamares
+# modules that need ECM can do
+#   find_package(ECM ${ECM_VERSION} REQUIRED NO_MODULE),
+# no need to mess with the module path after.
+set( ECM_VERSION 5.10.0 )
+find_package(ECM ${ECM_VERSION} NO_MODULE)
 if( ECM_FOUND )
     set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${CMAKE_MODULE_PATH})
 endif()
@@ -169,10 +180,12 @@ if ( PYTHONLIBS_FOUND )
     )
 endif()
 
-if( PYTHONLIBS_NOTFOUND OR NOT CALAMARES_BOOST_PYTHON3_FOUND )
+if( NOT PYTHONLIBS_FOUND OR NOT CALAMARES_BOOST_PYTHON3_FOUND )
+    message(STATUS "Disabling Boost::Python modules")
     set( WITH_PYTHON OFF )
 endif()
-if( PYTHONLIBS_NOTFOUND OR NOT PYTHONQT_FOUND )
+if( NOT PYTHONLIBS_FOUND OR NOT PYTHONQT_FOUND )
+    message(STATUS "Disabling PythonQt modules")
     set( WITH_PYTHONQT OFF )
 endif()
 
@@ -189,7 +202,7 @@ set( CALAMARES_TRANSLATION_LANGUAGES ar ast bg ca cs_CZ da de el en en_GB es_MX 
 set( CALAMARES_VERSION_MAJOR 3 )
 set( CALAMARES_VERSION_MINOR 2 )
 set( CALAMARES_VERSION_PATCH 0 )
-set( CALAMARES_VERSION_RC 1 )
+set( CALAMARES_VERSION_RC 3 )
 
 set( CALAMARES_VERSION ${CALAMARES_VERSION_MAJOR}.${CALAMARES_VERSION_MINOR}.${CALAMARES_VERSION_PATCH} )
 set( CALAMARES_VERSION_SHORT "${CALAMARES_VERSION}" )
@@ -302,6 +315,12 @@ add_feature_info(Config ${INSTALL_CONFIG} "Install Calamares configuration")
 add_feature_info(KCrash ${WITH_KF5Crash} "Crash dumps via KCrash")
 
 feature_summary(WHAT ALL)
+
+get_directory_property( SKIPPED_MODULES
+    DIRECTORY src/modules
+    DEFINITION LIST_SKIPPED_MODULES
+)
+calamares_explain_skipped_modules( ${SKIPPED_MODULES} )
 
 # Add all targets to the build-tree export set
 set( CMAKE_INSTALL_CMAKEDIR "${CMAKE_INSTALL_LIBDIR}/cmake/Calamares" CACHE PATH  "Installation directory for CMake files" )

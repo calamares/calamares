@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
  *
@@ -135,36 +135,28 @@ void
 KeyboardViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
     if ( configurationMap.contains( "xOrgConfFileName" ) &&
-         configurationMap.value( "xOrgConfFileName" ).type() == QVariant::String &&
-         !configurationMap.value( "xOrgConfFileName" ).toString().isEmpty() )
+            configurationMap.value( "xOrgConfFileName" ).type() == QVariant::String &&
+            !configurationMap.value( "xOrgConfFileName" ).toString().isEmpty() )
     {
         m_xOrgConfFileName = configurationMap.value( "xOrgConfFileName" )
-                                             .toString();
+                             .toString();
     }
     else
-    {
         m_xOrgConfFileName = "00-keyboard.conf";
-    }
 
     if ( configurationMap.contains( "convertedKeymapPath" ) &&
-         configurationMap.value( "convertedKeymapPath" ).type() == QVariant::String &&
-         !configurationMap.value( "convertedKeymapPath" ).toString().isEmpty() )
+            configurationMap.value( "convertedKeymapPath" ).type() == QVariant::String &&
+            !configurationMap.value( "convertedKeymapPath" ).toString().isEmpty() )
     {
         m_convertedKeymapPath = configurationMap.value( "convertedKeymapPath" )
-                                                .toString();
+                                .toString();
     }
     else
-    {
         m_convertedKeymapPath = QString();
-    }
 
     if ( configurationMap.contains( "writeEtcDefaultKeyboard" ) &&
-         configurationMap.value( "writeEtcDefaultKeyboard" ).type() == QVariant::Bool )
-    {
+            configurationMap.value( "writeEtcDefaultKeyboard" ).type() == QVariant::Bool )
         m_writeEtcDefaultKeyboard = configurationMap.value( "writeEtcDefaultKeyboard" ).toBool();
-    }
     else
-    {
         m_writeEtcDefaultKeyboard = true;
-    }
 }

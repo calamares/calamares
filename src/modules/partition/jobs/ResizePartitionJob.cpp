@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
  *   Copyright 2015, Teo Mrnjavac <teo@kde.org>
@@ -20,10 +20,14 @@
 
 #include "jobs/ResizePartitionJob.h"
 
+#include "utils/Units.h"
+
 // KPMcore
 #include <core/device.h>
 #include <ops/resizeoperation.h>
 #include <util/report.h>
+
+using CalamaresUtils::BytesToMiB;
 
 //- ResizePartitionJob ---------------------------------------------------------
 ResizePartitionJob::ResizePartitionJob( Device* device, Partition* partition, qint64 firstSector, qint64 lastSector )
@@ -51,8 +55,8 @@ ResizePartitionJob::prettyDescription() const
     return tr( "Resize <strong>%2MB</strong> partition <strong>%1</strong> to "
                "<strong>%3MB</strong>." )
             .arg( partition()->partitionPath() )
-            .arg( ( m_oldLastSector - m_oldFirstSector + 1 ) * partition()->sectorSize() / 1024 / 1024 )
-            .arg( ( m_newLastSector - m_newFirstSector + 1 ) * partition()->sectorSize() / 1024 / 1024 );
+            .arg( ( BytesToMiB( m_oldLastSector - m_oldFirstSector + 1 ) * partition()->sectorSize() ) )
+            .arg( ( BytesToMiB( m_newLastSector - m_newFirstSector + 1 ) * partition()->sectorSize() ) );
 }
 
 
@@ -62,8 +66,8 @@ ResizePartitionJob::prettyStatusMessage() const
     return tr( "Resizing %2MB partition %1 to "
                "%3MB." )
             .arg( partition()->partitionPath() )
-            .arg( ( m_oldLastSector - m_oldFirstSector + 1 ) * partition()->sectorSize() / 1024 / 1024 )
-            .arg( ( m_newLastSector - m_newFirstSector + 1 ) * partition()->sectorSize() / 1024 / 1024 );
+            .arg( ( BytesToMiB( m_oldLastSector - m_oldFirstSector + 1 ) * partition()->sectorSize() ) )
+            .arg( ( BytesToMiB( m_newLastSector - m_newFirstSector + 1 ) * partition()->sectorSize() ) );
 }
 
 
@@ -76,7 +80,7 @@ ResizePartitionJob::exec()
     m_partition->setLastSector( m_oldLastSector );
     ResizeOperation op(*m_device, *m_partition, m_newFirstSector, m_newLastSector);
     op.setStatus(Operation::StatusRunning);
-    connect(&op, &Operation::progress, [&](int percent) { emit progress(percent / 100.0); } );
+    connect(&op, &Operation::progress, this, &ResizePartitionJob::iprogress );
 
     QString errorMessage = tr( "The installer failed to resize partition %1 on disk '%2'." )
                        .arg( m_partition->partitionPath() )

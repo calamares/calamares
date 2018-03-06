@@ -1,7 +1,7 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2017, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -26,6 +26,7 @@
 namespace Calamares
 {
 class DebugWindow;
+class ViewManager;
 }
 
 /**
@@ -36,7 +37,7 @@ class CalamaresWindow : public QWidget
     Q_OBJECT
 public:
     CalamaresWindow( QWidget* parent = nullptr );
-    virtual ~CalamaresWindow() {}
+    virtual ~CalamaresWindow() override {}
 
 public slots:
     /**
@@ -46,8 +47,12 @@ public slots:
      */
     void enlarge( QSize enlarge );
 
+protected:
+    virtual void closeEvent( QCloseEvent* e ) override;
+
 private:
-    QPointer< Calamares::DebugWindow > m_debugWindow;
+    QPointer< Calamares::DebugWindow > m_debugWindow;  // Managed by self
+    Calamares::ViewManager* m_viewManager;
 };
 
 #endif //CALAMARESWINDOW_H

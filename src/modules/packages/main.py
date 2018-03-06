@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# === This file is part of Calamares - <http://github.com/calamares> ===
+# === This file is part of Calamares - <https://github.com/calamares> ===
 #
 #   Copyright 2014, Pier Luigi Fiorini <pierluigi.fiorini@gmail.com>
 #   Copyright 2015-2017, Teo Mrnjavac <teo@kde.org>
@@ -55,8 +55,12 @@ def _change_mode(mode):
 
 def pretty_name():
     if not group_packages:
-        # Outside the context of an operation
-        s = _("Processing packages (%(count)d / %(total)d)")
+        if (total_packages > 0):
+            # Outside the context of an operation
+            s = _("Processing packages (%(count)d / %(total)d)")
+        else:
+            s = _("Install packages.")
+
     elif mode_packages is INSTALL:
         s = _n("Installing one package.",
                "Installing %(num)d packages.", group_packages)
@@ -292,6 +296,19 @@ class PMDummy(PackageManager):
         libcalamares.utils.debug("Running script '" + str(script) + "'")
 
 
+class PMPisi(PackageManager):
+    backend = "pisi"
+
+    def install(self, pkgs, from_local=False):
+        check_target_env_call(["pisi", "install" "-y"] + pkgs)
+
+    def remove(self, pkgs):
+        check_target_env_call(["pisi", "remove", "-y"] + pkgs)
+
+    def update_db(self):
+        check_target_env_call(["pisi", "update-repo"])
+
+
 # Collect all the subclasses of PackageManager defined above,
 # and index them based on the backend property of each class.
 backend_managers = [
@@ -421,6 +438,11 @@ def run():
             break
     else:
         return "Bad backend", "backend=\"{}\"".format(backend)
+
+    skip_this = libcalamares.job.configuration.get("skip_if_no_internet", False)
+    if skip_this and not libcalamares.globalstorage.value("hasInternet"):
+        libcalamares.utils.debug( "WARNING: packages installation has been skipped: no internet" )
+        return None
 
     update_db = libcalamares.job.configuration.get("update_db", False)
     if update_db and libcalamares.globalstorage.value("hasInternet"):

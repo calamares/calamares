@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014, Teo Mrnjavac <teo@kde.org> (original dummypython code)
  *   Copyright 2016, Kevin Kofler <kevin.kofler@chello.at>
@@ -128,6 +128,9 @@ DummyCppJob::exec()
 
     emit progress( 0.1 );
     cDebug() << "[DUMMYCPP]: " << accumulator;
+
+    globalStorage->debugDump();
+    emit progress( 0.5 );
 
     QThread::sleep( 3 );
 

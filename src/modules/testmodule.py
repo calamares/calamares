@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# === This file is part of Calamares - <http://github.com/calamares> ===
+# === This file is part of Calamares - <https://github.com/calamares> ===
 #
 #   Copyright 2014, Teo Mrnjavac <teo@kde.org>
 #   Copyright 2017, Adriaan de Groot <groot@kde.org>
@@ -19,14 +19,25 @@
 #   You should have received a copy of the GNU General Public License
 #   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
 """
-Testing tool to run a single Python module; optionally a
-global configuration and module configuration can be read
-from YAML files. Give a full path to the module-directory,
-and also full paths to the configuration files. An empty
-configuration file name, or "-" (a single dash) is used
-to indicate that no file should be read -- useful to load
-a module configuratioon file without a global configuration.
+Testing tool to run a single Python module; optionally a global configuration
+and module configuration can be read from YAML files.
 """
+argumentepilog = """
+moduledir may be a module name (e.g. "welcome") or a full path to the
+    module (e.g. "src/modules/welcome"). In the former case, an attempt
+    is made to find the module in several sensible places.
+globalstorage_yaml may be given as a full path to a YAML file containing
+    the global configuration, or as "" or "-" which will leave the
+    global storage empty.
+configuration_yaml may be given as a full path to a YAML file with the
+    module configuration, as "" or "-" to leave the configuration
+    empty, or as "+" to load the standard configuration from the
+    module-directory (e.g. welcome.conf if the welcome module is given).
+
+The simplest invocation to test a module, with its default configuration, is
+to call this program as follows (for, e.g., the welcome module):
+
+    testmodule.py welcome - +"""
 
 import argparse
 import os
@@ -34,14 +45,15 @@ import sys
 
 import yaml
 
+calamaresimporterror = ("Can not import libcalamares. Ensure the PYTHONPATH "
+    "environment variable includes the dir where libcalamares.so is "
+    "installed.")
 try:
     import libcalamares
 except ImportError:
-    print("Failed to import libcalamares. Make sure then PYTHONPATH "
-          "environment variable includes the dir where libcalamares.so is "
-          "installed.")
+    print(calamaresimporterror)
     print()
-    raise
+    libcalamares = None
 
 
 class Job:
@@ -114,18 +126,37 @@ def test_module(moduledir, globalconfigfilename, moduleconfigfilename, lang):
     return 0
 
 
-def munge_filename(filename):
+def munge_filename(filename, module=None):
     """
     Maps files "" (empty) and "-" (just a dash) to None,
     to simplify processing elsewhere.
     """
     if not filename or filename == "-":
         return None
+    if filename == "+" and module is not None:
+        d, name = os.path.split(module)
+        if d and not name:
+            # Ended in a /
+            d, name = os.path.split(module)
+        if name:
+            return os.path.join(module, name + ".conf")
+
     return filename
 
 
+def find_module(modulename):
+    if "/" in modulename:
+        return modulename
+    else:
+        for prefix in ("src/modules", "build/src/modules", "../src/modules"):
+            mp = os.path.join( prefix, modulename )
+            if os.path.exists( mp ):
+                return mp
+    # Not found? Bail out elsewhere
+    return modulename
+
 def main():
-    parser = argparse.ArgumentParser(description=globals()["__doc__"])
+    parser = argparse.ArgumentParser(description=globals()["__doc__"], epilog=argumentepilog, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("moduledir",
                         help="Dir containing the Python module.")
     parser.add_argument("globalstorage_yaml", nargs="?",
@@ -136,9 +167,15 @@ def main():
                         help="Set translation language.")
     args = parser.parse_args()
 
-    return test_module(args.moduledir,
+    # If we get here, it wasn't a --help invocation, so complain
+    # if libcalamares wasn't found.
+    if not libcalamares:
+        parser.error(calamaresimporterror)
+
+    moduledir = find_module(args.moduledir)
+    return test_module(moduledir,
                        munge_filename(args.globalstorage_yaml),
-                       munge_filename(args.configuration_yaml),
+                       munge_filename(args.configuration_yaml, moduledir),
                        args.lang)
 
 

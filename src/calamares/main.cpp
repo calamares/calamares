@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
  *   Copyright 2017, Adriaan de Groot <groot@kde.org>
@@ -56,6 +56,7 @@ main( int argc, char* argv[] )
     KCrash::setDrKonqiEnabled( true );
     KCrash::setFlags( KCrash::SaferDialog | KCrash::AlwaysDirectly );
     // TODO: umount anything in /tmp/calamares-... as an emergency save function
+    a.setApplicationDisplayName( QString() );
 #endif
 
     QCommandLineParser parser;

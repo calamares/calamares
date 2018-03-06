@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2017, Adriaan de Groot <groot@kde..org>
  *
@@ -30,7 +30,7 @@ class TrackingInstallJob : public Calamares::Job
     Q_OBJECT
 public:
     TrackingInstallJob( const QString& url );
-    ~TrackingInstallJob();
+    ~TrackingInstallJob() override;
 
     QString prettyName() const override;
     QString prettyDescription() const override;

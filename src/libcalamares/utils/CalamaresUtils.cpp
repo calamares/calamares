@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2013-2016, Teo Mrnjavac <teo@kde.org>
  *
@@ -350,6 +350,36 @@ getString(const QVariantMap& map, const QString& key)
             return v.toString();
     }
     return QString();
+}
+
+int
+getInteger( const QVariantMap& map, const QString& key, int d )
+{
+    int result = d;
+    if ( map.contains( key ) )
+    {
+        auto v = map.value( key );
+        if ( v.type() == QVariant::Int )
+            result = v.toInt();
+    }
+
+    return result;
+}
+
+double
+getDouble( const QVariantMap& map, const QString& key, double d )
+{
+    double result = d;
+    if ( map.contains( key ) )
+    {
+        auto v = map.value( key );
+        if ( v.type() == QVariant::Int )
+            result = v.toInt();
+        else if ( v.type() == QVariant::Double )
+            result = v.toDouble();
+    }
+
+    return result;
 }
 
 QVariantMap

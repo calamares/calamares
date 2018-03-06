@@ -1,4 +1,4 @@
-/* === This file is part of Calamares - <http://github.com/calamares> ===
+/* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright (c) 2017, Kyle Robbertze <kyle@aims.ac.za>
  *   Copyright 2017, Adriaan de Groot <groot@kde.org>
@@ -144,7 +144,7 @@ Qt::ItemFlags
 PackageModel::flags( const QModelIndex& index ) const
 {
     if ( !index.isValid() )
-        return 0;
+        return Qt::ItemFlags();
     if ( index.column() == 0 )
         return Qt::ItemIsUserCheckable | QAbstractItemModel::flags( index );
     return QAbstractItemModel::flags( index );
