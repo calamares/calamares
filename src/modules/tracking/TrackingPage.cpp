@@ -90,17 +90,20 @@ bool TrackingPage::getTrackingOption(TrackingType t)
 
     // A tracking type is enabled if it is checked, or
     // any higher level is checked.
+#define ch(x) ui->x->isChecked()
     switch ( t )
     {
         case TrackingType::InstallTracking:
-            enabled |= ui->installRadio->isChecked();
-            // FALLTHRU
+            enabled = ch(installRadio) || ch(machineRadio) || ch(userRadio);
+            break;
         case TrackingType::MachineTracking:
-            enabled |= ui->machineRadio->isChecked();
-            // FALLTHRU
+            enabled = ch(machineRadio) || ch(userRadio);
+            break;
         case TrackingType::UserTracking:
-            enabled |= ui->userRadio->isChecked();
+            enabled = ch(userRadio);
+            break;
     }
+#undef ch
     return enabled;
 }
 
