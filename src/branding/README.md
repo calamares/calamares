@@ -32,3 +32,5 @@ There are two examples of branding content:
    but instead of a slideshow, it lets the user play Same Game (clicking
    colored balls) during the installation. The game is taken from the
    QML examples provided by the Qt Company.
+ - `fancy/` uses translations and offers navigation arrows.
+
