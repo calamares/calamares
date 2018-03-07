@@ -17,21 +17,35 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.0;
+import QtQuick 2.5;
 import calamares.slideshow 1.0;
 
 Presentation
 {
     id: presentation
 
-    Timer {
-        interval: 5000
-        running: false
-        repeat: true
-        onTriggered: presentation.goToNextSlide()
+    mouseNavigation: false /* Only the fwd/back buttons */
+    loopSlides: false
+    
+    BackButton {
+        width: 60
+        height: 60
+        source: "go-previous.svgz"
     }
     
+    ForwardButton {
+        width: 60
+        height: 60
+        source: "go-next.svgz"
+    }
+
+    SlideCounter {}
+    
     Slide {
+        /* This first slide ignores the "normal" slide layout and places
+         * an image and text by itself. The anchors need to be connected
+         * to place the items properly.
+         */
         Image {
             id: background1  // Must be unique
             source: "squid.png"
@@ -50,53 +64,32 @@ Presentation
     }
 
     Slide {
-        Image {
-            id: background2
-            source: "squid2.png"
-            width: 200; height: 200
-            fillMode: Image.PreserveAspectFit
-            anchors.centerIn: parent
-        }
-        Text {
-            id: namelabel2
-            anchors.horizontalCenter: background2.horizontalCenter
-            anchors.top: background2.bottom
-            text: qsTr("Welcome to Fancy GNU/Linux.")
-            wrapMode: Text.WordWrap
-            width: presentation.width
-            horizontalAlignment: Text.Center
-            font.pointSize: 20
-        }
-        Text {
-            anchors.horizontalCenter: background2.horizontalCenter
-            anchors.top: namelabel2.bottom
-            text: qsTr("This is example branding for your GNU/Linux distribution. " +
+        /* Make this one narrower to prevent overlap of wide text with nav buttons */
+        width: parent.width * 0.9 - 120
+        x: parent.width * 0.05 + 60
+        /* For just a slide with text, things can be simplified using properties */
+        title: qsTr("Welcome to Fancy GNU/Linux.")
+        centeredText: qsTr("This is example branding for your GNU/Linux distribution. " +
                 "Long texts in the slideshow are translated and word-wrapped appropriately. " +
                 "Calamares is a distribution-independent installer framework. ")
-            wrapMode: Text.WordWrap
-            width: presentation.width
-            horizontalAlignment: Text.Center
-        }
     }
 
     Slide {
-        Image {
-            id: background3
-            source: "squid3.png"
-            width: 200; height: 200
-            fillMode: Image.PreserveAspectFit
-            anchors.centerIn: parent
-        }
         centeredText: qsTr("This is a third Slide element.")
     }
 
     Slide {
+        /* Note that these overlap because both are centered. The z-order puts the background 
+         * in back. While you can use the properties of the Slide, it's not easy to get at
+         * the anchors of the items.
+         */
         Image {
             id: background4
             source: "squid4.png"
             width: 200; height: 200
             fillMode: Image.PreserveAspectFit
             anchors.centerIn: parent
+            z: -1
         }
         centeredText: qsTr("This is a fourth Slide element.")
     }
