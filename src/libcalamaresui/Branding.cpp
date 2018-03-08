@@ -184,7 +184,7 @@ Branding::Branding( const QString& brandingFilePath,
 
         QDir translationsDir( componentDir.filePath( "lang" ) );
         if ( !translationsDir.exists() )
-            cWarning() << "the selected branding component does not ship translations.";
+            cWarning() << "the branding component" << componentDir.absolutePath() << "does not ship translations.";
         m_translationsPathPrefix = translationsDir.absolutePath();
         m_translationsPathPrefix.append( QString( "%1calamares-%2" )
                                             .arg( QDir::separator() )
