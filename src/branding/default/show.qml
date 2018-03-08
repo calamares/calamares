@@ -24,6 +24,7 @@ Presentation
     id: presentation
 
     Timer {
+        id: advanceTimer
         interval: 5000
         running: false
         repeat: true
@@ -60,4 +61,6 @@ Presentation
     Slide {
         centeredText: "This is a third Slide element."
     }
+
+    Component.onCompleted: advanceTimer.running = true
 }

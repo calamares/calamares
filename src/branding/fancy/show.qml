@@ -93,4 +93,20 @@ Presentation
         }
         centeredText: qsTr("This is a fourth Slide element.")
     }
+    
+    Slide {
+        title: qsTr("Slide number five")
+        writeInText: qsTr("This is example branding for your GNU/Linux distribution. " +
+                "Long texts in the slideshow are translated and word-wrapped appropriately. " +
+                "Calamares is a distribution-independent installer framework. ")
+    }
+    
+    Slide {
+        title: qsTr("Slide number five")
+        content: [ 
+            qsTr("Welcome to Fancy GNU/Linux."), 
+            qsTr("This is a customizable QML slideshow."),
+            qsTr("This is a third Slide element.")
+            ]
+    }
 }
