@@ -32,6 +32,7 @@ Rectangle {
     Text {
         id: slideCounterText
         anchors.centerIn: parent
-        text: ( parent.parent.currentSlide + 1 ) + " / " + parent.parent.slides.length
+        //: slide counter, %1 of %2 (numeric)
+        text: qsTr("%L1 / %L2").arg(parent.parent.currentSlide + 1).arg(parent.parent.slides.length)
     }
 }
