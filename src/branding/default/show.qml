@@ -48,7 +48,7 @@ Presentation
                   "To create a Calamares presentation in QML, import calamares.slideshow,<br/>"+
                   "define a Presentation element with as many Slide elements as needed."
             wrapMode: Text.WordWrap
-            width: root.width
+            width: presentation.width
             horizontalAlignment: Text.Center
         }
     }
