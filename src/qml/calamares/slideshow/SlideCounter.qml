@@ -20,7 +20,7 @@
  * in the slideshow in the format "n / total".
  */
 
-import QtQuick 2.2;
+import QtQuick 2.5;
 
 Rectangle {
     id: slideCounter

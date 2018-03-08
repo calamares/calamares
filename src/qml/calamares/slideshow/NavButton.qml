@@ -23,7 +23,7 @@
  * configured instance that interacts with the presentation.
  */
 
-import QtQuick 2.2;
+import QtQuick 2.5;
 
 Image {
     id: fade
