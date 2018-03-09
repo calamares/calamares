@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: tr_TR\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: src/modules/dummypython/main.py:44
 msgid "Dummy python job."
@@ -44,9 +44,11 @@ msgstr "Paketleri yükle"
 msgid "Installing one package."
 msgid_plural "Installing %(num)d packages."
 msgstr[0] "%(num)d paket yükleniyor"
+msgstr[1] "%(num)d paket yükleniyor"
 
 #: src/modules/packages/main.py:68
 #, python-format
 msgid "Removing one package."
 msgid_plural "Removing %(num)d packages."
 msgstr[0] "%(num)d paket kaldırılıyor."
+msgstr[1] "%(num)d paket kaldırılıyor."
