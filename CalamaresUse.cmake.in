@@ -20,7 +20,7 @@ if( NOT CALAMARES_CMAKE_DIR )
 endif()
 set( CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CALAMARES_CMAKE_DIR} )
 
-find_package( Qt5 @QT_VERSION@ CONFIG REQUIRED Core Widgets )
+find_package( Qt5 @QT_VERSION@ CONFIG REQUIRED Core Widgets LinguistTools )
 
 include( CalamaresAddLibrary )
 include( CalamaresAddModuleSubdirectory )
