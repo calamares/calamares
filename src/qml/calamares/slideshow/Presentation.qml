@@ -2,6 +2,12 @@
  *
  *   Copyright 2017, Adriaan de Groot <groot@kde.org>
  *     - added looping, keys-instead-of-shortcut
+ *   Copyright 2018, Adriaan de Groot <groot@kde.org>
+ *     - make looping a property, drop the 'c' fade-key
+ *     - drop navigation through entering a slide number
+ *       (this and the 'c' key make sense in a *presentation*
+ *       slideshow, not in a passive slideshow like Calamares)
+ *     - remove quit key
  *
  *   SPDX-License-Identifier: LGPL-2.1
  *   License-Filename: LICENSES/LGPLv2.1-Presentation
@@ -58,6 +64,8 @@ Item {
     property variant slides: []
     property int currentSlide: 0
 
+    property bool loopSlides: true
+
     property bool showNotes: false;
     property bool allowDelay: true;
     property alias mouseNavigation: mouseArea.enabled
@@ -70,8 +78,6 @@ Item {
     property string codeFontFamily: "Courier New"
 
     // Private API
-    property bool _faded: false
-    property int _userNum;
     property int _lastShownSlide: 0
 
     Component.onCompleted: {
@@ -85,7 +91,6 @@ Item {
         }
 
         root.slides = slides;
-        root._userNum = 0;
 
         // Make first slide visible...
         if (root.slides.length > 0)
@@ -106,48 +111,21 @@ Item {
     }
 
     function goToNextSlide() {
-        root._userNum = 0
-        if (_faded)
-            return
         if (root.slides[currentSlide].delayPoints) {
             if (root.slides[currentSlide]._advance())
                 return;
         }
         if (currentSlide + 1 < root.slides.length)
             ++currentSlide;
-        else
+        else if (loopSlides)
             currentSlide = 0;  // Loop at the end
     }
 
     function goToPreviousSlide() {
-        root._userNum = 0
-        if (root._faded)
-            return
         if (currentSlide - 1 >= 0)
             --currentSlide;
-    }
-
-    function goToUserSlide() {
-        --_userNum;
-        if (root._faded || _userNum >= root.slides.length)
-            return
-        if (_userNum < 0)
-            goToNextSlide()
-        else {
-            currentSlide = _userNum;
-            root.focus = true;
-        }
-    }
-
-    // directly type in the slide number: depends on root having focus
-    Keys.onPressed: {
-        if (event.key >= Qt.Key_0 && event.key <= Qt.Key_9)
-            _userNum = 10 * _userNum + (event.key - Qt.Key_0)
-        else {
-            if (event.key == Qt.Key_Return || event.key == Qt.Key_Enter)
-                goToUserSlide();
-            _userNum = 0;
-        }
+        else if (loopSlides)
+            currentSlide = root.slides.length - 1
     }
 
     focus: true  // Keep focus
@@ -165,20 +143,10 @@ Item {
 
     // presentation-specific single-key shortcuts (which interfere with normal typing)
     Shortcut { sequence: " "; enabled: root.keyShortcutsEnabled; onActivated: goToNextSlide() }
-    Shortcut { sequence: "c"; enabled: root.keyShortcutsEnabled; onActivated: root._faded = !root._faded }
 
     // standard shortcuts
     Shortcut { sequence: StandardKey.MoveToNextPage; onActivated: goToNextSlide() }
     Shortcut { sequence: StandardKey.MoveToPreviousPage; onActivated: goToPreviousSlide() }
-    Shortcut { sequence: StandardKey.Quit; onActivated: Qt.quit() }
-
-    Rectangle {
-        z: 1000
-        color: "black"
-        anchors.fill: parent
-        opacity: root._faded ? 1 : 0
-        Behavior on opacity { NumberAnimation { duration: 250 } }
-    }
 
     MouseArea {
         id: mouseArea
