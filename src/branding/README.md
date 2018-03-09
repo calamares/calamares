@@ -7,6 +7,11 @@ file, containing brand-specific strings in a key-value structure, plus
 brand-specific images or QML. Such a subdirectory, when placed here, is
 automatically picked up by CMake and made available to Calamares.
 
+It is recommended to package branding separately, so as to avoid
+forking Calamares just for adding some files. Calamares installs
+CMake support macros to help create branding packages. See the
+calamares-branding repository for examples of stand-alone branding.
+
 
 ## Translations
 
