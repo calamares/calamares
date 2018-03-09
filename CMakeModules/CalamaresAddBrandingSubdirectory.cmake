@@ -1,8 +1,24 @@
+# Support macros for creating Calamares branding components.
+#
+# Calamares branding components have two parts:
+# - a branding.desc file that tells Calamares how to describe the product
+#   (e.g. strings like "Generic GNU/Linux") and the name of a QML file
+#   (the "slideshow") that is displayed during installation.
+# - the QML files themselves, plus supporting images etc.
+#
+# Branding components can be created inside the Calamares source tree
+# (there is one example the `default/` branding, which is also connected
+# to the default configuration shipped with Calamares), but they can be
+# built outside of, and largely independently of, Calamares by using
+# these CMake macros.
+#
+# See the calamares-examples repository for more examples.
+#
 include( CMakeParseArguments)
 
 include( CMakeColors )
 
-# Usage calamares_add_branding( NAME <name> [SUBDIRECTORY <dir>])
+# Usage calamares_add_branding( <name> [DIRECTORY <dir>] [SUBDIRECTORIES <dir> ...])
 #
 # Adds a branding component to the build:
 # - the component's top-level files are copied into the build-dir;
@@ -14,29 +30,30 @@ include( CMakeColors )
 # with the given <name>, which is usually the name of the
 # directory containing the component, and which must match the
 # *componentName* in `branding.desc`.
-function( calamares_add_branding )
-    set( _CABT_SUBDIRECTORY "." )
-    cmake_parse_arguments( _CABT "" "NAME;SUBDIRECTORY" "" ${ARGN} )
-    if ( NOT _CABT_NAME )
-        message( FATAL_ERROR "Branding component must have a NAME" )
-    endif()
-
-    set( NAME ${_CABT_NAME} )
-    set( SUBDIRECTORY ${_CABT_SUBDIRECTORY} )
+#
+# If SUBDIRECTORIES are given, then those are copied (each one level deep)
+# to the installation location as well, preserving the subdirectory name.
+function( calamares_add_branding NAME )
+    set( _CABT_DIRECTORY "." )
+    cmake_parse_arguments( _CABT "" "DIRECTORY" "SUBDIRECTORIES" ${ARGN} )
+    set( SUBDIRECTORY ${_CABT_DIRECTORY} )
+    set( _brand_dir ${_CABT_DIRECTORY} )
 
     set( BRANDING_DIR share/calamares/branding )
     set( BRANDING_COMPONENT_DESTINATION ${BRANDING_DIR}/${NAME} )
 
-    # We glob all the files inside the subdirectory, and we make sure they are
-    # synced with the bindir structure and installed.
-    file( GLOB BRANDING_COMPONENT_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}/${SUBDIRECTORY} "${SUBDIRECTORY}/*" )
-    foreach( BRANDING_COMPONENT_FILE ${BRANDING_COMPONENT_FILES} )
-        if( NOT IS_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/${SUBDIRECTORY}/${BRANDING_COMPONENT_FILE} )
-            configure_file( ${SUBDIRECTORY}/${BRANDING_COMPONENT_FILE} ${SUBDIRECTORY}/${BRANDING_COMPONENT_FILE} COPYONLY )
+    foreach( _subdir "" ${_CABT_SUBDIRECTORIES} )
+        file( GLOB BRANDING_COMPONENT_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}/${_brand_dir} "${_brand_dir}/${_subdir}/*" )
+        message(STATUS "${BRANDING_COMPONENT_FILES}")
+        foreach( BRANDING_COMPONENT_FILE ${BRANDING_COMPONENT_FILES} )
+            set( _subpath ${_brand_dir}/${BRANDING_COMPONENT_FILE} )
+            if( NOT IS_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/${_subpath} )
+                configure_file( ${_subpath} ${_subpath} COPYONLY )
 
-            install( FILES ${CMAKE_CURRENT_BINARY_DIR}/${SUBDIRECTORY}/${BRANDING_COMPONENT_FILE}
-                        DESTINATION ${BRANDING_COMPONENT_DESTINATION} )
-        endif()
+                install( FILES ${CMAKE_CURRENT_BINARY_DIR}/${_subpath}
+                            DESTINATION ${BRANDING_COMPONENT_DESTINATION}/${_subdir}/ )
+            endif()
+        endforeach()
     endforeach()
 
     message( "-- ${BoldYellow}Found ${CALAMARES_APPLICATION_NAME} branding component: ${BoldRed}${NAME}${ColorReset}" )
@@ -46,7 +63,7 @@ function( calamares_add_branding )
     endif()
 endfunction()
 
-# Usage calamares_add_branding_translations( NAME <name> [SUBDIRECTORY <dir>])
+# Usage calamares_add_branding_translations( <name> [DIRECTORY <dir>])
 #
 # Adds the translations for a branding component to the build:
 # - the component's lang/ directory is scanned for .ts files
@@ -55,15 +72,11 @@ endfunction()
 # Translation files must be called calamares-<name>_<lang>.ts . Optionally
 # the lang/ dir is found in the given <dir> instead of the current source
 # directory.
-function( calamares_add_branding_translations )
-    set( _CABT_SUBDIRECTORY "." )
-    cmake_parse_arguments( _CABT "" "NAME;SUBDIRECTORY" "" ${ARGN} )
-    if ( NOT _CABT_NAME )
-        message( FATAL_ERROR "Branding component must have a NAME" )
-    endif()
-
-    set( NAME ${_CABT_NAME} )
-    set( SUBDIRECTORY ${_CABT_SUBDIRECTORY} )
+function( calamares_add_branding_translations NAME )
+    set( _CABT_DIRECTORY "." )
+    cmake_parse_arguments( _CABT "" "DIRECTORY" "" ${ARGN} )
+    set( SUBDIRECTORY ${_CABT_DIRECTORY} )
+    set( _brand_dir ${_CABT_DIRECTORY} )
 
     set( BRANDING_DIR share/calamares/branding )
     set( BRANDING_COMPONENT_DESTINATION ${BRANDING_DIR}/${NAME} )
@@ -78,19 +91,23 @@ function( calamares_add_branding_translations )
     endif()
 endfunction()
 
-# Usage calamares_add_branding_subdirectory( <dir> )
+# Usage calamares_add_branding_subdirectory( <dir> [SUBDIRECTORIES <dir> ...])
 #
 # Adds a branding component from a subdirectory:
 # - if there is a CMakeLists.txt, use that
 # - otherwise assume a "standard" setup with top-level files and a lang/ dir for translations
 #
+# If SUBDIRECTORIES are given, they are relative to <dir>, and are
+# copied (one level deep) to the install location as well.
 function( calamares_add_branding_subdirectory SUBDIRECTORY )
+    cmake_parse_arguments( _CABS "" "" "SUBDIRECTORIES" ${ARGN} )
+
     if( EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/${SUBDIRECTORY}/CMakeLists.txt" )
         add_subdirectory( ${SUBDIRECTORY} )
     elseif( EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/${SUBDIRECTORY}/branding.desc" )
-        calamares_add_branding( NAME ${SUBDIRECTORY} SUBDIRECTORY ${SUBDIRECTORY} )
+        calamares_add_branding( ${SUBDIRECTORY} DIRECTORY ${SUBDIRECTORY} SUBDIRECTORIES ${_CABS_SUBDIRECTORIES} )
         if( IS_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/${SUBDIRECTORY}/lang" )
-            calamares_add_branding_translations( NAME ${SUBDIRECTORY} SUBDIRECTORY ${SUBDIRECTORY} )
+            calamares_add_branding_translations( ${SUBDIRECTORY} DIRECTORY ${SUBDIRECTORY} )
         endif()
     else()
         message( "-- ${BoldYellow}Warning:${ColorReset} tried to add branding component subdirectory ${BoldRed}${SUBDIRECTORY}${ColorReset} which has no branding.desc." )

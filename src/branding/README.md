@@ -12,6 +12,20 @@ forking Calamares just for adding some files. Calamares installs
 CMake support macros to help create branding packages. See the
 calamares-branding repository for examples of stand-alone branding.
 
+## Examples
+
+There is one example of a branding component included with Calamares,
+so that it can be run directly from the build directory for testing purposes:
+
+ - `default/` is a sample brand for the Generic Linux distribution. It uses
+   the default Calamares icons and a as start-page splash it provides a
+   tag-cloud view of languages. The slideshow is a basic one with a few
+   slides of text and a single image. No translations are provided.
+
+Since the slideshow can be **any** QML, it is limited only by your designers
+imagination and your QML experience. For straightforward presentations,
+see the documentation below. There are more examples in the *calamares-branding*
+repository.
 
 ## Translations
 
@@ -27,22 +41,6 @@ file) should be enclosed in this form for translations
 ```
     text: qsTr("This is an example text.")
 ```
-
-## Examples
-
-There are two examples of branding content:
-
- - `default/` is a sample brand for the Generic Linux distribution. It uses
-   the default Calamares icons and a as start-page splash it provides a
-   tag-cloud view of languages. The slideshow is a basic one with a few
-   slides of text and a single image. No translations are provided.
- - `fancy/` uses translations and offers navigation arrows. These are
-   provided by the standard Calamares QML classes.
-
-Since the slideshow can be **any** QML, it is limited only by your designers
-imagination and your QML experience. For straightforward presentations,
-see the documentation below. There are more examples in the *calamares-branding*
-repository.
 
 ## Presentation
 
@@ -97,3 +95,39 @@ standard properties for a boring "static text" slideshow, though:
 The presentation classes can be used to produce a fairly dry slideshow
 for the installation process; it is recommended to experiment with the
 visual effects and classes available in QtQuick.
+
+## Project Layout
+
+A branding component that is created and installed outside of Calamares
+will have a top-level `CMakeLists.txt` that includes some boilerplate
+to find Calamares, and then adds a subdirectory which contains the
+actual branding component.
+
+Adding the subdirectory can be done as follows:
+
+ - If the directory contains files only, and optionally has a single
+   subdirectory lang/ which contains the translation files for the
+   component, then `calamares_add_branding_subdirectory()` can be
+   used, which takes only the name of the subdirectory.
+
+The file layout in a typical branding component repository is:
+
+```
+ /
+ - CMakeLists.txt
+ - componentname/
+   - show.qml
+   - image1.png
+   ...
+   - lang/
+     - calamares-componentname_en.ts
+     - calamares-componentname_de.ts
+     ...
+```
+
+ - If the branding component has many files which are organized into
+   subdirectories, use the SUBDIRECTORIES argument to the CMake function
+   to additionally install files from those subdirectories. For example,
+   if the component places all of its images in an `img/` subdirectory,
+   then call `calamares_add_branding_subdirectory( ... SUBDIRECTORIES img)`.
+   It is a bad idea to include `lang/` in the SUBDIRECTORIES list.
