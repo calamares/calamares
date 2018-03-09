@@ -1274,7 +1274,7 @@ Installationsprogrammet vil stoppe og alle ændringer vil gå tabt.</translation
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="176"/>
         <source>The password contains the user name in some form</source>
-        <translation>Adgangskoden indeholde i nogen form brugernavnet</translation>
+        <translation>Adgangskoden indeholder i nogen form brugernavnet</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="178"/>
@@ -1289,12 +1289,12 @@ Installationsprogrammet vil stoppe og alle ændringer vil gå tabt.</translation
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="183"/>
         <source>The password contains less than %1 digits</source>
-        <translation>Adgangskoden indeholder færre end %1 tal</translation>
+        <translation>Adgangskoden indeholder færre end %1 cifre</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="184"/>
         <source>The password contains too few digits</source>
-        <translation>Adgangskoden indeholder for få tal</translation>
+        <translation>Adgangskoden indeholder for få cifre</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="187"/>
@@ -1419,7 +1419,7 @@ Installationsprogrammet vil stoppe og alle ændringer vil gå tabt.</translation
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="243"/>
         <source>Bad integer value of setting - %1</source>
-        <translation>Dårlig heltalsværdi til indstilling - %1</translation>
+        <translation>Ugyldig heltalsværdi til indstilling - %1</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="247"/>
@@ -1845,7 +1845,7 @@ Output:
     <message>
         <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="268"/>
         <source>Command &lt;i&gt;%1&lt;/i&gt; crashed.</source>
-        <translation>Kommandoen &lt;i&gt;%1&lt;/i&gt; holdet op med at virke.</translation>
+        <translation>Kommandoen &lt;i&gt;%1&lt;/i&gt; holdte op med at virke.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="273"/>
@@ -1860,7 +1860,7 @@ Output:
     <message>
         <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="278"/>
         <source>Internal error when starting command.</source>
-        <translation>Intern kommando ved start af kommando.</translation>
+        <translation>Intern fejl ved start af kommando.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="279"/>
