@@ -61,7 +61,7 @@ macro(add_calamares_translations language)
     add_custom_command(
         OUTPUT ${trans_outfile}
         COMMAND "${Qt5Core_RCC_EXECUTABLE}"
-        ARGS ${rcc_options} -name ${trans_file} -o ${trans_outfile} ${trans_infile}
+        ARGS ${rcc_options} --format-version 1 -name ${trans_file} -o ${trans_outfile} ${trans_infile}
         MAIN_DEPENDENCY ${trans_infile}
         DEPENDS ${QM_FILES}
     )
