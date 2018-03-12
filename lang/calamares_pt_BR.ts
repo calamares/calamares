@@ -9,12 +9,12 @@
     <message>
         <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="79"/>
         <source>This system was started with an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from an EFI environment, this installer must deploy a boot loader application, like &lt;strong&gt;GRUB&lt;/strong&gt; or &lt;strong&gt;systemd-boot&lt;/strong&gt; on an &lt;strong&gt;EFI System Partition&lt;/strong&gt;. This is automatic, unless you choose manual partitioning, in which case you must choose it or create it on your own.</source>
-        <translation>Este sistema foi iniciado com um ambiente de inicialização &lt;strong&gt;EFI&lt;/strong&gt;.&lt;br&gt;&lt;br&gt;Para configurar o início a partir de um ambiente EFI, este instalador deverá instalar um gerenciador de inicialização, como o &lt;strong&gt;GRUB&lt;/strong&gt; ou &lt;strong&gt;systemd-boot&lt;/strong&gt; em uma &lt;strong&gt;Partição de Sistema EFI&lt;/strong&gt;. Este processo é automático, a não ser que escolha o particionamento manual, que no caso permite-lhe escolher ou criá-lo manualmente.</translation>
+        <translation>Este sistema foi iniciado com um ambiente de inicialização &lt;strong&gt;EFI&lt;/strong&gt;.&lt;br&gt;&lt;br&gt;Para configurar o início a partir de um ambiente EFI, este instalador deverá instalar um gerenciador de inicialização, como o &lt;strong&gt;GRUB&lt;/strong&gt; ou &lt;strong&gt;systemd-boot&lt;/strong&gt; em uma &lt;strong&gt;Partição de Sistema EFI&lt;/strong&gt;. Esse processo é automático, a não ser que escolha o particionamento manual, que no caso fará você escolher ou criar o gerenciador de inicialização por conta própria.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="91"/>
         <source>This system was started with a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from a BIOS environment, this installer must install a boot loader, like &lt;strong&gt;GRUB&lt;/strong&gt;, either at the beginning of a partition or on the &lt;strong&gt;Master Boot Record&lt;/strong&gt; near the beginning of the partition table (preferred). This is automatic, unless you choose manual partitioning, in which case you must set it up on your own.</source>
-        <translation>Este sistema foi iniciado utilizando o &lt;strong&gt;BIOS&lt;/strong&gt; como ambiente de inicialização.&lt;br&gt;&lt;br&gt;Para configurar a inicialização em um ambiente BIOS, este instalador deve instalar um gerenciador de boot, como o &lt;strong&gt;GRUB&lt;/strong&gt;, no começo de uma partição ou no &lt;strong&gt;Master Boot Record&lt;/strong&gt;, perto do começo da tabela de partições (recomendado). Este processo é automático, a não ser que você escolha o particionamento manual, onde você deverá configurá-lo manualmente.</translation>
+        <translation>Este sistema foi iniciado utilizando o &lt;strong&gt;BIOS&lt;/strong&gt; como ambiente de inicialização.&lt;br&gt;&lt;br&gt;Para configurar a inicialização em um ambiente BIOS, este instalador deve instalar um gerenciador de boot, como o &lt;strong&gt;GRUB&lt;/strong&gt;, no começo de uma partição ou no &lt;strong&gt;Master Boot Record&lt;/strong&gt;, perto do começo da tabela de partições (recomendado). Esse processo é automático, a não ser que você escolha o particionamento manual, onde você deverá configurá-lo manualmente.</translation>
     </message>
 </context>
 <context>
@@ -387,7 +387,7 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1200"/>
         <source>This storage device does not seem to have an operating system on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-        <translation>Parece que não há um sistema operacional neste dispositivo. O que você gostaria de fazer?&lt;br/&gt;Você poderá revisar e confirmar suas opções antes que as alterações sejam feitas no dispositivo de armazenamento.</translation>
+        <translation>Parece que não há um sistema operacional neste dispositivo de armazenamento. O que você gostaria de fazer?&lt;br/&gt;Você poderá revisar e confirmar suas opções antes que as alterações sejam feitas no dispositivo de armazenamento.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1205"/>
@@ -749,7 +749,7 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="114"/>
         <source>This is a &lt;strong&gt;loop&lt;/strong&gt; device.&lt;br&gt;&lt;br&gt;It is a pseudo-device with no partition table that makes a file accessible as a block device. This kind of setup usually only contains a single filesystem.</source>
-        <translation>Este é um dispositivo de &lt;strong&gt;loop&lt;/strong&gt;.&lt;br&gt;&lt;br&gt;Este é um pseudo-dispositivo sem tabela de partições que faz um arquivo acessível como um dispositivo de bloco. Este tipo de configuração normalmente contém apenas um único sistema de arquivos.</translation>
+        <translation>Este é um dispositivo de &lt;strong&gt;loop&lt;/strong&gt;.&lt;br&gt;&lt;br&gt;Esse é um pseudo-dispositivo sem tabela de partições que faz um arquivo acessível como um dispositivo de bloco. Esse tipo de configuração normalmente contém apenas um único sistema de arquivos.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="121"/>
@@ -1261,12 +1261,12 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="170"/>
         <source>The password is a palindrome</source>
-        <translation type="unfinished"/>
+        <translation>A senha é um palíndromo</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="172"/>
         <source>The password differs with case changes only</source>
-        <translation type="unfinished"/>
+        <translation>A senha difere apenas com mudanças entre maiúsculas ou minúsculas</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="174"/>
@@ -1276,12 +1276,12 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="176"/>
         <source>The password contains the user name in some form</source>
-        <translation type="unfinished"/>
+        <translation>A senha contém o nome de usuário em alguma forma</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="178"/>
         <source>The password contains words from the real name of the user in some form</source>
-        <translation type="unfinished"/>
+        <translation>A senha contém palavras do nome real do usuário em alguma forma</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="180"/>
@@ -1291,27 +1291,27 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="183"/>
         <source>The password contains less than %1 digits</source>
-        <translation type="unfinished"/>
+        <translation>A senha contém menos de %1 dígitos</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="184"/>
         <source>The password contains too few digits</source>
-        <translation type="unfinished"/>
+        <translation>A senha contém poucos dígitos</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="187"/>
         <source>The password contains less than %1 uppercase letters</source>
-        <translation type="unfinished"/>
+        <translation>A senha contém menos que %1 letras maiúsculas</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="188"/>
         <source>The password contains too few uppercase letters</source>
-        <translation type="unfinished"/>
+        <translation>A senha contém poucas letras maiúsculas</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="191"/>
         <source>The password contains less than %1 lowercase letters</source>
-        <translation type="unfinished"/>
+        <translation>A senha contém menos que %1 letras minúsculas</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="192"/>
@@ -1321,7 +1321,7 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="195"/>
         <source>The password contains less than %1 non-alphanumeric characters</source>
-        <translation type="unfinished"/>
+        <translation>A senha contém menos que %1 caracteres não alfanuméricos</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="196"/>
@@ -1331,7 +1331,7 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="199"/>
         <source>The password is shorter than %1 characters</source>
-        <translation type="unfinished"/>
+        <translation>A senha é menor que %1 caracteres</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="200"/>
@@ -1341,22 +1341,22 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="202"/>
         <source>The password is just rotated old one</source>
-        <translation type="unfinished"/>
+        <translation>A senha é apenas uma antiga modificada</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="205"/>
         <source>The password contains less than %1 character classes</source>
-        <translation type="unfinished"/>
+        <translation>A senha contém menos de %1 tipos de caracteres</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="206"/>
         <source>The password does not contain enough character classes</source>
-        <translation type="unfinished"/>
+        <translation>A senha não contém tipos suficientes de caracteres</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="209"/>
         <source>The password contains more than %1 same characters consecutively</source>
-        <translation type="unfinished"/>
+        <translation>A senha contém mais que %1 caracteres iguais consecutivamente</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="210"/>
@@ -1366,7 +1366,7 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="213"/>
         <source>The password contains more than %1 characters of the same class consecutively</source>
-        <translation type="unfinished"/>
+        <translation>A senha contém mais que %1 caracteres do mesmo tipo consecutivamente</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="214"/>
@@ -1376,12 +1376,12 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="217"/>
         <source>The password contains monotonic sequence longer than %1 characters</source>
-        <translation type="unfinished"/>
+        <translation>A senha contém uma sequência monotônica com mais de %1 caracteres</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="218"/>
         <source>The password contains too long of a monotonic character sequence</source>
-        <translation type="unfinished"/>
+        <translation>A senha contém uma sequência de caracteres monotônicos muito longa</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="220"/>
@@ -1396,22 +1396,22 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="224"/>
         <source>Password generation failed - required entropy too low for settings</source>
-        <translation type="unfinished"/>
+        <translation>A geração de senha falhou - a entropia requerida é muito baixa para as configurações</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="229"/>
         <source>The password fails the dictionary check - %1</source>
-        <translation type="unfinished"/>
+        <translation> A senha falhou na verificação do dicionário - %1</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="231"/>
         <source>The password fails the dictionary check</source>
-        <translation type="unfinished"/>
+        <translation>A senha falhou na verificação do dicionário</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="235"/>
         <source>Unknown setting - %1</source>
-        <translation type="unfinished"/>
+        <translation>Configuração desconhecida - %1</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="239"/>
@@ -1421,17 +1421,17 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="243"/>
         <source>Bad integer value of setting - %1</source>
-        <translation type="unfinished"/>
+        <translation>Valor de número inteiro errado na configuração - %1</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="247"/>
         <source>Bad integer value</source>
-        <translation type="unfinished"/>
+        <translation>Valor de número inteiro errado</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="251"/>
         <source>Setting %1 is not of integer type</source>
-        <translation type="unfinished"/>
+        <translation>A configuração %1 não é do tipo inteiro</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="255"/>
@@ -1441,7 +1441,7 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="259"/>
         <source>Setting %1 is not of string type</source>
-        <translation type="unfinished"/>
+        <translation>A configuração %1 não é do tipo string</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="263"/>
@@ -1456,7 +1456,7 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="267"/>
         <source>The configuration file is malformed</source>
-        <translation type="unfinished"/>
+        <translation>O arquivo de configuração está defeituoso</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="269"/>
@@ -1514,7 +1514,7 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="200"/>
         <source>&lt;small&gt;If more than one person will use this computer, you can set up multiple accounts after installation.&lt;/small&gt;</source>
-        <translation>&lt;small&gt;Se mais de uma pessoa usará este computador, você pode definir múltiplas contas após a instalação.&lt;/small&gt;</translation>
+        <translation>&lt;small&gt;Se mais de uma pessoa utilizará este computador, você pode definir múltiplas contas após a instalação.&lt;/small&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="335"/>
@@ -1534,7 +1534,7 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="309"/>
         <source>&lt;small&gt;This name will be used if you make the computer visible to others on a network.&lt;/small&gt;</source>
-        <translation>&lt;small&gt;Este nome será usado caso você deixe o computador visível a outros na rede.&lt;/small&gt;</translation>
+        <translation>&lt;small&gt;Esse nome será usado caso você deixe o computador visível a outros na rede.&lt;/small&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="450"/>
@@ -1778,7 +1778,7 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="449"/>
         <source>A separate boot partition was set up together with an encrypted root partition, but the boot partition is not encrypted.&lt;br/&gt;&lt;br/&gt;There are security concerns with this kind of setup, because important system files are kept on an unencrypted partition.&lt;br/&gt;You may continue if you wish, but filesystem unlocking will happen later during system startup.&lt;br/&gt;To encrypt the boot partition, go back and recreate it, selecting &lt;strong&gt;Encrypt&lt;/strong&gt; in the partition creation window.</source>
-        <translation>Uma partição de inicialização separada foi configurada juntamente com uma partição raiz criptografada, mas a partição de inicialização não é criptografada.&lt;br/&gt;&lt;br/&gt;Há preocupações de segurança quanto a este tipo de configuração, porque arquivos de sistema importantes são mantidos em uma partição não criptografada.&lt;br/&gt;Você pode continuar se quiser, mas o desbloqueio do sistema de arquivos acontecerá mais tarde durante a inicialização do sistema.&lt;br/&gt;Para criptografar a partição de inicialização, volte e recrie-a, selecionando &lt;strong&gt;Criptografar&lt;/strong&gt;  na janela de criação da partição.</translation>
+        <translation>Uma partição de inicialização separada foi configurada juntamente com uma partição raiz criptografada, mas a partição de inicialização não é criptografada.&lt;br/&gt;&lt;br/&gt;Há preocupações de segurança quanto a esse tipo de configuração, porque arquivos de sistema importantes são mantidos em uma partição não criptografada.&lt;br/&gt;Você pode continuar se quiser, mas o desbloqueio do sistema de arquivos acontecerá mais tarde durante a inicialização do sistema.&lt;br/&gt;Para criptografar a partição de inicialização, volte e recrie-a, selecionando &lt;strong&gt;Criptografar&lt;/strong&gt;  na janela de criação da partição.</translation>
     </message>
 </context>
 <context>

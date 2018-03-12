@@ -1239,232 +1239,232 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="155"/>
         <source>Password is too weak</source>
-        <translation type="unfinished"/>
+        <translation>Lozinka je preslaba</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="162"/>
         <source>Memory allocation error when setting &apos;%1&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Pogreška u dodjeli memorije prilikom postavljanja &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="166"/>
         <source>Memory allocation error</source>
-        <translation type="unfinished"/>
+        <translation>Pogreška u dodjeli memorije</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="168"/>
         <source>The password is the same as the old one</source>
-        <translation type="unfinished"/>
+        <translation>Lozinka je ista prethodnoj</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="170"/>
         <source>The password is a palindrome</source>
-        <translation type="unfinished"/>
+        <translation>Lozinka je palindrom</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="172"/>
         <source>The password differs with case changes only</source>
-        <translation type="unfinished"/>
+        <translation>Lozinka se razlikuje samo u promjenama velikog i malog slova</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="174"/>
         <source>The password is too similar to the old one</source>
-        <translation type="unfinished"/>
+        <translation>Lozinka je slična prethodnoj</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="176"/>
         <source>The password contains the user name in some form</source>
-        <translation type="unfinished"/>
+        <translation>Lozinka u nekoj formi sadrži korisničko ime</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="178"/>
         <source>The password contains words from the real name of the user in some form</source>
-        <translation type="unfinished"/>
+        <translation>Lozinka u nekoj formi sadrži stvarno ime korisnika</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="180"/>
         <source>The password contains forbidden words in some form</source>
-        <translation type="unfinished"/>
+        <translation>Lozinka u nekoj formi sadrži zabranjene rijeći</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="183"/>
         <source>The password contains less than %1 digits</source>
-        <translation type="unfinished"/>
+        <translation>Lozinka sadrži manje od %1 brojeva</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="184"/>
         <source>The password contains too few digits</source>
-        <translation type="unfinished"/>
+        <translation>Lozinka sadrži premalo brojeva</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="187"/>
         <source>The password contains less than %1 uppercase letters</source>
-        <translation type="unfinished"/>
+        <translation>Lozinka sadrži manje od %1 velikih slova</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="188"/>
         <source>The password contains too few uppercase letters</source>
-        <translation type="unfinished"/>
+        <translation>Lozinka sadrži premalo velikih slova</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="191"/>
         <source>The password contains less than %1 lowercase letters</source>
-        <translation type="unfinished"/>
+        <translation>Lozinka sadrži manje od %1 malih slova</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="192"/>
         <source>The password contains too few lowercase letters</source>
-        <translation type="unfinished"/>
+        <translation>Lozinka sadrži premalo malih slova</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="195"/>
         <source>The password contains less than %1 non-alphanumeric characters</source>
-        <translation type="unfinished"/>
+        <translation>Lozinka sadrži manje od %1 ne-alfanumeričkih znakova.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="196"/>
         <source>The password contains too few non-alphanumeric characters</source>
-        <translation type="unfinished"/>
+        <translation>Lozinka sadrži premalo ne-alfanumeričkih znakova</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="199"/>
         <source>The password is shorter than %1 characters</source>
-        <translation type="unfinished"/>
+        <translation>Lozinka je kraća od %1 znakova</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="200"/>
         <source>The password is too short</source>
-        <translation type="unfinished"/>
+        <translation>Lozinka je prekratka</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="202"/>
         <source>The password is just rotated old one</source>
-        <translation type="unfinished"/>
+        <translation>Lozinka je jednaka rotiranoj prethodnoj</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="205"/>
         <source>The password contains less than %1 character classes</source>
-        <translation type="unfinished"/>
+        <translation>Lozinka sadrži manje od %1 razreda znakova</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="206"/>
         <source>The password does not contain enough character classes</source>
-        <translation type="unfinished"/>
+        <translation>Lozinka ne sadrži dovoljno razreda znakova</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="209"/>
         <source>The password contains more than %1 same characters consecutively</source>
-        <translation type="unfinished"/>
+        <translation>Lozinka sadrži više od %1 uzastopnih znakova</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="210"/>
         <source>The password contains too many same characters consecutively</source>
-        <translation type="unfinished"/>
+        <translation>Lozinka sadrži previše uzastopnih znakova</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="213"/>
         <source>The password contains more than %1 characters of the same class consecutively</source>
-        <translation type="unfinished"/>
+        <translation>Lozinka sadrži više od %1  uzastopnih znakova iz istog razreda</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="214"/>
         <source>The password contains too many characters of the same class consecutively</source>
-        <translation type="unfinished"/>
+        <translation>Lozinka sadrži previše uzastopnih znakova iz istog razreda</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="217"/>
         <source>The password contains monotonic sequence longer than %1 characters</source>
-        <translation type="unfinished"/>
+        <translation>Lozinka sadrži monotonu sekvencu dužu od %1 znakova</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="218"/>
         <source>The password contains too long of a monotonic character sequence</source>
-        <translation type="unfinished"/>
+        <translation>Lozinka sadrži previše monotonu sekvencu znakova</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="220"/>
         <source>No password supplied</source>
-        <translation type="unfinished"/>
+        <translation>Nema isporučene lozinke</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="222"/>
         <source>Cannot obtain random numbers from the RNG device</source>
-        <translation type="unfinished"/>
+        <translation>Ne mogu dobiti slučajne brojeve od RNG uređaja</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="224"/>
         <source>Password generation failed - required entropy too low for settings</source>
-        <translation type="unfinished"/>
+        <translation>Generiranje lozinke nije uspjelo - potrebna entropija je premala za postavke</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="229"/>
         <source>The password fails the dictionary check - %1</source>
-        <translation type="unfinished"/>
+        <translation>Nije uspjela provjera rječnika za lozinku  - %1</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="231"/>
         <source>The password fails the dictionary check</source>
-        <translation type="unfinished"/>
+        <translation>Nije uspjela provjera rječnika za lozinku</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="235"/>
         <source>Unknown setting - %1</source>
-        <translation type="unfinished"/>
+        <translation>Nepoznate postavke - %1</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="239"/>
         <source>Unknown setting</source>
-        <translation type="unfinished"/>
+        <translation>Nepoznate postavke</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="243"/>
         <source>Bad integer value of setting - %1</source>
-        <translation type="unfinished"/>
+        <translation>Loša cjelobrojna vrijednost postavke - %1</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="247"/>
         <source>Bad integer value</source>
-        <translation type="unfinished"/>
+        <translation>Loša cjelobrojna vrijednost</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="251"/>
         <source>Setting %1 is not of integer type</source>
-        <translation type="unfinished"/>
+        <translation>Postavka %1 nije cjelobrojnog tipa</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="255"/>
         <source>Setting is not of integer type</source>
-        <translation type="unfinished"/>
+        <translation>Postavka nije cjelobrojnog tipa</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="259"/>
         <source>Setting %1 is not of string type</source>
-        <translation type="unfinished"/>
+        <translation>Postavka %1 nije tipa znakovnog niza</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="263"/>
         <source>Setting is not of string type</source>
-        <translation type="unfinished"/>
+        <translation>Postavka nije tipa znakovnog niza</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="265"/>
         <source>Opening the configuration file failed</source>
-        <translation type="unfinished"/>
+        <translation>Nije uspjelo otvaranje konfiguracijske datoteke</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="267"/>
         <source>The configuration file is malformed</source>
-        <translation type="unfinished"/>
+        <translation>Konfiguracijska datoteka je oštećena</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="269"/>
         <source>Fatal failure</source>
-        <translation type="unfinished"/>
+        <translation>Fatalna pogreška</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="271"/>
         <source>Unknown error</source>
-        <translation type="unfinished"/>
+        <translation>Nepoznata greška</translation>
     </message>
 </context>
 <context>
@@ -1825,7 +1825,8 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
         <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="263"/>
         <source>
 There was no output from the command.</source>
-        <translation type="unfinished"/>
+        <translation>
+Nema izlazne informacije od naredbe.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="264"/>

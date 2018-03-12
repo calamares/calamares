@@ -37,12 +37,13 @@ struct ValueCheck : public QPair<QString, CalamaresUtils::CommandList*>
     {
     }
 
-    ~ValueCheck()
-    {
-        // We don't own the commandlist, the binding holding this valuecheck
-        // does, so don't delete. This is closely tied to (temporaries created
-        // by) pass-by-value in QList::append().
-    }
+    // ~ValueCheck()
+    //
+    // There is no destructor.
+    //
+    // We don't own the commandlist, the binding holding this valuecheck
+    // does, so don't delete. This is closely tied to (temporaries created
+    // by) pass-by-value in QList::append().
 
     QString value() const { return first; }
     CalamaresUtils::CommandList* commands() const { return second; }

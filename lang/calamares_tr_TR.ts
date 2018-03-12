@@ -1242,232 +1242,232 @@ Kuruluma devam edebilirsiniz fakat bazı özellikler devre dışı kalabilir.</t
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="155"/>
         <source>Password is too weak</source>
-        <translation type="unfinished"/>
+        <translation>Şifre çok zayıf</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="162"/>
         <source>Memory allocation error when setting &apos;%1&apos;</source>
-        <translation type="unfinished"/>
+        <translation>&apos;%1&apos; ayarlanırken bellek ayırma hatası</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="166"/>
         <source>Memory allocation error</source>
-        <translation type="unfinished"/>
+        <translation>Bellek ayırma hatası</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="168"/>
         <source>The password is the same as the old one</source>
-        <translation type="unfinished"/>
+        <translation>Şifre eski şifreyle aynı</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="170"/>
         <source>The password is a palindrome</source>
-        <translation type="unfinished"/>
+        <translation>Parola eskilerden birinin ters okunuşu olabilir</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="172"/>
         <source>The password differs with case changes only</source>
-        <translation type="unfinished"/>
+        <translation>Parola sadece vaka değişiklikleri ile farklılık gösterir</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="174"/>
         <source>The password is too similar to the old one</source>
-        <translation type="unfinished"/>
+        <translation>Parola eski parolaya çok benzer</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="176"/>
         <source>The password contains the user name in some form</source>
-        <translation type="unfinished"/>
+        <translation>Parola kullanıcı adını bir biçimde içeriyor</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="178"/>
         <source>The password contains words from the real name of the user in some form</source>
-        <translation type="unfinished"/>
+        <translation>Şifre, kullanıcının gerçek adına ait kelimeleri bazı biçimde içerir</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="180"/>
         <source>The password contains forbidden words in some form</source>
-        <translation type="unfinished"/>
+        <translation>Şifre, bazı biçimde yasak kelimeler içeriyor</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="183"/>
         <source>The password contains less than %1 digits</source>
-        <translation type="unfinished"/>
+        <translation>Şifre %1 den az hane içeriyor</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="184"/>
         <source>The password contains too few digits</source>
-        <translation type="unfinished"/>
+        <translation>Parola çok az basamak içeriyor</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="187"/>
         <source>The password contains less than %1 uppercase letters</source>
-        <translation type="unfinished"/>
+        <translation>Parola %1 den az büyük harf içeriyor</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="188"/>
         <source>The password contains too few uppercase letters</source>
-        <translation type="unfinished"/>
+        <translation>Parola çok az harf içermektedir</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="191"/>
         <source>The password contains less than %1 lowercase letters</source>
-        <translation type="unfinished"/>
+        <translation>Parola %1 den daha küçük harf içermektedir</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="192"/>
         <source>The password contains too few lowercase letters</source>
-        <translation type="unfinished"/>
+        <translation>Parola çok az küçük harf içeriyor</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="195"/>
         <source>The password contains less than %1 non-alphanumeric characters</source>
-        <translation type="unfinished"/>
+        <translation>Şifre %1 den az alfasayısal olmayan karakter içeriyor</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="196"/>
         <source>The password contains too few non-alphanumeric characters</source>
-        <translation type="unfinished"/>
+        <translation>Parola çok az sayıda alfasayısal olmayan karakter içeriyor</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="199"/>
         <source>The password is shorter than %1 characters</source>
-        <translation type="unfinished"/>
+        <translation>Parola %1 karakterden kısa</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="200"/>
         <source>The password is too short</source>
-        <translation type="unfinished"/>
+        <translation>Parola çok kısa</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="202"/>
         <source>The password is just rotated old one</source>
-        <translation type="unfinished"/>
+        <translation>Şifre önceden kullanıldı</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="205"/>
         <source>The password contains less than %1 character classes</source>
-        <translation type="unfinished"/>
+        <translation>Parola %1 den az karakter sınıfı içeriyor</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="206"/>
         <source>The password does not contain enough character classes</source>
-        <translation type="unfinished"/>
+        <translation>Parola yeterli sayıda karakter sınıfı içermiyor</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="209"/>
         <source>The password contains more than %1 same characters consecutively</source>
-        <translation type="unfinished"/>
+        <translation>Şifre, %1 den fazla aynı karakteri ardışık olarak içeriyor</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="210"/>
         <source>The password contains too many same characters consecutively</source>
-        <translation type="unfinished"/>
+        <translation>Parola ardışık olarak aynı sayıda çok karakter içeriyor</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="213"/>
         <source>The password contains more than %1 characters of the same class consecutively</source>
-        <translation type="unfinished"/>
+        <translation>Parola, aynı sınıftan %1 den fazla karakter ardışık olarak içeriyor</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="214"/>
         <source>The password contains too many characters of the same class consecutively</source>
-        <translation type="unfinished"/>
+        <translation>Parola aynı sınıfta çok fazla karakter içeriyor</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="217"/>
         <source>The password contains monotonic sequence longer than %1 characters</source>
-        <translation type="unfinished"/>
+        <translation>Şifre, %1 karakterden daha uzun monoton dizilim içeriyor</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="218"/>
         <source>The password contains too long of a monotonic character sequence</source>
-        <translation type="unfinished"/>
+        <translation>Parola çok uzun monoton karakter dizisi içeriyor</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="220"/>
         <source>No password supplied</source>
-        <translation type="unfinished"/>
+        <translation>Parola sağlanmadı</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="222"/>
         <source>Cannot obtain random numbers from the RNG device</source>
-        <translation type="unfinished"/>
+        <translation>RNG cihazından rastgele sayılar elde edemiyor</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="224"/>
         <source>Password generation failed - required entropy too low for settings</source>
-        <translation type="unfinished"/>
+        <translation>Şifre üretimi başarısız oldu - ayarlar için entropi çok düşük gerekli</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="229"/>
         <source>The password fails the dictionary check - %1</source>
-        <translation type="unfinished"/>
+        <translation>Parola, sözlüğü kontrolü başarısız - %1</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="231"/>
         <source>The password fails the dictionary check</source>
-        <translation type="unfinished"/>
+        <translation>Parola, sözlük onayı başarısız</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="235"/>
         <source>Unknown setting - %1</source>
-        <translation type="unfinished"/>
+        <translation>Bilinmeyen ayar - %1</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="239"/>
         <source>Unknown setting</source>
-        <translation type="unfinished"/>
+        <translation>Bilinmeyen ayar</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="243"/>
         <source>Bad integer value of setting - %1</source>
-        <translation type="unfinished"/>
+        <translation>Ayarın bozuk tam sayı değeri - %1</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="247"/>
         <source>Bad integer value</source>
-        <translation type="unfinished"/>
+        <translation>Yanlış tamsayı değeri</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="251"/>
         <source>Setting %1 is not of integer type</source>
-        <translation type="unfinished"/>
+        <translation>%1 ayarı tamsayı tipi değil</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="255"/>
         <source>Setting is not of integer type</source>
-        <translation type="unfinished"/>
+        <translation>Ayar tamsayı tipi değil</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="259"/>
         <source>Setting %1 is not of string type</source>
-        <translation type="unfinished"/>
+        <translation>Ayar %1, dize tipi değil</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="263"/>
         <source>Setting is not of string type</source>
-        <translation type="unfinished"/>
+        <translation>Ayar, dize tipi değil</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="265"/>
         <source>Opening the configuration file failed</source>
-        <translation type="unfinished"/>
+        <translation>Yapılandırma dosyasını açma başarısız oldu</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="267"/>
         <source>The configuration file is malformed</source>
-        <translation type="unfinished"/>
+        <translation>Yapılandırma dosyası hatalı biçimlendirildi</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="269"/>
         <source>Fatal failure</source>
-        <translation type="unfinished"/>
+        <translation>Ölümcül arıza</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="271"/>
         <source>Unknown error</source>
-        <translation type="unfinished"/>
+        <translation>Bilinmeyen hata</translation>
     </message>
 </context>
 <context>
@@ -1829,7 +1829,8 @@ Kuruluma devam edebilirsiniz fakat bazı özellikler devre dışı kalabilir.</t
         <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="263"/>
         <source>
 There was no output from the command.</source>
-        <translation type="unfinished"/>
+        <translation>
+Komut çıktısı yok.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="264"/>

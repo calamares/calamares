@@ -5,6 +5,7 @@
 #
 #   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
 #   Copyright 2016, Anke Boersma <demm@kaosx.us>
+#   Copyright 2018, Adriaan de Groot <groot@kde.org>
 #
 #   Calamares is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -24,6 +25,19 @@ import subprocess
 import shutil
 
 import libcalamares
+from libcalamares.utils import gettext_path, gettext_languages
+
+import gettext
+_translation = gettext.translation("calamares-python",
+                                   localedir=gettext_path(),
+                                   languages=gettext_languages(),
+                                   fallback=True)
+_ = _translation.gettext
+_n = _translation.ngettext
+
+
+def pretty_name():
+    return _( "Unmount file systems." )
 
 
 def list_mounts(root_mount_point):
@@ -65,7 +79,7 @@ def run():
             try:
                 shutil.copy2(log_source, log_destination)
             except Exception as e:
-                libcalamares.utils.debug("WARNING Could not preserve file {!s}, "
+                libcalamares.utils.warning("Could not preserve file {!s}, "
                                        "error {!s}".format(log_source, e))
 
     if not root_mount_point:

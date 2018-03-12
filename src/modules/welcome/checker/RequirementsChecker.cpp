@@ -320,6 +320,7 @@ bool
 RequirementsChecker::checkEnoughStorage( qint64 requiredSpace )
 {
 #ifdef WITHOUT_LIBPARTED
+    Q_UNUSED( requiredSpace );
     cWarning() << "RequirementsChecker is configured without libparted.";
     return false;
 #else

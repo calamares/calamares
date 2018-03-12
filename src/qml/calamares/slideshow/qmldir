@@ -1,4 +1,10 @@
 module calamares.slideshow
+
 Presentation 1.0 Presentation.qml
 Slide 1.0 Slide.qml
 
+NavButton 1.0 NavButton.qml
+ForwardButton 1.0 ForwardButton.qml
+BackButton 1.0 BackButton.qml
+
+SlideCounter 1.0 SlideCounter.qml

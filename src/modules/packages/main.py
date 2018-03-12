@@ -7,6 +7,7 @@
 #   Copyright 2015-2017, Teo Mrnjavac <teo@kde.org>
 #   Copyright 2016-2017, Kyle Robbertze <kyle@aims.ac.za>
 #   Copyright 2017, Alf Gaida <agaida@siduction.org>
+#   Copyright 2018, Adriaan de Groot <groot@kde.org>
 #
 #   Calamares is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -394,9 +395,9 @@ def run_operations(pkgman, entry):
                 try:
                     pkgman.install_package(package)
                 except subprocess.CalledProcessError:
-                    warn_text = "WARNING: could not install package "
+                    warn_text = "Could not install package "
                     warn_text += str(package)
-                    libcalamares.utils.debug(warn_text)
+                    libcalamares.utils.warning(warn_text)
         elif key == "remove":
             _change_mode(REMOVE)
             pkgman.remove(entry[key])
@@ -406,9 +407,9 @@ def run_operations(pkgman, entry):
                 try:
                     pkgman.remove([package])
                 except subprocess.CalledProcessError:
-                    warn_text = "WARNING: could not remove package "
+                    warn_text = "Could not remove package "
                     warn_text += package
-                    libcalamares.utils.debug(warn_text)
+                    libcalamares.utils.warning(warn_text)
         elif key == "localInstall":
             _change_mode(INSTALL)
             pkgman.install(entry[key], from_local=True)
@@ -441,7 +442,7 @@ def run():
 
     skip_this = libcalamares.job.configuration.get("skip_if_no_internet", False)
     if skip_this and not libcalamares.globalstorage.value("hasInternet"):
-        libcalamares.utils.debug( "WARNING: packages installation has been skipped: no internet" )
+        libcalamares.utils.warning( "Package installation has been skipped: no internet" )
         return None
 
     update_db = libcalamares.job.configuration.get("update_db", False)

@@ -58,7 +58,7 @@ ThemeWidget::ThemeWidget(const ThemeInfo& info, QWidget* parent)
         image.fill( QColor( QRgb( hash_color ) ) );
     }
 
-    image = image.scaled( image_size, Qt::KeepAspectRatio, Qt::SmoothTransformation );
+    image = image.scaled( image_size, Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
 
     QLabel* image_label = new QLabel( this );
     image_label->setPixmap( image );

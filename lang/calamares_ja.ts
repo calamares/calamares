@@ -486,7 +486,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/contextualprocess/ContextualProcessJob.cpp" line="75"/>
         <source>Contextual Processes Job</source>
-        <translation type="unfinished"/>
+        <translation>コンテキストプロセスジョブ</translation>
     </message>
 </context>
 <context>
@@ -1370,7 +1370,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="214"/>
         <source>The password contains too many characters of the same class consecutively</source>
-        <translation type="unfinished"/>
+        <translation>パスワードで同じ文字クラスの文字を続けすぎています</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="217"/>
@@ -2326,7 +2326,7 @@ Output:
     <message>
         <location filename="../src/modules/shellprocess/ShellProcessJob.cpp" line="51"/>
         <source>Shell Processes Job</source>
-        <translation type="unfinished"/>
+        <translation>シェルプロセスジョブ</translation>
     </message>
 </context>
 <context>
@@ -2441,17 +2441,17 @@ Output:
     <message>
         <location filename="../src/modules/tracking/TrackingPage.cpp" line="45"/>
         <source>By selecting this you will send information about your installation and hardware. This information will &lt;b&gt;only be sent once&lt;/b&gt; after the installation finishes.</source>
-        <translation type="unfinished"/>
+        <translation>インストールやハードウェアの情報を送信します。この情報はインストール終了後 &lt;b&gt; １回だけ送信されます&lt;/b&gt; 。</translation>
     </message>
     <message>
         <location filename="../src/modules/tracking/TrackingPage.cpp" line="46"/>
         <source>By selecting this you will &lt;b&gt;periodically&lt;/b&gt; send information about your installation, hardware and applications, to %1.</source>
-        <translation type="unfinished"/>
+        <translation>%1 へのハードウェアやアプリケーションのインストール情報を定期的に送信します。</translation>
     </message>
     <message>
         <location filename="../src/modules/tracking/TrackingPage.cpp" line="47"/>
         <source>By selecting this you will &lt;b&gt;regularly&lt;/b&gt; send information about your installation, hardware, applications and usage patterns, to %1.</source>
-        <translation type="unfinished"/>
+        <translation>%1 へのハードウェアやアプリケーションのインストール、使用法などの情報を定期的に送信します。</translation>
     </message>
 </context>
 <context>
