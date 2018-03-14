@@ -110,23 +110,31 @@ function( calamares_add_branding_translations NAME )
     endif()
 endfunction()
 
-# Usage calamares_add_branding_subdirectory( <dir> [SUBDIRECTORIES <dir> ...])
+# Usage calamares_add_branding_subdirectory( <dir> [NAME <name>] [SUBDIRECTORIES <dir> ...])
 #
 # Adds a branding component from a subdirectory:
-# - if there is a CMakeLists.txt, use that
-# - otherwise assume a "standard" setup with top-level files and a lang/ dir for translations
+# - if there is a CMakeLists.txt, use that (that CMakeLists.txt should
+#   call suitable calamares_add_branding() and other macros to install
+#   the branding component).
+# - otherwise assume a "standard" setup with top-level files and a lang/
+#   subdirectory for translations.
+#
+# If NAME is given, this is used instead of <dir> as the name of
+# the branding component. This is needed if <dir> is more than
+# one level deep, or to rename a component as it gets installed.
 #
 # If SUBDIRECTORIES are given, they are relative to <dir>, and are
 # copied (one level deep) to the install location as well.
 function( calamares_add_branding_subdirectory SUBDIRECTORY )
-    cmake_parse_arguments( _CABS "" "" "SUBDIRECTORIES" ${ARGN} )
+    set( _CABS_NAME "${SUBDIRECTORY}" )
+    cmake_parse_arguments( _CABS "" "NAME" "SUBDIRECTORIES" ${ARGN} )
 
     if( EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/${SUBDIRECTORY}/CMakeLists.txt" )
         add_subdirectory( ${SUBDIRECTORY} )
     elseif( EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/${SUBDIRECTORY}/branding.desc" )
-        calamares_add_branding( ${SUBDIRECTORY} DIRECTORY ${SUBDIRECTORY} SUBDIRECTORIES ${_CABS_SUBDIRECTORIES} )
+        calamares_add_branding( ${_CABS_NAME} DIRECTORY ${SUBDIRECTORY} SUBDIRECTORIES ${_CABS_SUBDIRECTORIES} )
         if( IS_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/${SUBDIRECTORY}/lang" )
-            calamares_add_branding_translations( ${SUBDIRECTORY} DIRECTORY ${SUBDIRECTORY} )
+            calamares_add_branding_translations( ${_CABS_NAME} DIRECTORY ${SUBDIRECTORY} )
         endif()
     else()
         message( "-- ${BoldYellow}Warning:${ColorReset} tried to add branding component subdirectory ${BoldRed}${SUBDIRECTORY}${ColorReset} which has no branding.desc." )
