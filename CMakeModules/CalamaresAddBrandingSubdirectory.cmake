@@ -64,7 +64,6 @@ function( calamares_add_branding NAME )
 
     foreach( _subdir "" ${_CABT_SUBDIRECTORIES} )
         file( GLOB BRANDING_COMPONENT_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}/${_brand_dir} "${_brand_dir}/${_subdir}/*" )
-        message(STATUS "${BRANDING_COMPONENT_FILES}")
         foreach( BRANDING_COMPONENT_FILE ${BRANDING_COMPONENT_FILES} )
             set( _subpath ${_brand_dir}/${BRANDING_COMPONENT_FILE} )
             if( NOT IS_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/${_subpath} )
