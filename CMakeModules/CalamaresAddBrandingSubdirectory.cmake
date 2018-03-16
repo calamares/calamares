@@ -54,8 +54,11 @@ include( CMakeColors )
 # If SUBDIRECTORIES are given, then those are copied (each one level deep)
 # to the installation location as well, preserving the subdirectory name.
 function( calamares_add_branding NAME )
-    set( _CABT_DIRECTORY "." )
     cmake_parse_arguments( _CABT "" "DIRECTORY" "SUBDIRECTORIES" ${ARGN} )
+    if (NOT _CABT_DIRECTORY)
+        set(_CABT_DIRECTORY ".")
+    endif()
+
     set( SUBDIRECTORY ${_CABT_DIRECTORY} )
     set( _brand_dir ${_CABT_DIRECTORY} )
 
@@ -92,8 +95,11 @@ endfunction()
 # the lang/ dir is found in the given <dir> instead of the current source
 # directory.
 function( calamares_add_branding_translations NAME )
-    set( _CABT_DIRECTORY "." )
     cmake_parse_arguments( _CABT "" "DIRECTORY" "" ${ARGN} )
+    if (NOT _CABT_DIRECTORY)
+        set(_CABT_DIRECTORY ".")
+    endif()
+
     set( SUBDIRECTORY ${_CABT_DIRECTORY} )
     set( _brand_dir ${_CABT_DIRECTORY} )
 
@@ -126,8 +132,10 @@ endfunction()
 # If SUBDIRECTORIES are given, they are relative to <dir>, and are
 # copied (one level deep) to the install location as well.
 function( calamares_add_branding_subdirectory SUBDIRECTORY )
-    set( _CABS_NAME "${SUBDIRECTORY}" )
     cmake_parse_arguments( _CABS "" "NAME" "SUBDIRECTORIES" ${ARGN} )
+    if (NOT _CABS_NAME)
+        set(_CABS_NAME "${SUBDIRECTORY}")
+    endif()
 
     if( EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/${SUBDIRECTORY}/CMakeLists.txt" )
         add_subdirectory( ${SUBDIRECTORY} )
