@@ -185,6 +185,18 @@ if( NOT PYTHONLIBS_FOUND OR NOT PYTHONQT_FOUND )
     set( WITH_PYTHONQT OFF )
 endif()
 
+### Transifex Translation status
+#
+# complete = 100% translated
+# good = nearly complete (use own judgement)
+# ok = incomplete
+# bad = 0% translated, placeholder in tx
+set( _tx_complete ca zh_CN zh_TW hr cs_CZ da fr lt pt_BR pt_PT es tr_TR)
+set( _tx_good sq ja pl sk ro it_IT hu he ru id de nl )
+set( _tx_ok bg uk ast is ar sv el es_MX gl en_GB es_ES th fi_FI hi pl_PL 
+            eu nb sr sl sr@latin mr es_PR kn kk et )
+set( _tx_bad fr_CH gu lo fa ur uz )
+
 ###
 ### Calamares application info
 ###
@@ -192,7 +204,8 @@ set( CALAMARES_ORGANIZATION_NAME "Calamares" )
 set( CALAMARES_ORGANIZATION_DOMAIN "github.com/calamares" )
 set( CALAMARES_APPLICATION_NAME  "Calamares" )
 set( CALAMARES_DESCRIPTION_SUMMARY "The distribution-independent installer framework" )
-set( CALAMARES_TRANSLATION_LANGUAGES ar ast bg ca cs_CZ da de el en en_GB es_MX es eu fr he hi hr hu id is it_IT ja lt mr nl pl pt_BR pt_PT ro ru sk sq sv th tr_TR zh_CN zh_TW )
+set( CALAMARES_TRANSLATION_LANGUAGES ${_tx_complete} ${_tx_good} ${_tx_ok} )
+list( SORT CALAMARES_TRANSLATION_LANGUAGES )
 
 ### Bump version here
 set( CALAMARES_VERSION_MAJOR 3 )
