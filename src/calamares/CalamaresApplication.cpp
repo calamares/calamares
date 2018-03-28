@@ -44,7 +44,12 @@ CalamaresApplication::CalamaresApplication( int& argc, char* argv[] )
     , m_moduleManager( nullptr )
     , m_debugMode( false )
 {
-    setOrganizationName( QLatin1String( CALAMARES_ORGANIZATION_NAME ) );
+    // Setting the organization name makes the default cache
+    // directory -- where Calamares stores logs, for instance --
+    // <org>/<app>/, so we end up with ~/.cache/Calamares/calamares/
+    // which is excessively squidly.
+    //
+    // setOrganizationName( QLatin1String( CALAMARES_ORGANIZATION_NAME ) );
     setOrganizationDomain( QLatin1String( CALAMARES_ORGANIZATION_DOMAIN ) );
     setApplicationName( QLatin1String( CALAMARES_APPLICATION_NAME ) );
     setApplicationVersion( QLatin1String( CALAMARES_VERSION ) );
