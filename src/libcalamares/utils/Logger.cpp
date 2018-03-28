@@ -86,7 +86,7 @@ log( const char* msg, unsigned int debugLevel, bool toDisk = true )
 }
 
 
-void
+static void
 CalamaresLogHandler( QtMsgType type, const QMessageLogContext& context, const QString& msg )
 {
     static QMutex s_mutex;
@@ -116,7 +116,7 @@ CalamaresLogHandler( QtMsgType type, const QMessageLogContext& context, const QS
 }
 
 
-QString
+static QString
 logFile()
 {
     return CalamaresUtils::appLogDir().filePath( "session.log" );

@@ -58,9 +58,14 @@ namespace Logger
         virtual ~CDebug();
     };
 
-    DLLEXPORT void CalamaresLogHandler( QtMsgType type, const QMessageLogContext& context, const QString& msg );
+    /**
+     * @brief Start logging to the log file.
+     *
+     * Call this (once) to start logging to the log file (usually
+     * ~/.cache/calamares/session.log ). An existing log file is
+     * rolled over if it is too large.
+     */
     DLLEXPORT void setupLogfile();
-    DLLEXPORT QString logFile();
 
     /**
      * @brief Set a log level for future logging.
