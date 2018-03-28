@@ -41,7 +41,7 @@ namespace Logger
     class DLLEXPORT CLog : public QDebug
     {
     public:
-        CLog( unsigned int debugLevel = 0 );
+        explicit CLog( unsigned int debugLevel );
         virtual ~CLog();
 
     private:
@@ -79,7 +79,6 @@ namespace Logger
     DLLEXPORT void setupLogLevel( unsigned int level );
 }
 
-#define cLog Logger::CLog
 #define cDebug Logger::CDebug
 #define cWarning() Logger::CDebug(Logger::LOGWARNING) << "WARNING:"
 #define cError() Logger::CDebug(Logger::LOGERROR) << "ERROR:"

@@ -57,21 +57,21 @@ Calamares::JobResult SetHostNameJob::exec()
 
     if ( !gs || !gs->contains( "rootMountPoint" ) )
     {
-        cLog() << "No rootMountPoint in global storage";
+        cError() << "No rootMountPoint in global storage";
         return Calamares::JobResult::error( tr( "Internal Error" ) );
     }
 
     QString destDir = gs->value( "rootMountPoint" ).toString();
     if ( !QDir( destDir ).exists() )
     {
-        cLog() << "rootMountPoint points to a dir which does not exist";
+        cError() << "rootMountPoint points to a dir which does not exist";
         return Calamares::JobResult::error( tr( "Internal Error" ) );
     }
 
     QFile hostfile( destDir + "/etc/hostname" );
     if ( !hostfile.open( QFile::WriteOnly ) )
     {
-        cLog() << "Can't write to hostname file";
+        cError() << "Can't write to hostname file";
         return Calamares::JobResult::error( tr( "Cannot write hostname to target system" ) );
     }
 
@@ -82,7 +82,7 @@ Calamares::JobResult SetHostNameJob::exec()
     QFile hostsfile( destDir + "/etc/hosts" );
     if ( !hostsfile.open( QFile::WriteOnly ) )
     {
-        cLog() << "Can't write to hosts file";
+        cError() << "Can't write to hosts file";
         return Calamares::JobResult::error( tr( "Cannot write hostname to target system" ) );
     }
 

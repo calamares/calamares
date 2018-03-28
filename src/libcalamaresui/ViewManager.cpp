@@ -150,9 +150,9 @@ ViewManager::insertViewStep( int before, ViewStep* step )
 void
 ViewManager::onInstallationFailed( const QString& message, const QString& details )
 {
-    cLog() << "Installation failed:";
-    cLog() << "- message:" << message;
-    cLog() << "- details:" << details;
+    cError() << "Installation failed:";
+    cDebug() << "- message:" << message;
+    cDebug() << "- details:" << details;
 
     QMessageBox* msgBox = new QMessageBox();
     msgBox->setIcon( QMessageBox::Critical );
@@ -167,7 +167,7 @@ ViewManager::onInstallationFailed( const QString& message, const QString& detail
     msgBox->setInformativeText( text );
 
     connect( msgBox, &QMessageBox::buttonClicked, qApp, &QApplication::quit );
-    cLog() << "Calamares will quit when the dialog closes.";
+    cDebug() << "Calamares will quit when the dialog closes.";
     msgBox->show();
 }
 
