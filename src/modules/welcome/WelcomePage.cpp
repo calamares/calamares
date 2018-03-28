@@ -162,6 +162,7 @@ WelcomePage::initLanguages()
                 QLocale thisLocale = ui->languageWidget->itemData( i, Qt::UserRole ).toLocale();
                 if ( thisLocale == QLocale( QLocale::English, QLocale::UnitedStates ) )
                 {
+                    isTranslationAvailable = true;
                     ui->languageWidget->setCurrentIndex( i );
                     cDebug() << "Translation unavailable, so initial locale set to " << thisLocale.name();
                     QLocale::setDefault( thisLocale );
@@ -172,6 +173,9 @@ WelcomePage::initLanguages()
                 }
             }
         }
+
+        if ( !isTranslationAvailable )
+            cWarning() << "No available translation matched" << defaultLocale;
 
         connect( ui->languageWidget,
                  static_cast< void ( QComboBox::* )( int ) >( &QComboBox::currentIndexChanged ),
