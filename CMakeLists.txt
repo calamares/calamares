@@ -187,13 +187,17 @@ endif()
 
 ### Transifex Translation status
 #
-# complete = 100% translated
-# good = nearly complete (use own judgement)
-# ok = incomplete
-# bad = 0% translated, placeholder in tx
+# complete = 100% translated,
+# good = nearly complete (use own judgement, right now < 100 untranslated strings),
+# ok = incomplete (100 or more untranslated),
+# bad = 0% translated, placeholder in tx; these are not included.
+#
+# Language en (source language) is added later. It isn't listed in
+# Transifex either. Get the list of languages and their status
+# from https://transifex.com/calamares/calamares/ .
 set( _tx_complete ca zh_CN zh_TW hr cs_CZ da fr lt pt_BR pt_PT es tr_TR)
 set( _tx_good sq ja pl sk ro it_IT hu he ru id de nl )
-set( _tx_ok bg uk ast is ar sv el es_MX gl en_GB es_ES th fi_FI hi pl_PL 
+set( _tx_ok bg uk ast is ar sv el es_MX gl en_GB es_ES th fi_FI hi pl_PL
             eu nb sr sl sr@latin mr es_PR kn kk et )
 set( _tx_bad fr_CH gu lo fa ur uz )
 
@@ -204,7 +208,7 @@ set( CALAMARES_ORGANIZATION_NAME "Calamares" )
 set( CALAMARES_ORGANIZATION_DOMAIN "github.com/calamares" )
 set( CALAMARES_APPLICATION_NAME  "Calamares" )
 set( CALAMARES_DESCRIPTION_SUMMARY "The distribution-independent installer framework" )
-set( CALAMARES_TRANSLATION_LANGUAGES ${_tx_complete} ${_tx_good} ${_tx_ok} )
+set( CALAMARES_TRANSLATION_LANGUAGES en ${_tx_complete} ${_tx_good} ${_tx_ok} )
 list( SORT CALAMARES_TRANSLATION_LANGUAGES )
 
 ### Bump version here
