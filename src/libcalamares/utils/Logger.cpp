@@ -31,6 +31,7 @@
 #include <QVariant>
 
 #include "utils/CalamaresUtils.h"
+#include "CalamaresVersion.h"
 
 #define LOGFILE_SIZE 1024 * 256
 
@@ -145,9 +146,18 @@ setupLogfile()
         }
     }
 
+    // Since the log isn't open yet, this probably only goes to stdout
     cDebug() << "Using log file:" << logFile();
 
+    // Lock while (re-)opening the logfile
+    {
+    QMutexLocker lock( &s_mutex );
     logfile.open( logFile().toLocal8Bit(), std::ios::app );
+    if ( logfile.tellp() )
+        logfile << "\n\n" << std::endl;
+    logfile << "=== START CALAMARES " << CALAMARES_VERSION << std::endl;
+    }
+
     qInstallMessageHandler( CalamaresLogHandler );
 }
 

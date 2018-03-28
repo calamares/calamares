@@ -65,9 +65,6 @@ CalamaresApplication::CalamaresApplication( int& argc, char* argv[] )
 void
 CalamaresApplication::init()
 {
-    cDebug() << "CalamaresApplication thread:" << thread();
-
-    //TODO: Icon loader
     Logger::setupLogfile();
 
     setQuitOnLastWindowClosed( false );
