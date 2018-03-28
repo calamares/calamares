@@ -2,7 +2,7 @@
  *
  *   Copyright 2010-2011, Christian Muehlhaeuser <muesli@tomahawk-player.org>
  *   Copyright 2014,      Teo Mrnjavac <teo@kde.org>
- *   Copyright 2017, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -27,6 +27,8 @@
 
 namespace Logger
 {
+    extern const char* continuation;
+
     enum
     {
         LOG_DISABLE = 0,
@@ -77,6 +79,97 @@ namespace Logger
      * Practical values are 0, 1, 2, and 6.
      */
     DLLEXPORT void setupLogLevel( unsigned int level );
+
+    /**
+     * @brief Row-oriented formatted logging.
+     *
+     * Use DebugRow to produce multiple rows of 2-column output
+     * in a debugging statement. For instance,
+     *      cDebug() << DebugRow<int,int>(1,12)
+     *               << DebugRow<int,int>(2,24)
+     * will produce a single timestamped debug line with continuations.
+     * Each DebugRow produces one line of output, with the two values.
+     */
+    template<typename T, typename U>
+    struct DebugRow
+    {
+    public:
+        explicit DebugRow(const T& t, const U& u)
+            : first(t)
+            , second(u)
+        {}
+
+        const T& first;
+        const U& second;
+    } ;
+
+    /**
+     * @brief List-oriented formatted logging.
+     *
+     * Use DebugList to produce multiple rows of output in a debugging
+     * statement. For instance,
+     *      cDebug() << DebugList( QStringList() << "foo" << "bar" )
+     * will produce a single timestamped debug line with continuations.
+     * Each element of the list of strings will be logged on a separate line.
+     */
+    struct DebugList
+    {
+        explicit DebugList( const QStringList& l )
+            : list(l)
+        {}
+
+        const QStringList& list;
+    } ;
+
+    /**
+     * @brief Map-oriented formatted logging.
+     *
+     * Use DebugMap to produce multiple rows of output in a debugging
+     * statement from a map. The output is intentionally a bit-yaml-ish.
+     *      cDebug() << DebugMap( map )
+     * will produce a single timestamped debug line with continuations.
+     * The continued lines will have a key (from the map) and a value
+     * on each line.
+     */
+    struct DebugMap
+    {
+    public:
+        explicit DebugMap(const QVariantMap& m)
+            : map( m )
+        {}
+
+        const QVariantMap& map;
+    } ;
+
+    /** @brief output operator for DebugRow */
+    template<typename T, typename U>
+    inline QDebug&
+    operator <<( QDebug& s, const DebugRow<T, U>& t )
+    {
+        s << continuation << t.first << ':' << ' ' << t.second;
+        return s;
+    }
+
+    /** @brief output operator for DebugList */
+    inline QDebug&
+    operator <<( QDebug& s, const DebugList& c )
+    {
+        for( const auto& i : c.list )
+            s << continuation << i;
+        return s;
+    }
+
+    /** @brief supporting method for outputting a DebugMap */
+    QString toString( const QVariant& v );
+
+    /** @brief output operator for DebugMap */
+    inline QDebug&
+    operator <<( QDebug& s, const DebugMap& t )
+    {
+        for ( auto it = t.map.constBegin(); it != t.map.constEnd(); ++it )
+            s << continuation << it.key().toUtf8().constData() << ':' << ' ' << toString( it.value() ).toUtf8().constData();
+        return s;
+    }
 }
 
 #define cDebug Logger::CDebug
