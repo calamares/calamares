@@ -57,6 +57,7 @@ static ThemeInfoList plasma_themes()
 PlasmaLnfPage::PlasmaLnfPage( QWidget* parent )
     : QWidget( parent )
     , ui( new Ui::PlasmaLnfPage )
+    , m_showAll( false )
     , m_buttonGroup( nullptr )
 {
     ui->setupUi( this );
@@ -85,6 +86,14 @@ PlasmaLnfPage::setEnabledThemes(const ThemeInfoList& themes)
 {
     m_enabledThemes = themes;
 
+    if ( m_showAll )
+    {
+        auto plasmaThemes = plasma_themes();
+        for ( auto& installed_theme : plasmaThemes )
+            if ( !m_enabledThemes.findById( installed_theme.id ) )
+                m_enabledThemes.append( installed_theme );
+    }
+
     updateThemeNames();
     winnowThemes();
     fillUi();
@@ -102,6 +111,12 @@ PlasmaLnfPage::setPreselect( const QString& id )
     m_preselect = id;
     if ( !m_enabledThemes.isEmpty() )
         fillUi();
+}
+
+void
+PlasmaLnfPage::setShowAll(bool b)
+{
+    m_showAll = b;
 }
 
 

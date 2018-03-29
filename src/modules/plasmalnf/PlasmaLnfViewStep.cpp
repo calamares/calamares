@@ -162,6 +162,11 @@ PlasmaLnfViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     if ( !preselect.isEmpty() )
         m_widget->setPreselect( preselect );
 
+    bool showAll( false );
+    if ( configurationMap.contains( "showAll" ) && configurationMap.value( "showAll" ).type() == QVariant::Bool )
+        showAll = configurationMap.value( "showAll" ).toBool();
+    m_widget->setShowAll( showAll );
+
     if ( configurationMap.contains( "themes" ) &&
         configurationMap.value( "themes" ).type() == QVariant::List )
     {

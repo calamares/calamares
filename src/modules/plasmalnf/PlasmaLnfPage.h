@@ -52,6 +52,8 @@ public:
     void setEnabledThemesAll();
     /** @brief set which theme is to be preselected. */
     void setPreselect( const QString& id );
+    /** @brief set whether to show all themes, not just the listed ones. */
+    void setShowAll( bool b );
 
 signals:
     void plasmaThemeSelected( const QString& id );
@@ -67,6 +69,7 @@ private:
     Ui::PlasmaLnfPage* ui;
     QString m_lnfPath;
     QString m_preselect;
+    bool m_showAll;  // If true, don't winnow according to enabledThemes
     ThemeInfoList m_enabledThemes;
 
     QButtonGroup *m_buttonGroup;
