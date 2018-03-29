@@ -46,14 +46,17 @@ public:
     explicit PlasmaLnfPage( QWidget* parent = nullptr );
 
     void setLnfPath( const QString& path );
-    /** @brief enable only the listed themes. */
-    void setEnabledThemes( const ThemeInfoList& themes );
+    /** @brief enable only the listed themes.
+     *
+     * Shows the listed @p themes with full information (e.g. screenshot).
+     * If @p showAll is true, then also show all installed themes
+     * not explicitly listed (without a screenshot).
+     */
+    void setEnabledThemes( const ThemeInfoList& themes, bool showAll );
     /** @brief enable all installed plasma themes. */
     void setEnabledThemesAll();
     /** @brief set which theme is to be preselected. */
     void setPreselect( const QString& id );
-    /** @brief set whether to show all themes, not just the listed ones. */
-    void setShowAll( bool b );
 
 signals:
     void plasmaThemeSelected( const QString& id );

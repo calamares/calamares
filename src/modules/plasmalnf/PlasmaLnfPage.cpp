@@ -82,11 +82,11 @@ PlasmaLnfPage::setLnfPath( const QString& path )
 }
 
 void
-PlasmaLnfPage::setEnabledThemes(const ThemeInfoList& themes)
+PlasmaLnfPage::setEnabledThemes(const ThemeInfoList& themes, bool showAll )
 {
     m_enabledThemes = themes;
 
-    if ( m_showAll )
+    if ( showAll )
     {
         auto plasmaThemes = plasma_themes();
         for ( auto& installed_theme : plasmaThemes )
@@ -102,7 +102,9 @@ PlasmaLnfPage::setEnabledThemes(const ThemeInfoList& themes)
 void
 PlasmaLnfPage::setEnabledThemesAll()
 {
-    setEnabledThemes( plasma_themes() );
+    // Don't need to set showAll=true, because we're already passing in
+    // the complete list of installed themes.
+    setEnabledThemes( plasma_themes(), false );
 }
 
 void
@@ -112,13 +114,6 @@ PlasmaLnfPage::setPreselect( const QString& id )
     if ( !m_enabledThemes.isEmpty() )
         fillUi();
 }
-
-void
-PlasmaLnfPage::setShowAll(bool b)
-{
-    m_showAll = b;
-}
-
 
 void PlasmaLnfPage::updateThemeNames()
 {
