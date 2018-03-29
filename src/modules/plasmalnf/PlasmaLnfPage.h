@@ -50,6 +50,8 @@ public:
     void setEnabledThemes( const ThemeInfoList& themes );
     /** @brief enable all installed plasma themes. */
     void setEnabledThemesAll();
+    /** @brief set which theme is to be preselected. */
+    void setPreselect( const QString& id );
 
 signals:
     void plasmaThemeSelected( const QString& id );
@@ -64,6 +66,7 @@ private:
 
     Ui::PlasmaLnfPage* ui;
     QString m_lnfPath;
+    QString m_preselect;
     ThemeInfoList m_enabledThemes;
 
     QButtonGroup *m_buttonGroup;

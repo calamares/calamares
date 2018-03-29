@@ -137,6 +137,12 @@ PlasmaLnfViewStep::setConfigurationMap( const QVariantMap& configurationMap )
         liveUser = configurationMap.value( "liveuser" ).toString();
     m_liveUser = liveUser;
 
+    QString preselect;
+    if ( configurationMap.contains( "preselect" ) && configurationMap.value( "preselect" ).type() == QVariant::String )
+        preselect = configurationMap.value( "preselect" ).toString();
+    if ( !preselect.isEmpty() )
+        m_widget->setPreselect( preselect );
+
     if ( configurationMap.contains( "themes" ) &&
         configurationMap.value( "themes" ).type() == QVariant::List )
     {

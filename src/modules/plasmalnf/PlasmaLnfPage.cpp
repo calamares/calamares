@@ -23,6 +23,8 @@
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
 
+#include <QAbstractButton>
+
 #include <KPackage/Package>
 #include <KPackage/PackageLoader>
 
@@ -92,6 +94,14 @@ void
 PlasmaLnfPage::setEnabledThemesAll()
 {
     setEnabledThemes( plasma_themes() );
+}
+
+void
+PlasmaLnfPage::setPreselect( const QString& id )
+{
+    m_preselect = id;
+    if ( !m_enabledThemes.isEmpty() )
+        fillUi();
 }
 
 
@@ -165,6 +175,11 @@ void PlasmaLnfPage::fillUi()
         else
         {
             theme.widget->updateThemeName( theme );
+        }
+        if ( theme.id == m_preselect )
+        {
+            const QSignalBlocker b( theme.widget->button() );
+            theme.widget->button()->setChecked( true );
         }
         ++c;
     }
