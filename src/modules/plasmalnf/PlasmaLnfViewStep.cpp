@@ -27,7 +27,24 @@
 #include <QProcess>
 #include <QVariantMap>
 
+#ifdef WITH_KCONFIG
+#include <KConfigGroup>
+#include <KSharedConfig>
+#endif
+
 CALAMARES_PLUGIN_FACTORY_DEFINITION( PlasmaLnfViewStepFactory, registerPlugin<PlasmaLnfViewStep>(); )
+
+static QString
+currentPlasmaTheme()
+{
+#ifdef WITH_KCONFIG
+    KConfigGroup cg( KSharedConfig::openConfig( QStringLiteral( "kdeglobals" ) ), "KDE" );
+    return cg.readEntry( "LookAndFeelPackage", QString() );
+#else
+    cWarning() << "No KConfig support, cannot determine Plasma theme.";
+    return QString();
+#endif
+}
 
 PlasmaLnfViewStep::PlasmaLnfViewStep( QObject* parent )
     : Calamares::ViewStep( parent )
@@ -132,10 +149,18 @@ PlasmaLnfViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 
     m_liveUser = CalamaresUtils::getString( configurationMap, "liveuser" );
 
+    QString preselect = CalamaresUtils::getString( configurationMap, "preselect" );
+    if ( preselect == QStringLiteral( "*" ) )
+        preselect = currentPlasmaTheme();
+    if ( !preselect.isEmpty() )
+        m_widget->setPreselect( preselect );
+
+    bool showAll = CalamaresUtils::getBool( configurationMap, "showAll", false );
+
     if ( configurationMap.contains( "themes" ) &&
         configurationMap.value( "themes" ).type() == QVariant::List )
     {
-        ThemeInfoList allThemes;
+        ThemeInfoList listedThemes;
         auto themeList = configurationMap.value( "themes" ).toList();
         // Create the ThemInfo objects for the listed themes; information
         // about the themes from Plasma (e.g. human-readable name and description)
@@ -144,14 +169,14 @@ PlasmaLnfViewStep::setConfigurationMap( const QVariantMap& configurationMap )
             if ( i.type() == QVariant::Map )
             {
                 auto iv = i.toMap();
-                allThemes.append( ThemeInfo( iv.value( "theme" ).toString(), iv.value( "image" ).toString() ) );
+                listedThemes.append( ThemeInfo( iv.value( "theme" ).toString(), iv.value( "image" ).toString() ) );
             }
             else if ( i.type() == QVariant::String )
-                allThemes.append( ThemeInfo( i.toString() ) );
+                listedThemes.append( ThemeInfo( i.toString() ) );
 
-        if ( allThemes.length() == 1 )
+        if ( listedThemes.length() == 1 )
             cWarning() << "only one theme enabled in plasmalnf";
-        m_widget->setEnabledThemes( allThemes );
+        m_widget->setEnabledThemes( listedThemes, showAll );
     }
     else
         m_widget->setEnabledThemesAll();  // All of them

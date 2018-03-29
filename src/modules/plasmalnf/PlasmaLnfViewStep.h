@@ -61,9 +61,9 @@ public slots:
 
 private:
     PlasmaLnfPage* m_widget;
-    QString m_lnfPath;
-    QString m_themeId;
-    QString m_liveUser;
+    QString m_lnfPath;  // Path to the lnf tool
+    QString m_themeId;  // Id of selected theme
+    QString m_liveUser; // Name of the live user (for OEM mode)
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( PlasmaLnfViewStepFactory )

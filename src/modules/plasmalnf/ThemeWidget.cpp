@@ -65,7 +65,7 @@ ThemeWidget::ThemeWidget(const ThemeInfo& info, QWidget* parent)
     layout->addWidget( image_label, 1 );
     layout->addWidget( m_description, 3 );
 
-    connect( m_check, &QRadioButton::clicked, this, &ThemeWidget::clicked );
+    connect( m_check, &QRadioButton::toggled, this, &ThemeWidget::clicked );
 }
 
 void

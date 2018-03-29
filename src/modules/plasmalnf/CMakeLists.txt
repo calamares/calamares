@@ -4,8 +4,13 @@ find_package(ECM ${ECM_VERSION} REQUIRED NO_MODULE)
 # needs a runtime support component (which we don't test for).
 set( lnf_ver 5.41 )
 
+find_package( KF5Config ${lnf_ver} )
 find_package( KF5Plasma ${lnf_ver} )
 find_package( KF5Package ${lnf_ver} )
+set_package_properties(
+    KF5Config PROPERTIES
+    PURPOSE "For finding default Plasma Look-and-Feel"
+)
 set_package_properties(
     KF5Plasma PROPERTIES
     PURPOSE "For Plasma Look-and-Feel selection"
@@ -16,11 +21,19 @@ set_package_properties(
 )
 
 if ( KF5Plasma_FOUND AND KF5Package_FOUND )
-    find_package( KF5 ${lnf_ver} REQUIRED CoreAddons Plasma Package )
+    if ( KF5Config_FOUND )
+        set( option_kf5 Config )
+        set( option_defs WITH_KCONFIG )
+        # set( option_libs KF5::Config )  # Not needed anyway
+    endif()
+
+    find_package( KF5 ${lnf_ver} REQUIRED CoreAddons Plasma Package ${option_kf5} )
 
     calamares_add_plugin( plasmalnf
         TYPE viewmodule
         EXPORT_MACRO PLUGINDLLEXPORT_PRO
+        COMPILE_DEFINITIONS
+            ${option_defs}
         SOURCES
             PlasmaLnfViewStep.cpp
             PlasmaLnfPage.cpp
@@ -32,6 +45,7 @@ if ( KF5Plasma_FOUND AND KF5Package_FOUND )
             page_plasmalnf.ui
         LINK_PRIVATE_LIBRARIES
             calamaresui
+            ${option_libs}
             KF5::Package
             KF5::Plasma
         SHARED_LIB
