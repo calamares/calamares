@@ -318,7 +318,10 @@ def subst_locale(plist):
     """
     locale = libcalamares.globalstorage.value("locale")
     if not locale:
-        return plist
+        # It is possible to skip the locale-setting entirely.
+        # Then pretend it is "en", so that {LOCALE}-decorated
+        # package names are removed from the list.
+        locale = "en"
 
     ret = []
     for packagedata in plist:
