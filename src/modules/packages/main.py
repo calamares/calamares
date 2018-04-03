@@ -367,20 +367,20 @@ def run_operations(pkgman, entry):
     global group_packages, completed_packages, mode_packages
 
     for key in entry.keys():
-        entry[key] = subst_locale(entry[key])
-        group_packages = len(entry[key])
+        package_list = subst_locale(entry[key])
+        group_packages = len(package_list)
         if key == "install":
             _change_mode(INSTALL)
-            if all([isinstance(x, str) for x in entry[key]]):
-                pkgman.install(entry[key])
+            if all([isinstance(x, str) for x in package_list]):
+                pkgman.install(package_list)
             else:
-                for package in entry[key]:
+                for package in package_list:
                     pkgman.install_package(package)
         elif key == "try_install":
             _change_mode(INSTALL)
             # we make a separate package manager call for each package so a
             # single failing package won't stop all of them
-            for package in entry[key]:
+            for package in package_list:
                 try:
                     pkgman.install_package(package)
                 except subprocess.CalledProcessError:
@@ -389,10 +389,10 @@ def run_operations(pkgman, entry):
                     libcalamares.utils.debug(warn_text)
         elif key == "remove":
             _change_mode(REMOVE)
-            pkgman.remove(entry[key])
+            pkgman.remove(package_list)
         elif key == "try_remove":
             _change_mode(REMOVE)
-            for package in entry[key]:
+            for package in package_list:
                 try:
                     pkgman.remove([package])
                 except subprocess.CalledProcessError:
@@ -401,9 +401,9 @@ def run_operations(pkgman, entry):
                     libcalamares.utils.debug(warn_text)
         elif key == "localInstall":
             _change_mode(INSTALL)
-            pkgman.install(entry[key], from_local=True)
+            pkgman.install(package_list, from_local=True)
 
-        completed_packages += len(entry[key])
+        completed_packages += len(package_list)
         libcalamares.job.setprogress(completed_packages * 1.0 / total_packages)
         libcalamares.utils.debug(pretty_name())
 
@@ -447,7 +447,7 @@ def run():
     completed_packages = 0
     for op in operations:
         for packagelist in op.values():
-            total_packages += len(packagelist)
+            total_packages += len(subst_locale(packagelist))
 
     if not total_packages:
         # Avoids potential divide-by-zero in progress reporting
