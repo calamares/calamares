@@ -489,8 +489,10 @@ LocalePage::updateGlobalStorage()
             ->insert( "locationRegion", location.region );
     Calamares::JobQueue::instance()->globalStorage()
             ->insert( "locationZone", location.zone );
-    Calamares::JobQueue::instance()->globalStorage()
-            ->insert( "locale", m_selectedLocaleConfiguration.myLanguageLocaleBcp47);
+
+    const QString bcp47 = m_selectedLocaleConfiguration.toBcp47();
+    Calamares::JobQueue::instance()->globalStorage()->insert( "locale", bcp47 );
+    cDebug() << "Updated locale globals, BCP47=" << bcp47;
 
     // If we're in chroot mode (normal install mode), then we immediately set the
     // timezone on the live system.
