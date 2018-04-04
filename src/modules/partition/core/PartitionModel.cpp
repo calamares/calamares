@@ -115,7 +115,7 @@ PartitionModel::parent( const QModelIndex& child ) const
             return createIndex( row, 0, parentNode );
         ++row;
     }
-    cLog() << "No parent found!";
+    cWarning() << "No parent found!";
     return QModelIndex();
 }
 

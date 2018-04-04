@@ -86,7 +86,7 @@ log( const char* msg, unsigned int debugLevel, bool toDisk = true )
 }
 
 
-void
+static void
 CalamaresLogHandler( QtMsgType type, const QMessageLogContext& context, const QString& msg )
 {
     static QMutex s_mutex;
@@ -116,7 +116,7 @@ CalamaresLogHandler( QtMsgType type, const QMessageLogContext& context, const QS
 }
 
 
-QString
+static QString
 logFile()
 {
     return CalamaresUtils::appLogDir().filePath( "session.log" );
@@ -175,6 +175,24 @@ CLog::~CLog()
 
 CDebug::~CDebug()
 {
+}
+
+const char* continuation = "\n    ";
+
+QString toString( const QVariant& v )
+{
+    auto t = v.type();
+
+    if ( t == QVariant::List )
+    {
+        QStringList s;
+        auto l = v.toList();
+        for ( auto lit = l.constBegin(); lit != l.constEnd(); ++lit )
+            s << lit->toString();
+        return s.join(", ");
+    }
+    else
+        return v.toString();
 }
 
 }  // namespace
