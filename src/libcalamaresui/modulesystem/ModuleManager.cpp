@@ -200,8 +200,8 @@ ModuleManager::loadModules()
                 if ( moduleEntrySplit.length() < 1 ||
                      moduleEntrySplit.length() > 2 )
                 {
-                    cError() << "Wrong module entry format for module" << moduleEntry << "."
-                             << "\nCalamares will now quit.";
+                    cError() << "Wrong module entry format for module" << moduleEntry << '.';
+                    cError() << "Calamares will now quit.";
                     qApp->exit( 1 );
                     return;
                 }
@@ -213,7 +213,8 @@ ModuleManager::loadModules()
                      m_availableDescriptorsByModuleName.value( moduleName ).isEmpty() )
                 {
                     cError() << "Module" << moduleName << "not found in module search paths."
-                             << "\nCalamares will now quit.";
+                        << Logger::DebugList( m_paths );
+                    cError() << "Calamares will now quit.";
                     qApp->exit( 1 );
                     return;
                 }
@@ -240,8 +241,8 @@ ModuleManager::loadModules()
                     }
                     else //ought to be a custom instance, but cannot find instance entry
                     {
-                        cError() << "Custom instance" << moduleEntry << "not found in custom instances section."
-                                 << "\nCalamares will now quit.";
+                        cError() << "Custom instance" << moduleEntry << "not found in custom instances section.";
+                        cError() << "Calamares will now quit.";
                         qApp->exit( 1 );
                         return;
                     }
