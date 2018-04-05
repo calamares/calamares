@@ -477,8 +477,13 @@ LocalePage::prettyLCLocale( const QString& lcLocale ) const
 
     QLocale locale( localeString );
     //: Language (Country)
-    return tr( "%1 (%2)" ).arg( QLocale::languageToString( locale.language() ) )
-                          .arg( QLocale::countryToString( locale.country() ) );
+    const QString lang = !locale.nativeLanguageName().isEmpty() ?
+                         locale.nativeLanguageName() :
+                         QLocale::languageToString( locale.language() );
+    const QString country = !locale.nativeCountryName().isEmpty() ?
+                            locale.nativeCountryName() :
+                            QLocale::countryToString( locale.country() );
+    return tr( "%1 (%2)" ).arg( lang ).arg( country );
 }
 
 void

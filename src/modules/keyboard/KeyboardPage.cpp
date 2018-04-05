@@ -369,6 +369,8 @@ KeyboardPage::onActivate()
     {
         const auto langParts = lang.split( '_', QString::SkipEmptyParts );
 
+        // Note that this his string is not fit for display purposes!
+        // It doesn't come from QLocale::nativeCountryName.
         QString country = QLocale::countryToString( QLocale( lang ).country() );
         cDebug() << " .. extracted country" << country << "::" << langParts;
 

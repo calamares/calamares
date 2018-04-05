@@ -345,4 +345,3 @@ WelcomePage::focusInEvent( QFocusEvent* e )
         ui->languageWidget->setFocus();
     e->accept();
 }
-
