@@ -10,7 +10,6 @@ set( calamaresui_SOURCES
     utils/CalamaresUtilsGui.cpp
     utils/DebugWindow.cpp
     utils/ImageRegistry.cpp
-    utils/YamlUtils.cpp
 
     utils/qjsonmodel.cpp
     utils/qjsonitem.cpp
@@ -25,7 +24,6 @@ set( calamaresui_SOURCES
 
     ExecutionViewStep.cpp
     Branding.cpp
-    Settings.cpp
     ViewManager.cpp
 )
 
@@ -71,7 +69,6 @@ calamares_add_library( calamaresui
     UI ${calamaresui_UI}
     EXPORT_MACRO UIDLLEXPORT_PRO
     LINK_PRIVATE_LIBRARIES
-        ${YAMLCPP_LIBRARY}
         ${OPTIONAL_PRIVATE_LIBRARIES}
     LINK_LIBRARIES
         Qt5::Svg
