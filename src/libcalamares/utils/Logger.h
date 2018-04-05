@@ -56,6 +56,10 @@ namespace Logger
     public:
         CDebug( unsigned int debugLevel = LOGDEBUG ) : CLog( debugLevel )
         {
+            if ( debugLevel <= LOGERROR )
+                *this << "ERROR:";
+            else if ( debugLevel <= LOGWARNING )
+                *this << "WARNING:";
         }
         virtual ~CDebug();
     };
@@ -173,7 +177,7 @@ namespace Logger
 }
 
 #define cDebug Logger::CDebug
-#define cWarning() Logger::CDebug(Logger::LOGWARNING) << "WARNING:"
-#define cError() Logger::CDebug(Logger::LOGERROR) << "ERROR:"
+#define cWarning() Logger::CDebug(Logger::LOGWARNING)
+#define cError() Logger::CDebug(Logger::LOGERROR)
 
 #endif // CALAMARES_LOGGER_H

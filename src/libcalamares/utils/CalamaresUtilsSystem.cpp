@@ -174,7 +174,7 @@ System::runCommand(
 
     if ( !process.waitForFinished( timeoutSec ? ( timeoutSec * 1000 ) : -1 ) )
     {
-        cWarning() << "Timed out. Output so far:\n" <<
+        cWarning().noquote().nospace() << "Timed out. Output so far:\n" <<
             process.readAllStandardOutput();
         return -4;
     }
@@ -183,7 +183,7 @@ System::runCommand(
 
     if ( process.exitStatus() == QProcess::CrashExit )
     {
-        cWarning() << "Process crashed. Output so far:\n" << output;
+        cWarning().noquote().nospace() << "Process crashed. Output so far:\n" << output;
         return -1;
     }
 
@@ -192,7 +192,7 @@ System::runCommand(
     if ( ( r != 0 ) || Calamares::Settings::instance()->debugMode() )
     {
         cDebug() << "Target cmd:" << args;
-        cDebug().noquote() << "Target output:\n" << output;
+        cDebug().noquote().nospace() << "Target output:\n" << output;
     }
     return ProcessResult(r, output);
 }
