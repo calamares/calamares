@@ -20,8 +20,9 @@
 #include "CalamaresUtilsSystem.h"
 
 #include "utils/Logger.h"
-#include "JobQueue.h"
 #include "GlobalStorage.h"
+#include "JobQueue.h"
+#include "Settings.h"
 
 #include <QCoreApplication>
 #include <QDir>
@@ -173,7 +174,7 @@ System::runCommand(
 
     if ( !process.waitForFinished( timeoutSec ? ( timeoutSec * 1000 ) : -1 ) )
     {
-        cWarning() << "Timed out. output so far:\n" <<
+        cWarning() << "Timed out. Output so far:\n" <<
             process.readAllStandardOutput();
         return -4;
     }
@@ -182,13 +183,13 @@ System::runCommand(
 
     if ( process.exitStatus() == QProcess::CrashExit )
     {
-        cWarning() << "Process crashed";
+        cWarning() << "Process crashed. Output so far:\n" << output;
         return -1;
     }
 
     auto r = process.exitCode();
     cDebug() << "Finished. Exit code:" << r;
-    if ( r != 0 )
+    if ( ( r != 0 ) || Calamares::Settings::instance()->debugMode() )
     {
         cDebug() << "Target cmd:" << args;
         cDebug().noquote() << "Target output:\n" << output;
