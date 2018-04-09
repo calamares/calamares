@@ -48,7 +48,7 @@ ThemeWidget::ThemeWidget(const ThemeInfo& info, QWidget* parent)
         // Not found or not specified, so convert the name into some (horrible, likely)
         // color instead.
         image = QPixmap( image_size );
-        uint hash_color = qHash( info.imagePath.isEmpty() ? info.id : info.imagePath );
+        auto hash_color = qHash( info.imagePath.isEmpty() ? info.id : info.imagePath );
         cDebug() << "Theme image" << info.imagePath << "not found, hash" << hash_color;
         image.fill( QColor( QRgb( hash_color ) ) );
     }
