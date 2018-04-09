@@ -42,13 +42,8 @@ ThemeWidget::ThemeWidget(const ThemeInfo& info, QWidget* parent)
         qMax(12 * CalamaresUtils::defaultFontHeight(), 120),
         qMax(8 * CalamaresUtils::defaultFontHeight(), 80) };
 
-    QPixmap image( info.imagePath );
-    if ( info.imagePath.isEmpty() )
-    {
-        // Image can't possibly be valid
-        image = QPixmap( ":/view-preview.png" );
-    }
-    else if ( image.isNull() )
+    QPixmap image( info.imagePath.isEmpty() ? ":/view-preview.png" : info.imagePath );
+    if ( image.isNull() )
     {
         // Not found or not specified, so convert the name into some (horrible, likely)
         // color instead.
