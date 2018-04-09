@@ -57,6 +57,8 @@ ThemeWidget::ThemeWidget(const ThemeInfo& info, QWidget* parent)
 
     QLabel* image_label = new QLabel( this );
     image_label->setPixmap( image );
+    image_label->setMinimumSize( image_size );
+    image_label->setMaximumSize( image_size );
     layout->addWidget( image_label, 1 );
     layout->addWidget( m_description, 3 );
 
