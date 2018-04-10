@@ -22,10 +22,39 @@
 
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
+#include "Branding.h"
 
+#include <QDir>
+#include <QFileInfo>
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QRadioButton>
+#include <QString>
+
+/**
+ * Massage the given @p path to the most-likely
+ * path that actually contains a screenshot. For
+ * empty image paths, returns the QRC path for an
+ * empty screenshot. Returns blank if the path
+ * doesn't exist anywhere in the search paths.
+ */
+static QString _munge_imagepath( const QString& path )
+{
+    if ( path.isEmpty() )
+        return ":/view-preview.png";
+
+    if ( path.startsWith( '/' ) )
+        return path;
+
+    if ( QFileInfo::exists( path ) )
+        return path;
+
+    QFileInfo fi( QDir( Calamares::Branding::instance()->componentDirectory() ), path );
+    if ( fi.exists() )
+        return fi.absoluteFilePath();
+
+    return QString();
+}
 
 ThemeWidget::ThemeWidget(const ThemeInfo& info, QWidget* parent)
     : QWidget( parent )
@@ -42,7 +71,7 @@ ThemeWidget::ThemeWidget(const ThemeInfo& info, QWidget* parent)
         qMax(12 * CalamaresUtils::defaultFontHeight(), 120),
         qMax(8 * CalamaresUtils::defaultFontHeight(), 80) };
 
-    QPixmap image( info.imagePath.isEmpty() ? ":/view-preview.png" : info.imagePath );
+    QPixmap image( _munge_imagepath( info.imagePath ) );
     if ( image.isNull() )
     {
         // Not found or not specified, so convert the name into some (horrible, likely)
