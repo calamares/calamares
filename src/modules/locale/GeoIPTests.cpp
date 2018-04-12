@@ -51,7 +51,33 @@ GeoIPTests::testJSON()
 
     QCOMPARE( tz.first, QLatin1String( "Europe" ) );
     QCOMPARE( tz.second, QLatin1String( "Amsterdam" ) );
+
+    // JSON is quite tolerant
+    tz = handler.processReply( "time_zone: \"Europe/Brussels\"" );
+    QCOMPARE( tz.second, QLatin1String( "Brussels" ) );
+
+    tz = handler.processReply( "time_zone: America/New_York\n" );
+    QCOMPARE( tz.first, "America" );
 }
+
+void
+GeoIPTests::testJSONbad()
+{
+    static const char data[] = "time_zone: 1";
+
+    FreeGeoIP handler;
+    auto tz = handler.processReply( data );
+
+    tz = handler.processReply( data );
+    QCOMPARE( tz.first, QString() );
+
+    tz = handler.processReply( "" );
+    QCOMPARE( tz.first, QString() );
+
+    tz = handler.processReply( "<html><body>404 Forbidden</body></html>" );
+    QCOMPARE( tz.first, QString() );
+}
+
 
 void
 GeoIPTests::testXML()
@@ -94,5 +120,21 @@ GeoIPTests::testXML2()
 
     QCOMPARE( tz.first, QLatin1String( "America" ) );
     QCOMPARE( tz.second, QLatin1String( "North Dakota/Beulah" ) );
+#endif
+}
+
+void
+GeoIPTests::testXMLbad()
+{
+#ifdef HAVE_XML
+    XMLGeoIP handler;
+    auto tz = handler.processReply( "{time_zone: \"Europe/Paris\"}" );
+    QCOMPARE( tz.first, QString() );
+
+    tz = handler.processReply( "<Response></Response>" );
+    QCOMPARE( tz.first, QString() );
+
+    tz = handler.processReply( "fnord<html/>" );
+    QCOMPARE( tz.first, QString() );
 #endif
 }
