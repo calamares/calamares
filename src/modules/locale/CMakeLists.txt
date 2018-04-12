@@ -1,9 +1,8 @@
 find_package(ECM ${ECM_VERSION} NO_MODULE)
-if( ECM_FOUND )
+if( ECM_FOUND AND BUILD_TESTING )
     include( ECMAddTests )
+    find_package( Qt5 COMPONENTS Core Test REQUIRED )
 endif()
-
-find_package( Qt5 COMPONENTS Core Test REQUIRED )
 
 include_directories( ${PROJECT_BINARY_DIR}/src/libcalamaresui )
 
@@ -40,7 +39,7 @@ calamares_add_plugin( locale
     SHARED_LIB
 )
 
-if( ECM_FOUND )
+if( ECM_FOUND AND BUILD_TESTING )
     ecm_add_test(
             GeoIPTests.cpp
             ${geoip_src}
@@ -54,4 +53,9 @@ if( ECM_FOUND )
             ${YAMLCPP_LIBRARY}
     )
     set_target_properties( geoiptest PROPERTIES AUTOMOC TRUE )
+endif()
+
+if( BUILD_TESTING )
+    add_executable( test_geoip test_geoip.cpp ${geoip_src} )
+    target_link_libraries( test_geoip calamaresui Qt5::Network ${geoip_libs} ${YAMLCPP_LIBRARY} )
 endif()
