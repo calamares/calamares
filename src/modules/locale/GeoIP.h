@@ -41,8 +41,10 @@ struct GeoIP
      * Some GeoIP providers are configured with one URL, but actually
      * do retrieval with another (e.g. when using the original
      * implementation of FreeGeoIP, or when adding an API key).
+     *
+     * The default implementation uses the @p configUrl unchanged.
      */
-    virtual QUrl fullUrl( const QString& configUrl ) = 0;
+    virtual QUrl fullUrl( const QString& configUrl );
 
     /** @brief Handle a (successful) request by interpreting the data.
      *
@@ -55,7 +57,7 @@ struct GeoIP
      */
     virtual RegionZonePair processReply( QNetworkReply* ) = 0;
 
-    virtual ~GeoIP();  // Defined in LocaleViewStep
+    virtual ~GeoIP();
 } ;
 
 #endif

@@ -270,9 +270,3 @@ LocaleViewStep::setConfigurationMap( const QVariantMap& configurationMap )
         m_geoipUrl = configurationMap.value( "geoipUrl" ).toString();
     }
 }
-
-
-// Defined here since the struct has nothing else in it
-GeoIP::~GeoIP()
-{
-}
