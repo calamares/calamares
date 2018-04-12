@@ -4,6 +4,7 @@ calamares_add_plugin( locale
     TYPE viewmodule
     EXPORT_MACRO PLUGINDLLEXPORT_PRO
     SOURCES
+        GeoIPFreeGeoIP.cpp
         LCLocaleDialog.cpp
         LocaleConfiguration.cpp
         LocalePage.cpp
