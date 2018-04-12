@@ -36,10 +36,8 @@ XMLGeoIP::processReply( const QByteArray& data )
         cDebug() << "GeoIP found" << tzElements.length() << "elements";
         for ( int it = 0; it < tzElements.length(); ++it )
         {
-            if ( tzElements.at(it).isText() )
-            {
-                return splitTZString( tzElements.at(it).nodeValue() );
-            }
+            auto e = tzElements.at(it).toElement();
+            return splitTZString( e.text() );
         }
     }
     else
