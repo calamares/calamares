@@ -7,6 +7,7 @@ find_package(Qt5 COMPONENTS Xml)
 if( Qt5Xml_FOUND )
     list( APPEND geoip_src GeoIPXML.cpp )
     list( APPEND geoip_libs Qt5::Xml )
+    add_definitions( -DHAVE_XML )
 endif()
 
 calamares_add_plugin( locale

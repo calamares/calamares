@@ -21,6 +21,9 @@
 
 #include "GeoIP.h"
 #include "GeoIPFreeGeoIP.h"
+#ifdef HAVE_XML
+#include "GeoIPXML.h"
+#endif
 #include "GlobalStorage.h"
 #include "JobQueue.h"
 #include "LocalePage.h"
@@ -114,9 +117,32 @@ LocaleViewStep::setUpPage()
 void
 LocaleViewStep::fetchGeoIpTimezone()
 {
-    QNetworkAccessManager *manager = new QNetworkAccessManager( this );
-    GeoIP *handler = new FreeGeoIP;
+    QString actualUrl( m_geoipUrl );
+    GeoIP *handler = nullptr;
 
+    if ( m_geoipStyle.isEmpty() || m_geoipStyle == "legacy" )
+    {
+        actualUrl.append( "/json" );
+        handler = new FreeGeoIP;
+    }
+    else if ( m_geoipStyle == "json" )
+    {
+        handler = new FreeGeoIP;
+    }
+#if defined(HAVE_XML)
+    else if ( m_geoipStyle == "xml" )
+    {
+        handler = new XMLGeoIP;
+    }
+#endif
+    else
+    {
+        cDebug() << "WARNING: GeoIP Style" << m_geoipStyle << "is not recognized.";
+        setUpPage();
+        return;
+    }
+
+    QNetworkAccessManager *manager = new QNetworkAccessManager( this );
     connect( manager, &QNetworkAccessManager::finished,
             [=]( QNetworkReply* reply )
     {
@@ -268,5 +294,11 @@ LocaleViewStep::setConfigurationMap( const QVariantMap& configurationMap )
          !configurationMap.value( "geoipUrl" ).toString().isEmpty() )
     {
         m_geoipUrl = configurationMap.value( "geoipUrl" ).toString();
+    }
+    if ( configurationMap.contains( "geoipStyle" ) &&
+         configurationMap.value( "geoipStyle" ).type() == QVariant::String &&
+         !configurationMap.value( "geoipStyle" ).toString().isEmpty() )
+    {
+        m_geoipStyle = configurationMap.value( "geoipStyle" ).toString();
     }
 }

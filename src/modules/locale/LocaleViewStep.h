@@ -76,6 +76,7 @@ private:
     QPair< QString, QString > m_startingTimezone;
     QString m_localeGenPath;
     QString m_geoipUrl;
+    QString m_geoipStyle;
 
     QList< Calamares::job_ptr > m_jobs;
 };
