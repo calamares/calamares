@@ -21,9 +21,3 @@
 GeoIP::~GeoIP()
 {
 }
-
-QUrl
-GeoIP::fullUrl(const QString& configUrl)
-{
-    return QUrl::fromUserInput( configUrl );
-}

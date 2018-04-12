@@ -133,7 +133,7 @@ LocaleViewStep::fetchGeoIpTimezone()
     } );
 
     QNetworkRequest request;
-    request.setUrl( handler->fullUrl( m_geoipUrl ) );
+    request.setUrl( QUrl::fromUserInput( m_geoipUrl ) );
     request.setAttribute( QNetworkRequest::FollowRedirectsAttribute, true );
     manager->get( request );
 }

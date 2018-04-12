@@ -26,15 +26,6 @@
 
 #include <yaml-cpp/yaml.h>
 
-QUrl
-FreeGeoIP::fullUrl( const QString& configUrl )
-{
-    // FIXME: derpy way to append "/json" to the user-specified config URL
-    QString requestUrl = QString( "%1/json" )
-                         .arg( QUrl::fromUserInput( configUrl ).toString() );
-    return QUrl( requestUrl );
-}
-
 GeoIP::RegionZonePair
 FreeGeoIP::processReply( QNetworkReply* reply )
 {

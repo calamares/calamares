@@ -36,16 +36,6 @@ struct GeoIP
 {
     using RegionZonePair = QPair<QString, QString>;
 
-    /** @brief Convert configured URL to a complete URL.
-     *
-     * Some GeoIP providers are configured with one URL, but actually
-     * do retrieval with another (e.g. when using the original
-     * implementation of FreeGeoIP, or when adding an API key).
-     *
-     * The default implementation uses the @p configUrl unchanged.
-     */
-    virtual QUrl fullUrl( const QString& configUrl );
-
     /** @brief Handle a (successful) request by interpreting the data.
      *
      * Should return a ( <zone>, <region> ) pair, e.g.

@@ -21,9 +21,16 @@
 
 #include "GeoIP.h"
 
+/** @brief GeoIP lookup via freegeoip.com
+ *
+ * This is the original implementation of GeoIP lookup,
+ * using the FreeGeoIP service, or similar which returns
+ * data in the same format.
+ *
+ * The data is assumed to be in JSON format with a time_zone attribute.
+ */
 struct FreeGeoIP : public GeoIP
 {
-    virtual QUrl fullUrl( const QString& configUrl );
     virtual RegionZonePair processReply( QNetworkReply* );
 } ;
 
