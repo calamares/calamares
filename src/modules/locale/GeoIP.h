@@ -36,6 +36,8 @@ struct GeoIP
 {
     using RegionZonePair = QPair<QString, QString>;
 
+    virtual ~GeoIP();
+
     /** @brief Handle a (successful) request by interpreting the data.
      *
      * Should return a ( <zone>, <region> ) pair, e.g.
@@ -47,7 +49,8 @@ struct GeoIP
      */
     virtual RegionZonePair processReply( QNetworkReply* ) = 0;
 
-    virtual ~GeoIP();
+    /** @brief Splits a region/zone string into a pair. */
+    static RegionZonePair splitTZString( const QString& s );
 } ;
 
 #endif

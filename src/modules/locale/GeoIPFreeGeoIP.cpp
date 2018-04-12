@@ -44,15 +44,7 @@ FreeGeoIP::processReply( QNetworkReply* reply )
             if ( map.contains( "time_zone" ) &&
                 !map.value( "time_zone" ).toString().isEmpty() )
             {
-                QString timezoneString = map.value( "time_zone" ).toString();
-                QStringList tzParts = timezoneString.split( '/', QString::SkipEmptyParts );
-                if ( tzParts.size() >= 2 )
-                {
-                    cDebug() << "GeoIP reporting" << timezoneString;
-                    QString region = tzParts.takeFirst();
-                    QString zone = tzParts.join( '/' );
-                    return qMakePair( region, zone );
-                }
+                return splitTZString( map.value( "time_zone" ).toString() );
             }
         }
     }

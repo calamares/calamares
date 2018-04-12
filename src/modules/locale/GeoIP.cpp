@@ -18,6 +18,23 @@
 
 #include "GeoIP.h"
 
+#include "utils/Logger.h"
+
 GeoIP::~GeoIP()
 {
+}
+
+GeoIP::RegionZonePair
+GeoIP::splitTZString( const QString& timezoneString )
+{
+    QStringList tzParts = timezoneString.split( '/', QString::SkipEmptyParts );
+    if ( tzParts.size() >= 2 )
+    {
+        cDebug() << "GeoIP reporting" << timezoneString;
+        QString region = tzParts.takeFirst();
+        QString zone = tzParts.join( '/' );
+        return qMakePair( region, zone );
+    }
+
+    return qMakePair( QString(), QString() );
 }
