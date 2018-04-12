@@ -122,7 +122,7 @@ LocaleViewStep::fetchGeoIpTimezone()
     {
         if ( reply->error() == QNetworkReply::NoError )
         {
-            auto tz = handler->processReply( reply );
+            auto tz = handler->processReply( reply->readAll() );
             if ( !tz.first.isEmpty() )
                 m_startingTimezone = tz;
         }

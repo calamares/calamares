@@ -22,15 +22,13 @@
 #include "utils/Logger.h"
 #include "utils/YamlUtils.h"
 
-#include <QNetworkReply>
+#include <QByteArray>
 
 #include <yaml-cpp/yaml.h>
 
 GeoIP::RegionZonePair
-FreeGeoIP::processReply( QNetworkReply* reply )
+FreeGeoIP::processReply( const QByteArray& data )
 {
-    QByteArray data = reply->readAll();
-
     try
     {
         YAML::Node doc = YAML::Load( data );

@@ -23,7 +23,7 @@
 #include <QString>
 #include <QUrl>
 
-class QNetworkReply;
+class QByteArray;
 
 /**
  * @brief Interface for GeoIP retrievers.
@@ -47,7 +47,7 @@ struct GeoIP
      * likes. On error, returns a RegionZonePair with empty
      * strings (e.g. ( "", "" ) ).
      */
-    virtual RegionZonePair processReply( QNetworkReply* ) = 0;
+    virtual RegionZonePair processReply( const QByteArray& ) = 0;
 
     /** @brief Splits a region/zone string into a pair. */
     static RegionZonePair splitTZString( const QString& s );

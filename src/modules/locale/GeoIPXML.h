@@ -30,7 +30,7 @@
  */
 struct XMLGeoIP : public GeoIP
 {
-    virtual RegionZonePair processReply( QNetworkReply* );
+    virtual RegionZonePair processReply( const QByteArray& );
 } ;
 
 #endif
