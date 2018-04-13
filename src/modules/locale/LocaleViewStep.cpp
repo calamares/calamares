@@ -153,7 +153,7 @@ LocaleViewStep::fetchGeoIpTimezone()
             if ( !tz.first.isEmpty() )
                 m_startingTimezone = tz;
             else
-                cWarning() << "GeoIP lookup at" << reply->url() << "failed.";
+                cDebug() << "WARNING: GeoIP lookup at" << reply->url() << "failed.";
         }
         delete handler;
         reply->deleteLater();
