@@ -31,6 +31,7 @@
 #include "timezonewidget/localeglobal.h"
 #include "widgets/WaitingWidget.h"
 
+#include "utils/CalamaresUtils.h"
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
 #include "utils/YamlUtils.h"
@@ -137,7 +138,7 @@ LocaleViewStep::fetchGeoIpTimezone()
 #endif
     else
     {
-        cDebug() << "WARNING: GeoIP Style" << m_geoipStyle << "is not recognized.";
+        cWarning() << "GeoIP Style" << m_geoipStyle << "is not recognized.";
         setUpPage();
         return;
     }
@@ -289,16 +290,6 @@ LocaleViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     }
 
     // Optional
-    if ( configurationMap.contains( "geoipUrl" ) &&
-         configurationMap.value( "geoipUrl" ).type() == QVariant::String &&
-         !configurationMap.value( "geoipUrl" ).toString().isEmpty() )
-    {
-        m_geoipUrl = configurationMap.value( "geoipUrl" ).toString();
-    }
-    if ( configurationMap.contains( "geoipStyle" ) &&
-         configurationMap.value( "geoipStyle" ).type() == QVariant::String &&
-         !configurationMap.value( "geoipStyle" ).toString().isEmpty() )
-    {
-        m_geoipStyle = configurationMap.value( "geoipStyle" ).toString();
-    }
+    m_geoipUrl = CalamaresUtils::getString( configurationMap, "geoipUrl" );
+    m_geoipStyle = CalamaresUtils::getString( configurationMap, "geoipStyle" );
 }

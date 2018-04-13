@@ -42,7 +42,7 @@ XMLGeoIP::processReply( const QByteArray& data )
     }
     else
     {
-        cDebug() << "GeoIP XML data error:" << domError << "(line" << errorLine << errorColumn << ')';
+        cWarning() << "GeoIP XML data error:" << domError << "(line" << errorLine << errorColumn << ')';
     }
 
     return qMakePair( QString(), QString() );
