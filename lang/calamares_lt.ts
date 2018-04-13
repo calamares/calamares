@@ -172,7 +172,7 @@
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="75"/>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="279"/>
         <source>&amp;Cancel</source>
-        <translation>A&amp;tšaukti</translation>
+        <translation>A&amp;tsisakyti</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="76"/>
@@ -189,7 +189,7 @@
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="292"/>
         <source>Do you really want to cancel the current install process?
 The installer will quit and all changes will be lost.</source>
-        <translation>Ar tikrai norite atšaukti dabartinio diegimo procesą?
+        <translation>Ar tikrai norite atsisakyti dabartinio diegimo proceso?
 Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
     </message>
     <message>
@@ -1648,7 +1648,7 @@ Diegimo programa užbaigs darbą ir visi pakeitimai bus prarasti.</translation>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="51"/>
         <source>&amp;Revert All Changes</source>
-        <translation>&amp;Atšaukti visus pakeitimus</translation>
+        <translation>&amp;Sugrąžinti visus pakeitimus</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="87"/>
