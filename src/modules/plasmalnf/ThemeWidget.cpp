@@ -62,14 +62,14 @@ ThemeWidget::ThemeWidget(const ThemeInfo& info, QWidget* parent)
     , m_check( new QRadioButton( info.name.isEmpty() ? info.id : info.name, parent ) )
     , m_description( new QLabel( info.description, parent ) )
 {
+    const QSize image_size{
+        qMax(12 * CalamaresUtils::defaultFontHeight(), 120),
+        qMax(8 * CalamaresUtils::defaultFontHeight(), 80) };
+
     QHBoxLayout* layout = new QHBoxLayout( this );
     this->setLayout( layout );
 
     layout->addWidget( m_check, 1 );
-
-    const QSize image_size{
-        qMax(12 * CalamaresUtils::defaultFontHeight(), 120),
-        qMax(8 * CalamaresUtils::defaultFontHeight(), 80) };
 
     QPixmap image( _munge_imagepath( info.imagePath ) );
     if ( image.isNull() )
@@ -88,6 +88,7 @@ ThemeWidget::ThemeWidget(const ThemeInfo& info, QWidget* parent)
     image_label->setPixmap( image );
     image_label->setMinimumSize( image_size );
     image_label->setMaximumSize( image_size );
+    image_label->setSizePolicy( QSizePolicy::Fixed, QSizePolicy::Fixed );
     layout->addWidget( image_label, 1 );
     layout->addWidget( m_description, 3 );
 
