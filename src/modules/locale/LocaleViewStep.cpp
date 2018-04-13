@@ -122,7 +122,7 @@ LocaleViewStep::fetchGeoIpTimezone()
 
     if ( m_geoipStyle.isEmpty() || m_geoipStyle == "legacy" )
     {
-        actualUrl.append( "/json" );
+        actualUrl.append( "/json/" );
         handler = new FreeGeoIP;
     }
     else if ( m_geoipStyle == "json" )
@@ -141,6 +141,7 @@ LocaleViewStep::fetchGeoIpTimezone()
         setUpPage();
         return;
     }
+    cDebug() << "Fetching GeoIP data from" << actualUrl;
 
     QNetworkAccessManager *manager = new QNetworkAccessManager( this );
     connect( manager, &QNetworkAccessManager::finished,
@@ -161,7 +162,7 @@ LocaleViewStep::fetchGeoIpTimezone()
     } );
 
     QNetworkRequest request;
-    request.setUrl( QUrl::fromUserInput( m_geoipUrl ) );
+    request.setUrl( QUrl::fromUserInput( actualUrl ) );
     request.setAttribute( QNetworkRequest::FollowRedirectsAttribute, true );
     manager->get( request );
 }
