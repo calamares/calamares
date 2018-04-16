@@ -75,8 +75,10 @@ private:
 
     QPair< QString, QString > m_startingTimezone;
     QString m_localeGenPath;
-    QString m_geoipUrl;
-    QString m_geoipStyle;
+
+    QString m_geoipUrl;  // The URL, depening on style might be modified on lookup
+    QString m_geoipStyle;  // String selecting which kind of geoip data to expect
+    QString m_geoipSelector;  // String selecting data from the geoip lookup
 
     QList< Calamares::job_ptr > m_jobs;
 };

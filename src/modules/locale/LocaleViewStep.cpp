@@ -124,16 +124,16 @@ LocaleViewStep::fetchGeoIpTimezone()
     if ( m_geoipStyle.isEmpty() || m_geoipStyle == "legacy" )
     {
         actualUrl.append( "/json/" );
-        handler = new GeoIPJSON;
+        handler = new GeoIPJSON( m_geoipSelector );
     }
     else if ( m_geoipStyle == "json" )
     {
-        handler = new GeoIPJSON;
+        handler = new GeoIPJSON( m_geoipSelector );
     }
 #if defined(HAVE_XML)
     else if ( m_geoipStyle == "xml" )
     {
-        handler = new GeoIPXML;
+        handler = new GeoIPXML( m_geoipSelector );
     }
 #endif
     else
@@ -295,4 +295,5 @@ LocaleViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     // Optional
     m_geoipUrl = CalamaresUtils::getString( configurationMap, "geoipUrl" );
     m_geoipStyle = CalamaresUtils::getString( configurationMap, "geoipStyle" );
+    m_geoipSelector = CalamaresUtils::getString( configurationMap, "geoipSelector" );
 }
