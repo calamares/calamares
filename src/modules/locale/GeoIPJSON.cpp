@@ -27,15 +27,9 @@
 #include <yaml-cpp/yaml.h>
 
 GeoIPJSON::GeoIPJSON(const QString& attribute)
-    : GeoIP( attribute )
+    : GeoIP( attribute.isEmpty() ? QLatin1String( "time_zone" ) : attribute )
 {
 }
-
-GeoIPJSON::GeoIPJSON()
-    : GeoIPJSON( QLatin1Literal( "time_zone" ) )
-{
-}
-
 
 GeoIP::RegionZonePair
 GeoIPJSON::processReply( const QByteArray& data )

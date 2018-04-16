@@ -31,8 +31,12 @@
 class GeoIPJSON : public GeoIP
 {
 public:
-    explicit GeoIPJSON( const QString& attribute );
-    explicit GeoIPJSON();
+    /** @brief Configure the attribute name which is selected.
+     *
+     * If an empty string is passed in (not a valid attribute name),
+     * then "time_zone" is used.
+     */
+    explicit GeoIPJSON( const QString& attribute = QString() );
 
     virtual RegionZonePair processReply( const QByteArray& );
 } ;

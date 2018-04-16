@@ -24,15 +24,9 @@
 #include <QtXml/QDomDocument>
 
 GeoIPXML::GeoIPXML( const QString& element )
-    : GeoIP( element )
+    : GeoIP( element.isEmpty() ? QLatin1String( "TimeZone" ) : element )
 {
 }
-
-GeoIPXML::GeoIPXML()
-    : GeoIPXML( QLatin1Literal( "TimeZone" ) )
-{
-}
-
 
 GeoIP::RegionZonePair
 GeoIPXML::processReply( const QByteArray& data )

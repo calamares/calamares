@@ -31,10 +31,12 @@
 class GeoIPXML : public GeoIP
 {
 public:
-    /** @brief Configure the element name which is selected. */
-    explicit GeoIPXML( const QString& element );
-    /** @brief Use default TimeZone element. */
-    explicit GeoIPXML();
+    /** @brief Configure the element tag which is selected.
+     *
+     * If an empty string is passed in (not a valid element tag),
+     * then "TimeZone" is used.
+     */
+    explicit GeoIPXML( const QString& element = QString() );
 
     virtual RegionZonePair processReply( const QByteArray& );
 } ;
