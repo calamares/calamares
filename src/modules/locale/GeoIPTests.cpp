@@ -141,7 +141,7 @@ GeoIPTests::testXML2()
 
 void GeoIPTests::testXMLalt()
 {
-#ifdef HAvE_XML
+#ifdef HAVE_XML
     GeoIPXML handler( "ZT" );
 
     auto tz = handler.processReply( "<A><B/><C><ZT>Moon/Dark_side</ZT></C></A>" );
@@ -188,4 +188,65 @@ void GeoIPTests::testSplitTZ()
     tz = GeoIP::splitTZString( QLatin1String("America/North Dakota/Beulah") );
     QCOMPARE( tz.first, QLatin1String("America") );
     QCOMPARE( tz.second, QLatin1String("North Dakota/Beulah") );
+}
+
+
+static QByteArray
+synchronous_get( const char* urlstring )
+{
+    QUrl url( urlstring );
+    QNetworkAccessManager manager;
+    QEventLoop loop;
+
+    QObject::connect( &manager, &QNetworkAccessManager::finished, &loop, &QEventLoop::quit );
+
+    QNetworkRequest request( url );
+    QNetworkReply* reply = manager.get( request );
+    loop.exec();
+    reply->deleteLater();
+    return reply->readAll();
+}
+
+#define CHECK_GET(t, selector, url) \
+    { \
+        auto tz = GeoIP##t( selector ).processReply( synchronous_get( url ) ); \
+        QCOMPARE( default_tz, tz ); \
+        qDebug() << "Checked" << url; \
+    }
+
+void GeoIPTests::testGet()
+{
+    if ( !QProcessEnvironment::systemEnvironment().contains( QLatin1String("TEST_HTTP_GET") ) )
+    {
+        qDebug() << "Skipping HTTP GET tests";
+        return;
+    }
+
+    GeoIPJSON default_handler;
+    // Call the KDE service the definitive source, even though this
+    // service is temporary and might go away any time.
+    auto default_tz = default_handler.processReply( synchronous_get( "http://drax.kde.org:9129/calamares" ) );
+
+    // This is bogus, because the test isn't always run by me
+    // QCOMPARE( default_tz.first, QLatin1String("Europe") );
+    // QCOMPARE( default_tz.second, QLatin1String("Amsterdam") );
+    QVERIFY( !default_tz.first.isEmpty() );
+    QVERIFY( !default_tz.second.isEmpty() );
+
+    // Each expansion of CHECK_GET does a synchronous GET, then checks that
+    // the TZ data is the same as the default_tz; this is fragile if the
+    // services don't agree on the location of where the test is run.
+    CHECK_GET( JSON, QString(), "http://drax.kde.org:9129/calamares" )     // Temporary KDE service
+    CHECK_GET( JSON, QString(), "http://freegeoip.net/json/" )             // Original FreeGeoIP service
+    CHECK_GET( JSON, QLatin1String("timezone"), "https://ipapi.co/json" )  // Different JSON
+    CHECK_GET( JSON, QLatin1String("timezone"), "http://ip-api.com/json" )
+
+    CHECK_GET( JSON, QLatin1String("location.time_zone"), "http://geoip.nekudo.com/api/" )  // 2-level JSON
+
+    CHECK_GET( JSON, QLatin1String("Location.TimeZone"), "http://drax.kde.org:9129/" )  // 2-level JSON
+
+#ifdef HAVE_XML
+    CHECK_GET( XML, QString(), "http://geoip.ubuntu.com/lookup" )  // Ubiquity's XML format
+    CHECK_GET( XML, QString(),  "http://drax.kde.org:9129/ubiquity" )  // Temporary KDE service
+#endif
 }

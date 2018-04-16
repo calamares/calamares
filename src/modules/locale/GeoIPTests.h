@@ -38,6 +38,8 @@ private Q_SLOTS:
     void testXMLalt();
     void testXMLbad();
     void testSplitTZ();
+
+    void testGet();
 };
 
 #endif
