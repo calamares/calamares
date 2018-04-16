@@ -40,14 +40,14 @@ GeoIPTests::initTestCase()
 {
 }
 
+static const char json_data_attribute[] =
+    "{\"time_zone\":\"Europe/Amsterdam\"}";
+
 void
 GeoIPTests::testJSON()
 {
-    static const char data[] =
-        "{\"time_zone\":\"Europe/Amsterdam\"}";
-
     GeoIPJSON handler;
-    auto tz = handler.processReply( data );
+    auto tz = handler.processReply( json_data_attribute );
 
     QCOMPARE( tz.first, QLatin1String( "Europe" ) );
     QCOMPARE( tz.second, QLatin1String( "Amsterdam" ) );
@@ -58,6 +58,18 @@ GeoIPTests::testJSON()
 
     tz = handler.processReply( "time_zone: America/New_York\n" );
     QCOMPARE( tz.first, "America" );
+}
+
+void GeoIPTests::testJSONalt()
+{
+    GeoIPJSON handler( "zona_de_hora" );
+
+    auto tz = handler.processReply( json_data_attribute );
+    QCOMPARE( tz.first, QString() );  // Not found
+
+    tz = handler.processReply( "tarifa: 12\nzona_de_hora: Europe/Madrid" );
+    QCOMPARE( tz.first, QLatin1String( "Europe" ) );
+    QCOMPARE( tz.second, QLatin1String( "Madrid" ) );
 }
 
 void
@@ -82,10 +94,7 @@ GeoIPTests::testJSONbad()
 }
 
 
-void
-GeoIPTests::testXML()
-{
-    static const char data[] =
+static const char xml_data_ubiquity[] =
         R"(<Response>
   <Ip>85.150.1.1</Ip>
   <Status>OK</Status>
@@ -102,9 +111,12 @@ GeoIPTests::testXML()
   <TimeZone>Europe/Amsterdam</TimeZone>
 </Response>)";
 
+void
+GeoIPTests::testXML()
+{
 #ifdef HAVE_XML
     GeoIPXML handler;
-    auto tz = handler.processReply( data );
+    auto tz = handler.processReply( xml_data_ubiquity );
 
     QCOMPARE( tz.first, QLatin1String( "Europe" ) );
     QCOMPARE( tz.second, QLatin1String( "Amsterdam" ) );
@@ -123,6 +135,18 @@ GeoIPTests::testXML2()
 
     QCOMPARE( tz.first, QLatin1String( "America" ) );
     QCOMPARE( tz.second, QLatin1String( "North Dakota/Beulah" ) );
+#endif
+}
+
+
+void GeoIPTests::testXMLalt()
+{
+#ifdef HAvE_XML
+    GeoIPXML handler( "ZT" );
+
+    auto tz = handler.processReply( "<A><B/><C><ZT>Moon/Dark_side</ZT></C></A>" );
+    QCOMPARE( tz.first, QLatin1String( "Moon" ) );
+    QCOMPARE( tz.second, QLatin1String( "Dark_side" ) );
 #endif
 }
 
