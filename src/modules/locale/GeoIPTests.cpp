@@ -18,7 +18,7 @@
 
 #include "GeoIPTests.h"
 
-#include "GeoIPFreeGeoIP.h"
+#include "GeoIPJSON.h"
 #ifdef HAVE_XML
 #include "GeoIPXML.h"
 #endif
@@ -46,7 +46,7 @@ GeoIPTests::testJSON()
     static const char data[] =
         "{\"time_zone\":\"Europe/Amsterdam\"}";
 
-    FreeGeoIP handler;
+    GeoIPJSON handler;
     auto tz = handler.processReply( data );
 
     QCOMPARE( tz.first, QLatin1String( "Europe" ) );
@@ -65,7 +65,7 @@ GeoIPTests::testJSONbad()
 {
     static const char data[] = "time_zone: 1";
 
-    FreeGeoIP handler;
+    GeoIPJSON handler;
     auto tz = handler.processReply( data );
 
     tz = handler.processReply( data );

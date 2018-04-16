@@ -17,7 +17,7 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "GeoIPFreeGeoIP.h"
+#include "GeoIPJSON.h"
 
 #include "utils/Logger.h"
 #include "utils/YamlUtils.h"
@@ -27,7 +27,7 @@
 #include <yaml-cpp/yaml.h>
 
 GeoIP::RegionZonePair
-FreeGeoIP::processReply( const QByteArray& data )
+GeoIPJSON::processReply( const QByteArray& data )
 {
     try
     {

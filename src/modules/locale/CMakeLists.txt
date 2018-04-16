@@ -6,7 +6,7 @@ endif()
 
 include_directories( ${PROJECT_BINARY_DIR}/src/libcalamaresui )
 
-set( geoip_src GeoIP.cpp GeoIPFreeGeoIP.cpp )
+set( geoip_src GeoIP.cpp GeoIPJSON.cpp )
 set( geoip_libs )
 
 find_package(Qt5 COMPONENTS Xml)

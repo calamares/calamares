@@ -22,7 +22,7 @@
 
 #include <iostream>
 
-#include "GeoIPFreeGeoIP.h"
+#include "GeoIPJSON.h"
 #ifdef HAVE_XML
 #include "GeoIPXML.h"
 #endif
@@ -39,7 +39,7 @@ int main(int argc, char** argv)
 
     GeoIP* handler = nullptr;
     if ( QLatin1String( "json" ) == argv[1] )
-        handler = new FreeGeoIP;
+        handler = new GeoIPJSON;
 #ifdef HAVE_XML
     else if ( QLatin1String( "xml" ) == argv[1] )
         handler = new XMLGeoIP;
