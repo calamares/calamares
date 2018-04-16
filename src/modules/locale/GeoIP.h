@@ -32,8 +32,9 @@ class QByteArray;
  * and can handle the data returned from its interpretation of that
  * configured URL, returning a region and zone.
  */
-struct GeoIP
+class GeoIP
 {
+public:
     using RegionZonePair = QPair<QString, QString>;
 
     virtual ~GeoIP();
@@ -51,6 +52,11 @@ struct GeoIP
 
     /** @brief Splits a region/zone string into a pair. */
     static RegionZonePair splitTZString( const QString& s );
+
+protected:
+    GeoIP( const QString& e = QString() );
+
+    QString m_element;  // string for selecting from data
 } ;
 
 #endif

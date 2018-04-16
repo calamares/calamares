@@ -18,7 +18,7 @@
 
 #include "GeoIPTests.h"
 
-#include "GeoIPFreeGeoIP.h"
+#include "GeoIPJSON.h"
 #ifdef HAVE_XML
 #include "GeoIPXML.h"
 #endif
@@ -40,14 +40,14 @@ GeoIPTests::initTestCase()
 {
 }
 
+static const char json_data_attribute[] =
+    "{\"time_zone\":\"Europe/Amsterdam\"}";
+
 void
 GeoIPTests::testJSON()
 {
-    static const char data[] =
-        "{\"time_zone\":\"Europe/Amsterdam\"}";
-
-    FreeGeoIP handler;
-    auto tz = handler.processReply( data );
+    GeoIPJSON handler;
+    auto tz = handler.processReply( json_data_attribute );
 
     QCOMPARE( tz.first, QLatin1String( "Europe" ) );
     QCOMPARE( tz.second, QLatin1String( "Amsterdam" ) );
@@ -60,12 +60,24 @@ GeoIPTests::testJSON()
     QCOMPARE( tz.first, "America" );
 }
 
+void GeoIPTests::testJSONalt()
+{
+    GeoIPJSON handler( "zona_de_hora" );
+
+    auto tz = handler.processReply( json_data_attribute );
+    QCOMPARE( tz.first, QString() );  // Not found
+
+    tz = handler.processReply( "tarifa: 12\nzona_de_hora: Europe/Madrid" );
+    QCOMPARE( tz.first, QLatin1String( "Europe" ) );
+    QCOMPARE( tz.second, QLatin1String( "Madrid" ) );
+}
+
 void
 GeoIPTests::testJSONbad()
 {
     static const char data[] = "time_zone: 1";
 
-    FreeGeoIP handler;
+    GeoIPJSON handler;
     auto tz = handler.processReply( data );
 
     tz = handler.processReply( data );
@@ -76,13 +88,13 @@ GeoIPTests::testJSONbad()
 
     tz = handler.processReply( "<html><body>404 Forbidden</body></html>" );
     QCOMPARE( tz.first, QString() );
+
+    tz = handler.processReply( "{ time zone = 'America/LosAngeles'}" );
+    QCOMPARE( tz.first, QString() );
 }
 
 
-void
-GeoIPTests::testXML()
-{
-    static const char data[] =
+static const char xml_data_ubiquity[] =
         R"(<Response>
   <Ip>85.150.1.1</Ip>
   <Status>OK</Status>
@@ -99,9 +111,12 @@ GeoIPTests::testXML()
   <TimeZone>Europe/Amsterdam</TimeZone>
 </Response>)";
 
+void
+GeoIPTests::testXML()
+{
 #ifdef HAVE_XML
-    XMLGeoIP handler;
-    auto tz = handler.processReply( data );
+    GeoIPXML handler;
+    auto tz = handler.processReply( xml_data_ubiquity );
 
     QCOMPARE( tz.first, QLatin1String( "Europe" ) );
     QCOMPARE( tz.second, QLatin1String( "Amsterdam" ) );
@@ -115,7 +130,7 @@ GeoIPTests::testXML2()
         "<Response><TimeZone>America/North Dakota/Beulah</TimeZone></Response>";
 
 #ifdef HAVE_XML
-    XMLGeoIP handler;
+    GeoIPXML handler;
     auto tz = handler.processReply( data );
 
     QCOMPARE( tz.first, QLatin1String( "America" ) );
@@ -123,11 +138,23 @@ GeoIPTests::testXML2()
 #endif
 }
 
+
+void GeoIPTests::testXMLalt()
+{
+#ifdef HAvE_XML
+    GeoIPXML handler( "ZT" );
+
+    auto tz = handler.processReply( "<A><B/><C><ZT>Moon/Dark_side</ZT></C></A>" );
+    QCOMPARE( tz.first, QLatin1String( "Moon" ) );
+    QCOMPARE( tz.second, QLatin1String( "Dark_side" ) );
+#endif
+}
+
 void
 GeoIPTests::testXMLbad()
 {
 #ifdef HAVE_XML
-    XMLGeoIP handler;
+    GeoIPXML handler;
     auto tz = handler.processReply( "{time_zone: \"Europe/Paris\"}" );
     QCOMPARE( tz.first, QString() );
 
@@ -137,4 +164,28 @@ GeoIPTests::testXMLbad()
     tz = handler.processReply( "fnord<html/>" );
     QCOMPARE( tz.first, QString() );
 #endif
+}
+
+void GeoIPTests::testSplitTZ()
+{
+    auto tz = GeoIP::splitTZString( QLatin1String("Moon/Dark_side") );
+    QCOMPARE( tz.first, QLatin1String("Moon") );
+    QCOMPARE( tz.second, QLatin1String("Dark_side") );
+
+    // Some providers return weirdly escaped data
+    tz = GeoIP::splitTZString( QLatin1String("America\\/NewYork") );
+    QCOMPARE( tz.first, QLatin1String("America") );
+    QCOMPARE( tz.second, QLatin1String("NewYork") );  // That's not actually the zone name
+
+    // Check that bogus data fails
+    tz = GeoIP::splitTZString( QString() );
+    QCOMPARE( tz.first, QString() );
+
+    tz = GeoIP::splitTZString( QLatin1String("America.NewYork") );
+    QCOMPARE( tz.first, QString() );
+
+    // Check that three-level is split properly
+    tz = GeoIP::splitTZString( QLatin1String("America/North Dakota/Beulah") );
+    QCOMPARE( tz.first, QLatin1String("America") );
+    QCOMPARE( tz.second, QLatin1String("North Dakota/Beulah") );
 }

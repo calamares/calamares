@@ -17,7 +17,7 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "GeoIPFreeGeoIP.h"
+#include "GeoIPJSON.h"
 
 #include "utils/Logger.h"
 #include "utils/YamlUtils.h"
@@ -26,8 +26,13 @@
 
 #include <yaml-cpp/yaml.h>
 
+GeoIPJSON::GeoIPJSON(const QString& attribute)
+    : GeoIP( attribute.isEmpty() ? QLatin1String( "time_zone" ) : attribute )
+{
+}
+
 GeoIP::RegionZonePair
-FreeGeoIP::processReply( const QByteArray& data )
+GeoIPJSON::processReply( const QByteArray& data )
 {
     try
     {
@@ -39,12 +44,14 @@ FreeGeoIP::processReply( const QByteArray& data )
             var.type() == QVariant::Map )
         {
             QVariantMap map = var.toMap();
-            if ( map.contains( "time_zone" ) &&
-                !map.value( "time_zone" ).toString().isEmpty() )
+            if ( map.contains( m_element ) &&
+                !map.value( m_element ).toString().isEmpty() )
             {
-                return splitTZString( map.value( "time_zone" ).toString() );
+                return splitTZString( map.value( m_element ).toString() );
             }
         }
+        else
+            cWarning() << "Invalid YAML data for GeoIPJSON";
     }
     catch ( YAML::Exception& e )
     {
