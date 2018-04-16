@@ -165,3 +165,27 @@ GeoIPTests::testXMLbad()
     QCOMPARE( tz.first, QString() );
 #endif
 }
+
+void GeoIPTests::testSplitTZ()
+{
+    auto tz = GeoIP::splitTZString( QLatin1String("Moon/Dark_side") );
+    QCOMPARE( tz.first, QLatin1String("Moon") );
+    QCOMPARE( tz.second, QLatin1String("Dark_side") );
+
+    // Some providers return weirdly escaped data
+    tz = GeoIP::splitTZString( QLatin1String("America\\/NewYork") );
+    QCOMPARE( tz.first, QLatin1String("America") );
+    QCOMPARE( tz.second, QLatin1String("NewYork") );  // That's not actually the zone name
+
+    // Check that bogus data fails
+    tz = GeoIP::splitTZString( QString() );
+    QCOMPARE( tz.first, QString() );
+
+    tz = GeoIP::splitTZString( QLatin1String("America.NewYork") );
+    QCOMPARE( tz.first, QString() );
+
+    // Check that three-level is split properly
+    tz = GeoIP::splitTZString( QLatin1String("America/North Dakota/Beulah") );
+    QCOMPARE( tz.first, QLatin1String("America") );
+    QCOMPARE( tz.second, QLatin1String("North Dakota/Beulah") );
+}

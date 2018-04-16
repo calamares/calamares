@@ -30,8 +30,11 @@ GeoIP::~GeoIP()
 }
 
 GeoIP::RegionZonePair
-GeoIP::splitTZString( const QString& timezoneString )
+GeoIP::splitTZString( const QString& tz )
 {
+    QString timezoneString( tz );
+    timezoneString.remove( '\\' );
+
     QStringList tzParts = timezoneString.split( '/', QString::SkipEmptyParts );
     if ( tzParts.size() >= 2 )
     {
