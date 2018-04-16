@@ -23,6 +23,17 @@
 #include <QNetworkReply>
 #include <QtXml/QDomDocument>
 
+GeoIPXML::GeoIPXML( const QString& element )
+    : GeoIP( element )
+{
+}
+
+GeoIPXML::GeoIPXML()
+    : GeoIPXML( QLatin1Literal( "TimeZone" ) )
+{
+}
+
+
 GeoIP::RegionZonePair
 GeoIPXML::processReply( const QByteArray& data )
 {
@@ -32,7 +43,7 @@ GeoIPXML::processReply( const QByteArray& data )
     QDomDocument doc;
     if ( doc.setContent( data, false, &domError, &errorLine, &errorColumn ) )
     {
-        const auto tzElements = doc.elementsByTagName( "TimeZone" );
+        const auto tzElements = doc.elementsByTagName( m_element );
         cDebug() << "GeoIP found" << tzElements.length() << "elements";
         for ( int it = 0; it < tzElements.length(); ++it )
         {

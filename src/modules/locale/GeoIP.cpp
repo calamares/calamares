@@ -20,6 +20,11 @@
 
 #include "utils/Logger.h"
 
+GeoIP::GeoIP(const QString& e)
+    : m_element( e )
+{
+}
+
 GeoIP::~GeoIP()
 {
 }

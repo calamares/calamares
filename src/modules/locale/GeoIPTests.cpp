@@ -76,6 +76,9 @@ GeoIPTests::testJSONbad()
 
     tz = handler.processReply( "<html><body>404 Forbidden</body></html>" );
     QCOMPARE( tz.first, QString() );
+
+    tz = handler.processReply( "{ time zone = 'America/LosAngeles'}" );
+    QCOMPARE( tz.first, QString() );
 }
 
 

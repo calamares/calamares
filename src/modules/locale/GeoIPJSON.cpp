@@ -26,6 +26,17 @@
 
 #include <yaml-cpp/yaml.h>
 
+GeoIPJSON::GeoIPJSON(const QString& attribute)
+    : GeoIP( attribute )
+{
+}
+
+GeoIPJSON::GeoIPJSON()
+    : GeoIPJSON( QLatin1Literal( "time_zone" ) )
+{
+}
+
+
 GeoIP::RegionZonePair
 GeoIPJSON::processReply( const QByteArray& data )
 {
@@ -39,12 +50,14 @@ GeoIPJSON::processReply( const QByteArray& data )
             var.type() == QVariant::Map )
         {
             QVariantMap map = var.toMap();
-            if ( map.contains( "time_zone" ) &&
-                !map.value( "time_zone" ).toString().isEmpty() )
+            if ( map.contains( m_element ) &&
+                !map.value( m_element ).toString().isEmpty() )
             {
-                return splitTZString( map.value( "time_zone" ).toString() );
+                return splitTZString( map.value( m_element ).toString() );
             }
         }
+        else
+            cWarning() << "Invalid YAML data for GeoIPJSON";
     }
     catch ( YAML::Exception& e )
     {

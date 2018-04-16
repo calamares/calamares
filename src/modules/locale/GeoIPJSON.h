@@ -28,8 +28,12 @@
  *
  * The data is assumed to be in JSON format with a time_zone attribute.
  */
-struct GeoIPJSON : public GeoIP
+class GeoIPJSON : public GeoIP
 {
+public:
+    explicit GeoIPJSON( const QString& attribute );
+    explicit GeoIPJSON();
+
     virtual RegionZonePair processReply( const QByteArray& );
 } ;
 
