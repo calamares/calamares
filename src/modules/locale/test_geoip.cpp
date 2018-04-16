@@ -42,7 +42,7 @@ int main(int argc, char** argv)
         handler = new GeoIPJSON;
 #ifdef HAVE_XML
     else if ( QLatin1String( "xml" ) == argv[1] )
-        handler = new XMLGeoIP;
+        handler = new GeoIPXML;
 #endif
 
     if ( !handler )

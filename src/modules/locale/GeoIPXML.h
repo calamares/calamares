@@ -28,7 +28,7 @@
  * element, which contains the text (string) for the region/zone. This
  * format is  expected by, e.g. the Ubiquity installer.
  */
-struct XMLGeoIP : public GeoIP
+struct GeoIPXML : public GeoIP
 {
     virtual RegionZonePair processReply( const QByteArray& );
 } ;

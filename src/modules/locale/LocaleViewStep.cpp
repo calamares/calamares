@@ -133,7 +133,7 @@ LocaleViewStep::fetchGeoIpTimezone()
 #if defined(HAVE_XML)
     else if ( m_geoipStyle == "xml" )
     {
-        handler = new XMLGeoIP;
+        handler = new GeoIPXML;
     }
 #endif
     else

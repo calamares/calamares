@@ -24,7 +24,7 @@
 #include <QtXml/QDomDocument>
 
 GeoIP::RegionZonePair
-XMLGeoIP::processReply( const QByteArray& data )
+GeoIPXML::processReply( const QByteArray& data )
 {
     QString domError;
     int errorLine, errorColumn;

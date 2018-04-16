@@ -100,7 +100,7 @@ GeoIPTests::testXML()
 </Response>)";
 
 #ifdef HAVE_XML
-    XMLGeoIP handler;
+    GeoIPXML handler;
     auto tz = handler.processReply( data );
 
     QCOMPARE( tz.first, QLatin1String( "Europe" ) );
@@ -115,7 +115,7 @@ GeoIPTests::testXML2()
         "<Response><TimeZone>America/North Dakota/Beulah</TimeZone></Response>";
 
 #ifdef HAVE_XML
-    XMLGeoIP handler;
+    GeoIPXML handler;
     auto tz = handler.processReply( data );
 
     QCOMPARE( tz.first, QLatin1String( "America" ) );
@@ -127,7 +127,7 @@ void
 GeoIPTests::testXMLbad()
 {
 #ifdef HAVE_XML
-    XMLGeoIP handler;
+    GeoIPXML handler;
     auto tz = handler.processReply( "{time_zone: \"Europe/Paris\"}" );
     QCOMPARE( tz.first, QString() );
 
