@@ -127,14 +127,14 @@ void
 GeoIPTests::testXML2()
 {
     static const char data[] =
-        "<Response><TimeZone>America/North Dakota/Beulah</TimeZone></Response>";
+        "<Response><TimeZone>America/North Dakota/Beulah</TimeZone></Response>";  // With a space!
 
 #ifdef HAVE_XML
     GeoIPXML handler;
     auto tz = handler.processReply( data );
 
     QCOMPARE( tz.first, QLatin1String( "America" ) );
-    QCOMPARE( tz.second, QLatin1String( "North Dakota/Beulah" ) );
+    QCOMPARE( tz.second, QLatin1String( "North_Dakota/Beulah" ) );  // Without space
 #endif
 }
 
@@ -184,10 +184,10 @@ void GeoIPTests::testSplitTZ()
     tz = GeoIP::splitTZString( QLatin1String("America.NewYork") );
     QCOMPARE( tz.first, QString() );
 
-    // Check that three-level is split properly
+    // Check that three-level is split properly and space is replaced
     tz = GeoIP::splitTZString( QLatin1String("America/North Dakota/Beulah") );
     QCOMPARE( tz.first, QLatin1String("America") );
-    QCOMPARE( tz.second, QLatin1String("North Dakota/Beulah") );
+    QCOMPARE( tz.second, QLatin1String("North_Dakota/Beulah") );
 }
 
 
