@@ -16,21 +16,28 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GEOIPFREEGEOIP_H
-#define GEOIPFREEGEOIP_H
+#ifndef GEOIPJSON_H
+#define GEOIPJSON_H
 
 #include "GeoIP.h"
 
-/** @brief GeoIP lookup via freegeoip.com
+/** @brief GeoIP lookup for services that return JSON.
  *
  * This is the original implementation of GeoIP lookup,
- * using the FreeGeoIP service, or similar which returns
- * data in the same format.
+ * (e.g. using the FreeGeoIP.net service), or similar.
  *
  * The data is assumed to be in JSON format with a time_zone attribute.
  */
-struct FreeGeoIP : public GeoIP
+class GeoIPJSON : public GeoIP
 {
+public:
+    /** @brief Configure the attribute name which is selected.
+     *
+     * If an empty string is passed in (not a valid attribute name),
+     * then "time_zone" is used.
+     */
+    explicit GeoIPJSON( const QString& attribute = QString() );
+
     virtual RegionZonePair processReply( const QByteArray& );
 } ;
 

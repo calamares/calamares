@@ -28,8 +28,16 @@
  * element, which contains the text (string) for the region/zone. This
  * format is  expected by, e.g. the Ubiquity installer.
  */
-struct XMLGeoIP : public GeoIP
+class GeoIPXML : public GeoIP
 {
+public:
+    /** @brief Configure the element tag which is selected.
+     *
+     * If an empty string is passed in (not a valid element tag),
+     * then "TimeZone" is used.
+     */
+    explicit GeoIPXML( const QString& element = QString() );
+
     virtual RegionZonePair processReply( const QByteArray& );
 } ;
 

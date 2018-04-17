@@ -475,12 +475,12 @@ Pemasangan dapat dilanjutkan, namun beberapa fitur akan dinonfungsikan.</transla
     <message>
         <location filename="../src/libcalamares/utils/CommandList.cpp" line="113"/>
         <source>Could not run command.</source>
-        <translation type="unfinished"/>
+        <translation>Tidak dapat menjalankan perintah</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/utils/CommandList.cpp" line="114"/>
         <source>No rootMountPoint is defined, so command cannot be run in the target environment.</source>
-        <translation type="unfinished"/>
+        <translation>rootMountPoint tidak didefiniskan, sehingga perintah tidak dapat dijalankan dalam lingkungan environment</translation>
     </message>
 </context>
 <context>
@@ -488,7 +488,7 @@ Pemasangan dapat dilanjutkan, namun beberapa fitur akan dinonfungsikan.</transla
     <message>
         <location filename="../src/modules/contextualprocess/ContextualProcessJob.cpp" line="75"/>
         <source>Contextual Processes Job</source>
-        <translation type="unfinished"/>
+        <translation>Memproses tugas kontekstual</translation>
     </message>
 </context>
 <context>
@@ -526,7 +526,7 @@ Pemasangan dapat dilanjutkan, namun beberapa fitur akan dinonfungsikan.</transla
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="151"/>
         <source>LVM LV name</source>
-        <translation type="unfinished"/>
+        <translation>Nama LV LVM</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="188"/>
@@ -935,7 +935,7 @@ Pemasangan dapat dilanjutkan, namun beberapa fitur akan dinonfungsikan.</transla
     <message>
         <location filename="../src/modules/finished/FinishedPage.ui" line="95"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When this box is checked, your system will restart immediately when you click on &lt;span style=&quot; font-style:italic;&quot;&gt;Done&lt;/span&gt; or close the installer.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"/>
+        <translation>Ketika kotak ini dicentang, sistem kamu akan segera dimulai kembali saat mengklik Selesai atau menutup pemasang.</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedPage.ui" line="98"/>
@@ -1004,7 +1004,7 @@ Pemasangan dapat dilanjutkan, namun beberapa fitur akan dinonfungsikan.</transla
     <message>
         <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="54"/>
         <source>Please install KDE Konsole and try again!</source>
-        <translation type="unfinished"/>
+        <translation>Silahkan pasang KDE Konsole dan ulangi lagi!</translation>
     </message>
     <message>
         <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="116"/>
@@ -1061,7 +1061,7 @@ Pemasangan dapat dilanjutkan, namun beberapa fitur akan dinonfungsikan.</transla
     <message>
         <location filename="../src/modules/locale/LCLocaleDialog.cpp" line="67"/>
         <source>&amp;OK</source>
-        <translation type="unfinished"/>
+        <translation>&amp;OK</translation>
     </message>
 </context>
 <context>
@@ -1215,7 +1215,7 @@ Pemasangan dapat dilanjutkan, namun beberapa fitur akan dinonfungsikan.</transla
     <message>
         <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="104"/>
         <source>Network Installation. (Disabled: Received invalid groups data)</source>
-        <translation type="unfinished"/>
+        <translation>Pemasangan jaringan. (Menonaktifkan: Penerimaan kelompok data yang tidak sah)</translation>
     </message>
 </context>
 <context>
@@ -1231,57 +1231,57 @@ Pemasangan dapat dilanjutkan, namun beberapa fitur akan dinonfungsikan.</transla
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="67"/>
         <source>Password is too short</source>
-        <translation type="unfinished"/>
+        <translation>Kata sandi terlalu pendek</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="89"/>
         <source>Password is too long</source>
-        <translation type="unfinished"/>
+        <translation>Kata sandi terlalu panjang</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="155"/>
         <source>Password is too weak</source>
-        <translation type="unfinished"/>
+        <translation>kata sandi terlalu lemah</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="162"/>
         <source>Memory allocation error when setting &apos;%1&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Kesalahan alokasi memori saat menyetel &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="166"/>
         <source>Memory allocation error</source>
-        <translation type="unfinished"/>
+        <translation>Kesalahan alokasi memori</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="168"/>
         <source>The password is the same as the old one</source>
-        <translation type="unfinished"/>
+        <translation>Kata sandi sama dengan yang lama</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="170"/>
         <source>The password is a palindrome</source>
-        <translation type="unfinished"/>
+        <translation>Kata sandi palindrom</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="172"/>
         <source>The password differs with case changes only</source>
-        <translation type="unfinished"/>
+        <translation>Kata sandi berbeda hanya dengan perubahan huruf saja</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="174"/>
         <source>The password is too similar to the old one</source>
-        <translation type="unfinished"/>
+        <translation>Kata sandi terlalu mirip dengan yang lama</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="176"/>
         <source>The password contains the user name in some form</source>
-        <translation type="unfinished"/>
+        <translation>Kata sandi berisi nama pengguna dalam beberapa form</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="178"/>
         <source>The password contains words from the real name of the user in some form</source>
-        <translation type="unfinished"/>
+        <translation>Kata sandi berisi kata-kata dari nama asli pengguna dalam beberapa form</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="180"/>

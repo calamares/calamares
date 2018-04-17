@@ -1244,7 +1244,7 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="162"/>
         <source>Memory allocation error when setting &apos;%1&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Chyba počas vyhradzovania pamäte pri nastavovaní „%1“</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="166"/>
@@ -1259,12 +1259,12 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="170"/>
         <source>The password is a palindrome</source>
-        <translation type="unfinished"/>
+        <translation>Heslo je palindróm</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="172"/>
         <source>The password differs with case changes only</source>
-        <translation type="unfinished"/>
+        <translation>Heslo sa odlišuje iba vo veľkosti písmen</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="174"/>
@@ -1289,7 +1289,7 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="183"/>
         <source>The password contains less than %1 digits</source>
-        <translation type="unfinished"/>
+        <translation>Heslo obsahuje menej ako %1 číslic</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="184"/>
@@ -1299,7 +1299,7 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="187"/>
         <source>The password contains less than %1 uppercase letters</source>
-        <translation type="unfinished"/>
+        <translation>Heslo obsahuje menej ako %1 veľkých písmen</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="188"/>
@@ -1309,7 +1309,7 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="191"/>
         <source>The password contains less than %1 lowercase letters</source>
-        <translation type="unfinished"/>
+        <translation>Heslo obsahuje menej ako %1 malých písmen</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="192"/>
@@ -1399,12 +1399,12 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="229"/>
         <source>The password fails the dictionary check - %1</source>
-        <translation type="unfinished"/>
+        <translation>Heslo zlyhalo pri slovníkovej kontrole - %1</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="231"/>
         <source>The password fails the dictionary check</source>
-        <translation type="unfinished"/>
+        <translation>Heslo zlyhalo pri slovníkovej kontrole</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="235"/>
@@ -1825,7 +1825,8 @@ Inštalátor sa ukončí a všetky zmeny budú stratené.</translation>
         <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="263"/>
         <source>
 There was no output from the command.</source>
-        <translation type="unfinished"/>
+        <translation>
+Žiadny výstup z príkazu.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="264"/>

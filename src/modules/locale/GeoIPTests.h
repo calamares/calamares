@@ -31,10 +31,15 @@ public:
 private Q_SLOTS:
     void initTestCase();
     void testJSON();
+    void testJSONalt();
     void testJSONbad();
     void testXML();
     void testXML2();
+    void testXMLalt();
     void testXMLbad();
+    void testSplitTZ();
+
+    void testGet();
 };
 
 #endif

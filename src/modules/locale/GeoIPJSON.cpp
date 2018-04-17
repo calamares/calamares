@@ -17,8 +17,9 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "GeoIPFreeGeoIP.h"
+#include "GeoIPJSON.h"
 
+#include "utils/CalamaresUtils.h"
 #include "utils/Logger.h"
 #include "utils/YamlUtils.h"
 
@@ -26,8 +27,31 @@
 
 #include <yaml-cpp/yaml.h>
 
+GeoIPJSON::GeoIPJSON(const QString& attribute)
+    : GeoIP( attribute.isEmpty() ? QLatin1String( "time_zone" ) : attribute )
+{
+}
+
+static QString
+selectMap( const QVariantMap& m, const QStringList& l, int index)
+{
+    if ( index >= l.count() )
+        return QString();
+
+    QString attributeName = l[index];
+    if ( index == l.count() - 1 )
+        return CalamaresUtils::getString( m, attributeName );
+    else
+    {
+        bool success = false;  // bogus
+        if ( m.contains( attributeName ) )
+            return selectMap( CalamaresUtils::getSubMap( m, attributeName, success ), l, index+1 );
+        return QString();
+    }
+}
+
 GeoIP::RegionZonePair
-FreeGeoIP::processReply( const QByteArray& data )
+GeoIPJSON::processReply( const QByteArray& data )
 {
     try
     {
@@ -38,13 +62,10 @@ FreeGeoIP::processReply( const QByteArray& data )
             var.isValid() &&
             var.type() == QVariant::Map )
         {
-            QVariantMap map = var.toMap();
-            if ( map.contains( "time_zone" ) &&
-                !map.value( "time_zone" ).toString().isEmpty() )
-            {
-                return splitTZString( map.value( "time_zone" ).toString() );
-            }
+            return splitTZString( selectMap( var.toMap(), m_element.split('.'), 0 ) );
         }
+        else
+            cWarning() << "Invalid YAML data for GeoIPJSON";
     }
     catch ( YAML::Exception& e )
     {
