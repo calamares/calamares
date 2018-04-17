@@ -198,6 +198,8 @@ synchronous_get( const char* urlstring )
     QNetworkAccessManager manager;
     QEventLoop loop;
 
+    qDebug() << "Fetching" << url;
+
     QObject::connect( &manager, &QNetworkAccessManager::finished, &loop, &QEventLoop::quit );
 
     QNetworkRequest request( url );
@@ -211,7 +213,6 @@ synchronous_get( const char* urlstring )
     { \
         auto tz = GeoIP##t( selector ).processReply( synchronous_get( url ) ); \
         QCOMPARE( default_tz, tz ); \
-        qDebug() << "Checked" << url; \
     }
 
 void GeoIPTests::testGet()
@@ -223,9 +224,8 @@ void GeoIPTests::testGet()
     }
 
     GeoIPJSON default_handler;
-    // Call the KDE service the definitive source, even though this
-    // service is temporary and might go away any time.
-    auto default_tz = default_handler.processReply( synchronous_get( "http://drax.kde.org:9129/calamares" ) );
+    // Call the KDE service the definitive source.
+    auto default_tz = default_handler.processReply( synchronous_get( "https://geoip.kde.org/v1/calamares" ) );
 
     // This is bogus, because the test isn't always run by me
     // QCOMPARE( default_tz.first, QLatin1String("Europe") );
@@ -236,17 +236,17 @@ void GeoIPTests::testGet()
     // Each expansion of CHECK_GET does a synchronous GET, then checks that
     // the TZ data is the same as the default_tz; this is fragile if the
     // services don't agree on the location of where the test is run.
-    CHECK_GET( JSON, QString(), "http://drax.kde.org:9129/calamares" )     // Temporary KDE service
+    CHECK_GET( JSON, QString(), "https://geoip.kde.org/v1/calamares" )     // Check it's consistent
     CHECK_GET( JSON, QString(), "http://freegeoip.net/json/" )             // Original FreeGeoIP service
     CHECK_GET( JSON, QLatin1String("timezone"), "https://ipapi.co/json" )  // Different JSON
     CHECK_GET( JSON, QLatin1String("timezone"), "http://ip-api.com/json" )
 
     CHECK_GET( JSON, QLatin1String("location.time_zone"), "http://geoip.nekudo.com/api/" )  // 2-level JSON
 
-    CHECK_GET( JSON, QLatin1String("Location.TimeZone"), "http://drax.kde.org:9129/" )  // 2-level JSON
+    CHECK_GET( JSON, QLatin1String("Location.TimeZone"), "https://geoip.kde.org/debug" )  // 2-level JSON
 
 #ifdef HAVE_XML
     CHECK_GET( XML, QString(), "http://geoip.ubuntu.com/lookup" )  // Ubiquity's XML format
-    CHECK_GET( XML, QString(),  "http://drax.kde.org:9129/ubiquity" )  // Temporary KDE service
+    CHECK_GET( XML, QString(),  "https://geoip.kde.org/v1/ubiquity" )  // Temporary KDE service
 #endif
 }
