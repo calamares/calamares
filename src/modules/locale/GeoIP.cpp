@@ -34,6 +34,7 @@ GeoIP::splitTZString( const QString& tz )
 {
     QString timezoneString( tz );
     timezoneString.remove( '\\' );
+    timezoneString.replace( ' ', '_' );
 
     QStringList tzParts = timezoneString.split( '/', QString::SkipEmptyParts );
     if ( tzParts.size() >= 2 )

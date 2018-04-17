@@ -50,7 +50,15 @@ public:
      */
     virtual RegionZonePair processReply( const QByteArray& ) = 0;
 
-    /** @brief Splits a region/zone string into a pair. */
+    /** @brief Splits a region/zone string into a pair.
+     *
+     * Cleans up the string by removing backslashes (\\)
+     * since some providers return silly-escaped names. Replaces
+     * spaces with _ since some providers return human-readable names.
+     * Splits on the first / in the resulting string, or returns a
+     * pair of empty QStrings if it can't. (e.g. America/North Dakota/Beulah
+     * will return "America", "North_Dakota/Beulah").
+     */
     static RegionZonePair splitTZString( const QString& s );
 
 protected:
