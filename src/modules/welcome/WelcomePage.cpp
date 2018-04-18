@@ -106,90 +106,106 @@ WelcomePage::WelcomePage( RequirementsChecker* requirementsChecker, QWidget* par
 }
 
 
+/** @brief Match the combobox of languages with a predicate
+ *
+ * Scans the entries in the @p list (actually a ComboBox) and if one
+ * matches the given @p predicate, returns true and sets @p matchFound
+ * to the locale that matched.
+ *
+ * If none match, returns false and leaves @p matchFound unchanged.
+ */
+static
+bool matchLocale( QComboBox& list, QLocale& matchFound, std::function<bool(const QLocale&)> predicate)
+{
+    for (int i = 0; i < list.count(); i++)
+    {
+        QLocale thisLocale = list.itemData( i, Qt::UserRole ).toLocale();
+        if ( predicate(thisLocale) )
+        {
+            list.setCurrentIndex( i );
+            cDebug() << " .. Matched locale " << thisLocale.name();
+            matchFound = thisLocale;
+            return true;
+        }
+    }
+
+    return false;
+}
+
 void
 WelcomePage::initLanguages()
 {
     ui->languageWidget->setInsertPolicy( QComboBox::InsertAlphabetically );
 
     QLocale defaultLocale = QLocale( QLocale::system().name() );
-    {
-        bool isTranslationAvailable = false;
 
+    // Fill the list of translations
+    {
         const auto locales = QString( CALAMARES_TRANSLATION_LANGUAGES ).split( ';');
         for ( const QString& locale : locales )
         {
             QLocale thisLocale = QLocale( locale );
             QString lang = QLocale::languageToString( thisLocale.language() );
+
             if ( QLocale::countriesForLanguage( thisLocale.language() ).count() > 2 )
                 lang.append( QString( " (%1)" )
                              .arg( QLocale::countryToString( thisLocale.country() ) ) );
 
             ui->languageWidget->addItem( lang, thisLocale );
-            if ( thisLocale.language() == defaultLocale.language() &&
-                 thisLocale.country() == defaultLocale.country() )
-            {
-                isTranslationAvailable = true;
-                ui->languageWidget->setCurrentIndex( ui->languageWidget->count() - 1 );
-                cDebug() << "Initial locale " << thisLocale.name();
-                CalamaresUtils::installTranslator( thisLocale.name(),
-                                                   Calamares::Branding::instance()->translationsPathPrefix(),
-                                                   qApp );
-            }
         }
-
-        if ( !isTranslationAvailable )
-        {
-            for (int i = 0; i < ui->languageWidget->count(); i++)
-            {
-                QLocale thisLocale = ui->languageWidget->itemData( i, Qt::UserRole ).toLocale();
-                if ( thisLocale.language() == defaultLocale.language() )
-                {
-                    isTranslationAvailable = true;
-                    ui->languageWidget->setCurrentIndex( i );
-                    cDebug() << "Initial locale " << thisLocale.name();
-                    CalamaresUtils::installTranslator( thisLocale.name(),
-                                                       Calamares::Branding::instance()->translationsPathPrefix(),
-                                                       qApp );
-                    break;
-                }
-            }
-        }
-
-        if ( !isTranslationAvailable )
-        {
-            for (int i = 0; i < ui->languageWidget->count(); i++)
-            {
-                QLocale thisLocale = ui->languageWidget->itemData( i, Qt::UserRole ).toLocale();
-                if ( thisLocale == QLocale( QLocale::English, QLocale::UnitedStates ) )
-                {
-                    isTranslationAvailable = true;
-                    ui->languageWidget->setCurrentIndex( i );
-                    cDebug() << "Translation unavailable, so initial locale set to " << thisLocale.name();
-                    QLocale::setDefault( thisLocale );
-                    CalamaresUtils::installTranslator( thisLocale.name(),
-                                                       Calamares::Branding::instance()->translationsPathPrefix(),
-                                                       qApp );
-                    break;
-                }
-            }
-        }
-
-        if ( !isTranslationAvailable )
-            cWarning() << "No available translation matched" << defaultLocale;
-
-        connect( ui->languageWidget,
-                 static_cast< void ( QComboBox::* )( int ) >( &QComboBox::currentIndexChanged ),
-                 this, [ & ]( int newIndex )
-        {
-            QLocale selectedLocale = ui->languageWidget->itemData( newIndex, Qt::UserRole ).toLocale();
-            cDebug() << "Selected locale" << selectedLocale.name();
-
-            QLocale::setDefault( selectedLocale );
-            CalamaresUtils::installTranslator( selectedLocale,
-                                               Calamares::Branding::instance()->translationsPathPrefix(),
-                                               qApp );
-        } );
     }
+
+    // Find the best initial translation
+    QLocale selectedLocale;
+
+    cDebug() << "Matching exact locale" << defaultLocale;
+    bool isTranslationAvailable =
+        matchLocale( *(ui->languageWidget), selectedLocale,
+                      [&](const QLocale& x){ return x.language() == defaultLocale.language() && x.country() == defaultLocale.country(); } );
+
+    if ( !isTranslationAvailable )
+    {
+        cDebug() << "Matching approximate locale" << defaultLocale.language();
+
+        isTranslationAvailable =
+            matchLocale( *(ui->languageWidget), selectedLocale,
+                          [&](const QLocale& x){ return x.language() == defaultLocale.language(); } ) ;
+    }
+
+    if ( !isTranslationAvailable )
+    {
+        QLocale en_us( QLocale::English, QLocale::UnitedStates );
+
+        cDebug() << "Matching English (US)";
+        isTranslationAvailable =
+            matchLocale( *(ui->languageWidget), selectedLocale,
+                          [&](const QLocale& x){ return x == en_us; } );
+
+        // Now, if it matched, because we didn't match the system locale, switch to the one found
+        if ( isTranslationAvailable )
+            QLocale::setDefault( selectedLocale );
+    }
+
+    if ( isTranslationAvailable )
+        CalamaresUtils::installTranslator( selectedLocale.name(),
+                                           Calamares::Branding::instance()->translationsPathPrefix(),
+                                           qApp );
+    else
+        cWarning() << "No available translation matched" << defaultLocale;
+
+    connect( ui->languageWidget,
+             static_cast< void ( QComboBox::* )( int ) >( &QComboBox::currentIndexChanged ),
+             this,
+             [&]( int newIndex )
+             {
+                 QLocale selectedLocale = ui->languageWidget->itemData( newIndex, Qt::UserRole ).toLocale();
+                 cDebug() << "Selected locale" << selectedLocale.name();
+
+                 QLocale::setDefault( selectedLocale );
+                 CalamaresUtils::installTranslator( selectedLocale,
+                                                    Calamares::Branding::instance()->translationsPathPrefix(),
+                                                    qApp );
+             } );
 }
 
 
