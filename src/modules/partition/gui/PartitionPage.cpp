@@ -145,7 +145,7 @@ PartitionPage::updateButtons()
     if ( m_ui->deviceComboBox->currentIndex() >= 0 )
     {
         QModelIndex deviceIndex = m_core->deviceModel()->index( m_ui->deviceComboBox->currentIndex(), 0 );
-        if ( m_core->deviceModel()->deviceForIndex( deviceIndex )->type() != Device::LVM_Device )
+        if ( m_core->deviceModel()->deviceForIndex( deviceIndex )->type() != Device::Type::LVM_Device )
             createTable = true;
     }
 
