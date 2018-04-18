@@ -147,6 +147,10 @@ WelcomePage::initLanguages()
             QLocale thisLocale = QLocale( locale );
             QString lang = QLocale::languageToString( thisLocale.language() );
 
+            cDebug() << "LOCALE" << locale << "lang" << lang << "country" << QLocale::countryToString( thisLocale.country() );
+            cDebug() << " .. countries=" << thisLocale.language() << QLocale::countriesForLanguage( thisLocale.language() );
+            cDebug() << " .. " << thisLocale.nativeLanguageName() << thisLocale.nativeCountryName();
+
             if ( QLocale::countriesForLanguage( thisLocale.language() ).count() > 2 )
                 lang.append( QString( " (%1)" )
                              .arg( QLocale::countryToString( thisLocale.country() ) ) );
