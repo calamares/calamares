@@ -57,7 +57,7 @@ GeoIPTests::testJSON()
     QCOMPARE( tz.second, QLatin1String( "Brussels" ) );
 
     tz = handler.processReply( "time_zone: America/New_York\n" );
-    QCOMPARE( tz.first, "America" );
+    QCOMPARE( tz.first, QLatin1String( "America" ) );
 }
 
 void
