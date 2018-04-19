@@ -1,7 +1,7 @@
 [Desktop Entry]
 Type=Application
 Version=1.0
-Name=Calamares
+Name=Install System
 GenericName=System Installer
 Keywords=calamares;system;installer
 TryExec=calamares
