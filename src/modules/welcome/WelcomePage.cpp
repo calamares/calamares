@@ -215,7 +215,6 @@ WelcomePage::initLanguages()
 
         for ( const auto& locale : localeList )
         {
-            cDebug() << locale.m_localeId << locale.m_sortKey;
             ui->languageWidget->addItem( locale.m_label, locale.m_locale );
         }
     }
