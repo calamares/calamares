@@ -106,90 +106,172 @@ WelcomePage::WelcomePage( RequirementsChecker* requirementsChecker, QWidget* par
 }
 
 
+/** @brief Match the combobox of languages with a predicate
+ *
+ * Scans the entries in the @p list (actually a ComboBox) and if one
+ * matches the given @p predicate, returns true and sets @p matchFound
+ * to the locale that matched.
+ *
+ * If none match, returns false and leaves @p matchFound unchanged.
+ */
+static
+bool matchLocale( QComboBox& list, QLocale& matchFound, std::function<bool(const QLocale&)> predicate)
+{
+    for (int i = 0; i < list.count(); i++)
+    {
+        QLocale thisLocale = list.itemData( i, Qt::UserRole ).toLocale();
+        if ( predicate(thisLocale) )
+        {
+            list.setCurrentIndex( i );
+            cDebug() << " .. Matched locale " << thisLocale.name();
+            matchFound = thisLocale;
+            return true;
+        }
+    }
+
+    return false;
+}
+
+struct LocaleLabel
+{
+    LocaleLabel( const QString& locale )
+        : m_locale( LocaleLabel::getLocale( locale ) )
+        , m_localeId( locale )
+    {
+        QString sortKey = QLocale::languageToString( m_locale.language() );
+        QString label = m_locale.nativeLanguageName();
+
+        if ( locale.contains( '_' ) && QLocale::countriesForLanguage( m_locale.language() ).count() > 2 )
+        {
+            sortKey.append( QString( " (%1)" )
+                            .arg( QLocale::countryToString( m_locale.country() ) ) );
+
+            // If the language name is RTL, make this parenthetical addition RTL as well.
+            QString countryFormat = label.isRightToLeft() ? QString( QChar( 0x202B ) ) : QString();
+            countryFormat.append( QLatin1String( " (%1)" ) );
+            label.append( countryFormat.arg( m_locale.nativeCountryName() ) );
+        }
+
+        m_sortKey = sortKey;
+        m_label = label;
+    }
+
+    QLocale m_locale;
+    QString m_localeId;  // the locale identifier, e.g. "en_GB"
+    QString m_sortKey;  // the English name of the locale
+    QString m_label;  // the native name of the locale
+
+    /** @brief Define a sorting order.
+     *
+     * English (@see isEnglish() -- it means en_US) is sorted at the top.
+     */
+    bool operator <(const LocaleLabel& other) const
+    {
+        if ( isEnglish() )
+            return !other.isEnglish();
+        if ( other.isEnglish() )
+            return false;
+        return m_sortKey < other.m_sortKey;
+    }
+
+    /** @brief Is this locale English?
+     *
+     * en_US and en (American English) is defined as English. The Queen's
+     * English -- proper English -- is relegated to non-English status.
+     */
+    constexpr bool isEnglish() const
+    {
+       return m_localeId == QLatin1Literal( "en_US" ) || m_localeId == QLatin1Literal( "en" );
+    }
+
+    static QLocale getLocale( const QString& localeName )
+    {
+        if ( localeName.contains( "@latin" ) )
+        {
+            QLocale loc( localeName );
+            return QLocale( loc.language(), QLocale::Script::LatinScript, loc.country() );
+        }
+        else
+            return QLocale( localeName );
+    }
+} ;
+
 void
 WelcomePage::initLanguages()
 {
-    ui->languageWidget->setInsertPolicy( QComboBox::InsertAlphabetically );
+    // Fill the list of translations
+    ui->languageWidget->clear();
+    ui->languageWidget->setInsertPolicy( QComboBox::InsertAtBottom );
 
-    QLocale defaultLocale = QLocale( QLocale::system().name() );
     {
-        bool isTranslationAvailable = false;
-
+        std::list< LocaleLabel > localeList;
         const auto locales = QString( CALAMARES_TRANSLATION_LANGUAGES ).split( ';');
         for ( const QString& locale : locales )
         {
-            QLocale thisLocale = QLocale( locale );
-            QString lang = QLocale::languageToString( thisLocale.language() );
-            if ( QLocale::countriesForLanguage( thisLocale.language() ).count() > 2 )
-                lang.append( QString( " (%1)" )
-                             .arg( QLocale::countryToString( thisLocale.country() ) ) );
-
-            ui->languageWidget->addItem( lang, thisLocale );
-            if ( thisLocale.language() == defaultLocale.language() &&
-                 thisLocale.country() == defaultLocale.country() )
-            {
-                isTranslationAvailable = true;
-                ui->languageWidget->setCurrentIndex( ui->languageWidget->count() - 1 );
-                cDebug() << "Initial locale " << thisLocale.name();
-                CalamaresUtils::installTranslator( thisLocale.name(),
-                                                   Calamares::Branding::instance()->translationsPathPrefix(),
-                                                   qApp );
-            }
+            localeList.emplace_back( locale );
         }
 
-        if ( !isTranslationAvailable )
+        localeList.sort(); // According to the sortkey, which is english
+
+        for ( const auto& locale : localeList )
         {
-            for (int i = 0; i < ui->languageWidget->count(); i++)
-            {
-                QLocale thisLocale = ui->languageWidget->itemData( i, Qt::UserRole ).toLocale();
-                if ( thisLocale.language() == defaultLocale.language() )
-                {
-                    isTranslationAvailable = true;
-                    ui->languageWidget->setCurrentIndex( i );
-                    cDebug() << "Initial locale " << thisLocale.name();
-                    CalamaresUtils::installTranslator( thisLocale.name(),
-                                                       Calamares::Branding::instance()->translationsPathPrefix(),
-                                                       qApp );
-                    break;
-                }
-            }
+            cDebug() << locale.m_localeId << locale.m_sortKey;
+            ui->languageWidget->addItem( locale.m_label, locale.m_locale );
         }
-
-        if ( !isTranslationAvailable )
-        {
-            for (int i = 0; i < ui->languageWidget->count(); i++)
-            {
-                QLocale thisLocale = ui->languageWidget->itemData( i, Qt::UserRole ).toLocale();
-                if ( thisLocale == QLocale( QLocale::English, QLocale::UnitedStates ) )
-                {
-                    isTranslationAvailable = true;
-                    ui->languageWidget->setCurrentIndex( i );
-                    cDebug() << "Translation unavailable, so initial locale set to " << thisLocale.name();
-                    QLocale::setDefault( thisLocale );
-                    CalamaresUtils::installTranslator( thisLocale.name(),
-                                                       Calamares::Branding::instance()->translationsPathPrefix(),
-                                                       qApp );
-                    break;
-                }
-            }
-        }
-
-        if ( !isTranslationAvailable )
-            cWarning() << "No available translation matched" << defaultLocale;
-
-        connect( ui->languageWidget,
-                 static_cast< void ( QComboBox::* )( int ) >( &QComboBox::currentIndexChanged ),
-                 this, [ & ]( int newIndex )
-        {
-            QLocale selectedLocale = ui->languageWidget->itemData( newIndex, Qt::UserRole ).toLocale();
-            cDebug() << "Selected locale" << selectedLocale.name();
-
-            QLocale::setDefault( selectedLocale );
-            CalamaresUtils::installTranslator( selectedLocale,
-                                               Calamares::Branding::instance()->translationsPathPrefix(),
-                                               qApp );
-        } );
     }
+
+    // Find the best initial translation
+    QLocale defaultLocale = QLocale( QLocale::system().name() );
+    QLocale matchedLocale;
+
+    cDebug() << "Matching exact locale" << defaultLocale;
+    bool isTranslationAvailable =
+        matchLocale( *(ui->languageWidget), matchedLocale,
+                      [&](const QLocale& x){ return x.language() == defaultLocale.language() && x.country() == defaultLocale.country(); } );
+
+    if ( !isTranslationAvailable )
+    {
+        cDebug() << "Matching approximate locale" << defaultLocale.language();
+
+        isTranslationAvailable =
+            matchLocale( *(ui->languageWidget), matchedLocale,
+                          [&](const QLocale& x){ return x.language() == defaultLocale.language(); } ) ;
+    }
+
+    if ( !isTranslationAvailable )
+    {
+        QLocale en_us( QLocale::English, QLocale::UnitedStates );
+
+        cDebug() << "Matching English (US)";
+        isTranslationAvailable =
+            matchLocale( *(ui->languageWidget), matchedLocale,
+                          [&](const QLocale& x){ return x == en_us; } );
+
+        // Now, if it matched, because we didn't match the system locale, switch to the one found
+        if ( isTranslationAvailable )
+            QLocale::setDefault( matchedLocale );
+    }
+
+    if ( isTranslationAvailable )
+        CalamaresUtils::installTranslator( matchedLocale.name(),
+                                           Calamares::Branding::instance()->translationsPathPrefix(),
+                                           qApp );
+    else
+        cWarning() << "No available translation matched" << defaultLocale;
+
+    connect( ui->languageWidget,
+             static_cast< void ( QComboBox::* )( int ) >( &QComboBox::currentIndexChanged ),
+             this,
+             [&]( int newIndex )
+             {
+                 QLocale selectedLocale = ui->languageWidget->itemData( newIndex, Qt::UserRole ).toLocale();
+                 cDebug() << "Selected locale" << selectedLocale;
+
+                 QLocale::setDefault( selectedLocale );
+                 CalamaresUtils::installTranslator( selectedLocale,
+                                                    Calamares::Branding::instance()->translationsPathPrefix(),
+                                                    qApp );
+             } );
 }
 
 
