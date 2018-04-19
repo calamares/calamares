@@ -135,28 +135,29 @@ bool matchLocale( QComboBox& list, QLocale& matchFound, std::function<bool(const
 struct LocaleLabel
 {
     LocaleLabel( const QString& locale )
-        : m_locale( locale )
+        : m_locale( LocaleLabel::getLocale( locale ) )
+        , m_localeId( locale )
     {
-        QLocale thisLocale( locale );
-        QString sortKey = QLocale::languageToString( thisLocale.language() );
-        QString label = thisLocale.nativeLanguageName();
+        QString sortKey = QLocale::languageToString( m_locale.language() );
+        QString label = m_locale.nativeLanguageName();
 
-        if ( locale.contains( '_' ) && QLocale::countriesForLanguage( thisLocale.language() ).count() > 2 )
+        if ( locale.contains( '_' ) && QLocale::countriesForLanguage( m_locale.language() ).count() > 2 )
         {
             sortKey.append( QString( " (%1)" )
-                            .arg( QLocale::countryToString( thisLocale.country() ) ) );
+                            .arg( QLocale::countryToString( m_locale.country() ) ) );
 
             // If the language name is RTL, make this parenthetical addition RTL as well.
             QString countryFormat = label.isRightToLeft() ? QString( QChar( 0x202B ) ) : QString();
             countryFormat.append( QLatin1String( " (%1)" ) );
-            label.append( countryFormat.arg( thisLocale.nativeCountryName() ) );
+            label.append( countryFormat.arg( m_locale.nativeCountryName() ) );
         }
 
         m_sortKey = sortKey;
         m_label = label;
     }
 
-    QString m_locale;  // the locale identifier, e.g. "en_GB"
+    QLocale m_locale;
+    QString m_localeId;  // the locale identifier, e.g. "en_GB"
     QString m_sortKey;  // the English name of the locale
     QString m_label;  // the native name of the locale
 
@@ -180,7 +181,18 @@ struct LocaleLabel
      */
     constexpr bool isEnglish() const
     {
-       return m_locale == QLatin1Literal( "en_US" ) || m_locale == QLatin1Literal( "en" );
+       return m_localeId == QLatin1Literal( "en_US" ) || m_localeId == QLatin1Literal( "en" );
+    }
+
+    static QLocale getLocale( const QString& localeName )
+    {
+        if ( localeName.contains( "@latin" ) )
+        {
+            QLocale loc( localeName );
+            return QLocale( loc.language(), QLocale::Script::LatinScript, loc.country() );
+        }
+        else
+            return QLocale( localeName );
     }
 } ;
 
@@ -203,8 +215,8 @@ WelcomePage::initLanguages()
 
         for ( const auto& locale : localeList )
         {
-            cDebug() << locale.m_locale << locale.m_sortKey;
-            ui->languageWidget->addItem( locale.m_label, QLocale( locale.m_locale ) );
+            cDebug() << locale.m_localeId << locale.m_sortKey;
+            ui->languageWidget->addItem( locale.m_label, locale.m_locale );
         }
     }
 
@@ -253,7 +265,7 @@ WelcomePage::initLanguages()
              [&]( int newIndex )
              {
                  QLocale selectedLocale = ui->languageWidget->itemData( newIndex, Qt::UserRole ).toLocale();
-                 cDebug() << "Selected locale" << selectedLocale.name();
+                 cDebug() << "Selected locale" << selectedLocale;
 
                  QLocale::setDefault( selectedLocale );
                  CalamaresUtils::installTranslator( selectedLocale,
