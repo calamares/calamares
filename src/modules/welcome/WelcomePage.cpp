@@ -141,7 +141,7 @@ struct LocaleLabel
         QString sortKey = QLocale::languageToString( thisLocale.language() );
         QString label = thisLocale.nativeLanguageName();
 
-        if ( QLocale::countriesForLanguage( thisLocale.language() ).count() > 2 )
+        if ( locale.contains( '_' ) && QLocale::countriesForLanguage( thisLocale.language() ).count() > 2 )
         {
             sortKey.append( QString( " (%1)" )
                             .arg( QLocale::countryToString( thisLocale.country() ) ) );
