@@ -145,7 +145,11 @@ struct LocaleLabel
         {
             sortKey.append( QString( " (%1)" )
                             .arg( QLocale::countryToString( thisLocale.country() ) ) );
-            label.append( QString( " (%1)" ).arg( thisLocale.nativeCountryName() ) );
+
+            // If the language name is RTL, make this parenthetical addition RTL as well.
+            QString countryFormat = label.isRightToLeft() ? QString( QChar( 0x202B ) ) : QString();
+            countryFormat.append( QLatin1String( " (%1)" ) );
+            label.append( countryFormat.arg( thisLocale.nativeCountryName() ) );
         }
 
         m_sortKey = sortKey;
