@@ -148,6 +148,8 @@ installTranslator( const QLocale& locale,
         localeName = "en";
 
     // Special case of sr@latin
+    //
+    // See top-level CMakeLists.txt about special cases for translation loading.
     if ( locale.language() == QLocale::Language::Serbian && locale.script() == QLocale::Script::LatinScript )
         localeName = QStringLiteral( "sr@latin" );
 

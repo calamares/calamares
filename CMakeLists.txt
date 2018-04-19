@@ -195,6 +195,12 @@ endif()
 # Language en (source language) is added later. It isn't listed in
 # Transifex either. Get the list of languages and their status
 # from https://transifex.com/calamares/calamares/ .
+#
+# When adding a new language, take care that it is properly loaded
+# by the translation framework. Languages with alternate scripts
+# (sr@latin in particular) may need special handling in CalamaresUtils.cpp.
+#
+# TODO: pl and pl_PL overlap
 set( _tx_complete ca zh_CN zh_TW hr cs_CZ da fr lt pt_BR pt_PT es tr_TR)
 set( _tx_good sq ja pl sk ro it_IT hu he ru id de nl )
 set( _tx_ok bg uk ast is ar sv el es_MX gl en_GB es_ES th fi_FI hi pl_PL
