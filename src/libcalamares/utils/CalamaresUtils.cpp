@@ -147,6 +147,12 @@ installTranslator( const QLocale& locale,
     if ( localeName == "C" )
         localeName = "en";
 
+    // Special case of sr@latin
+    if ( locale.language() == QLocale::Language::Serbian && locale.script() == QLocale::Script::LatinScript )
+        localeName = QStringLiteral( "sr@latin" );
+
+    cDebug() << "Looking for translations for" << localeName;
+
     QTranslator* translator = nullptr;
 
     // Branding translations
@@ -167,11 +173,11 @@ installTranslator( const QLocale& locale,
                                    "_",
                                    brandingTranslationsDir.absolutePath() ) )
             {
-                cDebug() << "Translation: Branding using locale:" << localeName;
+                cDebug() << " .. Branding using locale:" << localeName;
             }
             else
             {
-                cDebug() << "Translation: Branding using default, system locale not found:" << localeName;
+                cDebug() << " .. Branding using default, system locale not found:" << localeName;
                 translator->load( brandingTranslationsPrefix + "en" );
             }
 
@@ -190,11 +196,11 @@ installTranslator( const QLocale& locale,
     translator = new QTranslator( parent );
     if ( translator->load( QString( ":/lang/calamares_" ) + localeName ) )
     {
-        cDebug() << "Translation: Calamares using locale:" << localeName;
+        cDebug() << " .. Calamares using locale:" << localeName;
     }
     else
     {
-        cDebug() << "Translation: Calamares using default, system locale not found:" << localeName;
+        cDebug() << " .. Calamares using default, system locale not found:" << localeName;
         translator->load( QString( ":/lang/calamares_en" ) );
     }
 
