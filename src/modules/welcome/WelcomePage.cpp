@@ -143,12 +143,13 @@ struct LocaleLabel
 
         if ( locale.contains( '_' ) && QLocale::countriesForLanguage( m_locale.language() ).count() > 2 )
         {
-            sortKey.append( QString( " (%1)" )
-                            .arg( QLocale::countryToString( m_locale.country() ) ) );
+            QLatin1Literal countrySuffix( " (%1)" );
+
+            sortKey.append( QString( countrySuffix ).arg( QLocale::countryToString( m_locale.country() ) ) );
 
             // If the language name is RTL, make this parenthetical addition RTL as well.
             QString countryFormat = label.isRightToLeft() ? QString( QChar( 0x202B ) ) : QString();
-            countryFormat.append( QLatin1String( " (%1)" ) );
+            countryFormat.append( countrySuffix );
             label.append( countryFormat.arg( m_locale.nativeCountryName() ) );
         }
 
@@ -179,7 +180,7 @@ struct LocaleLabel
      * en_US and en (American English) is defined as English. The Queen's
      * English -- proper English -- is relegated to non-English status.
      */
-    constexpr bool isEnglish() const
+    bool isEnglish() const
     {
        return m_localeId == QLatin1Literal( "en_US" ) || m_localeId == QLatin1Literal( "en" );
     }
