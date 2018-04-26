@@ -11,7 +11,7 @@ Icon=calamares
 Terminal=false
 StartupNotify=true
 Categories=Qt;System;
-
+X-AppStream-Ignore=true
 
 
 
