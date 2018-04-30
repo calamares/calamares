@@ -152,6 +152,11 @@ QList< Device* > getDevices( DeviceType which, qint64 minimumSize )
             cDebug() << "  .. Removing too-small" << it;
             it = erase(devices, it );
         }
+        else if ( (*it)->type() == Device::LVM_Device )
+        {
+            cDebug() << " .. Removing LVM device from list " << it;
+            it = erase(devices, it );
+        }
         else
             ++it;
 
