@@ -1,7 +1,7 @@
 [Desktop Entry]
 Type=Application
 Version=1.0
-Name=Install System
+Name=Calamares
 GenericName=System Installer
 Keywords=calamares;system;installer
 TryExec=calamares
@@ -11,7 +11,9 @@ Icon=calamares
 Terminal=false
 StartupNotify=true
 Categories=Qt;System;
-X-AppStream-Ignore=true
+
+
+
 
 
 
