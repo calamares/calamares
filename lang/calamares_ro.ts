@@ -4,7 +4,7 @@
     <message>
         <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="69"/>
         <source>The &lt;strong&gt;boot environment&lt;/strong&gt; of this system.&lt;br&gt;&lt;br&gt;Older x86 systems only support &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Modern systems usually use &lt;strong&gt;EFI&lt;/strong&gt;, but may also show up as BIOS if started in compatibility mode.</source>
-        <translation>&lt;strong&gt;Mediul de boot&lt;/strong&gt; al acestui sistem.&lt;br&gt;&lt;br&gt;Sisteme x86 mai vechi suportă numai &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Sisteme moderne folosesc de obicei &lt;strong&gt;EFI&lt;/strong&gt;, dar ar putea fi afișate ca BIOS dacă au fost configurate în modul de compatibilitate.</translation>
+        <translation>&lt;strong&gt;Mediul de boot&lt;/strong&gt; al acestui sistem.&lt;br&gt;&lt;br&gt;Sistemele x86 mai vechi suportă numai &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Sisteme moderne folosesc de obicei &lt;strong&gt;EFI&lt;/strong&gt;, dar ar putea fi afișate ca BIOS dacă au fost pornite în modul de compatibilitate.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="79"/>
@@ -97,7 +97,7 @@
 <context>
     <name>Calamares::ExecutionViewStep</name>
     <message>
-        <location filename="../src/libcalamaresui/ExecutionViewStep.cpp" line="77"/>
+        <location filename="../src/libcalamaresui/ExecutionViewStep.cpp" line="78"/>
         <source>Install</source>
         <translation>Instalează</translation>
     </message>
@@ -126,32 +126,32 @@
 <context>
     <name>Calamares::PythonJob</name>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="265"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="272"/>
         <source>Running %1 operation.</source>
         <translation>Se rulează operațiunea %1.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="280"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="287"/>
         <source>Bad working directory path</source>
         <translation>Calea dosarului de lucru este proastă</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="281"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="288"/>
         <source>Working directory %1 for python job %2 is not readable.</source>
         <translation>Dosarul de lucru %1 pentru sarcina python %2 nu este citibil.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="291"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="298"/>
         <source>Bad main script file</source>
         <translation>Fișierul script principal este prost</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="292"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="299"/>
         <source>Main script file %1 for python job %2 is not readable.</source>
         <translation>Fișierul script peincipal %1 pentru sarcina Python %2 nu este citibil.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="368"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="375"/>
         <source>Boost.Python error in job &quot;%1&quot;.</source>
         <translation>Eroare Boost.Python în sarcina „%1”.</translation>
     </message>
@@ -165,40 +165,46 @@
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="74"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="257"/>
         <source>&amp;Next</source>
         <translation>&amp;Următorul</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="75"/>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="279"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="266"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Anulează</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="76"/>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="280"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="267"/>
         <source>Cancel installation without changing the system.</source>
         <translation>Anulează instalarea fără schimbarea sistemului.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="291"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="255"/>
+        <source>&amp;Install</source>
+        <translation>Instalează</translation>
+    </message>
+    <message>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="303"/>
         <source>Cancel installation?</source>
         <translation>Anulez instalarea?</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="292"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="304"/>
         <source>Do you really want to cancel the current install process?
 The installer will quit and all changes will be lost.</source>
         <translation>Doriți să anulați procesul curent de instalare?
 Programul de instalare va ieși, iar toate modificările vor fi pierdute.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="297"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="309"/>
         <source>&amp;Yes</source>
         <translation>&amp;Da</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="298"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="310"/>
         <source>&amp;No</source>
         <translation>&amp;Nu</translation>
     </message>
@@ -208,32 +214,32 @@ Programul de instalare va ieși, iar toate modificările vor fi pierdute.</trans
         <translation>În&amp;chide</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="212"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="215"/>
         <source>Continue with setup?</source>
         <translation>Continuați configurarea?</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="213"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="216"/>
         <source>The %1 installer is about to make changes to your disk in order to install %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
         <translation>Programul de instalare %1 este pregătit să facă schimbări pe discul dumneavoastră pentru a instala %2.&lt;br/&gt;&lt;strong&gt;Nu veți putea anula aceste schimbări.&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="218"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="221"/>
         <source>&amp;Install now</source>
         <translation>&amp;Instalează acum</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="219"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="222"/>
         <source>Go &amp;back</source>
         <translation>Î&amp;napoi</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="248"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="261"/>
         <source>&amp;Done</source>
         <translation>&amp;Gata</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="249"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="262"/>
         <source>The installation is complete. Close the installer.</source>
         <translation>Instalarea este completă. Închide instalatorul.</translation>
     </message>
@@ -484,7 +490,7 @@ Programul de instalare va ieși, iar toate modificările vor fi pierdute.</trans
 <context>
     <name>ContextualProcessJob</name>
     <message>
-        <location filename="../src/modules/contextualprocess/ContextualProcessJob.cpp" line="75"/>
+        <location filename="../src/modules/contextualprocess/ContextualProcessJob.cpp" line="117"/>
         <source>Contextual Processes Job</source>
         <translation>Job de tip Contextual Process</translation>
     </message>
@@ -941,12 +947,12 @@ Programul de instalare va ieși, iar toate modificările vor fi pierdute.</trans
         <translation>&amp;Repornește acum</translation>
     </message>
     <message>
-        <location filename="../src/modules/finished/FinishedPage.cpp" line="52"/>
+        <location filename="../src/modules/finished/FinishedPage.cpp" line="51"/>
         <source>&lt;h1&gt;All done.&lt;/h1&gt;&lt;br/&gt;%1 has been installed on your computer.&lt;br/&gt;You may now restart into your new system, or continue using the %2 Live environment.</source>
         <translation>&lt;h1&gt;Gata.&lt;/h1&gt;&lt;br/&gt;%1 a fost instalat pe calculatorul dumneavoastră.&lt;br/&gt;Puteți reporni noul sistem, sau puteți continua să folosiți sistemul de operare portabil %2.</translation>
     </message>
     <message>
-        <location filename="../src/modules/finished/FinishedPage.cpp" line="110"/>
+        <location filename="../src/modules/finished/FinishedPage.cpp" line="109"/>
         <source>&lt;h1&gt;Installation Failed&lt;/h1&gt;&lt;br/&gt;%1 has not been installed on your computer.&lt;br/&gt;The error message was: %2.</source>
         <translation>&lt;h1&gt;Instalarea a eșuat&lt;/h1&gt;&lt;br/&gt;%1 nu a mai fost instalat pe acest calculator.&lt;br/&gt;Mesajul de eroare era: %2.</translation>
     </message>
@@ -1183,12 +1189,12 @@ Programul de instalare va ieși, iar toate modificările vor fi pierdute.</trans
 <context>
     <name>LocaleViewStep</name>
     <message>
-        <location filename="../src/modules/locale/LocaleViewStep.cpp" line="52"/>
+        <location filename="../src/modules/locale/LocaleViewStep.cpp" line="60"/>
         <source>Loading location data...</source>
         <translation>Se încarcă datele locației...</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocaleViewStep.cpp" line="169"/>
+        <location filename="../src/modules/locale/LocaleViewStep.cpp" line="175"/>
         <source>Location</source>
         <translation>Locație</translation>
     </message>
@@ -1227,244 +1233,247 @@ Programul de instalare va ieși, iar toate modificările vor fi pierdute.</trans
 <context>
     <name>PWQ</name>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="67"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="63"/>
         <source>Password is too short</source>
         <translation>Parola este prea scurtă</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="89"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="85"/>
         <source>Password is too long</source>
         <translation>Parola este prea lungă</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="155"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="151"/>
         <source>Password is too weak</source>
-        <translation type="unfinished"/>
+        <translation>Parola este prea slabă</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="158"/>
+        <source>Memory allocation error when setting &apos;%1&apos;</source>
+        <translation>Eroare de alocare a memorie in timpul setării &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="162"/>
-        <source>Memory allocation error when setting &apos;%1&apos;</source>
-        <translation type="unfinished"/>
+        <source>Memory allocation error</source>
+        <translation>Eroare de alocare a memoriei</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="164"/>
+        <source>The password is the same as the old one</source>
+        <translation>Parola este aceeasi a si cea veche</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="166"/>
-        <source>Memory allocation error</source>
-        <translation type="unfinished"/>
+        <source>The password is a palindrome</source>
+        <translation>Parola este un palindrom</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="168"/>
-        <source>The password is the same as the old one</source>
-        <translation type="unfinished"/>
+        <source>The password differs with case changes only</source>
+        <translation>Parola diferă doar prin schimbăarii ale majusculelor</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="170"/>
-        <source>The password is a palindrome</source>
-        <translation type="unfinished"/>
+        <source>The password is too similar to the old one</source>
+        <translation>Parola este prea similară cu cea vehe</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="172"/>
-        <source>The password differs with case changes only</source>
-        <translation type="unfinished"/>
+        <source>The password contains the user name in some form</source>
+        <translation>Parola contine numele de utilizator intr-o anume formă</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="174"/>
-        <source>The password is too similar to the old one</source>
-        <translation type="unfinished"/>
+        <source>The password contains words from the real name of the user in some form</source>
+        <translation>Parola contine cuvinte din numele real al utilizatorului intr-o anumita formă</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="176"/>
-        <source>The password contains the user name in some form</source>
-        <translation type="unfinished"/>
+        <source>The password contains forbidden words in some form</source>
+        <translation>Parola contine cuvinte interzise int-o anumita formă</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="178"/>
-        <source>The password contains words from the real name of the user in some form</source>
-        <translation type="unfinished"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="179"/>
+        <source>The password contains less than %1 digits</source>
+        <translation>Parola contine mai putin de %1 caractere</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="180"/>
-        <source>The password contains forbidden words in some form</source>
-        <translation type="unfinished"/>
+        <source>The password contains too few digits</source>
+        <translation>Parola contine prea putine caractere</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="183"/>
-        <source>The password contains less than %1 digits</source>
-        <translation type="unfinished"/>
+        <source>The password contains less than %1 uppercase letters</source>
+        <translation>Parola contine mai putin de %1 litera cu majusculă</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="184"/>
-        <source>The password contains too few digits</source>
-        <translation type="unfinished"/>
+        <source>The password contains too few uppercase letters</source>
+        <translation>Parola contine prea putine majuscule</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="187"/>
-        <source>The password contains less than %1 uppercase letters</source>
-        <translation type="unfinished"/>
+        <source>The password contains less than %1 lowercase letters</source>
+        <translation>Parola contine mai putin de %1 minuscule</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="188"/>
-        <source>The password contains too few uppercase letters</source>
-        <translation type="unfinished"/>
+        <source>The password contains too few lowercase letters</source>
+        <translation>Parola contine prea putine minuscule</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="191"/>
-        <source>The password contains less than %1 lowercase letters</source>
-        <translation type="unfinished"/>
+        <source>The password contains less than %1 non-alphanumeric characters</source>
+        <translation>Parola contine mai putin de %1 caractere non-alfanumerice</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="192"/>
-        <source>The password contains too few lowercase letters</source>
-        <translation type="unfinished"/>
+        <source>The password contains too few non-alphanumeric characters</source>
+        <translation>Parola contine prea putine caractere non-alfanumerice
+
+
+</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="195"/>
-        <source>The password contains less than %1 non-alphanumeric characters</source>
-        <translation type="unfinished"/>
+        <source>The password is shorter than %1 characters</source>
+        <translation>Parola este mai scurta de %1 caractere</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="196"/>
-        <source>The password contains too few non-alphanumeric characters</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="199"/>
-        <source>The password is shorter than %1 characters</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="200"/>
         <source>The password is too short</source>
-        <translation type="unfinished"/>
+        <translation>Parola este prea mica</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="198"/>
+        <source>The password is just rotated old one</source>
+        <translation>Parola este doar cea veche rasturnata</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="201"/>
+        <source>The password contains less than %1 character classes</source>
+        <translation>Parola contine mai putin de %1 clase de caractere</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="202"/>
-        <source>The password is just rotated old one</source>
-        <translation type="unfinished"/>
+        <source>The password does not contain enough character classes</source>
+        <translation>Parola nu contine destule clase de caractere</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="205"/>
-        <source>The password contains less than %1 character classes</source>
-        <translation type="unfinished"/>
+        <source>The password contains more than %1 same characters consecutively</source>
+        <translation>Parola ontine mai mult de %1 caractere identice consecutiv</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="206"/>
-        <source>The password does not contain enough character classes</source>
-        <translation type="unfinished"/>
+        <source>The password contains too many same characters consecutively</source>
+        <translation>Parola ontine prea multe caractere identice consecutive</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="209"/>
-        <source>The password contains more than %1 same characters consecutively</source>
-        <translation type="unfinished"/>
+        <source>The password contains more than %1 characters of the same class consecutively</source>
+        <translation>Parola contine mai mult de %1 caractere ale aceleiaşi clase consecutive</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="210"/>
-        <source>The password contains too many same characters consecutively</source>
-        <translation type="unfinished"/>
+        <source>The password contains too many characters of the same class consecutively</source>
+        <translation>Parola contine prea multe caractere ale aceleiaşi clase consecutive</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="213"/>
-        <source>The password contains more than %1 characters of the same class consecutively</source>
-        <translation type="unfinished"/>
+        <source>The password contains monotonic sequence longer than %1 characters</source>
+        <translation>Parola ontine o secventa monotonica mai lunga de %1 caractere</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="214"/>
-        <source>The password contains too many characters of the same class consecutively</source>
-        <translation type="unfinished"/>
+        <source>The password contains too long of a monotonic character sequence</source>
+        <translation>Parola contine o secventa de caractere monotonica prea lunga </translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="217"/>
-        <source>The password contains monotonic sequence longer than %1 characters</source>
-        <translation type="unfinished"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="216"/>
+        <source>No password supplied</source>
+        <translation>Nicio parola nu a fost furnizata</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="218"/>
-        <source>The password contains too long of a monotonic character sequence</source>
-        <translation type="unfinished"/>
+        <source>Cannot obtain random numbers from the RNG device</source>
+        <translation>Nu s-a putut obtine un numar aleator de la dispozitivul RNG</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="220"/>
-        <source>No password supplied</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="222"/>
-        <source>Cannot obtain random numbers from the RNG device</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="224"/>
         <source>Password generation failed - required entropy too low for settings</source>
-        <translation type="unfinished"/>
+        <translation>Generarea parolei a esuat - necesita entropie prea mica pentru setari</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="229"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="225"/>
         <source>The password fails the dictionary check - %1</source>
-        <translation type="unfinished"/>
+        <translation>Parola a esuat verificarea dictionarului - %1</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="227"/>
+        <source>The password fails the dictionary check</source>
+        <translation>Parola a esuat verificarea dictionarului</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="231"/>
-        <source>The password fails the dictionary check</source>
-        <translation type="unfinished"/>
+        <source>Unknown setting - %1</source>
+        <translation>Setare necunoscuta - %1</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="235"/>
-        <source>Unknown setting - %1</source>
-        <translation type="unfinished"/>
+        <source>Unknown setting</source>
+        <translation>Setare necunoscuta</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="239"/>
-        <source>Unknown setting</source>
-        <translation type="unfinished"/>
+        <source>Bad integer value of setting - %1</source>
+        <translation>Valoare gresita integrala a setari - %1</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="243"/>
-        <source>Bad integer value of setting - %1</source>
-        <translation type="unfinished"/>
+        <source>Bad integer value</source>
+        <translation>Valoare gresita integrala a setari </translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="247"/>
-        <source>Bad integer value</source>
-        <translation type="unfinished"/>
+        <source>Setting %1 is not of integer type</source>
+        <translation>Setarea %1 nu este de tip integral</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="251"/>
-        <source>Setting %1 is not of integer type</source>
-        <translation type="unfinished"/>
+        <source>Setting is not of integer type</source>
+        <translation>Setarea nu este de tipul integral</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="255"/>
-        <source>Setting is not of integer type</source>
-        <translation type="unfinished"/>
+        <source>Setting %1 is not of string type</source>
+        <translation>Setarea %1 nu este de tipul şir</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="259"/>
-        <source>Setting %1 is not of string type</source>
-        <translation type="unfinished"/>
+        <source>Setting is not of string type</source>
+        <translation>Setarea nu este de tipul şir</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="261"/>
+        <source>Opening the configuration file failed</source>
+        <translation>Deschiderea fisierului de configuratie a esuat</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="263"/>
-        <source>Setting is not of string type</source>
-        <translation type="unfinished"/>
+        <source>The configuration file is malformed</source>
+        <translation>Fisierul de configuratie este malformat</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="265"/>
-        <source>Opening the configuration file failed</source>
-        <translation type="unfinished"/>
+        <source>Fatal failure</source>
+        <translation>Esec fatal</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="267"/>
-        <source>The configuration file is malformed</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="269"/>
-        <source>Fatal failure</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="271"/>
         <source>Unknown error</source>
-        <translation type="unfinished"/>
+        <translation>Eroare necunoscuta</translation>
     </message>
 </context>
 <context>
@@ -1769,12 +1778,12 @@ Programul de instalare va ieși, iar toate modificările vor fi pierdute.</trans
         <translation>O partiție de sistem EFI este necesară pentru a porni %1.&lt;br/&gt;&lt;br/&gt;A fost configurată o partiție cu punct de montare la &lt;strong&gt;%2&lt;/strong&gt; dar flag-ul &lt;strong&gt;esp&lt;/strong&gt; al acesteia nu a fost setat.&lt;br/&gt;Pentru a seta flag-ul, reveniți și editați partiția.&lt;br/&gt;&lt;br/&gt;Puteți continua și fără setarea flag-ului, dar este posibil ca sistemul să nu pornească.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="448"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="449"/>
         <source>Boot partition not encrypted</source>
         <translation>Partiția de boot nu este criptată</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="449"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="450"/>
         <source>A separate boot partition was set up together with an encrypted root partition, but the boot partition is not encrypted.&lt;br/&gt;&lt;br/&gt;There are security concerns with this kind of setup, because important system files are kept on an unencrypted partition.&lt;br/&gt;You may continue if you wish, but filesystem unlocking will happen later during system startup.&lt;br/&gt;To encrypt the boot partition, go back and recreate it, selecting &lt;strong&gt;Encrypt&lt;/strong&gt; in the partition creation window.</source>
         <translation>A fost creată o partiție de boot împreună cu o partiție root criptată, dar partiția de boot nu este criptată.&lt;br/&gt;&lt;br/&gt;Sunt potențiale probleme de securitate cu un astfel de aranjament deoarece importante fișiere de sistem sunt păstrate pe o partiție necriptată.&lt;br/&gt;Puteți continua dacă doriți, dar descuierea sistemului se va petrece mai târziu în timpul pornirii.&lt;br/&gt;Pentru a cripta partiția de boot, reveniți și recreați-o, alegând opțiunea &lt;strong&gt;Criptează&lt;/strong&gt; din fereastra de creare de partiții.</translation>
     </message>
@@ -1806,15 +1815,15 @@ Programul de instalare va ieși, iar toate modificările vor fi pierdute.</trans
         <translation>Substituent</translation>
     </message>
     <message>
-        <location filename="../src/modules/plasmalnf/PlasmaLnfPage.cpp" line="64"/>
-        <source>Please choose a look-and-feel for the KDE Plasma Desktop. You can also skip this step and configure the look-and-feel once the system is installed.</source>
-        <translation>Trebuie să alegi o interfață pentru KDE Plasma Desktop Poți sări acest pas și să configurezi interfața și după instalarea sistemului.</translation>
+        <location filename="../src/modules/plasmalnf/PlasmaLnfPage.cpp" line="67"/>
+        <source>Please choose a look-and-feel for the KDE Plasma Desktop. You can also skip this step and configure the look-and-feel once the system is installed. Clicking on a look-and-feel selection will give you a live preview of that look-and-feel.</source>
+        <translation>Alege un aspect pentru KDE Plasma Desktop. Deasemenea poti sari acest pas si configura aspetul odata ce sistemul este instalat. Apasand pe selectia aspectului iti va oferi o previzualizare live al acelui aspect.</translation>
     </message>
 </context>
 <context>
     <name>PlasmaLnfViewStep</name>
     <message>
-        <location filename="../src/modules/plasmalnf/PlasmaLnfViewStep.cpp" line="51"/>
+        <location filename="../src/modules/plasmalnf/PlasmaLnfViewStep.cpp" line="68"/>
         <source>Look-and-Feel</source>
         <translation>Interfață</translation>
     </message>
@@ -1822,13 +1831,14 @@ Programul de instalare va ieși, iar toate modificările vor fi pierdute.</trans
 <context>
     <name>ProcessResult</name>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="263"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="271"/>
         <source>
 There was no output from the command.</source>
-        <translation type="unfinished"/>
+        <translation>
+Nu a existat nici o iesire din comanda</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="264"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="272"/>
         <source>
 Output:
 </source>
@@ -1837,52 +1847,52 @@ Output
 </translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="267"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="275"/>
         <source>External command crashed.</source>
         <translation>Comanda externă a eșuat.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="268"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="276"/>
         <source>Command &lt;i&gt;%1&lt;/i&gt; crashed.</source>
         <translation>Comanda &lt;i&gt;%1&lt;/i&gt; a eșuat.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="273"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="281"/>
         <source>External command failed to start.</source>
         <translation>Comanda externă nu a putut fi pornită.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="274"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="282"/>
         <source>Command &lt;i&gt;%1&lt;/i&gt; failed to start.</source>
         <translation>Comanda &lt;i&gt;%1&lt;/i&gt; nu a putut fi pornită.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="278"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="286"/>
         <source>Internal error when starting command.</source>
         <translation>Eroare internă la pornirea comenzii.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="279"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="287"/>
         <source>Bad parameters for process job call.</source>
         <translation>Parametri proști pentru apelul sarcinii de proces.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="282"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="290"/>
         <source>External command failed to finish.</source>
         <translation>Finalizarea comenzii externe a eșuat.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="283"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="291"/>
         <source>Command &lt;i&gt;%1&lt;/i&gt; failed to finish in %2 seconds.</source>
         <translation>Comanda &lt;i&gt;%1&lt;/i&gt; nu a putut fi finalizată în %2 secunde.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="289"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="297"/>
         <source>External command finished with errors.</source>
         <translation>Comanda externă finalizată cu erori.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="290"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="298"/>
         <source>Command &lt;i&gt;%1&lt;/i&gt; finished with exit code %2.</source>
         <translation>Comanda &lt;i&gt;%1&lt;/i&gt; finalizată cu codul de ieșire %2.</translation>
     </message>
@@ -1901,22 +1911,22 @@ Output
         <translation>Implicit</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="204"/>
+        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="206"/>
         <source>unknown</source>
         <translation>necunoscut</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="206"/>
+        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="208"/>
         <source>extended</source>
         <translation>extins</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="208"/>
+        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="210"/>
         <source>unformatted</source>
         <translation>neformatat</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="210"/>
+        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="212"/>
         <source>swap</source>
         <translation>swap</translation>
     </message>
@@ -2009,52 +2019,52 @@ Output
         <translation>Se adună informații despre sistem...</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="116"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="118"/>
         <source>has at least %1 GB available drive space</source>
         <translation>are cel puțin %1 spațiu disponibil</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="118"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="120"/>
         <source>There is not enough drive space. At least %1 GB is required.</source>
         <translation>Nu este suficient spațiu disponibil. Sunt necesari cel puțin %1 GB.</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="126"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="128"/>
         <source>has at least %1 GB working memory</source>
         <translation>are cel puțin %1 GB de memorie utilizabilă</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="128"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="130"/>
         <source>The system does not have enough working memory. At least %1 GB is required.</source>
         <translation>Sistemul nu are suficientă memorie utilizabilă. Sunt necesari cel puțin %1 GB.</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="136"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="138"/>
         <source>is plugged in to a power source</source>
         <translation>este alimentat cu curent</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="137"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="139"/>
         <source>The system is not plugged in to a power source.</source>
         <translation>Sistemul nu este alimentat cu curent.</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="144"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="146"/>
         <source>is connected to the Internet</source>
         <translation>este conectat la Internet</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="145"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="147"/>
         <source>The system is not connected to the Internet.</source>
         <translation>Sistemul nu este conectat la Internet.</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="153"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="155"/>
         <source>The installer is not running with administrator rights.</source>
         <translation>Programul de instalare nu rulează cu privilegii de administrator.</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="161"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="163"/>
         <source>The screen is too small to display the installer.</source>
         <translation>Ecranu este prea mic pentru a afișa instalatorul.</translation>
     </message>
@@ -2328,6 +2338,15 @@ Output
     </message>
 </context>
 <context>
+    <name>SlideCounter</name>
+    <message>
+        <location filename="../src/qml/calamares/slideshow/SlideCounter.qml" line="36"/>
+        <source>%L1 / %L2</source>
+        <extracomment>slide counter, %1 of %2 (numeric)</extracomment>
+        <translation>%L1 / %L2</translation>
+    </message>
+</context>
+<context>
     <name>SummaryPage</name>
     <message>
         <location filename="../src/modules/summary/SummaryPage.cpp" line="49"/>
@@ -2555,7 +2574,7 @@ Output
         <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Copyright 2017 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;Mulțumiri: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Lisa Vitolo, Philip Müller, Pier Luigi Fiorini, Rohan Garg și &lt;a href=&quot;https://www.transifex.com/calamares/calamares/&quot;&gt;echipei de traducători Calamares&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;https://calamares.io/&quot;&gt;Calamares&lt;/a&gt;, dezvoltare sponsorizată de &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - Liberating Software.</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/WelcomePage.cpp" line="201"/>
+        <location filename="../src/modules/welcome/WelcomePage.cpp" line="205"/>
         <source>%1 support</source>
         <translation>%1 suport</translation>
     </message>
