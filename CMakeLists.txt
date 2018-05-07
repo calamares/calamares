@@ -204,9 +204,11 @@ endif()
 #
 set( _tx_complete ca zh_CN zh_TW hr cs_CZ da fr lt pt_BR pt_PT es tr_TR)
 set( _tx_good sq ja pl sk ro it_IT hu he ru id de nl )
-set( _tx_ok bg uk ast is ar sv el es_MX gl en_GB es_ES th fi_FI hi
+set( _tx_ok bg uk ast is ar sv el es_MX gl en_GB th fi_FI hi
             eu nb sr sl sr@latin mr es_PR kn kk et )
 set( _tx_bad fr_CH gu lo fa ur uz )
+
+add_subdirectory( lang )  # i18n tools
 
 ###
 ### Calamares application info
