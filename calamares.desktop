@@ -11,6 +11,7 @@ Icon=calamares
 Terminal=false
 StartupNotify=true
 Categories=Qt;System;
+X-AppStream-Ignore=true
 Name[bg]=Calamares
 Icon[bg]=calamares
 GenericName[bg]=Системен Инсталатор
