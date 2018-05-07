@@ -202,10 +202,9 @@ endif()
 # by the translation framework. Languages with alternate scripts
 # (sr@latin in particular) may need special handling in CalamaresUtils.cpp.
 #
-# TODO: pl and pl_PL overlap
 set( _tx_complete ca zh_CN zh_TW hr cs_CZ da fr lt pt_BR pt_PT es tr_TR)
 set( _tx_good sq ja pl sk ro it_IT hu he ru id de nl )
-set( _tx_ok bg uk ast is ar sv el es_MX gl en_GB es_ES th fi_FI hi pl_PL
+set( _tx_ok bg uk ast is ar sv el es_MX gl en_GB es_ES th fi_FI hi
             eu nb sr sl sr@latin mr es_PR kn kk et )
 set( _tx_bad fr_CH gu lo fa ur uz )
 
