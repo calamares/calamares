@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-07 18:58+0100\n"
+"POT-Creation-Date: 2018-04-13 10:28-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Demiray “tulliana” Muhterem <mdemiray@msn.com>, 2017\n"
 "Language-Team: Turkish (Turkey) (https://www.transifex.com/calamares/teams/20061/tr_TR/)\n"
@@ -17,6 +17,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: tr_TR\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: src/modules/umount/main.py:40
+msgid "Unmount file systems."
+msgstr "Dosya sistemlerini ayırın."
 
 #: src/modules/dummypython/main.py:44
 msgid "Dummy python job."
@@ -30,23 +34,23 @@ msgstr "Dummy python step {}"
 msgid "Generate machine-id."
 msgstr "Makine kimliği oluştur."
 
-#: src/modules/packages/main.py:60
+#: src/modules/packages/main.py:61
 #, python-format
 msgid "Processing packages (%(count)d / %(total)d)"
 msgstr "Paketler işleniyor (%(count)d / %(total)d)"
 
-#: src/modules/packages/main.py:62 src/modules/packages/main.py:72
+#: src/modules/packages/main.py:63 src/modules/packages/main.py:73
 msgid "Install packages."
 msgstr "Paketleri yükle"
 
-#: src/modules/packages/main.py:65
+#: src/modules/packages/main.py:66
 #, python-format
 msgid "Installing one package."
 msgid_plural "Installing %(num)d packages."
 msgstr[0] "%(num)d paket yükleniyor"
 msgstr[1] "%(num)d paket yükleniyor"
 
-#: src/modules/packages/main.py:68
+#: src/modules/packages/main.py:69
 #, python-format
 msgid "Removing one package."
 msgid_plural "Removing %(num)d packages."

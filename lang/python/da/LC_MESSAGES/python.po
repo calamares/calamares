@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-07 18:58+0100\n"
+"POT-Creation-Date: 2018-04-13 10:28-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dan Johansen (Strit), 2017\n"
 "Language-Team: Danish (https://www.transifex.com/calamares/teams/20061/da/)\n"
@@ -17,6 +17,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: da\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: src/modules/umount/main.py:40
+msgid "Unmount file systems."
+msgstr "Afmonter filsystemer."
 
 #: src/modules/dummypython/main.py:44
 msgid "Dummy python job."
@@ -30,23 +34,23 @@ msgstr "Dummy python-trin {}"
 msgid "Generate machine-id."
 msgstr "Generere maskine-id."
 
-#: src/modules/packages/main.py:60
+#: src/modules/packages/main.py:61
 #, python-format
 msgid "Processing packages (%(count)d / %(total)d)"
 msgstr "Forarbejder pakker (%(count)d / %(total)d)"
 
-#: src/modules/packages/main.py:62 src/modules/packages/main.py:72
+#: src/modules/packages/main.py:63 src/modules/packages/main.py:73
 msgid "Install packages."
 msgstr "Installér pakker."
 
-#: src/modules/packages/main.py:65
+#: src/modules/packages/main.py:66
 #, python-format
 msgid "Installing one package."
 msgid_plural "Installing %(num)d packages."
 msgstr[0] "Installerer én pakke."
 msgstr[1] "Installerer %(num)d pakker."
 
-#: src/modules/packages/main.py:68
+#: src/modules/packages/main.py:69
 #, python-format
 msgid "Removing one package."
 msgid_plural "Removing %(num)d packages."

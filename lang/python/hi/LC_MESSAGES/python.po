@@ -8,15 +8,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-07 18:58+0100\n"
+"POT-Creation-Date: 2018-04-13 10:28-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Octavian Pylos <caspian7pena@gmail.com>, 2018\n"
+"Last-Translator: Panwar108 <caspian7pena@gmail.com>, 2018\n"
 "Language-Team: Hindi (https://www.transifex.com/calamares/teams/20061/hi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: hi\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: src/modules/umount/main.py:40
+msgid "Unmount file systems."
+msgstr ""
 
 #: src/modules/dummypython/main.py:44
 msgid "Dummy python job."
@@ -30,23 +34,23 @@ msgstr "Dummy python step {}"
 msgid "Generate machine-id."
 msgstr "machine-id generate करें।"
 
-#: src/modules/packages/main.py:60
+#: src/modules/packages/main.py:61
 #, python-format
 msgid "Processing packages (%(count)d / %(total)d)"
 msgstr "पैकेज (%(count)d / %(total)d) process किए जा रहे हैं"
 
-#: src/modules/packages/main.py:62 src/modules/packages/main.py:72
+#: src/modules/packages/main.py:63 src/modules/packages/main.py:73
 msgid "Install packages."
 msgstr "पैकेज इंस्टॉल करें।"
 
-#: src/modules/packages/main.py:65
+#: src/modules/packages/main.py:66
 #, python-format
 msgid "Installing one package."
 msgid_plural "Installing %(num)d packages."
 msgstr[0] "एक पैकेज इंस्टॉल किया जा रहा है।"
 msgstr[1] "%(num)d पैकेज इंस्टॉल किए जा रहे हैं।"
 
-#: src/modules/packages/main.py:68
+#: src/modules/packages/main.py:69
 #, python-format
 msgid "Removing one package."
 msgid_plural "Removing %(num)d packages."
