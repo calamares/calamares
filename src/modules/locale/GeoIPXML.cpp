@@ -42,8 +42,14 @@ GeoIPXML::processReply( const QByteArray& data )
         for ( int it = 0; it < tzElements.length(); ++it )
         {
             auto e = tzElements.at(it).toElement();
-            return splitTZString( e.text() );
+            auto tz = splitTZString( e.text() );
+            if ( !tz.first.isEmpty() )
+                return tz;
         }
+
+        // None of them valid
+        cWarning() << "GeopIP XML had no recognizable timezone";
+        return qMakePair( QString(), QString() );
     }
     else
     {
@@ -51,5 +57,4 @@ GeoIPXML::processReply( const QByteArray& data )
     }
 
     return qMakePair( QString(), QString() );
-
 }
