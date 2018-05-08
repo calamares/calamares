@@ -261,7 +261,9 @@ CreatePartitionDialog::updateMountPointUi()
         FileSystem::Type type = FileSystem::typeForName( m_ui->fsComboBox->currentText() );
         enabled = !s_unmountableFS.contains( type );
 
-        if ( FS::luks::canEncryptType( type ) )
+        if ( FileSystemFactory::map()[FileSystem::Type::Luks]->supportCreate() &&
+             FS::luks::canEncryptType( type ) &&
+             !m_role.has( PartitionRole::Extended ) )
         {
             m_ui->encryptWidget->show();
             m_ui->encryptWidget->reset();
