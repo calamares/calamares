@@ -190,8 +190,8 @@ endif()
 ### Transifex Translation status
 #
 # complete = 100% translated,
-# good = nearly complete (use own judgement, right now < 100 untranslated strings),
-# ok = incomplete (100 or more untranslated),
+# good = nearly complete (use own judgement, right now >= 75%)
+# ok = incomplete (more than 25% untranslated),
 # bad = 0% translated, placeholder in tx; these are not included.
 #
 # Language en (source language) is added later. It isn't listed in
@@ -202,11 +202,47 @@ endif()
 # by the translation framework. Languages with alternate scripts
 # (sr@latin in particular) may need special handling in CalamaresUtils.cpp.
 #
-set( _tx_complete ca zh_CN zh_TW hr cs_CZ da fr lt pt_BR pt_PT es tr_TR)
-set( _tx_good sq ja pl sk ro it_IT hu he ru id de nl )
-set( _tx_ok bg uk ast is ar sv el es_MX gl en_GB th fi_FI hi
-            eu nb sr sl sr@latin mr es_PR kn kk et )
-set( _tx_bad fr_CH gu lo fa ur uz )
+# TODO: drop the es_ES translation from Transifex
+# TODO: import Esperanto once it has some translated strings
+#
+# NOTE: when updating the list from Transifex, copy these four lines
+#       and prefix each variable name with "p", so that the automatic
+#       checks for new languages and misspelled ones are done.
+set( _tx_complete da pt_PT ro tr_TR zh_TW zh_CN pt_BR fr hr ca lt id cs_CZ )
+set( _tx_good sq es pl ja sk it_IT hu ru he de nl bg uk )
+set( _tx_ok ast is ar sv el es_MX gl en_GB th fi_FI hi eu sr nb
+            sl sr@latin mr es_PR kk kn et )
+set( _tx_bad uz eo lo ur gu fr_CH fa )
+
+# check translation update
+set( prev_tx ${p_tx_complete} ${p_tx_good} ${p_tx_ok} ${p_tx_bad} )
+set( curr_tx ${_tx_complete} ${_tx_good} ${_tx_ok} ${_tx_bad} )
+if ( prev_tx )
+    # Gone in new list
+    foreach( l ${prev_tx} )
+        list( FIND curr_tx ${l} p_l )
+        if( p_l EQUAL -1 )
+            message(WARNING "Language ${l} was present in previous translations and is now absent.")
+        endif()
+    endforeach()
+
+    # New in list
+    foreach( l ${curr_tx} )
+        list( FIND prev_tx ${l} p_l )
+        if( p_l EQUAL -1 )
+            message(WARNING "Language ${l} is new.")
+        endif()
+        set( p_l "lang/calamares_${l}.ts" )
+        if( NOT EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/${p_l} )
+            message(WARNING "Language ${l} has no .ts file yet.")
+        endif()
+    endforeach()
+
+    unset( p_l )
+    unset( l )
+endif()
+unset( prev_tx )
+unset( curr_tx )
 
 add_subdirectory( lang )  # i18n tools
 
