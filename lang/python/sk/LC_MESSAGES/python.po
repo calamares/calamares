@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-13 10:28-0400\n"
+"POT-Creation-Date: 2018-05-07 09:14-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Dušan Kazik <prescott66@gmail.com>, 2017\n"
 "Language-Team: Slovak (https://www.transifex.com/calamares/teams/20061/sk/)\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: src/modules/umount/main.py:40
 msgid "Unmount file systems."
-msgstr ""
+msgstr "Odpojenie súborových systémov."
 
 #: src/modules/dummypython/main.py:44
 msgid "Dummy python job."
