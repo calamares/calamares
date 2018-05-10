@@ -1814,7 +1814,7 @@ Instalator zostanie zamknięty i wszystkie zmiany zostaną utracone.</translatio
     <message>
         <location filename="../src/modules/plasmalnf/PlasmaLnfPage.cpp" line="67"/>
         <source>Please choose a look-and-feel for the KDE Plasma Desktop. You can also skip this step and configure the look-and-feel once the system is installed. Clicking on a look-and-feel selection will give you a live preview of that look-and-feel.</source>
-        <translation type="unfinished"/>
+        <translation>Wybierz wygląd i styl pulpitu Plazmy KDE. Możesz również pominąć ten krok i skonfigurować wygląd po zainstalowaniu systemu. Kliknięcie przycisku wyboru wyglądu i stylu daje podgląd na żywo tego wyglądu i stylu.</translation>
     </message>
 </context>
 <context>
@@ -2392,7 +2392,7 @@ Wyjście:
     <message>
         <location filename="../src/modules/tracking/TrackingJobs.cpp" line="114"/>
         <source>Configuring machine feedback.</source>
-        <translation type="unfinished"/>
+        <translation>Konfiguracja machine feedback</translation>
     </message>
     <message>
         <location filename="../src/modules/tracking/TrackingJobs.cpp" line="133"/>

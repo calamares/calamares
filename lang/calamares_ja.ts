@@ -184,7 +184,7 @@
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="255"/>
         <source>&amp;Install</source>
-        <translation type="unfinished"/>
+        <translation>インストール（&amp;I）</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="303"/>
@@ -1381,12 +1381,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="213"/>
         <source>The password contains monotonic sequence longer than %1 characters</source>
-        <translation type="unfinished"/>
+        <translation>パスワードに %1 文字以上の単調な文字列が含まれています</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="214"/>
         <source>The password contains too long of a monotonic character sequence</source>
-        <translation type="unfinished"/>
+        <translation>パスワードに限度を超えた単調な文字列が含まれています</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="216"/>
@@ -1815,7 +1815,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/plasmalnf/PlasmaLnfPage.cpp" line="67"/>
         <source>Please choose a look-and-feel for the KDE Plasma Desktop. You can also skip this step and configure the look-and-feel once the system is installed. Clicking on a look-and-feel selection will give you a live preview of that look-and-feel.</source>
-        <translation type="unfinished"/>
+        <translation>KDE Plasma デスクトップの外観を選んでください。この作業はスキップでき、インストール後に外観を設定することができます。外観を選択し、クリックすることにより外観のプレビューが表示されます。</translation>
     </message>
 </context>
 <context>
@@ -2341,7 +2341,7 @@ Output:
         <location filename="../src/qml/calamares/slideshow/SlideCounter.qml" line="36"/>
         <source>%L1 / %L2</source>
         <extracomment>slide counter, %1 of %2 (numeric)</extracomment>
-        <translation type="unfinished"/>
+        <translation>%L1 / %L2</translation>
     </message>
 </context>
 <context>

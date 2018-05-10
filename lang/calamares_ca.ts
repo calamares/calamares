@@ -1395,7 +1395,7 @@ L&apos;instal·lador es tancarà i tots els canvis es perdran.</translation>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="218"/>
         <source>Cannot obtain random numbers from the RNG device</source>
-        <translation>No es poden obtenir números aleatoris del dispositiu RNG.</translation>
+        <translation>No es poden obtenir nombres aleatoris del dispositiu RNG.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="220"/>
@@ -2107,17 +2107,17 @@ Sortida:
     <message>
         <location filename="../src/modules/users/SetHostNameJob.cpp" line="37"/>
         <source>Set hostname %1</source>
-        <translation>Assigna el nom de l&apos;equip %1</translation>
+        <translation>Estableix el nom d&apos;amfitrió %1</translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetHostNameJob.cpp" line="44"/>
         <source>Set hostname &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation>Establir el nom de l&apos;hoste &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+        <translation>Estableix el nom d&apos;amfitrió &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetHostNameJob.cpp" line="51"/>
         <source>Setting hostname %1.</source>
-        <translation>Establint el nom de l&apos;hoste %1.</translation>
+        <translation>Establint el nom d&apos;amfitrió %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetHostNameJob.cpp" line="61"/>
@@ -2129,7 +2129,7 @@ Sortida:
         <location filename="../src/modules/users/SetHostNameJob.cpp" line="75"/>
         <location filename="../src/modules/users/SetHostNameJob.cpp" line="86"/>
         <source>Cannot write hostname to target system</source>
-        <translation>No s&apos;ha pogut escriure el nom de l&apos;equip al sistema de destinació</translation>
+        <translation>No es pot escriure el nom d&apos;amfitrió al sistema de destinació</translation>
     </message>
 </context>
 <context>
@@ -2270,7 +2270,7 @@ Sortida:
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="123"/>
         <source>Cannot disable root account.</source>
-        <translation>No es pot inhabilitar el compte d&apos;arrel.</translation>
+        <translation>No es pot inhabilitar el compte de root.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="124"/>
@@ -2280,7 +2280,7 @@ Sortida:
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="139"/>
         <source>Cannot set password for user %1.</source>
-        <translation>No s&apos;ha pogut assignar la contrasenya de l&apos;usuari %1.</translation>
+        <translation>No es pot establir la contrasenya per a l&apos;usuari %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="141"/>
@@ -2491,7 +2491,7 @@ Sortida:
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="333"/>
         <source>Your hostname is too short.</source>
-        <translation>El nom d&apos;usuari és massa curt.</translation>
+        <translation>El nom d&apos;amfitrió és massa curt.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="339"/>
@@ -2501,7 +2501,7 @@ Sortida:
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="345"/>
         <source>Your hostname contains invalid characters. Only letters, numbers and dashes are allowed.</source>
-        <translation>El nom d&apos;amfitrió conté caràcters no vàlids. Només s&apos;hi admeten lletres, números i guions.</translation>
+        <translation>El nom d&apos;amfitrió conté caràcters no vàlids. Només s&apos;admeten lletres, números i guions.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="373"/>
@@ -2553,12 +2553,12 @@ Sortida:
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="60"/>
         <source>&lt;h1&gt;Welcome to the %1 installer.&lt;/h1&gt;</source>
-        <translation>&lt;h1&gt;Benvinguts a l&apos;instal·lador %1.&lt;/h1&gt;</translation>
+        <translation>&lt;h1&gt;Benvingut a l&apos;instal·lador de %1.&lt;/h1&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="60"/>
         <source>&lt;h1&gt;Welcome to the Calamares installer for %1.&lt;/h1&gt;</source>
-        <translation>&lt;h1&gt;Us donem la benvinguda a l&apos;instal·lador Calamares per a %1.&lt;/h1&gt;</translation>
+        <translation>&lt;h1&gt;Benvingut a l&apos;instal·lador Calamares per a %1.&lt;/h1&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="73"/>
@@ -2581,7 +2581,7 @@ Sortida:
     <message>
         <location filename="../src/modules/welcome/WelcomeViewStep.cpp" line="51"/>
         <source>Welcome</source>
-        <translation>Benvinguts</translation>
+        <translation>Benvingut</translation>
     </message>
 </context>
 </TS>
