@@ -20,7 +20,7 @@ msgstr ""
 
 #: src/modules/umount/main.py:40
 msgid "Unmount file systems."
-msgstr ""
+msgstr "ファイルシステムをアンマウントする。"
 
 #: src/modules/dummypython/main.py:44
 msgid "Dummy python job."

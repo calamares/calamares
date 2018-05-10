@@ -10,49 +10,48 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-07 09:14-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Madis, 2018\n"
-"Language-Team: Estonian (https://www.transifex.com/calamares/teams/20061/et/)\n"
+"Language-Team: Esperanto (https://www.transifex.com/calamares/teams/20061/eo/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: et\n"
+"Language: eo\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: src/modules/umount/main.py:40
 msgid "Unmount file systems."
-msgstr "Haagi failisüsteemid lahti."
+msgstr ""
 
 #: src/modules/dummypython/main.py:44
 msgid "Dummy python job."
-msgstr "Testiv python'i töö."
+msgstr ""
 
 #: src/modules/dummypython/main.py:97
 msgid "Dummy python step {}"
-msgstr "Testiv python'i aste {}"
+msgstr ""
 
 #: src/modules/machineid/main.py:35
 msgid "Generate machine-id."
-msgstr "Genereeri masina-id."
+msgstr ""
 
 #: src/modules/packages/main.py:61
 #, python-format
 msgid "Processing packages (%(count)d / %(total)d)"
-msgstr "Pakkide töötlemine (%(count)d / %(total)d)"
+msgstr ""
 
 #: src/modules/packages/main.py:63 src/modules/packages/main.py:73
 msgid "Install packages."
-msgstr "Installi pakid."
+msgstr ""
 
 #: src/modules/packages/main.py:66
 #, python-format
 msgid "Installing one package."
 msgid_plural "Installing %(num)d packages."
-msgstr[0] "Installin ühe paki."
-msgstr[1] "Installin %(num)d pakki."
+msgstr[0] ""
+msgstr[1] ""
 
 #: src/modules/packages/main.py:69
 #, python-format
 msgid "Removing one package."
 msgid_plural "Removing %(num)d packages."
-msgstr[0] "Eemaldan ühe paki."
-msgstr[1] "Eemaldan %(num)d pakki."
+msgstr[0] ""
+msgstr[1] ""
