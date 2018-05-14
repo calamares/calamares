@@ -129,12 +129,7 @@ QList< Device* > getDevices( DeviceType which, qint64 minimumSize )
 
     // Remove the device which contains / from the list
     for ( DeviceList::iterator it = devices.begin(); it != devices.end(); )
-        if ( (*it)->type() != Device::Type::Disk_Device )
-        {
-            cDebug() << " .. Removing device that is not a Disk_Device from list " << it;
-            it = erase(devices, it );
-        }
-        else if ( ! ( *it ) ||
+        if ( ! ( *it ) ||
                 ( *it )->deviceNode().startsWith( "/dev/zram" )
         )
         {

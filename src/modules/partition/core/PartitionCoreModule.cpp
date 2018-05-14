@@ -164,7 +164,18 @@ PartitionCoreModule::doInit()
     for ( auto deviceInfo : m_deviceInfos )
         deviceInfo->partitionModel->init( deviceInfo->device.data(), m_osproberLines );
 
-    m_bootLoaderModel->init( devices );
+    DeviceList bootLoaderDevices;
+
+    for ( DeviceList::Iterator it = devices.begin(); it != devices.end(); ++it)
+        if ( (*it)->type() != Device::Type::Disk_Device )
+        {
+            cDebug() << "Ignoring device that is not Disk_Device to bootLoaderDevices list.";
+            continue;
+        }
+        else
+            bootLoaderDevices.append(*it);
+
+    m_bootLoaderModel->init( bootLoaderDevices );
 
     //FIXME: this should be removed in favor of
     //       proper KPM support for EFI
