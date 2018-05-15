@@ -23,6 +23,7 @@
 #include "core/PartitionInfo.h"
 #include "core/PartUtils.h"
 #include "core/KPMHelpers.h"
+#include "gui/MountPoints.h"
 #include "gui/PartitionSizeController.h"
 
 #include "ui_CreatePartitionDialog.h"
@@ -81,12 +82,7 @@ CreatePartitionDialog::CreatePartitionDialog( Device* device, PartitionNode* par
         m_ui->lvNameLineEdit->setValidator(validator);
     }
 
-    QStringList mountPoints = { "/", "/boot", "/home", "/opt", "/usr", "/var" };
-    if ( PartUtils::isEfiSystem() )
-        mountPoints << Calamares::JobQueue::instance()->globalStorage()->value( "efiSystemPartition" ).toString();
-    mountPoints.removeDuplicates();
-    mountPoints.sort();
-    m_ui->mountPointComboBox->addItems( mountPoints );
+    standardMountPoints( *(m_ui->mountPointComboBox) );
 
     if ( device->partitionTable()->type() == PartitionTable::msdos ||
          device->partitionTable()->type() == PartitionTable::msdos_sectorbased )

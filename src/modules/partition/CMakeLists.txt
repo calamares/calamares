@@ -38,6 +38,7 @@ if ( KPMcore_FOUND )
             gui/DeviceInfoWidget.cpp
             gui/EditExistingPartitionDialog.cpp
             gui/EncryptWidget.cpp
+            gui/MountPoints.cpp
             gui/PartitionPage.cpp
             gui/PartitionBarsView.cpp
             gui/PartitionLabelsView.cpp

@@ -28,6 +28,7 @@
 #include <core/PartitionInfo.h>
 #include "core/PartUtils.h"
 #include <core/KPMHelpers.h>
+#include "gui/MountPoints.h"
 #include <gui/PartitionSizeController.h>
 
 #include <ui_EditExistingPartitionDialog.h>
@@ -55,13 +56,7 @@ EditExistingPartitionDialog::EditExistingPartitionDialog( Device* device, Partit
     , m_usedMountPoints( usedMountPoints )
 {
     m_ui->setupUi( this );
-
-    QStringList mountPoints = { "/", "/boot", "/home", "/opt", "/usr", "/var" };
-    if ( PartUtils::isEfiSystem() )
-        mountPoints << Calamares::JobQueue::instance()->globalStorage()->value( "efiSystemPartition" ).toString();
-    mountPoints.removeDuplicates();
-    mountPoints.sort();
-    m_ui->mountPointComboBox->addItems( mountPoints );
+    standardMountPoints( *(m_ui->mountPointComboBox) );
 
     QColor color = ColorUtils::colorForPartition( m_partition );
     m_partitionSizeController->init( m_device, m_partition, color );
