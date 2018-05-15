@@ -31,7 +31,7 @@
 QStringList
 standardMountPoints()
 {
-    QStringList mountPoints{ "/", "/boot", "/home", "/opt", "/usr", "/var" };
+    QStringList mountPoints{ "/", "/boot", "/home", "/opt", "/srv", "/usr", "/var" };
     if ( PartUtils::isEfiSystem() )
         mountPoints << Calamares::JobQueue::instance()->globalStorage()->value( "efiSystemPartition" ).toString();
     mountPoints.removeDuplicates();
