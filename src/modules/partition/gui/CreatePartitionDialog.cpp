@@ -242,7 +242,7 @@ CreatePartitionDialog::createPartition()
         partition->setPartitionPath(m_device->deviceNode() + QStringLiteral("/") + m_ui->lvNameLineEdit->text().trimmed());
     }
 
-    PartitionInfo::setMountPoint( partition, m_ui->mountPointComboBox->currentText() );
+    PartitionInfo::setMountPoint( partition, selectedMountPoint( m_ui->mountPointComboBox ) );
     PartitionInfo::setFormat( partition, true );
 
     return partition;
@@ -279,9 +279,7 @@ CreatePartitionDialog::updateMountPointUi()
 void
 CreatePartitionDialog::checkMountPointSelection()
 {
-    const QString& selection = m_ui->mountPointComboBox->currentText();
-
-    if ( m_usedMountPoints.contains( selection ) )
+    if ( m_usedMountPoints.contains( selectedMountPoint( m_ui->mountPointComboBox ) ) )
     {
         m_ui->labelMountPoint->setText( tr( "Mountpoint already in use. Please select another one." ) );
         m_ui->buttonBox->button( QDialogButtonBox::Ok )->setEnabled( false );

@@ -44,4 +44,14 @@ void standardMountPoints( QComboBox& );
  */
 void standardMountPoints( QComboBox&, const QString& selected );
 
+/**
+ * Get the mount point selected in the combo box (which should
+ * have been set up with standardMountPoints(), above); this
+ * will map the topmost item (i.e. "(no mount point)") back
+ * to blank, to allow easy detection of no-mount-selected.
+ */
+QString selectedMountPoint( QComboBox& combo );
+static inline QString selectedMountPoint(QComboBox* combo) { return selectedMountPoint(*combo); }
+
+
 #endif

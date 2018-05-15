@@ -24,6 +24,7 @@
 
 #include "GlobalStorage.h"
 #include "JobQueue.h"
+#include "utils/Logger.h"
 
 #include <QComboBox>
 
@@ -54,4 +55,13 @@ standardMountPoints(QComboBox& combo, const QString& selected)
         combo.setCurrentIndex( 0 );
     else
         combo.setCurrentText( selected );
+}
+
+QString
+selectedMountPoint(QComboBox& combo)
+{
+    cDebug() << "Selected mount point" << combo.currentIndex() << combo.currentText();
+    if ( combo.currentIndex() == 0 )
+        return QString();
+    return combo.currentText();
 }

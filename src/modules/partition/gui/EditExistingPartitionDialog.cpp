@@ -154,7 +154,7 @@ EditExistingPartitionDialog::setupFlagsList()
 void
 EditExistingPartitionDialog::applyChanges( PartitionCoreModule* core )
 {
-    PartitionInfo::setMountPoint( m_partition, m_ui->mountPointComboBox->currentText() );
+    PartitionInfo::setMountPoint( m_partition, selectedMountPoint(m_ui->mountPointComboBox) );
 
     qint64 newFirstSector = m_partitionSizeController->firstSector();
     qint64 newLastSector  = m_partitionSizeController->lastSector();
@@ -294,9 +294,7 @@ EditExistingPartitionDialog::updateMountPointPicker()
 void
 EditExistingPartitionDialog::checkMountPointSelection()
 {
-    const QString& selection = m_ui->mountPointComboBox->currentText();
-
-    if ( m_usedMountPoints.contains( selection ) )
+    if ( m_usedMountPoints.contains( selectedMountPoint( m_ui->mountPointComboBox ) ) )
     {
         m_ui->labelMountPoint->setText( tr( "Mountpoint already in use. Please select another one." ) );
         m_ui->buttonBox->button( QDialogButtonBox::Ok )->setEnabled( false );
