@@ -288,7 +288,7 @@ EditExistingPartitionDialog::updateMountPointPicker()
     m_ui->mountPointLabel->setEnabled( canMount );
     m_ui->mountPointComboBox->setEnabled( canMount );
     if ( !canMount )
-        m_ui->mountPointComboBox->setCurrentText( QString() );
+        setSelectedMountPoint( m_ui->mountPointComboBox, QString() );
 }
 
 void
