@@ -53,5 +53,7 @@ void standardMountPoints( QComboBox&, const QString& selected );
 QString selectedMountPoint( QComboBox& combo );
 static inline QString selectedMountPoint(QComboBox* combo) { return selectedMountPoint(*combo); }
 
+void setSelectedMountPoint( QComboBox& combo, const QString& selected );
+static inline void setSelectedMountPoint(QComboBox* combo, const QString& selected) { setSelectedMountPoint( *combo, selected); }
 
 #endif

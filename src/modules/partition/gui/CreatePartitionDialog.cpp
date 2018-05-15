@@ -328,7 +328,7 @@ CreatePartitionDialog::initFromPartitionToCreate( Partition* partition )
     m_ui->fsComboBox->setCurrentText( FileSystem::nameForType( fsType ) );
 
     // Mount point
-    m_ui->mountPointComboBox->setCurrentText( PartitionInfo::mountPoint( partition ) );
+    setSelectedMountPoint( m_ui->mountPointComboBox, PartitionInfo::mountPoint( partition ) );
 
     updateMountPointUi();
 }

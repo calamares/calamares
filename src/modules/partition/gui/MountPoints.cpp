@@ -65,3 +65,24 @@ selectedMountPoint(QComboBox& combo)
         return QString();
     return combo.currentText();
 }
+
+void
+setSelectedMountPoint(QComboBox& combo, const QString& selected)
+{
+    cDebug() << "Setting mount point" << selected;
+    if ( selected.isEmpty() )
+        combo.setCurrentIndex( 0 );  // (no mount point)
+    else
+    {
+        for ( int i = 0; i < combo.count(); ++i )
+            if ( selected == combo.itemText( i ) )
+            {
+                cDebug() << " .. found at index" << i;
+                combo.setCurrentIndex( i );
+                return;
+            }
+        cDebug() << " .. new item";
+        combo.addItem( selected );
+        combo.setCurrentIndex( combo.count() - 1);
+    }
+}
