@@ -38,4 +38,10 @@ QStringList standardMountPoints();
  */
 void standardMountPoints( QComboBox& );
 
+/**
+ * As above, but also sets the displayed mount point to @p selected,
+ * unless it is empty, in which case "(no mount point)" is chosen.
+ */
+void standardMountPoints( QComboBox&, const QString& selected );
+
 #endif

@@ -46,3 +46,12 @@ standardMountPoints(QComboBox& combo)
     combo.addItems( standardMountPoints() );
 }
 
+void
+standardMountPoints(QComboBox& combo, const QString& selected)
+{
+    standardMountPoints( combo );
+    if ( selected.isEmpty() )
+        combo.setCurrentIndex( 0 );
+    else
+        combo.setCurrentText( selected );
+}

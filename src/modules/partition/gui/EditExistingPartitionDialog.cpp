@@ -56,13 +56,12 @@ EditExistingPartitionDialog::EditExistingPartitionDialog( Device* device, Partit
     , m_usedMountPoints( usedMountPoints )
 {
     m_ui->setupUi( this );
-    standardMountPoints( *(m_ui->mountPointComboBox) );
+    standardMountPoints( *(m_ui->mountPointComboBox), PartitionInfo::mountPoint( partition ) );
 
     QColor color = ColorUtils::colorForPartition( m_partition );
     m_partitionSizeController->init( m_device, m_partition, color );
     m_partitionSizeController->setSpinBox( m_ui->sizeSpinBox );
 
-    m_ui->mountPointComboBox->setCurrentText( PartitionInfo::mountPoint( partition ) );
     connect( m_ui->mountPointComboBox, &QComboBox::currentTextChanged,
              this, &EditExistingPartitionDialog::checkMountPointSelection );
 
