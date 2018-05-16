@@ -21,9 +21,12 @@
 #ifndef PARTITION_GUI_PARTITIONDIALOGHELPERS
 #define PARTITION_GUI_PARTITIONDIALOGHELPERS
 
+#include <kpmcore/core/partitiontable.h>
+
 #include <QStringList>
 
 class QComboBox;
+class QListWidget;
 
 /**
  * Returns a list of standard mount points (e.g. /, /usr, ...).
@@ -55,5 +58,10 @@ static inline QString selectedMountPoint(QComboBox* combo) { return selectedMoun
 
 void setSelectedMountPoint( QComboBox& combo, const QString& selected );
 static inline void setSelectedMountPoint(QComboBox* combo, const QString& selected) { setSelectedMountPoint( *combo, selected); }
+
+/**
+ * Get the flags that have been checked in the list widget.
+ */
+PartitionTable::Flags flagsFromList( const QListWidget& list );
 
 #endif

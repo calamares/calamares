@@ -133,14 +133,7 @@ CreatePartitionDialog::~CreatePartitionDialog()
 PartitionTable::Flags
 CreatePartitionDialog::newFlags() const
 {
-    PartitionTable::Flags flags;
-
-    for ( int i = 0; i < m_ui->m_listFlags->count(); i++ )
-        if ( m_ui->m_listFlags->item( i )->checkState() == Qt::Checked )
-            flags |= static_cast< PartitionTable::Flag >(
-                         m_ui->m_listFlags->item( i )->data( Qt::UserRole ).toInt() );
-
-    return flags;
+    return flagsFromList( *(m_ui->m_listFlags) );
 }
 
 

@@ -27,6 +27,7 @@
 #include "utils/Logger.h"
 
 #include <QComboBox>
+#include <QListWidget>
 
 QStringList
 standardMountPoints()
@@ -79,3 +80,18 @@ setSelectedMountPoint(QComboBox& combo, const QString& selected)
         combo.setCurrentIndex( combo.count() - 1);
     }
 }
+
+
+PartitionTable::Flags
+flagsFromList( const QListWidget& list )
+{
+    PartitionTable::Flags flags;
+
+    for ( int i = 0; i < list.count(); i++ )
+        if ( list.item( i )->checkState() == Qt::Checked )
+            flags |= static_cast< PartitionTable::Flag >(
+                         list.item( i )->data( Qt::UserRole ).toInt() );
+
+    return flags;
+}
+
