@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: fa\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: nplurals=2; plural=((n<=1 && n>= 0) ? 1);\n"
 
 #: src/modules/umount/main.py:40
 msgid "Unmount file systems."
@@ -47,9 +47,11 @@ msgstr ""
 msgid "Installing one package."
 msgid_plural "Installing %(num)d packages."
 msgstr[0] ""
+msgstr[1] ""
 
 #: src/modules/packages/main.py:69
 #, python-format
 msgid "Removing one package."
 msgid_plural "Removing %(num)d packages."
 msgstr[0] ""
+msgstr[1] ""
