@@ -100,18 +100,29 @@ CommandList::~CommandList()
 
 Calamares::JobResult CommandList::run()
 {
+    QLatin1Literal rootMagic( "@@ROOT@@" );
+
     System::RunLocation location = m_doChroot ? System::RunLocation::RunInTarget : System::RunLocation::RunInHost;
 
     /* Figure out the replacement for @@ROOT@@ */
     QString root = QStringLiteral( "/" );
     Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
-    if ( location == System::RunLocation::RunInTarget )
+
+    bool needsRootSubstitution = false;
+    for ( CommandList::const_iterator i = cbegin(); i != cend(); ++i )
+        if ( i->command().contains( rootMagic ) )
+        {
+            needsRootSubstitution = true;
+            break;
+        }
+
+    if ( needsRootSubstitution && ( location == System::RunLocation::RunInHost ) )
     {
         if ( !gs || !gs->contains( "rootMountPoint" ) )
         {
             cError() << "No rootMountPoint defined.";
             return Calamares::JobResult::error( QCoreApplication::translate( "CommandList", "Could not run command." ),
-                                                QCoreApplication::translate( "CommandList", "No rootMountPoint is defined, so command cannot be run in the target environment." ) );
+                                                QCoreApplication::translate( "CommandList", "The command runs in the host environment and needs to know the root path, but no rootMountPoint is defined." ) );
         }
         root = gs->value( "rootMountPoint" ).toString();
     }
@@ -119,7 +130,7 @@ Calamares::JobResult CommandList::run()
     for ( CommandList::const_iterator i = cbegin(); i != cend(); ++i )
     {
         QString processed_cmd = i->command();
-        processed_cmd.replace( "@@ROOT@@", root );
+        processed_cmd.replace( rootMagic, root );
         bool suppress_result = false;
         if ( processed_cmd.startsWith( '-' ) )
         {
