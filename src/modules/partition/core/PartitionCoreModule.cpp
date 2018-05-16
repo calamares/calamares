@@ -258,6 +258,7 @@ PartitionCoreModule::createPartition( Device* device,
     {
         SetPartFlagsJob* fJob = new SetPartFlagsJob( device, partition, flags );
         deviceInfo->jobs << Calamares::job_ptr( fJob );
+        PartitionInfo::setFlags( partition, flags );
     }
 
     refresh();
@@ -381,8 +382,8 @@ PartitionCoreModule::setPartitionFlags( Device* device,
     PartitionModel::ResetHelper( partitionModelForDevice( device ) );
 
     SetPartFlagsJob* job = new SetPartFlagsJob( device, partition, flags );
-
     deviceInfo->jobs << Calamares::job_ptr( job );
+    PartitionInfo::setFlags( partition, flags );
 
     refresh();
 }

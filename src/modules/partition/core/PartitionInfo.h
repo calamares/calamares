@@ -21,6 +21,8 @@
 #include <QHash>
 #include <QString>
 
+#include <kpmcore/core/partitiontable.h>
+
 class Partition;
 
 /**
@@ -44,6 +46,9 @@ void setMountPoint( Partition* partition, const QString& value );
 
 bool format( Partition* partition );
 void setFormat( Partition* partition, bool value );
+
+PartitionTable::Flags flags( const Partition* partition );
+void setFlags( Partition* partition, PartitionTable::Flags f );
 
 void reset( Partition* partition );
 

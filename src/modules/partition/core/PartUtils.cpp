@@ -22,6 +22,7 @@
 
 #include "core/DeviceModel.h"
 #include "core/KPMHelpers.h"
+#include "core/PartitionInfo.h"
 #include "core/PartitionIterator.h"
 
 #include <kpmcore/backend/corebackend.h>
@@ -343,8 +344,10 @@ isEfiSystem()
 bool
 isEfiBootable( const Partition* candidate )
 {
+    auto flags = PartitionInfo::flags( candidate );
+
     /* If bit 17 is set, old-style Esp flag, it's OK */
-    if ( candidate->activeFlags().testFlag( PartitionTable::FlagEsp ) )
+    if ( flags.testFlag( PartitionTable::FlagEsp ) )
         return true;
 
 
@@ -359,7 +362,7 @@ isEfiBootable( const Partition* candidate )
 
     const PartitionTable* table = dynamic_cast<const PartitionTable*>( root );
     return table && ( table->type() == PartitionTable::TableType::gpt ) &&
-        candidate->activeFlags().testFlag( PartitionTable::FlagBoot );
+        flags.testFlag( PartitionTable::FlagBoot );
 }
 
 }  // nmamespace PartUtils

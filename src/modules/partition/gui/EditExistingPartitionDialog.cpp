@@ -28,6 +28,7 @@
 #include <core/PartitionInfo.h>
 #include "core/PartUtils.h"
 #include <core/KPMHelpers.h>
+#include "gui/PartitionDialogHelpers.h"
 #include <gui/PartitionSizeController.h>
 
 #include <ui_EditExistingPartitionDialog.h>
@@ -55,19 +56,12 @@ EditExistingPartitionDialog::EditExistingPartitionDialog( Device* device, Partit
     , m_usedMountPoints( usedMountPoints )
 {
     m_ui->setupUi( this );
-
-    QStringList mountPoints = { "/", "/boot", "/home", "/opt", "/usr", "/var" };
-    if ( PartUtils::isEfiSystem() )
-        mountPoints << Calamares::JobQueue::instance()->globalStorage()->value( "efiSystemPartition" ).toString();
-    mountPoints.removeDuplicates();
-    mountPoints.sort();
-    m_ui->mountPointComboBox->addItems( mountPoints );
+    standardMountPoints( *(m_ui->mountPointComboBox), PartitionInfo::mountPoint( partition ) );
 
     QColor color = ColorUtils::colorForPartition( m_partition );
     m_partitionSizeController->init( m_device, m_partition, color );
     m_partitionSizeController->setSpinBox( m_ui->sizeSpinBox );
 
-    m_ui->mountPointComboBox->setCurrentText( PartitionInfo::mountPoint( partition ) );
     connect( m_ui->mountPointComboBox, &QComboBox::currentTextChanged,
              this, &EditExistingPartitionDialog::checkMountPointSelection );
 
@@ -112,7 +106,7 @@ EditExistingPartitionDialog::EditExistingPartitionDialog( Device* device, Partit
     m_ui->fileSystemLabel->setEnabled( m_ui->formatRadioButton->isChecked() );
     m_ui->fileSystemComboBox->setEnabled( m_ui->formatRadioButton->isChecked() );
 
-    setupFlagsList();
+    setFlagList( *(m_ui->m_listFlags), m_partition->availableFlags(), PartitionInfo::flags( m_partition ) );
 }
 
 
@@ -123,44 +117,13 @@ EditExistingPartitionDialog::~EditExistingPartitionDialog()
 PartitionTable::Flags
 EditExistingPartitionDialog::newFlags() const
 {
-    PartitionTable::Flags flags;
-
-    for ( int i = 0; i < m_ui->m_listFlags->count(); i++ )
-        if ( m_ui->m_listFlags->item( i )->checkState() == Qt::Checked )
-            flags |= static_cast< PartitionTable::Flag >(
-                         m_ui->m_listFlags->item( i )->data( Qt::UserRole ).toInt() );
-
-    return flags;
+    return flagsFromList( *(m_ui->m_listFlags) );
 }
-
-
-void
-EditExistingPartitionDialog::setupFlagsList()
-{
-    int f = 1;
-    QString s;
-    while ( !( s = PartitionTable::flagName( static_cast< PartitionTable::Flag >( f ) ) ).isEmpty() )
-    {
-        if ( m_partition->availableFlags() & f )
-        {
-            QListWidgetItem* item = new QListWidgetItem( s );
-            m_ui->m_listFlags->addItem( item );
-            item->setFlags( Qt::ItemIsUserCheckable | Qt::ItemIsEnabled );
-            item->setData( Qt::UserRole, f );
-            item->setCheckState( ( m_partition->activeFlags() & f ) ?
-                                     Qt::Checked :
-                                     Qt::Unchecked );
-        }
-
-        f <<= 1;
-    }
-}
-
 
 void
 EditExistingPartitionDialog::applyChanges( PartitionCoreModule* core )
 {
-    PartitionInfo::setMountPoint( m_partition, m_ui->mountPointComboBox->currentText() );
+    PartitionInfo::setMountPoint( m_partition, selectedMountPoint(m_ui->mountPointComboBox) );
 
     qint64 newFirstSector = m_partitionSizeController->firstSector();
     qint64 newLastSector  = m_partitionSizeController->lastSector();
@@ -294,15 +257,13 @@ EditExistingPartitionDialog::updateMountPointPicker()
     m_ui->mountPointLabel->setEnabled( canMount );
     m_ui->mountPointComboBox->setEnabled( canMount );
     if ( !canMount )
-        m_ui->mountPointComboBox->setCurrentText( QString() );
+        setSelectedMountPoint( m_ui->mountPointComboBox, QString() );
 }
 
 void
 EditExistingPartitionDialog::checkMountPointSelection()
 {
-    const QString& selection = m_ui->mountPointComboBox->currentText();
-
-    if ( m_usedMountPoints.contains( selection ) )
+    if ( m_usedMountPoints.contains( selectedMountPoint( m_ui->mountPointComboBox ) ) )
     {
         m_ui->labelMountPoint->setText( tr( "Mountpoint already in use. Please select another one." ) );
         m_ui->buttonBox->button( QDialogButtonBox::Ok )->setEnabled( false );

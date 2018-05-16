@@ -56,7 +56,6 @@ private:
     QStringList m_usedMountPoints;
 
     PartitionTable::Flags newFlags() const;
-    void setupFlagsList();
     void replacePartResizerWidget();
     void updateMountPointPicker();
 };
