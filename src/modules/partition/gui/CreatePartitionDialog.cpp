@@ -57,7 +57,7 @@ static QSet< FileSystem::Type > s_unmountableFS(
     FileSystem::Lvm2_PV
 } );
 
-CreatePartitionDialog::CreatePartitionDialog( Device* device, PartitionNode* parentPartition, const QStringList& usedMountPoints, QWidget* parentWidget )
+CreatePartitionDialog::CreatePartitionDialog( Device* device, PartitionNode* parentPartition, Partition* partition, const QStringList& usedMountPoints, QWidget* parentWidget )
     : QDialog( parentWidget )
     , m_ui( new Ui_CreatePartitionDialog )
     , m_partitionSizeController( new PartitionSizeController( this ) )
@@ -82,7 +82,7 @@ CreatePartitionDialog::CreatePartitionDialog( Device* device, PartitionNode* par
         m_ui->lvNameLineEdit->setValidator(validator);
     }
 
-    standardMountPoints( *(m_ui->mountPointComboBox) );
+    standardMountPoints( *(m_ui->mountPointComboBox), partition ? PartitionInfo::mountPoint( partition ) : QString() );
 
     if ( device->partitionTable()->type() == PartitionTable::msdos ||
          device->partitionTable()->type() == PartitionTable::msdos_sectorbased )
@@ -121,7 +121,7 @@ CreatePartitionDialog::CreatePartitionDialog( Device* device, PartitionNode* par
     m_ui->fsComboBox->setCurrentIndex( defaultFsIndex );
     updateMountPointUi();
 
-    setFlagList( *(m_ui->m_listFlags), static_cast< PartitionTable::Flags >( ~PartitionTable::Flags::Int(0) ), PartitionTable::Flags() );
+    setFlagList( *(m_ui->m_listFlags), static_cast< PartitionTable::Flags >( ~PartitionTable::Flags::Int(0) ), partition ? PartitionInfo::flags( partition ) : PartitionTable::Flags() );
 
     // Checks the initial selection.
     checkMountPointSelection();

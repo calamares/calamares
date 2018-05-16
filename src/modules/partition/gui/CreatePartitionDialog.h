@@ -42,7 +42,13 @@ class CreatePartitionDialog : public QDialog
 {
     Q_OBJECT
 public:
-    CreatePartitionDialog( Device* device, PartitionNode* parentPartition, const QStringList& usedMountPoints, QWidget* parentWidget = nullptr );
+    /**
+     * @brief Dialog for editing a new partition.
+     *
+     * For the (unlikely) case that a newly created partition is being re-edited,
+     * pass a pointer to that @p partition, otherwise pass nullptr.
+     */
+    CreatePartitionDialog( Device* device, PartitionNode* parentPartition, Partition* partition, const QStringList& usedMountPoints, QWidget* parentWidget = nullptr );
     ~CreatePartitionDialog();
 
     /**

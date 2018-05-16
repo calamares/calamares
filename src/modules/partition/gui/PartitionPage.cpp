@@ -190,6 +190,7 @@ PartitionPage::onCreateClicked()
 
     QPointer< CreatePartitionDialog > dlg = new CreatePartitionDialog( model->device(),
                                                                        partition->parent(),
+                                                                       nullptr,
                                                                        getCurrentUsedMountpoints(),
                                                                        this );
     dlg->initFromFreeSpace( partition );
@@ -285,6 +286,7 @@ PartitionPage::updatePartitionToCreate( Device* device, Partition* partition )
 
     QPointer< CreatePartitionDialog > dlg = new CreatePartitionDialog( device,
                                                                        partition->parent(),
+                                                                       partition,
                                                                        mountPoints,
                                                                        this );
     dlg->initFromPartitionToCreate( partition );
