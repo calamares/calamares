@@ -34,6 +34,7 @@
 #include "ui_PartitionPage.h"
 #include "ui_CreatePartitionTableDialog.h"
 
+#include "utils/Logger.h"
 #include "utils/Retranslator.h"
 #include "Branding.h"
 #include "JobQueue.h"
@@ -178,6 +179,29 @@ PartitionPage::onNewPartitionTableClicked()
     updateBootLoaderIndex();
 }
 
+bool
+PartitionPage::checkCanCreate( Device* device )
+{
+    auto table = device->partitionTable();
+
+    if ( table->type() == PartitionTable::msdos ||table->type() == PartitionTable::msdos_sectorbased )
+    {
+        cDebug() << "Checking MSDOS partition" << table->numPrimaries() << "primaries, max" << table->maxPrimaries();
+
+        if ( ( table->numPrimaries() >= table->maxPrimaries() ) && !table->hasExtended() )
+        {
+            QMessageBox::warning( this, tr( "Can not create new partition" ),
+                tr( "The partition table on %1 already has %2 primary partitions, and no more can be added. "
+                    "Please remove one primary partition and add an extended partition, instead." ).arg( device->name() ).arg( table->numPrimaries() )
+            );
+            return false;
+        }
+        return true;
+    }
+    else
+        return true;  // GPT is fine
+}
+
 void
 PartitionPage::onCreateClicked()
 {
@@ -187,6 +211,9 @@ PartitionPage::onCreateClicked()
     const PartitionModel* model = static_cast< const PartitionModel* >( index.model() );
     Partition* partition = model->partitionForIndex( index );
     Q_ASSERT( partition );
+
+    if ( !checkCanCreate( model->device() ) )
+        return;
 
     QPointer< CreatePartitionDialog > dlg = new CreatePartitionDialog( model->device(),
                                                                        partition->parent(),

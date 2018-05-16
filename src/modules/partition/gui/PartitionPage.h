@@ -62,6 +62,14 @@ private:
     void updateFromCurrentDevice();
     void updateBootLoaderIndex();
 
+    /**
+     * @brief Check if a new partition can be created (as primary) on the device.
+     *
+     * Returns true if a new partition can be created on the device. Provides
+     * a warning popup and returns false if it cannot.
+     */
+    bool checkCanCreate( Device* );
+
     QStringList getCurrentUsedMountpoints();
 
     QMutex m_revertMutex;
