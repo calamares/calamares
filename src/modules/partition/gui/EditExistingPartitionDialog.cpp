@@ -141,7 +141,7 @@ EditExistingPartitionDialog::setupFlagsList()
             m_ui->m_listFlags->addItem( item );
             item->setFlags( Qt::ItemIsUserCheckable | Qt::ItemIsEnabled );
             item->setData( Qt::UserRole, f );
-            item->setCheckState( ( m_partition->activeFlags() & f ) ?
+            item->setCheckState( ( PartitionInfo::flags( m_partition ) & f ) ?
                                      Qt::Checked :
                                      Qt::Unchecked );
         }
