@@ -18,7 +18,7 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "MountPoints.h"
+#include "PartitionDialogHelpers.h"
 
 #include "core/PartUtils.h"
 

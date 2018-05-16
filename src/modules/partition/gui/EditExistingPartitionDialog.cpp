@@ -28,7 +28,7 @@
 #include <core/PartitionInfo.h>
 #include "core/PartUtils.h"
 #include <core/KPMHelpers.h>
-#include "gui/MountPoints.h"
+#include "gui/PartitionDialogHelpers.h"
 #include <gui/PartitionSizeController.h>
 
 #include <ui_EditExistingPartitionDialog.h>

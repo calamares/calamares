@@ -18,8 +18,8 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef PARTITION_GUI_MOUNTPOINTS
-#define PARTITION_GUI_MOUNTPOINTS
+#ifndef PARTITION_GUI_PARTITIONDIALOGHELPERS
+#define PARTITION_GUI_PARTITIONDIALOGHELPERS
 
 #include <QStringList>
 
