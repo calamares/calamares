@@ -106,7 +106,7 @@ EditExistingPartitionDialog::EditExistingPartitionDialog( Device* device, Partit
     m_ui->fileSystemLabel->setEnabled( m_ui->formatRadioButton->isChecked() );
     m_ui->fileSystemComboBox->setEnabled( m_ui->formatRadioButton->isChecked() );
 
-    setupFlagsList();
+    setFlagList( *(m_ui->m_listFlags), m_partition->availableFlags(), PartitionInfo::flags( m_partition ) );
 }
 
 
@@ -119,30 +119,6 @@ EditExistingPartitionDialog::newFlags() const
 {
     return flagsFromList( *(m_ui->m_listFlags) );
 }
-
-
-void
-EditExistingPartitionDialog::setupFlagsList()
-{
-    int f = 1;
-    QString s;
-    while ( !( s = PartitionTable::flagName( static_cast< PartitionTable::Flag >( f ) ) ).isEmpty() )
-    {
-        if ( m_partition->availableFlags() & f )
-        {
-            QListWidgetItem* item = new QListWidgetItem( s );
-            m_ui->m_listFlags->addItem( item );
-            item->setFlags( Qt::ItemIsUserCheckable | Qt::ItemIsEnabled );
-            item->setData( Qt::UserRole, f );
-            item->setCheckState( ( PartitionInfo::flags( m_partition ) & f ) ?
-                                     Qt::Checked :
-                                     Qt::Unchecked );
-        }
-
-        f <<= 1;
-    }
-}
-
 
 void
 EditExistingPartitionDialog::applyChanges( PartitionCoreModule* core )

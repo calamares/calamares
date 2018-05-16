@@ -95,3 +95,24 @@ flagsFromList( const QListWidget& list )
     return flags;
 }
 
+void
+setFlagList( QListWidget& list, PartitionTable::Flags available, PartitionTable::Flags checked )
+{
+    int f = 1;
+    QString s;
+    while ( !( s = PartitionTable::flagName( static_cast< PartitionTable::Flag >( f ) ) ).isEmpty() )
+    {
+        if ( available & f )
+        {
+            QListWidgetItem* item = new QListWidgetItem( s );
+            list.addItem( item );
+            item->setFlags( Qt::ItemIsUserCheckable | Qt::ItemIsEnabled );
+            item->setData( Qt::UserRole, f );
+            item->setCheckState( ( checked & f ) ?
+                                     Qt::Checked :
+                                     Qt::Unchecked );
+        }
+
+        f <<= 1;
+    }
+}

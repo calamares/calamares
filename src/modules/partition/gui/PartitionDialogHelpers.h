@@ -63,5 +63,6 @@ static inline void setSelectedMountPoint(QComboBox* combo, const QString& select
  * Get the flags that have been checked in the list widget.
  */
 PartitionTable::Flags flagsFromList( const QListWidget& list );
+void setFlagList( QListWidget& list, PartitionTable::Flags available, PartitionTable::Flags checked );
 
 #endif

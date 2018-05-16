@@ -64,7 +64,6 @@ private Q_SLOTS:
     void checkMountPointSelection();
 
 private:
-    void setupFlagsList();
     QScopedPointer< Ui_CreatePartitionDialog > m_ui;
     PartitionSizeController* m_partitionSizeController;
     Device* m_device;

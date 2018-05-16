@@ -121,7 +121,8 @@ CreatePartitionDialog::CreatePartitionDialog( Device* device, PartitionNode* par
     m_ui->fsComboBox->setCurrentIndex( defaultFsIndex );
     updateMountPointUi();
 
-    setupFlagsList();
+    setFlagList( *(m_ui->m_listFlags), static_cast< PartitionTable::Flags >( ~PartitionTable::Flags::Int(0) ), PartitionTable::Flags() );
+
     // Checks the initial selection.
     checkMountPointSelection();
 }
@@ -135,25 +136,6 @@ CreatePartitionDialog::newFlags() const
 {
     return flagsFromList( *(m_ui->m_listFlags) );
 }
-
-
-void
-CreatePartitionDialog::setupFlagsList()
-{
-    int f = 1;
-    QString s;
-    while ( !( s = PartitionTable::flagName( static_cast< PartitionTable::Flag >( f ) ) ).isEmpty() )
-    {
-        QListWidgetItem* item = new QListWidgetItem( s );
-        m_ui->m_listFlags->addItem( item );
-        item->setFlags( Qt::ItemIsUserCheckable | Qt::ItemIsEnabled );
-        item->setData( Qt::UserRole, f );
-        item->setCheckState( Qt::Unchecked );
-
-        f <<= 1;
-    }
-}
-
 
 void
 CreatePartitionDialog::initMbrPartitionTypeUi()
