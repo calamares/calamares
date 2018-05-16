@@ -149,3 +149,16 @@ script:
     QCOMPARE( cl.at(0).command(), QStringLiteral( "ls /tmp" ) );
     QCOMPARE( cl.at(1).timeout(), -1 );  // not set
 }
+
+void ShellProcessTests::testRootSubstitution()
+{
+    YAML::Node doc = YAML::Load( R"(---
+script:
+    - "ls /tmp"
+)" );
+    QVariant script = CalamaresUtils::yamlMapToVariant( doc ).toMap().value( "script" );
+
+    // Doesn't use @@ROOT@@, so no failures
+    QVERIFY( bool(CommandList(script, true, 10 ).run()) );
+    QVERIFY( bool(CommandList(script, false, 10 ).run()) );
+}
