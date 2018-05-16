@@ -9,12 +9,12 @@
     <message>
         <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="79"/>
         <source>This system was started with an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from an EFI environment, this installer must deploy a boot loader application, like &lt;strong&gt;GRUB&lt;/strong&gt; or &lt;strong&gt;systemd-boot&lt;/strong&gt; on an &lt;strong&gt;EFI System Partition&lt;/strong&gt;. This is automatic, unless you choose manual partitioning, in which case you must choose it or create it on your own.</source>
-        <translation type="unfinished"/>
+        <translation>See süsteem käivitati &lt;strong&gt;EFI&lt;/strong&gt; käivituskeskkonnas.&lt;br&gt;&lt;br&gt;Et seadistada käivitust EFI keskkonnast, peab see installija paigaldama käivituslaaduri rakenduse, näiteks &lt;strong&gt;GRUB&lt;/strong&gt; või &lt;strong&gt;systemd-boot&lt;/strong&gt; sinu &lt;strong&gt;EFI süsteemipartitsioonile&lt;/strong&gt;. See on automaatne, välja arvatud juhul, kui valid käsitsi partitsioneerimise, sel juhul pead sa selle valima või ise looma.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="91"/>
         <source>This system was started with a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from a BIOS environment, this installer must install a boot loader, like &lt;strong&gt;GRUB&lt;/strong&gt;, either at the beginning of a partition or on the &lt;strong&gt;Master Boot Record&lt;/strong&gt; near the beginning of the partition table (preferred). This is automatic, unless you choose manual partitioning, in which case you must set it up on your own.</source>
-        <translation type="unfinished"/>
+        <translation>See süsteem käivitati &lt;strong&gt;BIOS&lt;/strong&gt; käivituskeskkonnas.&lt;br&gt;&lt;br&gt;Et seadistada käivitust BIOS keskkonnast, peab see installija paigaldama käivituslaaduri, näiteks &lt;strong&gt;GRUB&lt;/strong&gt;, kas mõne partitsiooni algusse või &lt;strong&gt;Master Boot Record&lt;/strong&gt;&apos;i paritsioonitabeli alguse lähedale (eelistatud). See on automaatne, välja arvatud juhul, kui valid käsitsi partitsioneerimise, sel juhul pead sa selle ise seadistama.</translation>
     </message>
 </context>
 <context>
@@ -606,7 +606,7 @@ Installija sulgub ja kõik muutused kaovad.</translation>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="39"/>
         <source>Creating a new partition table will delete all existing data on the disk.</source>
-        <translation type="unfinished"/>
+        <translation>Uue partitsioonitabeli loomine kustutab kettalt kõik olemasolevad andmed.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionTableDialog.ui" line="65"/>
@@ -743,7 +743,7 @@ Installija sulgub ja kõik muutused kaovad.</translation>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="150"/>
         <source>The type of &lt;strong&gt;partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The only way to change the partition table type is to erase and recreate the partition table from scratch, which destroys all data on the storage device.&lt;br&gt;This installer will keep the current partition table unless you explicitly choose otherwise.&lt;br&gt;If unsure, on modern systems GPT is preferred.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;Partitsioonitabeli&lt;/strong&gt; tüüp valitud mäluseadmel.&lt;br&gt;&lt;br&gt;Ainuke viis partitsioonitabelit muuta on see kustutada ja nullist taasluua, mis hävitab kõik andmed mäluseadmel.&lt;br&gt;See installija säilitab praeguse partitsioonitabeli, v.a juhul kui sa ise valid vastupidist.&lt;br&gt;Kui pole kindel, eelista modernsetel süsteemidel GPT-d.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="107"/>
@@ -753,12 +753,12 @@ Installija sulgub ja kõik muutused kaovad.</translation>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="114"/>
         <source>This is a &lt;strong&gt;loop&lt;/strong&gt; device.&lt;br&gt;&lt;br&gt;It is a pseudo-device with no partition table that makes a file accessible as a block device. This kind of setup usually only contains a single filesystem.</source>
-        <translation type="unfinished"/>
+        <translation>See on &lt;strong&gt;loop&lt;/strong&gt;-seade.&lt;br&gt;&lt;br&gt;See on pseudo-seade ilma partitsioonitabelita, mis muudab faili ligipääsetavaks plokiseadmena. Seda tüüpi seadistus sisaldab tavaliselt ainult ühte failisüsteemi.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="121"/>
         <source>This installer &lt;strong&gt;cannot detect a partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The device either has no partition table, or the partition table is corrupted or of an unknown type.&lt;br&gt;This installer can create a new partition table for you, either automatically, or through the manual partitioning page.</source>
-        <translation type="unfinished"/>
+        <translation>See installija &lt;strong&gt;ei suuda tuvastada partitsioonitabelit&lt;/strong&gt;valitud mäluseadmel.&lt;br&gt;&lt;br&gt;Seadmel kas pole partitsioonitabelit, see on korrumpeerunud või on tundmatut tüüpi.&lt;br&gt;See installija võib sulle luua uue partitsioonitabeli, kas automaatselt või läbi käsitsi partitsioneerimise lehe. </translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="131"/>
@@ -768,7 +768,7 @@ Installija sulgub ja kõik muutused kaovad.</translation>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="137"/>
         <source>&lt;br&gt;&lt;br&gt;This partition table type is only advisable on older systems which start from a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment. GPT is recommended in most other cases.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Warning:&lt;/strong&gt; the MBR partition table is an obsolete MS-DOS era standard.&lt;br&gt;Only 4 &lt;em&gt;primary&lt;/em&gt; partitions may be created, and of those 4, one can be an &lt;em&gt;extended&lt;/em&gt; partition, which may in turn contain many &lt;em&gt;logical&lt;/em&gt; partitions.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;br&gt;&lt;br&gt;See partitsioonitabel on soovitatav ainult vanemates süsteemides, mis käivitavad &lt;strong&gt;BIOS&lt;/strong&gt;-i käivituskeskkonnast. GPT on soovitatav enamus teistel juhtudel.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Hoiatus:&lt;/strong&gt; MBR partitsioonitabel on vananenud MS-DOS aja standard.&lt;br&gt;aVõimalik on luua inult 4 &lt;em&gt;põhilist&lt;/em&gt; partitsiooni ja nendest üks võib olla &lt;em&gt;laiendatud&lt;/em&gt; partitsioon, mis omakorda sisaldab mitmeid &lt;em&gt;loogilisi&lt;/em&gt; partitsioone.</translation>
     </message>
 </context>
 <context>
@@ -1098,7 +1098,7 @@ Installija sulgub ja kõik muutused kaovad.</translation>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="129"/>
         <source>Please review the End User License Agreements (EULAs) above.&lt;br/&gt;If you do not agree with the terms, proprietary software will not be installed, and open source alternatives will be used instead.</source>
-        <translation type="unfinished"/>
+        <translation>Palun loe läbi allolevad lõppkasutaja litsensilepingud (EULAd).&lt;br/&gt;Kui sa tingimustega ei nõustu, ei installita omandiõigusega tarkvara ning selle asemel kasutatakse avatud lähtekoodiga alternatiive.</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="159"/>
@@ -1762,7 +1762,7 @@ Installija sulgub ja kõik muutused kaovad.</translation>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="400"/>
         <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;To configure an EFI system partition, go back and select or create a FAT32 filesystem with the &lt;strong&gt;esp&lt;/strong&gt; flag enabled and mount point &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;&lt;br/&gt;You can continue without setting up an EFI system partition but your system may fail to start.</source>
-        <translation type="unfinished"/>
+        <translation>%1 käivitamiseks on vajalik EFI süsteemipartitsioon.&lt;br/&gt;&lt;br/&gt;Et seadistada EFI süsteemipartitsiooni, mine tagasi ja vali või loo FAT32 failisüsteem sildiga &lt;strong&gt;esp&lt;/strong&gt; ja monteerimispunktiga &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;&lt;br/&gt;Sa võid jätkata ilma EFI süsteemipartitsiooni seadistamata aga su süsteem ei pruugi käivituda.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="413"/>
@@ -1772,7 +1772,7 @@ Installija sulgub ja kõik muutused kaovad.</translation>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="414"/>
         <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;A partition was configured with mount point &lt;strong&gt;%2&lt;/strong&gt; but its &lt;strong&gt;esp&lt;/strong&gt; flag is not set.&lt;br/&gt;To set the flag, go back and edit the partition.&lt;br/&gt;&lt;br/&gt;You can continue without setting the flag but your system may fail to start.</source>
-        <translation type="unfinished"/>
+        <translation>%1 käivitamiseks on vajalik EFI süsteemipartitsioon.&lt;br/&gt;&lt;br/&gt;Partitsioon seadistati monteerimispunktiga &lt;strong&gt;%2&lt;/strong&gt; aga sellel ei määratud &lt;strong&gt;esp&lt;/strong&gt; silti.&lt;br/&gt;Sildi määramiseks mine tagasi ja muuda partitsiooni.&lt;br/&gt;&lt;br/&gt;Sa võid jätkata ilma silti seadistamata aga su süsteem ei pruugi käivituda.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="449"/>
@@ -1782,7 +1782,7 @@ Installija sulgub ja kõik muutused kaovad.</translation>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="450"/>
         <source>A separate boot partition was set up together with an encrypted root partition, but the boot partition is not encrypted.&lt;br/&gt;&lt;br/&gt;There are security concerns with this kind of setup, because important system files are kept on an unencrypted partition.&lt;br/&gt;You may continue if you wish, but filesystem unlocking will happen later during system startup.&lt;br/&gt;To encrypt the boot partition, go back and recreate it, selecting &lt;strong&gt;Encrypt&lt;/strong&gt; in the partition creation window.</source>
-        <translation type="unfinished"/>
+        <translation>Eraldi käivituspartitsioon seadistati koos krüptitud juurpartitsiooniga, aga käivituspartitsioon ise ei ole krüptitud.&lt;br/&gt;&lt;br/&gt;Selle seadistusega kaasnevad turvaprobleemid, sest tähtsad süsteemifailid hoitakse krüptimata partitsioonil.&lt;br/&gt;Sa võid soovi korral jätkata, aga failisüsteemi lukust lahti tegemine toimub hiljem süsteemi käivitusel.&lt;br/&gt;Et krüpteerida käivituspartisiooni, mine tagasi ja taasloo see, valides &lt;strong&gt;Krüpteeri&lt;/strong&gt; partitsiooni loomise aknas.</translation>
     </message>
 </context>
 <context>
@@ -1790,13 +1790,13 @@ Installija sulgub ja kõik muutused kaovad.</translation>
     <message>
         <location filename="../src/modules/plasmalnf/PlasmaLnfJob.cpp" line="41"/>
         <source>Plasma Look-and-Feel Job</source>
-        <translation>Töö Plasma välimus ja tunnetus</translation>
+        <translation>Plasma välimuse-ja-tunnetuse töö</translation>
     </message>
     <message>
         <location filename="../src/modules/plasmalnf/PlasmaLnfJob.cpp" line="73"/>
         <location filename="../src/modules/plasmalnf/PlasmaLnfJob.cpp" line="74"/>
         <source>Could not select KDE Plasma Look-and-Feel package</source>
-        <translation>KDE Plasma välimuse ja tunnetuse paketti ei saanud valida</translation>
+        <translation>KDE Plasma välimuse-ja-tunnetuse paketti ei saanud valida</translation>
     </message>
 </context>
 <context>
@@ -1814,7 +1814,7 @@ Installija sulgub ja kõik muutused kaovad.</translation>
     <message>
         <location filename="../src/modules/plasmalnf/PlasmaLnfPage.cpp" line="67"/>
         <source>Please choose a look-and-feel for the KDE Plasma Desktop. You can also skip this step and configure the look-and-feel once the system is installed. Clicking on a look-and-feel selection will give you a live preview of that look-and-feel.</source>
-        <translation type="unfinished"/>
+        <translation>Palun vali KDE Plasma Desktop&apos;ile välimus-ja-tunnetus. Sa võid selle sammu ka vahele jätta ja seadistada välimust-ja-tunnetust siis, kui süsteem on installitud. Välimuse-ja-tunnetuse valikule klõpsates näed selle reaalajas eelvaadet.</translation>
     </message>
 </context>
 <context>
@@ -1822,7 +1822,7 @@ Installija sulgub ja kõik muutused kaovad.</translation>
     <message>
         <location filename="../src/modules/plasmalnf/PlasmaLnfViewStep.cpp" line="68"/>
         <source>Look-and-Feel</source>
-        <translation>Välimus ja tunnetus</translation>
+        <translation>Välimus-ja-tunnetus</translation>
     </message>
 </context>
 <context>
@@ -1988,7 +1988,7 @@ Väljund:
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="250"/>
         <source>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Sellest süsteemist ei leitud EFI süsteemipartitsiooni. Palun mine tagasi ja kasuta käsitsi partitsioneerimist, et seadistada %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="261"/>
@@ -2450,7 +2450,7 @@ Väljund:
     <message>
         <location filename="../src/modules/tracking/TrackingPage.cpp" line="44"/>
         <source>Install tracking helps %1 to see how many users they have, what hardware they install %1 to and (with the last two options below), get continuous information about preferred applications. To see what will be sent, please click the help icon next to each area.</source>
-        <translation type="unfinished"/>
+        <translation>Installijälitamine aitab %1-l näha, mitu kasutajat neil on, mis riistvarale nad %1 installivad ja (märkides kaks alumist valikut) saada pidevat teavet eelistatud rakenduste kohta. Et näha, mis infot saadetakse, palun klõpsa abiikooni iga ala kõrval.</translation>
     </message>
     <message>
         <location filename="../src/modules/tracking/TrackingPage.cpp" line="45"/>
