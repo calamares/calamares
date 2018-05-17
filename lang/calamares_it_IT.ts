@@ -477,14 +477,14 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
 <context>
     <name>CommandList</name>
     <message>
-        <location filename="../src/libcalamares/utils/CommandList.cpp" line="113"/>
+        <location filename="../src/libcalamares/utils/CommandList.cpp" line="124"/>
         <source>Could not run command.</source>
         <translation>Impossibile eseguire il comando.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CommandList.cpp" line="114"/>
-        <source>No rootMountPoint is defined, so command cannot be run in the target environment.</source>
-        <translation>Non è stato definito alcun rootMountPoint, quindi il comando non può essere eseguito nell&apos;ambiente di destinazione.</translation>
+        <location filename="../src/libcalamares/utils/CommandList.cpp" line="125"/>
+        <source>The command runs in the host environment and needs to know the root path, but no rootMountPoint is defined.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -548,27 +548,27 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
         <translation>&amp;Dimensione:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="68"/>
+        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="69"/>
         <source>En&amp;crypt</source>
         <translation>Cr&amp;iptare</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="177"/>
+        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="148"/>
         <source>Logical</source>
         <translation>Logica</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="182"/>
+        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="153"/>
         <source>Primary</source>
         <translation>Primaria</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="199"/>
+        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="170"/>
         <source>GPT</source>
         <translation>GPT</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="288"/>
+        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="259"/>
         <source>Mountpoint already in use. Please select another one.</source>
         <translation>Il punto di mount è già in uso. Sceglierne un altro.</translation>
     </message>
@@ -858,7 +858,7 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
         <translation>Flag:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.cpp" line="307"/>
+        <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.cpp" line="268"/>
         <source>Mountpoint already in use. Please select another one.</source>
         <translation>Il punto di mount è già in uso. Sceglierne un altro.</translation>
     </message>
@@ -1682,9 +1682,19 @@ Il programma d&apos;installazione sarà terminato e tutte le modifiche andranno 
         <translation>Installare il boot &amp;loader su:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="168"/>
+        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="169"/>
         <source>Are you sure you want to create a new partition table on %1?</source>
         <translation>Si è sicuri di voler creare una nuova tabella delle partizioni su %1?</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="193"/>
+        <source>Can not create new partition</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="194"/>
+        <source>The partition table on %1 already has %2 primary partitions, and no more can be added. Please remove one primary partition and add an extended partition, instead.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2570,7 +2580,7 @@ Output:
         <translation type="unfinished"/>
     </message>
     <message>
-        <location filename="../src/modules/welcome/WelcomePage.cpp" line="287"/>
+        <location filename="../src/modules/welcome/WelcomePage.cpp" line="290"/>
         <source>%1 support</source>
         <translation>supporto %1</translation>
     </message>
