@@ -149,8 +149,6 @@ CreateUserJob::exec()
     int ec = CalamaresUtils::System::instance()->
              targetEnvCall( { "useradd",
                               "-m",
-                              "-s",
-                              "/bin/bash",
                               "-U",
                               "-c",
                               m_fullName,
