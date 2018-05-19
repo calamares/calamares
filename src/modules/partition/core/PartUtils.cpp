@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2015-2016, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2018, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -139,7 +140,6 @@ canBeResized( PartitionCoreModule* core, const QString& partitionPath )
     if ( partitionWithOs.startsWith( "/dev/" ) )
     {
         cDebug() << partitionWithOs << "seems like a good path";
-        bool canResize = false;
         DeviceModel* dm = core->deviceModel();
         for ( int i = 0; i < dm->rowCount(); ++i )
         {
