@@ -35,9 +35,9 @@
        </rect>
       </property>
       <property name="font">
-        <font>
-          <pointsize>11</pointsize>
-        </font>
+       <font>
+        <pointsize>11</pointsize>
+       </font>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_3"/>
      </widget>
