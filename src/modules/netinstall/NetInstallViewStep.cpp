@@ -184,14 +184,30 @@ NetInstallViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     m_widget->setRequired( CalamaresUtils::getBool( configurationMap, "required", false ) );
 
     QString groupsUrl = CalamaresUtils::getString( configurationMap, "groupsUrl" );
+
+    // Load package groups from the network
     if ( !groupsUrl.isEmpty() )
     {
+        cDebug() << "Fetching package groups from 'groupsUrl':" << configurationMap.value( "groupsUrl" ).toString();
+
         // Keep putting groupsUrl into the global storage,
         // even though it's no longer used for in-module data-passing.
         Calamares::JobQueue::instance()->globalStorage()->insert( "groupsUrl", groupsUrl );
         m_widget->loadGroupList( groupsUrl );
     }
+
+    // Load package groups from netinstall.conf
+    else if ( configurationMap.contains( "packageGroups" ) &&
+                configurationMap.value( "packageGroups" ).type() == QVariant::List )
+    {
+        cDebug() << "Loading package groups from netinstall.conf";
+
+        QVariantList package_groups = configurationMap.value( "packageGroups" ).toList();
+
+        m_widget->parseGroupList( package_groups );
+    }
 }
+
 
 void
 NetInstallViewStep::nextIsReady( bool b )

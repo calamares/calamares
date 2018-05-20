@@ -47,12 +47,28 @@ public:
 
     void onActivate();
 
-    /** @brief Retrieves the groups, with name, description and packages
+    /** @brief Retrieves the package groups and their metadata
      *
-     * Loads data from the given URL. This should be called before
-     * displaying the page.
+     * Loads package data from the given URL.
+     * This should be called before displaying the page.
+     * Mutually exclusive with parseGroupList().
      */
     void loadGroupList( const QString& url );
+
+    /** @brief Retrieves the package groups and their metadata
+     *
+     * Parses package data from netinstall.conf
+     * and converts it to YAML as equivalent to loadGroupList().
+     * This should be called before displaying the page.
+     * Mutually exclusive with loadGroupList().
+     */
+    void parseGroupList( const QVariantList& package_groups );
+
+    /** @brief Populates the package groups tree widget and enables the "next" button
+     *
+     * Should be called as the final step of loadGroupList() and parseGroupList().
+     */
+    void populateGroupsWidget( bool is_valid_package_data );
 
     // Sets the "required" state of netinstall data. Influences whether
     // corrupt or unavailable data causes checkReady() to be emitted
@@ -67,6 +83,7 @@ public:
     // selected in the view in this given moment. No data is cached here, so
     // this function does not have constant time.
     PackageModel::PackageItemDataList selectedPackages() const;
+
 
 public slots:
     void dataIsHere( QNetworkReply* );
@@ -87,6 +104,8 @@ private:
 
     PackageModel* m_groups;
     bool m_required;
+
+    static const char* HEADER_TEXT;
 };
 
 #endif // NETINSTALLPAGE_H
