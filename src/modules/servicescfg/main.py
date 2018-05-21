@@ -44,7 +44,7 @@ class ServicesController:
     def configure(self):
         """Configure the services
         """
-        if initsys == 'openrc':
+        if self.initsys == 'openrc':
             self.setExpression(
                 's|^.*rc_shell=.*|rc_shell="/usr/bin/sulogin"|',
                 "/etc/rc.conf"
@@ -61,33 +61,34 @@ class ServicesController:
             for dm in libcalamares.globalstorage.value("displayManagers"):
                 exp = 's|^.*DISPLAYMANAGER=.*|DISPLAYMANAGER="{}"|'.format(dm)
                 self.setExpression(exp, "/etc/conf.d/xdm")
-        elif initsys == 'runit':
+        elif self.initsys == 'runit':
             exp = 's|^.*KEYMAP=.*|KEYMAP="{}"|'.format(
                 libcalamares.globalstorage.value("keyboardLayout")
             )
-            self.setExpression(exp, "/etc/runit/rc.conf")
+            if exists(self.root + "/etc/vconsole.conf"):
+                self.setExpression(exp, "/etc/vconsole.conf")
 
     def update(self, action, state):
         """Update init scripts
         """
 
-        if initsys == 'openrc':
+        if self.initsys == 'openrc':
             for svc in self.services[state]:
                 if exists(self.root + "/etc/init.d/" + svc["name"]):
                     target_env_call(
                         ["rc-update", action, svc["name"], svc["runlevel"]]
                     )
-        elif initsys == 'runit':
+        elif self.initsys == 'runit':
             for svc in self.services[state]:
                 if exists(self.root + "/etc/runit/sv/" + svc["name"]):
                     if action == 'add':
-                        src = self.root + "/etc/runit/sv/" + svc["name"]
-                        dest = self.root + /etc/runit/runsvdir/ + svc["runlevel"] + "/"
+                        src = "/etc/runit/sv/" + svc["name"]
+                        dest = "/etc/runit/runsvdir/" + svc["runlevel"] + "/"
                         target_env_call(
                             ["ln", "-s", src, dest]
                         )
                     elif action == 'del':
-                        dest = self.root + "/etc/runit/runsvdir/" + svc["runlevel"] + "/" + svc["name"]
+                        dest = "/etc/runit/runsvdir/" + svc["runlevel"] + "/" + svc["name"]
                         target_env_call(
                             ["rm", dest]
                         )
