@@ -165,7 +165,7 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
     QFileInfo importQSSPath = QFileInfo( brandingQSSDescriptorPath );
     if ( importQSSPath.exists() && importQSSPath.isReadable() )
     {
-        QFile File(importQSSPath);
+        QFile File(brandingQSSDescriptorPath);
         File.open(QFile::ReadOnly);
         QString StyleSheet = QLatin1String(File.readAll());
         this->setStyleSheet(StyleSheet);
