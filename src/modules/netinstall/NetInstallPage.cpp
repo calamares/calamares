@@ -24,8 +24,8 @@
 #include "PackageModel.h"
 
 #include "ui_page_netinst.h"
-#include "GlobalStorage.h"
 #include "JobQueue.h"
+
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
 #include "utils/YamlUtils.h"
@@ -128,12 +128,8 @@ NetInstallPage::selectedPackages() const
 }
 
 void
-NetInstallPage::loadGroupList()
+NetInstallPage::loadGroupList( const QString& confUrl )
 {
-    QString confUrl(
-        Calamares::JobQueue::instance()->globalStorage()->value(
-            "groupsUrl" ).toString() );
-
     QNetworkRequest request;
     request.setUrl( QUrl( confUrl ) );
     // Follows all redirects except unsafe ones (https to http).

@@ -25,13 +25,14 @@
 #include "PackageTreeItem.h"
 #include "Typedefs.h"
 
-#include <QWidget>
 #include <QAbstractButton>
 #include <QNetworkAccessManager>
+#include <QWidget>
 
 // required forward declarations
 class QByteArray;
 class QNetworkReply;
+class QString;
 
 namespace Ui
 {
@@ -46,10 +47,12 @@ public:
 
     void onActivate();
 
-    // Retrieves the groups, with name, description and packages, from
-    // the remote URL configured in the settings. Assumes the URL is already
-    // in the global storage. This should be called before displaying the page.
-    void loadGroupList();
+    /** @brief Retrieves the groups, with name, description and packages
+     *
+     * Loads data from the given URL. This should be called before
+     * displaying the page.
+     */
+    void loadGroupList( const QString& url );
 
     // Sets the "required" state of netinstall data. Influences whether
     // corrupt or unavailable data causes checkReady() to be emitted
