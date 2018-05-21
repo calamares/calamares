@@ -22,6 +22,8 @@
 
 #include "JobQueue.h"
 #include "GlobalStorage.h"
+
+#include "utils/CalamaresUtils.h"
 #include "utils/Logger.h"
 
 #include "NetInstallPage.h"
@@ -179,16 +181,12 @@ NetInstallViewStep::onLeave()
 void
 NetInstallViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
-    m_widget->setRequired(
-        configurationMap.contains( "required" ) &&
-        configurationMap.value( "required" ).type() == QVariant::Bool &&
-        configurationMap.value( "required" ).toBool() );
+    m_widget->setRequired( CalamaresUtils::getBool( configurationMap, "required", false ) );
 
-    if ( configurationMap.contains( "groupsUrl" ) &&
-            configurationMap.value( "groupsUrl" ).type() == QVariant::String )
+    QString groupsUrl = CalamaresUtils::getString( configurationMap, "groupsUrl" );
+    if ( !groupsUrl.isEmpty() )
     {
-        Calamares::JobQueue::instance()->globalStorage()->insert(
-            "groupsUrl", configurationMap.value( "groupsUrl" ).toString() );
+        Calamares::JobQueue::instance()->globalStorage()->insert( "groupsUrl", groupsUrl );
         m_widget->loadGroupList();
     }
 }
