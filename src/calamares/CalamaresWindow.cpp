@@ -35,6 +35,7 @@
 #include <QLabel>
 #include <QTreeView>
 #include <QFile>
+#include <QFileInfo>
 
 CalamaresWindow::CalamaresWindow( QWidget* parent )
     : QWidget( parent )
@@ -161,7 +162,7 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
     QString brandingQSSDescriptorPath = QString( "/etc/calamares/branding/%1/stylesheet.qss" )
                                         .arg( brandingComponentName );
 
-    importQSSPath = QFileInfo( brandingQSSDescriptorPath );
+    QFileInfo importQSSPath = QFileInfo( brandingQSSDescriptorPath );
     if ( importQSSPath.exists() && importQSSPath.isReadable() )
     {
         QFile File(importQSSPath);
