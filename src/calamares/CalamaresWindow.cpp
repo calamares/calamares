@@ -34,6 +34,8 @@
 #include <QDesktopWidget>
 #include <QLabel>
 #include <QTreeView>
+#include <QFile>
+#include <QFileInfo>
 
 CalamaresWindow::CalamaresWindow( QWidget* parent )
     : QWidget( parent )
@@ -51,6 +53,7 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
     using CalamaresUtils::windowPreferredWidth;
 
     QSize availableSize = qApp->desktop()->availableGeometry( this ).size();
+    this->setObjectName("mainApp");
 
     cDebug() << "Available size" << availableSize;
 
@@ -71,10 +74,12 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
     setLayout( mainLayout );
 
     QWidget* sideBox = new QWidget( this );
+    sideBox->setObjectName("sidebarApp");
     mainLayout->addWidget( sideBox );
 
     QBoxLayout* sideLayout = new QVBoxLayout;
     sideBox->setLayout( sideLayout );
+    // Set this attribute into qss file
     sideBox->setFixedWidth( qBound( 100, CalamaresUtils::defaultFontHeight() * 12, w < windowPreferredWidth ? 100 : 190 ) );
     sideBox->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Expanding );
 
@@ -82,6 +87,8 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
     sideLayout->addLayout( logoLayout );
     logoLayout->addStretch();
     QLabel* logoLabel = new QLabel( sideBox );
+    logoLabel->setObjectName("logoApp");
+    //Define all values into qss file
     {
         QPalette plt = sideBox->palette();
         sideBox->setAutoFillBackground( true );
@@ -142,6 +149,28 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
     connect( m_viewManager, &Calamares::ViewManager::enlarge, this, &CalamaresWindow::enlarge );
 
     mainLayout->addWidget( m_viewManager->centralWidget() );
+
+
+
+    QString brandingComponentName = Calamares::Settings::instance()->brandingComponentName();
+    if ( brandingComponentName.simplified().isEmpty() )
+    {
+        cError() << "FATAL: branding component not set in settings.conf";
+        ::exit( EXIT_FAILURE );
+    }
+
+    QString brandingQSSDescriptorPath = QString( "/etc/calamares/branding/%1/stylesheet.qss" )
+                                        .arg( brandingComponentName );
+
+    QFileInfo importQSSPath = QFileInfo( brandingQSSDescriptorPath );
+    if ( importQSSPath.exists() && importQSSPath.isReadable() )
+    {
+        QFile File(brandingQSSDescriptorPath);
+        File.open(QFile::ReadOnly);
+        QString StyleSheet = QLatin1String(File.readAll());
+        this->setStyleSheet(StyleSheet);
+    }
+
 }
 
 void

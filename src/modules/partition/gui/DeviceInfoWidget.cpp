@@ -39,7 +39,8 @@ DeviceInfoWidget::DeviceInfoWidget( QWidget* parent )
     setLayout( mainLayout );
 
     CalamaresUtils::unmarginLayout( mainLayout );
-
+    m_ptLabel->setObjectName("deviceInfoLabel");
+    m_ptIcon->setObjectName("deviceInfoIcon");
     mainLayout->addWidget( m_ptIcon );
     mainLayout->addWidget( m_ptLabel );
 
