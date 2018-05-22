@@ -188,6 +188,16 @@ Branding::Branding( const QString& brandingFilePath,
         m_translationsPathPrefix.append( QString( "%1calamares-%2" )
                                             .arg( QDir::separator() )
                                             .arg( m_componentName ) );
+
+        QFileInfo importQSSPath( componentDir.filePath( "stylesheet.qss" ) );
+        if ( importQSSPath.exists() && importQSSPath.isReadable() )
+        {
+            QFile stylesheetFile( importQSSPath.filePath() );
+            stylesheetFile.open( QFile::ReadOnly );
+            m_stylesheet = stylesheetFile.readAll();
+        }
+        else
+            cWarning() << "the branding component" << componentDir.absolutePath() << "does not ship stylesheet.qss.";
     }
     else
     {

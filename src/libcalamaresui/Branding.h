@@ -98,6 +98,8 @@ public:
     QString styleString( Branding::StyleEntry styleEntry ) const;
     QString imagePath( Branding::ImageEntry imageEntry ) const;
     QPixmap image( Branding::ImageEntry imageEntry, const QSize& size ) const;
+    /** @brief Stylesheet to apply for this branding. May be empty. */
+    QString stylesheet() const { return m_stylesheet; }
 
     bool welcomeStyleCalamares() const { return m_welcomeStyleCalamares; }
     bool welcomeExpandingLogo() const { return m_welcomeExpandingLogo; }
@@ -125,6 +127,7 @@ private:
     QMap< QString, QString > m_style;
     QString m_slideshowPath;
     QString m_translationsPathPrefix;
+    QString m_stylesheet;  // Text from file
 
     bool m_welcomeStyleCalamares;
     bool m_welcomeExpandingLogo;

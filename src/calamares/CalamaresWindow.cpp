@@ -149,28 +149,7 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
     connect( m_viewManager, &Calamares::ViewManager::enlarge, this, &CalamaresWindow::enlarge );
 
     mainLayout->addWidget( m_viewManager->centralWidget() );
-
-
-
-    QString brandingComponentName = Calamares::Settings::instance()->brandingComponentName();
-    if ( brandingComponentName.simplified().isEmpty() )
-    {
-        cError() << "FATAL: branding component not set in settings.conf";
-        ::exit( EXIT_FAILURE );
-    }
-
-    QString brandingQSSDescriptorPath = QString( "/etc/calamares/branding/%1/stylesheet.qss" )
-                                        .arg( brandingComponentName );
-
-    QFileInfo importQSSPath = QFileInfo( brandingQSSDescriptorPath );
-    if ( importQSSPath.exists() && importQSSPath.isReadable() )
-    {
-        QFile File(brandingQSSDescriptorPath);
-        File.open(QFile::ReadOnly);
-        QString StyleSheet = QLatin1String(File.readAll());
-        this->setStyleSheet(StyleSheet);
-    }
-
+    setStyleSheet( Calamares::Branding::instance()->stylesheet() );
 }
 
 void
