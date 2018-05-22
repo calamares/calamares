@@ -484,7 +484,7 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
     <message>
         <location filename="../src/libcalamares/utils/CommandList.cpp" line="125"/>
         <source>The command runs in the host environment and needs to know the root path, but no rootMountPoint is defined.</source>
-        <translation type="unfinished"/>
+        <translation>Naredba se pokreće u okruženju domaćina i treba znati korijenski put, međutim, rootMountPoint nije definiran.</translation>
     </message>
 </context>
 <context>
@@ -1689,12 +1689,12 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="193"/>
         <source>Can not create new partition</source>
-        <translation type="unfinished"/>
+        <translation>Ne mogu stvoriti novu particiju</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="194"/>
         <source>The partition table on %1 already has %2 primary partitions, and no more can be added. Please remove one primary partition and add an extended partition, instead.</source>
-        <translation type="unfinished"/>
+        <translation>Particijska tablica %1 već ima %2 primarne particije i nove se više ne mogu dodati. Molimo vas da uklonite jednu primarnu particiju i umjesto nje dodate proširenu particiju.</translation>
     </message>
 </context>
 <context>

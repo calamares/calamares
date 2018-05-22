@@ -484,7 +484,7 @@ L&apos;instal·lador es tancarà i tots els canvis es perdran.</translation>
     <message>
         <location filename="../src/libcalamares/utils/CommandList.cpp" line="125"/>
         <source>The command runs in the host environment and needs to know the root path, but no rootMountPoint is defined.</source>
-        <translation type="unfinished"/>
+        <translation>L&apos;odre s&apos;executa a l&apos;entorn de l&apos;amfitrió i necessita saber el camí de l&apos;arrel, però no hi ha definit el punt de muntatge de l&apos;arrel.</translation>
     </message>
 </context>
 <context>
@@ -730,12 +730,12 @@ L&apos;instal·lador es tancarà i tots els canvis es perdran.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="56"/>
         <source>Deleting partition %1.</source>
-        <translation>Eliminant la partició %1.</translation>
+        <translation>Suprimint la partició %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="68"/>
         <source>The installer failed to delete partition %1.</source>
-        <translation>L&apos;instal·lador no ha pogut eliminar la partició %1.</translation>
+        <translation>L&apos;instal·lador no ha pogut suprimir la partició %1.</translation>
     </message>
 </context>
 <context>
@@ -1674,7 +1674,7 @@ L&apos;instal·lador es tancarà i tots els canvis es perdran.</translation>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="121"/>
         <source>&amp;Delete</source>
-        <translation>&amp;Suprimeix</translation>
+        <translation>E&amp;limina</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="148"/>
@@ -1694,7 +1694,7 @@ L&apos;instal·lador es tancarà i tots els canvis es perdran.</translation>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="194"/>
         <source>The partition table on %1 already has %2 primary partitions, and no more can be added. Please remove one primary partition and add an extended partition, instead.</source>
-        <translation type="unfinished"/>
+        <translation>La taula de particions de %1 ja té %2 particions primàries i no se n&apos;hi poden afegir més. Si us plau, suprimiu una partició primària i afegiu-hi una partició ampliada.</translation>
     </message>
 </context>
 <context>

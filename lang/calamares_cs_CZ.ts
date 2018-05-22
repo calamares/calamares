@@ -484,7 +484,7 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
     <message>
         <location filename="../src/libcalamares/utils/CommandList.cpp" line="125"/>
         <source>The command runs in the host environment and needs to know the root path, but no rootMountPoint is defined.</source>
-        <translation type="unfinished"/>
+        <translation>Příkaz bude spuštěn v prostředí hostitele a potřebuje znát popis umístění kořene souborového systému. rootMountPoint ale není zadaný.</translation>
     </message>
 </context>
 <context>
@@ -1689,12 +1689,12 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="193"/>
         <source>Can not create new partition</source>
-        <translation type="unfinished"/>
+        <translation>Nevytvářet nový oddíl</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="194"/>
         <source>The partition table on %1 already has %2 primary partitions, and no more can be added. Please remove one primary partition and add an extended partition, instead.</source>
-        <translation type="unfinished"/>
+        <translation>Tabulka oddílů na %1 už obsahuje %2 hlavních oddílů a proto už není možné přidat další. Odeberte jeden z hlavních oddílů a namísto něj vytvořte rozšířený oddíl.</translation>
     </message>
 </context>
 <context>
