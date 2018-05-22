@@ -146,13 +146,12 @@ CreateUserJob::exec()
         }
     }
 
-    int ec = CalamaresUtils::System::instance()->
-             targetEnvCall( { "useradd",
-                              "-m",
-                              "-U",
-                              "-c",
-                              m_fullName,
-                              m_userName } );
+    QStringList useradd{ "useradd", "-m", "-U" };
+    // TODO: shell-settings
+    useradd << "-c" << m_fullName;
+    useradd << m_userName;
+
+    int ec = CalamaresUtils::System::instance()->targetEnvCall( useradd );
     if ( ec )
         return Calamares::JobResult::error( tr( "Cannot create user %1." )
                                                 .arg( m_userName ),
