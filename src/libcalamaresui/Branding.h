@@ -63,7 +63,7 @@ public:
         ProductIcon,
         ProductWelcome
     };
-    
+
     enum StyleEntry : short
     {
         SidebarBackground,
@@ -77,16 +77,27 @@ public:
     explicit Branding( const QString& brandingFilePath,
                        QObject* parent = nullptr );
 
-    QString descriptorPath() const;
-    QString componentName() const;
+    /** @brief Complete path of the branding descriptor file. */
+    QString descriptorPath() const { return m_descriptorPath; }
+    /** @brief The component name found in the descriptor file.
+     *
+     * The component name always matches the last directory name in the path.
+     */
+    QString componentName() const { return m_componentName; }
+    /** @brief The directory holding all of the branding assets. */
     QString componentDirectory() const;
-    QString translationsPathPrefix() const;
+    /** @brief The directory where branding translations live.
+     *
+     * This is componentDir + "/lang".
+     */
+    QString translationsDirectory() const { return m_translationsPathPrefix; }
+    /** @brief Path to the slideshow QML file, if any. */
+    QString slideshowPath() const { return m_slideshowPath; }
 
     QString string( Branding::StringEntry stringEntry ) const;
     QString styleString( Branding::StyleEntry styleEntry ) const;
     QString imagePath( Branding::ImageEntry imageEntry ) const;
     QPixmap image( Branding::ImageEntry imageEntry, const QSize& size ) const;
-    QString slideshowPath() const;
 
     bool welcomeStyleCalamares() const { return m_welcomeStyleCalamares; }
     bool welcomeExpandingLogo() const { return m_welcomeExpandingLogo; }

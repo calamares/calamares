@@ -257,7 +257,7 @@ WelcomePage::initLanguages()
 
     if ( isTranslationAvailable )
         CalamaresUtils::installTranslator( matchedLocale.name(),
-                                           Calamares::Branding::instance()->translationsPathPrefix(),
+                                           Calamares::Branding::instance()->translationsDirectory(),
                                            qApp );
     else
         cWarning() << "No available translation matched" << defaultLocale;
@@ -272,7 +272,7 @@ WelcomePage::initLanguages()
 
                  QLocale::setDefault( selectedLocale );
                  CalamaresUtils::installTranslator( selectedLocale,
-                                                    Calamares::Branding::instance()->translationsPathPrefix(),
+                                                    Calamares::Branding::instance()->translationsDirectory(),
                                                     qApp );
              } );
 }

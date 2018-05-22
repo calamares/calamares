@@ -81,7 +81,6 @@ Branding::Branding( const QString& brandingFilePath,
                     QObject* parent )
     : QObject( parent )
     , m_descriptorPath( brandingFilePath )
-    , m_componentName()
     , m_welcomeStyleCalamares( false )
     , m_welcomeExpandingLogo( true )
 {
@@ -208,31 +207,10 @@ Branding::Branding( const QString& brandingFilePath,
 
 
 QString
-Branding::descriptorPath() const
-{
-    return m_descriptorPath;
-}
-
-
-QString
-Branding::componentName() const
-{
-    return m_componentName;
-}
-
-
-QString
 Branding::componentDirectory() const
 {
     QFileInfo fi ( m_descriptorPath );
     return fi.absoluteDir().absolutePath();
-}
-
-
-QString
-Branding::translationsPathPrefix() const
-{
-    return m_translationsPathPrefix;
 }
 
 
@@ -271,12 +249,6 @@ Branding::image( Branding::ImageEntry imageEntry, const QSize& size ) const
     return pixmap;
 }
 
-
-QString
-Branding::slideshowPath() const
-{
-    return m_slideshowPath;
-}
 
 void
 Branding::setGlobals( GlobalStorage* globalStorage ) const
