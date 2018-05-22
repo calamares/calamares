@@ -50,6 +50,7 @@ msgid_plural "Installing %(num)d packages."
 msgstr[0] "מתקין חבילה אחת."
 msgstr[1] "מתקין %(num)d חבילות."
 msgstr[2] "מתקין %(num)d חבילות."
+msgstr[3] "מתקין %(num)d חבילות."
 
 #: src/modules/packages/main.py:69
 #, python-format
@@ -58,3 +59,4 @@ msgid_plural "Removing %(num)d packages."
 msgstr[0] "מסיר חבילה אחת."
 msgstr[1] "מסיר %(num)d חבילות."
 msgstr[2] "מסיר %(num)d חבילות."
+msgstr[3] "מסיר %(num)d חבילות."

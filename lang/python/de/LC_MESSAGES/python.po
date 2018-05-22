@@ -20,7 +20,7 @@ msgstr ""
 
 #: src/modules/umount/main.py:40
 msgid "Unmount file systems."
-msgstr ""
+msgstr "Dateisysteme aushängen."
 
 #: src/modules/dummypython/main.py:44
 msgid "Dummy python job."
@@ -48,7 +48,7 @@ msgstr "Pakete installieren "
 msgid "Installing one package."
 msgid_plural "Installing %(num)d packages."
 msgstr[0] "Installiere ein Paket"
-msgstr[1] "Installiere %(num)dPakete "
+msgstr[1] "Installiere %(num)dPakete."
 
 #: src/modules/packages/main.py:69
 #, python-format
