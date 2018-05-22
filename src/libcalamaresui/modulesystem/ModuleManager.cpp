@@ -290,10 +290,10 @@ ModuleManager::loadModules()
                     // If it's a ViewModule, it also appends the ViewStep to the ViewManager.
                     thisModule->loadSelf();
                     m_loadedModulesByInstanceKey.insert( instanceKey, thisModule );
-                    Q_ASSERT( thisModule->isLoaded() );
                     if ( !thisModule->isLoaded() )
                     {
                         cWarning() << "Module" << moduleName << "loading FAILED";
+                        Q_ASSERT( thisModule->isLoaded() );
                         continue;
                     }
                 }
