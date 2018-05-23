@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2016, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2018, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -146,20 +147,21 @@ CreateUserJob::exec()
         }
     }
 
-    int ec = CalamaresUtils::System::instance()->
-             targetEnvCall( { "useradd",
-                              "-m",
-                              "-U",
-                              "-c",
-                              m_fullName,
-                              m_userName } );
-    if ( ec )
-        return Calamares::JobResult::error( tr( "Cannot create user %1." )
-                                                .arg( m_userName ),
-                                            tr( "useradd terminated with error code %1." )
-                                                .arg( ec ) );
+    QStringList useradd{ "useradd", "-m", "-U" };
+    QString shell = gs->value( "userShell" ).toString();
+    if ( !shell.isEmpty() )
+        useradd << "-s" << shell;
+    useradd << "-c" << m_fullName;
+    useradd << m_userName;
 
-    ec = CalamaresUtils::System::instance()->
+    auto pres = CalamaresUtils::System::instance()->targetEnvCommand( useradd );
+    if ( pres.getExitCode() )
+    {
+        cError() << "useradd failed" << pres.getExitCode();
+        return pres.explainProcess( useradd, 10 /* bogus timeout */ );
+    }
+
+    int ec = CalamaresUtils::System::instance()->
              targetEnvCall( { "usermod",
                               "-aG",
                               defaultGroups,

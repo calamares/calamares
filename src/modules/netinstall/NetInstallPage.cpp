@@ -30,19 +30,11 @@
 #include "utils/Retranslator.h"
 #include "utils/YamlUtils.h"
 
-#include <QFile>
-#include <QMap>
-#include <QTextStream>
-
 #include <QNetworkAccessManager>
 #include <QNetworkRequest>
 #include <QNetworkReply>
 
 #include <QHeaderView>
-#include <QtDebug>
-#include <QtGlobal>
-#include <QWidget>
-#include <QSignalMapper>
 
 #include <yaml-cpp/yaml.h>
 
