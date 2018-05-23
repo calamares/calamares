@@ -54,6 +54,20 @@ QString targetPrefix()
     return QLatin1Literal( "/" );
 }
 
+QString atReplacements( QString s )
+{
+    Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
+    QString root( "/" );
+    QString user;
+
+    if ( gs && gs->contains( "rootMountPoint" ) )
+        root = gs->value( "rootMountPoint" ).toString();
+    if ( gs && gs->contains( "username" ) )
+        user = gs->value( "username" ).toString();
+
+    return s.replace( "@@ROOT@@", root ).replace( "@@USER@@", user );
+}
+
 PreserveFiles::PreserveFiles( QObject* parent )
     : Calamares::CppJob( parent )
 {
@@ -82,13 +96,19 @@ Calamares::JobResult PreserveFiles::exec()
     for ( const auto it : m_items )
     {
         QString source = it.source;
+        QString dest = prefix + atReplacements( it.dest );
+
         if ( it.type == ItemType::Log )
             source = Logger::logFile();
         if ( it.type == ItemType::Config )
-            cDebug() << "Config-preserving is not implemented yet.";
-
-        if ( source.isEmpty() )
-            cWarning() << "Skipping unnamed source file for" << it.dest;
+        {
+            if ( Calamares::JobQueue::instance()->globalStorage()->save( dest ) )
+                cWarning() << "Could not write config for" << dest;
+            else
+                ++count;
+        }
+        else if ( source.isEmpty() )
+            cWarning() << "Skipping unnamed source file for" << dest;
         else
         {
             QFile sourcef( source );
@@ -98,7 +118,7 @@ Calamares::JobResult PreserveFiles::exec()
                 continue;
             }
 
-            QFile destf( prefix + it.dest );
+            QFile destf( dest );
             if ( !destf.open( QFile::WriteOnly ) )
             {
                 sourcef.close();
