@@ -147,7 +147,9 @@ CreateUserJob::exec()
     }
 
     QStringList useradd{ "useradd", "-m", "-U" };
-    // TODO: shell-settings
+    QString shell = gs->value( "userShell" ).toString();
+    if ( !shell.isEmpty() )
+        useradd << "-s" << shell;
     useradd << "-c" << m_fullName;
     useradd << m_userName;
 
