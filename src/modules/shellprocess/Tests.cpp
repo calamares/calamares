@@ -18,7 +18,11 @@
 
 #include "Tests.h"
 
+#include "JobQueue.h"
+#include "Settings.h"
+
 #include "utils/CommandList.h"
+#include "utils/Logger.h"
 #include "utils/YamlUtils.h"
 
 #include <yaml-cpp/yaml.h>
@@ -158,7 +162,17 @@ script:
 )" );
     QVariant script = CalamaresUtils::yamlMapToVariant( doc ).toMap().value( "script" );
 
+    if ( !Calamares::JobQueue::instance() )
+        (void *)new Calamares::JobQueue( nullptr );
+    if ( !Calamares::Settings::instance() )
+        (void *)new Calamares::Settings( QString(), true );
+
+    Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
+    QVERIFY( gs != nullptr );
+
     // Doesn't use @@ROOT@@, so no failures
-    QVERIFY( bool(CommandList(script, true, 10 ).run()) );
     QVERIFY( bool(CommandList(script, false, 10 ).run()) );
+
+    // Doesn't use @@ROOT@@, but does chroot, so fails
+    QVERIFY( !bool(CommandList(script, true, 10 ).run()) );
 }
