@@ -86,7 +86,7 @@ Module::fromDescriptor( const QVariantMap& moduleDescriptor,
 #ifdef WITH_PYTHONQT
             m = new PythonQtViewModule();
 #else
-            cError() << "PythonQt modules are not supported in this version of Calamares.";
+            cError() << "PythonQt view modules are not supported in this version of Calamares.";
 #endif
         }
         else
@@ -118,7 +118,7 @@ Module::fromDescriptor( const QVariantMap& moduleDescriptor,
 
     if ( !m )
     {
-        cDebug() << "Bad module type (" << typeString
+        cError() << "Bad module type (" << typeString
             << ") or interface string (" << intfString
             << ") for module " << instanceId;
         return nullptr;
@@ -129,8 +129,7 @@ Module::fromDescriptor( const QVariantMap& moduleDescriptor,
         m->m_directory = moduleDir.absolutePath();
     else
     {
-        cError() << "Bad module directory" << moduleDirectory
-               << "for" << instanceId;
+        cError() << "Bad module directory" << moduleDirectory << "for" << instanceId;
         delete m;
         return nullptr;
     }
@@ -144,7 +143,7 @@ Module::fromDescriptor( const QVariantMap& moduleDescriptor,
     }
     catch ( YAML::Exception& e )
     {
-        cWarning() << "YAML parser error " << e.what();
+        cError() << "YAML parser error " << e.what();
         delete m;
         return nullptr;
     }
