@@ -148,10 +148,15 @@ Calamares::JobResult PreserveFiles::exec()
 void PreserveFiles::setConfigurationMap(const QVariantMap& configurationMap)
 {
     auto files = configurationMap[ "files" ];
-
-    if ( ! ( files.isValid() && ( files.type() == QVariant::List ) ) )
+    if ( !files.isValid() )
     {
-        cDebug() << "No files: configuration key, or not a list.";
+        cDebug() << "No 'files' key for preservefiles.";
+        return;
+    }
+
+    if ( files.type() != QVariant::List )
+    {
+        cDebug() << "Configuration key 'files' is not a list for preservefiles.";
         return;
     }
 
