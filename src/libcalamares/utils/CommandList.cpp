@@ -98,9 +98,19 @@ CommandList::~CommandList()
 {
 }
 
+static inline bool
+findInCommands( const CommandList& l, const QString& needle )
+{
+    for ( CommandList::const_iterator i = l.cbegin(); i != l.cend(); ++i )
+        if ( i->command().contains( needle ) )
+            return true;
+    return false;
+}
+
 Calamares::JobResult CommandList::run()
 {
     QLatin1Literal rootMagic( "@@ROOT@@" );
+    QLatin1Literal userMagic( "@@USER@@" );
 
     System::RunLocation location = m_doChroot ? System::RunLocation::RunInTarget : System::RunLocation::RunInHost;
 
@@ -108,14 +118,7 @@ Calamares::JobResult CommandList::run()
     QString root = QStringLiteral( "/" );
     Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
 
-    bool needsRootSubstitution = false;
-    for ( CommandList::const_iterator i = cbegin(); i != cend(); ++i )
-        if ( i->command().contains( rootMagic ) )
-        {
-            needsRootSubstitution = true;
-            break;
-        }
-
+    bool needsRootSubstitution = findInCommands( *this, rootMagic );
     if ( needsRootSubstitution && ( location == System::RunLocation::RunInHost ) )
     {
         if ( !gs || !gs->contains( "rootMountPoint" ) )
@@ -127,10 +130,20 @@ Calamares::JobResult CommandList::run()
         root = gs->value( "rootMountPoint" ).toString();
     }
 
+    bool needsUserSubstitution = findInCommands( *this, userMagic );
+    if ( needsUserSubstitution && ( !gs || !gs->contains( "username" ) ) )
+    {
+        cError() << "No username defined.";
+        return Calamares::JobResult::error(
+            QCoreApplication::translate( "CommandList", "Could not run command." ),
+            QCoreApplication::translate( "CommandList", "The command needs to know the user's name, but no username is defined." ) );
+    }
+    QString user = gs->value( "username" ).toString();  // may be blank if unset
+
     for ( CommandList::const_iterator i = cbegin(); i != cend(); ++i )
     {
         QString processed_cmd = i->command();
-        processed_cmd.replace( rootMagic, root );
+        processed_cmd.replace( rootMagic, root ).replace( userMagic, user );
         bool suppress_result = false;
         if ( processed_cmd.startsWith( '-' ) )
         {

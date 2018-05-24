@@ -18,7 +18,12 @@
 
 #include "Tests.h"
 
+#include "GlobalStorage.h"
+#include "JobQueue.h"
+#include "Settings.h"
+
 #include "utils/CommandList.h"
+#include "utils/Logger.h"
 #include "utils/YamlUtils.h"
 
 #include <yaml-cpp/yaml.h>
@@ -148,4 +153,61 @@ script:
     QCOMPARE( cl.at(0).timeout(), 12 );
     QCOMPARE( cl.at(0).command(), QStringLiteral( "ls /tmp" ) );
     QCOMPARE( cl.at(1).timeout(), -1 );  // not set
+}
+
+void ShellProcessTests::testRootSubstitution()
+{
+    YAML::Node doc = YAML::Load( R"(---
+script:
+    - "ls /tmp"
+)" );
+    QVariant plainScript = CalamaresUtils::yamlMapToVariant( doc ).toMap().value( "script" );
+    QVariant rootScript = CalamaresUtils::yamlMapToVariant(
+        YAML::Load( R"(---
+script:
+    - "ls @@ROOT@@"
+)" ) ).toMap().value( "script" );
+    QVariant userScript = CalamaresUtils::yamlMapToVariant(
+        YAML::Load( R"(---
+script:
+    - mktemp -d @@ROOT@@/calatestXXXXXXXX
+    - "chown @@USER@@ @@ROOT@@/calatest*"
+    - rm -rf @@ROOT@@/calatest*
+)" ) ).toMap().value( "script" );
+
+    if ( !Calamares::JobQueue::instance() )
+        (void *)new Calamares::JobQueue( nullptr );
+    if ( !Calamares::Settings::instance() )
+        (void *)new Calamares::Settings( QString(), true );
+
+    Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
+    QVERIFY( gs != nullptr );
+
+    qDebug() << "Expect WARNING, ERROR, WARNING";
+    // Doesn't use @@ROOT@@, so no failures
+    QVERIFY( bool(CommandList(plainScript, false, 10 ).run()) );
+
+    // Doesn't use @@ROOT@@, but does chroot, so fails
+    QVERIFY( !bool(CommandList(plainScript, true, 10 ).run()) );
+
+    // Does use @@ROOT@@, which is not set, so fails
+    QVERIFY( !bool(CommandList(rootScript, false, 10 ).run()) );
+    // .. fails for two reasons
+    QVERIFY( !bool(CommandList(rootScript, true, 10 ).run()) );
+
+    gs->insert( "rootMountPoint", "/tmp" );
+    // Now that the root is set, two variants work .. still can't
+    // chroot, unless the rootMountPoint contains a full system,
+    // *and* we're allowed to chroot (ie. running tests as root).
+    qDebug() << "Expect no output.";
+    QVERIFY( bool(CommandList(plainScript, false, 10 ).run()) );
+    QVERIFY( bool(CommandList(rootScript, false, 10 ).run()) );
+
+    qDebug() << "Expect ERROR";
+    // But no user set yet
+    QVERIFY( !bool(CommandList(userScript, false, 10 ).run()) );
+
+    // Now play dangerous games with shell expansion
+    gs->insert( "username", "`id -u`" );
+    QVERIFY( bool(CommandList(userScript, false, 10 ).run()) );
 }

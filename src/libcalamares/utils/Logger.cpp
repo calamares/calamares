@@ -116,7 +116,7 @@ CalamaresLogHandler( QtMsgType type, const QMessageLogContext& context, const QS
 }
 
 
-static QString
+QString
 logFile()
 {
     return CalamaresUtils::appLogDir().filePath( "session.log" );

@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2015-2016, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2018, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -49,22 +50,6 @@ hasRootPartition( Device* device )
     for ( auto it = PartitionIterator::begin( device ); it != PartitionIterator::end( device ); ++it )
         if ( ( *it )->mountPoint() == "/" )
             return true;
-    return false;
-}
-
-/* Unused */
-static bool
-hasMountedPartitions( Device* device )
-{
-    cDebug() << "Checking for mounted partitions in" << device->deviceNode();
-    for ( auto it = PartitionIterator::begin( device ); it != PartitionIterator::end( device ); ++it )
-    {
-        if ( ! ( *it )->isMounted() )
-        {
-            cDebug() << "  .." << ( *it )->partitionPath() << "is mounted on" << ( *it )->mountPoint();
-            return true;
-        }
-    }
     return false;
 }
 

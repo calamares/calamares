@@ -1,7 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2017, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -21,6 +21,9 @@
 #include "JobQueue.h"
 
 #include "utils/Logger.h"
+
+#include <QFile>
+#include <QJsonDocument>
 
 #ifdef WITH_PYTHON
 #include "PythonHelper.h"
@@ -93,6 +96,19 @@ GlobalStorage::debugDump() const
         cDebug() << it.key() << '\t' << it.value();
     }
 }
+
+bool
+GlobalStorage::save(const QString& filename)
+{
+    QFile f( filename );
+    if ( !f.open( QFile::WriteOnly ) )
+        return false;
+
+    f.write( QJsonDocument::fromVariant( m ).toJson() ) ;
+    f.close();
+    return true;
+}
+
 
 } // namespace Calamares
 

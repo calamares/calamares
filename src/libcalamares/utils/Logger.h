@@ -65,6 +65,11 @@ namespace Logger
     };
 
     /**
+     * @brief The full path of the log file.
+     */
+    DLLEXPORT QString logFile();
+
+    /**
      * @brief Start logging to the log file.
      *
      * Call this (once) to start logging to the log file (usually
