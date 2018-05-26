@@ -5,7 +5,7 @@
 #
 #   Copyright 2016, Artoo <artoo@manjaro.org>
 #   Copyright 2017, Philip Müller <philm@manjaro.org>
-#   Copyright 2016, Artoo <artoo@cromnix.org>
+#   Copyright 2018, Artoo <artoo@artixlinux.org>
 #
 #   Calamares is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
