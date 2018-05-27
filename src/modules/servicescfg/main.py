@@ -32,72 +32,22 @@ class ServicesController:
 
     def __init__(self):
         self.root = libcalamares.globalstorage.value('rootMountPoint')
-        self.initsys = libcalamares.job.configuration["initsys"]
         self.services = libcalamares.job.configuration.get('services', [])
-
-    def sedFile(self, pattern, file):
-        """Sed the given file with the given pattern
-        """
-
-        target_env_call(["sed", "-e", pattern, "-i", file])
-
-    def configure(self):
-        """Configure the services
-        """
-        if self.initsys == 'openrc':
-            self.sedFile(
-                's|^.*rc_shell=.*|rc_shell="/usr/bin/sulogin"|',
-                "/etc/rc.conf"
-            )
-            self.sedFile(
-                's|^.*rc_controller_cgroups=.*|rc_controller_cgroups="YES"|',
-                "/etc/rc.conf"
-            )
-            exp = 's|^.*keymap=.*|keymap="{}"|'.format(
-                libcalamares.globalstorage.value("keyboardLayout")
-            )
-
-            self.sedFile(exp, "/etc/conf.d/keymaps")
-            for dm in libcalamares.globalstorage.value("displayManagers"):
-                exp = 's|^.*DISPLAYMANAGER=.*|DISPLAYMANAGER="{}"|'.format(dm)
-                self.sedFile(exp, "/etc/conf.d/xdm")
-        elif self.initsys == 'runit':
-            exp = 's|^.*KEYMAP=.*|KEYMAP="{}"|'.format(
-                libcalamares.globalstorage.value("keyboardLayout")
-            )
-            if exists(self.root + "/etc/vconsole.conf"):
-                self.sedFile(exp, "/etc/vconsole.conf")
 
     def update(self, action, state):
         """Update init scripts
         """
 
-        if self.initsys == 'openrc':
-            for svc in self.services[state]:
-                if exists(self.root + "/etc/init.d/" + svc["name"]):
-                    target_env_call(
-                        ["rc-update", action, svc["name"], svc["runlevel"]]
-                    )
-        elif self.initsys == 'runit':
-            for svc in self.services[state]:
-                if exists(self.root + "/etc/runit/sv/" + svc["name"]):
-                    if action == 'add':
-                        src = "/etc/runit/sv/" + svc["name"]
-                        dest = "/etc/runit/runsvdir/" + svc["runlevel"] + "/"
-                        target_env_call(
-                            ["ln", "-s", src, dest]
-                        )
-                    elif action == 'del':
-                        dest = "/etc/runit/runsvdir/" + svc["runlevel"] + "/" + svc["name"]
-                        target_env_call(
-                            ["rm", dest]
-                        )
+        for svc in self.services[state]:
+            if exists(self.root + "/etc/init.d/" + svc["name"]):
+                target_env_call(
+                    ["rc-update", action, svc["name"], svc["runlevel"]]
+                )
 
     def run(self):
         """Run the controller
         """
 
-        self.configure()
         for state in self.services.keys():
             if state == "enabled":
                 self.update("add", "enabled")
