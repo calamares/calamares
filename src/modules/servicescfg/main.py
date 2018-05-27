@@ -35,7 +35,7 @@ class ServicesController:
         self.initsys = libcalamares.job.configuration["initsys"]
         self.services = libcalamares.job.configuration.get('services', [])
 
-    def setExpression(self, pattern, file):
+    def sedFile(self, pattern, file):
         """Sed the given file with the given pattern
         """
 
@@ -45,11 +45,11 @@ class ServicesController:
         """Configure the services
         """
         if self.initsys == 'openrc':
-            self.setExpression(
+            self.sedFile(
                 's|^.*rc_shell=.*|rc_shell="/usr/bin/sulogin"|',
                 "/etc/rc.conf"
             )
-            self.setExpression(
+            self.sedFile(
                 's|^.*rc_controller_cgroups=.*|rc_controller_cgroups="YES"|',
                 "/etc/rc.conf"
             )
@@ -57,16 +57,16 @@ class ServicesController:
                 libcalamares.globalstorage.value("keyboardLayout")
             )
 
-            self.setExpression(exp, "/etc/conf.d/keymaps")
+            self.sedFile(exp, "/etc/conf.d/keymaps")
             for dm in libcalamares.globalstorage.value("displayManagers"):
                 exp = 's|^.*DISPLAYMANAGER=.*|DISPLAYMANAGER="{}"|'.format(dm)
-                self.setExpression(exp, "/etc/conf.d/xdm")
+                self.sedFile(exp, "/etc/conf.d/xdm")
         elif self.initsys == 'runit':
             exp = 's|^.*KEYMAP=.*|KEYMAP="{}"|'.format(
                 libcalamares.globalstorage.value("keyboardLayout")
             )
             if exists(self.root + "/etc/vconsole.conf"):
-                self.setExpression(exp, "/etc/vconsole.conf")
+                self.sedFile(exp, "/etc/vconsole.conf")
 
     def update(self, action, state):
         """Update init scripts
