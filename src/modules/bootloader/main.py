@@ -314,6 +314,15 @@ def install_secureboot(efi_directory):
     Installs the secureboot shim in the system by calling efibootmgr.
     """
     efi_bootloader_id = efi_label()
+
+    install_path = libcalamares.globalstorage.value("rootMountPoint")
+    install_efi_directory = install_path + efi_directory
+
+    if efi_word_size() == "64":
+        install_efi_bin = "shim64.efi"
+    else:
+        install_efi_bin = "shim.efi"
+
     subprocess.call([
         "/usr/sbin/efibootmgr",
         "-c",
@@ -321,8 +330,7 @@ def install_secureboot(efi_directory):
         "-L", efi_bootloader_id,
         "-d", path,  # TODO
         "-p", num,   # TODO
-        "-l", efidir)# TODO
-
+        "-l", install_efi_directory + "/" + install_efi_bin])
 
 
 def vfat_correct_case(parent, name):
