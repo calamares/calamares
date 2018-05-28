@@ -1,0 +1,5 @@
+---
+type:       "job"
+name:       "servicescfg"
+interface:  "python"
+script:     "main.py"
