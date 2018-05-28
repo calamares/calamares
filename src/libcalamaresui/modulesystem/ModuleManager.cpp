@@ -103,39 +103,16 @@ ModuleManager::doInit()
                         continue;
                     }
 
-                    QFile descriptorFile( descriptorFileInfo.absoluteFilePath() );
-                    QVariant moduleDescriptor;
-                    if ( descriptorFile.exists() && descriptorFile.open( QFile::ReadOnly | QFile::Text ) )
+                    bool ok = false;
+                    QVariantMap moduleDescriptorMap = CalamaresUtils::loadYaml( descriptorFileInfo, &ok );
+                    QString moduleName = ok ? moduleDescriptorMap.value( "name" ).toString() : QString();
+
+                    if ( ok && ( moduleName == currentDir.dirName() ) &&
+                            !m_availableDescriptorsByModuleName.contains( moduleName ) )
                     {
-                        QByteArray ba = descriptorFile.readAll();
-                        try
-                        {
-                            YAML::Node doc = YAML::Load( ba.constData() );
-
-                            moduleDescriptor = CalamaresUtils::yamlToVariant( doc );
-                        }
-                        catch ( YAML::Exception& e )
-                        {
-                            cWarning() << "YAML parser error " << e.what();
-                            continue;
-                        }
-                    }
-
-
-                    if ( moduleDescriptor.isValid() &&
-                         !moduleDescriptor.isNull() &&
-                         moduleDescriptor.type() == QVariant::Map )
-                    {
-                        QVariantMap moduleDescriptorMap = moduleDescriptor.toMap();
-
-                        if ( moduleDescriptorMap.value( "name" ) == currentDir.dirName() &&
-                             !m_availableDescriptorsByModuleName.contains( moduleDescriptorMap.value( "name" ).toString() ) )
-                        {
-                            m_availableDescriptorsByModuleName.insert( moduleDescriptorMap.value( "name" ).toString(),
-                                                                       moduleDescriptorMap );
-                            m_moduleDirectoriesByModuleName.insert( moduleDescriptorMap.value( "name" ).toString(),
-                                                                    descriptorFileInfo.absoluteDir().absolutePath() );
-                        }
+                        m_availableDescriptorsByModuleName.insert( moduleName, moduleDescriptorMap );
+                        m_moduleDirectoriesByModuleName.insert( moduleName,
+                                                                descriptorFileInfo.absoluteDir().absolutePath() );
                     }
                 }
                 else
@@ -200,8 +177,8 @@ ModuleManager::loadModules()
                 if ( moduleEntrySplit.length() < 1 ||
                      moduleEntrySplit.length() > 2 )
                 {
-                    cError() << "Wrong module entry format for module" << moduleEntry << "."
-                             << "\nCalamares will now quit.";
+                    cError() << "Wrong module entry format for module" << moduleEntry << '.';
+                    cError() << "Calamares will now quit.";
                     qApp->exit( 1 );
                     return;
                 }
@@ -213,7 +190,8 @@ ModuleManager::loadModules()
                      m_availableDescriptorsByModuleName.value( moduleName ).isEmpty() )
                 {
                     cError() << "Module" << moduleName << "not found in module search paths."
-                             << "\nCalamares will now quit.";
+                        << Logger::DebugList( m_paths );
+                    cError() << "Calamares will now quit.";
                     qApp->exit( 1 );
                     return;
                 }
@@ -240,8 +218,8 @@ ModuleManager::loadModules()
                     }
                     else //ought to be a custom instance, but cannot find instance entry
                     {
-                        cError() << "Custom instance" << moduleEntry << "not found in custom instances section."
-                                 << "\nCalamares will now quit.";
+                        cError() << "Custom instance" << moduleEntry << "not found in custom instances section.";
+                        cError() << "Calamares will now quit.";
                         qApp->exit( 1 );
                         return;
                     }
@@ -289,10 +267,10 @@ ModuleManager::loadModules()
                     // If it's a ViewModule, it also appends the ViewStep to the ViewManager.
                     thisModule->loadSelf();
                     m_loadedModulesByInstanceKey.insert( instanceKey, thisModule );
-                    Q_ASSERT( thisModule->isLoaded() );
                     if ( !thisModule->isLoaded() )
                     {
                         cWarning() << "Module" << moduleName << "loading FAILED";
+                        Q_ASSERT( thisModule->isLoaded() );
                         continue;
                     }
                 }

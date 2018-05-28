@@ -18,6 +18,7 @@ set( libSources
     Job.cpp
     JobQueue.cpp
     ProcessJob.cpp
+    Settings.cpp
 )
 set( utilsSources
     utils/CalamaresUtils.cpp
@@ -26,6 +27,7 @@ set( utilsSources
     utils/Logger.cpp
     utils/PluginFactory.cpp
     utils/Retranslator.cpp
+    utils/YamlUtils.cpp
 )
 set( kdsagSources
     kdsingleapplicationguard/kdsingleapplicationguard.cpp
@@ -88,8 +90,11 @@ set_target_properties( calamares
 )
 
 target_link_libraries( calamares
-    LINK_PRIVATE ${OPTIONAL_PRIVATE_LIBRARIES}
-    LINK_PUBLIC Qt5::Core
+    LINK_PRIVATE
+        ${OPTIONAL_PRIVATE_LIBRARIES}
+    LINK_PUBLIC
+        ${YAMLCPP_LIBRARY}
+        Qt5::Core
 )
 
 install( TARGETS calamares

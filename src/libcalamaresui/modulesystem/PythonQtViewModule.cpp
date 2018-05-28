@@ -143,12 +143,12 @@ PythonQtViewModule::loadSelf()
             return;
         }
 
-        QString calamares_module_annotation =
+        static const QLatin1Literal calamares_module_annotation(
                 "_calamares_module_typename = ''\n"
                 "def calamares_module(viewmodule_type):\n"
                 "    global _calamares_module_typename\n"
                 "    _calamares_module_typename = viewmodule_type.__name__\n"
-                "    return viewmodule_type\n";
+                "    return viewmodule_type\n");
 
         // Load in the decorator
         PythonQt::self()->evalScript( cxt, calamares_module_annotation );

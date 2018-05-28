@@ -44,7 +44,7 @@ it's just a typo-fix which might not be copyrightable in all jurisdictions).
 Formatting C++
 --------------
 This formatting guide applies to C++ code only; for Python modules, we use
-[pycodestyle][https://github.com/PyCQA/pycodestyle] to apply a check of
+[pycodestyle](https://github.com/PyCQA/pycodestyle) to apply a check of
 some PEP8 guidelines.
 
 * Spaces, not tabs.

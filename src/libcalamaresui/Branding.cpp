@@ -179,7 +179,7 @@ Branding::Branding( const QString& brandingFilePath,
         }
         catch ( YAML::Exception& e )
         {
-            cWarning() << "YAML parser error " << e.what() << "in" << file.fileName();
+            CalamaresUtils::explainYamlException( e, ba, file.fileName() );
         }
 
         QDir translationsDir( componentDir.filePath( "lang" ) );
@@ -192,7 +192,7 @@ Branding::Branding( const QString& brandingFilePath,
     }
     else
     {
-        cWarning() << "Cannot read " << file.fileName();
+        cWarning() << "Cannot read branding file" << file.fileName();
     }
 
     s_instance = this;

@@ -29,6 +29,25 @@ test -f "calamares.desktop" || { echo "! Not at Calamares top-level" ; exit 1 ; 
 export QT_SELECT=5
 tx pull --force --source --all
 
+### CLEANUP TRANSLATIONS
+#
+# Some languages have been deprecated. They may still exist in Transifex,
+# so clean them up after pulling.
+#
+drop_language() {
+  rm -rf lang/python/"$1" src/modules/dummypythonqt/lang/"$1" lang/calamares_"$1".ts
+  grep -v "\\[$1]" calamares.desktop > calamares.desktop.new
+  mv calamares.desktop.new calamares.desktop
+}
+
+drop_language es_ES
+drop_language pl_PL
+
+# Also fix the .desktop file, which has some fields removed by Transifex.
+#
+{ cat calamares.desktop.in ; grep "\\[[a-zA-Z_@]*]=" calamares.desktop ; } > calamares.desktop.new
+mv calamares.desktop.new calamares.desktop
+
 ### COMMIT TRANSLATIONS
 #
 # Produce multiple commits (for the various parts of the i18n

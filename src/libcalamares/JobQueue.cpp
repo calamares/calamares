@@ -54,7 +54,7 @@ public:
         for( auto job : m_jobs )
         {
             emitProgress();
-            cLog() << "Starting job" << job->prettyName();
+            cDebug() << "Starting job" << job->prettyName();
             connect( job.data(), &Job::progress, this, &JobThread::emitProgress );
             JobResult result = job->exec();
             if ( !result )

@@ -52,6 +52,8 @@ if(NOT CMAKE_VERSION VERSION_LESS "3.10.0")
     )
 endif()
 
+    set( CMAKE_C_FLAGS                  "${CMAKE_C_FLAGS} -Wall" )
+
 if( CMAKE_CXX_COMPILER_ID MATCHES "Clang" )
     message( STATUS "Found Clang ${CMAKE_CXX_COMPILER_VERSION}, setting up Clang-specific compiler flags." )
     set( CMAKE_C_FLAGS                  "${CMAKE_C_FLAGS} -Wall" )
@@ -139,7 +141,7 @@ endif()
 
 option( INSTALL_CONFIG "Install configuration files" ON )
 option( WITH_PYTHON "Enable Python modules API (requires Boost.Python)." ON )
-option( WITH_PYTHONQT "Enable next generation Python modules API (experimental, requires PythonQt)." OFF )
+option( WITH_PYTHONQT "Enable next generation Python modules API (experimental, requires PythonQt)." ON )
 option( WITH_KF5Crash "Enable crash reporting with KCrash." ON )
 option( BUILD_TESTING "Build the testing tree." ON )
 
@@ -185,6 +187,66 @@ if( NOT PYTHONLIBS_FOUND OR NOT PYTHONQT_FOUND )
     set( WITH_PYTHONQT OFF )
 endif()
 
+### Transifex Translation status
+#
+# complete = 100% translated,
+# good = nearly complete (use own judgement, right now >= 75%)
+# ok = incomplete (more than 25% untranslated),
+# bad = 0% translated, placeholder in tx; these are not included.
+#
+# Language en (source language) is added later. It isn't listed in
+# Transifex either. Get the list of languages and their status
+# from https://transifex.com/calamares/calamares/ .
+#
+# When adding a new language, take care that it is properly loaded
+# by the translation framework. Languages with alternate scripts
+# (sr@latin in particular) may need special handling in CalamaresUtils.cpp.
+#
+# TODO: drop the es_ES translation from Transifex
+# TODO: move eo (Esperanto) to _ok once Qt can actually create a
+#       locale for it.
+#
+# NOTE: when updating the list from Transifex, copy these four lines
+#       and prefix each variable name with "p", so that the automatic
+#       checks for new languages and misspelled ones are done.
+set( _tx_complete da pt_PT ro tr_TR zh_TW zh_CN pt_BR fr hr ca lt id cs_CZ )
+set( _tx_good sq es pl ja sk it_IT hu ru he de nl bg uk )
+set( _tx_ok ast is ar sv el es_MX gl en_GB th fi_FI hi eu sr nb
+            sl sr@latin mr es_PR kk kn et )
+set( _tx_bad uz lo ur gu fr_CH fa be eo )
+
+# check translation update
+set( prev_tx ${p_tx_complete} ${p_tx_good} ${p_tx_ok} ${p_tx_bad} )
+set( curr_tx ${_tx_complete} ${_tx_good} ${_tx_ok} ${_tx_bad} )
+if ( prev_tx )
+    # Gone in new list
+    foreach( l ${prev_tx} )
+        list( FIND curr_tx ${l} p_l )
+        if( p_l EQUAL -1 )
+            message(WARNING "Language ${l} was present in previous translations and is now absent.")
+        endif()
+    endforeach()
+
+    # New in list
+    foreach( l ${curr_tx} )
+        list( FIND prev_tx ${l} p_l )
+        if( p_l EQUAL -1 )
+            message(WARNING "Language ${l} is new.")
+        endif()
+        set( p_l "lang/calamares_${l}.ts" )
+        if( NOT EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/${p_l} )
+            message(WARNING "Language ${l} has no .ts file yet.")
+        endif()
+    endforeach()
+
+    unset( p_l )
+    unset( l )
+endif()
+unset( prev_tx )
+unset( curr_tx )
+
+add_subdirectory( lang )  # i18n tools
+
 ###
 ### Calamares application info
 ###
@@ -192,13 +254,14 @@ set( CALAMARES_ORGANIZATION_NAME "Calamares" )
 set( CALAMARES_ORGANIZATION_DOMAIN "github.com/calamares" )
 set( CALAMARES_APPLICATION_NAME  "Calamares" )
 set( CALAMARES_DESCRIPTION_SUMMARY "The distribution-independent installer framework" )
-set( CALAMARES_TRANSLATION_LANGUAGES ar ast bg ca cs_CZ da de el en en_GB es_MX es eu fr he hi hr hu id is it_IT ja lt mr nl pl pt_BR pt_PT ro ru sk sq sv th tr_TR zh_CN zh_TW )
+set( CALAMARES_TRANSLATION_LANGUAGES en ${_tx_complete} ${_tx_good} ${_tx_ok} )
+list( SORT CALAMARES_TRANSLATION_LANGUAGES )
 
 ### Bump version here
 set( CALAMARES_VERSION_MAJOR 3 )
 set( CALAMARES_VERSION_MINOR 2 )
 set( CALAMARES_VERSION_PATCH 0 )
-set( CALAMARES_VERSION_RC 4 )
+set( CALAMARES_VERSION_RC 0 )
 
 set( CALAMARES_VERSION ${CALAMARES_VERSION_MAJOR}.${CALAMARES_VERSION_MINOR}.${CALAMARES_VERSION_PATCH} )
 set( CALAMARES_VERSION_SHORT "${CALAMARES_VERSION}" )

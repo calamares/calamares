@@ -74,6 +74,9 @@ using CommandList_t = QList< CommandLine >;
  * A list of commands; the list may have its own default timeout
  * for commands (which is then applied to each individual command
  * that doesn't have one of its own).
+ *
+ * Documentation for the format of commands can be found in
+ * `shellprocess.conf`.
  */
 class CommandList : protected CommandList_t
 {

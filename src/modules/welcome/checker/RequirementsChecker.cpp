@@ -1,7 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2017, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2017, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
  *   Copyright 2017, Gabriel Craciunescu <crazy@frugalware.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
@@ -100,12 +100,14 @@ RequirementsChecker::RequirementsChecker( QObject* parent )
         if ( m_entriesToCheck.contains( "root" ) )
             isRoot = checkIsRoot();
 
+        using TR = Logger::DebugRow<const char *, bool>;
+
         cDebug() << "RequirementsChecker output:"
-                 << " enoughStorage:" << enoughStorage
-                 << " enoughRam:" << enoughRam
-                 << " hasPower:" << hasPower
-                 << " hasInternet:" << hasInternet
-                 << " isRoot:" << isRoot;
+                 << TR("enoughStorage", enoughStorage)
+                 << TR("enoughRam", enoughRam)
+                 << TR("hasPower", hasPower)
+                 << TR("hasInternet", hasInternet)
+                 << TR("isRoot", isRoot);
 
         QList< PrepareEntry > checkEntries;
         foreach ( const QString& entry, m_entriesToCheck )
@@ -305,7 +307,9 @@ RequirementsChecker::setConfigurationMap( const QVariantMap& configurationMap )
     }
 
     if ( incompleteConfiguration )
-        cWarning() << "RequirementsChecker configuration map:\n" << configurationMap;
+    {
+        cWarning() << "RequirementsChecker configuration map:" << Logger::DebugMap( configurationMap );
+    }
 }
 
 

@@ -43,9 +43,11 @@ LocaleConfiguration::fromLanguageAndLocation( const QString& languageLocale,
                                               const QStringList& availableLocales,
                                               const QString& countryCode )
 {
-    LocaleConfiguration lc = LocaleConfiguration();
+    LocaleConfiguration lc;
+
+    // Note that the documentation how this works is in packages.conf
     QString language = languageLocale.split( '_' ).first();
-    lc.myLanguageLocaleBcp47 = QLocale(language).bcp47Name();
+    lc.myLanguageLocaleBcp47 = QLocale(language).bcp47Name().toLower();
 
     QStringList linesForLanguage;
     for ( const QString &line : availableLocales )
@@ -288,7 +290,7 @@ LocaleConfiguration::isEmpty() const
 
 
 QMap< QString, QString >
-LocaleConfiguration::toMap()
+LocaleConfiguration::toMap() const
 {
     QMap< QString, QString > map;
 
@@ -323,4 +325,10 @@ LocaleConfiguration::toMap()
         map.insert( "LC_IDENTIFICATION", lc_identification );
 
     return map;
+}
+
+QString
+LocaleConfiguration::toBcp47() const
+{
+    return myLanguageLocaleBcp47;
 }

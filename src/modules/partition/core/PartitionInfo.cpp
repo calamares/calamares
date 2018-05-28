@@ -27,8 +27,9 @@
 namespace PartitionInfo
 {
 
-static const char* MOUNT_POINT_PROPERTY = "_calamares_mountPoint";
-static const char* FORMAT_PROPERTY = "_calamares_format";
+static const char MOUNT_POINT_PROPERTY[] = "_calamares_mountPoint";
+static const char FORMAT_PROPERTY[] = "_calamares_format";
+static const char FLAGS_PROPERTY[] = "_calamares_flags";
 
 QString
 mountPoint( Partition* partition )
@@ -54,18 +55,33 @@ setFormat( Partition* partition, bool value )
     partition->setProperty( FORMAT_PROPERTY, value );
 }
 
+PartitionTable::Flags flags(const Partition* partition)
+{
+    auto v = partition->property( FLAGS_PROPERTY );
+    if (v.type() == QVariant::Int )
+        return static_cast<PartitionTable::Flags>( v.toInt() );
+    return partition->activeFlags();
+}
+
+void setFlags(Partition* partition, PartitionTable::Flags f)
+{
+    partition->setProperty( FLAGS_PROPERTY, PartitionTable::Flags::Int( f ) );
+}
+
 void
 reset( Partition* partition )
 {
     partition->setProperty( MOUNT_POINT_PROPERTY, QVariant() );
     partition->setProperty( FORMAT_PROPERTY, QVariant() );
+    partition->setProperty( FLAGS_PROPERTY, QVariant() );
 }
 
 bool
 isDirty( Partition* partition )
 {
     return !mountPoint( partition ).isEmpty()
-           || format( partition );
+           || format( partition )
+           || flags( partition ) != partition->activeFlags();
 }
 
 } // namespace
