@@ -323,13 +323,40 @@ def install_secureboot(efi_directory):
     else:
         install_efi_bin = "shim.efi"
 
+    # Copied, roughly, from openSUSE's install script,
+    # and pythonified. *disk* is something like /dev/sda,
+    # while *drive* may return "(disk/dev/sda,gpt1)" ..
+    # we're interested in the numbers in the second part
+    # of that tuple.
+    efi_drive = subprocess.check_output([
+        libcalamares.job.configuration["grubProbe"],
+        "-t", "drive", "--device-map=", install_efi_directory])
+    efi_disk = subprocess.check_output([
+        libcalamares.job.configuration["grubProbe"],
+        "-t", "disk", "--device-map=", install_efi_directory])
+
+    efi_drive_partition = efi_drive.replace("(","").replace(")","").split(",")[1]
+    # Get the first run of digits from the partition
+    efi_partititon_number = None
+    c = 0
+    start = None
+    while c < len(efi_drive_partition):
+        if efi_drive_partition[c].isdigit() and start is None:
+            start = c
+        if not efi_drive_partition[c].isdigit() and start is not None:
+            efi_drive_number = efi_drive_partition[start:c]
+            break
+        c += 1
+    if efi_partititon_number is None:
+        raise ValueError("No partition number found for %s" % install_efi_directory)
+
     subprocess.call([
         "/usr/sbin/efibootmgr",
         "-c",
         "-w",
         "-L", efi_bootloader_id,
-        "-d", path,  # TODO
-        "-p", num,   # TODO
+        "-d", efi_disk,
+        "-p", efi_partititon_number,
         "-l", install_efi_directory + "/" + install_efi_bin])
 
 
