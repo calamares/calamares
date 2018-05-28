@@ -179,6 +179,18 @@ def efi_label():
     return efi_bootloader_id.translate(file_name_sanitizer)
 
 
+def efi_word_size():
+    # get bitness of the underlying UEFI
+    try:
+        sysfile = open("/sys/firmware/efi/fw_platform_size", "r")
+        efi_bitness = sysfile.read(2)
+    except Exception:
+        # if the kernel is older than 4.0, the UEFI bitness likely isn't
+        # exposed to the userspace so we assume a 64 bit UEFI here
+        efi_bitness = "64"
+    return efi_bitness
+
+
 def install_systemd_boot(efi_directory):
     """
     Installs systemd-boot as bootloader for EFI setups.
@@ -231,15 +243,7 @@ def install_grub(efi_directory, fw_type):
             os.makedirs(install_efi_directory)
 
         efi_bootloader_id = efi_label()
-
-        # get bitness of the underlying UEFI
-        try:
-            sysfile = open("/sys/firmware/efi/fw_platform_size", "r")
-            efi_bitness = sysfile.read(2)
-        except Exception:
-            # if the kernel is older than 4.0, the UEFI bitness likely isn't
-            # exposed to the userspace so we assume a 64 bit UEFI here
-            efi_bitness = "64"
+        efi_bitness = efi_word_size()
 
         if efi_bitness == "32":
             efi_target = "i386-efi"
