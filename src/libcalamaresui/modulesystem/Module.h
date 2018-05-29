@@ -147,7 +147,7 @@ public:
      * @brief isLoaded reports on the loaded status of a module.
      * @return true if the module's loading phase has finished, otherwise false.
      */
-    virtual bool isLoaded() const;
+    bool isLoaded() const { return m_loaded; }
 
     /**
      * @brief loadSelf initialized the module.

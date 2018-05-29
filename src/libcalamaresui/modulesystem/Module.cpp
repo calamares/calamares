@@ -276,13 +276,6 @@ Module::interfaceString() const
 }
 
 
-bool
-Module::isLoaded() const
-{
-    return m_loaded;
-}
-
-
 QVariantMap
 Module::configurationMap()
 {
