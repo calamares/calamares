@@ -23,9 +23,16 @@
 
 #include <cmath>
 
+#include "utils/Logger.h"
+
 #include "timezonewidget.h"
 
-constexpr double MATH_PI = 3.14159265;
+constexpr static double MATH_PI = 3.14159265;
+
+#ifdef DEBUG_TIMEZONES
+// Adds a label to the timezone with this name
+constexpr static QLatin1Literal ZONE_NAME( "zone" );
+#endif
 
 TimeZoneWidget::TimeZoneWidget( QWidget* parent ) :
     QWidget( parent )
@@ -48,7 +55,12 @@ TimeZoneWidget::TimeZoneWidget( QWidget* parent ) :
     // Zone images
     QStringList zones = QString( ZONES ).split( " ", QString::SkipEmptyParts );
     for ( int i = 0; i < zones.size(); ++i )
+    {
         timeZoneImages.append( QImage( ":/images/timezone_" + zones.at( i ) + ".png" ).scaled( X_SIZE, Y_SIZE, Qt::IgnoreAspectRatio, Qt::SmoothTransformation ) );
+#ifdef DEBUG_TIMEZONES
+        timeZoneImages.last().setText( ZONE_NAME, zones.at( i ) );
+#endif
+    }
 }
 
 
@@ -78,6 +90,15 @@ void TimeZoneWidget::setCurrentLocation( LocaleGlobal::Location location )
     // Set zone
     QPoint pos = getLocationPosition( currentLocation.longitude, currentLocation.latitude );
 
+#ifdef DEBUG_TIMEZONES
+    cDebug() << "Setting location" << location.region << location.zone << location.country;
+    cDebug() << " .. long" << location.longitude << "lat" << location.latitude;
+    cDebug() << " .. x" << pos.x() << "y" << pos.y();
+
+    bool found = false;
+#endif
+
+
     for ( int i = 0; i < timeZoneImages.size(); ++i )
     {
         QImage zone = timeZoneImages[i];
@@ -85,8 +106,21 @@ void TimeZoneWidget::setCurrentLocation( LocaleGlobal::Location location )
         // If not transparent set as current
         if ( zone.pixel( pos ) != RGB_TRANSPARENT )
         {
+#ifdef DEBUG_TIMEZONES
+            // Log *all* the zones that contain this point,
+            // but only pick the first.
+            if ( !found )
+            {
+                currentZoneImage = zone;
+                found = true;
+                cDebug() << " .. First zone found" << i << zone.text( ZONE_NAME );
+            }
+            else
+                cDebug() << " .. Also in zone" << i << zone.text( ZONE_NAME );
+#else
             currentZoneImage = zone;
             break;
+#endif
         }
     }
 
@@ -109,13 +143,27 @@ QPoint TimeZoneWidget::getLocationPosition( double longitude, double latitude )
     double x = ( width / 2.0 + ( width / 2.0 ) * longitude / 180.0 ) + MAP_X_OFFSET * width;
     double y = ( height / 2.0 - ( height / 2.0 ) * latitude / 90.0 ) + MAP_Y_OFFSET * height;
 
-    //Far north, the MAP_Y_OFFSET no longer holds, cancel the Y offset; it's noticeable
+    // Far north, the MAP_Y_OFFSET no longer holds, cancel the Y offset; it's noticeable
     // from 62 degrees north, so scale those 28 degrees as if the world is flat south
     // of there, and we have a funny "rounded" top of the world. In practice the locations
     // of the different cities / regions looks ok -- at least Thule ends up in the right
     // country, and Inuvik isn't in the ocean.
-    if ( latitude > 62.0 )
-        y -= sin( MATH_PI * ( latitude - 62.0 ) / 56.0 ) * MAP_Y_OFFSET * height;
+    if ( latitude > 70.0 )
+        y -= sin( MATH_PI * ( latitude - 70.0 ) / 56.0 ) * MAP_Y_OFFSET * height * 0.8;
+    if ( latitude > 74.0 )
+        y += 4;
+    if ( latitude > 69.0 )
+        y -= 2;
+    if ( latitude > 59.0 )
+        y -= 4 * int( ( latitude - 54.0 ) / 5.0 );
+    if ( latitude > 54.0 )
+        y -= 2;
+    if ( latitude > 49.0 )
+        y -= int ( (latitude - 44.0) / 5.0 );
+    // Far south, some stretching occurs as well, but it is less pronounced.
+    // Move down by 1 pixel per 5 degrees past 10 south
+    if ( latitude < 0 )
+        y += int( (-latitude) / 5.0 );
     // Antarctica isn't shown on the map, but you could try clicking there
     if ( latitude < -60 )
         y = height - 1;
@@ -149,8 +197,28 @@ void TimeZoneWidget::paintEvent( QPaintEvent* )
     // Draw zone image
     painter.drawImage( 0, 0, currentZoneImage );
 
-    // Draw pin
+#ifdef DEBUG_TIMEZONES
     QPoint point = getLocationPosition( currentLocation.longitude, currentLocation.latitude );
+    // Draw latitude lines
+    for ( int y_lat = -50; y_lat < 80 ; y_lat+=5 )
+    {
+        QPen p( y_lat ? Qt::black : Qt::red );
+        p.setWidth( 0 );
+        painter.setPen( p );
+        QPoint latLine0( getLocationPosition( 0, y_lat ) );
+        int llx = latLine0.x() + ((y_lat & 1) ? -10 : 0);
+        int lly = latLine0.y();
+
+        for ( int c = 0 ; c < width ; ++c )
+            painter.drawPoint( c, lly );
+    }
+    // Just a dot in the selected location, no label
+    painter.setPen( Qt::red );
+    painter.drawPoint( point );
+#else
+    // Draw pin at current location
+    QPoint point = getLocationPosition( currentLocation.longitude, currentLocation.latitude );
+
     painter.drawImage( point.x() - pin.width()/2, point.y() - pin.height()/2, pin );
 
     // Draw text and box
@@ -173,6 +241,7 @@ void TimeZoneWidget::paintEvent( QPaintEvent* )
     painter.drawRoundedRect( rect, 3, 3 );
     painter.setPen( Qt::white );
     painter.drawText( rect.x() + 5, rect.bottom() - 4, LocaleGlobal::Location::pretty( currentLocation.zone ) );
+#endif
 
     painter.end();
 }

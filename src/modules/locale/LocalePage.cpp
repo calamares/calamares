@@ -494,13 +494,15 @@ LocalePage::updateGlobalStorage()
     Calamares::JobQueue::instance()->globalStorage()->insert( "locale", bcp47 );
 
     // If we're in chroot mode (normal install mode), then we immediately set the
-    // timezone on the live system.
+    // timezone on the live system. When debugging timezones, don't bother.
+#ifndef DEBUG_TIMEZONES
     if ( Calamares::Settings::instance()->doChroot() )
     {
         QProcess ::execute( "timedatectl",  // depends on systemd
                             { "set-timezone",
                               location.region + '/' + location.zone } );
     }
+#endif
 
     // Preserve those settings that have been made explicit.
     auto newLocale = guessLocaleConfiguration();
