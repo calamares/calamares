@@ -7,7 +7,8 @@ endif()
 # When debugging the timezone widget, add this debugging definition
 # to have a debugging-friendly timezone widget, debug logging,
 # and no intrusive timezone-setting while clicking around.
-add_definitions( -DDEBUG_TIMEZONES )
+#
+# add_definitions( -DDEBUG_TIMEZONES )
 
 include_directories( ${PROJECT_BINARY_DIR}/src/libcalamaresui )
 
