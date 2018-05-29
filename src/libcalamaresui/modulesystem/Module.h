@@ -156,6 +156,17 @@ public:
     virtual void loadSelf() = 0;
 
     /**
+     * @brief Is this an emergency module?
+     *
+     * An emergency module is run even if an error occurs
+     * which would terminate Calamares earlier in the same
+     * *exec* block. Emergency modules in later exec blocks
+     * are not run (in the common case where there is only
+     * one exec block, this doesn't really matter).
+     */
+    bool isEmergency() const { return m_emergency; }
+
+    /**
      * @brief jobs returns any jobs exposed by this module.
      * @return a list of jobs (can be empty).
      */
@@ -176,10 +187,13 @@ protected:
 
 private:
     void loadConfigurationFile( const QString& configFileName ); //throws YAML::Exception
+
     QString m_name;
     QStringList m_requiredModules;
     QString m_directory;
     QString m_instanceId;
+
+    bool m_emergency;
 
     friend void ::operator>>( const QVariantMap& moduleDescriptor,
                               Calamares::Module* m );
