@@ -23,6 +23,8 @@
 
 #include <cmath>
 
+#include "utils/Logger.h"
+
 #include "timezonewidget.h"
 
 constexpr double MATH_PI = 3.14159265;
@@ -75,6 +77,13 @@ void TimeZoneWidget::setCurrentLocation( LocaleGlobal::Location location )
 {
     currentLocation = location;
 
+#ifdef DEBUG_TIMEZONES
+    cDebug() << "Setting location" << location.region << location.zone << location.country;
+    cDebug() << " .. long" << location.longitude << "lat" << location.latitude;
+
+    bool found = false;
+#endif
+
     // Set zone
     QPoint pos = getLocationPosition( currentLocation.longitude, currentLocation.latitude );
 
@@ -85,8 +94,21 @@ void TimeZoneWidget::setCurrentLocation( LocaleGlobal::Location location )
         // If not transparent set as current
         if ( zone.pixel( pos ) != RGB_TRANSPARENT )
         {
+#ifdef DEBUG_TIMEZONES
+            // Log *all* the zones that contain this point,
+            // but only pick the first.
+            if ( !found )
+            {
+                currentZoneImage = zone;
+                found = true;
+                cDebug() << " .. First zone found" << i;
+            }
+            else
+                cDebug() << " .. Also in zone" << i;
+#else
             currentZoneImage = zone;
             break;
+#endif
         }
     }
 
@@ -149,8 +171,28 @@ void TimeZoneWidget::paintEvent( QPaintEvent* )
     // Draw zone image
     painter.drawImage( 0, 0, currentZoneImage );
 
-    // Draw pin
+#ifdef DEBUG_TIMEZONES
     QPoint point = getLocationPosition( currentLocation.longitude, currentLocation.latitude );
+    // Draw latitude lines
+    for ( int y_lat = -50; y_lat < 80 ; y_lat+=5 )
+    {
+        QPen p( y_lat ? Qt::black : Qt::red );
+        p.setWidth( 0 );
+        painter.setPen( p );
+        QPoint latLine0( getLocationPosition( 0, y_lat ) );
+        int llx = latLine0.x() + ((y_lat & 1) ? -10 : 0);
+        int lly = latLine0.y();
+
+        for ( int c = 0 ; c < width ; ++c )
+            painter.drawPoint( c, lly );
+    }
+    // Just a dot in the selected location, no label
+    painter.setPen( Qt::red );
+    painter.drawPoint( point );
+#else
+    // Draw pin at current location
+    QPoint point = getLocationPosition( currentLocation.longitude, currentLocation.latitude );
+
     painter.drawImage( point.x() - pin.width()/2, point.y() - pin.height()/2, pin );
 
     // Draw text and box
@@ -173,6 +215,7 @@ void TimeZoneWidget::paintEvent( QPaintEvent* )
     painter.drawRoundedRect( rect, 3, 3 );
     painter.setPen( Qt::white );
     painter.drawText( rect.x() + 5, rect.bottom() - 4, LocaleGlobal::Location::pretty( currentLocation.zone ) );
+#endif
 
     painter.end();
 }
