@@ -148,11 +148,21 @@ QPoint TimeZoneWidget::getLocationPosition( double longitude, double latitude )
     // of there, and we have a funny "rounded" top of the world. In practice the locations
     // of the different cities / regions looks ok -- at least Thule ends up in the right
     // country, and Inuvik isn't in the ocean.
-    if ( latitude > 62.0 )
-        y -= sin( MATH_PI * ( latitude - 62.0 ) / 56.0 ) * MAP_Y_OFFSET * height;
+    if ( latitude > 70.0 )
+        y -= sin( MATH_PI * ( latitude - 70.0 ) / 56.0 ) * MAP_Y_OFFSET * height * 0.8;
+    if ( latitude > 74.0 )
+        y += 4;
+    if ( latitude > 69.0 )
+        y -= 2;
+    if ( latitude > 59.0 )
+        y -= 4 * int( ( latitude - 54.0 ) / 5.0 );
+    if ( latitude > 54.0 )
+        y -= 2;
+    if ( latitude > 49.0 )
+        y -= int ( (latitude - 44.0) / 5.0 );
     // Far south, some stretching occurs as well, but it is less pronounced.
     // Move down by 1 pixel per 5 degrees past 10 south
-    if ( latitude < - 14 )
+    if ( latitude < 0 )
         y += int( (-latitude) / 5.0 );
     // Antarctica isn't shown on the map, but you could try clicking there
     if ( latitude < -60 )
