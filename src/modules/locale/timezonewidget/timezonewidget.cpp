@@ -27,7 +27,12 @@
 
 #include "timezonewidget.h"
 
-constexpr double MATH_PI = 3.14159265;
+constexpr static double MATH_PI = 3.14159265;
+
+#ifdef DEBUG_TIMEZONES
+// Adds a label to the timezone with this name
+constexpr static QLatin1Literal ZONE_NAME( "zone" );
+#endif
 
 TimeZoneWidget::TimeZoneWidget( QWidget* parent ) :
     QWidget( parent )
@@ -50,7 +55,12 @@ TimeZoneWidget::TimeZoneWidget( QWidget* parent ) :
     // Zone images
     QStringList zones = QString( ZONES ).split( " ", QString::SkipEmptyParts );
     for ( int i = 0; i < zones.size(); ++i )
+    {
         timeZoneImages.append( QImage( ":/images/timezone_" + zones.at( i ) + ".png" ).scaled( X_SIZE, Y_SIZE, Qt::IgnoreAspectRatio, Qt::SmoothTransformation ) );
+#ifdef DEBUG_TIMEZONES
+        timeZoneImages.last().setText( ZONE_NAME, zones.at( i ) );
+#endif
+    }
 }
 
 
@@ -77,15 +87,17 @@ void TimeZoneWidget::setCurrentLocation( LocaleGlobal::Location location )
 {
     currentLocation = location;
 
+    // Set zone
+    QPoint pos = getLocationPosition( currentLocation.longitude, currentLocation.latitude );
+
 #ifdef DEBUG_TIMEZONES
     cDebug() << "Setting location" << location.region << location.zone << location.country;
     cDebug() << " .. long" << location.longitude << "lat" << location.latitude;
+    cDebug() << " .. x" << pos.x() << "y" << pos.y();
 
     bool found = false;
 #endif
 
-    // Set zone
-    QPoint pos = getLocationPosition( currentLocation.longitude, currentLocation.latitude );
 
     for ( int i = 0; i < timeZoneImages.size(); ++i )
     {
@@ -101,10 +113,10 @@ void TimeZoneWidget::setCurrentLocation( LocaleGlobal::Location location )
             {
                 currentZoneImage = zone;
                 found = true;
-                cDebug() << " .. First zone found" << i;
+                cDebug() << " .. First zone found" << i << zone.text( ZONE_NAME );
             }
             else
-                cDebug() << " .. Also in zone" << i;
+                cDebug() << " .. Also in zone" << i << zone.text( ZONE_NAME );
 #else
             currentZoneImage = zone;
             break;
