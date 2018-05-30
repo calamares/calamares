@@ -64,7 +64,7 @@ Module::fromDescriptor( const QVariantMap& moduleDescriptor,
                         const QString& configFileName,
                         const QString& moduleDirectory )
 {
-    Module* m = nullptr;
+    std::unique_ptr<Module> m;
 
     QString typeString = moduleDescriptor.value( "type" ).toString();
     QString intfString = moduleDescriptor.value( "interface" ).toString();
@@ -79,12 +79,12 @@ Module::fromDescriptor( const QVariantMap& moduleDescriptor,
     {
         if ( intfString == "qtplugin" )
         {
-            m = new ViewModule();
+            m.reset( new ViewModule() );
         }
         else if ( intfString == "pythonqt" )
         {
 #ifdef WITH_PYTHONQT
-            m = new PythonQtViewModule();
+            m.reset( new PythonQtViewModule() );
 #else
             cError() << "PythonQt view modules are not supported in this version of Calamares.";
 #endif
@@ -96,16 +96,16 @@ Module::fromDescriptor( const QVariantMap& moduleDescriptor,
     {
         if ( intfString == "qtplugin" )
         {
-            m = new CppJobModule();
+            m.reset( new CppJobModule() );
         }
         else if ( intfString == "process" )
         {
-            m = new ProcessJobModule();
+            m.reset( new ProcessJobModule() );
         }
         else if ( intfString == "python" )
         {
 #ifdef WITH_PYTHON
-            m = new PythonJobModule();
+            m.reset( new PythonJobModule() );
 #else
             cError() << "Python modules are not supported in this version of Calamares.";
 #endif
@@ -130,7 +130,6 @@ Module::fromDescriptor( const QVariantMap& moduleDescriptor,
     else
     {
         cError() << "Bad module directory" << moduleDirectory << "for" << instanceId;
-        delete m;
         return nullptr;
     }
 
@@ -144,10 +143,9 @@ Module::fromDescriptor( const QVariantMap& moduleDescriptor,
     catch ( YAML::Exception& e )
     {
         cError() << "YAML parser error " << e.what();
-        delete m;
         return nullptr;
     }
-    return m;
+    return m.release();
 }
 
 
