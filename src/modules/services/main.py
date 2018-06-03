@@ -30,11 +30,11 @@ def run():
     services = libcalamares.job.configuration['services']
     targets = libcalamares.job.configuration['targets']
     disable = libcalamares.job.configuration['disable']
+    mask = libcalamares.job.configuration['mask']
 
-    # note that the "systemctl enable" and "systemctl disable" commands used
-    # here will work in a chroot; in fact, they are the only systemctl commands
-    # that support that, see:
-    # http://0pointer.de/blog/projects/changing-roots.html
+    # note that the "systemctl enable" , "systemctl disable" and "systemctl mask"
+    # commands used here will work in a chroot; in fact, they are the only systemctl
+    # commands that support that, see: http://0pointer.de/blog/projects/changing-roots.html
 
     # enable services
     for svc in services:
@@ -66,7 +66,7 @@ def run():
         if ec != 0:
             if tgt['mandatory']:
                 return ("Cannot enable systemd target {}".format(tgt['name']),
-                        "systemctl enable call in chroot returned error code"
+                        "systemctl enable call in chroot returned error code "
                         "{}".format(ec)
                         )
             else:
@@ -87,7 +87,7 @@ def run():
             if dbl['mandatory']:
                 return ("Cannot disable systemd service"
                         "{}".format(dbl['name']),
-                        "systemctl disable call in chroot returned error code"
+                        "systemctl disable call in chroot returned error code "
                         "{}".format(ec))
             else:
                 libcalamares.utils.debug(
@@ -98,4 +98,29 @@ def run():
                     "{}".format(ec)
                     )
 
+    # for sure it does not matter and we give a dman on broken systems
+    # also @calamares team need take all the bugs , bc as example 'I'
+    # as this feature author will give a ... once is merged , right ?
+
+    # be flexible , so *allow hell to break*
+    # .services , targets , timers .. whatever
+    for msk in mask:
+        ec = libcalamares.utils.target_env_call(
+            ['systemctl', 'mask', '{}'.format(msk['name'])]
+            )
+
+        if ec != 0:
+            if msk['mandatory']:
+                return ("!!Lucky you!!. Cannot mask "
+                        "{}".format(msk['name']),
+                        "systemctl mask call in chroot returned error code "
+                        "{}".format(ec))
+            else:
+                libcalamares.utils.debug(
+                    "!!Lucky you!!. Cannot mask {}".format(msk['name'])
+                     )
+                libcalamares.utils.debug(
+                    "systemctl mask call in chroot returned error code "
+                    "{}".format(ec)
+                     )
     return None
