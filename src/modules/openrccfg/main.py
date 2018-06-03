@@ -27,22 +27,25 @@ from os.path import exists, join
 
 
 class OpenrcController:
-    """This is the service controller
+    """This is the openrc service controller
     """
 
     def __init__(self):
         self.root = libcalamares.globalstorage.value('rootMountPoint')
         self.services = libcalamares.job.configuration.get('services', [])
+        self.initdDir = libcalamares.job.configuration['initdDir']
+        self.runlevelsDir = libcalamares.job.configuration['runlevelsDir']
 
     def update(self, state):
-        """Update init scripts
+        """call rc-update for each service listed
         """
 
         for svc in self.services[state]:
-            if exists(self.root + "/etc/init.d/" + svc["name"]):
-                target_env_call(
-                    ["rc-update", state, svc["name"], svc["runlevel"]]
-                )
+            if exists(self.root + self.initdDir + "/" + svc["name"]):
+                if exists(self.root + self.runlevelsDir + "/" + svc["runlevel"]):
+                    target_env_call(
+                        ["rc-update", state, svc["name"], svc["runlevel"]]
+                    )
 
     def run(self):
         """Run the controller
