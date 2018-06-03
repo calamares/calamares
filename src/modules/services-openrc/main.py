@@ -35,7 +35,7 @@ def run():
     # enable services
     for svc in services:
         ec = libcalamares.utils.target_env_call(
-            ['rc-update', 'add', '{}'.format(svc['name']), 'default']
+            ['rc-update', 'add', '{}'.format(svc['name'])]
             )
 
         if ec != 0:
@@ -56,7 +56,7 @@ def run():
     # disable services
     for dbl in disable:
         ec = libcalamares.utils.target_env_call(
-            ['rc-update', 'del', '{}'.format(dbl['name']), 'default']
+            ['rc-update', 'del', '{}'.format(dbl['name'])]
             )
 
         if ec != 0:
