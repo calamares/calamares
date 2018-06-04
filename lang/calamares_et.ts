@@ -485,12 +485,12 @@ Installija sulgub ja kõik muutused kaovad.</translation>
     <message>
         <location filename="../src/libcalamares/utils/CommandList.cpp" line="128"/>
         <source>The command runs in the host environment and needs to know the root path, but no rootMountPoint is defined.</source>
-        <translation type="unfinished"/>
+        <translation>See käsklus käivitatakse hostikeskkonnas ning peab teadma juurteed, kuid rootMountPoint pole defineeritud.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/utils/CommandList.cpp" line="139"/>
         <source>The command needs to know the user&apos;s name, but no username is defined.</source>
-        <translation type="unfinished"/>
+        <translation>Käsklus peab teadma kasutaja nime, aga kasutajanimi pole defineeritud.</translation>
     </message>
 </context>
 <context>
@@ -1665,12 +1665,12 @@ Installija sulgub ja kõik muutused kaovad.</translation>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="193"/>
         <source>Can not create new partition</source>
-        <translation type="unfinished"/>
+        <translation>Uut partitsiooni ei saa luua</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="194"/>
         <source>The partition table on %1 already has %2 primary partitions, and no more can be added. Please remove one primary partition and add an extended partition, instead.</source>
-        <translation type="unfinished"/>
+        <translation>Partitsioonitabel kohas %1 juba omab %2 peamist partitsiooni ning rohkem juurde ei saa lisada. Palun eemalda selle asemel üks peamine partitsioon ja lisa juurde laiendatud partitsioon. </translation>
     </message>
 </context>
 <context>
@@ -1816,17 +1816,17 @@ Installija sulgub ja kõik muutused kaovad.</translation>
     <message>
         <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="83"/>
         <source>Saving files for later ...</source>
-        <translation type="unfinished"/>
+        <translation>Salvestan faile hiljemaks...</translation>
     </message>
     <message>
         <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="89"/>
         <source>No files configured to save for later.</source>
-        <translation type="unfinished"/>
+        <translation>Ühtegi faili ei konfigureeritud hiljemaks salvestamiseks.</translation>
     </message>
     <message>
         <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="145"/>
         <source>Not all of the configured files could be preserved.</source>
-        <translation type="unfinished"/>
+        <translation>Ühtegi konfigureeritud faili ei suudetud säilitada.</translation>
     </message>
 </context>
 <context>

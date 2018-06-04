@@ -487,12 +487,12 @@ Pemasangan dapat dilanjutkan, namun beberapa fitur akan dinonfungsikan.</transla
     <message>
         <location filename="../src/libcalamares/utils/CommandList.cpp" line="128"/>
         <source>The command runs in the host environment and needs to know the root path, but no rootMountPoint is defined.</source>
-        <translation type="unfinished"/>
+        <translation>Perintah berjalan di lingkungan host dan perlu diketahui alur root-nya, tetapi bukan rootMountPoint yang ditentukan.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/utils/CommandList.cpp" line="139"/>
         <source>The command needs to know the user&apos;s name, but no username is defined.</source>
-        <translation type="unfinished"/>
+        <translation>Perintah perlu diketahui nama si pengguna, tetapi bukan nama pengguna yang ditentukan.</translation>
     </message>
 </context>
 <context>
@@ -1667,12 +1667,12 @@ Pemasangan dapat dilanjutkan, namun beberapa fitur akan dinonfungsikan.</transla
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="193"/>
         <source>Can not create new partition</source>
-        <translation type="unfinished"/>
+        <translation>Tidak bisa menciptakan partisi baru.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="194"/>
         <source>The partition table on %1 already has %2 primary partitions, and no more can be added. Please remove one primary partition and add an extended partition, instead.</source>
-        <translation type="unfinished"/>
+        <translation>Partisi tabel pada %1 sudah memiliki %2 partisi primer, dan tidak ada lagi yang bisa ditambahkan. Silakan hapus salah satu partisi primer dan tambahkan sebuah partisi extended, sebagai gantinya.</translation>
     </message>
 </context>
 <context>
@@ -1818,17 +1818,17 @@ Pemasangan dapat dilanjutkan, namun beberapa fitur akan dinonfungsikan.</transla
     <message>
         <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="83"/>
         <source>Saving files for later ...</source>
-        <translation type="unfinished"/>
+        <translation>Menyimpan file untuk kemudian...</translation>
     </message>
     <message>
         <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="89"/>
         <source>No files configured to save for later.</source>
-        <translation type="unfinished"/>
+        <translation>Tiada file yang dikonfigurasi untuk penyimpanan nanti.</translation>
     </message>
     <message>
         <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="145"/>
         <source>Not all of the configured files could be preserved.</source>
-        <translation type="unfinished"/>
+        <translation>Tidak semua file yang dikonfigurasi dapat dipertahankan.</translation>
     </message>
 </context>
 <context>
