@@ -33,6 +33,7 @@
 #include "jobs/ClearTempMountsJob.h"
 #include "jobs/CreatePartitionJob.h"
 #include "jobs/CreatePartitionTableJob.h"
+#include "jobs/CreateVolumeGroupJob.h"
 #include "jobs/DeletePartitionJob.h"
 #include "jobs/FillGlobalStorageJob.h"
 #include "jobs/FormatPartitionJob.h"
@@ -44,10 +45,12 @@
 
 // KPMcore
 #include <kpmcore/core/device.h>
+#include <kpmcore/core/lvmdevice.h>
 #include <kpmcore/core/partition.h>
 #include <kpmcore/backend/corebackend.h>
 #include <kpmcore/backend/corebackendmanager.h>
 #include <kpmcore/fs/filesystemfactory.h>
+#include <kpmcore/fs/lvm2_pv.h>
 
 // Qt
 #include <QStandardItemModel>
@@ -177,6 +180,8 @@ PartitionCoreModule::doInit()
 
     m_bootLoaderModel->init( bootLoaderDevices );
 
+    scanForLVMPVs();
+
     //FIXME: this should be removed in favor of
     //       proper KPM support for EFI
     if ( PartUtils::isEfiSystem() )
@@ -259,6 +264,27 @@ PartitionCoreModule::createPartition( Device* device,
         SetPartFlagsJob* fJob = new SetPartFlagsJob( device, partition, flags );
         deviceInfo->jobs << Calamares::job_ptr( fJob );
     }
+
+    refresh();
+}
+
+void
+PartitionCoreModule::createVolumeGroup( QString &vgName,
+                                        QVector< const Partition* > pvList,
+                                        qint32 peSize )
+{
+    CreateVolumeGroupJob* job = new CreateVolumeGroupJob( vgName, pvList, peSize );
+    job->updatePreview();
+
+    LvmDevice* device = new LvmDevice(vgName);
+
+    for ( const Partition* p : pvList )
+        device->physicalVolumes() << p;
+
+    DeviceInfo* deviceInfo = new DeviceInfo( device );
+
+    m_deviceInfos << deviceInfo;
+    deviceInfo->jobs << Calamares::job_ptr( job );
 
     refresh();
 }
@@ -432,6 +458,12 @@ PartitionCoreModule::efiSystemPartitions() const
     return m_efiSystemPartitions;
 }
 
+QList< const Partition* >
+PartitionCoreModule::lvmPVs() const
+{
+    return m_lvmPVs;
+}
+
 void
 PartitionCoreModule::dumpQueue() const
 {
@@ -521,6 +553,22 @@ PartitionCoreModule::scanForEfiSystemPartitions()
         cWarning() << "system is EFI but no EFI system partitions found.";
 
     m_efiSystemPartitions = efiSystemPartitions;
+}
+
+void
+PartitionCoreModule::scanForLVMPVs()
+{
+    m_lvmPVs.clear();
+
+    QList< Device* > devices;
+
+    for ( DeviceInfo* deviceInfo : m_deviceInfos )
+        devices << deviceInfo->device.data();
+
+    LvmDevice::scanSystemLVM( devices );
+
+    for ( auto p : LVM::pvList )
+        m_lvmPVs << p.partition().data();
 }
 
 PartitionCoreModule::DeviceInfo*

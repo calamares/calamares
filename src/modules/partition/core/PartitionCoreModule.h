@@ -111,6 +111,8 @@ public:
     void createPartition( Device* device, Partition* partition,
                           PartitionTable::Flags flags = PartitionTable::FlagNone );
 
+    void createVolumeGroup( QString &vgName, QVector< const Partition* > pvList, qint32 peSize );
+
     void deletePartition( Device* device, Partition* partition );
 
     void formatPartition( Device* device, Partition* partition );
@@ -131,6 +133,8 @@ public:
     bool hasRootMountPoint() const;
 
     QList< Partition* > efiSystemPartitions() const;
+
+    QList< const Partition* > lvmPVs() const;
 
     /**
      * @brief findPartitionByMountPoint returns a Partition* for a given mount point.
@@ -194,6 +198,7 @@ private:
     };
     QList< DeviceInfo* > m_deviceInfos;
     QList< Partition* > m_efiSystemPartitions;
+    QList< const Partition* > m_lvmPVs;
 
     DeviceModel* m_deviceModel;
     BootLoaderModel* m_bootLoaderModel;
@@ -205,6 +210,7 @@ private:
     void updateHasRootMountPoint();
     void updateIsDirty();
     void scanForEfiSystemPartitions();
+    void scanForLVMPVs();
 
     DeviceInfo* infoForDevice( const Device* ) const;
 

@@ -19,6 +19,7 @@
 #include "core/PartitionInfo.h"
 
 // KPMcore
+#include <kpmcore/core/lvmdevice.h>
 #include <kpmcore/core/partition.h>
 
 // Qt
@@ -64,6 +65,9 @@ reset( Partition* partition )
 bool
 isDirty( Partition* partition )
 {
+    if ( LvmDevice::s_DirtyPVs.contains( partition ) )
+        return true;
+
     return !mountPoint( partition ).isEmpty()
            || format( partition );
 }

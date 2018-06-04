@@ -38,6 +38,7 @@ if ( KPMcore_FOUND )
             gui/DeviceInfoWidget.cpp
             gui/EditExistingPartitionDialog.cpp
             gui/EncryptWidget.cpp
+            gui/ListPhysicalVolumeWidgetItem.cpp
             gui/PartitionPage.cpp
             gui/PartitionBarsView.cpp
             gui/PartitionLabelsView.cpp
@@ -47,10 +48,12 @@ if ( KPMcore_FOUND )
             gui/PrettyRadioButton.cpp
             gui/ScanningDialog.cpp
             gui/ReplaceWidget.cpp
+            gui/VolumeGroupBaseDialog.cpp
             jobs/ClearMountsJob.cpp
             jobs/ClearTempMountsJob.cpp
             jobs/CreatePartitionJob.cpp
             jobs/CreatePartitionTableJob.cpp
+            jobs/CreateVolumeGroupJob.cpp
             jobs/DeletePartitionJob.cpp
             jobs/FillGlobalStorageJob.cpp
             jobs/FormatPartitionJob.cpp
@@ -65,6 +68,7 @@ if ( KPMcore_FOUND )
             gui/EncryptWidget.ui
             gui/PartitionPage.ui
             gui/ReplaceWidget.ui
+            gui/VolumeGroupBaseDialog.ui
         LINK_PRIVATE_LIBRARIES
             kpmcore
             calamaresui

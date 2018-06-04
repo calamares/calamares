@@ -30,6 +30,7 @@
 #include "gui/CreatePartitionDialog.h"
 #include "gui/EditExistingPartitionDialog.h"
 #include "gui/ScanningDialog.h"
+#include "gui/VolumeGroupBaseDialog.h"
 
 #include "ui_PartitionPage.h"
 #include "ui_CreatePartitionTableDialog.h"
@@ -99,6 +100,7 @@ PartitionPage::PartitionPage( PartitionCoreModule* core, QWidget* parent )
 
     connect( m_ui->partitionTreeView, &QAbstractItemView::doubleClicked, this, &PartitionPage::onPartitionViewActivated );
     connect( m_ui->revertButton, &QAbstractButton::clicked, this, &PartitionPage::onRevertClicked );
+    connect( m_ui->newVolumeGroupButton, &QAbstractButton::clicked, this, &PartitionPage::onNewVolumeGroupClicked );
     connect( m_ui->newPartitionTableButton, &QAbstractButton::clicked, this, &PartitionPage::onNewPartitionTableClicked );
     connect( m_ui->createButton, &QAbstractButton::clicked, this, &PartitionPage::onCreateClicked );
     connect( m_ui->editButton, &QAbstractButton::clicked, this, &PartitionPage::onEditClicked );
@@ -176,6 +178,22 @@ PartitionPage::onNewPartitionTableClicked()
     // PartionModelReset isn't emmited after createPartitionTable, so we have to manually update
     // the bootLoader index after the reset.
     updateBootLoaderIndex();
+}
+
+void
+PartitionPage::onNewVolumeGroupClicked()
+{
+    QString vgName;
+    qint32 peSize = 4;
+
+    QPointer< VolumeGroupBaseDialog > dlg = new VolumeGroupBaseDialog( vgName, m_core->lvmPVs(), peSize, this );
+
+    if ( dlg->exec() == QDialog::Accepted )
+    {
+
+    }
+
+    delete dlg;
 }
 
 void

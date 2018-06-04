@@ -50,6 +50,7 @@ private:
     PartitionCoreModule* m_core;
     void updateButtons();
     void onNewPartitionTableClicked();
+    void onNewVolumeGroupClicked();
     void onCreateClicked();
     void onEditClicked();
     void onDeleteClicked();
