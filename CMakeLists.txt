@@ -37,6 +37,7 @@ cmake_minimum_required( VERSION 3.2 )
 ### OPTIONS
 #
 option( INSTALL_CONFIG "Install configuration files" ON )
+option( INSTALL_POLKIT "Install Polkit configuration" ON )
 option( BUILD_TESTING "Build the testing tree." ON )
 option( WITH_PYTHON "Enable Python modules API (requires Boost.Python)." ON )
 option( WITH_PYTHONQT "Enable next generation Python modules API (experimental, requires PythonQt)." ON )
@@ -197,7 +198,18 @@ include( CMakeColors )
 #
 find_package( Qt5 ${QT_VERSION} CONFIG REQUIRED Core Gui Widgets LinguistTools Svg Quick QuickWidgets )
 find_package( YAMLCPP ${YAMLCPP_VERSION} REQUIRED )
-find_package( PolkitQt5-1 REQUIRED )
+if( INSTALL_POLKIT )
+    find_package( PolkitQt5-1 REQUIRED )
+else()
+    # Find it anyway, for dependencies-reporting
+    find_package( PolkitQt5-1 )
+endif()
+set_package_properties(
+    PolkitQt5-1 PROPERTIES
+    DESCRIPTION "Qt5 support for Polkit"
+    URL "https://cgit.kde.org/polkit-qt-1.git"
+    PURPOSE "PolkitQt5-1 helps with installing Polkit configuration"
+)
 
 # Find ECM once, and add it to the module search path; Calamares
 # modules that need ECM can do
@@ -454,12 +466,14 @@ if( INSTALL_CONFIG )
     )
 endif()
 
-install(
-  FILES
-      com.github.calamares.calamares.policy
-  DESTINATION
-      "${POLKITQT-1_POLICY_FILES_INSTALL_DIR}"
-)
+if( INSTALL_POLKIT )
+    install(
+        FILES
+            com.github.calamares.calamares.policy
+        DESTINATION
+          "${POLKITQT-1_POLICY_FILES_INSTALL_DIR}"
+    )
+endif()
 
 install(
   FILES
