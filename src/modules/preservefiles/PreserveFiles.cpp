@@ -93,7 +93,7 @@ Calamares::JobResult PreserveFiles::exec()
         prefix.append( '/' );
 
     int count = 0;
-    for ( const auto it : m_items )
+    for ( const auto& it : m_items )
     {
         QString source = it.source;
         QString dest = prefix + atReplacements( it.dest );
@@ -162,7 +162,7 @@ void PreserveFiles::setConfigurationMap(const QVariantMap& configurationMap)
 
     QVariantList l = files.toList();
     unsigned int c = 0;
-    for ( const auto li : l )
+    for ( const auto& li : l )
     {
         if ( li.type() == QVariant::String )
         {
