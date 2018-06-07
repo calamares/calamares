@@ -290,55 +290,6 @@ list( SORT CALAMARES_TRANSLATION_LANGUAGES )
 
 add_subdirectory( lang )  # i18n tools
 
-set( CALAMARES_VERSION ${CALAMARES_VERSION_MAJOR}.${CALAMARES_VERSION_MINOR}.${CALAMARES_VERSION_PATCH} )
-set( CALAMARES_VERSION_SHORT "${CALAMARES_VERSION}" )
-if( CALAMARES_VERSION_RC )
-    set( CALAMARES_VERSION ${CALAMARES_VERSION}rc${CALAMARES_VERSION_RC} )
-endif()
-
-# additional info for non-release builds
-if( NOT BUILD_RELEASE AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/.git/" )
-    include( CMakeDateStamp )
-    set( CALAMARES_VERSION_DATE "${CMAKE_DATESTAMP_YEAR}${CMAKE_DATESTAMP_MONTH}${CMAKE_DATESTAMP_DAY}" )
-    if( CALAMARES_VERSION_DATE GREATER 0 )
-        set( CALAMARES_VERSION ${CALAMARES_VERSION}.${CALAMARES_VERSION_DATE} )
-    endif()
-
-    include( CMakeVersionSource )
-    if( CMAKE_VERSION_SOURCE )
-        set( CALAMARES_VERSION ${CALAMARES_VERSION}-${CMAKE_VERSION_SOURCE} )
-    endif()
-endif()
-
-# enforce using constBegin, constEnd for const-iterators
-add_definitions( "-DQT_STRICT_ITERATORS" )
-
-# set paths
-set( CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}" )
-set( CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}" )
-set( CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}" )
-
-# Better default installation paths: GNUInstallDirs defines
-# CMAKE_INSTALL_FULL_SYSCONFDIR to be CMAKE_INSTALL_PREFIX/etc by default
-# but we really want /etc
-if( NOT DEFINED CMAKE_INSTALL_SYSCONFDIR )
-    set( CMAKE_INSTALL_SYSCONFDIR "/etc" )
-endif()
-
-# make predefined install dirs available everywhere
-include( GNUInstallDirs )
-
-# make uninstall support
-configure_file(
-    "${CMAKE_CURRENT_SOURCE_DIR}/cmake_uninstall.cmake.in"
-    "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake"
-    IMMEDIATE @ONLY
-)
-
-# Early configure these files as we need them later on
-set( CALAMARES_CMAKE_DIR "${CMAKE_SOURCE_DIR}/CMakeModules" )
-set( CALAMARES_LIBRARIES calamares )
-
 
 ### Example Distro
 #
@@ -391,20 +342,64 @@ endif()
 # "http://tldp.org/HOWTO/SquashFS-HOWTO/creatingandusing.html"
 add_feature_info( ExampleDistro ${mksquashfs_FOUND} "Create example-distro target.")
 
+
+### CALAMARES PROPER
+#
+set( CALAMARES_VERSION ${CALAMARES_VERSION_MAJOR}.${CALAMARES_VERSION_MINOR}.${CALAMARES_VERSION_PATCH} )
+set( CALAMARES_VERSION_SHORT "${CALAMARES_VERSION}" )
+if( CALAMARES_VERSION_RC )
+    set( CALAMARES_VERSION ${CALAMARES_VERSION}rc${CALAMARES_VERSION_RC} )
+endif()
+
+# additional info for non-release builds
+if( NOT BUILD_RELEASE AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/.git/" )
+    include( CMakeDateStamp )
+    set( CALAMARES_VERSION_DATE "${CMAKE_DATESTAMP_YEAR}${CMAKE_DATESTAMP_MONTH}${CMAKE_DATESTAMP_DAY}" )
+    if( CALAMARES_VERSION_DATE GREATER 0 )
+        set( CALAMARES_VERSION ${CALAMARES_VERSION}.${CALAMARES_VERSION_DATE} )
+    endif()
+
+    include( CMakeVersionSource )
+    if( CMAKE_VERSION_SOURCE )
+        set( CALAMARES_VERSION ${CALAMARES_VERSION}-${CMAKE_VERSION_SOURCE} )
+    endif()
+endif()
+
+# enforce using constBegin, constEnd for const-iterators
+add_definitions( "-DQT_STRICT_ITERATORS" )
+
+# set paths
+set( CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}" )
+set( CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}" )
+set( CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}" )
+
+# Better default installation paths: GNUInstallDirs defines
+# CMAKE_INSTALL_FULL_SYSCONFDIR to be CMAKE_INSTALL_PREFIX/etc by default
+# but we really want /etc
+if( NOT DEFINED CMAKE_INSTALL_SYSCONFDIR )
+    set( CMAKE_INSTALL_SYSCONFDIR "/etc" )
+endif()
+
+# make predefined install dirs available everywhere
+include( GNUInstallDirs )
+
+# make uninstall support
+configure_file(
+    "${CMAKE_CURRENT_SOURCE_DIR}/cmake_uninstall.cmake.in"
+    "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake"
+    IMMEDIATE @ONLY
+)
+
+# Early configure these files as we need them later on
+set( CALAMARES_CMAKE_DIR "${CMAKE_SOURCE_DIR}/CMakeModules" )
+set( CALAMARES_LIBRARIES calamares )
+
 add_subdirectory( src )
 
 add_feature_info(Python ${WITH_PYTHON} "Python job modules")
 add_feature_info(PythonQt ${WITH_PYTHONQT} "Python view modules")
 add_feature_info(Config ${INSTALL_CONFIG} "Install Calamares configuration")
 add_feature_info(KCrash ${WITH_KF5Crash} "Crash dumps via KCrash")
-
-feature_summary(WHAT ALL)
-
-get_directory_property( SKIPPED_MODULES
-    DIRECTORY src/modules
-    DEFINITION LIST_SKIPPED_MODULES
-)
-calamares_explain_skipped_modules( ${SKIPPED_MODULES} )
 
 # Add all targets to the build-tree export set
 set( CMAKE_INSTALL_CMAKEDIR "${CMAKE_INSTALL_LIBDIR}/cmake/Calamares" CACHE PATH  "Installation directory for CMake files" )
@@ -490,3 +485,13 @@ configure_file(
 add_custom_target( uninstall
     COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake
 )
+
+### CMAKE SUMMARY REPORT
+#
+feature_summary(WHAT ALL)
+
+get_directory_property( SKIPPED_MODULES
+    DIRECTORY src/modules
+    DEFINITION LIST_SKIPPED_MODULES
+)
+calamares_explain_skipped_modules( ${SKIPPED_MODULES} )
