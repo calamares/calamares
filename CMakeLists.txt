@@ -329,7 +329,6 @@ configure_file(
 set( CALAMARES_CMAKE_DIR "${CMAKE_SOURCE_DIR}/CMakeModules" )
 set( CALAMARES_LIBRARIES calamares )
 
-set( THIRDPARTY_DIR "${CMAKE_SOURCE_DIR}/thirdparty" )
 
 ### Example Distro
 #
@@ -382,7 +381,6 @@ endif()
 # "http://tldp.org/HOWTO/SquashFS-HOWTO/creatingandusing.html"
 add_feature_info( ExampleDistro ${mksquashfs_FOUND} "Create example-distro target.")
 
-# add_subdirectory( thirdparty )
 add_subdirectory( src )
 
 add_feature_info(Python ${WITH_PYTHON} "Python job modules")
