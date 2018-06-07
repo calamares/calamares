@@ -33,12 +33,33 @@ project( calamares C CXX )
 
 cmake_minimum_required( VERSION 3.2 )
 
-set( CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMakeModules" )
 
-set( CMAKE_CXX_STANDARD 14 )
-set( CMAKE_CXX_STANDARD_REQUIRED ON )
-set( CMAKE_C_STANDARD 99 )
-set( CMAKE_C_STANDARD_REQUIRED ON )
+### OPTIONS
+#
+option( INSTALL_CONFIG "Install configuration files" ON )
+option( BUILD_TESTING "Build the testing tree." ON )
+option( WITH_PYTHON "Enable Python modules API (requires Boost.Python)." ON )
+option( WITH_PYTHONQT "Enable next generation Python modules API (experimental, requires PythonQt)." ON )
+option( WITH_KF5Crash "Enable crash reporting with KCrash." ON )
+
+
+### Calamares application info
+#
+set( CALAMARES_ORGANIZATION_NAME "Calamares" )
+set( CALAMARES_ORGANIZATION_DOMAIN "github.com/calamares" )
+set( CALAMARES_APPLICATION_NAME  "Calamares" )
+set( CALAMARES_DESCRIPTION_SUMMARY 
+    "The distribution-independent installer framework" )
+
+set( CALAMARES_VERSION_MAJOR 3 )
+set( CALAMARES_VERSION_MINOR 2 )
+set( CALAMARES_VERSION_PATCH 0 )
+set( CALAMARES_VERSION_RC 0 )
+
+
+### CMAKE SETUP
+#
+set( CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMakeModules" )
 
 # CMake 3.9, 3.10 compatibility
 if( POLICY CMP0071 )
@@ -52,8 +73,15 @@ if(NOT CMAKE_VERSION VERSION_LESS "3.10.0")
     )
 endif()
 
-    set( CMAKE_C_FLAGS                  "${CMAKE_C_FLAGS} -Wall" )
 
+### C++ SETUP
+#
+set( CMAKE_CXX_STANDARD 14 )
+set( CMAKE_CXX_STANDARD_REQUIRED ON )
+set( CMAKE_C_STANDARD 99 )
+set( CMAKE_C_STANDARD_REQUIRED ON )
+
+set( CMAKE_C_FLAGS                  "${CMAKE_C_FLAGS} -Wall" )
 if( CMAKE_CXX_COMPILER_ID MATCHES "Clang" )
     message( STATUS "Found Clang ${CMAKE_CXX_COMPILER_VERSION}, setting up Clang-specific compiler flags." )
     set( CMAKE_C_FLAGS                  "${CMAKE_C_FLAGS} -Wall" )
@@ -138,12 +166,6 @@ find_package(ECM ${ECM_VERSION} NO_MODULE)
 if( ECM_FOUND )
     set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${CMAKE_MODULE_PATH})
 endif()
-
-option( INSTALL_CONFIG "Install configuration files" ON )
-option( WITH_PYTHON "Enable Python modules API (requires Boost.Python)." ON )
-option( WITH_PYTHONQT "Enable next generation Python modules API (experimental, requires PythonQt)." ON )
-option( WITH_KF5Crash "Enable crash reporting with KCrash." ON )
-option( BUILD_TESTING "Build the testing tree." ON )
 
 find_package( KF5 COMPONENTS CoreAddons Crash )
 if( NOT KF5Crash_FOUND )
@@ -245,23 +267,10 @@ endif()
 unset( prev_tx )
 unset( curr_tx )
 
-add_subdirectory( lang )  # i18n tools
-
-###
-### Calamares application info
-###
-set( CALAMARES_ORGANIZATION_NAME "Calamares" )
-set( CALAMARES_ORGANIZATION_DOMAIN "github.com/calamares" )
-set( CALAMARES_APPLICATION_NAME  "Calamares" )
-set( CALAMARES_DESCRIPTION_SUMMARY "The distribution-independent installer framework" )
 set( CALAMARES_TRANSLATION_LANGUAGES en ${_tx_complete} ${_tx_good} ${_tx_ok} )
 list( SORT CALAMARES_TRANSLATION_LANGUAGES )
 
-### Bump version here
-set( CALAMARES_VERSION_MAJOR 3 )
-set( CALAMARES_VERSION_MINOR 2 )
-set( CALAMARES_VERSION_PATCH 0 )
-set( CALAMARES_VERSION_RC 0 )
+add_subdirectory( lang )  # i18n tools
 
 set( CALAMARES_VERSION ${CALAMARES_VERSION_MAJOR}.${CALAMARES_VERSION_MINOR}.${CALAMARES_VERSION_PATCH} )
 set( CALAMARES_VERSION_SHORT "${CALAMARES_VERSION}" )
