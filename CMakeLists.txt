@@ -88,6 +88,16 @@ set( _tx_ok ast is ar sv el es_MX gl en_GB th fi_FI hi eu sr nb
 set( _tx_bad uz lo ur gu fr_CH fa eo )
 
 
+### Required versions
+#
+# See DEPENDENCIES section below.
+set( QT_VERSION 5.6.0 )
+set( YAMLCPP_VERSION 0.5.1 )
+set( ECM_VERSION 5.18 )
+set( PYTHONLIBS_VERSION 3.3 )
+set( BOOSTPYTHON_VERSION 1.54.0 )
+
+
 ### CMAKE SETUP
 #
 set( CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMakeModules" )
@@ -182,17 +192,17 @@ endif()
 include( FeatureSummary )
 include( CMakeColors )
 
-set( QT_VERSION 5.6.0 )
 
+### DEPENDENCIES
+#
 find_package( Qt5 ${QT_VERSION} CONFIG REQUIRED Core Gui Widgets LinguistTools Svg Quick QuickWidgets )
-find_package( YAMLCPP 0.5.1 REQUIRED )
+find_package( YAMLCPP ${YAMLCPP_VERSION} REQUIRED )
 find_package( PolkitQt5-1 REQUIRED )
 
 # Find ECM once, and add it to the module search path; Calamares
 # modules that need ECM can do
 #   find_package(ECM ${ECM_VERSION} REQUIRED NO_MODULE),
 # no need to mess with the module path after.
-set( ECM_VERSION 5.18 )
 find_package(ECM ${ECM_VERSION} NO_MODULE)
 if( ECM_FOUND )
     set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${CMAKE_MODULE_PATH})
@@ -207,7 +217,7 @@ if( BUILD_TESTING )
     enable_testing()
 endif ()
 
-find_package( PythonLibs 3.3 )
+find_package( PythonLibs ${PYTHONLIBS_VERSION} )
 set_package_properties(
     PythonLibs PROPERTIES
     DESCRIPTION "C interface libraries for the Python 3 interpreter."
@@ -217,7 +227,7 @@ set_package_properties(
 
 if ( PYTHONLIBS_FOUND )
     include( BoostPython3 )
-    find_boost_python3( 1.54.0 ${PYTHONLIBS_VERSION_STRING} CALAMARES_BOOST_PYTHON3_FOUND )
+    find_boost_python3( ${BOOSTPYTHON_VERSION} ${PYTHONLIBS_VERSION_STRING} CALAMARES_BOOST_PYTHON3_FOUND )
     set_package_properties(
         Boost PROPERTIES
         PURPOSE "Boost.Python is used for Python job modules."
