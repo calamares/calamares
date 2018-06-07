@@ -57,6 +57,37 @@ set( CALAMARES_VERSION_PATCH 0 )
 set( CALAMARES_VERSION_RC 0 )
 
 
+### Transifex (languages) info
+#
+# complete = 100% translated,
+# good = nearly complete (use own judgement, right now >= 75%)
+# ok = incomplete (more than 25% untranslated),
+# bad = 0% translated, placeholder in tx; these are not included.
+#
+# Language en (source language) is added later. It isn't listed in
+# Transifex either. Get the list of languages and their status
+# from https://transifex.com/calamares/calamares/ .
+#
+# When adding a new language, take care that it is properly loaded
+# by the translation framework. Languages with alternate scripts
+# (sr@latin in particular) may need special handling in CalamaresUtils.cpp.
+#
+# TODO: drop the es_ES translation from Transifex
+# TODO: move eo (Esperanto) to _ok once Qt can actually create a
+#       locale for it.
+#
+# NOTE: when updating the list from Transifex, copy these four lines
+#       and prefix each variable name with "p", so that the automatic
+#       checks for new languages and misspelled ones are done (that is,
+#       copy these four lines to four backup lines, add "p", and then update
+#       the original four lines with the current translations).
+set( _tx_complete da pt_PT ro tr_TR zh_TW zh_CN pt_BR fr hr ca lt id cs_CZ )
+set( _tx_good sq es pl ja sk it_IT hu ru he de nl bg uk )
+set( _tx_ok ast is ar sv el es_MX gl en_GB th fi_FI hi eu sr nb
+            sl sr@latin mr es_PR kk kn et be )
+set( _tx_bad uz lo ur gu fr_CH fa eo )
+
+
 ### CMAKE SETUP
 #
 set( CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMakeModules" )
@@ -211,33 +242,10 @@ endif()
 
 ### Transifex Translation status
 #
-# complete = 100% translated,
-# good = nearly complete (use own judgement, right now >= 75%)
-# ok = incomplete (more than 25% untranslated),
-# bad = 0% translated, placeholder in tx; these are not included.
+# Construct language lists for use. If there are p_tx* variables,
+# then run an extra cmake-time check for consistency of the old
+# (p_tx*) and new (_tx*) lists.
 #
-# Language en (source language) is added later. It isn't listed in
-# Transifex either. Get the list of languages and their status
-# from https://transifex.com/calamares/calamares/ .
-#
-# When adding a new language, take care that it is properly loaded
-# by the translation framework. Languages with alternate scripts
-# (sr@latin in particular) may need special handling in CalamaresUtils.cpp.
-#
-# TODO: drop the es_ES translation from Transifex
-# TODO: move eo (Esperanto) to _ok once Qt can actually create a
-#       locale for it.
-#
-# NOTE: when updating the list from Transifex, copy these four lines
-#       and prefix each variable name with "p", so that the automatic
-#       checks for new languages and misspelled ones are done.
-set( _tx_complete da pt_PT ro tr_TR zh_TW zh_CN pt_BR fr hr ca lt id cs_CZ )
-set( _tx_good sq es pl ja sk it_IT hu ru he de nl bg uk )
-set( _tx_ok ast is ar sv el es_MX gl en_GB th fi_FI hi eu sr nb
-            sl sr@latin mr es_PR kk kn et be )
-set( _tx_bad uz lo ur gu fr_CH fa eo )
-
-# check translation update
 set( prev_tx ${p_tx_complete} ${p_tx_good} ${p_tx_ok} ${p_tx_bad} )
 set( curr_tx ${_tx_complete} ${_tx_good} ${_tx_ok} ${_tx_bad} )
 if ( prev_tx )
