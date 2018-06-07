@@ -27,6 +27,9 @@
 
 #include "timezonewidget.h"
 
+
+static constexpr double MAP_Y_OFFSET = 0.125;
+static constexpr double MAP_X_OFFSET = -0.0370;
 constexpr static double MATH_PI = 3.14159265;
 
 #ifdef DEBUG_TIMEZONES
