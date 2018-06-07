@@ -27,22 +27,55 @@ namespace Ui {
 class VolumeGroupBaseDialog;
 }
 
+class QComboBox;
+class QLineEdit;
+class QListWidget;
+class QSpinBox;
+
 class VolumeGroupBaseDialog : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit VolumeGroupBaseDialog(QString& vgName,
-                                   QList< const Partition* > pvList,
-                                   qint32& peSize,
-                                   QWidget* parent = 0);
+    explicit VolumeGroupBaseDialog( QString& vgName,
+                                    QVector< const Partition* > pvList,
+                                    qint32& peSize,
+                                    QWidget* parent = nullptr );
     ~VolumeGroupBaseDialog();
 
-private:
-    Ui::VolumeGroupBaseDialog *ui;
+protected:
+    virtual void updateOkButton();
 
-    QString &m_vgName;
-    qint32 &m_peSize;
+    void updateTotalSize();
+
+    void updateTotalSectors();
+
+    QVector< const Partition* > checkedItems() const;
+
+    bool isSizeValid() const;
+
+    QString& vgNameValue() const;
+
+    qint32& peSizeValue() const;
+
+    QLineEdit* vgName() const;
+
+    QComboBox* vgType() const;
+
+    QSpinBox* peSize() const;
+
+    QListWidget* pvList() const;
+
+    QPushButton* okButton() const;
+
+private:
+    Ui::VolumeGroupBaseDialog* ui;
+
+    QString& m_vgNameValue;
+    qint32& m_peSizeValue;
+
+    qint64 m_totalSizeValue;
+    qint64 m_usedSizeValue;
 };
 
 #endif // VOLUMEGROUPBASEDIALOG_H

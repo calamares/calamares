@@ -49,6 +49,8 @@ public:
 
     void swapDevice( Device* oldDevice, Device* newDevice );
 
+    void addDevice( Device* device );
+
 private:
     QList< Device* > m_devices;
 };

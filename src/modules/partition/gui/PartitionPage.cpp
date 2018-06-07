@@ -28,9 +28,9 @@
 #include "core/PartUtils.h"
 #include "core/KPMHelpers.h"
 #include "gui/CreatePartitionDialog.h"
+#include "gui/CreateVolumeGroupDialog.h"
 #include "gui/EditExistingPartitionDialog.h"
 #include "gui/ScanningDialog.h"
-#include "gui/VolumeGroupBaseDialog.h"
 
 #include "ui_PartitionPage.h"
 #include "ui_CreatePartitionTableDialog.h"
@@ -133,6 +133,8 @@ PartitionPage::updateButtons()
         bool isFree = KPMHelpers::isPartitionFreeSpace( partition );
         bool isExtended = partition->roles().has( PartitionRole::Extended );
 
+        bool isInVG = m_core->isInVG( partition );
+
         create = isFree;
         // Keep it simple for now: do not support editing extended partitions as
         // it does not work with our current edit implementation which is
@@ -140,8 +142,9 @@ PartitionPage::updateButtons()
         // because they need to be created *before* creating logical partitions
         // inside them, so an edit must be applied without altering the job
         // order.
+        // TODO: See if LVM PVs can be edited in Calamares
         edit = !isFree && !isExtended;
-        del = !isFree;
+        del = !isFree && !isInVG;
     }
 
     if ( m_ui->deviceComboBox->currentIndex() >= 0 )
@@ -184,13 +187,51 @@ void
 PartitionPage::onNewVolumeGroupClicked()
 {
     QString vgName;
+    QVector< const Partition* > selectedPVs;
     qint32 peSize = 4;
 
-    QPointer< VolumeGroupBaseDialog > dlg = new VolumeGroupBaseDialog( vgName, m_core->lvmPVs(), peSize, this );
+    QVector< const Partition* > availablePVs;
+
+    for ( const Partition* p : m_core->lvmPVs() )
+        if ( !m_core->isInVG( p ) )
+            availablePVs << p;
+
+    QPointer< CreateVolumeGroupDialog > dlg = new CreateVolumeGroupDialog( vgName,
+                                                                           selectedPVs,
+                                                                           availablePVs,
+                                                                           peSize,
+                                                                           this );
 
     if ( dlg->exec() == QDialog::Accepted )
     {
+        QModelIndex partitionIndex = m_ui->partitionTreeView->currentIndex();
 
+        if ( partitionIndex.isValid() )
+        {
+            const PartitionModel* model = static_cast< const PartitionModel* >( partitionIndex.model() );
+            Q_ASSERT( model );
+            Partition* partition = model->partitionForIndex( partitionIndex );
+            Q_ASSERT( partition );
+
+            // Disable delete button if current partition was selected to be in VG
+            // TODO: Should Calamares edit LVM PVs which are in VGs?
+            if ( selectedPVs.contains( partition ) )
+                m_ui->deleteButton->setEnabled( false );
+        }
+
+        QModelIndex deviceIndex = m_core->deviceModel()->index( m_ui->deviceComboBox->currentIndex(), 0 );
+        Q_ASSERT( deviceIndex.isValid() );
+
+        QVariant previousDeviceData = m_core->deviceModel()->data( deviceIndex, Qt::ToolTipRole );
+
+        m_core->createVolumeGroup( vgName, selectedPVs, peSize );
+
+        // As createVolumeGroup method call resets deviceModel,
+        // is needed to set the current index in deviceComboBox as the previous one
+        int previousIndex = m_ui->deviceComboBox->findData( previousDeviceData, Qt::ToolTipRole );
+
+        if ( previousIndex != -1 )
+            m_ui->deviceComboBox->setCurrentIndex( previousIndex );
     }
 
     delete dlg;

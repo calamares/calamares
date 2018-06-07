@@ -35,6 +35,7 @@ if ( KPMcore_FOUND )
             gui/BootInfoWidget.cpp
             gui/ChoicePage.cpp
             gui/CreatePartitionDialog.cpp
+            gui/CreateVolumeGroupDialog.cpp
             gui/DeviceInfoWidget.cpp
             gui/EditExistingPartitionDialog.cpp
             gui/EncryptWidget.cpp

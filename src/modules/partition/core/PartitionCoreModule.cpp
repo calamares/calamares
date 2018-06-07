@@ -273,6 +273,10 @@ PartitionCoreModule::createVolumeGroup( QString &vgName,
                                         QVector< const Partition* > pvList,
                                         qint32 peSize )
 {
+    // Appending '_' character in case of repeated VG name
+    while ( hasVGwithThisName( vgName ) )
+        vgName.append('_');
+
     CreateVolumeGroupJob* job = new CreateVolumeGroupJob( vgName, pvList, peSize );
     job->updatePreview();
 
@@ -282,6 +286,10 @@ PartitionCoreModule::createVolumeGroup( QString &vgName,
         device->physicalVolumes() << p;
 
     DeviceInfo* deviceInfo = new DeviceInfo( device );
+
+    deviceInfo->partitionModel->init( device, osproberEntries() );
+
+    m_deviceModel->addDevice( device );
 
     m_deviceInfos << deviceInfo;
     deviceInfo->jobs << Calamares::job_ptr( job );
@@ -458,10 +466,35 @@ PartitionCoreModule::efiSystemPartitions() const
     return m_efiSystemPartitions;
 }
 
-QList< const Partition* >
+QVector< const Partition* >
 PartitionCoreModule::lvmPVs() const
 {
     return m_lvmPVs;
+}
+
+bool
+PartitionCoreModule::hasVGwithThisName( const QString& name ) const
+{
+    for ( DeviceInfo* d : m_deviceInfos )
+        if ( dynamic_cast<LvmDevice*>(d->device.data()) &&
+             d->device.data()->name() == name)
+            return true;
+
+    return false;
+}
+
+bool
+PartitionCoreModule::isInVG( const Partition *partition ) const
+{
+    for ( DeviceInfo* d : m_deviceInfos )
+    {
+        LvmDevice* vg = dynamic_cast<LvmDevice*>( d->device.data() );
+
+        if ( vg && vg->physicalVolumes().contains( partition ))
+            return true;
+    }
+
+    return false;
 }
 
 void
@@ -502,6 +535,8 @@ PartitionCoreModule::refresh()
     updateHasRootMountPoint();
     updateIsDirty();
     m_bootLoaderModel->update();
+
+    scanForLVMPVs();
 
     //FIXME: this should be removed in favor of
     //       proper KPM support for EFI

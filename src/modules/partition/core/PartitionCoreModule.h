@@ -24,6 +24,7 @@
 #include "Typedefs.h"
 
 // KPMcore
+#include <kpmcore/core/lvmdevice.h>
 #include <kpmcore/core/partitiontable.h>
 
 // Qt
@@ -134,7 +135,11 @@ public:
 
     QList< Partition* > efiSystemPartitions() const;
 
-    QList< const Partition* > lvmPVs() const;
+    QVector< const Partition* > lvmPVs() const;
+
+    bool hasVGwithThisName( const QString& name ) const;
+
+    bool isInVG( const Partition* partition ) const;
 
     /**
      * @brief findPartitionByMountPoint returns a Partition* for a given mount point.
@@ -198,7 +203,7 @@ private:
     };
     QList< DeviceInfo* > m_deviceInfos;
     QList< Partition* > m_efiSystemPartitions;
-    QList< const Partition* > m_lvmPVs;
+    QVector< const Partition* > m_lvmPVs;
 
     DeviceModel* m_deviceModel;
     BootLoaderModel* m_bootLoaderModel;

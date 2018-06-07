@@ -58,10 +58,6 @@ CreateVolumeGroupJob::exec()
 {
     Report report( nullptr );
 
-    QVector< const Partition* > pvList;
-
-    pvList << m_pvList;
-
     CreateVolumeGroupOperation op( m_vgName, m_pvList, m_peSize );
 
     op.setStatus( Operation::StatusRunning );

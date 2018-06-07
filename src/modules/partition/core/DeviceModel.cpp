@@ -25,10 +25,12 @@
 
 // KPMcore
 #include <kpmcore/core/device.h>
+#include <kpmcore/core/lvmdevice.h>
 
 // KF5
 #include <KFormat>
 
+#include <QStandardItemModel>
 #include <QIcon>
 
 // STL
@@ -115,4 +117,18 @@ DeviceModel::swapDevice( Device* oldDevice, Device* newDevice )
     m_devices[ indexOfOldDevice ] = newDevice;
 
     emit dataChanged( index( indexOfOldDevice ), index( indexOfOldDevice ) );
+}
+
+void
+DeviceModel::addDevice( Device *device )
+{
+    beginResetModel();
+
+    m_devices << device;
+    std::sort( m_devices.begin(), m_devices.end(), []( const Device* dev1, const Device* dev2 )
+    {
+        return dev1->deviceNode() < dev2->deviceNode();
+    } );
+
+    endResetModel();
 }
