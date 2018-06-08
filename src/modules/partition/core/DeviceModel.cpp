@@ -139,3 +139,17 @@ DeviceModel::addDevice( Device *device )
 
     endResetModel();
 }
+
+void
+DeviceModel::removeDevice( Device *device )
+{
+    beginResetModel();
+
+    m_devices.removeAll( device );
+    std::sort( m_devices.begin(), m_devices.end(), []( const Device* dev1, const Device* dev2 )
+    {
+        return dev1->deviceNode() < dev2->deviceNode();
+    } );
+
+    endResetModel();
+}

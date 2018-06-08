@@ -680,8 +680,33 @@ PartitionCoreModule::revert()
 void
 PartitionCoreModule::revertAllDevices()
 {
-    foreach ( DeviceInfo* devInfo, m_deviceInfos )
-        revertDevice( devInfo->device.data() );
+    for ( auto it = m_deviceInfos.begin(); it != m_deviceInfos.end(); )
+    {
+        // In new VGs device info, there will be always a CreateVolumeGroupJob as the first job in jobs list
+        if ( !( *it )->jobs.empty() )
+        {
+            CreateVolumeGroupJob* vgJob = dynamic_cast<CreateVolumeGroupJob*>( ( *it )->jobs[0].data() );
+
+            if ( vgJob )
+            {
+                vgJob->undoPreview();
+
+                ( *it )->forgetChanges();
+
+                m_deviceModel->removeDevice( ( *it )->device.data() );
+
+                it = m_deviceInfos.erase( it );
+
+                scanForLVMPVs();
+            }
+        }
+        else
+        {
+            revertDevice( ( *it )->device.data() );
+            ++it;
+        }
+    }
+
     refresh();
 }
 
@@ -691,6 +716,7 @@ PartitionCoreModule::revertDevice( Device* dev )
 {
     QMutexLocker locker( &m_revertMutex );
     DeviceInfo* devInfo = infoForDevice( dev );
+
     if ( !devInfo )
         return;
     devInfo->forgetChanges();

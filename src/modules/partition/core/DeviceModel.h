@@ -51,6 +51,8 @@ public:
 
     void addDevice( Device* device );
 
+    void removeDevice( Device* device );
+
 private:
     QList< Device* > m_devices;
 };

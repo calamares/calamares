@@ -222,16 +222,17 @@ PartitionPage::onNewVolumeGroupClicked()
         QModelIndex deviceIndex = m_core->deviceModel()->index( m_ui->deviceComboBox->currentIndex(), 0 );
         Q_ASSERT( deviceIndex.isValid() );
 
-        QVariant previousDeviceData = m_core->deviceModel()->data( deviceIndex, Qt::ToolTipRole );
+        QVariant previousIndexDeviceData = m_core->deviceModel()->data( deviceIndex, Qt::ToolTipRole );
 
+        // Creating new VG
         m_core->createVolumeGroup( vgName, selectedPVs, peSize );
 
         // As createVolumeGroup method call resets deviceModel,
         // is needed to set the current index in deviceComboBox as the previous one
-        int previousIndex = m_ui->deviceComboBox->findData( previousDeviceData, Qt::ToolTipRole );
+        int previousIndex = m_ui->deviceComboBox->findData( previousIndexDeviceData, Qt::ToolTipRole );
 
-        if ( previousIndex != -1 )
-            m_ui->deviceComboBox->setCurrentIndex( previousIndex );
+        m_ui->deviceComboBox->setCurrentIndex( ( previousIndex < 0  ) ? 0 : previousIndex );
+        updateFromCurrentDevice();
     }
 
     delete dlg;
@@ -301,7 +302,7 @@ PartitionPage::onRevertClicked()
 
             int oldIndex = m_ui->deviceComboBox->currentIndex();
             m_core->revertAllDevices();
-            m_ui->deviceComboBox->setCurrentIndex( oldIndex );
+            m_ui->deviceComboBox->setCurrentIndex( ( oldIndex < 0 )  ? 0 : oldIndex );
             updateFromCurrentDevice();
         } ),
         [ this ]{
