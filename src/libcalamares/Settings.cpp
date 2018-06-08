@@ -175,7 +175,7 @@ Settings::modulesSearchPaths() const
 }
 
 
-QList<QMap<QString, QString> >
+Settings::InstanceDescriptionList
 Settings::customModuleInstances() const
 {
     return m_customModuleInstances;

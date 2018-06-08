@@ -159,7 +159,7 @@ ModuleManager::loadModules()
 {
     QTimer::singleShot( 0, this, [ this ]()
     {
-        QList< QMap< QString, QString > > customInstances =
+        Settings::InstanceDescriptionList customInstances =
                 Settings::instance()->customModuleInstances();
 
         const auto modulesSequence = Settings::instance()->modulesSequence();
