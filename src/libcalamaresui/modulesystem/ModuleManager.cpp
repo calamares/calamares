@@ -154,6 +154,26 @@ ModuleManager::moduleInstance( const QString& instanceKey )
 }
 
 
+/**
+ * @brief Search a list of instance descriptions for one matching @p module and @p id
+ *
+ * @return -1 on failure, otherwise index of the instance that matches.
+ */
+static int findCustomInstance( const Settings::InstanceDescriptionList& customInstances,
+                               const QString& module,
+                               const QString& id )
+{
+    for ( int i = 0; i < customInstances.count(); ++i )
+    {
+        const auto& thisInstance = customInstances[ i ];
+        if ( thisInstance.value( "module" ) == module &&
+                thisInstance.value( "id" ) == id )
+            return i;
+    }
+    return -1;
+}
+
+
 void
 ModuleManager::loadModules()
 {
@@ -196,25 +216,11 @@ ModuleManager::loadModules()
                     return;
                 }
 
-                auto findCustomInstance =
-                        [ customInstances ]( const QString& module,
-                                             const QString& id) -> int
-                {
-                    for ( int i = 0; i < customInstances.count(); ++i )
-                    {
-                        auto thisInstance = customInstances[ i ];
-                        if ( thisInstance.value( "module" ) == module &&
-                             thisInstance.value( "id" ) == id )
-                            return i;
-                    }
-                    return -1;
-                };
-
                 if ( moduleName != instanceId ) //means this is a custom instance
                 {
-                    if ( findCustomInstance( moduleName, instanceId ) > -1 )
+                    if ( int found = findCustomInstance( customInstances, moduleName, instanceId ) > -1 )
                     {
-                        configFileName = customInstances[ findCustomInstance( moduleName, instanceId ) ].value( "config" );
+                        configFileName = customInstances[ found ].value( "config" );
                     }
                     else //ought to be a custom instance, but cannot find instance entry
                     {
