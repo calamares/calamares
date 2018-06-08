@@ -50,6 +50,7 @@
 #include <kpmcore/backend/corebackend.h>
 #include <kpmcore/backend/corebackendmanager.h>
 #include <kpmcore/fs/filesystemfactory.h>
+#include <kpmcore/fs/luks.h>
 #include <kpmcore/fs/lvm2_pv.h>
 
 // Qt
@@ -604,6 +605,30 @@ PartitionCoreModule::scanForLVMPVs()
 
     for ( auto p : LVM::pvList )
         m_lvmPVs << p.partition().data();
+
+    for ( DeviceInfo* d : m_deviceInfos )
+    {
+        for ( auto job : d->jobs )
+        {
+            // Including new LVM PVs
+            CreatePartitionJob* partJob = dynamic_cast<CreatePartitionJob*>( job.data() );
+            if ( partJob )
+            {
+                Partition* p = partJob->partition();
+
+                if ( p->fileSystem().type() == FileSystem::Type::Lvm2_PV )
+                    m_lvmPVs << p;
+                else if ( p->fileSystem().type() == FileSystem::Type::Luks || p->fileSystem().type() == FileSystem::Type::Luks2 )
+                {
+                    // Encrypted LVM PVs
+                    FileSystem* innerFS = static_cast<const FS::luks*>(&p->fileSystem())->innerFS();
+
+                    if ( innerFS && innerFS->type() == FileSystem::Type::Lvm2_PV )
+                        m_lvmPVs << p;
+                }
+            }
+        }
+    }
 }
 
 PartitionCoreModule::DeviceInfo*

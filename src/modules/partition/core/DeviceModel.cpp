@@ -25,7 +25,6 @@
 
 // KPMcore
 #include <kpmcore/core/device.h>
-#include <kpmcore/core/lvmdevice.h>
 
 // KF5
 #include <KFormat>
@@ -80,7 +79,7 @@ DeviceModel::data( const QModelIndex& index, int role ) const
             return device->deviceNode();
         else
         {
-            if ( device->capacity() != 1 )
+            if ( device->logicalSize() >= 0 && device->totalLogical() >= 0 )
                 return tr( "%1 - %2 (%3)" )
                        .arg( device->name() )
                        .arg( KFormat().formatByteSize( device->capacity() ) )
