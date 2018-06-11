@@ -181,6 +181,7 @@ ModuleManager::loadModules()
 
     QTimer::singleShot( 0, this, [ this ]()
     {
+        QStringList failedModules;
         Settings::InstanceDescriptionList customInstances =
                 Settings::instance()->customModuleInstances();
 
@@ -201,8 +202,8 @@ ModuleManager::loadModules()
                 {
                     cError() << "Wrong module entry format for module" << moduleEntry << '.'
                         << GOODBYE;
-                    qApp->exit( 1 );
-                    return;
+                    failedModules.append( moduleEntry );
+                    continue;
                 }
                 moduleName = moduleEntrySplit.first();
                 instanceId = moduleEntrySplit.last();
@@ -214,8 +215,8 @@ ModuleManager::loadModules()
                     cError() << "Module" << moduleName << "not found in module search paths."
                         << Logger::DebugList( m_paths )
                         << GOODBYE;
-                    qApp->exit( 1 );
-                    return;
+                    failedModules.append( moduleName );
+                    continue;
                 }
 
                 if ( moduleName != instanceId ) //means this is a custom instance
@@ -228,8 +229,8 @@ ModuleManager::loadModules()
                     {
                         cError() << "Custom instance" << moduleEntry << "not found in custom instances section."
                             << GOODBYE;
-                        qApp->exit( 1 );
-                        return;
+                        failedModules.append( moduleEntry );
+                        continue;
                     }
                 }
 
@@ -251,8 +252,8 @@ ModuleManager::loadModules()
                 {
                     cError() << "Module" << instanceKey << "exists but not loaded."
                              << GOODBYE;
-                    qApp->exit( 1 );
-                    return;
+                    failedModules.append( instanceKey );
+                    continue;
                 }
 
                 if ( thisModule && thisModule->isLoaded() )
@@ -270,7 +271,8 @@ ModuleManager::loadModules()
                     {
                         cError() << "Module" << instanceKey << "cannot be created from descriptor" << configFileName
                             << GOODBYE;
-                        qApp->exit( 1 );
+                        failedModules.append( instanceKey );
+                        continue;
                     }
                     // If it's a ViewModule, it also appends the ViewStep to the ViewManager.
                     thisModule->loadSelf();
@@ -279,7 +281,8 @@ ModuleManager::loadModules()
                     {
                         cError() << "Module" << instanceKey << "loading FAILED"
                             << GOODBYE;
-                        qApp->exit( 1 );
+                        failedModules.append( instanceKey );
+                        continue;
                     }
                 }
 
@@ -300,7 +303,10 @@ ModuleManager::loadModules()
                 }
             }
         }
-        emit modulesLoaded();
+        if ( !failedModules.isEmpty() )
+            emit modulesFailed( failedModules );
+        else
+            emit modulesLoaded();
     } );
 }
 

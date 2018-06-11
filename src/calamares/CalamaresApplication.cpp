@@ -335,6 +335,8 @@ CalamaresApplication::initView()
 
     connect( m_moduleManager, &Calamares::ModuleManager::modulesLoaded,
              this, &CalamaresApplication::initViewSteps );
+    connect( m_moduleManager, &Calamares::ModuleManager::modulesFailed,
+             this, &CalamaresApplication::initFailed );
 
     m_moduleManager->loadModules();
 
@@ -356,6 +358,12 @@ CalamaresApplication::initViewSteps()
     cDebug() << "STARTUP: Window now visible and ProgressTreeView populated";
 }
 
+void
+CalamaresApplication::initFailed(const QStringList& l)
+{
+    cError() << "STARTUP: failed modules are" << l;
+    m_mainwindow->show();
+}
 
 void
 CalamaresApplication::initJobQueue()
