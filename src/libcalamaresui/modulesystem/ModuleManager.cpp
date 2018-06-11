@@ -177,8 +177,6 @@ static int findCustomInstance( const Settings::InstanceDescriptionList& customIn
 void
 ModuleManager::loadModules()
 {
-    static const char GOODBYE[] = "\nCalamares will now quit.";
-
     QTimer::singleShot( 0, this, [ this ]()
     {
         QStringList failedModules;
@@ -200,8 +198,7 @@ ModuleManager::loadModules()
                 if ( moduleEntrySplit.length() < 1 ||
                      moduleEntrySplit.length() > 2 )
                 {
-                    cError() << "Wrong module entry format for module" << moduleEntry << '.'
-                        << GOODBYE;
+                    cError() << "Wrong module entry format for module" << moduleEntry;
                     failedModules.append( moduleEntry );
                     continue;
                 }
@@ -213,8 +210,7 @@ ModuleManager::loadModules()
                      m_availableDescriptorsByModuleName.value( moduleName ).isEmpty() )
                 {
                     cError() << "Module" << moduleName << "not found in module search paths."
-                        << Logger::DebugList( m_paths )
-                        << GOODBYE;
+                        << Logger::DebugList( m_paths );
                     failedModules.append( moduleName );
                     continue;
                 }
@@ -227,8 +223,7 @@ ModuleManager::loadModules()
                     }
                     else //ought to be a custom instance, but cannot find instance entry
                     {
-                        cError() << "Custom instance" << moduleEntry << "not found in custom instances section."
-                            << GOODBYE;
+                        cError() << "Custom instance" << moduleEntry << "not found in custom instances section.";
                         failedModules.append( moduleEntry );
                         continue;
                     }
@@ -250,8 +245,7 @@ ModuleManager::loadModules()
                     m_loadedModulesByInstanceKey.value( instanceKey, nullptr );
                 if ( thisModule && !thisModule->isLoaded() )
                 {
-                    cError() << "Module" << instanceKey << "exists but not loaded."
-                             << GOODBYE;
+                    cError() << "Module" << instanceKey << "exists but not loaded.";
                     failedModules.append( instanceKey );
                     continue;
                 }
@@ -269,8 +263,7 @@ ModuleManager::loadModules()
                                                 m_moduleDirectoriesByModuleName.value( moduleName ) );
                     if ( !thisModule )
                     {
-                        cError() << "Module" << instanceKey << "cannot be created from descriptor" << configFileName
-                            << GOODBYE;
+                        cError() << "Module" << instanceKey << "cannot be created from descriptor" << configFileName;
                         failedModules.append( instanceKey );
                         continue;
                     }
@@ -279,8 +272,7 @@ ModuleManager::loadModules()
                     m_loadedModulesByInstanceKey.insert( instanceKey, thisModule );
                     if ( !thisModule->isLoaded() )
                     {
-                        cError() << "Module" << instanceKey << "loading FAILED"
-                            << GOODBYE;
+                        cError() << "Module" << instanceKey << "loading FAILED.";
                         failedModules.append( instanceKey );
                         continue;
                     }
