@@ -683,7 +683,7 @@ PartitionCoreModule::revertAllDevices()
     for ( auto it = m_deviceInfos.begin(); it != m_deviceInfos.end(); )
     {
         // In new VGs device info, there will be always a CreateVolumeGroupJob as the first job in jobs list
-        if ( !( *it )->jobs.empty() )
+        if ( dynamic_cast<LvmDevice*>( ( *it )->device.data() ) && !( *it )->jobs.empty() )
         {
             CreateVolumeGroupJob* vgJob = dynamic_cast<CreateVolumeGroupJob*>( ( *it )->jobs[0].data() );
 
@@ -697,14 +697,12 @@ PartitionCoreModule::revertAllDevices()
 
                 it = m_deviceInfos.erase( it );
 
-                scanForLVMPVs();
+                continue;
             }
         }
-        else
-        {
-            revertDevice( ( *it )->device.data() );
-            ++it;
-        }
+
+        revertDevice( ( *it )->device.data() );
+        ++it;
     }
 
     refresh();
