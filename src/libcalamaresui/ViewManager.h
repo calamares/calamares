@@ -117,6 +117,12 @@ public slots:
      */
     void onInstallationFailed( const QString& message, const QString& details );
 
+    /** @brief Replaces the stack with a view step stating that initialization failed.
+     *
+     * @param modules a list of failed modules.
+     */
+    void onInitFailed( const QStringList& modules );
+
 signals:
     void currentStepChanged();
     void enlarge( QSize enlarge ) const;  // See ViewStep::enlarge()

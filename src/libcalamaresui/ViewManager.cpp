@@ -20,6 +20,7 @@
 #include "ViewManager.h"
 
 #include "utils/Logger.h"
+#include "viewpages/BlankViewStep.h"
 #include "viewpages/ViewStep.h"
 #include "ExecutionViewStep.h"
 #include "JobQueue.h"
@@ -171,6 +172,20 @@ ViewManager::onInstallationFailed( const QString& message, const QString& detail
     msgBox->show();
 }
 
+
+void
+ViewManager::onInitFailed( const QStringList& modules)
+{
+    QString title( tr( "Calamares Initialization Failed" ) );
+    QString description( tr( "Calamares was unable to load all of the configured modules. This is a problem with the way Calamares is being used by the distribution. %1 can not be installed." ) );
+    QStringList details;
+    details << QLatin1Literal("<ul>");
+    for( const auto& m : modules )
+        details << QLatin1Literal("<li>") << m << QLatin1Literal("</li>");
+    details << QLatin1Literal("</ul>");
+
+    insertViewStep( 0, new BlankViewStep( title, description.arg( *Calamares::Branding::ShortProductName ), details.join( QString() ) ) );
+}
 
 ViewStepList
 ViewManager::viewSteps() const

@@ -296,7 +296,10 @@ ModuleManager::loadModules()
             }
         }
         if ( !failedModules.isEmpty() )
+        {
+            ViewManager::instance()->onInitFailed( failedModules );
             emit modulesFailed( failedModules );
+        }
         else
             emit modulesLoaded();
     } );
