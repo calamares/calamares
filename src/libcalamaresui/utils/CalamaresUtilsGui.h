@@ -115,6 +115,7 @@ UIDLLEXPORT void setDefaultFontSize( int points );
 UIDLLEXPORT int defaultFontSize();      // in points
 UIDLLEXPORT int defaultFontHeight();    // in pixels, DPI-specific
 UIDLLEXPORT QFont defaultFont();
+UIDLLEXPORT QFont largeFont();
 UIDLLEXPORT QSize defaultIconSize();
 
 /**

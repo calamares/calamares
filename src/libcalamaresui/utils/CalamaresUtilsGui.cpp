@@ -226,6 +226,15 @@ defaultFont()
 }
 
 
+QFont
+largeFont()
+{
+    QFont f;
+    f.setPointSize( defaultFontSize() + 4 );
+    return f;
+}
+
+
 void
 setDefaultFontSize( int points )
 {
