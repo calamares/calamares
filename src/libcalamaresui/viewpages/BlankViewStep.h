@@ -31,7 +31,8 @@ namespace Calamares
 
 /** @brief A "blank" view step, used for error and status reporting
  *
- *
+ * This view step never allows navigation (forward or back); it's a trap.
+ * It displays a title and explanation, and optional details.
  */
 class BlankViewStep : public Calamares::ViewStep
 {
@@ -55,12 +56,6 @@ public:
     bool isAtEnd() const override;
 
     Calamares::JobList jobs() const override;
-#if 0
-    void onActivate() override;
-
-
-    void setConfigurationMap( const QVariantMap& configurationMap ) override;
-#endif
 
 private:
     QWidget* m_widget;

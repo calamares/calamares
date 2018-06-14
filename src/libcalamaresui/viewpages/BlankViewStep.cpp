@@ -32,6 +32,9 @@ BlankViewStep::BlankViewStep( const QString& title, const QString& description, 
 {
     QBoxLayout* layout = new QVBoxLayout();
 
+    constexpr int const marginWidth = 10;
+    constexpr int const spacingHeight = 10;
+
     auto* label = new QLabel( title );
     label->setAlignment( Qt::AlignHCenter );
     label->setFont( CalamaresUtils::largeFont() );
@@ -39,17 +42,19 @@ BlankViewStep::BlankViewStep( const QString& title, const QString& description, 
 
     label = new QLabel( description );
     label->setWordWrap( true );
-    layout->addSpacing( 10 );
+    label->setMargin( marginWidth );
+    layout->addSpacing( spacingHeight );
     layout->addWidget( label );
 
     if ( !details.isEmpty() )
     {
         label = new QLabel( details );
-        layout->addSpacing( 10 );
+        label->setMargin( marginWidth );
+        layout->addSpacing( spacingHeight );
         layout->addWidget( label );
     }
 
-    layout->addStretch( 10 );
+    layout->addStretch( 1 );   // Push the rest to the top
 
     m_widget->setLayout( layout );
 }
