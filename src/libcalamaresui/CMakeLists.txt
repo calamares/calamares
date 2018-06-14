@@ -15,6 +15,7 @@ set( calamaresui_SOURCES
     utils/qjsonitem.cpp
 
     viewpages/AbstractPage.cpp
+    viewpages/BlankViewStep.cpp
     viewpages/ViewStep.cpp
 
     widgets/ClickableLabel.cpp

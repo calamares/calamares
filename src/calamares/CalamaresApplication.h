@@ -70,6 +70,7 @@ public:
 private slots:
     void initView();
     void initViewSteps();
+    void initFailed( const QStringList& l );
 
 private:
     void initQmlPath();

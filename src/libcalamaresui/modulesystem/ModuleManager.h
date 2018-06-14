@@ -82,7 +82,8 @@ public:
 
 signals:
     void initDone();
-    void modulesLoaded();
+    void modulesLoaded();  /// All of the modules were loaded successfully
+    void modulesFailed( QStringList );   /// .. or not
 
 private slots:
     void doInit();
