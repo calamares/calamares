@@ -485,12 +485,12 @@ Installationsprogrammet vil stoppe og alle ændringer vil gå tabt.</translation
     <message>
         <location filename="../src/libcalamares/utils/CommandList.cpp" line="128"/>
         <source>The command runs in the host environment and needs to know the root path, but no rootMountPoint is defined.</source>
-        <translation type="unfinished"/>
+        <translation>Kommandoen kører i værtsmiljøet og har brug for at kende rodstien, men der er ikke defineret nogen rootMountPoint.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/utils/CommandList.cpp" line="139"/>
         <source>The command needs to know the user&apos;s name, but no username is defined.</source>
-        <translation type="unfinished"/>
+        <translation>Kommandoen har brug for at kende brugerens navn, men der er ikke defineret noget brugernavn.</translation>
     </message>
 </context>
 <context>
@@ -1670,7 +1670,7 @@ Installationsprogrammet vil stoppe og alle ændringer vil gå tabt.</translation
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="194"/>
         <source>The partition table on %1 already has %2 primary partitions, and no more can be added. Please remove one primary partition and add an extended partition, instead.</source>
-        <translation type="unfinished"/>
+        <translation>Partitionstabellen på %1 har allerede %2 primære partitioner, og der kan ikke tilføjes flere. Fjern venligst en primær partition og tilføj i stedet en udviddet partition.</translation>
     </message>
 </context>
 <context>

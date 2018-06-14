@@ -23,6 +23,10 @@
 #include "GeoIPXML.h"
 #endif
 
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
+#include <QNetworkRequest>
+
 #include <QtTest/QtTest>
 
 QTEST_GUILESS_MAIN( GeoIPTests )

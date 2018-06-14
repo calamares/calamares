@@ -30,6 +30,32 @@
 #include <yaml-cpp/yaml.h>
 
 
+/** Helper function to grab a QString out of the config, and to warn if not present. */
+static QString
+requireString( const YAML::Node& config, const char* key )
+{
+    if ( config[ key ] )
+        return QString::fromStdString( config[ key ].as< std::string >() );
+    else
+    {
+        cWarning() << "Required settings.conf key" << key << "is missing.";
+        return QString();
+    }
+}
+
+/** Helper function to grab a bool out of the config, and to warn if not present. */
+static bool
+requireBool( const YAML::Node& config, const char* key, bool d )
+{
+    if ( config[ key ] )
+        return config[ key ].as< bool >();
+    else
+    {
+        cWarning() << "Required settings.conf key" << key << "is missing.";
+        return d;
+    }
+}
+
 namespace Calamares
 {
 
@@ -40,7 +66,6 @@ Settings::instance()
 {
     return s_instance;
 }
-
 
 Settings::Settings( const QString& settingsFilePath,
                     bool debugMode,
@@ -148,11 +173,9 @@ Settings::Settings( const QString& settingsFilePath,
                 }
             }
 
-            m_brandingComponentName = QString::fromStdString( config[ "branding" ]
-                                                              .as< std::string >() );
-            m_promptInstall = config[ "prompt-install" ].as< bool >();
-
-            m_doChroot = config[ "dont-chroot" ] ? !config[ "dont-chroot" ].as< bool >() : true;
+            m_brandingComponentName = requireString( config, "branding" );
+            m_promptInstall = requireBool( config, "prompt-install", false );
+            m_doChroot = requireBool( config, "dont-chroot", true );
         }
         catch ( YAML::Exception& e )
         {
@@ -175,7 +198,7 @@ Settings::modulesSearchPaths() const
 }
 
 
-QList<QMap<QString, QString> >
+Settings::InstanceDescriptionList
 Settings::customModuleInstances() const
 {
     return m_customModuleInstances;

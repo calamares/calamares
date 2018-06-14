@@ -46,7 +46,7 @@ def run():
             libcalamares.utils.debug("Hwclock returned error code {}".format(ret))
             libcalamares.utils.debug("  .. ISA bus method failed.")
         else:
-            libcalamares.utils.debug("Hwclock set using ISA bus methode.")
+            libcalamares.utils.debug("Hwclock set using ISA bus method.")
     if is_broken_rtc and is_broken_isa:
         libcalamares.utils.debug("BIOS or Kernel BUG: Setting hwclock failed.")
 

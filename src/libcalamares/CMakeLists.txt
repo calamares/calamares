@@ -40,6 +40,7 @@ mark_thirdparty_code( ${kdsagSources} )
 include_directories(
     ${CMAKE_CURRENT_BINARY_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}
+    ${YAMLCPP_INCLUDE_DIR}
 )
 
 if( WITH_PYTHON )
