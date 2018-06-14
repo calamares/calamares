@@ -9,12 +9,12 @@
     <message>
         <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="79"/>
         <source>This system was started with an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from an EFI environment, this installer must deploy a boot loader application, like &lt;strong&gt;GRUB&lt;/strong&gt; or &lt;strong&gt;systemd-boot&lt;/strong&gt; on an &lt;strong&gt;EFI System Partition&lt;/strong&gt;. This is automatic, unless you choose manual partitioning, in which case you must choose it or create it on your own.</source>
-        <translation>See süsteem käivitati &lt;strong&gt;EFI&lt;/strong&gt; käivituskeskkonnas.&lt;br&gt;&lt;br&gt;Et seadistada käivitust EFI keskkonnast, peab see installija paigaldama käivituslaaduri rakenduse, näiteks &lt;strong&gt;GRUB&lt;/strong&gt; või &lt;strong&gt;systemd-boot&lt;/strong&gt; sinu &lt;strong&gt;EFI süsteemipartitsioonile&lt;/strong&gt;. See on automaatne, välja arvatud juhul, kui valid käsitsi partitsioneerimise, sel juhul pead sa selle valima või ise looma.</translation>
+        <translation>See süsteem käivitati &lt;strong&gt;EFI&lt;/strong&gt; käivituskeskkonnas.&lt;br&gt;&lt;br&gt;Et seadistada käivitust EFI keskkonnast, peab see paigaldaja paigaldama käivituslaaduri rakenduse, näiteks &lt;strong&gt;GRUB&lt;/strong&gt; või &lt;strong&gt;systemd-boot&lt;/strong&gt; sinu &lt;strong&gt;EFI süsteemipartitsioonile&lt;/strong&gt;. See on automaatne, välja arvatud juhul, kui valid käsitsi partitsioneerimise, sel juhul pead sa selle valima või ise looma.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="91"/>
         <source>This system was started with a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from a BIOS environment, this installer must install a boot loader, like &lt;strong&gt;GRUB&lt;/strong&gt;, either at the beginning of a partition or on the &lt;strong&gt;Master Boot Record&lt;/strong&gt; near the beginning of the partition table (preferred). This is automatic, unless you choose manual partitioning, in which case you must set it up on your own.</source>
-        <translation>See süsteem käivitati &lt;strong&gt;BIOS&lt;/strong&gt; käivituskeskkonnas.&lt;br&gt;&lt;br&gt;Et seadistada käivitust BIOS keskkonnast, peab see installija paigaldama käivituslaaduri, näiteks &lt;strong&gt;GRUB&lt;/strong&gt;, kas mõne partitsiooni algusse või &lt;strong&gt;Master Boot Record&lt;/strong&gt;&apos;i paritsioonitabeli alguse lähedale (eelistatud). See on automaatne, välja arvatud juhul, kui valid käsitsi partitsioneerimise, sel juhul pead sa selle ise seadistama.</translation>
+        <translation>See süsteem käivitati &lt;strong&gt;BIOS&lt;/strong&gt; käivituskeskkonnas.&lt;br&gt;&lt;br&gt;Et seadistada käivitust BIOS keskkonnast, peab see paigaldaja paigaldama käivituslaaduri, näiteks &lt;strong&gt;GRUB&lt;/strong&gt;, kas mõne partitsiooni algusse või &lt;strong&gt;Master Boot Record&lt;/strong&gt;&apos;i paritsioonitabeli alguse lähedale (eelistatud). See on automaatne, välja arvatud juhul, kui valid käsitsi partitsioneerimise, sel juhul pead sa selle ise seadistama.</translation>
     </message>
 </context>
 <context>
@@ -37,7 +37,7 @@
     <message>
         <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="111"/>
         <source>Do not install a boot loader</source>
-        <translation>Ära installi käivituslaadurit</translation>
+        <translation>Ära paigalda käivituslaadurit</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="125"/>
@@ -99,7 +99,7 @@
     <message>
         <location filename="../src/libcalamaresui/ExecutionViewStep.cpp" line="78"/>
         <source>Install</source>
-        <translation>Installi</translation>
+        <translation>Paigalda</translation>
     </message>
 </context>
 <context>
@@ -179,24 +179,24 @@
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="76"/>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="267"/>
         <source>Cancel installation without changing the system.</source>
-        <translation>Tühista installimine ilma süsteemi muutmata.</translation>
+        <translation>Tühista paigaldamine ilma süsteemi muutmata.</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="255"/>
         <source>&amp;Install</source>
-        <translation>&amp;Installi</translation>
+        <translation>&amp;Paigalda</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="303"/>
         <source>Cancel installation?</source>
-        <translation>Tühista installimine?</translation>
+        <translation>Tühista paigaldamine?</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="304"/>
         <source>Do you really want to cancel the current install process?
 The installer will quit and all changes will be lost.</source>
-        <translation>Kas sa tõesti soovid tühistada praeguse installiprotsessi?
-Installija sulgub ja kõik muutused kaovad.</translation>
+        <translation>Kas sa tõesti soovid tühistada praeguse paigaldusprotsessi?
+Paigaldaja sulgub ning kõik muutused kaovad.</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="309"/>
@@ -221,12 +221,12 @@ Installija sulgub ja kõik muutused kaovad.</translation>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="216"/>
         <source>The %1 installer is about to make changes to your disk in order to install %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
-        <translation>%1 installija on tegemas muudatusi sinu kettale, et installida %2.&lt;br/&gt;&lt;strong&gt;Sa ei saa neid muudatusi tagasi võtta.&lt;/strong&gt;</translation>
+        <translation>%1 paigaldaja on tegemas muudatusi sinu kettale, et paigaldada %2.&lt;br/&gt;&lt;strong&gt;Sa ei saa neid muudatusi tagasi võtta.&lt;/strong&gt;</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="221"/>
         <source>&amp;Install now</source>
-        <translation>&amp;Installi kohe</translation>
+        <translation>&amp;Paigalda kohe</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="222"/>
@@ -241,7 +241,7 @@ Installija sulgub ja kõik muutused kaovad.</translation>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="262"/>
         <source>The installation is complete. Close the installer.</source>
-        <translation>Installimine on lõpetatud. Sulge installija.</translation>
+        <translation>Paigaldamine on lõpetatud. Sulge paigaldaja.</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="159"/>
@@ -251,7 +251,7 @@ Installija sulgub ja kõik muutused kaovad.</translation>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="160"/>
         <source>Installation Failed</source>
-        <translation>Installimine ebaõnnestus</translation>
+        <translation>Paigaldamine ebaõnnestus</translation>
     </message>
 </context>
 <context>
@@ -282,7 +282,7 @@ Installija sulgub ja kõik muutused kaovad.</translation>
     <message>
         <location filename="../src/calamares/CalamaresWindow.cpp" line="44"/>
         <source>%1 Installer</source>
-        <translation>%1 installija</translation>
+        <translation>%1 paigaldaja</translation>
     </message>
     <message>
         <location filename="../src/calamares/CalamaresWindow.cpp" line="111"/>
@@ -295,12 +295,12 @@ Installija sulgub ja kõik muutused kaovad.</translation>
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="96"/>
         <source>This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;Installation cannot continue. &lt;a href=&quot;#details&quot;&gt;Details...&lt;/a&gt;</source>
-        <translation>See arvuti ei rahulda %1 installimiseks vajalikke minimaaltingimusi.&lt;br/&gt;Installimine ei saa jätkuda. &lt;a href=&quot;#details&quot;&gt;Detailid...&lt;/a&gt;</translation>
+        <translation>See arvuti ei rahulda %1 paigldamiseks vajalikke minimaaltingimusi.&lt;br/&gt;Paigaldamine ei saa jätkuda. &lt;a href=&quot;#details&quot;&gt;Detailid...&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="113"/>
         <source>This computer does not satisfy some of the recommended requirements for installing %1.&lt;br/&gt;Installation can continue, but some features might be disabled.</source>
-        <translation>See arvuti ei rahulda mõnda %1 installimiseks soovitatud tingimust.&lt;br/&gt;Installimine võib jätkuda, ent mõned funktsioonid võivad olla keelatud.</translation>
+        <translation>See arvuti ei rahulda mõnda %1 paigaldamiseks soovitatud tingimust.&lt;br/&gt;Paigaldamine võib jätkuda, ent mõned funktsioonid võivad olla keelatud.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="151"/>
@@ -371,7 +371,7 @@ Installija sulgub ja kõik muutused kaovad.</translation>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1040"/>
         <source>&lt;strong&gt;Select a partition to install on&lt;/strong&gt;</source>
-        <translation>&lt;strong&gt;Vali partitsioon, kuhu installida&lt;/strong&gt;</translation>
+        <translation>&lt;strong&gt;Vali partitsioon, kuhu paigaldada&lt;/strong&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1096"/>
@@ -412,7 +412,7 @@ Installija sulgub ja kõik muutused kaovad.</translation>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1260"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1284"/>
         <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
-        <translation>&lt;strong&gt;Installi kõrvale&lt;/strong&gt;&lt;br/&gt;Installija vähendab partitsiooni, et teha ruumi operatsioonisüsteemile %1.</translation>
+        <translation>&lt;strong&gt;Paigalda kõrvale&lt;/strong&gt;&lt;br/&gt;Paigaldaja vähendab partitsiooni, et teha ruumi operatsioonisüsteemile %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1213"/>
@@ -599,7 +599,7 @@ Installija sulgub ja kõik muutused kaovad.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="79"/>
         <source>The installer failed to create partition on disk &apos;%1&apos;.</source>
-        <translation>Installija ei suutnud luua partitsiooni kettale &quot;%1&quot;.</translation>
+        <translation>Paigaldaja ei suutnud luua partitsiooni kettale &quot;%1&quot;.</translation>
     </message>
 </context>
 <context>
@@ -650,7 +650,7 @@ Installija sulgub ja kõik muutused kaovad.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="72"/>
         <source>The installer failed to create a partition table on %1.</source>
-        <translation>Installija ei suutnud luua partitsioonitabelit kettale %1.</translation>
+        <translation>Paigaldaja ei suutnud luua partitsioonitabelit kettale %1.</translation>
     </message>
 </context>
 <context>
@@ -711,7 +711,7 @@ Installija sulgub ja kõik muutused kaovad.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="68"/>
         <source>The installer failed to delete partition %1.</source>
-        <translation>Installija ei suutnud kustutada partitsiooni %1.</translation>
+        <translation>Paigaldaja ei suutnud kustutada partitsiooni %1.</translation>
     </message>
 </context>
 <context>
@@ -719,7 +719,7 @@ Installija sulgub ja kõik muutused kaovad.</translation>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="150"/>
         <source>The type of &lt;strong&gt;partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The only way to change the partition table type is to erase and recreate the partition table from scratch, which destroys all data on the storage device.&lt;br&gt;This installer will keep the current partition table unless you explicitly choose otherwise.&lt;br&gt;If unsure, on modern systems GPT is preferred.</source>
-        <translation>&lt;strong&gt;Partitsioonitabeli&lt;/strong&gt; tüüp valitud mäluseadmel.&lt;br&gt;&lt;br&gt;Ainuke viis partitsioonitabelit muuta on see kustutada ja nullist taasluua, mis hävitab kõik andmed mäluseadmel.&lt;br&gt;See installija säilitab praeguse partitsioonitabeli, v.a juhul kui sa ise valid vastupidist.&lt;br&gt;Kui pole kindel, eelista modernsetel süsteemidel GPT-d.</translation>
+        <translation>&lt;strong&gt;Partitsioonitabeli&lt;/strong&gt; tüüp valitud mäluseadmel.&lt;br&gt;&lt;br&gt;Ainuke viis partitsioonitabelit muuta on see kustutada ja nullist taasluua, mis hävitab kõik andmed mäluseadmel.&lt;br&gt;See paigaldaja säilitab praeguse partitsioonitabeli, v.a juhul kui sa ise valid vastupidist.&lt;br&gt;Kui pole kindel, eelista modernsetel süsteemidel GPT-d.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="107"/>
@@ -734,7 +734,7 @@ Installija sulgub ja kõik muutused kaovad.</translation>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="121"/>
         <source>This installer &lt;strong&gt;cannot detect a partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The device either has no partition table, or the partition table is corrupted or of an unknown type.&lt;br&gt;This installer can create a new partition table for you, either automatically, or through the manual partitioning page.</source>
-        <translation>See installija &lt;strong&gt;ei suuda tuvastada partitsioonitabelit&lt;/strong&gt;valitud mäluseadmel.&lt;br&gt;&lt;br&gt;Seadmel kas pole partitsioonitabelit, see on korrumpeerunud või on tundmatut tüüpi.&lt;br&gt;See installija võib sulle luua uue partitsioonitabeli, kas automaatselt või läbi käsitsi partitsioneerimise lehe. </translation>
+        <translation>See paigaldaja &lt;strong&gt;ei suuda tuvastada partitsioonitabelit&lt;/strong&gt;valitud mäluseadmel.&lt;br&gt;&lt;br&gt;Seadmel kas pole partitsioonitabelit, see on korrumpeerunud või on tundmatut tüüpi.&lt;br&gt;See paigaldaja võib sulle luua uue partitsioonitabeli, kas automaatselt või läbi käsitsi partitsioneerimise lehe. </translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="131"/>
@@ -877,7 +877,7 @@ Installija sulgub ja kõik muutused kaovad.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="147"/>
         <source>Install %1 on &lt;strong&gt;new&lt;/strong&gt; %2 system partition.</source>
-        <translation>Installi %1 &lt;strong&gt;uude&lt;/strong&gt; %2 süsteemipartitsiooni.</translation>
+        <translation>Paigalda %1 &lt;strong&gt;uude&lt;/strong&gt; %2 süsteemipartitsiooni.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="151"/>
@@ -887,7 +887,7 @@ Installija sulgub ja kõik muutused kaovad.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="159"/>
         <source>Install %2 on %3 system partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation>Installi %2 %3 süsteemipartitsioonile &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+        <translation>Paigalda %2 %3 süsteemipartitsioonile &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="164"/>
@@ -897,7 +897,7 @@ Installija sulgub ja kõik muutused kaovad.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="176"/>
         <source>Install boot loader on &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation>Installi käivituslaadur kohta &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+        <translation>Paigalda käivituslaadur kohta &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="186"/>
@@ -915,7 +915,7 @@ Installija sulgub ja kõik muutused kaovad.</translation>
     <message>
         <location filename="../src/modules/finished/FinishedPage.ui" line="95"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When this box is checked, your system will restart immediately when you click on &lt;span style=&quot; font-style:italic;&quot;&gt;Done&lt;/span&gt; or close the installer.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Kui see märkeruut on täidetud, taaskäivitab su süsteem automaatselt, kui vajutad &lt;span style=&quot; font-style:italic;&quot;&gt;Valmis&lt;/span&gt; või sulged installija.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Kui see märkeruut on täidetud, taaskäivitab su süsteem automaatselt, kui vajutad &lt;span style=&quot; font-style:italic;&quot;&gt;Valmis&lt;/span&gt; või sulged paigaldaja.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedPage.ui" line="98"/>
@@ -925,12 +925,12 @@ Installija sulgub ja kõik muutused kaovad.</translation>
     <message>
         <location filename="../src/modules/finished/FinishedPage.cpp" line="51"/>
         <source>&lt;h1&gt;All done.&lt;/h1&gt;&lt;br/&gt;%1 has been installed on your computer.&lt;br/&gt;You may now restart into your new system, or continue using the %2 Live environment.</source>
-        <translation>&lt;h1&gt;Kõik on valmis.&lt;/h1&gt;&lt;br/&gt;%1 on installitud sinu arvutisse.&lt;br/&gt;Sa võid nüüd taaskäivitada oma uude süsteemi või jätkata %2 live-keskkonna kasutamist.</translation>
+        <translation>&lt;h1&gt;Kõik on valmis.&lt;/h1&gt;&lt;br/&gt;%1 on paigaldatud sinu arvutisse.&lt;br/&gt;Sa võid nüüd taaskäivitada oma uude süsteemi või jätkata %2 live-keskkonna kasutamist.</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedPage.cpp" line="109"/>
         <source>&lt;h1&gt;Installation Failed&lt;/h1&gt;&lt;br/&gt;%1 has not been installed on your computer.&lt;br/&gt;The error message was: %2.</source>
-        <translation>&lt;h1&gt;Installimine ebaõnnestus&lt;/h1&gt;&lt;br/&gt;%1 ei installitud sinu arvutisse.&lt;br/&gt;Veateade oli: %2.</translation>
+        <translation>&lt;h1&gt;Paigaldamine ebaõnnestus&lt;/h1&gt;&lt;br/&gt;%1 ei paigaldatud sinu arvutisse.&lt;br/&gt;Veateade oli: %2.</translation>
     </message>
 </context>
 <context>
@@ -943,12 +943,12 @@ Installija sulgub ja kõik muutused kaovad.</translation>
     <message>
         <location filename="../src/modules/finished/FinishedViewStep.cpp" line="124"/>
         <source>Installation Complete</source>
-        <translation>Installimine lõpetatud</translation>
+        <translation>Paigaldus valmis</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedViewStep.cpp" line="125"/>
         <source>The installation of %1 is complete.</source>
-        <translation>%1 installimine on lõpetatud.</translation>
+        <translation>%1 paigaldus on valmis.</translation>
     </message>
 </context>
 <context>
@@ -971,7 +971,7 @@ Installija sulgub ja kõik muutused kaovad.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="77"/>
         <source>The installer failed to format partition %1 on disk &apos;%2&apos;.</source>
-        <translation>Installija ei suutnud vormindada partitsiooni %1 kettal &quot;%2&quot;.</translation>
+        <translation>Paigaldaja ei suutnud vormindada partitsiooni %1 kettal &quot;%2&quot;.</translation>
     </message>
 </context>
 <context>
@@ -979,12 +979,12 @@ Installija sulgub ja kõik muutused kaovad.</translation>
     <message>
         <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="53"/>
         <source>Konsole not installed</source>
-        <translation>Konsole pole installitud</translation>
+        <translation>Konsole pole paigaldatud</translation>
     </message>
     <message>
         <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="54"/>
         <source>Please install KDE Konsole and try again!</source>
-        <translation>Palun installi KDE Konsole ja proovi uuesti!</translation>
+        <translation>Palun paigalda KDE Konsole ja proovi uuesti!</translation>
     </message>
     <message>
         <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="116"/>
@@ -1059,7 +1059,7 @@ Installija sulgub ja kõik muutused kaovad.</translation>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="115"/>
         <source>&lt;h1&gt;License Agreement&lt;/h1&gt;This setup procedure will install proprietary software that is subject to licensing terms.</source>
-        <translation>&lt;h1&gt;Litsensileping&lt;/h1&gt;See seadistusprotseduur installib omandiõigusega tarkvara, mis vastab litsensitingimustele.</translation>
+        <translation>&lt;h1&gt;Litsensileping&lt;/h1&gt;See seadistusprotseduur paigaldab omandiõigusega tarkvara, mis vastab litsensitingimustele.</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="118"/>
@@ -1069,12 +1069,12 @@ Installija sulgub ja kõik muutused kaovad.</translation>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="124"/>
         <source>&lt;h1&gt;License Agreement&lt;/h1&gt;This setup procedure can install proprietary software that is subject to licensing terms in order to provide additional features and enhance the user experience.</source>
-        <translation>&lt;h1&gt;Litsensileping&lt;/h1&gt;See seadistusprotseduur võib installida omandiõigusega tarkvara, mis vastab litsensitingimustele, et pakkuda lisafunktsioone ja täiendada kasutajakogemust.</translation>
+        <translation>&lt;h1&gt;Litsensileping&lt;/h1&gt;See seadistusprotseduur võib paigaldada omandiõigusega tarkvara, mis vastab litsensitingimustele, et pakkuda lisafunktsioone ja täiendada kasutajakogemust.</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="129"/>
         <source>Please review the End User License Agreements (EULAs) above.&lt;br/&gt;If you do not agree with the terms, proprietary software will not be installed, and open source alternatives will be used instead.</source>
-        <translation>Palun loe läbi allolevad lõppkasutaja litsensilepingud (EULAd).&lt;br/&gt;Kui sa tingimustega ei nõustu, ei installita omandiõigusega tarkvara ning selle asemel kasutatakse avatud lähtekoodiga alternatiive.</translation>
+        <translation>Palun loe läbi allolevad lõppkasutaja litsensilepingud (EULAd).&lt;br/&gt;Kui sa tingimustega ei nõustu, ei paigaldata omandiõigusega tarkvara ning selle asemel kasutatakse avatud lähtekoodiga alternatiive.</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="159"/>
@@ -1190,12 +1190,12 @@ Installija sulgub ja kõik muutused kaovad.</translation>
     <message>
         <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="86"/>
         <source>Network Installation. (Disabled: Unable to fetch package lists, check your network connection)</source>
-        <translation>Võrguinstall. (Keelatud: paketinimistute saamine ebaõnnestus, kontrolli oma võrguühendust)</translation>
+        <translation>Võrgupaigaldus. (Keelatud: paketinimistute saamine ebaõnnestus, kontrolli oma võrguühendust)</translation>
     </message>
     <message>
         <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="96"/>
         <source>Network Installation. (Disabled: Received invalid groups data)</source>
-        <translation>Võrguinstall. (Keelatud: vastu võetud sobimatud grupiandmed)</translation>
+        <translation>Võrgupaigaldus. (Keelatud: vastu võetud sobimatud grupiandmed)</translation>
     </message>
 </context>
 <context>
@@ -1494,7 +1494,7 @@ Installija sulgub ja kõik muutused kaovad.</translation>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="200"/>
         <source>&lt;small&gt;If more than one person will use this computer, you can set up multiple accounts after installation.&lt;/small&gt;</source>
-        <translation>&lt;small&gt;Kui rohkem kui üks inimene kasutab seda arvutit, saad sa määrata mitu kontot peale installi.&lt;/small&gt;</translation>
+        <translation>&lt;small&gt;Kui rohkem kui üks inimene kasutab seda arvutit, saad sa pärast paigaldust määrata mitu kontot.&lt;/small&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="335"/>
@@ -1655,7 +1655,7 @@ Installija sulgub ja kõik muutused kaovad.</translation>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="148"/>
         <source>Install boot &amp;loader on:</source>
-        <translation>Installi käivituslaadur kohta:</translation>
+        <translation>Paigalda käivituslaadur kohta:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="169"/>
@@ -1688,12 +1688,12 @@ Installija sulgub ja kõik muutused kaovad.</translation>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="158"/>
         <source>Install %1 &lt;strong&gt;alongside&lt;/strong&gt; another operating system.</source>
-        <translation>Installi %1 praeguse operatsioonisüsteemi &lt;strong&gt;kõrvale&lt;/strong&gt;</translation>
+        <translation>Paigalda %1 praeguse operatsioonisüsteemi &lt;strong&gt;kõrvale&lt;/strong&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="162"/>
         <source>&lt;strong&gt;Erase&lt;/strong&gt; disk and install %1.</source>
-        <translation>&lt;strong&gt;Tühjenda&lt;/strong&gt; ketas ja installi %1.</translation>
+        <translation>&lt;strong&gt;Tühjenda&lt;/strong&gt; ketas ja paigalda %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="166"/>
@@ -1708,12 +1708,12 @@ Installija sulgub ja kõik muutused kaovad.</translation>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="184"/>
         <source>Install %1 &lt;strong&gt;alongside&lt;/strong&gt; another operating system on disk &lt;strong&gt;%2&lt;/strong&gt; (%3).</source>
-        <translation>Installi %1 teise operatsioonisüsteemi &lt;strong&gt;kõrvale&lt;/strong&gt; kettal &lt;strong&gt;%2&lt;/strong&gt; (%3).</translation>
+        <translation>Paigalda %1 teise operatsioonisüsteemi &lt;strong&gt;kõrvale&lt;/strong&gt; kettal &lt;strong&gt;%2&lt;/strong&gt; (%3).</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="190"/>
         <source>&lt;strong&gt;Erase&lt;/strong&gt; disk &lt;strong&gt;%2&lt;/strong&gt; (%3) and install %1.</source>
-        <translation>&lt;strong&gt;Tühjenda&lt;/strong&gt; ketas &lt;strong&gt;%2&lt;/strong&gt; (%3) ja installi %1.</translation>
+        <translation>&lt;strong&gt;Tühjenda&lt;/strong&gt; ketas &lt;strong&gt;%2&lt;/strong&gt; (%3) ja paigalda %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="196"/>
@@ -1800,7 +1800,7 @@ Installija sulgub ja kõik muutused kaovad.</translation>
     <message>
         <location filename="../src/modules/plasmalnf/PlasmaLnfPage.cpp" line="67"/>
         <source>Please choose a look-and-feel for the KDE Plasma Desktop. You can also skip this step and configure the look-and-feel once the system is installed. Clicking on a look-and-feel selection will give you a live preview of that look-and-feel.</source>
-        <translation>Palun vali KDE Plasma Desktop&apos;ile välimus-ja-tunnetus. Sa võid selle sammu ka vahele jätta ja seadistada välimust-ja-tunnetust siis, kui süsteem on installitud. Välimuse-ja-tunnetuse valikule klõpsates näed selle reaalajas eelvaadet.</translation>
+        <translation>Palun vali KDE Plasma töölauale välimus-ja-tunnetus. Sa võid selle sammu ka vahele jätta ja seadistada välimust-ja-tunnetust siis, kui süsteem on paigaldatud. Välimuse-ja-tunnetuse valikule klõpsates näed selle reaalajas eelvaadet.</translation>
     </message>
 </context>
 <context>
@@ -1947,7 +1947,7 @@ Väljund:
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="134"/>
         <source>Select where to install %1.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;this will delete all files on the selected partition.</source>
-        <translation>Vali, kuhu soovid %1 installida.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Hoiatus: &lt;/font&gt;see kustutab valitud partitsioonilt kõik failid.</translation>
+        <translation>Vali, kuhu soovid %1 paigaldada.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Hoiatus: &lt;/font&gt;see kustutab valitud partitsioonilt kõik failid.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="160"/>
@@ -1957,17 +1957,17 @@ Väljund:
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="168"/>
         <source>%1 cannot be installed on empty space. Please select an existing partition.</source>
-        <translation>%1 ei saa installida tühjale kohale. Palun vali olemasolev partitsioon.</translation>
+        <translation>%1 ei saa paigldada tühjale kohale. Palun vali olemasolev partitsioon.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="178"/>
         <source>%1 cannot be installed on an extended partition. Please select an existing primary or logical partition.</source>
-        <translation>%1 ei saa installida laiendatud partitsioonile. Palun vali olemasolev põhiline või loogiline partitsioon.</translation>
+        <translation>%1 ei saa paigaldada laiendatud partitsioonile. Palun vali olemasolev põhiline või loogiline partitsioon.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="188"/>
         <source>%1 cannot be installed on this partition.</source>
-        <translation>%1 ei saa installida sellele partitsioonidel.</translation>
+        <translation>%1 ei saa sellele partitsioonile paigaldada.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="194"/>
@@ -1999,7 +1999,7 @@ Väljund:
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="278"/>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="302"/>
         <source>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 will be installed on %2.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Warning: &lt;/font&gt;all data on partition %2 will be lost.</source>
-        <translation>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 installitakse partitsioonile %2.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Hoiatus: &lt;/font&gt;kõik andmed partitsioonil %2 kaovad.</translation>
+        <translation>&lt;strong&gt;%3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;%1 paigaldatakse partitsioonile %2.&lt;br/&gt;&lt;font color=&quot;red&quot;&gt;Hoiatus: &lt;/font&gt;kõik andmed partitsioonil %2 kaovad.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="270"/>
@@ -2062,12 +2062,12 @@ Väljund:
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="155"/>
         <source>The installer is not running with administrator rights.</source>
-        <translation>Installija ei tööta administraatoriõigustega.</translation>
+        <translation>Paigaldaja pole käivitatud administraatoriõigustega.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="163"/>
         <source>The screen is too small to display the installer.</source>
-        <translation>Ekraan on liiga väike installija kuvamiseks.</translation>
+        <translation>Ekraan on paigaldaja kuvamiseks liiga väike.</translation>
     </message>
 </context>
 <context>
@@ -2090,7 +2090,7 @@ Väljund:
     <message>
         <location filename="../src/modules/partition/jobs/ResizePartitionJob.cpp" line="85"/>
         <source>The installer failed to resize partition %1 on disk &apos;%2&apos;.</source>
-        <translation>Installijal ebaõnnestus partitsiooni %1 suuruse muutmine kettal &quot;%2&quot;.</translation>
+        <translation>Paigaldajal ebaõnnestus partitsiooni %1 suuruse muutmine kettal &quot;%2&quot;.</translation>
     </message>
 </context>
 <context>
@@ -2246,7 +2246,7 @@ Väljund:
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="140"/>
         <source>The installer failed to set flags on partition %1.</source>
-        <translation>Installija ei suutnud silte määrata partitsioonile %1.</translation>
+        <translation>Paigaldaja ei suutnud partitsioonile %1 silte määrata.</translation>
     </message>
 </context>
 <context>
@@ -2352,7 +2352,7 @@ Väljund:
     <message>
         <location filename="../src/modules/summary/SummaryPage.cpp" line="49"/>
         <source>This is an overview of what will happen once you start the install procedure.</source>
-        <translation>See on ülevaade sellest mis juhtub, kui alustad installiprotseduuri.</translation>
+        <translation>See on ülevaade sellest mis juhtub, kui alustad paigaldusprotseduuri.</translation>
     </message>
 </context>
 <context>
@@ -2368,17 +2368,17 @@ Väljund:
     <message>
         <location filename="../src/modules/tracking/TrackingJobs.cpp" line="43"/>
         <source>Installation feedback</source>
-        <translation>Installimise tagasiside</translation>
+        <translation>Paigalduse tagasiside</translation>
     </message>
     <message>
         <location filename="../src/modules/tracking/TrackingJobs.cpp" line="53"/>
         <source>Sending installation feedback.</source>
-        <translation>Saadan installimise tagasisidet.</translation>
+        <translation>Saadan paigalduse tagasisidet.</translation>
     </message>
     <message>
         <location filename="../src/modules/tracking/TrackingJobs.cpp" line="88"/>
         <source>Internal error in install-tracking.</source>
-        <translation>Installi jälitamisel esines sisemine viga.</translation>
+        <translation>Paigaldate jälitamisel esines sisemine viga.</translation>
     </message>
     <message>
         <location filename="../src/modules/tracking/TrackingJobs.cpp" line="89"/>
@@ -2430,7 +2430,7 @@ Väljund:
     <message>
         <location filename="../src/modules/tracking/page_trackingstep.ui" line="72"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;By selecting this, you will send &lt;span style=&quot; font-weight:600;&quot;&gt;no information at all&lt;/span&gt; about your installation.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Seda valides &lt;span style=&quot; font-weight:600;&quot;&gt;ei saada sa üldse&lt;/span&gt; teavet oma installi kohta.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Seda valides &lt;span style=&quot; font-weight:600;&quot;&gt;ei saada sa üldse&lt;/span&gt; teavet oma paigalduse kohta.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/tracking/page_trackingstep.ui" line="123"/>
@@ -2454,22 +2454,22 @@ Väljund:
     <message>
         <location filename="../src/modules/tracking/TrackingPage.cpp" line="44"/>
         <source>Install tracking helps %1 to see how many users they have, what hardware they install %1 to and (with the last two options below), get continuous information about preferred applications. To see what will be sent, please click the help icon next to each area.</source>
-        <translation>Installijälitamine aitab %1-l näha, mitu kasutajat neil on, mis riistvarale nad %1 installivad ja (märkides kaks alumist valikut) saada pidevat teavet eelistatud rakenduste kohta. Et näha, mis infot saadetakse, palun klõpsa abiikooni iga ala kõrval.</translation>
+        <translation>Paigalduse jälitamine aitab %1-l näha, mitu kasutajat neil on, mis riistvarale nad %1 paigaldavad ja (märkides kaks alumist valikut) saada pidevat teavet eelistatud rakenduste kohta. Et näha, mis infot saadetakse, palun klõpsa abiikooni iga ala kõrval.</translation>
     </message>
     <message>
         <location filename="../src/modules/tracking/TrackingPage.cpp" line="45"/>
         <source>By selecting this you will send information about your installation and hardware. This information will &lt;b&gt;only be sent once&lt;/b&gt; after the installation finishes.</source>
-        <translation>Seda valides saadad sa teavet oma installi ja riistvara kohta. See teave &lt;b&gt;saadetakse ainult korra&lt;/b&gt;peale installi lõppu.</translation>
+        <translation>Seda valides saadad sa teavet oma paigalduse ja riistvara kohta. See teave &lt;b&gt;saadetakse ainult korra&lt;/b&gt;peale paigalduse lõppu.</translation>
     </message>
     <message>
         <location filename="../src/modules/tracking/TrackingPage.cpp" line="46"/>
         <source>By selecting this you will &lt;b&gt;periodically&lt;/b&gt; send information about your installation, hardware and applications, to %1.</source>
-        <translation>Seda valides saadad sa %1-le &lt;b&gt;perioodiliselt&lt;/b&gt; infot oma installi, riistvara ja rakenduste kohta.</translation>
+        <translation>Seda valides saadad sa %1-le &lt;b&gt;perioodiliselt&lt;/b&gt; infot oma paigalduse, riistvara ja rakenduste kohta.</translation>
     </message>
     <message>
         <location filename="../src/modules/tracking/TrackingPage.cpp" line="47"/>
         <source>By selecting this you will &lt;b&gt;regularly&lt;/b&gt; send information about your installation, hardware, applications and usage patterns, to %1.</source>
-        <translation>Seda valides saadad sa %1-le &lt;b&gt;regulaarselt&lt;/b&gt; infot oma installi, riistvara, rakenduste ja kasutusharjumuste kohta.</translation>
+        <translation>Seda valides saadad sa %1-le &lt;b&gt;regulaarselt&lt;/b&gt; infot oma paigalduse, riistvara, rakenduste ja kasutusharjumuste kohta.</translation>
     </message>
 </context>
 <context>
@@ -2557,17 +2557,17 @@ Väljund:
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="60"/>
         <source>&lt;h1&gt;Welcome to the %1 installer.&lt;/h1&gt;</source>
-        <translation>&lt;h1&gt;Tere tulemast %1 installijasse.&lt;/h1&gt;</translation>
+        <translation>&lt;h1&gt;Tere tulemast %1 paigaldajasse.&lt;/h1&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="60"/>
         <source>&lt;h1&gt;Welcome to the Calamares installer for %1.&lt;/h1&gt;</source>
-        <translation>&lt;h1&gt;Tere tulemast Calamares&apos;i installijasse %1 jaoks.&lt;/h1&gt;</translation>
+        <translation>&lt;h1&gt;Tere tulemast Calamares&apos;i paigaldajasse %1 jaoks.&lt;/h1&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="73"/>
         <source>About %1 installer</source>
-        <translation>Teave %1 installija kohta</translation>
+        <translation>Teave %1 paigaldaja kohta</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="75"/>
