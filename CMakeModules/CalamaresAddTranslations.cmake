@@ -22,6 +22,25 @@
 
 include( CMakeParseArguments )
 
+if( NOT _rcc_version_support_checked )
+    set( _rcc_version_support_checked TRUE )
+    execute_process(
+        COMMAND echo "<RCC version='1.0'></RCC>"
+        COMMAND ${Qt5Core_RCC_EXECUTABLE} --format-version 1 --list -
+        RESULT_VARIABLE _rcc_version_rv
+        ERROR_VARIABLE _rcc_version_dump
+    )
+    message( STATUS "RCC ${_rcc_version_rv} ${_rcc_version_dump}" )
+    if ( _rc_version_rv )  # Not zero
+        set( _rcc_version_support "" )  # Assume it is version 1 (Qt 5.7) or derpy (Qt 5.8)
+    else()
+        set( _rcc_version_support --format-version 1 )
+    endif()
+    unset( _rcc_version_rv )
+    unset( _rcc_version_dump )
+endif()
+
+
 # Internal macro for adding the C++ / Qt translations to the
 # build and install tree. Should be called only once, from
 # src/calamares/CMakeLists.txt.
@@ -61,7 +80,7 @@ macro(add_calamares_translations language)
     add_custom_command(
         OUTPUT ${trans_outfile}
         COMMAND "${Qt5Core_RCC_EXECUTABLE}"
-        ARGS ${rcc_options} --format-version 1 -name ${trans_file} -o ${trans_outfile} ${trans_infile}
+        ARGS ${rcc_options} ${_rcc_version_support} -name ${trans_file} -o ${trans_outfile} ${trans_infile}
         MAIN_DEPENDENCY ${trans_infile}
         DEPENDS ${QM_FILES}
     )
