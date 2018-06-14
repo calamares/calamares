@@ -618,7 +618,7 @@ PartitionCoreModule::scanForLVMPVs()
 
                 if ( p->fileSystem().type() == FileSystem::Type::Lvm2_PV )
                     m_lvmPVs << p;
-                else if ( p->fileSystem().type() == FileSystem::Type::Luks || p->fileSystem().type() == FileSystem::Type::Luks2 )
+                else if ( p->fileSystem().type() == FileSystem::Type::Luks )
                 {
                     // Encrypted LVM PVs
                     FileSystem* innerFS = static_cast<const FS::luks*>(&p->fileSystem())->innerFS();
@@ -626,6 +626,16 @@ PartitionCoreModule::scanForLVMPVs()
                     if ( innerFS && innerFS->type() == FileSystem::Type::Lvm2_PV )
                         m_lvmPVs << p;
                 }
+#ifdef WITH_KPMCOREGT33
+                else if ( p->fileSystem().type() == FileSystem::Type::Luks2 )
+                {
+                    // Encrypted LVM PVs
+                    FileSystem* innerFS = static_cast<const FS::luks*>(&p->fileSystem())->innerFS();
+
+                    if ( innerFS && innerFS->type() == FileSystem::Type::Lvm2_PV )
+                        m_lvmPVs << p;
+                }
+#endif
             }
         }
     }

@@ -12,6 +12,10 @@ set_package_properties(
 )
 
 if ( KPMcore_FOUND )
+    if ( KPMcore_VERSION VERSION_GREATER "3.3.0")
+        add_definitions(-DWITH_KPMCOREGT33) # kpmcore greater than 3.3
+    endif()
+
     include_directories( ${KPMCORE_INCLUDE_DIR} )
     include_directories( ${PROJECT_BINARY_DIR}/src/libcalamaresui )
 
