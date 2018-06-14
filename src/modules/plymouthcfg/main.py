@@ -40,13 +40,8 @@ class PlymouthController:
                          "/etc/plymouth/plymouthd.conf"])
 
     def detect(self):
-        isPlymouth = target_env_call(["which", "plymouth"])
+        isPlymouth = target_env_call(["sh", "-c", "which plymouth"])
         debug("which plymouth exit code: {!s}".format(isPlymouth))
-
-        if isPlymouth == 0:
-            libcalamares.globalstorage.insert("hasPlymouth", True)
-        else:
-            libcalamares.globalstorage.insert("hasPlymouth", False)
 
         return isPlymouth
 
