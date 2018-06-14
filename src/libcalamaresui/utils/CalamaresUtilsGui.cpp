@@ -239,6 +239,7 @@ void
 setDefaultFontSize( int points )
 {
     s_defaultFontSize = points;
+    s_defaultFontHeight = 0;  // Recalculate on next call to defaultFontHeight()
 }
 
 
