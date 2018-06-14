@@ -24,17 +24,32 @@ include( CMakeParseArguments )
 
 if( NOT _rcc_version_support_checked )
     set( _rcc_version_support_checked TRUE )
+
+    # Extract the executable name
+    get_property( _rcc_executable
+        TARGET ${Qt5Core_RCC_EXECUTABLE}
+        PROPERTY IMPORTED_LOCATION
+    )
+    if( NOT _rcc_executable )
+        # Weird, probably now uses Qt5::rcc which is wrong too
+        set( _rcc_executable ${Qt5Core_RCC_EXECUTABLE} )
+    endif()
+
+    # Try an empty RCC file with explicit format-version
     execute_process(
         COMMAND echo "<RCC version='1.0'></RCC>"
         COMMAND ${Qt5Core_RCC_EXECUTABLE} --format-version 1 --list -
         RESULT_VARIABLE _rcc_version_rv
         ERROR_VARIABLE _rcc_version_dump
     )
-    message( STATUS "RCC ${_rcc_version_rv} ${_rcc_version_dump}" )
-    if ( _rc_version_rv )  # Not zero
-        set( _rcc_version_support "" )  # Assume it is version 1 (Qt 5.7) or derpy (Qt 5.8)
-    else()
+    if ( _rcc_version_rv EQUAL 0 )
+        # Supported: force to the reproducible version
         set( _rcc_version_support --format-version 1 )
+    else()
+        # Older Qt versions (5.7, 5.8) don't support setting the
+        # rcc format-version, so won't be reproducible if they
+        # default to version 2.
+        set( _rcc_version_support "" )
     endif()
     unset( _rcc_version_rv )
     unset( _rcc_version_dump )
