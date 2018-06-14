@@ -177,14 +177,21 @@ void
 ViewManager::onInitFailed( const QStringList& modules)
 {
     QString title( tr( "Calamares Initialization Failed" ) );
-    QString description( tr( "Calamares was unable to load all of the configured modules. This is a problem with the way Calamares is being used by the distribution. %1 can not be installed." ) );
-    QStringList details;
-    details << QLatin1Literal("<ul>");
-    for( const auto& m : modules )
-        details << QLatin1Literal("<li>") << m << QLatin1Literal("</li>");
-    details << QLatin1Literal("</ul>");
+    QString description( tr( "%1 can not be installed. Calamares was unable to load all of the configured modules. This is a problem with the way Calamares is being used by the distribution." ) );
+    QString detailString;
 
-    insertViewStep( 0, new BlankViewStep( title, description.arg( *Calamares::Branding::ShortProductName ), details.join( QString() ) ) );
+    if ( modules.count() > 0 )
+    {
+        description.append( tr( "<br/>The following modules could not be loaded:" ) );
+        QStringList details;
+        details << QLatin1Literal("<ul>");
+        for( const auto& m : modules )
+            details << QLatin1Literal("<li>") << m << QLatin1Literal("</li>");
+        details << QLatin1Literal("</ul>");
+        detailString = details.join( QString() );
+    }
+
+    insertViewStep( 0, new BlankViewStep( title, description.arg( *Calamares::Branding::ShortProductName ), detailString ) );
 }
 
 ViewStepList
