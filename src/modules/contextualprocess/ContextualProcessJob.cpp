@@ -66,7 +66,7 @@ struct ContextualProcessBinding
     void append( const QString& value, CalamaresUtils::CommandList* commands )
     {
         checks.append( ValueCheck( value, commands ) );
-        if ( value == '*' )
+        if ( value == QLatin1Char('*') )
             wildcard = commands;
     }
 
