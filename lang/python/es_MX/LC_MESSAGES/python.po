@@ -10,6 +10,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-28 04:57-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: guillermo pacheco <guillopacheco@gmail.com>, 2018\n"
 "Language-Team: Spanish (Mexico) (https://www.transifex.com/calamares/teams/20061/es_MX/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,39 +20,39 @@ msgstr ""
 
 #: src/modules/umount/main.py:40
 msgid "Unmount file systems."
-msgstr ""
+msgstr "Desmontar sistemas de archivo."
 
 #: src/modules/dummypython/main.py:44
 msgid "Dummy python job."
-msgstr ""
+msgstr "Trabajo python ficticio."
 
 #: src/modules/dummypython/main.py:97
 msgid "Dummy python step {}"
-msgstr ""
+msgstr "Paso python ficticio {}"
 
 #: src/modules/machineid/main.py:35
 msgid "Generate machine-id."
-msgstr ""
+msgstr "Generar identificación de la maquina."
 
 #: src/modules/packages/main.py:61
 #, python-format
 msgid "Processing packages (%(count)d / %(total)d)"
-msgstr ""
+msgstr "Procesando paquetes (%(count)d/%(total)d)"
 
 #: src/modules/packages/main.py:63 src/modules/packages/main.py:73
 msgid "Install packages."
-msgstr ""
+msgstr "Instalar paquetes."
 
 #: src/modules/packages/main.py:66
 #, python-format
 msgid "Installing one package."
 msgid_plural "Installing %(num)d packages."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Instalando un paquete."
+msgstr[1] "Instalando%(num)d paquetes."
 
 #: src/modules/packages/main.py:69
 #, python-format
 msgid "Removing one package."
 msgid_plural "Removing %(num)d packages."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Removiendo un paquete."
+msgstr[1] "Removiendo %(num)dpaquetes."

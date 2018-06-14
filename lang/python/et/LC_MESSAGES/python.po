@@ -41,18 +41,18 @@ msgstr "Pakkide töötlemine (%(count)d / %(total)d)"
 
 #: src/modules/packages/main.py:63 src/modules/packages/main.py:73
 msgid "Install packages."
-msgstr "Installi pakid."
+msgstr "Paigalda paketid."
 
 #: src/modules/packages/main.py:66
 #, python-format
 msgid "Installing one package."
 msgid_plural "Installing %(num)d packages."
-msgstr[0] "Installin ühe paki."
-msgstr[1] "Installin %(num)d pakki."
+msgstr[0] "Paigaldan ühe paketi."
+msgstr[1] "Paigaldan %(num)d paketti."
 
 #: src/modules/packages/main.py:69
 #, python-format
 msgid "Removing one package."
 msgid_plural "Removing %(num)d packages."
-msgstr[0] "Eemaldan ühe paki."
-msgstr[1] "Eemaldan %(num)d pakki."
+msgstr[0] "Eemaldan ühe paketi."
+msgstr[1] "Eemaldan %(num)d paketti."
