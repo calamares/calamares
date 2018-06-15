@@ -66,8 +66,15 @@ public:
     virtual QString prettyDescription() const;
     virtual QString prettyStatusMessage() const;
     virtual JobResult exec() = 0;
+
+    bool isEmergency() const { return m_emergency; }
+    void setEmergency( bool e ) { m_emergency = e; }
+
 signals:
     void progress( qreal percent );
+
+private:
+    bool m_emergency = false;
 };
 
 } // namespace Calamares
