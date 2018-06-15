@@ -182,8 +182,10 @@ public:
 protected:
     explicit Module();
     virtual void initFrom( const QVariantMap& moduleDescriptor );
-    bool m_loaded;
     QVariantMap m_configurationMap;
+
+    bool m_loaded = false;
+    bool m_emergency = false;
 
 private:
     void loadConfigurationFile( const QString& configFileName ); //throws YAML::Exception
@@ -192,8 +194,6 @@ private:
     QStringList m_requiredModules;
     QString m_directory;
     QString m_instanceId;
-
-    bool m_emergency;
 
     friend void ::operator>>( const QVariantMap& moduleDescriptor,
                               Calamares::Module* m );

@@ -38,6 +38,7 @@
 #   RESOURCES resource-file
 #   [NO_INSTALL]
 #   [SHARED_LIB]
+#   [EMERGENCY]
 # )
 
 include( CMakeParseArguments )
@@ -47,7 +48,7 @@ include( CMakeColors )
 function( calamares_add_plugin )
     # parse arguments ( name needs to be saved before passing ARGN into the macro )
     set( NAME ${ARGV0} )
-    set( options NO_INSTALL SHARED_LIB )
+    set( options NO_INSTALL SHARED_LIB EMERGENCY )
     set( oneValueArgs NAME TYPE EXPORT_MACRO RESOURCES )
     set( multiValueArgs SOURCES UI LINK_LIBRARIES LINK_PRIVATE_LIBRARIES COMPILE_DEFINITIONS )
     cmake_parse_arguments( PLUGIN "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN} )
@@ -132,6 +133,9 @@ function( calamares_add_plugin )
         set( _type ${PLUGIN_TYPE} )
         file( WRITE  ${_file} "# AUTO-GENERATED metadata file\n# Syntax is YAML 1.2\n---\n" )
         file( APPEND ${_file} "type: \"${_type}\"\nname: \"${PLUGIN_NAME}\"\ninterface: \"qtplugin\"\nload: \"lib${target}.so\"\n" )
+        if ( PLUGIN_EMERGENCY )
+            file( APPEND ${_file} "emergency: true\n" )
+        endif()
     endif()
 
     install( FILES ${CMAKE_CURRENT_BINARY_DIR}/${PLUGIN_DESC_FILE}

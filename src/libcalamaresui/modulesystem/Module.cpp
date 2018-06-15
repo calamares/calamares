@@ -290,6 +290,12 @@ void
 Module::initFrom( const QVariantMap& moduleDescriptor )
 {
     m_name = moduleDescriptor.value( "name" ).toString();
+
+    auto em = QStringLiteral( "emergency" );
+    if ( moduleDescriptor.contains( em ) )
+    {
+        m_emergency = moduleDescriptor[ em ].toBool();
+    }
 }
 
 } //ns
