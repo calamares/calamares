@@ -8,4 +8,5 @@ calamares_add_plugin( preservefiles
     LINK_PRIVATE_LIBRARIES
         calamares
     SHARED_LIB
+    EMERGENCY
 )

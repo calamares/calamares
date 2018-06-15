@@ -1,5 +1,0 @@
----
-type:      "job"
-name:      "preservefiles"
-interface: "qtplugin"
-load:      "libcalamares_job_preservefiles.so"
