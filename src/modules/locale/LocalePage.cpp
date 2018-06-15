@@ -498,7 +498,7 @@ LocalePage::updateGlobalStorage()
 #ifndef DEBUG_TIMEZONES
     if ( Calamares::Settings::instance()->doChroot() )
     {
-        QProcess ::execute( "timedatectl",  // depends on systemd
+        QProcess::execute( "timedatectl",  // depends on systemd
                             { "set-timezone",
                               location.region + '/' + location.zone } );
     }
