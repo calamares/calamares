@@ -1,7 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2015, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2017, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
  *
  *   Based on KPluginFactory from KCoreAddons, KDE project
  *   Copyright 2007, Matthias Kretz <kretz@kde.org>
@@ -111,7 +111,7 @@ namespace Calamares
  * T(QObject *parent, const QVariantList &args)
  * \endcode
  *
- * You should typically use CALAMARES_PLUGIN_FACTORY_DEFINITION() in your plugin code to 
+ * You should typically use CALAMARES_PLUGIN_FACTORY_DEFINITION() in your plugin code to
  * create the factory.  The pattern is
  *
  * \code

@@ -2,6 +2,7 @@
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
  *   Copyright 2016, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2018, Adriaan de Groot <groot@kde.org>
  *
  *   Flags handling originally from KDE Partition Manager,
  *   Copyright 2008-2009, Volker Lanz <vl@fidra.de>

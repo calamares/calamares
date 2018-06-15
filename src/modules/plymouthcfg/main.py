@@ -5,6 +5,7 @@
 #
 #   Copyright 2016, Artoo <artoo@manjaro.org>
 #   Copyright 2017, Alf Gaida <agaida@siduction.org>
+#   Copyright 2018, Gabriel Craciunescu <crazy@frugalware.org>
 #
 #   Calamares is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by

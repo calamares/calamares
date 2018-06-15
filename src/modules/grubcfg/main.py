@@ -7,7 +7,7 @@
 #   Copyright 2015-2017, Teo Mrnjavac <teo@kde.org>
 #   Copyright 2017, Alf Gaida <agaida@siduction.org>
 #   Copyright 2017, Adriaan de Groot <groot@kde.org>
-#   Copyright 2017, Gabriel Craciunescu <crazy@frugalware.org>
+#   Copyright 2017-2018, Gabriel Craciunescu <crazy@frugalware.org>
 #
 #   Calamares is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
