@@ -72,7 +72,7 @@ function( calamares_add_plugin )
 #        message( "   ${Green}NO_INSTALL:${ColorReset} ${PLUGIN_NO_INSTALL}" )
         message( "   ${Green}PLUGIN_DESTINATION:${ColorReset} ${PLUGIN_DESTINATION}" )
         if( PLUGIN_CONFIG_FILES )
-            if ( INSTALL_CONFIG )
+            if ( INSTALL_CONFIG AND NOT PLUGIN_NO_INSTALL )
                 message( "   ${Green}CONFIGURATION_FILES:${ColorReset} ${PLUGIN_CONFIG_FILES} => ${PLUGIN_DATA_DESTINATION}" )
             else()
                 message( "   ${Green}CONFIGURATION_FILES:${ColorReset} ${PLUGIN_CONFIG_FILES} => [Skipping installation]" )
@@ -93,7 +93,7 @@ function( calamares_add_plugin )
         set( target_type "SHARED" )
     endif()
 
-    list( APPEND calamares_add_library_args
+    set( calamares_add_library_args
         "${target}"
         "EXPORT_MACRO" "${PLUGIN_EXPORT_MACRO}"
         "TARGET_TYPE" "${target_type}"
@@ -116,9 +116,14 @@ function( calamares_add_plugin )
         list( APPEND calamares_add_library_args "COMPILE_DEFINITIONS" ${PLUGIN_COMPILE_DEFINITIONS} )
     endif()
 
-    list( APPEND calamares_add_library_args "NO_VERSION" )
+    if ( PLUGIN_NO_INSTALL )
+        list( APPEND calamares_add_library_args "NO_INSTALL" )
+    endif()
 
-    list( APPEND calamares_add_library_args "INSTALL_BINDIR" "${PLUGIN_DESTINATION}" )
+    list( APPEND calamares_add_library_args
+        "NO_VERSION"
+        "INSTALL_BINDIR" "${PLUGIN_DESTINATION}"
+    )
 
     if( PLUGIN_RESOURCES )
         list( APPEND calamares_add_library_args "RESOURCES" "${PLUGIN_RESOURCES}" )
@@ -138,14 +143,16 @@ function( calamares_add_plugin )
         endif()
     endif()
 
-    install( FILES ${CMAKE_CURRENT_BINARY_DIR}/${PLUGIN_DESC_FILE}
-             DESTINATION ${PLUGIN_DESTINATION} )
+    if ( NOT PLUGIN_NO_INSTALL )
+        install( FILES ${CMAKE_CURRENT_BINARY_DIR}/${PLUGIN_DESC_FILE}
+                DESTINATION ${PLUGIN_DESTINATION} )
 
-    if ( INSTALL_CONFIG )
-        foreach( PLUGIN_CONFIG_FILE ${PLUGIN_CONFIG_FILES} )
-            configure_file( ${PLUGIN_CONFIG_FILE} ${PLUGIN_CONFIG_FILE} COPYONLY )
-            install( FILES ${CMAKE_CURRENT_BINARY_DIR}/${PLUGIN_CONFIG_FILE}
-                     DESTINATION ${PLUGIN_DATA_DESTINATION} )
-        endforeach()
+        if ( INSTALL_CONFIG )
+            foreach( PLUGIN_CONFIG_FILE ${PLUGIN_CONFIG_FILES} )
+                configure_file( ${PLUGIN_CONFIG_FILE} ${PLUGIN_CONFIG_FILE} COPYONLY )
+                install( FILES ${CMAKE_CURRENT_BINARY_DIR}/${PLUGIN_CONFIG_FILE}
+                        DESTINATION ${PLUGIN_DATA_DESTINATION} )
+            endforeach()
+        endif()
     endif()
 endfunction()
