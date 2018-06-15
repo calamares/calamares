@@ -38,10 +38,10 @@ int main(int argc, char** argv)
     }
 
     GeoIP* handler = nullptr;
-    if ( QLatin1String( "json" ) == argv[1] )
+    if ( QStringLiteral( "json" ) == argv[1] )
         handler = new GeoIPJSON;
 #ifdef HAVE_XML
-    else if ( QLatin1String( "xml" ) == argv[1] )
+    else if ( QStringLiteral( "xml" ) == argv[1] )
         handler = new GeoIPXML;
 #endif
 

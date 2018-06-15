@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2018, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -50,22 +51,36 @@ public:
 
     void run() override
     {
+        bool anyFailed = false;
+        QString message;
+        QString details;
+
         m_jobIndex = 0;
         for( auto job : m_jobs )
         {
+            if ( anyFailed && !job->isEmergency() )
+            {
+                cDebug() << "Skipping non-emergency job" << job->prettyName();
+                continue;
+            }
+
             emitProgress();
-            cDebug() << "Starting job" << job->prettyName();
+            cDebug() << "Starting" << ( anyFailed ? "EMERGENCY JOB" : "job" ) << job->prettyName();
             connect( job.data(), &Job::progress, this, &JobThread::emitProgress );
             JobResult result = job->exec();
-            if ( !result )
+            if ( !anyFailed && !result )
             {
-                emitFailed( result.message(), result.details() );
-                emitFinished();
-                return;
+                anyFailed = true;
+                message = result.message();
+                details = result.details();
             }
-            ++m_jobIndex;
+            if ( !anyFailed )
+                ++m_jobIndex;
         }
-        emitProgress();
+        if ( anyFailed )
+            emitFailed( message, details );
+        else
+            emitProgress();
         emitFinished();
     }
 

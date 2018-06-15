@@ -1,7 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2016, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2017, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
  *
  *   Portions from the Manjaro Installation Framework
  *   by Roland Singer <roland@manjaro.org>
@@ -95,8 +95,7 @@ KeyboardPage::KeyboardPage( QWidget* parent )
         QString model = m_models.value( text, "pc105" );
 
         // Set Xorg keyboard model
-        QProcess::execute( QLatin1Literal( "setxkbmap" ),
-                           QStringList() << "-model" << model );
+        QProcess::execute( "setxkbmap", QStringList{ "-model", model } );
     } );
 
     CALAMARES_RETRANSLATE( ui->retranslateUi( this ); )
@@ -356,11 +355,15 @@ KeyboardPage::onActivate()
 
         lang.replace( '-', '_' );  // Normalize separators
     }
-    if ( !lang.isEmpty() && specialCaseMap.contains( lang.toStdString() ) )
+    if ( !lang.isEmpty() )
     {
-        QLatin1String newLang( specialCaseMap.value( lang.toStdString() ).c_str() );
-        cDebug() << " .. special case language" << lang << '>' << newLang;
-        lang = newLang;
+        std::string lang_s = lang.toStdString();
+        if ( specialCaseMap.contains( lang_s ) )
+        {
+            QString newLang = QString::fromStdString( specialCaseMap.value( lang_s ) );
+            cDebug() << " .. special case language" << lang << "becomes" << newLang;
+            lang = newLang;
+        }
     }
     if ( !lang.isEmpty() )
     {
@@ -478,9 +481,8 @@ KeyboardPage::onListVariantCurrentItemChanged( QListWidgetItem* current, QListWi
     connect( &m_setxkbmapTimer, &QTimer::timeout,
              this, [=]
     {
-        QProcess::execute( QLatin1Literal( "setxkbmap" ),
-                           xkbmap_args( QStringList(), layout, variant ) );
-        cDebug() << "xkbmap selection changed to: " << layout << "-" << variant;
+        QProcess::execute( "setxkbmap", xkbmap_args( QStringList(), layout, variant ) );
+        cDebug() << "xkbmap selection changed to: " << layout << '-' << variant;
         m_setxkbmapTimer.disconnect( this );
     } );
     m_setxkbmapTimer.start( QApplication::keyboardInputInterval() );

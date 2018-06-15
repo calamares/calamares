@@ -6,7 +6,7 @@
 #   Copyright 2014 - 2015, Philip Müller <philm@manjaro.org>
 #   Copyright 2014, Teo Mrnjavac <teo@kde.org>
 #   Copyright 2017, Alf Gaida <agaida@siduction.org>
-#   Copyright 2017, Gabriel Craciunescu <crazy@frugalware.org>
+#   Copyright 2017-2018, Gabriel Craciunescu <crazy@frugalware.org>
 #
 #   Calamares is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -46,7 +46,7 @@ def run():
             libcalamares.utils.debug("Hwclock returned error code {}".format(ret))
             libcalamares.utils.debug("  .. ISA bus method failed.")
         else:
-            libcalamares.utils.debug("Hwclock set using ISA bus methode.")
+            libcalamares.utils.debug("Hwclock set using ISA bus method.")
     if is_broken_rtc and is_broken_isa:
         libcalamares.utils.debug("BIOS or Kernel BUG: Setting hwclock failed.")
 

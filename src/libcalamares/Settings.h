@@ -1,7 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2017, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -43,7 +43,9 @@ public:
 
     QStringList modulesSearchPaths() const;
 
-    QList< QMap< QString, QString > > customModuleInstances() const;
+    using InstanceDescription = QMap< QString, QString >;
+    using InstanceDescriptionList = QList< InstanceDescription >;
+    InstanceDescriptionList customModuleInstances() const;
 
     QList< QPair< ModuleAction, QStringList > > modulesSequence() const;
 
@@ -60,7 +62,7 @@ private:
 
     QStringList m_modulesSearchPaths;
 
-    QList< QMap< QString, QString > > m_customModuleInstances;
+    InstanceDescriptionList m_customModuleInstances;
     QList< QPair< ModuleAction, QStringList > > m_modulesSequence;
 
     QString m_brandingComponentName;

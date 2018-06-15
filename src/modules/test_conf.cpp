@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2017, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -21,43 +21,86 @@
  * shipped with each module for correctness -- well, for parseability.
  */
 
+#include <unistd.h>
+#include <stdlib.h>
+
 #include <iostream>
+
 #include <yaml-cpp/yaml.h>
+
+#include <QFile>
+#include <QByteArray>
 
 using std::cerr;
 
+static const char usage[] = "Usage: test_conf [-v] [-b] <file> ...\n";
+
 int main(int argc, char** argv)
 {
-    if (argc != 2)
+    bool verbose = false;
+    bool bytes = false;
+
+    int opt;
+    while ((opt = getopt(argc, argv, "vb")) != -1) {
+        switch (opt) {
+        case 'v':
+            verbose = true;
+            break;
+        case 'b':
+            bytes = true;
+            break;
+        default: /* '?' */
+            cerr << usage;
+            return 1;
+        }
+    }
+
+    if ( optind >= argc )
     {
-        cerr << "Usage: test_conf <file.conf>\n";
+        cerr << usage;
         return 1;
     }
 
+    const char* filename = argv[optind];
     try
     {
-        YAML::Node doc = YAML::LoadFile( argv[1] );
+        YAML::Node doc;
+        if ( bytes )
+        {
+            QFile f( filename );
+            if ( f.open( QFile::ReadOnly | QFile::Text ) )
+                doc = YAML::Load( f.readAll().constData() );
+        }
+        else
+            doc = YAML::LoadFile( filename );
 
         if ( doc.IsNull() )
         {
             // Special case: empty config files are valid,
             // but aren't a map. For the example configs,
             // this is still an error.
-            cerr << "WARNING:" << argv[1] << '\n';
+            cerr << "WARNING:" << filename << '\n';
             cerr << "WARNING: empty YAML\n";
             return 1;
         }
 
         if ( !doc.IsMap() )
         {
-            cerr << "WARNING:" << argv[1] << '\n';
+            cerr << "WARNING:" << filename << '\n';
             cerr << "WARNING: not-a-YAML-map\n";
             return 1;
+        }
+
+        if ( verbose )
+        {
+            cerr << "Keys:\n";
+            for ( auto i = doc.begin(); i != doc.end(); ++i )
+                cerr << i->first.as<std::string>() << '\n';
         }
     }
     catch ( YAML::Exception& e )
     {
-        cerr << "WARNING:" << argv[1]  << '\n';
+        cerr << "WARNING:" << filename  << '\n';
         cerr << "WARNING: YAML parser error " << e.what() << '\n';
         return 1;
     }

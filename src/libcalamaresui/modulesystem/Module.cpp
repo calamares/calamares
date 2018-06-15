@@ -1,7 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2017, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -52,6 +52,8 @@ name:      "foo"      #the module name. must be unique and same as the parent di
 interface: "qtplugin" #can be: qtplugin, python, process, ...
 */
 
+static const char EMERGENCY[] = "emergency";
+
 namespace Calamares
 {
 
@@ -64,7 +66,7 @@ Module::fromDescriptor( const QVariantMap& moduleDescriptor,
                         const QString& configFileName,
                         const QString& moduleDirectory )
 {
-    Module* m = nullptr;
+    std::unique_ptr<Module> m;
 
     QString typeString = moduleDescriptor.value( "type" ).toString();
     QString intfString = moduleDescriptor.value( "interface" ).toString();
@@ -79,12 +81,12 @@ Module::fromDescriptor( const QVariantMap& moduleDescriptor,
     {
         if ( intfString == "qtplugin" )
         {
-            m = new ViewModule();
+            m.reset( new ViewModule() );
         }
         else if ( intfString == "pythonqt" )
         {
 #ifdef WITH_PYTHONQT
-            m = new PythonQtViewModule();
+            m.reset( new PythonQtViewModule() );
 #else
             cError() << "PythonQt view modules are not supported in this version of Calamares.";
 #endif
@@ -96,16 +98,16 @@ Module::fromDescriptor( const QVariantMap& moduleDescriptor,
     {
         if ( intfString == "qtplugin" )
         {
-            m = new CppJobModule();
+            m.reset( new CppJobModule() );
         }
         else if ( intfString == "process" )
         {
-            m = new ProcessJobModule();
+            m.reset( new ProcessJobModule() );
         }
         else if ( intfString == "python" )
         {
 #ifdef WITH_PYTHON
-            m = new PythonJobModule();
+            m.reset( new PythonJobModule() );
 #else
             cError() << "Python modules are not supported in this version of Calamares.";
 #endif
@@ -130,7 +132,6 @@ Module::fromDescriptor( const QVariantMap& moduleDescriptor,
     else
     {
         cError() << "Bad module directory" << moduleDirectory << "for" << instanceId;
-        delete m;
         return nullptr;
     }
 
@@ -144,10 +145,9 @@ Module::fromDescriptor( const QVariantMap& moduleDescriptor,
     catch ( YAML::Exception& e )
     {
         cError() << "YAML parser error " << e.what();
-        delete m;
         return nullptr;
     }
-    return m;
+    return m.release();
 }
 
 
@@ -200,6 +200,9 @@ Module::loadConfigurationFile( const QString& configFileName ) //throws YAML::Ex
             }
 
             m_configurationMap = CalamaresUtils::yamlMapToVariant( doc ).toMap();
+            m_emergency = m_maybe_emergency
+                && m_configurationMap.contains( EMERGENCY )
+                && m_configurationMap[ EMERGENCY ].toBool();
             return;
         }
         else
@@ -276,13 +279,6 @@ Module::interfaceString() const
 }
 
 
-bool
-Module::isLoaded() const
-{
-    return m_loaded;
-}
-
-
 QVariantMap
 Module::configurationMap()
 {
@@ -299,6 +295,11 @@ void
 Module::initFrom( const QVariantMap& moduleDescriptor )
 {
     m_name = moduleDescriptor.value( "name" ).toString();
+
+    if ( moduleDescriptor.contains( EMERGENCY ) )
+    {
+        m_maybe_emergency = moduleDescriptor[ EMERGENCY ].toBool();
+    }
 }
 
 } //ns

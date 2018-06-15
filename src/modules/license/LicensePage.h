@@ -3,6 +3,7 @@
  *   Copyright 2015, Anke Boersma <demm@kaosx.us>
  *   Copyright 2015, Alexandre Arnt <qtgzmanager@gmail.com>
  *   Copyright 2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2018, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by

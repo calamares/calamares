@@ -1,6 +1,8 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2016, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2018, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2018, Raul Rodrigo Segura <raurodse@gmail.com>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -94,6 +96,9 @@ PythonQtViewModule::loadSelf()
             if ( !s_utils )
                 s_utils = new ::Utils( Calamares::JobQueue::instance()->globalStorage() );
             cala.addObject( "utils", s_utils );
+
+            // Append configuration object, in module PythonQt.calamares
+            cala.addVariable("configuration", m_configurationMap);
 
             // Basic stdout/stderr handling
             QObject::connect( PythonQt::self(), &PythonQt::pythonStdOut,

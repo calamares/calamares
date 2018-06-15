@@ -43,15 +43,21 @@ module's name, type, interface and possibly other properties. The name
 of the module as defined in `module.desc` must be the same as the name
 of the module's directory.
 
-Module descriptors must have the following keys:
+Module descriptors **must** have the following keys:
 - *name* (an identifier; must be the same as the directory name)
 - *type* ("job" or "view")
 - *interface* (see below for the different interfaces; generally we
   refer to the kinds of modules by their interface)
 
+Module descriptors **may** have the following keys:
+- *required* **unimplemented** (a list of modules which are required for this module
+  to operate properly)
+- *emergency* (a boolean value, set to true to mark the module
+  as an emergency module)
+
 ## Module-specific configuration
 
-A Calamares module *may* read a module configuration file,
+A Calamares module **may** read a module configuration file,
 named `<modulename>.conf`. If such a file is present in the
 module's directory, it is shipped as a *default* configuration file.
 The module configuration file, if it exists, is a YAML 1.2 document
@@ -125,3 +131,23 @@ while the module type must be "job" or "jobmodule".
 The key *command* should have a string as value, which is passed to the
 shell -- remember to quote it properly.
 
+## Emergency Modules
+
+Only C++ modules and job modules may be emergency modules. If, during an
+*exec* step in the sequence, a module fails, installation as a whole fails
+and the install is aborted. If there are emergency modules in the **same**
+exec block, those will be executed before the installation is aborted.
+Non-emergency modules are not executed.
+
+If an emergency-module fails while processing emergency-modules for
+another failed module, that failure is ignored and emergency-module
+processing continues.
+
+Use the EMERGENCY keyword in the CMake description of a C++ module
+to generate a suitable `module.desc`.
+
+A module that is marked as an emergency module in its module.desc
+must **also** set the *emergency* key to *true* in its configuration file.
+If it does not, the module is not considered to be an emergency module
+after all (this is so that you can have modules that have several
+instances, only some of which are actually needed for emergencies.

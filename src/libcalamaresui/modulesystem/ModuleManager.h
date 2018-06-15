@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2018, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -82,7 +83,8 @@ public:
 
 signals:
     void initDone();
-    void modulesLoaded();
+    void modulesLoaded();  /// All of the modules were loaded successfully
+    void modulesFailed( QStringList );   /// .. or not
 
 private slots:
     void doInit();

@@ -24,8 +24,10 @@ so that it can be run directly from the build directory for testing purposes:
 
 Since the slideshow can be **any** QML, it is limited only by your designers
 imagination and your QML experience. For straightforward presentations,
-see the documentation below. There are more examples in the *calamares-branding*
+see the documentation below. There are more examples in the [calamares-branding][1]
 repository.
+
+[1] https://github.com/calamares/calamares-branding
 
 ## Translations
 

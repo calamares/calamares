@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2013-2016, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2018, Adriaan de Groot <groot@kde.org>
  *
  *   Originally from Tomahawk, portions:
  *   Copyright 2010-2011, Christian Muehlhaeuser <muesli@tomahawk-player.org>
@@ -33,11 +34,9 @@
 #include <QStandardPaths>
 #include <QTranslator>
 
-
-// stdc++
 #include <iostream>
 
-using namespace std;
+using std::cerr;
 
 namespace CalamaresUtils
 {

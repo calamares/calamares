@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2018, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -154,12 +155,33 @@ ModuleManager::moduleInstance( const QString& instanceKey )
 }
 
 
+/**
+ * @brief Search a list of instance descriptions for one matching @p module and @p id
+ *
+ * @return -1 on failure, otherwise index of the instance that matches.
+ */
+static int findCustomInstance( const Settings::InstanceDescriptionList& customInstances,
+                               const QString& module,
+                               const QString& id )
+{
+    for ( int i = 0; i < customInstances.count(); ++i )
+    {
+        const auto& thisInstance = customInstances[ i ];
+        if ( thisInstance.value( "module" ) == module &&
+                thisInstance.value( "id" ) == id )
+            return i;
+    }
+    return -1;
+}
+
+
 void
 ModuleManager::loadModules()
 {
     QTimer::singleShot( 0, this, [ this ]()
     {
-        QList< QMap< QString, QString > > customInstances =
+        QStringList failedModules;
+        Settings::InstanceDescriptionList customInstances =
                 Settings::instance()->customModuleInstances();
 
         const auto modulesSequence = Settings::instance()->modulesSequence();
@@ -177,10 +199,9 @@ ModuleManager::loadModules()
                 if ( moduleEntrySplit.length() < 1 ||
                      moduleEntrySplit.length() > 2 )
                 {
-                    cError() << "Wrong module entry format for module" << moduleEntry << '.';
-                    cError() << "Calamares will now quit.";
-                    qApp->exit( 1 );
-                    return;
+                    cError() << "Wrong module entry format for module" << moduleEntry;
+                    failedModules.append( moduleEntry );
+                    continue;
                 }
                 moduleName = moduleEntrySplit.first();
                 instanceId = moduleEntrySplit.last();
@@ -191,37 +212,21 @@ ModuleManager::loadModules()
                 {
                     cError() << "Module" << moduleName << "not found in module search paths."
                         << Logger::DebugList( m_paths );
-                    cError() << "Calamares will now quit.";
-                    qApp->exit( 1 );
-                    return;
+                    failedModules.append( moduleName );
+                    continue;
                 }
-
-                auto findCustomInstance =
-                        [ customInstances ]( const QString& module,
-                                             const QString& id) -> int
-                {
-                    for ( int i = 0; i < customInstances.count(); ++i )
-                    {
-                        auto thisInstance = customInstances[ i ];
-                        if ( thisInstance.value( "module" ) == module &&
-                             thisInstance.value( "id" ) == id )
-                            return i;
-                    }
-                    return -1;
-                };
 
                 if ( moduleName != instanceId ) //means this is a custom instance
                 {
-                    if ( findCustomInstance( moduleName, instanceId ) > -1 )
+                    if ( int found = findCustomInstance( customInstances, moduleName, instanceId ) > -1 )
                     {
-                        configFileName = customInstances[ findCustomInstance( moduleName, instanceId ) ].value( "config" );
+                        configFileName = customInstances[ found ].value( "config" );
                     }
                     else //ought to be a custom instance, but cannot find instance entry
                     {
                         cError() << "Custom instance" << moduleEntry << "not found in custom instances section.";
-                        cError() << "Calamares will now quit.";
-                        qApp->exit( 1 );
-                        return;
+                        failedModules.append( moduleEntry );
+                        continue;
                     }
                 }
 
@@ -241,10 +246,9 @@ ModuleManager::loadModules()
                     m_loadedModulesByInstanceKey.value( instanceKey, nullptr );
                 if ( thisModule && !thisModule->isLoaded() )
                 {
-                    cError() << "Module" << instanceKey << "exists but not loaded."
-                             << "\nCalamares will now quit.";
-                    qApp->exit( 1 );
-                    return;
+                    cError() << "Module" << instanceKey << "exists but not loaded.";
+                    failedModules.append( instanceKey );
+                    continue;
                 }
 
                 if ( thisModule && thisModule->isLoaded() )
@@ -260,8 +264,8 @@ ModuleManager::loadModules()
                                                 m_moduleDirectoriesByModuleName.value( moduleName ) );
                     if ( !thisModule )
                     {
-                        cWarning() << "Module" << instanceKey << "cannot be created from descriptor.";
-                        Q_ASSERT( thisModule );
+                        cError() << "Module" << instanceKey << "cannot be created from descriptor" << configFileName;
+                        failedModules.append( instanceKey );
                         continue;
                     }
                     // If it's a ViewModule, it also appends the ViewStep to the ViewManager.
@@ -269,8 +273,8 @@ ModuleManager::loadModules()
                     m_loadedModulesByInstanceKey.insert( instanceKey, thisModule );
                     if ( !thisModule->isLoaded() )
                     {
-                        cWarning() << "Module" << moduleName << "loading FAILED";
-                        Q_ASSERT( thisModule->isLoaded() );
+                        cError() << "Module" << instanceKey << "loading FAILED.";
+                        failedModules.append( instanceKey );
                         continue;
                     }
                 }
@@ -292,7 +296,13 @@ ModuleManager::loadModules()
                 }
             }
         }
-        emit modulesLoaded();
+        if ( !failedModules.isEmpty() )
+        {
+            ViewManager::instance()->onInitFailed( failedModules );
+            emit modulesFailed( failedModules );
+        }
+        else
+            emit modulesLoaded();
     } );
 }
 

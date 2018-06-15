@@ -21,6 +21,7 @@
 #include <ExecutionViewStep.h>
 
 #include "Branding.h"
+#include "Job.h"
 #include "JobQueue.h"
 #include "modulesystem/Module.h"
 #include "modulesystem/ModuleManager.h"
@@ -142,7 +143,15 @@ ExecutionViewStep::onActivate()
         Calamares::Module* module = Calamares::ModuleManager::instance()
                                     ->moduleInstance( instanceKey );
         if ( module )
-            queue->enqueue( module->jobs() );
+        {
+            auto jl = module->jobs();
+            if ( module->isEmergency() )
+            {
+                for( auto& j : jl )
+                    j->setEmergency( true );
+            }
+            queue->enqueue( jl );
+        }
     }
 
     queue->start();

@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2018, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -49,10 +50,10 @@ CalamaresApplication::CalamaresApplication( int& argc, char* argv[] )
     // <org>/<app>/, so we end up with ~/.cache/Calamares/calamares/
     // which is excessively squidly.
     //
-    // setOrganizationName( QLatin1String( CALAMARES_ORGANIZATION_NAME ) );
-    setOrganizationDomain( QLatin1String( CALAMARES_ORGANIZATION_DOMAIN ) );
-    setApplicationName( QLatin1String( CALAMARES_APPLICATION_NAME ) );
-    setApplicationVersion( QLatin1String( CALAMARES_VERSION ) );
+    // setOrganizationName( QStringLiteral( CALAMARES_ORGANIZATION_NAME ) );
+    setOrganizationDomain( QStringLiteral( CALAMARES_ORGANIZATION_DOMAIN ) );
+    setApplicationName( QStringLiteral( CALAMARES_APPLICATION_NAME ) );
+    setApplicationVersion( QStringLiteral( CALAMARES_VERSION ) );
 
     cDebug() << "Calamares version:" << CALAMARES_VERSION;
 
@@ -335,6 +336,8 @@ CalamaresApplication::initView()
 
     connect( m_moduleManager, &Calamares::ModuleManager::modulesLoaded,
              this, &CalamaresApplication::initViewSteps );
+    connect( m_moduleManager, &Calamares::ModuleManager::modulesFailed,
+             this, &CalamaresApplication::initFailed );
 
     m_moduleManager->loadModules();
 
@@ -356,6 +359,12 @@ CalamaresApplication::initViewSteps()
     cDebug() << "STARTUP: Window now visible and ProgressTreeView populated";
 }
 
+void
+CalamaresApplication::initFailed(const QStringList& l)
+{
+    cError() << "STARTUP: failed modules are" << l;
+    m_mainwindow->show();
+}
 
 void
 CalamaresApplication::initJobQueue()

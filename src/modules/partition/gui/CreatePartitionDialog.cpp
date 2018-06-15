@@ -2,6 +2,9 @@
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
  *   Copyright 2016, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2018, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2018, Andrius Štikonas <andrius@stikonas.eu>
+ *   Copyright 2018, Caio Carvalho <caiojcarvalho@gmail.com>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
