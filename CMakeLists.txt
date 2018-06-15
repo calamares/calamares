@@ -49,7 +49,7 @@ option( WITH_KF5Crash "Enable crash reporting with KCrash." ON )
 set( CALAMARES_ORGANIZATION_NAME "Calamares" )
 set( CALAMARES_ORGANIZATION_DOMAIN "github.com/calamares" )
 set( CALAMARES_APPLICATION_NAME  "Calamares" )
-set( CALAMARES_DESCRIPTION_SUMMARY 
+set( CALAMARES_DESCRIPTION_SUMMARY
     "The distribution-independent installer framework" )
 
 set( CALAMARES_VERSION_MAJOR 3 )
@@ -96,7 +96,7 @@ set( QT_VERSION 5.7.0 )
 set( YAMLCPP_VERSION 0.5.1 )
 set( ECM_VERSION 5.18 )
 set( PYTHONLIBS_VERSION 3.3 )
-set( BOOSTPYTHON_VERSION 1.54.0 )
+set( BOOSTPYTHON_VERSION 1.55.0 )
 
 
 ### CMAKE SETUP
