@@ -49,10 +49,10 @@ CalamaresApplication::CalamaresApplication( int& argc, char* argv[] )
     // <org>/<app>/, so we end up with ~/.cache/Calamares/calamares/
     // which is excessively squidly.
     //
-    // setOrganizationName( QLatin1String( CALAMARES_ORGANIZATION_NAME ) );
-    setOrganizationDomain( QLatin1String( CALAMARES_ORGANIZATION_DOMAIN ) );
-    setApplicationName( QLatin1String( CALAMARES_APPLICATION_NAME ) );
-    setApplicationVersion( QLatin1String( CALAMARES_VERSION ) );
+    // setOrganizationName( QStringLiteral( CALAMARES_ORGANIZATION_NAME ) );
+    setOrganizationDomain( QStringLiteral( CALAMARES_ORGANIZATION_DOMAIN ) );
+    setApplicationName( QStringLiteral( CALAMARES_APPLICATION_NAME ) );
+    setApplicationVersion( QStringLiteral( CALAMARES_VERSION ) );
 
     cDebug() << "Calamares version:" << CALAMARES_VERSION;
 
