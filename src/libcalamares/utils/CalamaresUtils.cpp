@@ -34,11 +34,9 @@
 #include <QStandardPaths>
 #include <QTranslator>
 
-
-// stdc++
 #include <iostream>
 
-using namespace std;
+using std::cerr;
 
 namespace CalamaresUtils
 {
