@@ -185,7 +185,8 @@ protected:
     QVariantMap m_configurationMap;
 
     bool m_loaded = false;
-    bool m_emergency = false;
+    bool m_emergency = false;  // Based on module and local config
+    bool m_maybe_emergency = false;  // Based on the module.desc
 
 private:
     void loadConfigurationFile( const QString& configFileName ); //throws YAML::Exception

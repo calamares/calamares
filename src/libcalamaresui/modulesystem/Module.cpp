@@ -52,6 +52,8 @@ name:      "foo"      #the module name. must be unique and same as the parent di
 interface: "qtplugin" #can be: qtplugin, python, process, ...
 */
 
+static const char EMERGENCY[] = "emergency";
+
 namespace Calamares
 {
 
@@ -198,6 +200,9 @@ Module::loadConfigurationFile( const QString& configFileName ) //throws YAML::Ex
             }
 
             m_configurationMap = CalamaresUtils::yamlMapToVariant( doc ).toMap();
+            m_emergency = m_maybe_emergency
+                && m_configurationMap.contains( EMERGENCY )
+                && m_configurationMap[ EMERGENCY ].toBool();
             return;
         }
         else
@@ -291,10 +296,9 @@ Module::initFrom( const QVariantMap& moduleDescriptor )
 {
     m_name = moduleDescriptor.value( "name" ).toString();
 
-    auto em = QStringLiteral( "emergency" );
-    if ( moduleDescriptor.contains( em ) )
+    if ( moduleDescriptor.contains( EMERGENCY ) )
     {
-        m_emergency = moduleDescriptor[ em ].toBool();
+        m_maybe_emergency = moduleDescriptor[ EMERGENCY ].toBool();
     }
 }
 

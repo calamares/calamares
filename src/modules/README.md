@@ -145,3 +145,9 @@ processing continues.
 
 Use the EMERGENCY keyword in the CMake description of a C++ module
 to generate a suitable `module.desc`.
+
+A module that is marked as an emergency module in its module.desc
+must **also** set the *emergency* key to *true* in its configuration file.
+If it does not, the module is not considered to be an emergency module
+after all (this is so that you can have modules that have several
+instances, only some of which are actually needed for emergencies.
