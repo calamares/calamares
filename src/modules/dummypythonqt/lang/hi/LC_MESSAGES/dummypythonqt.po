@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-13 10:28-0400\n"
+"POT-Creation-Date: 2018-05-28 04:57-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Panwar108 <caspian7pena@gmail.com>, 2018\n"
 "Language-Team: Hindi (https://www.transifex.com/calamares/teams/20061/hi/)\n"
@@ -28,16 +28,16 @@ msgstr "नया QLabel।"
 
 #: src/modules/dummypythonqt/main.py:97
 msgid "Dummy PythonQt ViewStep"
-msgstr "Dummy PythonQt ViewStep"
+msgstr "डमी पाइथन प्रक्रिया की चरण संख्या देखें"
 
 #: src/modules/dummypythonqt/main.py:183
 msgid "The Dummy PythonQt Job"
-msgstr "The Dummy PythonQt Job"
+msgstr "डमी पाइथन प्रक्रिया"
 
 #: src/modules/dummypythonqt/main.py:186
 msgid "This is the Dummy PythonQt Job. The dummy job says: {}"
-msgstr "यह Dummy PythonQt Job है।The dummy job says: {}"
+msgstr "यह डमी पाइथन प्रक्रिया है। डमी प्रक्रिया संबंधी संदेश : {}"
 
 #: src/modules/dummypythonqt/main.py:190
 msgid "A status message for Dummy PythonQt Job."
-msgstr "Dummy PythonQt Job के लिए एक status संदेश।"
+msgstr "डमी पाइथन प्रक्रिया की अवस्था संबंधी संदेश।"
