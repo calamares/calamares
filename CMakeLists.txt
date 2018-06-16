@@ -82,11 +82,11 @@ set( CALAMARES_VERSION_RC 0 )
 #       checks for new languages and misspelled ones are done (that is,
 #       copy these four lines to four backup lines, add "p", and then update
 #       the original four lines with the current translations).
-set( _tx_complete da pt_PT ro tr_TR zh_TW zh_CN pt_BR fr hr ca lt id cs_CZ )
-set( _tx_good sq es pl ja sk it_IT hu ru he de nl bg uk )
-set( _tx_ok ast is ar sv el es_MX gl en_GB th fi_FI hi eu sr nb
-            sl sr@latin mr es_PR kk kn et be )
-set( _tx_bad uz lo ur gu fr_CH fa eo ko )
+set( _tx_complete ca zh_TW hr cs_CZ da et fr id it_IT lt pl pt_PT es_MX tr_TR )
+set( _tx_good sq de pt_BR zh_CN ja ro es sk )
+set( _tx_ok hu ru he nl bg uk ast is ko ar sv el gl en_GB
+            th fi_FI hi eu nb sr sl sr@latin mr es_PR kn kk be )
+set( _tx_bad fr_CH gu lo fa ur uz eo )
 
 
 ### Required versions
