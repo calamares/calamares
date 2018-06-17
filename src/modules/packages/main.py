@@ -242,7 +242,7 @@ class PMPacman(PackageManager):
         if from_local:
             pacman_flags = "-U"
         else:
-            pacman_flags = "-Sy"
+            pacman_flags = "-Syu"
 
         check_target_env_call(["pacman", pacman_flags,
                                "--noconfirm"] + pkgs)
@@ -251,7 +251,7 @@ class PMPacman(PackageManager):
         check_target_env_call(["pacman", "-Rs", "--noconfirm"] + pkgs)
 
     def update_db(self):
-        check_target_env_call(["pacman", "-Sy"])
+        check_target_env_call(["pacman", "-Syu"])
 
 
 class PMPortage(PackageManager):
