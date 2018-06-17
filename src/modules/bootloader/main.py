@@ -8,7 +8,7 @@
 #   Copyright 2014, Daniel Hillenbrand <codeworkx@bbqlinux.org>
 #   Copyright 2014, Benjamin Vaudour <benjamin.vaudour@yahoo.fr>
 #   Copyright 2014, Kevin Kofler <kevin.kofler@chello.at>
-#   Copyright 2015-2017, Philip Mueller <philm@manjaro.org>
+#   Copyright 2015-2018, Philip Mueller <philm@manjaro.org>
 #   Copyright 2016-2017, Teo Mrnjavac <teo@kde.org>
 #   Copyright 2017, Alf Gaida <agaida@siduction.org>
 #   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
@@ -351,7 +351,7 @@ def install_secureboot(efi_directory):
         raise ValueError("No partition number found for %s" % install_efi_directory)
 
     subprocess.call([
-        "/usr/sbin/efibootmgr",
+        libcalamares.job.configuration["efiBootMgr"],
         "-c",
         "-w",
         "-L", efi_bootloader_id,
