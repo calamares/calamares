@@ -218,7 +218,9 @@ ModuleManager::loadModules()
 
                 if ( moduleName != instanceId ) //means this is a custom instance
                 {
-                    if ( int found = findCustomInstance( customInstances, moduleName, instanceId ) > -1 )
+                    int found = findCustomInstance( customInstances, moduleName, instanceId );
+
+                    if (  found > -1 )
                     {
                         configFileName = customInstances[ found ].value( "config" );
                     }
