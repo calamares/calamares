@@ -343,7 +343,7 @@ El instalador terminará y se perderán todos los cambios.</translation>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="942"/>
         <source>%1 will be shrunk to %2MB and a new %3MB partition will be created for %4.</source>
-        <translation>%1 será reducido a %2MB y una nueva partición de %3MB  será creado para %4.</translation>
+        <translation>%1 será reducido a %2MB y una nueva partición %3MB will be created for %4.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="126"/>
@@ -439,12 +439,12 @@ El instalador terminará y se perderán todos los cambios.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="45"/>
         <source>Clear mounts for partitioning operations on %1</source>
-        <translation>Despejar puntos de montaje para operaciones de particionamiento en %1</translation>
+        <translation>Borrar puntos de montaje para operaciones de particionamiento en %1</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="53"/>
         <source>Clearing mounts for partitioning operations on %1.</source>
-        <translation>Despejando puntos de montaje para operaciones de particionamiento en %1</translation>
+        <translation>Borrando puntos de montaje para operaciones de particionamiento en %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="190"/>
@@ -499,7 +499,7 @@ El instalador terminará y se perderán todos los cambios.</translation>
     <message>
         <location filename="../src/modules/contextualprocess/ContextualProcessJob.cpp" line="117"/>
         <source>Contextual Processes Job</source>
-        <translation>Tareas de procesos contextuales.</translation>
+        <translation>Tareas de procesos contextuales</translation>
     </message>
 </context>
 <context>
@@ -507,7 +507,7 @@ El instalador terminará y se perderán todos los cambios.</translation>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="14"/>
         <source>Create a Partition</source>
-        <translation>Crear una partición</translation>
+        <translation>Crear una Partición</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="48"/>
@@ -636,7 +636,7 @@ El instalador terminará y se perderán todos los cambios.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="45"/>
         <source>Create new %1 partition table on %2.</source>
-        <translation> Crear nueva tabla de particiones %1 en %2</translation>
+        <translation> Crear nueva tabla de partición %1 en %2.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="52"/>
@@ -878,7 +878,7 @@ El instalador terminará y se perderán todos los cambios.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="147"/>
         <source>Install %1 on &lt;strong&gt;new&lt;/strong&gt; %2 system partition.</source>
-        <translation>Instalar %1 en &lt;strong&gt;nueva&lt;/strong&gt; partición de sistema %2.</translation>
+        <translation>Instalar %1 en &lt;strong&gt;nueva&lt;/strong&gt; %2 partición de sistema.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="151"/>
@@ -1714,7 +1714,7 @@ El instalador terminará y se perderán todos los cambios.</translation>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="190"/>
         <source>&lt;strong&gt;Erase&lt;/strong&gt; disk &lt;strong&gt;%2&lt;/strong&gt; (%3) and install %1.</source>
-        <translation> &lt;strong&gt;Borrar&lt;/strong&gt; el disco &lt;strong&gt;%2&lt;strong&gt; (%3) e instalar %1.</translation>
+        <translation>&lt;strong&gt;Borrar&lt;/strong&gt; el disco &lt;strong&gt;%2&lt;strong&gt; (%3) e instalar %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="196"/>
