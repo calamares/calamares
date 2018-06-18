@@ -155,8 +155,7 @@ class PMPackageKit(PackageManager):
         check_target_env_call(["pkcon", "refresh"])
 
     def update_system(self):
-        # Doesn't need to update the system explicitly
-        pass
+        check_target_env_call(["pkcon", "-py", "update"])
 
 class PMZypp(PackageManager):
     backend = "zypp"
@@ -182,7 +181,7 @@ class PMYum(PackageManager):
     backend = "yum"
 
     def install(self, pkgs, from_local=False):
-        check_target_env_call(["yum", "install", "-y"] + pkgs)
+        check_target_env_call(["yum", "-y", "install"] + pkgs)
 
     def remove(self, pkgs):
         check_target_env_call(["yum", "--disablerepo=*", "-C", "-y",
@@ -193,14 +192,13 @@ class PMYum(PackageManager):
         pass
 
     def update_system(self):
-        # Doesn't need to update the system explicitly
-        pass
+        check_target_env_call(["yum", "-y", "upgrade"])
 
 class PMDnf(PackageManager):
     backend = "dnf"
 
     def install(self, pkgs, from_local=False):
-        check_target_env_call(["dnf", "install", "-y"] + pkgs)
+        check_target_env_call(["dnf", "-y", "install"] + pkgs)
 
     def remove(self, pkgs):
         # ignore the error code for now because dnf thinks removing a
@@ -213,8 +211,7 @@ class PMDnf(PackageManager):
         pass
 
     def update_system(self):
-        # Doesn't need to update the system explicitly
-        pass
+        check_target_env_call(["dnf", "-y", "upgrade"])
 
 
 class PMUrpmi(PackageManager):
