@@ -8,6 +8,7 @@
 #   Copyright 2016-2017, Kyle Robbertze <kyle@aims.ac.za>
 #   Copyright 2017, Alf Gaida <agaida@siduction.org>
 #   Copyright 2018, Adriaan de Groot <groot@kde.org>
+#   Copyright 2018, Philip Müller <philm@manjaro.org>
 #
 #   Calamares is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -153,6 +154,9 @@ class PMPackageKit(PackageManager):
     def update_db(self):
         check_target_env_call(["pkcon", "refresh"])
 
+    def update_system(self):
+        # Doesn't need to update the system explicitly
+        pass
 
 class PMZypp(PackageManager):
     backend = "zypp"
@@ -170,6 +174,9 @@ class PMZypp(PackageManager):
     def update_db(self):
         check_target_env_call(["zypper", "--non-interactive", "update"])
 
+    def update_system(self):
+        # Doesn't need to update the system explicitly
+        pass
 
 class PMYum(PackageManager):
     backend = "yum"
@@ -185,6 +192,9 @@ class PMYum(PackageManager):
         # Doesn't need updates
         pass
 
+    def update_system(self):
+        # Doesn't need to update the system explicitly
+        pass
 
 class PMDnf(PackageManager):
     backend = "dnf"
@@ -199,7 +209,11 @@ class PMDnf(PackageManager):
                          "remove"] + pkgs)
 
     def update_db(self):
-        # Doesn't need to update explicitly
+        # Doesn't need updates
+        pass
+
+    def update_system(self):
+        # Doesn't need to update the system explicitly
         pass
 
 
@@ -218,6 +232,10 @@ class PMUrpmi(PackageManager):
     def update_db(self):
         check_target_env_call(["urpmi.update", "-a"])
 
+    def update_system(self):
+        # Doesn't need to update the system explicitly
+        pass
+
 
 class PMApt(PackageManager):
     backend = "apt"
@@ -234,6 +252,10 @@ class PMApt(PackageManager):
     def update_db(self):
         check_target_env_call(["apt-get", "update"])
 
+    def update_system(self):
+        # Doesn't need to update the system explicitly
+        pass
+
 
 class PMPacman(PackageManager):
     backend = "pacman"
@@ -242,7 +264,7 @@ class PMPacman(PackageManager):
         if from_local:
             pacman_flags = "-U"
         else:
-            pacman_flags = "-Sy"
+            pacman_flags = "-S"
 
         check_target_env_call(["pacman", pacman_flags,
                                "--noconfirm"] + pkgs)
@@ -252,6 +274,9 @@ class PMPacman(PackageManager):
 
     def update_db(self):
         check_target_env_call(["pacman", "-Sy"])
+
+    def update_system(self):
+        check_target_env_call(["pacman", "-Su"])
 
 
 class PMPortage(PackageManager):
@@ -267,6 +292,10 @@ class PMPortage(PackageManager):
     def update_db(self):
         check_target_env_call(["emerge", "--sync"])
 
+    def update_system(self):
+        # Doesn't need to update the system explicitly
+        pass
+
 
 class PMEntropy(PackageManager):
     backend = "entropy"
@@ -280,6 +309,10 @@ class PMEntropy(PackageManager):
     def update_db(self):
         check_target_env_call(["equo", "update"])
 
+    def update_system(self):
+        # Doesn't need to update the system explicitly
+        pass
+
 
 class PMDummy(PackageManager):
     backend = "dummy"
@@ -292,6 +325,9 @@ class PMDummy(PackageManager):
 
     def update_db(self):
         libcalamares.utils.debug("Updating DB")
+
+    def update_system(self):
+        libcalamares.utils.debug("Updating System")
 
     def run(self, script):
         libcalamares.utils.debug("Running script '" + str(script) + "'")
@@ -308,6 +344,10 @@ class PMPisi(PackageManager):
 
     def update_db(self):
         check_target_env_call(["pisi", "update-repo"])
+
+    def update_system(self):
+        # Doesn't need to update the system explicitly
+        pass
 
 
 # Collect all the subclasses of PackageManager defined above,
@@ -451,6 +491,10 @@ def run():
     update_db = libcalamares.job.configuration.get("update_db", False)
     if update_db and libcalamares.globalstorage.value("hasInternet"):
         pkgman.update_db()
+
+    update_system = libcalamares.job.configuration.get("update_system", False)
+    if update_system and libcalamares.globalstorage.value("hasInternet"):
+        pkgman.update_system()
 
     operations = libcalamares.job.configuration.get("operations", [])
     if libcalamares.globalstorage.contains("packageOperations"):
