@@ -220,7 +220,7 @@ ModuleManager::loadModules()
                 {
                     int found = findCustomInstance( customInstances, moduleName, instanceId );
 
-                    if (  found > -1 )
+                    if ( found > -1 )
                     {
                         configFileName = customInstances[ found ].value( "config" );
                     }
