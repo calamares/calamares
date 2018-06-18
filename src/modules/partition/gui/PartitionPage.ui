@@ -104,7 +104,7 @@
      <item>
       <widget class="QPushButton" name="createButton">
        <property name="text">
-        <string>&amp;Create</string>
+        <string>Cre&amp;ate</string>
        </property>
       </widget>
      </item>
