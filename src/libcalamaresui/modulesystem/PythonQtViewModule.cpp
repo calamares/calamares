@@ -40,7 +40,8 @@
 static QPointer< GlobalStorage > s_gs = nullptr;
 static QPointer< Utils > s_utils = nullptr;
 
-namespace Calamares {
+namespace Calamares
+{
 
 Module::Type
 PythonQtViewModule::type() const
@@ -98,20 +99,21 @@ PythonQtViewModule::loadSelf()
             cala.addObject( "utils", s_utils );
 
             // Append configuration object, in module PythonQt.calamares
-            cala.addVariable("configuration", m_configurationMap);
+            cala.addVariable( "configuration", m_configurationMap );
 
             // Basic stdout/stderr handling
             QObject::connect( PythonQt::self(), &PythonQt::pythonStdOut,
-                     []( const QString& message )
-            {
-                cDebug() << "PythonQt OUT>" << message;
-            } );
+                []( const QString& message )
+                {
+                    cDebug() << "PythonQt OUT>" << message;
+                }
+            );
             QObject::connect( PythonQt::self(), &PythonQt::pythonStdErr,
-                     []( const QString& message )
-            {
-                cDebug() << "PythonQt ERR>" << message;
-            } );
-
+                []( const QString& message )
+                {
+                    cDebug() << "PythonQt ERR>" << message;
+                }
+            );
         }
 
         QDir workingDir( m_workingPath );
@@ -137,8 +139,8 @@ PythonQtViewModule::loadSelf()
 
         // Construct empty Python module with the given name
         PythonQtObjectPtr cxt =
-                PythonQt::self()->
-                createModuleFromScript( name() );
+            PythonQt::self()->
+            createModuleFromScript( name() );
         if ( cxt.isNull() )
         {
             cDebug() << "Cannot load PythonQt context from file"
@@ -149,11 +151,11 @@ PythonQtViewModule::loadSelf()
         }
 
         static const QLatin1Literal calamares_module_annotation(
-                "_calamares_module_typename = ''\n"
-                "def calamares_module(viewmodule_type):\n"
-                "    global _calamares_module_typename\n"
-                "    _calamares_module_typename = viewmodule_type.__name__\n"
-                "    return viewmodule_type\n");
+            "_calamares_module_typename = ''\n"
+            "def calamares_module(viewmodule_type):\n"
+            "    global _calamares_module_typename\n"
+            "    _calamares_module_typename = viewmodule_type.__name__\n"
+            "    return viewmodule_type\n" );
 
         // Load in the decorator
         PythonQt::self()->evalScript( cxt, calamares_module_annotation );
@@ -191,9 +193,7 @@ PythonQtViewModule::initFrom( const QVariantMap& moduleDescriptor )
     m_workingPath = directory.absolutePath();
 
     if ( !moduleDescriptor.value( "script" ).toString().isEmpty() )
-    {
         m_scriptFileName = moduleDescriptor.value( "script" ).toString();
-    }
 }
 
 PythonQtViewModule::PythonQtViewModule()

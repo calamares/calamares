@@ -22,7 +22,8 @@
 
 #include <QDir>
 
-namespace Calamares {
+namespace Calamares
+{
 
 
 Module::Type
@@ -68,23 +69,17 @@ ProcessJobModule::initFrom( const QVariantMap& moduleDescriptor )
     m_workingPath = directory.absolutePath();
 
     if ( !moduleDescriptor.value( "command" ).toString().isEmpty() )
-    {
         m_command = moduleDescriptor.value( "command" ).toString();
-    }
 
     m_secondsTimeout = 30;
     if ( moduleDescriptor.contains( "timeout" ) &&
-         !moduleDescriptor.value( "timeout" ).isNull() )
-    {
+            !moduleDescriptor.value( "timeout" ).isNull() )
         m_secondsTimeout = moduleDescriptor.value( "timeout" ).toInt();
-    }
 
     m_runInChroot = false;
     if ( moduleDescriptor.contains( "chroot" )&&
-         !moduleDescriptor.value( "chroot" ).isNull() )
-    {
+            !moduleDescriptor.value( "chroot" ).isNull() )
         m_runInChroot = moduleDescriptor.value( "chroot" ).toBool();
-    }
 }
 
 

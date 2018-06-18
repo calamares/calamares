@@ -27,7 +27,8 @@
 #include <QDir>
 #include <QPluginLoader>
 
-namespace Calamares {
+namespace Calamares
+{
 
 
 Module::Type

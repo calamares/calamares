@@ -60,10 +60,8 @@ ModuleManager::ModuleManager( const QStringList& paths, QObject* parent )
 ModuleManager::~ModuleManager()
 {
     // The map is populated with Module::fromDescriptor(), which allocates on the heap.
-    for( auto moduleptr : m_loadedModulesByInstanceKey )
-    {
+    for ( auto moduleptr : m_loadedModulesByInstanceKey )
         delete moduleptr;
-    }
 }
 
 
@@ -119,14 +117,12 @@ ModuleManager::doInit()
                 else
                 {
                     cWarning() << "Cannot cd into module directory "
-                             << path << "/" << subdir;
+                               << path << "/" << subdir;
                 }
             }
         }
         else
-        {
             cDebug() << "ModuleManager bad search path" << path;
-        }
     }
     // At this point m_availableModules is filled with whatever was found in the
     // search paths.
@@ -182,10 +178,10 @@ ModuleManager::loadModules()
     {
         QStringList failedModules;
         Settings::InstanceDescriptionList customInstances =
-                Settings::instance()->customModuleInstances();
+            Settings::instance()->customModuleInstances();
 
         const auto modulesSequence = Settings::instance()->modulesSequence();
-        for ( const auto &modulePhase : modulesSequence )
+        for ( const auto& modulePhase : modulesSequence )
         {
             ModuleAction currentAction = modulePhase.first;
 
@@ -197,7 +193,7 @@ ModuleManager::loadModules()
                 QString instanceId;
                 QString configFileName;
                 if ( moduleEntrySplit.length() < 1 ||
-                     moduleEntrySplit.length() > 2 )
+                        moduleEntrySplit.length() > 2 )
                 {
                     cError() << "Wrong module entry format for module" << moduleEntry;
                     failedModules.append( moduleEntry );
@@ -208,10 +204,10 @@ ModuleManager::loadModules()
                 configFileName = QString( "%1.conf" ).arg( moduleName );
 
                 if ( !m_availableDescriptorsByModuleName.contains( moduleName ) ||
-                     m_availableDescriptorsByModuleName.value( moduleName ).isEmpty() )
+                        m_availableDescriptorsByModuleName.value( moduleName ).isEmpty() )
                 {
                     cError() << "Module" << moduleName << "not found in module search paths."
-                        << Logger::DebugList( m_paths );
+                             << Logger::DebugList( m_paths );
                     failedModules.append( moduleName );
                     continue;
                 }
@@ -221,9 +217,7 @@ ModuleManager::loadModules()
                     int found = findCustomInstance( customInstances, moduleName, instanceId );
 
                     if ( found > -1 )
-                    {
                         configFileName = customInstances[ found ].value( "config" );
-                    }
                     else //ought to be a custom instance, but cannot find instance entry
                     {
                         cError() << "Custom instance" << moduleEntry << "not found in custom instances section.";
@@ -254,9 +248,7 @@ ModuleManager::loadModules()
                 }
 
                 if ( thisModule && thisModule->isLoaded() )
-                {
                     cDebug() << "Module" << instanceKey << "already loaded.";
-                }
                 else
                 {
                     thisModule =
@@ -318,10 +310,10 @@ ModuleManager::checkDependencies()
     forever
     {
         for ( auto it = m_availableDescriptorsByModuleName.begin();
-              it != m_availableDescriptorsByModuleName.end(); ++it )
+                it != m_availableDescriptorsByModuleName.end(); ++it )
         {
             foreach ( const QString& depName,
-                      (*it).value( "requiredModules" ).toStringList() )
+                      ( *it ).value( "requiredModules" ).toStringList() )
             {
                 if ( !m_availableDescriptorsByModuleName.contains( depName ) )
                 {

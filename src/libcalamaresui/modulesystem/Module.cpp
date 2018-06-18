@@ -71,8 +71,7 @@ Module::fromDescriptor( const QVariantMap& moduleDescriptor,
     QString typeString = moduleDescriptor.value( "type" ).toString();
     QString intfString = moduleDescriptor.value( "interface" ).toString();
 
-    if ( typeString.isEmpty() ||
-         intfString.isEmpty() )
+    if ( typeString.isEmpty() || intfString.isEmpty() )
     {
         cError() << "Bad module descriptor format" << instanceId;
         return nullptr;
@@ -80,9 +79,7 @@ Module::fromDescriptor( const QVariantMap& moduleDescriptor,
     if ( ( typeString == "view" ) || ( typeString == "viewmodule" ) )
     {
         if ( intfString == "qtplugin" )
-        {
             m.reset( new ViewModule() );
-        }
         else if ( intfString == "pythonqt" )
         {
 #ifdef WITH_PYTHONQT
@@ -97,13 +94,9 @@ Module::fromDescriptor( const QVariantMap& moduleDescriptor,
     else if ( typeString == "job" )
     {
         if ( intfString == "qtplugin" )
-        {
             m.reset( new CppJobModule() );
-        }
         else if ( intfString == "process" )
-        {
             m.reset( new ProcessJobModule() );
-        }
         else if ( intfString == "python" )
         {
 #ifdef WITH_PYTHON
@@ -121,8 +114,8 @@ Module::fromDescriptor( const QVariantMap& moduleDescriptor,
     if ( !m )
     {
         cError() << "Bad module type (" << typeString
-            << ") or interface string (" << intfString
-            << ") for module " << instanceId;
+                 << ") or interface string (" << intfString
+                 << ") for module " << instanceId;
         return nullptr;
     }
 
@@ -168,8 +161,7 @@ Module::loadConfigurationFile( const QString& configFileName ) //throws YAML::Ex
         {
             configFilesByPriority.append(
                 QDir( QDir::currentPath() ).absoluteFilePath(
-                    QString( "src/modules/%1/%2" ).arg( m_name )
-                                                  .arg( configFileName ) ) );
+                    QString( "src/modules/%1/%2" ).arg( m_name ).arg( configFileName ) ) );
         }
 
         configFilesByPriority.append(
@@ -201,8 +193,8 @@ Module::loadConfigurationFile( const QString& configFileName ) //throws YAML::Ex
 
             m_configurationMap = CalamaresUtils::yamlMapToVariant( doc ).toMap();
             m_emergency = m_maybe_emergency
-                && m_configurationMap.contains( EMERGENCY )
-                && m_configurationMap[ EMERGENCY ].toBool();
+                          && m_configurationMap.contains( EMERGENCY )
+                          && m_configurationMap[ EMERGENCY ].toBool();
             return;
         }
         else
@@ -228,8 +220,7 @@ Module::instanceId() const
 QString
 Module::instanceKey() const
 {
-    return QString( "%1@%2" ).arg( m_name )
-                             .arg( m_instanceId );
+    return QString( "%1@%2" ).arg( m_name ).arg( m_instanceId );
 }
 
 
@@ -297,9 +288,7 @@ Module::initFrom( const QVariantMap& moduleDescriptor )
     m_name = moduleDescriptor.value( "name" ).toString();
 
     if ( moduleDescriptor.contains( EMERGENCY ) )
-    {
         m_maybe_emergency = moduleDescriptor[ EMERGENCY ].toBool();
-    }
 }
 
 } //ns

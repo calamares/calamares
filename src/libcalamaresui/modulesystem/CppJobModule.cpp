@@ -26,7 +26,8 @@
 #include <QDir>
 #include <QPluginLoader>
 
-namespace Calamares {
+namespace Calamares
+{
 
 
 Module::Type
@@ -55,7 +56,7 @@ CppJobModule::loadSelf()
             return;
         }
 
-        CppJob *cppJob = pf->create< Calamares::CppJob >();
+        CppJob* cppJob = pf->create< Calamares::CppJob >();
         if ( !cppJob )
         {
             cDebug() << Q_FUNC_INFO << m_loader->errorString();
@@ -68,7 +69,7 @@ CppJobModule::loadSelf()
 
         cppJob->setModuleInstanceKey( instanceKey() );
         cppJob->setConfigurationMap( m_configurationMap );
-        m_job = Calamares::job_ptr( static_cast< Calamares::Job * >( cppJob ) );
+        m_job = Calamares::job_ptr( static_cast< Calamares::Job* >( cppJob ) );
         m_loaded = true;
         cDebug() << "CppJobModule" << instanceKey() << "loading complete.";
     }
