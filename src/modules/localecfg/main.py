@@ -48,23 +48,27 @@ def run():
         }
 
     install_path = libcalamares.globalstorage.value("rootMountPoint")
+    target_locale_gen = "{!s}/etc/locale.gen".format(install_path)
+    target_locale_gen_bak = target_locale_gen + ".bak"
+    target_locale_conf_path = "{!s}/etc/locale.conf".format(install_path)
+    target_etc_default_path = "{!s}/etc/default".format(install_path)
 
     # restore backup if available
     if os.path.exists('/etc/locale.gen.bak'):
-        shutil.copy2("{!s}/etc/locale.gen.bak".format(install_path),
-                     "{!s}/etc/locale.gen".format(install_path))
+        shutil.copy2(target_locale_gen_bak,
+                     target_locale_gen)
 
     # run locale-gen if detected
     if os.path.exists('/etc/locale.gen'):
         text = []
 
-        with open("{!s}/etc/locale.gen".format(install_path), "r") as gen:
+        with open(target_locale_gen, "r") as gen:
             text = gen.readlines()
 
         # we want unique values, so locale_values should have 1 or 2 items
         locale_values = set(locale_conf.values())
 
-        with open("{!s}/etc/locale.gen".format(install_path), "w") as gen:
+        with open(target_locale_gen, "w") as gen:
             for line in text:
                 # always enable en_US
                 if line.startswith("#" + en_us_locale):
@@ -82,15 +86,13 @@ def run():
         print('locale.gen done')
 
     # write /etc/locale.conf
-    locale_conf_path = os.path.join(install_path, "etc/locale.conf")
-    with open(locale_conf_path, "w") as lcf:
+    with open(target_locale_conf_path, "w") as lcf:
         for k, v in locale_conf.items():
             lcf.write("{!s}={!s}\n".format(k, v))
 
     # write /etc/default/locale if /etc/default exists and is a dir
-    etc_default_path = os.path.join(install_path, "etc/default")
-    if os.path.isdir(etc_default_path):
-        with open(os.path.join(etc_default_path, "locale"), "w") as edl:
+    if os.path.isdir(target_etc_default_path):
+        with open(os.path.join(target_etc_default_path, "locale"), "w") as edl:
             for k, v in locale_conf.items():
                 edl.write("{!s}={!s}\n".format(k, v))
 
