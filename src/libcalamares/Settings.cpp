@@ -182,7 +182,7 @@ Settings::Settings( const QString& settingsFilePath,
 
             m_brandingComponentName = requireString( config, "branding" );
             m_promptInstall = requireBool( config, "prompt-install", false );
-            m_doChroot = requireBool( config, "dont-chroot", true );
+            m_doChroot = !requireBool( config, "dont-chroot", false );
         }
         catch ( YAML::Exception& e )
         {
