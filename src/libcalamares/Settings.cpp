@@ -32,7 +32,7 @@
 static bool
 hasValue( const YAML::Node& v )
 {
-    return !( ( v.Type() == YAML::NodeType::Null ) || ( v.Type() == YAML::NodeType::Undefined ) );
+    return v.IsDefined() && !v.IsNull();
 }
 
 /** Helper function to grab a QString out of the config, and to warn if not present. */
