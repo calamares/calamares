@@ -68,14 +68,10 @@ def run():
 
         # we want unique values, so locale_values should have 1 or 2 items
         locale_values = set(locale_conf.values())
+        locale_values.add(en_us_locale)  # Always enable en_US as well
 
         with open(target_locale_gen, "w") as gen:
             for line in text:
-                # always enable en_US
-                if line.startswith("#" + en_us_locale):
-                    # uncomment line
-                    line = line[1:].lstrip()
-
                 for locale_value in locale_values:
                     if line.startswith("#" + locale_value):
                         # uncomment line
