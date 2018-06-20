@@ -34,6 +34,7 @@ def is_comment(line):
     """
     return bool(RE_IS_COMMENT.match(line))
 
+RE_TRAILING_COMMENT = re.compile("#.*$")
 RE_REST_OF_LINE = re.compile("\\s.*$")
 def extract_locale(line):
     """
@@ -46,9 +47,14 @@ def extract_locale(line):
     # Remove leading spaces and comment signs
     line = RE_IS_COMMENT.sub("", line)
     uncommented = line.strip()
-    # Drop all but first field
-    locale = RE_REST_OF_LINE.sub("", uncommented)
-    return locale, uncommented
+    fields = RE_TRAILING_COMMENT.sub("", uncommented).strip().split()
+    if len(fields) != 2:
+        # Not exactly two fields, can't be a proper locale line
+        return "", uncommented
+    else:
+        # Drop all but first field
+        locale = RE_REST_OF_LINE.sub("", uncommented)
+        return locale, uncommented
 
 
 def rewrite_locale_gen(srcfilename, destfilename, locale_conf):
