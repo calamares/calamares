@@ -23,14 +23,85 @@
 #   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
 
 import os
+import re
 import shutil
 
-import libcalamares
+RE_IS_COMMENT = re.compile("^ *#")
+def is_comment(line):
+    """
+    Does the @p line look like a comment? Whitespace, followed by a #
+    is a comment-only line.
+    """
+    return bool(RE_IS_COMMENT.match(line))
+
+RE_REST_OF_LINE = re.compile("\\s.*$")
+def extract_locale(line):
+    """
+    Extracts a locale from the @p line, and returns a pair of
+    (extracted-locale, uncommented line). The locale is the
+    first word of the line after uncommenting (in the human-
+    readable text explanation at the top of most /etc/locale.gen
+    files, the locales may be bogus -- either "" or e.g. "Configuration")
+    """
+    # Remove leading spaces and comment signs
+    line = RE_IS_COMMENT.sub("", line)
+    uncommented = line.strip()
+    # Drop all but first field
+    locale = RE_REST_OF_LINE.sub("", uncommented)
+    return locale, uncommented
+
+
+def rewrite_locale_gen(srcfilename, destfilename, locale_conf):
+    """
+    Copies a locale.gen file from @p srcfilename to @p destfilename
+    (this may be the same name), enabling those locales that can
+    be found in the map @p locale_conf. Also always enables en_US.UTF-8.
+    """
+    en_us_locale = 'en_US.UTF-8'
+
+    # Get entire source-file contents
+    text = []
+    with open(srcfilename, "r") as gen:
+        text = gen.readlines()
+
+    # we want unique values, so locale_values should have 1 or 2 items
+    locale_values = set(locale_conf.values())
+    locale_values.add(en_us_locale)  # Always enable en_US as well
+
+    enabled_locales = {}
+    seen_locales = set()
+
+    # Write source out again, enabling some
+    with open(destfilename, "w") as gen:
+        for line in text:
+            c = is_comment(line)
+            locale, uncommented = extract_locale(line)
+
+            # Non-comment lines are preserved, and comment lines
+            # may be enabled if they match a desired locale
+            if not c:
+                seen_locales.add(locale)
+            else:
+                for locale_value in locale_values:
+                    if locale.startswith(locale_value):
+                        enabled_locales[locale] = uncommented
+            gen.write(line)
+
+        gen.write("\n###\n#\n# Locales enabled by Calamares\n")
+        for locale, line in enabled_locales.items():
+            if locale not in seen_locales:
+                gen.write(line + "\n")
+                seen_locales.add(locale)
+
+        for locale in locale_values:
+            if locale not in seen_locales:
+                gen.write("# Missing: %s\n" % locale)
 
 
 def run():
     """ Create locale """
-    en_us_locale = 'en_US.UTF-8'
+    import libcalamares
+
     locale_conf = libcalamares.globalstorage.value("localeConf")
 
     if not locale_conf:
@@ -56,41 +127,28 @@ def run():
     # restore backup if available
     if os.path.exists(target_locale_gen_bak):
         shutil.copy2(target_locale_gen_bak, target_locale_gen)
+        libcalamares.utils.debug("Restored backup {!s} -> {!s}"
+            .format(target_locale_gen_bak).format(target_locale_gen))
 
     # run locale-gen if detected; this *will* cause an exception
     # if the live system has locale.gen, but the target does not:
     # in that case, fix your installation filesystem.
     if os.path.exists('/etc/locale.gen'):
-        text = []
-
-        with open(target_locale_gen, "r") as gen:
-            text = gen.readlines()
-
-        # we want unique values, so locale_values should have 1 or 2 items
-        locale_values = set(locale_conf.values())
-        locale_values.add(en_us_locale)  # Always enable en_US as well
-
-        with open(target_locale_gen, "w") as gen:
-            for line in text:
-                for locale_value in locale_values:
-                    if line.startswith("#" + locale_value):
-                        # uncomment line
-                        line = line[1:].lstrip()
-
-                gen.write(line)
-
+        rewrite_locale_gen(target_locale_gen, target_locale_gen, locale_conf)
         libcalamares.utils.target_env_call(['locale-gen'])
-        print('locale.gen done')
+        libcalamares.utils.debug('{!s} done'.format(target_locale_gen))
 
     # write /etc/locale.conf
     with open(target_locale_conf_path, "w") as lcf:
         for k, v in locale_conf.items():
             lcf.write("{!s}={!s}\n".format(k, v))
+        libcalamares.utils.debug('{!s} done'.format(target_locale_conf_path))
 
     # write /etc/default/locale if /etc/default exists and is a dir
     if os.path.isdir(target_etc_default_path):
         with open(os.path.join(target_etc_default_path, "locale"), "w") as edl:
             for k, v in locale_conf.items():
                 edl.write("{!s}={!s}\n".format(k, v))
+        libcalamares.utils.debug('{!s} done'.format(target_etc_default_path))
 
     return None
