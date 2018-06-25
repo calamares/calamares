@@ -39,6 +39,8 @@ public:
 
     void next() override;
     void back() override;
+    void onLeave() override;
+    void onActivate() override;
 
     bool isNextEnabled() const override;
     bool isBackEnabled() const override;

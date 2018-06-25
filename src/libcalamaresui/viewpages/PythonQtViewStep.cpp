@@ -159,6 +159,24 @@ PythonQtViewStep::isAtEnd() const
                                             "is_at_end" } ).toBool();
 }
 
+void
+PythonQtViewStep::onActivate() 
+{
+    CalamaresUtils::lookupAndCall( m_obj,
+                                          { "onActivate",
+                                            "onactivate",
+                                            "on_activate" });
+}
+
+void
+PythonQtViewStep::onLeave()
+{
+    CalamaresUtils::lookupAndCall( m_obj,
+                                          { "onLeave",
+                                            "onleave",
+                                            "on_leave" });
+}
+
 
 JobList
 PythonQtViewStep::jobs() const
