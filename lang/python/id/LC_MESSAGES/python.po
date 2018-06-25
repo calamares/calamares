@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-28 04:57-0400\n"
+"POT-Creation-Date: 2018-06-18 07:46-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Harry Suryapambagya <harsxv@gmail.com>, 2018\n"
 "Language-Team: Indonesian (https://www.transifex.com/calamares/teams/20061/id/)\n"
@@ -34,22 +34,22 @@ msgstr "Langkah {} dumi python"
 msgid "Generate machine-id."
 msgstr "Menghasilkan machine-id."
 
-#: src/modules/packages/main.py:61
+#: src/modules/packages/main.py:62
 #, python-format
 msgid "Processing packages (%(count)d / %(total)d)"
 msgstr "Paket pemrosesan (%(count)d/%(total)d)"
 
-#: src/modules/packages/main.py:63 src/modules/packages/main.py:73
+#: src/modules/packages/main.py:64 src/modules/packages/main.py:74
 msgid "Install packages."
 msgstr "pasang paket"
 
-#: src/modules/packages/main.py:66
+#: src/modules/packages/main.py:67
 #, python-format
 msgid "Installing one package."
 msgid_plural "Installing %(num)d packages."
 msgstr[0] "memasang paket %(num)d"
 
-#: src/modules/packages/main.py:69
+#: src/modules/packages/main.py:70
 #, python-format
 msgid "Removing one package."
 msgid_plural "Removing %(num)d packages."

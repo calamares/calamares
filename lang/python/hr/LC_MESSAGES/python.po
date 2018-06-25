@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-28 04:57-0400\n"
+"POT-Creation-Date: 2018-06-18 07:46-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Lovro Kudelić <lovro.kudelic@outlook.com>, 2017\n"
 "Language-Team: Croatian (https://www.transifex.com/calamares/teams/20061/hr/)\n"
@@ -34,16 +34,16 @@ msgstr "Testni python korak {}"
 msgid "Generate machine-id."
 msgstr "Generiraj ID računala."
 
-#: src/modules/packages/main.py:61
+#: src/modules/packages/main.py:62
 #, python-format
 msgid "Processing packages (%(count)d / %(total)d)"
 msgstr "Obrađujem pakete (%(count)d / %(total)d)"
 
-#: src/modules/packages/main.py:63 src/modules/packages/main.py:73
+#: src/modules/packages/main.py:64 src/modules/packages/main.py:74
 msgid "Install packages."
 msgstr "Instaliraj pakete."
 
-#: src/modules/packages/main.py:66
+#: src/modules/packages/main.py:67
 #, python-format
 msgid "Installing one package."
 msgid_plural "Installing %(num)d packages."
@@ -51,7 +51,7 @@ msgstr[0] "Instaliram paket."
 msgstr[1] "Instaliram %(num)d pakete."
 msgstr[2] "Instaliram %(num)d pakete."
 
-#: src/modules/packages/main.py:69
+#: src/modules/packages/main.py:70
 #, python-format
 msgid "Removing one package."
 msgid_plural "Removing %(num)d packages."
