@@ -176,16 +176,10 @@ ModuleManager::loadModules()
     QTimer::singleShot( 0, this, [ this ]()
     {
         QStringList failedModules = checkDependencies();
-        if ( !failedModules.isEmpty() )
-        {
-            emit modulesFailed( failedModules );
-            return;
-        }
-
         Settings::InstanceDescriptionList customInstances =
             Settings::instance()->customModuleInstances();
 
-        const auto modulesSequence = Settings::instance()->modulesSequence();
+        const auto modulesSequence = failedModules.isEmpty() ? Settings::instance()->modulesSequence() : Settings::ModuleSequence();
         for ( const auto& modulePhase : modulesSequence )
         {
             ModuleAction currentAction = modulePhase.first;
@@ -336,7 +330,7 @@ ModuleManager::checkDependencies()
                     somethingWasRemovedBecauseOfUnmetDependencies = true;
                     m_availableDescriptorsByModuleName.erase( it );
                     failed << moduleName;
-                    cWarning() << "Module" << moduleName << "has unmet requirement" << depName;
+                    cWarning() << "Module" << moduleName << "has unknown requirement" << depName;
                     break;
                 }
             }
