@@ -107,13 +107,6 @@ public:
     virtual QString instanceKey() const final;
 
     /**
-     * @brief requiredModules a list of names of modules required by this one.
-     * @return the list of names.
-     * The module dependencies system is currently incomplete and unused.
-     */
-    virtual QStringList requiredModules() const;
-
-    /**
      * @brief location returns the full path of this module's directory.
      * @return the path.
      */
@@ -198,7 +191,6 @@ private:
     void loadConfigurationFile( const QString& configFileName ); //throws YAML::Exception
 
     QString m_name;
-    QStringList m_requiredModules;
     QString m_directory;
     QString m_instanceId;
 
