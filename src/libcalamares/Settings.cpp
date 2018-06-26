@@ -212,7 +212,7 @@ Settings::customModuleInstances() const
 }
 
 
-QList< QPair< ModuleAction, QStringList > >
+Settings::ModuleSequence
 Settings::modulesSequence() const
 {
     return m_modulesSequence;

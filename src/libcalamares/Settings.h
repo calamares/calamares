@@ -47,7 +47,8 @@ public:
     using InstanceDescriptionList = QList< InstanceDescription >;
     InstanceDescriptionList customModuleInstances() const;
 
-    QList< QPair< ModuleAction, QStringList > > modulesSequence() const;
+    using ModuleSequence = QList< QPair< ModuleAction, QStringList > >;
+    ModuleSequence modulesSequence() const;
 
     QString brandingComponentName() const;
 
@@ -63,7 +64,7 @@ private:
     QStringList m_modulesSearchPaths;
 
     InstanceDescriptionList m_customModuleInstances;
-    QList< QPair< ModuleAction, QStringList > > m_modulesSequence;
+    ModuleSequence m_modulesSequence;
 
     QString m_brandingComponentName;
 

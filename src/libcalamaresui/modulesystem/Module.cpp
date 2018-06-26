@@ -224,13 +224,6 @@ Module::instanceKey() const
 }
 
 
-QStringList
-Module::requiredModules() const
-{
-    return m_requiredModules;
-}
-
-
 QString
 Module::location() const
 {
@@ -286,7 +279,6 @@ void
 Module::initFrom( const QVariantMap& moduleDescriptor )
 {
     m_name = moduleDescriptor.value( "name" ).toString();
-
     if ( moduleDescriptor.contains( EMERGENCY ) )
         m_maybe_emergency = moduleDescriptor[ EMERGENCY ].toBool();
 }
