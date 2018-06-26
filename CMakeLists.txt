@@ -36,7 +36,7 @@ cmake_minimum_required( VERSION 3.2 )
 
 ### OPTIONS
 #
-option( INSTALL_CONFIG "Install configuration files" ON )
+option( INSTALL_CONFIG "Install configuration files" OFF )
 option( INSTALL_POLKIT "Install Polkit configuration" ON )
 option( BUILD_TESTING "Build the testing tree." ON )
 option( WITH_PYTHON "Enable Python modules API (requires Boost.Python)." ON )
