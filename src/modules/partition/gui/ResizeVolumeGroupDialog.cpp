@@ -16,41 +16,47 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "CreateVolumeGroupDialog.h"
+#include "ResizeVolumeGroupDialog.h"
 
-#include <kpmcore/core/device.h>
+#include "gui/ListPhysicalVolumeWidgetItem.h"
+
 #include <kpmcore/core/lvmdevice.h>
+#include <kpmcore/util/capacity.h>
 
 #include <QComboBox>
 #include <QLineEdit>
+#include <QListWidgetItem>
 #include <QSpinBox>
 
-CreateVolumeGroupDialog::CreateVolumeGroupDialog( QString& vgName,
+ResizeVolumeGroupDialog::ResizeVolumeGroupDialog( LvmDevice *device,
+                                                  QVector< const Partition* > availablePVs,
                                                   QVector< const Partition* >& selectedPVs,
-                                                  QVector< const Partition* > pvList,
-                                                  qint64& pSize,
                                                   QWidget* parent )
-    : VolumeGroupBaseDialog( vgName, pvList, parent )
+    : VolumeGroupBaseDialog( device->name(), device->physicalVolumes(), parent )
     , m_selectedPVs( selectedPVs )
-    , m_peSize( pSize )
 {
-    setWindowTitle( "Create Volume Group" );
+    setWindowTitle( "Resize Volume Group" );
 
-    peSize()->setValue( pSize );
+    for ( int i = 0; i < pvList()->count(); i++ )
+        pvList()->item(i)->setCheckState( Qt::Checked );
 
+    for ( const Partition* p : availablePVs )
+        pvList()->addItem( new ListPhysicalVolumeWidgetItem( p, false ) );
+
+    peSize()->setValue( device->peSize() / Capacity::unitFactor(Capacity::Unit::Byte, Capacity::Unit::MiB) );
+
+    vgName()->setEnabled( false );
+    peSize()->setEnabled( false );
     vgType()->setEnabled( false );
+
+    setUsedSizeValue( device->allocatedPE() * device->peSize() );
+    setLVQuantity( device->partitionTable()->children().count() );
 }
 
 void
-CreateVolumeGroupDialog::accept()
+ResizeVolumeGroupDialog::accept()
 {
-    QString& name = vgNameValue();
-    name = vgName()->text();
-
     m_selectedPVs << checkedItems();
-
-    qint64& pe = m_peSize;
-    pe = peSize()->value();
 
     QDialog::accept();
 }

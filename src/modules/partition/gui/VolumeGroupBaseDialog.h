@@ -39,12 +39,15 @@ class VolumeGroupBaseDialog : public QDialog
 public:
     explicit VolumeGroupBaseDialog( QString& vgName,
                                     QVector< const Partition* > pvList,
-                                    qint32& peSize,
                                     QWidget* parent = nullptr );
     ~VolumeGroupBaseDialog();
 
 protected:
     virtual void updateOkButton();
+
+    void setUsedSizeValue( qint64 usedSize );
+
+    void setLVQuantity( qint32 lvQuantity );
 
     void updateTotalSize();
 
@@ -55,8 +58,6 @@ protected:
     bool isSizeValid() const;
 
     QString& vgNameValue() const;
-
-    qint32& peSizeValue() const;
 
     QLineEdit* vgName() const;
 
@@ -72,7 +73,6 @@ private:
     Ui::VolumeGroupBaseDialog* ui;
 
     QString& m_vgNameValue;
-    qint32& m_peSizeValue;
 
     qint64 m_totalSizeValue;
     qint64 m_usedSizeValue;

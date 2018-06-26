@@ -16,26 +16,25 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef CREATEVOLUMEGROUPDIALOG_H
-#define CREATEVOLUMEGROUPDIALOG_H
+#ifndef RESIZEVOLUMEGROUPDIALOG_H
+#define RESIZEVOLUMEGROUPDIALOG_H
 
 #include "gui/VolumeGroupBaseDialog.h"
 
-class CreateVolumeGroupDialog : public VolumeGroupBaseDialog
+class LvmDevice;
+
+class ResizeVolumeGroupDialog : public VolumeGroupBaseDialog
 {
 public:
-    CreateVolumeGroupDialog( QString& vgName,
+    ResizeVolumeGroupDialog( LvmDevice *device,
+                             QVector< const Partition* > availablePVs,
                              QVector< const Partition* >& selectedPVs,
-                             QVector< const Partition* > pvList,
-                             qint64& pSize,
                              QWidget* parent );
 
     void accept() override;
 
 private:
     QVector< const Partition* >& m_selectedPVs;
-
-    qint64& m_peSize;
 };
 
-#endif // CREATEVOLUMEGROUPDIALOG_H
+#endif // RESIZEVOLUMEGROUPDIALOG_H

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>655</width>
+    <width>684</width>
     <height>304</height>
    </rect>
   </property>
@@ -89,13 +89,6 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="newVolumeGroupButton">
-       <property name="text">
-        <string>New Volume Group</string>
-       </property>
-      </widget>
-     </item>
-     <item>
       <spacer name="horizontalSpacer">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
@@ -128,6 +121,51 @@
         <string>&amp;Delete</string>
        </property>
       </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_4">
+     <item>
+      <widget class="QPushButton" name="newVolumeGroupButton">
+       <property name="text">
+        <string>New Volume Group</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="resizeVolumeGroupButton">
+       <property name="text">
+        <string>Resize Volume Group</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="deactivateVolumeGroupButton">
+       <property name="text">
+        <string>Deactivate Volume Group</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="removeVolumeGroupButton">
+       <property name="text">
+        <string>Remove Volume Group</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_4">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
      </item>
     </layout>
    </item>

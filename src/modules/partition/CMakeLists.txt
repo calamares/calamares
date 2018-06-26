@@ -51,6 +51,7 @@ if ( KPMcore_FOUND )
             gui/PartitionSplitterWidget.cpp
             gui/PartitionViewStep.cpp
             gui/PrettyRadioButton.cpp
+            gui/ResizeVolumeGroupDialog.cpp
             gui/ScanningDialog.cpp
             gui/ReplaceWidget.cpp
             gui/VolumeGroupBaseDialog.cpp
@@ -59,11 +60,14 @@ if ( KPMcore_FOUND )
             jobs/CreatePartitionJob.cpp
             jobs/CreatePartitionTableJob.cpp
             jobs/CreateVolumeGroupJob.cpp
+            jobs/DeactivateVolumeGroupJob.cpp
             jobs/DeletePartitionJob.cpp
             jobs/FillGlobalStorageJob.cpp
             jobs/FormatPartitionJob.cpp
             jobs/PartitionJob.cpp
+            jobs/RemoveVolumeGroupJob.cpp
             jobs/ResizePartitionJob.cpp
+            jobs/ResizeVolumeGroupJob.cpp
             jobs/SetPartitionFlagsJob.cpp
         UI
             gui/ChoicePage.ui

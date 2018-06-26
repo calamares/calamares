@@ -16,26 +16,33 @@
  *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef CREATEVOLUMEGROUPDIALOG_H
-#define CREATEVOLUMEGROUPDIALOG_H
+#ifndef RESIZEVOLUMEGROUPJOB_H
+#define RESIZEVOLUMEGROUPJOB_H
 
-#include "gui/VolumeGroupBaseDialog.h"
+#include <Job.h>
 
-class CreateVolumeGroupDialog : public VolumeGroupBaseDialog
+#include <QVector>
+
+class LvmDevice;
+class Partition;
+
+class ResizeVolumeGroupJob : public Calamares::Job
 {
 public:
-    CreateVolumeGroupDialog( QString& vgName,
-                             QVector< const Partition* >& selectedPVs,
-                             QVector< const Partition* > pvList,
-                             qint64& pSize,
-                             QWidget* parent );
+    ResizeVolumeGroupJob( LvmDevice* device, QVector< const Partition* >& partitionList );
 
-    void accept() override;
+    QString prettyName() const override;
+    QString prettyDescription() const override;
+    QString prettyStatusMessage() const override;
+    Calamares::JobResult exec() override;
 
 private:
-    QVector< const Partition* >& m_selectedPVs;
+    QString currentPartitions() const;
+    QString targetPartitions() const;
 
-    qint64& m_peSize;
+private:
+    LvmDevice* m_device;
+    QVector< const Partition* > m_partitionList;
 };
 
-#endif // CREATEVOLUMEGROUPDIALOG_H
+#endif // RESIZEVOLUMEGROUPJOB_H

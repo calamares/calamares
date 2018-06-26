@@ -30,6 +30,7 @@
 #include "gui/CreatePartitionDialog.h"
 #include "gui/CreateVolumeGroupDialog.h"
 #include "gui/EditExistingPartitionDialog.h"
+#include "gui/ResizeVolumeGroupDialog.h"
 #include "gui/ScanningDialog.h"
 
 #include "ui_PartitionPage.h"
@@ -43,6 +44,8 @@
 // KPMcore
 #include <kpmcore/core/device.h>
 #include <kpmcore/core/partition.h>
+#include <kpmcore/ops/deactivatevolumegroupoperation.h>
+#include <kpmcore/ops/removevolumegroupoperation.h>
 
 // Qt
 #include <QDebug>
@@ -101,6 +104,9 @@ PartitionPage::PartitionPage( PartitionCoreModule* core, QWidget* parent )
     connect( m_ui->partitionTreeView, &QAbstractItemView::doubleClicked, this, &PartitionPage::onPartitionViewActivated );
     connect( m_ui->revertButton, &QAbstractButton::clicked, this, &PartitionPage::onRevertClicked );
     connect( m_ui->newVolumeGroupButton, &QAbstractButton::clicked, this, &PartitionPage::onNewVolumeGroupClicked );
+    connect( m_ui->resizeVolumeGroupButton, &QAbstractButton::clicked, this, &PartitionPage::onResizeVolumeGroupClicked );
+    connect( m_ui->deactivateVolumeGroupButton, &QAbstractButton::clicked, this, &PartitionPage::onDeactivateVolumeGroupClicked );
+    connect( m_ui->removeVolumeGroupButton, &QAbstractButton::clicked, this, &PartitionPage::onRemoveVolumeGroupClicked );
     connect( m_ui->newPartitionTableButton, &QAbstractButton::clicked, this, &PartitionPage::onNewPartitionTableClicked );
     connect( m_ui->createButton, &QAbstractButton::clicked, this, &PartitionPage::onCreateClicked );
     connect( m_ui->editButton, &QAbstractButton::clicked, this, &PartitionPage::onEditClicked );
@@ -121,7 +127,8 @@ PartitionPage::~PartitionPage()
 void
 PartitionPage::updateButtons()
 {
-    bool create = false, createTable = false, edit = false, del = false;
+    bool create = false, createTable = false, edit = false, del = false, currentDeviceIsVG = false, isDeactivable = false;
+    bool isRemovable = false, isVGdeactivated = false;
 
     QModelIndex index = m_ui->partitionTreeView->currentIndex();
     if ( index.isValid() )
@@ -152,12 +159,28 @@ PartitionPage::updateButtons()
         QModelIndex deviceIndex = m_core->deviceModel()->index( m_ui->deviceComboBox->currentIndex(), 0 );
         if ( m_core->deviceModel()->deviceForIndex( deviceIndex )->type() != Device::Type::LVM_Device )
             createTable = true;
+        else
+        {
+            currentDeviceIsVG = true;
+
+            LvmDevice* lvmDevice = dynamic_cast<LvmDevice*>(m_core->deviceModel()->deviceForIndex( deviceIndex ));
+
+            isDeactivable = DeactivateVolumeGroupOperation::isDeactivatable( lvmDevice );
+            isRemovable = RemoveVolumeGroupOperation::isRemovable( lvmDevice );
+
+            isVGdeactivated = m_core->isVGdeactivated( lvmDevice );
+
+            m_ui->revertButton->setEnabled( isVGdeactivated );
+        }
     }
 
     m_ui->createButton->setEnabled( create );
     m_ui->editButton->setEnabled( edit );
     m_ui->deleteButton->setEnabled( del );
     m_ui->newPartitionTableButton->setEnabled( createTable );
+    m_ui->resizeVolumeGroupButton->setEnabled( currentDeviceIsVG && !isVGdeactivated );
+    m_ui->deactivateVolumeGroupButton->setEnabled( currentDeviceIsVG && isDeactivable && !isVGdeactivated );
+    m_ui->removeVolumeGroupButton->setEnabled( currentDeviceIsVG && isRemovable );
 }
 
 void
@@ -188,7 +211,7 @@ PartitionPage::onNewVolumeGroupClicked()
 {
     QString vgName;
     QVector< const Partition* > selectedPVs;
-    qint32 peSize = 4;
+    qint64 peSize = 4;
 
     QVector< const Partition* > availablePVs;
 
@@ -236,6 +259,59 @@ PartitionPage::onNewVolumeGroupClicked()
     }
 
     delete dlg;
+}
+
+void
+PartitionPage::onResizeVolumeGroupClicked()
+{
+    QModelIndex deviceIndex = m_core->deviceModel()->index( m_ui->deviceComboBox->currentIndex(), 0 );
+    LvmDevice* device = dynamic_cast< LvmDevice* >( m_core->deviceModel()->deviceForIndex( deviceIndex ) );
+
+    Q_ASSERT( device && device->type() == Device::Type::LVM_Device );
+
+    QVector< const Partition* > availablePVs;
+    QVector< const Partition* > selectedPVs;
+
+    for ( const Partition* p : m_core->lvmPVs() )
+        if ( !m_core->isInVG( p ) )
+            availablePVs << p;
+
+    QPointer< ResizeVolumeGroupDialog > dlg = new ResizeVolumeGroupDialog( device,
+                                                                           availablePVs,
+                                                                           selectedPVs,
+                                                                           this );
+
+    if ( dlg->exec() == QDialog::Accepted )
+        m_core->resizeVolumeGroup( device, selectedPVs );
+
+    delete dlg;
+}
+
+void
+PartitionPage::onDeactivateVolumeGroupClicked()
+{
+    QModelIndex deviceIndex = m_core->deviceModel()->index( m_ui->deviceComboBox->currentIndex(), 0 );
+    LvmDevice* device = dynamic_cast< LvmDevice* >( m_core->deviceModel()->deviceForIndex( deviceIndex ) );
+
+    Q_ASSERT( device && device->type() == Device::Type::LVM_Device );
+
+    m_core->deactivateVolumeGroup( device );
+
+    updateFromCurrentDevice();
+
+    PartitionModel* model = m_core->partitionModelForDevice( device );
+    model->update();
+}
+
+void
+PartitionPage::onRemoveVolumeGroupClicked()
+{
+    QModelIndex deviceIndex = m_core->deviceModel()->index( m_ui->deviceComboBox->currentIndex(), 0 );
+    LvmDevice* device = dynamic_cast< LvmDevice* >( m_core->deviceModel()->deviceForIndex( deviceIndex ) );
+
+    Q_ASSERT( device && device->type() == Device::Type::LVM_Device );
+
+    m_core->removeVolumeGroup( device );
 }
 
 void

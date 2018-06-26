@@ -32,12 +32,10 @@
 
 VolumeGroupBaseDialog::VolumeGroupBaseDialog( QString& vgName,
                                               QVector< const Partition* > pvList,
-                                              qint32& peSize,
                                               QWidget *parent )
     : QDialog(parent)
     , ui(new Ui::VolumeGroupBaseDialog)
     , m_vgNameValue(vgName)
-    , m_peSizeValue(peSize)
     , m_totalSizeValue(0)
     , m_usedSizeValue(0)
 {
@@ -52,8 +50,6 @@ VolumeGroupBaseDialog::VolumeGroupBaseDialog( QString& vgName,
     QRegularExpression re(R"(^(?!_|\.)[\w\-.+]+)");
     ui->vgName->setValidator( new QRegularExpressionValidator( re, this ) );
     ui->vgName->setText( m_vgNameValue );
-
-    ui->peSize->setValue( m_peSizeValue );
 
     updateOkButton();
     updateTotalSize();
@@ -112,6 +108,20 @@ VolumeGroupBaseDialog::updateOkButton()
 }
 
 void
+VolumeGroupBaseDialog::setUsedSizeValue( qint64 usedSize )
+{
+    m_usedSizeValue = usedSize;
+
+    ui->usedSize->setText( Capacity::formatByteSize(m_usedSizeValue) );
+}
+
+void
+VolumeGroupBaseDialog::setLVQuantity( qint32 lvQuantity )
+{
+    ui->lvQuantity->setText( QString::number( lvQuantity ) );
+}
+
+void
 VolumeGroupBaseDialog::updateTotalSize()
 {
     m_totalSizeValue = 0;
@@ -141,12 +151,6 @@ QString&
 VolumeGroupBaseDialog::vgNameValue() const
 {
     return m_vgNameValue;
-}
-
-qint32&
-VolumeGroupBaseDialog::peSizeValue() const
-{
-    return m_peSizeValue;
 }
 
 QLineEdit*

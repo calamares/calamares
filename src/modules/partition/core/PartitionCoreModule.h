@@ -114,6 +114,12 @@ public:
 
     void createVolumeGroup( QString &vgName, QVector< const Partition* > pvList, qint32 peSize );
 
+    void resizeVolumeGroup( LvmDevice* device, QVector< const Partition* >& pvList );
+
+    void deactivateVolumeGroup( LvmDevice* device );
+
+    void removeVolumeGroup( LvmDevice* device );
+
     void deletePartition( Device* device, Partition* partition );
 
     void formatPartition( Device* device, Partition* partition );
@@ -160,6 +166,8 @@ public:
 
     bool isDirty();     // true if there are pending changes, otherwise false
 
+    bool isVGdeactivated( LvmDevice* device );
+
     /**
      * To be called when a partition has been altered, but only for changes
      * which do not affect its size, because changes which affect the partition size
@@ -197,6 +205,9 @@ private:
         QScopedPointer< PartitionModel > partitionModel;
         const QScopedPointer< Device > immutableDevice;
         QList< Calamares::job_ptr > jobs;
+
+        // To check if LVM VGs are deactivated
+        bool isAvailable;
 
         void forgetChanges();
         bool isDirty() const;
