@@ -59,6 +59,7 @@ option( WITH_KF5Crash "Enable crash reporting with KCrash." ON )
 # **available** to `settings.conf`, not that they are used).
 #
 # Currently, no USE_<foo> variables exist.
+set( USE_services "" CACHE STRING "Select the services module to use" )
 
 ### Calamares application info
 #
