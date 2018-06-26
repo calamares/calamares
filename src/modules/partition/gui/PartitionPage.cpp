@@ -170,7 +170,8 @@ PartitionPage::updateButtons()
 
             isVGdeactivated = m_core->isVGdeactivated( lvmDevice );
 
-            m_ui->revertButton->setEnabled( isVGdeactivated );
+            if ( isVGdeactivated )
+                m_ui->revertButton->setEnabled( true );
         }
     }
 
