@@ -126,7 +126,6 @@ ModuleManager::doInit()
     }
     // At this point m_availableModules is filled with whatever was found in the
     // search paths.
-    checkDependencies();
     emit initDone();
 }
 
@@ -176,11 +175,11 @@ ModuleManager::loadModules()
 {
     QTimer::singleShot( 0, this, [ this ]()
     {
-        QStringList failedModules;
+        QStringList failedModules = checkDependencies();
         Settings::InstanceDescriptionList customInstances =
             Settings::instance()->customModuleInstances();
 
-        const auto modulesSequence = Settings::instance()->modulesSequence();
+        const auto modulesSequence = failedModules.isEmpty() ? Settings::instance()->modulesSequence() : Settings::ModuleSequence();
         for ( const auto& modulePhase : modulesSequence )
         {
             ModuleAction currentAction = modulePhase.first;
@@ -262,6 +261,14 @@ ModuleManager::loadModules()
                         failedModules.append( instanceKey );
                         continue;
                     }
+
+                    if ( !checkDependencies( *thisModule ) )
+                    {
+                        // Error message is already printed
+                        failedModules.append( instanceKey );
+                        continue;
+                    }
+
                     // If it's a ViewModule, it also appends the ViewStep to the ViewManager.
                     thisModule->loadSelf();
                     m_loadedModulesByInstanceKey.insert( instanceKey, thisModule );
@@ -301,24 +308,29 @@ ModuleManager::loadModules()
 }
 
 
-void
+QStringList
 ModuleManager::checkDependencies()
 {
+    QStringList failed;
+
     // This goes through the map of available modules, and deletes those whose
     // dependencies are not met, if any.
-    bool somethingWasRemovedBecauseOfUnmetDependencies = false;
     forever
     {
+        bool somethingWasRemovedBecauseOfUnmetDependencies = false;
         for ( auto it = m_availableDescriptorsByModuleName.begin();
                 it != m_availableDescriptorsByModuleName.end(); ++it )
         {
             foreach ( const QString& depName,
-                      ( *it ).value( "requiredModules" ).toStringList() )
+                      it->value( "requiredModules" ).toStringList() )
             {
                 if ( !m_availableDescriptorsByModuleName.contains( depName ) )
                 {
+                    QString moduleName = it->value( "name" ).toString();
                     somethingWasRemovedBecauseOfUnmetDependencies = true;
                     m_availableDescriptorsByModuleName.erase( it );
+                    failed << moduleName;
+                    cWarning() << "Module" << moduleName << "has unknown requirement" << depName;
                     break;
                 }
             }
@@ -328,7 +340,33 @@ ModuleManager::checkDependencies()
         if ( !somethingWasRemovedBecauseOfUnmetDependencies )
             break;
     }
+
+    return failed;
 }
 
+bool
+ModuleManager::checkDependencies( const Module& m )
+{
+    bool allRequirementsFound = true;
+    QStringList requiredModules = m_availableDescriptorsByModuleName[ m.name() ].value( "requiredModules" ).toStringList();
+
+    for ( const QString& required : requiredModules )
+    {
+        bool requirementFound = false;
+        for( const Module* v : m_loadedModulesByInstanceKey )
+            if ( required == v->name() )
+            {
+                requirementFound = true;
+                break;
+            }
+        if ( !requirementFound )
+        {
+            cError() << "Module" << m.name() << "requires" << required << "before it in sequence.";
+            allRequirementsFound = false;
+        }
+    }
+
+    return allRequirementsFound;
+}
 
 }

@@ -90,7 +90,25 @@ private slots:
     void doInit();
 
 private:
-    void checkDependencies();
+    /**
+     * Check in a general sense whether the dependencies between
+     * modules are valid. Returns a list of module names that
+     * do **not** have their requirements met.
+     *
+     * Returns an empty list on success.
+     *
+     * Also modifies m_availableDescriptorsByModuleName to remove
+     * all the entries that fail.
+     */
+    QStringList checkDependencies();
+
+    /**
+     * Check for this specific module if its required modules have
+     * already been loaded (i.e. are in sequence before it).
+     *
+     * Returns true if the requirements are met.
+     */
+    bool checkDependencies( const Module& );
 
     QMap< QString, QVariantMap > m_availableDescriptorsByModuleName;
     QMap< QString, QString > m_moduleDirectoriesByModuleName;
