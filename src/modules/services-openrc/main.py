@@ -23,7 +23,7 @@
 
 import libcalamares
 
-from libcalamares.utils import target_env_call
+from libcalamares.utils import target_env_call, warning
 from os.path import exists, join
 
 
@@ -47,12 +47,17 @@ class OpenrcController:
         is called with @p state as the command as well.
         """
 
-        for svc in self.services[state]:
-            if exists(self.root + self.initdDir + "/" + svc["name"]):
-                if exists(self.root + self.runlevelsDir + "/" + svc["runlevel"]):
-                    target_env_call(
-                        ["rc-update", state, svc["name"], svc["runlevel"]]
-                    )
+        for svc in self.services.get(state, []):
+            service_path = self.root + self.initdDir + "/" + svc["name"]
+            runlevel_path = self.root + self.runlevelsDir + "/" + svc["runlevel"]
+            if exists(service_path):
+                if exists(runlevel_path):
+                    target_env_call(["rc-update", state, svc["name"], svc["runlevel"]])
+                else:
+                    warning("Target runlevel {} does not exist for {}.".format(svc["runlevel"], svc["name"]))
+            else:
+                warning("Target service {} does not exist int {}.".format(svc["name"], self.initDir))
+
 
     def run(self):
         """Run the controller
