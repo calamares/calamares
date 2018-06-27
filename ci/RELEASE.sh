@@ -19,5 +19,11 @@ mkdir build || { echo "Could not create build directory." ; exit 1 ; }
 ( cd build && cmake .. && make -j4 ) || { echo "Could not perform test-build." ; exit 1 ; }
 ( cd build && make test ) || { echo "Tests failed." ; exit 1 ; }
 
-
+if which clang++ > /dev/null 2>&1 ; then
+	# Do build again with clang
+	rm -rf build
+	mkdir build || { echo "Could not create build directory." ; exit 1 ; }
+	( cd build && CC=clang CXX=clang++ cmake .. && make -j4 ) || { echo "Could not perform test-build." ; exit 1 ; }
+	( cd build && make test ) || { echo "Tests failed." ; exit 1 ; }
+fi
 
