@@ -27,7 +27,7 @@ def systemctl(targets, command, suffix):
     """
     For each entry in @p targets, run "systemctl <command> <thing>",
     where <thing> is the entry's name plus the given @p suffix.
-    A dot is added between name and suffix.
+    (No dot is added between name and suffix; suffix may be empty)
 
     Returns a failure message, or None if this was successful.
     Services that are not mandatory have their failures suppressed
@@ -35,7 +35,7 @@ def systemctl(targets, command, suffix):
     """
     for svc in targets:
         ec = libcalamares.utils.target_env_call(
-            ['systemctl', command, "{}.{}".format(svc['name'], suffix)]
+            ['systemctl', command, "{}{}".format(svc['name'], suffix)]
             )
 
         if ec != 0:
@@ -57,24 +57,22 @@ def run():
     """
     Setup systemd services
     """
-    services = libcalamares.job.configuration['services']
-    targets = libcalamares.job.configuration['targets']
-    disable = libcalamares.job.configuration['disable']
+    cfg = libcalamares.job.configuration
 
     # note that the "systemctl enable" and "systemctl disable" commands used
     # here will work in a chroot; in fact, they are the only systemctl commands
     # that support that, see:
     # http://0pointer.de/blog/projects/changing-roots.html
 
-    r = systemctl(services, "enable", "service")
+    r = systemctl(cfg["services"], "enable", ".service")
     if r is not None:
         return r
 
-    r = systemctl(targets, "enable", "target")
+    r = systemctl(cfg["targets"], "enable", ".target")
     if r is not None:
         return r
 
-    r = systemctl(disable, "disable", "service")
+    r = systemctl(cfg["disable"], "disable", ".service")
     if r is not None:
         return r
 
