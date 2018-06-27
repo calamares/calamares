@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# === This file is part of Calamares - <http://github.com/calamares> ===
+# === This file is part of Calamares - <https://github.com/calamares> ===
 #
 #   Copyright 2016, Artoo <artoo@manjaro.org>
 #   Copyright 2017, Philip Müller <philm@manjaro.org>
 #   Copyright 2018, Artoo <artoo@artixlinux.org>
+#   Copyright 2018, Adriaan de Groot <groot@kde.org>
 #
 #   Calamares is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by

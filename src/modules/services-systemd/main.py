@@ -6,6 +6,7 @@
 #   Copyright 2014, Philip Müller <philm@manjaro.org>
 #   Copyright 2014, Teo Mrnjavac <teo@kde.org>
 #   Copyright 2017, Alf Gaida <agaida@siduction.org>
+#   Copyright 2018, Adriaan de Groot <groot@kde.org>
 #
 #   Calamares is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
