@@ -36,7 +36,12 @@ class OpenrcController:
 
     def __init__(self):
         self.root = libcalamares.globalstorage.value('rootMountPoint')
-        self.services = libcalamares.job.configuration.get('services', [])
+
+        # Translate the entries in the config to the actions passed to rc-config
+        self.services = dict()
+        self.services["add"] = libcalamares.job.configuration.get('services', [])
+        self.services["del"] = libcalamares.job.configuration.get('disable', [])
+
         self.initdDir = libcalamares.job.configuration['initdDir']
         self.runlevelsDir = libcalamares.job.configuration['runlevelsDir']
 
