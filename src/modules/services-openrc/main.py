@@ -53,8 +53,12 @@ class OpenrcController:
         """
 
         for svc in self.services.get(state, []):
-            name = svc["name"]
-            runlevel = svc.get("runlevel", "default")
+            if isinstance(svc, str):
+                name = svc
+                runlevel = "default"
+            else:
+                name = svc["name"]
+                runlevel = svc.get("runlevel", "default")
 
             service_path = self.root + self.initdDir + "/" + name
             runlevel_path = self.root + self.runlevelsDir + "/" + runlevel
