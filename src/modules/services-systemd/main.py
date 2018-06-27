@@ -23,6 +23,36 @@
 import libcalamares
 
 
+def systemctl(targets, command, suffix):
+    """
+    For each entry in @p targets, run "systemctl <command> <thing>",
+    where <thing> is the entry's name plus the given @p suffix.
+    A dot is added between name and suffix.
+
+    Returns a failure message, or None if this was successful.
+    Services that are not mandatory have their failures suppressed
+    silently.
+    """
+    for svc in targets:
+        ec = libcalamares.utils.target_env_call(
+            ['systemctl', command, "{}.{}".format(svc['name'], suffix)]
+            )
+
+        if ec != 0:
+            if svc['mandatory']:
+                return ("Cannot {} systemd {} {}".format(command, suffix, svc['name']),
+                        "systemctl {} call in chroot returned error code {}".format(command, ec)
+                        )
+            else:
+                libcalamares.utils.warning(
+                    "Cannot {} systemd {} {}".format(command, suffix, svc['name'])
+                    )
+                libcalamares.utils.warning(
+                    "systemctl {} call in chroot returned error code {}".format(command, ec)
+                    )
+    return None
+
+
 def run():
     """
     Setup systemd services
@@ -36,66 +66,17 @@ def run():
     # that support that, see:
     # http://0pointer.de/blog/projects/changing-roots.html
 
-    # enable services
-    for svc in services:
-        ec = libcalamares.utils.target_env_call(
-            ['systemctl', 'enable', '{}.service'.format(svc['name'])]
-            )
+    r = systemctl(services, "enable", "service")
+    if r is not None:
+        return r
 
-        if ec != 0:
-            if svc['mandatory']:
-                return ("Cannot enable systemd service {}".format(svc['name']),
-                        "systemctl enable call in chroot returned error code "
-                        "{}".format(ec)
-                        )
-            else:
-                libcalamares.utils.debug(
-                    "Cannot enable systemd service {}".format(svc['name'])
-                    )
-                libcalamares.utils.debug(
-                    "systemctl enable call in chroot returned error code "
-                    "{}".format(ec)
-                    )
+    r = systemctl(targets, "enable", "target")
+    if r is not None:
+        return r
 
-    # enable targets
-    for tgt in targets:
-        ec = libcalamares.utils.target_env_call(
-            ['systemctl', 'enable', '{}.target'.format(tgt['name'])]
-            )
+    r = systemctl(disable, "disable", "service")
+    if r is not None:
+        return r
 
-        if ec != 0:
-            if tgt['mandatory']:
-                return ("Cannot enable systemd target {}".format(tgt['name']),
-                        "systemctl enable call in chroot returned error code"
-                        "{}".format(ec)
-                        )
-            else:
-                libcalamares.utils.debug(
-                    "Cannot enable systemd target {}".format(tgt['name'])
-                    )
-                libcalamares.utils.debug(
-                    "systemctl enable call in chroot returned error code "
-                    "{}".format(ec)
-                    )
-
-    for dbl in disable:
-        ec = libcalamares.utils.target_env_call(
-            ['systemctl', 'disable', '{}.service'.format(dbl['name'])]
-            )
-
-        if ec != 0:
-            if dbl['mandatory']:
-                return ("Cannot disable systemd service"
-                        "{}".format(dbl['name']),
-                        "systemctl disable call in chroot returned error code"
-                        "{}".format(ec))
-            else:
-                libcalamares.utils.debug(
-                    "Cannot disable systemd service {}".format(dbl['name'])
-                    )
-                libcalamares.utils.debug(
-                    "systemctl disable call in chroot returned error code "
-                    "{}".format(ec)
-                    )
-
+    # This could have just been return r
     return None
