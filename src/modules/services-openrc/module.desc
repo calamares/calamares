@@ -1,5 +1,5 @@
 ---
 type:       "job"
-name:       "openrccfg"
+name:       "services-openrc"
 interface:  "python"
 script:     "main.py"
