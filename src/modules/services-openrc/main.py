@@ -56,9 +56,11 @@ class OpenrcController:
             if isinstance(svc, str):
                 name = svc
                 runlevel = "default"
+                mandatory = False
             else:
                 name = svc["name"]
                 runlevel = svc.get("runlevel", "default")
+                mandatory = svc.get("mandatory", False)
 
             service_path = self.root + self.initdDir + "/" + name
             runlevel_path = self.root + self.runlevelsDir + "/" + runlevel
@@ -67,11 +69,24 @@ class OpenrcController:
                 if exists(runlevel_path):
                     ec = target_env_call(["rc-update", state, name, runlevel])
                     if ec != 0:
-                        warning("Could not {} service {} in {}, error {!s}".format(state, name, runlevel, ec))
+                        if mandatory:
+                            return ("Cannot {} service {} to {}".format(state, name, runlevel),
+                                    "rc-update {} call in chroot returned error code {}".format(state, ec)
+                                    )
+                        else:
+                            warning("Could not {} service {} in {}, error {!s}".format(state, name, runlevel, ec))
                 else:
-                    warning("Target runlevel {} does not exist for {}.".format(runlevel, name))
+                    if mandatory:
+                        return ("Target runlevel {} does not exist for {}.".format(runlevel, name),
+                                "No {} found.".format(runlevel_path))
+                    else:
+                        warning("Target runlevel {} does not exist for {}.".format(runlevel, name))
             else:
-                warning("Target service {} does not exist in {}.".format(name, self.initdDir))
+                if mandatory:
+                    return ("Target service {} does not exist.".format(name),
+                            "No {} found.".format(service_path))
+                else:
+                    warning("Target service {} does not exist in {}.".format(name, self.initdDir))
 
 
     def run(self):
@@ -79,7 +94,9 @@ class OpenrcController:
         """
 
         for state in ("add", "del"):
-            self.update(state)
+            r = self.update(state)
+            if r is not None:
+                return r
 
 def run():
     """
