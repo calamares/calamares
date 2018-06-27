@@ -28,7 +28,10 @@ from os.path import exists, join
 
 
 class OpenrcController:
-    """This is the openrc service controller
+    """
+    This is the openrc service controller.
+    All of its state comes from global storage and the job
+    configuration at initialization time.
     """
 
     def __init__(self):
@@ -38,7 +41,10 @@ class OpenrcController:
         self.runlevelsDir = libcalamares.job.configuration['runlevelsDir']
 
     def update(self, state):
-        """call rc-update for each service listed
+        """
+        Call rc-update for each service listed
+        in services for the given @p state. rc-update
+        is called with @p state as the command as well.
         """
 
         for svc in self.services[state]:
@@ -52,11 +58,12 @@ class OpenrcController:
         """Run the controller
         """
 
-        for state in self.services.keys():
+        for state in ("add", "del"):
             self.update(state)
 
 def run():
-    """Setup services
+    """
+    Setup services
     """
 
     return OpenrcController().run()
