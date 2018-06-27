@@ -35,18 +35,25 @@ def systemctl(targets, command, suffix):
     silently.
     """
     for svc in targets:
+        if isinstance(svc, str):
+            name = svc
+            mandatory = False
+        else:
+            name = svc["name"]
+            mandatory = svc.get("mandatory", False)
+
         ec = libcalamares.utils.target_env_call(
-            ['systemctl', command, "{}{}".format(svc['name'], suffix)]
+            ['systemctl', command, "{}{}".format(name, suffix)]
             )
 
         if ec != 0:
-            if svc['mandatory']:
-                return ("Cannot {} systemd {} {}".format(command, suffix, svc['name']),
+            if mandatory:
+                return ("Cannot {} systemd {} {}".format(command, suffix, name),
                         "systemctl {} call in chroot returned error code {}".format(command, ec)
                         )
             else:
                 libcalamares.utils.warning(
-                    "Cannot {} systemd {} {}".format(command, suffix, svc['name'])
+                    "Cannot {} systemd {} {}".format(command, suffix, name)
                     )
                 libcalamares.utils.warning(
                     "systemctl {} call in chroot returned error code {}".format(command, ec)
