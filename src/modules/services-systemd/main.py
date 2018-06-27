@@ -76,5 +76,14 @@ def run():
     if r is not None:
         return r
 
+    r = systemctl(cfg["disable-targets"], "disable", ".target")
+    if r is not None:
+        return r
+
+    r = systemctl(cfg["mask"], "mask", "")
+    if r is not None:
+        return r
+
+
     # This could have just been return r
     return None
