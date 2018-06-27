@@ -48,15 +48,18 @@ class OpenrcController:
         """
 
         for svc in self.services.get(state, []):
-            service_path = self.root + self.initdDir + "/" + svc["name"]
-            runlevel_path = self.root + self.runlevelsDir + "/" + svc["runlevel"]
+            name = svc["name"]
+            runlevel = svc.get("runlevel", "default")
+
+            service_path = self.root + self.initdDir + "/" + name
+            runlevel_path = self.root + self.runlevelsDir + "/" + runlevel
             if exists(service_path):
                 if exists(runlevel_path):
-                    target_env_call(["rc-update", state, svc["name"], svc["runlevel"]])
+                    target_env_call(["rc-update", state, name, runlevel])
                 else:
-                    warning("Target runlevel {} does not exist for {}.".format(svc["runlevel"], svc["name"]))
+                    warning("Target runlevel {} does not exist for {}.".format(runlevel, name))
             else:
-                warning("Target service {} does not exist int {}.".format(svc["name"], self.initDir))
+                warning("Target service {} does not exist int {}.".format(name, self.initDir))
 
 
     def run(self):
