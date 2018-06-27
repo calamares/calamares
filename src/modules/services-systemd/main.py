@@ -64,23 +64,23 @@ def run():
     # that support that, see:
     # http://0pointer.de/blog/projects/changing-roots.html
 
-    r = systemctl(cfg["services"], "enable", ".service")
+    r = systemctl(cfg.get("services", []), "enable", ".service")
     if r is not None:
         return r
 
-    r = systemctl(cfg["targets"], "enable", ".target")
+    r = systemctl(cfg.get("targets", []), "enable", ".target")
     if r is not None:
         return r
 
-    r = systemctl(cfg["disable"], "disable", ".service")
+    r = systemctl(cfg.get("disable", []), "disable", ".service")
     if r is not None:
         return r
 
-    r = systemctl(cfg["disable-targets"], "disable", ".target")
+    r = systemctl(cfg.get("disable-targets", []), "disable", ".target")
     if r is not None:
         return r
 
-    r = systemctl(cfg["mask"], "mask", "")
+    r = systemctl(cfg.get("mask", []), "mask", "")
     if r is not None:
         return r
 
