@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>655</width>
+    <width>684</width>
     <height>304</height>
    </rect>
   </property>
@@ -125,6 +125,38 @@
     </layout>
    </item>
    <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_4">
+     <item>
+      <widget class="QPushButton" name="newVolumeGroupButton">
+       <property name="text">
+        <string>New Volume Group</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="resizeVolumeGroupButton">
+       <property name="text">
+        <string>Resize Volume Group</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="deactivateVolumeGroupButton">
+       <property name="text">
+        <string>Deactivate Volume Group</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="removeVolumeGroupButton">
+       <property name="text">
+        <string>Remove Volume Group</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
     <spacer name="verticalSpacer">
      <property name="orientation">
       <enum>Qt::Vertical</enum>
@@ -145,7 +177,7 @@
      <item>
       <widget class="QLabel" name="label_3">
        <property name="text">
-        <string>Install boot &amp;loader on:</string>
+        <string>I&amp;nstall boot loader on:</string>
        </property>
        <property name="buddy">
         <cstring>bootLoaderComboBox</cstring>

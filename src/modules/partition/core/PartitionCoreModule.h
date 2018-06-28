@@ -24,6 +24,7 @@
 #include "Typedefs.h"
 
 // KPMcore
+#include <kpmcore/core/lvmdevice.h>
 #include <kpmcore/core/partitiontable.h>
 
 // Qt
@@ -111,6 +112,14 @@ public:
     void createPartition( Device* device, Partition* partition,
                           PartitionTable::Flags flags = PartitionTable::FlagNone );
 
+    void createVolumeGroup( QString &vgName, QVector< const Partition* > pvList, qint32 peSize );
+
+    void resizeVolumeGroup( LvmDevice* device, QVector< const Partition* >& pvList );
+
+    void deactivateVolumeGroup( LvmDevice* device );
+
+    void removeVolumeGroup( LvmDevice* device );
+
     void deletePartition( Device* device, Partition* partition );
 
     void formatPartition( Device* device, Partition* partition );
@@ -132,6 +141,12 @@ public:
 
     QList< Partition* > efiSystemPartitions() const;
 
+    QVector< const Partition* > lvmPVs() const;
+
+    bool hasVGwithThisName( const QString& name ) const;
+
+    bool isInVG( const Partition* partition ) const;
+
     /**
      * @brief findPartitionByMountPoint returns a Partition* for a given mount point.
      * @param mountPoint the mount point to find a partition for.
@@ -150,6 +165,8 @@ public:
     void clearJobs();   // only clear jobs, the Device* states are preserved
 
     bool isDirty();     // true if there are pending changes, otherwise false
+
+    bool isVGdeactivated( LvmDevice* device );
 
     /**
      * To be called when a partition has been altered, but only for changes
@@ -189,11 +206,15 @@ private:
         const QScopedPointer< Device > immutableDevice;
         QList< Calamares::job_ptr > jobs;
 
+        // To check if LVM VGs are deactivated
+        bool isAvailable;
+
         void forgetChanges();
         bool isDirty() const;
     };
     QList< DeviceInfo* > m_deviceInfos;
     QList< Partition* > m_efiSystemPartitions;
+    QVector< const Partition* > m_lvmPVs;
 
     DeviceModel* m_deviceModel;
     BootLoaderModel* m_bootLoaderModel;
@@ -205,6 +226,7 @@ private:
     void updateHasRootMountPoint();
     void updateIsDirty();
     void scanForEfiSystemPartitions();
+    void scanForLVMPVs();
 
     DeviceInfo* infoForDevice( const Device* ) const;
 
