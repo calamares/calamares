@@ -28,6 +28,9 @@
 # Example usage:
 #
 #   cmake . -DSKIP_MODULES="partition luksbootkeycfg"
+#
+# One special target is "show-version", which can be built
+# to obtain the version number from here.
 
 project( calamares C CXX )
 
@@ -73,7 +76,6 @@ set( CALAMARES_VERSION_MAJOR 3 )
 set( CALAMARES_VERSION_MINOR 2 )
 set( CALAMARES_VERSION_PATCH 1 )
 set( CALAMARES_VERSION_RC 0 )
-
 
 ### Transifex (languages) info
 #
@@ -392,6 +394,15 @@ if( NOT BUILD_RELEASE AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/.git/" )
     if( CMAKE_VERSION_SOURCE )
         set( CALAMARES_VERSION ${CALAMARES_VERSION}-${CMAKE_VERSION_SOURCE} )
     endif()
+endif()
+
+# Special target for not-RC (e.g. might-be-release) builds.
+# This is used by the release script to get the version.
+if ( CALAMARES_VERSION_RC EQUAL 0 )
+    add_custom_target(show-version
+        ${CMAKE_COMMAND} -E echo CALAMARES_VERSION=${CALAMARES_VERSION_SHORT}
+        USES_TERMINAL
+    )
 endif()
 
 # enforce using constBegin, constEnd for const-iterators
