@@ -152,6 +152,26 @@ qmlDirCandidates( bool assumeBuilddir )
 }
 
 
+static QStringList
+settingsFileCandidates( bool assumeBuilddir )
+{
+    static const char settings[] = "settings.conf";
+
+    QStringList settingsPaths;
+    if ( CalamaresUtils::isAppDataDirOverridden() )
+        settingsPaths << CalamaresUtils::appDataDir().absoluteFilePath( settings );
+    else
+    {
+        if ( assumeBuilddir )
+            settingsPaths << QDir::current().absoluteFilePath( settings );
+        settingsPaths << CMAKE_INSTALL_FULL_SYSCONFDIR "/calamares/settings.conf";  // String concat
+        settingsPaths << CalamaresUtils::appDataDir().absoluteFilePath( settings );
+    }
+
+    return settingsPaths;
+}
+
+
 void
 CalamaresApplication::initQmlPath()
 {
@@ -189,51 +209,31 @@ CalamaresApplication::initQmlPath()
 void
 CalamaresApplication::initSettings()
 {
+    QStringList settingsFileCandidatesByPriority = settingsFileCandidates( isDebug() );
+
     QFileInfo settingsFile;
-    if ( CalamaresUtils::isAppDataDirOverridden() )
+    bool found = false;
+
+    foreach ( const QString& path, settingsFileCandidatesByPriority )
     {
-        settingsFile = QFileInfo( CalamaresUtils::appDataDir().absoluteFilePath( "settings.conf" ) );
-        if ( !settingsFile.exists() || !settingsFile.isReadable() )
+        QFileInfo pathFi( path );
+        if ( pathFi.exists() && pathFi.isReadable() )
         {
-            cError() << "FATAL: explicitly configured application data directory"
-                   << CalamaresUtils::appDataDir().absolutePath()
-                   << "does not contain a valid settings.conf file."
-                   << "\nCowardly refusing to continue startup without settings.";
-            ::exit( EXIT_FAILURE );
+            settingsFile = pathFi;
+            found = true;
+            break;
         }
     }
-    else
+
+    if ( !found || !settingsFile.exists() || !settingsFile.isReadable() )
     {
-        QStringList settingsFileCandidatesByPriority;
-        if ( isDebug() )
-        {
-            settingsFileCandidatesByPriority.append(
-                QDir::currentPath() +
-                QDir::separator() +
-                "settings.conf" );
-        }
-        settingsFileCandidatesByPriority.append( CMAKE_INSTALL_FULL_SYSCONFDIR "/calamares/settings.conf" );
-        settingsFileCandidatesByPriority.append( CalamaresUtils::appDataDir()
-                                                    .absoluteFilePath( "settings.conf" ) );
-
-        foreach ( const QString& path, settingsFileCandidatesByPriority )
-        {
-            QFileInfo pathFi( path );
-            if ( pathFi.exists() && pathFi.isReadable() )
-            {
-                settingsFile = pathFi;
-                break;
-            }
-        }
-
-        if ( !settingsFile.exists() || !settingsFile.isReadable() )
-        {
-            cError() << "FATAL: none of the expected configuration file paths ("
-                   << settingsFileCandidatesByPriority.join( ", " )
-                   << ") contain a valid settings.conf file."
-                   << "\nCowardly refusing to continue startup without settings.";
-            ::exit( EXIT_FAILURE );
-        }
+        cError() << "Cowardly refusing to continue startup without settings."
+            << Logger::DebugList( settingsFileCandidatesByPriority );
+        if ( CalamaresUtils::isAppDataDirOverridden() )
+            cError() << "FATAL: explicitly configured application data directory is missing settings.conf";
+        else
+            cError() << "FATAL: none of the expected configuration file paths exist.";
+        ::exit( EXIT_FAILURE );
     }
 
     new Calamares::Settings( settingsFile.absoluteFilePath(), isDebug(), this );
