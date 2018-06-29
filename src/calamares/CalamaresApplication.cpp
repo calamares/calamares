@@ -133,60 +133,55 @@ CalamaresApplication::mainWindow()
 }
 
 
+static QStringList
+qmlDirCandidates( bool assumeBuilddir )
+{
+    static const char QML[] = "qml";
+
+    QStringList qmlDirs;
+    if ( CalamaresUtils::isAppDataDirOverridden() )
+        qmlDirs << CalamaresUtils::appDataDir().absoluteFilePath( QML );
+    else
+    {
+        if ( assumeBuilddir )
+            qmlDirs << QDir::current().absoluteFilePath( "src/qml" );  // In build-dir
+        qmlDirs << CalamaresUtils::appDataDir().absoluteFilePath( QML );
+    }
+
+    return qmlDirs;
+}
+
+
 void
 CalamaresApplication::initQmlPath()
 {
-    QDir importPath;
+    QDir importPath;  // Right now, current-dir
+    QStringList qmlDirCandidatesByPriority = qmlDirCandidates( isDebug() );
+    bool found = false;
 
-    QString subpath( "qml" );
-
-    if ( CalamaresUtils::isAppDataDirOverridden() )
+    foreach ( const QString& path, qmlDirCandidatesByPriority )
     {
-        importPath = QDir( CalamaresUtils::appDataDir()
-                           .absoluteFilePath( subpath ) );
-        if ( !importPath.exists() || !importPath.isReadable() )
+        QDir dir( path );
+        if ( dir.exists() && dir.isReadable() )
         {
-            cError() << "FATAL: explicitly configured application data directory"
-                   << CalamaresUtils::appDataDir().absolutePath()
-                   << "does not contain a valid QML modules directory at"
-                   << importPath.absolutePath()
-                   << "\nCowardly refusing to continue startup without the QML directory.";
-            ::exit( EXIT_FAILURE );
-        }
-    }
-    else
-    {
-        QStringList qmlDirCandidatesByPriority;
-        if ( isDebug() )
-        {
-            qmlDirCandidatesByPriority.append(
-                        QDir::current().absoluteFilePath(
-                        QString( "src/%1" )
-                            .arg( subpath ) ) );
-        }
-        qmlDirCandidatesByPriority.append( CalamaresUtils::appDataDir()
-                            .absoluteFilePath( subpath ) );
-
-        foreach ( const QString& path, qmlDirCandidatesByPriority )
-        {
-            QDir dir( path );
-            if ( dir.exists() && dir.isReadable() )
-            {
-                importPath = dir;
-                break;
-            }
-        }
-
-        if ( !importPath.exists() || !importPath.isReadable() )
-        {
-            cError() << "FATAL: none of the expected QML paths ("
-                   << qmlDirCandidatesByPriority.join( ", " )
-                   << ") exist."
-                   << "\nCowardly refusing to continue startup without the QML directory.";
-            ::exit( EXIT_FAILURE );
+            importPath = dir;
+            found = true;
+            break;
         }
     }
 
+    if ( !found || !importPath.exists() || !importPath.isReadable() )
+    {
+        cError() << "Cowardly refusing to continue startup without a QML directory."
+            << Logger::DebugList( qmlDirCandidatesByPriority );
+        if ( CalamaresUtils::isAppDataDirOverridden() )
+            cError() << "FATAL: explicitly configured application data directory is missing qml/";
+        else
+            cError() << "FATAL: none of the expected QML paths exist.";
+        ::exit( EXIT_FAILURE );
+    }
+
+    cDebug() << "Using Calamares QML directory" << importPath.absolutePath();
     CalamaresUtils::setQmlModulesDir( importPath );
 }
 
