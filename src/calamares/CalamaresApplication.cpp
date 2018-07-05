@@ -181,12 +181,9 @@ brandingFileCandidates( bool assumeBuilddir, const QString& brandingFilename )
     else
     {
         if ( assumeBuilddir )
-        {
             brandingPaths << ( QDir::currentPath() + QStringLiteral( "/src/" ) + brandingFilename );
-            brandingPaths << QDir( CMAKE_INSTALL_FULL_SYSCONFDIR "/calamares/" )
-                                                 .absoluteFilePath( brandingFilename );
-            brandingPaths << CalamaresUtils::appDataDir().absoluteFilePath( brandingFilename);
-        }
+        brandingPaths << QDir( CMAKE_INSTALL_FULL_SYSCONFDIR "/calamares/" ).absoluteFilePath( brandingFilename );
+        brandingPaths << CalamaresUtils::appDataDir().absoluteFilePath( brandingFilename);
     }
 
     return brandingPaths;
