@@ -44,14 +44,6 @@
 #include <QString>
 
 
-// Example module.desc
-/*
----
-type:      "view"      #job or view
-name:      "foo"      #the module name. must be unique and same as the parent directory
-interface: "qtplugin" #can be: qtplugin, python, process, ...
-*/
-
 static const char EMERGENCY[] = "emergency";
 
 namespace Calamares
@@ -144,34 +136,29 @@ Module::fromDescriptor( const QVariantMap& moduleDescriptor,
 }
 
 
+static QStringList
+moduleConfigurationCandidates( bool assumeBuildDir, const QString& moduleName, const QString& configFileName )
+{
+    QStringList paths;
+
+    if ( CalamaresUtils::isAppDataDirOverridden() )
+        paths << CalamaresUtils::appDataDir().absoluteFilePath( QString( "modules/%1" ).arg( configFileName ) );
+    else
+    {
+        if ( assumeBuildDir )
+            paths << QDir().absoluteFilePath(QString( "src/modules/%1/%2" ).arg( moduleName ).arg( configFileName ) );
+
+        paths << QString( "/etc/calamares/modules/%1" ).arg( configFileName );
+        paths << CalamaresUtils::appDataDir().absoluteFilePath( QString( "modules/%1" ).arg( configFileName ) );
+    }
+
+    return paths;
+}
+
 void
 Module::loadConfigurationFile( const QString& configFileName ) //throws YAML::Exception
 {
-    QStringList configFilesByPriority;
-
-    if ( CalamaresUtils::isAppDataDirOverridden() )
-    {
-        configFilesByPriority.append(
-            CalamaresUtils::appDataDir().absoluteFilePath(
-                QString( "modules/%1" ).arg( configFileName ) ) );
-    }
-    else
-    {
-        if ( Settings::instance()->debugMode() )
-        {
-            configFilesByPriority.append(
-                QDir( QDir::currentPath() ).absoluteFilePath(
-                    QString( "src/modules/%1/%2" ).arg( m_name ).arg( configFileName ) ) );
-        }
-
-        configFilesByPriority.append(
-            QString( "/etc/calamares/modules/%1" ).arg( configFileName ) );
-        configFilesByPriority.append(
-            CalamaresUtils::appDataDir().absoluteFilePath(
-                QString( "modules/%2" ).arg( configFileName ) ) );
-    }
-
-    foreach ( const QString& path, configFilesByPriority )
+    foreach ( const QString& path, moduleConfigurationCandidates( Settings::instance()->debugMode(), m_name, configFileName ) )
     {
         QFile configFile( path );
         if ( configFile.exists() && configFile.open( QFile::ReadOnly | QFile::Text ) )
