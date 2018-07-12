@@ -108,7 +108,14 @@ main( int argc, char* argv[] )
         returnCode = a.exec();
     }
     else
+    {
+        auto instancelist = guard.instances();
         qDebug() << "Calamares is already running, shutting down.";
+        if ( instancelist.count() > 0 )
+            qDebug() << "Other running Calamares instances:";
+        for ( const auto& i : instancelist )
+            qDebug() << "  " << i.isValid() << i.pid() << i.arguments();
+    }
 
     return returnCode;
 }
