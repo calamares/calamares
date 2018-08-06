@@ -50,7 +50,7 @@
     <message>
         <location filename="../src/libcalamaresui/viewpages/BlankViewStep.cpp" line="69"/>
         <source>Blank Page</source>
-        <translation type="unfinished"/>
+        <translation>Auð síða</translation>
     </message>
 </context>
 <context>
@@ -356,7 +356,7 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="235"/>
         <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself.</source>
-        <translation>&lt;strong&gt;Handvirk disksneiðing&lt;/strong&gt;&lt;br/&gt;Þú getur búið til eða breytt stærð disksneiða sjálf(ur).</translation>
+        <translation>&lt;strong&gt;Handvirk disksneiðing&lt;/strong&gt;&lt;br/&gt;Þú getur búið til eða breytt stærð disksneiða sjálft.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="998"/>
@@ -1469,7 +1469,7 @@ Uppsetningarforritið mun hætta og allar breytingar tapast.</translation>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="267"/>
         <source>Unknown error</source>
-        <translation type="unfinished"/>
+        <translation>Óþekkt villa</translation>
     </message>
 </context>
 <context>
@@ -2582,7 +2582,7 @@ Output:
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="60"/>
         <source>&lt;h1&gt;Welcome to the Calamares installer for %1.&lt;/h1&gt;</source>
-        <translation>&lt;h1&gt;Velkomin(n) til Calamares uppsetningar fyrir %1&lt;/h1&gt;</translation>
+        <translation>&lt;h1&gt;Velkomin til Calamares uppsetningar fyrir %1&lt;/h1&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="73"/>

@@ -51,7 +51,7 @@ Para configurar el arranque desde un entorno BIOS, este instalador debe instalar
     <message>
         <location filename="../src/libcalamaresui/viewpages/BlankViewStep.cpp" line="69"/>
         <source>Blank Page</source>
-        <translation type="unfinished"/>
+        <translation>Página Blanca</translation>
     </message>
 </context>
 <context>

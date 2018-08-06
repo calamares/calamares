@@ -1244,7 +1244,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="151"/>
         <source>Password is too weak</source>
-        <translation type="unfinished"/>
+        <translation>Пароль надто ненадійний</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="158"/>
@@ -1274,12 +1274,13 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="170"/>
         <source>The password is too similar to the old one</source>
-        <translation type="unfinished"/>
+        <translation>Цей пароль надто схожий на попередній</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="172"/>
         <source>The password contains the user name in some form</source>
-        <translation type="unfinished"/>
+        <translation>Цей пароль якимось чином містить ім&apos;я користувача 
+</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="174"/>
@@ -1339,7 +1340,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="196"/>
         <source>The password is too short</source>
-        <translation type="unfinished"/>
+        <translation>Цей пароль занадто короткий</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="198"/>
@@ -1469,7 +1470,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="267"/>
         <source>Unknown error</source>
-        <translation type="unfinished"/>
+        <translation>Невідома помилка</translation>
     </message>
 </context>
 <context>
