@@ -20,19 +20,19 @@ msgstr ""
 
 #: src/modules/umount/main.py:40
 msgid "Unmount file systems."
-msgstr ""
+msgstr "Aftengja skráarkerfi."
 
 #: src/modules/dummypython/main.py:44
 msgid "Dummy python job."
-msgstr "Dummy python job."
+msgstr ""
 
 #: src/modules/dummypython/main.py:97
 msgid "Dummy python step {}"
-msgstr "Dummy python step {}"
+msgstr ""
 
 #: src/modules/machineid/main.py:35
 msgid "Generate machine-id."
-msgstr "Generate machine-id."
+msgstr ""
 
 #: src/modules/packages/main.py:62
 #, python-format
