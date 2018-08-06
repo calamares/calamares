@@ -1,0 +1,49 @@
+This is the changelog for Calamares. For each release, the major changes and
+contributors are listed. Note that Calamares does not have a historical
+changelog -- this log starts with version 3.2.0. The release notes on the
+website will have to do for older versions.
+
+= 3.2.2 (unreleased) =
+
+== Core ==
+
+ * Contributions from the following people (alphabetically by first name):
+   - artoo@cromnix.org
+   - Caio Carvalho
+ * Example configurations are **no longer installed** by default.
+   The default setting for *INSTALL_CONFIG* has changed. Distributions
+   are strongly encouraged to write their own configuration files and
+   not rely on the example configuration files. Example configurations
+   may change unpredictably.
+ * It is now possible to express module dependencies through the
+   *requiredModules* key in `module.desc`. All of the required modules
+   for a given module must occur in the sequence **before** the module
+   requiring them. None of the core modules use this facility.
+ * The search paths for QML files, branding descriptors and module
+   descriptors have been revamped and now self-document in the log.
+ * A new `ci/RELEASE.sh` script has been added to streamline releases;
+   it is not guaranteed to work anywhere in particular though.
+
+== Modules ==
+
+ * When multiple modules are mutually exclusive, or don't make sense
+   to enable concurrectly, a new `USE_<foo>` framework has been added
+   to CMake to simplify the selection of modules. This is in addition
+   to the existing `SKIP_MODULES` mechanism.
+ * A new module has been added to the core which can configure openrc
+   services. To make services configuration consistent:
+   - The *services* module has been **renamed** *services-systemd*,
+   - The openrc module is named *services-openrc*,
+   - At CMake time, it is possible to select all of the services modules,
+     or one specific one, by setting the *USE_services* CMake variable.
+     By default, all of the modules are built and installed.
+ * The systemd-services module can now disable targets and mask both
+   targets and services (which will allow you to break the system with
+   a bad configuration). The configuration is a little more flexible
+   because a service (or target) name can be used on its own with
+   sensible defaults.
+
+**3.2.1** (2018-06-25)
+
+
+**3.2.0** (2018-05-17)
