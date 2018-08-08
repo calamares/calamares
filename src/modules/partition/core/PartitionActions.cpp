@@ -90,7 +90,7 @@ swapSuggestion( const qint64 availableSpaceB )
         suggestedSwapSizeB *= overestimationFactor;
 
         // don't use more than 10% of available space
-        qreal maxSwapDiskRatio = 1.10;
+        qreal maxSwapDiskRatio = 0.10;
         qint64 maxSwapSizeB = availableSpaceB * maxSwapDiskRatio;
         if ( suggestedSwapSizeB > maxSwapSizeB )
             suggestedSwapSizeB = maxSwapSizeB;
