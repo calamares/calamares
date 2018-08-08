@@ -90,17 +90,35 @@ swapSuggestion( const qint64 availableSpaceB )
         suggestedSwapSizeB *= overestimationFactor;
 
         // don't use more than 10% of available space
-        qreal maxSwapDiskRatio = 1.10;
+        qreal maxSwapDiskRatio = 0.10;
         qint64 maxSwapSizeB = availableSpaceB * maxSwapDiskRatio;
         if ( suggestedSwapSizeB > maxSwapSizeB )
             suggestedSwapSizeB = maxSwapSizeB;
     }
 
-    cDebug() << "Suggested swap size:" << suggestedSwapSizeB / 1024. / 1024. /1024. << "GiB";
+    cDebug() << "Suggested swap size:" << suggestedSwapSizeB / 1024. / 1024. / 1024. << "GiB";
 
     return suggestedSwapSizeB;
 }
 
+constexpr qint64
+alignBytesToBlockSize( qint64 bytes, qint64 blocksize )
+{
+    Q_ASSERT( bytes >= 0 );
+    Q_ASSERT( blocksize > 0 );
+    qint64 blocks = bytes / blocksize;
+    Q_ASSERT( blocks >= 0 );
+
+    if ( blocks * blocksize != bytes )
+        ++blocks;
+    return blocks * blocksize;
+}
+
+constexpr qint64
+bytesToSectors( qint64 bytes, qint64 blocksize )
+{
+    return alignBytesToBlockSize( alignBytesToBlockSize( bytes, blocksize), MiBtoBytes(1) ) / blocksize;
+}
 
 void
 doAutopartition( PartitionCoreModule* core, Device* dev, const QString& luksPassphrase )
@@ -114,25 +132,26 @@ doAutopartition( PartitionCoreModule* core, Device* dev, const QString& luksPass
         defaultFsType = "ext4";
 
     // Partition sizes are expressed in MiB, should be multiples of
-    // the logical sector size (usually 512B).
-    int uefisys_part_size = 0;
-    int empty_space_size = 0;
-    if ( isEfi )
-    {
-        uefisys_part_size = 300;
-        empty_space_size = 2;
-    }
-    else
-    {
-        // we start with a 1MiB offset before the first partition
-        empty_space_size = 1;
-    }
+    // the logical sector size (usually 512B). EFI starts with 2MiB
+    // empty and a 300MiB EFI boot partition, while BIOS starts at
+    // the 1MiB boundary (usually sector 2048).
+    int uefisys_part_size = isEfi ? 300 : 0;
+    int empty_space_size = isEfi ? 2 : 1;
 
-    qint64 firstFreeSector = MiBtoBytes(empty_space_size) / dev->logicalSize() + 1;
+    // Since sectors count from 0, if the space is 2048 sectors in size,
+    // the first free sector has number 2048 (and there are 2048 sectors
+    // before that one, numbered 0..2047).
+    qint64 firstFreeSector = bytesToSectors( MiBtoBytes(empty_space_size), dev->logicalSize() );
 
     if ( isEfi )
     {
-        qint64 lastSector = firstFreeSector + ( MiBtoBytes(uefisys_part_size) / dev->logicalSize() );
+        qint64 efiSectorCount = bytesToSectors( MiBtoBytes(uefisys_part_size), dev->logicalSize() );
+        Q_ASSERT( efiSectorCount > 0 );
+
+        // Since sectors count from 0, and this partition is created starting
+        // at firstFreeSector, we need efiSectorCount sectors, numbered
+        // firstFreeSector..firstFreeSector+efiSectorCount-1.
+        qint64 lastSector = firstFreeSector + efiSectorCount - 1;
         core->createPartitionTable( dev, PartitionTable::gpt );
         Partition* efiPartition = KPMHelpers::createNewPartition(
             dev->partitionTable(),
@@ -162,8 +181,11 @@ doAutopartition( PartitionCoreModule* core, Device* dev, const QString& luksPass
     {
         qint64 availableSpaceB = ( dev->totalLogical() - firstFreeSector ) * dev->logicalSize();
         suggestedSwapSizeB = swapSuggestion( availableSpaceB );
+        // Space required by this installation is what the distro claims is needed
+        // (via global configuration) plus the swap size plus a fudge factor of
+        // 0.6GiB (this was 2.1GiB up to Calamares 3.2.2).
         qint64 requiredSpaceB =
-                GiBtoBytes( gs->value( "requiredStorageGB" ).toDouble() + 0.1 + 2.0 ) +
+                GiBtoBytes( gs->value( "requiredStorageGB" ).toDouble() + 0.6 ) +
                 suggestedSwapSizeB;
 
         // If there is enough room for ESP + root + swap, create swap, otherwise don't.
