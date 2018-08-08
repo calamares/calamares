@@ -114,19 +114,11 @@ doAutopartition( PartitionCoreModule* core, Device* dev, const QString& luksPass
         defaultFsType = "ext4";
 
     // Partition sizes are expressed in MiB, should be multiples of
-    // the logical sector size (usually 512B).
-    int uefisys_part_size = 0;
-    int empty_space_size = 0;
-    if ( isEfi )
-    {
-        uefisys_part_size = 300;
-        empty_space_size = 2;
-    }
-    else
-    {
-        // we start with a 1MiB offset before the first partition
-        empty_space_size = 1;
-    }
+    // the logical sector size (usually 512B). EFI starts with 2MiB
+    // empty and a 300MiB EFI boot partition, while BIOS starts at
+    // the 1MiB boundary (usually sector 2048).
+    int uefisys_part_size = isEfi ? 300 : 0;
+    int empty_space_size = isEfi ? 2 : 1;
 
     qint64 firstFreeSector = MiBtoBytes(empty_space_size) / dev->logicalSize() + 1;
 
