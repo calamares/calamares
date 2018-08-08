@@ -12,6 +12,10 @@ set_package_properties(
 )
 
 if ( KPMcore_FOUND )
+    if ( KPMcore_VERSION VERSION_GREATER "3.3.0")
+        add_definitions(-DWITH_KPMCOREGT33) # kpmcore greater than 3.3
+    endif()
+
     include_directories( ${KPMCORE_INCLUDE_DIR} )
     include_directories( ${PROJECT_BINARY_DIR}/src/libcalamaresui )
 
@@ -35,9 +39,11 @@ if ( KPMcore_FOUND )
             gui/BootInfoWidget.cpp
             gui/ChoicePage.cpp
             gui/CreatePartitionDialog.cpp
+            gui/CreateVolumeGroupDialog.cpp
             gui/DeviceInfoWidget.cpp
             gui/EditExistingPartitionDialog.cpp
             gui/EncryptWidget.cpp
+            gui/ListPhysicalVolumeWidgetItem.cpp
             gui/PartitionPage.cpp
             gui/PartitionBarsView.cpp
             gui/PartitionDialogHelpers.cpp
@@ -46,17 +52,23 @@ if ( KPMcore_FOUND )
             gui/PartitionSplitterWidget.cpp
             gui/PartitionViewStep.cpp
             gui/PrettyRadioButton.cpp
+            gui/ResizeVolumeGroupDialog.cpp
             gui/ScanningDialog.cpp
             gui/ReplaceWidget.cpp
+            gui/VolumeGroupBaseDialog.cpp
             jobs/ClearMountsJob.cpp
             jobs/ClearTempMountsJob.cpp
             jobs/CreatePartitionJob.cpp
             jobs/CreatePartitionTableJob.cpp
+            jobs/CreateVolumeGroupJob.cpp
+            jobs/DeactivateVolumeGroupJob.cpp
             jobs/DeletePartitionJob.cpp
             jobs/FillGlobalStorageJob.cpp
             jobs/FormatPartitionJob.cpp
             jobs/PartitionJob.cpp
+            jobs/RemoveVolumeGroupJob.cpp
             jobs/ResizePartitionJob.cpp
+            jobs/ResizeVolumeGroupJob.cpp
             jobs/SetPartitionFlagsJob.cpp
         UI
             gui/ChoicePage.ui
@@ -66,6 +78,7 @@ if ( KPMcore_FOUND )
             gui/EncryptWidget.ui
             gui/PartitionPage.ui
             gui/ReplaceWidget.ui
+            gui/VolumeGroupBaseDialog.ui
         LINK_PRIVATE_LIBRARIES
             kpmcore
             calamaresui
