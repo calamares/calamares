@@ -30,6 +30,9 @@ website will have to do for older versions.
    to enable concurrectly, a new `USE_<foo>` framework has been added
    to CMake to simplify the selection of modules. This is in addition
    to the existing `SKIP_MODULES` mechanism.
+ * Various off-by-one-sector errors in the automatic partitioning
+   mode have been corrected. In addition, swap space is calculated
+   a little more conservatively.
  * A new module has been added to the core which can configure openrc
    services. To make services configuration consistent:
    - The *services* module has been **renamed** *services-systemd*,
