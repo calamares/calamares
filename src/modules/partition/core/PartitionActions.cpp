@@ -96,7 +96,7 @@ swapSuggestion( const qint64 availableSpaceB )
             suggestedSwapSizeB = maxSwapSizeB;
     }
 
-    cDebug() << "Suggested swap size:" << suggestedSwapSizeB / 1024. / 1024. /1024. << "GiB";
+    cDebug() << "Suggested swap size:" << suggestedSwapSizeB / 1024. / 1024. / 1024. << "GiB";
 
     return suggestedSwapSizeB;
 }
