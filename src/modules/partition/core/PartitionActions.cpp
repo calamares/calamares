@@ -181,8 +181,11 @@ doAutopartition( PartitionCoreModule* core, Device* dev, const QString& luksPass
     {
         qint64 availableSpaceB = ( dev->totalLogical() - firstFreeSector ) * dev->logicalSize();
         suggestedSwapSizeB = swapSuggestion( availableSpaceB );
+        // Space required by this installation is what the distro claims is needed
+        // (via global configuration) plus the swap size plus a fudge factor of
+        // 0.6GiB (this was 2.1GiB up to Calamares 3.2.2).
         qint64 requiredSpaceB =
-                GiBtoBytes( gs->value( "requiredStorageGB" ).toDouble() + 0.1 + 2.0 ) +
+                GiBtoBytes( gs->value( "requiredStorageGB" ).toDouble() + 0.6 ) +
                 suggestedSwapSizeB;
 
         // If there is enough room for ESP + root + swap, create swap, otherwise don't.
