@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2018, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -44,10 +45,15 @@ CalamaresApplication::CalamaresApplication( int& argc, char* argv[] )
     , m_moduleManager( nullptr )
     , m_debugMode( false )
 {
-    setOrganizationName( QLatin1String( CALAMARES_ORGANIZATION_NAME ) );
-    setOrganizationDomain( QLatin1String( CALAMARES_ORGANIZATION_DOMAIN ) );
-    setApplicationName( QLatin1String( CALAMARES_APPLICATION_NAME ) );
-    setApplicationVersion( QLatin1String( CALAMARES_VERSION ) );
+    // Setting the organization name makes the default cache
+    // directory -- where Calamares stores logs, for instance --
+    // <org>/<app>/, so we end up with ~/.cache/Calamares/calamares/
+    // which is excessively squidly.
+    //
+    // setOrganizationName( QStringLiteral( CALAMARES_ORGANIZATION_NAME ) );
+    setOrganizationDomain( QStringLiteral( CALAMARES_ORGANIZATION_DOMAIN ) );
+    setApplicationName( QStringLiteral( CALAMARES_APPLICATION_NAME ) );
+    setApplicationVersion( QStringLiteral( CALAMARES_VERSION ) );
 
     cDebug() << "Calamares version:" << CALAMARES_VERSION;
 
@@ -65,9 +71,6 @@ CalamaresApplication::CalamaresApplication( int& argc, char* argv[] )
 void
 CalamaresApplication::init()
 {
-    cDebug() << "CalamaresApplication thread:" << thread();
-
-    //TODO: Icon loader
     Logger::setupLogfile();
 
     setQuitOnLastWindowClosed( false );
@@ -130,60 +133,93 @@ CalamaresApplication::mainWindow()
 }
 
 
+static QStringList
+qmlDirCandidates( bool assumeBuilddir )
+{
+    static const char QML[] = "qml";
+
+    QStringList qmlDirs;
+    if ( CalamaresUtils::isAppDataDirOverridden() )
+        qmlDirs << CalamaresUtils::appDataDir().absoluteFilePath( QML );
+    else
+    {
+        if ( assumeBuilddir )
+            qmlDirs << QDir::current().absoluteFilePath( "src/qml" );  // In build-dir
+        qmlDirs << CalamaresUtils::appDataDir().absoluteFilePath( QML );
+    }
+
+    return qmlDirs;
+}
+
+
+static QStringList
+settingsFileCandidates( bool assumeBuilddir )
+{
+    static const char settings[] = "settings.conf";
+
+    QStringList settingsPaths;
+    if ( CalamaresUtils::isAppDataDirOverridden() )
+        settingsPaths << CalamaresUtils::appDataDir().absoluteFilePath( settings );
+    else
+    {
+        if ( assumeBuilddir )
+            settingsPaths << QDir::current().absoluteFilePath( settings );
+        settingsPaths << CMAKE_INSTALL_FULL_SYSCONFDIR "/calamares/settings.conf";  // String concat
+        settingsPaths << CalamaresUtils::appDataDir().absoluteFilePath( settings );
+    }
+
+    return settingsPaths;
+}
+
+
+static QStringList
+brandingFileCandidates( bool assumeBuilddir, const QString& brandingFilename )
+{
+    QStringList brandingPaths;
+    if ( CalamaresUtils::isAppDataDirOverridden() )
+        brandingPaths << CalamaresUtils::appDataDir().absoluteFilePath( brandingFilename );
+    else
+    {
+        if ( assumeBuilddir )
+            brandingPaths << ( QDir::currentPath() + QStringLiteral( "/src/" ) + brandingFilename );
+        brandingPaths << QDir( CMAKE_INSTALL_FULL_SYSCONFDIR "/calamares/" ).absoluteFilePath( brandingFilename );
+        brandingPaths << CalamaresUtils::appDataDir().absoluteFilePath( brandingFilename);
+    }
+
+    return brandingPaths;
+}
+
+
 void
 CalamaresApplication::initQmlPath()
 {
-    QDir importPath;
+    QDir importPath;  // Right now, current-dir
+    QStringList qmlDirCandidatesByPriority = qmlDirCandidates( isDebug() );
+    bool found = false;
 
-    QString subpath( "qml" );
-
-    if ( CalamaresUtils::isAppDataDirOverridden() )
+    foreach ( const QString& path, qmlDirCandidatesByPriority )
     {
-        importPath = QDir( CalamaresUtils::appDataDir()
-                           .absoluteFilePath( subpath ) );
-        if ( !importPath.exists() || !importPath.isReadable() )
+        QDir dir( path );
+        if ( dir.exists() && dir.isReadable() )
         {
-            cError() << "FATAL: explicitly configured application data directory"
-                   << CalamaresUtils::appDataDir().absolutePath()
-                   << "does not contain a valid QML modules directory at"
-                   << importPath.absolutePath()
-                   << "\nCowardly refusing to continue startup without the QML directory.";
-            ::exit( EXIT_FAILURE );
-        }
-    }
-    else
-    {
-        QStringList qmlDirCandidatesByPriority;
-        if ( isDebug() )
-        {
-            qmlDirCandidatesByPriority.append(
-                        QDir::current().absoluteFilePath(
-                        QString( "src/%1" )
-                            .arg( subpath ) ) );
-        }
-        qmlDirCandidatesByPriority.append( CalamaresUtils::appDataDir()
-                            .absoluteFilePath( subpath ) );
-
-        foreach ( const QString& path, qmlDirCandidatesByPriority )
-        {
-            QDir dir( path );
-            if ( dir.exists() && dir.isReadable() )
-            {
-                importPath = dir;
-                break;
-            }
-        }
-
-        if ( !importPath.exists() || !importPath.isReadable() )
-        {
-            cError() << "FATAL: none of the expected QML paths ("
-                   << qmlDirCandidatesByPriority.join( ", " )
-                   << ") exist."
-                   << "\nCowardly refusing to continue startup without the QML directory.";
-            ::exit( EXIT_FAILURE );
+            importPath = dir;
+            found = true;
+            break;
         }
     }
 
+    if ( !found || !importPath.exists() || !importPath.isReadable() )
+    {
+        cError() << "Cowardly refusing to continue startup without a QML directory."
+            << Logger::DebugList( qmlDirCandidatesByPriority );
+        if ( CalamaresUtils::isAppDataDirOverridden() )
+            cError() << "FATAL: explicitly configured application data directory is missing qml/";
+        else
+            cError() << "FATAL: none of the expected QML paths exist.";
+        ::exit( EXIT_FAILURE );
+    }
+
+    cDebug() << "Using Calamares QML directory" << importPath.absolutePath();
     CalamaresUtils::setQmlModulesDir( importPath );
 }
 
@@ -191,51 +227,31 @@ CalamaresApplication::initQmlPath()
 void
 CalamaresApplication::initSettings()
 {
+    QStringList settingsFileCandidatesByPriority = settingsFileCandidates( isDebug() );
+
     QFileInfo settingsFile;
-    if ( CalamaresUtils::isAppDataDirOverridden() )
+    bool found = false;
+
+    foreach ( const QString& path, settingsFileCandidatesByPriority )
     {
-        settingsFile = QFileInfo( CalamaresUtils::appDataDir().absoluteFilePath( "settings.conf" ) );
-        if ( !settingsFile.exists() || !settingsFile.isReadable() )
+        QFileInfo pathFi( path );
+        if ( pathFi.exists() && pathFi.isReadable() )
         {
-            cError() << "FATAL: explicitly configured application data directory"
-                   << CalamaresUtils::appDataDir().absolutePath()
-                   << "does not contain a valid settings.conf file."
-                   << "\nCowardly refusing to continue startup without settings.";
-            ::exit( EXIT_FAILURE );
+            settingsFile = pathFi;
+            found = true;
+            break;
         }
     }
-    else
+
+    if ( !found || !settingsFile.exists() || !settingsFile.isReadable() )
     {
-        QStringList settingsFileCandidatesByPriority;
-        if ( isDebug() )
-        {
-            settingsFileCandidatesByPriority.append(
-                QDir::currentPath() +
-                QDir::separator() +
-                "settings.conf" );
-        }
-        settingsFileCandidatesByPriority.append( CMAKE_INSTALL_FULL_SYSCONFDIR "/calamares/settings.conf" );
-        settingsFileCandidatesByPriority.append( CalamaresUtils::appDataDir()
-                                                    .absoluteFilePath( "settings.conf" ) );
-
-        foreach ( const QString& path, settingsFileCandidatesByPriority )
-        {
-            QFileInfo pathFi( path );
-            if ( pathFi.exists() && pathFi.isReadable() )
-            {
-                settingsFile = pathFi;
-                break;
-            }
-        }
-
-        if ( !settingsFile.exists() || !settingsFile.isReadable() )
-        {
-            cError() << "FATAL: none of the expected configuration file paths ("
-                   << settingsFileCandidatesByPriority.join( ", " )
-                   << ") contain a valid settings.conf file."
-                   << "\nCowardly refusing to continue startup without settings.";
-            ::exit( EXIT_FAILURE );
-        }
+        cError() << "Cowardly refusing to continue startup without settings."
+            << Logger::DebugList( settingsFileCandidatesByPriority );
+        if ( CalamaresUtils::isAppDataDirOverridden() )
+            cError() << "FATAL: explicitly configured application data directory is missing settings.conf";
+        else
+            cError() << "FATAL: none of the expected configuration file paths exist.";
+        ::exit( EXIT_FAILURE );
     }
 
     new Calamares::Settings( settingsFile.absoluteFilePath(), isDebug(), this );
@@ -252,59 +268,32 @@ CalamaresApplication::initBranding()
         ::exit( EXIT_FAILURE );
     }
 
-    QString brandingDescriptorSubpath = QString( "branding/%1/branding.desc" )
-                                        .arg( brandingComponentName );
+    QString brandingDescriptorSubpath = QString( "branding/%1/branding.desc" ).arg( brandingComponentName );
+    QStringList brandingFileCandidatesByPriority = brandingFileCandidates( isDebug(), brandingDescriptorSubpath);
 
     QFileInfo brandingFile;
-    if ( CalamaresUtils::isAppDataDirOverridden() )
+    bool found = false;
+
+    foreach ( const QString& path, brandingFileCandidatesByPriority )
     {
-        brandingFile = QFileInfo( CalamaresUtils::appDataDir()
-                                  .absoluteFilePath( brandingDescriptorSubpath ) );
-        if ( !brandingFile.exists() || !brandingFile.isReadable() )
+        QFileInfo pathFi( path );
+        if ( pathFi.exists() && pathFi.isReadable() )
         {
-            cError() << "FATAL: explicitly configured application data directory"
-                   << CalamaresUtils::appDataDir().absolutePath()
-                   << "does not contain a valid branding component descriptor at"
-                   << brandingFile.absoluteFilePath()
-                   << "\nCowardly refusing to continue startup without branding.";
-            ::exit( EXIT_FAILURE );
+            brandingFile = pathFi;
+            found = true;
+            break;
         }
     }
-    else
+
+    if ( !found || !brandingFile.exists() || !brandingFile.isReadable() )
     {
-        QStringList brandingFileCandidatesByPriority;
-        if ( isDebug() )
-        {
-            brandingFileCandidatesByPriority.append(
-                QDir::currentPath() +
-                QDir::separator() +
-                "src" +
-                QDir::separator() +
-                brandingDescriptorSubpath );
-        }
-        brandingFileCandidatesByPriority.append( QDir( CMAKE_INSTALL_FULL_SYSCONFDIR "/calamares/" )
-                                                 .absoluteFilePath( brandingDescriptorSubpath ) );
-        brandingFileCandidatesByPriority.append( CalamaresUtils::appDataDir()
-                                                 .absoluteFilePath( brandingDescriptorSubpath ) );
-
-        foreach ( const QString& path, brandingFileCandidatesByPriority )
-        {
-            QFileInfo pathFi( path );
-            if ( pathFi.exists() && pathFi.isReadable() )
-            {
-                brandingFile = pathFi;
-                break;
-            }
-        }
-
-        if ( !brandingFile.exists() || !brandingFile.isReadable() )
-        {
-            cError() << "FATAL: none of the expected branding descriptor file paths ("
-                   << brandingFileCandidatesByPriority.join( ", " )
-                   << ") contain a valid branding.desc file."
-                   << "\nCowardly refusing to continue startup without branding.";
-            ::exit( EXIT_FAILURE );
-        }
+        cError() << "Cowardly refusing to continue startup without branding."
+            << Logger::DebugList( brandingFileCandidatesByPriority );
+        if ( CalamaresUtils::isAppDataDirOverridden() )
+            cError() << "FATAL: explicitly configured application data directory is missing" << brandingComponentName;
+        else
+            cError() << "FATAL: none of the expected branding descriptor file paths exist.";
+        ::exit( EXIT_FAILURE );
     }
 
     new Calamares::Branding( brandingFile.absoluteFilePath(), this );
@@ -333,6 +322,8 @@ CalamaresApplication::initView()
 
     connect( m_moduleManager, &Calamares::ModuleManager::modulesLoaded,
              this, &CalamaresApplication::initViewSteps );
+    connect( m_moduleManager, &Calamares::ModuleManager::modulesFailed,
+             this, &CalamaresApplication::initFailed );
 
     m_moduleManager->loadModules();
 
@@ -355,6 +346,12 @@ CalamaresApplication::initViewSteps()
     cDebug() << "STARTUP: Window now visible and ProgressTreeView populated";
 }
 
+void
+CalamaresApplication::initFailed(const QStringList& l)
+{
+    cError() << "STARTUP: failed modules are" << l;
+    m_mainwindow->show();
+}
 
 void
 CalamaresApplication::initJobQueue()

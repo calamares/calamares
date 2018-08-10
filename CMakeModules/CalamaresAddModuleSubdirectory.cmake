@@ -1,3 +1,26 @@
+# === This file is part of Calamares - <https://github.com/calamares> ===
+#
+#   Calamares is free software: you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation, either version 3 of the License, or
+#   (at your option) any later version.
+#
+#   Calamares is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
+#
+#   SPDX-License-Identifier: GPL-3.0+
+#   License-Filename: LICENSE
+#
+###
+#
+# Function and support code for adding a Calamares module (either a Qt / C++ plugin,
+# or a Python module, or whatever) to the build.
+#
 include( CalamaresAddTranslations )
 
 set( MODULE_DATA_DESTINATION share/calamares/modules )
@@ -62,9 +85,11 @@ function( calamares_add_module_subdirectory )
                     configure_file( ${SUBDIRECTORY}/${MODULE_FILE} ${SUBDIRECTORY}/${MODULE_FILE} COPYONLY )
 
                     get_filename_component( FLEXT ${MODULE_FILE} EXT )
-                    if( "${FLEXT}" STREQUAL ".conf" AND INSTALL_CONFIG)
-                        install( FILES ${CMAKE_CURRENT_BINARY_DIR}/${SUBDIRECTORY}/${MODULE_FILE}
-                                 DESTINATION ${MODULE_DATA_DESTINATION} )
+                    if( "${FLEXT}" STREQUAL ".conf" )
+                        if( INSTALL_CONFIG )
+                            install( FILES ${CMAKE_CURRENT_BINARY_DIR}/${SUBDIRECTORY}/${MODULE_FILE}
+                                    DESTINATION ${MODULE_DATA_DESTINATION} )
+                        endif()
                         list( APPEND MODULE_CONFIG_FILES ${MODULE_FILE} )
                     else()
                         install( FILES ${CMAKE_CURRENT_BINARY_DIR}/${SUBDIRECTORY}/${MODULE_FILE}
@@ -79,10 +104,11 @@ function( calamares_add_module_subdirectory )
                 message( "   ${Green}MODULE_DESTINATION:${ColorReset} ${MODULE_DESTINATION}" )
                 if( MODULE_CONFIG_FILES )
                     if ( INSTALL_CONFIG )
-                        message( "   ${Green}CONFIGURATION_FILES:${ColorReset} ${MODULE_CONFIG_FILES} => ${MODULE_DATA_DESTINATION}" )
+                        set( _destination "${MODULE_DATA_DESTINATION}" )
                     else()
-                        message( "   ${Green}CONFIGURATION_FILES:${ColorReset} ${MODULE_CONFIG_FILES} => [Skipping installation]" )
+                        set( _destination "[Build directory only]" )
                     endif()
+                    message( "   ${Green}CONFIGURATION_FILES:${ColorReset} ${MODULE_CONFIG_FILES} => ${_destination}" )
                 endif()
                 message( "" )
             endif()

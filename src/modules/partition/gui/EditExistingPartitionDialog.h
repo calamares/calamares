@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
+ *   Copyright 2018, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -56,7 +57,6 @@ private:
     QStringList m_usedMountPoints;
 
     PartitionTable::Flags newFlags() const;
-    void setupFlagsList();
     void replacePartResizerWidget();
     void updateMountPointPicker();
 };

@@ -46,6 +46,14 @@
     </message>
 </context>
 <context>
+    <name>Calamares::BlankViewStep</name>
+    <message>
+        <location filename="../src/libcalamaresui/viewpages/BlankViewStep.cpp" line="69"/>
+        <source>Blank Page</source>
+        <translation>Page blanche</translation>
+    </message>
+</context>
+<context>
     <name>Calamares::DebugWindow</name>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="14"/>
@@ -97,7 +105,7 @@
 <context>
     <name>Calamares::ExecutionViewStep</name>
     <message>
-        <location filename="../src/libcalamaresui/ExecutionViewStep.cpp" line="77"/>
+        <location filename="../src/libcalamaresui/ExecutionViewStep.cpp" line="79"/>
         <source>Install</source>
         <translation>Installer</translation>
     </message>
@@ -105,7 +113,7 @@
 <context>
     <name>Calamares::JobThread</name>
     <message>
-        <location filename="../src/libcalamares/JobQueue.cpp" line="86"/>
+        <location filename="../src/libcalamares/JobQueue.cpp" line="101"/>
         <source>Done</source>
         <translation>Fait</translation>
     </message>
@@ -113,12 +121,12 @@
 <context>
     <name>Calamares::ProcessJob</name>
     <message>
-        <location filename="../src/libcalamares/ProcessJob.cpp" line="51"/>
+        <location filename="../src/libcalamares/ProcessJob.cpp" line="52"/>
         <source>Run command %1 %2</source>
         <translation>Exécution de la commande %1 %2</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/ProcessJob.cpp" line="60"/>
+        <location filename="../src/libcalamares/ProcessJob.cpp" line="61"/>
         <source>Running command %1 %2</source>
         <translation>Exécution de la commande %1 %2</translation>
     </message>
@@ -126,32 +134,32 @@
 <context>
     <name>Calamares::PythonJob</name>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="265"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="273"/>
         <source>Running %1 operation.</source>
         <translation>Exécution de l&apos;opération %1.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="280"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="288"/>
         <source>Bad working directory path</source>
         <translation>Chemin du répertoire de travail invalide</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="281"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="289"/>
         <source>Working directory %1 for python job %2 is not readable.</source>
         <translation>Le répertoire de travail %1 pour le job python %2 n&apos;est pas accessible en lecture.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="291"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="299"/>
         <source>Bad main script file</source>
         <translation>Fichier de script principal invalide</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="292"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="300"/>
         <source>Main script file %1 for python job %2 is not readable.</source>
         <translation>Le fichier de script principal %1 pour la tâche python %2 n&apos;est pas accessible en lecture.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="368"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="376"/>
         <source>Boost.Python error in job &quot;%1&quot;.</source>
         <translation>Erreur Boost.Python pour le job &quot;%1&quot;.</translation>
     </message>
@@ -159,91 +167,112 @@
 <context>
     <name>Calamares::ViewManager</name>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="73"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="74"/>
         <source>&amp;Back</source>
         <translation>&amp;Précédent</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="74"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="75"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="279"/>
         <source>&amp;Next</source>
         <translation>&amp;Suivant</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="75"/>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="279"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="76"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="288"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Annuler</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="76"/>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="280"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="77"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="289"/>
         <source>Cancel installation without changing the system.</source>
         <translation>Annuler l&apos;installation sans modifier votre système.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="291"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="179"/>
+        <source>Calamares Initialization Failed</source>
+        <translation>L&apos;initialisation de Calamares a échoué</translation>
+    </message>
+    <message>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="180"/>
+        <source>%1 can not be installed. Calamares was unable to load all of the configured modules. This is a problem with the way Calamares is being used by the distribution.</source>
+        <translation>%1 n&apos;a pas pu être installé. Calamares n&apos;a pas pu charger tous les modules configurés. C&apos;est un problème avec la façon dont Calamares est utilisé par la distribution.</translation>
+    </message>
+    <message>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="185"/>
+        <source>&lt;br/&gt;The following modules could not be loaded:</source>
+        <translation>Les modules suivants n&apos;ont pas pu être chargés :</translation>
+    </message>
+    <message>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="277"/>
+        <source>&amp;Install</source>
+        <translation>&amp;Installer</translation>
+    </message>
+    <message>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="325"/>
         <source>Cancel installation?</source>
         <translation>Abandonner l&apos;installation ?</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="292"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="326"/>
         <source>Do you really want to cancel the current install process?
 The installer will quit and all changes will be lost.</source>
         <translation>Voulez-vous réellement abandonner le processus d&apos;installation ?
 L&apos;installateur se fermera et les changements seront perdus.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="297"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="331"/>
         <source>&amp;Yes</source>
         <translation>&amp;Oui</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="298"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="332"/>
         <source>&amp;No</source>
         <translation>&amp;Non</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="162"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="163"/>
         <source>&amp;Close</source>
         <translation>&amp;Fermer</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="212"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="237"/>
         <source>Continue with setup?</source>
         <translation>Poursuivre la configuration ?</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="213"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="238"/>
         <source>The %1 installer is about to make changes to your disk in order to install %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
         <translation>L&apos;installateur %1 est sur le point de procéder aux changements sur le disque afin d&apos;installer %2.&lt;br/&gt; &lt;strong&gt;Vous ne pourrez pas annulez ces changements.&lt;strong&gt;</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="218"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="243"/>
         <source>&amp;Install now</source>
         <translation>&amp;Installer maintenant</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="219"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="244"/>
         <source>Go &amp;back</source>
         <translation>&amp;Retour</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="248"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="283"/>
         <source>&amp;Done</source>
         <translation>&amp;Terminé</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="249"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="284"/>
         <source>The installation is complete. Close the installer.</source>
         <translation>L&apos;installation est terminée. Fermer l&apos;installateur.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="159"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="160"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="160"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="161"/>
         <source>Installation Failed</source>
         <translation>L&apos;installation a échoué</translation>
     </message>
@@ -430,17 +459,17 @@ L&apos;installateur se fermera et les changements seront perdus.</translation>
 <context>
     <name>ClearMountsJob</name>
     <message>
-        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="45"/>
+        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="46"/>
         <source>Clear mounts for partitioning operations on %1</source>
         <translation>Retirer les montages pour les opérations de partitionnement sur %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="53"/>
+        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="54"/>
         <source>Clearing mounts for partitioning operations on %1.</source>
         <translation>Libération des montages pour les opérations de partitionnement sur %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="190"/>
+        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="191"/>
         <source>Cleared all mounts for %1</source>
         <translation>Tous les montages ont été retirés pour %1</translation>
     </message>
@@ -471,20 +500,26 @@ L&apos;installateur se fermera et les changements seront perdus.</translation>
 <context>
     <name>CommandList</name>
     <message>
-        <location filename="../src/libcalamares/utils/CommandList.cpp" line="113"/>
+        <location filename="../src/libcalamares/utils/CommandList.cpp" line="127"/>
+        <location filename="../src/libcalamares/utils/CommandList.cpp" line="138"/>
         <source>Could not run command.</source>
         <translation>La commande n&apos;a pas pu être exécutée.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CommandList.cpp" line="114"/>
-        <source>No rootMountPoint is defined, so command cannot be run in the target environment.</source>
-        <translation>Aucun point de montage racine n&apos;est défini, la commande n&apos;a pas pu être exécutée dans l&apos;environnement cible.</translation>
+        <location filename="../src/libcalamares/utils/CommandList.cpp" line="128"/>
+        <source>The command runs in the host environment and needs to know the root path, but no rootMountPoint is defined.</source>
+        <translation>La commande est exécutée dans l&apos;environnement hôte et a besoin de connaître le chemin racine, mais aucun point de montage racine n&apos;est défini.</translation>
+    </message>
+    <message>
+        <location filename="../src/libcalamares/utils/CommandList.cpp" line="139"/>
+        <source>The command needs to know the user&apos;s name, but no username is defined.</source>
+        <translation>La commande a besoin de connaître le nom de l&apos;utilisateur, mais aucun nom d&apos;utilisateur n&apos;est défini.</translation>
     </message>
 </context>
 <context>
     <name>ContextualProcessJob</name>
     <message>
-        <location filename="../src/modules/contextualprocess/ContextualProcessJob.cpp" line="75"/>
+        <location filename="../src/modules/contextualprocess/ContextualProcessJob.cpp" line="117"/>
         <source>Contextual Processes Job</source>
         <translation>Tâche des processus contextuels</translation>
     </message>
@@ -542,27 +577,27 @@ L&apos;installateur se fermera et les changements seront perdus.</translation>
         <translation>Ta&amp;ille :</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="68"/>
+        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="72"/>
         <source>En&amp;crypt</source>
         <translation>Chi&amp;ffrer</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="177"/>
+        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="151"/>
         <source>Logical</source>
         <translation>Logique</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="182"/>
+        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="156"/>
         <source>Primary</source>
         <translation>Primaire</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="199"/>
+        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="173"/>
         <source>GPT</source>
         <translation>GPT</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="288"/>
+        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="262"/>
         <source>Mountpoint already in use. Please select another one.</source>
         <translation>Le point de montage est déjà utilisé. Merci d&apos;en sélectionner un autre.</translation>
     </message>
@@ -644,69 +679,39 @@ L&apos;installateur se fermera et les changements seront perdus.</translation>
 <context>
     <name>CreateUserJob</name>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="50"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="51"/>
         <source>Create user %1</source>
         <translation>Créer l&apos;utilisateur %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="57"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="58"/>
         <source>Create user &lt;strong&gt;%1&lt;/strong&gt;.</source>
         <translation>Créer l&apos;utilisateur &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="64"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="65"/>
         <source>Creating user %1.</source>
         <translation>Création de l&apos;utilisateur %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="80"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="81"/>
         <source>Sudoers dir is not writable.</source>
         <translation>Le répertoire Superutilisateur n&apos;est pas inscriptible.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="84"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="85"/>
         <source>Cannot create sudoers file for writing.</source>
         <translation>Impossible de créer le fichier sudoers en écriture.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="92"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="93"/>
         <source>Cannot chmod sudoers file.</source>
         <translation>Impossible d&apos;exécuter chmod sur le fichier sudoers.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="98"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="99"/>
         <source>Cannot open groups file for reading.</source>
         <translation>Impossible d&apos;ouvrir le fichier groups en lecture.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="159"/>
-        <source>Cannot create user %1.</source>
-        <translation>Impossible de créer l&apos;utilisateur %1.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="161"/>
-        <source>useradd terminated with error code %1.</source>
-        <translation>useradd s&apos;est terminé avec le code erreur %1.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="170"/>
-        <source>Cannot add user %1 to groups: %2.</source>
-        <translation>Impossible d&apos;ajouter l&apos;utilisateur %1 au groupe %2.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="173"/>
-        <source>usermod terminated with error code %1.</source>
-        <translation>usermod s&apos;est terminé avec le code erreur %1.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="183"/>
-        <source>Cannot set home directory ownership for user %1.</source>
-        <translation>Impossible de définir le propriétaire du répertoire home pour l&apos;utilisateur %1.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="185"/>
-        <source>chown terminated with error code %1.</source>
-        <translation>chown s&apos;est terminé avec le code erreur %1.</translation>
     </message>
 </context>
 <context>
@@ -794,7 +799,7 @@ L&apos;installateur se fermera et les changements seront perdus.</translation>
 <context>
     <name>DummyCppJob</name>
     <message>
-        <location filename="../src/modules/dummycpp/DummyCppJob.cpp" line="46"/>
+        <location filename="../src/modules/dummycpp/DummyCppJob.cpp" line="47"/>
         <source>Dummy C++ Job</source>
         <translation>Tâche C++ fictive</translation>
     </message>
@@ -852,7 +857,7 @@ L&apos;installateur se fermera et les changements seront perdus.</translation>
         <translation>Drapeaux:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.cpp" line="307"/>
+        <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.cpp" line="269"/>
         <source>Mountpoint already in use. Please select another one.</source>
         <translation>Le point de montage est déjà utilisé. Merci d&apos;en sélectionner un autre.</translation>
     </message>
@@ -941,12 +946,12 @@ L&apos;installateur se fermera et les changements seront perdus.</translation>
         <translation>&amp;Redémarrer maintenant</translation>
     </message>
     <message>
-        <location filename="../src/modules/finished/FinishedPage.cpp" line="52"/>
+        <location filename="../src/modules/finished/FinishedPage.cpp" line="51"/>
         <source>&lt;h1&gt;All done.&lt;/h1&gt;&lt;br/&gt;%1 has been installed on your computer.&lt;br/&gt;You may now restart into your new system, or continue using the %2 Live environment.</source>
         <translation>&lt;h1&gt;Installation terminée.&lt;/h1&gt;&lt;br/&gt;%1 a été installé sur votre ordinateur.&lt;br/&gt;Vous pouvez redémarrer sur le nouveau système, ou continuer d&apos;utiliser l&apos;environnement actuel %2 .</translation>
     </message>
     <message>
-        <location filename="../src/modules/finished/FinishedPage.cpp" line="110"/>
+        <location filename="../src/modules/finished/FinishedPage.cpp" line="109"/>
         <source>&lt;h1&gt;Installation Failed&lt;/h1&gt;&lt;br/&gt;%1 has not been installed on your computer.&lt;br/&gt;The error message was: %2.</source>
         <translation>&lt;h1&gt;Installation échouée&lt;/h1&gt;&lt;br/&gt;%1 n&apos;a pas été installée sur cet ordinateur.&lt;br/&gt;Le message d&apos;erreur était : %2.</translation>
     </message>
@@ -1021,12 +1026,12 @@ L&apos;installateur se fermera et les changements seront perdus.</translation>
 <context>
     <name>KeyboardPage</name>
     <message>
-        <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="220"/>
+        <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="219"/>
         <source>Set keyboard model to %1.&lt;br/&gt;</source>
         <translation>Configurer le modèle de clavier à %1.&lt;br/&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="222"/>
+        <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="221"/>
         <source>Set keyboard layout to %1/%2.</source>
         <translation>Configurer la disposition clavier à %1/%2.</translation>
     </message>
@@ -1070,64 +1075,64 @@ L&apos;installateur se fermera et les changements seront perdus.</translation>
         <translation>Formulaire</translation>
     </message>
     <message>
-        <location filename="../src/modules/license/LicensePage.cpp" line="88"/>
+        <location filename="../src/modules/license/LicensePage.cpp" line="89"/>
         <source>I accept the terms and conditions above.</source>
         <translation>J&apos;accepte les termes et conditions ci-dessus.</translation>
     </message>
     <message>
-        <location filename="../src/modules/license/LicensePage.cpp" line="115"/>
+        <location filename="../src/modules/license/LicensePage.cpp" line="116"/>
         <source>&lt;h1&gt;License Agreement&lt;/h1&gt;This setup procedure will install proprietary software that is subject to licensing terms.</source>
         <translation>&lt;h1&gt;Accord de licence&lt;/h1&gt;Cette procédure de configuration va installer des logiciels propriétaire sujet à des termes de licence.</translation>
     </message>
     <message>
-        <location filename="../src/modules/license/LicensePage.cpp" line="118"/>
+        <location filename="../src/modules/license/LicensePage.cpp" line="119"/>
         <source>Please review the End User License Agreements (EULAs) above.&lt;br/&gt;If you do not agree with the terms, the setup procedure cannot continue.</source>
         <translation>Merci de relire les Contrats de Licence Utilisateur Final (CLUF/EULA) ci-dessus.&lt;br/&gt;Si vous n&apos;acceptez pas les termes, la procédure ne peut pas continuer.</translation>
     </message>
     <message>
-        <location filename="../src/modules/license/LicensePage.cpp" line="124"/>
+        <location filename="../src/modules/license/LicensePage.cpp" line="125"/>
         <source>&lt;h1&gt;License Agreement&lt;/h1&gt;This setup procedure can install proprietary software that is subject to licensing terms in order to provide additional features and enhance the user experience.</source>
         <translation>&lt;h1&gt;Accord de licence&lt;/h1&gt;Cette procédure peut installer des logiciels propriétaires qui sont soumis à des termes de licence afin d&apos;ajouter des fonctionnalités et améliorer l&apos;expérience utilisateur.</translation>
     </message>
     <message>
-        <location filename="../src/modules/license/LicensePage.cpp" line="129"/>
+        <location filename="../src/modules/license/LicensePage.cpp" line="130"/>
         <source>Please review the End User License Agreements (EULAs) above.&lt;br/&gt;If you do not agree with the terms, proprietary software will not be installed, and open source alternatives will be used instead.</source>
         <translation>Merci de relire les Contrats de Licence Utilisateur Final (CLUF/EULA) ci-dessus.&lt;br/&gt;Si vous n&apos;acceptez pas les termes, les logiciels propriétaires ne seront pas installés, et des alternatives open-source seront utilisées à la place.</translation>
     </message>
     <message>
-        <location filename="../src/modules/license/LicensePage.cpp" line="159"/>
+        <location filename="../src/modules/license/LicensePage.cpp" line="160"/>
         <source>&lt;strong&gt;%1 driver&lt;/strong&gt;&lt;br/&gt;by %2</source>
         <extracomment>%1 is an untranslatable product name, example: Creative Audigy driver</extracomment>
         <translation>&lt;strong&gt;Pilote %1&lt;/strong&gt;&lt;br/&gt;par %2</translation>
     </message>
     <message>
-        <location filename="../src/modules/license/LicensePage.cpp" line="166"/>
+        <location filename="../src/modules/license/LicensePage.cpp" line="167"/>
         <source>&lt;strong&gt;%1 graphics driver&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;by %2&lt;/font&gt;</source>
         <extracomment>%1 is usually a vendor name, example: Nvidia graphics driver</extracomment>
         <translation>&lt;strong&gt;Pilote graphique %1&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;par %2&lt;/font&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/license/LicensePage.cpp" line="172"/>
+        <location filename="../src/modules/license/LicensePage.cpp" line="173"/>
         <source>&lt;strong&gt;%1 browser plugin&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;by %2&lt;/font&gt;</source>
         <translation>&lt;strong&gt;Module de navigateur %1&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;par %2&lt;/font&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/license/LicensePage.cpp" line="178"/>
+        <location filename="../src/modules/license/LicensePage.cpp" line="179"/>
         <source>&lt;strong&gt;%1 codec&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;by %2&lt;/font&gt;</source>
         <translation>&lt;strong&gt;Codec %1&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;par %2&lt;/font&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/license/LicensePage.cpp" line="184"/>
+        <location filename="../src/modules/license/LicensePage.cpp" line="185"/>
         <source>&lt;strong&gt;%1 package&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;by %2&lt;/font&gt;</source>
         <translation>&lt;strong&gt;Paquet %1&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;par %2&lt;/font&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/license/LicensePage.cpp" line="190"/>
+        <location filename="../src/modules/license/LicensePage.cpp" line="191"/>
         <source>&lt;strong&gt;%1&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;by %2&lt;/font&gt;</source>
         <translation>&lt;strong&gt;%1&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;par %2&lt;/font&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/license/LicensePage.cpp" line="202"/>
+        <location filename="../src/modules/license/LicensePage.cpp" line="203"/>
         <source>&lt;a href=&quot;%1&quot;&gt;view license agreement&lt;/a&gt;</source>
         <translation>&lt;a href=&quot;%1&quot;&gt;Consulter l&apos;accord de licence&lt;/a&gt;</translation>
     </message>
@@ -1183,12 +1188,12 @@ L&apos;installateur se fermera et les changements seront perdus.</translation>
 <context>
     <name>LocaleViewStep</name>
     <message>
-        <location filename="../src/modules/locale/LocaleViewStep.cpp" line="52"/>
+        <location filename="../src/modules/locale/LocaleViewStep.cpp" line="60"/>
         <source>Loading location data...</source>
         <translation>Chargement des données de localisation...</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocaleViewStep.cpp" line="169"/>
+        <location filename="../src/modules/locale/LocaleViewStep.cpp" line="175"/>
         <source>Location</source>
         <translation>Localisation</translation>
     </message>
@@ -1196,22 +1201,22 @@ L&apos;installateur se fermera et les changements seront perdus.</translation>
 <context>
     <name>NetInstallPage</name>
     <message>
-        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="72"/>
+        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="64"/>
         <source>Name</source>
         <translation>Nom</translation>
     </message>
     <message>
-        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="73"/>
+        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="65"/>
         <source>Description</source>
         <translation>Description</translation>
     </message>
     <message>
-        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="94"/>
+        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="86"/>
         <source>Network Installation. (Disabled: Unable to fetch package lists, check your network connection)</source>
         <translation>Installation par le réseau (Désactivée : impossible de récupérer leslistes de paquets, vérifiez la connexion réseau)</translation>
     </message>
     <message>
-        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="104"/>
+        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="96"/>
         <source>Network Installation. (Disabled: Received invalid groups data)</source>
         <translation>Installation par le réseau. (Désactivée : données de groupes reçues invalides)</translation>
     </message>
@@ -1219,7 +1224,7 @@ L&apos;installateur se fermera et les changements seront perdus.</translation>
 <context>
     <name>NetInstallViewStep</name>
     <message>
-        <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="52"/>
+        <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="54"/>
         <source>Package selection</source>
         <translation>Sélection des paquets</translation>
     </message>
@@ -1227,242 +1232,242 @@ L&apos;installateur se fermera et les changements seront perdus.</translation>
 <context>
     <name>PWQ</name>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="67"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="63"/>
         <source>Password is too short</source>
         <translation>Le mot de passe est trop court</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="89"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="85"/>
         <source>Password is too long</source>
         <translation>Le mot de passe est trop long</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="155"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="151"/>
         <source>Password is too weak</source>
         <translation>Le mot de passe est trop faible</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="162"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="158"/>
         <source>Memory allocation error when setting &apos;%1&apos;</source>
         <translation>Erreur d&apos;allocation mémoire lors du paramétrage de &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="166"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="162"/>
         <source>Memory allocation error</source>
         <translation>Erreur d&apos;allocation mémoire</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="168"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="164"/>
         <source>The password is the same as the old one</source>
         <translation>Le mot de passe est identique au précédent</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="170"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="166"/>
         <source>The password is a palindrome</source>
         <translation>Le mot de passe est un palindrome</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="172"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="168"/>
         <source>The password differs with case changes only</source>
         <translation>Le mot de passe ne diffère que sur la casse</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="174"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="170"/>
         <source>The password is too similar to the old one</source>
         <translation>Le mot de passe est trop similaire à l&apos;ancien</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="176"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="172"/>
         <source>The password contains the user name in some form</source>
         <translation>Le mot de passe contient le nom d&apos;utilisateur sous une certaine forme</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="178"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="174"/>
         <source>The password contains words from the real name of the user in some form</source>
         <translation>Le mot de passe contient des mots provenant du nom d&apos;utilisateur sous une certaine forme</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="180"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="176"/>
         <source>The password contains forbidden words in some form</source>
         <translation>Le mot de passe contient des mots interdits sous une certaine forme</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="183"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="179"/>
         <source>The password contains less than %1 digits</source>
         <translation>Le mot de passe contient moins de %1 chiffres</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="184"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="180"/>
         <source>The password contains too few digits</source>
         <translation>Le mot de passe ne contient pas assez de chiffres</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="187"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="183"/>
         <source>The password contains less than %1 uppercase letters</source>
         <translation>Le mot de passe contient moins de %1 lettres majuscules</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="188"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="184"/>
         <source>The password contains too few uppercase letters</source>
         <translation>Le mot de passe ne contient pas assez de lettres majuscules</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="191"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="187"/>
         <source>The password contains less than %1 lowercase letters</source>
         <translation>Le mot de passe contient moins de %1 lettres minuscules</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="192"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="188"/>
         <source>The password contains too few lowercase letters</source>
         <translation>Le mot de passe ne contient pas assez de lettres minuscules</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="195"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="191"/>
         <source>The password contains less than %1 non-alphanumeric characters</source>
         <translation>Le mot de passe contient moins de %1 caractères spéciaux</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="196"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="192"/>
         <source>The password contains too few non-alphanumeric characters</source>
         <translation>Le mot de passe ne contient pas assez de caractères spéciaux</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="199"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="195"/>
         <source>The password is shorter than %1 characters</source>
         <translation>Le mot de passe fait moins de %1 caractères</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="200"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="196"/>
         <source>The password is too short</source>
         <translation>Le mot de passe est trop court</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="202"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="198"/>
         <source>The password is just rotated old one</source>
         <translation>Le mot de passe saisit correspond avec un de vos anciens mot de passe</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="205"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="201"/>
         <source>The password contains less than %1 character classes</source>
         <translation>Le mot de passe contient moins de %1 classes de caractères</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="206"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="202"/>
         <source>The password does not contain enough character classes</source>
         <translation>Le mot de passe ne contient pas assez de classes de caractères</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="209"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="205"/>
         <source>The password contains more than %1 same characters consecutively</source>
         <translation>Le mot de passe contient plus de %1 fois le même caractère à la suite</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="210"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="206"/>
         <source>The password contains too many same characters consecutively</source>
         <translation>Le mot de passe contient trop de fois le même caractère à la suite</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="213"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="209"/>
         <source>The password contains more than %1 characters of the same class consecutively</source>
         <translation>Le mot de passe contient plus de %1 caractères de la même classe consécutivement</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="214"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="210"/>
         <source>The password contains too many characters of the same class consecutively</source>
         <translation>Le mot de passe contient trop de caractères de la même classe consécutivement</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="217"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="213"/>
         <source>The password contains monotonic sequence longer than %1 characters</source>
         <translation>Le mot de passe contient une séquence de caractères monotones de %1 caractères</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="218"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="214"/>
         <source>The password contains too long of a monotonic character sequence</source>
         <translation>Le mot de passe contient une trop longue séquence de caractères monotones</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="220"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="216"/>
         <source>No password supplied</source>
         <translation>Aucun mot de passe saisi</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="222"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="218"/>
         <source>Cannot obtain random numbers from the RNG device</source>
         <translation>Impossible d&apos;obtenir des nombres aléatoires depuis le générateur de nombres aléatoires</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="224"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="220"/>
         <source>Password generation failed - required entropy too low for settings</source>
         <translation>La génération du mot de passe a échoué - L&apos;entropie minimum nécessaire n&apos;est pas satisfaite par les paramètres</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="229"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="225"/>
         <source>The password fails the dictionary check - %1</source>
         <translation>Le mot de passe a échoué le contrôle de qualité par dictionnaire - %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="231"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="227"/>
         <source>The password fails the dictionary check</source>
         <translation>Le mot de passe a échoué le contrôle de qualité par dictionnaire</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="235"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="231"/>
         <source>Unknown setting - %1</source>
         <translation>Paramètre inconnu - %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="239"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="235"/>
         <source>Unknown setting</source>
         <translation>Paramètre inconnu</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="243"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="239"/>
         <source>Bad integer value of setting - %1</source>
         <translation>Valeur incorrect du paramètre - %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="247"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="243"/>
         <source>Bad integer value</source>
         <translation>Mauvaise valeur d&apos;entier</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="251"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="247"/>
         <source>Setting %1 is not of integer type</source>
         <translation>Le paramètre %1 n&apos;est pas de type entier</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="255"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="251"/>
         <source>Setting is not of integer type</source>
         <translation>Le paramètre n&apos;est pas de type entier</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="259"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="255"/>
         <source>Setting %1 is not of string type</source>
         <translation>Le paramètre %1 n&apos;est pas une chaîne de caractères</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="263"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="259"/>
         <source>Setting is not of string type</source>
         <translation>Le paramètre n&apos;est pas une chaîne de caractères</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="265"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="261"/>
         <source>Opening the configuration file failed</source>
         <translation>L&apos;ouverture du fichier de configuration a échouée</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="267"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="263"/>
         <source>The configuration file is malformed</source>
         <translation>Le fichier de configuration est mal formé</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="269"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="265"/>
         <source>Fatal failure</source>
         <translation>Erreur fatale</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="271"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="267"/>
         <source>Unknown error</source>
         <translation>Erreur inconnue</translation>
     </message>
@@ -1601,34 +1606,34 @@ L&apos;installateur se fermera et les changements seront perdus.</translation>
 <context>
     <name>PartitionModel</name>
     <message>
-        <location filename="../src/modules/partition/core/PartitionModel.cpp" line="137"/>
-        <location filename="../src/modules/partition/core/PartitionModel.cpp" line="169"/>
+        <location filename="../src/modules/partition/core/PartitionModel.cpp" line="138"/>
+        <location filename="../src/modules/partition/core/PartitionModel.cpp" line="170"/>
         <source>Free Space</source>
         <translation>Espace libre</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/PartitionModel.cpp" line="141"/>
-        <location filename="../src/modules/partition/core/PartitionModel.cpp" line="173"/>
+        <location filename="../src/modules/partition/core/PartitionModel.cpp" line="142"/>
+        <location filename="../src/modules/partition/core/PartitionModel.cpp" line="174"/>
         <source>New partition</source>
         <translation>Nouvelle partition</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/PartitionModel.cpp" line="257"/>
+        <location filename="../src/modules/partition/core/PartitionModel.cpp" line="258"/>
         <source>Name</source>
         <translation>Nom</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/PartitionModel.cpp" line="259"/>
+        <location filename="../src/modules/partition/core/PartitionModel.cpp" line="260"/>
         <source>File System</source>
         <translation>Système de fichiers</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/PartitionModel.cpp" line="261"/>
+        <location filename="../src/modules/partition/core/PartitionModel.cpp" line="262"/>
         <source>Mount Point</source>
         <translation>Point de montage</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/PartitionModel.cpp" line="263"/>
+        <location filename="../src/modules/partition/core/PartitionModel.cpp" line="264"/>
         <source>Size</source>
         <translation>Taille</translation>
     </message>
@@ -1657,8 +1662,8 @@ L&apos;installateur se fermera et les changements seront perdus.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="107"/>
-        <source>&amp;Create</source>
-        <translation>&amp;Créer</translation>
+        <source>Cre&amp;ate</source>
+        <translation>Cré&amp;er</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="114"/>
@@ -1676,105 +1681,115 @@ L&apos;installateur se fermera et les changements seront perdus.</translation>
         <translation>Installer le chargeur de démarrage sur:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="168"/>
+        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="171"/>
         <source>Are you sure you want to create a new partition table on %1?</source>
         <translation>Êtes-vous sûr de vouloir créer une nouvelle table de partitionnement sur %1 ?</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="195"/>
+        <source>Can not create new partition</source>
+        <translation>Impossible de créer une nouvelle partition</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="196"/>
+        <source>The partition table on %1 already has %2 primary partitions, and no more can be added. Please remove one primary partition and add an extended partition, instead.</source>
+        <translation>La table de partition sur %1 contient déjà %2 partitions primaires, et aucune supplémentaire ne peut être ajoutée. Veuillez supprimer une partition primaire et créer une partition étendue à la place.</translation>
     </message>
 </context>
 <context>
     <name>PartitionViewStep</name>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="70"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="71"/>
         <source>Gathering system information...</source>
         <translation>Récupération des informations système…</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="121"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="122"/>
         <source>Partitions</source>
         <translation>Partitions</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="158"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="159"/>
         <source>Install %1 &lt;strong&gt;alongside&lt;/strong&gt; another operating system.</source>
         <translation>Installer %1 &lt;strong&gt;à côté&lt;/strong&gt;d&apos;un autre système d&apos;exploitation.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="162"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="163"/>
         <source>&lt;strong&gt;Erase&lt;/strong&gt; disk and install %1.</source>
         <translation>&lt;strong&gt;Effacer&lt;/strong&gt; le disque et installer %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="166"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="167"/>
         <source>&lt;strong&gt;Replace&lt;/strong&gt; a partition with %1.</source>
         <translation>&lt;strong&gt;Remplacer&lt;/strong&gt; une partition avec %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="171"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="172"/>
         <source>&lt;strong&gt;Manual&lt;/strong&gt; partitioning.</source>
         <translation>Partitionnement &lt;strong&gt;manuel&lt;/strong&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="184"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="185"/>
         <source>Install %1 &lt;strong&gt;alongside&lt;/strong&gt; another operating system on disk &lt;strong&gt;%2&lt;/strong&gt; (%3).</source>
         <translation>Installer %1 &lt;strong&gt;à côté&lt;/strong&gt; d&apos;un autre système d&apos;exploitation sur le disque &lt;strong&gt;%2&lt;/strong&gt; (%3).</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="190"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="191"/>
         <source>&lt;strong&gt;Erase&lt;/strong&gt; disk &lt;strong&gt;%2&lt;/strong&gt; (%3) and install %1.</source>
         <translation>&lt;strong&gt;Effacer&lt;/strong&gt; le disque &lt;strong&gt;%2&lt;/strong&gt; (%3) et installer %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="196"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="197"/>
         <source>&lt;strong&gt;Replace&lt;/strong&gt; a partition on disk &lt;strong&gt;%2&lt;/strong&gt; (%3) with %1.</source>
         <translation>&lt;strong&gt;Remplacer&lt;/strong&gt; une partition sur le disque &lt;strong&gt;%2&lt;/strong&gt; (%3) avec %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="203"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="204"/>
         <source>&lt;strong&gt;Manual&lt;/strong&gt; partitioning on disk &lt;strong&gt;%1&lt;/strong&gt; (%2).</source>
         <translation>Partitionnement &lt;strong&gt;manuel&lt;/strong&gt; sur le disque &lt;strong&gt;%1&lt;/strong&gt; (%2).</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="211"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="212"/>
         <source>Disk &lt;strong&gt;%1&lt;/strong&gt; (%2)</source>
         <translation>Disque &lt;strong&gt;%1&lt;/strong&gt; (%2)</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="239"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="240"/>
         <source>Current:</source>
         <translation>Actuel :</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="256"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="257"/>
         <source>After:</source>
         <translation>Après :</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="399"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="400"/>
         <source>No EFI system partition configured</source>
         <translation>Aucune partition système EFI configurée</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="400"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="401"/>
         <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;To configure an EFI system partition, go back and select or create a FAT32 filesystem with the &lt;strong&gt;esp&lt;/strong&gt; flag enabled and mount point &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;&lt;br/&gt;You can continue without setting up an EFI system partition but your system may fail to start.</source>
         <translation>Une partition système EFI est nécessaire pour démarrer %1.&lt;br/&gt;&lt;br/&gt;Pour configurer une partition système EFI, revenez en arrière et sélectionnez ou créez une partition FAT32 avec le drapeau &lt;strong&gt;esp&lt;/strong&gt; activé et le point de montage &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;&lt;br/&gt;Vous pouvez continuer sans configurer de partition système EFI mais votre système pourrait refuser de démarrer.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="413"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="414"/>
         <source>EFI system partition flag not set</source>
         <translation>Drapeau de partition système EFI non configuré</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="414"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="415"/>
         <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;A partition was configured with mount point &lt;strong&gt;%2&lt;/strong&gt; but its &lt;strong&gt;esp&lt;/strong&gt; flag is not set.&lt;br/&gt;To set the flag, go back and edit the partition.&lt;br/&gt;&lt;br/&gt;You can continue without setting the flag but your system may fail to start.</source>
         <translation>Une partition système EFI est nécessaire pour démarrer %1.&lt;br/&gt;&lt;br/&gt;Une partition a été configurée avec le point de montage &lt;strong&gt;%2&lt;/strong&gt; mais son drapeau &lt;strong&gt;esp&lt;/strong&gt; n&apos;est pas activé.&lt;br/&gt;Pour activer le drapeau, revenez en arrière et éditez la partition.&lt;br/&gt;&lt;br/&gt;Vous pouvez continuer sans activer le drapeau mais votre système pourrait refuser de démarrer.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="448"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="450"/>
         <source>Boot partition not encrypted</source>
         <translation>Partition d&apos;amorçage non chiffrée.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="449"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="451"/>
         <source>A separate boot partition was set up together with an encrypted root partition, but the boot partition is not encrypted.&lt;br/&gt;&lt;br/&gt;There are security concerns with this kind of setup, because important system files are kept on an unencrypted partition.&lt;br/&gt;You may continue if you wish, but filesystem unlocking will happen later during system startup.&lt;br/&gt;To encrypt the boot partition, go back and recreate it, selecting &lt;strong&gt;Encrypt&lt;/strong&gt; in the partition creation window.</source>
         <translation>Une partition d&apos;amorçage distincte a été configurée avec une partition racine chiffrée, mais la partition d&apos;amorçage n&apos;est pas chiffrée. &lt;br/&gt; &lt;br/&gt; Il y a des problèmes de sécurité avec ce type d&apos;installation, car des fichiers système importants sont conservés sur une partition non chiffrée &lt;br/&gt; Vous pouvez continuer si vous le souhaitez, mais le déverrouillage du système de fichiers se produira plus tard au démarrage du système. &lt;br/&gt; Pour chiffrer la partition d&apos;amorçage, revenez en arrière et recréez-la, en sélectionnant &lt;strong&gt; Chiffrer &lt;/ strong&gt; dans la partition Fenêtre de création.</translation>
     </message>
@@ -1806,30 +1821,49 @@ L&apos;installateur se fermera et les changements seront perdus.</translation>
         <translation>Emplacement</translation>
     </message>
     <message>
-        <location filename="../src/modules/plasmalnf/PlasmaLnfPage.cpp" line="64"/>
-        <source>Please choose a look-and-feel for the KDE Plasma Desktop. You can also skip this step and configure the look-and-feel once the system is installed.</source>
-        <translation>Merci de choisir l&apos;apparence du bureau KDE Plasma. Vous pouvez aussi passer cette étape et configurer l&apos;apparence une fois le système installé.</translation>
+        <location filename="../src/modules/plasmalnf/PlasmaLnfPage.cpp" line="67"/>
+        <source>Please choose a look-and-feel for the KDE Plasma Desktop. You can also skip this step and configure the look-and-feel once the system is installed. Clicking on a look-and-feel selection will give you a live preview of that look-and-feel.</source>
+        <translation>Merci de choisir l&apos;apparence du bureau KDE Plasma. Vous pouvez aussi passer cette étape et configurer l&apos;apparence une fois le système installé. 
+Vous pouvez obtenir un aperçu des différentes apparences en cliquant sur celles-ci.</translation>
     </message>
 </context>
 <context>
     <name>PlasmaLnfViewStep</name>
     <message>
-        <location filename="../src/modules/plasmalnf/PlasmaLnfViewStep.cpp" line="51"/>
+        <location filename="../src/modules/plasmalnf/PlasmaLnfViewStep.cpp" line="68"/>
         <source>Look-and-Feel</source>
         <translation>Apparence</translation>
     </message>
 </context>
 <context>
+    <name>PreserveFiles</name>
+    <message>
+        <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="83"/>
+        <source>Saving files for later ...</source>
+        <translation>Sauvegarde des fichiers en cours pour plus tard...</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="89"/>
+        <source>No files configured to save for later.</source>
+        <translation>Aucun fichier de sélectionné pour sauvegarde ultérieure.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="145"/>
+        <source>Not all of the configured files could be preserved.</source>
+        <translation>Certains des fichiers configurés n&apos;ont pas pu être préservés.</translation>
+    </message>
+</context>
+<context>
     <name>ProcessResult</name>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="263"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="271"/>
         <source>
 There was no output from the command.</source>
         <translation>
 Il y a eu aucune sortie de la commande</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="264"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="272"/>
         <source>
 Output:
 </source>
@@ -1838,52 +1872,52 @@ Sortie
 </translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="267"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="275"/>
         <source>External command crashed.</source>
         <translation>La commande externe s&apos;est mal terminée.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="268"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="276"/>
         <source>Command &lt;i&gt;%1&lt;/i&gt; crashed.</source>
         <translation>La commande &lt;i&gt;%1&lt;/i&gt; s&apos;est arrêtée inopinément.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="273"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="281"/>
         <source>External command failed to start.</source>
         <translation>La commande externe n&apos;a pas pu être lancée.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="274"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="282"/>
         <source>Command &lt;i&gt;%1&lt;/i&gt; failed to start.</source>
         <translation>La commande &lt;i&gt;%1&lt;/i&gt; n&apos;a pas pu être lancée.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="278"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="286"/>
         <source>Internal error when starting command.</source>
         <translation>Erreur interne au lancement de la commande</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="279"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="287"/>
         <source>Bad parameters for process job call.</source>
         <translation>Mauvais paramètres pour l&apos;appel au processus de job.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="282"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="290"/>
         <source>External command failed to finish.</source>
         <translation>La commande externe ne s&apos;est pas terminée.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="283"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="291"/>
         <source>Command &lt;i&gt;%1&lt;/i&gt; failed to finish in %2 seconds.</source>
         <translation>La commande &lt;i&gt;%1&lt;/i&gt; ne s&apos;est pas terminée en %2 secondes.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="289"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="297"/>
         <source>External command finished with errors.</source>
         <translation>La commande externe s&apos;est terminée avec des erreurs.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="290"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="298"/>
         <source>Command &lt;i&gt;%1&lt;/i&gt; finished with exit code %2.</source>
         <translation>La commande &lt;i&gt;%1&lt;/i&gt; s&apos;est terminée avec le code de sortie %2.</translation>
     </message>
@@ -1902,22 +1936,22 @@ Sortie
         <translation>Défaut</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="204"/>
+        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="207"/>
         <source>unknown</source>
         <translation>inconnu</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="206"/>
+        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="209"/>
         <source>extended</source>
         <translation>étendu</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="208"/>
+        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="211"/>
         <source>unformatted</source>
         <translation>non formaté</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="210"/>
+        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="213"/>
         <source>swap</source>
         <translation>swap</translation>
     </message>
@@ -2010,52 +2044,52 @@ Sortie
         <translation>Récupération des informations système...</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="116"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="118"/>
         <source>has at least %1 GB available drive space</source>
         <translation>a au moins %1 Go d&apos;espace disque disponible</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="118"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="120"/>
         <source>There is not enough drive space. At least %1 GB is required.</source>
         <translation>Il n&apos;y a pas assez d&apos;espace disque. Au moins %1 Go sont requis.</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="126"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="128"/>
         <source>has at least %1 GB working memory</source>
         <translation>a au moins %1 Go de mémoire vive</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="128"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="130"/>
         <source>The system does not have enough working memory. At least %1 GB is required.</source>
         <translation>Le système n&apos;a pas assez de mémoire vive. Au moins %1 Go sont requis.</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="136"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="138"/>
         <source>is plugged in to a power source</source>
         <translation>est relié à une source de courant</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="137"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="139"/>
         <source>The system is not plugged in to a power source.</source>
         <translation>Le système n&apos;est pas relié à une source de courant.</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="144"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="146"/>
         <source>is connected to the Internet</source>
         <translation>est connecté à Internet</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="145"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="147"/>
         <source>The system is not connected to the Internet.</source>
         <translation>Le système n&apos;est pas connecté à Internet.</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="153"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="155"/>
         <source>The installer is not running with administrator rights.</source>
         <translation>L&apos;installateur ne dispose pas des droits administrateur.</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="161"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="163"/>
         <source>The screen is too small to display the installer.</source>
         <translation>L&apos;écran est trop petit pour afficher l&apos;installateur.</translation>
     </message>
@@ -2099,29 +2133,29 @@ Sortie
 <context>
     <name>SetHostNameJob</name>
     <message>
-        <location filename="../src/modules/users/SetHostNameJob.cpp" line="37"/>
+        <location filename="../src/modules/users/SetHostNameJob.cpp" line="38"/>
         <source>Set hostname %1</source>
         <translation>Définir le nom d&apos;hôte %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/SetHostNameJob.cpp" line="44"/>
+        <location filename="../src/modules/users/SetHostNameJob.cpp" line="45"/>
         <source>Set hostname &lt;strong&gt;%1&lt;/strong&gt;.</source>
         <translation>Configurer le nom d&apos;hôte &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/SetHostNameJob.cpp" line="51"/>
+        <location filename="../src/modules/users/SetHostNameJob.cpp" line="52"/>
         <source>Setting hostname %1.</source>
         <translation>Configuration du nom d&apos;hôte %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/SetHostNameJob.cpp" line="61"/>
-        <location filename="../src/modules/users/SetHostNameJob.cpp" line="68"/>
+        <location filename="../src/modules/users/SetHostNameJob.cpp" line="62"/>
+        <location filename="../src/modules/users/SetHostNameJob.cpp" line="69"/>
         <source>Internal Error</source>
         <translation>Erreur interne</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/SetHostNameJob.cpp" line="75"/>
-        <location filename="../src/modules/users/SetHostNameJob.cpp" line="86"/>
+        <location filename="../src/modules/users/SetHostNameJob.cpp" line="76"/>
+        <location filename="../src/modules/users/SetHostNameJob.cpp" line="87"/>
         <source>Cannot write hostname to target system</source>
         <translation>Impossible d&apos;écrire le nom d&apos;hôte sur le système cible.</translation>
     </message>
@@ -2329,6 +2363,15 @@ Sortie
     </message>
 </context>
 <context>
+    <name>SlideCounter</name>
+    <message>
+        <location filename="../src/qml/calamares/slideshow/SlideCounter.qml" line="36"/>
+        <source>%L1 / %L2</source>
+        <extracomment>slide counter, %1 of %2 (numeric)</extracomment>
+        <translation>%L1 / %L2</translation>
+    </message>
+</context>
+<context>
     <name>SummaryPage</name>
     <message>
         <location filename="../src/modules/summary/SummaryPage.cpp" line="49"/>
@@ -2498,7 +2541,7 @@ Sortie
 <context>
     <name>UsersViewStep</name>
     <message>
-        <location filename="../src/modules/users/UsersViewStep.cpp" line="51"/>
+        <location filename="../src/modules/users/UsersViewStep.cpp" line="53"/>
         <source>Users</source>
         <translation>Utilisateurs</translation>
     </message>
@@ -2556,7 +2599,7 @@ Sortie
         <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt; pour %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt; Copyright 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt; Copyright 2017 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt; Merci à : Anke Boersma, Aurélien Gâteau, Kevin Kofler, Lisa Vitolo, Philip Müller, Pier Luigi Fiorini, Rohan Garg et &lt;a href=&quot;https://www.transifex.com/calamares/calamares/&quot;&gt;l&apos;équipe de traducteurs de Calamares&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt; Le développement de &lt;a href=&quot;https://calamares.io/&quot;&gt;Calamares&lt;/a&gt; est sponsorisé par &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - Liberating Software. </translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/WelcomePage.cpp" line="201"/>
+        <location filename="../src/modules/welcome/WelcomePage.cpp" line="290"/>
         <source>%1 support</source>
         <translation>Support de %1</translation>
     </message>
@@ -2564,7 +2607,7 @@ Sortie
 <context>
     <name>WelcomeViewStep</name>
     <message>
-        <location filename="../src/modules/welcome/WelcomeViewStep.cpp" line="51"/>
+        <location filename="../src/modules/welcome/WelcomeViewStep.cpp" line="52"/>
         <source>Welcome</source>
         <translation>Bienvenue</translation>
     </message>

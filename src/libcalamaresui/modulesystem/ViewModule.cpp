@@ -1,7 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2017, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -27,7 +27,8 @@
 #include <QDir>
 #include <QPluginLoader>
 
-namespace Calamares {
+namespace Calamares
+{
 
 
 Module::Type
@@ -52,27 +53,32 @@ ViewModule::loadSelf()
         PluginFactory* pf = qobject_cast< PluginFactory* >( m_loader->instance() );
         if ( !pf )
         {
-            cDebug() << Q_FUNC_INFO << "No factory:" << m_loader->errorString();
+            cWarning() << Q_FUNC_INFO << "No factory:" << m_loader->errorString();
             return;
         }
 
         m_viewStep = pf->create< Calamares::ViewStep >();
         if ( !m_viewStep )
         {
-            cDebug() << Q_FUNC_INFO << "create() failed" << m_loader->errorString();
+            cWarning() << Q_FUNC_INFO << "create() failed" << m_loader->errorString();
             return;
         }
-//        cDebug() << "ViewModule loading self for instance" << instanceKey()
-//                 << "\nViewModule at address" << this
-//                 << "\nCalamares::PluginFactory at address" << pf
-//                 << "\nViewStep at address" << m_viewStep;
+    }
 
+    // TODO: allow internal view steps to be created here; they would
+    //       have to be linked into the main application somehow.
+
+    // If any method created the view step, use it now.
+    if ( m_viewStep )
+    {
         m_viewStep->setModuleInstanceKey( instanceKey() );
         m_viewStep->setConfigurationMap( m_configurationMap );
         ViewManager::instance()->addViewStep( m_viewStep );
         m_loaded = true;
         cDebug() << "ViewModule" << instanceKey() << "loading complete.";
     }
+    else
+        cWarning() << Q_FUNC_INFO << "No view step was created";
 }
 
 

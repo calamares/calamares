@@ -1,6 +1,6 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
- *   Copyright 2017, Adriaan de Groot <groot@kde..org>
+ *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -61,9 +61,9 @@ public slots:
 
 private:
     PlasmaLnfPage* m_widget;
-    QString m_lnfPath;
-    QString m_themeId;
-    QString m_liveUser;
+    QString m_lnfPath;  // Path to the lnf tool
+    QString m_themeId;  // Id of selected theme
+    QString m_liveUser; // Name of the live user (for OEM mode)
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( PlasmaLnfViewStepFactory )

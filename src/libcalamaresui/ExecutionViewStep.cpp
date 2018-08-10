@@ -2,6 +2,7 @@
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2018, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -20,6 +21,7 @@
 #include <ExecutionViewStep.h>
 
 #include "Branding.h"
+#include "Job.h"
 #include "JobQueue.h"
 #include "modulesystem/Module.h"
 #include "modulesystem/ModuleManager.h"
@@ -64,7 +66,7 @@ ExecutionViewStep::ExecutionViewStep( QObject* parent )
     innerLayout->addWidget( m_progressBar );
     innerLayout->addWidget( m_label );
 
-    cDebug() << "QML import paths:" << m_slideShow->engine()->importPathList();
+    cDebug() << "QML import paths:" << Logger::DebugList( m_slideShow->engine()->importPathList() );
 
     connect( JobQueue::instance(), &JobQueue::progress,
              this, &ExecutionViewStep::updateFromJobQueue );
@@ -141,7 +143,15 @@ ExecutionViewStep::onActivate()
         Calamares::Module* module = Calamares::ModuleManager::instance()
                                     ->moduleInstance( instanceKey );
         if ( module )
-            queue->enqueue( module->jobs() );
+        {
+            auto jl = module->jobs();
+            if ( module->isEmergency() )
+            {
+                for( auto& j : jl )
+                    j->setEmergency( true );
+            }
+            queue->enqueue( jl );
+        }
     }
 
     queue->start();

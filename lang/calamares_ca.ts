@@ -9,12 +9,12 @@
     <message>
         <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="79"/>
         <source>This system was started with an &lt;strong&gt;EFI&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from an EFI environment, this installer must deploy a boot loader application, like &lt;strong&gt;GRUB&lt;/strong&gt; or &lt;strong&gt;systemd-boot&lt;/strong&gt; on an &lt;strong&gt;EFI System Partition&lt;/strong&gt;. This is automatic, unless you choose manual partitioning, in which case you must choose it or create it on your own.</source>
-        <translation>Aquest sistema s&apos;ha iniciat amb un entorn d&apos;arrencada &lt;strong&gt;EFI&lt;/strong&gt;. &lt;br&gt;&lt;br&gt; Per configurar una arrencada des d&apos;un entorn EFI, aquest instal·lador ha de desplegar una aplicació de càrrega d&apos;arrencada, com ara el &lt;strong&gt;GRUB&lt;/strong&gt; o el &lt;strong&gt;systemd-boot&lt;/strong&gt; en una &lt;strong&gt;partició EFI del sistema&lt;/strong&gt;. Això és automàtic, llevat que trieu un partiment manual, en què caldrà que ho configureu vosaltres mateixos.</translation>
+        <translation>Aquest sistema s&apos;ha iniciat amb un entorn d&apos;arrencada &lt;strong&gt;EFI&lt;/strong&gt;. &lt;br&gt;&lt;br&gt; Per configurar una arrencada des d&apos;un entorn EFI, aquest instal·lador ha de desplegar l&apos;aplicació d&apos;un gestor d&apos;arrencada, com ara el &lt;strong&gt;GRUB&lt;/strong&gt; o el &lt;strong&gt;systemd-boot&lt;/strong&gt; en una &lt;strong&gt;partició EFI del sistema&lt;/strong&gt;. Això és automàtic, llevat que trieu fer les particions manualment, en què caldrà que ho configureu vosaltres mateixos.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="91"/>
         <source>This system was started with a &lt;strong&gt;BIOS&lt;/strong&gt; boot environment.&lt;br&gt;&lt;br&gt;To configure startup from a BIOS environment, this installer must install a boot loader, like &lt;strong&gt;GRUB&lt;/strong&gt;, either at the beginning of a partition or on the &lt;strong&gt;Master Boot Record&lt;/strong&gt; near the beginning of the partition table (preferred). This is automatic, unless you choose manual partitioning, in which case you must set it up on your own.</source>
-        <translation>Aquest sistema s&apos;ha iniciat amb un entorn d&apos;arrencada &lt;strong&gt;BIOS &lt;/strong&gt;. Per configurar una arrencada des d&apos;un entorn BIOS, aquest instal·lador ha d&apos;instal·lar un carregador d&apos;arrencada, com ara el &lt;strong&gt;GRUB&lt;/strong&gt;, ja sigui al començament d&apos;una partició o al &lt;strong&gt;Registre d&apos;Arrencada Mestre&lt;/strong&gt;, a prop del començament de la taula de particions (millor). Això és automàtic, llevat que trieu un partiment manual, en què caldrà que ho configureu pel vostre compte.</translation>
+        <translation>Aquest sistema s&apos;ha iniciat amb un entorn d&apos;arrencada &lt;strong&gt;BIOS &lt;/strong&gt;.&lt;br&gt;&lt;br&gt;Per configurar una arrencada des d&apos;un entorn BIOS, aquest instal·lador ha d&apos;instal·lar un gestor d&apos;arrencada, com ara el &lt;strong&gt;GRUB&lt;/strong&gt;, ja sigui al començament d&apos;una partició o al &lt;strong&gt;MBR&lt;/strong&gt;, a prop del començament de la taula de particions (millor). Això és automàtic, llevat que trieu fer les particions manualment, en què caldrà que ho configureu pel vostre compte.</translation>
     </message>
 </context>
 <context>
@@ -37,12 +37,20 @@
     <message>
         <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="111"/>
         <source>Do not install a boot loader</source>
-        <translation>No instal·lis cap carregador d&apos;arrencada</translation>
+        <translation>No instal·lis cap gestor d&apos;arrencada</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="125"/>
         <source>%1 (%2)</source>
         <translation>%1 (%2)</translation>
+    </message>
+</context>
+<context>
+    <name>Calamares::BlankViewStep</name>
+    <message>
+        <location filename="../src/libcalamaresui/viewpages/BlankViewStep.cpp" line="69"/>
+        <source>Blank Page</source>
+        <translation>Pàgina en blanc</translation>
     </message>
 </context>
 <context>
@@ -97,7 +105,7 @@
 <context>
     <name>Calamares::ExecutionViewStep</name>
     <message>
-        <location filename="../src/libcalamaresui/ExecutionViewStep.cpp" line="77"/>
+        <location filename="../src/libcalamaresui/ExecutionViewStep.cpp" line="79"/>
         <source>Install</source>
         <translation>Instal·la</translation>
     </message>
@@ -105,7 +113,7 @@
 <context>
     <name>Calamares::JobThread</name>
     <message>
-        <location filename="../src/libcalamares/JobQueue.cpp" line="86"/>
+        <location filename="../src/libcalamares/JobQueue.cpp" line="101"/>
         <source>Done</source>
         <translation>Fet</translation>
     </message>
@@ -113,12 +121,12 @@
 <context>
     <name>Calamares::ProcessJob</name>
     <message>
-        <location filename="../src/libcalamares/ProcessJob.cpp" line="51"/>
+        <location filename="../src/libcalamares/ProcessJob.cpp" line="52"/>
         <source>Run command %1 %2</source>
         <translation>Executa l&apos;ordre %1 %2</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/ProcessJob.cpp" line="60"/>
+        <location filename="../src/libcalamares/ProcessJob.cpp" line="61"/>
         <source>Running command %1 %2</source>
         <translation>Executant l&apos;ordre %1 %2</translation>
     </message>
@@ -126,32 +134,32 @@
 <context>
     <name>Calamares::PythonJob</name>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="265"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="273"/>
         <source>Running %1 operation.</source>
         <translation>Executant l&apos;operació %1.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="280"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="288"/>
         <source>Bad working directory path</source>
-        <translation>Ruta errònia del directori de treball</translation>
+        <translation>Camí incorrecte al directori de treball</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="281"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="289"/>
         <source>Working directory %1 for python job %2 is not readable.</source>
         <translation>El directori de treball %1 per a la tasca python %2 no és llegible.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="291"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="299"/>
         <source>Bad main script file</source>
         <translation>Fitxer erroni d&apos;script principal</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="292"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="300"/>
         <source>Main script file %1 for python job %2 is not readable.</source>
         <translation>El fitxer de script principal %1 per a la tasca de python %2 no és llegible.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/PythonJob.cpp" line="368"/>
+        <location filename="../src/libcalamares/PythonJob.cpp" line="376"/>
         <source>Boost.Python error in job &quot;%1&quot;.</source>
         <translation>Error de Boost.Python a la tasca &quot;%1&quot;.</translation>
     </message>
@@ -159,91 +167,112 @@
 <context>
     <name>Calamares::ViewManager</name>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="73"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="74"/>
         <source>&amp;Back</source>
         <translation>&amp;Enrere</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="74"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="75"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="279"/>
         <source>&amp;Next</source>
         <translation>&amp;Següent</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="75"/>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="279"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="76"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="288"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Cancel·la</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="76"/>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="280"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="77"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="289"/>
         <source>Cancel installation without changing the system.</source>
         <translation>Cancel·leu la instal·lació sense canviar el sistema.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="291"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="179"/>
+        <source>Calamares Initialization Failed</source>
+        <translation>Ha fallat la inicialització de Calamares</translation>
+    </message>
+    <message>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="180"/>
+        <source>%1 can not be installed. Calamares was unable to load all of the configured modules. This is a problem with the way Calamares is being used by the distribution.</source>
+        <translation>No es pot instal·lar %1. Calamares no ha pogut carregar tots els mòduls configurats. Aquest és un problema amb la forma com Calamares és utilitzat per la distribució.</translation>
+    </message>
+    <message>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="185"/>
+        <source>&lt;br/&gt;The following modules could not be loaded:</source>
+        <translation>&lt;br/&gt;No s&apos;han pogut carregar els mòduls següents:</translation>
+    </message>
+    <message>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="277"/>
+        <source>&amp;Install</source>
+        <translation>&amp;Instal·la</translation>
+    </message>
+    <message>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="325"/>
         <source>Cancel installation?</source>
         <translation>Cancel·lar la instal·lació?</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="292"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="326"/>
         <source>Do you really want to cancel the current install process?
 The installer will quit and all changes will be lost.</source>
         <translation>Voleu cancel·lar el procés d&apos;instal·lació actual?
 L&apos;instal·lador es tancarà i tots els canvis es perdran.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="297"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="331"/>
         <source>&amp;Yes</source>
         <translation>&amp;Sí</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="298"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="332"/>
         <source>&amp;No</source>
         <translation>&amp;No</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="162"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="163"/>
         <source>&amp;Close</source>
         <translation>Tan&amp;ca</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="212"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="237"/>
         <source>Continue with setup?</source>
         <translation>Voleu continuar la configuració?</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="213"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="238"/>
         <source>The %1 installer is about to make changes to your disk in order to install %2.&lt;br/&gt;&lt;strong&gt;You will not be able to undo these changes.&lt;/strong&gt;</source>
         <translation>L&apos;instal·lador de %1 està a punt de fer canvis al disc per tal d&apos;instal·lar-hi %2.&lt;br/&gt;&lt;strong&gt;No podreu desfer aquests canvis.&lt;/strong&gt;</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="218"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="243"/>
         <source>&amp;Install now</source>
         <translation>&amp;Instal·la ara</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="219"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="244"/>
         <source>Go &amp;back</source>
         <translation>Vés &amp;enrere</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="248"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="283"/>
         <source>&amp;Done</source>
         <translation>&amp;Fet</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="249"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="284"/>
         <source>The installation is complete. Close the installer.</source>
         <translation>La instal·lació s&apos;ha acabat. Tanqueu l&apos;instal·lador.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="159"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="160"/>
         <source>Error</source>
         <translation>Error</translation>
     </message>
     <message>
-        <location filename="../src/libcalamaresui/ViewManager.cpp" line="160"/>
+        <location filename="../src/libcalamaresui/ViewManager.cpp" line="161"/>
         <source>Installation Failed</source>
         <translation>La instal·lació ha fallat</translation>
     </message>
@@ -327,17 +356,17 @@ L&apos;instal·lador es tancarà i tots els canvis es perdran.</translation>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="235"/>
         <source>&lt;strong&gt;Manual partitioning&lt;/strong&gt;&lt;br/&gt;You can create or resize partitions yourself.</source>
-        <translation>&lt;strong&gt;Partiment manual&lt;/strong&gt;&lt;br/&gt;Podeu crear o redimensionar les particions vosaltres mateixos.</translation>
+        <translation>&lt;strong&gt;Particions manuals&lt;/strong&gt;&lt;br/&gt;Podeu crear o redimensionar les particions vosaltres mateixos.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="998"/>
         <source>Boot loader location:</source>
-        <translation>Ubicació del carregador d&apos;arrencada:</translation>
+        <translation>Ubicació del gestor d&apos;arrencada:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="942"/>
         <source>%1 will be shrunk to %2MB and a new %3MB partition will be created for %4.</source>
-        <translation>%1 s&apos;encongirà a %2MB i es crearà una partició nova de %3MB per a %4.</translation>
+        <translation>%1 s&apos;encongirà a %2 MB i es crearà una partició nova de %3 MB per a %4.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="126"/>
@@ -370,7 +399,7 @@ L&apos;instal·lador es tancarà i tots els canvis es perdran.</translation>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1096"/>
         <source>An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
-        <translation>No s&apos;ha pogut trobar enlloc una partició EFI en aquest sistema. Si us plau, torneu enrere i useu el partiment manual per configurar %1.</translation>
+        <translation>No s&apos;ha pogut trobar enlloc una partició EFI en aquest sistema. Si us plau, torneu enrere i use les particions manuals per configurar %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1105"/>
@@ -430,17 +459,17 @@ L&apos;instal·lador es tancarà i tots els canvis es perdran.</translation>
 <context>
     <name>ClearMountsJob</name>
     <message>
-        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="45"/>
+        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="46"/>
         <source>Clear mounts for partitioning operations on %1</source>
         <translation>Neteja els muntatges per les operacions de partició a %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="53"/>
+        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="54"/>
         <source>Clearing mounts for partitioning operations on %1.</source>
         <translation>Netejant els muntatges per a les operacions del particionament de %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="190"/>
+        <location filename="../src/modules/partition/jobs/ClearMountsJob.cpp" line="191"/>
         <source>Cleared all mounts for %1</source>
         <translation>S&apos;han netejat tots els muntatges de %1</translation>
     </message>
@@ -450,7 +479,7 @@ L&apos;instal·lador es tancarà i tots els canvis es perdran.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="42"/>
         <source>Clear all temporary mounts.</source>
-        <translation>Neteja tots els muntatges temporals</translation>
+        <translation>Neteja tots els muntatges temporals.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ClearTempMountsJob.cpp" line="49"/>
@@ -471,20 +500,26 @@ L&apos;instal·lador es tancarà i tots els canvis es perdran.</translation>
 <context>
     <name>CommandList</name>
     <message>
-        <location filename="../src/libcalamares/utils/CommandList.cpp" line="113"/>
+        <location filename="../src/libcalamares/utils/CommandList.cpp" line="127"/>
+        <location filename="../src/libcalamares/utils/CommandList.cpp" line="138"/>
         <source>Could not run command.</source>
         <translation>No s&apos;ha pogut executar l&apos;ordre.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CommandList.cpp" line="114"/>
-        <source>No rootMountPoint is defined, so command cannot be run in the target environment.</source>
-        <translation>No hi ha punt de muntatge d&apos;arrel definit; per tant, no es pot executar l&apos;ordre a l&apos;entorn de destinació.</translation>
+        <location filename="../src/libcalamares/utils/CommandList.cpp" line="128"/>
+        <source>The command runs in the host environment and needs to know the root path, but no rootMountPoint is defined.</source>
+        <translation>L&apos;odre s&apos;executa a l&apos;entorn de l&apos;amfitrió i necessita saber el camí de l&apos;arrel, però no hi ha definit el punt de muntatge de l&apos;arrel.</translation>
+    </message>
+    <message>
+        <location filename="../src/libcalamares/utils/CommandList.cpp" line="139"/>
+        <source>The command needs to know the user&apos;s name, but no username is defined.</source>
+        <translation>L&apos;ordre necessita saber el nom de l&apos;usuari, però no s&apos;ha definit cap nom d&apos;usuari.</translation>
     </message>
 </context>
 <context>
     <name>ContextualProcessJob</name>
     <message>
-        <location filename="../src/modules/contextualprocess/ContextualProcessJob.cpp" line="75"/>
+        <location filename="../src/modules/contextualprocess/ContextualProcessJob.cpp" line="117"/>
         <source>Contextual Processes Job</source>
         <translation>Tasca de procés contextual</translation>
     </message>
@@ -504,7 +539,7 @@ L&apos;instal·lador es tancarà i tots els canvis es perdran.</translation>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="55"/>
         <source>Partition &amp;Type:</source>
-        <translation>Partició &amp; tipus:</translation>
+        <translation>&amp;Tipus de partició:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="67"/>
@@ -524,12 +559,12 @@ L&apos;instal·lador es tancarà i tots els canvis es perdran.</translation>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="151"/>
         <source>LVM LV name</source>
-        <translation>Nom per a LV LVM</translation>
+        <translation>Nom del volum lògic LVM</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="188"/>
         <source>Flags:</source>
-        <translation>Banderes:</translation>
+        <translation>Indicadors:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.ui" line="161"/>
@@ -542,29 +577,29 @@ L&apos;instal·lador es tancarà i tots els canvis es perdran.</translation>
         <translation>Mi&amp;da:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="68"/>
+        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="72"/>
         <source>En&amp;crypt</source>
         <translation>En&amp;cripta</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="177"/>
+        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="151"/>
         <source>Logical</source>
         <translation>Lògica</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="182"/>
+        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="156"/>
         <source>Primary</source>
         <translation>Primària</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="199"/>
+        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="173"/>
         <source>GPT</source>
         <translation>GPT</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="288"/>
+        <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="262"/>
         <source>Mountpoint already in use. Please select another one.</source>
-        <translation>El punt de muntatge ja s&apos;usa. Si us plau, seleccioneu-ne un altre.</translation>
+        <translation>El punt de muntatge ja està en ús. Si us plau, seleccioneu-ne un altre.</translation>
     </message>
 </context>
 <context>
@@ -572,12 +607,12 @@ L&apos;instal·lador es tancarà i tots els canvis es perdran.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="44"/>
         <source>Create new %2MB partition on %4 (%3) with file system %1.</source>
-        <translation>Crea una partició nova de %2MB a %4 (%3) amb el sistema de fitxers %1.</translation>
+        <translation>Crea una partició nova de %2 MB a %4 (%3) amb el sistema de fitxers %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="55"/>
         <source>Create new &lt;strong&gt;%2MB&lt;/strong&gt; partition on &lt;strong&gt;%4&lt;/strong&gt; (%3) with file system &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation>Crea una partició nova de &lt;strong&gt;%2MB&lt;/strong&gt; a &lt;strong&gt;%4&lt;/strong&gt; (%3) amb el sistema de fitxers &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+        <translation>Crea una partició nova de &lt;strong&gt;%2 MB&lt;/strong&gt; a &lt;strong&gt;%4&lt;/strong&gt; (%3) amb el sistema de fitxers &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionJob.cpp" line="67"/>
@@ -623,12 +658,12 @@ L&apos;instal·lador es tancarà i tots els canvis es perdran.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="45"/>
         <source>Create new %1 partition table on %2.</source>
-        <translation>Crea una taula de particions %1 nova a %2.</translation>
+        <translation>Crea una nova taula de particions %1 a %2.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="52"/>
         <source>Create new &lt;strong&gt;%1&lt;/strong&gt; partition table on &lt;strong&gt;%2&lt;/strong&gt; (%3).</source>
-        <translation>Crea una taula de particions &lt;strong&gt;%1&lt;/strong&gt; nova a &lt;strong&gt;%2&lt;/strong&gt; (%3).</translation>
+        <translation>Crea una nova taula de particions &lt;strong&gt;%1&lt;/strong&gt; a &lt;strong&gt;%2&lt;/strong&gt; (%3).</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreatePartitionTableJob.cpp" line="62"/>
@@ -644,69 +679,39 @@ L&apos;instal·lador es tancarà i tots els canvis es perdran.</translation>
 <context>
     <name>CreateUserJob</name>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="50"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="51"/>
         <source>Create user %1</source>
         <translation>Crea l&apos;usuari %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="57"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="58"/>
         <source>Create user &lt;strong&gt;%1&lt;/strong&gt;.</source>
         <translation>Crea l&apos;usuari &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="64"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="65"/>
         <source>Creating user %1.</source>
         <translation>Creant l&apos;usuari %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="80"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="81"/>
         <source>Sudoers dir is not writable.</source>
         <translation>El directori de sudoers no té permisos d&apos;escriptura.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="84"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="85"/>
         <source>Cannot create sudoers file for writing.</source>
         <translation>No es pot crear el fitxer sudoers a escriure.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="92"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="93"/>
         <source>Cannot chmod sudoers file.</source>
         <translation>No es pot fer chmod al fitxer sudoers.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="98"/>
+        <location filename="../src/modules/users/CreateUserJob.cpp" line="99"/>
         <source>Cannot open groups file for reading.</source>
         <translation>No es pot obrir el fitxer groups per ser llegit.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="159"/>
-        <source>Cannot create user %1.</source>
-        <translation>No es pot crear l&apos;usuari %1.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="161"/>
-        <source>useradd terminated with error code %1.</source>
-        <translation>useradd ha acabat amb el codi d&apos;error %1.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="170"/>
-        <source>Cannot add user %1 to groups: %2.</source>
-        <translation>No es pot afegir l&apos;usuari %1 als grups: %2.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="173"/>
-        <source>usermod terminated with error code %1.</source>
-        <translation>usermod ha acabat amb el codi d&apos;error %1.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="183"/>
-        <source>Cannot set home directory ownership for user %1.</source>
-        <translation>No es pot establir la propietat del directori personal a l&apos;usuari %1.</translation>
-    </message>
-    <message>
-        <location filename="../src/modules/users/CreateUserJob.cpp" line="185"/>
-        <source>chown terminated with error code %1.</source>
-        <translation>chown ha acabat amb el codi d&apos;error %1.</translation>
     </message>
 </context>
 <context>
@@ -724,12 +729,12 @@ L&apos;instal·lador es tancarà i tots els canvis es perdran.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="56"/>
         <source>Deleting partition %1.</source>
-        <translation>Eliminant la partició %1.</translation>
+        <translation>Suprimint la partició %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/DeletePartitionJob.cpp" line="68"/>
         <source>The installer failed to delete partition %1.</source>
-        <translation>L&apos;instal·lador no ha pogut eliminar la partició %1.</translation>
+        <translation>L&apos;instal·lador no ha pogut suprimir la partició %1.</translation>
     </message>
 </context>
 <context>
@@ -788,13 +793,13 @@ L&apos;instal·lador es tancarà i tots els canvis es perdran.</translation>
     <message>
         <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="149"/>
         <source>Failed to open %1</source>
-        <translation>Ha fallat obrir %1</translation>
+        <translation>No s&apos;ha pogut obrir %1</translation>
     </message>
 </context>
 <context>
     <name>DummyCppJob</name>
     <message>
-        <location filename="../src/modules/dummycpp/DummyCppJob.cpp" line="46"/>
+        <location filename="../src/modules/dummycpp/DummyCppJob.cpp" line="47"/>
         <source>Dummy C++ Job</source>
         <translation>Tasca C++ fictícia</translation>
     </message>
@@ -819,7 +824,7 @@ L&apos;instal·lador es tancarà i tots els canvis es perdran.</translation>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="70"/>
         <source>Format</source>
-        <translation>Formatar</translation>
+        <translation>Formata</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="89"/>
@@ -849,12 +854,12 @@ L&apos;instal·lador es tancarà i tots els canvis es perdran.</translation>
     <message>
         <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.ui" line="149"/>
         <source>Flags:</source>
-        <translation>Banderes:</translation>
+        <translation>Indicadors:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.cpp" line="307"/>
+        <location filename="../src/modules/partition/gui/EditExistingPartitionDialog.cpp" line="269"/>
         <source>Mountpoint already in use. Please select another one.</source>
-        <translation>El punt de muntatge ja s&apos;usa. Si us plau, seleccioneu-ne un altre.</translation>
+        <translation>El punt de muntatge ja està en ús. Si us plau, seleccioneu-ne un altre.</translation>
     </message>
 </context>
 <context>
@@ -882,7 +887,7 @@ L&apos;instal·lador es tancarà i tots els canvis es perdran.</translation>
     <message>
         <location filename="../src/modules/partition/gui/EncryptWidget.cpp" line="151"/>
         <source>Please enter the same passphrase in both boxes.</source>
-        <translation>Si us plau, escriviu la mateixa constrasenya a les dues caselles.</translation>
+        <translation>Si us plau, introduïu la mateixa contrasenya a les dues caselles.</translation>
     </message>
 </context>
 <context>
@@ -915,7 +920,7 @@ L&apos;instal·lador es tancarà i tots els canvis es perdran.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="176"/>
         <source>Install boot loader on &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation>Instal·la el carregador d&apos;arrencada a &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+        <translation>Instal·la el gestor d&apos;arrencada a &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FillGlobalStorageJob.cpp" line="186"/>
@@ -933,7 +938,7 @@ L&apos;instal·lador es tancarà i tots els canvis es perdran.</translation>
     <message>
         <location filename="../src/modules/finished/FinishedPage.ui" line="95"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When this box is checked, your system will restart immediately when you click on &lt;span style=&quot; font-style:italic;&quot;&gt;Done&lt;/span&gt; or close the installer.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Quan aquesta casella està marcada, el sistema es reiniciarà immediatament quan cliqueu a &lt;span style=&quot; font-style:italic;&quot;&gt;Fet&lt;/span&gt; o tanqueu l&apos;instal·lador.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Quan aquesta casella està marcada, el sistema es reiniciarà immediatament quan feu clic a &lt;span style=&quot; font-style:italic;&quot;&gt;Fet&lt;/span&gt; o tanqueu l&apos;instal·lador.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedPage.ui" line="98"/>
@@ -941,12 +946,12 @@ L&apos;instal·lador es tancarà i tots els canvis es perdran.</translation>
         <translation>&amp;Reinicia ara</translation>
     </message>
     <message>
-        <location filename="../src/modules/finished/FinishedPage.cpp" line="52"/>
+        <location filename="../src/modules/finished/FinishedPage.cpp" line="51"/>
         <source>&lt;h1&gt;All done.&lt;/h1&gt;&lt;br/&gt;%1 has been installed on your computer.&lt;br/&gt;You may now restart into your new system, or continue using the %2 Live environment.</source>
-        <translation>&lt;h1&gt;Tot fet.&lt;/h1&gt;&lt;br/&gt;%1 s&apos;ha instal·lat al vostre ordinador.&lt;br/&gt;Ara podeu reiniciar-lo per tal d&apos;accedir al sistema operatiu nou o bé continuar utilitzant l&apos;entorn Live de %2.</translation>
+        <translation>&lt;h1&gt;Tot fet.&lt;/h1&gt;&lt;br/&gt;%1 s&apos;ha instal·lat a l&apos;ordinador.&lt;br/&gt;Ara podeu reiniciar-lo per tal d&apos;accedir al sistema operatiu nou o bé continuar utilitzant l&apos;entorn autònom de %2.</translation>
     </message>
     <message>
-        <location filename="../src/modules/finished/FinishedPage.cpp" line="110"/>
+        <location filename="../src/modules/finished/FinishedPage.cpp" line="109"/>
         <source>&lt;h1&gt;Installation Failed&lt;/h1&gt;&lt;br/&gt;%1 has not been installed on your computer.&lt;br/&gt;The error message was: %2.</source>
         <translation>&lt;h1&gt;La instal·lació ha fallat&lt;/h1&gt;&lt;br/&gt;No s&apos;ha instal·lat %1 a l&apos;ordinador.&lt;br/&gt;El missatge d&apos;error ha estat el següent: %2.</translation>
     </message>
@@ -979,12 +984,12 @@ L&apos;instal·lador es tancarà i tots els canvis es perdran.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="52"/>
         <source>Format &lt;strong&gt;%3MB&lt;/strong&gt; partition &lt;strong&gt;%1&lt;/strong&gt; with file system &lt;strong&gt;%2&lt;/strong&gt;.</source>
-        <translation>Formata la partició de &lt;strong&gt;%3MB&lt;/strong&gt; &lt;strong&gt;%1&lt;/strong&gt; amb el sistema de fitxers &lt;strong&gt;%2&lt;/strong&gt;.</translation>
+        <translation>Formata la partició de &lt;strong&gt;%3 MB&lt;/strong&gt; &lt;strong&gt;%1&lt;/strong&gt; amb el sistema de fitxers &lt;strong&gt;%2&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="63"/>
         <source>Formatting partition %1 with file system %2.</source>
-        <translation>Formatant la partició %1 amb el sistema d&apos;arxius %2.</translation>
+        <translation>Formatant la partició %1 amb el sistema de fitxers %2.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="77"/>
@@ -1021,12 +1026,12 @@ L&apos;instal·lador es tancarà i tots els canvis es perdran.</translation>
 <context>
     <name>KeyboardPage</name>
     <message>
-        <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="220"/>
+        <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="219"/>
         <source>Set keyboard model to %1.&lt;br/&gt;</source>
         <translation>Assigna el model del teclat a %1.&lt;br/&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="222"/>
+        <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="221"/>
         <source>Set keyboard layout to %1/%2.</source>
         <translation>Assigna la distribució del teclat a %1/%2.</translation>
     </message>
@@ -1070,64 +1075,64 @@ L&apos;instal·lador es tancarà i tots els canvis es perdran.</translation>
         <translation>Formulari</translation>
     </message>
     <message>
-        <location filename="../src/modules/license/LicensePage.cpp" line="88"/>
+        <location filename="../src/modules/license/LicensePage.cpp" line="89"/>
         <source>I accept the terms and conditions above.</source>
         <translation>Accepto els termes i les condicions anteriors.</translation>
     </message>
     <message>
-        <location filename="../src/modules/license/LicensePage.cpp" line="115"/>
+        <location filename="../src/modules/license/LicensePage.cpp" line="116"/>
         <source>&lt;h1&gt;License Agreement&lt;/h1&gt;This setup procedure will install proprietary software that is subject to licensing terms.</source>
         <translation>&lt;h1&gt;Acord de llicència&lt;/h1&gt; Aquest procediment de configuració instal·larà programari de propietat subjecte a termes de llicència.</translation>
     </message>
     <message>
-        <location filename="../src/modules/license/LicensePage.cpp" line="118"/>
+        <location filename="../src/modules/license/LicensePage.cpp" line="119"/>
         <source>Please review the End User License Agreements (EULAs) above.&lt;br/&gt;If you do not agree with the terms, the setup procedure cannot continue.</source>
         <translation>Si us plau, reviseu l&apos;acord de llicència End User License Agreements (EULAs) anterior.&lt;br/&gt;Si no esteu d&apos;acord en els termes, el procediment de configuració no pot continuar.</translation>
     </message>
     <message>
-        <location filename="../src/modules/license/LicensePage.cpp" line="124"/>
+        <location filename="../src/modules/license/LicensePage.cpp" line="125"/>
         <source>&lt;h1&gt;License Agreement&lt;/h1&gt;This setup procedure can install proprietary software that is subject to licensing terms in order to provide additional features and enhance the user experience.</source>
         <translation>&lt;h1&gt;Acord de llicència&lt;/h1&gt; Aquest procediment de configuració instal·larà programari de propietat subjecte a termes de llicència per tal de proporcionar característiques addicionals i millorar l&apos;experiència de l&apos;usuari.</translation>
     </message>
     <message>
-        <location filename="../src/modules/license/LicensePage.cpp" line="129"/>
+        <location filename="../src/modules/license/LicensePage.cpp" line="130"/>
         <source>Please review the End User License Agreements (EULAs) above.&lt;br/&gt;If you do not agree with the terms, proprietary software will not be installed, and open source alternatives will be used instead.</source>
         <translation>Si us plau, reviseu l&apos;acord de llicència End User License Agreements (EULAs) anterior.&lt;br/&gt;Si no esteu d&apos;acord en els termes, no s&apos;instal·larà el programari de propietat i es faran servir les alternatives de codi lliure.</translation>
     </message>
     <message>
-        <location filename="../src/modules/license/LicensePage.cpp" line="159"/>
+        <location filename="../src/modules/license/LicensePage.cpp" line="160"/>
         <source>&lt;strong&gt;%1 driver&lt;/strong&gt;&lt;br/&gt;by %2</source>
         <extracomment>%1 is an untranslatable product name, example: Creative Audigy driver</extracomment>
         <translation>&lt;strong&gt;%1 controlador&lt;/strong&gt;&lt;br/&gt;de %2</translation>
     </message>
     <message>
-        <location filename="../src/modules/license/LicensePage.cpp" line="166"/>
+        <location filename="../src/modules/license/LicensePage.cpp" line="167"/>
         <source>&lt;strong&gt;%1 graphics driver&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;by %2&lt;/font&gt;</source>
         <extracomment>%1 is usually a vendor name, example: Nvidia graphics driver</extracomment>
         <translation>&lt;strong&gt;%1 controlador gràfic&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;de %2&lt;/font&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/license/LicensePage.cpp" line="172"/>
+        <location filename="../src/modules/license/LicensePage.cpp" line="173"/>
         <source>&lt;strong&gt;%1 browser plugin&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;by %2&lt;/font&gt;</source>
         <translation>&lt;strong&gt;%1 connector del navegador&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;de %2&lt;/font&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/license/LicensePage.cpp" line="178"/>
+        <location filename="../src/modules/license/LicensePage.cpp" line="179"/>
         <source>&lt;strong&gt;%1 codec&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;by %2&lt;/font&gt;</source>
         <translation>&lt;strong&gt;%1 còdec&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;de %2&lt;/font&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/license/LicensePage.cpp" line="184"/>
+        <location filename="../src/modules/license/LicensePage.cpp" line="185"/>
         <source>&lt;strong&gt;%1 package&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;by %2&lt;/font&gt;</source>
         <translation>&lt;strong&gt;%1 paquet&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;de %2&lt;/font&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/license/LicensePage.cpp" line="190"/>
+        <location filename="../src/modules/license/LicensePage.cpp" line="191"/>
         <source>&lt;strong&gt;%1&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;by %2&lt;/font&gt;</source>
         <translation>&lt;strong&gt;%1&lt;/strong&gt;&lt;br/&gt;&lt;font color=&quot;Grey&quot;&gt;de %2&lt;/font&gt;</translation>
     </message>
     <message>
-        <location filename="../src/modules/license/LicensePage.cpp" line="202"/>
+        <location filename="../src/modules/license/LicensePage.cpp" line="203"/>
         <source>&lt;a href=&quot;%1&quot;&gt;view license agreement&lt;/a&gt;</source>
         <translation>&lt;a href=&quot;%1&quot;&gt;mostra l&apos;acord de llicència&lt;/a&gt;</translation>
     </message>
@@ -1166,7 +1171,7 @@ L&apos;instal·lador es tancarà i tots els canvis es perdran.</translation>
         <location filename="../src/modules/locale/LocalePage.cpp" line="220"/>
         <location filename="../src/modules/locale/LocalePage.cpp" line="221"/>
         <source>&amp;Change...</source>
-        <translation>&amp;Canvi...</translation>
+        <translation>&amp;Canvia...</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/LocalePage.cpp" line="398"/>
@@ -1183,12 +1188,12 @@ L&apos;instal·lador es tancarà i tots els canvis es perdran.</translation>
 <context>
     <name>LocaleViewStep</name>
     <message>
-        <location filename="../src/modules/locale/LocaleViewStep.cpp" line="52"/>
+        <location filename="../src/modules/locale/LocaleViewStep.cpp" line="60"/>
         <source>Loading location data...</source>
         <translation>Carregant les dades de la ubicació...</translation>
     </message>
     <message>
-        <location filename="../src/modules/locale/LocaleViewStep.cpp" line="169"/>
+        <location filename="../src/modules/locale/LocaleViewStep.cpp" line="175"/>
         <source>Location</source>
         <translation>Ubicació</translation>
     </message>
@@ -1196,22 +1201,22 @@ L&apos;instal·lador es tancarà i tots els canvis es perdran.</translation>
 <context>
     <name>NetInstallPage</name>
     <message>
-        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="72"/>
+        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="64"/>
         <source>Name</source>
         <translation>Nom</translation>
     </message>
     <message>
-        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="73"/>
+        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="65"/>
         <source>Description</source>
         <translation>Descripció</translation>
     </message>
     <message>
-        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="94"/>
+        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="86"/>
         <source>Network Installation. (Disabled: Unable to fetch package lists, check your network connection)</source>
         <translation>Instal·lació per xarxa. (Inhabilitada: no es poden obtenir les llistes de paquets, comproveu la connexió.)</translation>
     </message>
     <message>
-        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="104"/>
+        <location filename="../src/modules/netinstall/NetInstallPage.cpp" line="96"/>
         <source>Network Installation. (Disabled: Received invalid groups data)</source>
         <translation>Instal·lació per xarxa. (Inhabilitat: dades de grups rebudes no vàlides)</translation>
     </message>
@@ -1219,7 +1224,7 @@ L&apos;instal·lador es tancarà i tots els canvis es perdran.</translation>
 <context>
     <name>NetInstallViewStep</name>
     <message>
-        <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="52"/>
+        <location filename="../src/modules/netinstall/NetInstallViewStep.cpp" line="54"/>
         <source>Package selection</source>
         <translation>Selecció de paquets</translation>
     </message>
@@ -1227,242 +1232,242 @@ L&apos;instal·lador es tancarà i tots els canvis es perdran.</translation>
 <context>
     <name>PWQ</name>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="67"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="63"/>
         <source>Password is too short</source>
         <translation>La contrasenya és massa curta.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="89"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="85"/>
         <source>Password is too long</source>
         <translation>La contrasenya és massa llarga.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="155"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="151"/>
         <source>Password is too weak</source>
         <translation>La contrasenya és massa dèbil.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="162"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="158"/>
         <source>Memory allocation error when setting &apos;%1&apos;</source>
         <translation>Error d&apos;assignació de memòria en establir &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="166"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="162"/>
         <source>Memory allocation error</source>
         <translation>Error d&apos;assignació de memòria</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="168"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="164"/>
         <source>The password is the same as the old one</source>
         <translation>La contrasenya és la mateixa que l&apos;anterior.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="170"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="166"/>
         <source>The password is a palindrome</source>
         <translation>La contrasenya és un palíndrom.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="172"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="168"/>
         <source>The password differs with case changes only</source>
         <translation>La contrasenya només és diferent per les majúscules o minúscules.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="174"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="170"/>
         <source>The password is too similar to the old one</source>
         <translation>La contrasenya és massa semblant a l&apos;anterior.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="176"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="172"/>
         <source>The password contains the user name in some form</source>
         <translation>La contrasenya conté el nom d&apos;usuari d&apos;alguna manera.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="178"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="174"/>
         <source>The password contains words from the real name of the user in some form</source>
         <translation>La contrasenya conté paraules del nom real de l&apos;usuari d&apos;alguna manera.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="180"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="176"/>
         <source>The password contains forbidden words in some form</source>
         <translation>La contrasenya conté paraules prohibides d&apos;alguna manera.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="183"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="179"/>
         <source>The password contains less than %1 digits</source>
         <translation>La contrasenya és inferior a %1 dígits.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="184"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="180"/>
         <source>The password contains too few digits</source>
         <translation>La contrasenya conté massa pocs dígits.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="187"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="183"/>
         <source>The password contains less than %1 uppercase letters</source>
         <translation>La contrasenya conté menys de %1 lletres majúscules.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="188"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="184"/>
         <source>The password contains too few uppercase letters</source>
         <translation>La contrasenya conté massa poques lletres majúscules.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="191"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="187"/>
         <source>The password contains less than %1 lowercase letters</source>
         <translation>La contrasenya conté menys de %1 lletres minúscules.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="192"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="188"/>
         <source>The password contains too few lowercase letters</source>
         <translation>La contrasenya conté massa poques lletres minúscules.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="195"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="191"/>
         <source>The password contains less than %1 non-alphanumeric characters</source>
         <translation>La contrasenya conté menys de %1 caràcters no alfanumèrics.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="196"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="192"/>
         <source>The password contains too few non-alphanumeric characters</source>
         <translation>La contrasenya conté massa pocs caràcters no alfanumèrics.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="199"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="195"/>
         <source>The password is shorter than %1 characters</source>
         <translation>La contrasenya és més curta de %1 caràcters.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="200"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="196"/>
         <source>The password is too short</source>
         <translation>La contrasenya és massa curta.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="202"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="198"/>
         <source>The password is just rotated old one</source>
         <translation>La contrasenya és només l&apos;anterior capgirada.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="205"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="201"/>
         <source>The password contains less than %1 character classes</source>
         <translation>La contrasenya conté menys de %1 classes de caràcters.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="206"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="202"/>
         <source>The password does not contain enough character classes</source>
         <translation>La contrasenya no conté prou classes de caràcters.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="209"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="205"/>
         <source>The password contains more than %1 same characters consecutively</source>
         <translation>La contrasenya conté més de %1 caràcters iguals consecutius.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="210"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="206"/>
         <source>The password contains too many same characters consecutively</source>
         <translation>La contrasenya conté massa caràcters iguals consecutius.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="213"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="209"/>
         <source>The password contains more than %1 characters of the same class consecutively</source>
         <translation>La contrasenya conté més de %1 caràcters consecutius de la mateixa classe.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="214"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="210"/>
         <source>The password contains too many characters of the same class consecutively</source>
         <translation>La contrasenya conté massa caràcters consecutius de la mateixa classe.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="217"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="213"/>
         <source>The password contains monotonic sequence longer than %1 characters</source>
         <translation>La contrasenya conté una seqüència monòtona més llarga de %1 caràcters.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="218"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="214"/>
         <source>The password contains too long of a monotonic character sequence</source>
         <translation>La contrasenya conté una seqüència monòtona de caràcters massa llarga.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="220"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="216"/>
         <source>No password supplied</source>
         <translation>No s&apos;ha proporcionat cap contrasenya.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="222"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="218"/>
         <source>Cannot obtain random numbers from the RNG device</source>
-        <translation>No es poden obtenir números aleatoris del dispositiu RNG.</translation>
+        <translation>No es poden obtenir nombres aleatoris del dispositiu RNG.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="224"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="220"/>
         <source>Password generation failed - required entropy too low for settings</source>
         <translation>Ha fallat la generació de la contrasenya. Entropia necessària massa baixa per als paràmetres.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="229"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="225"/>
         <source>The password fails the dictionary check - %1</source>
         <translation>La contrasenya no aprova la comprovació del diccionari: %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="231"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="227"/>
         <source>The password fails the dictionary check</source>
         <translation>La contrasenya no aprova la comprovació del diccionari.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="235"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="231"/>
         <source>Unknown setting - %1</source>
         <translation>Paràmetre desconegut: %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="239"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="235"/>
         <source>Unknown setting</source>
         <translation>Paràmetre desconegut</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="243"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="239"/>
         <source>Bad integer value of setting - %1</source>
         <translation>Valor enter del paràmetre incorrecte: %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="247"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="243"/>
         <source>Bad integer value</source>
         <translation>Valor enter incorrecte</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="251"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="247"/>
         <source>Setting %1 is not of integer type</source>
         <translation>El paràmetre %1 no és del tipus enter.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="255"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="251"/>
         <source>Setting is not of integer type</source>
         <translation>El paràmetre no és del tipus enter.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="259"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="255"/>
         <source>Setting %1 is not of string type</source>
         <translation>El paràmetre %1 no és del tipus cadena.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="263"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="259"/>
         <source>Setting is not of string type</source>
         <translation>El paràmetre no és del tipus cadena.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="265"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="261"/>
         <source>Opening the configuration file failed</source>
         <translation>Ha fallat obrir el fitxer de configuració.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="267"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="263"/>
         <source>The configuration file is malformed</source>
         <translation>El fitxer de configuració té una forma incorrecta.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="269"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="265"/>
         <source>Fatal failure</source>
         <translation>Fallada fatal</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/CheckPWQuality.cpp" line="271"/>
+        <location filename="../src/modules/users/CheckPWQuality.cpp" line="267"/>
         <source>Unknown error</source>
         <translation>Error desconegut</translation>
     </message>
@@ -1601,34 +1606,34 @@ L&apos;instal·lador es tancarà i tots els canvis es perdran.</translation>
 <context>
     <name>PartitionModel</name>
     <message>
-        <location filename="../src/modules/partition/core/PartitionModel.cpp" line="137"/>
-        <location filename="../src/modules/partition/core/PartitionModel.cpp" line="169"/>
+        <location filename="../src/modules/partition/core/PartitionModel.cpp" line="138"/>
+        <location filename="../src/modules/partition/core/PartitionModel.cpp" line="170"/>
         <source>Free Space</source>
         <translation>Espai lliure</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/PartitionModel.cpp" line="141"/>
-        <location filename="../src/modules/partition/core/PartitionModel.cpp" line="173"/>
+        <location filename="../src/modules/partition/core/PartitionModel.cpp" line="142"/>
+        <location filename="../src/modules/partition/core/PartitionModel.cpp" line="174"/>
         <source>New partition</source>
         <translation>Partició nova</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/PartitionModel.cpp" line="257"/>
+        <location filename="../src/modules/partition/core/PartitionModel.cpp" line="258"/>
         <source>Name</source>
         <translation>Nom</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/PartitionModel.cpp" line="259"/>
+        <location filename="../src/modules/partition/core/PartitionModel.cpp" line="260"/>
         <source>File System</source>
         <translation>Sistema de fitxers</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/PartitionModel.cpp" line="261"/>
+        <location filename="../src/modules/partition/core/PartitionModel.cpp" line="262"/>
         <source>Mount Point</source>
         <translation>Punt de muntatge</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/PartitionModel.cpp" line="263"/>
+        <location filename="../src/modules/partition/core/PartitionModel.cpp" line="264"/>
         <source>Size</source>
         <translation>Mida</translation>
     </message>
@@ -1657,8 +1662,8 @@ L&apos;instal·lador es tancarà i tots els canvis es perdran.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="107"/>
-        <source>&amp;Create</source>
-        <translation>&amp;Crea</translation>
+        <source>Cre&amp;ate</source>
+        <translation>Cre&amp;a</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="114"/>
@@ -1668,113 +1673,123 @@ L&apos;instal·lador es tancarà i tots els canvis es perdran.</translation>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="121"/>
         <source>&amp;Delete</source>
-        <translation>&amp;Suprimeix</translation>
+        <translation>E&amp;limina</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="148"/>
         <source>Install boot &amp;loader on:</source>
-        <translation>&amp;Instal·la el carregador d&apos;arrencada a:</translation>
+        <translation>&amp;Instal·la el gestor d&apos;arrencada a:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="168"/>
+        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="171"/>
         <source>Are you sure you want to create a new partition table on %1?</source>
         <translation>Esteu segurs que voleu crear una nova taula de particions a %1?</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="195"/>
+        <source>Can not create new partition</source>
+        <translation>No es pot crear la partició nova</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="196"/>
+        <source>The partition table on %1 already has %2 primary partitions, and no more can be added. Please remove one primary partition and add an extended partition, instead.</source>
+        <translation>La taula de particions de %1 ja té %2 particions primàries i no se n&apos;hi poden afegir més. Si us plau, suprimiu una partició primària i afegiu-hi una partició ampliada.</translation>
     </message>
 </context>
 <context>
     <name>PartitionViewStep</name>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="70"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="71"/>
         <source>Gathering system information...</source>
         <translation>Recopilant informació del sistema...</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="121"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="122"/>
         <source>Partitions</source>
         <translation>Particions</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="158"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="159"/>
         <source>Install %1 &lt;strong&gt;alongside&lt;/strong&gt; another operating system.</source>
         <translation>Instal·la %1 &lt;strong&gt;al costat&lt;/strong&gt; d&apos;un altre sistema operatiu.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="162"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="163"/>
         <source>&lt;strong&gt;Erase&lt;/strong&gt; disk and install %1.</source>
         <translation>&lt;strong&gt;Esborra&lt;/strong&gt; el disc i instal·la-hi %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="166"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="167"/>
         <source>&lt;strong&gt;Replace&lt;/strong&gt; a partition with %1.</source>
         <translation>&lt;strong&gt;Reemplaça&lt;/strong&gt; una partició amb %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="171"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="172"/>
         <source>&lt;strong&gt;Manual&lt;/strong&gt; partitioning.</source>
-        <translation>Partiment &lt;strong&gt;manual&lt;/strong&gt;.</translation>
+        <translation>Particions &lt;strong&gt;manuals&lt;/strong&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="184"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="185"/>
         <source>Install %1 &lt;strong&gt;alongside&lt;/strong&gt; another operating system on disk &lt;strong&gt;%2&lt;/strong&gt; (%3).</source>
         <translation>Instal·la %1 &lt;strong&gt;al costat&lt;/strong&gt; d&apos;un altre sistema operatiu al disc &lt;strong&gt;%2&lt;/strong&gt; (%3).</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="190"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="191"/>
         <source>&lt;strong&gt;Erase&lt;/strong&gt; disk &lt;strong&gt;%2&lt;/strong&gt; (%3) and install %1.</source>
         <translation>&lt;strong&gt;Esborra&lt;/strong&gt; el disc &lt;strong&gt;%2&lt;/strong&gt; (%3) i instal·la-hi %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="196"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="197"/>
         <source>&lt;strong&gt;Replace&lt;/strong&gt; a partition on disk &lt;strong&gt;%2&lt;/strong&gt; (%3) with %1.</source>
         <translation>&lt;strong&gt;Reemplaça&lt;/strong&gt; una partició del disc &lt;strong&gt;%2&lt;/strong&gt; (%3) amb %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="203"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="204"/>
         <source>&lt;strong&gt;Manual&lt;/strong&gt; partitioning on disk &lt;strong&gt;%1&lt;/strong&gt; (%2).</source>
-        <translation>Partiment &lt;strong&gt;manual&lt;/strong&gt; del disc &lt;strong&gt;%1&lt;/strong&gt; (%2).</translation>
+        <translation>Particions &lt;strong&gt;manuals&lt;/strong&gt; del disc &lt;strong&gt;%1&lt;/strong&gt; (%2).</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="211"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="212"/>
         <source>Disk &lt;strong&gt;%1&lt;/strong&gt; (%2)</source>
         <translation>Disc &lt;strong&gt;%1&lt;/strong&gt; (%2)</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="239"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="240"/>
         <source>Current:</source>
         <translation>Actual:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="256"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="257"/>
         <source>After:</source>
         <translation>Després:</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="399"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="400"/>
         <source>No EFI system partition configured</source>
         <translation>No hi ha cap partició EFI de sistema configurada</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="400"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="401"/>
         <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;To configure an EFI system partition, go back and select or create a FAT32 filesystem with the &lt;strong&gt;esp&lt;/strong&gt; flag enabled and mount point &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;&lt;br/&gt;You can continue without setting up an EFI system partition but your system may fail to start.</source>
         <translation>Cal una partició EFI de sistema per iniciar %1. &lt;br/&gt;&lt;br/&gt;Per configurar una partició EFI de sistema, torneu enrere i seleccioneu o creeu un sistema de fitxers FAT32 amb la bandera &lt;strong&gt;esp&lt;/strong&gt; habilitada i el punt de muntatge &lt;strong&gt;%2&lt;/strong&gt;. &lt;br/&gt;&lt;br/&gt;Podeu continuar sense la creació d&apos;una partició EFI de sistema, però el sistema podria no iniciar-se.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="413"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="414"/>
         <source>EFI system partition flag not set</source>
         <translation>No s&apos;ha establert la bandera de la partició EFI del sistema</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="414"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="415"/>
         <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;A partition was configured with mount point &lt;strong&gt;%2&lt;/strong&gt; but its &lt;strong&gt;esp&lt;/strong&gt; flag is not set.&lt;br/&gt;To set the flag, go back and edit the partition.&lt;br/&gt;&lt;br/&gt;You can continue without setting the flag but your system may fail to start.</source>
         <translation>Cal una partició EFI de sistema per iniciar %1. &lt;br/&gt;&lt;br/&gt; Ja s&apos;ha configurat una partició amb el punt de muntatge &lt;strong&gt;%2&lt;/strong&gt; però no se n&apos;ha establert la bandera &lt;strong&gt;esp&lt;/strong&gt;. Per establir-la-hi, torneu enrere i editeu la partició. &lt;br/&gt;&lt;br/&gt;Podeu continuar sense establir la bandera, però el sistema podria no iniciar-se.</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="448"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="450"/>
         <source>Boot partition not encrypted</source>
-        <translation>Partició d&apos;arrel no encriptada</translation>
+        <translation>Partició d&apos;arrencada sense encriptar</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="449"/>
+        <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="451"/>
         <source>A separate boot partition was set up together with an encrypted root partition, but the boot partition is not encrypted.&lt;br/&gt;&lt;br/&gt;There are security concerns with this kind of setup, because important system files are kept on an unencrypted partition.&lt;br/&gt;You may continue if you wish, but filesystem unlocking will happen later during system startup.&lt;br/&gt;To encrypt the boot partition, go back and recreate it, selecting &lt;strong&gt;Encrypt&lt;/strong&gt; in the partition creation window.</source>
         <translation>S&apos;ha establert una partició d&apos;arrencada separada conjuntament amb una partició d&apos;arrel encriptada, però la partició d&apos;arrencada no està encriptada.&lt;br/&gt;&lt;br/&gt;Hi ha aspectes de seguretat amb aquest tipus de configuració, perquè hi ha fitxers del sistema importants en una partició no encriptada.&lt;br/&gt;Podeu continuar, si així ho desitgeu, però el desbloqueig del sistema de fitxers succeirà després, durant l&apos;inici del sistema.&lt;br/&gt;Per encriptar la partició d&apos;arrencada, torneu enrere i torneu-la a crear seleccionant &lt;strong&gt;Encripta&lt;/strong&gt; a la finestra de creació de la partició.</translation>
     </message>
@@ -1806,30 +1821,48 @@ L&apos;instal·lador es tancarà i tots els canvis es perdran.</translation>
         <translation>Marcador de posició</translation>
     </message>
     <message>
-        <location filename="../src/modules/plasmalnf/PlasmaLnfPage.cpp" line="64"/>
-        <source>Please choose a look-and-feel for the KDE Plasma Desktop. You can also skip this step and configure the look-and-feel once the system is installed.</source>
-        <translation>Si us plau, trieu un aspecte i comportament per a l&apos;escriptori Plasma de KDE. També podeu saltar aquest pas i configurar-ho un cop instal·lat el sistema.</translation>
+        <location filename="../src/modules/plasmalnf/PlasmaLnfPage.cpp" line="67"/>
+        <source>Please choose a look-and-feel for the KDE Plasma Desktop. You can also skip this step and configure the look-and-feel once the system is installed. Clicking on a look-and-feel selection will give you a live preview of that look-and-feel.</source>
+        <translation>Si us plau, trieu un aspecte i comportament per a l&apos;escriptori Plasma de KDE. També podeu saltar aquest pas i configurar-ho un cop instal·lat el sistema. Quan cliqueu en una selecció d&apos;aspecte i comportament podreu veure&apos;n una previsualització.</translation>
     </message>
 </context>
 <context>
     <name>PlasmaLnfViewStep</name>
     <message>
-        <location filename="../src/modules/plasmalnf/PlasmaLnfViewStep.cpp" line="51"/>
+        <location filename="../src/modules/plasmalnf/PlasmaLnfViewStep.cpp" line="68"/>
         <source>Look-and-Feel</source>
         <translation>Aspecte i comportament</translation>
     </message>
 </context>
 <context>
+    <name>PreserveFiles</name>
+    <message>
+        <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="83"/>
+        <source>Saving files for later ...</source>
+        <translation>Desament de fitxers per a més tard...</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="89"/>
+        <source>No files configured to save for later.</source>
+        <translation>No s&apos;ha configurat cap fitxer per desar per a més tard.</translation>
+    </message>
+    <message>
+        <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="145"/>
+        <source>Not all of the configured files could be preserved.</source>
+        <translation>No es poden conservar tots els fitxers configurats.</translation>
+    </message>
+</context>
+<context>
     <name>ProcessResult</name>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="263"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="271"/>
         <source>
 There was no output from the command.</source>
         <translation>
 No hi ha hagut sortida de l&apos;ordre.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="264"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="272"/>
         <source>
 Output:
 </source>
@@ -1838,52 +1871,52 @@ Sortida:
 </translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="267"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="275"/>
         <source>External command crashed.</source>
         <translation>L&apos;ordre externa ha fallat.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="268"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="276"/>
         <source>Command &lt;i&gt;%1&lt;/i&gt; crashed.</source>
         <translation>L&apos;ordre &lt;i&gt;%1&lt;/i&gt; ha fallat.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="273"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="281"/>
         <source>External command failed to start.</source>
         <translation>L&apos;ordre externa no s&apos;ha pogut iniciar.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="274"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="282"/>
         <source>Command &lt;i&gt;%1&lt;/i&gt; failed to start.</source>
         <translation>L&apos;ordre &lt;i&gt;%1&lt;/i&gt; no s&apos;ha pogut iniciar.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="278"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="286"/>
         <source>Internal error when starting command.</source>
         <translation>Error intern en iniciar l&apos;ordre.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="279"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="287"/>
         <source>Bad parameters for process job call.</source>
         <translation>Paràmetres incorrectes per a la crida de la tasca del procés.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="282"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="290"/>
         <source>External command failed to finish.</source>
         <translation>L&apos;ordre externa no ha acabat correctament.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="283"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="291"/>
         <source>Command &lt;i&gt;%1&lt;/i&gt; failed to finish in %2 seconds.</source>
         <translation>L&apos;ordre &lt;i&gt;%1&lt;/i&gt; no ha pogut acabar en %2 segons.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="289"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="297"/>
         <source>External command finished with errors.</source>
         <translation>L&apos;ordre externa ha acabat amb errors.</translation>
     </message>
     <message>
-        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="290"/>
+        <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="298"/>
         <source>Command &lt;i&gt;%1&lt;/i&gt; finished with exit code %2.</source>
         <translation>L&apos;ordre &lt;i&gt;%1&lt;/i&gt; ha acabat amb el codi de sortida %2.</translation>
     </message>
@@ -1902,22 +1935,22 @@ Sortida:
         <translation>Per defecte</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="204"/>
+        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="207"/>
         <source>unknown</source>
         <translation>desconeguda</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="206"/>
+        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="209"/>
         <source>extended</source>
         <translation>ampliada</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="208"/>
+        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="211"/>
         <source>unformatted</source>
         <translation>sense format</translation>
     </message>
     <message>
-        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="210"/>
+        <location filename="../src/modules/partition/core/KPMHelpers.cpp" line="213"/>
         <source>swap</source>
         <translation>Intercanvi</translation>
     </message>
@@ -1982,7 +2015,7 @@ Sortida:
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="250"/>
         <source>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;An EFI system partition cannot be found anywhere on this system. Please go back and use manual partitioning to set up %1.</source>
-        <translation>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;No es pot trobar cap partició EFI enlloc del sistema. Si us plau, torneu enrere i useu el partiment manual per establir %1.</translation>
+        <translation>&lt;strong&gt;%2&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;No es pot trobar cap partició EFI enlloc del sistema. Si us plau, torneu enrere i useu les particions manuals per establir %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="261"/>
@@ -2010,52 +2043,52 @@ Sortida:
         <translation>Recopilant informació del sistema...</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="116"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="118"/>
         <source>has at least %1 GB available drive space</source>
         <translation>té com a mínim %1 GB d&apos;espai de disc disponible.</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="118"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="120"/>
         <source>There is not enough drive space. At least %1 GB is required.</source>
         <translation>No hi ha prou espai de disc disponible. Com a mínim hi ha d&apos;haver %1 GB.</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="126"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="128"/>
         <source>has at least %1 GB working memory</source>
         <translation>té com a mínim %1 GB de memòria de treball</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="128"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="130"/>
         <source>The system does not have enough working memory. At least %1 GB is required.</source>
         <translation>El sistema no té prou memòria de treball. Com a mínim es necessita %1 GB.</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="136"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="138"/>
         <source>is plugged in to a power source</source>
         <translation>està connectat a una font de corrent</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="137"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="139"/>
         <source>The system is not plugged in to a power source.</source>
         <translation>El sistema no està connectat a una font de corrent.</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="144"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="146"/>
         <source>is connected to the Internet</source>
         <translation>està connectat a Internet</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="145"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="147"/>
         <source>The system is not connected to the Internet.</source>
         <translation>El sistema no està connectat a Internet.</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="153"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="155"/>
         <source>The installer is not running with administrator rights.</source>
         <translation>L&apos;instal·lador no s&apos;ha executat amb privilegis d&apos;administrador.</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="161"/>
+        <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="163"/>
         <source>The screen is too small to display the installer.</source>
         <translation>La pantalla és massa petita per mostrar l&apos;instal·lador.</translation>
     </message>
@@ -2099,31 +2132,31 @@ Sortida:
 <context>
     <name>SetHostNameJob</name>
     <message>
-        <location filename="../src/modules/users/SetHostNameJob.cpp" line="37"/>
+        <location filename="../src/modules/users/SetHostNameJob.cpp" line="38"/>
         <source>Set hostname %1</source>
-        <translation>Assigna el nom de l&apos;equip %1</translation>
+        <translation>Estableix el nom d&apos;amfitrió %1</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/SetHostNameJob.cpp" line="44"/>
+        <location filename="../src/modules/users/SetHostNameJob.cpp" line="45"/>
         <source>Set hostname &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation>Establir el nom de l&apos;hoste &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+        <translation>Estableix el nom d&apos;amfitrió &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/SetHostNameJob.cpp" line="51"/>
+        <location filename="../src/modules/users/SetHostNameJob.cpp" line="52"/>
         <source>Setting hostname %1.</source>
-        <translation>Establint el nom de l&apos;hoste %1.</translation>
+        <translation>Establint el nom d&apos;amfitrió %1.</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/SetHostNameJob.cpp" line="61"/>
-        <location filename="../src/modules/users/SetHostNameJob.cpp" line="68"/>
+        <location filename="../src/modules/users/SetHostNameJob.cpp" line="62"/>
+        <location filename="../src/modules/users/SetHostNameJob.cpp" line="69"/>
         <source>Internal Error</source>
         <translation>Error intern</translation>
     </message>
     <message>
-        <location filename="../src/modules/users/SetHostNameJob.cpp" line="75"/>
-        <location filename="../src/modules/users/SetHostNameJob.cpp" line="86"/>
+        <location filename="../src/modules/users/SetHostNameJob.cpp" line="76"/>
+        <location filename="../src/modules/users/SetHostNameJob.cpp" line="87"/>
         <source>Cannot write hostname to target system</source>
-        <translation>No s&apos;ha pogut escriure el nom de l&apos;equip al sistema de destinació</translation>
+        <translation>No es pot escriure el nom d&apos;amfitrió al sistema de destinació</translation>
     </message>
 </context>
 <context>
@@ -2264,7 +2297,7 @@ Sortida:
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="123"/>
         <source>Cannot disable root account.</source>
-        <translation>No es pot inhabilitar el compte d&apos;arrel.</translation>
+        <translation>No es pot inhabilitar el compte de root.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="124"/>
@@ -2274,7 +2307,7 @@ Sortida:
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="139"/>
         <source>Cannot set password for user %1.</source>
-        <translation>No s&apos;ha pogut assignar la contrasenya de l&apos;usuari %1.</translation>
+        <translation>No es pot establir la contrasenya per a l&apos;usuari %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="141"/>
@@ -2292,12 +2325,12 @@ Sortida:
     <message>
         <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="71"/>
         <source>Cannot access selected timezone path.</source>
-        <translation>No es pot accedir a la ruta de la zona horària seleccionada.</translation>
+        <translation>No es pot accedir al camí a la zona horària seleccionada.</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="72"/>
         <source>Bad path: %1</source>
-        <translation>Ruta errònia: %1</translation>
+        <translation>Camí incorrecte: %1</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="86"/>
@@ -2326,6 +2359,15 @@ Sortida:
         <location filename="../src/modules/shellprocess/ShellProcessJob.cpp" line="51"/>
         <source>Shell Processes Job</source>
         <translation>Tasca de processos de l&apos;intèrpret d&apos;ordres</translation>
+    </message>
+</context>
+<context>
+    <name>SlideCounter</name>
+    <message>
+        <location filename="../src/qml/calamares/slideshow/SlideCounter.qml" line="36"/>
+        <source>%L1 / %L2</source>
+        <extracomment>slide counter, %1 of %2 (numeric)</extracomment>
+        <translation>%L1 / %L2</translation>
     </message>
 </context>
 <context>
@@ -2476,7 +2518,7 @@ Sortida:
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="333"/>
         <source>Your hostname is too short.</source>
-        <translation>El nom d&apos;usuari és massa curt.</translation>
+        <translation>El nom d&apos;amfitrió és massa curt.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="339"/>
@@ -2498,7 +2540,7 @@ Sortida:
 <context>
     <name>UsersViewStep</name>
     <message>
-        <location filename="../src/modules/users/UsersViewStep.cpp" line="51"/>
+        <location filename="../src/modules/users/UsersViewStep.cpp" line="53"/>
         <source>Users</source>
         <translation>Usuaris</translation>
     </message>
@@ -2538,7 +2580,7 @@ Sortida:
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="60"/>
         <source>&lt;h1&gt;Welcome to the %1 installer.&lt;/h1&gt;</source>
-        <translation>&lt;h1&gt;Benvinguts a l&apos;instal·lador %1.&lt;/h1&gt;</translation>
+        <translation>&lt;h1&gt;Benvingut a l&apos;instal·lador de %1.&lt;/h1&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="60"/>
@@ -2556,7 +2598,7 @@ Sortida:
         <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;per a %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Copyright 2017, Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;Agraïments: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Lisa Vitolo, Philip Müller, Pier Luigi Fiorini, Rohan Garg i l&apos;&lt;a href=&quot;https://www.transifex.com/calamares/calamares/&quot;&gt;Equip de traducció del Calamares&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;http://calamares.io/&quot;&gt;El desenvolupament &lt;/a&gt; del Calamares està patrocinat per &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - Liberating Software.</translation>
     </message>
     <message>
-        <location filename="../src/modules/welcome/WelcomePage.cpp" line="201"/>
+        <location filename="../src/modules/welcome/WelcomePage.cpp" line="290"/>
         <source>%1 support</source>
         <translation>%1 suport</translation>
     </message>
@@ -2564,9 +2606,9 @@ Sortida:
 <context>
     <name>WelcomeViewStep</name>
     <message>
-        <location filename="../src/modules/welcome/WelcomeViewStep.cpp" line="51"/>
+        <location filename="../src/modules/welcome/WelcomeViewStep.cpp" line="52"/>
         <source>Welcome</source>
-        <translation>Benvinguts</translation>
+        <translation>Benvingut</translation>
     </message>
 </context>
 </TS>

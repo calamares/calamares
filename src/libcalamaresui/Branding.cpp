@@ -1,7 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2017, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -179,12 +179,12 @@ Branding::Branding( const QString& brandingFilePath,
         }
         catch ( YAML::Exception& e )
         {
-            cWarning() << "YAML parser error " << e.what() << "in" << file.fileName();
+            CalamaresUtils::explainYamlException( e, ba, file.fileName() );
         }
 
         QDir translationsDir( componentDir.filePath( "lang" ) );
         if ( !translationsDir.exists() )
-            cWarning() << "the selected branding component does not ship translations.";
+            cWarning() << "the branding component" << componentDir.absolutePath() << "does not ship translations.";
         m_translationsPathPrefix = translationsDir.absolutePath();
         m_translationsPathPrefix.append( QString( "%1calamares-%2" )
                                             .arg( QDir::separator() )
@@ -192,7 +192,7 @@ Branding::Branding( const QString& brandingFilePath,
     }
     else
     {
-        cWarning() << "Cannot read " << file.fileName();
+        cWarning() << "Cannot read branding file" << file.fileName();
     }
 
     s_instance = this;

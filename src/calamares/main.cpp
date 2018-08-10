@@ -1,7 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2017, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -108,7 +108,14 @@ main( int argc, char* argv[] )
         returnCode = a.exec();
     }
     else
+    {
+        auto instancelist = guard.instances();
         qDebug() << "Calamares is already running, shutting down.";
+        if ( instancelist.count() > 0 )
+            qDebug() << "Other running Calamares instances:";
+        for ( const auto& i : instancelist )
+            qDebug() << "  " << i.isValid() << i.pid() << i.arguments();
+    }
 
     return returnCode;
 }

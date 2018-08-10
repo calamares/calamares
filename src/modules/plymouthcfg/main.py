@@ -5,6 +5,7 @@
 #
 #   Copyright 2016, Artoo <artoo@manjaro.org>
 #   Copyright 2017, Alf Gaida <agaida@siduction.org>
+#   Copyright 2018, Gabriel Craciunescu <crazy@frugalware.org>
 #
 #   Calamares is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -40,13 +41,8 @@ class PlymouthController:
                          "/etc/plymouth/plymouthd.conf"])
 
     def detect(self):
-        isPlymouth = target_env_call(["which", "plymouth"])
+        isPlymouth = target_env_call(["sh", "-c", "which plymouth"])
         debug("which plymouth exit code: {!s}".format(isPlymouth))
-
-        if isPlymouth == 0:
-            libcalamares.globalstorage.insert("hasPlymouth", True)
-        else:
-            libcalamares.globalstorage.insert("hasPlymouth", False)
 
         return isPlymouth
 

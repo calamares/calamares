@@ -1,7 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2017, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -58,7 +58,16 @@ public:
     int remove( const QString& key );
     QVariant value( const QString& key ) const;
 
+    /// @brief dump keys and values to the debug log
     void debugDump() const;
+    /** @brief write as JSON to the given filename
+     *
+     * No tidying, sanitization, or censoring is done -- for instance,
+     * the user module sets a slightly-obscured password in global storage,
+     * and this JSON file will contain that password in-the-only-slightly-
+     * obscured form.
+     */
+    bool save( const QString& filename );
 
 signals:
     void changed();

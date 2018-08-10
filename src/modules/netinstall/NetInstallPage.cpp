@@ -2,7 +2,7 @@
  *   Copyright 2016, Luca Giambonini <almack@chakraos.org>
  *   Copyright 2016, Lisa Vitolo     <shainer@chakraos.org>
  *   Copyright 2017, Kyle Robbertze  <krobbertze@gmail.com>
- *   Copyright 2017, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
  *   Copyright 2017, Gabriel Craciunescu <crazy@frugalware.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
@@ -24,25 +24,17 @@
 #include "PackageModel.h"
 
 #include "ui_page_netinst.h"
-#include "GlobalStorage.h"
 #include "JobQueue.h"
+
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
 #include "utils/YamlUtils.h"
-
-#include <QFile>
-#include <QMap>
-#include <QTextStream>
 
 #include <QNetworkAccessManager>
 #include <QNetworkRequest>
 #include <QNetworkReply>
 
 #include <QHeaderView>
-#include <QtDebug>
-#include <QtGlobal>
-#include <QWidget>
-#include <QSignalMapper>
 
 #include <yaml-cpp/yaml.h>
 
@@ -128,12 +120,8 @@ NetInstallPage::selectedPackages() const
 }
 
 void
-NetInstallPage::loadGroupList()
+NetInstallPage::loadGroupList( const QString& confUrl )
 {
-    QString confUrl(
-        Calamares::JobQueue::instance()->globalStorage()->value(
-            "groupsUrl" ).toString() );
-
     QNetworkRequest request;
     request.setUrl( QUrl( confUrl ) );
     // Follows all redirects except unsafe ones (https to http).

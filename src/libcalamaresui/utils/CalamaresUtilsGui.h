@@ -1,7 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2017, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -115,6 +115,7 @@ UIDLLEXPORT void setDefaultFontSize( int points );
 UIDLLEXPORT int defaultFontSize();      // in points
 UIDLLEXPORT int defaultFontHeight();    // in pixels, DPI-specific
 UIDLLEXPORT QFont defaultFont();
+UIDLLEXPORT QFont largeFont();
 UIDLLEXPORT QSize defaultIconSize();
 
 /**

@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2018, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -90,7 +91,8 @@ public:
 
 signals:
     void initDone();
-    void modulesLoaded();
+    void modulesLoaded();  /// All of the modules were loaded successfully
+    void modulesFailed( QStringList );   /// .. or not
     void requirementsComplete( bool );
     void requirementsResult( RequirementsList& );
 
@@ -98,6 +100,26 @@ private slots:
     void doInit();
 
 private:
+    /**
+     * Check in a general sense whether the dependencies between
+     * modules are valid. Returns a list of module names that
+     * do **not** have their requirements met.
+     *
+     * Returns an empty list on success.
+     *
+     * Also modifies m_availableDescriptorsByModuleName to remove
+     * all the entries that fail.
+     */
+    QStringList checkDependencies();
+
+    /**
+     * Check for this specific module if its required modules have
+     * already been loaded (i.e. are in sequence before it).
+     *
+     * Returns true if the requirements are met.
+     */
+    bool checkDependencies( const Module& );
+
     QMap< QString, QVariantMap > m_availableDescriptorsByModuleName;
     QMap< QString, QString > m_moduleDirectoriesByModuleName;
     QMap< QString, Module* > m_loadedModulesByInstanceKey;

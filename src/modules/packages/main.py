@@ -8,6 +8,7 @@
 #   Copyright 2016-2017, Kyle Robbertze <kyle@aims.ac.za>
 #   Copyright 2017, Alf Gaida <agaida@siduction.org>
 #   Copyright 2018, Adriaan de Groot <groot@kde.org>
+#   Copyright 2018, Philip Müller <philm@manjaro.org>
 #
 #   Calamares is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -153,6 +154,8 @@ class PMPackageKit(PackageManager):
     def update_db(self):
         check_target_env_call(["pkcon", "refresh"])
 
+    def update_system(self):
+        check_target_env_call(["pkcon", "-py", "update"])
 
 class PMZypp(PackageManager):
     backend = "zypp"
@@ -170,12 +173,15 @@ class PMZypp(PackageManager):
     def update_db(self):
         check_target_env_call(["zypper", "--non-interactive", "update"])
 
+    def update_system(self):
+        # Doesn't need to update the system explicitly
+        pass
 
 class PMYum(PackageManager):
     backend = "yum"
 
     def install(self, pkgs, from_local=False):
-        check_target_env_call(["yum", "install", "-y"] + pkgs)
+        check_target_env_call(["yum", "-y", "install"] + pkgs)
 
     def remove(self, pkgs):
         check_target_env_call(["yum", "--disablerepo=*", "-C", "-y",
@@ -185,12 +191,14 @@ class PMYum(PackageManager):
         # Doesn't need updates
         pass
 
+    def update_system(self):
+        check_target_env_call(["yum", "-y", "upgrade"])
 
 class PMDnf(PackageManager):
     backend = "dnf"
 
     def install(self, pkgs, from_local=False):
-        check_target_env_call(["dnf", "install", "-y"] + pkgs)
+        check_target_env_call(["dnf", "-y", "install"] + pkgs)
 
     def remove(self, pkgs):
         # ignore the error code for now because dnf thinks removing a
@@ -199,8 +207,11 @@ class PMDnf(PackageManager):
                          "remove"] + pkgs)
 
     def update_db(self):
-        # Doesn't need to update explicitly
+        # Doesn't need updates
         pass
+
+    def update_system(self):
+        check_target_env_call(["dnf", "-y", "upgrade"])
 
 
 class PMUrpmi(PackageManager):
@@ -218,6 +229,10 @@ class PMUrpmi(PackageManager):
     def update_db(self):
         check_target_env_call(["urpmi.update", "-a"])
 
+    def update_system(self):
+        # Doesn't need to update the system explicitly
+        pass
+
 
 class PMApt(PackageManager):
     backend = "apt"
@@ -234,6 +249,10 @@ class PMApt(PackageManager):
     def update_db(self):
         check_target_env_call(["apt-get", "update"])
 
+    def update_system(self):
+        # Doesn't need to update the system explicitly
+        pass
+
 
 class PMPacman(PackageManager):
     backend = "pacman"
@@ -242,7 +261,7 @@ class PMPacman(PackageManager):
         if from_local:
             pacman_flags = "-U"
         else:
-            pacman_flags = "-Sy"
+            pacman_flags = "-S"
 
         check_target_env_call(["pacman", pacman_flags,
                                "--noconfirm"] + pkgs)
@@ -252,6 +271,9 @@ class PMPacman(PackageManager):
 
     def update_db(self):
         check_target_env_call(["pacman", "-Sy"])
+
+    def update_system(self):
+        check_target_env_call(["pacman", "-Su"])
 
 
 class PMPortage(PackageManager):
@@ -267,6 +289,10 @@ class PMPortage(PackageManager):
     def update_db(self):
         check_target_env_call(["emerge", "--sync"])
 
+    def update_system(self):
+        # Doesn't need to update the system explicitly
+        pass
+
 
 class PMEntropy(PackageManager):
     backend = "entropy"
@@ -280,6 +306,10 @@ class PMEntropy(PackageManager):
     def update_db(self):
         check_target_env_call(["equo", "update"])
 
+    def update_system(self):
+        # Doesn't need to update the system explicitly
+        pass
+
 
 class PMDummy(PackageManager):
     backend = "dummy"
@@ -292,6 +322,9 @@ class PMDummy(PackageManager):
 
     def update_db(self):
         libcalamares.utils.debug("Updating DB")
+
+    def update_system(self):
+        libcalamares.utils.debug("Updating System")
 
     def run(self, script):
         libcalamares.utils.debug("Running script '" + str(script) + "'")
@@ -308,6 +341,10 @@ class PMPisi(PackageManager):
 
     def update_db(self):
         check_target_env_call(["pisi", "update-repo"])
+
+    def update_system(self):
+        # Doesn't need to update the system explicitly
+        pass
 
 
 # Collect all the subclasses of PackageManager defined above,
@@ -332,7 +369,10 @@ def subst_locale(plist):
     """
     locale = libcalamares.globalstorage.value("locale")
     if not locale:
-        return plist
+        # It is possible to skip the locale-setting entirely.
+        # Then pretend it is "en", so that {LOCALE}-decorated
+        # package names are removed from the list.
+        locale = "en"
 
     ret = []
     for packagedata in plist:
@@ -378,20 +418,20 @@ def run_operations(pkgman, entry):
     global group_packages, completed_packages, mode_packages
 
     for key in entry.keys():
-        entry[key] = subst_locale(entry[key])
-        group_packages = len(entry[key])
+        package_list = subst_locale(entry[key])
+        group_packages = len(package_list)
         if key == "install":
             _change_mode(INSTALL)
-            if all([isinstance(x, str) for x in entry[key]]):
-                pkgman.install(entry[key])
+            if all([isinstance(x, str) for x in package_list]):
+                pkgman.install(package_list)
             else:
-                for package in entry[key]:
+                for package in package_list:
                     pkgman.install_package(package)
         elif key == "try_install":
             _change_mode(INSTALL)
             # we make a separate package manager call for each package so a
             # single failing package won't stop all of them
-            for package in entry[key]:
+            for package in package_list:
                 try:
                     pkgman.install_package(package)
                 except subprocess.CalledProcessError:
@@ -400,10 +440,10 @@ def run_operations(pkgman, entry):
                     libcalamares.utils.warning(warn_text)
         elif key == "remove":
             _change_mode(REMOVE)
-            pkgman.remove(entry[key])
+            pkgman.remove(package_list)
         elif key == "try_remove":
             _change_mode(REMOVE)
-            for package in entry[key]:
+            for package in package_list:
                 try:
                     pkgman.remove([package])
                 except subprocess.CalledProcessError:
@@ -412,9 +452,9 @@ def run_operations(pkgman, entry):
                     libcalamares.utils.warning(warn_text)
         elif key == "localInstall":
             _change_mode(INSTALL)
-            pkgman.install(entry[key], from_local=True)
+            pkgman.install(package_list, from_local=True)
 
-        completed_packages += len(entry[key])
+        completed_packages += len(package_list)
         libcalamares.job.setprogress(completed_packages * 1.0 / total_packages)
         libcalamares.utils.debug(pretty_name())
 
@@ -449,6 +489,10 @@ def run():
     if update_db and libcalamares.globalstorage.value("hasInternet"):
         pkgman.update_db()
 
+    update_system = libcalamares.job.configuration.get("update_system", False)
+    if update_system and libcalamares.globalstorage.value("hasInternet"):
+        pkgman.update_system()
+
     operations = libcalamares.job.configuration.get("operations", [])
     if libcalamares.globalstorage.contains("packageOperations"):
         operations += libcalamares.globalstorage.value("packageOperations")
@@ -458,7 +502,7 @@ def run():
     completed_packages = 0
     for op in operations:
         for packagelist in op.values():
-            total_packages += len(packagelist)
+            total_packages += len(subst_locale(packagelist))
 
     if not total_packages:
         # Avoids potential divide-by-zero in progress reporting

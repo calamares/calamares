@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-07 18:58+0100\n"
+"POT-Creation-Date: 2018-06-18 07:46-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>, 2017\n"
 "Language-Team: Czech (Czech Republic) (https://www.transifex.com/calamares/teams/20061/cs_CZ/)\n"
@@ -16,7 +16,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: cs_CZ\n"
-"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
+
+#: src/modules/umount/main.py:40
+msgid "Unmount file systems."
+msgstr "Odpojit souborové systémy."
 
 #: src/modules/dummypython/main.py:44
 msgid "Dummy python job."
@@ -30,27 +34,29 @@ msgstr "Testovací krok {} python."
 msgid "Generate machine-id."
 msgstr "Vytvořit identifikátor stroje."
 
-#: src/modules/packages/main.py:60
+#: src/modules/packages/main.py:62
 #, python-format
 msgid "Processing packages (%(count)d / %(total)d)"
 msgstr "Zpracovávání balíčků (%(count)d / %(total)d)"
 
-#: src/modules/packages/main.py:62 src/modules/packages/main.py:72
+#: src/modules/packages/main.py:64 src/modules/packages/main.py:74
 msgid "Install packages."
 msgstr "Instalovat balíčky."
 
-#: src/modules/packages/main.py:65
+#: src/modules/packages/main.py:67
 #, python-format
 msgid "Installing one package."
 msgid_plural "Installing %(num)d packages."
 msgstr[0] "Je instalován jeden balíček."
 msgstr[1] "Jsou instalovány %(num)d balíčky."
 msgstr[2] "Je instalováno %(num)d balíčků."
+msgstr[3] "Je instalováno %(num)d balíčků."
 
-#: src/modules/packages/main.py:68
+#: src/modules/packages/main.py:70
 #, python-format
 msgid "Removing one package."
 msgid_plural "Removing %(num)d packages."
 msgstr[0] "Odebírá se jeden balíček."
 msgstr[1] "Odebírají se %(num)d balíčky."
 msgstr[2] "Odebírá se %(num)d balíčků."
+msgstr[3] "Odebírá se %(num)d balíčků."

@@ -20,6 +20,7 @@
 #include "ViewManager.h"
 
 #include "utils/Logger.h"
+#include "viewpages/BlankViewStep.h"
 #include "viewpages/ViewStep.h"
 #include "ExecutionViewStep.h"
 #include "JobQueue.h"
@@ -150,9 +151,9 @@ ViewManager::insertViewStep( int before, ViewStep* step )
 void
 ViewManager::onInstallationFailed( const QString& message, const QString& details )
 {
-    cLog() << "Installation failed:";
-    cLog() << "- message:" << message;
-    cLog() << "- details:" << details;
+    cError() << "Installation failed:";
+    cDebug() << "- message:" << message;
+    cDebug() << "- details:" << details;
 
     QMessageBox* msgBox = new QMessageBox();
     msgBox->setIcon( QMessageBox::Critical );
@@ -167,10 +168,31 @@ ViewManager::onInstallationFailed( const QString& message, const QString& detail
     msgBox->setInformativeText( text );
 
     connect( msgBox, &QMessageBox::buttonClicked, qApp, &QApplication::quit );
-    cLog() << "Calamares will quit when the dialog closes.";
+    cDebug() << "Calamares will quit when the dialog closes.";
     msgBox->show();
 }
 
+
+void
+ViewManager::onInitFailed( const QStringList& modules)
+{
+    QString title( tr( "Calamares Initialization Failed" ) );
+    QString description( tr( "%1 can not be installed. Calamares was unable to load all of the configured modules. This is a problem with the way Calamares is being used by the distribution." ) );
+    QString detailString;
+
+    if ( modules.count() > 0 )
+    {
+        description.append( tr( "<br/>The following modules could not be loaded:" ) );
+        QStringList details;
+        details << QLatin1Literal("<ul>");
+        for( const auto& m : modules )
+            details << QLatin1Literal("<li>") << m << QLatin1Literal("</li>");
+        details << QLatin1Literal("</ul>");
+        detailString = details.join( QString() );
+    }
+
+    insertViewStep( 0, new BlankViewStep( title, description.arg( *Calamares::Branding::ShortProductName ), detailString ) );
+}
 
 ViewStepList
 ViewManager::viewSteps() const

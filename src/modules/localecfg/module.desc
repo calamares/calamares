@@ -1,3 +1,6 @@
+# Enable the configured locales (those set by the user on the
+# user page) in /etc/locale.gen, if they are available in the
+# target system.
 ---
 type:       "job"
 name:       "localecfg"

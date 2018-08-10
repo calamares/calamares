@@ -1,4 +1,60 @@
+# === This file is part of Calamares - <https://github.com/calamares> ===
+#
+#   Calamares is free software: you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation, either version 3 of the License, or
+#   (at your option) any later version.
+#
+#   Calamares is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
+#
+#   SPDX-License-Identifier: GPL-3.0+
+#   License-Filename: LICENSE
+#
+###
+#
+# This file has not yet been documented for use outside of Calamares itself.
+
 include( CMakeParseArguments )
+
+if( NOT _rcc_version_support_checked )
+    set( _rcc_version_support_checked TRUE )
+
+    # Extract the executable name
+    get_property( _rcc_executable
+        TARGET ${Qt5Core_RCC_EXECUTABLE}
+        PROPERTY IMPORTED_LOCATION
+    )
+    if( NOT _rcc_executable )
+        # Weird, probably now uses Qt5::rcc which is wrong too
+        set( _rcc_executable ${Qt5Core_RCC_EXECUTABLE} )
+    endif()
+
+    # Try an empty RCC file with explicit format-version
+    execute_process(
+        COMMAND echo "<RCC version='1.0'></RCC>"
+        COMMAND ${Qt5Core_RCC_EXECUTABLE} --format-version 1 --list -
+        RESULT_VARIABLE _rcc_version_rv
+        ERROR_VARIABLE _rcc_version_dump
+    )
+    if ( _rcc_version_rv EQUAL 0 )
+        # Supported: force to the reproducible version
+        set( _rcc_version_support --format-version 1 )
+    else()
+        # Older Qt versions (5.7, 5.8) don't support setting the
+        # rcc format-version, so won't be reproducible if they
+        # default to version 2.
+        set( _rcc_version_support "" )
+    endif()
+    unset( _rcc_version_rv )
+    unset( _rcc_version_dump )
+endif()
+
 
 # Internal macro for adding the C++ / Qt translations to the
 # build and install tree. Should be called only once, from
@@ -39,7 +95,7 @@ macro(add_calamares_translations language)
     add_custom_command(
         OUTPUT ${trans_outfile}
         COMMAND "${Qt5Core_RCC_EXECUTABLE}"
-        ARGS ${rcc_options} -name ${trans_file} -o ${trans_outfile} ${trans_infile}
+        ARGS ${rcc_options} ${_rcc_version_support} -name ${trans_file} -o ${trans_outfile} ${trans_infile}
         MAIN_DEPENDENCY ${trans_infile}
         DEPENDS ${QM_FILES}
     )

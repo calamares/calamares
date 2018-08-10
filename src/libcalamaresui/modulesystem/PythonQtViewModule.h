@@ -22,7 +22,8 @@
 #include "UiDllMacro.h"
 #include "Module.h"
 
-namespace Calamares {
+namespace Calamares
+{
 
 class ViewStep;
 

@@ -2,6 +2,7 @@
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
  *   Copyright 2016, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2018, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -42,7 +43,13 @@ class CreatePartitionDialog : public QDialog
 {
     Q_OBJECT
 public:
-    CreatePartitionDialog( Device* device, PartitionNode* parentPartition, const QStringList& usedMountPoints, QWidget* parentWidget = nullptr );
+    /**
+     * @brief Dialog for editing a new partition.
+     *
+     * For the (unlikely) case that a newly created partition is being re-edited,
+     * pass a pointer to that @p partition, otherwise pass nullptr.
+     */
+    CreatePartitionDialog( Device* device, PartitionNode* parentPartition, Partition* partition, const QStringList& usedMountPoints, QWidget* parentWidget = nullptr );
     ~CreatePartitionDialog();
 
     /**
@@ -64,7 +71,6 @@ private Q_SLOTS:
     void checkMountPointSelection();
 
 private:
-    void setupFlagsList();
     QScopedPointer< Ui_CreatePartitionDialog > m_ui;
     PartitionSizeController* m_partitionSizeController;
     Device* m_device;

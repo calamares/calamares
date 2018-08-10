@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
+ *   Copyright 2018, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -50,6 +51,10 @@ private:
     PartitionCoreModule* m_core;
     void updateButtons();
     void onNewPartitionTableClicked();
+    void onNewVolumeGroupClicked();
+    void onResizeVolumeGroupClicked();
+    void onDeactivateVolumeGroupClicked();
+    void onRemoveVolumeGroupClicked();
     void onCreateClicked();
     void onEditClicked();
     void onDeleteClicked();
@@ -61,6 +66,14 @@ private:
     void updateBootLoaderInstallPath();
     void updateFromCurrentDevice();
     void updateBootLoaderIndex();
+
+    /**
+     * @brief Check if a new partition can be created (as primary) on the device.
+     *
+     * Returns true if a new partition can be created on the device. Provides
+     * a warning popup and returns false if it cannot.
+     */
+    bool checkCanCreate( Device* );
 
     QStringList getCurrentUsedMountpoints();
 

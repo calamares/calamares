@@ -1,0 +1,56 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-06-18 07:46-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Ji-Hyeon Gim <potatogim@potatogim.net>, 2018\n"
+"Language-Team: Korean (https://www.transifex.com/calamares/teams/20061/ko/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ko\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/modules/umount/main.py:40
+msgid "Unmount file systems."
+msgstr "파일 시스템 마운트를 해제합니다."
+
+#: src/modules/dummypython/main.py:44
+msgid "Dummy python job."
+msgstr "더미 파이썬 작업."
+
+#: src/modules/dummypython/main.py:97
+msgid "Dummy python step {}"
+msgstr "더미 파이썬 단계 {}"
+
+#: src/modules/machineid/main.py:35
+msgid "Generate machine-id."
+msgstr "장치 식별자를 생성합니다."
+
+#: src/modules/packages/main.py:62
+#, python-format
+msgid "Processing packages (%(count)d / %(total)d)"
+msgstr "패키지들을 처리하는 중입니다 (%(count)d / %(total)d)"
+
+#: src/modules/packages/main.py:64 src/modules/packages/main.py:74
+msgid "Install packages."
+msgstr "패키지들을 설치합니다."
+
+#: src/modules/packages/main.py:67
+#, python-format
+msgid "Installing one package."
+msgid_plural "Installing %(num)d packages."
+msgstr[0] "%(num)d개의 패키지들을 설치하는 중입니다."
+
+#: src/modules/packages/main.py:70
+#, python-format
+msgid "Removing one package."
+msgid_plural "Removing %(num)d packages."
+msgstr[0] "%(num)d개의 패키지들을 제거하는 중입니다."

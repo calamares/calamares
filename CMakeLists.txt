@@ -28,17 +28,99 @@
 # Example usage:
 #
 #   cmake . -DSKIP_MODULES="partition luksbootkeycfg"
+#
+# One special target is "show-version", which can be built
+# to obtain the version number from here.
 
 project( calamares C CXX )
 
 cmake_minimum_required( VERSION 3.2 )
 
-set( CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMakeModules" )
 
-set( CMAKE_CXX_STANDARD 14 )
-set( CMAKE_CXX_STANDARD_REQUIRED ON )
-set( CMAKE_C_STANDARD 99 )
-set( CMAKE_C_STANDARD_REQUIRED ON )
+### OPTIONS
+#
+option( INSTALL_CONFIG "Install configuration files" OFF )
+option( INSTALL_POLKIT "Install Polkit configuration" ON )
+option( BUILD_TESTING "Build the testing tree." ON )
+option( WITH_PYTHON "Enable Python modules API (requires Boost.Python)." ON )
+option( WITH_PYTHONQT "Enable next generation Python modules API (experimental, requires PythonQt)." ON )
+option( WITH_KF5Crash "Enable crash reporting with KCrash." ON )
+
+### USE_*
+#
+# By convention, when there are multiple modules that implement similar
+# functionality, and it only makes sense to have **at most one** of them
+# enabled at any time, those modules are named <foo>-<implementation>.
+# For example, services-systemd and services-openrc.
+#
+# Setting up SKIP_MODULES to ignore "the ones you don't want" can be
+# annoying and error-prone (e.g. if a new module shows up). The USE_*
+# modules provide a way to do automatic selection. To pick exactly
+# one of the implementations from group <foo>, set USE_<foo> to the
+# name of the implementation. If USE_<foo> is unset, or empty, then
+# all the implementations are enabled (this just means they are
+# **available** to `settings.conf`, not that they are used).
+#
+# Currently, no USE_<foo> variables exist.
+set( USE_services "" CACHE STRING "Select the services module to use" )
+
+### Calamares application info
+#
+set( CALAMARES_ORGANIZATION_NAME "Calamares" )
+set( CALAMARES_ORGANIZATION_DOMAIN "github.com/calamares" )
+set( CALAMARES_APPLICATION_NAME  "Calamares" )
+set( CALAMARES_DESCRIPTION_SUMMARY
+    "The distribution-independent installer framework" )
+
+set( CALAMARES_VERSION_MAJOR 3 )
+set( CALAMARES_VERSION_MINOR 2 )
+set( CALAMARES_VERSION_PATCH 2 )
+set( CALAMARES_VERSION_RC 1 )
+
+### Transifex (languages) info
+#
+# complete = 100% translated,
+# good = nearly complete (use own judgement, right now >= 75%)
+# ok = incomplete (more than 25% untranslated),
+# bad = 0% translated, placeholder in tx; these are not included.
+#
+# Language en (source language) is added later. It isn't listed in
+# Transifex either. Get the list of languages and their status
+# from https://transifex.com/calamares/calamares/ .
+#
+# When adding a new language, take care that it is properly loaded
+# by the translation framework. Languages with alternate scripts
+# (sr@latin in particular) may need special handling in CalamaresUtils.cpp.
+#
+# TODO: drop the es_ES translation from Transifex
+# TODO: move eo (Esperanto) to _ok once Qt can actually create a
+#       locale for it.
+#
+# NOTE: when updating the list from Transifex, copy these four lines
+#       and prefix each variable name with "p", so that the automatic
+#       checks for new languages and misspelled ones are done (that is,
+#       copy these four lines to four backup lines, add "p", and then update
+#       the original four lines with the current translations).
+set( _tx_complete ca zh_TW hr cs_CZ da et fr id it_IT lt pl pt_PT es_MX tr_TR )
+set( _tx_good sq de pt_BR zh_CN ja ro es sk )
+set( _tx_ok hu ru he nl bg uk ast is ko ar sv el gl en_GB
+            th fi_FI hi eu nb sr sl sr@latin mr es_PR kn kk be )
+set( _tx_bad fr_CH gu lo fa ur uz eo )
+
+
+### Required versions
+#
+# See DEPENDENCIES section below.
+set( QT_VERSION 5.7.0 )
+set( YAMLCPP_VERSION 0.5.1 )
+set( ECM_VERSION 5.18 )
+set( PYTHONLIBS_VERSION 3.3 )
+set( BOOSTPYTHON_VERSION 1.55.0 )
+
+
+### CMAKE SETUP
+#
+set( CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMakeModules" )
 
 # CMake 3.9, 3.10 compatibility
 if( POLICY CMP0071 )
@@ -52,6 +134,15 @@ if(NOT CMAKE_VERSION VERSION_LESS "3.10.0")
     )
 endif()
 
+
+### C++ SETUP
+#
+set( CMAKE_CXX_STANDARD 14 )
+set( CMAKE_CXX_STANDARD_REQUIRED ON )
+set( CMAKE_C_STANDARD 99 )
+set( CMAKE_C_STANDARD_REQUIRED ON )
+
+set( CMAKE_C_FLAGS                  "${CMAKE_C_FLAGS} -Wall" )
 if( CMAKE_CXX_COMPILER_ID MATCHES "Clang" )
     message( STATUS "Found Clang ${CMAKE_CXX_COMPILER_VERSION}, setting up Clang-specific compiler flags." )
     set( CMAKE_C_FLAGS                  "${CMAKE_C_FLAGS} -Wall" )
@@ -121,27 +212,32 @@ endif()
 include( FeatureSummary )
 include( CMakeColors )
 
-set( QT_VERSION 5.6.0 )
 
+### DEPENDENCIES
+#
 find_package( Qt5 ${QT_VERSION} CONFIG REQUIRED Core Gui Widgets LinguistTools Svg Quick QuickWidgets )
-find_package( YAMLCPP 0.5.1 REQUIRED )
-find_package( PolkitQt5-1 REQUIRED )
+find_package( YAMLCPP ${YAMLCPP_VERSION} REQUIRED )
+if( INSTALL_POLKIT )
+    find_package( PolkitQt5-1 REQUIRED )
+else()
+    # Find it anyway, for dependencies-reporting
+    find_package( PolkitQt5-1 )
+endif()
+set_package_properties(
+    PolkitQt5-1 PROPERTIES
+    DESCRIPTION "Qt5 support for Polkit"
+    URL "https://cgit.kde.org/polkit-qt-1.git"
+    PURPOSE "PolkitQt5-1 helps with installing Polkit configuration"
+)
 
 # Find ECM once, and add it to the module search path; Calamares
 # modules that need ECM can do
 #   find_package(ECM ${ECM_VERSION} REQUIRED NO_MODULE),
 # no need to mess with the module path after.
-set( ECM_VERSION 5.18 )
 find_package(ECM ${ECM_VERSION} NO_MODULE)
 if( ECM_FOUND )
     set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${CMAKE_MODULE_PATH})
 endif()
-
-option( INSTALL_CONFIG "Install configuration files" ON )
-option( WITH_PYTHON "Enable Python modules API (requires Boost.Python)." ON )
-option( WITH_PYTHONQT "Enable next generation Python modules API (experimental, requires PythonQt)." OFF )
-option( WITH_KF5Crash "Enable crash reporting with KCrash." ON )
-option( BUILD_TESTING "Build the testing tree." ON )
 
 find_package( KF5 COMPONENTS CoreAddons Crash )
 if( NOT KF5Crash_FOUND )
@@ -152,7 +248,7 @@ if( BUILD_TESTING )
     enable_testing()
 endif ()
 
-find_package( PythonLibs 3.3 )
+find_package( PythonLibs ${PYTHONLIBS_VERSION} )
 set_package_properties(
     PythonLibs PROPERTIES
     DESCRIPTION "C interface libraries for the Python 3 interpreter."
@@ -162,7 +258,7 @@ set_package_properties(
 
 if ( PYTHONLIBS_FOUND )
     include( BoostPython3 )
-    find_boost_python3( 1.54.0 ${PYTHONLIBS_VERSION_STRING} CALAMARES_BOOST_PYTHON3_FOUND )
+    find_boost_python3( ${BOOSTPYTHON_VERSION} ${PYTHONLIBS_VERSION_STRING} CALAMARES_BOOST_PYTHON3_FOUND )
     set_package_properties(
         Boost PROPERTIES
         PURPOSE "Boost.Python is used for Python job modules."
@@ -185,71 +281,46 @@ if( NOT PYTHONLIBS_FOUND OR NOT PYTHONQT_FOUND )
     set( WITH_PYTHONQT OFF )
 endif()
 
-###
-### Calamares application info
-###
-set( CALAMARES_ORGANIZATION_NAME "Calamares" )
-set( CALAMARES_ORGANIZATION_DOMAIN "github.com/calamares" )
-set( CALAMARES_APPLICATION_NAME  "Calamares" )
-set( CALAMARES_DESCRIPTION_SUMMARY "The distribution-independent installer framework" )
-set( CALAMARES_TRANSLATION_LANGUAGES ar ast bg ca cs_CZ da de el en en_GB es_MX es eu fr he hi hr hu id is it_IT ja lt mr nl pl pt_BR pt_PT ro ru sk sq sv th tr_TR zh_CN zh_TW )
+### Transifex Translation status
+#
+# Construct language lists for use. If there are p_tx* variables,
+# then run an extra cmake-time check for consistency of the old
+# (p_tx*) and new (_tx*) lists.
+#
+set( prev_tx ${p_tx_complete} ${p_tx_good} ${p_tx_ok} ${p_tx_bad} )
+set( curr_tx ${_tx_complete} ${_tx_good} ${_tx_ok} ${_tx_bad} )
+if ( prev_tx )
+    # Gone in new list
+    foreach( l ${prev_tx} )
+        list( FIND curr_tx ${l} p_l )
+        if( p_l EQUAL -1 )
+            message(WARNING "Language ${l} was present in previous translations and is now absent.")
+        endif()
+    endforeach()
 
-### Bump version here
-set( CALAMARES_VERSION_MAJOR 3 )
-set( CALAMARES_VERSION_MINOR 2 )
-set( CALAMARES_VERSION_PATCH 0 )
-set( CALAMARES_VERSION_RC 3 )
+    # New in list
+    foreach( l ${curr_tx} )
+        list( FIND prev_tx ${l} p_l )
+        if( p_l EQUAL -1 )
+            message(WARNING "Language ${l} is new.")
+        endif()
+        set( p_l "lang/calamares_${l}.ts" )
+        if( NOT EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/${p_l} )
+            message(WARNING "Language ${l} has no .ts file yet.")
+        endif()
+    endforeach()
 
-set( CALAMARES_VERSION ${CALAMARES_VERSION_MAJOR}.${CALAMARES_VERSION_MINOR}.${CALAMARES_VERSION_PATCH} )
-set( CALAMARES_VERSION_SHORT "${CALAMARES_VERSION}" )
-if( CALAMARES_VERSION_RC )
-    set( CALAMARES_VERSION ${CALAMARES_VERSION}rc${CALAMARES_VERSION_RC} )
+    unset( p_l )
+    unset( l )
 endif()
+unset( prev_tx )
+unset( curr_tx )
 
-# additional info for non-release builds
-if( NOT BUILD_RELEASE AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/.git/" )
-    include( CMakeDateStamp )
-    set( CALAMARES_VERSION_DATE "${CMAKE_DATESTAMP_YEAR}${CMAKE_DATESTAMP_MONTH}${CMAKE_DATESTAMP_DAY}" )
-    if( CALAMARES_VERSION_DATE GREATER 0 )
-        set( CALAMARES_VERSION ${CALAMARES_VERSION}.${CALAMARES_VERSION_DATE} )
-    endif()
+set( CALAMARES_TRANSLATION_LANGUAGES en ${_tx_complete} ${_tx_good} ${_tx_ok} )
+list( SORT CALAMARES_TRANSLATION_LANGUAGES )
 
-    include( CMakeVersionSource )
-    if( CMAKE_VERSION_SOURCE )
-        set( CALAMARES_VERSION ${CALAMARES_VERSION}-${CMAKE_VERSION_SOURCE} )
-    endif()
-endif()
+add_subdirectory( lang )  # i18n tools
 
-# enforce using constBegin, constEnd for const-iterators
-add_definitions( "-DQT_STRICT_ITERATORS" )
-
-# set paths
-set( CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}" )
-set( CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}" )
-set( CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}" )
-
-# Better default installation paths: GNUInstallDirs defines
-# CMAKE_INSTALL_FULL_SYSCONFDIR to be CMAKE_INSTALL_PREFIX/etc by default
-# but we really want /etc
-if( NOT DEFINED CMAKE_INSTALL_SYSCONFDIR )
-    set( CMAKE_INSTALL_SYSCONFDIR "/etc" )
-endif()
-
-# make predefined install dirs available everywhere
-include( GNUInstallDirs )
-
-# make uninstall support
-configure_file(
-    "${CMAKE_CURRENT_SOURCE_DIR}/cmake_uninstall.cmake.in"
-    "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake"
-    IMMEDIATE @ONLY
-)
-
-# Early configure these files as we need them later on
-set( CALAMARES_CMAKE_DIR "${CMAKE_SOURCE_DIR}/CMakeModules" )
-set( CALAMARES_LIBRARIES calamares )
-
-set( THIRDPARTY_DIR "${CMAKE_SOURCE_DIR}/thirdparty" )
 
 ### Example Distro
 #
@@ -302,21 +373,73 @@ endif()
 # "http://tldp.org/HOWTO/SquashFS-HOWTO/creatingandusing.html"
 add_feature_info( ExampleDistro ${mksquashfs_FOUND} "Create example-distro target.")
 
-# add_subdirectory( thirdparty )
+
+### CALAMARES PROPER
+#
+set( CALAMARES_VERSION ${CALAMARES_VERSION_MAJOR}.${CALAMARES_VERSION_MINOR}.${CALAMARES_VERSION_PATCH} )
+set( CALAMARES_VERSION_SHORT "${CALAMARES_VERSION}" )
+if( CALAMARES_VERSION_RC )
+    set( CALAMARES_VERSION ${CALAMARES_VERSION}rc${CALAMARES_VERSION_RC} )
+endif()
+
+# additional info for non-release builds
+if( NOT BUILD_RELEASE AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/.git/" )
+    include( CMakeDateStamp )
+    set( CALAMARES_VERSION_DATE "${CMAKE_DATESTAMP_YEAR}${CMAKE_DATESTAMP_MONTH}${CMAKE_DATESTAMP_DAY}" )
+    if( CALAMARES_VERSION_DATE GREATER 0 )
+        set( CALAMARES_VERSION ${CALAMARES_VERSION}.${CALAMARES_VERSION_DATE} )
+    endif()
+
+    include( CMakeVersionSource )
+    if( CMAKE_VERSION_SOURCE )
+        set( CALAMARES_VERSION ${CALAMARES_VERSION}-${CMAKE_VERSION_SOURCE} )
+    endif()
+endif()
+
+# Special target for not-RC (e.g. might-be-release) builds.
+# This is used by the release script to get the version.
+if ( CALAMARES_VERSION_RC EQUAL 0 )
+    add_custom_target(show-version
+        ${CMAKE_COMMAND} -E echo CALAMARES_VERSION=${CALAMARES_VERSION_SHORT}
+        USES_TERMINAL
+    )
+endif()
+
+# enforce using constBegin, constEnd for const-iterators
+add_definitions( "-DQT_STRICT_ITERATORS" )
+
+# set paths
+set( CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}" )
+set( CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}" )
+set( CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}" )
+
+# Better default installation paths: GNUInstallDirs defines
+# CMAKE_INSTALL_FULL_SYSCONFDIR to be CMAKE_INSTALL_PREFIX/etc by default
+# but we really want /etc
+if( NOT DEFINED CMAKE_INSTALL_SYSCONFDIR )
+    set( CMAKE_INSTALL_SYSCONFDIR "/etc" )
+endif()
+
+# make predefined install dirs available everywhere
+include( GNUInstallDirs )
+
+# make uninstall support
+configure_file(
+    "${CMAKE_CURRENT_SOURCE_DIR}/cmake_uninstall.cmake.in"
+    "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake"
+    IMMEDIATE @ONLY
+)
+
+# Early configure these files as we need them later on
+set( CALAMARES_CMAKE_DIR "${CMAKE_SOURCE_DIR}/CMakeModules" )
+set( CALAMARES_LIBRARIES calamares )
+
 add_subdirectory( src )
 
 add_feature_info(Python ${WITH_PYTHON} "Python job modules")
 add_feature_info(PythonQt ${WITH_PYTHONQT} "Python view modules")
 add_feature_info(Config ${INSTALL_CONFIG} "Install Calamares configuration")
 add_feature_info(KCrash ${WITH_KF5Crash} "Crash dumps via KCrash")
-
-feature_summary(WHAT ALL)
-
-get_directory_property( SKIPPED_MODULES
-    DIRECTORY src/modules
-    DEFINITION LIST_SKIPPED_MODULES
-)
-calamares_explain_skipped_modules( ${SKIPPED_MODULES} )
 
 # Add all targets to the build-tree export set
 set( CMAKE_INSTALL_CMAKEDIR "${CMAKE_INSTALL_LIBDIR}/cmake/Calamares" CACHE PATH  "Installation directory for CMake files" )
@@ -371,12 +494,14 @@ if( INSTALL_CONFIG )
     )
 endif()
 
-install(
-  FILES
-      com.github.calamares.calamares.policy
-  DESTINATION
-      "${POLKITQT-1_POLICY_FILES_INSTALL_DIR}"
-)
+if( INSTALL_POLKIT )
+    install(
+        FILES
+            com.github.calamares.calamares.policy
+        DESTINATION
+          "${POLKITQT-1_POLICY_FILES_INSTALL_DIR}"
+    )
+endif()
 
 install(
   FILES
@@ -402,3 +527,13 @@ configure_file(
 add_custom_target( uninstall
     COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake
 )
+
+### CMAKE SUMMARY REPORT
+#
+feature_summary(WHAT ALL)
+
+get_directory_property( SKIPPED_MODULES
+    DIRECTORY src/modules
+    DEFINITION LIST_SKIPPED_MODULES
+)
+calamares_explain_skipped_modules( ${SKIPPED_MODULES} )

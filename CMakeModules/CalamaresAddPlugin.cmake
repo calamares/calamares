@@ -1,3 +1,23 @@
+# === This file is part of Calamares - <https://github.com/calamares> ===
+#
+#   Calamares is free software: you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation, either version 3 of the License, or
+#   (at your option) any later version.
+#
+#   Calamares is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
+#
+#   SPDX-License-Identifier: GPL-3.0+
+#   License-Filename: LICENSE
+#
+###
+#
 # Convenience function for creating a C++ (qtplugin) module for Calamares.
 # This function provides cmake-time feedback about the plugin, adds
 # targets for compilation and boilerplate information, and creates
@@ -18,6 +38,7 @@
 #   RESOURCES resource-file
 #   [NO_INSTALL]
 #   [SHARED_LIB]
+#   [EMERGENCY]
 # )
 
 include( CMakeParseArguments )
@@ -27,7 +48,7 @@ include( CMakeColors )
 function( calamares_add_plugin )
     # parse arguments ( name needs to be saved before passing ARGN into the macro )
     set( NAME ${ARGV0} )
-    set( options NO_INSTALL SHARED_LIB )
+    set( options NO_INSTALL SHARED_LIB EMERGENCY )
     set( oneValueArgs NAME TYPE EXPORT_MACRO RESOURCES )
     set( multiValueArgs SOURCES UI LINK_LIBRARIES LINK_PRIVATE_LIBRARIES COMPILE_DEFINITIONS )
     cmake_parse_arguments( PLUGIN "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN} )
@@ -45,17 +66,18 @@ function( calamares_add_plugin )
         message( "   ${Green}TYPE:${ColorReset} ${PLUGIN_TYPE}" )
         message( "   ${Green}LINK_LIBRARIES:${ColorReset} ${PLUGIN_LINK_LIBRARIES}" )
         message( "   ${Green}LINK_PRIVATE_LIBRARIES:${ColorReset} ${PLUGIN_LINK_PRIVATE_LIBRARIES}" )
-#        message( "   ${Green}SOURCES:${ColorReset} ${PLUGIN_SOURCES}" )
-#        message( "   ${Green}UI:${ColorReset} ${PLUGIN_UI}" )
-#        message( "   ${Green}EXPORT_MACRO:${ColorReset} ${PLUGIN_EXPORT_MACRO}" )
-#        message( "   ${Green}NO_INSTALL:${ColorReset} ${PLUGIN_NO_INSTALL}" )
         message( "   ${Green}PLUGIN_DESTINATION:${ColorReset} ${PLUGIN_DESTINATION}" )
         if( PLUGIN_CONFIG_FILES )
-            if ( INSTALL_CONFIG )
-                message( "   ${Green}CONFIGURATION_FILES:${ColorReset} ${PLUGIN_CONFIG_FILES} => ${PLUGIN_DATA_DESTINATION}" )
+            set( _destination "(unknown)" )
+            if ( INSTALL_CONFIG AND NOT PLUGIN_NO_INSTALL )
+                set( _destination "${PLUGIN_DATA_DESTINATION}" )
+            elseif( NOT PLUGIN_NO_INSTALL )
+                # Not INSTALL_CONFIG
+                set( _destination "[Build directory only]" )
             else()
-                message( "   ${Green}CONFIGURATION_FILES:${ColorReset} ${PLUGIN_CONFIG_FILES} => [Skipping installation]" )
+                set( _destination "[Skipping installation]" )
             endif()
+            message( "   ${Green}CONFIGURATION_FILES:${ColorReset} ${PLUGIN_CONFIG_FILES} => ${_destination}" )
         endif()
         if( PLUGIN_RESOURCES )
             message( "   ${Green}RESOURCES:${ColorReset} ${PLUGIN_RESOURCES}" )
@@ -72,7 +94,7 @@ function( calamares_add_plugin )
         set( target_type "SHARED" )
     endif()
 
-    list( APPEND calamares_add_library_args
+    set( calamares_add_library_args
         "${target}"
         "EXPORT_MACRO" "${PLUGIN_EXPORT_MACRO}"
         "TARGET_TYPE" "${target_type}"
@@ -95,9 +117,14 @@ function( calamares_add_plugin )
         list( APPEND calamares_add_library_args "COMPILE_DEFINITIONS" ${PLUGIN_COMPILE_DEFINITIONS} )
     endif()
 
-    list( APPEND calamares_add_library_args "NO_VERSION" )
+    if ( PLUGIN_NO_INSTALL )
+        list( APPEND calamares_add_library_args "NO_INSTALL" )
+    endif()
 
-    list( APPEND calamares_add_library_args "INSTALL_BINDIR" "${PLUGIN_DESTINATION}" )
+    list( APPEND calamares_add_library_args
+        "NO_VERSION"
+        "INSTALL_BINDIR" "${PLUGIN_DESTINATION}"
+    )
 
     if( PLUGIN_RESOURCES )
         list( APPEND calamares_add_library_args "RESOURCES" "${PLUGIN_RESOURCES}" )
@@ -112,16 +139,22 @@ function( calamares_add_plugin )
         set( _type ${PLUGIN_TYPE} )
         file( WRITE  ${_file} "# AUTO-GENERATED metadata file\n# Syntax is YAML 1.2\n---\n" )
         file( APPEND ${_file} "type: \"${_type}\"\nname: \"${PLUGIN_NAME}\"\ninterface: \"qtplugin\"\nload: \"lib${target}.so\"\n" )
+        if ( PLUGIN_EMERGENCY )
+            file( APPEND ${_file} "emergency: true\n" )
+        endif()
     endif()
 
-    install( FILES ${CMAKE_CURRENT_BINARY_DIR}/${PLUGIN_DESC_FILE}
-             DESTINATION ${PLUGIN_DESTINATION} )
+    if ( NOT PLUGIN_NO_INSTALL )
+        install( FILES ${CMAKE_CURRENT_BINARY_DIR}/${PLUGIN_DESC_FILE}
+                DESTINATION ${PLUGIN_DESTINATION} )
 
-    if ( INSTALL_CONFIG )
         foreach( PLUGIN_CONFIG_FILE ${PLUGIN_CONFIG_FILES} )
             configure_file( ${PLUGIN_CONFIG_FILE} ${PLUGIN_CONFIG_FILE} COPYONLY )
-            install( FILES ${CMAKE_CURRENT_BINARY_DIR}/${PLUGIN_CONFIG_FILE}
-                     DESTINATION ${PLUGIN_DATA_DESTINATION} )
+            if ( INSTALL_CONFIG )
+                install(
+                    FILES ${CMAKE_CURRENT_BINARY_DIR}/${PLUGIN_CONFIG_FILE}
+                    DESTINATION ${PLUGIN_DATA_DESTINATION} )
+            endif()
         endforeach()
     endif()
 endfunction()

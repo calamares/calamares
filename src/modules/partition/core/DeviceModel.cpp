@@ -29,6 +29,7 @@
 // KF5
 #include <KFormat>
 
+#include <QStandardItemModel>
 #include <QIcon>
 
 // STL
@@ -77,10 +78,18 @@ DeviceModel::data( const QModelIndex& index, int role ) const
         if ( device->name().isEmpty() )
             return device->deviceNode();
         else
-            return tr( "%1 - %2 (%3)" )
-                   .arg( device->name() )
-                   .arg( KFormat().formatByteSize( device->capacity() ) )
-                   .arg( device->deviceNode() );
+        {
+            if ( device->logicalSize() >= 0 && device->totalLogical() >= 0 )
+                return tr( "%1 - %2 (%3)" )
+                       .arg( device->name() )
+                       .arg( KFormat().formatByteSize( device->capacity() ) )
+                       .arg( device->deviceNode() );
+            // Newly LVM VGs don't have capacity property yet (i.e. always has 1B capacity), so don't show it for a while
+            else
+                return tr( "%1 - (%2)" )
+                        .arg( device->name() )
+                        .arg( device->deviceNode() );
+         }
     case Qt::DecorationRole:
         return CalamaresUtils::defaultPixmap( CalamaresUtils::PartitionDisk,
                                               CalamaresUtils::Original,
@@ -115,4 +124,32 @@ DeviceModel::swapDevice( Device* oldDevice, Device* newDevice )
     m_devices[ indexOfOldDevice ] = newDevice;
 
     emit dataChanged( index( indexOfOldDevice ), index( indexOfOldDevice ) );
+}
+
+void
+DeviceModel::addDevice( Device *device )
+{
+    beginResetModel();
+
+    m_devices << device;
+    std::sort( m_devices.begin(), m_devices.end(), []( const Device* dev1, const Device* dev2 )
+    {
+        return dev1->deviceNode() < dev2->deviceNode();
+    } );
+
+    endResetModel();
+}
+
+void
+DeviceModel::removeDevice( Device *device )
+{
+    beginResetModel();
+
+    m_devices.removeAll( device );
+    std::sort( m_devices.begin(), m_devices.end(), []( const Device* dev1, const Device* dev2 )
+    {
+        return dev1->deviceNode() < dev2->deviceNode();
+    } );
+
+    endResetModel();
 }

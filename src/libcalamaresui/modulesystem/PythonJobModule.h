@@ -23,7 +23,8 @@
 
 #include "UiDllMacro.h"
 
-namespace Calamares {
+namespace Calamares
+{
 
 class UIDLLEXPORT PythonJobModule : public Module
 {

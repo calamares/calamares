@@ -8,7 +8,7 @@
 #   Copyright 2014, Daniel Hillenbrand <codeworkx@bbqlinux.org>
 #   Copyright 2014, Benjamin Vaudour <benjamin.vaudour@yahoo.fr>
 #   Copyright 2014, Kevin Kofler <kevin.kofler@chello.at>
-#   Copyright 2015-2017, Philip Mueller <philm@manjaro.org>
+#   Copyright 2015-2018, Philip Mueller <philm@manjaro.org>
 #   Copyright 2016-2017, Teo Mrnjavac <teo@kde.org>
 #   Copyright 2017, Alf Gaida <agaida@siduction.org>
 #   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
@@ -167,6 +167,30 @@ def create_loader(loader_path):
             loader_file.write(line)
 
 
+def efi_label():
+    if "efiBootloaderId" in libcalamares.job.configuration:
+        efi_bootloader_id = libcalamares.job.configuration[
+                                "efiBootloaderId"]
+    else:
+        branding = libcalamares.globalstorage.value("branding")
+        efi_bootloader_id = branding["bootloaderEntryName"]
+
+    file_name_sanitizer = str.maketrans(" /", "_-")
+    return efi_bootloader_id.translate(file_name_sanitizer)
+
+
+def efi_word_size():
+    # get bitness of the underlying UEFI
+    try:
+        sysfile = open("/sys/firmware/efi/fw_platform_size", "r")
+        efi_bitness = sysfile.read(2)
+    except Exception:
+        # if the kernel is older than 4.0, the UEFI bitness likely isn't
+        # exposed to the userspace so we assume a 64 bit UEFI here
+        efi_bitness = "64"
+    return efi_bitness
+
+
 def install_systemd_boot(efi_directory):
     """
     Installs systemd-boot as bootloader for EFI setups.
@@ -218,22 +242,8 @@ def install_grub(efi_directory, fw_type):
         if not os.path.isdir(install_efi_directory):
             os.makedirs(install_efi_directory)
 
-        if "efiBootloaderId" in libcalamares.job.configuration:
-            efi_bootloader_id = libcalamares.job.configuration[
-                                    "efiBootloaderId"]
-        else:
-            branding = libcalamares.globalstorage.value("branding")
-            distribution = branding["bootloaderEntryName"]
-            file_name_sanitizer = str.maketrans(" /", "_-")
-            efi_bootloader_id = distribution.translate(file_name_sanitizer)
-        # get bitness of the underlying UEFI
-        try:
-            sysfile = open("/sys/firmware/efi/fw_platform_size", "r")
-            efi_bitness = sysfile.read(2)
-        except Exception:
-            # if the kernel is older than 4.0, the UEFI bitness likely isn't
-            # exposed to the userspace so we assume a 64 bit UEFI here
-            efi_bitness = "64"
+        efi_bootloader_id = efi_label()
+        efi_bitness = efi_word_size()
 
         if efi_bitness == "32":
             efi_target = "i386-efi"
@@ -299,6 +309,57 @@ def install_grub(efi_directory, fw_type):
                            "-o", libcalamares.job.configuration["grubCfg"]])
 
 
+def install_secureboot(efi_directory):
+    """
+    Installs the secureboot shim in the system by calling efibootmgr.
+    """
+    efi_bootloader_id = efi_label()
+
+    install_path = libcalamares.globalstorage.value("rootMountPoint")
+    install_efi_directory = install_path + efi_directory
+
+    if efi_word_size() == "64":
+        install_efi_bin = "shim64.efi"
+    else:
+        install_efi_bin = "shim.efi"
+
+    # Copied, roughly, from openSUSE's install script,
+    # and pythonified. *disk* is something like /dev/sda,
+    # while *drive* may return "(disk/dev/sda,gpt1)" ..
+    # we're interested in the numbers in the second part
+    # of that tuple.
+    efi_drive = subprocess.check_output([
+        libcalamares.job.configuration["grubProbe"],
+        "-t", "drive", "--device-map=", install_efi_directory])
+    efi_disk = subprocess.check_output([
+        libcalamares.job.configuration["grubProbe"],
+        "-t", "disk", "--device-map=", install_efi_directory])
+
+    efi_drive_partition = efi_drive.replace("(","").replace(")","").split(",")[1]
+    # Get the first run of digits from the partition
+    efi_partititon_number = None
+    c = 0
+    start = None
+    while c < len(efi_drive_partition):
+        if efi_drive_partition[c].isdigit() and start is None:
+            start = c
+        if not efi_drive_partition[c].isdigit() and start is not None:
+            efi_drive_number = efi_drive_partition[start:c]
+            break
+        c += 1
+    if efi_partititon_number is None:
+        raise ValueError("No partition number found for %s" % install_efi_directory)
+
+    subprocess.call([
+        libcalamares.job.configuration["efiBootMgr"],
+        "-c",
+        "-w",
+        "-L", efi_bootloader_id,
+        "-d", efi_disk,
+        "-p", efi_partititon_number,
+        "-l", install_efi_directory + "/" + install_efi_bin])
+
+
 def vfat_correct_case(parent, name):
     for candidate in os.listdir(parent):
         if name.lower() == candidate.lower():
@@ -320,8 +381,14 @@ def prepare_bootloader(fw_type):
 
     if efi_boot_loader == "systemd-boot" and fw_type == "efi":
         install_systemd_boot(efi_directory)
-    else:
+    elif efi_boot_loader == "sb-shim" and fw_type == "efi":
+        install_secureboot(efi_directory)
+    elif efi_boot_loader == "grub" or fw_type != "efi":
         install_grub(efi_directory, fw_type)
+    else:
+        libcalamares.utils.debug( "WARNING: the combination of "
+            "boot-loader '{!s}' and firmware '{!s}' "
+            "is not supported.".format(efi_boot_loader, fw_type) )
 
 
 def run():

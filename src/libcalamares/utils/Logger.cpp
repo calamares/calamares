@@ -31,6 +31,7 @@
 #include <QVariant>
 
 #include "utils/CalamaresUtils.h"
+#include "CalamaresVersion.h"
 
 #define LOGFILE_SIZE 1024 * 256
 
@@ -85,7 +86,7 @@ log( const char* msg, unsigned int debugLevel, bool toDisk = true )
 }
 
 
-void
+static void
 CalamaresLogHandler( QtMsgType type, const QMessageLogContext& context, const QString& msg )
 {
     static QMutex s_mutex;
@@ -118,7 +119,7 @@ CalamaresLogHandler( QtMsgType type, const QMessageLogContext& context, const QS
 QString
 logFile()
 {
-    return CalamaresUtils::appLogDir().filePath( "Calamares.log" );
+    return CalamaresUtils::appLogDir().filePath( "session.log" );
 }
 
 
@@ -145,9 +146,18 @@ setupLogfile()
         }
     }
 
+    // Since the log isn't open yet, this probably only goes to stdout
     cDebug() << "Using log file:" << logFile();
 
+    // Lock while (re-)opening the logfile
+    {
+    QMutexLocker lock( &s_mutex );
     logfile.open( logFile().toLocal8Bit(), std::ios::app );
+    if ( logfile.tellp() )
+        logfile << "\n\n" << std::endl;
+    logfile << "=== START CALAMARES " << CALAMARES_VERSION << std::endl;
+    }
+
     qInstallMessageHandler( CalamaresLogHandler );
 }
 
@@ -165,6 +175,24 @@ CLog::~CLog()
 
 CDebug::~CDebug()
 {
+}
+
+const char* continuation = "\n    ";
+
+QString toString( const QVariant& v )
+{
+    auto t = v.type();
+
+    if ( t == QVariant::List )
+    {
+        QStringList s;
+        auto l = v.toList();
+        for ( auto lit = l.constBegin(); lit != l.constEnd(); ++lit )
+            s << lit->toString();
+        return s.join(", ");
+    }
+    else
+        return v.toString();
 }
 
 }  // namespace

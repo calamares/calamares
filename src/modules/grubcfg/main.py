@@ -7,7 +7,7 @@
 #   Copyright 2015-2017, Teo Mrnjavac <teo@kde.org>
 #   Copyright 2017, Alf Gaida <agaida@siduction.org>
 #   Copyright 2017, Adriaan de Groot <groot@kde.org>
-#   Copyright 2017, Gabriel Craciunescu <crazy@frugalware.org>
+#   Copyright 2017-2018, Gabriel Craciunescu <crazy@frugalware.org>
 #
 #   Calamares is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -44,16 +44,21 @@ def modify_grub_default(partitions, root_mount_point, distributor):
     dracut_bin = libcalamares.utils.target_env_call(
         ["sh", "-c", "which dracut"]
         )
-    have_dracut = dracut_bin == 0  # Shell exit value 0 means success
+    plymouth_bin = libcalamares.utils.target_env_call(
+        ["sh", "-c", "which plymouth"]
+        )
+
+    # Shell exit value 0 means success
+    have_plymouth = plymouth_bin == 0
+    have_dracut = dracut_bin == 0
 
     use_splash = ""
     swap_uuid = ""
     swap_outer_uuid = ""
     swap_outer_mappername = None
 
-    if libcalamares.globalstorage.contains("hasPlymouth"):
-        if libcalamares.globalstorage.value("hasPlymouth"):
-            use_splash = "splash"
+    if have_plymouth:
+        use_splash = "splash"
 
     cryptdevice_params = []
 

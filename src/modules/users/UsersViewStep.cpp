@@ -1,7 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2017, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
  *   Copyright 2017, Gabriel Craciunescu <crazy@frugalware.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
@@ -22,9 +22,11 @@
 
 #include "UsersPage.h"
 
+#include "utils/CalamaresUtils.h"
 #include "utils/Logger.h"
-#include "JobQueue.h"
+
 #include "GlobalStorage.h"
+#include "JobQueue.h"
 
 CALAMARES_PLUGIN_FACTORY_DEFINITION( UsersViewStepFactory, registerPlugin<UsersViewStep>(); )
 
@@ -181,5 +183,12 @@ UsersViewStep::setConfigurationMap( const QVariantMap& configurationMap )
             m_widget->addPasswordCheck( i.key(), i.value() );
         }
     }
+
+    QString shell( QLatin1Literal( "/bin/bash" ) );  // as if it's not set at all
+    if ( configurationMap.contains( "userShell" ) )
+        shell = CalamaresUtils::getString( configurationMap, "userShell" );
+        // Now it might be explicitly set to empty, which is ok
+
+    Calamares::JobQueue::instance()->globalStorage()->insert( "userShell", shell );
 }
 

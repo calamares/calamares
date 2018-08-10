@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2016, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2018, Adriaan de Groot <groot.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -18,12 +19,19 @@
 
 #include "LocaleViewStep.h"
 
+#include "GeoIP.h"
+#include "GeoIPJSON.h"
+#ifdef HAVE_XML
+#include "GeoIPXML.h"
+#endif
+#include "GlobalStorage.h"
+#include "JobQueue.h"
 #include "LocalePage.h"
+
 #include "timezonewidget/localeglobal.h"
 #include "widgets/WaitingWidget.h"
-#include "JobQueue.h"
-#include "GlobalStorage.h"
 
+#include "utils/CalamaresUtils.h"
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
 #include "utils/YamlUtils.h"
@@ -110,54 +118,52 @@ LocaleViewStep::setUpPage()
 void
 LocaleViewStep::fetchGeoIpTimezone()
 {
+    QString actualUrl( m_geoipUrl );
+    GeoIP *handler = nullptr;
+
+    if ( m_geoipStyle.isEmpty() || m_geoipStyle == "legacy" )
+    {
+        actualUrl.append( "/json/" );
+        handler = new GeoIPJSON( m_geoipSelector );
+    }
+    else if ( m_geoipStyle == "json" )
+    {
+        handler = new GeoIPJSON( m_geoipSelector );
+    }
+#if defined(HAVE_XML)
+    else if ( m_geoipStyle == "xml" )
+    {
+        handler = new GeoIPXML( m_geoipSelector );
+    }
+#endif
+    else
+    {
+        cWarning() << "GeoIP Style" << m_geoipStyle << "is not recognized.";
+        setUpPage();
+        return;
+    }
+    cDebug() << "Fetching GeoIP data from" << actualUrl;
+
     QNetworkAccessManager *manager = new QNetworkAccessManager( this );
     connect( manager, &QNetworkAccessManager::finished,
             [=]( QNetworkReply* reply )
     {
         if ( reply->error() == QNetworkReply::NoError )
         {
-            QByteArray data = reply->readAll();
-
-            try
-            {
-                YAML::Node doc = YAML::Load( data );
-
-                QVariant var = CalamaresUtils::yamlToVariant( doc );
-                if ( !var.isNull() &&
-                    var.isValid() &&
-                    var.type() == QVariant::Map )
-                {
-                    QVariantMap map = var.toMap();
-                    if ( map.contains( "time_zone" ) &&
-                        !map.value( "time_zone" ).toString().isEmpty() )
-                    {
-                        QString timezoneString = map.value( "time_zone" ).toString();
-                        QStringList tzParts = timezoneString.split( '/', QString::SkipEmptyParts );
-                        if ( tzParts.size() >= 2 )
-                        {
-                            cDebug() << "GeoIP reporting" << timezoneString;
-                            QString region = tzParts.takeFirst();
-                            QString zone = tzParts.join( '/' );
-                            m_startingTimezone = qMakePair( region, zone );
-                        }
-                    }
-                }
-            }
-            catch ( YAML::Exception& e )
-            {
-                CalamaresUtils::explainYamlException( e, data, "GeoIP data");
-            }
+            auto tz = handler->processReply( reply->readAll() );
+            if ( !tz.first.isEmpty() )
+                m_startingTimezone = tz;
+            else
+                cWarning() << "GeoIP lookup at" << reply->url() << "failed.";
         }
-
+        delete handler;
         reply->deleteLater();
         manager->deleteLater();
         setUpPage();
     } );
 
     QNetworkRequest request;
-    QString requestUrl = QString( "%1/json" )
-                         .arg( QUrl::fromUserInput( m_geoipUrl ).toString() );
-    request.setUrl( QUrl( requestUrl ) );
+    request.setUrl( QUrl::fromUserInput( actualUrl ) );
     request.setAttribute( QNetworkRequest::FollowRedirectsAttribute, true );
     manager->get( request );
 }
@@ -287,10 +293,7 @@ LocaleViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     }
 
     // Optional
-    if ( configurationMap.contains( "geoipUrl" ) &&
-         configurationMap.value( "geoipUrl" ).type() == QVariant::String &&
-         !configurationMap.value( "geoipUrl" ).toString().isEmpty() )
-    {
-        m_geoipUrl = configurationMap.value( "geoipUrl" ).toString();
-    }
+    m_geoipUrl = CalamaresUtils::getString( configurationMap, "geoipUrl" );
+    m_geoipStyle = CalamaresUtils::getString( configurationMap, "geoipStyle" );
+    m_geoipSelector = CalamaresUtils::getString( configurationMap, "geoipSelector" );
 }

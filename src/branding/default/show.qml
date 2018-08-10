@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2015, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2018, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -24,12 +25,13 @@ Presentation
     id: presentation
 
     Timer {
+        id: advanceTimer
         interval: 5000
         running: false
         repeat: true
         onTriggered: presentation.goToNextSlide()
     }
-    
+
     Slide {
 
         Image {
@@ -48,7 +50,7 @@ Presentation
                   "To create a Calamares presentation in QML, import calamares.slideshow,<br/>"+
                   "define a Presentation element with as many Slide elements as needed."
             wrapMode: Text.WordWrap
-            width: root.width
+            width: presentation.width
             horizontalAlignment: Text.Center
         }
     }
@@ -60,4 +62,6 @@ Presentation
     Slide {
         centeredText: "This is a third Slide element."
     }
+
+    Component.onCompleted: advanceTimer.running = true
 }

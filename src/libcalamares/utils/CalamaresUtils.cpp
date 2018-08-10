@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2013-2016, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2018, Adriaan de Groot <groot@kde.org>
  *
  *   Originally from Tomahawk, portions:
  *   Copyright 2010-2011, Christian Muehlhaeuser <muesli@tomahawk-player.org>
@@ -33,11 +34,9 @@
 #include <QStandardPaths>
 #include <QTranslator>
 
-
-// stdc++
 #include <iostream>
 
-using namespace std;
+using std::cerr;
 
 namespace CalamaresUtils
 {
@@ -147,6 +146,14 @@ installTranslator( const QLocale& locale,
     if ( localeName == "C" )
         localeName = "en";
 
+    // Special case of sr@latin
+    //
+    // See top-level CMakeLists.txt about special cases for translation loading.
+    if ( locale.language() == QLocale::Language::Serbian && locale.script() == QLocale::Script::LatinScript )
+        localeName = QStringLiteral( "sr@latin" );
+
+    cDebug() << "Looking for translations for" << localeName;
+
     QTranslator* translator = nullptr;
 
     // Branding translations
@@ -167,11 +174,11 @@ installTranslator( const QLocale& locale,
                                    "_",
                                    brandingTranslationsDir.absolutePath() ) )
             {
-                cDebug() << "Translation: Branding using locale:" << localeName;
+                cDebug() << " .. Branding using locale:" << localeName;
             }
             else
             {
-                cDebug() << "Translation: Branding using default, system locale not found:" << localeName;
+                cDebug() << " .. Branding using default, system locale not found:" << localeName;
                 translator->load( brandingTranslationsPrefix + "en" );
             }
 
@@ -190,11 +197,11 @@ installTranslator( const QLocale& locale,
     translator = new QTranslator( parent );
     if ( translator->load( QString( ":/lang/calamares_" ) + localeName ) )
     {
-        cDebug() << "Translation: Calamares using locale:" << localeName;
+        cDebug() << " .. Calamares using locale:" << localeName;
     }
     else
     {
-        cDebug() << "Translation: Calamares using default, system locale not found:" << localeName;
+        cDebug() << " .. Calamares using default, system locale not found:" << localeName;
         translator->load( QString( ":/lang/calamares_en" ) );
     }
 
