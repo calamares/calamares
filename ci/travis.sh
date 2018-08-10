@@ -12,6 +12,8 @@ test -d "$D" || exit 1
 test -x "$D/travis-continuous.sh" || exit 1
 test -x "$D/travis-coverity.sh" || exit 1
 
+test -f "$D/travis-common.sh" && . "$D/travis-config.sh"
+
 if test "$TRAVIS_EVENT_TYPE" = "cron" ; then
   exec "$D/travis-coverity.sh"
 else

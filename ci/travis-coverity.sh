@@ -21,7 +21,7 @@ tar xvf coverity_tool.tar.gz -C "$BUILDDIR/coveritytool" --strip-components 2
 export PATH="$BUILDDIR/coveritytool/bin:$PATH"
 
 
-cmake -DCMAKE_BUILD_TYPE=Debug -DWEBVIEW_FORCE_WEBKIT=1 -DKDE_INSTALL_USE_QT_SYS_PATHS=ON $SRCDIR || exit 1
+cmake -DCMAKE_BUILD_TYPE=Debug $CMAKE_ARGS $SRCDIR || exit 1
 cov-build --dir cov-int make -j2
 
 tar caf calamares-ci.tar.xz cov-int
