@@ -44,6 +44,15 @@ file) should be enclosed in this form for translations
     text: qsTr("This is an example text.")
 ```
 
+If you use CMake for preparing branding for packaging, the macro
+`calamares_add_branding_subdirectory()`` (see also *Project Layout*,
+below) will convert the source `.ts` files to their compiled form).
+If you are packaging the branding by hand, use
+```
+    lrelease file_en.ts [file_en_GB.ts ..]
+```
+with all the language suffixes to *file*.
+
 ## Presentation
 
 The default QML classes provided by Calamares can be used for a simple
@@ -105,13 +114,6 @@ will have a top-level `CMakeLists.txt` that includes some boilerplate
 to find Calamares, and then adds a subdirectory which contains the
 actual branding component.
 
-Adding the subdirectory can be done as follows:
-
- - If the directory contains files only, and optionally has a single
-   subdirectory lang/ which contains the translation files for the
-   component, then `calamares_add_branding_subdirectory()` can be
-   used, which takes only the name of the subdirectory.
-
 The file layout in a typical branding component repository is:
 
 ```
@@ -127,9 +129,19 @@ The file layout in a typical branding component repository is:
      ...
 ```
 
+Adding the subdirectory can be done as follows:
+
+ - If the directory contains files only, and optionally has a single
+   subdirectory lang/ which contains the translation files for the
+   component, then `calamares_add_branding_subdirectory()` can be
+   used, which takes only the name of the subdirectory.
  - If the branding component has many files which are organized into
    subdirectories, use the SUBDIRECTORIES argument to the CMake function
    to additionally install files from those subdirectories. For example,
    if the component places all of its images in an `img/` subdirectory,
    then call `calamares_add_branding_subdirectory( ... SUBDIRECTORIES img)`.
    It is a bad idea to include `lang/` in the SUBDIRECTORIES list.
+ - The `.ts` files from the `lang/` subdirectory need be be compiled
+   to `.qm` files before being installed. The CMake macro's do this
+   automatically. For manual packaging, use `lrelease` to compile
+   the files.
