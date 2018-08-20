@@ -8,11 +8,11 @@
 #    intensive than the coverity add-on, but works on master.
 #
 D=`dirname "$0"`
-test -d "$D" || exit 1
-test -x "$D/travis-continuous.sh" || exit 1
-test -x "$D/travis-coverity.sh" || exit 1
+test -d "$D" || { echo "! No directory $D" ; exit 1 ; }
+test -x "$D/travis-continuous.sh" || { echo "! Missing -continuous" ; exit 1 ; }
+test -x "$D/travis-coverity.sh" || { echo "! Missing -coverity" ; exit 1 ; }
 
-test -f "$D/travis-common.sh" && . "$D/travis-config.sh"
+test -f "$D/travis-config.sh" && . "$D/travis-config.sh"
 
 if test "$TRAVIS_EVENT_TYPE" = "cron" ; then
   exec "$D/travis-coverity.sh"
