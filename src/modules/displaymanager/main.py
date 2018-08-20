@@ -778,7 +778,12 @@ def run():
     for dm in displaymanagers:
         impl = [ cls for name, cls in display_managers if name == dm ]
         if len(impl) == 1:
-            dm_message = impl[0]().set_autologin(username, default_desktop_environment, root_mount_point)
+            dm_impl = impl[0]()  # Instantiate the class that was named
+            dm_message = None
+            if enable_basic_setup:
+                dm_message = dm_impl.basic_setup()
+            if dm_message is None:
+                dm_message = dm_impl.set_autologin(username, default_desktop_environment, root_mount_point)
         else:
             dm_message = ("Can not configure {!s}".format(dm), "{!s} has {!d} implementation classes.".format(dm).format(len(impl)))
 
