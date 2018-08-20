@@ -1519,7 +1519,7 @@ A instalação pode continuar, mas alguns recursos podem ser desativados.</trans
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="200"/>
         <source>&lt;small&gt;If more than one person will use this computer, you can set up multiple accounts after installation.&lt;/small&gt;</source>
-        <translation>&lt;small&gt;Se mais de uma pessoa utilizará este computador, você pode definir múltiplas contas após a instalação.&lt;/small&gt;</translation>
+        <translation>&lt;small&gt;Se mais de uma pessoa utilizará este computador, você poderá definir múltiplas contas após a instalação.&lt;/small&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="335"/>

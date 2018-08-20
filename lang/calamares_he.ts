@@ -4,7 +4,7 @@
     <message>
         <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="69"/>
         <source>The &lt;strong&gt;boot environment&lt;/strong&gt; of this system.&lt;br&gt;&lt;br&gt;Older x86 systems only support &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Modern systems usually use &lt;strong&gt;EFI&lt;/strong&gt;, but may also show up as BIOS if started in compatibility mode.</source>
-        <translation>&lt;strong&gt;תצורת האתחול&lt;/strong&gt; של מערכת זו. &lt;br&gt;&lt;br&gt; מערכות x86 ישנות יותר תומכות אך ורק ב &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt; מערכות חדשות משתמשות בדרך כלל ב־&lt;strong&gt;EFI&lt;/strong&gt;, אך עשוית להופיע כ־BIOS אם הן מופעלות במצב תאימות לאחור.</translation>
+        <translation>&lt;strong&gt;תצורת האתחול&lt;/strong&gt; של מערכת זו. &lt;br&gt;&lt;br&gt; מערכות x86 ישנות יותר תומכות אך ורק ב־&lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt; מערכות חדשות משתמשות בדרך כלל ב־&lt;strong&gt;EFI&lt;/strong&gt;, אך עשוית להופיע כ־BIOS אם הן מופעלות במצב תאימות לאחור.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="79"/>
@@ -979,12 +979,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="41"/>
         <source>Format partition %1 (file system: %2, size: %3 MB) on %4.</source>
-        <translation>אתחל מחיצה %1 (מערכת קבצים: %2, גודל: %3 מ״ב) על %4.</translation>
+        <translation>אתחול מחיצה %1 (מערכת קבצים: %2, גודל: %3 מ״ב) על %4.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="52"/>
         <source>Format &lt;strong&gt;%3MB&lt;/strong&gt; partition &lt;strong&gt;%1&lt;/strong&gt; with file system &lt;strong&gt;%2&lt;/strong&gt;.</source>
-        <translation>אתחול מחיצה &lt;strong&gt;%1&lt;/strong&gt; בגודל &lt;strong&gt;%3 MB&lt;/strong&gt; עם מערכת קבצים &lt;strong&gt;%2&lt;/strong&gt;.</translation>
+        <translation>אתחול מחיצה &lt;strong&gt;%1&lt;/strong&gt; בגודל &lt;strong&gt;%3 מ״ב&lt;/strong&gt; עם מערכת קבצים &lt;strong&gt;%2&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="63"/>
@@ -994,7 +994,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/FormatPartitionJob.cpp" line="77"/>
         <source>The installer failed to format partition %1 on disk &apos;%2&apos;.</source>
-        <translation>אשף ההתקנה נכשל בעת אתחול המחיצה %1 על כונן &apos;%2&apos;.</translation>
+        <translation>אשף ההתקנה נכשל בעת אתחול המחיצה %1 על הכונן ‚%2’.</translation>
     </message>
 </context>
 <context>
@@ -1007,12 +1007,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="54"/>
         <source>Please install KDE Konsole and try again!</source>
-        <translation>אנא התקן את KDE Konsole ונסה שוב!</translation>
+        <translation>נא להתקין את KDE Konsole ולנסות שוב!</translation>
     </message>
     <message>
         <location filename="../src/modules/interactiveterminal/InteractiveTerminalPage.cpp" line="116"/>
         <source>Executing script: &amp;nbsp;&lt;code&gt;%1&lt;/code&gt;</source>
-        <translation>מריץ תסריט הרצה: &amp;nbsp; &lt;code&gt;%1&lt;/code&gt;</translation>
+        <translation>הסקריפט מופעל: &amp;nbsp; &lt;code&gt;%1&lt;/code&gt;</translation>
     </message>
 </context>
 <context>
@@ -1020,7 +1020,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/interactiveterminal/InteractiveTerminalViewStep.cpp" line="45"/>
         <source>Script</source>
-        <translation>תסריט הרצה</translation>
+        <translation>סקריפט</translation>
     </message>
 </context>
 <context>
@@ -1028,12 +1028,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="219"/>
         <source>Set keyboard model to %1.&lt;br/&gt;</source>
-        <translation>הגדר את דגם המקלדת ל %1.&lt;br/&gt;</translation>
+        <translation>הגדרת דגם המקלדת בתור %1.&lt;br/&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/KeyboardPage.cpp" line="221"/>
         <source>Set keyboard layout to %1/%2.</source>
-        <translation>הגדר את פריסת לוח המקשים ל %1/%2.</translation>
+        <translation>הגדרת פריסת לוח המקשים בתור %1/%2.</translation>
     </message>
 </context>
 <context>
@@ -1097,7 +1097,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="130"/>
         <source>Please review the End User License Agreements (EULAs) above.&lt;br/&gt;If you do not agree with the terms, proprietary software will not be installed, and open source alternatives will be used instead.</source>
-        <translation>אנא סקור את הסכם משתמש הקצה (EULA) מעלה.&lt;br/&gt; במידה ואינך מסכים עם התנאים, תוכנות קנייניות לא יותקנו, ותוכנות חליפיות מבוססות קוד פתוח יותקנו במקומן.</translation>
+        <translation>נא לעיין בהסכם משתמש הקצה (EULA) מעלה.&lt;br/&gt; אם התנאים אינם מקובלים עליך, לא תותקנה תכניות קנייניות, במקומן תותקנה תכניות חלופיות מבוססות קוד פתוח.</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="160"/>
@@ -1176,7 +1176,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/locale/LocalePage.cpp" line="398"/>
         <source>Set timezone to %1/%2.&lt;br/&gt;</source>
-        <translation>הגדרת אזור זמן ל %1/%2.&lt;br/&gt;</translation>
+        <translation>הגדרת אזור זמן בתור %1/%2.&lt;br/&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/LocalePage.cpp" line="480"/>
@@ -1369,7 +1369,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="209"/>
         <source>The password contains more than %1 characters of the same class consecutively</source>
-        <translation>הססמה מעילה יותר מ־%1 תווים מאותו הסוג ברצף</translation>
+        <translation>הססמה מכילה יותר מ־%1 תווים מאותו הסוג ברצף</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="210"/>
@@ -1517,7 +1517,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="200"/>
         <source>&lt;small&gt;If more than one person will use this computer, you can set up multiple accounts after installation.&lt;/small&gt;</source>
-        <translation>&lt;small&gt;במידה ויותר מאדם אחד ישתמש במחשב זה, תוכל להגדיר משתמשים נוספים לאחר ההתקנה.&lt;/small&gt;</translation>
+        <translation>&lt;small&gt;אם יותר מאדם אחד אמור להשתמש במחשב זה, ניתן להגדיר משתמשים נוספים לאחר ההתקנה.&lt;/small&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/users/page_usersetup.ui" line="335"/>
@@ -1585,7 +1585,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="203"/>
         <source>Swap</source>
-        <translation>דפדוף, Swap</translation>
+        <translation>דפדוף Swap</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="205"/>
@@ -1741,12 +1741,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="197"/>
         <source>&lt;strong&gt;Replace&lt;/strong&gt; a partition on disk &lt;strong&gt;%2&lt;/strong&gt; (%3) with %1.</source>
-        <translation>&lt;strong&gt;החלף&lt;/strong&gt; מחיצה על כונן &lt;strong&gt;%2&lt;/strong&gt; (%3) עם %1.</translation>
+        <translation>&lt;strong&gt;החלפת&lt;/strong&gt; מחיצה על כונן &lt;strong&gt;%2&lt;/strong&gt; (%3) ב־%1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="204"/>
         <source>&lt;strong&gt;Manual&lt;/strong&gt; partitioning on disk &lt;strong&gt;%1&lt;/strong&gt; (%2).</source>
-        <translation>מגדיר מחיצות באופן &lt;strong&gt;ידני&lt;/strong&gt; על כונן &lt;strong&gt;%1&lt;/strong&gt;(%2).</translation>
+        <translation>חלוקה למחיצות באופן &lt;strong&gt;ידני&lt;/strong&gt; על כונן &lt;strong&gt;%1&lt;/strong&gt; (%2).</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="212"/>
@@ -1771,22 +1771,22 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="401"/>
         <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;To configure an EFI system partition, go back and select or create a FAT32 filesystem with the &lt;strong&gt;esp&lt;/strong&gt; flag enabled and mount point &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;&lt;br/&gt;You can continue without setting up an EFI system partition but your system may fail to start.</source>
-        <translation>מחיצת מערכת EFI נדרשת בשביל להפעיל את %1.&lt;br/&gt;&lt;br/&gt; בכדי להגדיר מחיצת מערכת EFI, חזור ובחר או צור מערכת קבצים מסוג FAT32 עם סימון &lt;strong&gt;esp&lt;/strong&gt; מופעל ונקודת עיגון &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;&lt;br/&gt; ניתן להמשיך ללא הגדרת מחיצת מערכת EFI אך המערכת יכולה להיכשל בטעינה.</translation>
+        <translation>מחיצת מערכת EFI נדרשת כדי להפעיל את %1.&lt;br/&gt;&lt;br/&gt; כדי להגדיר מחיצת מערכת EFI, עליך לחזור ולבחור או ליצור מערכת קבצים מסוג FAT32 עם סימון &lt;strong&gt;esp&lt;/strong&gt; פעיל ועם נקודת עיגון &lt;strong&gt;%2&lt;/strong&gt;.&lt;br/&gt;&lt;br/&gt; ניתן להמשיך ללא הגדרת מחיצת מערכת EFI אך טעינת המערכת עשויה להיכשל.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="414"/>
         <source>EFI system partition flag not set</source>
-        <translation>סימון מחיצת מערכת EFI לא מוגדר</translation>
+        <translation>לא מוגדר סימון מחיצת מערכת EFI</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="415"/>
         <source>An EFI system partition is necessary to start %1.&lt;br/&gt;&lt;br/&gt;A partition was configured with mount point &lt;strong&gt;%2&lt;/strong&gt; but its &lt;strong&gt;esp&lt;/strong&gt; flag is not set.&lt;br/&gt;To set the flag, go back and edit the partition.&lt;br/&gt;&lt;br/&gt;You can continue without setting the flag but your system may fail to start.</source>
-        <translation>מחיצת מערכת EFI נדרשת להפעלת %1.&lt;br/&gt;&lt;br/&gt; מחיצה הוגדרה עם נקודת עיגון &lt;strong&gt;%2&lt;/strong&gt; אך סימון &lt;strong&gt;esp&lt;/strong&gt; לא הוגדר.&lt;br/&gt; בכדי לסמן את המחיצה, חזור וערוך את המחיצה.&lt;br/&gt;&lt;br/&gt; תוכל להמשיך ללא ביצוע הסימון אך המערכת יכולה להיכשל בטעינה.</translation>
+        <translation>לצורך הפעלת %1 נדרשת מחיצת מערכת EFI.&lt;br/&gt;&lt;br/&gt; הוגדרה מחיצה עם נקודת עיגון &lt;strong&gt;%2&lt;/strong&gt; אך לא הוגדר סימון &lt;strong&gt;esp&lt;/strong&gt;.&lt;br/&gt; כדי לסמן את המחיצה, עליך לחזור ולערוך את המחיצה.&lt;br/&gt;&lt;br/&gt; ניתן להמשיך ללא הוספת הסימון אך טעינת המערכת עשויה להיכשל.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="450"/>
         <source>Boot partition not encrypted</source>
-        <translation>מחיצת טעינת המערכת Boot לא מוצפנת.</translation>
+        <translation>מחיצת טעינת המערכת (Boot) אינה מוצפנת.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="451"/>
@@ -2453,14 +2453,14 @@ Output:
     <message>
         <location filename="../src/modules/tracking/page_trackingstep.ui" line="72"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;By selecting this, you will send &lt;span style=&quot; font-weight:600;&quot;&gt;no information at all&lt;/span&gt; about your installation.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;על ידי בחירת אפשרות זו, &lt;span style=&quot; font-weight:600;&quot;&gt;לא תשלח מידע כלל &lt;/span&gt;בנושא ההתקנה שלך.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;בחירה באפשרות זו, תוביל לכך &lt;span style=&quot; font-weight:600;&quot;&gt;שלא יישלח מידע כלל&lt;/span&gt; בנוגע ההתקנה שלך.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/tracking/page_trackingstep.ui" line="123"/>
         <location filename="../src/modules/tracking/page_trackingstep.ui" line="185"/>
         <location filename="../src/modules/tracking/page_trackingstep.ui" line="247"/>
         <source>TextLabel</source>
-        <translation>תָּוִית טקסט</translation>
+        <translation>תווית טקסט</translation>
     </message>
     <message>
         <location filename="../src/modules/tracking/page_trackingstep.ui" line="133"/>
@@ -2477,22 +2477,22 @@ Output:
     <message>
         <location filename="../src/modules/tracking/TrackingPage.cpp" line="44"/>
         <source>Install tracking helps %1 to see how many users they have, what hardware they install %1 to and (with the last two options below), get continuous information about preferred applications. To see what will be sent, please click the help icon next to each area.</source>
-        <translation>התקנת תכונת המעקב מסייעת ל %1 לראות את כמות המשתמשים, החומרה שעליה הם מתקינים את %1 ו(באמצעות שתי האפשרויות מטה), לקבל מידע מתמשך אודות תוכנות נבחרות. בכדי לראות את המידע שיישלח, אנא לחץ על צַלְמִית העזרה לצד כל תחום.</translation>
+        <translation>מעקב אחר ההתקנה מסייע ל־%1 לראות כמה משתמשים במוצר שלהם, על איזו חומרה מתבצעת ההתקנה של %1, בנוסף (לשתי האפשרויות הקודמות), קבלת מידע מתחדש על יישומים מועדפים. כדי לצפות בנתונים שיישלחו, נא לשלוח על סמל העזרה שליד כל אחד מהסעיפים.</translation>
     </message>
     <message>
         <location filename="../src/modules/tracking/TrackingPage.cpp" line="45"/>
         <source>By selecting this you will send information about your installation and hardware. This information will &lt;b&gt;only be sent once&lt;/b&gt; after the installation finishes.</source>
-        <translation>על ידי בחירת אפשרות זו יישלח מידע אודות ההתקנה והחומרה שלך. מידע זה &lt;b&gt;יישלח פעם אחת בלבד&lt;/b&gt; לאחר תום הליך ההתקנה.</translation>
+        <translation>בחירה באפשרות זו תוביל לשליחת מידע על ההתקנה והחומרה שלך. מידע זה &lt;b&gt;יישלח פעם אחת בלבד&lt;/b&gt; לאחר סיום ההתקנה.</translation>
     </message>
     <message>
         <location filename="../src/modules/tracking/TrackingPage.cpp" line="46"/>
         <source>By selecting this you will &lt;b&gt;periodically&lt;/b&gt; send information about your installation, hardware and applications, to %1.</source>
-        <translation>על ידי בחירת אפשרות זו יישלח &lt;b&gt;באופן קבוע&lt;/b&gt; מידע אודות ההתקנה, החומרה והתוכנות שלך, ל %1.</translation>
+        <translation>בחירה באפשרות הזאת תוביל לשליחת מידע &lt;b&gt;מדי פעם בפעם&lt;/b&gt; על ההתקנה, החומרה והיישומים שלך אל %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/tracking/TrackingPage.cpp" line="47"/>
         <source>By selecting this you will &lt;b&gt;regularly&lt;/b&gt; send information about your installation, hardware, applications and usage patterns, to %1.</source>
-        <translation>על ידי בחירת אפשרות זו יישלח &lt;b&gt;באופן קבוע&lt;/b&gt; מידע אודות ההתקנה, החומרה, התוכנות ודפוסי השימוש שלך, ל %1.</translation>
+        <translation>בחירה באפשרות זו תוביל לשליחת מידע &lt;b&gt;באופן קבוע&lt;/b&gt; על ההתקנה, החומרה, היישומים ודפוסי שימוש אל %1.</translation>
     </message>
 </context>
 <context>
@@ -2513,28 +2513,28 @@ Output:
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="295"/>
         <source>Your username contains invalid characters. Only lowercase letters and numbers are allowed.</source>
-        <translation>שם העמדה מכיל ערכים לא תקינים. ניתן להשתמש אך ורק באותיות קטנות ומספרים.</translation>
+        <translation>שם המחשב מכיל תווים בלתי תקינים. מותר להשתמש אך ורק באותיות ובמספרים.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="333"/>
         <source>Your hostname is too short.</source>
-        <translation>שם העמדה קצר מדי.</translation>
+        <translation>שם המחשב קצר מדי.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="339"/>
         <source>Your hostname is too long.</source>
-        <translation>שם העמדה ארוך מדי.</translation>
+        <translation>שם המחשב ארוך מדי.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="345"/>
         <source>Your hostname contains invalid characters. Only letters, numbers and dashes are allowed.</source>
-        <translation>שם העמדה מכיל ערכים לא תקינים. אך ורק אותיות, מספרים ומקפים מורשים.</translation>
+        <translation>שם המחשב מכיל תווים בלתי תקינים. מותר להשתמש אך ורק באותיות, במספרים ובמקפים.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/UsersPage.cpp" line="373"/>
         <location filename="../src/modules/users/UsersPage.cpp" line="417"/>
         <source>Your passwords do not match!</source>
-        <translation>הסיסמאות לא תואמות!</translation>
+        <translation>הססמאות לא תואמות!</translation>
     </message>
 </context>
 <context>
@@ -2575,7 +2575,7 @@ Output:
     <message>
         <location filename="../src/modules/welcome/WelcomePage.ui" line="146"/>
         <source>&amp;About</source>
-        <translation>&amp;אודות</translation>
+        <translation>על &amp;אודות</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="60"/>
