@@ -148,10 +148,7 @@ def set_autologin(username,
     :param default_desktop_environment:
     :param root_mount_point:
     """
-    do_autologin = True
-
-    if username is None:
-        do_autologin = False
+    do_autologin = (username is not None)
 
     if "mdm" == displaymanager:
         # Systems with MDM as Desktop Manager
