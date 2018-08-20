@@ -29,6 +29,15 @@ import re
 import libcalamares
 import configparser
 
+from libcalamares.utils import gettext_path, gettext_languages
+
+import gettext
+_translation = gettext.translation("calamares-python",
+                                   localedir=gettext_path(),
+                                   languages=gettext_languages(),
+                                   fallback=True)
+_ = _translation.gettext
+_n = _translation.ngettext
 
 class DesktopEnvironment:
     """
@@ -364,8 +373,8 @@ class DMkdm(DisplayManager):
                     kdm_conf.write(line)
         else:
             return (
-                "Cannot write KDM configuration file",
-                "KDM config file {!s} does not exist".format(kdm_conf_path)
+                _("Cannot write KDM configuration file"),
+                _("KDM config file {!s} does not exist").format(kdm_conf_path)
                 )
 
     def basic_setup(self):
@@ -426,8 +435,8 @@ class DMlxdm(DisplayManager):
                     lxdm_conf.write(line)
         else:
             return (
-                "Cannot write LXDM configuration file",
-                "LXDM config file {!s} does not exist".format(lxdm_conf_path)
+                _("Cannot write LXDM configuration file"),
+                _("LXDM config file {!s} does not exist").format(lxdm_conf_path)
                 )
 
     def basic_setup(self):
@@ -501,10 +510,8 @@ class DMlightdm(DisplayManager):
                             "#autologin-user=\n")
             except FileNotFoundError:
                 return (
-                    "Cannot write LightDM configuration file",
-                    "LightDM config file {!s} does not exist".format(
-                        lightdm_conf_path
-                        )
+                    _("Cannot write LightDM configuration file"),
+                    _("LightDM config file {!s} does not exist").format(lightdm_conf_path)
                     )
 
 
@@ -582,8 +589,8 @@ class DMlightdm(DisplayManager):
                     break
             else:
                 return (
-                    "Cannot configure LightDM",
-                    "No LightDM greeter installed."
+                    _("Cannot configure LightDM"),
+                    _("No LightDM greeter installed.")
                     )
 
 
@@ -614,8 +621,8 @@ class DMslim(DisplayManager):
                     slim_conf.write(line)
         else:
             return (
-                "Cannot write SLIM configuration file",
-                "SLIM config file {!s} does not exist".format(slim_conf_path)
+                _("Cannot write SLIM configuration file"),
+                _("SLIM config file {!s} does not exist").format(slim_conf_path)
                 )
 
 
@@ -730,9 +737,9 @@ def run():
 
     if not displaymanagers:
         return (
-            "No display managers selected for the displaymanager module.",
-            "The displaymanagers list is empty or undefined in both"
-            "globalstorage and displaymanager.conf."
+            _("No display managers selected for the displaymanager module."),
+            _("The displaymanagers list is empty or undefined in both"
+            "globalstorage and displaymanager.conf.")
             )
 
     # Get instances that are actually installed
@@ -762,8 +769,8 @@ def run():
 
     if not dm_impl:
         return (
-            "No display managers selected for the displaymanager module.",
-            "The list is empty after checking for installed display managers."
+            _("No display managers selected for the displaymanager module."),
+            _("The list is empty after checking for installed display managers.")
             )
 
 
@@ -810,5 +817,7 @@ def run():
             dm_setup_message.append("{!s}: {!s}".format(*dm_message))
 
     if dm_setup_message:
-        return ("Display manager configuration was incomplete",
-                "\n".join(dm_setup_message))
+        return (
+            _("Display manager configuration was incomplete"),
+            "\n".join(dm_setup_message)
+            )
