@@ -96,25 +96,25 @@ class DisplayManager(metaclass=abc.ABCMeta):
     def __init__(self, root_mount_point):
         self.root_mount_point = root_mount_point
 
-    def have_dm(cls):
-        if cls.executable is None:
+    def have_dm(self):
+        """
+        Is this DM installed in the target system?
+        The default implementation checks for `executable`
+        in the target system.
+        """
+        if self.executable is None:
             return True
 
-        bin_path = "{!s}/usr/bin/{!s}".format(self.root_mount_point, cls.executable)
-        sbin_path = "{!s}/usr/sbin/{!s}".format(self.root_mount_point, cls.executable)
+        bin_path = "{!s}/usr/bin/{!s}".format(self.root_mount_point, self.executable)
+        sbin_path = "{!s}/usr/sbin/{!s}".format(self.root_mount_point, self.executable)
         return (
             os.path.exists(bin_path)
             or os.path.exists(sbin_path)
             )
 
-    @abc.abstractmethod
-    def set_autologin(self, username, do_autologin, default_desktop_environment):
-        """
-        Configure the DM inside the given @p root_mount_point with
-        autologin (if @p do_autologin is True) for the given @p username.
-        If the DM supports it, set the default DE to @p default_desktop_environment
-        as well.
-        """
+    # The four abstract methods below are called in the order listed here.
+    # They must all be implemented by subclasses, but not all of them
+    # actually do something for all DMs.
 
     @abc.abstractmethod
     def basic_setup(self):
@@ -137,6 +137,15 @@ class DisplayManager(metaclass=abc.ABCMeta):
         Additional setup for the greeter.
         """
         # Most implementations do nothing
+
+    @abc.abstractmethod
+    def set_autologin(self, username, do_autologin, default_desktop_environment):
+        """
+        Configure the DM inside the given @p root_mount_point with
+        autologin (if @p do_autologin is True) for the given @p username.
+        If the DM supports it, set the default DE to @p default_desktop_environment
+        as well.
+        """
 
 
 class DMmdm(DisplayManager):
@@ -220,6 +229,9 @@ class DMmdm(DisplayManager):
                 self.root_mount_point
                 )
             )
+
+    def greeter_setup(self):
+        pass
 
 
 class DMgdm(DisplayManager):
@@ -305,6 +317,12 @@ class DMgdm(DisplayManager):
             ['chown', '-R', 'gdm:gdm', '/var/lib/gdm']
             )
 
+    def desktop_environment_setup(self, desktop_environment):
+        pass
+
+    def greeter_setup(self):
+        pass
+
 
 class DMkdm(DisplayManager):
     name = "kdm"
@@ -377,6 +395,12 @@ class DMkdm(DisplayManager):
             ['chown', '-R', '135:135', 'var/lib/kdm']
             )
 
+    def desktop_environment_setup(self, desktop_environment):
+        pass
+
+    def greeter_setup(self):
+        pass
+
 
 class DMlxdm(DisplayManager):
     name = "lxdm"
@@ -432,6 +456,9 @@ class DMlxdm(DisplayManager):
                 self.root_mount_point
                 )
             )
+
+    def greeter_setup(self):
+        pass
 
 
 class DMlightdm(DisplayManager):
@@ -592,6 +619,12 @@ class DMslim(DisplayManager):
     def basic_setup(self):
         pass
 
+    def desktop_environment_setup(self, desktop_environment):
+        pass
+
+    def greeter_setup(self):
+        pass
+
 
 class DMsddm(DisplayManager):
     name = "sddm"
@@ -630,6 +663,12 @@ class DMsddm(DisplayManager):
     def basic_setup(self):
         pass
 
+    def desktop_environment_setup(self, desktop_environment):
+        pass
+
+    def greeter_setup(self):
+        pass
+
 
 class DMsysconfig(DisplayManager):
     name = "sysconfig"
@@ -649,6 +688,12 @@ class DMsysconfig(DisplayManager):
 
 
     def basic_setup(self):
+        pass
+
+    def desktop_environment_setup(self, desktop_environment):
+        pass
+
+    def greeter_setup(self):
         pass
 
 
