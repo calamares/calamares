@@ -382,6 +382,7 @@ def run():
     If a displaymanager is in the list but not installed, a debugging message
     is printed and the entry ignored.
     """
+    displaymanagers = None
     if "displaymanagers" in libcalamares.job.configuration:
         displaymanagers = libcalamares.job.configuration["displaymanagers"]
 
