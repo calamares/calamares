@@ -98,8 +98,7 @@ erase(DeviceList& l, DeviceList::iterator& it)
 {
     Device* p = *it;
     auto r = l.erase( it );
-    if (p)
-        delete p;
+    delete p;
     return r;
 }
 
