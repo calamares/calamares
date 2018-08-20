@@ -23,16 +23,41 @@
 #   You should have received a copy of the GNU General Public License
 #   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
 
+import abc
 import os
-import collections
 import re
 import libcalamares
 import configparser
 
 
-DesktopEnvironment = collections.namedtuple(
-    'DesktopEnvironment', ['executable', 'desktop_file']
-    )
+class DesktopEnvironment(metaclass=abc.ABCMeta):
+    """
+    Desktop Environment base class. A subclass
+    implements DE maintainence for a specific DE.
+    """
+    executable = None
+    desktop_file = None
+
+    def find_desktop_environment(self, root_mount_point):
+        """
+        Check if this environment is installed in the
+        target system at @p root_mount_point.
+        """
+        return (
+            os.path.exists("{!s}{!s}".format(root_mount_point, self.executable)) and
+            os.path.exists("{!s}/usr/share/xsessions/{!s}.desktop".format(root_mount_point, self.desktop_file))
+            )
+
+    def __init__(self, exec, desktop):
+        self.executable = exec
+        self.desktop_file = desktop
+
+# Collect all the subclasses of DesktopEnvironment defined above,
+desktop_environments = [
+    c for c in globals().values()
+    if type(c) is abc.ABCMeta and issubclass(c, DesktopEnvironment) and c.desktop_file
+]
+
 
 desktop_environments = [
     DesktopEnvironment('/usr/bin/startkde', 'plasma'),  # KDE Plasma 5
@@ -63,14 +88,7 @@ def find_desktop_environment(root_mount_point):
     :return:
     """
     for desktop_environment in desktop_environments:
-        if (os.path.exists("{!s}{!s}".format(
-                    root_mount_point, desktop_environment.executable
-                    )
-                ) and os.path.exists(
-                    "{!s}/usr/share/xsessions/{!s}.desktop".format(
-                        root_mount_point, desktop_environment.desktop_file
-                    )
-                )):
+        if desktop_environment.find_desktop_environment(root_mount_point):
             return desktop_environment
     return None
 
