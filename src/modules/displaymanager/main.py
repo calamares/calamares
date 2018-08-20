@@ -731,7 +731,6 @@ def run():
             "globalstorage and displaymanager.conf."
             )
 
-    username = libcalamares.globalstorage.value("autologinUser")
     root_mount_point = libcalamares.globalstorage.value("rootMountPoint")
 
     if "default_desktop_environment" in libcalamares.job.configuration:
@@ -767,11 +766,12 @@ def run():
             libcalamares.utils.debug("{!s} selected but not installed".format(dm))
             displaymanagers.remove(dm)
 
+    username = libcalamares.globalstorage.value("autologinUser")
     if username is not None:
-        libcalamares.utils.debug(
-            "Setting up autologin for user {!s}.".format(username)
-            )
+        do_autologin = True
+        libcalamares.utils.debug("Setting up autologin for user {!s}.".format(username))
     else:
+        do_autologin = False
         libcalamares.utils.debug("Unsetting autologin.")
 
     libcalamares.globalstorage.insert("displayManagers", displaymanagers)
