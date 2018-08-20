@@ -581,7 +581,10 @@ class DMlightdm(DisplayManager):
                         )
                     break
             else:
-                return ("No lightdm greeter installed.")
+                return (
+                    "Cannot configure LightDM",
+                    "No LightDM greeter installed."
+                    )
 
 
 class DMslim(DisplayManager):
