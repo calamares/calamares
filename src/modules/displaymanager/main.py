@@ -119,7 +119,15 @@ class DisplayManager(metaclass=abc.ABCMeta):
         """
         Do basic setup (e.g. users, groups, directory creation) for this DM.
         """
+        # Some implementations do nothing
 
+    @abc.abstractmethod
+    def desktop_environment_setup(self, desktop_environment):
+        """
+        Configure the given @p desktop_environment as the default one, in
+        the configuration files for this DM.
+        """
+        # Many implementations do nothing
 
 class DMmdm(DisplayManager):
     name = "mdm"
@@ -192,6 +200,15 @@ class DMmdm(DisplayManager):
             )
         libcalamares.utils.target_env_call(
             ['chmod', '1770', '/var/lib/mdm']
+            )
+
+    def desktop_environment_setup(self, default_desktop_environment):
+        os.system(
+            "sed -i \"s|default.desktop|{!s}.desktop|g\" "
+            "{!s}/etc/mdm/custom.conf".format(
+                default_desktop_environment.desktop_file,
+                root_mount_point
+                )
             )
 
 
@@ -397,6 +414,15 @@ class DMlxdm(DisplayManager):
             ['chmod', '+r', '/etc/lxdm/lxdm.conf']
             )
 
+    def desktop_environment_setup(self, default_desktop_environment):
+        os.system(
+            "sed -i -e \"s|^.*session=.*|session={!s}|\" "
+            "{!s}/etc/lxdm/lxdm.conf".format(
+                default_desktop_environment.executable,
+                root_mount_point
+                )
+            )
+
 
 class DMlightdm(DisplayManager):
     name = "lightdm"
@@ -477,6 +503,15 @@ class DMlightdm(DisplayManager):
             )
         libcalamares.utils.target_env_call(
             ['chmod', '+r' '/etc/lightdm/lightdm.conf']
+            )
+
+    def desktop_environment_setup(self, default_desktop_environment):
+        os.system(
+            "sed -i -e \"s/^.*user-session=.*/user-session={!s}/\" "
+            "{!s}".format(
+                default_desktop_environment.desktop_file,
+                lightdm_conf_path
+                )
             )
 
 
@@ -680,15 +715,6 @@ def run():
                 root_mount_point, "etc/lightdm/lightdm.conf"
                 )
 
-            if default_desktop_environment is not None:
-                os.system(
-                    "sed -i -e \"s/^.*user-session=.*/user-session={!s}/\" "
-                    "{!s}".format(
-                        default_desktop_environment.desktop_file,
-                        lightdm_conf_path
-                        )
-                    )
-
             # configure lightdm-greeter
             greeter_path = os.path.join(
                 root_mount_point, "usr/share/xgreeters"
@@ -730,14 +756,7 @@ def run():
     # Setup mdm
     if "mdm" in displaymanagers:
         if have_dm("mdm", root_mount_point):
-            if default_desktop_environment is not None:
-                os.system(
-                    "sed -i \"s|default.desktop|{!s}.desktop|g\" "
-                    "{!s}/etc/mdm/custom.conf".format(
-                        default_desktop_environment.desktop_file,
-                        root_mount_point
-                        )
-                    )
+            pass
         else:
             libcalamares.utils.debug("mdm selected but not installed")
             displaymanagers.remove("mdm")
@@ -745,14 +764,7 @@ def run():
     # Setup lxdm
     if "lxdm" in displaymanagers:
         if have_dm("lxdm", root_mount_point):
-            if default_desktop_environment is not None:
-                os.system(
-                    "sed -i -e \"s|^.*session=.*|session={!s}|\" "
-                    "{!s}/etc/lxdm/lxdm.conf".format(
-                        default_desktop_environment.executable,
-                        root_mount_point
-                        )
-                    )
+            pass
         else:
             libcalamares.utils.debug("lxdm selected but not installed")
             displaymanagers.remove("lxdm")
@@ -782,6 +794,8 @@ def run():
             dm_message = None
             if enable_basic_setup:
                 dm_message = dm_impl.basic_setup()
+            if default_desktop_environment is not None and dm_message is None:
+                dm_message = dm_impl.desktop_environment_setup(default_desktop_environment)
             if dm_message is None:
                 dm_message = dm_impl.set_autologin(username, default_desktop_environment, root_mount_point)
         else:
