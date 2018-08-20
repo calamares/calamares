@@ -86,6 +86,40 @@ def find_desktop_environment(root_mount_point):
     return None
 
 
+class DisplayManager(metaclass=abc.ABCMeta):
+    """
+    Display Manager -- a base class for DM configuration.
+    """
+    name = None
+    executable = None
+
+    def have_dm(self, root_mount_point):
+        bin_path = "{!s}/usr/bin/{!s}".format(root_mount_point, self.executable)
+        sbin_path = "{!s}/usr/sbin/{!s}".format(root_mount_point, self.executable)
+        return (
+            os.path.exists(bin_path)
+            or os.path.exists(sbin_path)
+            )
+
+    @abc.abstractmethod
+    def set_autologin(self, username, do_autologin, root_mount_point, default_desktop_environment):
+        """
+        Configure the DM inside the given @p root_mount_point with
+        autologin (if @p do_autologin is True) for the given @p username.
+        If the DM supports it, set the default DE to @p default_desktop_environment
+        as well.
+        """
+
+
+# Collect all the subclasses of DisplayManager defined above,
+# and index them based on the name property of each class.
+display_managers = [
+    (c.name, c)
+    for c in globals().values()
+    if type(c) is abc.ABCMeta and issubclass(c, DisplayManager) and c.name
+]
+
+
 def have_dm(dm_name, root_mount_point):
     """
     Checks if display manager is properly installed.
