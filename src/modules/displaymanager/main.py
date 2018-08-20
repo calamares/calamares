@@ -724,7 +724,7 @@ def run():
     if libcalamares.globalstorage.contains("displayManagers"):
         displaymanagers = libcalamares.globalstorage.value("displayManagers")
 
-    if displaymanagers is None:
+    if not displaymanagers:
         return (
             "No display managers selected for the displaymanager module.",
             "The displaymanagers list is empty or undefined in both"
