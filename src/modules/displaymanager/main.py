@@ -93,20 +93,22 @@ class DisplayManager(metaclass=abc.ABCMeta):
     name = None
     executable = None
 
-    @classmethod
-    def have_dm(cls, root_mount_point):
+    def __init__(self, root_mount_point):
+        self.root_mount_point = root_mount_point
+
+    def have_dm(cls):
         if cls.executable is None:
             return True
 
-        bin_path = "{!s}/usr/bin/{!s}".format(root_mount_point, cls.executable)
-        sbin_path = "{!s}/usr/sbin/{!s}".format(root_mount_point, cls.executable)
+        bin_path = "{!s}/usr/bin/{!s}".format(self.root_mount_point, cls.executable)
+        sbin_path = "{!s}/usr/sbin/{!s}".format(self.root_mount_point, cls.executable)
         return (
             os.path.exists(bin_path)
             or os.path.exists(sbin_path)
             )
 
     @abc.abstractmethod
-    def set_autologin(self, username, do_autologin, root_mount_point, default_desktop_environment):
+    def set_autologin(self, username, do_autologin, default_desktop_environment):
         """
         Configure the DM inside the given @p root_mount_point with
         autologin (if @p do_autologin is True) for the given @p username.
@@ -141,9 +143,9 @@ class DMmdm(DisplayManager):
     name = "mdm"
     executable = "mdm"
 
-    def set_autologin(self, username, do_autologin, root_mount_point, default_desktop_environment):
+    def set_autologin(self, username, do_autologin, default_desktop_environment):
         # Systems with MDM as Desktop Manager
-        mdm_conf_path = os.path.join(root_mount_point, "etc/mdm/custom.conf")
+        mdm_conf_path = os.path.join(self.root_mount_point, "etc/mdm/custom.conf")
 
         if os.path.exists(mdm_conf_path):
             with open(mdm_conf_path, 'r') as mdm_conf:
@@ -215,7 +217,7 @@ class DMmdm(DisplayManager):
             "sed -i \"s|default.desktop|{!s}.desktop|g\" "
             "{!s}/etc/mdm/custom.conf".format(
                 default_desktop_environment.desktop_file,
-                root_mount_point
+                self.root_mount_point
                 )
             )
 
@@ -224,9 +226,9 @@ class DMgdm(DisplayManager):
     name = "gdm"
     executable = "gdm"
 
-    def set_autologin(self, username, do_autologin, root_mount_point, default_desktop_environment):
+    def set_autologin(self, username, do_autologin, default_desktop_environment):
         # Systems with GDM as Desktop Manager
-        gdm_conf_path = os.path.join(root_mount_point, "etc/gdm/custom.conf")
+        gdm_conf_path = os.path.join(self.root_mount_point, "etc/gdm/custom.conf")
 
         if os.path.exists(gdm_conf_path):
             with open(gdm_conf_path, 'r') as gdm_conf:
@@ -260,7 +262,7 @@ class DMgdm(DisplayManager):
 
         if (do_autologin):
             accountservice_dir = "{!s}/var/lib/AccountsService/users".format(
-                    root_mount_point
+                    self.root_mount_point
                     )
             userfile_path = "{!s}/{!s}".format(accountservice_dir, username)
             if os.path.exists(accountservice_dir):
@@ -308,10 +310,10 @@ class DMkdm(DisplayManager):
     name = "kdm"
     executable = "kdm"
 
-    def set_autologin(self, username, do_autologin, root_mount_point, default_desktop_environment):
+    def set_autologin(self, username, do_autologin, default_desktop_environment):
         # Systems with KDM as Desktop Manager
         kdm_conf_path = os.path.join(
-            root_mount_point, "usr/share/config/kdm/kdmrc"
+            self.root_mount_point, "usr/share/config/kdm/kdmrc"
             )
         # Check which path is in use: SUSE does something else.
         # Also double-check the default setting. Pick the first
@@ -320,7 +322,7 @@ class DMkdm(DisplayManager):
             "usr/share/config/kdm/kdmrc",
             "usr/share/kde4/config/kdm/kdmrc",
         ):
-            p = os.path.join(root_mount_point, candidate_kdmrc)
+            p = os.path.join(self.root_mount_point, candidate_kdmrc)
             if os.path.exists(p):
                 kdm_conf_path = p
                 break
@@ -380,9 +382,9 @@ class DMlxdm(DisplayManager):
     name = "lxdm"
     executable = "lxdm"
 
-    def set_autologin(self, username, do_autologin, root_mount_point, default_desktop_environment):
+    def set_autologin(self, username, do_autologin, default_desktop_environment):
         # Systems with LXDM as Desktop Manager
-        lxdm_conf_path = os.path.join(root_mount_point, "etc/lxdm/lxdm.conf")
+        lxdm_conf_path = os.path.join(self.root_mount_point, "etc/lxdm/lxdm.conf")
         text = []
 
         if os.path.exists(lxdm_conf_path):
@@ -427,7 +429,7 @@ class DMlxdm(DisplayManager):
             "sed -i -e \"s|^.*session=.*|session={!s}|\" "
             "{!s}/etc/lxdm/lxdm.conf".format(
                 default_desktop_environment.executable,
-                root_mount_point
+                self.root_mount_point
                 )
             )
 
@@ -436,13 +438,13 @@ class DMlightdm(DisplayManager):
     name = "lightdm"
     executable = "lightdm"
 
-    def set_autologin(self, username, do_autologin, root_mount_point, default_desktop_environment):
+    def set_autologin(self, username, do_autologin, default_desktop_environment):
         # Systems with LightDM as Desktop Manager
         # Ideally, we should use configparser for the ini conf file,
         # but we just do a simple text replacement for now, as it
         # worksforme(tm)
         lightdm_conf_path = os.path.join(
-            root_mount_point, "etc/lightdm/lightdm.conf"
+            self.root_mount_point, "etc/lightdm/lightdm.conf"
             )
         text = []
 
@@ -524,12 +526,12 @@ class DMlightdm(DisplayManager):
 
     def greeter_setup(self):
         lightdm_conf_path = os.path.join(
-            root_mount_point, "etc/lightdm/lightdm.conf"
+            self.root_mount_point, "etc/lightdm/lightdm.conf"
             )
 
         # configure lightdm-greeter
         greeter_path = os.path.join(
-            root_mount_point, "usr/share/xgreeters"
+            self.root_mount_point, "usr/share/xgreeters"
             )
 
         if (os.path.exists(greeter_path)):
@@ -559,9 +561,9 @@ class DMslim(DisplayManager):
     name = "slim"
     executable = "slim"
 
-    def set_autologin(self, username, do_autologin, root_mount_point, default_desktop_environment):
+    def set_autologin(self, username, do_autologin, default_desktop_environment):
         # Systems with Slim as Desktop Manager
-        slim_conf_path = os.path.join(root_mount_point, "etc/slim.conf")
+        slim_conf_path = os.path.join(self.root_mount_point, "etc/slim.conf")
         text = []
 
         if os.path.exists(slim_conf_path):
@@ -595,9 +597,9 @@ class DMsddm(DisplayManager):
     name = "sddm"
     executable = "sddm"
 
-    def set_autologin(self, username, do_autologin, root_mount_point, default_desktop_environment):
+    def set_autologin(self, username, do_autologin, default_desktop_environment):
         # Systems with Sddm as Desktop Manager
-        sddm_conf_path = os.path.join(root_mount_point, "etc/sddm.conf")
+        sddm_conf_path = os.path.join(self.root_mount_point, "etc/sddm.conf")
 
         sddm_config = configparser.ConfigParser(strict=False)
         # Make everything case sensitive
@@ -633,7 +635,7 @@ class DMsysconfig(DisplayManager):
     name = "sysconfig"
     executable = None
 
-    def set_autologin(self, username, do_autologin, root_mount_point, default_desktop_environment):
+    def set_autologin(self, username, do_autologin, default_desktop_environment):
         dmauto = "DISPLAYMANAGER_AUTOLOGIN"
 
         os.system(
@@ -641,7 +643,7 @@ class DMsysconfig(DisplayManager):
             "{!s}/etc/sysconfig/displaymanager".format(
                             dmauto, dmauto,
                             username if do_autologin else "",
-                            root_mount_point
+                            self.root_mount_point
                             )
             )
 
@@ -658,40 +660,6 @@ display_managers = [
     if type(c) is abc.ABCMeta and issubclass(c, DisplayManager) and c.name
 ]
 
-
-def have_dm(dm_name, root_mount_point):
-    """
-    Checks if display manager is properly installed.
-
-    :param dm_name:
-    :param root_mount_point:
-    :return:
-    """
-    bin_path = "{!s}/usr/bin/{!s}".format(root_mount_point, dm_name)
-    sbin_path = "{!s}/usr/sbin/{!s}".format(root_mount_point, dm_name)
-    return (os.path.exists(bin_path)
-            or os.path.exists(sbin_path)
-            )
-
-
-
-_ = """
-    if "mdm" == displaymanager:
-
-    if "gdm" == displaymanager:
-
-    if "kdm" == displaymanager:
-
-    if "lxdm" == displaymanager:
-
-    if "lightdm" == displaymanager:
-
-    if "slim" == displaymanager:
-
-    if "sddm" == displaymanager:
-
-    if "sysconfig" == displaymanager:
-"""
 
 def run():
     """
@@ -736,57 +704,23 @@ def run():
     else:
         enable_basic_setup = False
 
-    # Setup slim
-    if "slim" in displaymanagers:
-        if not have_dm("slim", root_mount_point):
-            libcalamares.utils.debug("slim selected but not installed")
-            displaymanagers.remove("slim")
-
-    # Setup sddm
-    if "sddm" in displaymanagers:
-        if not have_dm("sddm", root_mount_point):
-            libcalamares.utils.debug("sddm selected but not installed")
-            displaymanagers.remove("sddm")
-
-    # setup lightdm
-    if "lightdm" in displaymanagers:
-        if have_dm("lightdm", root_mount_point):
-            pass
+    dm_impl = []
+    for dm in displaymanagers:
+        # Find the implementation class
+        dm_impl = None
+        impl = [ cls for name, cls in display_managers if name == dm ]
+        if len(impl) == 1:
+            dm_instance = impl[0](root_mount_point)
+            if dm_instance.have_dm():
+                dm_impl.append(dm_instance)
+            else:
+                dm_impl = None
         else:
-            libcalamares.utils.debug("lightdm selected but not installed")
-            displaymanagers.remove("lightdm")
+            libcalamares.utils.debug("{!s} has {!d} implementation classes.".format(dm).format(len(impl)))
 
-    # Setup gdm
-    if "gdm" in displaymanagers:
-        if have_dm("gdm", root_mount_point):
-            pass
-        else:
-            libcalamares.utils.debug("gdm selected but not installed")
-            displaymanagers.remove("gdm")
-
-    # Setup mdm
-    if "mdm" in displaymanagers:
-        if have_dm("mdm", root_mount_point):
-            pass
-        else:
-            libcalamares.utils.debug("mdm selected but not installed")
-            displaymanagers.remove("mdm")
-
-    # Setup lxdm
-    if "lxdm" in displaymanagers:
-        if have_dm("lxdm", root_mount_point):
-            pass
-        else:
-            libcalamares.utils.debug("lxdm selected but not installed")
-            displaymanagers.remove("lxdm")
-
-    # Setup kdm
-    if "kdm" in displaymanagers:
-        if have_dm("kdm", root_mount_point):
-            pass
-        else:
-            libcalamares.utils.debug("kdm selected but not installed")
-            displaymanagers.remove("kdm")
+        if dm_impl is None:
+            libcalamares.utils.debug("{!s} selected but not installed".format(dm))
+            displaymanagers.remove(dm)
 
     if username is not None:
         libcalamares.utils.debug(
@@ -798,19 +732,16 @@ def run():
     libcalamares.globalstorage.insert("displayManagers", displaymanagers)
 
     dm_setup_message = []
-    for dm in displaymanagers:
-        impl = [ cls for name, cls in display_managers if name == dm ]
-        if len(impl) == 1:
-            dm_impl = impl[0]()  # Instantiate the class that was named
-            dm_message = None
-            if enable_basic_setup:
-                dm_message = dm_impl.basic_setup()
-            if default_desktop_environment is not None and dm_message is None:
-                dm_message = dm_impl.desktop_environment_setup(default_desktop_environment)
-            if dm_message is None:
-                dm_message = dm_impl.set_autologin(username, default_desktop_environment, root_mount_point)
-        else:
-            dm_message = ("Can not configure {!s}".format(dm), "{!s} has {!d} implementation classes.".format(dm).format(len(impl)))
+    for dm in dm_impl:
+        dm_message = None
+        if enable_basic_setup:
+            dm_message = dm.basic_setup()
+        if default_desktop_environment is not None and dm_message is None:
+            dm_message = dm.desktop_environment_setup(default_desktop_environment)
+        if dm_message is None:
+            dm_message = dm.greeter_setup()
+        if dm_message is None:
+            dm_message = dm.set_autologin(username, do_autologin, default_desktop_environment)
 
         if dm_message is not None:
             dm_setup_message.append("{!s}: {!s}".format(*dm_message))
