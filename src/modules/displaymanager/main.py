@@ -717,6 +717,7 @@ def run():
     If a displaymanager is in the list but not installed, a debugging message
     is printed and the entry ignored.
     """
+    # Get configuration settings for display managers
     displaymanagers = None
     if "displaymanagers" in libcalamares.job.configuration:
         displaymanagers = libcalamares.job.configuration["displaymanagers"]
@@ -731,8 +732,39 @@ def run():
             "globalstorage and displaymanager.conf."
             )
 
+    # Get instances that are actually installed
     root_mount_point = libcalamares.globalstorage.value("rootMountPoint")
+    dm_impl = []
+    dm_names = displaymanagers[:]
+    if ("sysconfigSetup" in libcalamares.job.configuration
+            and libcalamares.job.configuration["sysconfigSetup"]):
+        dm_names.append("sysconfig")
+    for dm in dm_names:
+        # Find the implementation class
+        dm_instance = None
+        impl = [ cls for name, cls in display_managers if name == dm ]
+        if len(impl) == 1:
+            dm_instance = impl[0](root_mount_point)
+            if dm_instance.have_dm():
+                dm_impl.append(dm_instance)
+            else:
+                dm_instance = None
+        else:
+            libcalamares.utils.debug("{!s} has {!d} implementation classes.".format(dm).format(len(impl)))
 
+        if dm_instance is None:
+            libcalamares.utils.debug("{!s} selected but not installed".format(dm))
+            if dm in displaymanagers:
+                displaymanagers.remove(dm)
+
+    if not dm_impl:
+        return (
+            "No display managers selected for the displaymanager module.",
+            "The list is empty after checking for installed display managers."
+            )
+
+
+    # Pick up remaining settings
     if "default_desktop_environment" in libcalamares.job.configuration:
         entry = libcalamares.job.configuration["defaultDesktopEnvironment"]
         default_desktop_environment = DesktopEnvironment(
@@ -748,24 +780,6 @@ def run():
     else:
         enable_basic_setup = False
 
-    dm_impl = []
-    for dm in displaymanagers:
-        # Find the implementation class
-        dm_impl = None
-        impl = [ cls for name, cls in display_managers if name == dm ]
-        if len(impl) == 1:
-            dm_instance = impl[0](root_mount_point)
-            if dm_instance.have_dm():
-                dm_impl.append(dm_instance)
-            else:
-                dm_impl = None
-        else:
-            libcalamares.utils.debug("{!s} has {!d} implementation classes.".format(dm).format(len(impl)))
-
-        if dm_impl is None:
-            libcalamares.utils.debug("{!s} selected but not installed".format(dm))
-            displaymanagers.remove(dm)
-
     username = libcalamares.globalstorage.value("autologinUser")
     if username is not None:
         do_autologin = True
@@ -776,6 +790,7 @@ def run():
 
     libcalamares.globalstorage.insert("displayManagers", displaymanagers)
 
+    # Do the actual configuration and collect messages
     dm_setup_message = []
     for dm in dm_impl:
         dm_message = None
@@ -790,10 +805,6 @@ def run():
 
         if dm_message is not None:
             dm_setup_message.append("{!s}: {!s}".format(*dm_message))
-
-    if ("sysconfigSetup" in libcalamares.job.configuration
-            and libcalamares.job.configuration["sysconfigSetup"]):
-        set_autologin(username, "sysconfig", None, root_mount_point)
 
     if dm_setup_message:
         return ("Display manager configuration was incomplete",
