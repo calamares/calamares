@@ -30,13 +30,16 @@ import libcalamares
 import configparser
 
 
-class DesktopEnvironment(metaclass=abc.ABCMeta):
+class DesktopEnvironment:
     """
-    Desktop Environment base class. A subclass
-    implements DE maintainence for a specific DE.
+    Desktop Environment -- some utility functions for a desktop
+    environment (e.g. finding out if it is installed). This
+    is independent of the *Display Manager*, which is what
+    we're configuring in this module.
     """
-    executable = None
-    desktop_file = None
+    def __init__(self, exec, desktop):
+        self.executable = exec
+        self.desktop_file = desktop
 
     def find_desktop_environment(self, root_mount_point):
         """
@@ -47,16 +50,6 @@ class DesktopEnvironment(metaclass=abc.ABCMeta):
             os.path.exists("{!s}{!s}".format(root_mount_point, self.executable)) and
             os.path.exists("{!s}/usr/share/xsessions/{!s}.desktop".format(root_mount_point, self.desktop_file))
             )
-
-    def __init__(self, exec, desktop):
-        self.executable = exec
-        self.desktop_file = desktop
-
-# Collect all the subclasses of DesktopEnvironment defined above,
-desktop_environments = [
-    c for c in globals().values()
-    if type(c) is abc.ABCMeta and issubclass(c, DesktopEnvironment) and c.desktop_file
-]
 
 
 desktop_environments = [
