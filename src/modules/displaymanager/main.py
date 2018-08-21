@@ -541,13 +541,9 @@ class DMlightdm(DisplayManager):
                     ]
                 )
 
-        libcalamares.utils.target_env_call('passwd', '-l', 'lightdm')
-        libcalamares.utils.target_env_call(
-            ['chown', '-R', 'lightdm:lightdm', '/run/lightdm']
-            )
-        libcalamares.utils.target_env_call(
-            ['chmod', '+r' '/etc/lightdm/lightdm.conf']
-            )
+        libcalamares.utils.target_env_call(['passwd', '-l', 'lightdm'])
+        libcalamares.utils.target_env_call(['chown', '-R', 'lightdm:lightdm', '/run/lightdm'])
+        libcalamares.utils.target_env_call(['chmod', '+r' '/etc/lightdm/lightdm.conf'])
 
     def desktop_environment_setup(self, default_desktop_environment):
         os.system(
