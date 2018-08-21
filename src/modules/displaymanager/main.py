@@ -399,7 +399,7 @@ def run():
     username = libcalamares.globalstorage.value("autologinUser")
     root_mount_point = libcalamares.globalstorage.value("rootMountPoint")
 
-    if "default_desktop_environment" in libcalamares.job.configuration:
+    if "defaultDesktopEnvironment" in libcalamares.job.configuration:
         entry = libcalamares.job.configuration["defaultDesktopEnvironment"]
         default_desktop_environment = DesktopEnvironment(
             entry["executable"], entry["desktopFile"]
