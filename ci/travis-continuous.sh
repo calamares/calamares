@@ -12,4 +12,5 @@ test -f $SRCDIR/CMakeLists.txt || { echo "! Missing $SRCDIR/CMakeLists.txt" ; ex
 
 cd $BUILDDIR || exit 1
 
+echo "# cmake $CMAKE_ARGS $SRCDIR"
 cmake $CMAKE_ARGS $SRCDIR && make -j2 && make install DESTDIR=/build/INSTALL_ROOT

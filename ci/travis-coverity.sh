@@ -20,6 +20,7 @@ mkdir "$BUILDDIR/coveritytool"
 tar xvf coverity_tool.tar.gz -C "$BUILDDIR/coveritytool" --strip-components 2
 export PATH="$BUILDDIR/coveritytool/bin:$PATH"
 
+echo "# cmake -DCMAKE_BUILD_TYPE=Debug $CMAKE_ARGS $SRCDIR"
 cmake -DCMAKE_BUILD_TYPE=Debug $CMAKE_ARGS $SRCDIR || exit 1
 cov-build --dir cov-int make -j2
 
