@@ -5,11 +5,16 @@ website will have to do for older versions.
 
 = 3.2.2 (unreleased) =
 
+This release contains contributions from (alphabetically by first name):
+ - Andrius Štikonas
+ - artoo@cromnix.org
+ - Caio Carvalho
+ - Philip Müller
+ - Simon Quigley
+ - Walter Lapchynski
+
 == Core ==
 
- * Contributions from the following people (alphabetically by first name):
-   - artoo@cromnix.org
-   - Caio Carvalho
  * Example configurations are **no longer installed** by default.
    The default setting for *INSTALL_CONFIG* has changed. Distributions
    are strongly encouraged to write their own configuration files and
@@ -45,6 +50,14 @@ website will have to do for older versions.
    a bad configuration). The configuration is a little more flexible
    because a service (or target) name can be used on its own with
    sensible defaults.
+ * The displaymanager module has been entirely revamped. A long-standing
+   bug which ignored the settings for default desktop has been fixed
+   (thanks to Walter Lapchynski). Translations have been added to the
+   error messages. Each DM now has an implementation class for doing
+   all the configuration steps it needs. This groups the code needed for
+   a specific DM (and presumably, per-distro) in one place.
+   Distro's are **strongly advised** to re-test their DM configuration
+   and installation with the revamped code.
 
 **3.2.1** (2018-06-25)
 
