@@ -62,6 +62,12 @@ def modify_grub_default(partitions, root_mount_point, distributor):
 
     cryptdevice_params = []
 
+    # GRUB needs to decrypt the partition that /boot is on, which may be / or /boot
+    boot_mountpoint = "/"
+    for partition in partitions:
+        if partition["mountPoint"] == "/boot":
+            boot_mountpoint = "/boot"
+
     if have_dracut:
         for partition in partitions:
             has_luks = "luksMapperName" in partition
@@ -72,7 +78,7 @@ def modify_grub_default(partitions, root_mount_point, distributor):
                 swap_outer_uuid = partition["luksUuid"]
                 swap_outer_mappername = partition["luksMapperName"]
 
-            if (partition["mountPoint"] == "/" and has_luks):
+            if (partition["mountPoint"] == boot_mountpoint and has_luks):
                 cryptdevice_params = [
                     "rd.luks.uuid={!s}".format(partition["luksUuid"])
                     ]
@@ -82,7 +88,7 @@ def modify_grub_default(partitions, root_mount_point, distributor):
             if partition["fs"] == "linuxswap" and not has_luks:
                 swap_uuid = partition["uuid"]
 
-            if (partition["mountPoint"] == "/" and has_luks):
+            if (partition["mountPoint"] == boot_mountpoint and has_luks):
                 cryptdevice_params = [
                     "cryptdevice=UUID={!s}:{!s}".format(
                         partition["luksUuid"], partition["luksMapperName"]
