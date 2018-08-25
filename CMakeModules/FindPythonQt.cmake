@@ -24,7 +24,7 @@ string(REGEX REPLACE
 )
 
 if(NOT EXISTS "${PYTHONQT_INSTALL_DIR}")
-  find_path(PYTHONQT_INSTALL_DIR include/PythonQt/PythonQt.h DOC "Directory where PythonQt was installed.")
+  find_path(PYTHONQT_INSTALL_DIR include/PythonQt5/PythonQt.h DOC "Directory where PythonQt was installed.")
 endif()
 # XXX Since PythonQt 3.0 is not yet cmakeified, depending
 #     on how PythonQt is built, headers will not always be
@@ -32,7 +32,7 @@ endif()
 #     is added as an option. See [1] for more details.
 #     [1] https://github.com/commontk/CTK/pull/538#issuecomment-86106367
 find_path(PYTHONQT_INCLUDE_DIR PythonQt.h
-  PATHS "${PYTHONQT_INSTALL_DIR}/include/PythonQt"
+  PATHS "${PYTHONQT_INSTALL_DIR}/include/PythonQt5"
         "${PYTHONQT_INSTALL_DIR}/src"
   DOC "Path to the PythonQt include directory")
 
