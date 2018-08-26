@@ -3,7 +3,7 @@
 #
 # === This file is part of Calamares - <https://github.com/calamares> ===
 #
-#   Copyright 2014-2017, Philip Müller <philm@manjaro.org>
+#   Copyright 2014-2018, Philip Müller <philm@manjaro.org>
 #   Copyright 2014-2015, Teo Mrnjavac <teo@kde.org>
 #   Copyright 2014, Kevin Kofler <kevin.kofler@chello.at>
 #   Copyright 2017, Alf Gaida <agaida@siduction.org>
@@ -64,6 +64,12 @@ class DesktopEnvironment:
 desktop_environments = [
     DesktopEnvironment('/usr/bin/startkde', 'plasma'),  # KDE Plasma 5
     DesktopEnvironment('/usr/bin/startkde', 'kde-plasma'),  # KDE Plasma 4
+    DesktopEnvironment(
+        '/usr/bin/budgie-desktop', 'budgie-desktop'  # Budgie v10
+        ),
+    DesktopEnvironment(
+        '/usr/bin/budgie-session', 'budgie-desktop'  # Budgie v8
+        ),
     DesktopEnvironment('/usr/bin/gnome-session', 'gnome'),
     DesktopEnvironment('/usr/bin/startxfce4', 'xfce'),
     DesktopEnvironment('/usr/bin/cinnamon-session-cinnamon', 'cinnamon'),
@@ -74,8 +80,6 @@ desktop_environments = [
     DesktopEnvironment('/usr/bin/lxqt-session', 'lxqt'),
     DesktopEnvironment('/usr/bin/pekwm', 'pekwm'),
     DesktopEnvironment('/usr/bin/pantheon-session', 'pantheon'),
-    DesktopEnvironment('/usr/bin/budgie-session', 'budgie-session'),
-    DesktopEnvironment('/usr/bin/budgie-desktop', 'budgie-desktop'),
     DesktopEnvironment('/usr/bin/i3', 'i3'),
     DesktopEnvironment('/usr/bin/startdde', 'deepin'),
     DesktopEnvironment('/usr/bin/openbox-session', 'openbox')
@@ -548,9 +552,9 @@ class DMlightdm(DisplayManager):
     def desktop_environment_setup(self, default_desktop_environment):
         os.system(
             "sed -i -e \"s/^.*user-session=.*/user-session={!s}/\" "
-            "{!s}".format(
+            "{!s}/etc/lightdm/lightdm.conf".format(
                 default_desktop_environment.desktop_file,
-                lightdm_conf_path
+                self.root_mount_point
                 )
             )
 
