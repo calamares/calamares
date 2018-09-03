@@ -48,7 +48,8 @@ endif()
 
 if( WITH_PYTHONQT )
     include_directories(${PYTHON_INCLUDE_DIRS})
-    include_directories(${PYTHONQT_INCLUDE_DIR})
+    # *_DIRS because we also use extensions
+    include_directories(${PYTHONQT_INCLUDE_DIRS})
 
     list( APPEND calamaresui_SOURCES
         modulesystem/PythonQtViewModule.cpp

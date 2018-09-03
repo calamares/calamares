@@ -31,7 +31,7 @@
 #include "JobQueue.h"
 
 #include <PythonQt.h>
-#include <extensions/PythonQt_QtAll/PythonQt_QtAll.h>
+#include <PythonQt_QtAll.h>
 
 #include <QDir>
 #include <QPointer>

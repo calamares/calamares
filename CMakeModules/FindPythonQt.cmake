@@ -2,6 +2,9 @@
 #
 # Sets PYTHONQT_FOUND, PYTHONQT_INCLUDE_DIR, PYTHONQT_LIBRARY, PYTHONQT_LIBRARIES
 #
+# Also sets PYTHONQT_INCLUDE_DIRS to add whatever directories
+#   that are needed for extensions.
+#
 
 # Python is required
 find_package(PythonLibs)
