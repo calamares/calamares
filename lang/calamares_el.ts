@@ -50,7 +50,7 @@
     <message>
         <location filename="../src/libcalamaresui/viewpages/BlankViewStep.cpp" line="69"/>
         <source>Blank Page</source>
-        <translation type="unfinished"/>
+        <translation>Κενή Σελίδα</translation>
     </message>
 </context>
 <context>
@@ -192,7 +192,7 @@
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="179"/>
         <source>Calamares Initialization Failed</source>
-        <translation type="unfinished"/>
+        <translation>Η αρχικοποίηση του Calamares απέτυχε</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="180"/>
@@ -207,7 +207,7 @@
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="277"/>
         <source>&amp;Install</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Εγκατάσταση</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="325"/>
@@ -249,17 +249,17 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="243"/>
         <source>&amp;Install now</source>
-        <translation>Ε&amp;γκατάσταση τώρα</translation>
+        <translation>&amp;Εγκατάσταση τώρα</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="244"/>
         <source>Go &amp;back</source>
-        <translation>Μετάβαση πί&amp;σω</translation>
+        <translation>Μετάβαση &amp;πίσω</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="283"/>
         <source>&amp;Done</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Ολοκληρώθηκε</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="284"/>
@@ -2087,7 +2087,7 @@ Output:
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="163"/>
         <source>The screen is too small to display the installer.</source>
-        <translation type="unfinished"/>
+        <translation>Η οθόνη είναι πολύ μικρή για να απεικονίσει το πρόγραμμα εγκατάστασης</translation>
     </message>
 </context>
 <context>
@@ -2173,17 +2173,17 @@ Output:
         <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="323"/>
         <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="329"/>
         <source>Failed to write to %1</source>
-        <translation type="unfinished"/>
+        <translation>Αδυναμία εγγραφής στο %1</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="322"/>
         <source>Failed to write keyboard configuration for X11.</source>
-        <translation type="unfinished"/>
+        <translation>Αδυναμία εγγραφής στοιχείων διαμόρφωσης πληκτρολογίου για Χ11</translation>
     </message>
     <message>
         <location filename="../src/modules/keyboard/SetKeyboardLayoutJob.cpp" line="328"/>
         <source>Failed to write keyboard configuration to existing /etc/default directory.</source>
-        <translation type="unfinished"/>
+        <translation>Αδυναμία εγγραφής στοιχείων διαμόρφωσης πληκτρολογίου στον υπάρχων κατάλογο /etc/default</translation>
     </message>
 </context>
 <context>
