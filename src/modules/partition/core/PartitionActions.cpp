@@ -160,7 +160,7 @@ doAutopartition( PartitionCoreModule* core, Device* dev, const QString& luksPass
             FileSystem::Fat32,
             firstFreeSector,
             lastSector,
-            PartitionTable::FlagEsp
+            PartitionTable::FlagNone
         );
         PartitionInfo::setFormat( efiPartition, true );
         PartitionInfo::setMountPoint( efiPartition, gs->value( "efiSystemPartition" )
