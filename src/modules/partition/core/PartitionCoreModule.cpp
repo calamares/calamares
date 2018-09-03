@@ -79,8 +79,8 @@ class OperationHelper
 {
 public:
     OperationHelper( PartitionModel* model, PartitionCoreModule* core )
-        : m_modelHelper( model )
-        , m_coreHelper( core )
+        : m_coreHelper( core )
+        , m_modelHelper( model )
     {
     }
 
@@ -89,9 +89,10 @@ public:
 
 private:
     // Keep these in order: first the model needs to finish,
-    // then refresh is called.
-    PartitionModel::ResetHelper m_modelHelper;
+    // then refresh is called. Remember that destructors are
+    // called in *reverse* order of declaration in this class.
     PartitionCoreModule::RefreshHelper m_coreHelper;
+    PartitionModel::ResetHelper m_modelHelper;
 } ;
 
 
