@@ -42,11 +42,20 @@ find_path(PYTHONQT_INCLUDE_DIR PythonQt.h
         "${PYTHONQT_INSTALL_DIR}/include/PythonQt5"
         "${PYTHONQT_INSTALL_DIR}/src"
     DOC "Path to the PythonQt include directory")
+find_path(PYTHONQT_ALL_INCLUDE_DIR PythonQt_QtAll.h
+    PATHS
+        "${PYTHONQT_INCLUDE_DIR}"
+        "${PYTHONQT_INSTALL_DIR}"
+    PATH_SUFFIXES
+        "extensions/PythonQt_QtAll"
+        "src"
+    DOC "Path to the PythonQt 'all' header")
 
 if ( NOT PythonQt_FIND_QUIETLY )
     message( STATUS "Searching for PythonQt (PythonLibs ${PYTHONLIBS_MAJMIN}) .." )
     if ( PYTHONQT_INCLUDE_DIR )
         message( STATUS "  .. found include ${PYTHONQT_INCLUDE_DIR}" )
+        message( STATUS "  .. found all include ${PYTHONQT_ALL_INCLUDE_DIR}" )
     endif()
 endif()
 
@@ -146,6 +155,10 @@ if(PYTHONQT_INCLUDE_DIR AND PYTHONQT_LIBRARY AND PYTHONQT_QTALL_LIBRARY)
   set(PYTHONQT_FOUND 1)
   set(PythonQt_FOUND ${PYTHONQT_FOUND})
   set(PYTHONQT_LIBRARIES ${PYTHONQT_LIBRARY} ${PYTHONQT_LIBUTIL} ${PYTHONQT_QTALL_LIBRARY})
+  set(PYTHONQT_INCLUDE_DIRS ${PYTHONQT_INCLUDE_DIR})
+  if(PYTHONQT_ALL_INCLUDE_DIR)
+    list(APPEND PYTHONQT_INCLUDE_DIRS ${PYTHONQT_ALL_INCLUDE_DIR})
+  endif()
 elseif(NOT PythonQt_FIND_QUIETLY)
   set(_missing "")
   if (NOT PYTHONQT_INCLUDE_DIR)
