@@ -12,5 +12,25 @@ test -f $SRCDIR/CMakeLists.txt || { echo "! Missing $SRCDIR/CMakeLists.txt" ; ex
 
 cd $BUILDDIR || exit 1
 
-echo "# cmake $CMAKE_ARGS $SRCDIR"
-cmake $CMAKE_ARGS $SRCDIR && make -j2 && make install DESTDIR=/build/INSTALL_ROOT
+echo "###"
+echo "### cmake $CMAKE_ARGS $SRCDIR"
+echo "###"
+cmake $CMAKE_ARGS $SRCDIR || { echo "! CMake failed" ; exit 1 ; }
+
+echo -e "###\n### make\n###"
+make -j2 || { make -j1 VERBOSE=1 ; echo "! Make failed" ; exit 1 ; }
+
+echo -e "###\n### make install\n###"
+echo "# Build results"
+find "$BUILDDIR" -name '*.so'
+
+echo "# Install"
+DESTDIR=/build/INSTALL_ROOT
+mkdir -p "$DESTDIR"
+
+result=true
+make install VERBOSE=1 DESTDIR="$DESTDIR" || result=false
+
+echo "# Install results"
+find "$DESTDIR" -type f
+$result  # Result of make install, above
