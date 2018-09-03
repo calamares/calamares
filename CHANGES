@@ -9,6 +9,7 @@ This release contains contributions from (alphabetically by first name):
  - Andrius Štikonas
  - artoo@cromnix.org
  - Caio Carvalho
+ - Harald Sitter
  - Philip Müller
  - Simon Quigley
  - Walter Lapchynski
@@ -61,5 +62,64 @@ This release contains contributions from (alphabetically by first name):
 
 **3.2.1** (2018-06-25)
 
+This release contains contributions from (alphabetically by first name):
+ - Bill Auguer
+ - Gabriel Craciunescu
+ - Phil Mueller
+ - Raul Rodrigo Segura
+
+ == Core ==
+
+ * Qt 5.7 is now the minimum required Qt version. Because KPMCore
+   (a fairly fundamental dependency) requires Qt 5.7, Calamares
+   has followed suit.
+ * New testing application `loadmodule` for loading and running a
+   single Calamares module.
+ * New translations Belarussian and Korean.
+ * Jobs can now be *emergency jobs* which run even after a failure.
+ * Improved debugging when modules fail to load.
+ * Bad configuration files will now cause the user-interface of
+   Calamares to display an error message, rather than silently
+   ignoring some configuration errors. This will certainly cause
+   problems for distributions with sloppy configurations.
+
+== Modules ==
+
+ * New module preservefiles, keeps (log) files around after install;
+   this duplicates functionality with the unmount module, but unmount
+   is very late, rather limited, and fragile.
+ * Interactiveterminal module now disables itself if build requirements
+   are not met, rather than blocking the build.
+ * Fixes in the timezone map data make the southern hemisphere more
+   usable and put Reykjavik in its place.
+ * The packages module can now update the target system if explicitly
+   told to do so.
+ * More paths and executables are configurable in the bootloader module.
+ * Distributions are advised to review the `users.conf` setup **again**,
+   as some changes in version 3.2.0 caused regressions downstream.
+ * Distributions are advised to review their `locale.gen` files
+   **again**. Previous changes were too restrictive, matching only
+   the specific format Chakra Linux uses. Calamares now preserves
+   all the comment-lines in the file and writes enabled locales
+   at the end, with a descriptive comment.
 
 **3.2.0** (2018-05-17)
+
+This release contains contributions from (alphabetically by first name):
+ - Alf Gaida
+ - AlmAck
+ - Caio Carvalho
+ - Frede H
+
+== Modules ==
+
+ * UI annoyances in the partitioning module were fixed; the
+   mount-point selector is now more obvious when no mount-point
+   has been chosen, and the mount-point and flags are preserved
+   when (re)editing partitions.
+ * The handling of `@@ROOT@@` substitution in shellprocesses was
+   backwards; this has been fixed (the substitution is made when
+   running in the **host**).
+ * The user shell is no longer hard-coded to `/bin/bash`,
+   but follows the default setting for useradd(8), e.g.
+   those set in `/etc/default/useradd`.
