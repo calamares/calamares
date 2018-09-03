@@ -1823,7 +1823,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/plasmalnf/PlasmaLnfPage.cpp" line="67"/>
         <source>Please choose a look-and-feel for the KDE Plasma Desktop. You can also skip this step and configure the look-and-feel once the system is installed. Clicking on a look-and-feel selection will give you a live preview of that look-and-feel.</source>
-        <translation type="unfinished"/>
+        <translation>נא לבחור מראה ותחושה עבור שולחן העבודה KDE Plasma. ניתן גם לדלג על השלב הזה ולהגדיר מראה ותחושה לאחר הקמת המערכת. בחירה בתצורת מראה ותחושה תעניק לך תצוגה מקדימה חיה של אותה התצורה.</translation>
     </message>
 </context>
 <context>
@@ -2595,7 +2595,7 @@ Output:
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="75"/>
         <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Copyright 2017 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;Thanks to: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Lisa Vitolo, Philip Müller, Pier Luigi Fiorini, Rohan Garg and the &lt;a href=&quot;https://www.transifex.com/calamares/calamares/&quot;&gt;Calamares translators team&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;https://calamares.io/&quot;&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - Liberating Software.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;עבור %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;כל הזכויות שמורות 2014‏-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;כל הזכויות שמורות 2017 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;תודתנו נתונה ל־: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Lisa Vitolo, Philip Müller, Pier Luigi Fiorini, Rohan Garg ול&lt;a href=&quot;https://www.transifex.com/calamares/calamares/&quot;&gt;צוות המתרגמים של Calamares&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;הפיתוח של&lt;a href=&quot;https://calamares.io/&quot;&gt;Calamares&lt;/a&gt; מוגש בחסות &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - דואגים לחופש התכנה.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="290"/>
