@@ -55,6 +55,25 @@ class PartitionCoreModule : public QObject
     Q_OBJECT
 public:
     /**
+     * This helper class calls refresh() on the module
+     * on destruction (nothing else). It is used as
+     * part of the model-consistency objects, along with
+     * PartitionModel::ResetHelper.
+     */
+    class RefreshHelper
+    {
+    public:
+        RefreshHelper( PartitionCoreModule* module );
+        ~RefreshHelper();
+
+        RefreshHelper( const RefreshHelper& ) = delete;
+        RefreshHelper& operator=( const RefreshHelper& ) = delete;
+
+    private:
+        PartitionCoreModule* m_module;
+    };
+
+    /**
      * @brief The SummaryInfo struct is a wrapper for PartitionModel instances for
      * a given Device.
      * Each Device gets a mutable "after" model and an immutable "before" model.
@@ -192,7 +211,7 @@ Q_SIGNALS:
     void deviceReverted( Device* device );
 
 private:
-    void refresh();
+    void refreshAfterModelChange();
 
     /**
      * Owns the Device, PartitionModel and the jobs
