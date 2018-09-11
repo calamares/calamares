@@ -3,15 +3,15 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
-= 3.2.3 (unreleased) =
+# 3.2.3 (unreleased) #
 
 This release contains contributions from (alphabetically by first name):
 
-== Core ==
+## Core ##
 
-== Modules ==
+## Modules ##
 
-= 3.2.2 (2018-09-04) =
+# 3.2.2 (2018-09-04) #
 
 This release contains contributions from (alphabetically by first name):
  - Andrius Štikonas
@@ -22,7 +22,7 @@ This release contains contributions from (alphabetically by first name):
  - Simon Quigley
  - Walter Lapchynski
 
-== Core ==
+## Core ##
 
  * Example configurations are **no longer installed** by default.
    The default setting for *INSTALL_CONFIG* has changed. Distributions
@@ -38,7 +38,7 @@ This release contains contributions from (alphabetically by first name):
  * A new `ci/RELEASE.sh` script has been added to streamline releases;
    it is not guaranteed to work anywhere in particular though.
 
-== Modules ==
+## Modules ##
 
  * When multiple modules are mutually exclusive, or don't make sense
    to enable concurrectly, a new `USE_<foo>` framework has been added
@@ -68,7 +68,7 @@ This release contains contributions from (alphabetically by first name):
    Distro's are **strongly advised** to re-test their DM configuration
    and installation with the revamped code.
 
-**3.2.1** (2018-06-25)
+# 3.2.1 (2018-06-25) #
 
 This release contains contributions from (alphabetically by first name):
  - Bill Auguer
@@ -76,7 +76,7 @@ This release contains contributions from (alphabetically by first name):
  - Phil Mueller
  - Raul Rodrigo Segura
 
- == Core ==
+## Core ##
 
  * Qt 5.7 is now the minimum required Qt version. Because KPMCore
    (a fairly fundamental dependency) requires Qt 5.7, Calamares
@@ -91,7 +91,7 @@ This release contains contributions from (alphabetically by first name):
    ignoring some configuration errors. This will certainly cause
    problems for distributions with sloppy configurations.
 
-== Modules ==
+## Modules ##
 
  * New module preservefiles, keeps (log) files around after install;
    this duplicates functionality with the unmount module, but unmount
@@ -111,7 +111,7 @@ This release contains contributions from (alphabetically by first name):
    all the comment-lines in the file and writes enabled locales
    at the end, with a descriptive comment.
 
-**3.2.0** (2018-05-17)
+# 3.2.0 (2018-05-17) #
 
 This release contains contributions from (alphabetically by first name):
  - Alf Gaida
@@ -119,7 +119,7 @@ This release contains contributions from (alphabetically by first name):
  - Caio Carvalho
  - Frede H
 
-== Modules ==
+## Modules ##
 
  * UI annoyances in the partitioning module were fixed; the
    mount-point selector is now more obvious when no mount-point
