@@ -21,16 +21,34 @@ echo -e "###\n### make\n###"
 make -j2 || { make -j1 VERBOSE=1 ; echo "! Make failed" ; exit 1 ; }
 
 echo -e "###\n### make install\n###"
+
+install_debugging() {
+	ls -la $( find "$1" -type f -name '*.so' )
+}
+
+echo "# System status"
+df -h
+
 echo "# Build results"
-find "$BUILDDIR" -name '*.so'
+install_debugging "$BUILDDIR"
 
 echo "# Install"
 DESTDIR=/build/INSTALL_ROOT
 mkdir -p "$DESTDIR"
 
-result=true
-make install VERBOSE=1 DESTDIR="$DESTDIR" || result=false
+if make install VERBOSE=1 DESTDIR="$DESTDIR" ;
+then
+	echo "# .. install OK"
+	result=true
+else
+	echo "# .. install failed"
+	result=false
+fi
+
+echo "# System status"
+df -h
 
 echo "# Install results"
-find "$DESTDIR" -type f
+install_debugging "$DESTDIR"
+
 $result  # Result of make install, above
