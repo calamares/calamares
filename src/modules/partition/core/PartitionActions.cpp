@@ -45,17 +45,7 @@ using CalamaresUtils::operator""_MiB;
 qint64
 swapSuggestion( const qint64 availableSpaceB )
 {
-    /* If suspend-to-disk is demanded, then we always need enough
-     * swap to write the whole memory to disk -- between 2GB and 8GB
-     * RAM give proportionally more swap, and from 8GB RAM keep
-     * swap = RAM.
-     *
-     * If suspend-to-disk is not demanded, then ramp up more slowly,
-     * to 8GB swap at 16GB memory, and then drop to 4GB for "large
-     * memory" machines, on the assumption that those don't need swap
-     * because they have tons of memory (or whatever they are doing,
-     * had better not run into swap).
-     */
+    // See partition.conf for explanation
     qint64 suggestedSwapSizeB = 0;
     auto memory = CalamaresUtils::System::instance()->getTotalMemoryB();
     qint64 availableRamB = memory.first;
@@ -65,36 +55,25 @@ swapSuggestion( const qint64 availableSpaceB )
         Calamares::JobQueue::instance()->globalStorage()->
             value( "ensureSuspendToDisk" ).toBool();
 
-    if ( ensureSuspendToDisk )
-    {
-        if ( availableRamB < 4_GiB )
-            suggestedSwapSizeB = qMax( 2_GiB, availableRamB * 2 );
-        else if ( availableRamB >= 4_GiB && availableRamB < 8_GiB )
-            suggestedSwapSizeB = 8_GiB;
-        else
-            suggestedSwapSizeB = availableRamB;
+    // Ramp up quickly to 8GiB, then follow memory size
+    if ( availableRamB <= 4_GiB )
+        suggestedSwapSizeB = availableRamB * 2;
+    else if ( availableRamB <= 8_GiB )
+        suggestedSwapSizeB = 8_GiB;
+    else
+        suggestedSwapSizeB = availableRamB;
 
-        suggestedSwapSizeB *= overestimationFactor;
-    }
-    else //if we don't care about suspend to disk
-    {
-        if ( availableRamB < 2_GiB )
-            suggestedSwapSizeB = qMax( 2_GiB, availableRamB * 2 );
-        else if ( availableRamB >= 2_GiB && availableRamB < 8_GiB )
-            suggestedSwapSizeB = availableRamB;
-        else if ( availableRamB >= 8_GiB && availableRamB < 16_GiB )
-            suggestedSwapSizeB = 8_GiB;
-        else
-            suggestedSwapSizeB = 4_GiB;
+    // .. top out at 8GiB if we don't care about suspend
+    if ( !ensureSuspendToDisk )
+        suggestedSwapSizeB = qMin( 8_GiB, suggestedSwapSizeB );
 
-        suggestedSwapSizeB *= overestimationFactor;
 
-        // don't use more than 10% of available space
-        qreal maxSwapDiskRatio = 0.10;
-        qint64 maxSwapSizeB = availableSpaceB * maxSwapDiskRatio;
-        if ( suggestedSwapSizeB > maxSwapSizeB )
-            suggestedSwapSizeB = maxSwapSizeB;
-    }
+    // Allow for a fudge factor
+    suggestedSwapSizeB *= overestimationFactor;
+
+    // don't use more than 10% of available space
+    if ( !ensureSuspendToDisk )
+        suggestedSwapSizeB = qMin( suggestedSwapSizeB, qint64( 0.10 * availableSpaceB ) );
 
     cDebug() << "Suggested swap size:" << suggestedSwapSizeB / 1024. / 1024. / 1024. << "GiB";
 
