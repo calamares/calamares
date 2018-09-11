@@ -49,6 +49,6 @@ echo "# System status"
 df -h
 
 echo "# Install results"
-install_debug "$DESTDIR"
+install_debugging "$DESTDIR"
 
 $result  # Result of make install, above

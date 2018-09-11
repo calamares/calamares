@@ -16,5 +16,5 @@ install:
   - docker build -t calamares .
 
 script:
-  - docker run -v $PWD:/src --tmpfs /build:rw,size=65536k -e SRCDIR=/src -e BUILDDIR=/build calamares "/src/ci/travis.sh"
+  - docker run -v $PWD:/src --tmpfs /build:rw,size=81920k -e SRCDIR=/src -e BUILDDIR=/build calamares "/src/ci/travis.sh"
 
