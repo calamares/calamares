@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-07 18:58+0100\n"
+"POT-Creation-Date: 2018-06-18 07:46-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Georgi Georgiev <georgiev_1994@abv.bg>, 2018\n"
 "Language-Team: Bulgarian (https://www.transifex.com/calamares/teams/20061/bg/)\n"
@@ -28,16 +28,16 @@ msgstr "Нов QLabel."
 
 #: src/modules/dummypythonqt/main.py:97
 msgid "Dummy PythonQt ViewStep"
-msgstr ""
+msgstr "Фиктивен PythonQt ViewStep"
 
 #: src/modules/dummypythonqt/main.py:183
 msgid "The Dummy PythonQt Job"
-msgstr ""
+msgstr "Фиктивната задача PythonQt"
 
 #: src/modules/dummypythonqt/main.py:186
 msgid "This is the Dummy PythonQt Job. The dummy job says: {}"
-msgstr ""
+msgstr "Това е фиктивната задача PythonQt. Фиктивната задача заявява: {}"
 
 #: src/modules/dummypythonqt/main.py:190
 msgid "A status message for Dummy PythonQt Job."
-msgstr ""
+msgstr "Съобщение за състоянието на фиктивната задача PythonQt."
