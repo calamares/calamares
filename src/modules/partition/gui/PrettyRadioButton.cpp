@@ -29,8 +29,8 @@
 
 PrettyRadioButton::PrettyRadioButton( QWidget* parent )
     : QWidget( parent )
-    , m_radio( new QRadioButton )
     , m_label( new ClickableLabel )
+    , m_radio( new QRadioButton )
     , m_mainLayout( new QGridLayout )
     , m_optionsLayout( nullptr )
 {
