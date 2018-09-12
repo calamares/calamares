@@ -23,28 +23,32 @@
 
 #include <QComboBox>
 #include <QGridLayout>
+#include <QHBoxLayout>
 #include <QLabel>
 
 
 PrettyRadioButton::PrettyRadioButton( QWidget* parent )
     : QWidget( parent )
+    , m_radio( new QRadioButton )
+    , m_label( new ClickableLabel )
+    , m_mainLayout( new QGridLayout )
+    , m_optionsLayout( nullptr )
 {
-    m_mainLayout = new QGridLayout;
     setLayout( m_mainLayout );
 
-    m_radio = new QRadioButton;
-    m_label = new ClickableLabel;
-
-    connect( m_label, &ClickableLabel::clicked,
-             m_radio, &QRadioButton::click );
     m_label->setBuddy( m_radio );
 
     m_label->setWordWrap( true );
     m_label->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred );
 
     m_mainLayout->addWidget( m_radio, 0, 0 );
-    m_mainLayout->addWidget( m_label, 0, 1, -1, 1 );  // Row span to right edge
+    m_mainLayout->addWidget( m_label, 0, 1 );
     m_mainLayout->setContentsMargins( 0, 0, 0, 0 );
+
+    connect( m_label, &ClickableLabel::clicked,
+             m_radio, &QRadioButton::click );
+    connect( m_radio, &QRadioButton::toggled,
+             this, &PrettyRadioButton::toggleOptions );
 }
 
 
@@ -85,6 +89,28 @@ PrettyRadioButton::buttonWidget() const
 void
 PrettyRadioButton::addOptionsComboBox( QComboBox* box )
 {
-    int row = m_mainLayout->rowCount();  // Rows index from 0, count from 1
-    m_mainLayout->addWidget( box, row, 1 );
+    if ( !box )
+        return;
+
+    if ( !m_optionsLayout )
+    {
+        QWidget* w = new QWidget;
+        m_optionsLayout = new QHBoxLayout;
+        m_optionsLayout->setAlignment( Qt::AlignmentFlag::AlignLeft );
+        m_optionsLayout->addStretch( 1 );
+
+        w->setLayout( m_optionsLayout );
+        m_mainLayout->addWidget( w, 1, 1 );
+
+        toggleOptions( m_radio->isChecked() );
+    }
+
+    m_optionsLayout->insertWidget( m_optionsLayout->count()-1, box );
+}
+
+void
+PrettyRadioButton::toggleOptions( bool toggle )
+{
+    if ( m_optionsLayout )
+        m_optionsLayout->parentWidget()->setVisible( toggle );
 }

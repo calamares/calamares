@@ -24,6 +24,7 @@
 class ClickableLabel;
 class QComboBox;
 class QGridLayout;
+class QHBoxLayout;
 
 /** @brief A radio button with fancy label next to it.
  *
@@ -52,10 +53,15 @@ public:
     /** @brief Add an options drop-down to this button. */
     void addOptionsComboBox( QComboBox* );
 
+protected slots:
+    /// Options are hidden when the radio button is off
+    void toggleOptions( bool checked );
+
 protected:
     ClickableLabel* m_label;
     QRadioButton* m_radio;
     QGridLayout* m_mainLayout;
+    QHBoxLayout* m_optionsLayout;
 };
 
 #endif // PRETTYRADIOBUTTON_H
