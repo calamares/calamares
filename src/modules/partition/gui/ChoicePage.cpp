@@ -172,6 +172,18 @@ ChoicePage::init( PartitionCoreModule* core )
     ChoicePage::applyDeviceChoice();
 }
 
+static QComboBox*
+swapSelectionCombo()
+{
+    QComboBox* box = new QComboBox;
+    box->addItem( box->tr( "No swap" ), 0 );
+    box->addItem( box->tr( "Re-use swap" ), 1 );
+    box->addItem( box->tr( "Limited swap" ), 2 );
+    box->addItem( box->tr( "Full swap" ), 3 );
+    box->addItem( box->tr( "Swap file" ), 4 );
+
+    return box;
+}
 
 /**
  * @brief ChoicePage::setupChoices creates PrettyRadioButton objects for the action
@@ -216,6 +228,7 @@ ChoicePage::setupChoices()
     m_eraseButton->setIcon( CalamaresUtils::defaultPixmap( CalamaresUtils::PartitionEraseAuto,
                                                            CalamaresUtils::Original,
                                                            iconSize ) );
+    m_eraseButton->addOptionsComboBox( tr( "Swap" ), swapSelectionCombo() );
     m_grp->addButton( m_eraseButton->buttonWidget(), Erase );
 
     m_replaceButton = new PrettyRadioButton;
