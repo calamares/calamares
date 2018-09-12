@@ -138,7 +138,7 @@ PartitionViewStep::createSummaryWidget() const
     widget->setLayout( mainLayout );
     mainLayout->setMargin( 0 );
 
-    ChoicePage::Choice choice = m_choicePage->currentChoice();
+    ChoicePage::InstallChoice choice = m_choicePage->currentChoice();
 
     QFormLayout* formLayout = new QFormLayout( widget );
     const int MARGIN = CalamaresUtils::defaultFontHeight() / 2;

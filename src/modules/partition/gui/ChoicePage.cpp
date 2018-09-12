@@ -262,7 +262,7 @@ ChoicePage::setupChoices()
     {
         if ( checked )  // An action was picked.
         {
-            m_choice = static_cast< Choice >( id );
+            m_choice = static_cast< InstallChoice >( id );
             updateNextEnabled();
 
             emit actionChosen();
@@ -386,7 +386,7 @@ ChoicePage::continueApplyDeviceChoice()
 
 
 void
-ChoicePage::applyActionChoice( ChoicePage::Choice choice )
+ChoicePage::applyActionChoice( ChoicePage::InstallChoice choice )
 {
     m_beforePartitionBarsView->selectionModel()->
             disconnect( SIGNAL( currentRowChanged( QModelIndex, QModelIndex ) ) );
@@ -901,7 +901,7 @@ ChoicePage::updateDeviceStatePreview()
  * @param choice the chosen partitioning action.
  */
 void
-ChoicePage::updateActionChoicePreview( ChoicePage::Choice choice )
+ChoicePage::updateActionChoicePreview( ChoicePage::InstallChoice choice )
 {
     Device* currentDevice = selectedDevice();
     Q_ASSERT( currentDevice );
@@ -1356,7 +1356,7 @@ ChoicePage::isNextEnabled() const
 }
 
 
-ChoicePage::Choice
+ChoicePage::InstallChoice
 ChoicePage::currentChoice() const
 {
     return m_choice;

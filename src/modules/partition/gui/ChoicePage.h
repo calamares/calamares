@@ -53,7 +53,7 @@ class ChoicePage : public QWidget, private Ui::ChoicePage
 {
     Q_OBJECT
 public:
-    enum Choice
+    enum InstallChoice
     {
         NoChoice,
         Alongside,
@@ -84,7 +84,7 @@ public:
      * currently selected partitioning mode (with a PrettyRadioButton).
      * @return the enum Choice value.
      */
-    Choice currentChoice() const;
+    InstallChoice currentChoice() const;
 
     /**
      * @brief onLeave runs when control passes from this page to another one.
@@ -95,7 +95,7 @@ public:
      * @brief applyActionChoice reacts to a choice of partitioning mode.
      * @param choice the partitioning action choice.
      */
-    void applyActionChoice( ChoicePage::Choice choice );
+    void applyActionChoice( ChoicePage::InstallChoice choice );
 
 signals:
     void nextStatusChanged( bool );
@@ -121,7 +121,7 @@ private:
     void continueApplyDeviceChoice();  // .. called after scan
 
     void updateDeviceStatePreview();
-    void updateActionChoicePreview( ChoicePage::Choice choice );
+    void updateActionChoicePreview( ChoicePage::InstallChoice choice );
     void setupActions();
     OsproberEntryList getOsproberEntriesForDevice( Device* device ) const;
     void doAlongsideApply();
@@ -132,7 +132,7 @@ private:
 
     QMutex m_previewsMutex;
 
-    Choice m_choice;
+    InstallChoice m_choice;
 
     bool m_isEfi;
     QComboBox* m_drivesCombo;
