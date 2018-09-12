@@ -21,15 +21,16 @@
 #include "utils/CalamaresUtilsGui.h"
 #include "widgets/ClickableLabel.h"
 
+#include <QComboBox>
+#include <QGridLayout>
 #include <QLabel>
-#include <QBoxLayout>
 
 
 PrettyRadioButton::PrettyRadioButton( QWidget* parent )
     : QWidget( parent )
 {
-    QHBoxLayout* mainLayout = new QHBoxLayout;
-    setLayout( mainLayout );
+    m_mainLayout = new QGridLayout;
+    setLayout( m_mainLayout );
 
     m_radio = new QRadioButton;
     m_label = new ClickableLabel;
@@ -41,9 +42,9 @@ PrettyRadioButton::PrettyRadioButton( QWidget* parent )
     m_label->setWordWrap( true );
     m_label->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Preferred );
 
-    mainLayout->addWidget( m_radio );
-    mainLayout->addWidget( m_label );
-    mainLayout->setContentsMargins( 0, 0, 0, 0 );
+    m_mainLayout->addWidget( m_radio, 0, 0 );
+    m_mainLayout->addWidget( m_label, 0, 1, -1, 1 );  // Row span to right edge
+    m_mainLayout->setContentsMargins( 0, 0, 0, 0 );
 }
 
 
@@ -79,4 +80,12 @@ QRadioButton*
 PrettyRadioButton::buttonWidget() const
 {
     return m_radio;
+}
+
+void
+PrettyRadioButton::addOptionsComboBox( const QString& label, QComboBox* box )
+{
+    int row = m_mainLayout->rowCount();  // Rows index from 0, count from 1
+    m_mainLayout->addWidget( new QLabel( label ), row, 1 );
+    m_mainLayout->addWidget( box, row, 2 );
 }

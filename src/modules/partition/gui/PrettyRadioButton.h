@@ -22,7 +22,16 @@
 #include <QRadioButton>
 
 class ClickableLabel;
+class QComboBox;
+class QGridLayout;
 
+/** @brief A radio button with fancy label next to it.
+ *
+ * The radio button itself can be retrieved with buttonWidget(),
+ * and the whole behaves a lot like a label. Extra options can be
+ * added to the display (options are hidden when the button is
+ * not selected) with addOptionsComboBox().
+ */
 class PrettyRadioButton : public QWidget
 {
     Q_OBJECT
@@ -40,9 +49,13 @@ public:
 
     virtual QRadioButton* buttonWidget() const;
 
+    /** @brief Add an options drop-down to this button. */
+    void addOptionsComboBox( const QString& label, QComboBox* );
+
 protected:
     ClickableLabel* m_label;
     QRadioButton* m_radio;
+    QGridLayout* m_mainLayout;
 };
 
 #endif // PRETTYRADIOBUTTON_H
