@@ -62,6 +62,15 @@ public:
         Manual
     };
 
+    enum SwapChoice
+    {
+        NoSwap,     // don't create any swap, don't use any
+        ReuseSwap,  // don't create, but do use existing
+        SmallSwap,  // up to 8GiB of swap
+        FullSwap,   // ensureSuspendToDisk -- at least RAM size
+        SwapFile    // use a file (if supported)
+    };
+
     explicit ChoicePage( QWidget* parent = nullptr );
     virtual ~ChoicePage();
 
@@ -127,6 +136,9 @@ private:
     void doAlongsideApply();
     void setupEfiSystemPartitionSelector();
 
+    // Translations support
+    void updateSwapChoicesTr( QComboBox* box );
+
     bool m_nextEnabled;
     PartitionCoreModule* m_core;
 
@@ -142,6 +154,9 @@ private:
     PrettyRadioButton* m_eraseButton;
     PrettyRadioButton* m_replaceButton;
     PrettyRadioButton* m_somethingElseButton;
+    QComboBox* m_eraseSwapChoices;
+    QComboBox* m_replaceSwapChoices;
+    QComboBox* m_alongsideSwapChoices;
 
     DeviceInfoWidget* m_deviceInfoWidget;
 

@@ -78,6 +78,9 @@ ChoicePage::ChoicePage( QWidget* parent )
     , m_eraseButton( nullptr )
     , m_replaceButton( nullptr )
     , m_somethingElseButton( nullptr )
+    , m_eraseSwapChoices( nullptr )
+    , m_replaceSwapChoices( nullptr )
+    , m_alongsideSwapChoices( nullptr )
     , m_deviceInfoWidget( nullptr )
     , m_beforePartitionBarsView( nullptr )
     , m_beforePartitionLabelsView( nullptr )
@@ -172,19 +175,6 @@ ChoicePage::init( PartitionCoreModule* core )
     ChoicePage::applyDeviceChoice();
 }
 
-static QComboBox*
-swapSelectionCombo()
-{
-    QComboBox* box = new QComboBox;
-    box->addItem( box->tr( "No swap" ), 0 );
-    box->addItem( box->tr( "Re-use swap" ), 1 );
-    box->addItem( box->tr( "Limited swap" ), 2 );
-    box->addItem( box->tr( "Full swap" ), 3 );
-    box->addItem( box->tr( "Swap file" ), 4 );
-
-    return box;
-}
-
 /**
  * @brief ChoicePage::setupChoices creates PrettyRadioButton objects for the action
  *      choices.
@@ -228,7 +218,6 @@ ChoicePage::setupChoices()
     m_eraseButton->setIcon( CalamaresUtils::defaultPixmap( CalamaresUtils::PartitionEraseAuto,
                                                            CalamaresUtils::Original,
                                                            iconSize ) );
-    m_eraseButton->addOptionsComboBox( swapSelectionCombo() );
     m_grp->addButton( m_eraseButton->buttonWidget(), Erase );
 
     m_replaceButton = new PrettyRadioButton;
@@ -238,6 +227,13 @@ ChoicePage::setupChoices()
                                                              CalamaresUtils::Original,
                                                              iconSize ) );
     m_grp->addButton( m_replaceButton->buttonWidget(), Replace );
+
+    // Fill up swap options
+    // .. TODO: only if enabled in the config
+    m_eraseSwapChoices = new QComboBox;
+    for ( SwapChoice c : { NoSwap, SmallSwap, FullSwap } )
+        m_eraseSwapChoices->addItem( QString(), c );
+    m_eraseButton->addOptionsComboBox( m_eraseSwapChoices );
 
     m_itemsLayout->addWidget( m_alongsideButton );
     m_itemsLayout->addWidget( m_replaceButton );
@@ -292,6 +288,12 @@ ChoicePage::setupChoices()
             applyActionChoice( currentChoice() );
         }
     } );
+
+    CALAMARES_RETRANSLATE(
+        updateSwapChoicesTr( m_eraseSwapChoices );
+        updateSwapChoicesTr( m_alongsideSwapChoices );
+        updateSwapChoicesTr( m_replaceSwapChoices );
+    )
 }
 
 
@@ -1404,3 +1406,42 @@ ChoicePage::updateNextEnabled()
     emit nextStatusChanged( enabled );
 }
 
+void
+ChoicePage::updateSwapChoicesTr(QComboBox* box)
+{
+    if ( !box )
+        return;
+
+    static_assert(NoSwap == 0, "Enum values out-of-sync");
+    for ( int index = 0; index < box->count(); ++index )
+    {
+        bool ok = false;
+        int value = 0;
+
+        switch ( value = box->itemData( index ).toInt( &ok ) )
+        {
+            // case 0:
+            case NoSwap:
+                // toInt() returns 0 on failure, so check for ok
+                if ( ok )  // It was explicitly set to 0
+                    box->setItemText( index, tr( "No Swap" ) );
+                else
+                    cWarning() << "Box item" << index << box->itemText( index ) << "has non-integer role.";
+                break;
+            case ReuseSwap:
+                box->setItemText( index, tr( "Reuse Swap" ) );
+                break;
+            case SmallSwap:
+                box->setItemText( index, tr( "Swap (no Hibernate)" ) );
+                break;
+            case FullSwap:
+                box->setItemText( index, tr( "Swap (with Hibernate)" ) );
+                break;
+            case SwapFile:
+                box->setItemText( index, tr( "Swap to file" ) );
+                break;
+            default:
+                cWarning() << "Box item" << index << box->itemText( index ) << "has role" << value;
+        }
+    }
+}
