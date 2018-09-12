@@ -83,9 +83,8 @@ PrettyRadioButton::buttonWidget() const
 }
 
 void
-PrettyRadioButton::addOptionsComboBox( const QString& label, QComboBox* box )
+PrettyRadioButton::addOptionsComboBox( QComboBox* box )
 {
     int row = m_mainLayout->rowCount();  // Rows index from 0, count from 1
-    m_mainLayout->addWidget( new QLabel( label ), row, 1 );
-    m_mainLayout->addWidget( box, row, 2 );
+    m_mainLayout->addWidget( box, row, 1 );
 }

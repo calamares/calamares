@@ -50,7 +50,7 @@ public:
     virtual QRadioButton* buttonWidget() const;
 
     /** @brief Add an options drop-down to this button. */
-    void addOptionsComboBox( const QString& label, QComboBox* );
+    void addOptionsComboBox( QComboBox* );
 
 protected:
     ClickableLabel* m_label;

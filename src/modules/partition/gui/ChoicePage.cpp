@@ -228,7 +228,7 @@ ChoicePage::setupChoices()
     m_eraseButton->setIcon( CalamaresUtils::defaultPixmap( CalamaresUtils::PartitionEraseAuto,
                                                            CalamaresUtils::Original,
                                                            iconSize ) );
-    m_eraseButton->addOptionsComboBox( tr( "Swap" ), swapSelectionCombo() );
+    m_eraseButton->addOptionsComboBox( swapSelectionCombo() );
     m_grp->addButton( m_eraseButton->buttonWidget(), Erase );
 
     m_replaceButton = new PrettyRadioButton;
