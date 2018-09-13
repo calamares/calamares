@@ -59,7 +59,7 @@
 #include <QFutureWatcher>
 #include <QtConcurrent/QtConcurrent>
 
-
+using PartitionActions::Choices::SwapChoice;
 
 /**
  * @brief ChoicePage::ChoicePage is the default constructor. Called on startup as part of
@@ -182,10 +182,10 @@ ChoicePage::init( PartitionCoreModule* core )
  * No texts are set -- that happens later by the translator functions.
  */
 static inline QComboBox*
-createCombo( std::initializer_list< ChoicePage::SwapChoice > l )
+createCombo( std::initializer_list< SwapChoice > l )
 {
     QComboBox* box = new QComboBox;
-    for ( ChoicePage::SwapChoice c : l )
+    for ( SwapChoice c : l )
         box->addItem( QString(), c );
     return box;
 }
@@ -245,13 +245,13 @@ ChoicePage::setupChoices()
 
     // Fill up swap options
     // .. TODO: only if enabled in the config
-    m_eraseSwapChoices = createCombo( { NoSwap, SmallSwap, FullSwap } );
+    m_eraseSwapChoices = createCombo( { SwapChoice::NoSwap, SwapChoice::SmallSwap, SwapChoice:: FullSwap } );
     m_eraseButton->addOptionsComboBox( m_eraseSwapChoices );
 
-    m_replaceSwapChoices = createCombo( { NoSwap, ReuseSwap, SmallSwap, FullSwap } );
+    m_replaceSwapChoices = createCombo( { SwapChoice::NoSwap, SwapChoice::ReuseSwap, SwapChoice::SmallSwap, SwapChoice::FullSwap } );
     m_replaceButton->addOptionsComboBox( m_replaceSwapChoices );
 
-    m_alongsideSwapChoices = createCombo( { NoSwap, ReuseSwap, SmallSwap, FullSwap } );
+    m_alongsideSwapChoices = createCombo( { SwapChoice::NoSwap, SwapChoice::ReuseSwap, SwapChoice::SmallSwap, SwapChoice::FullSwap } );
     m_alongsideButton->addOptionsComboBox( m_alongsideSwapChoices );
 
     m_itemsLayout->addWidget( m_alongsideButton );
@@ -1431,7 +1431,7 @@ ChoicePage::updateSwapChoicesTr(QComboBox* box)
     if ( !box )
         return;
 
-    static_assert(NoSwap == 0, "Enum values out-of-sync");
+    static_assert(SwapChoice::NoSwap == 0, "Enum values out-of-sync");
     for ( int index = 0; index < box->count(); ++index )
     {
         bool ok = false;
@@ -1440,23 +1440,23 @@ ChoicePage::updateSwapChoicesTr(QComboBox* box)
         switch ( value = box->itemData( index ).toInt( &ok ) )
         {
             // case 0:
-            case NoSwap:
+            case SwapChoice::NoSwap:
                 // toInt() returns 0 on failure, so check for ok
                 if ( ok )  // It was explicitly set to 0
                     box->setItemText( index, tr( "No Swap" ) );
                 else
                     cWarning() << "Box item" << index << box->itemText( index ) << "has non-integer role.";
                 break;
-            case ReuseSwap:
+            case SwapChoice::ReuseSwap:
                 box->setItemText( index, tr( "Reuse Swap" ) );
                 break;
-            case SmallSwap:
+            case SwapChoice::SmallSwap:
                 box->setItemText( index, tr( "Swap (no Hibernate)" ) );
                 break;
-            case FullSwap:
+            case SwapChoice::FullSwap:
                 box->setItemText( index, tr( "Swap (with Hibernate)" ) );
                 break;
-            case SwapFile:
+            case SwapChoice::SwapFile:
                 box->setItemText( index, tr( "Swap to file" ) );
                 break;
             default:

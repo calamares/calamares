@@ -62,15 +62,6 @@ public:
         Manual
     };
 
-    enum SwapChoice
-    {
-        NoSwap,     // don't create any swap, don't use any
-        ReuseSwap,  // don't create, but do use existing
-        SmallSwap,  // up to 8GiB of swap
-        FullSwap,   // ensureSuspendToDisk -- at least RAM size
-        SwapFile    // use a file (if supported)
-    };
-
     explicit ChoicePage( QWidget* parent = nullptr );
     virtual ~ChoicePage();
 
