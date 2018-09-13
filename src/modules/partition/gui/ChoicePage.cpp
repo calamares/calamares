@@ -175,6 +175,20 @@ ChoicePage::init( PartitionCoreModule* core )
     ChoicePage::applyDeviceChoice();
 }
 
+
+/** @brief Creates a combobox with the given choices in it.
+ *
+ * No texts are set -- that happens later by the translator functions.
+ */
+static inline QComboBox*
+createCombo( std::initializer_list< ChoicePage::SwapChoice > l )
+{
+    QComboBox* box = new QComboBox;
+    for ( ChoicePage::SwapChoice c : l )
+        box->addItem( QString(), c );
+    return box;
+}
+
 /**
  * @brief ChoicePage::setupChoices creates PrettyRadioButton objects for the action
  *      choices.
@@ -230,10 +244,14 @@ ChoicePage::setupChoices()
 
     // Fill up swap options
     // .. TODO: only if enabled in the config
-    m_eraseSwapChoices = new QComboBox;
-    for ( SwapChoice c : { NoSwap, SmallSwap, FullSwap } )
-        m_eraseSwapChoices->addItem( QString(), c );
+    m_eraseSwapChoices = createCombo( { NoSwap, SmallSwap, FullSwap } );
     m_eraseButton->addOptionsComboBox( m_eraseSwapChoices );
+
+    m_replaceSwapChoices = createCombo( { NoSwap, ReuseSwap, SmallSwap, FullSwap } );
+    m_replaceButton->addOptionsComboBox( m_replaceSwapChoices );
+
+    m_alongsideSwapChoices = createCombo( { NoSwap, ReuseSwap, SmallSwap, FullSwap } );
+    m_alongsideButton->addOptionsComboBox( m_alongsideSwapChoices );
 
     m_itemsLayout->addWidget( m_alongsideButton );
     m_itemsLayout->addWidget( m_replaceButton );
