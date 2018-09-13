@@ -20,31 +20,32 @@
 #include "ChoicePage.h"
 
 #include "core/BootLoaderModel.h"
-#include "core/PartitionActions.h"
-#include "core/PartitionCoreModule.h"
 #include "core/DeviceModel.h"
-#include "core/PartitionModel.h"
+#include "core/KPMHelpers.h"
 #include "core/OsproberEntry.h"
 #include "core/PartUtils.h"
+#include "core/PartitionActions.h"
+#include "core/PartitionCoreModule.h"
+#include "core/PartitionInfo.h"
 #include "core/PartitionIterator.h"
+#include "core/PartitionModel.h"
 
-#include "ReplaceWidget.h"
-#include "PrettyRadioButton.h"
+#include "BootInfoWidget.h"
+#include "DeviceInfoWidget.h"
 #include "PartitionBarsView.h"
 #include "PartitionLabelsView.h"
 #include "PartitionSplitterWidget.h"
-#include "BootInfoWidget.h"
-#include "DeviceInfoWidget.h"
+#include "PrettyRadioButton.h"
+#include "ReplaceWidget.h"
 #include "ScanningDialog.h"
 
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
+
 #include "Branding.h"
-#include "core/KPMHelpers.h"
-#include "JobQueue.h"
 #include "GlobalStorage.h"
-#include "core/PartitionInfo.h"
+#include "JobQueue.h"
 
 #include <kpmcore/core/device.h>
 #include <kpmcore/core/partition.h>
