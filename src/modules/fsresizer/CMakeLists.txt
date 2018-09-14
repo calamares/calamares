@@ -4,7 +4,7 @@ find_package( KPMcore 3.3 )
 find_package( Qt5 REQUIRED DBus )  # Needed for KPMCore
 find_package( KF5 REQUIRED I18n WidgetsAddons )  # Needed for KPMCore
 
-if ( KPMcore_FOUND )
+if ( 1 ) # KPMcore_FOUND )
     if ( KPMcore_VERSION VERSION_GREATER "3.3.0")
         add_definitions(-DWITH_KPMCOREGT33) # kpmcore greater than 3.3
     endif()
@@ -18,7 +18,7 @@ if ( KPMcore_FOUND )
         SOURCES
             ResizeFSJob.cpp
         LINK_PRIVATE_LIBRARIES
-            kpmcore
+            # kpmcore
             calamares
         SHARED_LIB
     )
