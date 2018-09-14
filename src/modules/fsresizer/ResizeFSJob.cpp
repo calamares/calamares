@@ -29,32 +29,36 @@
 #include "utils/Logger.h"
 
 ResizeFSJob::RelativeSize::RelativeSize()
-    : m_unit( None )
-    , m_value( 0 )
+    : m_value( 0 )
+    , m_unit( None )
 {
 }
 
 
-ResizeFSJob::RelativeSize::RelativeSize( const QString& s)
-    : m_unit( None )
-    , m_value( 0 )
+template<int N>
+void matchUnitSuffix( 
+    const QString& s, 
+    const char (&suffix)[N],
+    ResizeFSJob::RelativeSize::Unit matchedUnit,
+    int& value,
+    ResizeFSJob::RelativeSize::Unit& unit
+     )
 {
-    QString valuePart;
-
-    if ( s.endsWith( '%' ) )
+    if ( s.endsWith( suffix ) )
     {
-        valuePart = s.left( s.length() - 1 );
-        m_unit = Percent;
+        value = s.left( s.length() - N + 1 ).toInt();
+        unit = matchedUnit;
     }
-    if ( s.endsWith( "MiB" ) )
-    {
-        valuePart = s.left( s.length() - 3 );
-        m_unit = Absolute;
-    }
-
-    if ( ( m_unit != None ) && !valuePart.isEmpty() )
-        m_value = valuePart.toInt();
-
+}
+        
+    
+ResizeFSJob::RelativeSize::RelativeSize( const QString& s)
+    : m_value( 0 )
+    , m_unit( None )
+{
+    matchUnitSuffix( s, "%", Percent, m_value, m_unit );
+    matchUnitSuffix( s, "MiB", Absolute, m_value, m_unit );
+    
     if ( !m_value )
         m_unit = None;
 }

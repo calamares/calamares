@@ -32,6 +32,7 @@ class PLUGINDLLEXPORT ResizeFSJob : public Calamares::CppJob
 {
     Q_OBJECT
 
+public:
     class RelativeSize
     {
     public:
@@ -45,15 +46,14 @@ class PLUGINDLLEXPORT ResizeFSJob : public Calamares::CppJob
             Absolute
         };
 
-        quint64 value() const { return m_value; }
+        int value() const { return m_value; }
         Unit unit() const { return m_unit; }
 
     private:
-        quint64 m_value;
+        int m_value;
         Unit m_unit;
     } ;
 
-public:
     explicit ResizeFSJob( QObject* parent = nullptr );
     virtual ~ResizeFSJob() override;
 
