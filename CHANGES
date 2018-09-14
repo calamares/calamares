@@ -11,6 +11,11 @@ This release contains contributions from (alphabetically by first name):
 
 ## Modules ##
 
+ - New module *fsresizer* can be used to resize filesystems. It is intended
+   for use in OEM installs where an image of fixed size is created,
+   and then sized to the actual SD card the user has used.
+
+   
 # 3.2.2 (2018-09-04) #
 
 This release contains contributions from (alphabetically by first name):
