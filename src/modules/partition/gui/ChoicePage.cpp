@@ -42,6 +42,7 @@
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
+#include "utils/Units.h"
 
 #include "Branding.h"
 #include "GlobalStorage.h"
@@ -417,30 +418,37 @@ ChoicePage::applyActionChoice( ChoicePage::InstallChoice choice )
     switch ( choice )
     {
     case Erase:
-        if ( m_core->isDirty() )
         {
-            ScanningDialog::run( QtConcurrent::run( [ = ]
-            {
-                QMutexLocker locker( &m_coreMutex );
-                m_core->revertDevice( selectedDevice() );
-            } ),
-            [ = ]
-            {
-                PartitionActions::doAutopartition( m_core,
-                                                   selectedDevice(),
-                                                   m_encryptWidget->passphrase() );
-                emit deviceChosen();
-            },
-            this );
-        }
-        else
-        {
-            PartitionActions::doAutopartition( m_core,
-                                               selectedDevice(),
-                                               m_encryptWidget->passphrase() );
-            emit deviceChosen();
-        }
+            auto gs = Calamares::JobQueue::instance()->globalStorage();
 
+            PartitionActions::Choices::AutoPartitionOptions options {
+                gs->value( "defaultFileSystemType" ).toString(),
+                m_encryptWidget->passphrase(),
+                gs->value( "efiSystemPartition" ).toString(),
+                CalamaresUtils::GiBtoBytes( gs->value( "requiredStorageGB" ).toDouble() ),
+                static_cast<PartitionActions::Choices::SwapChoice>( m_eraseSwapChoices->currentData().toInt() )
+            };
+
+            if ( m_core->isDirty() )
+            {
+                ScanningDialog::run( QtConcurrent::run( [ = ]
+                {
+                    QMutexLocker locker( &m_coreMutex );
+                    m_core->revertDevice( selectedDevice() );
+                } ),
+                [ = ]
+                {
+                    PartitionActions::doAutopartition( m_core, selectedDevice(), options );
+                    emit deviceChosen();
+                },
+                this );
+            }
+            else
+            {
+                PartitionActions::doAutopartition( m_core, selectedDevice(), options );
+                emit deviceChosen();
+            }
+        }
         break;
     case Replace:
         if ( m_core->isDirty() )
@@ -518,6 +526,7 @@ ChoicePage::doAlongsideSetupSplitter( const QModelIndex& current,
                                     ->value( "requiredStorageGB" )
                                     .toDouble();
 
+    // TODO: make this consistent
     qint64 requiredStorageB = qRound64( requiredStorageGB + 0.1 + 2.0 ) * 1024 * 1024 * 1024;
 
     m_afterPartitionSplitterWidget->setSplitPartition(
@@ -802,14 +811,19 @@ ChoicePage::doReplaceSelectedPartition( const QModelIndex& current )
                 if ( homePartitionPath->isEmpty() )
                     doReuseHomePartition = false;
 
-                PartitionActions::doReplacePartition( m_core,
-                                                      selectedDevice(),
-                                                      selectedPartition,
-                                                      m_encryptWidget->passphrase() );
+                Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
+
+                PartitionActions::doReplacePartition(
+                    m_core,
+                    selectedDevice(),
+                    selectedPartition,
+                    {
+                        gs->value( "defaultFileSystemType" ).toString(),
+                        m_encryptWidget->passphrase()
+                    } );
                 Partition* homePartition = KPMHelpers::findPartitionByPath( { selectedDevice() },
                                                                             *homePartitionPath );
 
-                Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
                 if ( homePartition && doReuseHomePartition )
                 {
                     PartitionInfo::setMountPoint( homePartition, "/home" );
