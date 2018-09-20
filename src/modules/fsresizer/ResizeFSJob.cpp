@@ -85,6 +85,11 @@ ResizeFSJob::prettyName() const
 Calamares::JobResult
 ResizeFSJob::exec()
 {
+    if ( !isValid() )
+        return Calamares::JobResult::error(
+            tr( "Invalid configuration" ),
+            tr( "The file-system resize job has an invalid configuration "
+                "and will not run." ) );
     return Calamares::JobResult::ok();
 }
 
