@@ -59,6 +59,7 @@ handle_args( QCoreApplication& a )
 
     parser.addOption( debugLevelOption );
     parser.addPositionalArgument( "module", "Path or name of module to run." );
+    parser.addPositionalArgument( "config", "Path of job-config file to use.", "[config]");
 
     parser.process( a );
 
@@ -139,6 +140,8 @@ load_module( const ModuleConfig& moduleConfig )
         moduleConfig.configFile().isEmpty()
         ? moduleDirectory + '/' + name + ".conf"
         : moduleConfig.configFile() );
+
+    cDebug() << "Module" << moduleName << "job-configuration:" << configFile;
 
     Calamares::Module* module = Calamares::Module::fromDescriptor(
         descriptor, name, configFile, moduleDirectory );
