@@ -52,13 +52,3 @@ echo "# Install results"
 install_debugging "$DESTDIR"
 
 $result || { echo "! Install failed" ; exit 1 ; } # Result of make install, above
-
-echo "# Running tests"
-ls -la $BUILDDIR/test_conf
-chmod 755 $BUILDDIR/test_conf
-$BUILDDIR/test_conf --help
-ls -la $BUILDDIR/test_conf
-
-echo "# Running ctest"
-ctest -V
-
