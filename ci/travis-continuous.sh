@@ -56,5 +56,10 @@ $result || { echo "! Install failed" ; exit 1 ; } # Result of make install, abov
 echo "# Running tests"
 find . -name test_conf
 find . -name loadmodule
+./test_conf --help
+$BUILDDIR/test_conf --help
+/build/test_conf --help
+
+echo "# Running ctest"
 ctest -V
 
