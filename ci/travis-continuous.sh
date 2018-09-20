@@ -53,4 +53,8 @@ install_debugging "$DESTDIR"
 
 $result || { echo "! Install failed" ; exit 1 ; } # Result of make install, above
 
-make test
+echo "# Running tests"
+find . -name test_conf
+find . -name loadmodule
+ctest -V
+
