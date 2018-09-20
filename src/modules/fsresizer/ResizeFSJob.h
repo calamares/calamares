@@ -34,7 +34,7 @@ class PLUGINDLLEXPORT ResizeFSJob : public Calamares::CppJob
 
 public:
     /** @brief Size expressions
-     * 
+     *
      * Sizes can be specified in MiB or percent (of the device they
      * are on). This class handles parsing of such strings from the
      * config file.
@@ -55,11 +55,11 @@ public:
         int value() const { return m_value; }
         Unit unit() const { return m_unit; }
 
-        constexpr bool isValid() const 
+        bool isValid() const
         {
             return ( unit() != None ) && ( value() > 0 );
         }
-        
+
     private:
         int m_value;
         Unit m_unit;
@@ -74,12 +74,12 @@ public:
 
     void setConfigurationMap( const QVariantMap& configurationMap ) override;
 
-    constexpr bool isValid() const
+    bool isValid() const
     {
         return ( !m_fsname.isEmpty() || !m_devicename.isEmpty() ) &&
                m_size.isValid();
     }
-    
+
 private:
     RelativeSize m_size;
     RelativeSize m_atleast;
