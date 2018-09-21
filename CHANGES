@@ -6,10 +6,16 @@ website will have to do for older versions.
 # 3.2.3 (unreleased) #
 
 This release contains contributions from (alphabetically by first name):
+ - Alf Gaida
+ - Caio Carvalho
+ - Philip Mueller
 
 ## Core ##
 
 ## Modules ##
+
+ * The *partition* module supports RAID devices, but only when Calamares
+   is compiled with the newest KPMCore release.
 
 # 3.2.2 (2018-09-04) #
 
