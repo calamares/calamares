@@ -87,7 +87,7 @@ int main(int argc, char** argv)
         if ( !doc.IsMap() )
         {
             cerr << "WARNING:" << filename << '\n';
-            cerr << "WARNING: not-a-YAML-map\n";
+            cerr << "WARNING: not-a-YAML-map (type=" << doc.Type() << ")\n";
             return 1;
         }
 
