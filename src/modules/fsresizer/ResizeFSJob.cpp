@@ -22,6 +22,9 @@
 #include <QDateTime>
 #include <QThread>
 
+#include <kpmcore/backend/corebackend.h>
+#include <kpmcore/backend/corebackendmanager.h>
+
 #include "CalamaresVersion.h"
 #include "JobQueue.h"
 #include "GlobalStorage.h"
@@ -36,8 +39,8 @@ ResizeFSJob::RelativeSize::RelativeSize()
 
 
 template<int N>
-void matchUnitSuffix( 
-    const QString& s, 
+void matchUnitSuffix(
+    const QString& s,
     const char (&suffix)[N],
     ResizeFSJob::RelativeSize::Unit matchedUnit,
     int& value,
@@ -50,15 +53,15 @@ void matchUnitSuffix(
         unit = matchedUnit;
     }
 }
-        
-    
+
+
 ResizeFSJob::RelativeSize::RelativeSize( const QString& s)
     : m_value( 0 )
     , m_unit( None )
 {
     matchUnitSuffix( s, "%", Percent, m_value, m_unit );
     matchUnitSuffix( s, "MiB", Absolute, m_value, m_unit );
-    
+
     if ( !m_value )
         m_unit = None;
 }
@@ -85,11 +88,18 @@ ResizeFSJob::prettyName() const
 Calamares::JobResult
 ResizeFSJob::exec()
 {
+    auto backend_p = CoreBackendManager::self()->backend();
+    if ( backend_p )
+        cDebug() << "KPMCore backend @" << (void *)backend_p << backend_p->id() << backend_p->version();
+    else
+        cDebug() << "No KPMCore backend";
+
     if ( !isValid() )
         return Calamares::JobResult::error(
             tr( "Invalid configuration" ),
             tr( "The file-system resize job has an invalid configuration "
                 "and will not run." ) );
+
     return Calamares::JobResult::ok();
 }
 
