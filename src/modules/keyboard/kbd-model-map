@@ -1,6 +1,11 @@
 # Copied from systemd-localed
-# http://cgit.freedesktop.org/systemd/systemd/log/src/locale/kbd-model-map
+#
+# https://cgit.freedesktop.org/systemd/systemd/log/src/locale/kbd-model-map
 # (originally under LGPLv2.1+, used under the LGPL to GPL conversion clause)
+#
+# This is the version from 534644b7be7b240eb0fbbe06e20cbecbe8206767,
+# committed 2015-01-22 01:07:24 .
+#
 # Generated from system-config-keyboard's model list
 # consolelayout		xlayout	xmodel		xvariant	xoptions
 sg			ch	pc105		de_nodeadkeys	terminate:ctrl_alt_bksp
