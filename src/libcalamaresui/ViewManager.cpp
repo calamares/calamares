@@ -191,7 +191,7 @@ ViewManager::onInitFailed( const QStringList& modules)
         detailString = details.join( QString() );
     }
 
-    insertViewStep( 0, new BlankViewStep( title, description.arg( *Calamares::Branding::ShortProductName ), detailString ) );
+    insertViewStep( 0, new BlankViewStep( title, description.arg( *Calamares::Branding::ProductName ), detailString ) );
 }
 
 ViewStepList
