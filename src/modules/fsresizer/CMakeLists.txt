@@ -10,17 +10,20 @@ if ( KPMcore_FOUND )
     include_directories( ${KPMCORE_INCLUDE_DIR} )
     include_directories( ${PROJECT_BINARY_DIR}/src/libcalamares )
 
+    # The PartitionIterator is a small class, and it's easiest -- but also a
+    # gross hack -- to just compile it again from the partition module tree.
     calamares_add_plugin( fsresizer
         TYPE job
         EXPORT_MACRO PLUGINDLLEXPORT_PRO
         SOURCES
             ResizeFSJob.cpp
+            ${PROJECT_SOURCE_DIR}/src/modules/partition/core/PartitionIterator.cpp
         LINK_PRIVATE_LIBRARIES
             kpmcore
             calamares
         SHARED_LIB
     )
-    
+
     if( ECM_FOUND )
         find_package( Qt5 COMPONENTS Test REQUIRED )
         include( ECMAddTests )

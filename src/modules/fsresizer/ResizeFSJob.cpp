@@ -24,12 +24,16 @@
 
 #include <kpmcore/backend/corebackend.h>
 #include <kpmcore/backend/corebackendmanager.h>
+#include <kpmcore/core/device.h>
+#include <kpmcore/core/partition.h>
 
 #include "CalamaresVersion.h"
 #include "JobQueue.h"
 #include "GlobalStorage.h"
 
 #include "utils/Logger.h"
+
+#include "modules/partition/core/PartitionIterator.h"
 
 ResizeFSJob::RelativeSize::RelativeSize()
     : m_value( 0 )
@@ -92,7 +96,40 @@ ResizeFSJob::exec()
     if ( backend_p )
         cDebug() << "KPMCore backend @" << (void *)backend_p << backend_p->id() << backend_p->version();
     else
-        cDebug() << "No KPMCore backend";
+    {
+        cDebug() << "No KPMCore backend loaded yet";
+        QByteArray backendName = qgetenv( "KPMCORE_BACKEND" );
+        if ( !CoreBackendManager::self()->load( backendName.isEmpty() ? CoreBackendManager::defaultBackendName() : backendName ) )
+        {
+            cWarning() << "Could not load KPMCore backend.";
+            return Calamares::JobResult::error(
+                tr( "KPMCore not Available" ),
+                tr( "Calamares cannot start KPMCore for the file-system resize job." ) );
+        }
+
+        backend_p = CoreBackendManager::self()->backend();
+    }
+    if ( !backend_p )
+    {
+        cWarning() << "Could not load KPMCore backend (2).";
+        return Calamares::JobResult::error(
+            tr( "KPMCore not Available" ),
+            tr( "Calamares cannot start KPMCore for the file-system resize job." ) );
+    }
+
+    using DeviceList = QList< Device* >;
+    DeviceList devices = backend_p->scanDevices( false );
+    cDebug() << "ResizeFSJob found" << devices.count() << "devices.";
+    for ( DeviceList::iterator it = devices.begin(); it != devices.end(); )
+    {
+        if ( ! (*it) )
+            continue;
+        cDebug() << "ResizeFSJob found" << ( *it )->deviceNode();
+        for ( auto pit = PartitionIterator::begin( *it); pit != PartitionIterator::end( *it); ++pit )
+        {
+            cDebug() << ".." << ( *pit )->mountPoint();
+        }
+    }
 
     if ( !isValid() )
         return Calamares::JobResult::error(
