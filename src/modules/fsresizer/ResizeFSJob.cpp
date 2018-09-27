@@ -120,14 +120,14 @@ ResizeFSJob::exec()
     using DeviceList = QList< Device* >;
     DeviceList devices = backend_p->scanDevices( false );
     cDebug() << "ResizeFSJob found" << devices.count() << "devices.";
-    for ( DeviceList::iterator it = devices.begin(); it != devices.end(); )
+    for ( DeviceList::iterator dev_it = devices.begin(); dev_it != devices.end(); ++dev_it )
     {
-        if ( ! (*it) )
+        if ( ! (*dev_it) )
             continue;
-        cDebug() << "ResizeFSJob found" << ( *it )->deviceNode();
-        for ( auto pit = PartitionIterator::begin( *it); pit != PartitionIterator::end( *it); ++pit )
+        cDebug() << "ResizeFSJob found" << ( *dev_it )->deviceNode();
+        for ( auto part_it = PartitionIterator::begin( *dev_it); part_it != PartitionIterator::end( *dev_it ); ++part_it )
         {
-            cDebug() << ".." << ( *pit )->mountPoint();
+            cDebug() << ".." << ( *part_it )->mountPoint();
         }
     }
 
