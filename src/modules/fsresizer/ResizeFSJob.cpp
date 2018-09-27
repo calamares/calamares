@@ -216,7 +216,9 @@ ResizeFSJob::exec()
             tr( "KPMCore not Available" ),
             tr( "Calamares cannot start KPMCore for the file-system resize job." ) );
     }
+    backend_p->initFSSupport();
 
+    // Now get the partition and FS we want to work on
     PartitionMatch m = findPartition( backend_p );
     if ( !m.first || !m.second )
         return Calamares::JobResult::error(
