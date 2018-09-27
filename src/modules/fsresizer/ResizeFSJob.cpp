@@ -216,7 +216,7 @@ ResizeFSJob::exec()
             tr( "KPMCore not Available" ),
             tr( "Calamares cannot start KPMCore for the file-system resize job." ) );
     }
-    backend_p->initFSSupport();
+    backend_p->initFSSupport();  // Might not be enough, see below
 
     // Now get the partition and FS we want to work on
     PartitionMatch m = findPartition( backend_p );
@@ -226,6 +226,7 @@ ResizeFSJob::exec()
             !m_fsname.isEmpty() ? tr( "The filesystem %1 could not be found in this system, and can not be resized." ).arg(m_fsname)
                                : tr( "The device %1 could not be found in this system, and can not be resized." ).arg(m_devicename) );
 
+    m.second->fileSystem().init();  // Initialize support for specific FS
     if ( !ResizeOperation::canGrow( m.second ) )
     {
         cDebug() << "canGrow() returned false.";
