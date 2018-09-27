@@ -1,6 +1,14 @@
 # Copied from systemd-localed
-# http://cgit.freedesktop.org/systemd/systemd/log/src/locale/kbd-model-map
+#
+# https://cgit.freedesktop.org/systemd/systemd/log/src/locale/kbd-model-map
 # (originally under LGPLv2.1+, used under the LGPL to GPL conversion clause)
+#
+# This is the version from 534644b7be7b240eb0fbbe06e20cbecbe8206767,
+# committed 2015-01-22 01:07:24 .
+#
+# Updates:
+#  - 2018-09-26 Added "Austrian" keyboard (de at). Issue #1035
+#
 # Generated from system-config-keyboard's model list
 # consolelayout		xlayout	xmodel		xvariant	xoptions
 sg			ch	pc105		de_nodeadkeys	terminate:ctrl_alt_bksp
@@ -10,6 +18,7 @@ trq			tr	pc105		-		terminate:ctrl_alt_bksp
 uk			gb	pc105		-		terminate:ctrl_alt_bksp
 is-latin1		is	pc105		-		terminate:ctrl_alt_bksp
 de			de	pc105		-		terminate:ctrl_alt_bksp
+de			at	pc105		-		terminate:ctrl_alt_bksp
 la-latin1		latam	pc105		-		terminate:ctrl_alt_bksp
 us			us	pc105+inet	-		terminate:ctrl_alt_bksp
 ko			kr	pc105		-		terminate:ctrl_alt_bksp

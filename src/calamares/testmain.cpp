@@ -193,7 +193,12 @@ main( int argc, char* argv[] )
         cDebug() << "Job #" << count << "name" << p->prettyName();
         Calamares::JobResult r = p->exec();
         if ( !r )
-            cDebug() << count << ".. failed" << r;
+        {
+            using TR = Logger::DebugRow<QString, QString>;
+            cDebug() << count << ".. failed"
+                << TR( "summary", r.message() )
+                << TR( "details", r.details() );
+        }
         ++count;
     }
 
