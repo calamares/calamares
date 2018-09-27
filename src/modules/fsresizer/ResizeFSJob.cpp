@@ -88,6 +88,32 @@ ResizeFSJob::prettyName() const
     return tr( "Resize Filesystem Job" );
 }
 
+ResizeFSJob::PartitionMatch
+ResizeFSJob::findPartition( CoreBackend* backend )
+{
+    using DeviceList = QList< Device* >;
+    DeviceList devices = backend->scanDevices( false );
+    cDebug() << "ResizeFSJob found" << devices.count() << "devices.";
+    for ( DeviceList::iterator dev_it = devices.begin(); dev_it != devices.end(); ++dev_it )
+    {
+        if ( ! (*dev_it) )
+            continue;
+        cDebug() << "ResizeFSJob found" << ( *dev_it )->deviceNode();
+        for ( auto part_it = PartitionIterator::begin( *dev_it); part_it != PartitionIterator::end( *dev_it ); ++part_it )
+        {
+            cDebug() << ".." << ( *part_it )->mountPoint() << "on" << ( *part_it )->deviceNode();
+            if ( ( !m_fsname.isEmpty() && ( *part_it )->mountPoint() == m_fsname ) ||
+                 ( !m_devicename.isEmpty() && ( *part_it )->deviceNode() == m_devicename ) )
+            {
+                cDebug() << ".. matched configuration dev=" << m_devicename << "fs=" << m_fsname;
+                return PartitionMatch( *dev_it, *part_it );
+            }
+        }
+    }
+
+    cDebug() << "No match for configuration dev=" << m_devicename << "fs=" << m_fsname;
+    return PartitionMatch( nullptr, nullptr );
+}
 
 Calamares::JobResult
 ResizeFSJob::exec()
@@ -124,30 +150,12 @@ ResizeFSJob::exec()
             tr( "Calamares cannot start KPMCore for the file-system resize job." ) );
     }
 
-    Device* resize_this_device = nullptr;
-    Partition* resize_this_partition = nullptr;
-
-    using DeviceList = QList< Device* >;
-    DeviceList devices = backend_p->scanDevices( false );
-    cDebug() << "ResizeFSJob found" << devices.count() << "devices.";
-    for ( DeviceList::iterator dev_it = devices.begin(); dev_it != devices.end(); ++dev_it )
-    {
-        if ( ! (*dev_it) )
-            continue;
-        cDebug() << "ResizeFSJob found" << ( *dev_it )->deviceNode();
-        for ( auto part_it = PartitionIterator::begin( *dev_it); part_it != PartitionIterator::end( *dev_it ); ++part_it )
-        {
-            cDebug() << ".." << ( *part_it )->mountPoint() << "on" << ( *part_it )->deviceNode();
-            if ( ( !m_fsname.isEmpty() && ( *part_it )->mountPoint() == m_fsname ) ||
-                 ( !m_devicename.isEmpty() && ( *part_it )->deviceNode() == m_devicename ) )
-            {
-                resize_this_device = ( *dev_it );
-                resize_this_partition = ( *part_it );
-                cDebug() << ".. matched configuration dev=" << m_devicename << "fs=" << m_fsname;
-                break;
-            }
-        }
-    }
+    PartitionMatch m = findPartition( backend_p );
+    if ( !m.first || !m.second )
+        return Calamares::JobResult::error(
+            tr( "Resize Failed" ),
+            m_fsname.isEmpty() ? tr( "The filesystem %1 could not be found in this system, and can not be resized." ).arg(m_fsname)
+                               : tr( "The device %1 could not be found in this system, and can not be resized." ).arg(m_devicename) );
 
     return Calamares::JobResult::ok();
 }

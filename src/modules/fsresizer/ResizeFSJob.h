@@ -28,6 +28,10 @@
 
 #include <PluginDllMacro.h>
 
+class CoreBackend;  // From KPMCore
+class Device;  // From KPMCore
+class Partition;
+
 class PLUGINDLLEXPORT ResizeFSJob : public Calamares::CppJob
 {
     Q_OBJECT
@@ -74,6 +78,7 @@ public:
 
     void setConfigurationMap( const QVariantMap& configurationMap ) override;
 
+    /** @brief Is the configuration of this job valid? */
     bool isValid() const
     {
         return ( !m_fsname.isEmpty() || !m_devicename.isEmpty() ) &&
@@ -85,6 +90,10 @@ private:
     RelativeSize m_atleast;
     QString m_fsname;  // Either this, or devicename, is set, not both
     QString m_devicename;
+
+    using PartitionMatch = QPair<Device*, Partition*>;
+    /** @brief Find the configured FS using KPMCore @p backend */
+    PartitionMatch findPartition( CoreBackend* backend );
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( ResizeFSJobFactory )
