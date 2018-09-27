@@ -221,7 +221,7 @@ ResizeFSJob::exec()
     if ( !m.first || !m.second )
         return Calamares::JobResult::error(
             tr( "Resize Failed" ),
-            m_fsname.isEmpty() ? tr( "The filesystem %1 could not be found in this system, and can not be resized." ).arg(m_fsname)
+            !m_fsname.isEmpty() ? tr( "The filesystem %1 could not be found in this system, and can not be resized." ).arg(m_fsname)
                                : tr( "The device %1 could not be found in this system, and can not be resized." ).arg(m_devicename) );
 
     if ( !ResizeOperation::canGrow( m.second ) )
@@ -229,7 +229,7 @@ ResizeFSJob::exec()
         cDebug() << "canGrow() returned false.";
         return Calamares::JobResult::error(
             tr( "Resize Failed" ),
-            m_fsname.isEmpty() ? tr( "The filesystem %1 can not be resized." ).arg(m_fsname)
+            !m_fsname.isEmpty() ? tr( "The filesystem %1 can not be resized." ).arg(m_fsname)
                                : tr( "The device %1 can not be resized." ).arg(m_devicename) );
     }
 
