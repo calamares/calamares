@@ -65,6 +65,8 @@ SetKeyboardLayoutJob::prettyName() const
 QString
 SetKeyboardLayoutJob::findConvertedKeymap( const QString& convertedKeymapPath ) const
 {
+    cDebug() << "Looking for converted keymap in" << convertedKeymapPath;
+    
     // No search path supplied, assume the distribution does not provide
     // converted keymaps
     if ( convertedKeymapPath.isEmpty() )
@@ -76,8 +78,7 @@ SetKeyboardLayoutJob::findConvertedKeymap( const QString& convertedKeymapPath ) 
     if ( convertedKeymapDir.exists( name + ".map" )
             || convertedKeymapDir.exists( name + ".map.gz" ) )
     {
-        cDebug() << "Found converted keymap" << name;
-
+        cDebug() << ".. Found converted keymap" << name;
         return name;
     }
 
@@ -88,6 +89,8 @@ SetKeyboardLayoutJob::findConvertedKeymap( const QString& convertedKeymapPath ) 
 QString
 SetKeyboardLayoutJob::findLegacyKeymap() const
 {
+    cDebug() << "Looking for legacy keymap in QRC";
+    
     int bestMatching = 0;
     QString name;
 
@@ -137,7 +140,7 @@ SetKeyboardLayoutJob::findLegacyKeymap() const
         // The best matching entry so far, then let's save that
         if ( matching >= qMax( bestMatching, 1 ) )
         {
-            cDebug() << "Found legacy keymap" << mapping[0]
+            cDebug() << ".. Found legacy keymap" << mapping[0]
                      << "with score" << matching;
 
             if ( matching > bestMatching )

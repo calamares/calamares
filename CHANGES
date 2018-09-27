@@ -8,6 +8,7 @@ website will have to do for older versions.
 This release contains contributions from (alphabetically by first name):
  - Alf Gaida
  - Caio Carvalho
+ - Kevin Kofler
  - Philip Mueller
 
 ## Core ##
@@ -16,6 +17,8 @@ This release contains contributions from (alphabetically by first name):
 
  * The *partition* module supports RAID devices, but only when Calamares
    is compiled with the newest KPMCore release.
+ * The *keyboard* module now handles the (bogus) Austrian keymap for
+   the system console properly.
 
 # 3.2.2 (2018-09-04) #
 
