@@ -92,6 +92,13 @@ ResizeFSJob::prettyName() const
 Calamares::JobResult
 ResizeFSJob::exec()
 {
+    if ( !isValid() )
+        return Calamares::JobResult::error(
+            tr( "Invalid configuration" ),
+            tr( "The file-system resize job has an invalid configuration "
+                "and will not run." ) );
+
+    // Get KPMCore
     auto backend_p = CoreBackendManager::self()->backend();
     if ( backend_p )
         cDebug() << "KPMCore backend @" << (void *)backend_p << backend_p->id() << backend_p->version();
@@ -117,6 +124,9 @@ ResizeFSJob::exec()
             tr( "Calamares cannot start KPMCore for the file-system resize job." ) );
     }
 
+    Device* resize_this_device = nullptr;
+    Partition* resize_this_partition = nullptr;
+
     using DeviceList = QList< Device* >;
     DeviceList devices = backend_p->scanDevices( false );
     cDebug() << "ResizeFSJob found" << devices.count() << "devices.";
@@ -127,15 +137,17 @@ ResizeFSJob::exec()
         cDebug() << "ResizeFSJob found" << ( *dev_it )->deviceNode();
         for ( auto part_it = PartitionIterator::begin( *dev_it); part_it != PartitionIterator::end( *dev_it ); ++part_it )
         {
-            cDebug() << ".." << ( *part_it )->mountPoint();
+            cDebug() << ".." << ( *part_it )->mountPoint() << "on" << ( *part_it )->deviceNode();
+            if ( ( !m_fsname.isEmpty() && ( *part_it )->mountPoint() == m_fsname ) ||
+                 ( !m_devicename.isEmpty() && ( *part_it )->deviceNode() == m_devicename ) )
+            {
+                resize_this_device = ( *dev_it );
+                resize_this_partition = ( *part_it );
+                cDebug() << ".. matched configuration dev=" << m_devicename << "fs=" << m_fsname;
+                break;
+            }
         }
     }
-
-    if ( !isValid() )
-        return Calamares::JobResult::error(
-            tr( "Invalid configuration" ),
-            tr( "The file-system resize job has an invalid configuration "
-                "and will not run." ) );
 
     return Calamares::JobResult::ok();
 }
