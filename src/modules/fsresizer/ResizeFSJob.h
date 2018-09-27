@@ -64,6 +64,15 @@ public:
             return ( unit() != None ) && ( value() > 0 );
         }
 
+        /** @brief Apply this size to the given device @p d
+         *
+         * For invalid sizes, returns -1.
+         * For absolute sizes, returns the number of sectors needed.
+         * For percent sizes, returns the number of sectors matching
+         *     that percentage of the device size.
+         */
+        qint64 apply( Device* d );
+
     private:
         int m_value;
         Unit m_unit;
@@ -94,6 +103,9 @@ private:
     using PartitionMatch = QPair<Device*, Partition*>;
     /** @brief Find the configured FS using KPMCore @p backend */
     PartitionMatch findPartition( CoreBackend* backend );
+
+    /** @brief Return a new end-sector for the given dev-part pair. */
+    qint64 findGrownEnd( PartitionMatch );
 };
 
 CALAMARES_PLUGIN_FACTORY_DECLARATION( ResizeFSJobFactory )

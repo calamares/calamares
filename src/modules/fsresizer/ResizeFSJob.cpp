@@ -26,12 +26,14 @@
 #include <kpmcore/backend/corebackendmanager.h>
 #include <kpmcore/core/device.h>
 #include <kpmcore/core/partition.h>
+#include <kpmcore/ops/resizeoperation.h>
 
 #include "CalamaresVersion.h"
 #include "JobQueue.h"
 #include "GlobalStorage.h"
 
 #include "utils/Logger.h"
+#include "utils/Units.h"
 
 #include "modules/partition/core/PartitionIterator.h"
 
@@ -70,6 +72,26 @@ ResizeFSJob::RelativeSize::RelativeSize( const QString& s)
         m_unit = None;
 }
 
+qint64
+ResizeFSJob::RelativeSize::apply( Device* d )
+{
+    if ( !isValid() )
+        return -1;
+
+    switch( m_unit )
+    {
+    case None:
+        return -1;
+    case Absolute:
+        return CalamaresUtils::MiBtoBytes( value() ) / d->logicalSize();
+    case Percent:
+        return d->logicalSize() * value() / 100;
+    }
+
+    // notreached
+    return -1;
+}
+
 
 ResizeFSJob::ResizeFSJob( QObject* parent )
     : Calamares::CppJob( parent )
@@ -99,7 +121,7 @@ ResizeFSJob::findPartition( CoreBackend* backend )
         if ( ! (*dev_it) )
             continue;
         cDebug() << "ResizeFSJob found" << ( *dev_it )->deviceNode();
-        for ( auto part_it = PartitionIterator::begin( *dev_it); part_it != PartitionIterator::end( *dev_it ); ++part_it )
+        for ( auto part_it = PartitionIterator::begin( *dev_it ); part_it != PartitionIterator::end( *dev_it ); ++part_it )
         {
             cDebug() << ".." << ( *part_it )->mountPoint() << "on" << ( *part_it )->deviceNode();
             if ( ( !m_fsname.isEmpty() && ( *part_it )->mountPoint() == m_fsname ) ||
@@ -114,6 +136,51 @@ ResizeFSJob::findPartition( CoreBackend* backend )
     cDebug() << "No match for configuration dev=" << m_devicename << "fs=" << m_fsname;
     return PartitionMatch( nullptr, nullptr );
 }
+
+qint64
+ResizeFSJob::findGrownEnd(ResizeFSJob::PartitionMatch m)
+{
+    if ( !m.first || !m.second )
+        return -1;
+    if ( !ResizeOperation::canGrow( m.second ) )
+        return -1;
+
+    qint64 last_available = m.first->totalLogical();
+    cDebug() << "Containing device size" << last_available;
+    qint64 last_currently = m.second->lastSector();
+    cDebug() << "Growing partition" << m.second->firstSector() << '-' << last_currently;
+
+    for ( auto part_it = PartitionIterator::begin( m.first ); part_it != PartitionIterator::end( m.first ); ++part_it )
+    {
+        qint64 next_start = ( *part_it )->firstSector();
+        cDebug() << ".. comparing" << next_start << '-' << ( *part_it )->lastSector();
+        if ( (next_start > last_currently) && (next_start < last_available) )
+        {
+            cDebug() << "  .. shrunk last available to" << next_start;
+            last_available = next_start - 1;  // Before that one starts
+        }
+    }
+
+    if ( !( last_available > last_currently ) )
+    {
+        cDebug() << "Partition can not grow larger.";
+        return -1;
+    }
+
+    qint64 expand = last_available - last_currently;  // number of sectors
+    if ( m_atleast.isValid() )
+    {
+        qint64 required = m_atleast.apply( m.first );
+        if ( expand < required )
+        {
+            cDebug() << ".. need to expand by" << required << "but only" << expand << "is available.";
+            return -1;
+        }
+    }
+
+    return last_available;
+}
+
 
 Calamares::JobResult
 ResizeFSJob::exec()
@@ -156,6 +223,19 @@ ResizeFSJob::exec()
             tr( "Resize Failed" ),
             m_fsname.isEmpty() ? tr( "The filesystem %1 could not be found in this system, and can not be resized." ).arg(m_fsname)
                                : tr( "The device %1 could not be found in this system, and can not be resized." ).arg(m_devicename) );
+
+    if ( !ResizeOperation::canGrow( m.second ) )
+    {
+        cDebug() << "canGrow() returned false.";
+        return Calamares::JobResult::error(
+            tr( "Resize Failed" ),
+            m_fsname.isEmpty() ? tr( "The filesystem %1 can not be resized." ).arg(m_fsname)
+                               : tr( "The device %1 can not be resized." ).arg(m_devicename) );
+    }
+
+    cDebug() << "Resize from" << m.second->firstSector()
+        << '+' << m.second->length() << '=' << m.second->lastSector()
+        << "to" << findGrownEnd( m );
 
     return Calamares::JobResult::ok();
 }
