@@ -68,31 +68,48 @@ ResizeFSJob::RelativeSize::RelativeSize( const QString& s)
 {
     matchUnitSuffix( s, "%", Percent, m_value, m_unit );
     matchUnitSuffix( s, "MiB", Absolute, m_value, m_unit );
+    
+    if ( ( unit() == Percent ) && ( value() > 100 ) )
+    {
+        cDebug() << "Percent value" << value() << "is not valid.";
+        m_value = 0;
+        m_unit = None;
+    }
 
     if ( !m_value )
         m_unit = None;
 }
 
 qint64
-ResizeFSJob::RelativeSize::apply( Device* d )
+ResizeFSJob::RelativeSize::apply( qint64 totalSectors , qint64 sectorSize )
 {
     if ( !isValid() )
         return -1;
-
+    if ( sectorSize < 1 )
+        return -1;
+    
     switch( m_unit )
     {
     case None:
         return -1;
     case Absolute:
-        return CalamaresUtils::MiBtoBytes( value() ) / d->logicalSize();
+        return CalamaresUtils::MiBtoBytes( value() ) / sectorSize;
     case Percent:
-        return d->logicalSize() * value() / 100;
+        if ( value() == 100 )
+            return totalSectors;  // Common-case, avoid futzing around
+        else
+            return totalSectors * value() / 100;
     }
 
     // notreached
     return -1;
 }
 
+qint64
+ResizeFSJob::RelativeSize::apply( Device* d )
+{
+    return apply( d->totalLogical(), d->logicalSize() );
+}
 
 ResizeFSJob::ResizeFSJob( QObject* parent )
     : Calamares::CppJob( parent )
@@ -150,9 +167,11 @@ qint64
 ResizeFSJob::findGrownEnd(ResizeFSJob::PartitionMatch m)
 {
     if ( !m.first || !m.second )
-        return -1;
+        return -1;  // Missing device data
     if ( !ResizeOperation::canGrow( m.second ) )
-        return -1;
+        return -1;  // Operation is doomed
+    if ( !m_size.isValid() )
+        return -1;  // Must have a grow-size
 
     cDebug() << "Containing device size" << m.first->totalLogical();
     qint64 last_available = m.first->totalLogical() - 1;  // Numbered from 0
@@ -198,6 +217,13 @@ ResizeFSJob::findGrownEnd(ResizeFSJob::PartitionMatch m)
         }
     }
 
+    qint64 wanted = m_size.apply( expand, m.first->logicalSize() );
+    if ( wanted < expand )
+    {
+        cDebug() << ".. only growing by" << wanted << "instead of full" << expand;
+        last_available -= ( expand - wanted );
+    }
+    
     return last_available;
 }
 

@@ -64,15 +64,23 @@ public:
             return ( unit() != None ) && ( value() > 0 );
         }
 
-        /** @brief Apply this size to the given device @p d
+        /** @brief Apply this size to the number of sectors @p totalSectors .
          *
+         * Each sector has size @p sectorSize , for converting absolute
+         * sizes in MiB to sector counts.
+         * 
          * For invalid sizes, returns -1.
          * For absolute sizes, returns the number of sectors needed.
-         * For percent sizes, returns the number of sectors matching
-         *     that percentage of the device size.
+         * For percent sizes, returns that percent of the number of sectors.
+         */
+        qint64 apply( qint64 totalSectors, qint64 sectorSize );
+        
+        /** @brief Apply this size to the given device.
+         * 
+         * Equivalent to apply( d->totalLogical(), d->logicalSize() )
          */
         qint64 apply( Device* d );
-
+        
     private:
         int m_value;
         Unit m_unit;
