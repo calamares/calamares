@@ -27,6 +27,7 @@
 #include <kpmcore/core/device.h>
 #include <kpmcore/core/partition.h>
 #include <kpmcore/ops/resizeoperation.h>
+#include <kpmcore/util/report.h>
 
 #include "CalamaresVersion.h"
 #include "JobQueue.h"
@@ -145,15 +146,26 @@ ResizeFSJob::findGrownEnd(ResizeFSJob::PartitionMatch m)
     if ( !ResizeOperation::canGrow( m.second ) )
         return -1;
 
-    qint64 last_available = m.first->totalLogical();
-    cDebug() << "Containing device size" << last_available;
+    cDebug() << "Containing device size" << m.first->totalLogical();
+    qint64 last_available = m.first->totalLogical() - 1;  // Numbered from 0
     qint64 last_currently = m.second->lastSector();
     cDebug() << "Growing partition" << m.second->firstSector() << '-' << last_currently;
 
     for ( auto part_it = PartitionIterator::begin( m.first ); part_it != PartitionIterator::end( m.first ); ++part_it )
     {
         qint64 next_start = ( *part_it )->firstSector();
-        cDebug() << ".. comparing" << next_start << '-' << ( *part_it )->lastSector();
+        qint64 next_end = ( *part_it )->lastSector();
+        if ( next_start > next_end )
+        {
+            cWarning() << "Corrupt partition has end" << next_end << " < start" << next_start;
+            std::swap( next_start, next_end );
+        }
+        if ( ( *part_it )->roles().has( PartitionRole::Unallocated ) )
+        {
+            cDebug() << ".. ignoring unallocated" << next_start << '-' << next_end;
+            continue;
+        }
+        cDebug() << ".. comparing" << next_start << '-' << next_end;
         if ( (next_start > last_currently) && (next_start < last_available) )
         {
             cDebug() << "  .. shrunk last available to" << next_start;
@@ -236,9 +248,26 @@ ResizeFSJob::exec()
                                : tr( "The device %1 can not be resized." ).arg(m_devicename) );
     }
 
-    cDebug() << "Resize from" << m.second->firstSector()
-        << '+' << m.second->length() << '=' << m.second->lastSector()
-        << "to" << findGrownEnd( m );
+    qint64 new_end = findGrownEnd( m );
+    cDebug() << "Resize from"
+        << m.second->firstSector() << '-' << m.second->lastSector()
+        << '(' << m.second->length() << ')'
+        << "to -" << new_end;
+
+    if ( ( new_end > 0 ) && ( new_end > m.second->lastSector() ) )
+    {
+        ResizeOperation op( *m.first, *m.second, m.second->firstSector(), new_end );
+        Report op_report( nullptr );
+        if ( op.execute( op_report ) )
+            cDebug() << "Resize operation OK.";
+        else
+        {
+            cDebug() << "Resize failed." << op_report.output();
+            return Calamares::JobResult::error(
+                tr( "Resize Failed" ),
+                report.toText() );
+        }
+    }
 
     return Calamares::JobResult::ok();
 }
