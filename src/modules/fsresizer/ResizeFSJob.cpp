@@ -138,6 +138,14 @@ ResizeFSJob::findPartition( CoreBackend* backend )
     return PartitionMatch( nullptr, nullptr );
 }
 
+/** @brief Returns the last sector the matched partition should occupy.
+ * 
+ * Returns a sector number. Returns -1 if something is wrong (e.g.
+ * can't resize at all, or missing data). Returns 0 if the resize
+ * won't fit because it doesn't satisfy the settings for atleast
+ * and size (or won't grow at all because the partition is blocked
+ * by occupied space after it).
+ */
 qint64
 ResizeFSJob::findGrownEnd(ResizeFSJob::PartitionMatch m)
 {
@@ -176,7 +184,7 @@ ResizeFSJob::findGrownEnd(ResizeFSJob::PartitionMatch m)
     if ( !( last_available > last_currently ) )
     {
         cDebug() << "Partition can not grow larger.";
-        return -1;
+        return 0;
     }
 
     qint64 expand = last_available - last_currently;  // number of sectors
@@ -186,7 +194,7 @@ ResizeFSJob::findGrownEnd(ResizeFSJob::PartitionMatch m)
         if ( expand < required )
         {
             cDebug() << ".. need to expand by" << required << "but only" << expand << "is available.";
-            return -1;
+            return 0;
         }
     }
 
@@ -254,6 +262,19 @@ ResizeFSJob::exec()
         << '(' << m.second->length() << ')'
         << "to -" << new_end;
 
+    if ( new_end < 0 )
+        return Calamares::JobResult::error(
+            tr( "Resize Failed" ),
+            !m_fsname.isEmpty() ? tr( "The filesystem %1 can not be resized." ).arg(m_fsname)
+                               : tr( "The device %1 can not be resized." ).arg(m_devicename) );
+    if ( new_end == 0 )
+    {
+        // TODO: is that a bad thing? is the resize required?
+        cWarning() << "Resize operation on" << m_fsname << m_devicename
+            << "skipped as not-useful.";
+        return Calamares::JobResult::ok();
+    }
+        
     if ( ( new_end > 0 ) && ( new_end > m.second->lastSector() ) )
     {
         ResizeOperation op( *m.first, *m.second, m.second->firstSector(), new_end );
