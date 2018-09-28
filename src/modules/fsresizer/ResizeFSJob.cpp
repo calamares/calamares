@@ -312,7 +312,7 @@ ResizeFSJob::exec()
             cDebug() << "Resize failed." << op_report.output();
             return Calamares::JobResult::error(
                 tr( "Resize Failed" ),
-                report.toText() );
+                op_report.toText() );
         }
     }
 
