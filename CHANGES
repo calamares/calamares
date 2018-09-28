@@ -19,7 +19,7 @@ This release contains contributions from (alphabetically by first name):
    is compiled with the newest KPMCore release.
  * The *keyboard* module now handles the (bogus) Austrian keymap for
    the system console properly.
- - New module *fsresizer* can be used to resize filesystems. It is intended
+ * New module *fsresizer* can be used to resize filesystems. It is intended
    for use in OEM installs where an image of fixed size is created,
    and then sized to the actual SD card the user has used.
 
