@@ -134,7 +134,7 @@ def run():
     if os.path.exists(target_locale_gen_bak):
         shutil.copy2(target_locale_gen_bak, target_locale_gen)
         libcalamares.utils.debug("Restored backup {!s} -> {!s}"
-            .format(target_locale_gen_bak).format(target_locale_gen))
+            .format(target_locale_gen_bak, target_locale_gen))
 
     # run locale-gen if detected; this *will* cause an exception
     # if the live system has locale.gen, but the target does not:
