@@ -297,9 +297,14 @@ ResizeFSJob::exec()
                                : tr( "The device %1 can not be resized." ).arg(m_devicename) );
     if ( new_end == 0 )
     {
-        // TODO: is that a bad thing? is the resize required?
         cWarning() << "Resize operation on" << m_fsname << m_devicename
             << "skipped as not-useful.";
+        if ( m_required )
+            return Calamares::JobResult::error(
+                tr( "Resize Failed" ),
+                !m_fsname.isEmpty() ? tr( "The filesystem %1 must be resized, but cannot." ).arg(m_fsname)
+                                : tr( "The device %11 must be resized, but cannot" ).arg(m_fsname) );
+
         return Calamares::JobResult::ok();
     }
 
