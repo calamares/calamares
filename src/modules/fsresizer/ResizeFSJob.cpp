@@ -33,6 +33,7 @@
 #include "JobQueue.h"
 #include "GlobalStorage.h"
 
+#include "utils/CalamaresUtils.h"
 #include "utils/Logger.h"
 #include "utils/Units.h"
 
@@ -68,7 +69,7 @@ ResizeFSJob::RelativeSize::RelativeSize( const QString& s)
 {
     matchUnitSuffix( s, "%", Percent, m_value, m_unit );
     matchUnitSuffix( s, "MiB", Absolute, m_value, m_unit );
-    
+
     if ( ( unit() == Percent ) && ( value() > 100 ) )
     {
         cDebug() << "Percent value" << value() << "is not valid.";
@@ -87,7 +88,7 @@ ResizeFSJob::RelativeSize::apply( qint64 totalSectors , qint64 sectorSize )
         return -1;
     if ( sectorSize < 1 )
         return -1;
-    
+
     switch( m_unit )
     {
     case None:
@@ -113,6 +114,7 @@ ResizeFSJob::RelativeSize::apply( Device* d )
 
 ResizeFSJob::ResizeFSJob( QObject* parent )
     : Calamares::CppJob( parent )
+    , m_required( false )
 {
 }
 
@@ -156,7 +158,7 @@ ResizeFSJob::findPartition( CoreBackend* backend )
 }
 
 /** @brief Returns the last sector the matched partition should occupy.
- * 
+ *
  * Returns a sector number. Returns -1 if something is wrong (e.g.
  * can't resize at all, or missing data). Returns 0 if the resize
  * won't fit because it doesn't satisfy the settings for atleast
@@ -223,7 +225,7 @@ ResizeFSJob::findGrownEnd(ResizeFSJob::PartitionMatch m)
         cDebug() << ".. only growing by" << wanted << "instead of full" << expand;
         last_available -= ( expand - wanted );
     }
-    
+
     return last_available;
 }
 
@@ -300,7 +302,7 @@ ResizeFSJob::exec()
             << "skipped as not-useful.";
         return Calamares::JobResult::ok();
     }
-        
+
     if ( ( new_end > 0 ) && ( new_end > m.second->lastSector() ) )
     {
         ResizeOperation op( *m.first, *m.second, m.second->firstSector(), new_end );
@@ -334,6 +336,8 @@ ResizeFSJob::setConfigurationMap( const QVariantMap& configurationMap )
 
     m_size = RelativeSize( configurationMap["size"].toString() );
     m_atleast = RelativeSize( configurationMap["atleast"].toString() );
+
+    m_required = CalamaresUtils::getBool( configurationMap, "required", false );
 }
 
 CALAMARES_PLUGIN_FACTORY_DEFINITION( ResizeFSJobFactory, registerPlugin<ResizeFSJob>(); )
