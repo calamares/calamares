@@ -192,6 +192,10 @@ void PreserveFiles::setConfigurationMap(const QVariantMap& configurationMap)
         return;
     }
 
+    QString defaultPermissions = configurationMap[ "perm" ].toString();
+    if ( defaultPermissions.isEmpty() )
+        defaultPermissions = QStringLiteral( "root:root:0400" );
+    
     QVariantList l = files.toList();
     unsigned int c = 0;
     for ( const auto& li : l )
@@ -200,7 +204,7 @@ void PreserveFiles::setConfigurationMap(const QVariantMap& configurationMap)
         {
             QString filename = li.toString();
             if ( !filename.isEmpty() )
-                m_items.append( Item{ filename, filename, Permissions(), ItemType::Path } );
+                m_items.append( Item{ filename, filename, Permissions( defaultPermissions ), ItemType::Path } );
             else
                 cDebug() << "Empty filename for preservefiles, item" << c;
         }
@@ -214,6 +218,8 @@ void PreserveFiles::setConfigurationMap(const QVariantMap& configurationMap)
                 ( from == "config" ) ? ItemType::Config :
                 ItemType::None;
             QString perm = map[ "perm" ].toString();
+            if ( perm.isEmpty() )
+                perm = defaultPermissions;
 
             if ( dest.isEmpty() )
             {
@@ -225,7 +231,7 @@ void PreserveFiles::setConfigurationMap(const QVariantMap& configurationMap)
             }
             else
             {
-                m_items.append( Item{ QString(), dest, Permissions(perm), t } );
+                m_items.append( Item{ QString(), dest, Permissions( perm ), t } );
             }
         }
         else
