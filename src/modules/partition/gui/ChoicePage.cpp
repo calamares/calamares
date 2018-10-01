@@ -50,6 +50,9 @@
 
 #include <kpmcore/core/device.h>
 #include <kpmcore/core/partition.h>
+#ifdef WITH_KPMCOREGT33
+#include <kpmcore/core/softwareraid.h>
+#endif
 
 #include <QBoxLayout>
 #include <QButtonGroup>
@@ -1230,6 +1233,13 @@ ChoicePage::setupActions()
     bool atLeastOneCanBeResized = false;
     bool atLeastOneCanBeReplaced = false;
     bool atLeastOneIsMounted = false;  // Suppress 'erase' if so
+    bool isInactiveRAID = false;
+
+#ifdef WITH_KPMCOREGT33
+    if ( currentDevice->type() == Device::Type::SoftwareRAID_Device &&
+         static_cast< SoftwareRAID* >(currentDevice)->status() == SoftwareRAID::Status::Inactive )
+        isInactiveRAID = true;
+#endif
 
     for ( auto it = PartitionIterator::begin( currentDevice );
           it != PartitionIterator::end( currentDevice ); ++it )
@@ -1353,7 +1363,7 @@ ChoicePage::setupActions()
     else
         force_uncheck( m_grp, m_alongsideButton );
 
-    if ( !atLeastOneIsMounted )
+    if ( !atLeastOneIsMounted && !isInactiveRAID )
         m_eraseButton->show();  // None mounted
     else
         force_uncheck( m_grp, m_eraseButton );

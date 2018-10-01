@@ -59,6 +59,7 @@ handle_args( QCoreApplication& a )
 
     parser.addOption( debugLevelOption );
     parser.addPositionalArgument( "module", "Path or name of module to run." );
+    parser.addPositionalArgument( "config", "Path of job-config file to use.", "[config]");
 
     parser.process( a );
 
@@ -140,6 +141,8 @@ load_module( const ModuleConfig& moduleConfig )
         ? moduleDirectory + '/' + name + ".conf"
         : moduleConfig.configFile() );
 
+    cDebug() << "Module" << moduleName << "job-configuration:" << configFile;
+
     Calamares::Module* module = Calamares::Module::fromDescriptor(
         descriptor, name, configFile, moduleDirectory );
 
@@ -158,7 +161,7 @@ main( int argc, char* argv[] )
     std::unique_ptr< Calamares::Settings > settings_p( new Calamares::Settings( QString(), true ) );
     std::unique_ptr< Calamares::JobQueue > jobqueue_p( new Calamares::JobQueue( nullptr ) );
 
-    cDebug() << "Calamares test module-loader" << module.moduleName();
+    cDebug() << "Calamares module-loader testing" << module.moduleName();
     Calamares::Module* m = load_module( module );
     if ( !m )
     {
@@ -175,16 +178,27 @@ main( int argc, char* argv[] )
         return 1;
     }
 
-    cDebug() << "Module" << m->name() << m->typeString() << m->interfaceString();
+    using TR = Logger::DebugRow<const char*, const QString&>;
 
+    cDebug() << "Module metadata"
+        << TR( "name", m->name() )
+        << TR( "type", m->typeString() )
+        << TR( "interface", m->interfaceString() );
+
+    cDebug() << "Job outputs:";
     Calamares::JobList jobList = m->jobs();
     unsigned int count = 1;
     for ( const auto& p : jobList )
     {
-        cDebug() << count << p->prettyName();
+        cDebug() << "Job #" << count << "name" << p->prettyName();
         Calamares::JobResult r = p->exec();
         if ( !r )
-            cDebug() << count << ".. failed" << r;
+        {
+            using TR = Logger::DebugRow<QString, QString>;
+            cDebug() << count << ".. failed"
+                << TR( "summary", r.message() )
+                << TR( "details", r.details() );
+        }
         ++count;
     }
 

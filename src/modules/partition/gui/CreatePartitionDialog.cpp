@@ -72,7 +72,7 @@ CreatePartitionDialog::CreatePartitionDialog( Device* device, PartitionNode* par
     m_ui->encryptWidget->setText( tr( "En&crypt" ) );
     m_ui->encryptWidget->hide();
 
-    if (m_device->type() == Device::Type::Disk_Device) {
+    if (m_device->type() != Device::Type::LVM_Device) {
         m_ui->lvNameLabel->hide();
         m_ui->lvNameLineEdit->hide();
     }

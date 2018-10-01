@@ -1696,7 +1696,7 @@ Kuruluma devam edebilirsiniz fakat bazı özellikler devre dışı kalabilir.</t
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="196"/>
         <source>The partition table on %1 already has %2 primary partitions, and no more can be added. Please remove one primary partition and add an extended partition, instead.</source>
-        <translation>% 1 üzerindeki bölüm tablosu zaten% 2 birincil bölüme sahip ve artık eklenemiyor. Lütfen bir birincil bölümü kaldırın ve bunun yerine genişletilmiş bir bölüm ekleyin.</translation>
+        <translation>%1 üzerindeki disk bölümü tablosu zaten %2 birincil disk bölümüne sahip ve artık eklenemiyor. Lütfen bir birincil disk bölümü kaldırın ve bunun yerine uzatılmış bir disk bölümü ekleyin.</translation>
     </message>
 </context>
 <context>

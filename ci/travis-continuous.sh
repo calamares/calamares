@@ -51,4 +51,4 @@ df -h
 echo "# Install results"
 install_debugging "$DESTDIR"
 
-$result  # Result of make install, above
+$result || { echo "! Install failed" ; exit 1 ; } # Result of make install, above

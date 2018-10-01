@@ -20,24 +20,24 @@ msgstr ""
 
 #: src/modules/umount/main.py:40
 msgid "Unmount file systems."
-msgstr ""
+msgstr "Демонтирай файловите системи."
 
 #: src/modules/dummypython/main.py:44
 msgid "Dummy python job."
-msgstr ""
+msgstr "Фиктивна задача python."
 
 #: src/modules/dummypython/main.py:97
 msgid "Dummy python step {}"
-msgstr ""
+msgstr "Фиктивна стъпка на python {}"
 
 #: src/modules/machineid/main.py:35
 msgid "Generate machine-id."
-msgstr ""
+msgstr "Генерирай machine-id."
 
 #: src/modules/packages/main.py:62
 #, python-format
 msgid "Processing packages (%(count)d / %(total)d)"
-msgstr ""
+msgstr "Обработване на пакетите (%(count)d / %(total)d)"
 
 #: src/modules/packages/main.py:64 src/modules/packages/main.py:74
 msgid "Install packages."
