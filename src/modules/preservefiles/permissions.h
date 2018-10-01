@@ -1,4 +1,5 @@
-/*
+/* === This file is part of Calamares - <https://github.com/calamares> ===
+ *
  *  Copyright (C) 2018 Scott Harvey <scott@spharvey.me>
  *
  * This program is free software: you can redistribute it and/or modify
