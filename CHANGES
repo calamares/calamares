@@ -13,10 +13,16 @@ This release contains contributions from (alphabetically by first name):
 
 ## Core ##
 
+There are no core changes in this version.
+
 ## Modules ##
 
  * The *partition* module supports RAID devices, but only when Calamares
    is compiled with the newest KPMCore release.
+ * The calculation of required space -- including swap -- has been simplified,
+   and Calamares no longer reserves 2GiB of space in calculations for internal
+   use (this means that it no longer mysteriously drops swap when the disk
+   size is close to the required installation size).
  * The *keyboard* module now handles the (bogus) Austrian keymap for
    the system console properly.
  * New module *fsresizer* can be used to resize filesystems. It is intended
