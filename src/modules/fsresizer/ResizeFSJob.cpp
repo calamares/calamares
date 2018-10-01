@@ -204,7 +204,7 @@ ResizeFSJob::findGrownEnd(ResizeFSJob::PartitionMatch m)
 
     if ( !( last_available > last_currently ) )
     {
-        cDebug() << "Partition can not grow larger.";
+        cDebug() << "Partition cannot grow larger.";
         return 0;
     }
 
@@ -271,8 +271,8 @@ ResizeFSJob::exec()
     if ( !m.first || !m.second )
         return Calamares::JobResult::error(
             tr( "Resize Failed" ),
-            !m_fsname.isEmpty() ? tr( "The filesystem %1 could not be found in this system, and can not be resized." ).arg(m_fsname)
-                               : tr( "The device %1 could not be found in this system, and can not be resized." ).arg(m_devicename) );
+            !m_fsname.isEmpty() ? tr( "The filesystem %1 could not be found in this system, and cannot be resized." ).arg(m_fsname)
+                               : tr( "The device %1 could not be found in this system, and cannot be resized." ).arg(m_devicename) );
 
     m.second->fileSystem().init();  // Initialize support for specific FS
     if ( !ResizeOperation::canGrow( m.second ) )
@@ -280,8 +280,8 @@ ResizeFSJob::exec()
         cDebug() << "canGrow() returned false.";
         return Calamares::JobResult::error(
             tr( "Resize Failed" ),
-            !m_fsname.isEmpty() ? tr( "The filesystem %1 can not be resized." ).arg(m_fsname)
-                               : tr( "The device %1 can not be resized." ).arg(m_devicename) );
+            !m_fsname.isEmpty() ? tr( "The filesystem %1 cannot be resized." ).arg(m_fsname)
+                               : tr( "The device %1 cannot be resized." ).arg(m_devicename) );
     }
 
     qint64 new_end = findGrownEnd( m );
@@ -293,8 +293,8 @@ ResizeFSJob::exec()
     if ( new_end < 0 )
         return Calamares::JobResult::error(
             tr( "Resize Failed" ),
-            !m_fsname.isEmpty() ? tr( "The filesystem %1 can not be resized." ).arg(m_fsname)
-                               : tr( "The device %1 can not be resized." ).arg(m_devicename) );
+            !m_fsname.isEmpty() ? tr( "The filesystem %1 cannot be resized." ).arg(m_fsname)
+                               : tr( "The device %1 cannot be resized." ).arg(m_devicename) );
     if ( new_end == 0 )
     {
         cWarning() << "Resize operation on" << m_fsname << m_devicename
