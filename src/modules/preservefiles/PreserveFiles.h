@@ -24,11 +24,11 @@
 #include <QVariantMap>
 
 #include "CppJob.h"
+#include "PluginDllMacro.h"
 
 #include "utils/PluginFactory.h"
 
-#include "PluginDllMacro.h"
-
+#include "permissions.h"
 
 class PLUGINDLLEXPORT PreserveFiles : public Calamares::CppJob
 {
@@ -46,6 +46,7 @@ class PLUGINDLLEXPORT PreserveFiles : public Calamares::CppJob
     {
         QString source;
         QString dest;
+        Permissions perm;
         ItemType type;
     } ;
 
