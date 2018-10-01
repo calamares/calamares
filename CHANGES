@@ -10,6 +10,7 @@ This release contains contributions from (alphabetically by first name):
  - Caio Carvalho
  - Kevin Kofler
  - Philip Mueller
+ - Scott Harvey
 
 ## Core ##
 
@@ -25,6 +26,8 @@ There are no core changes in this version.
    size is close to the required installation size).
  * The *keyboard* module now handles the (bogus) Austrian keymap for
    the system console properly.
+ * The *preservefiles* module now has a mechanism for setting the permissions
+   (and ownership) of preserved files.
  * New module *fsresizer* can be used to resize filesystems. It is intended
    for use in OEM installs where an image of fixed size is created,
    and then sized to the actual SD card the user has used.
