@@ -32,22 +32,25 @@ class Permissions
 
 public:
 
-/** Constructor
- * Splits the string @p at the colon (":") into separate elements for 
- * <user>, <group>, and <value> (permissions), where <value> is returned as
- * an **octal** integer.
- */
+    /** @brief Constructor
+     * 
+     * Splits the string @p at the colon (":") into separate elements for 
+     * <user>, <group>, and <value> (permissions), where <value> is returned as
+     * an **octal** integer.
+     */
     Permissions(QString p);
+    
+    /** @brief Default constructor of an invalid Permissions. */
+    Permissions();
 
     bool isValid() const { return m_valid; }
     QString username() const { return m_username; }
     QString group() const { return m_group; }
     int value() const { return m_value; }
-
+    QString octal() const { return QString::number( m_value, 8 ); }
 
 private:
-
-    const void parsePermissions(QString const &p);
+    void parsePermissions(QString const &p);
 
     QString m_username;
     QString m_group;

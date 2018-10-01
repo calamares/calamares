@@ -21,17 +21,21 @@
 #include <QStringList>
 #include "permissions.h"
 
-Permissions::Permissions(QString p) :
+Permissions::Permissions() :
     m_username(),
     m_group(),
-    m_valid(true),
+    m_valid(false),
     m_value(0)
+{
+}
 
+
+Permissions::Permissions(QString p) : Permissions()
 {
     parsePermissions(p);
 }
 
-const void Permissions::parsePermissions(const QString& p) {
+void Permissions::parsePermissions(const QString& p) {
 
     QStringList segments = p.split(":");
 
