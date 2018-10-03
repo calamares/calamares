@@ -1161,6 +1161,13 @@ force_uncheck(QButtonGroup* grp, PrettyRadioButton* button)
     grp->setExclusive( true );
 }
 
+static inline QDebug&
+operator <<( QDebug& s, PartitionIterator& it )
+{
+    s << ( ( *it ) ? ( *it )->deviceNode() : QString( "<null device>" ) );
+    return s;
+}
+
 /**
  * @brief ChoicePage::setupActions happens every time a new Device* is selected in the
  *      device picker. Sets up the text and visibility of the partitioning actions based
@@ -1176,7 +1183,7 @@ ChoicePage::setupActions()
 
     cDebug() << "Setting up actions for" << currentDevice->deviceNode()
         << "with" << osproberEntriesForCurrentDevice.count() << "entries.";
-            
+
     if ( currentDevice->partitionTable() )
         m_deviceInfoWidget->setPartitionTableType( currentDevice->partitionTable()->type() );
     else
