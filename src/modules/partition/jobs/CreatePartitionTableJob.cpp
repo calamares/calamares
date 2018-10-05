@@ -85,23 +85,26 @@ CreatePartitionTableJob::exec()
     cDebug() << "Creating new partition table of type" << table->typeName()
              << ", uncommitted yet:";
 
-    for ( auto it = PartitionIterator::begin( table );
-          it != PartitionIterator::end( table ); ++it )
-         cDebug() << *it;
+    if ( Logger::logLevelEnabled( Logger::LOGDEBUG ) )
+    {
+        for ( auto it = PartitionIterator::begin( table );
+            it != PartitionIterator::end( table ); ++it )
+            cDebug() << *it;
 
-    QProcess lsblk;
-    lsblk.setProgram( "lsblk" );
-    lsblk.setProcessChannelMode( QProcess::MergedChannels );
-    lsblk.start();
-    lsblk.waitForFinished();
-    cDebug() << "lsblk:\n" << lsblk.readAllStandardOutput();
+        QProcess lsblk;
+        lsblk.setProgram( "lsblk" );
+        lsblk.setProcessChannelMode( QProcess::MergedChannels );
+        lsblk.start();
+        lsblk.waitForFinished();
+        cDebug() << "lsblk:\n" << lsblk.readAllStandardOutput();
 
-    QProcess mount;
-    mount.setProgram( "mount" );
-    mount.setProcessChannelMode( QProcess::MergedChannels );
-    mount.start();
-    mount.waitForFinished();
-    cDebug() << "mount:\n" << mount.readAllStandardOutput();
+        QProcess mount;
+        mount.setProgram( "mount" );
+        mount.setProcessChannelMode( QProcess::MergedChannels );
+        mount.start();
+        mount.waitForFinished();
+        cDebug() << "mount:\n" << mount.readAllStandardOutput();
+    }
 
     CreatePartitionTableOperation op(*m_device, table);
     op.setStatus(Operation::StatusRunning);
