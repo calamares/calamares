@@ -1693,7 +1693,7 @@ Installationsprogrammet vil stoppe og alle ændringer vil gå tabt.</translation
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="196"/>
         <source>The partition table on %1 already has %2 primary partitions, and no more can be added. Please remove one primary partition and add an extended partition, instead.</source>
-        <translation>Partitionstabellen på %1 har allerede %2 primære partitioner, og der kan ikke tilføjes flere. Fjern venligst en primær partition og tilføj i stedet en udviddet partition.</translation>
+        <translation>Partitionstabellen på %1 har allerede %2 primære partitioner, og der kan ikke tilføjes flere. Fjern venligst en primær partition og tilføj i stedet en udvidet partition.</translation>
     </message>
 </context>
 <context>

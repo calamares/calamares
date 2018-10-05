@@ -521,7 +521,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/contextualprocess/ContextualProcessJob.cpp" line="117"/>
         <source>Contextual Processes Job</source>
-        <translation type="unfinished"/>
+        <translation>משימת תהליכי הקשר</translation>
     </message>
 </context>
 <context>
@@ -2358,7 +2358,7 @@ Output:
     <message>
         <location filename="../src/modules/shellprocess/ShellProcessJob.cpp" line="51"/>
         <source>Shell Processes Job</source>
-        <translation type="unfinished"/>
+        <translation>משימת תהליכי מעטפת</translation>
     </message>
 </context>
 <context>

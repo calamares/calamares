@@ -207,7 +207,7 @@
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="277"/>
         <source>&amp;Install</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Telepítés</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="325"/>
@@ -229,7 +229,7 @@ Minden változtatás elveszik, ha kilépsz a telepítőből.</translation>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="332"/>
         <source>&amp;No</source>
-        <translation>@Nem</translation>
+        <translation>&amp;Nem</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="163"/>
@@ -944,7 +944,7 @@ Telepítés nem folytatható. &lt;a href=&quot;#details&quot;&gt;Részletek...&l
     <message>
         <location filename="../src/modules/finished/FinishedPage.ui" line="98"/>
         <source>&amp;Restart now</source>
-        <translation>$Újraindítás most</translation>
+        <translation>Új&amp;raindítás most</translation>
     </message>
     <message>
         <location filename="../src/modules/finished/FinishedPage.cpp" line="51"/>
