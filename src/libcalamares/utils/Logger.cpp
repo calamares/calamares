@@ -55,6 +55,18 @@ setupLogLevel(unsigned int level)
     s_threshold = level + 1;  // Comparison is < in log() function
 }
 
+bool
+logLevelEnabled(unsigned int level)
+{
+    return level < s_threshold;
+}
+
+unsigned int
+logLevel()
+{
+    return s_threshold > 0 ? s_threshold - 1 : 0;
+}
+
 static void
 log( const char* msg, unsigned int debugLevel, bool toDisk = true )
 {

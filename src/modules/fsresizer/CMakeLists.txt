@@ -20,10 +20,7 @@ if ( KPMcore_FOUND )
         SHARED_LIB
     )
 
-    if( ECM_FOUND )
-        find_package( Qt5 COMPONENTS Test REQUIRED )
-        include( ECMAddTests )
-
+    if( ECM_FOUND AND BUILD_TESTING )
         ecm_add_test(
                 Tests.cpp
             TEST_NAME

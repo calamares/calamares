@@ -1,9 +1,3 @@
-find_package(ECM ${ECM_VERSION} NO_MODULE)
-if( ECM_FOUND AND BUILD_TESTING )
-    include( ECMAddTests )
-    find_package( Qt5 COMPONENTS Core Test REQUIRED )
-endif()
-
 # When debugging the timezone widget, add this debugging definition
 # to have a debugging-friendly timezone widget, debug logging,
 # and no intrusive timezone-setting while clicking around.
