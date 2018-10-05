@@ -20,6 +20,8 @@
 
 #include "jobs/CreatePartitionTableJob.h"
 
+#include "core/PartitionIterator.h"
+
 #include "utils/Logger.h"
 
 // KPMcore
@@ -65,6 +67,14 @@ CreatePartitionTableJob::prettyStatusMessage() const
 }
 
 
+static inline QDebug&
+operator <<( QDebug& s, PartitionIterator& it )
+{
+    s << ( ( *it ) ? ( *it )->deviceNode() : QString( "<null device>" ) );
+    return s;
+}
+
+
 Calamares::JobResult
 CreatePartitionTableJob::exec()
 {
@@ -73,7 +83,11 @@ CreatePartitionTableJob::exec()
 
     PartitionTable* table = m_device->partitionTable();
     cDebug() << "Creating new partition table of type" << table->typeName()
-             << ", uncommitted yet:\n" << table;
+             << ", uncommitted yet:";
+
+    for ( auto it = PartitionIterator::begin( table );
+          it != PartitionIterator::end( table ); ++it )
+         cDebug() << *it;
 
     QProcess lsblk;
     lsblk.setProgram( "lsblk" );
