@@ -302,7 +302,7 @@ ResizeFSJob::exec()
             return Calamares::JobResult::error(
                 tr( "Resize Failed" ),
                 !m_fsname.isEmpty() ? tr( "The filesystem %1 must be resized, but cannot." ).arg( m_fsname )
-                                    : tr( "The device %11 must be resized, but cannot" ).arg( m_fsname ) );
+                                    : tr( "The device %1 must be resized, but cannot" ).arg( m_fsname ) );
 
         return Calamares::JobResult::ok();
     }
