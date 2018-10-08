@@ -1,9 +1,4 @@
-find_package(ECM ${ECM_VERSION} NO_MODULE)
-if( ECM_FOUND )
-    include( ECMAddTests )
-endif()
-
-find_package( Qt5 COMPONENTS Core Test REQUIRED )
+find_package( Qt5 COMPONENTS Core REQUIRED )
 find_package( Crypt REQUIRED )
 
 # Add optional libraries here
@@ -44,7 +39,7 @@ calamares_add_plugin( users
     SHARED_LIB
 )
 
-if( ECM_FOUND )
+if( ECM_FOUND AND BUILD_TESTING )
     ecm_add_test(
             PasswordTests.cpp
             SetPasswordJob.cpp

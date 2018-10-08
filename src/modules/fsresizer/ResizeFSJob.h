@@ -68,19 +68,19 @@ public:
          *
          * Each sector has size @p sectorSize , for converting absolute
          * sizes in MiB to sector counts.
-         * 
+         *
          * For invalid sizes, returns -1.
          * For absolute sizes, returns the number of sectors needed.
          * For percent sizes, returns that percent of the number of sectors.
          */
         qint64 apply( qint64 totalSectors, qint64 sectorSize );
-        
+
         /** @brief Apply this size to the given device.
-         * 
+         *
          * Equivalent to apply( d->totalLogical(), d->logicalSize() )
          */
         qint64 apply( Device* d );
-        
+
     private:
         int m_value;
         Unit m_unit;
@@ -107,6 +107,7 @@ private:
     RelativeSize m_atleast;
     QString m_fsname;  // Either this, or devicename, is set, not both
     QString m_devicename;
+    bool m_required;
 
     using PartitionMatch = QPair<Device*, Partition*>;
     /** @brief Find the configured FS using KPMCore @p backend */

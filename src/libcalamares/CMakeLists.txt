@@ -105,6 +105,19 @@ install( TARGETS calamares
     ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
 )
 
+if ( ECM_FOUND AND BUILD_TESTING )
+    ecm_add_test(
+            Tests.cpp
+        TEST_NAME
+            libcalamarestest
+        LINK_LIBRARIES
+            calamares
+            Qt5::Core
+            Qt5::Test
+    )
+    set_target_properties( libcalamarestest PROPERTIES AUTOMOC TRUE )
+endif()
+
 # Make symlink lib/calamares/libcalamares.so to lib/libcalamares.so.VERSION so
 # lib/calamares can be used as module path for the Python interpreter.
 install( CODE "

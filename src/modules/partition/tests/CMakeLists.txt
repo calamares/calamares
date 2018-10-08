@@ -1,6 +1,4 @@
-find_package( Qt5 COMPONENTS Gui Test REQUIRED )
-
-include( ECMAddTests )
+find_package( Qt5 COMPONENTS Gui REQUIRED )
 
 set( PartitionModule_SOURCE_DIR .. )
 
@@ -23,13 +21,15 @@ include_directories(
     ${CMAKE_CURRENT_BINARY_DIR}
 )
 
-ecm_add_test( ${partitionjobtests_SRCS}
-    TEST_NAME partitionjobtests
-    LINK_LIBRARIES
-        ${CALAMARES_LIBRARIES}
-        kpmcore
-        Qt5::Core
-        Qt5::Test
-)
+if( ECM_FOUND AND BUILD_TESTING )
+    ecm_add_test( ${partitionjobtests_SRCS}
+        TEST_NAME partitionjobtests
+        LINK_LIBRARIES
+            ${CALAMARES_LIBRARIES}
+            kpmcore
+            Qt5::Core
+            Qt5::Test
+    )
 
-set_target_properties( partitionjobtests PROPERTIES AUTOMOC TRUE )
+    set_target_properties( partitionjobtests PROPERTIES AUTOMOC TRUE )
+endif()

@@ -237,6 +237,11 @@ set_package_properties(
 find_package(ECM ${ECM_VERSION} NO_MODULE)
 if( ECM_FOUND )
     set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${CMAKE_MODULE_PATH})
+    if ( BUILD_TESTING )
+        # ECM implies that we can build the tests, too
+        find_package( Qt5 COMPONENTS Test REQUIRED )
+        include( ECMAddTests )
+    endif()
 endif()
 
 find_package( KF5 COMPONENTS CoreAddons Crash )

@@ -10,15 +10,31 @@ This release contains contributions from (alphabetically by first name):
  - Caio Carvalho
  - Kevin Kofler
  - Philip Mueller
+ - Scott Harvey
 
 ## Core ##
+
+ * The Calamares application now recognizes the `-X` or `--xdg-config`
+   option, which adds XDG_DATA_DIRS to the places used to find QML
+   and branding directories, and XDG_CONFIG_DIRS to the places used
+   to find the global settings and module configurations. This allows
+   a more fine-grained, and more layered, approach to setting up
+   Calamares configurations (in particular, distro's can **add**
+   configuration files and give them priority, instead of **forking**
+   configuration files).
 
 ## Modules ##
 
  * The *partition* module supports RAID devices, but only when Calamares
    is compiled with the newest KPMCore release.
+ * The calculation of required space -- including swap -- has been simplified,
+   and Calamares no longer reserves 2GiB of space in calculations for internal
+   use (this means that it no longer mysteriously drops swap when the disk
+   size is close to the required installation size).
  * The *keyboard* module now handles the (bogus) Austrian keymap for
    the system console properly.
+ * The *preservefiles* module now has a mechanism for setting the permissions
+   (and ownership) of preserved files.
  * New module *fsresizer* can be used to resize filesystems. It is intended
    for use in OEM installs where an image of fixed size is created,
    and then sized to the actual SD card the user has used.
