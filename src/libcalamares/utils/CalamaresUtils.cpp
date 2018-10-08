@@ -97,12 +97,23 @@ setAppDataDir( const QDir& dir )
     s_isAppDataDirOverridden = true;
 }
 
+/* Split $ENV{@p name} on :, append to @p l, making sure each ends in / */
+static void
+mungeEnvironment( QStringList& l, const char *name )
+{
+    for ( auto s : QString( qgetenv( name ) ).split(':') )
+        if ( s.endsWith( '/' ) )
+            l << s;
+        else
+            l << ( s + '/' );
+}
+
 void
 setXdgDirs()
 {
     s_haveExtraDirs = true;
-    s_extraConfigDirs.append( QString( qgetenv( "XDG_CONFIG_DIRS" ) ).split(':') );
-    s_extraDataDirs.append( QString( qgetenv( "XDG_DATA_DIRS" ) ).split(':') );
+    mungeEnvironment( s_extraConfigDirs, "XDG_CONFIG_DIRS" );
+    mungeEnvironment( s_extraDataDirs, "XDG_DATA_DIRS" );
 }
 
 QStringList
@@ -121,7 +132,11 @@ extraDataDirs()
     return QStringList();
 }
 
-
+bool
+haveExtraDirs()
+{
+    return s_haveExtraDirs && ( !s_extraConfigDirs.isEmpty() || !s_extraDataDirs.isEmpty() );
+}
 
 bool
 isAppDataDirOverridden()
