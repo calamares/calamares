@@ -252,11 +252,13 @@ ChoicePage::setupChoices()
     m_eraseSwapChoices = createCombo( { SwapChoice::NoSwap, SwapChoice::SmallSwap, SwapChoice:: FullSwap } );
     m_eraseButton->addOptionsComboBox( m_eraseSwapChoices );
 
+#if 0
     m_replaceSwapChoices = createCombo( { SwapChoice::NoSwap, SwapChoice::ReuseSwap, SwapChoice::SmallSwap, SwapChoice::FullSwap } );
     m_replaceButton->addOptionsComboBox( m_replaceSwapChoices );
 
     m_alongsideSwapChoices = createCombo( { SwapChoice::NoSwap, SwapChoice::ReuseSwap, SwapChoice::SmallSwap, SwapChoice::FullSwap } );
     m_alongsideButton->addOptionsComboBox( m_alongsideSwapChoices );
+#endif
 
     m_itemsLayout->addWidget( m_alongsideButton );
     m_itemsLayout->addWidget( m_replaceButton );
