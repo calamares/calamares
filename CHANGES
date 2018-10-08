@@ -14,7 +14,14 @@ This release contains contributions from (alphabetically by first name):
 
 ## Core ##
 
-There are no core changes in this version.
+ * The Calamares application now recognizes the `-X` or `--xdg-config`
+   option, which adds XDG_DATA_DIRS to the places used to find QML
+   and branding directories, and XDG_CONFIG_DIRS to the places used
+   to find the global settings and module configurations. This allows
+   a more fine-grained, and more layered, approach to setting up
+   Calamares configurations (in particular, distro's can **add**
+   configuration files and give them priority, instead of **forking**
+   configuration files).
 
 ## Modules ##
 
