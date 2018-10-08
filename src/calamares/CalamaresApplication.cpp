@@ -145,6 +145,9 @@ qmlDirCandidates( bool assumeBuilddir )
     {
         if ( assumeBuilddir )
             qmlDirs << QDir::current().absoluteFilePath( "src/qml" );  // In build-dir
+        if ( CalamaresUtils::haveExtraDirs() )
+            for ( auto s : CalamaresUtils::extraDataDirs() )
+                qmlDirs << ( s + QML );
         qmlDirs << CalamaresUtils::appDataDir().absoluteFilePath( QML );
     }
 
@@ -164,6 +167,9 @@ settingsFileCandidates( bool assumeBuilddir )
     {
         if ( assumeBuilddir )
             settingsPaths << QDir::current().absoluteFilePath( settings );
+        if ( CalamaresUtils::haveExtraDirs() )
+            for ( auto s : CalamaresUtils::extraConfigDirs() )
+                settingsPaths << ( s + settings );
         settingsPaths << CMAKE_INSTALL_FULL_SYSCONFDIR "/calamares/settings.conf";  // String concat
         settingsPaths << CalamaresUtils::appDataDir().absoluteFilePath( settings );
     }
@@ -182,6 +188,9 @@ brandingFileCandidates( bool assumeBuilddir, const QString& brandingFilename )
     {
         if ( assumeBuilddir )
             brandingPaths << ( QDir::currentPath() + QStringLiteral( "/src/" ) + brandingFilename );
+        if ( CalamaresUtils::haveExtraDirs() )
+            for ( auto s : CalamaresUtils::extraDataDirs() )
+                brandingPaths << ( s + brandingFilename );
         brandingPaths << QDir( CMAKE_INSTALL_FULL_SYSCONFDIR "/calamares/" ).absoluteFilePath( brandingFilename );
         brandingPaths << CalamaresUtils::appDataDir().absoluteFilePath( brandingFilename);
     }
