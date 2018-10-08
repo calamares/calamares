@@ -42,7 +42,7 @@ LibCalamaresTests::testDebugLevels()
 {
     Logger::setupLogLevel( Logger::LOG_DISABLE );
 
-    QCOMPARE( Logger::logLevel(), Logger::LOG_DISABLE );
+    QCOMPARE( Logger::logLevel(), static_cast<unsigned int>( Logger::LOG_DISABLE ) );
 
     for ( unsigned int level = 0; level <= Logger::LOGVERBOSE ; ++level )
     {
