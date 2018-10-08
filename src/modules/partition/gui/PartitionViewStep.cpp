@@ -476,86 +476,47 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     // Copy the efiSystemPartition setting to the global storage. It is needed not only in
     // the EraseDiskPage, but also in the bootloader configuration modules (grub, bootloader).
     Calamares::GlobalStorage* gs = Calamares::JobQueue::instance()->globalStorage();
-    if ( configurationMap.contains( "efiSystemPartition" ) &&
-         configurationMap.value( "efiSystemPartition" ).type() == QVariant::String &&
-         !configurationMap.value( "efiSystemPartition" ).toString().isEmpty() )
-    {
-        gs->insert( "efiSystemPartition", configurationMap.value( "efiSystemPartition" ).toString() );
-    }
-    else
-    {
-        gs->insert( "efiSystemPartition", QStringLiteral( "/boot/efi" ) );
-    }
+    QString efiSP = CalamaresUtils::getString( configurationMap, "efiSystemPartition" );
+    if ( efiSP.isEmpty() )
+        efiSP = QStringLiteral( "/boot/efi" );
+    gs->insert( "efiSystemPartition", efiSP );
 
-    if ( configurationMap.contains( "ensureSuspendToDisk" ) &&
-         configurationMap.value( "ensureSuspendToDisk" ).type() == QVariant::Bool )
-    {
-        gs->insert( "ensureSuspendToDisk", configurationMap.value( "ensureSuspendToDisk" ).toBool() );
-    }
-    else
-    {
-        gs->insert( "ensureSuspendToDisk", true );
-    }
+    // SWAP SETTINGS
+    //
+    // This is a bit convoluted because there's legacy settings to handle as well
+    // as the new-style list of choices, with mapping back-and-forth.
+    if ( configurationMap.contains( "userSwapChoices" ) &&
+        ( configurationMap.contains( "ensureSuspendToDisk" ) || configurationMap.contains( "neverCreateSwap" ) ) )
+        cError() << "Partition-module configuration mixes old- and new-style swap settings.";
 
-    if ( configurationMap.contains( "neverCreateSwap" ) &&
-         configurationMap.value( "neverCreateSwap" ).type() == QVariant::Bool )
-    {
-        gs->insert( "neverCreateSwap", configurationMap.value( "neverCreateSwap" ).toBool() );
-    }
-    else
-    {
-        gs->insert( "neverCreateSwap", false );
-    }
+    if ( configurationMap.contains( "ensureSuspendToDisk" ) )
+        cWarning() << "Partition-module setting *ensureSuspendToDisk* is deprecated.";
+    bool ensureSuspendToDisk = CalamaresUtils::getBool( configurationMap, "ensureSuspendToDisk", true );
 
-    if ( configurationMap.contains( "drawNestedPartitions" ) &&
-         configurationMap.value( "drawNestedPartitions" ).type() == QVariant::Bool )
-    {
-        gs->insert( "drawNestedPartitions",
-                    configurationMap.value( "drawNestedPartitions", false ).toBool() );
-    }
-    else
-    {
-        gs->insert( "drawNestedPartitions", false );
-    }
+    if ( configurationMap.contains( "neverCreateSwap" ) )
+        cWarning() << "Partition-module setting *neverCreateSwap* is deprecated.";
+    bool neverCreateSwap = CalamaresUtils::getBool( configurationMap, "neverCreateSwap", false );
 
-    if ( configurationMap.contains( "alwaysShowPartitionLabels" ) &&
-         configurationMap.value( "alwaysShowPartitionLabels" ).type() == QVariant::Bool )
-    {
-        gs->insert( "alwaysShowPartitionLabels",
-                    configurationMap.value( "alwaysShowPartitionLabels", true ).toBool() );
-    }
-    else
-    {
-        gs->insert( "alwaysShowPartitionLabels", true );
-    }
+    // These gs settings seem to be unused (in upstream Calamares) outside of
+    // the partition module itself.
+    gs->insert( "ensureSuspendToDisk", ensureSuspendToDisk );
+    gs->insert( "neverCreateSwap", neverCreateSwap );
 
-    if ( configurationMap.contains( "defaultFileSystemType" ) &&
-         configurationMap.value( "defaultFileSystemType" ).type() == QVariant::String &&
-         !configurationMap.value( "defaultFileSystemType" ).toString().isEmpty() )
-    {
-        QString typeString = configurationMap.value( "defaultFileSystemType" ).toString();
-        gs->insert( "defaultFileSystemType", typeString );
-        if ( FileSystem::typeForName( typeString ) == FileSystem::Unknown )
-        {
-            cWarning() << "bad default filesystem configuration for partition module. Reverting to ext4 as default.";
-            gs->insert( "defaultFileSystemType", "ext4" );
-        }
-    }
-    else
-    {
-        gs->insert( "defaultFileSystemType", QStringLiteral( "ext4" ) );
-    }
+    // OTHER SETTINGS
+    //
+    gs->insert( "drawNestedPartitions", CalamaresUtils::getBool( configurationMap, "drawNestedPartitions", false ) );
+    gs->insert( "alwaysShowPartitionLabels", CalamaresUtils::getBool( configurationMap, "alwaysShowPartitionLabels", true ) );
+    gs->insert( "enableLuksAutomatedPartitioning", CalamaresUtils::getBool( configurationMap, "enableLuksAutomatedPartitioning", true ) );
 
-    if ( configurationMap.contains( "enableLuksAutomatedPartitioning" ) &&
-         configurationMap.value( "enableLuksAutomatedPartitioning" ).type() == QVariant::Bool )
+    QString defaultFS = CalamaresUtils::getString( configurationMap, "defaultFileSystemType" );
+    if ( defaultFS.isEmpty() )
+        defaultFS = QStringLiteral( "ext4" );
+    if ( FileSystem::typeForName( defaultFS ) == FileSystem::Unknown )
     {
-        gs->insert( "enableLuksAutomatedPartitioning",
-                    configurationMap.value( "enableLuksAutomatedPartitioning" ).toBool() );
+        cWarning() << "Partition-module setting *defaultFileSystemType* is bad (" << defaultFS << ") using ext4.";
+        defaultFS = QStringLiteral( "ext4" );
     }
-    else
-    {
-        gs->insert( "enableLuksAutomatedPartitioning", true );
-    }
+    gs->insert( "defaultFileSystemType", defaultFS );
 
 
     // Now that we have the config, we load the PartitionCoreModule in the background
