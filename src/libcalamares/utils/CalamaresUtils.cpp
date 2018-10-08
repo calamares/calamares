@@ -49,6 +49,9 @@ static QTranslator* s_brandingTranslator = nullptr;
 static QTranslator* s_translator = nullptr;
 static QString s_translatorLocaleName;
 
+static bool s_haveExtraDirs = false;
+static QStringList s_extraConfigDirs;
+static QStringList s_extraDataDirs;
 
 static bool
 isWritableDir( const QDir& dir )
@@ -93,6 +96,31 @@ setAppDataDir( const QDir& dir )
     s_appDataDir = dir;
     s_isAppDataDirOverridden = true;
 }
+
+void
+setXdgDirs()
+{
+    s_haveExtraDirs = true;
+    s_extraConfigDirs.append( QString( qgetenv( "XDG_CONFIG_DIRS" ) ).split(':') );
+    s_extraDataDirs.append( QString( qgetenv( "XDG_DATA_DIRS" ) ).split(':') );
+}
+
+QStringList
+extraConfigDirs()
+{
+    if ( s_haveExtraDirs )
+        return s_extraConfigDirs;
+    return QStringList();
+}
+
+QStringList
+extraDataDirs()
+{
+    if ( s_haveExtraDirs )
+        return s_extraDataDirs;
+    return QStringList();
+}
+
 
 
 bool
