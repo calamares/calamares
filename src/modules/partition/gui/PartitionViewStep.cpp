@@ -487,25 +487,36 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
         gs->insert( "efiSystemPartition", QStringLiteral( "/boot/efi" ) );
     }
 
+    // SWAP SETTINGS
+    //
+    // This is a bit convoluted because there's legacy settings to handle as well
+    // as the new-style list of choices, with mapping back-and-forth.
+    if ( configurationMap.contains( "userSwapChoices" ) &&
+        ( configurationMap.contains( "ensureSuspendToDisk" ) || configurationMap.contains( "neverCreateSwap" ) ) )
+        cError() << "Partition-module configuration mixes old- and new-style swap settings.";
+
+    bool ensureSuspendToDisk = true;
+    if ( configurationMap.contains( "ensureSuspendToDisk" ) )
+        cWarning() << "Partition-module setting *ensureSuspendToDisk* is deprecated.";
     if ( configurationMap.contains( "ensureSuspendToDisk" ) &&
          configurationMap.value( "ensureSuspendToDisk" ).type() == QVariant::Bool )
-    {
-        gs->insert( "ensureSuspendToDisk", configurationMap.value( "ensureSuspendToDisk" ).toBool() );
-    }
+        ensureSuspendToDisk = configurationMap.value( "ensureSuspendToDisk" ).toBool();
     else
-    {
-        gs->insert( "ensureSuspendToDisk", true );
-    }
+        ensureSuspendToDisk = true;
 
+    bool neverCreateSwap = false;
+    if ( configurationMap.contains( "neverCreateSwap" ) )
+        cWarning() << "Partition-module setting *neverCreateSwap* is deprecated.";
     if ( configurationMap.contains( "neverCreateSwap" ) &&
          configurationMap.value( "neverCreateSwap" ).type() == QVariant::Bool )
-    {
-        gs->insert( "neverCreateSwap", configurationMap.value( "neverCreateSwap" ).toBool() );
-    }
+        neverCreateSwap = configurationMap.value( "neverCreateSwap" ).toBool();
     else
-    {
-        gs->insert( "neverCreateSwap", false );
-    }
+        neverCreateSwap = false;
+
+    // These gs settings seem to be unused (in upstream Calamares) outside of
+    // the partition module itself.
+    gs->insert( "ensureSuspendToDisk", ensureSuspendToDisk );
+    gs->insert( "neverCreateSwap", neverCreateSwap );
 
     if ( configurationMap.contains( "drawNestedPartitions" ) &&
          configurationMap.value( "drawNestedPartitions" ).type() == QVariant::Bool )
