@@ -21,6 +21,7 @@
 #include "gui/PartitionViewStep.h"
 
 #include "core/DeviceModel.h"
+#include "core/PartitionActions.h"
 #include "core/PartitionCoreModule.h"
 #include "core/PartitionModel.h"
 #include "core/KPMHelpers.h"
@@ -470,6 +471,31 @@ PartitionViewStep::onLeave()
 }
 
 
+static PartitionActions::Choices::SwapChoice
+nameToChoice( QString name, bool& ok )
+{
+    ok = false;
+    name = name.toLower();
+
+    using namespace PartitionActions::Choices;
+
+    // Each return here first sets ok to true, returns enum value
+    if ( name == QStringLiteral( "none" ) )
+        return( ok=true, SwapChoice::NoSwap );
+    else if ( name == QStringLiteral( "small" ) )
+        return( ok=true, SwapChoice::SmallSwap);
+    else if ( name == QStringLiteral( "suspend" ) )
+        return( ok=true, SwapChoice::FullSwap );
+    else if ( name == QStringLiteral( "reuse" ) )
+        return( ok=true, SwapChoice::ReuseSwap );
+    else if ( name == QStringLiteral( "file" ) )
+        return( ok=true, SwapChoice::SwapFile );
+
+    ok = false;
+    return SwapChoice::NoSwap;
+}
+
+
 void
 PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
@@ -496,6 +522,43 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     if ( configurationMap.contains( "neverCreateSwap" ) )
         cWarning() << "Partition-module setting *neverCreateSwap* is deprecated.";
     bool neverCreateSwap = CalamaresUtils::getBool( configurationMap, "neverCreateSwap", false );
+
+    QSet< PartitionActions::Choices::SwapChoice > choices;  // Available swap choices
+    if ( configurationMap.contains( "userSwapChoices" ) )
+    {
+        // We've already warned about overlapping settings with the
+        // legacy *ensureSuspendToDisk* and *neverCreateSwap*.
+        QStringList l = configurationMap[ "userSwapChoices" ].toStringList();
+
+        for ( const auto& item : l )
+        {
+            bool ok = false;
+            auto v = nameToChoice( item, ok );
+            if ( ok )
+                choices.insert( v );
+        }
+
+        if ( choices.isEmpty() )
+        {
+            cWarning() << "Partition-module configuration for *userSwapChoices* is empty:" << l;
+            choices.insert( PartitionActions::Choices::SwapChoice::FullSwap );
+        }
+
+        // suspend if it's one of the possible choices; suppress swap only if it's
+        // the **only** choice available.
+        ensureSuspendToDisk = choices.contains( PartitionActions::Choices::SwapChoice::FullSwap );
+        neverCreateSwap = ( choices.count() == 1 ) && choices.contains( PartitionActions::Choices::SwapChoice::NoSwap );
+    }
+    else
+    {
+        // Convert the legacy settings into a single setting for now.
+        if ( neverCreateSwap )
+            choices.insert( PartitionActions::Choices::SwapChoice::NoSwap );
+        else if ( ensureSuspendToDisk )
+            choices.insert( PartitionActions::Choices::SwapChoice::FullSwap );
+        else
+            choices.insert( PartitionActions::Choices::SwapChoice::SmallSwap );
+    }
 
     // These gs settings seem to be unused (in upstream Calamares) outside of
     // the partition module itself.
@@ -524,7 +587,7 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     // and remove the spinner.
     QFutureWatcher< void >* watcher = new QFutureWatcher< void >();
     connect( watcher, &QFutureWatcher< void >::finished,
-             this, [ this, watcher ]
+             this, [ this, watcher, choices ]
     {
         continueLoading();
         watcher->deleteLater();
