@@ -249,7 +249,7 @@ ChoicePage::setupChoices()
 
     // Fill up swap options
     // .. TODO: only if enabled in the config
-    m_eraseSwapChoices = createCombo( { SwapChoice::NoSwap, SwapChoice::SmallSwap, SwapChoice:: FullSwap } );
+    m_eraseSwapChoices = createCombo( { SwapChoice::NoSwap, SwapChoice::SmallSwap, SwapChoice::FullSwap } );
     m_eraseButton->addOptionsComboBox( m_eraseSwapChoices );
 
 #if 0
