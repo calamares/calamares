@@ -163,6 +163,7 @@ lookForFstabEntries( const QString& partitionPath )
 {
     FstabEntryList fstabEntries;
     QTemporaryDir mountsDir;
+    mountsDir.setAutoRemove( false );
 
     int exit = QProcess::execute( "mount", { partitionPath, mountsDir.path() } );
     if ( !exit ) // if all is well
