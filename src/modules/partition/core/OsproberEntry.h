@@ -41,7 +41,7 @@ struct FstabEntry
      * If the string isn't valid (e.g. comment-line, or broken
      * fstab entry) then the entry that is returned is invalid.
      */
-    FstabEntry fromEtcFstab( const QString& ); // implemented in Partutils.cpp
+    static FstabEntry fromEtcFstab( const QString& ); // implemented in Partutils.cpp
 };
 
 typedef QList< FstabEntry > FstabEntryList;
