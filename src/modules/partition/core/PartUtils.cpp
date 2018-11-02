@@ -175,25 +175,9 @@ lookForFstabEntries( const QString& partitionPath )
                                      .split( '\n' );
 
             for ( const QString& rawLine : fstabLines )
-            {
-                QString line = rawLine.simplified();
-                if ( line.startsWith( '#' ) )
-                    continue;
-
-                QStringList splitLine = line.split( ' ' );
-                if ( splitLine.length() != 6 )
-                    continue;
-
-                fstabEntries.append( { splitLine.at( 0 ), // path, or UUID, or LABEL, etc.
-                                       splitLine.at( 1 ), // mount point
-                                       splitLine.at( 2 ), // fs type
-                                       splitLine.at( 3 ), // options
-                                       splitLine.at( 4 ).toInt(), //dump
-                                       splitLine.at( 5 ).toInt()  //pass
-                                     } );
-            }
-
+                fstabEntries.append( FstabEntry::fromEtcFstab( rawLine ) );
             fstabFile.close();
+            std::remove_if( fstabEntries.begin(), fstabEntries.end(), [](const FstabEntry& x) { return !x.isValid(); } );
         }
 
         if ( QProcess::execute( "umount", { "-R", mountsDir.path() } ) )
