@@ -196,7 +196,12 @@ lookForFstabEntries( const QString& partitionPath )
             fstabFile.close();
         }
 
-        QProcess::execute( "umount", { "-R", mountsDir.path() } );
+        if ( QProcess::execute( "umount", { "-R", mountsDir.path() } ) )
+        {
+            cWarning() << "Could not unmount" << mountsDir.path();
+            // There is stuff left in there, really don't remove
+            mountsDir.setAutoRemove( false );
+        }
     }
 
     return fstabEntries;
