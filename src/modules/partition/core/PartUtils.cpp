@@ -158,15 +158,14 @@ canBeResized( PartitionCoreModule* core, const QString& partitionPath )
 }
 
 
+
 static FstabEntryList
 lookForFstabEntries( const QString& partitionPath )
 {
     FstabEntryList fstabEntries;
     QTemporaryDir mountsDir;
-    mountsDir.setAutoRemove( false );
 
-    int exit = QProcess::execute( "mount", { partitionPath, mountsDir.path() } );
-    if ( !exit ) // if all is well
+    if ( QProcess::execute( "mount", { "-o", "ro,noload", partitionPath, mountsDir.path() } ) == 0) // if all is well
     {
         QFile fstabFile( mountsDir.path() + "/etc/fstab" );
         if ( fstabFile.open( QIODevice::ReadOnly | QIODevice::Text ) )
@@ -180,7 +179,7 @@ lookForFstabEntries( const QString& partitionPath )
             std::remove_if( fstabEntries.begin(), fstabEntries.end(), [](const FstabEntry& x) { return !x.isValid(); } );
         }
 
-        if ( QProcess::execute( "umount", { "-R", mountsDir.path() } ) )
+        if ( QProcess::execute( "umount", { "-R", mountsDir.path() } ) != 0) // if failed
         {
             cWarning() << "Could not unmount" << mountsDir.path();
             // There is stuff left in there, really don't remove
@@ -190,6 +189,7 @@ lookForFstabEntries( const QString& partitionPath )
 
     return fstabEntries;
 }
+
 
 
 static QString
