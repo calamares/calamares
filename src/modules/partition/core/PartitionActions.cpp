@@ -156,8 +156,7 @@ doAutopartition( PartitionCoreModule* core, Device* dev, const QString& luksPass
             PartitionRole( PartitionRole::Primary ),
             FileSystem::Fat32,
             firstFreeSector,
-            lastSector,
-            PartitionTable::FlagNone
+            lastSector
         );
         PartitionInfo::setFormat( efiPartition, true );
         PartitionInfo::setMountPoint( efiPartition, gs->value( "efiSystemPartition" )
@@ -221,7 +220,7 @@ doAutopartition( PartitionCoreModule* core, Device* dev, const QString& luksPass
     }
     PartitionInfo::setFormat( rootPartition, true );
     PartitionInfo::setMountPoint( rootPartition, "/" );
-    core->createPartition( dev, rootPartition );
+    core->createPartition( dev, rootPartition, PartitionTable::FlagBoot );
 
     if ( shouldCreateSwap )
     {
