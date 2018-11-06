@@ -227,7 +227,7 @@ doAutopartition( PartitionCoreModule* core, Device* dev, const QString& luksPass
     else
     {
         // Some buggy BIOSes test if the bootflag of at least one partition is set. Otherwise they ignore the device in boot-order. 
-        core->createPartition( dev, rootPartition, PartitionTable::FlagBoot )
+        core->createPartition( dev, rootPartition, PartitionTable::FlagBoot );
     }
 
     if ( shouldCreateSwap )
