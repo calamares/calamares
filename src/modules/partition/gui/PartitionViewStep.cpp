@@ -580,6 +580,18 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     {
         cWarning() << "Partition-module setting *defaultFileSystemType* is bad (" << defaultFS << ") using ext4.";
         defaultFS = QStringLiteral( "ext4" );
+#ifdef DEBUG_FILESYSTEMS
+        // This bit is for distro's debugging their settings, and shows
+        // all the strings that KPMCore is matching against for FS type.
+        {
+            Logger::CLog d( Logger::LOGDEBUG );
+            using TR = Logger::DebugRow< int, QString >;
+            const auto fstypes = FileSystem::types();
+            d << "Available types (" << fstypes.count() << ')';
+            for ( FileSystem::Type t : fstypes )
+                d << TR( static_cast<int>( t ), FileSystem::nameForType( t ) );
+        }
+#endif
     }
     gs->insert( "defaultFileSystemType", defaultFS );
 
