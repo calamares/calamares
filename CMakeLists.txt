@@ -46,6 +46,7 @@ option( WITH_PYTHON "Enable Python modules API (requires Boost.Python)." ON )
 option( WITH_PYTHONQT "Enable next generation Python modules API (experimental, requires PythonQt)." ON )
 option( WITH_KF5Crash "Enable crash reporting with KCrash." ON )
 
+
 ### USE_*
 #
 # By convention, when there are multiple modules that implement similar
@@ -76,6 +77,7 @@ set( CALAMARES_VERSION_MAJOR 3 )
 set( CALAMARES_VERSION_MINOR 2 )
 set( CALAMARES_VERSION_PATCH 3 )
 set( CALAMARES_VERSION_RC 1 )
+
 
 ### Transifex (languages) info
 #
@@ -142,6 +144,11 @@ set( CMAKE_CXX_STANDARD_REQUIRED ON )
 set( CMAKE_C_STANDARD 99 )
 set( CMAKE_C_STANDARD_REQUIRED ON )
 
+# Debugging flags
+set( CMAKE_CXX_FLAGS_DEBUG
+    "-DDEBUG_TIMEZONES -DDEBUG_FILESYSTEMS"
+    )
+
 set( CMAKE_C_FLAGS                  "${CMAKE_C_FLAGS} -Wall" )
 if( CMAKE_CXX_COMPILER_ID MATCHES "Clang" )
     message( STATUS "Found Clang ${CMAKE_CXX_COMPILER_VERSION}, setting up Clang-specific compiler flags." )
@@ -175,7 +182,7 @@ if( CMAKE_CXX_COMPILER_ID MATCHES "Clang" )
     set( SUPPRESS_3RDPARTY_WARNINGS "-Wno-everything" )
     set( SUPPRESS_BOOST_WARNINGS " -Wno-zero-as-null-pointer-constant -Wno-disabled-macro-expansion" )
 
-    set( CMAKE_CXX_FLAGS_DEBUG          "-g" )
+    set( CMAKE_CXX_FLAGS_DEBUG          "-g ${CMAKE_CXX_FLAGS_DEBUG}" )
     set( CMAKE_CXX_FLAGS_MINSIZEREL     "-Os -DNDEBUG" )
     set( CMAKE_CXX_FLAGS_RELEASE        "-O4 -DNDEBUG" )
     set( CMAKE_CXX_FLAGS_RELWITHDEBINFO "-O2 -g" )
