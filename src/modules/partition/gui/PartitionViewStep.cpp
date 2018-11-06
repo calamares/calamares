@@ -574,6 +574,8 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     QString defaultFS = CalamaresUtils::getString( configurationMap, "defaultFileSystemType" );
     if ( defaultFS.isEmpty() )
         defaultFS = QStringLiteral( "ext4" );
+    else
+        cDebug() << "Partition-module setting *defaultFileSystemType*" << defaultFS;
     if ( FileSystem::typeForName( defaultFS ) == FileSystem::Unknown )
     {
         cWarning() << "Partition-module setting *defaultFileSystemType* is bad (" << defaultFS << ") using ext4.";
