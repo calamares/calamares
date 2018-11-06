@@ -156,8 +156,7 @@ doAutopartition( PartitionCoreModule* core, Device* dev, const QString& luksPass
             PartitionRole( PartitionRole::Primary ),
             FileSystem::Fat32,
             firstFreeSector,
-            lastSector,
-            PartitionTable::FlagNone
+            lastSector
         );
         PartitionInfo::setFormat( efiPartition, true );
         PartitionInfo::setMountPoint( efiPartition, gs->value( "efiSystemPartition" )
@@ -221,7 +220,15 @@ doAutopartition( PartitionCoreModule* core, Device* dev, const QString& luksPass
     }
     PartitionInfo::setFormat( rootPartition, true );
     PartitionInfo::setMountPoint( rootPartition, "/" );
-    core->createPartition( dev, rootPartition );
+    if( isEfi )
+    {
+        core->createPartition( dev, rootPartition );
+    }
+    else
+    {
+        // Some buggy BIOSes test if the bootflag of at least one partition is set. Otherwise they ignore the device in boot-order. 
+        core->createPartition( dev, rootPartition, PartitionTable::FlagBoot );
+    }
 
     if ( shouldCreateSwap )
     {
@@ -255,7 +262,6 @@ doAutopartition( PartitionCoreModule* core, Device* dev, const QString& luksPass
 
     core->dumpQueue();
 }
-
 
 void
 doReplacePartition( PartitionCoreModule* core,
