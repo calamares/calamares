@@ -70,7 +70,7 @@ handle_args( CalamaresApplication& a )
         if ( !ok || ( l < 0 ) )
             dlevel = Logger::LOGVERBOSE;
         else
-            dlevel = l;
+            dlevel = static_cast<unsigned int>( l );  // l >= 0
         Logger::setupLogLevel( dlevel );
     }
     if ( parser.isSet( configOption ) )
