@@ -635,7 +635,8 @@ ChoicePage::doAlongsideApply()
                     candidate->roles(),
                     FileSystem::typeForName( m_defaultFsType ),
                     newLastSector + 2, // *
-                    oldLastSector
+                    oldLastSector,
+                    PartitionTable::FlagNone
                 );
             }
             else
@@ -647,7 +648,8 @@ ChoicePage::doAlongsideApply()
                     FileSystem::typeForName( m_defaultFsType ),
                     newLastSector + 2, // *
                     oldLastSector,
-                    luksPassphrase
+                    luksPassphrase,
+                    PartitionTable::FlagNone
                 );
             }
             PartitionInfo::setMountPoint( newPartition, "/" );
@@ -735,7 +737,9 @@ ChoicePage::doReplaceSelectedPartition( const QModelIndex& current )
                     FileSystem::typeForName( m_defaultFsType ),
                     selectedPartition->firstSector(),
                     selectedPartition->lastSector(),
-                    m_encryptWidget->passphrase() );
+                    m_encryptWidget->passphrase(),
+                    PartitionTable::FlagNone
+                );
             }
             else
             {
@@ -745,7 +749,9 @@ ChoicePage::doReplaceSelectedPartition( const QModelIndex& current )
                     newRoles,
                     FileSystem::typeForName( m_defaultFsType ),
                     selectedPartition->firstSector(),
-                    selectedPartition->lastSector() );
+                    selectedPartition->lastSector(),
+                    PartitionTable::FlagNone
+                );
             }
 
             PartitionInfo::setMountPoint( newPartition, "/" );

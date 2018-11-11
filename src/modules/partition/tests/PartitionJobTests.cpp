@@ -358,7 +358,15 @@ PartitionJobTests::testResizePartition()
 
         Partition* freePartition = firstFreePartition( m_device->partitionTable() );
         QVERIFY( freePartition );
-        Partition* partition = KPMHelpers::createNewPartition( freePartition->parent(), *m_device, PartitionRole( PartitionRole::Primary ), FileSystem::Ext4, oldFirst, oldLast );
+        Partition* partition = KPMHelpers::createNewPartition(
+            freePartition->parent(),
+            *m_device,
+            PartitionRole( PartitionRole::Primary ),
+            FileSystem::Ext4,
+            oldFirst,
+            oldLast,
+            PartitionTable::FlagNone
+        );
         CreatePartitionJob* job = new CreatePartitionJob( m_device.data(), partition );
         job->updatePreview();
         m_queue.enqueue( job_ptr( job ) );
