@@ -281,7 +281,6 @@ runOsprober( PartitionCoreModule* core )
                 osprober.readAllStandardOutput() ).trimmed() );
     }
 
-    QString osProberReport( "Osprober lines, clean:\n" );
     QStringList osproberCleanLines;
     OsproberEntryList osproberEntries;
     const auto lines = osproberOutput.split( '\n' );
@@ -313,8 +312,11 @@ runOsprober( PartitionCoreModule* core )
             osproberCleanLines.append( line );
         }
     }
-    osProberReport.append( osproberCleanLines.join( '\n' ) );
-    cDebug() << osProberReport;
+
+    if ( osproberCleanLines.count() > 0 )
+        cDebug() << "os-prober lines after cleanup:" << Logger::DebugList( osproberCleanLines );
+    else
+        cDebug() << "os-prober gave no output.";
 
     Calamares::JobQueue::instance()->globalStorage()->insert( "osproberLines", osproberCleanLines );
 
