@@ -31,6 +31,7 @@
 #include <kpmcore/core/device.h>
 #include <kpmcore/core/partition.h>
 
+#include <utils/CalamaresUtilsSystem.h>
 #include <utils/Logger.h>
 #include <JobQueue.h>
 #include <GlobalStorage.h>
@@ -161,11 +162,26 @@ canBeResized( PartitionCoreModule* core, const QString& partitionPath )
 static FstabEntryList
 lookForFstabEntries( const QString& partitionPath )
 {
+    QStringList mountOptions{ "ro" };
+
+    auto r = CalamaresUtils::System::runCommand(
+        CalamaresUtils::System::RunLocation::RunInHost,
+        { "blkid", "-s", "TYPE", "-o", "value", partitionPath }
+    );
+    if ( r.getExitCode() )
+        cWarning() << "blkid on" << partitionPath << "failed.";
+    else
+    {
+        QString fstype = r.getOutput().trimmed();
+        if ( ( fstype == "ext3" ) || ( fstype == "ext4" ) )
+            mountOptions.append( "noload" );
+    }
+
     FstabEntryList fstabEntries;
     QTemporaryDir mountsDir;
     mountsDir.setAutoRemove( false );
 
-    int exit = QProcess::execute( "mount", { "-o", "ro,noload", partitionPath, mountsDir.path() } );
+    int exit = QProcess::execute( "mount", { "-o", mountOptions.join(','), partitionPath, mountsDir.path() } );
     if ( !exit ) // if all is well
     {
         QFile fstabFile( mountsDir.path() + "/etc/fstab" );
