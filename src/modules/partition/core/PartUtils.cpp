@@ -165,7 +165,7 @@ lookForFstabEntries( const QString& partitionPath )
     QTemporaryDir mountsDir;
     mountsDir.setAutoRemove( false );
 
-    int exit = QProcess::execute( "mount", { partitionPath, mountsDir.path() } );
+    int exit = QProcess::execute( "mount", { "-o", "ro,noload", partitionPath, mountsDir.path() } );
     if ( !exit ) // if all is well
     {
         QFile fstabFile( mountsDir.path() + "/etc/fstab" );
@@ -181,11 +181,7 @@ lookForFstabEntries( const QString& partitionPath )
         }
 
         if ( QProcess::execute( "umount", { "-R", mountsDir.path() } ) )
-        {
             cWarning() << "Could not unmount" << mountsDir.path();
-            // There is stuff left in there, really don't remove
-            mountsDir.setAutoRemove( false );
-        }
     }
 
     return fstabEntries;
