@@ -223,7 +223,11 @@ doAutopartition( PartitionCoreModule* core, Device* dev, const QString& luksPass
     }
     PartitionInfo::setFormat( rootPartition, true );
     PartitionInfo::setMountPoint( rootPartition, "/" );
-    core->createPartition( dev, rootPartition );
+    // Some buggy (legacy) BIOSes test if the bootflag of at least one partition is set.
+    // Otherwise they ignore the device in boot-order, so add it here.
+    core->createPartition( dev, rootPartition,
+                           rootPartition->activeFlags() | ( isEfi ? PartitionTable::FlagNone : PartitionTable::FlagBoot )
+                         );
 
     if ( shouldCreateSwap )
     {
