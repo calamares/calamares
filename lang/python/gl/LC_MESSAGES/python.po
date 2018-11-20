@@ -3,13 +3,17 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
+# Translators:
+# Xosé, 2018
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-18 07:46-0400\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"POT-Creation-Date: 2018-10-05 11:34-0400\n"
+"PO-Revision-Date: 2017-08-09 10:34+0000\n"
+"Last-Translator: Xosé, 2018\n"
 "Language-Team: Galician (https://www.transifex.com/calamares/teams/20061/gl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -17,41 +21,105 @@ msgstr ""
 "Language: gl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: src/modules/displaymanager/main.py:380
+msgid "Cannot write KDM configuration file"
+msgstr "Non é posíbel escribir o ficheiro de configuración de KDM"
+
+#: src/modules/displaymanager/main.py:381
+msgid "KDM config file {!s} does not exist"
+msgstr "O ficheiro de configuración de KDM {!s} non existe"
+
+#: src/modules/displaymanager/main.py:442
+msgid "Cannot write LXDM configuration file"
+msgstr "Non é posíbel escribir o ficheiro de configuración de LXDM"
+
+#: src/modules/displaymanager/main.py:443
+msgid "LXDM config file {!s} does not exist"
+msgstr "O ficheiro de configuración de LXDM {!s} non existe"
+
+#: src/modules/displaymanager/main.py:517
+msgid "Cannot write LightDM configuration file"
+msgstr "Non é posíbel escribir o ficheiro de configuración de LightDM"
+
+#: src/modules/displaymanager/main.py:518
+msgid "LightDM config file {!s} does not exist"
+msgstr "O ficheiro de configuración de LightDM {!s} non existe"
+
+#: src/modules/displaymanager/main.py:592
+msgid "Cannot configure LightDM"
+msgstr "Non é posíbel configurar LightDM"
+
+#: src/modules/displaymanager/main.py:593
+msgid "No LightDM greeter installed."
+msgstr "Non se instalou o saudador de LightDM."
+
+#: src/modules/displaymanager/main.py:624
+msgid "Cannot write SLIM configuration file"
+msgstr "Non é posíbel escribir o ficheiro de configuración de SLIM"
+
+#: src/modules/displaymanager/main.py:625
+msgid "SLIM config file {!s} does not exist"
+msgstr "O ficheiro de configuración de SLIM {!s} non existe"
+
+#: src/modules/displaymanager/main.py:740
+#: src/modules/displaymanager/main.py:772
+msgid "No display managers selected for the displaymanager module."
+msgstr ""
+"Non hai xestores de pantalla seleccionados para o módulo displaymanager."
+
+#: src/modules/displaymanager/main.py:741
+msgid ""
+"The displaymanagers list is empty or undefined in bothglobalstorage and "
+"displaymanager.conf."
+msgstr ""
+"A lista de xestores de pantalla está baleira ou sen definir en "
+"bothglobalstorage e displaymanager.conf."
+
+#: src/modules/displaymanager/main.py:773
+msgid "The list is empty after checking for installed display managers."
+msgstr ""
+"A lista está baleira despois de comprobar os xestores de pantalla "
+"instalados."
+
+#: src/modules/displaymanager/main.py:821
+msgid "Display manager configuration was incomplete"
+msgstr "A configuración do xestor de pantalla foi incompleta"
+
 #: src/modules/umount/main.py:40
 msgid "Unmount file systems."
-msgstr ""
+msgstr "Desmontar sistemas de ficheiros."
 
 #: src/modules/dummypython/main.py:44
 msgid "Dummy python job."
-msgstr ""
+msgstr "Tarefa parva de python."
 
 #: src/modules/dummypython/main.py:97
 msgid "Dummy python step {}"
-msgstr ""
+msgstr "Paso parvo de python {}"
 
 #: src/modules/machineid/main.py:35
 msgid "Generate machine-id."
-msgstr ""
+msgstr "Xerar o identificador da máquina."
 
 #: src/modules/packages/main.py:62
 #, python-format
 msgid "Processing packages (%(count)d / %(total)d)"
-msgstr ""
+msgstr "A procesar paquetes  (%(count)d/%(total)d)"
 
 #: src/modules/packages/main.py:64 src/modules/packages/main.py:74
 msgid "Install packages."
-msgstr ""
+msgstr "Instalar paquetes."
 
 #: src/modules/packages/main.py:67
 #, python-format
 msgid "Installing one package."
 msgid_plural "Installing %(num)d packages."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "A instalar un paquete."
+msgstr[1] "A instalar %(num)d paquetes."
 
 #: src/modules/packages/main.py:70
 #, python-format
 msgid "Removing one package."
 msgid_plural "Removing %(num)d packages."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "A retirar un paquete."
+msgstr[1] "A retirar %(num)d paquetes."

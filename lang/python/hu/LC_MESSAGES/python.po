@@ -3,14 +3,19 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
+# Translators:
+# miku84, 2017
+# Adriaan de Groot <groot@kde.org>, 2018
+# Balázs Meskó <meskobalazs@gmail.com>, 2018
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-18 07:46-0400\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Adriaan de Groot <groot@kde.org>, 2018\n"
+"POT-Creation-Date: 2018-10-05 11:34-0400\n"
+"PO-Revision-Date: 2017-08-09 10:34+0000\n"
+"Last-Translator: Balázs Meskó <meskobalazs@gmail.com>, 2018\n"
 "Language-Team: Hungarian (https://www.transifex.com/calamares/teams/20061/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,21 +23,82 @@ msgstr ""
 "Language: hu\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: src/modules/displaymanager/main.py:380
+msgid "Cannot write KDM configuration file"
+msgstr "A KDM konfigurációs fájl nem írható"
+
+#: src/modules/displaymanager/main.py:381
+msgid "KDM config file {!s} does not exist"
+msgstr "A(z) {!s} KDM konfigurációs fájl nem létezik"
+
+#: src/modules/displaymanager/main.py:442
+msgid "Cannot write LXDM configuration file"
+msgstr "Az LXDM konfigurációs fájl nem írható"
+
+#: src/modules/displaymanager/main.py:443
+msgid "LXDM config file {!s} does not exist"
+msgstr "A(z) {!s} LXDM konfigurációs fájl nem létezik"
+
+#: src/modules/displaymanager/main.py:517
+msgid "Cannot write LightDM configuration file"
+msgstr "A LightDM konfigurációs fájl nem írható"
+
+#: src/modules/displaymanager/main.py:518
+msgid "LightDM config file {!s} does not exist"
+msgstr "A(z) {!s} LightDM konfigurációs fájl nem létezik"
+
+#: src/modules/displaymanager/main.py:592
+msgid "Cannot configure LightDM"
+msgstr "A LightDM nem állítható be"
+
+#: src/modules/displaymanager/main.py:593
+msgid "No LightDM greeter installed."
+msgstr "Nincs LightDM üdvözlő telepítve."
+
+#: src/modules/displaymanager/main.py:624
+msgid "Cannot write SLIM configuration file"
+msgstr "A SLIM konfigurációs fájl nem írható"
+
+#: src/modules/displaymanager/main.py:625
+msgid "SLIM config file {!s} does not exist"
+msgstr "A(z) {!s} SLIM konfigurációs fájl nem létezik"
+
+#: src/modules/displaymanager/main.py:740
+#: src/modules/displaymanager/main.py:772
+msgid "No display managers selected for the displaymanager module."
+msgstr "Nincs kijelzőkezelő kiválasztva a kijelzőkezelő modulhoz."
+
+#: src/modules/displaymanager/main.py:741
+msgid ""
+"The displaymanagers list is empty or undefined in bothglobalstorage and "
+"displaymanager.conf."
+msgstr ""
+"A kijelzőkezelők listája üres vagy nincs megadva a bothglobalstorage-ben  és"
+" a displaymanager.conf fájlban."
+
+#: src/modules/displaymanager/main.py:773
+msgid "The list is empty after checking for installed display managers."
+msgstr "A lista üres a telepített kijelzőkezelők ellenőrzése után."
+
+#: src/modules/displaymanager/main.py:821
+msgid "Display manager configuration was incomplete"
+msgstr "A kijelzőkezelő konfigurációja hiányos volt"
+
 #: src/modules/umount/main.py:40
 msgid "Unmount file systems."
 msgstr "Fájlrendszerek leválasztása."
 
 #: src/modules/dummypython/main.py:44
 msgid "Dummy python job."
-msgstr "Hamis PythonQt Job."
+msgstr "Hamis Python feladat."
 
 #: src/modules/dummypython/main.py:97
 msgid "Dummy python step {}"
-msgstr "Hamis PythonQt {} lépés"
+msgstr "Hamis {}. Python lépés"
 
 #: src/modules/machineid/main.py:35
 msgid "Generate machine-id."
-msgstr "Számítógép azonosító generálása."
+msgstr "Gépazonosító előállítása."
 
 #: src/modules/packages/main.py:62
 #, python-format

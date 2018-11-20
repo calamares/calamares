@@ -3,20 +3,87 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
+# Translators:
+# Davidmp <medipas@gmail.com>, 2018
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-18 07:46-0400\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Davidmp <medipas@gmail.com>, 2017\n"
+"POT-Creation-Date: 2018-10-05 11:34-0400\n"
+"PO-Revision-Date: 2017-08-09 10:34+0000\n"
+"Last-Translator: Davidmp <medipas@gmail.com>, 2018\n"
 "Language-Team: Catalan (https://www.transifex.com/calamares/teams/20061/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ca\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: src/modules/displaymanager/main.py:380
+msgid "Cannot write KDM configuration file"
+msgstr "No es pot escriure el fitxer de configuració del KDM."
+
+#: src/modules/displaymanager/main.py:381
+msgid "KDM config file {!s} does not exist"
+msgstr "El fitxer de configuració del KDM {!s} no existeix."
+
+#: src/modules/displaymanager/main.py:442
+msgid "Cannot write LXDM configuration file"
+msgstr "No es pot escriure el fitxer de configuració de l'LXDM."
+
+#: src/modules/displaymanager/main.py:443
+msgid "LXDM config file {!s} does not exist"
+msgstr "El fitxer de configuració de l'LXDM {!s} no existeix."
+
+#: src/modules/displaymanager/main.py:517
+msgid "Cannot write LightDM configuration file"
+msgstr "No es pot escriure el fitxer de configuració del LightDM."
+
+#: src/modules/displaymanager/main.py:518
+msgid "LightDM config file {!s} does not exist"
+msgstr "El fitxer de configuració del LightDM {!s} no existeix."
+
+#: src/modules/displaymanager/main.py:592
+msgid "Cannot configure LightDM"
+msgstr "No es pot configurar el LightDM."
+
+#: src/modules/displaymanager/main.py:593
+msgid "No LightDM greeter installed."
+msgstr "No hi ha benvinguda instal·lada per al LightDM."
+
+#: src/modules/displaymanager/main.py:624
+msgid "Cannot write SLIM configuration file"
+msgstr "No es pot escriure el fitxer de configuració de l'SLIM."
+
+#: src/modules/displaymanager/main.py:625
+msgid "SLIM config file {!s} does not exist"
+msgstr "El fitxer de configuració de l'SLIM {!s} no existeix."
+
+#: src/modules/displaymanager/main.py:740
+#: src/modules/displaymanager/main.py:772
+msgid "No display managers selected for the displaymanager module."
+msgstr ""
+"No hi ha cap gestor de pantalla seleccionat per al mòdul displaymanager."
+
+#: src/modules/displaymanager/main.py:741
+msgid ""
+"The displaymanagers list is empty or undefined in bothglobalstorage and "
+"displaymanager.conf."
+msgstr ""
+"La llista de gestors de pantalla és buida o no definida a bothglobalstorage "
+"i displaymanager.conf."
+
+#: src/modules/displaymanager/main.py:773
+msgid "The list is empty after checking for installed display managers."
+msgstr ""
+"La llista és buida, després de comprovar si hi ha gestors de pantalla "
+"instal·lats."
+
+#: src/modules/displaymanager/main.py:821
+msgid "Display manager configuration was incomplete"
+msgstr "La configuració del gestor de pantalla no era completa."
 
 #: src/modules/umount/main.py:40
 msgid "Unmount file systems."
@@ -55,4 +122,4 @@ msgstr[1] "Instal·lant %(num)d paquets."
 msgid "Removing one package."
 msgid_plural "Removing %(num)d packages."
 msgstr[0] "Eliminant un paquet."
-msgstr[1] "Eliminant %(num)d paquets."
+msgstr[1] "Suprimint %(num)d paquets."
