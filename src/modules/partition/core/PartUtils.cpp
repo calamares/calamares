@@ -31,6 +31,7 @@
 #include <kpmcore/core/device.h>
 #include <kpmcore/core/partition.h>
 
+#include <utils/CalamaresUtilsSystem.h>
 #include <utils/Logger.h>
 #include <JobQueue.h>
 #include <GlobalStorage.h>
@@ -161,11 +162,26 @@ canBeResized( PartitionCoreModule* core, const QString& partitionPath )
 static FstabEntryList
 lookForFstabEntries( const QString& partitionPath )
 {
+    QStringList mountOptions{ "ro" };
+
+    auto r = CalamaresUtils::System::runCommand(
+        CalamaresUtils::System::RunLocation::RunInHost,
+        { "blkid", "-s", "TYPE", "-o", "value", partitionPath }
+    );
+    if ( r.getExitCode() )
+        cWarning() << "blkid on" << partitionPath << "failed.";
+    else
+    {
+        QString fstype = r.getOutput().trimmed();
+        if ( ( fstype == "ext3" ) || ( fstype == "ext4" ) )
+            mountOptions.append( "noload" );
+    }
+
     FstabEntryList fstabEntries;
     QTemporaryDir mountsDir;
     mountsDir.setAutoRemove( false );
 
-    int exit = QProcess::execute( "mount", { partitionPath, mountsDir.path() } );
+    int exit = QProcess::execute( "mount", { "-o", mountOptions.join(','), partitionPath, mountsDir.path() } );
     if ( !exit ) // if all is well
     {
         QFile fstabFile( mountsDir.path() + "/etc/fstab" );
@@ -181,11 +197,7 @@ lookForFstabEntries( const QString& partitionPath )
         }
 
         if ( QProcess::execute( "umount", { "-R", mountsDir.path() } ) )
-        {
             cWarning() << "Could not unmount" << mountsDir.path();
-            // There is stuff left in there, really don't remove
-            mountsDir.setAutoRemove( false );
-        }
     }
 
     return fstabEntries;
@@ -285,7 +297,6 @@ runOsprober( PartitionCoreModule* core )
                 osprober.readAllStandardOutput() ).trimmed() );
     }
 
-    QString osProberReport( "Osprober lines, clean:\n" );
     QStringList osproberCleanLines;
     OsproberEntryList osproberEntries;
     const auto lines = osproberOutput.split( '\n' );
@@ -317,8 +328,11 @@ runOsprober( PartitionCoreModule* core )
             osproberCleanLines.append( line );
         }
     }
-    osProberReport.append( osproberCleanLines.join( '\n' ) );
-    cDebug() << osProberReport;
+
+    if ( osproberCleanLines.count() > 0 )
+        cDebug() << "os-prober lines after cleanup:" << Logger::DebugList( osproberCleanLines );
+    else
+        cDebug() << "os-prober gave no output.";
 
     Calamares::JobQueue::instance()->globalStorage()->insert( "osproberLines", osproberCleanLines );
 

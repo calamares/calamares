@@ -128,6 +128,12 @@ public:
 
     void createPartitionTable( Device* device, PartitionTable::TableType type );
 
+    /**
+     * @brief Add a job to do the actual partition-creation.
+     *
+     * If @p flags is not FlagNone, then the given flags are
+     * applied to the newly-created partition.
+     */
     void createPartition( Device* device, Partition* partition,
                           PartitionTable::Flags flags = PartitionTable::FlagNone );
 
