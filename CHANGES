@@ -38,6 +38,8 @@ This release contains contributions from (alphabetically by first name):
  * New module *fsresizer* can be used to resize filesystems. It is intended
    for use in OEM installs where an image of fixed size is created,
    and then sized to the actual SD card the user has used.
+ * The *mount* module now handles missing *extraMounts* and *extraMountsEfi*
+   keys gracefully (this is probably a misconfiguration issue).
 
 # 3.2.2 (2018-09-04) #
 
