@@ -40,6 +40,9 @@ This release contains contributions from (alphabetically by first name):
    and then sized to the actual SD card the user has used.
  * The *mount* module now handles missing *extraMounts* and *extraMountsEfi*
    keys gracefully (this is probably a misconfiguration issue).
+ * The *packages* module now supports pre- and post-script options
+   for all operations, not just during install (keep in mind that
+   these run as three separate shells, though).
 
 # 3.2.2 (2018-09-04) #
 
