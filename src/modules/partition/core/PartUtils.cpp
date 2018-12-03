@@ -177,6 +177,9 @@ lookForFstabEntries( const QString& partitionPath )
             mountOptions.append( "noload" );
     }
 
+    cDebug() << "Checking device" << partitionPath 
+        << "for fstab (fs=" << r.getOutput() << ')';
+
     FstabEntryList fstabEntries;
     QTemporaryDir mountsDir;
     mountsDir.setAutoRemove( false );
@@ -185,6 +188,9 @@ lookForFstabEntries( const QString& partitionPath )
     if ( !exit ) // if all is well
     {
         QFile fstabFile( mountsDir.path() + "/etc/fstab" );
+        
+        cDebug() << "  .. reading" << fstabFile.fileName();
+        
         if ( fstabFile.open( QIODevice::ReadOnly | QIODevice::Text ) )
         {
             const QStringList fstabLines = QString::fromLocal8Bit( fstabFile.readAll() )
@@ -193,12 +199,18 @@ lookForFstabEntries( const QString& partitionPath )
             for ( const QString& rawLine : fstabLines )
                 fstabEntries.append( FstabEntry::fromEtcFstab( rawLine ) );
             fstabFile.close();
+            cDebug() << "  .. got" << fstabEntries.count() << "lines.";
             std::remove_if( fstabEntries.begin(), fstabEntries.end(), [](const FstabEntry& x) { return !x.isValid(); } );
+            cDebug() << "  .. got" << fstabEntries.count() << "fstab entries.";
         }
+        else
+            cWarning() << "Could not read fstab from mounted fs";
 
         if ( QProcess::execute( "umount", { "-R", mountsDir.path() } ) )
             cWarning() << "Could not unmount" << mountsDir.path();
     }
+    else
+        cWarning() << "Could not mount existing fs";
 
     return fstabEntries;
 }
