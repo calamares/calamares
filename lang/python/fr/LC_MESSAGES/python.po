@@ -6,7 +6,7 @@
 # Translators:
 # Paul Combal <abonnementspaul@gmail.com>, 2017
 # Abdallah B <bahassinea@gmail.com>, 2017
-# Aestan <anthony.margerand@gmail.com>, 2018
+# Aestan <anthony.margerand@protonmail.com>, 2018
 # Jeremy Gourmel <jgourmel@free.fr>, 2018
 # 
 #, fuzzy
