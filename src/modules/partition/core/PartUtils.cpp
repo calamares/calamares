@@ -80,26 +80,47 @@ bool
 canBeResized( Partition* candidate )
 {
     if ( !candidate )
+    {
+        cDebug() << "Partition* is NULL";
         return false;
+    }
 
+    cDebug() << "Checking if" << candidate->partitionPath() << "can be resized.";
     if ( !candidate->fileSystem().supportGrow() ||
          !candidate->fileSystem().supportShrink() )
+    {
+        cDebug() << "  .. filesystem" << candidate->fileSystem().name()
+            << "does not support resize.";
         return false;
+    }
 
     if ( KPMHelpers::isPartitionFreeSpace( candidate ) )
+    {
+        cDebug() << "  .. partition is free space";
         return false;
+    }
 
     if ( candidate->isMounted() )
+    {
+        cDebug() << "  .. partition is mounted";
         return false;
+    }
 
     if ( candidate->roles().has( PartitionRole::Primary ) )
     {
         PartitionTable* table = dynamic_cast< PartitionTable* >( candidate->parent() );
         if ( !table )
+        {
+            cDebug() << "  .. no partition table found";
             return false;
+        }
 
         if ( table->numPrimaries() >= table->maxPrimaries() )
+        {
+            cDebug() << "  .. partition table already has" 
+                << table->maxPrimaries() << "primary partitions.";
             return false;
+        }
     }
 
     bool ok = false;
@@ -136,11 +157,10 @@ bool
 canBeResized( PartitionCoreModule* core, const QString& partitionPath )
 {
     //FIXME: check for max partitions count on DOS MBR
-    cDebug() << "checking if" << partitionPath << "can be resized.";
+    cDebug() << "Checking if" << partitionPath << "can be resized.";
     QString partitionWithOs = partitionPath;
     if ( partitionWithOs.startsWith( "/dev/" ) )
     {
-        cDebug() << partitionWithOs << "seems like a good path";
         DeviceModel* dm = core->deviceModel();
         for ( int i = 0; i < dm->rowCount(); ++i )
         {
@@ -148,10 +168,11 @@ canBeResized( PartitionCoreModule* core, const QString& partitionPath )
             Partition* candidate = KPMHelpers::findPartitionByPath( { dev }, partitionWithOs );
             if ( candidate )
             {
-                cDebug() << "found Partition* for" << partitionWithOs;
+                cDebug() << "  .. found Partition* for" << partitionWithOs;
                 return canBeResized( candidate );
             }
         }
+        cDebug() << "  .. no Partition* found for" << partitionWithOs;
     }
 
     cDebug() << "Partition" << partitionWithOs << "CANNOT BE RESIZED FOR AUTOINSTALL.";
