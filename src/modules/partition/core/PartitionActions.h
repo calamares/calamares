@@ -27,29 +27,74 @@ class Partition;
 
 namespace PartitionActions
 {
+/** @brief Namespace for enums
+ *
+ * This namespace houses non-class enums.....
+ */
+namespace Choices
+{
+    /** @brief Ccchoice of swap (size and type) */
+    enum SwapChoice
+    {
+        NoSwap,     // don't create any swap, don't use any
+        ReuseSwap,  // don't create, but do use existing
+        SmallSwap,  // up to 8GiB of swap
+        FullSwap,   // ensureSuspendToDisk -- at least RAM size
+        SwapFile    // use a file (if supported)
+    };
+
+    struct ReplacePartitionOptions
+    {
+        QString defaultFsType;  // e.g. "ext4" or "btrfs"
+        QString luksPassphrase;  // optional
+
+        ReplacePartitionOptions( const QString& fs, const QString& luks )
+            : defaultFsType( fs )
+            , luksPassphrase( luks )
+        {
+        }
+    };
+
+    struct AutoPartitionOptions : ReplacePartitionOptions
+    {
+        QString efiPartitionMountPoint;  // optional, e.g. "/boot"
+        quint64 requiredSpaceB;  // estimated required space for root partition
+        SwapChoice swap;
+
+        AutoPartitionOptions( const QString& fs, const QString& luks, const QString& efi, qint64 r, SwapChoice s )
+            : ReplacePartitionOptions( fs, luks )
+            , efiPartitionMountPoint( efi )
+            , requiredSpaceB( r > 0 ? r : 0 )
+            , swap( s )
+        {
+        }
+    };
+
+}  // namespace Choices
 
 /**
  * @brief doAutopartition sets up an autopartitioning operation on the given Device.
  * @param core a pointer to the PartitionCoreModule instance.
  * @param dev the device to wipe.
- * @param luksPassphrase the passphrase for LUKS encryption (optional, default is empty).
+ * @param options settings for autopartitioning.
  */
 void doAutopartition( PartitionCoreModule* core,
                       Device* dev,
-                      const QString& luksPassphrase = QString() );
+                      Choices::AutoPartitionOptions options );
 
 /**
  * @brief doReplacePartition sets up replace-partitioning with the given partition.
  * @param core a pointer to the PartitionCoreModule instance.
  * @param dev a pointer to the Device on which to replace a partition.
  * @param partition a pointer to the Partition to be replaced.
- * @param luksPassphrase the passphrase for LUKS encryption (optional, default is empty).
+ * @param options settings for partitioning (not all fields apply)
+ *
  * @note this function also takes care of requesting PCM to delete the partition.
  */
 void doReplacePartition( PartitionCoreModule* core,
                          Device* dev,
                          Partition* partition,
-                         const QString& luksPassphrase = QString() );
-}
+                         Choices::ReplacePartitionOptions options );
+}  // namespace PartitionActions
 
 #endif // PARTITIONACTIONS_H
