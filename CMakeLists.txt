@@ -145,9 +145,24 @@ set( CMAKE_C_STANDARD 99 )
 set( CMAKE_C_STANDARD_REQUIRED ON )
 
 # Debugging flags
-set( CMAKE_CXX_FLAGS_DEBUG
-    "-DDEBUG_TIMEZONES -DDEBUG_FILESYSTEMS"
-    )
+#
+# Possible debugging flags are:
+#  - DEBUG_TIMEZONES draws latitude and longitude lines on the timezone
+#    widget and enables chatty debug logging, for dealing with the timezone
+#    location database.
+#  - DEBUG_FILESYSTEMS does extra logging and checking when looking at
+#    partition configuration. Lists known KPMCore FS types.
+# 
+# The flags listed here are enabled in Debug builds. By default, none
+# are **actually** listed, because they're for such specific scenarios.
+set( _enable_debug_flags
+    # DEBUG_TIMEZONES
+    # DEBUG_FILESYSTEMS
+)
+# Add those flags to the CXX flags in a suitable format.
+foreach( _edf ${_enable_debug_flags} )
+    string( APPEND CMAKE_CXX_FLAGS_DEBUG " -D${_edf}" )
+endforeach()
 
 set( CMAKE_C_FLAGS                  "${CMAKE_C_FLAGS} -Wall" )
 if( CMAKE_CXX_COMPILER_ID MATCHES "Clang" )
