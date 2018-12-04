@@ -29,6 +29,7 @@
 
 #include <QMutex>
 #include <QPointer>
+#include <QSet>
 
 class QBoxLayout;
 class QComboBox;
