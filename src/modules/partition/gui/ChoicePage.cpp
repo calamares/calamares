@@ -72,7 +72,7 @@ using PartitionActions::Choices::SwapChoice;
  *      will show up as a list view.
  * @param parent the QWidget parent.
  */
-ChoicePage::ChoicePage( QWidget* parent )
+ChoicePage::ChoicePage( const SwapChoiceSet& swapChoices, QWidget* parent )
     : QWidget( parent )
     , m_nextEnabled( false )
     , m_core( nullptr )
@@ -92,6 +92,7 @@ ChoicePage::ChoicePage( QWidget* parent )
     , m_bootloaderComboBox( nullptr )
     , m_lastSelectedDeviceIndex( -1 )
     , m_enableEncryptionWidget( true )
+    , m_swapChoices( swapChoices )
 {
     setupUi( this );
 
@@ -259,7 +260,7 @@ ChoicePage::setupChoices()
 
     // Fill up swap options
     // .. TODO: only if enabled in the config
-    m_eraseSwapChoices = createCombo( { SwapChoice::NoSwap, SwapChoice::SmallSwap, SwapChoice::FullSwap } );
+    m_eraseSwapChoices = createCombo( m_swapChoices );
     m_eraseButton->addOptionsComboBox( m_eraseSwapChoices );
 
 #if 0

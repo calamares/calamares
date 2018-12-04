@@ -25,6 +25,7 @@
 #include <QWidget>
 
 #include "core/OsproberEntry.h"
+#include "core/PartitionActions.h"
 
 #include <QMutex>
 #include <QPointer>
@@ -43,6 +44,7 @@ class DeviceInfoWidget;
 
 class Device;
 
+using SwapChoiceSet = QSet< PartitionActions::Choices::SwapChoice>;
 
 /**
  * @brief The ChoicePage class is the first page of the partitioning interface.
@@ -62,7 +64,7 @@ public:
         Manual
     };
 
-    explicit ChoicePage( QWidget* parent = nullptr );
+    explicit ChoicePage( const SwapChoiceSet& swapChoices, QWidget* parent = nullptr );
     virtual ~ChoicePage();
 
     /**
@@ -167,6 +169,7 @@ private:
 
     QString m_defaultFsType;
     bool m_enableEncryptionWidget;
+    SwapChoiceSet m_swapChoices;
 
     QMutex m_coreMutex;
 };
