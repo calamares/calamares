@@ -194,6 +194,16 @@ createCombo( std::initializer_list< SwapChoice > l )
     return box;
 }
 
+static inline QComboBox*
+createCombo( const QSet< SwapChoice >& s )
+{
+    QComboBox* box = new QComboBox;
+    for ( SwapChoice c : { SwapChoice::NoSwap, SwapChoice::SmallSwap, SwapChoice::FullSwap, SwapChoice::ReuseSwap, SwapChoice::SwapFile } )
+        if ( s.contains( c ) )
+            box->addItem( QString(), c );
+    return box;
+}
+
 /**
  * @brief ChoicePage::setupChoices creates PrettyRadioButton objects for the action
  *      choices.
