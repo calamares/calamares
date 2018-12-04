@@ -84,8 +84,6 @@ ChoicePage::ChoicePage( const SwapChoiceSet& swapChoices, QWidget* parent )
     , m_replaceButton( nullptr )
     , m_somethingElseButton( nullptr )
     , m_eraseSwapChoices( nullptr )
-    , m_replaceSwapChoices( nullptr )
-    , m_alongsideSwapChoices( nullptr )
     , m_deviceInfoWidget( nullptr )
     , m_beforePartitionBarsView( nullptr )
     , m_beforePartitionLabelsView( nullptr )
@@ -263,14 +261,6 @@ ChoicePage::setupChoices()
     m_eraseSwapChoices = createCombo( m_swapChoices );
     m_eraseButton->addOptionsComboBox( m_eraseSwapChoices );
 
-#if 0
-    m_replaceSwapChoices = createCombo( { SwapChoice::NoSwap, SwapChoice::ReuseSwap, SwapChoice::SmallSwap, SwapChoice::FullSwap } );
-    m_replaceButton->addOptionsComboBox( m_replaceSwapChoices );
-
-    m_alongsideSwapChoices = createCombo( { SwapChoice::NoSwap, SwapChoice::ReuseSwap, SwapChoice::SmallSwap, SwapChoice::FullSwap } );
-    m_alongsideButton->addOptionsComboBox( m_alongsideSwapChoices );
-#endif
-
     m_itemsLayout->addWidget( m_alongsideButton );
     m_itemsLayout->addWidget( m_replaceButton );
     m_itemsLayout->addWidget( m_eraseButton );
@@ -322,8 +312,6 @@ ChoicePage::setupChoices()
 
     CALAMARES_RETRANSLATE(
         updateSwapChoicesTr( m_eraseSwapChoices );
-        updateSwapChoicesTr( m_alongsideSwapChoices );
-        updateSwapChoicesTr( m_replaceSwapChoices );
     )
 }
 

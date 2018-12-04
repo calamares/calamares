@@ -152,8 +152,6 @@ private:
     PrettyRadioButton* m_replaceButton;
     PrettyRadioButton* m_somethingElseButton;
     QComboBox* m_eraseSwapChoices;
-    QComboBox* m_replaceSwapChoices;
-    QComboBox* m_alongsideSwapChoices;
 
     DeviceInfoWidget* m_deviceInfoWidget;
 
