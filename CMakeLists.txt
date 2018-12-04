@@ -113,7 +113,7 @@ set( _tx_bad fr_CH gu lo fa ur uz eo )
 ### Required versions
 #
 # See DEPENDENCIES section below.
-set( QT_VERSION 5.7.0 )
+set( QT_VERSION 5.10.0 )
 set( YAMLCPP_VERSION 0.5.1 )
 set( ECM_VERSION 5.18 )
 set( PYTHONLIBS_VERSION 3.3 )
