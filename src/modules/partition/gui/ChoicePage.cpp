@@ -306,6 +306,8 @@ ChoicePage::setupChoices()
 
     connect( this, &ChoicePage::actionChosen,
              this, &ChoicePage::onActionChanged );
+    connect( m_eraseSwapChoices, QOverload<int>::of(&QComboBox::currentIndexChanged),
+             this, &ChoicePage::onActionChanged );
 
     CALAMARES_RETRANSLATE(
         updateSwapChoicesTr( m_eraseSwapChoices );
