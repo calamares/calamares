@@ -471,31 +471,6 @@ PartitionViewStep::onLeave()
 }
 
 
-static PartitionActions::Choices::SwapChoice
-nameToChoice( QString name, bool& ok )
-{
-    ok = false;
-    name = name.toLower();
-
-    using namespace PartitionActions::Choices;
-
-    // Each return here first sets ok to true, returns enum value
-    if ( name == QStringLiteral( "none" ) )
-        return( ok=true, SwapChoice::NoSwap );
-    else if ( name == QStringLiteral( "small" ) )
-        return( ok=true, SwapChoice::SmallSwap);
-    else if ( name == QStringLiteral( "suspend" ) )
-        return( ok=true, SwapChoice::FullSwap );
-    else if ( name == QStringLiteral( "reuse" ) )
-        return( ok=true, SwapChoice::ReuseSwap );
-    else if ( name == QStringLiteral( "file" ) )
-        return( ok=true, SwapChoice::SwapFile );
-
-    ok = false;
-    return SwapChoice::NoSwap;
-}
-
-
 void
 PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
 {
@@ -533,7 +508,7 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
         for ( const auto& item : l )
         {
             bool ok = false;
-            auto v = nameToChoice( item, ok );
+            auto v = PartitionActions::Choices::nameToChoice( item, ok );
             if ( ok )
                 choices.insert( v );
         }

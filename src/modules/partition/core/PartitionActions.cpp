@@ -303,4 +303,47 @@ doReplacePartition( PartitionCoreModule* core,
     core->dumpQueue();
 }
 
+namespace Choices
+{
+
+SwapChoice
+nameToChoice( QString name, bool& ok )
+{
+    ok = false;
+    name = name.toLower();
+
+    // Each return here first sets ok to true, returns enum value
+    if ( name == QStringLiteral( "none" ) )
+        return( ok=true, SwapChoice::NoSwap );
+    else if ( name == QStringLiteral( "small" ) )
+        return( ok=true, SwapChoice::SmallSwap);
+    else if ( name == QStringLiteral( "suspend" ) )
+        return( ok=true, SwapChoice::FullSwap );
+    else if ( name == QStringLiteral( "reuse" ) )
+        return( ok=true, SwapChoice::ReuseSwap );
+    else if ( name == QStringLiteral( "file" ) )
+        return( ok=true, SwapChoice::SwapFile );
+
+    ok = false;
+    return SwapChoice::NoSwap;
 }
+
+QString
+choiceToName( SwapChoice c )
+{
+    switch ( c )
+    {
+        case SwapChoice::NoSwap: return QStringLiteral( "none" );
+        case SwapChoice::SmallSwap: return QStringLiteral( "small" );
+        case SwapChoice::FullSwap: return QStringLiteral( "suspend" );
+        case SwapChoice::ReuseSwap: return QStringLiteral( "reuse" );
+        case SwapChoice::SwapFile: return QStringLiteral( "file" );
+    }
+
+    cWarning() << "Unknown SwapChoice" << c << "treated as none";
+    return QStringLiteral( "none" );
+}
+
+}  // namespace Choices
+
+}  // namespace PartitionActions
