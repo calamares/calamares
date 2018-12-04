@@ -305,14 +305,7 @@ ChoicePage::setupChoices()
     m_rightLayout->setStretchFactor( m_previewAfterFrame, 0 );
 
     connect( this, &ChoicePage::actionChosen,
-             this, [=]
-    {
-        Device* currd = selectedDevice();
-        if ( currd )
-        {
-            applyActionChoice( currentChoice() );
-        }
-    } );
+             this, &ChoicePage::onActionChanged );
 
     CALAMARES_RETRANSLATE(
         updateSwapChoicesTr( m_eraseSwapChoices );
@@ -409,6 +402,17 @@ ChoicePage::continueApplyDeviceChoice()
 
     emit actionChosen();
     emit deviceChosen();
+}
+
+
+void
+ChoicePage::onActionChanged()
+{
+    Device* currd = selectedDevice();
+    if ( currd )
+    {
+        applyActionChoice( currentChoice() );
+    }
 }
 
 
