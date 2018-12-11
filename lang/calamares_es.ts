@@ -720,22 +720,22 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
         <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="38"/>
         <source>Create new volume group named %1.</source>
-        <translation type="unfinished"/>
+        <translation>Crear un nuevo grupo de volúmenes llamado %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="45"/>
         <source>Create new volume group named &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Crear un nuevo grupo de volúmenes llamado &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="52"/>
         <source>Creating new volume group named %1.</source>
-        <translation type="unfinished"/>
+        <translation>Creando un nuevo grupo de volúmenes llamado %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="65"/>
         <source>The installer failed to create a volume group named &apos;%1&apos;.</source>
-        <translation type="unfinished"/>
+        <translation>El instalador falló en crear un grupo de volúmenes llamado &apos;%1&apos;.</translation>
     </message>
 </context>
 <context>
@@ -744,17 +744,17 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
         <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="34"/>
         <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="48"/>
         <source>Deactivate volume group named %1.</source>
-        <translation type="unfinished"/>
+        <translation>Desactivar grupo de volúmenes llamado %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="41"/>
         <source>Deactivate volume group named &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Desactivar grupo de volúmenes llamado &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/DeactivateVolumeGroupJob.cpp" line="61"/>
         <source>The installer failed to deactivate a volume group named %1.</source>
-        <translation type="unfinished"/>
+        <translation>El instalador falló en desactivar el grupo de volúmenes llamado %1.</translation>
     </message>
 </context>
 <context>
@@ -823,7 +823,7 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
         <location filename="../src/modules/partition/core/DeviceModel.cpp" line="89"/>
         <source>%1 - (%2)</source>
-        <translation type="unfinished"/>
+        <translation>%1-(%2)</translation>
     </message>
 </context>
 <context>
@@ -1726,27 +1726,27 @@ Saldrá del instalador y se perderán todos los cambios.</translation>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="132"/>
         <source>New Volume Group</source>
-        <translation type="unfinished"/>
+        <translation>Nuevo grupo de volúmenes </translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="139"/>
         <source>Resize Volume Group</source>
-        <translation type="unfinished"/>
+        <translation>Cambiar el tamaño del grupo de volúmenes</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="146"/>
         <source>Deactivate Volume Group</source>
-        <translation type="unfinished"/>
+        <translation>Desactivar grupo de volúmenes</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="153"/>
         <source>Remove Volume Group</source>
-        <translation type="unfinished"/>
+        <translation>Remover grupo de volúmenes</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="180"/>
         <source>I&amp;nstall boot loader on:</source>
-        <translation type="unfinished"/>
+        <translation>Instalar gestor de arranque en:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="217"/>
@@ -2034,12 +2034,12 @@ Salida:
         <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="34"/>
         <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="48"/>
         <source>Remove Volume Group named %1.</source>
-        <translation type="unfinished"/>
+        <translation>Remover grupo de volúmenes llamado %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="41"/>
         <source>Remove Volume Group named &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Remover grupo de volúmenes llamado &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="61"/>
@@ -2280,12 +2280,12 @@ Salida:
         <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="37"/>
         <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="55"/>
         <source>Resize volume group named %1 from %2 to %3.</source>
-        <translation type="unfinished"/>
+        <translation>Cambiar el tamaño del grupo de volúmenes llamado %1 de %2 a %3.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="46"/>
         <source>Resize volume group named &lt;strong&gt;%1&lt;/strong&gt; from &lt;strong&gt;%2&lt;/strong&gt; to &lt;strong&gt;%3&lt;/strong&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Cambiar el tamaño del grupo de volúmenes llamado &lt;strong&gt;%1&lt;/strong&gt; de &lt;strong&gt;%2&lt;/strong&gt; a &lt;strong&gt;%3&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="70"/>
@@ -2747,7 +2747,7 @@ Salida:
     <message>
         <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="56"/>
         <source>Physical Extent Size:</source>
-        <translation type="unfinished"/>
+        <translation>Tamaño de sector físico:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="66"/>
@@ -2780,7 +2780,7 @@ Salida:
     <message>
         <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="142"/>
         <source>Quantity of LVs:</source>
-        <translation type="unfinished"/>
+        <translation>Cantidad de LVs:</translation>
     </message>
 </context>
 <context>

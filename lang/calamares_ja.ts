@@ -1751,7 +1751,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="217"/>
         <source>Are you sure you want to create a new partition table on %1?</source>
-        <translation>％1 上で新しいパーティションテーブルを作成します。よろしいですか？</translation>
+        <translation>%1 上で新しいパーティションテーブルを作成します。よろしいですか？</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="241"/>

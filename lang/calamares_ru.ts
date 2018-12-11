@@ -718,22 +718,22 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="38"/>
         <source>Create new volume group named %1.</source>
-        <translation type="unfinished"/>
+        <translation>Создать новую группу томов на диске %1</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="45"/>
         <source>Create new volume group named &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Создать новую группу томов на диске %1</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="52"/>
         <source>Creating new volume group named %1.</source>
-        <translation type="unfinished"/>
+        <translation>Cоздание новой группы томов на диске %1</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/CreateVolumeGroupJob.cpp" line="65"/>
         <source>The installer failed to create a volume group named &apos;%1&apos;.</source>
-        <translation type="unfinished"/>
+        <translation>Программа установки не смогла создать группу томов на диске &apos;%1&apos;.</translation>
     </message>
 </context>
 <context>
@@ -829,7 +829,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="131"/>
         <source>Write LUKS configuration for Dracut to %1</source>
-        <translation type="unfinished"/>
+        <translation>Записать LUKS настройки для Dracut в %1</translation>
     </message>
     <message>
         <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="133"/>
@@ -1470,7 +1470,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="239"/>
         <source>Bad integer value of setting - %1</source>
-        <translation type="unfinished"/>
+        <translation>Недопустимое целое значение свойства - %1</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="243"/>
@@ -1729,7 +1729,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="139"/>
         <source>Resize Volume Group</source>
-        <translation type="unfinished"/>
+        <translation>Изменить размер группы томов</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="146"/>
@@ -1739,12 +1739,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="153"/>
         <source>Remove Volume Group</source>
-        <translation type="unfinished"/>
+        <translation>Удалить группу томов</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.ui" line="180"/>
         <source>I&amp;nstall boot loader on:</source>
-        <translation type="unfinished"/>
+        <translation>Уст&amp;ановить загрузчик в:</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionPage.cpp" line="217"/>
@@ -1884,7 +1884,7 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/plasmalnf/page_plasmalnf.ui" line="20"/>
         <source>Placeholder</source>
-        <translation type="unfinished"/>
+        <translation>Заменитель</translation>
     </message>
     <message>
         <location filename="../src/modules/plasmalnf/PlasmaLnfPage.cpp" line="67"/>
@@ -1905,12 +1905,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="85"/>
         <source>Saving files for later ...</source>
-        <translation type="unfinished"/>
+        <translation>Сохраняю файлы на потом...</translation>
     </message>
     <message>
         <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="123"/>
         <source>No files configured to save for later.</source>
-        <translation type="unfinished"/>
+        <translation>Нет файлов, которые требуется сохранить на потом.</translation>
     </message>
     <message>
         <location filename="../src/modules/preservefiles/PreserveFiles.cpp" line="177"/>
@@ -1924,7 +1924,8 @@ The installer will quit and all changes will be lost.</source>
         <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="271"/>
         <source>
 There was no output from the command.</source>
-        <translation type="unfinished"/>
+        <translation>
+Вывода из команды не последовало.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="272"/>
@@ -2031,17 +2032,17 @@ Output:
         <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="34"/>
         <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="48"/>
         <source>Remove Volume Group named %1.</source>
-        <translation type="unfinished"/>
+        <translation>Удалить группу томов на диске %1</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="41"/>
         <source>Remove Volume Group named &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Удалить группу томов на диске %1</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/RemoveVolumeGroupJob.cpp" line="61"/>
         <source>The installer failed to remove a volume group named &apos;%1&apos;.</source>
-        <translation type="unfinished"/>
+        <translation>Установщик не смог удалить группу томов на диске &apos;%1&apos;.</translation>
     </message>
 </context>
 <context>
@@ -2182,12 +2183,12 @@ Output:
     <message>
         <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="130"/>
         <source>Resize Filesystem Job</source>
-        <translation type="unfinished"/>
+        <translation>Изменить размер файловой системы</translation>
     </message>
     <message>
         <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="238"/>
         <source>Invalid configuration</source>
-        <translation type="unfinished"/>
+        <translation>Недействительная конфигурация</translation>
     </message>
     <message>
         <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="239"/>
@@ -2213,7 +2214,7 @@ Output:
         <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="303"/>
         <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="320"/>
         <source>Resize Failed</source>
-        <translation type="unfinished"/>
+        <translation>Не удалось изменить размер</translation>
     </message>
     <message>
         <location filename="../src/modules/fsresizer/ResizeFSJob.cpp" line="273"/>
@@ -2622,7 +2623,7 @@ Output:
     <message>
         <location filename="../src/modules/tracking/page_trackingstep.ui" line="24"/>
         <source>Placeholder</source>
-        <translation type="unfinished"/>
+        <translation>Заменитель</translation>
     </message>
     <message>
         <location filename="../src/modules/tracking/page_trackingstep.ui" line="72"/>
