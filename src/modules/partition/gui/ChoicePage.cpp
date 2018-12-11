@@ -65,6 +65,14 @@
 
 using PartitionActions::Choices::SwapChoice;
 
+SwapChoice pickOne( const SwapChoiceSet& s )
+{
+    if ( s.count() == 1 )
+        for ( auto i = s.begin(); i != s.end(); ++i )
+            return *i;  // That's the only element
+    return SwapChoice::NoSwap;
+}
+
 /**
  * @brief ChoicePage::ChoicePage is the default constructor. Called on startup as part of
  *      the module loading code path.
@@ -90,7 +98,8 @@ ChoicePage::ChoicePage( const SwapChoiceSet& swapChoices, QWidget* parent )
     , m_bootloaderComboBox( nullptr )
     , m_lastSelectedDeviceIndex( -1 )
     , m_enableEncryptionWidget( true )
-    , m_swapChoices( swapChoices )
+    , m_availableSwapChoices( swapChoices )
+    , m_eraseSwapChoice( pickOne( swapChoices ) )
 {
     setupUi( this );
 
@@ -258,8 +267,11 @@ ChoicePage::setupChoices()
 
     // Fill up swap options
     // .. TODO: only if enabled in the config
-    m_eraseSwapChoices = createCombo( m_swapChoices );
-    m_eraseButton->addOptionsComboBox( m_eraseSwapChoices );
+    if ( m_availableSwapChoices.count() > 1 )
+    {
+        m_eraseSwapChoices = createCombo( m_availableSwapChoices );
+        m_eraseButton->addOptionsComboBox( m_eraseSwapChoices );
+    }
 
     m_itemsLayout->addWidget( m_alongsideButton );
     m_itemsLayout->addWidget( m_replaceButton );

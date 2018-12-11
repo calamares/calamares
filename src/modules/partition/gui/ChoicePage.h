@@ -45,7 +45,7 @@ class DeviceInfoWidget;
 
 class Device;
 
-using SwapChoiceSet = QSet< PartitionActions::Choices::SwapChoice>;
+using SwapChoiceSet = QSet< PartitionActions::Choices::SwapChoice >;
 
 /**
  * @brief The ChoicePage class is the first page of the partitioning interface.
@@ -151,7 +151,7 @@ private:
     PrettyRadioButton* m_eraseButton;
     PrettyRadioButton* m_replaceButton;
     PrettyRadioButton* m_somethingElseButton;
-    QComboBox* m_eraseSwapChoices;
+    QComboBox* m_eraseSwapChoices;  // UI, see also m_swapChoices
 
     DeviceInfoWidget* m_deviceInfoWidget;
 
@@ -168,7 +168,8 @@ private:
 
     QString m_defaultFsType;
     bool m_enableEncryptionWidget;
-    SwapChoiceSet m_swapChoices;
+    SwapChoiceSet m_availableSwapChoices;  // What is available
+    PartitionActions::Choices::SwapChoice m_eraseSwapChoice;  // what is selected
 
     QMutex m_coreMutex;
 };
