@@ -18,7 +18,8 @@
 #
 ###
 
-find_package( Qt5 ${QT_VERSION} CONFIG REQUIRED Xml )
-
-add_executable(txload txload.cpp)
-target_link_libraries(txload Qt5::Xml)
+find_package(Qt5 COMPONENTS Xml)
+if( Qt5Xml_FOUND )
+    add_executable(txload txload.cpp)
+    target_link_libraries(txload Qt5::Xml)
+endif()
