@@ -8,6 +8,7 @@
 # Abdallah B <bahassinea@gmail.com>, 2017
 # Aestan <anthony.margerand@protonmail.com>, 2018
 # Jeremy Gourmel <jgourmel@free.fr>, 2018
+# Aurnytoraink <wiiu3dsxl13127@gmail.com>, 2018
 # 
 #, fuzzy
 msgid ""
@@ -16,7 +17,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-05 11:34-0400\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
-"Last-Translator: Jeremy Gourmel <jgourmel@free.fr>, 2018\n"
+"Last-Translator: Aurnytoraink <wiiu3dsxl13127@gmail.com>, 2018\n"
 "Language-Team: French (https://www.transifex.com/calamares/teams/20061/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,7 +27,7 @@ msgstr ""
 
 #: src/modules/displaymanager/main.py:380
 msgid "Cannot write KDM configuration file"
-msgstr ""
+msgstr "Impossible d'écrire le fichier de configuration KDM"
 
 #: src/modules/displaymanager/main.py:381
 msgid "KDM config file {!s} does not exist"
@@ -34,7 +35,7 @@ msgstr ""
 
 #: src/modules/displaymanager/main.py:442
 msgid "Cannot write LXDM configuration file"
-msgstr ""
+msgstr "Impossible d'écrire le fichier de configuration LXDM"
 
 #: src/modules/displaymanager/main.py:443
 msgid "LXDM config file {!s} does not exist"
@@ -42,7 +43,7 @@ msgstr ""
 
 #: src/modules/displaymanager/main.py:517
 msgid "Cannot write LightDM configuration file"
-msgstr ""
+msgstr "Impossible d'écrire le fichier de configuration LightDM"
 
 #: src/modules/displaymanager/main.py:518
 msgid "LightDM config file {!s} does not exist"
@@ -50,15 +51,15 @@ msgstr ""
 
 #: src/modules/displaymanager/main.py:592
 msgid "Cannot configure LightDM"
-msgstr ""
+msgstr "Impossible de configurer LightDM"
 
 #: src/modules/displaymanager/main.py:593
 msgid "No LightDM greeter installed."
-msgstr ""
+msgstr "Aucun hôte LightDM est installé"
 
 #: src/modules/displaymanager/main.py:624
 msgid "Cannot write SLIM configuration file"
-msgstr ""
+msgstr "Impossible d'écrire le fichier de configuration SLIM"
 
 #: src/modules/displaymanager/main.py:625
 msgid "SLIM config file {!s} does not exist"
@@ -68,20 +69,26 @@ msgstr ""
 #: src/modules/displaymanager/main.py:772
 msgid "No display managers selected for the displaymanager module."
 msgstr ""
+"Aucun gestionnaire d'affichage n'a été sélectionné pour le module de "
+"gestionnaire d'affichage"
 
 #: src/modules/displaymanager/main.py:741
 msgid ""
 "The displaymanagers list is empty or undefined in bothglobalstorage and "
 "displaymanager.conf."
 msgstr ""
+"La liste des gestionnaires d'affichage est vide ou indéfinie dans "
+"bothglobalstorage et displaymanager.conf."
 
 #: src/modules/displaymanager/main.py:773
 msgid "The list is empty after checking for installed display managers."
 msgstr ""
+"La liste est vide après vérification des gestionnaires d'affichage "
+"installés."
 
 #: src/modules/displaymanager/main.py:821
 msgid "Display manager configuration was incomplete"
-msgstr ""
+msgstr "La configuration du gestionnaire d'affichage était incomplète"
 
 #: src/modules/umount/main.py:40
 msgid "Unmount file systems."
