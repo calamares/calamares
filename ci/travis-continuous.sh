@@ -15,12 +15,13 @@ cd $BUILDDIR || exit 1
 echo "###"
 echo "### cmake $CMAKE_ARGS $SRCDIR"
 echo "###"
+pwd -P
 df -h
 cmake $CMAKE_ARGS $SRCDIR || { echo "! CMake failed" ; exit 1 ; }
 
 echo -e "###\n### make\n###"
 df -h
-make -j2 || { make -j1 VERBOSE=1 ; echo "! Make failed" ; exit 1 ; }
+make -j2 || { pwd -P ; df -h ; make -j1 VERBOSE=1 ; echo "! Make failed" ; exit 1 ; }
 
 echo -e "###\n### make install\n###"
 
