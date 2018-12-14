@@ -147,7 +147,7 @@ public:
      *
      * English (@see isEnglish() -- it means en_US) is sorted at the top.
      */
-    bool operator <(const LocaleLabel& other) const
+    bool operator <( const LocaleLabel& other ) const
     {
         if ( isEnglish() )
             return !other.isEnglish();
@@ -163,13 +163,19 @@ public:
      */
     bool isEnglish() const
     {
-       return m_localeId == QLatin1Literal( "en_US" ) || m_localeId == QLatin1Literal( "en" );
+        return m_localeId == QLatin1Literal( "en_US" ) || m_localeId == QLatin1Literal( "en" );
     }
 
     /** @brief Get the human-readable name for this locale. */
-    QString label() const { return m_label; }
+    QString label() const
+    {
+        return m_label;
+    }
     /** @brief Get the Qt locale. */
-    QLocale locale() const { return m_locale; }
+    QLocale locale() const
+    {
+        return m_locale;
+    }
 
     /** @brief Get a Qt locale for the given @p localeName
      *
