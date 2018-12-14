@@ -266,5 +266,42 @@ clearLayout( QLayout* layout )
     }
 }
 
+LocaleLabel::LocaleLabel( const QString& locale )
+    : m_locale( LocaleLabel::getLocale( locale ) )
+    , m_localeId( locale )
+{
+    QString sortKey = QLocale::languageToString( m_locale.language() );
+    QString label = m_locale.nativeLanguageName();
+
+    if ( label.isEmpty() )
+        label = QString( QLatin1Literal( "* %1 (%2)" ) ).arg( locale, sortKey );
+
+    if ( locale.contains( '_' ) && QLocale::countriesForLanguage( m_locale.language() ).count() > 2 )
+    {
+        QLatin1Literal countrySuffix( " (%1)" );
+
+        sortKey.append( QString( countrySuffix ).arg( QLocale::countryToString( m_locale.country() ) ) );
+
+        // If the language name is RTL, make this parenthetical addition RTL as well.
+        QString countryFormat = label.isRightToLeft() ? QString( QChar( 0x202B ) ) : QString();
+        countryFormat.append( countrySuffix );
+        label.append( countryFormat.arg( m_locale.nativeCountryName() ) );
+    }
+
+    m_sortKey = sortKey;
+    m_label = label;
+}
+
+QLocale LocaleLabel::getLocale( const QString& localeName )
+{
+    if ( localeName.contains( "@latin" ) )
+    {
+        QLocale loc( localeName );  // Ignores @latin
+        return QLocale( loc.language(), QLocale::Script::LatinScript, loc.country() );
+    }
+    else
+        return QLocale( localeName );
+}
+
 
 }
