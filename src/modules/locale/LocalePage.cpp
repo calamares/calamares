@@ -21,6 +21,7 @@
 
 #include "timezonewidget/timezonewidget.h"
 #include "SetTimezoneJob.h"
+#include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
 #include "utils/Retranslator.h"
 #include "GlobalStorage.h"
@@ -383,12 +384,14 @@ LocalePage::init( const QString& initialRegion,
 
 std::pair< QString, QString > LocalePage::prettyLocaleStatus( const LocaleConfiguration& lc ) const
 {
+    using CalamaresUtils::LocaleLabel;
+
+    LocaleLabel lang( lc.lang, LocaleLabel::LabelFormat::AlwaysWithCountry );
+    LocaleLabel num( lc.lc_numeric, LocaleLabel::LabelFormat::AlwaysWithCountry );
+
     return std::make_pair< QString, QString >(
-        tr( "The system language will be set to %1." )
-            .arg( prettyLCLocale( lc.lang ) ),
-        tr( "The numbers and dates locale will be set to %1." )
-                            .arg( prettyLCLocale( lc.lc_numeric ) )
-                                             );
+        tr( "The system language will be set to %1." ).arg( lang.label() ),
+        tr( "The numbers and dates locale will be set to %1." ).arg( num.label() ) );
 }
 
 QString
@@ -467,19 +470,6 @@ LocalePage::guessLocaleConfiguration() const
                                                          m_tzWidget->getCurrentLocation().country );
 }
 
-
-QString
-LocalePage::prettyLCLocale( const QString& lcLocale ) const
-{
-    QString localeString = lcLocale;
-    if ( localeString.endsWith( " UTF-8" ) )
-        localeString.remove( " UTF-8" );
-
-    QLocale locale( localeString );
-    //: Language (Country)
-    return tr( "%1 (%2)" ).arg( QLocale::languageToString( locale.language() ) )
-                          .arg( QLocale::countryToString( locale.country() ) );
-}
 
 void
 LocalePage::updateGlobalStorage()
