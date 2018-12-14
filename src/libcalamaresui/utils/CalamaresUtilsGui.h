@@ -137,11 +137,16 @@ constexpr int windowPreferredHeight = 520;
 class LocaleLabel
 {
 public:
+    /** @brief Formatting option for label -- add (country) to label. */
+    enum class LabelFormat { AlwaysWithCountry, IfNeededWithCountry } ;
+
     /** @brief Construct from a locale name.
      *
-     * The locale name should be one that Qt recognizes, e.g. en_US or ar_EY.
+     * The @p localeName should be one that Qt recognizes, e.g. en_US or ar_EY.
+     * The @p format determines whether the country name is always present
+     * in the label (human-readable form) or only if needed for disambiguation.
      */
-    LocaleLabel( const QString& localeName );
+    LocaleLabel( const QString& localeName, LabelFormat format = LabelFormat::IfNeededWithCountry );
 
     /** @brief Define a sorting order.
      *
