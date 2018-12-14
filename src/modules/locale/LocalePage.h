@@ -51,7 +51,6 @@ public:
 
 private:
     LocaleConfiguration guessLocaleConfiguration() const;
-    QString prettyLCLocale( const QString& localesMap ) const;
 
     // For the given locale config, return two strings describing
     // the settings for language and numbers.
