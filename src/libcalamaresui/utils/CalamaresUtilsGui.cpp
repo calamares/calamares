@@ -270,7 +270,7 @@ LocaleLabel::LocaleLabel( const QString& locale )
     : m_locale( LocaleLabel::getLocale( locale ) )
     , m_localeId( locale )
 {
-    QString longFormat = tr( "%1 (%2)", "Language (Country)" );
+    QString longFormat = QObject::tr( "%1 (%2)", "Language (Country)" );
 
     QString sortKey = QLocale::languageToString( m_locale.language() );
     QString languageName = m_locale.nativeLanguageName();

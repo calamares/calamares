@@ -134,10 +134,8 @@ constexpr int windowPreferredHeight = 520;
  * translation system) into QLocales, and also into consistent
  * human-readable text labels.
  */
-class LocaleLabel : public QObject
+class LocaleLabel
 {
-    Q_OBJECT
-
 public:
     /** @brief Construct from a locale name.
      *
