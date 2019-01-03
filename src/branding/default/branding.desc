@@ -8,6 +8,12 @@ componentName:  default
 # same distribution.
 welcomeStyleCalamares:   false
 
+# Should the welcome image (productWelcome, below) be scaled
+# up beyond its natural size? If false, the image does not grow
+# with the window but remains the same size throughout (this
+# may have surprising effects on HiDPI monitors).
+welcomeExpandingLogo:   true
+
 # These are strings shown to the user in the user interface.
 # There is no provision for translating them -- since they
 # are names, the string is included as-is.
@@ -31,12 +37,6 @@ strings:
     supportUrl:          https://github.com/calamares/calamares/issues
     knownIssuesUrl:      https://calamares.io/about/
     releaseNotesUrl:     https://calamares.io/about/
-
-# Should the welcome image (productWelcome, below) be scaled
-# up beyond its natural size? If false, the image does not grow
-# with the window but remains the same size throughout (this
-# may have surprising effects on HiDPI monitors).
-welcomeExpandingLogo:   true
 
 # These images are loaded from the branding module directory.
 #
