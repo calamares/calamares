@@ -6,10 +6,14 @@ website will have to do for older versions.
 = 3.2.3 (unreleased) =
 
 This release contains contributions from (alphabetically by first name):
+ - aliveafter1000
 
 == Core ==
 
 == Modules ==
+
+ * Fixed bug where, during detection of existing systems, the existing
+   system partitions may be mounted and then destroyed.
 
 = 3.2.2 (2018-09-04) =
 
