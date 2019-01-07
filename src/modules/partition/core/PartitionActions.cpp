@@ -90,7 +90,7 @@ alignBytesToBlockSize( qint64 bytes, qint64 blocksize )
     return blocks * blocksize;
 }
 
-constexpr qint64
+qint64
 bytesToSectors( qint64 bytes, qint64 blocksize )
 {
     return alignBytesToBlockSize( alignBytesToBlockSize( bytes, blocksize), MiBtoBytes(1) ) / blocksize;

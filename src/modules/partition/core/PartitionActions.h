@@ -72,6 +72,8 @@ namespace Choices
 
 }  // namespace Choices
 
+qint64 bytesToSectors( qint64 bytes, qint64 blocksize );
+
 /**
  * @brief doAutopartition sets up an autopartitioning operation on the given Device.
  * @param core a pointer to the PartitionCoreModule instance.
