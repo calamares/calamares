@@ -788,6 +788,30 @@ PartitionCoreModule::initLayout( const QVariantList& config )
 }
 
 void
+PartitionCoreModule::layoutApply( Device *dev,
+                                  qint64 firstSector,
+                                  qint64 lastSector,
+                                  QString luksPassphrase )
+{
+    bool isEfi = PartUtils::isEfiSystem();
+    QList< Partition* > partList = m_partLayout->execute( dev, firstSector, lastSector, luksPassphrase );
+
+    foreach ( Partition *part, partList )
+    {
+        if ( part->mountPoint() == "/" )
+        {
+            createPartition( dev, part,
+                             part->activeFlags() | ( isEfi ? PartitionTable::FlagNone : PartitionTable::FlagBoot )
+                           );
+        }
+        else
+        {
+            createPartition( dev, part );
+        }
+    }
+}
+
+void
 PartitionCoreModule::revert()
 {
     QMutexLocker locker( &m_revertMutex );

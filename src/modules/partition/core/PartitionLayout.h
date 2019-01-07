@@ -63,6 +63,12 @@ public:
     void addEntry( QString mountPoint, QString size, QString min = "" );
     void addEntry( QString label, QString mountPoint, QString fs, QString size, QString min = "" );
 
+    /**
+     * @brief Apply the current partition layout to the selected drive space.
+     * @return  A list of Partition objects.
+     */
+    QList< Partition* > execute( Device *dev, qint64 firstSector, qint64 lastSector, QString luksPassphrase );
+
 private:
     QList< PartitionEntry > partLayout;
 };

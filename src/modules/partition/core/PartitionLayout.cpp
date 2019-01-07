@@ -18,6 +18,12 @@
 
 #include "core/PartitionLayout.h"
 
+#include "core/KPMHelpers.h"
+#include "core/PartitionActions.h"
+#include "core/PartitionInfo.h"
+
+#include <kpmcore/core/device.h>
+#include <kpmcore/core/partition.h>
 #include <kpmcore/fs/filesystem.h>
 
 PartitionLayout::PartitionLayout()
@@ -112,4 +118,97 @@ PartitionLayout::addEntry( QString label, QString mountPoint, QString fs, QStrin
     entry.partMinSize = parseSizeString( min , &entry.partMinSizeUnit );
 
     partLayout.append( entry );
+}
+
+static qint64
+sizeToSectors( double size, PartitionLayout::SizeUnit unit, qint64 totalSize, qint64 logicalSize )
+{
+    qint64 sectors;
+    double tmp;
+
+    if ( unit == PartitionLayout::SizeUnit::Percent )
+    {
+        tmp = static_cast<double>( totalSize ) * size / 100;
+        sectors = static_cast<qint64>( tmp );
+    }
+    else
+    {
+        tmp = size;
+        if ( unit >= PartitionLayout::SizeUnit::KiB )
+            tmp *= 1024;
+        if ( unit >= PartitionLayout::SizeUnit::MiB )
+            tmp *= 1024;
+        if ( unit >= PartitionLayout::SizeUnit::GiB )
+            tmp *= 1024;
+
+        sectors = PartitionActions::bytesToSectors( static_cast<unsigned long long>( tmp ),
+                                                    logicalSize
+                                                  );
+    }
+
+    return sectors;
+}
+
+QList< Partition* >
+PartitionLayout::execute( Device *dev, qint64 firstSector,
+                          qint64 lastSector, QString luksPassphrase )
+{
+    QList< Partition* > partList;
+    qint64 size, minSize, end;
+    qint64 totalSize = lastSector - firstSector;
+    qint64 availableSize = totalSize;
+
+    // TODO: Refine partition sizes to make sure there is room for every partition
+    // Use a default (200-500M ?) minimum size for partition without minSize
+
+    foreach( const PartitionLayout::PartitionEntry& part, partLayout )
+    {
+        Partition *currentPartition = nullptr;
+
+        // Calculate partition size
+        size = sizeToSectors( part.partSize, part.partSizeUnit, totalSize, dev->logicalSize() );
+        minSize = sizeToSectors( part.partMinSize, part.partMinSizeUnit, totalSize, dev->logicalSize() );
+        if ( size < minSize )
+            size = minSize;
+        if ( size > availableSize )
+            size = availableSize;
+        end = firstSector + size;
+
+        if ( luksPassphrase.isEmpty() )
+        {
+            currentPartition = KPMHelpers::createNewPartition(
+                dev->partitionTable(),
+                *dev,
+                PartitionRole( PartitionRole::Primary ),
+                static_cast<FileSystem::Type>(part.partFileSystem),
+                firstSector,
+                end,
+                PartitionTable::FlagNone
+            );
+        }
+        else
+        {
+            currentPartition = KPMHelpers::createNewEncryptedPartition(
+                dev->partitionTable(),
+                *dev,
+                PartitionRole( PartitionRole::Primary ),
+                static_cast<FileSystem::Type>(part.partFileSystem),
+                firstSector,
+                end,
+                luksPassphrase,
+                PartitionTable::FlagNone
+            );
+        }
+        PartitionInfo::setFormat( currentPartition, true );
+        PartitionInfo::setMountPoint( currentPartition, part.partMountPoint );
+        if ( !part.partLabel.isEmpty() )
+            currentPartition->fileSystem().setLabel( part.partLabel );
+        // Some buggy (legacy) BIOSes test if the bootflag of at least one partition is set.
+        // Otherwise they ignore the device in boot-order, so add it here.
+        partList.append( currentPartition );
+        firstSector = end + 1;
+        availableSize -= size;
+    }
+
+    return partList;
 }
