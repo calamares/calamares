@@ -43,6 +43,7 @@
 #include "jobs/ResizePartitionJob.h"
 #include "jobs/ResizeVolumeGroupJob.h"
 #include "jobs/SetPartitionFlagsJob.h"
+#include "utils/CalamaresUtils.h"
 
 #include "Typedefs.h"
 #include "utils/Logger.h"
@@ -758,6 +759,32 @@ PartitionCoreModule::setBootLoaderInstallPath( const QString& path )
 {
     cDebug() << "PCM::setBootLoaderInstallPath" << path;
     m_bootLoaderInstallPath = path;
+}
+
+void
+PartitionCoreModule::initLayout()
+{
+    m_partLayout = new PartitionLayout();
+
+    m_partLayout->addEntry( QString("/"), QString("100%") );
+}
+
+void
+PartitionCoreModule::initLayout( const QVariantList& config )
+{
+    m_partLayout = new PartitionLayout();
+
+    for ( const auto& r : config )
+    {
+        QVariantMap pentry = r.toMap();
+
+        m_partLayout->addEntry( CalamaresUtils::getString( pentry, "name" ),
+                                CalamaresUtils::getString( pentry, "mountPoint" ),
+                                CalamaresUtils::getString( pentry, "filesystem" ),
+                                CalamaresUtils::getString( pentry, "size" ),
+                                CalamaresUtils::getString( pentry, "minSize" )
+                              );
+    }
 }
 
 void
