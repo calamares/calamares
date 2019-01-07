@@ -34,6 +34,7 @@ if ( KPMcore_FOUND )
             core/PartitionCoreModule.cpp
             core/PartitionInfo.cpp
             core/PartitionIterator.cpp
+            core/PartitionLayout.cpp
             core/PartitionModel.cpp
             core/PartUtils.cpp
             gui/BootInfoWidget.cpp
