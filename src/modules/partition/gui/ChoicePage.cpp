@@ -92,6 +92,7 @@ ChoicePage::ChoicePage( QWidget* parent )
     , m_bootloaderComboBox( nullptr )
     , m_lastSelectedDeviceIndex( -1 )
     , m_enableEncryptionWidget( true )
+    , m_allowManualPartitioning( true )
 {
     setupUi( this );
 
@@ -101,6 +102,9 @@ ChoicePage::ChoicePage( QWidget* parent )
     m_enableEncryptionWidget = Calamares::JobQueue::instance()->
                                globalStorage()->
                                value( "enableLuksAutomatedPartitioning" ).toBool();
+    m_allowManualPartitioning = Calamares::JobQueue::instance()->
+                               globalStorage()->
+                               value( "allowManualPartitioning" ).toBool();
     if ( FileSystem::typeForName( m_defaultFsType ) == FileSystem::Unknown )
         m_defaultFsType = "ext4";
 
@@ -1214,8 +1218,10 @@ ChoicePage::setupActions()
     else
         m_deviceInfoWidget->setPartitionTableType( PartitionTable::unknownTableType );
 
-    // Manual partitioning is always a possibility
-    m_somethingElseButton->show();
+    if ( m_allowManualPartitioning )
+        m_somethingElseButton->show();
+    else
+        force_uncheck( m_grp, m_somethingElseButton );
 
     bool atLeastOneCanBeResized = false;
     bool atLeastOneCanBeReplaced = false;

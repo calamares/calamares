@@ -570,6 +570,7 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     gs->insert( "drawNestedPartitions", CalamaresUtils::getBool( configurationMap, "drawNestedPartitions", false ) );
     gs->insert( "alwaysShowPartitionLabels", CalamaresUtils::getBool( configurationMap, "alwaysShowPartitionLabels", true ) );
     gs->insert( "enableLuksAutomatedPartitioning", CalamaresUtils::getBool( configurationMap, "enableLuksAutomatedPartitioning", true ) );
+    gs->insert( "allowManualPartitioning", CalamaresUtils::getBool( configurationMap, "allowManualPartitioning", true ) );
 
     QString defaultFS = CalamaresUtils::getString( configurationMap, "defaultFileSystemType" );
     if ( defaultFS.isEmpty() )
