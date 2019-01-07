@@ -484,19 +484,22 @@ LocalePage::prettyLCLocale( const QString& lcLocale ) const
 void
 LocalePage::updateGlobalStorage()
 {
+    auto *gs = Calamares::JobQueue::instance()->globalStorage();
+
     LocaleGlobal::Location location = m_tzWidget->getCurrentLocation();
-    Calamares::JobQueue::instance()->globalStorage()
-            ->insert( "locationRegion", location.region );
-    Calamares::JobQueue::instance()->globalStorage()
-            ->insert( "locationZone", location.zone );
+    bool locationChanged = ( location.region != gs->value( "locationRegion" ) ) ||
+                           ( location.zone != gs->value( "locationZone" ) );
+
+    gs->insert( "locationRegion", location.region );
+    gs->insert( "locationZone", location.zone );
 
     const QString bcp47 = m_selectedLocaleConfiguration.toBcp47();
-    Calamares::JobQueue::instance()->globalStorage()->insert( "locale", bcp47 );
+    gs->insert( "locale", bcp47 );
 
     // If we're in chroot mode (normal install mode), then we immediately set the
     // timezone on the live system. When debugging timezones, don't bother.
 #ifndef DEBUG_TIMEZONES
-    if ( Calamares::Settings::instance()->doChroot() )
+    if ( locationChanged && Calamares::Settings::instance()->doChroot() )
     {
         QProcess::execute( "timedatectl",  // depends on systemd
                             { "set-timezone",
