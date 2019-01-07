@@ -791,10 +791,14 @@ void
 PartitionCoreModule::layoutApply( Device *dev,
                                   qint64 firstSector,
                                   qint64 lastSector,
-                                  QString luksPassphrase )
+                                  QString luksPassphrase,
+                                  PartitionNode* parent,
+                                  const PartitionRole& role )
 {
     bool isEfi = PartUtils::isEfiSystem();
-    QList< Partition* > partList = m_partLayout->execute( dev, firstSector, lastSector, luksPassphrase );
+    QList< Partition* > partList = m_partLayout->execute( dev, firstSector, lastSector,
+                                                          luksPassphrase, parent, role
+                                                        );
 
     foreach ( Partition *part, partList )
     {
@@ -809,6 +813,17 @@ PartitionCoreModule::layoutApply( Device *dev,
             createPartition( dev, part );
         }
     }
+}
+
+void
+PartitionCoreModule::layoutApply( Device *dev,
+                                  qint64 firstSector,
+                                  qint64 lastSector,
+                                  QString luksPassphrase )
+{
+    layoutApply( dev, firstSector, lastSector, luksPassphrase, dev->partitionTable(),
+                 PartitionRole( PartitionRole::Primary )
+               );
 }
 
 void

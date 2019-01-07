@@ -670,41 +670,10 @@ ChoicePage::doAlongsideApply()
                                    dev->logicalSize();
 
             m_core->resizePartition( dev, candidate, firstSector, newLastSector );
-            Partition* newPartition = nullptr;
-            QString luksPassphrase = m_encryptWidget->passphrase();
-            if ( luksPassphrase.isEmpty() )
-            {
-                newPartition = KPMHelpers::createNewPartition(
-                    candidate->parent(),
-                    *dev,
-                    candidate->roles(),
-                    FileSystem::typeForName( m_defaultFsType ),
-                    newLastSector + 2, // *
-                    oldLastSector,
-                    PartitionTable::FlagNone
-                );
-            }
-            else
-            {
-                newPartition = KPMHelpers::createNewEncryptedPartition(
-                    candidate->parent(),
-                    *dev,
-                    candidate->roles(),
-                    FileSystem::typeForName( m_defaultFsType ),
-                    newLastSector + 2, // *
-                    oldLastSector,
-                    luksPassphrase,
-                    PartitionTable::FlagNone
-                );
-            }
-            PartitionInfo::setMountPoint( newPartition, "/" );
-            PartitionInfo::setFormat( newPartition, true );
-            // * for some reason ped_disk_add_partition refuses to create a new partition
-            //   if it starts on the sector immediately after the last used sector, so we
-            //   have to push it one sector further, therefore + 2 instead of + 1.
-
-            m_core->createPartition( dev, newPartition );
-
+            m_core->layoutApply( dev, newLastSector + 2, oldLastSector,
+                                 m_encryptWidget->passphrase(), candidate->parent(),
+                                 candidate->roles()
+                               );
             m_core->dumpQueue();
 
             break;

@@ -160,6 +160,8 @@ public:
     void initLayout( const QVariantList& config );
 
     void layoutApply( Device *dev, qint64 firstSector, qint64 lastSector, QString luksPassphrase );
+    void layoutApply( Device *dev, qint64 firstSector, qint64 lastSector, QString luksPassphrase, PartitionNode* parent, const PartitionRole& role );
+
     /**
      * @brief jobs creates and returns a list of jobs which can then apply the changes
      * requested by the user.

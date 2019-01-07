@@ -151,7 +151,9 @@ sizeToSectors( double size, PartitionLayout::SizeUnit unit, qint64 totalSize, qi
 
 QList< Partition* >
 PartitionLayout::execute( Device *dev, qint64 firstSector,
-                          qint64 lastSector, QString luksPassphrase )
+                          qint64 lastSector, QString luksPassphrase,
+                          PartitionNode* parent,
+                          const PartitionRole& role )
 {
     QList< Partition* > partList;
     qint64 size, minSize, end;
@@ -177,9 +179,9 @@ PartitionLayout::execute( Device *dev, qint64 firstSector,
         if ( luksPassphrase.isEmpty() )
         {
             currentPartition = KPMHelpers::createNewPartition(
-                dev->partitionTable(),
+                parent,
                 *dev,
-                PartitionRole( PartitionRole::Primary ),
+                role,
                 static_cast<FileSystem::Type>(part.partFileSystem),
                 firstSector,
                 end,
@@ -189,9 +191,9 @@ PartitionLayout::execute( Device *dev, qint64 firstSector,
         else
         {
             currentPartition = KPMHelpers::createNewEncryptedPartition(
-                dev->partitionTable(),
+                parent,
                 *dev,
-                PartitionRole( PartitionRole::Primary ),
+                role,
                 static_cast<FileSystem::Type>(part.partFileSystem),
                 firstSector,
                 end,
