@@ -745,37 +745,10 @@ ChoicePage::doReplaceSelectedPartition( const QModelIndex& current )
                 }
             }
 
-            Partition* newPartition = nullptr;
-            if ( m_encryptWidget->state() == EncryptWidget::EncryptionConfirmed )
-            {
-                newPartition = KPMHelpers::createNewEncryptedPartition(
-                    newParent,
-                    *selectedDevice(),
-                    newRoles,
-                    FileSystem::typeForName( m_defaultFsType ),
-                    selectedPartition->firstSector(),
-                    selectedPartition->lastSector(),
-                    m_encryptWidget->passphrase(),
-                    PartitionTable::FlagNone
-                );
-            }
-            else
-            {
-                newPartition = KPMHelpers::createNewPartition(
-                    newParent,
-                    *selectedDevice(),
-                    newRoles,
-                    FileSystem::typeForName( m_defaultFsType ),
-                    selectedPartition->firstSector(),
-                    selectedPartition->lastSector(),
-                    PartitionTable::FlagNone
-                );
-            }
-
-            PartitionInfo::setMountPoint( newPartition, "/" );
-            PartitionInfo::setFormat( newPartition, true );
-
-            m_core->createPartition( selectedDevice(), newPartition);
+            m_core->layoutApply( selectedDevice(), selectedPartition->firstSector(),
+                                 selectedPartition->lastSector(),
+                                 m_encryptWidget->passphrase(), newParent, newRoles
+                               );
         }
         else
         {
