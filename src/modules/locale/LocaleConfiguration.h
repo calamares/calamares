@@ -20,6 +20,7 @@
 #ifndef LOCALECONFIGURATION_H
 #define LOCALECONFIGURATION_H
 
+#include <QDebug>
 #include <QString>
 #include <QMap>
 
@@ -64,5 +65,10 @@ private:
 
     QString myLanguageLocaleBcp47;
 };
+
+inline QDebug& operator <<( QDebug& s, const LocaleConfiguration& l )
+{
+    return s << l.lang << '(' << l.toBcp47() << ") +" << l.lc_numeric;
+}
 
 #endif // LOCALECONFIGURATION_H
