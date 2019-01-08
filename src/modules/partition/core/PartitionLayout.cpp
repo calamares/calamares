@@ -159,7 +159,7 @@ PartitionLayout::execute( Device *dev, qint64 firstSector,
 {
     QList< Partition* > partList;
     qint64 size, minSize, end;
-    qint64 totalSize = lastSector - firstSector;
+    qint64 totalSize = lastSector - firstSector + 1;
     qint64 availableSize = totalSize;
 
     // TODO: Refine partition sizes to make sure there is room for every partition
@@ -176,7 +176,7 @@ PartitionLayout::execute( Device *dev, qint64 firstSector,
             size = minSize;
         if ( size > availableSize )
             size = availableSize;
-        end = firstSector + size;
+        end = firstSector + size - 1;
 
         if ( luksPassphrase.isEmpty() )
         {
