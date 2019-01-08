@@ -275,16 +275,21 @@ gettext_path()
     }
     _add_localedirs( candidatePaths, QDir().canonicalPath() ); // .
 
-    cDebug() << "Standard paths" << candidatePaths;
+    cDebug() << "Determining gettext path from" << candidatePaths;
 
-    for ( auto lang : _gettext_languages() )
+    QStringList candidateLanguages = _gettext_languages();
+
+    for ( const auto& lang : candidateLanguages )
         for ( auto localedir : candidatePaths )
         {
             QDir ldir( localedir );
-            cDebug() << "Checking" << lang << "in" <<ldir.canonicalPath();
             if ( ldir.cd( lang ) )
+            {
+                cDebug() << " .. Found" << lang << "in" << ldir.canonicalPath();
                 return bp::object( localedir.toStdString() );
+            }
         }
+    cDebug() << " .. None found for" << candidateLanguages;
     return bp::object();  // None
 }
 
