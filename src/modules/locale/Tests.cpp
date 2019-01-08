@@ -49,5 +49,5 @@ void LocaleTests::testDefaultLocaleConfiguration()
 {
     LocaleConfiguration lc( "en_US.UTF-8" );
     QVERIFY( !lc.isEmpty() );
-    QCOMPARE( lc.toBcp47(), "en_US" );
+    QCOMPARE( lc.toBcp47(), "en" );
 }

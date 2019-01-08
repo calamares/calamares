@@ -30,9 +30,19 @@ LocaleConfiguration::LocaleConfiguration()
 LocaleConfiguration::LocaleConfiguration( const QString& localeName )
     : LocaleConfiguration()
 {
-    lang = lc_numeric = lc_time = lc_monetary = lc_paper = lc_name
+    lc_numeric = lc_time = lc_monetary = lc_paper = lc_name
             = lc_address = lc_telephone = lc_measurement
             = lc_identification = localeName;
+
+    (void) setLanguage( localeName );
+}
+
+QString
+LocaleConfiguration::setLanguage(const QString& localeName )
+{
+    QString language = localeName.split( '_' ).first();
+    myLanguageLocaleBcp47 = QLocale( language ).bcp47Name().toLower();
+    return language;
 }
 
 
@@ -42,10 +52,7 @@ LocaleConfiguration::fromLanguageAndLocation( const QString& languageLocale,
                                               const QString& countryCode )
 {
     LocaleConfiguration lc;
-
-    // Note that the documentation how this works is in packages.conf
-    QString language = languageLocale.split( '_' ).first();
-    lc.myLanguageLocaleBcp47 = QLocale(language).bcp47Name().toLower();
+    QString language = lc.setLanguage( languageLocale );
 
     QStringList linesForLanguage;
     for ( const QString &line : availableLocales )

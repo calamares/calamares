@@ -51,6 +51,14 @@ public:
     bool explicit_lang, explicit_lc;
 
 private:
+    /** @brief sets lang and the BCP47 representation
+     *
+     * Note that the documentation how this works is in packages.conf
+     *
+     * @return The language part of the locale (e.g. before _)
+     */
+    QString setLanguage( const QString& localeName );
+
     QString myLanguageLocaleBcp47;
 };
 
