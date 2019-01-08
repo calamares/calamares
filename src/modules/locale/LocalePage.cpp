@@ -452,18 +452,20 @@ LocalePage::onActivate()
 LocaleConfiguration
 LocalePage::guessLocaleConfiguration() const
 {
+    static QString defaultLocale = QStringLiteral( "en_US.UTF-8" );
+
     QLocale myLocale;   // User-selected language
 
     // If we cannot say anything about available locales
     if ( m_localeGenLines.isEmpty() )
     {
         cWarning() << "guessLocaleConfiguration can't guess from an empty list.";
-        return LocaleConfiguration::createDefault();
+        return LocaleConfiguration( defaultLocale );
     }
 
     QString myLanguageLocale = myLocale.name();
     if ( myLanguageLocale.isEmpty() )
-        return LocaleConfiguration::createDefault();
+        return LocaleConfiguration( defaultLocale );
 
     return LocaleConfiguration::fromLanguageAndLocation( myLanguageLocale,
                                                          m_localeGenLines,

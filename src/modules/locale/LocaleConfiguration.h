@@ -26,9 +26,11 @@
 class LocaleConfiguration
 {
 public:
+    /// @brief Create an empty locale, with nothing set
     explicit LocaleConfiguration();
+    /// @brief Create a locale with everything set to the given @p localeName
+    explicit LocaleConfiguration( const QString& localeName /* "en_US.UTF-8" */ );
 
-    static LocaleConfiguration createDefault();
     static LocaleConfiguration fromLanguageAndLocation( const QString& language,
                                                         const QStringList& availableLocales,
                                                         const QString& countryCode );

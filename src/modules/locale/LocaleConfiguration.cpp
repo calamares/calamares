@@ -27,14 +27,12 @@ LocaleConfiguration::LocaleConfiguration()
 }
 
 
-LocaleConfiguration
-LocaleConfiguration::createDefault()
+LocaleConfiguration::LocaleConfiguration( const QString& localeName )
+    : LocaleConfiguration()
 {
-    LocaleConfiguration lc = LocaleConfiguration();
-    lc.lang = lc.lc_numeric = lc.lc_time = lc.lc_monetary = lc.lc_paper = lc.lc_name
-            = lc.lc_address = lc.lc_telephone = lc.lc_measurement
-            = lc.lc_identification = "en_US.UTF-8";
-    return lc;
+    lang = lc_numeric = lc_time = lc_monetary = lc_paper = lc_name
+            = lc_address = lc_telephone = lc_measurement
+            = lc_identification = localeName;
 }
 
 
