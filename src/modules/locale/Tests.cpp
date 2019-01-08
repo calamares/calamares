@@ -49,12 +49,12 @@ void LocaleTests::testDefaultLocaleConfiguration()
 {
     LocaleConfiguration lc( "en_US.UTF-8" );
     QVERIFY( !lc.isEmpty() );
-    QCOMPARE( lc.lang, "en_US.UTF-8" );
+    QCOMPARE( lc.language(), "en_US.UTF-8" );
     QCOMPARE( lc.toBcp47(), "en" );
 
     LocaleConfiguration lc2( "de_DE.UTF-8" );
     QVERIFY( !lc2.isEmpty() );
-    QCOMPARE( lc2.lang, "de_DE.UTF-8" );
+    QCOMPARE( lc2.language(), "de_DE.UTF-8" );
     QCOMPARE( lc2.toBcp47(), "de" );
 }
 
@@ -62,13 +62,13 @@ void LocaleTests::testSplitLocaleConfiguration()
 {
     LocaleConfiguration lc( "en_US.UTF-8", "de_DE.UTF-8" );
     QVERIFY( !lc.isEmpty() );
-    QCOMPARE( lc.lang, "en_US.UTF-8" );
+    QCOMPARE( lc.language(), "en_US.UTF-8" );
     QCOMPARE( lc.toBcp47(), "en" );
     QCOMPARE( lc.lc_numeric, QStringLiteral( "de_DE.UTF-8" ) );
 
     LocaleConfiguration lc2( "de_DE.UTF-8", "da_DK.UTF-8" );
     QVERIFY( !lc2.isEmpty() );
-    QCOMPARE( lc2.lang, "de_DE.UTF-8" );
+    QCOMPARE( lc2.language(), "de_DE.UTF-8" );
     QCOMPARE( lc2.toBcp47(), "de" );
     QCOMPARE( lc2.lc_numeric, "da_DK.UTF-8" );
 

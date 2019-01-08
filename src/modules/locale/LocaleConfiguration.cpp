@@ -38,12 +38,12 @@ LocaleConfiguration::LocaleConfiguration( const QString& localeName, const QStri
 }
 
 
-QString
+void
 LocaleConfiguration::setLanguage(const QString& localeName )
 {
     QString language = localeName.split( '_' ).first();
-    myLanguageLocaleBcp47 = QLocale( language ).bcp47Name().toLower();
-    return language;
+    m_languageLocaleBcp47 = QLocale( language ).bcp47Name().toLower();
+    m_lang = localeName;
 }
 
 
@@ -276,7 +276,7 @@ LocaleConfiguration::fromLanguageAndLocation( const QString& languageLocale,
 bool
 LocaleConfiguration::isEmpty() const
 {
-    return lang.isEmpty() &&
+    return m_lang.isEmpty() &&
          lc_numeric.isEmpty() &&
          lc_time.isEmpty() &&
          lc_monetary.isEmpty() &&
@@ -294,8 +294,8 @@ LocaleConfiguration::toMap() const
 {
     QMap< QString, QString > map;
 
-    if ( !lang.isEmpty() )
-        map.insert( "LANG", lang );
+    if ( !m_lang.isEmpty() )
+        map.insert( "LANG", m_lang );
 
     if ( !lc_numeric.isEmpty() )
         map.insert( "LC_NUMERIC", lc_numeric );
@@ -327,8 +327,3 @@ LocaleConfiguration::toMap() const
     return map;
 }
 
-QString
-LocaleConfiguration::toBcp47() const
-{
-    return myLanguageLocaleBcp47;
-}

@@ -41,13 +41,21 @@ public:
 
     bool isEmpty() const;
 
-    QMap< QString, QString > toMap() const;
+    /** @brief sets lang and the BCP47 representation
+     *
+     * Note that the documentation how this works is in packages.conf
+     */
+    void setLanguage( const QString& localeName );
+    QString language() const { return m_lang; }
+
     // Note that the documentation how this works is in packages.conf
-    QString toBcp47() const;
+    QString toBcp47() const { return m_languageLocaleBcp47; }
+
+    QMap< QString, QString > toMap() const;
 
     // These become all uppercase in locale.conf, but we keep them lowercase here to
     // avoid confusion with locale.h.
-    QString lang, lc_numeric, lc_time, lc_monetary, lc_paper, lc_name, lc_address,
+    QString lc_numeric, lc_time, lc_monetary, lc_paper, lc_name, lc_address,
             lc_telephone, lc_measurement, lc_identification;
 
     // If the user has explicitly selected language (from the dialog)
@@ -55,20 +63,13 @@ public:
     bool explicit_lang, explicit_lc;
 
 private:
-    /** @brief sets lang and the BCP47 representation
-     *
-     * Note that the documentation how this works is in packages.conf
-     *
-     * @return The language part of the locale (e.g. before _)
-     */
-    QString setLanguage( const QString& localeName );
-
-    QString myLanguageLocaleBcp47;
+    QString m_lang;
+    QString m_languageLocaleBcp47;
 };
 
 inline QDebug& operator <<( QDebug& s, const LocaleConfiguration& l )
 {
-    return s << l.lang << '(' << l.toBcp47() << ") +" << l.lc_numeric;
+    return s << l.language() << '(' << l.toBcp47() << ") +" << l.lc_numeric;
 }
 
 #endif // LOCALECONFIGURATION_H

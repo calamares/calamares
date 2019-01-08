@@ -164,15 +164,15 @@ LocalePage::LocalePage( QWidget* parent )
     {
         LCLocaleDialog* dlg =
                 new LCLocaleDialog( m_selectedLocaleConfiguration.isEmpty() ?
-                                        guessLocaleConfiguration().lang :
-                                        m_selectedLocaleConfiguration.lang,
+                                        guessLocaleConfiguration().language() :
+                                        m_selectedLocaleConfiguration.language(),
                                     m_localeGenLines,
                                     this );
         dlg->exec();
         if ( dlg->result() == QDialog::Accepted &&
              !dlg->selectedLCLocale().isEmpty() )
         {
-            m_selectedLocaleConfiguration.lang = dlg->selectedLCLocale();
+            m_selectedLocaleConfiguration.setLanguage( dlg->selectedLCLocale() );
             m_selectedLocaleConfiguration.explicit_lang = true;
             this->updateGlobalLocale();
             this->updateLocaleLabels();
@@ -387,7 +387,7 @@ std::pair< QString, QString > LocalePage::prettyLocaleStatus( const LocaleConfig
 {
     return std::make_pair< QString, QString >(
         tr( "The system language will be set to %1." )
-            .arg( prettyLCLocale( lc.lang ) ),
+            .arg( prettyLCLocale( lc.language() ) ),
         tr( "The numbers and dates locale will be set to %1." )
                             .arg( prettyLCLocale( lc.lc_numeric ) )
                                              );
@@ -442,7 +442,7 @@ LocalePage::onActivate()
          !m_selectedLocaleConfiguration.explicit_lang )
     {
         auto newLocale = guessLocaleConfiguration();
-        m_selectedLocaleConfiguration.lang = newLocale.lang;
+        m_selectedLocaleConfiguration.setLanguage( newLocale.language() );
         updateGlobalLocale();
         updateLocaleLabels();
     }
@@ -511,7 +511,7 @@ LocalePage::updateGlobalStorage()
     auto newLocale = guessLocaleConfiguration();
     if ( !m_selectedLocaleConfiguration.isEmpty() &&
          m_selectedLocaleConfiguration.explicit_lang )
-        newLocale.lang = m_selectedLocaleConfiguration.lang;
+        newLocale.setLanguage( m_selectedLocaleConfiguration.language() );
     if ( !m_selectedLocaleConfiguration.isEmpty() &&
          m_selectedLocaleConfiguration.explicit_lc )
     {
