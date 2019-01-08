@@ -137,7 +137,6 @@ LocalePage::LocalePage( QWidget* parent )
     connect( m_tzWidget, &TimeZoneWidget::locationChanged,
              [this]( LocaleGlobal::Location location )
     {
-        cDebug() << "Updating location from TZ widget to" << location;
         m_blockTzWidgetSet = true;
 
         // Set region index
@@ -318,7 +317,7 @@ LocalePage::init( const QString& initialRegion,
         }
         else
         {
-            cDebug() << "Cannot open file" << localeGenPath
+            cWarning() << "Cannot open file" << localeGenPath
                      << ". Assuming the supported languages are already built into "
                         "the locale archive.";
             QProcess localeA;
@@ -477,7 +476,6 @@ LocalePage::updateGlobalLocale()
 {
     auto *gs = Calamares::JobQueue::instance()->globalStorage();
     const QString bcp47 = m_selectedLocaleConfiguration.toBcp47();
-    cDebug() << "Updating global locale setting to" << bcp47;
     gs->insert( "locale", bcp47 );
 }
 
