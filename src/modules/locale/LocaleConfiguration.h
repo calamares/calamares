@@ -29,7 +29,10 @@ public:
     /// @brief Create an empty locale, with nothing set
     explicit LocaleConfiguration();
     /// @brief Create a locale with everything set to the given @p localeName
-    explicit LocaleConfiguration( const QString& localeName /* "en_US.UTF-8" */ );
+    explicit LocaleConfiguration( const QString& localeName /* "en_US.UTF-8" */ )
+        : LocaleConfiguration( localeName, localeName ) { };
+    /// @brief Create a locale with language and formats separate
+    explicit LocaleConfiguration( const QString& localeName, const QString& formatsName );
 
     static LocaleConfiguration fromLanguageAndLocation( const QString& language,
                                                         const QStringList& availableLocales,

@@ -34,6 +34,7 @@ private Q_SLOTS:
     // Check the sample config file is processed correctly
     void testEmptyLocaleConfiguration();
     void testDefaultLocaleConfiguration();
+    void testSplitLocaleConfiguration();
 };
 
 #endif

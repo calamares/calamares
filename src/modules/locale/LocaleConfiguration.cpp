@@ -27,15 +27,16 @@ LocaleConfiguration::LocaleConfiguration()
 }
 
 
-LocaleConfiguration::LocaleConfiguration( const QString& localeName )
+LocaleConfiguration::LocaleConfiguration( const QString& localeName, const QString& formatsName )
     : LocaleConfiguration()
 {
     lc_numeric = lc_time = lc_monetary = lc_paper = lc_name
             = lc_address = lc_telephone = lc_measurement
-            = lc_identification = localeName;
+            = lc_identification = formatsName;
 
     (void) setLanguage( localeName );
 }
+
 
 QString
 LocaleConfiguration::setLanguage(const QString& localeName )
@@ -51,8 +52,7 @@ LocaleConfiguration::fromLanguageAndLocation( const QString& languageLocale,
                                               const QStringList& availableLocales,
                                               const QString& countryCode )
 {
-    LocaleConfiguration lc;
-    QString language = lc.setLanguage( languageLocale );
+    QString language = languageLocale.split( '_' ).first();
 
     QStringList linesForLanguage;
     for ( const QString &line : availableLocales )
@@ -269,12 +269,7 @@ LocaleConfiguration::fromLanguageAndLocation( const QString& languageLocale,
     if ( lc_formats.isEmpty() )
         lc_formats = lang;
 
-    lc.lang = lang;
-    lc.lc_address = lc.lc_identification = lc.lc_measurement = lc.lc_monetary
-                  = lc.lc_name = lc.lc_numeric = lc.lc_paper = lc.lc_telephone
-                  = lc.lc_time = lc_formats;
-
-    return lc;
+    return LocaleConfiguration( lang, lc_formats );
 }
 
 
