@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2016, Teo Mrnjavac <teo@kde.org>
+ *   Copyright 2019, Adriaan de Groot <groot@kde.org>
  *
  *   Originally from the Manjaro Installation Framework
  *   by Roland Singer <roland@manjaro.org>
@@ -38,11 +39,13 @@
 class LocaleGlobal
 {
 public:
-    struct Locale {
+    struct Locale
+    {
         QString description, locale;
     };
 
-    struct Location {
+    struct Location
+    {
         QString region, zone, country;
         double latitude, longitude;
         static QString pretty( const QString& s );
@@ -59,7 +62,12 @@ private:
 
     static void initLocales();
     static void initLocations();
-    static double getRightGeoLocation(QString str);
+    static double getRightGeoLocation( QString str );
 };
+
+inline QDebug& operator <<( QDebug& s, const LocaleGlobal::Location& l )
+{
+    return s << l.region << '/' << l.zone << '(' << l.country << ") @N" << l.latitude  << 'E' << l.longitude;
+}
 
 #endif // LOCALEGLOBAL_H

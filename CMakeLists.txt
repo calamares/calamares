@@ -75,7 +75,7 @@ set( CALAMARES_DESCRIPTION_SUMMARY
 
 set( CALAMARES_VERSION_MAJOR 3 )
 set( CALAMARES_VERSION_MINOR 2 )
-set( CALAMARES_VERSION_PATCH 3 )
+set( CALAMARES_VERSION_PATCH 4 )
 set( CALAMARES_VERSION_RC 1 )
 
 
@@ -152,7 +152,7 @@ set( CMAKE_C_STANDARD_REQUIRED ON )
 #    location database.
 #  - DEBUG_FILESYSTEMS does extra logging and checking when looking at
 #    partition configuration. Lists known KPMCore FS types.
-# 
+#
 # The flags listed here are enabled in Debug builds. By default, none
 # are **actually** listed, because they're for such specific scenarios.
 set( _enable_debug_flags
