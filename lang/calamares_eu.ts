@@ -366,7 +366,7 @@ Instalatzailea irten egingo da eta aldaketa guztiak galduko dira.</translation>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="945"/>
         <source>%1 will be shrunk to %2MB and a new %3MB partition will be created for %4.</source>
-        <translation type="unfinished"/>
+        <translation>%1 %2MB-ra txikituko da, eta %3MB-tako partizio berri bat sortuko da %4-(e)rako.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="129"/>
@@ -389,7 +389,7 @@ Instalatzailea irten egingo da eta aldaketa guztiak galduko dira.</translation>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="928"/>
         <source>&lt;strong&gt;Select a partition to shrink, then drag the bottom bar to resize&lt;/strong&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;Aukeratu partizioa txikitzeko eta gero arrastatu azpiko-barra tamaina aldatzeko&lt;/strong&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1043"/>
@@ -427,7 +427,7 @@ Instalatzailea irten egingo da eta aldaketa guztiak galduko dira.</translation>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1264"/>
         <source>This storage device has %1 on it. What would you like to do?&lt;br/&gt;You will be able to review and confirm your choices before any change is made to the storage device.</source>
-        <translation type="unfinished"/>
+        <translation>Biltegiratze-gailuak %1 dauka. Zer egin nahiko zenuke? &lt;br/&gt;Zure aukerak berrikusteko eta berresteko aukera izango duzu aldaketak gauzatu aurretik biltegiratze-gailuan</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1241"/>
@@ -435,7 +435,7 @@ Instalatzailea irten egingo da eta aldaketa guztiak galduko dira.</translation>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1292"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1316"/>
         <source>&lt;strong&gt;Install alongside&lt;/strong&gt;&lt;br/&gt;The installer will shrink a partition to make room for %1.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;Instalatu alboan&lt;/strong&gt;&lt;br/&gt;Instalatzaileak partizioa txikituko du lekua egiteko %1-(r)i.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1245"/>
@@ -443,7 +443,7 @@ Instalatzailea irten egingo da eta aldaketa guztiak galduko dira.</translation>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1300"/>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1324"/>
         <source>&lt;strong&gt;Replace a partition&lt;/strong&gt;&lt;br/&gt;Replaces a partition with %1.</source>
-        <translation type="unfinished"/>
+        <translation>&lt;strong&gt;Ordeztu partizioa&lt;/strong&gt;&lt;br/&gt;ordezkatu partizioa %1-(e)kin.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1287"/>
