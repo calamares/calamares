@@ -14,6 +14,11 @@ This release contains contributions from (alphabetically by first name):
 
  * Fixed bug where, during detection of existing systems, the existing
    system partitions may be mounted and then destroyed.
+ * *locale* It was possible to set the installer and system language
+   (e.g. to German) while the global storage value for *locale*
+   remained set to English. Then no localization packages are installed
+   (see feature `${LOCALE}` in `packages.conf`). Reported downstream
+   in Netrunner.
 
 = 3.2.2 (2018-09-04) =
 
