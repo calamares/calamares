@@ -2,6 +2,7 @@
  *
  *   Copyright 2014-2017, Teo Mrnjavac <teo@kde.org>
  *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2019, Collabora Ltd
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -1522,4 +1523,17 @@ ChoicePage::updateSwapChoicesTr(QComboBox* box)
                 cWarning() << "Box item" << index << box->itemText( index ) << "has role" << value;
         }
     }
+}
+
+int
+ChoicePage::lastSelectedDeviceIndex()
+{
+    return m_lastSelectedDeviceIndex;
+}
+
+void
+ChoicePage::setLastSelectedDeviceIndex( int index )
+{
+    m_lastSelectedDeviceIndex = index;
+    m_drivesCombo->setCurrentIndex( m_lastSelectedDeviceIndex );
 }

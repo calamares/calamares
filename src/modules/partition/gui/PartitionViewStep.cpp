@@ -3,6 +3,7 @@
  *   Copyright 2014, Aurélien Gâteau <agateau@kde.org>
  *   Copyright 2014-2017, Teo Mrnjavac <teo@kde.org>
  *   Copyright 2018, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2019, Collabora Ltd
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -286,6 +287,7 @@ PartitionViewStep::next()
         if ( m_choicePage->currentChoice() == ChoicePage::Manual )
         {
             m_widget->setCurrentWidget( m_manualPartitionPage );
+            m_manualPartitionPage->selectDeviceByIndex( m_choicePage->lastSelectedDeviceIndex() );
             if ( m_core->isDirty() )
                 m_manualPartitionPage->onRevertClicked();
         }
@@ -315,7 +317,10 @@ void
 PartitionViewStep::back()
 {
     if ( m_widget->currentWidget() != m_choicePage )
+    {
         m_widget->setCurrentWidget( m_choicePage );
+        m_choicePage->setLastSelectedDeviceIndex( m_manualPartitionPage->selectedDeviceIndex() );
+    }
 }
 
 
