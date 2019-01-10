@@ -495,6 +495,61 @@ nameToChoice( QString name, bool& ok )
     return SwapChoice::NoSwap;
 }
 
+/** @brief translate @p defaultFS into a recognized name
+ *
+ * Makes several attempts to translate the string into a
+ * name that KPMCore will recognize.
+ */
+static QString
+findFS( QString defaultFS )
+{
+    QStringList fsLanguage { QLatin1Literal( "C" ) };  // Required language list to turn off localization
+    if ( defaultFS.isEmpty() )
+        defaultFS = QStringLiteral( "ext4" );
+    if ( FileSystem::typeForName( defaultFS, fsLanguage ) != FileSystem::Unknown )
+    {
+        cDebug() << "Partition-module setting *defaultFileSystemType*" << defaultFS;
+        return defaultFS;
+    }
+
+    // First pass: try the default language instead of C locale
+    auto fsType = FileSystem::typeForName( defaultFS );
+    if ( fsType != FileSystem::Unknown )
+    {
+        defaultFS = FileSystem::nameForType( fsType, fsLanguage );
+        cWarning() << "Partition-module setting *defaultFileSystemType* changed" << defaultFS;
+        return defaultFS;
+    }
+
+    // Second pass: try case-insensitive, both unlocalized and localized
+    const auto fstypes = FileSystem::types();
+    for ( FileSystem::Type t : fstypes )
+    {
+        if ( ( 0 == QString::compare( defaultFS, FileSystem::nameForType( t, fsLanguage ), Qt::CaseInsensitive ) ) ||
+             ( 0 == QString::compare( defaultFS, FileSystem::nameForType( t ), Qt::CaseInsensitive ) ) )
+        {
+            defaultFS = FileSystem::nameForType( fsType, fsLanguage );
+            cWarning() << "Partition-module setting *defaultFileSystemType* changed" << defaultFS;
+            return defaultFS;
+        }
+    }
+
+    cWarning() << "Partition-module setting *defaultFileSystemType* is bad (" << defaultFS << ") using ext4.";
+    defaultFS = QStringLiteral( "ext4" );
+#ifdef DEBUG_FILESYSTEMS
+    // This bit is for distro's debugging their settings, and shows
+    // all the strings that KPMCore is matching against for FS type.
+    {
+        Logger::CLog d( Logger::LOGDEBUG );
+        using TR = Logger::DebugRow< int, QString >;
+        const auto fstypes = FileSystem::types();
+        d << "Available types (" << fstypes.count() << ')';
+        for ( FileSystem::Type t : fstypes )
+            d << TR( static_cast<int>( t ), FileSystem::nameForType( t, fsLanguage ) );
+    }
+#endif
+    return defaultFS;
+}
 
 void
 PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
@@ -570,30 +625,7 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     gs->insert( "drawNestedPartitions", CalamaresUtils::getBool( configurationMap, "drawNestedPartitions", false ) );
     gs->insert( "alwaysShowPartitionLabels", CalamaresUtils::getBool( configurationMap, "alwaysShowPartitionLabels", true ) );
     gs->insert( "enableLuksAutomatedPartitioning", CalamaresUtils::getBool( configurationMap, "enableLuksAutomatedPartitioning", true ) );
-
-    QString defaultFS = CalamaresUtils::getString( configurationMap, "defaultFileSystemType" );
-    if ( defaultFS.isEmpty() )
-        defaultFS = QStringLiteral( "ext4" );
-    else
-        cDebug() << "Partition-module setting *defaultFileSystemType*" << defaultFS;
-    if ( FileSystem::typeForName( defaultFS ) == FileSystem::Unknown )
-    {
-        cWarning() << "Partition-module setting *defaultFileSystemType* is bad (" << defaultFS << ") using ext4.";
-        defaultFS = QStringLiteral( "ext4" );
-#ifdef DEBUG_FILESYSTEMS
-        // This bit is for distro's debugging their settings, and shows
-        // all the strings that KPMCore is matching against for FS type.
-        {
-            Logger::CLog d( Logger::LOGDEBUG );
-            using TR = Logger::DebugRow< int, QString >;
-            const auto fstypes = FileSystem::types();
-            d << "Available types (" << fstypes.count() << ')';
-            for ( FileSystem::Type t : fstypes )
-                d << TR( static_cast<int>( t ), FileSystem::nameForType( t ) );
-        }
-#endif
-    }
-    gs->insert( "defaultFileSystemType", defaultFS );
+    gs->insert( "defaultFileSystemType", findFS( CalamaresUtils::getString( configurationMap, "defaultFileSystemType" ) ) );
 
 
     // Now that we have the config, we load the PartitionCoreModule in the background
