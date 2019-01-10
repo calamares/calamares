@@ -2,6 +2,7 @@
  *
  *   Copyright 2014-2016, Teo Mrnjavac <teo@kde.org>
  *   Copyright 2018, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2019, Collabora Ltd
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -96,6 +97,9 @@ public:
      * @param choice the partitioning action choice.
      */
     void applyActionChoice( ChoicePage::InstallChoice choice );
+
+    int lastSelectedDeviceIndex();
+    void setLastSelectedDeviceIndex( int index );
 
 signals:
     void nextStatusChanged( bool );
