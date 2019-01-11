@@ -41,41 +41,63 @@ struct NamedEnumTable
     using enum_t = T;
     using pair_t = std::pair< string_t, enum_t >;
     using type = std::initializer_list< pair_t >;
+
+    type table;
+
+    /** @brief Create a table of named enum values.
+     *
+     * Use braced-initialisation for NamedEnum, and remember that the
+     * elements of the list are **pairs**, e.g.
+     *
+     * static const NamedEnumTable<Colors> c{ {"red", Colors::Red } };
+     */
+    NamedEnumTable( type v ) : table( v ) { /* static_assert( v.size() > 0 ); */ };
+
+    /** @brief Find a name @p s in the table.
+     *
+     * Searches case-insensitively.
+     *
+     * If the name @p s is not found, @p ok is set to false and
+     * the first enum value in the table is returned. Otherwise,
+     * @p ok is set to true and the corresponding value is returned.
+     *
+     */
+    enum_t find( const string_t& s, bool& ok ) const
+    {
+        ok = false;
+
+        for ( const auto p : table )
+            if ( 0 == QString::compare( s, p.first, Qt::CaseInsensitive ) )
+            {
+                ok = true;
+                return p.second;
+            }
+
+        // ok is still false
+        return table.begin()->second;
+    }
+
+    /** @brief Find a value @p s in the table.
+     *
+     * If the value @p s is not found, @p ok is set to false and
+     * an empty string is returned. Otherwise, @p is set to true
+     * and the corresponding name is returned.
+     */
+    string_t find( enum_t s, bool& ok ) const
+    {
+        ok = false;
+
+        for ( const auto p : table )
+            if ( s == p.second)
+            {
+                ok = true;
+                return p.first;
+            }
+
+        // ok is still false
+        return string_t();
+    }
 } ;
-
-/** @brief Find a name @p s in the @p table. */
-template<typename T>
-typename NamedEnumTable<T>::enum_t find( const typename NamedEnumTable<T>::type& table, const QString& s, bool& ok )
-{
-    ok = false;
-
-    for ( const auto p : table )
-        if ( s == p.first )
-        {
-            ok = true;
-            return p.second;
-        }
-
-    // ok is still false
-    return table.begin()->second;
-}
-
-/** @brief Find a value @p s in the @p table. */
-template<typename T>
-typename NamedEnumTable<T>::enum_t find( const typename NamedEnumTable<T>::type& table, const T s, bool& ok )
-{
-    ok = false;
-
-    for ( const auto p : table )
-        if ( s == p.second)
-        {
-            ok = true;
-            return p.first;
-        }
-
-    // ok is still false
-    return QString();
-}
 
 /** @brief Smashes an enum value to its underlying type. */
 template<typename E>
