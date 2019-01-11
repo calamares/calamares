@@ -8,7 +8,9 @@ website will have to do for older versions.
 This release contains contributions from (alphabetically by first name):
  - Alf Gaida
  - aliveafter1000
+ - Arnaud Ferraris
  - Caio Carvalho
+ - Collabora LTD
  - Kevin Kofler
  - Philip Mueller
  - Scott Harvey
@@ -32,10 +34,15 @@ This release contains contributions from (alphabetically by first name):
    and Calamares no longer reserves 2GiB of space in calculations for internal
    use (this means that it no longer mysteriously drops swap when the disk
    size is close to the required installation size).
+ * The name of the type of default filesystem (e.g. ext4 or btrfs) is now handled
+   case- and localization-insensitively. This means that *btrfs* is now always
+   an acceptable spelling.
+ * The currently-selected disk device is remembered between manual partitioning
+   and the partitioning-overview pages. (Thanks to Arnaud)
  * The *keyboard* module now handles the (bogus) Austrian keymap for
-   the system console properly.
+   the system console properly. (Thanks to Kevin)
  * The *preservefiles* module now has a mechanism for setting the permissions
-   (and ownership) of preserved files.
+   (and ownership) of preserved files. (Thanks to Scott)
  * New module *fsresizer* can be used to resize filesystems. It is intended
    for use in OEM installs where an image of fixed size is created,
    and then sized to the actual SD card the user has used.
