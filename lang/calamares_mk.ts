@@ -50,7 +50,7 @@
     <message>
         <location filename="../src/libcalamaresui/viewpages/BlankViewStep.cpp" line="69"/>
         <source>Blank Page</source>
-        <translation type="unfinished"/>
+        <translation>Празна Страна</translation>
     </message>
 </context>
 <context>
@@ -94,7 +94,7 @@
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="93"/>
         <source>Tools</source>
-        <translation type="unfinished"/>
+        <translation>Алатки</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.cpp" line="182"/>
@@ -107,7 +107,7 @@
     <message>
         <location filename="../src/libcalamaresui/ExecutionViewStep.cpp" line="79"/>
         <source>Install</source>
-        <translation type="unfinished"/>
+        <translation>Инсталирај</translation>
     </message>
 </context>
 <context>
@@ -115,7 +115,7 @@
     <message>
         <location filename="../src/libcalamares/JobQueue.cpp" line="101"/>
         <source>Done</source>
-        <translation type="unfinished"/>
+        <translation>Готово</translation>
     </message>
 </context>
 <context>
@@ -263,12 +263,12 @@ The installer will quit and all changes will be lost.</source>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="284"/>
         <source>The installation is complete. Close the installer.</source>
-        <translation type="unfinished"/>
+        <translation>Инсталацијата е готова. Исклучете го инсталерот.</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="160"/>
         <source>Error</source>
-        <translation type="unfinished"/>
+        <translation>Грешка</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/ViewManager.cpp" line="161"/>

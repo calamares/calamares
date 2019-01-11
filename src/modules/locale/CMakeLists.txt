@@ -53,6 +53,17 @@ if( ECM_FOUND AND BUILD_TESTING )
             ${YAMLCPP_LIBRARY}
     )
     set_target_properties( geoiptest PROPERTIES AUTOMOC TRUE )
+
+    ecm_add_test(
+            Tests.cpp
+            LocaleConfiguration.cpp
+        TEST_NAME
+            localetest
+        LINK_LIBRARIES
+            calamares
+            Qt5::Test
+    )
+    set_target_properties( localetest PROPERTIES AUTOMOC TRUE )
 endif()
 
 if( BUILD_TESTING )

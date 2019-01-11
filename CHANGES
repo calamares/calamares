@@ -3,7 +3,7 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
-# 3.2.3 (unreleased) #
+# 3.2.4 (unreleased) #
 
 This release contains contributions from (alphabetically by first name):
  - Alf Gaida
@@ -44,6 +44,30 @@ This release contains contributions from (alphabetically by first name):
  * The *packages* module now supports pre- and post-script options
    for all operations, not just during install (keep in mind that
    these run as three separate shells, though).
+
+
+# 3.2.3 (2019-01-09) #
+
+This release contains contributions from (alphabetically by first name):
+ - aliveafter1000
+
+## Core ##
+
+There are no core changes in this release.
+
+## Modules ##
+
+ * *partition* Fixed bug where, during detection of existing systems, the
+   existing system partitions may be mounted and then files deleted.
+   This is a **limited** version of the patch from aliveafter1000
+   that will be in 3.2.4, which tries harder to mount filesystems
+   read-only and unmodifiable.
+ * *locale* It was possible to set the installer and system language
+   (e.g. to German) while the global storage value for *locale*
+   remained set to English. Then no localization packages are installed
+   (see feature `${LOCALE}` in `packages.conf`). Reported downstream
+   in Netrunner.
+
 
 # 3.2.2 (2018-09-04) #
 

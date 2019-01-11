@@ -1,7 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2016, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2017-2018, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2017-2019, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -27,14 +27,23 @@ LocaleConfiguration::LocaleConfiguration()
 }
 
 
-LocaleConfiguration
-LocaleConfiguration::createDefault()
+LocaleConfiguration::LocaleConfiguration( const QString& localeName, const QString& formatsName )
+    : LocaleConfiguration()
 {
-    LocaleConfiguration lc = LocaleConfiguration();
-    lc.lang = lc.lc_numeric = lc.lc_time = lc.lc_monetary = lc.lc_paper = lc.lc_name
-            = lc.lc_address = lc.lc_telephone = lc.lc_measurement
-            = lc.lc_identification = "en_US.UTF-8";
-    return lc;
+    lc_numeric = lc_time = lc_monetary = lc_paper = lc_name
+            = lc_address = lc_telephone = lc_measurement
+            = lc_identification = formatsName;
+
+    (void) setLanguage( localeName );
+}
+
+
+void
+LocaleConfiguration::setLanguage(const QString& localeName )
+{
+    QString language = localeName.split( '_' ).first();
+    m_languageLocaleBcp47 = QLocale( language ).bcp47Name().toLower();
+    m_lang = localeName;
 }
 
 
@@ -43,11 +52,7 @@ LocaleConfiguration::fromLanguageAndLocation( const QString& languageLocale,
                                               const QStringList& availableLocales,
                                               const QString& countryCode )
 {
-    LocaleConfiguration lc;
-
-    // Note that the documentation how this works is in packages.conf
     QString language = languageLocale.split( '_' ).first();
-    lc.myLanguageLocaleBcp47 = QLocale(language).bcp47Name().toLower();
 
     QStringList linesForLanguage;
     for ( const QString &line : availableLocales )
@@ -264,19 +269,14 @@ LocaleConfiguration::fromLanguageAndLocation( const QString& languageLocale,
     if ( lc_formats.isEmpty() )
         lc_formats = lang;
 
-    lc.lang = lang;
-    lc.lc_address = lc.lc_identification = lc.lc_measurement = lc.lc_monetary
-                  = lc.lc_name = lc.lc_numeric = lc.lc_paper = lc.lc_telephone
-                  = lc.lc_time = lc_formats;
-
-    return lc;
+    return LocaleConfiguration( lang, lc_formats );
 }
 
 
 bool
 LocaleConfiguration::isEmpty() const
 {
-    return lang.isEmpty() &&
+    return m_lang.isEmpty() &&
          lc_numeric.isEmpty() &&
          lc_time.isEmpty() &&
          lc_monetary.isEmpty() &&
@@ -294,8 +294,8 @@ LocaleConfiguration::toMap() const
 {
     QMap< QString, QString > map;
 
-    if ( !lang.isEmpty() )
-        map.insert( "LANG", lang );
+    if ( !m_lang.isEmpty() )
+        map.insert( "LANG", m_lang );
 
     if ( !lc_numeric.isEmpty() )
         map.insert( "LC_NUMERIC", lc_numeric );
@@ -327,8 +327,3 @@ LocaleConfiguration::toMap() const
     return map;
 }
 
-QString
-LocaleConfiguration::toBcp47() const
-{
-    return myLanguageLocaleBcp47;
-}

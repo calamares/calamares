@@ -150,10 +150,10 @@ class PackageManager(metaclass=abc.ABCMeta):
         @param packagedata: str|dict
         """
         if isinstance(packagedata, str):
-            self.remove([packagedata], from_local=from_local)
+            self.remove([packagedata])
         else:
             self.run(packagedata["pre-script"])
-            self.remove([packagedata["package"]], from_local=from_local)
+            self.remove([packagedata["package"]])
             self.run(packagedata["post-script"])
 
 

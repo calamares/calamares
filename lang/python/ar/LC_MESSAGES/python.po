@@ -3,6 +3,9 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
+# Translators:
+# Abubakaragoub Y <Abubakaryagob@gmail.com>, 2018
+# 
 #, fuzzy
 msgid ""
 msgstr ""
@@ -10,6 +13,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-05 11:34-0400\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
+"Last-Translator: Abubakaragoub Y <Abubakaryagob@gmail.com>, 2018\n"
 "Language-Team: Arabic (https://www.transifex.com/calamares/teams/20061/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,43 +23,43 @@ msgstr ""
 
 #: src/modules/displaymanager/main.py:380
 msgid "Cannot write KDM configuration file"
-msgstr ""
+msgstr "فشلت كتابة ملف ضبط KDM."
 
 #: src/modules/displaymanager/main.py:381
 msgid "KDM config file {!s} does not exist"
-msgstr ""
+msgstr "ملف ضبط KDM {!s} غير موجود"
 
 #: src/modules/displaymanager/main.py:442
 msgid "Cannot write LXDM configuration file"
-msgstr ""
+msgstr "فشلت كتابة ملف ضبط LXDM."
 
 #: src/modules/displaymanager/main.py:443
 msgid "LXDM config file {!s} does not exist"
-msgstr ""
+msgstr "ملف ضبط LXDM {!s} غير موجود"
 
 #: src/modules/displaymanager/main.py:517
 msgid "Cannot write LightDM configuration file"
-msgstr ""
+msgstr "فشلت كتابة ملف ضبط LightDM."
 
 #: src/modules/displaymanager/main.py:518
 msgid "LightDM config file {!s} does not exist"
-msgstr ""
+msgstr "ملف ضبط LightDM {!s} غير موجود"
 
 #: src/modules/displaymanager/main.py:592
 msgid "Cannot configure LightDM"
-msgstr ""
+msgstr "فشل ضبط LightDM"
 
 #: src/modules/displaymanager/main.py:593
 msgid "No LightDM greeter installed."
-msgstr ""
+msgstr "لم يتم تصيب LightDM"
 
 #: src/modules/displaymanager/main.py:624
 msgid "Cannot write SLIM configuration file"
-msgstr ""
+msgstr "فشلت كتابة ملف ضبط SLIM."
 
 #: src/modules/displaymanager/main.py:625
 msgid "SLIM config file {!s} does not exist"
-msgstr ""
+msgstr "ملف ضبط SLIM {!s} غير موجود"
 
 #: src/modules/displaymanager/main.py:740
 #: src/modules/displaymanager/main.py:772
@@ -78,28 +82,28 @@ msgstr ""
 
 #: src/modules/umount/main.py:40
 msgid "Unmount file systems."
-msgstr ""
+msgstr "الغاء تحميل ملف النظام"
 
 #: src/modules/dummypython/main.py:44
 msgid "Dummy python job."
-msgstr ""
+msgstr "عملية بايثون دميه"
 
 #: src/modules/dummypython/main.py:97
 msgid "Dummy python step {}"
-msgstr ""
+msgstr "عملية  دميه خطوه بايثون {}"
 
 #: src/modules/machineid/main.py:35
 msgid "Generate machine-id."
-msgstr ""
+msgstr "توليد معرف الجهاز"
 
 #: src/modules/packages/main.py:62
 #, python-format
 msgid "Processing packages (%(count)d / %(total)d)"
-msgstr ""
+msgstr "جاري تحميل الحزم (%(count)d/%(total)d)"
 
 #: src/modules/packages/main.py:64 src/modules/packages/main.py:74
 msgid "Install packages."
-msgstr ""
+msgstr "تثبيت الحزم"
 
 #: src/modules/packages/main.py:67
 #, python-format
