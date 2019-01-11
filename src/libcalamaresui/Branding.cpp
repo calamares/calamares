@@ -21,9 +21,10 @@
 
 #include "GlobalStorage.h"
 #include "utils/CalamaresUtils.h"
-#include "utils/Logger.h"
-#include "utils/YamlUtils.h"
 #include "utils/ImageRegistry.h"
+#include "utils/Logger.h"
+#include "utils/NamedEnum.h"
+#include "utils/YamlUtils.h"
 
 #include <QDir>
 #include <QFile>
@@ -107,11 +108,10 @@ Branding::Branding( const QString& brandingFilePath,
                 bail( "The branding component name should match the name of the "
                       "component directory." );
 
+            initSimpleSettings( doc );
+
             if ( !doc[ "strings" ].IsMap() )
                 bail( "Syntax error in strings map." );
-
-            m_welcomeStyleCalamares = doc[ "welcomeStyleCalamares" ].as< bool >( false );
-            m_welcomeExpandingLogo = doc[ "welcomeExpandingLogo" ].as< bool >( true );
 
             QVariantMap strings =
                 CalamaresUtils::yamlMapToVariant( doc[ "strings" ] ).toMap();
@@ -285,6 +285,25 @@ Branding::setGlobals( GlobalStorage* globalStorage ) const
     for ( const QString& key : s_stringEntryStrings )
         brandingMap.insert( key, m_strings.value( key ) );
     globalStorage->insert( "branding", brandingMap );
+}
+
+
+void
+Branding::initSimpleSettings( const YAML::Node& doc )
+{
+    static const NamedEnumTable< WindowExpansion > weNames{
+        { QStringLiteral( "normal" ), WindowExpansion::Normal },
+        { QStringLiteral( "fullscreen" ), WindowExpansion::Fullscreen },
+        { QStringLiteral( "noexpand" ), WindowExpansion::Fixed }
+    };
+
+    bool ok = false;
+
+    m_welcomeStyleCalamares = doc[ "welcomeStyleCalamares" ].as< bool >( false );
+    m_welcomeExpandingLogo = doc[ "welcomeExpandingLogo" ].as< bool >( true );
+    m_windowExpansion = weNames.find( QString::fromStdString( doc[ "windowExpanding" ].as< std::string >() ), ok );
+    if ( !ok )
+        cWarning() << "Branding module-setting *windowExpanding* interpreted as" << weNames.find( m_windowExpansion, ok );
 }
 
 

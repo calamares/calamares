@@ -27,6 +27,10 @@
 #include <QStringList>
 #include <QMap>
 
+namespace YAML
+{
+    class Node;
+}
 
 namespace Calamares
 {
@@ -63,7 +67,7 @@ public:
         ProductIcon,
         ProductWelcome
     };
-    
+
     enum StyleEntry : short
     {
         SidebarBackground,
@@ -71,6 +75,9 @@ public:
         SidebarTextSelect,
         SidebarTextHighlight
     };
+
+    /** @brief Setting for how much the main window may expand. */
+    enum class WindowExpansion { Normal, Fullscreen, Fixed } ;
 
     static Branding* instance();
 
@@ -115,8 +122,12 @@ private:
     QString m_slideshowPath;
     QString m_translationsPathPrefix;
 
+    /** @brief Initialize the simple settings below */
+    void initSimpleSettings( const YAML::Node& doc );
+
     bool m_welcomeStyleCalamares;
     bool m_welcomeExpandingLogo;
+    WindowExpansion m_windowExpansion;
 };
 
 template<typename U> inline QString operator*(U e) { return Branding::instance()->string( e ); }
