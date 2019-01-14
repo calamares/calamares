@@ -75,7 +75,7 @@ public:
         for( const auto suffix : table.table )
             if ( s.endsWith( suffix.first ) )
             {
-                m_value = s.left( s.length() - suffix.first.length() + 1 ).toInt();
+                m_value = s.left( s.length() - suffix.first.length() ).toInt();
                 m_unit = suffix.second;
                 break;
             }
