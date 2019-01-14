@@ -336,9 +336,9 @@ Branding::initSimpleSettings( const YAML::Node& doc )
             m_windowHeight = WindowDimension( dimensionNames, l[1] );
         }
     }
-    if ( !m_windowWidth.isValid() || m_windowWidth.value() < CalamaresUtils::windowMinimumWidth )
+    if ( !m_windowWidth.isValid() )
         m_windowWidth = WindowDimension( CalamaresUtils::windowPreferredWidth, WindowDimensionUnit::Pixies );
-    if ( !m_windowHeight.isValid() || m_windowHeight.value() < CalamaresUtils::windowMinimumHeight )
+    if ( !m_windowHeight.isValid() )
         m_windowHeight = WindowDimension( CalamaresUtils::windowPreferredHeight, WindowDimensionUnit::Pixies );
 }
 
