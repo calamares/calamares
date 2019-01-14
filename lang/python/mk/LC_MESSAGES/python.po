@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Abubakaragoub Y <Abubakaryagob@gmail.com>, 2018
+# Martin Ristovski <martinristovski@protonmail.com>, 2018
 # 
 #, fuzzy
 msgid ""
@@ -13,58 +13,58 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-05 11:34-0400\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
-"Last-Translator: Abubakaragoub Y <Abubakaryagob@gmail.com>, 2018\n"
-"Language-Team: Arabic (https://www.transifex.com/calamares/teams/20061/ar/)\n"
+"Last-Translator: Martin Ristovski <martinristovski@protonmail.com>, 2018\n"
+"Language-Team: Macedonian (https://www.transifex.com/calamares/teams/20061/mk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: ar\n"
-"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+"Language: mk\n"
+"Plural-Forms: nplurals=2; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : 1;\n"
 
 #: src/modules/displaymanager/main.py:380
 msgid "Cannot write KDM configuration file"
-msgstr "فشلت كتابة ملف ضبط KDM."
+msgstr "KDM конфигурациониот фајл не може да се создаде"
 
 #: src/modules/displaymanager/main.py:381
 msgid "KDM config file {!s} does not exist"
-msgstr "ملف ضبط KDM {!s} غير موجود"
+msgstr "KDM конфигурациониот фајл {!s} не постои"
 
 #: src/modules/displaymanager/main.py:442
 msgid "Cannot write LXDM configuration file"
-msgstr "فشلت كتابة ملف ضبط LXDM."
+msgstr "LXDM конфигурациониот фајл не може да се создаде"
 
 #: src/modules/displaymanager/main.py:443
 msgid "LXDM config file {!s} does not exist"
-msgstr "ملف ضبط LXDM {!s} غير موجود"
+msgstr "LXDM конфигурациониот фајл {!s} не постои"
 
 #: src/modules/displaymanager/main.py:517
 msgid "Cannot write LightDM configuration file"
-msgstr "فشلت كتابة ملف ضبط LightDM."
+msgstr "LightDM конфигурациониот фајл не може да се создаде"
 
 #: src/modules/displaymanager/main.py:518
 msgid "LightDM config file {!s} does not exist"
-msgstr "ملف ضبط LightDM {!s} غير موجود"
+msgstr "LightDM конфигурациониот фајл {!s} не постои"
 
 #: src/modules/displaymanager/main.py:592
 msgid "Cannot configure LightDM"
-msgstr "فشل ضبط LightDM"
+msgstr "Не може да се подеси LightDM"
 
 #: src/modules/displaymanager/main.py:593
 msgid "No LightDM greeter installed."
-msgstr "لم يتم تصيب LightDM"
+msgstr "Нема инсталирано LightDM поздравувач"
 
 #: src/modules/displaymanager/main.py:624
 msgid "Cannot write SLIM configuration file"
-msgstr "فشلت كتابة ملف ضبط SLIM."
+msgstr "SLIM конфигурациониот фајл не може да се создаде"
 
 #: src/modules/displaymanager/main.py:625
 msgid "SLIM config file {!s} does not exist"
-msgstr "ملف ضبط SLIM {!s} غير موجود"
+msgstr "SLIM конфигурациониот фајл {!s} не постои"
 
 #: src/modules/displaymanager/main.py:740
 #: src/modules/displaymanager/main.py:772
 msgid "No display managers selected for the displaymanager module."
-msgstr ""
+msgstr "Немате избрано дисплеј менаџер за displaymanager модулот."
 
 #: src/modules/displaymanager/main.py:741
 msgid ""
@@ -82,28 +82,28 @@ msgstr ""
 
 #: src/modules/umount/main.py:40
 msgid "Unmount file systems."
-msgstr "الغاء تحميل ملف النظام"
+msgstr ""
 
 #: src/modules/dummypython/main.py:44
 msgid "Dummy python job."
-msgstr "عملية بايثون دميه"
+msgstr ""
 
 #: src/modules/dummypython/main.py:97
 msgid "Dummy python step {}"
-msgstr "عملية  دميه خطوه بايثون {}"
+msgstr ""
 
 #: src/modules/machineid/main.py:35
 msgid "Generate machine-id."
-msgstr "توليد معرف الجهاز"
+msgstr ""
 
 #: src/modules/packages/main.py:62
 #, python-format
 msgid "Processing packages (%(count)d / %(total)d)"
-msgstr "جاري تحميل الحزم (%(count)d/%(total)d)"
+msgstr ""
 
 #: src/modules/packages/main.py:64 src/modules/packages/main.py:74
 msgid "Install packages."
-msgstr "تثبيت الحزم"
+msgstr ""
 
 #: src/modules/packages/main.py:67
 #, python-format
@@ -111,10 +111,6 @@ msgid "Installing one package."
 msgid_plural "Installing %(num)d packages."
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
 
 #: src/modules/packages/main.py:70
 #, python-format
@@ -122,7 +118,3 @@ msgid "Removing one package."
 msgid_plural "Removing %(num)d packages."
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""

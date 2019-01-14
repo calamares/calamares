@@ -75,7 +75,7 @@ set( CALAMARES_DESCRIPTION_SUMMARY
 
 set( CALAMARES_VERSION_MAJOR 3 )
 set( CALAMARES_VERSION_MINOR 2 )
-set( CALAMARES_VERSION_PATCH 3 )
+set( CALAMARES_VERSION_PATCH 4 )
 set( CALAMARES_VERSION_RC 1 )
 
 
@@ -103,17 +103,17 @@ set( CALAMARES_VERSION_RC 1 )
 #       checks for new languages and misspelled ones are done (that is,
 #       copy these four lines to four backup lines, add "p", and then update
 #       the original four lines with the current translations).
-set( _tx_complete ca zh_TW hr cs_CZ da et fr id it_IT lt pl pt_PT es_MX tr_TR )
-set( _tx_good sq de pt_BR zh_CN ja ro es sk )
-set( _tx_ok hu ru he nl bg uk ast is ko ar sv el gl en_GB
-            th fi_FI hi eu nb sr sl sr@latin mr es_PR kn kk be )
-set( _tx_bad fr_CH gu lo fa ur uz eo )
-
+set( _tx_complete zh_TW tr_TR sk pt_PT pt_BR pl lt ja id hr gl fr
+    et de da cs_CZ ca )
+set( _tx_good es sq es_MX zh_CN it_IT he en_GB ru ro hi bg hu )
+set( _tx_ok uk nl ast ko is ar sv el th fi_FI eu sr nb sl
+    sr@latin mr es_PR )
+set( _tx_bad eo kk kn uz ur mk lo gu fr_CH fa be )
 
 ### Required versions
 #
 # See DEPENDENCIES section below.
-set( QT_VERSION 5.7.0 )
+set( QT_VERSION 5.10.0 )
 set( YAMLCPP_VERSION 0.5.1 )
 set( ECM_VERSION 5.18 )
 set( PYTHONLIBS_VERSION 3.3 )
@@ -152,7 +152,7 @@ set( CMAKE_C_STANDARD_REQUIRED ON )
 #    location database.
 #  - DEBUG_FILESYSTEMS does extra logging and checking when looking at
 #    partition configuration. Lists known KPMCore FS types.
-# 
+#
 # The flags listed here are enabled in Debug builds. By default, none
 # are **actually** listed, because they're for such specific scenarios.
 set( _enable_debug_flags
@@ -316,12 +316,14 @@ endif()
 #
 set( prev_tx ${p_tx_complete} ${p_tx_good} ${p_tx_ok} ${p_tx_bad} )
 set( curr_tx ${_tx_complete} ${_tx_good} ${_tx_ok} ${_tx_bad} )
+set( tx_errors OFF )
 if ( prev_tx )
     # Gone in new list
     foreach( l ${prev_tx} )
         list( FIND curr_tx ${l} p_l )
         if( p_l EQUAL -1 )
             message(WARNING "Language ${l} was present in previous translations and is now absent.")
+            set( tx_errors ON )
         endif()
     endforeach()
 
@@ -330,10 +332,12 @@ if ( prev_tx )
         list( FIND prev_tx ${l} p_l )
         if( p_l EQUAL -1 )
             message(WARNING "Language ${l} is new.")
+            set( tx_errors ON )
         endif()
         set( p_l "lang/calamares_${l}.ts" )
         if( NOT EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/${p_l} )
             message(WARNING "Language ${l} has no .ts file yet.")
+            set( tx_errors ON )
         endif()
     endforeach()
 
@@ -342,6 +346,9 @@ if ( prev_tx )
 endif()
 unset( prev_tx )
 unset( curr_tx )
+if( tx_errors )
+    message( FATAL_ERROR "Translation warnings, see above." )
+endif()
 
 set( CALAMARES_TRANSLATION_LANGUAGES en ${_tx_complete} ${_tx_good} ${_tx_ok} )
 list( SORT CALAMARES_TRANSLATION_LANGUAGES )

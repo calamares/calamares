@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Dirk Hein <bankman@mailbox.org>, 2017
+# Adriaan de Groot <groot@kde.org>, 2017
 # Christian Spaan, 2018
 # Andreas Eitel, 2018
 # 
@@ -115,11 +115,11 @@ msgstr "Pakete installieren "
 msgid "Installing one package."
 msgid_plural "Installing %(num)d packages."
 msgstr[0] "Installiere ein Paket"
-msgstr[1] "Installiere %(num)dPakete."
+msgstr[1] "Installiere %(num)d Pakete."
 
 #: src/modules/packages/main.py:70
 #, python-format
 msgid "Removing one package."
 msgid_plural "Removing %(num)d packages."
 msgstr[0] "Entferne ein Paket"
-msgstr[1] "Entferne %(num)dPakete."
+msgstr[1] "Entferne %(num)d Pakete."

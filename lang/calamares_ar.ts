@@ -73,7 +73,7 @@
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="44"/>
         <source>Modules</source>
-        <translation>الوحدا</translation>
+        <translation>الوحدات</translation>
     </message>
     <message>
         <location filename="../src/libcalamaresui/utils/DebugWindow.ui" line="57"/>
@@ -2834,7 +2834,7 @@ Output:
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="290"/>
         <source>%1 support</source>
-        <translation>1%  الدعم</translation>
+        <translation>%1  الدعم</translation>
     </message>
 </context>
 <context>

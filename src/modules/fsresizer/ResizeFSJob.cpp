@@ -39,46 +39,32 @@
 
 #include "modules/partition/core/PartitionIterator.h"
 
-ResizeFSJob::RelativeSize::RelativeSize()
-    : m_value( 0 )
-    , m_unit( None )
+
+static const NamedEnumTable<ResizeFSJob::RelativeUnit>&
+unitSuffixes()
 {
+    using Unit = ResizeFSJob::RelativeUnit;
+
+    static const NamedEnumTable<Unit> names{
+        { QStringLiteral( "%" ), Unit::Percent },
+        { QStringLiteral( "MiB" ), Unit::Absolute }
+    };
+
+    return names;
 }
-
-
-template<int N>
-void matchUnitSuffix(
-    const QString& s,
-    const char ( &suffix )[N],
-    ResizeFSJob::RelativeSize::Unit matchedUnit,
-    int& value,
-    ResizeFSJob::RelativeSize::Unit& unit
-)
-{
-    if ( s.endsWith( suffix ) )
-    {
-        value = s.left( s.length() - N + 1 ).toInt();
-        unit = matchedUnit;
-    }
-}
-
 
 ResizeFSJob::RelativeSize::RelativeSize( const QString& s )
-    : m_value( 0 )
-    , m_unit( None )
+    : NamedSuffix( unitSuffixes(), s )
 {
-    matchUnitSuffix( s, "%", Percent, m_value, m_unit );
-    matchUnitSuffix( s, "MiB", Absolute, m_value, m_unit );
-
-    if ( ( unit() == Percent ) && ( value() > 100 ) )
+    if ( ( unit() == RelativeUnit::Percent ) && ( value() > 100 ) )
     {
         cDebug() << "Percent value" << value() << "is not valid.";
         m_value = 0;
-        m_unit = None;
+        m_unit = RelativeUnit::None;
     }
 
     if ( !m_value )
-        m_unit = None;
+        m_unit = RelativeUnit::None;
 }
 
 qint64
@@ -91,11 +77,11 @@ ResizeFSJob::RelativeSize::apply( qint64 totalSectors, qint64 sectorSize )
 
     switch ( m_unit )
     {
-    case None:
+    case unit_t::None:
         return -1;
-    case Absolute:
+    case unit_t::Absolute:
         return CalamaresUtils::MiBtoBytes( value() ) / sectorSize;
-    case Percent:
+    case unit_t::Percent:
         if ( value() == 100 )
             return totalSectors;  // Common-case, avoid futzing around
         else

@@ -5,6 +5,7 @@
  *   Copyright 2018, Adriaan de Groot <groot@kde.org>
  *   Copyright 2018, Andrius Štikonas <andrius@stikonas.eu>
  *   Copyright 2018, Caio Jordão Carvalho <caiojcarvalho@gmail.com>
+ *   Copyright 2019, Collabora Ltd
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -608,4 +609,16 @@ PartitionPage::getCurrentUsedMountpoints()
     }
 
     return mountPoints;
+}
+
+int
+PartitionPage::selectedDeviceIndex()
+{
+    return m_ui->deviceComboBox->currentIndex();
+}
+
+void
+PartitionPage::selectDeviceByIndex ( int index )
+{
+        m_ui->deviceComboBox->setCurrentIndex( index );
 }
