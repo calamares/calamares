@@ -23,10 +23,16 @@
 #include "UiDllMacro.h"
 #include "Typedefs.h"
 
+#include "utils/NamedSuffix.h"
+
 #include <QObject>
 #include <QStringList>
 #include <QMap>
 
+namespace YAML
+{
+    class Node;
+}
 
 namespace Calamares
 {
@@ -63,7 +69,7 @@ public:
         ProductIcon,
         ProductWelcome
     };
-    
+
     enum StyleEntry : short
     {
         SidebarBackground,
@@ -71,6 +77,21 @@ public:
         SidebarTextSelect,
         SidebarTextHighlight
     };
+
+    /** @brief Setting for how much the main window may expand. */
+    enum class WindowExpansion { Normal, Fullscreen, Fixed } ;
+    /** @brief Setting for the main window size.
+     *
+     * The units are pixels (Pixies) or something-based-on-fontsize (Fonties), which
+     * we suffix as "em", e.g. "600px" or "32em".
+     */
+    enum class WindowDimensionUnit { None, Pixies, Fonties };
+    class WindowDimension : public NamedSuffix<WindowDimensionUnit, WindowDimensionUnit::None>
+    {
+    public:
+        using NamedSuffix::NamedSuffix;
+        bool isValid() const;
+    } ;
 
     static Branding* instance();
 
@@ -90,6 +111,12 @@ public:
 
     bool welcomeStyleCalamares() const { return m_welcomeStyleCalamares; }
     bool welcomeExpandingLogo() const { return m_welcomeExpandingLogo; }
+    bool windowMaximize() const { return m_windowExpansion == WindowExpansion::Fullscreen; }
+    bool windowExpands() const { return m_windowExpansion != WindowExpansion::Fixed; }
+    QPair< WindowDimension, WindowDimension > windowSize() const
+    {
+        return QPair< WindowDimension, WindowDimension >( m_windowWidth, m_windowHeight );
+    }
 
     /**
      * Creates a map called "branding" in the global storage, and inserts an
@@ -115,8 +142,15 @@ private:
     QString m_slideshowPath;
     QString m_translationsPathPrefix;
 
+    /** @brief Initialize the simple settings below */
+    void initSimpleSettings( const YAML::Node& doc );
+
     bool m_welcomeStyleCalamares;
     bool m_welcomeExpandingLogo;
+    WindowExpansion m_windowExpansion;
+
+    WindowDimension m_windowHeight, m_windowWidth;
+
 };
 
 template<typename U> inline QString operator*(U e) { return Branding::instance()->string( e ); }

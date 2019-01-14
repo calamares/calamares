@@ -36,6 +36,7 @@
 #include "CalamaresVersion.h"
 #include "utils/CalamaresUtilsGui.h"
 #include "utils/Logger.h"
+#include "utils/NamedEnum.h"
 #include "utils/Retranslator.h"
 #include "widgets/WaitingWidget.h"
 #include "GlobalStorage.h"
@@ -479,25 +480,17 @@ PartitionViewStep::onLeave()
 static PartitionActions::Choices::SwapChoice
 nameToChoice( QString name, bool& ok )
 {
-    ok = false;
-    name = name.toLower();
-
     using namespace PartitionActions::Choices;
 
-    // Each return here first sets ok to true, returns enum value
-    if ( name == QStringLiteral( "none" ) )
-        return( ok=true, SwapChoice::NoSwap );
-    else if ( name == QStringLiteral( "small" ) )
-        return( ok=true, SwapChoice::SmallSwap);
-    else if ( name == QStringLiteral( "suspend" ) )
-        return( ok=true, SwapChoice::FullSwap );
-    else if ( name == QStringLiteral( "reuse" ) )
-        return( ok=true, SwapChoice::ReuseSwap );
-    else if ( name == QStringLiteral( "file" ) )
-        return( ok=true, SwapChoice::SwapFile );
+    static const NamedEnumTable<SwapChoice> names {
+        { QStringLiteral( "none" ), SwapChoice::NoSwap },
+        { QStringLiteral( "small" ), SwapChoice::SmallSwap },
+        { QStringLiteral( "suspend" ), SwapChoice::FullSwap },
+        { QStringLiteral( "reuse" ), SwapChoice::ReuseSwap },
+        { QStringLiteral( "file" ), SwapChoice::SwapFile }
+    };
 
-    ok = false;
-    return SwapChoice::NoSwap;
+    return names.find( name, ok );
 }
 
 /** @brief translate @p defaultFS into a recognized name

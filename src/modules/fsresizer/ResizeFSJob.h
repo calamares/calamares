@@ -24,7 +24,8 @@
 
 #include <CppJob.h>
 
-#include <utils/PluginFactory.h>
+#include "utils/NamedSuffix.h"
+#include "utils/PluginFactory.h"
 
 #include <PluginDllMacro.h>
 
@@ -37,31 +38,28 @@ class PLUGINDLLEXPORT ResizeFSJob : public Calamares::CppJob
     Q_OBJECT
 
 public:
+    enum class RelativeUnit
+    {
+        None,
+        Percent,
+        Absolute
+    };
+
     /** @brief Size expressions
      *
      * Sizes can be specified in MiB or percent (of the device they
      * are on). This class handles parsing of such strings from the
      * config file.
      */
-    class RelativeSize
+    class RelativeSize : public NamedSuffix<RelativeUnit, RelativeUnit::None>
     {
     public:
-        RelativeSize();
+        RelativeSize() : NamedSuffix() { };
         RelativeSize( const QString& );
-
-        enum Unit
-        {
-            None,
-            Percent,
-            Absolute
-        };
-
-        int value() const { return m_value; }
-        Unit unit() const { return m_unit; }
 
         bool isValid() const
         {
-            return ( unit() != None ) && ( value() > 0 );
+            return ( unit() != RelativeUnit::None ) && ( value() > 0 );
         }
 
         /** @brief Apply this size to the number of sectors @p totalSectors .
@@ -80,10 +78,6 @@ public:
          * Equivalent to apply( d->totalLogical(), d->logicalSize() )
          */
         qint64 apply( Device* d );
-
-    private:
-        int m_value;
-        Unit m_unit;
     } ;
 
     explicit ResizeFSJob( QObject* parent = nullptr );
