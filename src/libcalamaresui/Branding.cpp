@@ -21,6 +21,7 @@
 
 #include "GlobalStorage.h"
 #include "utils/CalamaresUtils.h"
+#include "utils/CalamaresUtilsGui.h"
 #include "utils/ImageRegistry.h"
 #include "utils/Logger.h"
 #include "utils/NamedEnum.h"
@@ -77,6 +78,17 @@ const QStringList Branding::s_styleEntryStrings =
     "sidebarTextHighlight"
 };
 
+static const NamedEnumTable<Branding::WindowDimensionUnit>&
+windowDimensions()
+{
+    using Unit = Branding::WindowDimensionUnit;
+    static const NamedEnumTable<Unit> names{
+        {"px", Unit::Pixies},
+        {"em", Unit::Fonties}
+    };
+
+    return names;
+}
 
 Branding::Branding( const QString& brandingFilePath,
                     QObject* parent )
@@ -287,23 +299,47 @@ Branding::setGlobals( GlobalStorage* globalStorage ) const
     globalStorage->insert( "branding", brandingMap );
 }
 
+bool
+Branding::WindowDimension::isValid() const
+{
+    return ( unit() != none ) && ( value() > 0 );
+}
 
 void
 Branding::initSimpleSettings( const YAML::Node& doc )
 {
-    static const NamedEnumTable< WindowExpansion > weNames{
+    static const NamedEnumTable< WindowExpansion > expansionNames{
         { QStringLiteral( "normal" ), WindowExpansion::Normal },
         { QStringLiteral( "fullscreen" ), WindowExpansion::Fullscreen },
         { QStringLiteral( "noexpand" ), WindowExpansion::Fixed }
+    };
+    static const NamedEnumTable< WindowDimensionUnit > dimensionNames{
+        { QStringLiteral( "px" ), WindowDimensionUnit::Pixies },
+        { QStringLiteral( "em" ), WindowDimensionUnit::Fonties }
     };
 
     bool ok = false;
 
     m_welcomeStyleCalamares = doc[ "welcomeStyleCalamares" ].as< bool >( false );
     m_welcomeExpandingLogo = doc[ "welcomeExpandingLogo" ].as< bool >( true );
-    m_windowExpansion = weNames.find( QString::fromStdString( doc[ "windowExpanding" ].as< std::string >() ), ok );
+    m_windowExpansion = expansionNames.find( QString::fromStdString( doc[ "windowExpanding" ].as< std::string >() ), ok );
     if ( !ok )
-        cWarning() << "Branding module-setting *windowExpanding* interpreted as" << weNames.find( m_windowExpansion, ok );
+        cWarning() << "Branding module-setting *windowExpanding* interpreted as" << expansionNames.find( m_windowExpansion, ok );
+
+    QString windowSize = QString::fromStdString( doc[ "windowSize" ].as< std::string >() );
+    if ( !windowSize.isEmpty() )
+    {
+        auto l = windowSize.split( ',' );
+        if ( l.count() == 2 )
+        {
+            m_windowWidth = WindowDimension( dimensionNames, l[0] );
+            m_windowHeight = WindowDimension( dimensionNames, l[1] );
+        }
+    }
+    if ( !m_windowWidth.isValid() || m_windowWidth.value() < CalamaresUtils::windowMinimumWidth )
+        m_windowWidth = WindowDimension( CalamaresUtils::windowPreferredWidth, WindowDimensionUnit::Pixies );
+    if ( !m_windowHeight.isValid() || m_windowHeight.value() < CalamaresUtils::windowMinimumHeight )
+        m_windowHeight = WindowDimension( CalamaresUtils::windowPreferredHeight, WindowDimensionUnit::Pixies );
 }
 
 
