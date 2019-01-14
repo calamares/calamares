@@ -27,7 +27,8 @@ This release contains contributions from (alphabetically by first name):
    configuration files).
  * The *branding* file now contains settings that control the size
    and resize behavior of Calamares. See the branding file for
-   more documentation.
+   more documentation. In particular, the setting *windowExpanding*
+   can be set to *normal*, *fullscreen* or *noexpand*.
 
 ## Modules ##
 
