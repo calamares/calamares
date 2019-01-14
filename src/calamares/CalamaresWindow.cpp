@@ -147,7 +147,8 @@ CalamaresWindow::CalamaresWindow( QWidget* parent )
     CalamaresUtils::unmarginLayout( mainLayout );
 
     m_viewManager = Calamares::ViewManager::instance( this );
-    connect( m_viewManager, &Calamares::ViewManager::enlarge, this, &CalamaresWindow::enlarge );
+    if ( branding->windowExpands() )
+        connect( m_viewManager, &Calamares::ViewManager::enlarge, this, &CalamaresWindow::enlarge );
 
     mainLayout->addWidget( m_viewManager->centralWidget() );
 }

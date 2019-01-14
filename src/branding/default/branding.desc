@@ -17,7 +17,7 @@ welcomeExpandingLogo:   true
 # Size and expansion policy for Calamares.
 #  - "normal" or unset, expand as needed, use *windowSize*
 #  - "fullscreen", start as large as possible, ignore *windowSize*
-#  - "noexpand", never expand, use *windowSize*
+#  - "noexpand", don't expand automatically, use *windowSize*
 windowExpanding:    normal
 
 # Size of Calamares window, expressed as w,h. Both w and h
