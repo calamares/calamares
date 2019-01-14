@@ -305,6 +305,16 @@ Branding::WindowDimension::isValid() const
     return ( unit() != none ) && ( value() > 0 );
 }
 
+
+/// @brief Guard against cases where the @p key doesn't exist in @p doc
+static inline QString
+getString( const YAML::Node& doc, const char* key )
+{
+    if ( doc[key] )
+        return QString::fromStdString( doc[key].as< std::string >() );
+    return QString();
+}
+
 void
 Branding::initSimpleSettings( const YAML::Node& doc )
 {
@@ -322,11 +332,11 @@ Branding::initSimpleSettings( const YAML::Node& doc )
 
     m_welcomeStyleCalamares = doc[ "welcomeStyleCalamares" ].as< bool >( false );
     m_welcomeExpandingLogo = doc[ "welcomeExpandingLogo" ].as< bool >( true );
-    m_windowExpansion = expansionNames.find( QString::fromStdString( doc[ "windowExpanding" ].as< std::string >() ), ok );
+    m_windowExpansion = expansionNames.find( getString( doc, "windowExpanding" ), ok );
     if ( !ok )
         cWarning() << "Branding module-setting *windowExpanding* interpreted as" << expansionNames.find( m_windowExpansion, ok );
 
-    QString windowSize = QString::fromStdString( doc[ "windowSize" ].as< std::string >() );
+    QString windowSize = getString( doc, "windowSize" );
     if ( !windowSize.isEmpty() )
     {
         auto l = windowSize.split( ',' );
