@@ -348,7 +348,13 @@ void
 CalamaresApplication::initViewSteps()
 {
     cDebug() << "STARTUP: loadModules for all modules done";
-    m_mainwindow->show();
+    if ( Calamares::Branding::instance()->windowMaximize() )
+    {
+        m_mainwindow->setWindowFlag( Qt::FramelessWindowHint );
+        m_mainwindow->showMaximized();
+    }
+    else
+        m_mainwindow->show();
     ProgressTreeModel* m = new ProgressTreeModel( nullptr );
     ProgressTreeView::instance()->setModel( m );
     cDebug() << "STARTUP: Window now visible and ProgressTreeView populated";
