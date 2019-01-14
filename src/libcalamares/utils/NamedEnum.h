@@ -40,7 +40,7 @@ struct NamedEnumTable
     using string_t = QString;
     using enum_t = T;
     using pair_t = std::pair< string_t, enum_t >;
-    using type = std::initializer_list< pair_t >;
+    using type = std::vector< pair_t >;
 
     type table;
 
@@ -51,7 +51,7 @@ struct NamedEnumTable
      *
      * static const NamedEnumTable<Colors> c{ {"red", Colors::Red } };
      */
-    NamedEnumTable( type v ) : table( v ) { /* static_assert( v.size() > 0 ); */ };
+    NamedEnumTable( const std::initializer_list< pair_t >& v ) : table( v ) { /* static_assert( v.size() > 0 ); */ };
 
     /** @brief Find a name @p s in the table.
      *
