@@ -46,8 +46,8 @@ unitSuffixes()
     using Unit = ResizeFSJob::RelativeUnit;
 
     static const NamedEnumTable<Unit> names{
-        { "%", Unit::Percent },
-        { "MiB", Unit::Absolute }
+        { QStringLiteral( "%" ), Unit::Percent },
+        { QStringLiteral( "MiB" ), Unit::Absolute }
     };
 
     return names;
