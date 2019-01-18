@@ -77,8 +77,6 @@ SwapChoice pickOne( const SwapChoiceSet& s )
 /**
  * @brief ChoicePage::ChoicePage is the default constructor. Called on startup as part of
  *      the module loading code path.
- * @param compactMode if true, the drive selector will be a combo box on top, otherwise it
- *      will show up as a list view.
  * @param parent the QWidget parent.
  */
 ChoicePage::ChoicePage( const SwapChoiceSet& swapChoices, QWidget* parent )
