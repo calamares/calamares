@@ -26,6 +26,8 @@
 
 #include "utils/CalamaresUtilsSystem.h"
 #include "utils/Units.h"
+#include "utils/NamedEnum.h"
+
 #include "JobQueue.h"
 #include "utils/Logger.h"
 
@@ -305,43 +307,31 @@ doReplacePartition( PartitionCoreModule* core,
 
 namespace Choices
 {
+static const NamedEnumTable<SwapChoice>&
+nameTable()
+{
+    static const NamedEnumTable<SwapChoice> names{
+        { QStringLiteral( "none" ), SwapChoice::NoSwap },
+        { QStringLiteral( "small" ), SwapChoice::SmallSwap },
+        { QStringLiteral( "suspend" ), SwapChoice::FullSwap },
+        { QStringLiteral( "reuse" ), SwapChoice::ReuseSwap },
+        { QStringLiteral( "file" ), SwapChoice::SwapFile }
+    };
+
+    return names;
+}
 
 SwapChoice
 nameToChoice( QString name, bool& ok )
 {
-    ok = false;
-    name = name.toLower();
-
-    // Each return here first sets ok to true, returns enum value
-    if ( name == QStringLiteral( "none" ) )
-        return( ok=true, SwapChoice::NoSwap );
-    else if ( name == QStringLiteral( "small" ) )
-        return( ok=true, SwapChoice::SmallSwap);
-    else if ( name == QStringLiteral( "suspend" ) )
-        return( ok=true, SwapChoice::FullSwap );
-    else if ( name == QStringLiteral( "reuse" ) )
-        return( ok=true, SwapChoice::ReuseSwap );
-    else if ( name == QStringLiteral( "file" ) )
-        return( ok=true, SwapChoice::SwapFile );
-
-    ok = false;
-    return SwapChoice::NoSwap;
+    return nameTable().find( name, ok );
 }
 
 QString
 choiceToName( SwapChoice c )
 {
-    switch ( c )
-    {
-        case SwapChoice::NoSwap: return QStringLiteral( "none" );
-        case SwapChoice::SmallSwap: return QStringLiteral( "small" );
-        case SwapChoice::FullSwap: return QStringLiteral( "suspend" );
-        case SwapChoice::ReuseSwap: return QStringLiteral( "reuse" );
-        case SwapChoice::SwapFile: return QStringLiteral( "file" );
-    }
-
-    cWarning() << "Unknown SwapChoice" << c << "treated as none";
-    return QStringLiteral( "none" );
+    bool ok = false;
+    return nameTable().find( c, ok );
 }
 
 }  // namespace Choices
