@@ -66,12 +66,22 @@
 
 using PartitionActions::Choices::SwapChoice;
 
+/** @brief Given a set of swap choices, return a sensible value from it.
+ *
+ * "Sensible" here means: if there is one value, use it; otherwise, use
+ * NoSwap if there are no choices, or if NoSwap is one of the choices, in the set.
+ * If that's not possible, any value from the set.
+ */
 SwapChoice pickOne( const SwapChoiceSet& s )
 {
+    if ( s.count() == 0 )
+        return SwapChoice::NoSwap;
     if ( s.count() == 1 )
-        for ( auto i = s.begin(); i != s.end(); ++i )
-            return *i;  // That's the only element
-    return SwapChoice::NoSwap;
+        return *( s.begin() );
+    if ( s.contains( SwapChoice::NoSwap ) )
+        return SwapChoice::NoSwap;
+    // Here, count > 1 but NoSwap is not a member.
+    return *( s.begin() );
 }
 
 /**
@@ -102,12 +112,10 @@ ChoicePage::ChoicePage( const SwapChoiceSet& swapChoices, QWidget* parent )
 {
     setupUi( this );
 
-    m_defaultFsType = Calamares::JobQueue::instance()->
-                        globalStorage()->
-                        value( "defaultFileSystemType" ).toString();
-    m_enableEncryptionWidget = Calamares::JobQueue::instance()->
-                               globalStorage()->
-                               value( "enableLuksAutomatedPartitioning" ).toBool();
+    auto gs = Calamares::JobQueue::instance()->globalStorage();
+
+    m_defaultFsType = gs->value( "defaultFileSystemType" ).toString();
+    m_enableEncryptionWidget = gs->value( "enableLuksAutomatedPartitioning" ).toBool();
     if ( FileSystem::typeForName( m_defaultFsType ) == FileSystem::Unknown )
         m_defaultFsType = "ext4";
 
@@ -149,7 +157,7 @@ ChoicePage::ChoicePage( const SwapChoiceSet& swapChoices, QWidget* parent )
     m_previewAfterFrame->hide();
     m_encryptWidget->hide();
     m_reuseHomeCheckBox->hide();
-    Calamares::JobQueue::instance()->globalStorage()->insert( "reuseHome", false );
+    gs->insert( "reuseHome", false );
 }
 
 
