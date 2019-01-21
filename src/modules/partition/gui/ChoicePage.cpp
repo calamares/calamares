@@ -201,15 +201,6 @@ ChoicePage::init( PartitionCoreModule* core )
  * No texts are set -- that happens later by the translator functions.
  */
 static inline QComboBox*
-createCombo( std::initializer_list< SwapChoice > l )
-{
-    QComboBox* box = new QComboBox;
-    for ( SwapChoice c : l )
-        box->addItem( QString(), c );
-    return box;
-}
-
-static inline QComboBox*
 createCombo( const QSet< SwapChoice >& s )
 {
     QComboBox* box = new QComboBox;
