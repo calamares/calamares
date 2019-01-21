@@ -276,10 +276,6 @@ ChoicePage::setupChoices()
     m_itemsLayout->addWidget( m_eraseButton );
 
     m_somethingElseButton = new PrettyRadioButton;
-    CALAMARES_RETRANSLATE(
-        m_somethingElseButton->setText( tr( "<strong>Manual partitioning</strong><br/>"
-                                            "You can create or resize partitions yourself." ) );
-    )
     m_somethingElseButton->setIconSize( iconSize );
     m_somethingElseButton->setIcon( CalamaresUtils::defaultPixmap( CalamaresUtils::PartitionManual,
                                                                    CalamaresUtils::Original,
@@ -317,10 +313,13 @@ ChoicePage::setupChoices()
 
     connect( this, &ChoicePage::actionChosen,
              this, &ChoicePage::onActionChanged );
-    connect( m_eraseSwapChoices, QOverload<int>::of(&QComboBox::currentIndexChanged),
-             this, &ChoicePage::onActionChanged );
+    if ( m_eraseSwapChoices )
+        connect( m_eraseSwapChoices, QOverload<int>::of(&QComboBox::currentIndexChanged),
+                 this, &ChoicePage::onActionChanged );
 
     CALAMARES_RETRANSLATE(
+        m_somethingElseButton->setText( tr( "<strong>Manual partitioning</strong><br/>"
+                                            "You can create or resize partitions yourself." ) );
         updateSwapChoicesTr( m_eraseSwapChoices );
     )
 }
