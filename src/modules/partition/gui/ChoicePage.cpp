@@ -514,7 +514,7 @@ ChoicePage::applyActionChoice( ChoicePage::InstallChoice choice )
     case Manual:
         break;
     }
-    updateActionChoicePreview( currentChoice() );
+    updateActionChoicePreview( choice );
 }
 
 
