@@ -289,7 +289,7 @@ ChoicePage::setupChoices()
 
     m_itemsLayout->addStretch();
 
-    connect( m_grp, static_cast< void( QButtonGroup::* )( int, bool ) >( &QButtonGroup::buttonToggled ),
+    connect( m_grp, QOverload<int, bool>::of( &QButtonGroup::buttonToggled ),
              this, [ this ]( int id, bool checked )
     {
         if ( checked )  // An action was picked.
@@ -1206,7 +1206,7 @@ ChoicePage::createBootloaderComboBox( QWidget* parent )
     bcb->setModel( m_core->bootLoaderModel() );
 
     // When the chosen bootloader device changes, we update the choice in the PCM
-    connect( bcb, static_cast< void (QComboBox::*)(int) >( &QComboBox::currentIndexChanged ),
+    connect( bcb, QOverload<int>::of( &QComboBox::currentIndexChanged ),
              this, [this]( int newIndex )
     {
         QComboBox* bcb = qobject_cast< QComboBox* >( sender() );
