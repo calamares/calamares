@@ -3,7 +3,7 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
-# 3.2.4 (unreleased) #
+# 3.2.5 (unreleased) #
 
 This release contains contributions from (alphabetically by first name):
  - Alf Gaida
@@ -44,6 +44,21 @@ This release contains contributions from (alphabetically by first name):
  * The *packages* module now supports pre- and post-script options
    for all operations, not just during install (keep in mind that
    these run as three separate shells, though).
+
+
+# 3.2.4 (unreleased) #
+
+This release contains contributions from (alphabetically by first name):
+ - Collabora ltd.
+
+## Core ##
+
+There are no core changes in this release.
+
+## Modules ##
+
+ - *partition* There is new support for partitioning layout presets.
+   See `partitionc.conf` for documentation and details.
 
 
 # 3.2.3 (2019-01-09) #
