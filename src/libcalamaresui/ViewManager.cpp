@@ -95,6 +95,10 @@ ViewManager::ViewManager( QObject* parent )
              this, &ViewManager::onInstallationFailed );
     connect( JobQueue::instance(), &JobQueue::finished,
              this, &ViewManager::next );
+
+    if (Calamares::Settings::instance()->disableCancel())
+        m_quit->setVisible( false );
+
 }
 
 
@@ -282,9 +286,13 @@ ViewManager::updateButtonLabels()
     {
         m_quit->setText( tr( "&Done" ) );
         m_quit->setToolTip( tr( "The installation is complete. Close the installer." ) );
+        if (Calamares::Settings::instance()->disableCancel())
+            m_quit->setVisible( true );
     }
     else
     {
+        if (Calamares::Settings::instance()->disableCancel())
+            m_quit->setVisible( false );
         m_quit->setText( tr( "&Cancel" ) );
         m_quit->setToolTip( tr( "Cancel installation without changing the system." ) );
     }
