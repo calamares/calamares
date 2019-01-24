@@ -26,6 +26,8 @@
 
 #include "utils/CalamaresUtilsSystem.h"
 #include "utils/Units.h"
+#include "utils/NamedEnum.h"
+
 #include "JobQueue.h"
 #include "utils/Logger.h"
 
@@ -248,4 +250,35 @@ doReplacePartition( PartitionCoreModule* core,
     core->dumpQueue();
 }
 
+namespace Choices
+{
+static const NamedEnumTable<SwapChoice>&
+nameTable()
+{
+    static const NamedEnumTable<SwapChoice> names{
+        { QStringLiteral( "none" ), SwapChoice::NoSwap },
+        { QStringLiteral( "small" ), SwapChoice::SmallSwap },
+        { QStringLiteral( "suspend" ), SwapChoice::FullSwap },
+        { QStringLiteral( "reuse" ), SwapChoice::ReuseSwap },
+        { QStringLiteral( "file" ), SwapChoice::SwapFile }
+    };
+
+    return names;
 }
+
+SwapChoice
+nameToChoice( QString name, bool& ok )
+{
+    return nameTable().find( name, ok );
+}
+
+QString
+choiceToName( SwapChoice c )
+{
+    bool ok = false;
+    return nameTable().find( c, ok );
+}
+
+}  // namespace Choices
+
+}  // namespace PartitionActions

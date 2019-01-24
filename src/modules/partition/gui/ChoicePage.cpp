@@ -66,14 +66,30 @@
 
 using PartitionActions::Choices::SwapChoice;
 
+/** @brief Given a set of swap choices, return a sensible value from it.
+ *
+ * "Sensible" here means: if there is one value, use it; otherwise, use
+ * NoSwap if there are no choices, or if NoSwap is one of the choices, in the set.
+ * If that's not possible, any value from the set.
+ */
+SwapChoice pickOne( const SwapChoiceSet& s )
+{
+    if ( s.count() == 0 )
+        return SwapChoice::NoSwap;
+    if ( s.count() == 1 )
+        return *( s.begin() );
+    if ( s.contains( SwapChoice::NoSwap ) )
+        return SwapChoice::NoSwap;
+    // Here, count > 1 but NoSwap is not a member.
+    return *( s.begin() );
+}
+
 /**
  * @brief ChoicePage::ChoicePage is the default constructor. Called on startup as part of
  *      the module loading code path.
- * @param compactMode if true, the drive selector will be a combo box on top, otherwise it
- *      will show up as a list view.
  * @param parent the QWidget parent.
  */
-ChoicePage::ChoicePage( QWidget* parent )
+ChoicePage::ChoicePage( const SwapChoiceSet& swapChoices, QWidget* parent )
     : QWidget( parent )
     , m_nextEnabled( false )
     , m_core( nullptr )
@@ -85,8 +101,6 @@ ChoicePage::ChoicePage( QWidget* parent )
     , m_replaceButton( nullptr )
     , m_somethingElseButton( nullptr )
     , m_eraseSwapChoices( nullptr )
-    , m_replaceSwapChoices( nullptr )
-    , m_alongsideSwapChoices( nullptr )
     , m_deviceInfoWidget( nullptr )
     , m_beforePartitionBarsView( nullptr )
     , m_beforePartitionLabelsView( nullptr )
@@ -94,18 +108,17 @@ ChoicePage::ChoicePage( QWidget* parent )
     , m_lastSelectedDeviceIndex( -1 )
     , m_enableEncryptionWidget( true )
     , m_allowManualPartitioning( true )
+    , m_availableSwapChoices( swapChoices )
+    , m_eraseSwapChoice( pickOne( swapChoices ) )
 {
     setupUi( this );
 
-    m_defaultFsType = Calamares::JobQueue::instance()->
-                        globalStorage()->
-                        value( "defaultFileSystemType" ).toString();
-    m_enableEncryptionWidget = Calamares::JobQueue::instance()->
-                               globalStorage()->
-                               value( "enableLuksAutomatedPartitioning" ).toBool();
-    m_allowManualPartitioning = Calamares::JobQueue::instance()->
-                               globalStorage()->
-                               value( "allowManualPartitioning" ).toBool();
+    auto gs = Calamares::JobQueue::instance()->globalStorage();
+
+    m_defaultFsType = gs->value( "defaultFileSystemType" ).toString();
+    m_enableEncryptionWidget = gs->value( "enableLuksAutomatedPartitioning" ).toBool();
+    m_allowManualPartitioning = gs->value( "allowManualPartitioning" ).toBool();
+
     if ( FileSystem::typeForName( m_defaultFsType ) == FileSystem::Unknown )
         m_defaultFsType = "ext4";
 
@@ -147,7 +160,7 @@ ChoicePage::ChoicePage( QWidget* parent )
     m_previewAfterFrame->hide();
     m_encryptWidget->hide();
     m_reuseHomeCheckBox->hide();
-    Calamares::JobQueue::instance()->globalStorage()->insert( "reuseHome", false );
+    gs->insert( "reuseHome", false );
 }
 
 
@@ -191,11 +204,12 @@ ChoicePage::init( PartitionCoreModule* core )
  * No texts are set -- that happens later by the translator functions.
  */
 static inline QComboBox*
-createCombo( std::initializer_list< SwapChoice > l )
+createCombo( const QSet< SwapChoice >& s )
 {
     QComboBox* box = new QComboBox;
-    for ( SwapChoice c : l )
-        box->addItem( QString(), c );
+    for ( SwapChoice c : { SwapChoice::NoSwap, SwapChoice::SmallSwap, SwapChoice::FullSwap, SwapChoice::ReuseSwap, SwapChoice::SwapFile } )
+        if ( s.contains( c ) )
+            box->addItem( QString(), c );
     return box;
 }
 
@@ -254,26 +268,17 @@ ChoicePage::setupChoices()
 
     // Fill up swap options
     // .. TODO: only if enabled in the config
-    m_eraseSwapChoices = createCombo( { SwapChoice::NoSwap, SwapChoice::SmallSwap, SwapChoice::FullSwap } );
-    m_eraseButton->addOptionsComboBox( m_eraseSwapChoices );
-
-#if 0
-    m_replaceSwapChoices = createCombo( { SwapChoice::NoSwap, SwapChoice::ReuseSwap, SwapChoice::SmallSwap, SwapChoice::FullSwap } );
-    m_replaceButton->addOptionsComboBox( m_replaceSwapChoices );
-
-    m_alongsideSwapChoices = createCombo( { SwapChoice::NoSwap, SwapChoice::ReuseSwap, SwapChoice::SmallSwap, SwapChoice::FullSwap } );
-    m_alongsideButton->addOptionsComboBox( m_alongsideSwapChoices );
-#endif
+    if ( m_availableSwapChoices.count() > 1 )
+    {
+        m_eraseSwapChoices = createCombo( m_availableSwapChoices );
+        m_eraseButton->addOptionsComboBox( m_eraseSwapChoices );
+    }
 
     m_itemsLayout->addWidget( m_alongsideButton );
     m_itemsLayout->addWidget( m_replaceButton );
     m_itemsLayout->addWidget( m_eraseButton );
 
     m_somethingElseButton = new PrettyRadioButton;
-    CALAMARES_RETRANSLATE(
-        m_somethingElseButton->setText( tr( "<strong>Manual partitioning</strong><br/>"
-                                            "You can create or resize partitions yourself." ) );
-    )
     m_somethingElseButton->setIconSize( iconSize );
     m_somethingElseButton->setIcon( CalamaresUtils::defaultPixmap( CalamaresUtils::PartitionManual,
                                                                    CalamaresUtils::Original,
@@ -283,7 +288,7 @@ ChoicePage::setupChoices()
 
     m_itemsLayout->addStretch();
 
-    connect( m_grp, static_cast< void( QButtonGroup::* )( int, bool ) >( &QButtonGroup::buttonToggled ),
+    connect( m_grp, QOverload<int, bool>::of( &QButtonGroup::buttonToggled ),
              this, [ this ]( int id, bool checked )
     {
         if ( checked )  // An action was picked.
@@ -310,19 +315,15 @@ ChoicePage::setupChoices()
     m_rightLayout->setStretchFactor( m_previewAfterFrame, 0 );
 
     connect( this, &ChoicePage::actionChosen,
-             this, [=]
-    {
-        Device* currd = selectedDevice();
-        if ( currd )
-        {
-            applyActionChoice( currentChoice() );
-        }
-    } );
+             this, &ChoicePage::onActionChanged );
+    if ( m_eraseSwapChoices )
+        connect( m_eraseSwapChoices, QOverload<int>::of(&QComboBox::currentIndexChanged),
+                 this, &ChoicePage::onActionChanged );
 
     CALAMARES_RETRANSLATE(
+        m_somethingElseButton->setText( tr( "<strong>Manual partitioning</strong><br/>"
+                                            "You can create or resize partitions yourself." ) );
         updateSwapChoicesTr( m_eraseSwapChoices );
-        updateSwapChoicesTr( m_alongsideSwapChoices );
-        updateSwapChoicesTr( m_replaceSwapChoices );
     )
 }
 
@@ -418,6 +419,17 @@ ChoicePage::continueApplyDeviceChoice()
 
 
 void
+ChoicePage::onActionChanged()
+{
+    Device* currd = selectedDevice();
+    if ( currd )
+    {
+        applyActionChoice( currentChoice() );
+    }
+}
+
+
+void
 ChoicePage::applyActionChoice( ChoicePage::InstallChoice choice )
 {
     m_beforePartitionBarsView->selectionModel()->
@@ -505,7 +517,7 @@ ChoicePage::applyActionChoice( ChoicePage::InstallChoice choice )
     case Manual:
         break;
     }
-    updateActionChoicePreview( currentChoice() );
+    updateActionChoicePreview( choice );
 }
 
 
@@ -1138,7 +1150,7 @@ ChoicePage::createBootloaderComboBox( QWidget* parent )
     bcb->setModel( m_core->bootLoaderModel() );
 
     // When the chosen bootloader device changes, we update the choice in the PCM
-    connect( bcb, static_cast< void (QComboBox::*)(int) >( &QComboBox::currentIndexChanged ),
+    connect( bcb, QOverload<int>::of( &QComboBox::currentIndexChanged ),
              this, [this]( int newIndex )
     {
         QComboBox* bcb = qobject_cast< QComboBox* >( sender() );

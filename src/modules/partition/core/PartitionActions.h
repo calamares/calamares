@@ -43,6 +43,9 @@ namespace Choices
         SwapFile    // use a file (if supported)
     };
 
+    SwapChoice nameToChoice( QString name, bool& ok );
+    QString choiceToName( SwapChoice );
+
     struct ReplacePartitionOptions
     {
         QString defaultFsType;  // e.g. "ext4" or "btrfs"

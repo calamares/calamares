@@ -26,9 +26,11 @@
 #include <QWidget>
 
 #include "core/OsproberEntry.h"
+#include "core/PartitionActions.h"
 
 #include <QMutex>
 #include <QPointer>
+#include <QSet>
 
 class QBoxLayout;
 class QComboBox;
@@ -44,6 +46,7 @@ class DeviceInfoWidget;
 
 class Device;
 
+using SwapChoiceSet = QSet< PartitionActions::Choices::SwapChoice >;
 
 /**
  * @brief The ChoicePage class is the first page of the partitioning interface.
@@ -63,7 +66,7 @@ public:
         Manual
     };
 
-    explicit ChoicePage( QWidget* parent = nullptr );
+    explicit ChoicePage( const SwapChoiceSet& swapChoices, QWidget* parent = nullptr );
     virtual ~ChoicePage();
 
     /**
@@ -113,6 +116,9 @@ private slots:
     void onEncryptWidgetStateChanged();
     void onHomeCheckBoxStateChanged();
 
+    /** @brief Calls applyActionChoice() as needed. */
+    void onActionChanged();
+
 private:
     void updateNextEnabled();
     void setupChoices();
@@ -149,9 +155,7 @@ private:
     PrettyRadioButton* m_eraseButton;
     PrettyRadioButton* m_replaceButton;
     PrettyRadioButton* m_somethingElseButton;
-    QComboBox* m_eraseSwapChoices;
-    QComboBox* m_replaceSwapChoices;
-    QComboBox* m_alongsideSwapChoices;
+    QComboBox* m_eraseSwapChoices;  // UI, see also m_swapChoices
 
     DeviceInfoWidget* m_deviceInfoWidget;
 
@@ -168,6 +172,8 @@ private:
 
     QString m_defaultFsType;
     bool m_enableEncryptionWidget;
+    SwapChoiceSet m_availableSwapChoices;  // What is available
+    PartitionActions::Choices::SwapChoice m_eraseSwapChoice;  // what is selected
 
     bool m_allowManualPartitioning;
 

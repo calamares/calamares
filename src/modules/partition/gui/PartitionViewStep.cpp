@@ -93,7 +93,7 @@ PartitionViewStep::continueLoading()
     Q_ASSERT( !m_manualPartitionPage );
 
     m_manualPartitionPage = new PartitionPage( m_core );
-    m_choicePage = new ChoicePage();
+    m_choicePage = new ChoicePage( m_swapChoices );
 
     m_choicePage->init( m_core );
 
@@ -586,7 +586,7 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
         for ( const auto& item : l )
         {
             bool ok = false;
-            auto v = nameToChoice( item, ok );
+            auto v = PartitionActions::Choices::nameToChoice( item, ok );
             if ( ok )
                 choices.insert( v );
         }
@@ -612,6 +612,7 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
         else
             choices.insert( PartitionActions::Choices::SwapChoice::SmallSwap );
     }
+    m_swapChoices = choices;
 
     // These gs settings seem to be unused (in upstream Calamares) outside of
     // the partition module itself.
