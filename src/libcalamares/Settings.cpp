@@ -81,6 +81,7 @@ Settings::Settings( const QString& settingsFilePath,
     , m_debug( debugMode )
     , m_doChroot( true )
     , m_promptInstall( false )
+    , m_disableCancel( false )
 {
     cDebug() << "Using Calamares settings file at" << settingsFilePath;
     QFile file( settingsFilePath );
@@ -183,6 +184,7 @@ Settings::Settings( const QString& settingsFilePath,
             m_brandingComponentName = requireString( config, "branding" );
             m_promptInstall = requireBool( config, "prompt-install", false );
             m_doChroot = !requireBool( config, "dont-chroot", false );
+            m_disableCancel = requireBool( config, "disable-cancel", false );
         }
         catch ( YAML::Exception& e )
         {
@@ -243,6 +245,12 @@ bool
 Settings::doChroot() const
 {
     return m_doChroot;
+}
+
+bool
+Settings::disableCancel() const
+{
+    return m_disableCancel;
 }
 
 
