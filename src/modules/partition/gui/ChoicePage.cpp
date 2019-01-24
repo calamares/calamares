@@ -93,6 +93,7 @@ ChoicePage::ChoicePage( QWidget* parent )
     , m_bootloaderComboBox( nullptr )
     , m_lastSelectedDeviceIndex( -1 )
     , m_enableEncryptionWidget( true )
+    , m_allowManualPartitioning( true )
 {
     setupUi( this );
 
@@ -102,6 +103,9 @@ ChoicePage::ChoicePage( QWidget* parent )
     m_enableEncryptionWidget = Calamares::JobQueue::instance()->
                                globalStorage()->
                                value( "enableLuksAutomatedPartitioning" ).toBool();
+    m_allowManualPartitioning = Calamares::JobQueue::instance()->
+                               globalStorage()->
+                               value( "allowManualPartitioning" ).toBool();
     if ( FileSystem::typeForName( m_defaultFsType ) == FileSystem::Unknown )
         m_defaultFsType = "ext4";
 
@@ -671,41 +675,10 @@ ChoicePage::doAlongsideApply()
                                    dev->logicalSize();
 
             m_core->resizePartition( dev, candidate, firstSector, newLastSector );
-            Partition* newPartition = nullptr;
-            QString luksPassphrase = m_encryptWidget->passphrase();
-            if ( luksPassphrase.isEmpty() )
-            {
-                newPartition = KPMHelpers::createNewPartition(
-                    candidate->parent(),
-                    *dev,
-                    candidate->roles(),
-                    FileSystem::typeForName( m_defaultFsType ),
-                    newLastSector + 2, // *
-                    oldLastSector,
-                    PartitionTable::FlagNone
-                );
-            }
-            else
-            {
-                newPartition = KPMHelpers::createNewEncryptedPartition(
-                    candidate->parent(),
-                    *dev,
-                    candidate->roles(),
-                    FileSystem::typeForName( m_defaultFsType ),
-                    newLastSector + 2, // *
-                    oldLastSector,
-                    luksPassphrase,
-                    PartitionTable::FlagNone
-                );
-            }
-            PartitionInfo::setMountPoint( newPartition, "/" );
-            PartitionInfo::setFormat( newPartition, true );
-            // * for some reason ped_disk_add_partition refuses to create a new partition
-            //   if it starts on the sector immediately after the last used sector, so we
-            //   have to push it one sector further, therefore + 2 instead of + 1.
-
-            m_core->createPartition( dev, newPartition );
-
+            m_core->layoutApply( dev, newLastSector + 2, oldLastSector,
+                                 m_encryptWidget->passphrase(), candidate->parent(),
+                                 candidate->roles()
+                               );
             m_core->dumpQueue();
 
             break;
@@ -773,37 +746,10 @@ ChoicePage::doReplaceSelectedPartition( const QModelIndex& current )
                 }
             }
 
-            Partition* newPartition = nullptr;
-            if ( m_encryptWidget->state() == EncryptWidget::EncryptionConfirmed )
-            {
-                newPartition = KPMHelpers::createNewEncryptedPartition(
-                    newParent,
-                    *selectedDevice(),
-                    newRoles,
-                    FileSystem::typeForName( m_defaultFsType ),
-                    selectedPartition->firstSector(),
-                    selectedPartition->lastSector(),
-                    m_encryptWidget->passphrase(),
-                    PartitionTable::FlagNone
-                );
-            }
-            else
-            {
-                newPartition = KPMHelpers::createNewPartition(
-                    newParent,
-                    *selectedDevice(),
-                    newRoles,
-                    FileSystem::typeForName( m_defaultFsType ),
-                    selectedPartition->firstSector(),
-                    selectedPartition->lastSector(),
-                    PartitionTable::FlagNone
-                );
-            }
-
-            PartitionInfo::setMountPoint( newPartition, "/" );
-            PartitionInfo::setFormat( newPartition, true );
-
-            m_core->createPartition( selectedDevice(), newPartition);
+            m_core->layoutApply( selectedDevice(), selectedPartition->firstSector(),
+                                 selectedPartition->lastSector(),
+                                 m_encryptWidget->passphrase(), newParent, newRoles
+                               );
         }
         else
         {
@@ -1246,8 +1192,10 @@ ChoicePage::setupActions()
     else
         m_deviceInfoWidget->setPartitionTableType( PartitionTable::unknownTableType );
 
-    // Manual partitioning is always a possibility
-    m_somethingElseButton->show();
+    if ( m_allowManualPartitioning )
+        m_somethingElseButton->show();
+    else
+        force_uncheck( m_grp, m_somethingElseButton );
 
     bool atLeastOneCanBeResized = false;
     bool atLeastOneCanBeReplaced = false;

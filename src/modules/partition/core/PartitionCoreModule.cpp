@@ -43,6 +43,7 @@
 #include "jobs/ResizePartitionJob.h"
 #include "jobs/ResizeVolumeGroupJob.h"
 #include "jobs/SetPartitionFlagsJob.h"
+#include "utils/CalamaresUtils.h"
 
 #include "Typedefs.h"
 #include "utils/Logger.h"
@@ -758,6 +759,71 @@ PartitionCoreModule::setBootLoaderInstallPath( const QString& path )
 {
     cDebug() << "PCM::setBootLoaderInstallPath" << path;
     m_bootLoaderInstallPath = path;
+}
+
+void
+PartitionCoreModule::initLayout()
+{
+    m_partLayout = new PartitionLayout();
+
+    m_partLayout->addEntry( QString("/"), QString("100%") );
+}
+
+void
+PartitionCoreModule::initLayout( const QVariantList& config )
+{
+    m_partLayout = new PartitionLayout();
+
+    for ( const auto& r : config )
+    {
+        QVariantMap pentry = r.toMap();
+
+        m_partLayout->addEntry( CalamaresUtils::getString( pentry, "name" ),
+                                CalamaresUtils::getString( pentry, "mountPoint" ),
+                                CalamaresUtils::getString( pentry, "filesystem" ),
+                                CalamaresUtils::getString( pentry, "size" ),
+                                CalamaresUtils::getString( pentry, "minSize" )
+                              );
+    }
+}
+
+void
+PartitionCoreModule::layoutApply( Device *dev,
+                                  qint64 firstSector,
+                                  qint64 lastSector,
+                                  QString luksPassphrase,
+                                  PartitionNode* parent,
+                                  const PartitionRole& role )
+{
+    bool isEfi = PartUtils::isEfiSystem();
+    QList< Partition* > partList = m_partLayout->execute( dev, firstSector, lastSector,
+                                                          luksPassphrase, parent, role
+                                                        );
+
+    foreach ( Partition *part, partList )
+    {
+        if ( part->mountPoint() == "/" )
+        {
+            createPartition( dev, part,
+                             part->activeFlags() | ( isEfi ? PartitionTable::FlagNone : PartitionTable::FlagBoot )
+                           );
+        }
+        else
+        {
+            createPartition( dev, part );
+        }
+    }
+}
+
+void
+PartitionCoreModule::layoutApply( Device *dev,
+                                  qint64 firstSector,
+                                  qint64 lastSector,
+                                  QString luksPassphrase )
+{
+    layoutApply( dev, firstSector, lastSector, luksPassphrase, dev->partitionTable(),
+                 PartitionRole( PartitionRole::Primary )
+               );
 }
 
 void

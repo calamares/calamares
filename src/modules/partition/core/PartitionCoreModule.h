@@ -20,6 +20,7 @@
 #ifndef PARTITIONCOREMODULE_H
 #define PARTITIONCOREMODULE_H
 
+#include "core/PartitionLayout.h"
 #include "core/PartitionModel.h"
 #include "Typedefs.h"
 
@@ -155,6 +156,12 @@ public:
 
     void setBootLoaderInstallPath( const QString& path );
 
+    void initLayout();
+    void initLayout( const QVariantList& config );
+
+    void layoutApply( Device *dev, qint64 firstSector, qint64 lastSector, QString luksPassphrase );
+    void layoutApply( Device *dev, qint64 firstSector, qint64 lastSector, QString luksPassphrase, PartitionNode* parent, const PartitionRole& role );
+
     /**
      * @brief jobs creates and returns a list of jobs which can then apply the changes
      * requested by the user.
@@ -246,6 +253,7 @@ private:
     bool m_hasRootMountPoint = false;
     bool m_isDirty = false;
     QString m_bootLoaderInstallPath;
+    PartitionLayout* m_partLayout;
 
     void doInit();
     void updateHasRootMountPoint();

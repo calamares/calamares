@@ -623,6 +623,7 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     gs->insert( "drawNestedPartitions", CalamaresUtils::getBool( configurationMap, "drawNestedPartitions", false ) );
     gs->insert( "alwaysShowPartitionLabels", CalamaresUtils::getBool( configurationMap, "alwaysShowPartitionLabels", true ) );
     gs->insert( "enableLuksAutomatedPartitioning", CalamaresUtils::getBool( configurationMap, "enableLuksAutomatedPartitioning", true ) );
+    gs->insert( "allowManualPartitioning", CalamaresUtils::getBool( configurationMap, "allowManualPartitioning", true ) );
     gs->insert( "defaultFileSystemType", findFS( CalamaresUtils::getString( configurationMap, "defaultFileSystemType" ) ) );
 
 
@@ -640,6 +641,15 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
     QFuture< void > future =
             QtConcurrent::run( this, &PartitionViewStep::initPartitionCoreModule );
     watcher->setFuture( future );
+
+    if ( configurationMap.contains( "partitionLayout" ) )
+    {
+        m_core->initLayout( configurationMap.values( "partitionLayout" ).at(0).toList() );
+    }
+    else
+    {
+        m_core->initLayout();
+    }
 }
 
 

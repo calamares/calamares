@@ -169,6 +169,8 @@ private:
     QString m_defaultFsType;
     bool m_enableEncryptionWidget;
 
+    bool m_allowManualPartitioning;
+
     QMutex m_coreMutex;
 };
 

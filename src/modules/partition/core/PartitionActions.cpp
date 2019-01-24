@@ -90,7 +90,7 @@ alignBytesToBlockSize( qint64 bytes, qint64 blocksize )
     return blocks * blocksize;
 }
 
-constexpr qint64
+qint64
 bytesToSectors( qint64 bytes, qint64 blocksize )
 {
     return alignBytesToBlockSize( alignBytesToBlockSize( bytes, blocksize), MiBtoBytes(1) ) / blocksize;
@@ -169,39 +169,7 @@ doAutopartition( PartitionCoreModule* core, Device* dev, Choices::AutoPartitionO
         lastSectorForRoot -= suggestedSwapSizeB / dev->logicalSize() + 1;
     }
 
-    Partition* rootPartition = nullptr;
-    if ( o.luksPassphrase.isEmpty() )
-    {
-        rootPartition = KPMHelpers::createNewPartition(
-            dev->partitionTable(),
-            *dev,
-            PartitionRole( PartitionRole::Primary ),
-            FileSystem::typeForName( defaultFsType ),
-            firstFreeSector,
-            lastSectorForRoot,
-            PartitionTable::FlagNone
-        );
-    }
-    else
-    {
-        rootPartition = KPMHelpers::createNewEncryptedPartition(
-            dev->partitionTable(),
-            *dev,
-            PartitionRole( PartitionRole::Primary ),
-            FileSystem::typeForName( defaultFsType ),
-            firstFreeSector,
-            lastSectorForRoot,
-            o.luksPassphrase,
-            PartitionTable::FlagNone
-       );
-    }
-    PartitionInfo::setFormat( rootPartition, true );
-    PartitionInfo::setMountPoint( rootPartition, "/" );
-    // Some buggy (legacy) BIOSes test if the bootflag of at least one partition is set.
-    // Otherwise they ignore the device in boot-order, so add it here.
-    core->createPartition( dev, rootPartition,
-                           rootPartition->activeFlags() | ( isEfi ? PartitionTable::FlagNone : PartitionTable::FlagBoot )
-                         );
+    core->layoutApply( dev, firstFreeSector, lastSectorForRoot, o.luksPassphrase );
 
     if ( shouldCreateSwap )
     {
@@ -245,6 +213,8 @@ doReplacePartition( PartitionCoreModule* core,
                     Partition* partition,
                     Choices::ReplacePartitionOptions o )
 {
+    qint64 firstSector, lastSector;
+
     cDebug() << "doReplacePartition for device" << partition->partitionPath();
 
     QString defaultFsType = o.defaultFsType;
@@ -267,38 +237,13 @@ doReplacePartition( PartitionCoreModule* core,
         }
     }
 
-    Partition* newPartition = nullptr;
-    if ( o.luksPassphrase.isEmpty() )
-    {
-        newPartition = KPMHelpers::createNewPartition(
-            partition->parent(),
-            *dev,
-            newRoles,
-            FileSystem::typeForName( defaultFsType ),
-            partition->firstSector(),
-            partition->lastSector(),
-            PartitionTable::FlagNone
-        );
-    }
-    else
-    {
-        newPartition = KPMHelpers::createNewEncryptedPartition(
-            partition->parent(),
-            *dev,
-            newRoles,
-            FileSystem::typeForName( defaultFsType ),
-            partition->firstSector(),
-            partition->lastSector(),
-            o.luksPassphrase,
-            PartitionTable::FlagNone
-        );
-    }
-    PartitionInfo::setMountPoint( newPartition, "/" );
-    PartitionInfo::setFormat( newPartition, true );
-
+    // Save the first and last sector values as the partition will be deleted
+    firstSector = partition->firstSector();
+    lastSector = partition->lastSector();
     if ( !partition->roles().has( PartitionRole::Unallocated ) )
         core->deletePartition( dev, partition );
-    core->createPartition( dev, newPartition );
+
+    core->layoutApply( dev, firstSector, lastSector, o.luksPassphrase );
 
     core->dumpQueue();
 }
