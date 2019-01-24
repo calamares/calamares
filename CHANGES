@@ -3,7 +3,7 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
-# 3.2.5 (unreleased) #
+# 3.2.4 (unreleased) #
 
 This release contains contributions from (alphabetically by first name):
  - Alf Gaida
@@ -29,6 +29,9 @@ This release contains contributions from (alphabetically by first name):
    and resize behavior of Calamares. See the branding file for
    more documentation. In particular, the setting *windowExpanding*
    can be set to *normal*, *fullscreen* or *noexpand*.
+ * The `settings.conf` file can now configure whether the *Cancel* button
+   is show (this isn't a branding thing, because it's quite fundamental
+   to the workflow of the installer).
 
 ## Modules ##
 
@@ -43,6 +46,8 @@ This release contains contributions from (alphabetically by first name):
    an acceptable spelling.
  * The currently-selected disk device is remembered between manual partitioning
    and the partitioning-overview pages. (Thanks to Arnaud)
+ * *partition* There is new support for partitioning layout presets.
+   See `partitionc.conf` for documentation and details.
  * The *keyboard* module now handles the (bogus) Austrian keymap for
    the system console properly. (Thanks to Kevin)
  * The *preservefiles* module now has a mechanism for setting the permissions
@@ -55,22 +60,9 @@ This release contains contributions from (alphabetically by first name):
  * The *packages* module now supports pre- and post-script options
    for all operations, not just during install (keep in mind that
    these run as three separate shells, though).
-
-
-# 3.2.4 (unreleased) #
-
-This release contains contributions from (alphabetically by first name):
- - Collabora ltd.
-
-## Core ##
-
-There are no core changes in this release.
-
-## Modules ##
-
- - *partition* There is new support for partitioning layout presets.
-   See `partitionc.conf` for documentation and details.
-
+ * A new *rawfs* module supports straightforward copying of filesystems from
+   the installation media to the target stystem. This can be used, for instance,
+   for block-level-identical installations.
 
 # 3.2.3 (2019-01-09) #
 
