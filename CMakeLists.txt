@@ -83,12 +83,13 @@ set( CALAMARES_VERSION_RC 1 )
 #
 # complete = 100% translated,
 # good = nearly complete (use own judgement, right now >= 75%)
-# ok = incomplete (more than 25% untranslated),
+# ok = incomplete (more than 25% untranslated, at least 5% translated),
 # bad = 0% translated, placeholder in tx; these are not included.
 #
 # Language en (source language) is added later. It isn't listed in
 # Transifex either. Get the list of languages and their status
-# from https://transifex.com/calamares/calamares/ .
+# from https://transifex.com/calamares/calamares/ , or (preferably)
+# use ci/txstats.py to automatically check.
 #
 # When adding a new language, take care that it is properly loaded
 # by the translation framework. Languages with alternate scripts
@@ -103,12 +104,12 @@ set( CALAMARES_VERSION_RC 1 )
 #       checks for new languages and misspelled ones are done (that is,
 #       copy these four lines to four backup lines, add "p", and then update
 #       the original four lines with the current translations).
-set( _tx_complete zh_TW tr_TR sk pt_PT pt_BR pl lt ja id hr gl fr
-    et de da cs_CZ ca )
-set( _tx_good es sq es_MX zh_CN it_IT he en_GB ru ro hi bg hu )
-set( _tx_ok uk nl ast ko is ar sv el th fi_FI eu sr nb sl
+set( _tx_complete zh_TW tr_TR sk pt_PT pt_BR pl lt ja id hu hr gl
+    fr et de da cs_CZ ca ast )
+set( _tx_good es sq es_MX zh_CN it_IT he en_GB ru ro hi bg )
+set( _tx_ok uk nl eu ko is ar sv el es_ES th fi_FI sr nb sl
     sr@latin mr es_PR )
-set( _tx_bad eo kk kn uz ur mk lo gu fr_CH fa be )
+set( _tx_bad eo kk kn mk uz ur ne_NP lo gu fr_CH fa be )
 
 ### Required versions
 #
