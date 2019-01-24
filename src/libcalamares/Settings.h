@@ -58,6 +58,8 @@ public:
 
     bool doChroot() const;
 
+    bool disableCancel() const;
+
 private:
     static Settings* s_instance;
 
@@ -71,6 +73,7 @@ private:
     bool m_debug;
     bool m_doChroot;
     bool m_promptInstall;
+    bool m_disableCancel;
 };
 
 }

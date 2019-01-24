@@ -1,0 +1,7 @@
+# Module metadata file for block-copy jobmodule
+# Syntax is YAML 1.2
+---
+type:       "job"
+name:       "rawfs"
+interface:  "python"
+script:     "main.py"
