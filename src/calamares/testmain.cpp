@@ -51,6 +51,10 @@ handle_args( QCoreApplication& a )
 {
     QCommandLineOption debugLevelOption( QStringLiteral("D"),
                                           "Verbose output for debugging purposes (0-8).", "level" );
+    QCommandLineOption globalOption( QStringList() << QStringLiteral( "g" ) << QStringLiteral( "global "),
+                                     QStringLiteral( "Global settings document" ), "global.yaml" );
+    QCommandLineOption jobOption( QStringList() << QStringLiteral( "j" ) << QStringLiteral( "job"),
+                                  QStringLiteral( "Job settings document" ), "job.yaml" );
 
     QCommandLineParser parser;
     parser.setApplicationDescription( "Calamares module tester" );
@@ -58,10 +62,15 @@ handle_args( QCoreApplication& a )
     parser.addVersionOption();
 
     parser.addOption( debugLevelOption );
+    parser.addOption( globalOption );
+    parser.addOption( jobOption );
     parser.addPositionalArgument( "module", "Path or name of module to run." );
     parser.addPositionalArgument( "config", "Path of job-config file to use.", "[config]");
 
     parser.process( a );
+
+    QString globalSettings( parser.value( globalOption ) );
+    QString jobSettings( parser.value( jobOption ) );
 
     if ( parser.isSet( debugLevelOption ) )
     {
@@ -89,7 +98,10 @@ handle_args( QCoreApplication& a )
         return ModuleConfig();  // NOTREACHED
     }
 
-    return ModuleConfig( args.first(), args.size() == 2 ? args.at(1) : QString() );
+    if ( jobSettings.isEmpty() && ( args.size() == 2 ) )
+        jobSettings = args.at(1);
+
+    return ModuleConfig( args.first(), jobSettings );
 }
 
 
