@@ -61,6 +61,8 @@ def list_excludes(destination):
     """
     lst = []
     extra_mounts = globalstorage.value("extraMounts")
+    if extra_mounts is None:
+        extra_mounts = []
 
     for extra_mount in extra_mounts:
         mount_point = extra_mount["mountPoint"]
