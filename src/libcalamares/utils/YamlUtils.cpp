@@ -173,15 +173,15 @@ loadYaml(const QString& filename, bool* ok)
     if ( ok )
         *ok = false;
 
-    QFile descriptorFile( filename );
-    QVariant moduleDescriptor;
-    if ( descriptorFile.exists() && descriptorFile.open( QFile::ReadOnly | QFile::Text ) )
+    QFile yamlFile( filename );
+    QVariant yamlContents;
+    if ( yamlFile.exists() && yamlFile.open( QFile::ReadOnly | QFile::Text ) )
     {
-        QByteArray ba = descriptorFile.readAll();
+        QByteArray ba = yamlFile.readAll();
         try
         {
             YAML::Node doc = YAML::Load( ba.constData() );
-            moduleDescriptor = CalamaresUtils::yamlToVariant( doc );
+            yamlContents = CalamaresUtils::yamlToVariant( doc );
         }
         catch ( YAML::Exception& e )
         {
@@ -191,13 +191,13 @@ loadYaml(const QString& filename, bool* ok)
     }
 
 
-    if ( moduleDescriptor.isValid() &&
-         !moduleDescriptor.isNull() &&
-         moduleDescriptor.type() == QVariant::Map )
+    if ( yamlContents.isValid() &&
+         !yamlContents.isNull() &&
+            yamlContents.type() == QVariant::Map )
     {
         if ( ok )
             *ok = true;
-        return moduleDescriptor.toMap();
+        return yamlContents.toMap();
     }
 
     return QVariantMap();
