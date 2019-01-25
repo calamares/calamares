@@ -30,6 +30,11 @@ import tempfile
 
 from libcalamares import *
 
+import gettext
+_ = gettext.translation("calamares-python",
+                        localedir=utils.gettext_path(),
+                        languages=utils.gettext_languages(),
+                        fallback=True).gettext
 
 class UnpackEntry:
     """
@@ -288,14 +293,14 @@ def run():
     root_mount_point = globalstorage.value("rootMountPoint")
 
     if not root_mount_point:
-        return ("No mount point for root partition",
-                "globalstorage does not contain a \"rootMountPoint\" key, "
-                "doing nothing")
+        return (_("No mount point for root partition"),
+                _("globalstorage does not contain a \"rootMountPoint\" key, "
+                "doing nothing"))
 
     if not os.path.exists(root_mount_point):
-        return ("Bad mount point for root partition",
-                "rootMountPoint is \"{}\", which does not "
-                "exist, doing nothing".format(root_mount_point))
+        return (_("Bad mount point for root partition"),
+                _("rootMountPoint is \"{}\", which does not "
+                "exist, doing nothing").format(root_mount_point))
 
     supported_filesystems = get_supported_filesystems()
 
@@ -306,18 +311,18 @@ def run():
         sourcefs = entry["sourcefs"]
 
         if sourcefs not in supported_filesystems:
-            return ("Bad unsquash configuration",
-                    "The filesystem for \"{}\" ({}) is not supported".format(source, sourcefs))
+            return (_("Bad unsquash configuration"),
+                    _("The filesystem for \"{}\" ({}) is not supported").format(source, sourcefs))
 
         destination = os.path.abspath(root_mount_point + entry["destination"])
 
         if not os.path.exists(source):
-            return ("Bad unsquash configuration",
-                    "The source filesystem \"{}\" does not exist".format(source))
+            return (_("Bad unsquash configuration"),
+                    _("The source filesystem \"{}\" does not exist").format(source))
 
         if not os.path.isdir(destination):
-            return ("Bad unsquash configuration",
-                    "The destination \"{}\" in the target system is not a directory".format(destination))
+            return (_("Bad unsquash configuration"),
+                    _("The destination \"{}\" in the target system is not a directory").format(destination))
 
         unpack.append(UnpackEntry(source, sourcefs, destination))
 
