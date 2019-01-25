@@ -36,6 +36,10 @@ _ = gettext.translation("calamares-python",
                         languages=utils.gettext_languages(),
                         fallback=True).gettext
 
+def pretty_name():
+    return _("Installing filesystems.")
+
+
 class UnpackEntry:
     """
     Extraction routine using rsync.
