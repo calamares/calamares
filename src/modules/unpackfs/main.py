@@ -149,7 +149,8 @@ def file_copy(source, dest, progress_cb):
     # https://bugzilla.redhat.com/show_bug.cgi?id=868755#c50
     # for the same issue in Anaconda, which uses a similar workaround.
     if process.returncode != 0 and process.returncode != 23:
-        return "rsync failed with error code {}.".format(process.returncode)
+        utils.warn("rsync failed with error code {}.".format(process.returncode))
+        return _("rsync failed with error code {}.").format(process.returncode)
 
     return None
 
@@ -203,11 +204,10 @@ class UnpackOperation:
 
                 if entry.sourcefs == "squashfs":
                     if shutil.which("unsquashfs") is None:
-                        msg = ("Failed to find unsquashfs, make sure you have "
-                               "the squashfs-tools package installed")
-                        print(msg)
-                        return ("Failed to unpack image",
-                                msg)
+                        utils.warning("Failed to find unsquashfs")
+
+                        return (_("Failed to unpack image \"{}\"").format(entry.source),
+                                _("Failed to find unsquashfs, make sure you have the squashfs-tools package installed"))
 
                     fslist = subprocess.check_output(
                         ["unsquashfs", "-l", entry.source]
@@ -224,7 +224,7 @@ class UnpackOperation:
                 error_msg = self.unpack_image(entry, imgmountdir)
 
                 if error_msg:
-                    return ("Failed to unpack image {}".format(entry.source),
+                    return (_("Failed to unpack image \"{}\"").format(entry.source),
                             error_msg)
 
             return None
