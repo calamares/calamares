@@ -286,13 +286,13 @@ def run():
     root_mount_point = globalstorage.value("rootMountPoint")
 
     if not root_mount_point:
-        return ("No mount point for root partition in globalstorage",
+        return ("No mount point for root partition",
                 "globalstorage does not contain a \"rootMountPoint\" key, "
                 "doing nothing")
 
     if not os.path.exists(root_mount_point):
-        return ("Bad mount point for root partition in globalstorage",
-                "globalstorage[\"rootMountPoint\"] is \"{}\", which does not "
+        return ("Bad mount point for root partition",
+                "rootMountPoint is \"{}\", which does not "
                 "exist, doing nothing".format(root_mount_point))
 
     supported_filesystems = get_supported_filesystems()
@@ -304,15 +304,18 @@ def run():
         sourcefs = entry["sourcefs"]
 
         if sourcefs not in supported_filesystems:
-            return "Bad filesystem", "sourcefs=\"{}\"".format(sourcefs)
+            return ("Bad unsquash configuration",
+                    "The filesystem for \"{}\" ({}) is not supported".format(source, sourcefs))
 
         destination = os.path.abspath(root_mount_point + entry["destination"])
 
         if not os.path.exists(source):
-            return "Bad source", "source=\"{}\"".format(source)
+            return ("Bad unsquash configuration",
+                    "The source filesystem \"{}\" does not exist".format(source))
 
         if not os.path.isdir(destination):
-            return "Bad destination", "destination=\"{}\"".format(destination)
+            return ("Bad unsquash configuration",
+                    "The destination \"{}\" in the target system is not a directory".format(destination))
 
         unpack.append(UnpackEntry(source, sourcefs, destination))
 
