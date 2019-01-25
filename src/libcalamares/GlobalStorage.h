@@ -60,6 +60,7 @@ public:
 
     /// @brief dump keys and values to the debug log
     void debugDump() const;
+
     /** @brief write as JSON to the given filename
      *
      * No tidying, sanitization, or censoring is done -- for instance,
@@ -68,6 +69,15 @@ public:
      * obscured form.
      */
     bool save( const QString& filename );
+
+    /** @brief write as YAML to the given filename
+     *
+     * See also save(), above.
+     */
+    bool saveYaml( const QString& filename );
+
+    /// @brief reads settings from the given filename
+    bool loadYaml( const QString& filename );
 
 signals:
     void changed();
