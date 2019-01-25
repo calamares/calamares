@@ -289,7 +289,7 @@ gettext_path()
                 return bp::object( localedir.toStdString() );
             }
         }
-    cDebug() << " .. None found for" << candidateLanguages;
+    cDebug() << " .. No translation found for languages" << candidateLanguages;
     return bp::object();  // None
 }
 
