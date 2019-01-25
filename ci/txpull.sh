@@ -2,6 +2,10 @@
 #
 # Fetch the Transifex translations for Calamares and incorporate them
 # into the source tree, adding commits of the different files.
+#
+# Run this (occasionally) at the top-level directory to get
+# new translations. See also CMakeLists.txt and ci/txstats.py
+# for update instructions.
 
 ### INITIAL SETUP
 #

@@ -1,7 +1,13 @@
 #!/bin/sh
 #
-# Fetch the Transifex translations for Calamares and incorporate them
-# into the source tree, adding commits of the different files.
+# Extract translations from Calamares source and send them
+# to Transifex.
+#
+# Run this at the top-level.
+#
+# Use the --no-tx option to do the extraction, but not the
+# pushing-to-Transifex part. This can be useful to check for
+# new strings or when testing the tools themselves.
 
 ### INITIAL SETUP
 #
