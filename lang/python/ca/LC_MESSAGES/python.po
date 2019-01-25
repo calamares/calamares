@@ -4,16 +4,16 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Davidmp <medipas@gmail.com>, 2018
+# Davidmp <medipas@gmail.com>, 2019
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-05 11:34-0400\n"
+"POT-Creation-Date: 2019-01-25 08:04-0500\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
-"Last-Translator: Davidmp <medipas@gmail.com>, 2018\n"
+"Last-Translator: Davidmp <medipas@gmail.com>, 2019\n"
 "Language-Team: Catalan (https://www.transifex.com/calamares/teams/20061/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -85,6 +85,59 @@ msgstr ""
 msgid "Display manager configuration was incomplete"
 msgstr "La configuració del gestor de pantalla no era completa."
 
+#: src/modules/unpackfs/main.py:40
+msgid "Installing filesystems."
+msgstr "Instal·lant sistemes de fitxers."
+
+#: src/modules/unpackfs/main.py:153
+msgid "rsync failed with error code {}."
+msgstr "Ha fallat rsync amb el codi d'error {}."
+
+#: src/modules/unpackfs/main.py:209 src/modules/unpackfs/main.py:227
+msgid "Failed to unpack image \"{}\""
+msgstr "Ha fallat desempaquetar la imatge \"{}\"."
+
+#: src/modules/unpackfs/main.py:210
+msgid ""
+"Failed to find unsquashfs, make sure you have the squashfs-tools package "
+"installed"
+msgstr ""
+"Ha fallat trobar unsquashfs, assegureu-vos que tingueu el paquet squashfs-"
+"tools instal·lat."
+
+#: src/modules/unpackfs/main.py:301
+msgid "No mount point for root partition"
+msgstr "No hi ha punt de muntatge per a la partició d'arrel."
+
+#: src/modules/unpackfs/main.py:302
+msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
+msgstr "globalstorage no conté cap clau \"rootMountPoint\". No es fa res."
+
+#: src/modules/unpackfs/main.py:307
+msgid "Bad mount point for root partition"
+msgstr "Punt de muntatge incorrecte per a la partició d'arrel"
+
+#: src/modules/unpackfs/main.py:308
+msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
+msgstr "El punt de muntatge d'arrel és \"{}\", que no existeix. No es fa res."
+
+#: src/modules/unpackfs/main.py:321 src/modules/unpackfs/main.py:328
+#: src/modules/unpackfs/main.py:333
+msgid "Bad unsquash configuration"
+msgstr "Configuració incorrecta d'unsquash"
+
+#: src/modules/unpackfs/main.py:322
+msgid "The filesystem for \"{}\" ({}) is not supported"
+msgstr "El sistema de fitxers per a \"{}\" ({}) no s'admet."
+
+#: src/modules/unpackfs/main.py:329
+msgid "The source filesystem \"{}\" does not exist"
+msgstr "El sistema de fitxers font \"{}\" no existeix."
+
+#: src/modules/unpackfs/main.py:334
+msgid "The destination \"{}\" in the target system is not a directory"
+msgstr "La destinació \"{}\" al sistema de destinació no és un directori."
+
 #: src/modules/umount/main.py:40
 msgid "Unmount file systems."
 msgstr "Desmunta els sistemes de fitxers."
@@ -96,6 +149,10 @@ msgstr "Tasca de python fictícia."
 #: src/modules/dummypython/main.py:97
 msgid "Dummy python step {}"
 msgstr "Pas de python fitctici {}"
+
+#: src/modules/rawfs/main.py:35
+msgid "Installing data."
+msgstr "Instal·lant dades."
 
 #: src/modules/machineid/main.py:35
 msgid "Generate machine-id."
