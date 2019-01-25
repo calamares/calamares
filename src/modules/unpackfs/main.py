@@ -261,12 +261,28 @@ class UnpackOperation:
             subprocess.check_call(["umount", "-l", imgmountdir])
 
 
+def get_supported_filesystems():
+    """
+    Reads /proc/filesystems (the list of supported filesystems
+    for the current kernel) and returns a list of (names of)
+    those filesystems.
+    """
+    PATH_PROCFS = '/proc/filesystems'
+
+    if os.path.isfile(PATH_PROCFS) and os.access(PATH_PROCFS, os.R_OK):
+        with open(PATH_PROCFS, 'r') as procfile:
+            filesystems = procfile.read()
+            filesystems = filesystems.replace(
+                "nodev", "").replace("\t", "").splitlines()
+            return filesystems
+
+    return []
+
+
 def run():
     """
     Unsquash filesystem.
     """
-    PATH_PROCFS = '/proc/filesystems'
-
     root_mount_point = globalstorage.value("rootMountPoint")
 
     if not root_mount_point:
@@ -279,28 +295,15 @@ def run():
                 "globalstorage[\"rootMountPoint\"] is \"{}\", which does not "
                 "exist, doing nothing".format(root_mount_point))
 
+    supported_filesystems = get_supported_filesystems()
+
     unpack = list()
 
     for entry in job.configuration["unpack"]:
         source = os.path.abspath(entry["source"])
-
         sourcefs = entry["sourcefs"]
 
-        # Get supported filesystems
-        fs_is_supported = False
-
-        if os.path.isfile(PATH_PROCFS) and os.access(PATH_PROCFS, os.R_OK):
-            with open(PATH_PROCFS, 'r') as procfile:
-                filesystems = procfile.read()
-                filesystems = filesystems.replace(
-                    "nodev", "").replace("\t", "").splitlines()
-
-                # Check if the source filesystem is supported
-                for fs in filesystems:
-                    if fs == sourcefs:
-                        fs_is_supported = True
-
-        if not fs_is_supported:
+        if sourcefs not in supported_filesystems:
             return "Bad filesystem", "sourcefs=\"{}\"".format(sourcefs)
 
         destination = os.path.abspath(root_mount_point + entry["destination"])
