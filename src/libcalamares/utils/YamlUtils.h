@@ -51,6 +51,9 @@ QVariant yamlScalarToVariant( const YAML::Node& scalarNode );
 QVariant yamlSequenceToVariant( const YAML::Node& sequenceNode );
 QVariant yamlMapToVariant( const YAML::Node& mapNode );
 
+/// @brief Save a @p map to @p filename as YAML
+bool saveYaml( const QString& filename, const QVariantMap& map );
+
 /**
  * Given an exception from the YAML parser library, explain
  * what is going on in terms of the data passed to the parser.

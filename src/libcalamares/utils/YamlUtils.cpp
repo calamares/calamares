@@ -203,4 +203,38 @@ loadYaml(const QString& filename, bool* ok)
     return QVariantMap();
 }
 
+/// @brief Convenience function writes @p indent times four spaces
+static void
+writeIndent( QFile& f, int indent )
+{
+    while ( indent > 0 )
+        f.write( "    " );
+}
+
+/// @brief Recursive helper to dump @p map to file
+static bool
+dumpYaml( QFile& f, const QVariantMap& map, int indent )
+{
+    for ( auto it = map.cbegin(); it != map.cend(); ++it )
+    {
+        writeIndent( f, indent );
+        f.write( it.key().toUtf8() );
+        f.write( "\n" );
+    }
+    return true;
+}
+
+bool
+saveYaml( const QString& filename, const QVariantMap& map )
+{
+    QFile f( filename );
+    if ( !f.open( QFile::WriteOnly ) )
+        return false;
+
+    f.write( "# YAML dump\n---\n" );
+    return dumpYaml( f, map, 0 );
+}
+
+
+
 }  // namespace
