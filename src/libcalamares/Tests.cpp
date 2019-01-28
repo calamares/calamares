@@ -19,6 +19,7 @@
 #include "Tests.h"
 
 #include "utils/Logger.h"
+#include "utils/YamlUtils.h"
 
 #include <QtTest/QtTest>
 
@@ -57,3 +58,12 @@ LibCalamaresTests::testDebugLevels()
     }
 }
 
+void
+LibCalamaresTests::testLoadSaveYaml()
+{
+    QFile f( "settings.conf" );
+    QVERIFY( f.exists() );
+
+    auto map = CalamaresUtils::loadYaml( "settings.conf" );
+    CalamaresUtils::saveYaml( "out.yaml", map );
+}

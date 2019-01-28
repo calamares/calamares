@@ -31,6 +31,8 @@ public:
 private Q_SLOTS:
     void initTestCase();
     void testDebugLevels();
+
+    void testLoadSaveYaml();
 };
 
 #endif
