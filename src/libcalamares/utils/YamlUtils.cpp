@@ -207,8 +207,47 @@ loadYaml(const QString& filename, bool* ok)
 static void
 writeIndent( QFile& f, int indent )
 {
-    while ( indent > 0 )
-        f.write( "    " );
+    while ( indent-- > 0 )
+        f.write( "  " );
+}
+
+// forward declaration
+static bool dumpYaml( QFile& f, const QVariantMap& map, int indent );
+
+/// @brief Recursive helper to dump a single value
+static void
+dumpYamlElement( QFile& f, const QVariant& value, int indent )
+{
+    if ( value.type() == QVariant::Type::Bool )
+        f.write( value.toBool() ? "true" : "false" );
+    else if ( value.type() == QVariant::Type::String )
+    {
+        static const char quote[] = "\"";
+        f.write( quote );
+        f.write( value.toString().toUtf8() );
+        f.write( quote );
+    }
+    else if ( value.type() == QVariant::Type::List )
+    {
+        int c = 0;
+        for ( const auto& it : value.toList() )
+        {
+            f.write( "\n" );
+            writeIndent( f, indent+1 );
+            f.write( "- " );
+            dumpYamlElement( f, it, indent+1 );
+        }
+    }
+    else if ( value.type() == QVariant::Type::Map )
+    {
+        dumpYaml( f, value.toMap(), indent+1 );
+    }
+    else
+    {
+        f.write( "<" );
+        f.write( value.typeName() );
+        f.write( ">" );
+    }
 }
 
 /// @brief Recursive helper to dump @p map to file
@@ -217,8 +256,9 @@ dumpYaml( QFile& f, const QVariantMap& map, int indent )
 {
     for ( auto it = map.cbegin(); it != map.cend(); ++it )
     {
-        writeIndent( f, indent );
         f.write( it.key().toUtf8() );
+        f.write( ": " );
+        dumpYamlElement( f, it.value(), indent );
         f.write( "\n" );
     }
     return true;
