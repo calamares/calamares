@@ -214,6 +214,10 @@ writeIndent( QFile& f, int indent )
 // forward declaration
 static bool dumpYaml( QFile& f, const QVariantMap& map, int indent );
 
+// It's a quote
+static const char quote[] = "\"";
+static const char newline[] = "\n";
+
 /// @brief Recursive helper to dump a single value
 static void
 dumpYamlElement( QFile& f, const QVariant& value, int indent )
@@ -222,24 +226,35 @@ dumpYamlElement( QFile& f, const QVariant& value, int indent )
         f.write( value.toBool() ? "true" : "false" );
     else if ( value.type() == QVariant::Type::String )
     {
-        static const char quote[] = "\"";
         f.write( quote );
         f.write( value.toString().toUtf8() );
         f.write( quote );
+    }
+    else if ( value.type() == QVariant::Type::Int )
+    {
+        f.write( QString::number( value.toInt() ).toUtf8() );
+    }
+    else if ( value.type() == QVariant::Type::Double )
+    {
+        f.write( QString::number( value.toDouble() ).toUtf8() );
     }
     else if ( value.type() == QVariant::Type::List )
     {
         int c = 0;
         for ( const auto& it : value.toList() )
         {
-            f.write( "\n" );
+            ++c;
+            f.write( newline );
             writeIndent( f, indent+1 );
             f.write( "- " );
             dumpYamlElement( f, it, indent+1 );
         }
+        if ( !c )  // i.e. list was empty
+            f.write( "[]" );
     }
     else if ( value.type() == QVariant::Type::Map )
     {
+        f.write( newline );
         dumpYaml( f, value.toMap(), indent+1 );
     }
     else
@@ -256,10 +271,13 @@ dumpYaml( QFile& f, const QVariantMap& map, int indent )
 {
     for ( auto it = map.cbegin(); it != map.cend(); ++it )
     {
+        writeIndent( f, indent );
+        f.write( quote );
         f.write( it.key().toUtf8() );
+        f.write( quote );
         f.write( ": " );
         dumpYamlElement( f, it.value(), indent );
-        f.write( "\n" );
+        f.write( newline );
     }
     return true;
 }
