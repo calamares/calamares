@@ -73,7 +73,7 @@ handle_args( QCoreApplication& a )
     parser.addOption( jobOption );
     parser.addOption( langOption );
     parser.addPositionalArgument( "module", "Path or name of module to run." );
-    parser.addPositionalArgument( "config", "Path of job-config file to use.", "[config]");
+    parser.addPositionalArgument( "job.yaml", "Path of job settings document to use.", "[job.yaml]");
 
     parser.process( a );
 
