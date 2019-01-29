@@ -32,7 +32,8 @@ private Q_SLOTS:
     void initTestCase();
     void testDebugLevels();
 
-    void testLoadSaveYaml();
+    void testLoadSaveYaml();  // Just settings.conf
+    void testLoadSaveYamlExtended();  // Do a find() in the src dir
 };
 
 #endif
