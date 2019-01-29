@@ -173,15 +173,15 @@ loadYaml(const QString& filename, bool* ok)
     if ( ok )
         *ok = false;
 
-    QFile descriptorFile( filename );
-    QVariant moduleDescriptor;
-    if ( descriptorFile.exists() && descriptorFile.open( QFile::ReadOnly | QFile::Text ) )
+    QFile yamlFile( filename );
+    QVariant yamlContents;
+    if ( yamlFile.exists() && yamlFile.open( QFile::ReadOnly | QFile::Text ) )
     {
-        QByteArray ba = descriptorFile.readAll();
+        QByteArray ba = yamlFile.readAll();
         try
         {
             YAML::Node doc = YAML::Load( ba.constData() );
-            moduleDescriptor = CalamaresUtils::yamlToVariant( doc );
+            yamlContents = CalamaresUtils::yamlToVariant( doc );
         }
         catch ( YAML::Exception& e )
         {
@@ -191,16 +191,108 @@ loadYaml(const QString& filename, bool* ok)
     }
 
 
-    if ( moduleDescriptor.isValid() &&
-         !moduleDescriptor.isNull() &&
-         moduleDescriptor.type() == QVariant::Map )
+    if ( yamlContents.isValid() &&
+         !yamlContents.isNull() &&
+            yamlContents.type() == QVariant::Map )
     {
         if ( ok )
             *ok = true;
-        return moduleDescriptor.toMap();
+        return yamlContents.toMap();
     }
 
     return QVariantMap();
 }
+
+/// @brief Convenience function writes @p indent times four spaces
+static void
+writeIndent( QFile& f, int indent )
+{
+    while ( indent-- > 0 )
+        f.write( "  " );
+}
+
+// forward declaration
+static bool dumpYaml( QFile& f, const QVariantMap& map, int indent );
+
+// It's a quote
+static const char quote[] = "\"";
+static const char newline[] = "\n";
+
+/// @brief Recursive helper to dump a single value
+static void
+dumpYamlElement( QFile& f, const QVariant& value, int indent )
+{
+    if ( value.type() == QVariant::Type::Bool )
+        f.write( value.toBool() ? "true" : "false" );
+    else if ( value.type() == QVariant::Type::String )
+    {
+        f.write( quote );
+        f.write( value.toString().toUtf8() );
+        f.write( quote );
+    }
+    else if ( value.type() == QVariant::Type::Int )
+    {
+        f.write( QString::number( value.toInt() ).toUtf8() );
+    }
+    else if ( value.type() == QVariant::Type::Double )
+    {
+        f.write( QString::number( value.toDouble() ).toUtf8() );
+    }
+    else if ( value.type() == QVariant::Type::List )
+    {
+        int c = 0;
+        for ( const auto& it : value.toList() )
+        {
+            ++c;
+            f.write( newline );
+            writeIndent( f, indent+1 );
+            f.write( "- " );
+            dumpYamlElement( f, it, indent+1 );
+        }
+        if ( !c )  // i.e. list was empty
+            f.write( "[]" );
+    }
+    else if ( value.type() == QVariant::Type::Map )
+    {
+        f.write( newline );
+        dumpYaml( f, value.toMap(), indent+1 );
+    }
+    else
+    {
+        f.write( "<" );
+        f.write( value.typeName() );
+        f.write( ">" );
+    }
+}
+
+/// @brief Recursive helper to dump @p map to file
+static bool
+dumpYaml( QFile& f, const QVariantMap& map, int indent )
+{
+    for ( auto it = map.cbegin(); it != map.cend(); ++it )
+    {
+        writeIndent( f, indent );
+        f.write( quote );
+        f.write( it.key().toUtf8() );
+        f.write( quote );
+        f.write( ": " );
+        dumpYamlElement( f, it.value(), indent );
+        f.write( newline );
+    }
+    return true;
+}
+
+bool
+saveYaml( const QString& filename, const QVariantMap& map )
+{
+    QFile f( filename );
+    if ( !f.open( QFile::WriteOnly ) )
+        return false;
+
+    f.write( "# YAML dump\n---\n" );
+    return dumpYaml( f, map, 0 );
+}
+
+
 
 }  // namespace

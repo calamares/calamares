@@ -26,9 +26,10 @@
 #include "utils/YamlUtils.h"
 #include "modulesystem/Module.h"
 
-#include "Settings.h"
+#include "GlobalStorage.h"
 #include "Job.h"
 #include "JobQueue.h"
+#include "Settings.h"
 
 #include <QCommandLineOption>
 #include <QCommandLineParser>
@@ -37,13 +38,17 @@
 
 #include <memory>
 
-struct ModuleConfig : public QPair< QString, QString >
+struct ModuleConfig
 {
-    ModuleConfig( const QString& a, const QString& b ) : QPair< QString, QString >(a, b) { }
-    ModuleConfig() : QPair< QString, QString >( QString(), QString() ) { }
+    QString moduleName() const { return m_module; }
+    QString configFile() const { return m_jobConfig; }
+    QString language() const { return m_language; }
+    QString globalConfigFile() const { return m_globalConfig; }
 
-    QString moduleName() const { return first; }
-    QString configFile() const { return second; }
+    QString m_module;
+    QString m_jobConfig;
+    QString m_globalConfig;
+    QString m_language;
 } ;
 
 static ModuleConfig
@@ -51,6 +56,12 @@ handle_args( QCoreApplication& a )
 {
     QCommandLineOption debugLevelOption( QStringLiteral("D"),
                                           "Verbose output for debugging purposes (0-8).", "level" );
+    QCommandLineOption globalOption( QStringList() << QStringLiteral( "g" ) << QStringLiteral( "global "),
+                                     QStringLiteral( "Global settings document" ), "global.yaml" );
+    QCommandLineOption jobOption( QStringList() << QStringLiteral( "j" ) << QStringLiteral( "job"),
+                                  QStringLiteral( "Job settings document" ), "job.yaml" );
+    QCommandLineOption langOption( QStringList() << QStringLiteral( "l" ) << QStringLiteral( "language" ),
+                                   QStringLiteral( "Language (global)" ), "languagecode" );
 
     QCommandLineParser parser;
     parser.setApplicationDescription( "Calamares module tester" );
@@ -58,8 +69,11 @@ handle_args( QCoreApplication& a )
     parser.addVersionOption();
 
     parser.addOption( debugLevelOption );
+    parser.addOption( globalOption );
+    parser.addOption( jobOption );
+    parser.addOption( langOption );
     parser.addPositionalArgument( "module", "Path or name of module to run." );
-    parser.addPositionalArgument( "config", "Path of job-config file to use.", "[config]");
+    parser.addPositionalArgument( "job.yaml", "Path of job settings document to use.", "[job.yaml]");
 
     parser.process( a );
 
@@ -89,7 +103,11 @@ handle_args( QCoreApplication& a )
         return ModuleConfig();  // NOTREACHED
     }
 
-    return ModuleConfig( args.first(), args.size() == 2 ? args.at(1) : QString() );
+    QString jobSettings( parser.value( jobOption ) );
+    if ( jobSettings.isEmpty() && ( args.size() == 2 ) )
+        jobSettings = args.at(1);
+
+    return ModuleConfig{ args.first(), jobSettings, parser.value( globalOption ), parser.value( langOption ) };
 }
 
 
@@ -160,6 +178,17 @@ main( int argc, char* argv[] )
 
     std::unique_ptr< Calamares::Settings > settings_p( new Calamares::Settings( QString(), true ) );
     std::unique_ptr< Calamares::JobQueue > jobqueue_p( new Calamares::JobQueue( nullptr ) );
+
+    auto gs = jobqueue_p->globalStorage();
+    if ( !module.globalConfigFile().isEmpty() )
+        gs->loadYaml( module.globalConfigFile() );
+    if ( !module.language().isEmpty() )
+    {
+        QVariantMap vm;
+        vm.insert( "LANG", module.language() );
+        gs->insert( "localeConf", vm );
+    }
+
 
     cDebug() << "Calamares module-loader testing" << module.moduleName();
     Calamares::Module* m = load_module( module );

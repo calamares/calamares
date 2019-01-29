@@ -1,0 +1,4 @@
+---
+rootMountPoint: /tmp/unpackfs-test-run-rootdir/
+localeConf:
+   - LANG: nl

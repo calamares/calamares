@@ -19,6 +19,7 @@
 #include "Tests.h"
 
 #include "utils/Logger.h"
+#include "utils/YamlUtils.h"
 
 #include <QtTest/QtTest>
 
@@ -57,3 +58,54 @@ LibCalamaresTests::testDebugLevels()
     }
 }
 
+void
+LibCalamaresTests::testLoadSaveYaml()
+{
+    QFile f( "settings.conf" );
+    QVERIFY( f.exists() );
+
+    auto map = CalamaresUtils::loadYaml( "settings.conf" );
+    CalamaresUtils::saveYaml( "out.yaml", map );
+
+    auto other_map = CalamaresUtils::loadYaml( "out.yaml" );
+    CalamaresUtils::saveYaml(" out2.yaml", other_map );
+    QCOMPARE( map, other_map );
+
+    QFile::remove( "out.yaml" );
+    QFile::remove( "out2.yaml" );
+}
+
+static QStringList
+findConf( const QDir& d )
+{
+    QStringList mine;
+    if ( d.exists() )
+    {
+        QString path = d.absolutePath();
+        path.append( d.separator() );
+        for ( const auto& confname : d.entryList( { "*.conf" } ) )
+            mine.append( path + confname );
+        for ( const auto& subdirname : d.entryList( QDir::AllDirs | QDir::NoDotAndDotDot ) )
+        {
+            QDir subdir( d );
+            subdir.cd( subdirname );
+            mine.append( findConf( subdir ) );
+        }
+    }
+    return mine;
+}
+
+
+void
+LibCalamaresTests::testLoadSaveYamlExtended()
+{
+    for ( const auto& confname : findConf( QDir( "../src" ) ) )
+    {
+        cDebug() << "Testing" << confname;
+        auto map = CalamaresUtils::loadYaml( confname );
+        QVERIFY( CalamaresUtils::saveYaml( "out.yaml", map ) );
+        auto othermap = CalamaresUtils::loadYaml( "out.yaml" );
+        QCOMPARE( map, othermap );
+    }
+    QFile::remove( "out.yaml" );
+}

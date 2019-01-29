@@ -21,6 +21,7 @@
 #include "JobQueue.h"
 
 #include "utils/Logger.h"
+#include "utils/YamlUtils.h"
 
 #include <QFile>
 #include <QJsonDocument>
@@ -107,6 +108,23 @@ GlobalStorage::save(const QString& filename)
     f.write( QJsonDocument::fromVariant( m ).toJson() ) ;
     f.close();
     return true;
+}
+
+
+bool
+GlobalStorage::saveYaml( const QString& filename )
+{
+    return CalamaresUtils::saveYaml( filename, m );
+}
+
+bool
+GlobalStorage::loadYaml( const QString& filename )
+{
+    bool ok = false;
+    auto gs = CalamaresUtils::loadYaml( filename, &ok );
+    if ( ok )
+        m = gs;
+    return ok;
 }
 
 
