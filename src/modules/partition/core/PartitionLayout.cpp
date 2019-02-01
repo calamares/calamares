@@ -57,11 +57,18 @@ parseSizeString( QString sizeString, PartitionLayout::SizeUnit *unit )
 {
     double value;
     bool ok;
+    QString valueString;
+    QString unitString;
 
     QRegExp rx( "[KkMmGg%]" );
     int pos = rx.indexIn( sizeString );
-    QString valueString = sizeString.mid( 0, pos );
-    QString unitString = sizeString.mid( pos );
+    if (pos > 0)
+    {
+        valueString = sizeString.mid( 0, pos );
+        unitString = sizeString.mid( pos );
+    }
+    else
+        valueString = sizeString;
 
     value = valueString.toDouble( &ok );
     if ( !ok )

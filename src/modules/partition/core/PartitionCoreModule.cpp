@@ -772,17 +772,30 @@ PartitionCoreModule::initLayout()
 void
 PartitionCoreModule::initLayout( const QVariantList& config )
 {
+    QString sizeString;
+    QString minSizeString;
+
     m_partLayout = new PartitionLayout();
 
     for ( const auto& r : config )
     {
         QVariantMap pentry = r.toMap();
 
+        if ( pentry.contains("size") && CalamaresUtils::getString( pentry, "size" ).isEmpty() )
+            sizeString.setNum( CalamaresUtils::getInteger( pentry, "size", 0 ) );
+        else
+            sizeString = CalamaresUtils::getString( pentry, "size" );
+
+        if ( pentry.contains("minSize") && CalamaresUtils::getString( pentry, "minSize" ).isEmpty() )
+            minSizeString.setNum( CalamaresUtils::getInteger( pentry, "minSize", 0 ) );
+        else
+            minSizeString = CalamaresUtils::getString( pentry, "minSize" );
+
         m_partLayout->addEntry( CalamaresUtils::getString( pentry, "name" ),
                                 CalamaresUtils::getString( pentry, "mountPoint" ),
                                 CalamaresUtils::getString( pentry, "filesystem" ),
-                                CalamaresUtils::getString( pentry, "size" ),
-                                CalamaresUtils::getString( pentry, "minSize" )
+                                sizeString,
+                                minSizeString
                               );
     }
 }
