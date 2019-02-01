@@ -131,7 +131,7 @@ class RawFSItem:
     def __init__(self, config, device, fs):
         libcalamares.utils.debug("Adding an entry for raw copy of {} to {}".format(
                 config["source"], device))
-        self.source = config["source"]
+        self.source = os.path.realpath(config["source"])
         # If source is a mount point, look for the actual device mounted on it
         if os.path.ismount(self.source):
             procmounts = open("/proc/mounts", "r")
