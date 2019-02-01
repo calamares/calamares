@@ -103,7 +103,10 @@ PartitionLayout::addEntry( QString mountPoint, QString size, QString min )
     entry.partMountPoint = mountPoint;
     entry.partFileSystem = FileSystem::Ext4;
     entry.partSize = parseSizeString( size , &entry.partSizeUnit );
-    entry.partMinSize = parseSizeString( min , &entry.partMinSizeUnit );
+    if (min.isEmpty())
+        entry.partMinSize = 0;
+    else
+        entry.partMinSize = parseSizeString( min , &entry.partMinSizeUnit );
 
     partLayout.append( entry );
 }
@@ -117,7 +120,10 @@ PartitionLayout::addEntry( QString label, QString mountPoint, QString fs, QStrin
     entry.partMountPoint = mountPoint;
     entry.partFileSystem = FileSystem::typeForName( fs );
     entry.partSize = parseSizeString( size , &entry.partSizeUnit );
-    entry.partMinSize = parseSizeString( min , &entry.partMinSizeUnit );
+    if (min.isEmpty())
+        entry.partMinSize = 0;
+    else
+        entry.partMinSize = parseSizeString( min , &entry.partMinSizeUnit );
 
     partLayout.append( entry );
 }
