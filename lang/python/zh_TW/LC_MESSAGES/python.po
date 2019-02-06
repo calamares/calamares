@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Jeff Huang <s8321414@gmail.com>, 2018
+# Jeff Huang <s8321414@gmail.com>, 2019
 # 
 #, fuzzy
 msgid ""
@@ -13,7 +13,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-01-25 08:04-0500\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
-"Last-Translator: Jeff Huang <s8321414@gmail.com>, 2018\n"
+"Last-Translator: Jeff Huang <s8321414@gmail.com>, 2019\n"
 "Language-Team: Chinese (Taiwan) (https://www.transifex.com/calamares/teams/20061/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -82,54 +82,54 @@ msgstr "顯示管理器設定不完整"
 
 #: src/modules/unpackfs/main.py:40
 msgid "Installing filesystems."
-msgstr ""
+msgstr "正在安裝檔案系統。"
 
 #: src/modules/unpackfs/main.py:153
 msgid "rsync failed with error code {}."
-msgstr ""
+msgstr "rsync 失敗，錯誤碼 {} 。"
 
 #: src/modules/unpackfs/main.py:209 src/modules/unpackfs/main.py:227
 msgid "Failed to unpack image \"{}\""
-msgstr ""
+msgstr "無法解開映像檔 \"{}\""
 
 #: src/modules/unpackfs/main.py:210
 msgid ""
 "Failed to find unsquashfs, make sure you have the squashfs-tools package "
 "installed"
-msgstr ""
+msgstr "找不到 unsquashfs，請確定您已安裝 squashfs-tools 軟體包"
 
 #: src/modules/unpackfs/main.py:301
 msgid "No mount point for root partition"
-msgstr ""
+msgstr "沒有 root 分割區的掛載點"
 
 #: src/modules/unpackfs/main.py:302
 msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
-msgstr ""
+msgstr "globalstorage 不包含 \"rootMountPoint\" 鍵，不做任何事"
 
 #: src/modules/unpackfs/main.py:307
 msgid "Bad mount point for root partition"
-msgstr ""
+msgstr "root 分割區掛載點錯誤"
 
 #: src/modules/unpackfs/main.py:308
 msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
-msgstr ""
+msgstr "rootMountPoint 為 \"{}\"，其不存在，不做任何事"
 
 #: src/modules/unpackfs/main.py:321 src/modules/unpackfs/main.py:328
 #: src/modules/unpackfs/main.py:333
 msgid "Bad unsquash configuration"
-msgstr ""
+msgstr "錯誤的 unsquash 設定"
 
 #: src/modules/unpackfs/main.py:322
 msgid "The filesystem for \"{}\" ({}) is not supported"
-msgstr ""
+msgstr "不支援 \"{}\" ({}) 的檔案系統"
 
 #: src/modules/unpackfs/main.py:329
 msgid "The source filesystem \"{}\" does not exist"
-msgstr ""
+msgstr "來源檔案系統 \"{}\" 不存在"
 
 #: src/modules/unpackfs/main.py:334
 msgid "The destination \"{}\" in the target system is not a directory"
-msgstr ""
+msgstr "目標系統中的目的地 \"{}\" 不是目錄"
 
 #: src/modules/umount/main.py:40
 msgid "Unmount file systems."
@@ -145,7 +145,7 @@ msgstr "假的 python step {}"
 
 #: src/modules/rawfs/main.py:35
 msgid "Installing data."
-msgstr ""
+msgstr "正在安裝資料。"
 
 #: src/modules/machineid/main.py:35
 msgid "Generate machine-id."

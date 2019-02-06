@@ -4,9 +4,9 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# André Marcelo Alvarenga <alvarenga@kde.org>, 2017
 # Caio Jordão Carvalho <cjlcarvalho@live.com>, 2018
 # Guilherme <guimarcalsilva@gmail.com>, 2018
+# André Marcelo Alvarenga <alvarenga@kde.org>, 2019
 # 
 #, fuzzy
 msgid ""
@@ -15,7 +15,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-01-25 08:04-0500\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
-"Last-Translator: Guilherme <guimarcalsilva@gmail.com>, 2018\n"
+"Last-Translator: André Marcelo Alvarenga <alvarenga@kde.org>, 2019\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/calamares/teams/20061/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -89,54 +89,56 @@ msgstr "A configuração do gerenciador de exibição está incompleta"
 
 #: src/modules/unpackfs/main.py:40
 msgid "Installing filesystems."
-msgstr ""
+msgstr "Instalando sistemas de arquivos."
 
 #: src/modules/unpackfs/main.py:153
 msgid "rsync failed with error code {}."
-msgstr ""
+msgstr "O rsync falhou com o código de erro {}."
 
 #: src/modules/unpackfs/main.py:209 src/modules/unpackfs/main.py:227
 msgid "Failed to unpack image \"{}\""
-msgstr ""
+msgstr "Ocorreu uma falha ao descompactar a imagem \"{}\""
 
 #: src/modules/unpackfs/main.py:210
 msgid ""
 "Failed to find unsquashfs, make sure you have the squashfs-tools package "
 "installed"
 msgstr ""
+"Ocorreu uma falha ao localizar o unsquashfs, certifique-se de que o pacote "
+"squashfs-tools esteja instalado"
 
 #: src/modules/unpackfs/main.py:301
 msgid "No mount point for root partition"
-msgstr ""
+msgstr "Nenhum ponto de montagem para a partição root"
 
 #: src/modules/unpackfs/main.py:302
 msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
-msgstr ""
+msgstr "O globalstorage não contém a chave \"rootMountPoint\". Nada foi feito."
 
 #: src/modules/unpackfs/main.py:307
 msgid "Bad mount point for root partition"
-msgstr ""
+msgstr "Ponto de montagem incorreto para a partição root"
 
 #: src/modules/unpackfs/main.py:308
 msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
-msgstr ""
+msgstr "O rootMountPoint é \"{}\", mas ele não existe. Nada foi feito."
 
 #: src/modules/unpackfs/main.py:321 src/modules/unpackfs/main.py:328
 #: src/modules/unpackfs/main.py:333
 msgid "Bad unsquash configuration"
-msgstr ""
+msgstr "Configuração incorreta do unsquash"
 
 #: src/modules/unpackfs/main.py:322
 msgid "The filesystem for \"{}\" ({}) is not supported"
-msgstr ""
+msgstr "O sistema de arquivos para \"{}\" ({}) não é suportado"
 
 #: src/modules/unpackfs/main.py:329
 msgid "The source filesystem \"{}\" does not exist"
-msgstr ""
+msgstr "O sistema de arquivos de origem \"{}\" não existe"
 
 #: src/modules/unpackfs/main.py:334
 msgid "The destination \"{}\" in the target system is not a directory"
-msgstr ""
+msgstr "A destinação \"{}\" no sistema de destino não é um diretório"
 
 #: src/modules/umount/main.py:40
 msgid "Unmount file systems."
@@ -152,7 +154,7 @@ msgstr "Etapa modelo python {}"
 
 #: src/modules/rawfs/main.py:35
 msgid "Installing data."
-msgstr ""
+msgstr "Instalando os dados."
 
 #: src/modules/machineid/main.py:35
 msgid "Generate machine-id."

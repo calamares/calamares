@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Demiray Muhterem <mdemiray@msn.com>, 2018
+# Demiray Muhterem <mdemiray@msn.com>, 2019
 # 
 #, fuzzy
 msgid ""
@@ -13,7 +13,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-01-25 08:04-0500\n"
 "PO-Revision-Date: 2017-08-09 10:34+0000\n"
-"Last-Translator: Demiray Muhterem <mdemiray@msn.com>, 2018\n"
+"Last-Translator: Demiray Muhterem <mdemiray@msn.com>, 2019\n"
 "Language-Team: Turkish (Turkey) (https://www.transifex.com/calamares/teams/20061/tr_TR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -84,54 +84,56 @@ msgstr "Ekran yöneticisi yapılandırma işi tamamlanamadı"
 
 #: src/modules/unpackfs/main.py:40
 msgid "Installing filesystems."
-msgstr ""
+msgstr "Dosya sistemi yükleniyor."
 
 #: src/modules/unpackfs/main.py:153
 msgid "rsync failed with error code {}."
-msgstr ""
+msgstr "rsync {} hata koduyla başarısız oldu."
 
 #: src/modules/unpackfs/main.py:209 src/modules/unpackfs/main.py:227
 msgid "Failed to unpack image \"{}\""
-msgstr ""
+msgstr "\"{}\" kurulum medyası aktarılamadı"
 
 #: src/modules/unpackfs/main.py:210
 msgid ""
 "Failed to find unsquashfs, make sure you have the squashfs-tools package "
 "installed"
 msgstr ""
+"Unsquashfs bulunamadı, squashfs-tools paketinin kurulu olduğundan emin olun."
 
 #: src/modules/unpackfs/main.py:301
 msgid "No mount point for root partition"
-msgstr ""
+msgstr "kök disk bölümü için bağlama noktası yok"
 
 #: src/modules/unpackfs/main.py:302
 msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
 msgstr ""
+"globalstorage bir \"rootMountPoint\" anahtarı içermiyor, hiçbirşey yapılmadı"
 
 #: src/modules/unpackfs/main.py:307
 msgid "Bad mount point for root partition"
-msgstr ""
+msgstr "Kök disk bölümü için hatalı bağlama noktası"
 
 #: src/modules/unpackfs/main.py:308
 msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
-msgstr ""
+msgstr "rootMountPoint \"{}\", mevcut değil, hiçbirşey yapılmadı"
 
 #: src/modules/unpackfs/main.py:321 src/modules/unpackfs/main.py:328
 #: src/modules/unpackfs/main.py:333
 msgid "Bad unsquash configuration"
-msgstr ""
+msgstr "Unsquash yapılandırma sorunlu"
 
 #: src/modules/unpackfs/main.py:322
 msgid "The filesystem for \"{}\" ({}) is not supported"
-msgstr ""
+msgstr "\"{}\" ({}) Dosya sistemi desteklenmiyor"
 
 #: src/modules/unpackfs/main.py:329
 msgid "The source filesystem \"{}\" does not exist"
-msgstr ""
+msgstr "\"{}\" Kaynak dosya sistemi mevcut değil"
 
 #: src/modules/unpackfs/main.py:334
 msgid "The destination \"{}\" in the target system is not a directory"
-msgstr ""
+msgstr "Hedef sistemdeki \"{}\" hedefi bir dizin değil"
 
 #: src/modules/umount/main.py:40
 msgid "Unmount file systems."
@@ -147,7 +149,7 @@ msgstr "Dummy python step {}"
 
 #: src/modules/rawfs/main.py:35
 msgid "Installing data."
-msgstr ""
+msgstr "Veri yükleniyor."
 
 #: src/modules/machineid/main.py:35
 msgid "Generate machine-id."
