@@ -432,27 +432,27 @@ Instalacijski program će izaći i sve promjene će biti izgubljene.</translatio
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1466"/>
         <source>No Swap</source>
-        <translation type="unfinished"/>
+        <translation>Bez swap-a</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1471"/>
         <source>Reuse Swap</source>
-        <translation type="unfinished"/>
+        <translation>Iskoristi postojeći swap</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1474"/>
         <source>Swap (no Hibernate)</source>
-        <translation type="unfinished"/>
+        <translation>Swap (bez hibernacije)</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1477"/>
         <source>Swap (with Hibernate)</source>
-        <translation type="unfinished"/>
+        <translation>Swap (sa hibernacijom)</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1480"/>
         <source>Swap to file</source>
-        <translation type="unfinished"/>
+        <translation>Swap datoteka</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1258"/>

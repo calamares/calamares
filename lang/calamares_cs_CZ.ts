@@ -432,27 +432,27 @@ Instalační program bude ukončen a všechny změny ztraceny.</translation>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1466"/>
         <source>No Swap</source>
-        <translation type="unfinished"/>
+        <translation>Žádný odkládací prostor (swap)</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1471"/>
         <source>Reuse Swap</source>
-        <translation type="unfinished"/>
+        <translation>Použít existující odkládací prostor</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1474"/>
         <source>Swap (no Hibernate)</source>
-        <translation type="unfinished"/>
+        <translation>Odkládací prostor (bez uspávání na disk)</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1477"/>
         <source>Swap (with Hibernate)</source>
-        <translation type="unfinished"/>
+        <translation>Odkládací prostor (s uspáváním na disk)</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1480"/>
         <source>Swap to file</source>
-        <translation type="unfinished"/>
+        <translation>Odkládat do souboru</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1258"/>

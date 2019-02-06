@@ -432,27 +432,27 @@ Dies wird das Installationsprogramm beenden und alle Änderungen gehen verloren.
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1466"/>
         <source>No Swap</source>
-        <translation type="unfinished"/>
+        <translation>Kein Swap</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1471"/>
         <source>Reuse Swap</source>
-        <translation type="unfinished"/>
+        <translation>Swap wiederverwenden</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1474"/>
         <source>Swap (no Hibernate)</source>
-        <translation type="unfinished"/>
+        <translation>Swap (ohne Ruhezustand)</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1477"/>
         <source>Swap (with Hibernate)</source>
-        <translation type="unfinished"/>
+        <translation>Swap (mit Ruhezustand)</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1480"/>
         <source>Swap to file</source>
-        <translation type="unfinished"/>
+        <translation>Swap in Datei</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1258"/>

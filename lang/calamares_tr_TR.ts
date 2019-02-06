@@ -435,27 +435,27 @@ Kuruluma devam edebilirsiniz fakat bazı özellikler devre dışı kalabilir.</t
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1466"/>
         <source>No Swap</source>
-        <translation type="unfinished"/>
+        <translation>Takas alanı yok</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1471"/>
         <source>Reuse Swap</source>
-        <translation type="unfinished"/>
+        <translation>Yeniden takas alanı</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1474"/>
         <source>Swap (no Hibernate)</source>
-        <translation type="unfinished"/>
+        <translation>Takas Alanı (uyku modu yok)</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1477"/>
         <source>Swap (with Hibernate)</source>
-        <translation type="unfinished"/>
+        <translation>Takas Alanı (uyku moduyla)</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1480"/>
         <source>Swap to file</source>
-        <translation type="unfinished"/>
+        <translation>Takas alanı dosyası</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1258"/>

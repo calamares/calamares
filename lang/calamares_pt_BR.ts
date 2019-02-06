@@ -432,27 +432,27 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1466"/>
         <source>No Swap</source>
-        <translation type="unfinished"/>
+        <translation>Sem swap</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1471"/>
         <source>Reuse Swap</source>
-        <translation type="unfinished"/>
+        <translation>Reutilizar swap</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1474"/>
         <source>Swap (no Hibernate)</source>
-        <translation type="unfinished"/>
+        <translation>Swap (sem hibernação)</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1477"/>
         <source>Swap (with Hibernate)</source>
-        <translation type="unfinished"/>
+        <translation>Swap (com hibernação)</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1480"/>
         <source>Swap to file</source>
-        <translation type="unfinished"/>
+        <translation>Swap em arquivo</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1258"/>
@@ -1350,7 +1350,7 @@ O instalador será fechado e todas as alterações serão perdidas.</translation
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="174"/>
         <source>The password contains words from the real name of the user in some form</source>
-        <translation>A senha contém palavras do nome real do usuário em alguma forma</translation>
+        <translation>A senha contém palavras do nome real do usuário </translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="176"/>

@@ -32,7 +32,7 @@
     <message>
         <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="81"/>
         <source>System Partition</source>
-        <translation>Pjesë Sistemi</translation>
+        <translation>Pjesëzim Sistemi</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/core/BootLoaderModel.cpp" line="111"/>
@@ -287,7 +287,7 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
     <message>
         <location filename="../src/libcalamares/PythonHelper.cpp" line="284"/>
         <source>unparseable Python error</source>
-        <translation>Gabim kod Python i papërtypshëm dot</translation>
+        <translation>Gabim kodi Python të papërtypshëm</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/PythonHelper.cpp" line="324"/>
@@ -318,7 +318,7 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="96"/>
         <source>This computer does not satisfy the minimum requirements for installing %1.&lt;br/&gt;Installation cannot continue. &lt;a href=&quot;#details&quot;&gt;Details...&lt;/a&gt;</source>
-        <translation>Ky kompjuter nuk i plotëson kërkesat minimum për instalimin e %1.&lt;br/&gt;Instalimi s’mund të vazhdojë. &lt;a href=\&quot;#details\&quot;&gt;Hollësi…&lt;/a&gt;</translation>
+        <translation>Ky kompjuter s’i plotëson kërkesat minimum për instalimin e %1.&lt;br/&gt;Instalimi s’mund të vazhdojë. &lt;a href=\&quot;#details\&quot;&gt;Hollësi…&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="113"/>
@@ -328,7 +328,7 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="151"/>
         <source>This program will ask you some questions and set up %2 on your computer.</source>
-        <translation>Ky program do t’ju bëjë disa pyetje dhe të do të rregullojë %2 në kompjuterin tuaj.</translation>
+        <translation>Ky program do t’ju bëjë disa pyetje dhe do të rregullojë %2 në kompjuterin tuaj.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/CheckerWidget.cpp" line="174"/>
@@ -432,27 +432,27 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1466"/>
         <source>No Swap</source>
-        <translation type="unfinished"/>
+        <translation>Pa Swap</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1471"/>
         <source>Reuse Swap</source>
-        <translation type="unfinished"/>
+        <translation>Ripërdor Swap-in</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1474"/>
         <source>Swap (no Hibernate)</source>
-        <translation type="unfinished"/>
+        <translation>Swap (pa Letargji)</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1477"/>
         <source>Swap (with Hibernate)</source>
-        <translation type="unfinished"/>
+        <translation>Swap (me Letargji)</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1480"/>
         <source>Swap to file</source>
-        <translation type="unfinished"/>
+        <translation>Swap në kartelë</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1258"/>
@@ -609,12 +609,12 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="151"/>
         <source>Logical</source>
-        <translation>Logjike</translation>
+        <translation>Logjik</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="156"/>
         <source>Primary</source>
-        <translation>Parësore</translation>
+        <translation>Parësor</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/CreatePartitionDialog.cpp" line="173"/>
@@ -809,7 +809,7 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="150"/>
         <source>The type of &lt;strong&gt;partition table&lt;/strong&gt; on the selected storage device.&lt;br&gt;&lt;br&gt;The only way to change the partition table type is to erase and recreate the partition table from scratch, which destroys all data on the storage device.&lt;br&gt;This installer will keep the current partition table unless you explicitly choose otherwise.&lt;br&gt;If unsure, on modern systems GPT is preferred.</source>
-        <translation>Lloji i &lt;strong&gt;tabelës së pjesëve&lt;/strong&gt; në pajisjen e përzgjedhur të depozitimeve.&lt;br&gt;&lt;br&gt;Mënyra e vetme për ndryshim të tabelës së pjesëve është të fshihet dhe rikrijohet nga e para tabela e pjesëve, çka shkatërron krejt të dhënat në pajisjen e depozitimit.&lt;br&gt;Ky instalues do të ruajë tabelën e tanishme të pjesëve, veç në zgjedhshi shprehimisht ndryshe.&lt;br&gt;Nëse s’jeni i sigurt, në sisteme moderne parapëlqehet GPT.</translation>
+        <translation>Lloji i &lt;strong&gt;tabelës së pjesëve&lt;/strong&gt; në pajisjen e përzgjedhur të depozitimeve.&lt;br&gt;&lt;br&gt;Mënyra e vetme për ndryshim të tabelës së pjesëve është të fshihet dhe rikrijohet nga e para tabela e pjesëve, çka shkatërron krejt të dhënat në pajisjen e depozitimit.&lt;br&gt;Ky instalues do të ruajë tabelën e tanishme të pjesëve, veç në zgjedhshi ndryshe shprehimisht.&lt;br&gt;Nëse s’jeni i sigurt, në sisteme moderne parapëlqehet GPT.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/DeviceInfoWidget.cpp" line="107"/>
@@ -860,12 +860,12 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
     <message>
         <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="133"/>
         <source>Skip writing LUKS configuration for Dracut: &quot;/&quot; partition is not encrypted</source>
-        <translation>Anashkalo shkrim formësimi LUKS për Dracut: pjesa \&quot;/\&quot; s’është e fshehtëzuar</translation>
+        <translation>Anashkalo shkrim formësim LUKS për Dracut: pjesa \&quot;/\&quot; s’është e fshehtëzuar</translation>
     </message>
     <message>
         <location filename="../src/modules/dracutlukscfg/DracutLuksCfgJob.cpp" line="149"/>
         <source>Failed to open %1</source>
-        <translation>S’u arrit të hapet %1</translation>
+        <translation>S’arrihet të hapet %1</translation>
     </message>
 </context>
 <context>
@@ -1159,7 +1159,7 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="119"/>
         <source>Please review the End User License Agreements (EULAs) above.&lt;br/&gt;If you do not agree with the terms, the setup procedure cannot continue.</source>
-        <translation>Ju lutemi, shqyrtoni Marrëveshje Licencimi Për Përdorues të Thjeshtë (EULAs) më sipër.&lt;br/&gt;Nëse nuk pajtoheni me kushtet, procedura e rregullimit s’mund të shkojë më tej.</translation>
+        <translation>Ju lutemi, shqyrtoni Marrëveshje Licencimi Për Përdorues të Thjeshtë (EULAs) më sipër.&lt;br/&gt;Nëse nuk pajtohemi me kushtet, procedura e rregullimit s’mund të shkojë më tej.</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="125"/>
@@ -1169,7 +1169,7 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="130"/>
         <source>Please review the End User License Agreements (EULAs) above.&lt;br/&gt;If you do not agree with the terms, proprietary software will not be installed, and open source alternatives will be used instead.</source>
-        <translation>Ju lutemi, shqyrtoni Marrëveshje Licencimi Për Përdorues të Thjeshtë (EULAs) më sipër.&lt;br/&gt;Nëse nuk pajtoheni me kushtet, nuk do të instalohet software pronësor, dhe në vend të tij do të përdoren alternativa nga burimi i hapët.</translation>
+        <translation>Ju lutemi, shqyrtoni Marrëveshje Licencimi Për Përdorues të Thjeshtë (EULAs) më sipër.&lt;br/&gt;Nëse nuk pajtohemi me kushtet, nuk do të instalohet software pronësor, dhe në vend të tij do të përdoren alternativa nga burimi i hapët.</translation>
     </message>
     <message>
         <location filename="../src/modules/license/LicensePage.cpp" line="160"/>
@@ -1350,7 +1350,7 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="174"/>
         <source>The password contains words from the real name of the user in some form</source>
-        <translation>Fjalëkalim, në një farë mënyre, përmban fjalë nga emri i vërtetë i përdoruesit</translation>
+        <translation>Fjalëkalimi, në një farë mënyre, përmban fjalë nga emri i vërtetë i përdoruesit</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="176"/>
@@ -1415,12 +1415,12 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="201"/>
         <source>The password contains less than %1 character classes</source>
-        <translation>Fjalëkalimi përmban më pak se %1 klasa shkronjash</translation>
+        <translation>Fjalëkalimi përmban më pak se %1 klasa shenjash</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="202"/>
         <source>The password does not contain enough character classes</source>
-        <translation>Fjalëkalimi s’përmban klasa të mjaftueshme shenjash</translation>
+        <translation>Fjalëkalimi nuk përmban klasa të mjaftueshme shenjash</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="205"/>
@@ -1450,7 +1450,7 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="214"/>
         <source>The password contains too long of a monotonic character sequence</source>
-        <translation>Fjalëkalimi përmban varg monoton gjatë shenjash</translation>
+        <translation>Fjalëkalimi përmban varg monoton shumë të gjatë shenjash</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="216"/>
@@ -1470,12 +1470,12 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="225"/>
         <source>The password fails the dictionary check - %1</source>
-        <translation>Fjalëkalimi s’kalon dot kontrollin kundrejt fjalorit - %1</translation>
+        <translation>Fjalëkalimi s’kaloi dot kontrollin kundrejt fjalorit - %1</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="227"/>
         <source>The password fails the dictionary check</source>
-        <translation>Fjalëkalimi s’kalon dot kontrollin kundrejt fjalorit</translation>
+        <translation>Fjalëkalimi s’kaloi dot kontrollin kundrejt fjalorit</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="231"/>
@@ -1500,7 +1500,7 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="247"/>
         <source>Setting %1 is not of integer type</source>
-        <translation>Rregullimi për %1 is s’është numër i plotë</translation>
+        <translation>Rregullimi për %1 s’është numër i plotë</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="251"/>
@@ -1510,7 +1510,7 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="255"/>
         <source>Setting %1 is not of string type</source>
-        <translation>Rregullimi për %1 is s’është i llojit varg</translation>
+        <translation>Rregullimi për %1 s’është i llojit varg</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="259"/>
@@ -1631,17 +1631,17 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="201"/>
         <source>Root</source>
-        <translation>Rrënja</translation>
+        <translation>Rrënjë</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="204"/>
         <source>Home</source>
-        <translation>Shtëpia</translation>
+        <translation>Shtëpi</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="206"/>
         <source>Boot</source>
-        <translation>Boot</translation>
+        <translation>Nisje</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/PartitionLabelsView.cpp" line="209"/>
@@ -1877,7 +1877,7 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
     <message>
         <location filename="../src/modules/partition/gui/PartitionViewStep.cpp" line="458"/>
         <source>A separate boot partition was set up together with an encrypted root partition, but the boot partition is not encrypted.&lt;br/&gt;&lt;br/&gt;There are security concerns with this kind of setup, because important system files are kept on an unencrypted partition.&lt;br/&gt;You may continue if you wish, but filesystem unlocking will happen later during system startup.&lt;br/&gt;To encrypt the boot partition, go back and recreate it, selecting &lt;strong&gt;Encrypt&lt;/strong&gt; in the partition creation window.</source>
-        <translation>Tok me pjesën e fshehtëzuar &lt;em&gt;root&lt;/em&gt; qe rregulluar edhe një pjesë &lt;em&gt;boot&lt;/em&gt; veçmas, por pjesa &lt;em&gt;boot&lt;/em&gt; s’është e fshehtëzuar.&lt;br/&gt;&lt;br/&gt;Ka preokupime mbi sigurinë e këtij lloj rregullimi, ngaqë kartela të rëndësishme sistemi mbahen në një pjesë të pafshehtëzuar.&lt;br/&gt;Mund të vazhdoni nëse doni, por shkyçja e sistemit të kartelave do të ndodhë më vonë, gjatë nisjes së sistemit.&lt;br/&gt;Që të fshehtëzoni pjesën &lt;em&gt;boot&lt;/em&gt;, kthehuni mbrapsht dhe rikrijojeni, duke përzgjedhur te skena e krijimit të pjesës &lt;strong&gt;Fshehtëzoje&lt;/strong&gt;.</translation>
+        <translation>Tok me pjesën e fshehtëzuar &lt;em&gt;root&lt;/em&gt; qe rregulluar edhe një pjesë &lt;em&gt;boot&lt;/em&gt; veçmas, por pjesa &lt;em&gt;boot&lt;/em&gt; s’është e fshehtëzuar.&lt;br/&gt;&lt;br/&gt;Ka preokupime mbi sigurinë e këtij lloj rregullimi, ngaqë kartela të rëndësishme sistemi mbahen në një pjesë të pafshehtëzuar.&lt;br/&gt;Mund të vazhdoni, nëse doni, por shkyçja e sistemit të kartelave do të ndodhë më vonë, gjatë nisjes së sistemit.&lt;br/&gt;Që të fshehtëzoni pjesën &lt;em&gt;boot&lt;/em&gt;, kthehuni mbrapsht dhe rikrijojeni, duke përzgjedhur te skena e krijimit të pjesës &lt;strong&gt;Fshehtëzoje&lt;/strong&gt;.</translation>
     </message>
 </context>
 <context>
@@ -1909,7 +1909,7 @@ Instaluesi do të mbyllet dhe krejt ndryshimet do të hidhen tej.</translation>
     <message>
         <location filename="../src/modules/plasmalnf/PlasmaLnfPage.cpp" line="67"/>
         <source>Please choose a look-and-feel for the KDE Plasma Desktop. You can also skip this step and configure the look-and-feel once the system is installed. Clicking on a look-and-feel selection will give you a live preview of that look-and-feel.</source>
-        <translation>Ju lutemi, zgjidhni pamje dhe ndjesi për Desktopin KDE Plasma. Mundeni edhe ta anashkaloni këtë hap dhe të formësoni pamje dhe ndjesi pasi të jetë instaluar sistemi. Klikimi mbi një përzgjedhje për pamje dhe ndjesi do t’ju japë një paraparje të atypëratyshme të tyre.</translation>
+        <translation>Ju lutemi, zgjidhni një grup parametrash pamje-dhe-ndjesi për KDE Plasma Desktop. Mundeni edhe ta anashkaloni këtë hap dhe të formësoni pamje-dhe-ndjesi pasi të jetë instaluar sistemi. Klikimi mbi një përzgjedhje pamje-dhe-ndjesi do t’ju japë një paraparje të atypëratyshme të saj.</translation>
     </message>
 </context>
 <context>
@@ -1994,7 +1994,7 @@ Përfundim:
     <message>
         <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="291"/>
         <source>Command &lt;i&gt;%1&lt;/i&gt; failed to finish in %2 seconds.</source>
-        <translation>S’u arrit të përfundohej urdhri &lt;i&gt;%1&lt;/i&gt; në %2 sekonda.</translation>
+        <translation>Urdhri &lt;i&gt;%1&lt;/i&gt; s’arriti të përfundohej në %2 sekonda.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="297"/>
@@ -2096,7 +2096,7 @@ Përfundim:
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="178"/>
         <source>%1 cannot be installed on an extended partition. Please select an existing primary or logical partition.</source>
-        <translation>%1 s’mund të instalohet në një pjesë të llojit &lt;em&gt;extended&lt;/em&gt;. Ju lutemi, përzgjidhni një pjesë parësore ose logjike ekzistuese.</translation>
+        <translation>%1 s’mund të instalohet në një pjesë të llojit extended. Ju lutemi, përzgjidhni një pjesë parësore ose logjike ekzistuese.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ReplaceWidget.cpp" line="188"/>
@@ -2176,12 +2176,12 @@ Përfundim:
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="138"/>
         <source>is plugged in to a power source</source>
-        <translation>është lidhur te një burim energjie</translation>
+        <translation>është në prizë</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="139"/>
         <source>The system is not plugged in to a power source.</source>
-        <translation>Sistemi s&apos;është i lidhur me ndonjë burim energjie.</translation>
+        <translation>Sistemi s&apos;është i lidhur me ndonjë burim rryme.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/checker/RequirementsChecker.cpp" line="146"/>
@@ -2314,7 +2314,7 @@ Përfundim:
     <message>
         <location filename="../src/modules/partition/jobs/ResizeVolumeGroupJob.cpp" line="70"/>
         <source>The installer failed to resize a volume group named &apos;%1&apos;.</source>
-        <translation>Instaluesi s’arrit të ripërmasojë një grup vëllimesh të quajtur &apos;%1&apos;.</translation>
+        <translation>Instaluesi s’arriti të ripërmasojë një grup vëllimesh të quajtur &apos;%1&apos;.</translation>
     </message>
 </context>
 <context>
@@ -2395,17 +2395,17 @@ Përfundim:
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="49"/>
         <source>Set flags on partition %1.</source>
-        <translation>Caktoni flamurka në pjesën %1.</translation>
+        <translation>Vendos flamurka në pjesën %1.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="52"/>
         <source>Set flags on %1MB %2 partition.</source>
-        <translation>Caktoni flamurka në pjesën %1MB %2.`</translation>
+        <translation>Vendos flamurka në pjesën %1MB %2.`</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="56"/>
         <source>Set flags on new partition.</source>
-        <translation>Caktoni flamurka në pjesë të re.</translation>
+        <translation>Vendos flamurka në pjesë të re.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="67"/>
@@ -2425,32 +2425,32 @@ Përfundim:
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="79"/>
         <source>Flag partition &lt;strong&gt;%1&lt;/strong&gt; as &lt;strong&gt;%2&lt;/strong&gt;.</source>
-        <translation>I vini shenjë pjesës &lt;strong&gt;%1&lt;/strong&gt; si &lt;strong&gt;%2&lt;/strong&gt;.</translation>
+        <translation>Vëri flamurkë pjesës &lt;strong&gt;%1&lt;/strong&gt; si &lt;strong&gt;%2&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="85"/>
         <source>Flag %1MB &lt;strong&gt;%2&lt;/strong&gt; partition as &lt;strong&gt;%3&lt;/strong&gt;.</source>
-        <translation>I vini shenjë pjesës %1MB &lt;strong&gt;%2&lt;/strong&gt; si &lt;strong&gt;%3&lt;/strong&gt;.</translation>
+        <translation>Vëri flamurkë pjesës %1MB &lt;strong&gt;%2&lt;/strong&gt; si &lt;strong&gt;%3&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="91"/>
         <source>Flag new partition as &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation>I vini shenjë pjesës së re si &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+        <translation>Vëri flamurkë pjesës së re si &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="103"/>
         <source>Clearing flags on partition &lt;strong&gt;%1&lt;/strong&gt;.</source>
-        <translation>Po hiqen shenjat në pjesën &lt;strong&gt;%1&lt;/strong&gt;.</translation>
+        <translation>Po hiqen flamurkat në pjesën &lt;strong&gt;%1&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="107"/>
         <source>Clearing flags on %1MB &lt;strong&gt;%2&lt;/strong&gt; partition.</source>
-        <translation>Po hiqen shenjat në pjesën %1MB &lt;strong&gt;%2&lt;/strong&gt;.</translation>
+        <translation>Po hiqen flamurkat në pjesën %1MB &lt;strong&gt;%2&lt;/strong&gt;.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="111"/>
         <source>Clearing flags on new partition.</source>
-        <translation>Po hiqen shenjat në pjesën e re.</translation>
+        <translation>Po hiqen flamurkat në pjesën e re.</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/jobs/SetPartitionFlagsJob.cpp" line="115"/>
@@ -2526,7 +2526,7 @@ Përfundim:
     <message>
         <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="71"/>
         <source>Cannot access selected timezone path.</source>
-        <translation>S’përdor dot shtegun e zonës kohore të përzgjedhur.</translation>
+        <translation>S’përdoret dot shtegu i zonës kohore të përzgjedhur.</translation>
     </message>
     <message>
         <location filename="../src/modules/locale/SetTimezoneJob.cpp" line="72"/>
@@ -2751,7 +2751,7 @@ Përfundim:
     <message>
         <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="14"/>
         <source>VolumeGroupDialog</source>
-        <translation type="unfinished"/>
+        <translation>Dialog Grupi Vëllimesh</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/VolumeGroupBaseDialog.ui" line="20"/>
@@ -2857,7 +2857,7 @@ Përfundim:
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="75"/>
         <source>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Copyright 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Copyright 2017 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;Thanks to: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Lisa Vitolo, Philip Müller, Pier Luigi Fiorini, Rohan Garg and the &lt;a href=&quot;https://www.transifex.com/calamares/calamares/&quot;&gt;Calamares translators team&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;&lt;a href=&quot;https://calamares.io/&quot;&gt;Calamares&lt;/a&gt; development is sponsored by &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - Liberating Software.</source>
-        <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;for %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Të drejta Kopjimi 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Të drejta Kopjimi 2017 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;Falënderime për: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Lisa Vitolo, Philip Müller, Pier Luigi Fiorini, Rohan Garg dhe &lt;a href=&quot;https://www.transifex.com/calamares/calamares/&quot;&gt;ekipin e përkthyesve të Calamares-it&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;Zhvillimi i &lt;a href=&quot;https://calamares.io/&quot;&gt;Calamares&lt;/a&gt; sponsorizohet nga &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - Liberating Software.</translation>
+        <translation>&lt;h1&gt;%1&lt;/h1&gt;&lt;br/&gt;&lt;strong&gt;%2&lt;br/&gt;për %3&lt;/strong&gt;&lt;br/&gt;&lt;br/&gt;Të drejta Kopjimi 2014-2017 Teo Mrnjavac &amp;lt;teo@kde.org&amp;gt;&lt;br/&gt;Të drejta Kopjimi 2017 Adriaan de Groot &amp;lt;groot@kde.org&amp;gt;&lt;br/&gt;Falënderime për: Anke Boersma, Aurélien Gâteau, Kevin Kofler, Lisa Vitolo, Philip Müller, Pier Luigi Fiorini, Rohan Garg dhe &lt;a href=&quot;https://www.transifex.com/calamares/calamares/&quot;&gt;ekipin e përkthyesve të Calamares-it&lt;/a&gt;.&lt;br/&gt;&lt;br/&gt;Zhvillimi i &lt;a href=&quot;https://calamares.io/&quot;&gt;Calamares&lt;/a&gt; sponsorizohet nga &lt;br/&gt;&lt;a href=&quot;http://www.blue-systems.com/&quot;&gt;Blue Systems&lt;/a&gt; - Liberating Software.</translation>
     </message>
     <message>
         <location filename="../src/modules/welcome/WelcomePage.cpp" line="222"/>

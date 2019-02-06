@@ -432,27 +432,27 @@ L&apos;installateur se fermera et les changements seront perdus.</translation>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1466"/>
         <source>No Swap</source>
-        <translation type="unfinished"/>
+        <translation>Aucun Swap</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1471"/>
         <source>Reuse Swap</source>
-        <translation type="unfinished"/>
+        <translation>Réutiliser le Swap</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1474"/>
         <source>Swap (no Hibernate)</source>
-        <translation type="unfinished"/>
+        <translation>Swap (sans hibernation)</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1477"/>
         <source>Swap (with Hibernate)</source>
-        <translation type="unfinished"/>
+        <translation>Swap (avec hibernation)</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1480"/>
         <source>Swap to file</source>
-        <translation type="unfinished"/>
+        <translation>Swap dans un fichier</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1258"/>
@@ -2608,7 +2608,7 @@ Sortie
     <message>
         <location filename="../src/modules/tracking/TrackingJobs.cpp" line="89"/>
         <source>HTTP request timed out.</source>
-        <translation>La requête HTTP a échoué (expiration du délai). </translation>
+        <translation>La requête HTTP a échoué.</translation>
     </message>
 </context>
 <context>
