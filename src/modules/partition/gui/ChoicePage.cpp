@@ -107,9 +107,9 @@ ChoicePage::ChoicePage( const SwapChoiceSet& swapChoices, QWidget* parent )
     , m_bootloaderComboBox( nullptr )
     , m_lastSelectedDeviceIndex( -1 )
     , m_enableEncryptionWidget( true )
-    , m_allowManualPartitioning( true )
     , m_availableSwapChoices( swapChoices )
     , m_eraseSwapChoice( pickOne( swapChoices ) )
+    , m_allowManualPartitioning( true )
 {
     setupUi( this );
 
