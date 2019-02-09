@@ -19,7 +19,10 @@
 #   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
 
 import libcalamares
+import subprocess
+
 from libcalamares.utils import check_target_env_call
+from libcalamares.utils import *
 
 
 def run_mkinitcpio():
@@ -33,6 +36,9 @@ def run():
 
     :return:
     """
+    root_mount_point = libcalamares.globalstorage.value("rootMountPoint")
+    subprocess.check_call(["cp", "[/boot/vmlinuz]", root_mount_point + "/boot/vmlinuz-linux"]
+
     run_mkinitcpio()
 
     return None
