@@ -581,7 +581,7 @@ void
 PartitionPage::onPartitionModelReset()
 {
     m_ui->partitionTreeView->expandAll();
-    updateButtons();
+    // updateButtons();
     updateBootLoaderIndex();
 }
 
