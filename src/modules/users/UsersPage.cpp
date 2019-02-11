@@ -99,6 +99,13 @@ UsersPage::UsersPage( QWidget* parent )
     setWriteRootPassword( true );
     ui->checkBoxReusePassword->setChecked( true );
 
+    // Don't expand the explanations to "stupid wide", but keep them vaguely as-wide-as
+    // the things they are explaining.
+    int boxWidth = qMax( qMax( ui->textBoxUsername->width(), ui->textBoxHostname->width() ), ui->textBoxUserPassword->width() );
+    ui->username_extra_label_2->setMaximumWidth( 3 * boxWidth );
+    ui->hostname_extra_label_2->setMaximumWidth( 3 * boxWidth );
+    ui->password_extra_label_3->setMaximumWidth( 3 * boxWidth );
+
     CALAMARES_RETRANSLATE( ui->retranslateUi( this ); )
 }
 
