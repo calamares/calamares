@@ -4,7 +4,7 @@
     <message>
         <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="69"/>
         <source>The &lt;strong&gt;boot environment&lt;/strong&gt; of this system.&lt;br&gt;&lt;br&gt;Older x86 systems only support &lt;strong&gt;BIOS&lt;/strong&gt;.&lt;br&gt;Modern systems usually use &lt;strong&gt;EFI&lt;/strong&gt;, but may also show up as BIOS if started in compatibility mode.</source>
-        <translation type="unfinished"/>
+        <translation>यो सिस्टमको &lt;strong&gt;बूट वातावरण&lt;/strong&gt;।&lt;br&gt;&lt;br&gt;पुराना x86 सिस्टमहरुले मात्र &lt;strong&gt;BIOS&lt;/strong&gt; को समर्थन गर्छन्।&lt;br&gt;</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/BootInfoWidget.cpp" line="79"/>

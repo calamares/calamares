@@ -432,27 +432,27 @@ L&apos;instalador va colar y van perdese tolos cambeos.</translation>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1466"/>
         <source>No Swap</source>
-        <translation type="unfinished"/>
+        <translation>Ensin intercambéu</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1471"/>
         <source>Reuse Swap</source>
-        <translation type="unfinished"/>
+        <translation>Reusar un intercambéu</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1474"/>
         <source>Swap (no Hibernate)</source>
-        <translation type="unfinished"/>
+        <translation>Intercambéu (ensin ivernación)</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1477"/>
         <source>Swap (with Hibernate)</source>
-        <translation type="unfinished"/>
+        <translation>Intercambéu (con ivernación)</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1480"/>
         <source>Swap to file</source>
-        <translation type="unfinished"/>
+        <translation>Intercambéu nun ficheru</translation>
     </message>
     <message>
         <location filename="../src/modules/partition/gui/ChoicePage.cpp" line="1258"/>
@@ -1490,7 +1490,7 @@ L&apos;instalador va colar y van perdese tolos cambeos.</translation>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="239"/>
         <source>Bad integer value of setting - %1</source>
-        <translation>Valor enteru incorreutu del axuste - %1</translation>
+        <translation>El valor enteru del axuste ye incorreutu - %1</translation>
     </message>
     <message>
         <location filename="../src/modules/users/CheckPWQuality.cpp" line="243"/>
@@ -1984,7 +1984,7 @@ Salida:
     <message>
         <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="287"/>
         <source>Bad parameters for process job call.</source>
-        <translation>Parámetros incorreutos pa la llamada del trabayu de procesos.</translation>
+        <translation>Los parámetros son incorreutos pa la llamada del trabayu de procesos.</translation>
     </message>
     <message>
         <location filename="../src/libcalamares/utils/CalamaresUtilsSystem.cpp" line="290"/>
@@ -2488,7 +2488,7 @@ Salida:
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="112"/>
         <source>Bad destination system path.</source>
-        <translation>El camín del sistema de destín nun ye correutu.</translation>
+        <translation>El camín del sistema de destín ye incorreutu.</translation>
     </message>
     <message>
         <location filename="../src/modules/users/SetPasswordJob.cpp" line="113"/>
