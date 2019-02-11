@@ -85,54 +85,57 @@ msgstr "La configuración del xestor de pantalles nun se completó"
 
 #: src/modules/unpackfs/main.py:40
 msgid "Installing filesystems."
-msgstr ""
+msgstr "Instalando sistemes de ficheros."
 
 #: src/modules/unpackfs/main.py:153
 msgid "rsync failed with error code {}."
-msgstr ""
+msgstr "rsync falló col códigu de fallu {}."
 
 #: src/modules/unpackfs/main.py:209 src/modules/unpackfs/main.py:227
 msgid "Failed to unpack image \"{}\""
-msgstr ""
+msgstr "Fallu al desempaquetar la imaxe «{}»"
 
 #: src/modules/unpackfs/main.py:210
 msgid ""
 "Failed to find unsquashfs, make sure you have the squashfs-tools package "
 "installed"
 msgstr ""
+"Fallu al alcontrar unsquashfs, asegúrate que tienes instaláu'l paquete "
+"squashfs-tools"
 
 #: src/modules/unpackfs/main.py:301
 msgid "No mount point for root partition"
-msgstr ""
+msgstr "Nun hai un puntu de montaxe pa la partición del raigañu"
 
 #: src/modules/unpackfs/main.py:302
 msgid "globalstorage does not contain a \"rootMountPoint\" key, doing nothing"
 msgstr ""
+"globalstorage nun contién una clave «rootMountPoint». Nun va facese nada"
 
 #: src/modules/unpackfs/main.py:307
 msgid "Bad mount point for root partition"
-msgstr ""
+msgstr "El puntu de montaxe ye incorreutu pa la partición del raigañu"
 
 #: src/modules/unpackfs/main.py:308
 msgid "rootMountPoint is \"{}\", which does not exist, doing nothing"
-msgstr ""
+msgstr "rootMountPoint ye «{}» que nun esiste. Nun va facese nada"
 
 #: src/modules/unpackfs/main.py:321 src/modules/unpackfs/main.py:328
 #: src/modules/unpackfs/main.py:333
 msgid "Bad unsquash configuration"
-msgstr ""
+msgstr "La configuración d'espardimientu ye incorreuta"
 
 #: src/modules/unpackfs/main.py:322
 msgid "The filesystem for \"{}\" ({}) is not supported"
-msgstr ""
+msgstr "El sistema de ficheros pa «{}» ({}) nun ta sofitáu"
 
 #: src/modules/unpackfs/main.py:329
 msgid "The source filesystem \"{}\" does not exist"
-msgstr ""
+msgstr "El sistema de ficheros d'orixe «{}» nun esiste"
 
 #: src/modules/unpackfs/main.py:334
 msgid "The destination \"{}\" in the target system is not a directory"
-msgstr ""
+msgstr "El destín «{}» nel sistema de destín nun ye un direutoriu"
 
 #: src/modules/umount/main.py:40
 msgid "Unmount file systems."
@@ -148,7 +151,7 @@ msgstr "Pasu maniquín {} en Python"
 
 #: src/modules/rawfs/main.py:35
 msgid "Installing data."
-msgstr ""
+msgstr "Instalando datos."
 
 #: src/modules/machineid/main.py:35
 msgid "Generate machine-id."
