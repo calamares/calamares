@@ -538,7 +538,7 @@ findFS( QString defaultFS )
     // This bit is for distro's debugging their settings, and shows
     // all the strings that KPMCore is matching against for FS type.
     {
-        Logger::CLog d( Logger::LOGDEBUG );
+        Logger::CDebug d;
         using TR = Logger::DebugRow< int, QString >;
         const auto fstypes = FileSystem::types();
         d << "Available types (" << fstypes.count() << ')';
