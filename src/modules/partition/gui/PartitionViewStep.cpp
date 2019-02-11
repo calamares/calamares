@@ -612,18 +612,19 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
         else
             choices.insert( PartitionActions::Choices::SwapChoice::SmallSwap );
     }
-    m_swapChoices = choices;
 
     // Not all are supported right now // FIXME
     static const char unsupportedSetting[] = "Partition-module does not support *userSwapChoices* setting";
 
 #define COMPLAIN_UNSUPPORTED(x) \
     if ( choices.contains( x ) ) \
-    { cWarning() << unsupportedSetting << PartitionActions::Choices::choiceToName( x ); }
+    { cWarning() << unsupportedSetting << PartitionActions::Choices::choiceToName( x ); choices.remove( x ); }
 
     COMPLAIN_UNSUPPORTED( PartitionActions::Choices::SwapChoice::SwapFile )
     COMPLAIN_UNSUPPORTED( PartitionActions::Choices::SwapChoice::ReuseSwap )
 #undef COMPLAIN_UNSUPPORTED
+
+    m_swapChoices = choices;
 
     // These gs settings seem to be unused (in upstream Calamares) outside of
     // the partition module itself.
