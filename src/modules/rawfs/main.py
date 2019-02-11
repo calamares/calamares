@@ -156,8 +156,10 @@ def update_global_storage(item, gs):
                 libcalamares.utils.debug("Setting {} UUID to {}".format(item.destination,
                         ret.stdout.rstrip()))
                 gs[gs.index(partition)]["uuid"] = ret.stdout.rstrip()
-                libcalamares.globalstorage.remove("partitions")
-                libcalamares.globalstorage.insert("partitions", gs)
+                gs[gs.index(partition)]["source"] = item.source
+
+    libcalamares.globalstorage.remove("partitions")
+    libcalamares.globalstorage.insert("partitions", gs)
 
 def run():
     """Raw filesystem copy module"""
