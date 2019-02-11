@@ -53,7 +53,7 @@ PartitionLayout::addEntry( PartitionLayout::PartitionEntry entry )
 }
 
 static double
-parseSizeString( QString sizeString, PartitionLayout::SizeUnit *unit )
+parseSizeString( const QString& sizeString, PartitionLayout::SizeUnit* unit )
 {
     double value;
     bool ok;
@@ -103,7 +103,7 @@ parseSizeString( QString sizeString, PartitionLayout::SizeUnit *unit )
 }
 
 void
-PartitionLayout::addEntry( QString mountPoint, QString size, QString min )
+PartitionLayout::addEntry( const QString& mountPoint, const QString& size, const QString& min )
 {
     PartitionLayout::PartitionEntry entry;
 
@@ -119,7 +119,7 @@ PartitionLayout::addEntry( QString mountPoint, QString size, QString min )
 }
 
 void
-PartitionLayout::addEntry( QString label, QString mountPoint, QString fs, QString size, QString min )
+PartitionLayout::addEntry( const QString& label, const QString& mountPoint, const QString& fs, const QString& size, const QString& min )
 {
     PartitionLayout::PartitionEntry entry;
 

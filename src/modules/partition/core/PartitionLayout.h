@@ -61,8 +61,8 @@ public:
     ~PartitionLayout();
 
     void addEntry( PartitionEntry entry );
-    void addEntry( QString mountPoint, QString size, QString min = "" );
-    void addEntry( QString label, QString mountPoint, QString fs, QString size, QString min = "" );
+    void addEntry( const QString& mountPoint, const QString& size, const QString& min = QString() );
+    void addEntry( const QString& label, const QString& mountPoint, const QString& fs, const QString& size, const QString& min = QString() );
 
     /**
      * @brief Apply the current partition layout to the selected drive space.
