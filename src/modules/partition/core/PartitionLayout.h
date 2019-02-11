@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2018, Collabora Ltd
+ *   Copyright 2019, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -47,11 +48,11 @@ public:
     {
         QString partLabel;
         QString partMountPoint;
-        int partFileSystem;
-        double partSize;
-        SizeUnit partSizeUnit;
-        double partMinSize;
-        SizeUnit partMinSizeUnit;
+        int partFileSystem = 0;
+        double partSize = 0.0L;
+        SizeUnit partSizeUnit = Percent;
+        double partMinSize = 0.0L;
+        SizeUnit partMinSizeUnit = Percent;
     };
 
     PartitionLayout();
