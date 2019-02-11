@@ -53,6 +53,11 @@ public:
         SizeUnit partSizeUnit = Percent;
         double partMinSize = 0.0L;
         SizeUnit partMinSizeUnit = Percent;
+
+        /// @brief All-zeroes PartitionEntry
+        PartitionEntry() {};
+        /// @brief Parse @p size and @p min to their respective member variables
+        PartitionEntry( const QString& size, const QString& min );
     };
 
     PartitionLayout();

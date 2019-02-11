@@ -102,18 +102,20 @@ parseSizeString( const QString& sizeString, PartitionLayout::SizeUnit* unit )
     return value;
 }
 
+PartitionLayout::PartitionEntry::PartitionEntry(const QString& size, const QString& min)
+{
+    partSize = parseSizeString( size , &partSizeUnit );
+    if ( !min.isEmpty() )
+        partMinSize = parseSizeString( min , &partMinSizeUnit );
+}
+
 void
 PartitionLayout::addEntry( const QString& mountPoint, const QString& size, const QString& min )
 {
-    PartitionLayout::PartitionEntry entry;
+    PartitionLayout::PartitionEntry entry( size, min );
 
     entry.partMountPoint = mountPoint;
     entry.partFileSystem = FileSystem::Ext4;
-    entry.partSize = parseSizeString( size , &entry.partSizeUnit );
-    if (min.isEmpty())
-        entry.partMinSize = 0;
-    else
-        entry.partMinSize = parseSizeString( min , &entry.partMinSizeUnit );
 
     partLayout.append( entry );
 }
@@ -121,16 +123,11 @@ PartitionLayout::addEntry( const QString& mountPoint, const QString& size, const
 void
 PartitionLayout::addEntry( const QString& label, const QString& mountPoint, const QString& fs, const QString& size, const QString& min )
 {
-    PartitionLayout::PartitionEntry entry;
+    PartitionLayout::PartitionEntry entry( size, min );
 
     entry.partLabel = label;
     entry.partMountPoint = mountPoint;
     entry.partFileSystem = FileSystem::typeForName( fs );
-    entry.partSize = parseSizeString( size , &entry.partSizeUnit );
-    if (min.isEmpty())
-        entry.partMinSize = 0;
-    else
-        entry.partMinSize = parseSizeString( min , &entry.partMinSizeUnit );
 
     partLayout.append( entry );
 }
