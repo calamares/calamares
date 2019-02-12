@@ -105,9 +105,9 @@ atleast: 127 %
     QVERIFY( !j.m_fsname.isEmpty() );
     QVERIFY( !j.m_devicename.isEmpty() );
     QCOMPARE( j.m_size.unit(), ResizeFSJob::RelativeUnit::Absolute );
-    QCOMPARE( j.m_atleast.unit(), ResizeFSJob::RelativeUnit::Percent );
+    QCOMPARE( j.m_atleast.unit(), ResizeFSJob::RelativeUnit::None );
     QCOMPARE( j.m_size.value(), 72 );
-    QCOMPARE( j.m_atleast.value(), 127 );
+    QCOMPARE( j.m_atleast.value(), 0 );
 
     // Silly config
     doc0 = YAML::Load( R"(---
