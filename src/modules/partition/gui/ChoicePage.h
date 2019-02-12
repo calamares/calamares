@@ -1,7 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2014-2016, Teo Mrnjavac <teo@kde.org>
- *   Copyright 2018, Adriaan de Groot <groot@kde.org>
+ *   Copyright 2018-2019, Adriaan de Groot <groot@kde.org>
  *   Copyright 2019, Collabora Ltd
  *
  *   Calamares is free software: you can redistribute it and/or modify
@@ -155,7 +155,7 @@ private:
     PrettyRadioButton* m_eraseButton;
     PrettyRadioButton* m_replaceButton;
     PrettyRadioButton* m_somethingElseButton;
-    QComboBox* m_eraseSwapChoices;  // UI, see also m_swapChoices
+    QComboBox* m_eraseSwapChoiceComboBox;  // UI, see also m_eraseSwapChoice
 
     DeviceInfoWidget* m_deviceInfoWidget;
 
