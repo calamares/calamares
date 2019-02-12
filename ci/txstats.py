@@ -31,7 +31,7 @@ def output_langs(all_langs, label, filterfunc):
     Performs line-wrapping.
     """
     these_langs = [l for s, l in all_langs if filterfunc(s)]
-    out = " ".join(["set( _tx_%s" % label, " ".join(these_langs), ")"])
+    out = " ".join(["set( _tx_%s" % label, " ".join(sorted(these_langs)), ")"])
     width = 68
     prefix = ""
 
@@ -55,16 +55,18 @@ def get_tx_stats(token):
     if r.status_code != 200:
         return 1
 
+    suppressed_languages = ( "es_ES", )  # In Transifex, but not used
+
     all_langs = []
 
     j = r.json()
     languages = j["stats"]
     print("# Total %d languages" % len(languages))
     for lang_name in languages:
+        if lang_name in suppressed_languages:
+            continue
         stats = languages[lang_name]["translated"]["percentage"]
         all_langs.append((stats, lang_name))
-
-    all_langs.sort(reverse=True)
 
     output_langs(all_langs, "complete", lambda s : s == 1.0)
     output_langs(all_langs, "good", lambda s : 1.0 > s >= 0.75)
