@@ -503,30 +503,23 @@ findFS( QString defaultFS )
 {
     QStringList fsLanguage { QLatin1Literal( "C" ) };  // Required language list to turn off localization
     if ( defaultFS.isEmpty() )
+    {
+        cWarning() << "Partition-module setting *defaultFileSystemType* is missing, using ext4";
         defaultFS = QStringLiteral( "ext4" );
+    }
     if ( FileSystem::typeForName( defaultFS, fsLanguage ) != FileSystem::Unknown )
     {
         cDebug() << "Partition-module setting *defaultFileSystemType*" << defaultFS;
         return defaultFS;
     }
 
-    // First pass: try the default language instead of C locale
-    auto fsType = FileSystem::typeForName( defaultFS );
-    if ( fsType != FileSystem::Unknown )
-    {
-        defaultFS = FileSystem::nameForType( fsType, fsLanguage );
-        cWarning() << "Partition-module setting *defaultFileSystemType* changed" << defaultFS;
-        return defaultFS;
-    }
-
-    // Second pass: try case-insensitive, both unlocalized and localized
+    // Second pass: try case-insensitive
     const auto fstypes = FileSystem::types();
     for ( FileSystem::Type t : fstypes )
     {
-        if ( ( 0 == QString::compare( defaultFS, FileSystem::nameForType( t, fsLanguage ), Qt::CaseInsensitive ) ) ||
-             ( 0 == QString::compare( defaultFS, FileSystem::nameForType( t ), Qt::CaseInsensitive ) ) )
+        if ( 0 == QString::compare( defaultFS, FileSystem::nameForType( t, fsLanguage ), Qt::CaseInsensitive ) )
         {
-            defaultFS = FileSystem::nameForType( fsType, fsLanguage );
+            defaultFS = FileSystem::nameForType( t, fsLanguage );
             cWarning() << "Partition-module setting *defaultFileSystemType* changed" << defaultFS;
             return defaultFS;
         }
