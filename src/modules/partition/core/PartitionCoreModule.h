@@ -191,7 +191,12 @@ public:
 
     void revert();                      // full revert, thread safe, calls doInit
     void revertAllDevices();            // convenience function, calls revertDevice
-    void revertDevice( Device* dev );   // rescans a single Device and updates DeviceInfo
+    /** @brief rescans a single Device and updates DeviceInfo
+     *
+     * When @p individualRevert is true, calls refreshAfterModelChange(),
+     * used to reduce number of refreshes when calling revertAllDevices().
+     */
+    void revertDevice( Device* dev, bool individualRevert=true );
     void asyncRevertDevice( Device* dev, std::function< void() > callback ); //like revertDevice, but asynchronous
 
     void clearJobs();   // only clear jobs, the Device* states are preserved
