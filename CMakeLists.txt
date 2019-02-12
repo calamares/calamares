@@ -76,7 +76,7 @@ set( CALAMARES_DESCRIPTION_SUMMARY
 set( CALAMARES_VERSION_MAJOR 3 )
 set( CALAMARES_VERSION_MINOR 2 )
 set( CALAMARES_VERSION_PATCH 4 )
-set( CALAMARES_VERSION_RC 1 )
+set( CALAMARES_VERSION_RC 0 )
 
 
 ### Transifex (languages) info
@@ -104,12 +104,14 @@ set( CALAMARES_VERSION_RC 1 )
 #       checks for new languages and misspelled ones are done (that is,
 #       copy these four lines to four backup lines, add "p", and then update
 #       the original four lines with the current translations).
-set( _tx_complete zh_TW tr_TR sk pt_PT pt_BR pl lt ja id hu hr gl
-    fr et de da cs_CZ ca ast )
-set( _tx_good es sq es_MX zh_CN it_IT he en_GB ru ro hi bg )
-set( _tx_ok uk nl eu ko is ar sv el th fi_FI sr nb sl
-    sr@latin mr es_PR )
-set( _tx_bad eo kk kn mk uz ur ne_NP lo gu fr_CH fa be )
+set( _tx_complete ast ca cs_CZ da de fr hr ja lt pl pt_BR pt_PT
+    tr_TR zh_TW )
+set( _tx_good bg en_GB es es_MX et gl he hi hu id it_IT ro ru sk sq
+    zh_CN )
+set( _tx_ok ar el es_PR eu fi_FI is ko mr nb nl sl sr
+    sr@latin sv th uk )
+set( _tx_bad be eo fa fr_CH gu kk kn lo mk ne_NP ur uz )
+
 
 ### Required versions
 #
