@@ -62,9 +62,13 @@ void
 LibCalamaresTests::testLoadSaveYaml()
 {
     QFile f( "settings.conf" );
+    // Find the nearest settings.conf to read
+    for ( unsigned int up = 0; !f.exists() && ( up < 4 ); ++up )
+        f.setFileName( QString( "../" ) + f.fileName() );
+    cDebug() << QDir().absolutePath() << f.fileName() << f.exists();
     QVERIFY( f.exists() );
 
-    auto map = CalamaresUtils::loadYaml( "settings.conf" );
+    auto map = CalamaresUtils::loadYaml( f.fileName() );
     CalamaresUtils::saveYaml( "out.yaml", map );
 
     auto other_map = CalamaresUtils::loadYaml( "out.yaml" );
