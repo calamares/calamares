@@ -1,6 +1,12 @@
 The Calamares release process
 =============================
 
+> As releases from *master* are now rolling when-they-are-ready releases,
+> some of these steps no longer are followed. In particular, -RC releases
+> are not done anymore (although the RC variable is set in `CMakeLists.txt`
+> to avoid accidents) and most things are automated through the release
+> script [RELEASE.sh](RELEASE.sh)
+
 #### (0) A week in advance
 
 * (Only releases from master)
