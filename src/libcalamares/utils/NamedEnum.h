@@ -51,7 +51,7 @@ struct NamedEnumTable
      *
      * static const NamedEnumTable<Colors> c{ {"red", Colors::Red } };
      */
-    NamedEnumTable( const std::initializer_list< pair_t >& v ) : table( v ) { /* static_assert( v.size() > 0 ); */ };
+    NamedEnumTable( const std::initializer_list< pair_t >& v ) : table( v ) { /* static_assert( v.size() > 0 ); */ }
 
     /** @brief Find a name @p s in the table.
      *
