@@ -116,8 +116,10 @@ private slots:
     void onEncryptWidgetStateChanged();
     void onHomeCheckBoxStateChanged();
 
-    /** @brief Calls applyActionChoice() as needed. */
+    /// @brief Calls applyActionChoice() as needed.
     void onActionChanged();
+    /// @brief Calls onActionChanged() as needed.
+    void onEraseSwapChoiceChanged();
 
 private:
     void updateNextEnabled();

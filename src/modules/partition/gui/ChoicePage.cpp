@@ -318,7 +318,7 @@ ChoicePage::setupChoices()
              this, &ChoicePage::onActionChanged );
     if ( m_eraseSwapChoiceComboBox )
         connect( m_eraseSwapChoiceComboBox, QOverload<int>::of(&QComboBox::currentIndexChanged),
-                 this, &ChoicePage::onActionChanged );
+                 this, &ChoicePage::onEraseSwapChoiceChanged );
 
     CALAMARES_RETRANSLATE(
         m_somethingElseButton->setText( tr( "<strong>Manual partitioning</strong><br/>"
@@ -428,6 +428,15 @@ ChoicePage::onActionChanged()
     }
 }
 
+void
+ChoicePage::onEraseSwapChoiceChanged()
+{
+    if ( m_eraseSwapChoiceComboBox )
+    {
+        m_eraseSwapChoice = static_cast<PartitionActions::Choices::SwapChoice>( m_eraseSwapChoiceComboBox->currentData().toInt() );
+        onActionChanged();
+    }
+}
 
 void
 ChoicePage::applyActionChoice( ChoicePage::InstallChoice choice )
@@ -448,7 +457,7 @@ ChoicePage::applyActionChoice( ChoicePage::InstallChoice choice )
                 m_encryptWidget->passphrase(),
                 gs->value( "efiSystemPartition" ).toString(),
                 CalamaresUtils::GiBtoBytes( gs->value( "requiredStorageGB" ).toDouble() ),
-                static_cast<PartitionActions::Choices::SwapChoice>( m_eraseSwapChoiceComboBox->currentData().toInt() )
+                m_eraseSwapChoice
             };
 
             if ( m_core->isDirty() )
