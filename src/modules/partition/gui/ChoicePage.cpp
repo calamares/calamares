@@ -201,15 +201,21 @@ ChoicePage::init( PartitionCoreModule* core )
 
 /** @brief Creates a combobox with the given choices in it.
  *
+ * Pre-selects the choice given by @p dflt.
  * No texts are set -- that happens later by the translator functions.
  */
 static inline QComboBox*
-createCombo( const QSet< SwapChoice >& s )
+createCombo( const QSet< SwapChoice >& s, SwapChoice dflt )
 {
     QComboBox* box = new QComboBox;
     for ( SwapChoice c : { SwapChoice::NoSwap, SwapChoice::SmallSwap, SwapChoice::FullSwap, SwapChoice::ReuseSwap, SwapChoice::SwapFile } )
         if ( s.contains( c ) )
             box->addItem( QString(), c );
+
+    int dfltIndex = box->findData( dflt );
+    if ( dfltIndex >= 0 )
+        box->setCurrentIndex( dfltIndex );
+
     return box;
 }
 
@@ -270,7 +276,7 @@ ChoicePage::setupChoices()
     // .. TODO: only if enabled in the config
     if ( m_availableSwapChoices.count() > 1 )
     {
-        m_eraseSwapChoiceComboBox = createCombo( m_availableSwapChoices );
+        m_eraseSwapChoiceComboBox = createCombo( m_availableSwapChoices, m_eraseSwapChoice );
         m_eraseButton->addOptionsComboBox( m_eraseSwapChoiceComboBox );
     }
 
