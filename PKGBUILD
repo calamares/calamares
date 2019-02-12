@@ -15,9 +15,10 @@ backup=('usr/share/calamares/modules/bootloader.conf'
         'usr/share/calamares/modules/initcpio.conf'
         'usr/share/calamares/modules/unpackfs.conf')
 
-source+=(#"$pkgname-$pkgver.tar.gz::https://github.com/casualx85/calamares/archive/v${_pkgver}.tar.gz"
-         "$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/3.2.x-stable/calamares-3.2.x-stable.tar.gz")
-sha256sums=('06cf6c4f7b9ff3b5a74eda44d25c3ea7fe697ca5af1dc1c691543b138c69fc5a')
+#source+=(#"$pkgname-$pkgver.tar.gz::https://github.com/casualx85/calamares/archive/v${_pkgver}.tar.gz"
+#         "$pkgname-$pkgver-$pkgrel.tar.gz::$url/-/archive/3.2.x-stable/calamares-3.2.x-stable.tar.gz")
+source+=()
+#sha256sums=('06cf6c4f7b9ff3b5a74eda44d25c3ea7fe697ca5af1dc1c691543b138c69fc5a')
 
 prepare() {
 	mv ${srcdir}/calamares-3.2.x-stable ${srcdir}/calamares-${_pkgver}
