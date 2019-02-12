@@ -39,7 +39,7 @@ build() {
         cmake .. \
               -DCMAKE_BUILD_TYPE=Release \
               -DCMAKE_INSTALL_PREFIX=/usr \
-              -DCMAKE_INSTALL_LIBDIR=lib \
+              -DCMAKE_INSTALL_LIBDIR=/usr/lib64 \
               -DWITH_PYTHONQT:BOOL=ON \
               #-DSKIP_MODULES="webview interactiveterminal initramfs \
               #                initramfscfg dracut dracutlukscfg \
