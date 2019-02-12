@@ -47,7 +47,7 @@ This release contains contributions from (alphabetically by first name):
  * The currently-selected disk device is remembered between manual partitioning
    and the partitioning-overview pages. (Thanks to Arnaud)
  * *partition* There is new support for partitioning layout presets.
-   See `partitionc.conf` for documentation and details.
+   See `partition.conf` for documentation and details.
  * The *keyboard* module now handles the (bogus) Austrian keymap for
    the system console properly. (Thanks to Kevin)
  * The *preservefiles* module now has a mechanism for setting the permissions
@@ -56,7 +56,8 @@ This release contains contributions from (alphabetically by first name):
    for use in OEM installs where an image of fixed size is created,
    and then sized to the actual SD card the user has used.
  * The *mount* module now handles missing *extraMounts* and *extraMountsEfi*
-   keys gracefully (this is probably a misconfiguration issue).
+   keys gracefully (this is probably a misconfiguration, though, and gives a
+   warning).
  * The *packages* module now supports pre- and post-script options
    for all operations, not just during install (keep in mind that
    these run as three separate shells, though).

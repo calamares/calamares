@@ -96,7 +96,7 @@ mapForPartition( Partition* partition, const QString& uuid )
 
     // Debugging for inside the loop in createPartitionList(),
     // so indent a bit
-    Logger::CLog deb = cDebug();
+    Logger::CDebug deb;
     using TR = Logger::DebugRow<const char *const, const QString&>;
     deb << "  .. mapping for" << partition->partitionPath() << partition->deviceNode()
         << TR( "mtpoint:", PartitionInfo::mountPoint( partition ) )

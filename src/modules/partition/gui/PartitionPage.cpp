@@ -165,9 +165,13 @@ PartitionPage::updateButtons()
 
     if ( m_ui->deviceComboBox->currentIndex() >= 0 )
     {
+        Device* device = nullptr;
         QModelIndex deviceIndex = m_core->deviceModel()->index( m_ui->deviceComboBox->currentIndex(), 0 );
-        auto device = m_core->deviceModel()->deviceForIndex( deviceIndex );
-        if ( device->type() != Device::Type::LVM_Device )
+        if ( deviceIndex.isValid() )
+            device = m_core->deviceModel()->deviceForIndex( deviceIndex );
+        if ( !device )
+            cWarning() << "Device for updateButtons is nullptr";
+        else if ( device->type() != Device::Type::LVM_Device )
         {
             createTable = true;
 
@@ -577,7 +581,7 @@ void
 PartitionPage::onPartitionModelReset()
 {
     m_ui->partitionTreeView->expandAll();
-    updateButtons();
+    // updateButtons();
     updateBootLoaderIndex();
 }
 

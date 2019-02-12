@@ -1,6 +1,7 @@
 /* === This file is part of Calamares - <https://github.com/calamares> ===
  *
  *   Copyright 2018, Collabora Ltd
+ *   Copyright 2019, Adriaan de Groot <groot@kde.org>
  *
  *   Calamares is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -47,11 +48,16 @@ public:
     {
         QString partLabel;
         QString partMountPoint;
-        int partFileSystem;
-        double partSize;
-        SizeUnit partSizeUnit;
-        double partMinSize;
-        SizeUnit partMinSizeUnit;
+        int partFileSystem = 0;
+        double partSize = 0.0L;
+        SizeUnit partSizeUnit = Percent;
+        double partMinSize = 0.0L;
+        SizeUnit partMinSizeUnit = Percent;
+
+        /// @brief All-zeroes PartitionEntry
+        PartitionEntry() {};
+        /// @brief Parse @p size and @p min to their respective member variables
+        PartitionEntry( const QString& size, const QString& min );
     };
 
     PartitionLayout();
@@ -60,8 +66,8 @@ public:
     ~PartitionLayout();
 
     void addEntry( PartitionEntry entry );
-    void addEntry( QString mountPoint, QString size, QString min = "" );
-    void addEntry( QString label, QString mountPoint, QString fs, QString size, QString min = "" );
+    void addEntry( const QString& mountPoint, const QString& size, const QString& min = QString() );
+    void addEntry( const QString& label, const QString& mountPoint, const QString& fs, const QString& size, const QString& min = QString() );
 
     /**
      * @brief Apply the current partition layout to the selected drive space.

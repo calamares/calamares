@@ -538,7 +538,7 @@ findFS( QString defaultFS )
     // This bit is for distro's debugging their settings, and shows
     // all the strings that KPMCore is matching against for FS type.
     {
-        Logger::CLog d( Logger::LOGDEBUG );
+        Logger::CDebug d;
         using TR = Logger::DebugRow< int, QString >;
         const auto fstypes = FileSystem::types();
         d << "Available types (" << fstypes.count() << ')';
@@ -612,6 +612,18 @@ PartitionViewStep::setConfigurationMap( const QVariantMap& configurationMap )
         else
             choices.insert( PartitionActions::Choices::SwapChoice::SmallSwap );
     }
+
+    // Not all are supported right now // FIXME
+    static const char unsupportedSetting[] = "Partition-module does not support *userSwapChoices* setting";
+
+#define COMPLAIN_UNSUPPORTED(x) \
+    if ( choices.contains( x ) ) \
+    { cWarning() << unsupportedSetting << PartitionActions::Choices::choiceToName( x ); choices.remove( x ); }
+
+    COMPLAIN_UNSUPPORTED( PartitionActions::Choices::SwapChoice::SwapFile )
+    COMPLAIN_UNSUPPORTED( PartitionActions::Choices::SwapChoice::ReuseSwap )
+#undef COMPLAIN_UNSUPPORTED
+
     m_swapChoices = choices;
 
     // These gs settings seem to be unused (in upstream Calamares) outside of

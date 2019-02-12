@@ -107,9 +107,9 @@ ChoicePage::ChoicePage( const SwapChoiceSet& swapChoices, QWidget* parent )
     , m_bootloaderComboBox( nullptr )
     , m_lastSelectedDeviceIndex( -1 )
     , m_enableEncryptionWidget( true )
-    , m_allowManualPartitioning( true )
     , m_availableSwapChoices( swapChoices )
     , m_eraseSwapChoice( pickOne( swapChoices ) )
+    , m_allowManualPartitioning( true )
 {
     setupUi( this );
 
@@ -1246,6 +1246,7 @@ ChoicePage::setupActions()
     if ( osproberEntriesForCurrentDevice.count() == 0 )
     {
         CALAMARES_RETRANSLATE(
+            cDebug() << "Setting texts for 0 osprober entries";
             m_messageLabel->setText( tr( "This storage device does not seem to have an operating system on it. "
                                          "What would you like to do?<br/>"
                                          "You will be able to review and confirm your choices "
@@ -1278,6 +1279,7 @@ ChoicePage::setupActions()
         if ( !osName.isEmpty() )
         {
             CALAMARES_RETRANSLATE(
+                cDebug() << "Setting texts for 1 non-empty osprober entry";
                 m_messageLabel->setText( tr( "This storage device has %1 on it. "
                                              "What would you like to do?<br/>"
                                              "You will be able to review and confirm your choices "
@@ -1301,6 +1303,7 @@ ChoicePage::setupActions()
         else
         {
             CALAMARES_RETRANSLATE(
+                cDebug() << "Setting texts for 1 empty osprober entry";
                 m_messageLabel->setText( tr( "This storage device already has an operating system on it. "
                                              "What would you like to do?<br/>"
                                              "You will be able to review and confirm your choices "
@@ -1325,6 +1328,8 @@ ChoicePage::setupActions()
         // osproberEntriesForCurrentDevice has at least 2 items.
 
         CALAMARES_RETRANSLATE(
+            cDebug() << "Setting texts for >= 2 osprober entries";
+
             m_messageLabel->setText( tr( "This storage device has multiple operating systems on it. "
                                          "What would you like to do?<br/>"
                                          "You will be able to review and confirm your choices "

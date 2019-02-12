@@ -880,7 +880,7 @@ PartitionCoreModule::revertAllDevices()
             }
         }
 
-        revertDevice( ( *it )->device.data() );
+        revertDevice( ( *it )->device.data(), false );
         ++it;
     }
 
@@ -889,7 +889,7 @@ PartitionCoreModule::revertAllDevices()
 
 
 void
-PartitionCoreModule::revertDevice( Device* dev )
+PartitionCoreModule::revertDevice( Device* dev, bool individualRevert )
 {
     QMutexLocker locker( &m_revertMutex );
     DeviceInfo* devInfo = infoForDevice( dev );
@@ -915,7 +915,8 @@ PartitionCoreModule::revertDevice( Device* dev )
 
     m_bootLoaderModel->init( devices );
 
-    refreshAfterModelChange();
+    if ( individualRevert )
+        refreshAfterModelChange();
     emit deviceReverted( newDev );
 }
 
@@ -931,7 +932,7 @@ PartitionCoreModule::asyncRevertDevice( Device* dev, std::function< void() > cal
         watcher->deleteLater();
     } );
 
-    QFuture< void > future = QtConcurrent::run( this, &PartitionCoreModule::revertDevice, dev );
+    QFuture< void > future = QtConcurrent::run( this, &PartitionCoreModule::revertDevice, dev, true );
     watcher->setFuture( future );
 }
 
