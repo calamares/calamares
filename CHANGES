@@ -3,7 +3,7 @@ contributors are listed. Note that Calamares does not have a historical
 changelog -- this log starts with version 3.2.0. The release notes on the
 website will have to do for older versions.
 
-# 3.2.4 (unreleased) #
+# 3.2.4 (2019-02-12) #
 
 This release contains contributions from (alphabetically by first name):
  - Alf Gaida
@@ -11,6 +11,7 @@ This release contains contributions from (alphabetically by first name):
  - Arnaud Ferraris
  - Caio Carvalho
  - Collabora LTD
+ - Gabriel Craciunescu
  - Kevin Kofler
  - Philip Mueller
  - Scott Harvey
@@ -30,13 +31,13 @@ This release contains contributions from (alphabetically by first name):
    more documentation. In particular, the setting *windowExpanding*
    can be set to *normal*, *fullscreen* or *noexpand*.
  * The `settings.conf` file can now configure whether the *Cancel* button
-   is show (this isn't a branding thing, because it's quite fundamental
+   is shown (this isn't a branding thing, because it's quite fundamental
    to the workflow of the installer).
 
 ## Modules ##
 
  * The *partition* module supports RAID devices, but only when Calamares
-   is compiled with the newest KPMCore release.
+   is compiled with the newest KPMCore release (3.3.0).
  * The calculation of required space -- including swap -- has been simplified,
    and Calamares no longer reserves 2GiB of space in calculations for internal
    use (this means that it no longer mysteriously drops swap when the disk
