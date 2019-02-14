@@ -44,7 +44,7 @@ void
 standardMountPoints(QComboBox& combo)
 {
     combo.clear();
-    combo.addItem( combo.tr( "(no mount point)" ) );
+    combo.addItem( QObject::tr( "(no mount point)" ) );
     combo.addItems( standardMountPoints() );
 }
 
